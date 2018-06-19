@@ -39,12 +39,12 @@ class GlycoCTMonoFormat:
             s += "s:"
             s += self.fromSym[('Substituent',m.name())]
         return s
-    def linkToStr(self,l):
+    def linkToStr(self,l,noids=False):
         # 1:1d(2+1)2n
         s = ""
-        if l.id() != None:
+        if l.id() != None and not noids:
             s += str(l.id())+":"
-        if l.parent().id() != None:
+        if l.parent().id() != None and not noids:
             s += str(l.parent().id())
         s += self.fromSym[('Linkage',l.parent_type())]
         if l.parent_pos() != None and l.parent_pos2() != None:
@@ -59,7 +59,7 @@ class GlycoCTMonoFormat:
             s += '+%d)'%l.child_pos()
         else:
             s += '+-1)'
-        if l.child().id() != None:
+        if l.child().id() != None and not noids:
             s += str(l.child().id())
         s += self.fromSym[('Linkage',l.child_type())]
         return s

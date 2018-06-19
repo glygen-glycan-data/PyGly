@@ -368,11 +368,8 @@ class Glycan:
                 fr1 = (fr[0],fr[1],False,fr[3])
                 yield fr1
 
-    def all_nodes(self,subst=False):
-        todo = [self.root()]
-	for ur in self.undetermined_roots():
-	    if not ur.connected():
-	        todo.append(ur)
+    def subtree_nodes(self,root,subst=False):
+        todo = [root]
         seen = set()
         while len(todo) > 0:
             m = todo.pop(0)
@@ -386,6 +383,23 @@ class Glycan:
                         yield s
             for c in reversed(m.children()):
                 todo.insert(0,c)
+
+    def all_nodes(self,subst=False):
+        todo = [self.root()]
+	for ur in self.undetermined_roots():
+	    if not ur.connected():
+	        todo.append(ur)
+        for root in todo:
+            for m in self.subtree_nodes(root,subst):
+                yield m
+
+    def subtree_links(self,root,subst=False,uninstantiated=False):
+        for m in self.subtree_nodes(root):
+            if subst:
+                for sl in m.substituent_links():
+                    yield sl
+            for l in m.links(instantiated_only=(not uninstantiated)):
+                yield l
 
     def all_links(self,subst=False,uninstantiated=False):
         for m in self.all_nodes():
