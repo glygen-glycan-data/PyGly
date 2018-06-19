@@ -65,25 +65,47 @@ class GlycoCTUndeterminedLinkageError(GlycoCTParseError):
 class GlycoCTFormat(GlycanFormatter):
     def __init__(self):
         self.monofmt = GlycoCTMonoFormat()
-    def setid(self,m):
-        self._lastid += 1
-        m.set_id(self._lastid)
-    def dfsid(self,g):
-        self._lastid = 0
-        g.dfsvisit(self.setid,subst=True)
-        delattr(self,'_lastid')
     def toStr(self,g):
-        self.dfsid(g)
+        g.set_ids()
         s = "RES\n"
-        for m in g.all_nodes(subst=True):
+        for m in g.subtree_nodes(g.root(),subst=True):
             s += self.monofmt.toStr(m)+"\n"
         s += "LIN\n"
         linkid = 1
-        for l in sorted(g.all_links(subst=True),key=lambda l: l.child().id()):
+        for l in sorted(g.subtree_links(g.root(),subst=True),key=lambda l: l.child().id()):
             l.set_id(linkid)
             linkid += 1
             s += self.monofmt.linkToStr(l)+"\n"
+        undet = []
+        for ur in g.undetermined_roots():
+	    if not ur.connected():
+	        undet.append(ur)
+        if len(undet) == 0:
+            return s
+        s += "UND\n"
+        for i,ur in enumerate(undet):
+            s += "UND%s:100.0:100.0\n"%(i+1,)
+            parentids = set()
+            subtreelinkage = set()
+            for pl in ur.parent_links():
+                parentids.add(pl.parent().id())
+                subtreelinkage.add(self.monofmt.linkToStr(pl,noids=True))
+            s += "ParentIDs:%s\n"%("|".join(map(str,sorted(parentids))),)
+            assert len(subtreelinkage) == 1
+            s += "SubtreeLinkageID1:%s\n"%(subtreelinkage.pop(),)
+            s += "RES\n"
+            for m in g.subtree_nodes(ur,subst=True):
+                s += self.monofmt.toStr(m)+"\n"
+            first = True
+            for l in sorted(g.subtree_links(ur,subst=True),key=lambda l: l.child().id()):
+                if first:
+                    s += "LIN\n"
+                    first = False
+                l.set_id(linkid)
+                linkid += 1
+                s += self.monofmt.linkToStr(l)+"\n"
         return s
+
     def toGlycan(self,s):
         res = {}
 	und = defaultdict(dict)
