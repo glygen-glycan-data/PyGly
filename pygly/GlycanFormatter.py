@@ -597,6 +597,7 @@ class WURCS20Format(GlycanFormatter):
 	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
 	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
 	self.ambiglinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|([a-zA-Z])([0-9?]))+)\}$')
+        self.complinkre = re.compile(r'^([a-zA-Z][0-9?](\|[a-zA-Z][0-9?])*)\}-\{\1$')
         self.char2int = {}
         for i in range(26):
             self.char2int[chr(i+ord('a'))] = i+1
@@ -616,7 +617,6 @@ class WURCS20Format(GlycanFormatter):
             except KeyError:
                 raise UnsupportedMonoError(distinctmono[int(ms)])
 	root = mono[1]
-        undet = False
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):
 
@@ -689,8 +689,6 @@ class WURCS20Format(GlycanFormatter):
             mi = self.ambiglinkre.search(li)
             if mi:
 
-                undet = True
-
                 ind1 = self.char2int[mi.group(1)]
                 pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
 
@@ -739,17 +737,20 @@ class WURCS20Format(GlycanFormatter):
 		    l.child().set_connected(False)
                 continue
 
-##             mi = self.ambiglinkre.search(li)
-##             if mi:
-##                 undet = True
-##                 tomono = mono[self.char2int[mi.group(1)]]
-##                 if mi.group(2) == "?":
-##                     inpos = None
-##                 else:
-##                     inpos = int(mi.group(2))
-##                 for plink in mi.group(3).split('|'):
+
+            mi = self.complinkre.search(li)
+            if mi:
+                continue
 
             raise UnsupportedLinkError(li)
+
+        for id,m in mono.items():
+            if id == 1:
+                continue
+            if len(m.parent_links()) > 0:
+                continue
+            m.set_connected(False)
+            undets.add(m)
 
         g = Glycan(mono[1])
         g.set_undetermined(undets)
@@ -771,7 +772,7 @@ if __name__ == '__main__':
             print "+++", os.path.split(f)[1]
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
-            # print clsinst.toStr(g)
+            # print GlycoCTFormat().toStr(g)
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
             bad += 1
