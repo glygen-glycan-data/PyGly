@@ -651,6 +651,7 @@ class WURCS20Format(GlycanFormatter):
                 for ind2 in indpos2:
                     indpos2[ind2] = sorted(indpos2[ind2])
 
+		# print ind1,indpos2
                 if not (max(indpos2) < ind1):
                     raise MonoOrderLinkError(li)
 

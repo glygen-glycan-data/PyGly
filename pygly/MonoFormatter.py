@@ -22,18 +22,19 @@ class GlycoCTMonoFormat:
         if isinstance(m,Monosaccharide):
             s += "b:"
             s += self.fromSym[('Anomer',m.anomer())]
-            for cf,st in zip(m.config(),m.stem()):
+	    if m.config() and m.stem():
+              for cf,st in zip(m.config(),m.stem()):
                 s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
             s += "-%s"%self.fromSym[('SuperClass',m.superclass())]
             rs = m.ring_start()
-            if not rs:
+            if rs == None:
                 rs = 'x'
             re = m.ring_end()
-            if not re:
+            if re == None:
                 re = 'x'
             s += "-%s:%s"%(rs,re)
             for pi,mi in m.mods():
-                s += '|%s:%s'%(pi,self.fromSym[('Mod',mi)])
+		s += '|%s:%s'%(",".join(map(str,pi)),self.fromSym[('Mod',mi)])
         elif isinstance(m,Substituent):
             s += "s:"
             s += self.fromSym[('Substituent',m.name())]
