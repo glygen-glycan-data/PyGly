@@ -1,0 +1,12 @@
+recursive-include bin *.py
+recursive-include bin *.sh
+recursive-include bin/taxonomy *.sqlite3
+recursive-include src/pygly *.java
+recursive-include src/lib *.jar
+recursive-include src Makefile
+recursive-include src *.xml
+recursive-include data/Named *.txt
+recursive-include data *.gdb *.gct *.cfg *.gdb.index *.gct.index glycomedb.xml.gz
+recursive-include pygly *.ini
+recursive-include pygly *.jar
+include *.txt

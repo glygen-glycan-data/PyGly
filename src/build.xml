@@ -1,0 +1,51 @@
+<project name="PyGlyJava" default="all" basedir=".">
+
+    <!-- Initialisation. -->
+    <target name="initialise" description="Initialise required settings.">
+        <tstamp />
+        <property name="builddir" value="${basedir}/build" />
+        <property name="srcdir" value="${basedir}/pygly" />
+        <path id="build.classpath">
+           <fileset dir="lib">
+              <include name="**/*.jar"/>
+           </fileset>          
+        </path>
+    </target>
+
+    <!-- Compile -->
+    <target name="compile" depends="initialise"
+            description="Compile the code.">
+
+        <!-- create a temp build directory -->
+        <mkdir dir="${basedir}/build" />
+
+        <!-- compile the source -->
+        <javac srcdir="${srcdir}" 
+               destdir="${builddir}">
+            <classpath refid="build.classpath" />
+            <include name="**/*.java"/>
+            <!-- <compilerarg value="-g"/> -->
+        </javac>
+
+        <!-- make the jar -->
+        <jar jarfile="${basedir}/GlycoCT2Image.jar"
+             basedir="${basedir}/build">
+        </jar>
+
+        <zip destfile="${basedir}/GlycoCT2ImageBundle.jar">
+             <zipgroupfileset dir="${basedir}/lib" includes="*.jar"/>
+             <zipgroupfileset dir="${basedir}" includes="GlycoCT2Image.jar"/>
+        </zip>
+
+        <!-- delete the temp directory -->
+        <delete dir="${basedir}/build" />
+
+    </target>
+
+    <!-- ALL -->
+    <target name="all" 
+            depends="compile"
+            description="">
+    </target>
+
+</project>
