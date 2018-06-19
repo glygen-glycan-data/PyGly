@@ -66,24 +66,47 @@ class GlycoCTFormat(GlycanFormatter):
     def __init__(self):
         self.monofmt = GlycoCTMonoFormat()
     def toStr(self,g):
+
         g.set_ids()
-        s = "RES\n"
-        for m in g.subtree_nodes(g.root(),subst=True):
-            s += self.monofmt.toStr(m)+"\n"
-        s += "LIN\n"
-        linkid = 1
-        for l in sorted(g.subtree_links(g.root(),subst=True),key=lambda l: l.child().id()):
-            l.set_id(linkid)
-            linkid += 1
-            s += self.monofmt.linkToStr(l)+"\n"
+        
         undet = []
         for ur in g.undetermined_roots():
 	    if not ur.connected():
 	        undet.append(ur)
-        if len(undet) == 0:
-            return s
-        s += "UND\n"
+                
+        s = "RES\n"
+        for m in g.subtree_nodes(g.root(),subst=True):
+            s += self.monofmt.toStr(m)+"\n"
         for i,ur in enumerate(undet):
+            if len(ur.parent_links()) == 0:
+                for m in g.subtree_nodes(ur,subst=True):
+                    s += self.monofmt.toStr(m)+"\n"
+        
+        first = True
+        linkid = 1
+        for l in sorted(g.subtree_links(g.root(),subst=True),key=lambda l: l.child().id()):
+            if first:
+                s += "LIN\n"
+                first = False
+            l.set_id(linkid)
+            linkid += 1
+            s += self.monofmt.linkToStr(l)+"\n"
+        for i,ur in enumerate(undet):
+            if len(ur.parent_links()) == 0:
+                for l in sorted(g.subtree_links(ur,subst=True),key=lambda l: l.child().id()):
+                    if first:
+                        s += "LIN\n"
+                        first = False
+                    l.set_id(linkid)
+                    linkid += 1
+                    s += self.monofmt.linkToStr(l)+"\n"
+
+        first = True
+        for i,ur in enumerate(undet):
+            if len(ur.parent_links()) == 0:
+                continue
+            if first:
+                s += "UND\n"
             s += "UND%s:100.0:100.0\n"%(i+1,)
             parentids = set()
             subtreelinkage = set()
@@ -111,7 +134,6 @@ class GlycoCTFormat(GlycanFormatter):
 	und = defaultdict(dict)
 	undind = None
 	state = None
-	undet = False
         undets = set()
 	seen = set()
         for lineno,l in enumerate(s.splitlines()):
@@ -169,7 +191,6 @@ class GlycoCTFormat(GlycanFormatter):
 		try:
                     links = self.monofmt.linkFromStr(l,res)
 		    if len(links) > 1:
-			undet = True
 			for l in links:
 			    l.set_undetermined(True)
 			    l.set_instantiated(False)
@@ -193,7 +214,6 @@ class GlycoCTFormat(GlycanFormatter):
 		    continue
 	    raise GlycoCTUnexpectedLineError(lineno=lineno+1,line=l)
 	for d in und.values():
-	    undet = True
 	    linkagestr = d['stlink'][1]
 	    rootid = d['root']
 	    for pid in d['parentids']:
@@ -202,6 +222,15 @@ class GlycoCTFormat(GlycanFormatter):
 		    l.set_undetermined(True)
 		    l.set_instantiated(False)
 		    l.child().set_connected(False)
+        for id,r in res.items():
+            if id == 1:
+                continue
+            if not isinstance(r,Monosaccharide):
+                continue
+            if len(r.parent_links()) > 0:
+                continue
+            r.set_connected(False)
+            undets.add(r)
 	g = Glycan(res[1])
 	g.set_undetermined(undets)
         return g
@@ -568,6 +597,7 @@ class WURCS20Format(GlycanFormatter):
 	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
 	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
 	self.ambiglinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|([a-zA-Z])([0-9?]))+)\}$')
+        self.complinkre = re.compile(r'^([a-zA-Z][0-9?](\|[a-zA-Z][0-9?])*)\}-\{\1$')
         self.char2int = {}
         for i in range(26):
             self.char2int[chr(i+ord('a'))] = i+1
@@ -587,7 +617,6 @@ class WURCS20Format(GlycanFormatter):
             except KeyError:
                 raise UnsupportedMonoError(distinctmono[int(ms)])
 	root = mono[1]
-        undet = False
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):
 
@@ -660,8 +689,6 @@ class WURCS20Format(GlycanFormatter):
             mi = self.ambiglinkre.search(li)
             if mi:
 
-                undet = True
-
                 ind1 = self.char2int[mi.group(1)]
                 pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
 
@@ -710,17 +737,20 @@ class WURCS20Format(GlycanFormatter):
 		    l.child().set_connected(False)
                 continue
 
-##             mi = self.ambiglinkre.search(li)
-##             if mi:
-##                 undet = True
-##                 tomono = mono[self.char2int[mi.group(1)]]
-##                 if mi.group(2) == "?":
-##                     inpos = None
-##                 else:
-##                     inpos = int(mi.group(2))
-##                 for plink in mi.group(3).split('|'):
+
+            mi = self.complinkre.search(li)
+            if mi:
+                continue
 
             raise UnsupportedLinkError(li)
+
+        for id,m in mono.items():
+            if id == 1:
+                continue
+            if len(m.parent_links()) > 0:
+                continue
+            m.set_connected(False)
+            undets.add(m)
 
         g = Glycan(mono[1])
         g.set_undetermined(undets)
@@ -740,6 +770,9 @@ if __name__ == '__main__':
         try:
             g = clsinst.toGlycan(seq)
             print "+++", os.path.split(f)[1]
+            # for t in g.undetermined_root_reprs():
+            #     print t[1],str(t[0])
+            # print GlycoCTFormat().toStr(g)
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
             bad += 1
