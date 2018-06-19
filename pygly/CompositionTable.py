@@ -14,12 +14,14 @@ class Composition(defaultdict):
             if count == 0:
                 continue
             self[sl[i]] += count
+	return self
     def compactparse(self,word):
 	sl = map(str.strip,re.split(r'([A-Z][a-z]?)',word)[1:])
 	for i in range(1,len(sl),2):
 	    if not sl[i]:
 		sl[i] = '1'
 	self.parse((" ".join(sl)).strip())
+	return self
     @staticmethod
     def fromstr(*args):
 	c = Composition()
@@ -35,12 +37,15 @@ class Composition(defaultdict):
     def add(self,c):
         for k in c:
             self[k] += c[k]
+	return self
     def scale(self,s):
         for k in c:
             self[k] = int(s*self[k])
+	return self
     def sub(self,c):
         for k in c:
             self[k] -= c[k]
+	return self
     def contains(self,c):
         for k in c:
             if self[k] < c[k]:
