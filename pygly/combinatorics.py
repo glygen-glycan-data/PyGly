@@ -1,7 +1,7 @@
 #!/bin/env python
 
-__all__ = [ 'permutations', 'product', 'list_accumulator',
-            'tuple_accumulator', 'concat_accumulator']
+__all__ = [ 'permutations', 'select', 'choose', 'product', 'list_accumulator',
+            'tuple_accumulator', 'concat_accumulator', 'set_accumulator', 'itermatchings']
 
 import copy
 
@@ -116,6 +116,15 @@ def subset(x):
         for s in choose(x,i):
             return s
 
+class set_accumulator:
+    @staticmethod
+    def new(x):
+        return set(x)
+    @staticmethod
+    def add(l,x):
+        l.add(x)
+        return l
+
 class list_accumulator:
     @staticmethod
     def new(x):
@@ -207,6 +216,32 @@ def product(*args,**kw):
                 l1.append(accumulator.add(copy.copy(i0),i))
         l0 = l1
     return l0
+
+def itermatchings(items1,items2,matchtest):
+    eq = dict()
+    list1 = list(items1)
+    n1 = len(list1)
+    list2 = list(items2)
+    n2 = len(list2)
+    if n1 != n2:
+        raise StopIteration
+    for inds in permutations(range(n2)):
+        badmatch = False
+        for ai,bi in zip(range(n1),inds):
+            if (ai,bi) in eq:
+                if not eq[(ai,bi)]:
+                    badmatch = True
+                    break
+            else:
+                a = list1[ai]; b = list2[bi]
+                if not matchtest(a,b):
+                    eq[(ai,bi)] = False
+                    badmatch = True
+                    break
+                else:
+                    eq[(ai,bi)] = True
+        if not badmatch:
+            yield list1,map(list2.__getitem__,inds)
 
 def testperm(l):
     print "Permutations of",','.join(map(str,l))

@@ -11,7 +11,9 @@ try:
 except ImportError:
     from combinatorics import permutations, product
 
-from Monosaccharide import Linkage
+from combinatorics import itermatchings
+
+from Monosaccharide import Monosaccharide, Linkage
 from MonoFormatter import IUPACSym, LinCodeSym
 
 iupacSym = IUPACSym()
@@ -35,8 +37,7 @@ class Glycan:
 
     def __init__(self,root=None):
         self.set_root(root)
-	self.set_undetermined(False)
-	self._instantiations = None
+        self._undetermined = None
         self._bions = None
         self._yions = None
 
@@ -46,104 +47,156 @@ class Glycan:
     def set_root(self, r):
         self._root = r
 
-    def set_undetermined(self, und):
-	self._undetermined = und
-    
-    def add_instantiation(self, inst):
-	if self._instantiations == None:
-	    self._instantiations = []
-	self._instantiations.append(inst)
+    def set_ids(self):
+	for i,m in enumerate(self.all_nodes(subst=True)):
+	    m.set_id(i+1)
 
-    maxlinks = {'Fuc': 0, 'NeuAc': 0, 'NeuGc': 0, 'Xyl': 0}
-    def auto_instantiations(self):
-	undetsets = defaultdict(set)
-	todo = [self.root()]
-        while len(todo) > 0:
-            m = todo.pop(0)
-            for l in m.substituent_links(False):
-                if l.undetermined():
-		    undetsets[l.child()].add(l)
-            for l in m.links(False):
-                if l.undetermined():
-		    undetsets[l.child()].add(l)
-                todo.insert(0,l.child())
-	# Pick one from each child-set
-	for inst in product(*(undetsets.values())):
-	    # Potentially, eliminate infeasible combinations of
-	    # instantiated edges, too many on a parent, bond already
-	    # used, etc.
-	    counts = defaultdict(int)
-	    counts1 = defaultdict(int)
-	    for l in inst:
-		if l.parent_pos():
-		    counts[(l.parent(),l.parent_pos())] += 1
-		counts1[l.parent()] += 1
-	    for p in counts1:
-		for l in p.links():
-		    if l.undetermined():
-			continue
-		    if l.parent_pos():
-		        counts[(l.parent(),l.parent_pos())] += 1
-		    counts1[l.parent()] += 1
-	    coremannose = set()
-	    for m in self.root().children():
-		for m1 in m.children():
-		    try:
-	                if iupacSym.toStr(m1) == 'Man':
-			    coremannose.add(m1)
-		    except KeyError:
-			pass
-	    # print counts
-	    bad = False
-	    for m,c in counts1.items():
-		try:
-		    sym = iupacSym.toStr(m)
-		except KeyError:
-		    sym = None
-		if m in coremannose:
-		    # Probably N-glycan core Manose
-		    if c > 3:
-			bad = True
-			break
-		elif c > self.maxlinks.get(sym,2):
-		    bad = True
-		    break
-	    if bad:
-		continue		
-	    bad = False
-	    for m,c in counts.items():
-		if c > 1:
-		    bad = True
-		    break
-	    if bad:
-		continue		
-	    # print counts,counts1
-	    self.add_instantiation(inst)
+    def unset_ids(self):
+	for m in self.all_nodes(subst=True):
+	    m.unset_id()
+
+    def set_undetermined(self, und):
+        if und == None or len(und) == 0:
+            self._undetermined = None
+            return
+        self.set_ids()
+        u = list(und)
+        ueq = defaultdict(set)
+        placed = set()
+        for i in range(len(u)):
+            if i in placed:
+                continue
+            placed.add(i)
+            ueq[i].add(u[i])
+            for j in range(i+1,len(u)):
+                if j in placed:
+                    continue
+		if not self.undetroot_equals(u[i],u[j],mapids=False):
+		    continue
+                ueq[i].add(u[j])
+                placed.add(j)
+        self._undetermined = list(ueq.values())
+
+    def undetermined(self):
+	return self._undetermined != None
+
+    def undetermined_roots(self):
+        if self._undetermined != None:
+            for ec in self._undetermined:
+                for r in ec:
+                    yield r
+    
+    def undetermined_root_reprs(self):
+        if self._undetermined != None:
+            for ec in self._undetermined:
+                for r in ec:
+                    yield (r,len(ec))
+                    break
+
+##     def add_instantiation(self, inst):
+## 	if self._instantiations == None:
+## 	    self._instantiations = []
+## 	self._instantiations.append(inst)
+
+##     maxlinks = {'Fuc': 0, 'NeuAc': 0, 'NeuGc': 0, 'Xyl': 0}
+##     def auto_instantiations(self):
+## 	undetsets = defaultdict(set)
+## 	todo = [self.root()]
+##         while len(todo) > 0:
+##             m = todo.pop(0)
+##             for l in m.substituent_links(False):
+##                 if l.undetermined():
+## 		    undetsets[l.child()].add(l)
+##             for l in m.links(False):
+##                 if l.undetermined():
+## 		    undetsets[l.child()].add(l)
+##                 todo.insert(0,l.child())
+## 	# Pick one from each child-set
+## 	for inst in product(*(undetsets.values())):
+## 	    # Potentially, eliminate infeasible combinations of
+## 	    # instantiated edges, too many on a parent, bond already
+## 	    # used, etc.
+## 	    counts = defaultdict(int)
+## 	    counts1 = defaultdict(int)
+## 	    for l in inst:
+## 		if l.parent_pos():
+## 		    counts[(l.parent(),l.parent_pos())] += 1
+## 		counts1[l.parent()] += 1
+## 	    for p in counts1:
+## 		for l in p.links():
+## 		    if l.undetermined():
+## 			continue
+## 		    if l.parent_pos():
+## 		        counts[(l.parent(),l.parent_pos())] += 1
+## 		    counts1[l.parent()] += 1
+## 	    coremannose = set()
+## 	    for m in self.root().children():
+## 		for m1 in m.children():
+## 		    try:
+## 	                if iupacSym.toStr(m1) == 'Man':
+## 			    coremannose.add(m1)
+## 		    except KeyError:
+## 			pass
+## 	    # print counts
+## 	    bad = False
+## 	    for m,c in counts1.items():
+## 		try:
+## 		    sym = iupacSym.toStr(m)
+## 		except KeyError:
+## 		    sym = None
+## 		if m in coremannose:
+## 		    # Probably N-glycan core Manose
+## 		    if c > 3:
+## 			bad = True
+## 			break
+## 		elif c > self.maxlinks.get(sym,2):
+## 		    bad = True
+## 		    break
+## 	    if bad:
+## 		continue		
+## 	    bad = False
+## 	    for m,c in counts.items():
+## 		if c > 1:
+## 		    bad = True
+## 		    break
+## 	    if bad:
+## 		continue		
+## 	    # print counts,counts1
+## 	    self.add_instantiation(inst)
 
     def set_instantiation(self,inst):
+        conn = set()
         todo = [self.root()]
         while len(todo) > 0:
             m = todo.pop(0)
             for l in m.links(False):
                 if l.undetermined():
-                    l.set_instantiated(bool(l in inst))
+		    if l in inst:
+                        l.set_instantiated(True)
+			conn.add(l.child())
                 todo.insert(0,l.child())
+	for ur in self.undetermined_roots():
+	    ur.set_connected(ur in conn)
         return
 
     def instantiations(self):
-	if not self._undetermined:
+        if not self._undetermined:
 	    yield self
 	    return
-	for inst in self._instantiations:
+        plsets = []
+        for ur in self.undetermined_roots():
+	    if not ur.connected():
+                plsets.append(ur.parent_links())
+        for inst in combinatorics.product(*plsets,accumulator=combinatorics.set_accumulator):
             self.set_instantiation(inst)
             yield self
-        self.instantiate()
         return
 
     def instantiate(self):
-	if not self._undetermined:
+        if not self._undetermined:
             return self
-        self.set_instantiation(self._instantiations[0])
+        for g in self.instantiations():
+            break
         return self
 
     def uninstantiate(self):
@@ -152,33 +205,39 @@ class Glycan:
         self.set_instantiation(set())
         return self
         
-    def undetermined(self):
-	return self._undetermined
-
     def instantiation_count(self):
-	if self._instantiations:
-	    return len(self._instantiations)
-	return 1
+        total = 1
+        for ur in self.undetermined_roots():
+            total *= len(ur.parent_links())
+	return total
 
     def dfsvisit(self,f,m=None,subst=False):
         if m == None:
-            m = self.root()
-        f(m)
-        if subst:
-            for s in m.substituents():
-                f(s)
-        for c in m.children():
-            self.dfsvisit(f,c,subst)
+            self.dfsvisit(f,self.root(),subst)
+            for r in self.undetermined_roots():
+		if not r.connected():
+                    self.dfsvisit(f,r,subst)
+        else:
+            f(m)
+            if subst:
+                for s in m.substituents():
+                    f(s)
+            for c in m.children():
+                self.dfsvisit(f,c,subst)
 
     def dfsvisit_post(self,f,m=None,subst=False):
         if m == None:
-            m = self.root()
-        if subst:
-            for s in m.substituents():
-                f(s)
-        for c in m.children():
-            self.dfsvisit_post(f,c,subst)
-        f(m)
+            self.dfsvisit_post(f,self.root(),subst)
+            for r in self.undetermined_roots():
+		if not r.connected():
+                    self.dfsvisit_post(f,r,subst)
+        else:
+            if subst:
+                for s in m.substituents():
+                    f(s)
+            for c in m.children():
+                self.dfsvisit_post(f,c,subst)
+            f(m)
 
     class SubtreeCompositionVisit:
         def __init__(self,sym=None,comp=None):
@@ -214,6 +273,7 @@ class Glycan:
             self.eltcomp.add(m.composition(self.table))
 
     def subtree_composition(self,m,sym_table=None,comp_table=None):
+        assert not self.undetermined()
         if m == None:
             m = self.root()
         scv = Glycan.SubtreeCompositionVisit(sym=sym_table,comp=comp_table)
@@ -310,21 +370,29 @@ class Glycan:
 
     def all_nodes(self,subst=False):
         todo = [self.root()]
+	for ur in self.undetermined_roots():
+	    if not ur.connected():
+	        todo.append(ur)
+        seen = set()
         while len(todo) > 0:
             m = todo.pop(0)
-            yield m
+            if m not in seen:
+                seen.add(m)
+                yield m
             if subst:
                 for s in m.substituents():
-                    yield s
+                    if s not in seen:
+                        seen.add(s)
+                        yield s
             for c in reversed(m.children()):
                 todo.insert(0,c)
 
-    def all_links(self,subst=False):
+    def all_links(self,subst=False,uninstantiated=False):
         for m in self.all_nodes():
             if subst:
                 for sl in m.substituent_links():
                     yield sl
-            for l in m.links():
+            for l in m.links(instantiated_only=(not uninstantiated)):
                 yield l
 
     def clone(self):
@@ -339,6 +407,31 @@ class Glycan:
         f = Glycan(l.child())
         l.parent().del_link(l)
         return g,f
+
+    def equals(self,g):
+	self.set_ids()
+	g.unset_ids()
+        if not self.root().subtree_equals(g.root()):
+            return False
+        if not self.undetermined() and not g.undetermined():
+            return True
+        for m in itermatchings(self.undetermined_root_reprs(),
+                               g.undetermined_root_reprs(),
+                               lambda u,v: ((u[1] == v[1]) and self.undetroot_equals(u[0],v[0]))):
+            return True
+        return False
+
+    @staticmethod
+    def undetroot_equals(a,b,mapids=True):
+	if not a.subtree_equals(b,mapids=mapids):
+	    return False
+	assert(None not in set(l.parent().id() for l in a.parent_links()))
+	assert(None not in set(l.parent().id() for l in b.parent_links()))
+	uipars = set((l.astuple(),l.parent().id()) for l in a.parent_links())
+        ujpars = set((l.astuple(),l.parent().id()) for l in b.parent_links())
+        if not (uipars == ujpars):
+            return False
+	return True
 
     def str(self,node=None,prefix="",codeprefix="",monofmt=lcSym):
         if node == None:

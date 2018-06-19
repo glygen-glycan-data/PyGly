@@ -111,10 +111,9 @@ class GlycoCTMonoFormat:
         for st in MONO:
             configs.append(self.toSym[('Config',st[0])])
             stems.append(self.toSym[('Stem',st[1:])])
-	if len(stems) == 0:
-	    raise RuntimeError('Bad GlycoCT monosaccharide line - no config or stem: '+mstr)
-        m.set_config(*configs)
-        m.set_stem(*stems)
+	if len(stems) > 0:
+            m.set_config(*configs)
+            m.set_stem(*stems)
 
         #set mods
         for mod in MODS:

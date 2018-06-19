@@ -90,6 +90,7 @@ class GlycoCTFormat(GlycanFormatter):
 	undind = None
 	state = None
 	undet = False
+        undets = set()
 	seen = set()
         for lineno,l in enumerate(s.splitlines()):
             l = l.strip()
@@ -140,6 +141,7 @@ class GlycoCTFormat(GlycanFormatter):
                 res[m.id()] = m
 		if state == "UNDRES" and undind != None and 'root' not in und[undind]:
 		    und[undind]['root'] = m.id()
+                    undets.add(m)
                 continue
             if state in ("LIN","UNDLIN"):
 		try:
@@ -149,6 +151,7 @@ class GlycoCTFormat(GlycanFormatter):
 			for l in links:
 			    l.set_undetermined(True)
 			    l.set_instantiated(False)
+			    l.child().set_connected(False)
 		except RuntimeError, e:
 		    raise GlycoCTBadLINLineError(message=e.message,lineno=lineno+1,line=l)	
                 continue
@@ -176,14 +179,9 @@ class GlycoCTFormat(GlycanFormatter):
 		for l in links:
 		    l.set_undetermined(True)
 		    l.set_instantiated(False)
+		    l.child().set_connected(False)
 	g = Glycan(res[1])
-	g.set_undetermined(undet)
-	if undet:
-	    g.auto_instantiations()
-	    if g.instantiation_count() == 1:
-		raise GlycoCTUndeterminedLinkageError();
-            g.instantiate()
-        # print g.root()
+	g.set_undetermined(undets)
         return g
 
 class LinearCodeParseError(GlycanParseError):
@@ -568,6 +566,7 @@ class WURCS20Format(GlycanFormatter):
                 raise UnsupportedMonoError(distinctmono[int(ms)])
 	root = mono[1]
         undet = False
+        undets = set()
         for li in map(str.strip,m.group(6).split('_')):
 
             if not li:
@@ -589,11 +588,11 @@ class WURCS20Format(GlycanFormatter):
                 childmono  = mono[ind2]
                 childpos   = pos2
 
-                if not (childpos == None or childpos == childmono.ring_start()):
-                    raise BadChildPositionLinkError(li)
+                # if not (childpos == None or childpos == childmono.ring_start()):
+                #     raise BadChildPositionLinkError(li)
 
-                if not (parentpos == None or parentpos > parentmono.ring_start()):
-                    raise BadParentPositionLinkError(li)
+                # if not (parentpos == None or parentpos > parentmono.ring_start()):
+                #     raise BadParentPositionLinkError(li)
 
                 parentmono.add_child(childmono,
                                      child_pos=childpos,
@@ -618,11 +617,11 @@ class WURCS20Format(GlycanFormatter):
                 childmono  = mono[ind1]
                 childpos   = pos1
 
-                if not (childpos == None or childpos == childmono.ring_start()):
-                    raise BadChildPositionLinkError(li)
+                # if not (childpos == None or childpos == childmono.ring_start()):
+                #     raise BadChildPositionLinkError(li)
 
-                if not (parentpos[0] > parentmono.ring_start()):
-                    raise BadParentPositionLinkError(li)
+                # if not (parentpos[0] > parentmono.ring_start()):
+                #     raise BadParentPositionLinkError(li)
 
                 if len(parentpos) == 2:
                     parentmono.add_child(childmono,
@@ -666,9 +665,10 @@ class WURCS20Format(GlycanFormatter):
 
                 childmono  = mono[ind1]
                 childpos   = pos1
+                undets.add(childmono)
 
-                if not (childpos == None or childpos == 1 or childpos == childmono.ring_start()):
-                    raise BadChildPositionLinkError(li)
+                # if not (childpos == None or childpos == 1 or childpos == childmono.ring_start()):
+                #     raise BadChildPositionLinkError(li)
 
                 for parentind,parentpos in indpos2.items():
                     parentmono = mono[parentind]
@@ -684,7 +684,7 @@ class WURCS20Format(GlycanFormatter):
                                              child_type=Linkage.oxygenLost)
                     l.set_undetermined(True)
                     l.set_instantiated(False)
-                
+		    l.child().set_connected(False)
                 continue
 
 ##             mi = self.ambiglinkre.search(li)
@@ -700,12 +700,8 @@ class WURCS20Format(GlycanFormatter):
             raise UnsupportedLinkError(li)
 
         g = Glycan(mono[1])
-        g.set_undetermined(undet)
-        if undet:
-            g.auto_instantiations()
-            if g.instantiation_count() == 1:
-		raise WURCS20UndeterminedLinkageError();
-            g.instantiate()
+        g.set_undetermined(undets)
+        g.set_ids()
 	return g
 
 if __name__ == '__main__':

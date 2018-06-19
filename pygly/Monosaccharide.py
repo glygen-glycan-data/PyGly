@@ -1,6 +1,6 @@
 
 import copy
-from combinatorics import select
+from combinatorics import select, itermatchings
 
 class SuperClass:
     TRI   = 3
@@ -64,15 +64,11 @@ class Monosaccharide:
         
         # Absolute configuration of monosaccharide (D- or L- isomer?)
         # It may be None, representing unset
-        self._config = ()
+        self._config = None
 
         # Stem 3-letter code [glc, gal, man, rib, gro]
         # It may be None, representing unset
-        self._stem = ()
-
-        # Stem and config must have the same number of elements.
-        # Could the config be unknown while the Stem is known?
-        # Perhaps this should be a list of pairs like mods?
+        self._stem = None
 
         # Superclass (based on the number of consecutive carbon atoms)
         self._superclass = None
@@ -92,6 +88,12 @@ class Monosaccharide:
 
         # A list of 0 or more links to substituent objects.
         self._substituent_links = []
+
+        # Useful primarily for undetermined roots
+        self._parent_links = []
+
+	# Mark undetermined roots that have instantiated links to them...
+	self._connected = True
 
         # These are not primary data associated with monosaccharides, but are
         # useful for a variety of general processing tasks...
@@ -134,6 +136,7 @@ class Monosaccharide:
 	    cl.set_child(c)
 	    cl.set_parent(m)
 	    m.add_link(cl)
+            c.add_parent_link(cl)
             if l == identified_link:
                 identified_link_copy = cl
             elif idlc != None:
@@ -142,35 +145,41 @@ class Monosaccharide:
 	    return m,identified_link_copy
 	return m
 
+    def anysubstmatching(self,m):
+        for ii,jj in itermatchings(self.substituent_links(),m.substituent_links(),
+                                   lambda i,j: i.equals(j) and i.child().equals(j.child())):
+            return True
+        return False
+
+    def subtree_equals(self,m,mapids=True):
+        if not self.equals(m):
+            return False
+	if mapids and self.id():
+            m.set_id(self.id())
+        for ii,jj in itermatchings(self.links(),m.links(),
+                                   lambda i,j: i.equals(j) and i.child().subtree_equals(j.child(),mapids=mapids)):
+            return True
+	if mapids:
+            m.unset_id()
+        return False
+
     def equals(self,m):
         if self._anomer != m._anomer:
             return False
-        if len(self._config) != len(m._config):
+        if self._config != m._config:
             return False
-        for a,b in zip(self._config,m._config):
-            if a != b:
-                return False
-        if len(self._stem) != len(m._stem):
+        if self._stem != m._stem:
             return False
-        for a,b in zip(self._stem,m._stem):
-            if a != b:
-                return False
         if self._superclass != m._superclass:
             return False
         if self._ring_start != m._ring_start:
             return False
         if self._ring_end != m._ring_end:
             return False
-        if len(self._mods) != len(m._mods):
+        if self._mods != m._mods:
             return False
-        for a,b in zip(self._mods,m._mods):
-            if a != b:
-                return False
-        if len(self._substituent_links) != len(m._substituent_links):
+        if not self.anysubstmatching(m):
             return False
-        for a,b in zip(self._substituent_links,m._substituent_links):
-            if a.child().name() != b.child().name():
-                return False
         return True
 
     def compatible(self,m):
@@ -287,6 +296,10 @@ class Monosaccharide:
         return self._mods
 
     def add_mod(self,pos,mod):
+        if isinstance(pos,str):
+            pos = tuple(sorted(map(int,pos.split(','))))
+        else:
+            pos = (int(pos),)
         self._mods.append((pos,mod))
         self._mods = sorted(self._mods)
 
@@ -334,17 +347,32 @@ class Monosaccharide:
             return filter(lambda l: l.instantiated(),self._links)
         return self._links
 
+    def parent_links(self):
+        return self._parent_links
+
     def add_link(self, l):
         self._links.append(l)
 
     def del_link(self, l):
         self._links.remove(l)
 
+    def add_parent_link(self, l):
+        self._parent_links.append(l)
+
     def id(self):
         return self._id
 
     def set_id(self,id):
         self._id = id
+
+    def unset_id(self):
+        self._id = None
+
+    def set_connected(self,conn):
+	self._connected = conn
+
+    def connected(self):
+	return self._connected
 
 ##     def mass(self,mass_table=None):
 ##         if not mass_table:
@@ -363,6 +391,7 @@ class Monosaccharide:
         l = Linkage(child=m,**kw)
         self.add_link(l)
         l.set_parent(self)
+        m.add_parent_link(l)
 	return l
 
     def has_children(self):
@@ -397,34 +426,34 @@ class Monosaccharide:
 
     def __str__(self):
 
-        s  = "Monosaccharide:%r\n"%self.id()
-        s += "          Anomer = %r\n"%self.anomer()
-        s += "          Config = %r\n"%",".join(map(str,self.config()))
-        s += "            Stem = %r\n"%",".join(map(str,self.stem()))
-        s += "      Superclass = %r\n"%self.superclass()
-        s += "            Ring = %r\n"%":".join(map(str,self.ring()))
+        s  = "Monosaccharide:%s\n"%self.id()
+        s += "          Anomer = %s\n"%constantString(Anomer,self.anomer())
+        s += "          Config = %s\n"%constantStrings(Config,self.config())
+        s += "            Stem = %s\n"%constantStrings(Stem,self.stem())
+        s += "      Superclass = %s\n"%constantString(SuperClass,self.superclass())
+        s += "            Ring = %s\n"%":".join(map(str,self.ring()))
         if self.has_mods():
             mods = []
             for p,m in self.mods():
-                mods.append("%r:%r"%(p,m))
-            s += "            Mods = %r\n"%"|".join(mods)
+                mods.append("%s:%s"%(",".join(map(str,p)),constantString(Mod,m)))
+            s += "            Mods = %s\n"%"|".join(mods)
         if self.has_substituents():
             subs = []
             for sl in self.substituent_links():
                 subs.append("%s -> %s"%(sl,sl.child()))
-            s += "    Substituents = %s\n"%",".join(subs)
+            s += "    Substituents = %s\n"%"\n                   ".join(subs)
         # s += "   isNAcetylated = %s\n"%self.isNAcetylated()
         # s += "     Composition = %s\n"%self.composition()
         # s += "MonoisotopicMass = %f\n"%self.mass()
         if self.has_children():
-            s += "      Children = \n        "
+            s += "        Children = "
             ch = []
             for l in self.links(False):
                 if l.instantiated():
-                    ch.append("Linkage:%s -> Monosaccharide:%s"%(l,l.child().id()))
+                    ch.append("%s -> Monosaccharide:%s"%(l,l.child().id()))
                 else:
-                    ch.append("Linkage:%s ~> Monosaccharide:%s"%(l,l.child().id()))
-            s += "\n        ".join(ch) + "\n"
+                    ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
+            s += "\n                   ".join(ch) + "\n"
         return s
 
 class Substituent:
@@ -483,6 +512,9 @@ class Substituent:
     def set_id(self,id):
         self._id = id
 
+    def unset_id(self):
+        self._id = None
+
     def isNAc(self):
         return (self._sub == Substituent.nAcetyl)
 
@@ -491,8 +523,8 @@ class Substituent:
 
     def __str__(self):
         if self._id:
-            return "%s:%s"%(self._id,self._sub)
-        return str(self._sub)
+            return "%s:%s"%(self._id,constantString(Substituent,self._sub))
+        return constantString(Substituent,self._sub)
 
     def equals(self,s):
 	return (self._sub == s._sub)
@@ -552,7 +584,7 @@ class Linkage:
 
         # These are not primary data associated with linkages, but are
         # useful for a variety of general processing tasks...
-        self.set_id(None)
+        self.unset_id()
         self.set_parent(None)
 
     def id(self):
@@ -560,6 +592,9 @@ class Linkage:
 
     def set_id(self,id):
         self._id = id
+
+    def unset_id(self):
+        self._id = None
 
     def child(self):
         return self._child
@@ -607,7 +642,10 @@ class Linkage:
         return self._parent_pos
 
     def set_parent_pos(self, parent_pos):
-        self._parent_pos = parent_pos
+        if parent_pos == -1:
+            self._parent_pos = None
+        else:
+            self._parent_pos = parent_pos
 
     def parent_type2(self):
         return self._parent_type2
@@ -619,8 +657,10 @@ class Linkage:
         return self._parent_pos2
 
     def set_parent_pos2(self, parent_pos):
-	# assert(parent_pos == None)
-        self._parent_pos2 = parent_pos
+        if parent_pos == -1:
+            self._parent_pos = None
+        else:
+            self._parent_pos2 = parent_pos
 
     def set_undetermined(self,und):
 	self._undetermined = und
@@ -682,11 +722,15 @@ class Linkage:
 	    return False
 	return True
 
+    def astuple(self):
+        return (self._parent_type,tuple(sorted(Linkage.parentpos2set(self))) if self._parent_pos else None,
+                self._child_pos, self._child_type)
+
     def __str__(self):
-        return "%s(%d+%d)%s"%(self._parent_type if self._parent_type else 'x',
-                              self._parent_pos if self._parent_pos else -1,
+        return "%s (%s+%d) %s"%(constantString(Linkage,self._parent_type) if self._parent_type else 'missing',
+                              "|".join(map(str,sorted(Linkage.parentpos2set(self)))) if self._parent_pos else -1,
                               self._child_pos if self._child_pos else -1,
-                              self._child_type if self._child_type else 'x')
+                              constantString(Linkage,self._child_type) if self._child_type else 'missing')
 
 # Should we specialize substituent linkages?
 class SubLinkage(Linkage):
@@ -735,6 +779,19 @@ class PeptidePTM:
 def constantLookup(s):
     cls = s.split('.')[0]
     return (cls,eval(s))
+
+def constantString(cls,i):
+    for k in dir(cls):
+        if not k.startswith('__') and getattr(cls,k) == i:
+            return k
+    return i
+
+def constantStrings(cls,i,delim=","):
+    try:
+        return delim.join(map(lambda ii: constantString(cls,ii),i))
+    except TypeError:
+        pass
+    return constantString(cls,i)
 
 if __name__ == '__main__':
 
