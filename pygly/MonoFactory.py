@@ -12,14 +12,26 @@ class MonoFactory(ReferenceTable):
             m = Monosaccharide()
             m.set_id(name)
             aliases = [name]
-            cls,const = constantLookup(kv['anomer'])
-            m.set_anomer(const)
+            try:
+                cls,const = constantLookup(kv['anomer'])
+                m.set_anomer(const)
+            except KeyError:
+                pass
             cls,const = constantLookup(kv['superclass'])
             m.set_superclass(const)
-            m.set_ring_start(int(kv['ring_start']))
-            m.set_ring_end(int(kv['ring_end']))
+            try:
+                m.set_ring_start(int(kv['ring_start']))
+            except KeyError:
+                pass
+            try:
+                m.set_ring_end(int(kv['ring_end']))
+            except KeyError:
+                pass
             m.set_stem(*map(lambda st: constantLookup(st)[1],kv['stem'].split()))
-            m.set_config(*map(lambda cg: constantLookup(cg)[1],kv['config'].split()))
+            try:
+                m.set_config(*map(lambda cg: constantLookup(cg)[1],kv['config'].split()))
+            except KeyError:
+                pass
             mods = kv.get('mods','').split()
             for i in range(0,len(mods),2):
                 m.add_mod(mods[i],constantLookup(mods[i+1])[1])
@@ -35,6 +47,7 @@ class MonoFactory(ReferenceTable):
                         kwargs[split_subst[i]] = constantLookup(split_subst[i+1])[1]
                 m.add_substituent(const,**kwargs)
             aliases.extend(map(str.strip,kv.get('aliases','').split(';')))
+            aliases = filter(None,aliases)
 	except:
 	    print >>sys.stderr, "Problem with section", name
 	    raise

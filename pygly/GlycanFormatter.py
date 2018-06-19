@@ -20,7 +20,7 @@ class GlycanFormatter:
 
 class GlycanParseError(Exception):
     def __str__(self):
-        return repr(self.message)
+        return self.message
 
 class GlycoCTParseError(GlycanParseError):
     pass
@@ -450,7 +450,7 @@ class IUPACLinearFormat(GlycanFormatter):
         while s != "":
             # either a number or a bracket.
             if s[-1] not in '()':
-	        m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>[ab])(?P<cpos>\d)?-?(?P<ppos>\d)$',s)
+	        m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>.)$',s)
                 if not m:
 		    raise IUPACLinearBadFormat(code=orig,pos=len(s))
 		sym = m.group('sym')
@@ -463,7 +463,7 @@ class IUPACLinearFormat(GlycanFormatter):
                     raise IUPACLinearBadSym(code=orig,pos=len(s),sym=sym)
                 if anomer not in 'ab?':
                     raise IUPACLinearBadAnomer(code=orig,pos=len(s),anomer=anomer)
-                if cpos != None and cpos not in '?123456789':
+                if cpos not in '?123456789':
                     raise IUPACLinearBadPosition(code=orig,pos=len(s),badpos=cpos)
                 if ppos not in '?123456789':
                     raise IUPACLinearBadPosition(code=orig,pos=len(s),badpos=ppos)
@@ -473,9 +473,7 @@ class IUPACLinearFormat(GlycanFormatter):
                     anomer = Anomer.beta
                 else:
                     anomer = Anomer.missing
-		if cpos == None:
-		    cpos = 1
-                elif cpos == '?':
+                if cpos == '?':
                     cpos = None
                 elif cpos:
                     cpos = int(cpos)
@@ -504,7 +502,7 @@ class IUPACLinearFormat(GlycanFormatter):
 					      child_type=Linkage.nitrogenAdded)
 		s = s[:-remove]
                 parent = m
-                
+
             elif s[-1] == ')':
                 branchpoint.append(parent)
                 s=s[:-1]
@@ -515,8 +513,215 @@ class IUPACLinearFormat(GlycanFormatter):
                 raise RuntimeError("Bad IUPAC linear format!")
         return Glycan(root)
 
+class WURCS20ParseError(GlycanParseError):
+    pass
+
+
+class WURCS20FormatError(WURCS20ParseError):
+    def __init__(self,instr):
+	self.message = "WURCS2.0 parser: Bad WURCS 2.0 format %s"%(instr,)
+
+class UnsupportedMonoError(WURCS20ParseError):
+    def __init__(self,monostr):
+	self.message = "WURCS2.0 parser: Unsupported monosaccharide [%s]"%(monostr,)
+
+class UnsupportedLinkError(WURCS20ParseError):
+    def __init__(self,linkstr):
+	self.message = "WURCS2.0 parser: Unsupported link %s"%(linkstr,)
+
+class BadChildPositionLinkError(WURCS20ParseError):
+    def __init__(self,linkstr):
+	self.message = "WURCS2.0 parser: Bad child position in link %s"%(linkstr,)
+
+class BadParentPositionLinkError(WURCS20ParseError):
+    def __init__(self,linkstr):
+	self.message = "WURCS2.0 parser: Bad parent position in link %s"%(linkstr,)
+
+class MonoOrderLinkError(WURCS20ParseError):
+    def __init__(self,linkstr):
+	self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
+
+class WURCS20Format(GlycanFormatter):
+    def __init__(self):
+        self.mf = MonoFactory()
+	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
+	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
+	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
+	self.ambiglinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|([a-zA-Z])([0-9?]))+)\}$')
+        self.char2int = {}
+        for i in range(26):
+            self.char2int[chr(i+ord('a'))] = i+1
+        for i in range(26):
+            self.char2int[chr(i+ord('A'))] = i+26+1
+    def toGlycan(self,s):
+	m = self.wurcsre.search(s)
+	if not m:
+	    raise WURCS20FormatError(s)
+	counts = map(int,m.group(1).split(','))
+	distinctmono = {}; mono = {};
+	for i,ms in enumerate(m.group(2)[1:-1].split('][')):
+	    distinctmono[i+1] = ms
+	for i,ms in enumerate(m.group(4).split('-')):
+            try:
+                mono[i+1] = self.mf.new('WURCS20:['+distinctmono[int(ms)]+']')
+            except KeyError:
+                raise UnsupportedMonoError(distinctmono[int(ms)])
+	root = mono[1]
+        undet = False
+        for li in map(str.strip,m.group(6).split('_')):
+
+            if not li:
+                continue
+            
+            mi = self.simplelinkre.search(li)
+            if mi:
+                
+                ind1 = self.char2int[mi.group(1)]
+                pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
+                ind2 = self.char2int[mi.group(3)]
+                pos2 = (int(mi.group(4)) if mi.group(4) != "?" else None)
+
+                if not (ind1 < ind2):
+                    raise MonoOrderLinkError(li)
+
+                parentmono = mono[ind1]
+                parentpos  = pos1
+                childmono  = mono[ind2]
+                childpos   = pos2
+
+                if not (childpos == None or childpos == childmono.ring_start()):
+                    raise BadChildPositionLinkError(li)
+
+                if not (parentpos == None or parentpos > parentmono.ring_start()):
+                    raise BadParentPositionLinkError(li)
+
+                parentmono.add_child(childmono,
+                                     child_pos=childpos,
+                                     parent_pos=parentpos,
+                                     parent_type=Linkage.oxygenPreserved,
+                                     child_type=Linkage.oxygenLost)
+                continue
+
+            mi = self.multilinkre.search(li)
+            if mi:
+
+                ind1 = self.char2int[mi.group(1)]
+                pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
+                ind2 = self.char2int[mi.group(4)]
+                pos2 = sorted(set(map(lambda s: int(s[1]),mi.group(3).split('|'))))
+
+                if not (ind2 < ind1):
+                    raise MonoOrderLinkError(li)
+
+                parentmono = mono[ind2]
+                parentpos  = pos2
+                childmono  = mono[ind1]
+                childpos   = pos1
+
+                if not (childpos == None or childpos == childmono.ring_start()):
+                    raise BadChildPositionLinkError(li)
+
+                if not (parentpos[0] > parentmono.ring_start()):
+                    raise BadParentPositionLinkError(li)
+
+                if len(parentpos) == 2:
+                    parentmono.add_child(childmono,
+                                         child_pos=childpos,
+                                         parent_pos=parentpos[0],
+                                         parent_pos2=parentpos[1],
+                                         parent_type=Linkage.oxygenPreserved,
+                                         child_type=Linkage.oxygenLost)
+                else:
+                    BadParentPositionLinkError(li)
+
+                continue
+
+            mi = self.ambiglinkre.search(li)
+            if mi:
+
+                undet = True
+
+                ind1 = self.char2int[mi.group(1)]
+                pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
+
+                indpos2 = defaultdict(set)
+                for s in mi.group(3).split('|'):
+                    ind2 = self.char2int[s[0]]
+                    pos2 = (int(s[1]) if s[1] != '?' else None)
+                    indpos2[ind2].add(pos2)
+                for ind2 in indpos2:
+                    indpos2[ind2] = sorted(indpos2[ind2])
+
+                if not (max(indpos2) < ind1):
+                    raise MonoOrderLinkError(li)
+
+                if len(indpos2) < 2:
+                    raise BadParentPositionLinkError(li)
+
+                for ind2 in indpos2:
+                    if len(indpos2[ind2]) > 2:
+                        raise BadParentPositionLinkError(li)
+                    if None in indpos2[ind2] and len(indpos2[ind2]) != 1:
+                        raise BadParentPositionLinkError(li)
+
+                childmono  = mono[ind1]
+                childpos   = pos1
+
+                if not (childpos == None or childpos == 1 or childpos == childmono.ring_start()):
+                    raise BadChildPositionLinkError(li)
+
+                for parentind,parentpos in indpos2.items():
+                    parentmono = mono[parentind]
+                    parentpos2 = None
+                    if len(parentpos) == 2:
+                        parentpos2=parentpos[1]
+                    parentpos=parentpos[0]
+                    l = parentmono.add_child(childmono,
+                                             child_pos=childpos,
+                                             parent_pos=parentpos,
+                                             parent_pos2=parentpos2,
+                                             parent_type=Linkage.oxygenPreserved,
+                                             child_type=Linkage.oxygenLost)
+                    l.set_undetermined(True)
+                    l.set_instantiated(False)
+                
+                continue
+
+##             mi = self.ambiglinkre.search(li)
+##             if mi:
+##                 undet = True
+##                 tomono = mono[self.char2int[mi.group(1)]]
+##                 if mi.group(2) == "?":
+##                     inpos = None
+##                 else:
+##                     inpos = int(mi.group(2))
+##                 for plink in mi.group(3).split('|'):
+
+            raise UnsupportedLinkError(li)
+
+        g = Glycan(mono[1])
+        g.set_undetermined(undet)
+        if undet:
+            g.auto_instantiations()
+            if g.instantiation_count() == 1:
+		raise WURCS20UndeterminedLinkageError();
+            g.instantiate()
+	return g
+
 if __name__ == '__main__':
-    import sys
-    seq = sys.stdin.read()
+    import sys, os.path
     clsinst = eval("%s()"%sys.argv[1])
-    clsinst.toGlycan(seq)
+    if len(sys.argv) > 2:
+        files = sys.argv[2:]
+    else:
+        files = sys.stdin.read().splitlines()
+    bad = 0
+    for f in files:
+        seq = open(f).read()
+        try:
+            g = clsinst.toGlycan(seq)
+            print "+++", os.path.split(f)[1]
+        except GlycanParseError, e:
+            print "!!!", os.path.split(f)[1], e
+            bad += 1
+    print "Failed: %d/%d"%(bad,len(files))

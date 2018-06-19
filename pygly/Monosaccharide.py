@@ -1,5 +1,6 @@
 
 import copy
+from combinatorics import select
 
 class SuperClass:
     TRI   = 3
@@ -168,7 +169,7 @@ class Monosaccharide:
         if len(self._substituent_links) != len(m._substituent_links):
             return False
         for a,b in zip(self._substituent_links,m._substituent_links):
-            if a.name() != b.name():
+            if a.child().name() != b.child().name():
                 return False
         return True
 
@@ -230,9 +231,17 @@ class Monosaccharide:
                 return False
         if len(self._substituent_links) != len(m._substituent_links):
             return False
-        for a,b in zip(self._substituent_links,m._substituent_links):
-            if a.child().name() != b.child().name():
-                return False
+        anymatch = False
+	for slinks in select(m._substituent_links,len(self._substituent_links)):
+	  badmatch = False
+          for a,b in zip(self._substituent_links,slinks):
+	    if not a.equals(b) or not a.child().equals(b.child()):
+                badmatch = True
+	  if not badmatch:
+	    anymatch = True
+	    break
+	if not anymatch:
+	  return False
         return True
 
     def anomer(self):
@@ -484,6 +493,9 @@ class Substituent:
         if self._id:
             return "%s:%s"%(self._id,self._sub)
         return str(self._sub)
+
+    def equals(self,s):
+	return (self._sub == s._sub)
 
 class Linkage:
 
