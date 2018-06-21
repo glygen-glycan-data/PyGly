@@ -5,6 +5,7 @@ from Glycan import Glycan
 from MonoFactory import MonoFactory
 import re, sys
 from collections import defaultdict
+from WURCS2monoformatter import WURCS20MonoFormatter
 
 class GlycanFormatter:
     def writeToFile(self,thefile,glycan):
@@ -592,7 +593,7 @@ class MonoOrderLinkError(WURCS20ParseError):
 
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
-        self.mf = MonoFactory()
+        self.mf = WURCS20MonoFormatter()
 	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
 	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
 	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
@@ -612,10 +613,8 @@ class WURCS20Format(GlycanFormatter):
 	for i,ms in enumerate(m.group(2)[1:-1].split('][')):
 	    distinctmono[i+1] = ms
 	for i,ms in enumerate(m.group(4).split('-')):
-            try:
-                mono[i+1] = self.mf.new('WURCS20:['+distinctmono[int(ms)]+']')
-            except KeyError:
-                raise UnsupportedMonoError(distinctmono[int(ms)])
+            mono[i+1] = self.mf.get(distinctmono[int(ms)])
+
 	root = mono[1]
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):
