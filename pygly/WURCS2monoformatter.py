@@ -129,11 +129,6 @@ class WURCS20MonoFormatter():
                     # Substituent not supported now
                     raise UnsupportedSubstituentError(sub)
 
-                except ConfigParser.NoOptionError:
-                    # That won't happen
-                    # raise error
-                    pass
-
         return m
 
     def get(self, mono_string):
@@ -151,6 +146,6 @@ class WURCS20MonoFormatter():
 if __name__ == "__main__":
     a = WURCS20MonoFormatter()
     try:
-        print a.get("u2112h")
-    except:
+        print a.get("u21ss2h")
+    except UnsupportedMonoError:
         print "Not supported yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
