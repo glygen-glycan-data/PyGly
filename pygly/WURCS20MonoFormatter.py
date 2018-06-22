@@ -4,9 +4,9 @@ import ConfigParser
 from Monosaccharide import *
 
 # This line import the package mutually, be careful
-# import GlycanFormatter
+import GlycanFormatter
 
-class UnsupportedMonoError(ValueError):
+class UnsupportedMonoError(GlycanFormatter.WURCS20ParseError):
     def __init__(self,monostr):
         self.message = "WURCS2.0 parser: Unsupported monosaccharide [%s]"%(monostr,)
 
@@ -21,7 +21,7 @@ class UnsupportedSubstituentError(UnsupportedMonoError):
     def __init__(self, Substituent):
         self.message = "WURCS2.0 parser: Unsupported Substituent [%s]"%(Substituent,)
 
-class WURCS20MonoFormatter():
+class WURCS20MonoFormat:
 
     mono_pattern = re.compile(r"^([0-9a-zA-Z]{3,9})(-\d[abx])?(_[0-9?]-[0-9?])?(_([0-9?]|[0-9]\|[0-9])\*.*)?")
 
@@ -141,7 +141,6 @@ class WURCS20MonoFormatter():
 
         return result.clone()
 
-		
 
 if __name__ == "__main__":
     a = WURCS20MonoFormatter()

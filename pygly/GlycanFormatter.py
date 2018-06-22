@@ -3,9 +3,10 @@ from MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym
 from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 from Glycan import Glycan
 from MonoFactory import MonoFactory
+import WURCS20MonoFormatter
+
 import re, sys
 from collections import defaultdict
-from WURCS2monoformatter import WURCS20MonoFormatter
 
 class GlycanFormatter:
     def writeToFile(self,thefile,glycan):
@@ -593,7 +594,7 @@ class MonoOrderLinkError(WURCS20ParseError):
 
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
-        self.mf = WURCS20MonoFormatter()
+        self.mf = WURCS20MonoFormatter.WURCS20MonoFormat()
 	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
 	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
 	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
@@ -771,7 +772,7 @@ if __name__ == '__main__':
             print "+++", os.path.split(f)[1]
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
-            # print GlycoCTFormat().toStr(g)
+            print GlycoCTFormat().toStr(g)
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
             bad += 1
