@@ -8,18 +8,18 @@ import GlycanFormatter
 
 class UnsupportedMonoError(GlycanFormatter.WURCS20ParseError):
     def __init__(self,monostr):
-        self.message = "WURCS2.0 parser: Unsupported monosaccharide [%s]"%(monostr,)
+        self.message = "WURCS2.0 parser: Unsupported monosaccharide: %s"%(monostr,)
 
     def __str__(self):
         return self.message
 
 class UnsupportedSkeletonCodeError(UnsupportedMonoError):
     def __init__(self, skel):
-        self.message = "WURCS2.0 parser: Unsupported skeleton code [%s]"%(skel,)
+        self.message = "WURCS2.0 parser: Unsupported skeleton code: %s"%(skel,)
 
 class UnsupportedSubstituentError(UnsupportedMonoError):
-    def __init__(self, Substituent):
-        self.message = "WURCS2.0 parser: Unsupported Substituent [%s]"%(Substituent,)
+    def __init__(self, sub):
+        self.message = "WURCS2.0 parser: Unsupported substituent: %s"%(sub,)
 
 class WURCS20MonoFormat:
 
@@ -32,9 +32,9 @@ class WURCS20MonoFormat:
     def load(self):
         absdir = os.path.dirname(__file__)
         self.skelconfig = ConfigParser.SafeConfigParser()
-        self.skelconfig.read(os.path.join(absdir, "skeleton.ini"))
+        self.skelconfig.read(os.path.join(absdir, "wurcs20_skeleton.ini"))
         self.subsconfig = ConfigParser.SafeConfigParser()
-        self.subsconfig.read(os.path.join(absdir, 'substituent.ini'))
+        self.subsconfig.read(os.path.join(absdir, 'wurcs20_substituent.ini'))
 
     skel_config_get_default_section = ""
     def skel_config_get(self,optionx,skelton_code = skel_config_get_default_section):
@@ -143,8 +143,16 @@ class WURCS20MonoFormat:
 
 
 if __name__ == "__main__":
-    a = WURCS20MonoFormatter()
-    try:
-        print a.get("u21ss2h")
-    except UnsupportedMonoError:
-        print "Not supported yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+
+    import sys
+
+    mf = WURCS20MonoFormat()
+    args = False
+    for w in sys.argv[1:]:
+	args = True
+	print >>sys.stderr, w
+	mf.get(w)
+    if not args:
+        for l in sys.stdin:
+	    print >>sys.stderr, l.strip()
+	    mf.get(l.strip())

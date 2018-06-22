@@ -3,7 +3,6 @@ from MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym
 from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 from Glycan import Glycan
 from MonoFactory import MonoFactory
-import WURCS20MonoFormatter
 
 import re, sys
 from collections import defaultdict
@@ -591,6 +590,8 @@ class BadParentPositionLinkError(WURCS20ParseError):
 class MonoOrderLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
+
+import WURCS20MonoFormatter
 
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
