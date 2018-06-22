@@ -102,8 +102,8 @@ class Monosaccharide:
     def clone(self):
         m = Monosaccharide()
         m._anomer = self._anomer
-        m._config = copy.copy(self._config)
-        m._stem = copy.copy(self._stem)
+        m._config = copy.deepcopy(self._config)
+        m._stem = copy.deepcopy(self._stem)
         m._superclass = self._superclass
         m._ring_start = self._ring_start
         m._ring_end = self._ring_end
@@ -114,7 +114,8 @@ class Monosaccharide:
         for l in m._substituent_links:
             l.set_parent(m)
         # m._links = copy.deepcopy(self._links)
-        # m._id = m._id
+        m._id = self._id
+        m._connected = self._connected
         return m
 
     def noring(self):
@@ -123,16 +124,27 @@ class Monosaccharide:
     def clear_links(self):
         self._links = []
 
-    def deepclone(self,identified_link=None):
+    def clear_parent_links(self):
+        self._parent_links = []
+
+    def deepclone(self,identified_link=None,cache=None):
+        if cache == None:
+            cache = dict()
 	m = self.clone()
         identified_link_copy = None
 	for l in self._links:
-	    if identified_link:
-	        c,idlc = l.child().deepclone(identified_link=identified_link)
-	    else:
-		c = l.child().deepclone()
-		idlc = None
-	    cl = copy.copy(l)
+            assert l.child().id() != None
+            if l.child().id() not in cache:
+                if identified_link:
+                    c,idlc = l.child().deepclone(identified_link=identified_link,cache=cache)
+                else:
+                    c = l.child().deepclone(cache=cache)
+                    idlc = None
+                cache[l.child().id()] = c
+            else:
+                c = cache[l.child().id()]
+                idlc = None
+	    cl = copy.deepcopy(l)
 	    cl.set_child(c)
 	    cl.set_parent(m)
 	    m.add_link(cl)
@@ -359,6 +371,9 @@ class Monosaccharide:
     def add_parent_link(self, l):
         self._parent_links.append(l)
 
+    def del_parent_link(self, l):
+        self._parent_links.remove(l)
+
     def id(self):
         return self._id
 
@@ -454,6 +469,16 @@ class Monosaccharide:
                 else:
                     ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
             s += "\n                   ".join(ch) + "\n"
+        if len(self.parent_links()) > 0:
+            s += "         Parents = "
+            ch = []
+            for l in self.parent_links():
+                if l.instantiated():
+                    ch.append("Monosaccharide:%s -> %s"%(l.parent().id(),l))
+                else:
+                    ch.append("Monosaccharide:%s ~> %s"%(l.parent().id(),l))
+            s += "\n                   ".join(ch) + "\n"
+
         return s
 
 class Substituent:
@@ -681,8 +706,8 @@ class Linkage:
 	    return False
 	if self._child_pos and a._child_pos and self._child_pos != a._child_pos:
 	    return False
-	ppself = Linkage.parentpos2set(self)
-	ppa    = Linkage.parentpos2set(a)
+	ppself = self.parentpos2set()
+	ppa    = a.parentpos2set()
 	if len(ppself) > 0 and len(ppa) > 0 and ppself != ppa:
 	    return False
 	return True
@@ -694,19 +719,18 @@ class Linkage:
 	    return False
 	if a._child_pos and self._child_pos != a._child_pos:
 	    return False
-	ppself = Linkage.parentpos2set(self)
-	ppa    = Linkage.parentpos2set(a)
+	ppself = self.parentpos2set()
+	ppa    = a.parentpos2set()
 	if len(ppa) > 0 and ((len(ppself) == 0) or not (ppself <= ppa)):
 	    return False
 	return True
 
-    @staticmethod
-    def parentpos2set(a):
+    def parentpos2set(self):
 	ppa = set()
-	if a._parent_pos:
-	    ppa.add(a._parent_pos)
-	if a._parent_pos2:
-	    ppa.add(a._parent_pos2)
+	if self._parent_pos:
+	    ppa.add(self._parent_pos)
+	if self._parent_pos2:
+	    ppa.add(self._parent_pos2)
 	return ppa
 
     def equals(self,a):
@@ -716,19 +740,19 @@ class Linkage:
 	    return False
 	if self._child_pos != a._child_pos:
 	    return False
-	ppself = Linkage.parentpos2set(self)
-	ppa    = Linkage.parentpos2set(a)
+	ppself = self.parentpos2set()
+	ppa    = a.parentpos2set()
 	if ppself != ppa:
 	    return False
 	return True
 
     def astuple(self):
-        return (self._parent_type,tuple(sorted(Linkage.parentpos2set(self))) if self._parent_pos else None,
+        return (self._parent_type,tuple(sorted(self.parentpos2set())) if self._parent_pos else None,
                 self._child_pos, self._child_type)
 
     def __str__(self):
         return "%s (%s+%d) %s"%(constantString(Linkage,self._parent_type) if self._parent_type else 'missing',
-                              "|".join(map(str,sorted(Linkage.parentpos2set(self)))) if self._parent_pos else -1,
+                              "|".join(map(str,sorted(self.parentpos2set()))) if self._parent_pos else -1,
                               self._child_pos if self._child_pos else -1,
                               constantString(Linkage,self._child_type) if self._child_type else 'missing')
 

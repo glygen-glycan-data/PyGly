@@ -70,31 +70,24 @@ class GlycoCTFormat(GlycanFormatter):
 
         g.set_ids()
         
-        undet = []
+        roots = []
+        if g.root():
+            roots.append(g.root())
         for ur in g.undetermined_roots():
 	    if not ur.connected():
-	        undet.append(ur)
-                
+                roots.append(ur)
+
         s = "RES\n"
-        for m in g.subtree_nodes(g.root(),subst=True):
-            s += self.monofmt.toStr(m)+"\n"
-        for i,ur in enumerate(undet):
-            if len(ur.parent_links()) == 0:
-                for m in g.subtree_nodes(ur,subst=True):
+        for r in roots:
+            if len(r.parent_links()) == 0 or r == g.root():
+                for m in g.subtree_nodes(r,subst=True):
                     s += self.monofmt.toStr(m)+"\n"
         
         first = True
         linkid = 1
-        for l in sorted(g.subtree_links(g.root(),subst=True),key=lambda l: l.child().id()):
-            if first:
-                s += "LIN\n"
-                first = False
-            l.set_id(linkid)
-            linkid += 1
-            s += self.monofmt.linkToStr(l)+"\n"
-        for i,ur in enumerate(undet):
-            if len(ur.parent_links()) == 0:
-                for l in sorted(g.subtree_links(ur,subst=True),key=lambda l: l.child().id()):
+        for r in roots:
+            if len(r.parent_links()) == 0 or r == g.root():
+                for l in sorted(g.subtree_links(r,subst=True),key=lambda l: l.child().id()):
                     if first:
                         s += "LIN\n"
                         first = False
@@ -103,25 +96,30 @@ class GlycoCTFormat(GlycanFormatter):
                     s += self.monofmt.linkToStr(l)+"\n"
 
         first = True
-        for i,ur in enumerate(undet):
-            if len(ur.parent_links()) == 0:
+        undind = 0
+        for r in roots:
+            # print r, g.root(), r.parent_links()
+            if len(r.parent_links()) == 0:
+                continue
+            if r == g.root():
                 continue
             if first:
                 s += "UND\n"
-            s += "UND%s:100.0:100.0\n"%(i+1,)
+            undind += 1
+            s += "UND%s:100.0:100.0\n"%(undind,)
             parentids = set()
             subtreelinkage = set()
-            for pl in ur.parent_links():
+            for pl in r.parent_links():
                 parentids.add(pl.parent().id())
                 subtreelinkage.add(self.monofmt.linkToStr(pl,noids=True))
             s += "ParentIDs:%s\n"%("|".join(map(str,sorted(parentids))),)
             assert len(subtreelinkage) == 1
             s += "SubtreeLinkageID1:%s\n"%(subtreelinkage.pop(),)
             s += "RES\n"
-            for m in g.subtree_nodes(ur,subst=True):
+            for m in g.subtree_nodes(r,subst=True):
                 s += self.monofmt.toStr(m)+"\n"
             first = True
-            for l in sorted(g.subtree_links(ur,subst=True),key=lambda l: l.child().id()):
+            for l in sorted(g.subtree_links(r,subst=True),key=lambda l: l.child().id()):
                 if first:
                     s += "LIN\n"
                     first = False
@@ -223,17 +221,25 @@ class GlycoCTFormat(GlycanFormatter):
 		    l.set_undetermined(True)
 		    l.set_instantiated(False)
 		    l.child().set_connected(False)
+        unconnected = set()
+        monocnt = 0
         for id,r in res.items():
-            if id == 1:
-                continue
             if not isinstance(r,Monosaccharide):
                 continue
+            monocnt += 1
             if len(r.parent_links()) > 0:
                 continue
             r.set_connected(False)
-            undets.add(r)
-	g = Glycan(res[1])
-	g.set_undetermined(undets)
+            unconnected.add(r)
+        assert len(unconnected) in (1,monocnt)
+        # single monosacharides are considered a structure, not a composition...
+        if len(unconnected) == 1:
+            g = Glycan(unconnnected[0])
+            g.set_undetermined(undets)
+        else:
+            assert len(undets) == 0
+            g = Glycan()
+            g.set_undetermined(unconnected)
         return g
 
 class LinearCodeParseError(GlycanParseError):
@@ -569,7 +575,7 @@ class WURCS20ParseError(GlycanParseError):
 
 class WURCS20FormatError(WURCS20ParseError):
     def __init__(self,instr):
-	self.message = "WURCS2.0 parser: Bad WURCS 2.0 format %s"%(instr,)
+	self.message = "WURCS2.0 parser: Bad WURCS 2.0 format:\n      %s"%(instr,)
 
 class UnsupportedMonoError(WURCS20ParseError):
     def __init__(self,monostr):
@@ -590,6 +596,10 @@ class BadParentPositionLinkError(WURCS20ParseError):
 class MonoOrderLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
+
+class CircularError(WURCS20ParseError):
+  def __init__(self,instr):
+   self.message = "WURCS2.0 parser: Circular structure not supported:\n     %s"%(instr,)
 
 import WURCS20MonoFormatter
 
@@ -635,10 +645,17 @@ class WURCS20Format(GlycanFormatter):
                 if not (ind1 < ind2):
                     raise MonoOrderLinkError(li)
 
-                parentmono = mono[ind1]
-                parentpos  = pos1
-                childmono  = mono[ind2]
-                childpos   = pos2
+                if pos2 in (1,2,None):
+                    parentmono = mono[ind1]
+                    parentpos  = pos1
+                    childmono  = mono[ind2]
+                    childpos   = pos2
+                elif pos1 in (1,) and pos2 not in (1,2,None):
+                    # "Reversed" link?
+                    parentmono = mono[ind2]
+                    parentpos  = pos2
+                    childmono  = mono[ind1]
+                    childpos   = pos1
 
                 # if not (childpos == None or childpos == childmono.ring_start()):
                 #     raise BadChildPositionLinkError(li)
@@ -745,16 +762,27 @@ class WURCS20Format(GlycanFormatter):
 
             raise UnsupportedLinkError(li)
 
+        unconnected = set()
+        monocnt = 0
         for id,m in mono.items():
-            if id == 1:
-                continue
+            monocnt += 1
             if len(m.parent_links()) > 0:
                 continue
             m.set_connected(False)
-            undets.add(m)
-
-        g = Glycan(mono[1])
-        g.set_undetermined(undets)
+            unconnected.add(m)
+        # print len(unconnected)
+        # for m in unconnected:
+        #     print m
+        if len(unconnected) == 0:
+            raise CircularError(s)
+        assert len(unconnected) in (1,monocnt)
+        if len(unconnected) == 1:
+            g = Glycan(unconnected.pop())
+            g.set_undetermined(undets)
+        else:
+            assert len(undets) == 0
+            g = Glycan()
+            g.set_undetermined(unconnected)
         g.set_ids()
 	return g
 

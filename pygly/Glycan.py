@@ -59,7 +59,6 @@ class Glycan:
         if und == None or len(und) == 0:
             self._undetermined = None
             return
-        self.set_ids()
         u = list(und)
         ueq = defaultdict(set)
         placed = set()
@@ -92,6 +91,9 @@ class Glycan:
                 for r in ec:
                     yield (r,len(ec))
                     break
+
+    def hasroot(self):
+        return (self._root != None)
 
 ##     def add_instantiation(self, inst):
 ## 	if self._instantiations == None:
@@ -166,7 +168,9 @@ class Glycan:
 
     def set_instantiation(self,inst):
         conn = set()
-        todo = [self.root()]
+        todo = []
+        if self.root():
+            todo.append(self.root())
         while len(todo) > 0:
             m = todo.pop(0)
             for l in m.links(False):
@@ -385,7 +389,9 @@ class Glycan:
                 todo.insert(0,c)
 
     def all_nodes(self,subst=False):
-        todo = [self.root()]
+        todo = []
+        if self.root():
+            todo.append(self.root())
 	for ur in self.undetermined_roots():
 	    if not ur.connected():
 	        todo.append(ur)
@@ -410,9 +416,23 @@ class Glycan:
                 yield l
 
     def clone(self):
-        return Glycan(self.root().deepclone())
+        self.set_ids()
+        if self.root():
+            g = Glycan(self.root().deepclone())
+        else:
+            g = Glycan()
+        newurs = set()
+        for l in g.all_links(uninstantiated=True):
+            if l.undetermined():
+                newurs.add(l.child())
+        for ur in self.undetermined_roots():
+            if len(ur.parent_links()) == 0:
+                newurs.add(ur.deepclone())
+        g.set_undetermined(newurs)
+        return g
 
     def clone_with_identified_link(self,link):
+        assert not self.undetermined()
         r,l = self.root().deepclone(identified_link=link)
         return Glycan(r),l
 
@@ -420,13 +440,15 @@ class Glycan:
         g,l = self.clone_with_identified_link(link)
         f = Glycan(l.child())
         l.parent().del_link(l)
+        l.child().del_parent_link(l)
         return g,f
 
     def equals(self,g):
 	self.set_ids()
 	g.unset_ids()
-        if not self.root().subtree_equals(g.root()):
-            return False
+        if self.root():
+            if not g.root() or not self.root().subtree_equals(g.root()):
+                return False
         if not self.undetermined() and not g.undetermined():
             return True
         for m in itermatchings(self.undetermined_root_reprs(),
