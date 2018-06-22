@@ -1,5 +1,6 @@
 import re
 import os
+from pkg_resources import resource_stream
 import ConfigParser
 from Monosaccharide import *
 
@@ -30,11 +31,13 @@ class WURCS20MonoFormat:
         self.load()
 
     def load(self):
-        absdir = os.path.dirname(__file__)
+	skelconfigfile = resource_stream(__name__, 'wurcs20_skeleton.ini')
         self.skelconfig = ConfigParser.SafeConfigParser()
-        self.skelconfig.read(os.path.join(absdir, "wurcs20_skeleton.ini"))
+        self.skelconfig.readfp(skelconfigfile)
+
+	subsconfigfile = resource_stream(__name__, 'wurcs20_substituent.ini')
         self.subsconfig = ConfigParser.SafeConfigParser()
-        self.subsconfig.read(os.path.join(absdir, 'wurcs20_substituent.ini'))
+        self.subsconfig.readfp(subsconfigfile)
 
     skel_config_get_default_section = ""
     def skel_config_get(self,optionx,skelton_code = skel_config_get_default_section):
