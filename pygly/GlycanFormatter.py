@@ -772,7 +772,7 @@ if __name__ == '__main__':
             print "+++", os.path.split(f)[1]
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
-            print GlycoCTFormat().toStr(g)
+            # print GlycoCTFormat().toStr(g)
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
             bad += 1
