@@ -122,10 +122,12 @@ class WURCS20MonoFormat:
                     if len(pp)<3:
                         if pp=="?" or pp=="-1":
                             pp = -1
+			else:
+			    pp = int(pp)
                         m.add_substituent(eval(type),parent_pos=pp,parent_type=eval(pt),child_pos=1,child_type=eval(ct))
                     else:
-                        pp1=pp[0]
-                        pp2=pp[-1]
+                        pp1=int(pp[0])
+                        pp2=int(pp[-1])
                         m.add_substituent(eval(type),parent_pos=pp1,parent_pos2=pp2,parent_type=eval(pt),child_pos=1,child_type=eval(ct))
 
                 except ConfigParser.NoSectionError:

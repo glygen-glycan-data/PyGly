@@ -50,7 +50,7 @@ class GlycoCTMonoFormat:
         if l.parent_pos() != None and l.parent_pos2() != None:
             s += '(%d|%d'%(l.parent_pos(),l.parent_pos2())
         elif l.parent_pos() != None:
-            s += '(%d'%l.parent_pos()
+            s += '(%d'%(l.parent_pos(),)
         else:
             s += '(-1'
         if l.child_pos() != None and l.child_pos2() != None:

@@ -80,9 +80,10 @@ class LevelSniffer(object):
 
 if __name__ == "__main__":
 
-    import sys, csv, zipfile
+    import sys, csv, zipfile, traceback
 
-    from GlycanFormatter import WURCS20Format, GlycoCTFormat, WURCS20ParseError
+    from GlycanFormatter import WURCS20Format, GlycoCTFormat, WURCS20ParseError, UnsupportedLinkError, CircularError
+    from WURCS20MonoFormatter import UnsupportedSkeletonCodeError, UnsupportedSubstituentError
 
     wurcs_parser = WURCS20Format()
     glycoct_parser = GlycoCTFormat()
@@ -113,7 +114,17 @@ if __name__ == "__main__":
                 gtopo = wurcs_parser.toGlycan(zf.read(topo+'.txt'))
             if comp:
                 gcomp = wurcs_parser.toGlycan(zf.read(comp+'.txt'))
-        except (WURCS20ParseError,KeyError):
+        except KeyError:
+            # accession not in zip file
+            continue
+        except UnsupportedLinkError:
+            # unexpected link structure
+            continue
+        except CircularError:
+            # dodge this case...
+            continue
+        except (UnsupportedSkeletonCodeError,UnsupportedSubstituentError), e:
+            print e.message
             continue
 
         print glycoct_parser.toStr(g)
@@ -165,8 +176,6 @@ if __name__ == "__main__":
             assert g.equals(g1)
 
         elif typ == "Composition":
-
-            assert level(g) == typ
 
             assert g.equals(composition(g))
             assert g.equals(g1)

@@ -778,10 +778,12 @@ class WURCS20Format(GlycanFormatter):
         assert len(unconnected) in (1,monocnt)
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
+            g.set_ids()
             g.set_undetermined(undets)
         else:
             assert len(undets) == 0
             g = Glycan()
+            g.set_ids()
             g.set_undetermined(unconnected)
         g.set_ids()
 	return g
