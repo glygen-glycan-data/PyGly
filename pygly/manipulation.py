@@ -83,7 +83,7 @@ if __name__ == "__main__":
     import sys, csv, zipfile, traceback
 
     from GlycanFormatter import WURCS20Format, GlycoCTFormat, WURCS20ParseError, UnsupportedLinkError, CircularError
-    from WURCS20MonoFormatter import UnsupportedSkeletonCodeError, UnsupportedSubstituentError
+    from WURCS20MonoFormatter import UnsupportedMonoError
 
     wurcs_parser = WURCS20Format()
     glycoct_parser = GlycoCTFormat()
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         except CircularError:
             # dodge this case...
             continue
-        except (UnsupportedSkeletonCodeError,UnsupportedSubstituentError), e:
+        except UnsupportedMonoError, e:
             print e.message
             continue
 
@@ -138,6 +138,7 @@ if __name__ == "__main__":
         if typ == "Saccharide":
 
 	    print level(g)
+            print glycoct_parser.toStr(gtopo)
             print glycoct_parser.toStr(topology(g))
 	    
             assert level(g) == typ

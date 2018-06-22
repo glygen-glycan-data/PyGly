@@ -5,9 +5,9 @@ import ConfigParser
 from Monosaccharide import *
 
 # This line import the package mutually, be careful
-import GlycanFormatter
+from GlycanFormatter import WURCS20ParseError
 
-class UnsupportedMonoError(GlycanFormatter.WURCS20ParseError):
+class UnsupportedMonoError(WURCS20ParseError):
     def __init__(self,monostr):
         self.message = "WURCS2.0 parser: Unsupported monosaccharide: %s"%(monostr,)
 
