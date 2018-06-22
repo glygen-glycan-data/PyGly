@@ -3,6 +3,7 @@ from MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym
 from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 from Glycan import Glycan
 from MonoFactory import MonoFactory
+
 import re, sys
 from collections import defaultdict
 
@@ -590,9 +591,11 @@ class MonoOrderLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
 
+import WURCS20MonoFormatter
+
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
-        self.mf = MonoFactory()
+        self.mf = WURCS20MonoFormatter.WURCS20MonoFormat()
 	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
 	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
 	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
@@ -612,10 +615,8 @@ class WURCS20Format(GlycanFormatter):
 	for i,ms in enumerate(m.group(2)[1:-1].split('][')):
 	    distinctmono[i+1] = ms
 	for i,ms in enumerate(m.group(4).split('-')):
-            try:
-                mono[i+1] = self.mf.new('WURCS20:['+distinctmono[int(ms)]+']')
-            except KeyError:
-                raise UnsupportedMonoError(distinctmono[int(ms)])
+            mono[i+1] = self.mf.get(distinctmono[int(ms)])
+
 	root = mono[1]
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):
