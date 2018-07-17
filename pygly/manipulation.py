@@ -92,6 +92,23 @@ if __name__ == "__main__":
 				CircularError, GlycoCTParseError, MonoOrderLinkError
     from WURCS20MonoFormatter import UnsupportedMonoError
 
+    # to run this testing framework, use the following command(s) for
+    # human, mouse, and all GlyTouCan Saccharides.
+
+    # setenv GLYTOUCAN "~/projects/GlyGen/GlyTouCan/current"
+    #
+    # egrep -w '(GlyTouCanAccession|Saccharide)' $GLYTOUCAN/comp.txt | \
+    #     fgrep -f $GLYTOUCAN/humanbycomp.txt | \
+    #     python27 manipulation.py $GLYTOUCAN/wurcs.zip $GLYTOUCAN/glycoct.zip 
+    #
+    # egrep -w '(GlyTouCanAccession|Saccharide)' $GLYTOUCAN/comp.txt | \
+    #     fgrep -f $GLYTOUCAN/mousebycomp.txt | \
+    #     python27 manipulation.py $GLYTOUCAN/wurcs.zip $GLYTOUCAN/glycoct.zip 
+    #
+    # egrep -w '(GlyTouCanAccession|Saccharide)' $GLYTOUCAN/comp.txt | \
+    #     python27 manipulation.py $GLYTOUCAN/wurcs.zip $GLYTOUCAN/glycoct.zip 
+    #
+
     wurcs_parser = WURCS20Format()
     glycoct_parser = GlycoCTFormat()
 
