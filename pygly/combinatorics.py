@@ -3,7 +3,9 @@
 __all__ = [ 'permutations', 'select', 'choose', 'product', 'list_accumulator',
             'tuple_accumulator', 'concat_accumulator', 'set_accumulator', 'itermatchings']
 
-import copy
+import copy, sys
+from collections import defaultdict
+import itertools
 
 def permutations(x):
     """
@@ -152,6 +154,17 @@ class concat_accumulator:
     def add(l,x):
         return (l + str(x))
 
+class matching_accumulator:
+    @staticmethod
+    def new(x):
+        return list(x[0]),list(x[1])
+    @staticmethod
+    def add(l,x):
+        l = [ list(l[0]), list(l[1]) ]
+        l[0].extend(list(x[0]))
+        l[1].extend(list(x[1]))
+        return l
+
 def product(*args,**kw):
     """
     Cartesian products of at least two iterables as a list
@@ -223,9 +236,11 @@ def itermatchings(items1,items2,matchtest):
     n1 = len(list1)
     list2 = list(items2)
     n2 = len(list2)
+
     if n1 != n2:
         raise StopIteration
-    for inds in permutations(range(n2)):
+
+    for inds in itertools.permutations(range(n2)):
         badmatch = False
         for ai,bi in zip(range(n1),inds):
             if (ai,bi) in eq:
@@ -242,6 +257,94 @@ def itermatchings(items1,items2,matchtest):
                     eq[(ai,bi)] = True
         if not badmatch:
             yield list1,map(list2.__getitem__,inds)
+
+def iterpairs(items1,items2):
+    list1 = list(items1)
+    n1 = len(list1)
+    list2 = list(items2)
+    n2 = len(list2)
+
+    if n1 != n2:
+        raise StopIteration
+    for inds in itertools.permutations(range(n2)):
+        yield zip(list1,map(list2.__getitem__,inds))
+
+def iterecmatchings(items1,items2,matchtest):
+    list1 = list(items1)
+    n1 = len(list1)
+    list2 = list(items2)
+    n2 = len(list2)
+
+    # print list1
+    # print list2
+    # print n1,n2
+
+    if n1 != n2:
+        raise StopIteration
+
+    ec1 = defaultdict(list)
+    ec2 = defaultdict(list)
+    
+    placed = set()
+    for i in range(n1):
+        if i in placed:
+            continue
+        placed.add(i)
+        ec1[i].append(i)
+        for j in range(i+1,n1):
+            if j in placed:
+                continue
+	    # print i,j,
+	    # sys.stdout.flush()
+            if not matchtest(list1[i],list1[j]):
+		# print "no match"
+		# sys.stdout.flush()
+                continue
+	    # else:
+            #	print "match"
+	    #	sys.stdout.flush()
+            ec1[i].append(j)
+            placed.add(j)
+
+    for j in range(n2):
+	found = False
+        for i in ec1:
+	    # print i,j,
+	    sys.stdout.flush()
+            if matchtest(list1[i],list2[j]):
+		# print "match"
+	        # sys.stdout.flush()
+                ec2[i].append(j)
+		found = True
+                break
+	    # else:
+	    #	print "no match"
+	    #   sys.stdout.flush()
+	if not found:
+	    raise StopIteration
+
+    print ec1
+    print ec2
+
+    anypairs = []
+    args = []
+    for i in ec1:
+        if len(ec1[i]) != len(ec2[i]):
+            raise StopIteration
+        args.append(iterpairs(ec1[i],ec2[i]))
+        anypairs.extend(zip(ec1[i],ec2[i]))
+
+    print anypairs
+
+    # in some cases, we can short cut by just trying some equiv class
+    # consistent matching, as there is no topology that matters,
+    # rather than invoking the expensive product enumeration:
+
+    yield map(lambda t: list1[t[0]],anypairs),map(lambda t: list2[t[1]],anypairs) 
+    
+    for mp in itertools.product(*args):
+        pairs = reduce(lambda a,b: a + b, mp)
+        yield map(lambda t: list1[t[0]],pairs),map(lambda t: list2[t[1]],pairs) 
 
 def testperm(l):
     print "Permutations of",','.join(map(str,l))
@@ -263,6 +366,14 @@ def testprod(*args,**kw):
     for p in product(*args,**kw):
         print p
 
+def testiterecmatch(*args):
+    print "Iter EC matching of"
+    print "  ",args[0]
+    print "and"
+    print "  ",args[1]
+    for i,p in enumerate(iterecmatchings(*args)):
+        print i+1,p
+
 if __name__ == "__main__":
 
     testprod('abc','def','ijk',[1,2,3,4],
@@ -283,3 +394,6 @@ if __name__ == "__main__":
     testchoose(range(5),1)
     testchoose('abcabc',3)
 
+    testiterecmatch(["1.1","1.2","1.3","2.1","2.2","3.1","3.2","3.3","3.4"],
+                    ["2.1","2.2","1.1","3.1","3.2","1.2","3.3","3.4","1.3"],
+                    lambda x,y: int(float(x))==int(float(y)))

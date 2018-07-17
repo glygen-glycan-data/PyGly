@@ -11,7 +11,7 @@ try:
 except ImportError:
     from combinatorics import permutations, product
 
-from combinatorics import itermatchings
+from combinatorics import itermatchings, iterecmatchings
 
 from Monosaccharide import Monosaccharide, Linkage
 from MonoFormatter import IUPACSym, LinCodeSym
@@ -91,6 +91,28 @@ class Glycan:
                 for r in ec:
                     yield (r,len(ec))
                     break
+
+    def unconnected_roots(self):
+        for r in self.undetermined_roots():
+            if not r.connected():
+                yield r
+
+    def isolated_nodes(self):
+        for r in self.unconnected_roots():
+            if len(r.parent_links()) == 0:
+                yield r
+
+    def isolated_node_reprs(self):
+        if self._undetermined != None:
+            for ec in self._undetermined:
+                count = 0
+                repr = None
+                for r in ec:
+                    if not r.connected() and len(r.parent_links()) == 0:
+                        count += 1
+                        if not repr:
+                            repr = r
+                yield (repr,count)
 
     def hasroot(self):
         return (self._root != None)
@@ -218,9 +240,8 @@ class Glycan:
     def dfsvisit(self,f,m=None,subst=False):
         if m == None:
             self.dfsvisit(f,self.root(),subst)
-            for r in self.undetermined_roots():
-		if not r.connected():
-                    self.dfsvisit(f,r,subst)
+            for r in self.unconnected_roots():
+                self.dfsvisit(f,r,subst)
         else:
             f(m)
             if subst:
@@ -232,9 +253,8 @@ class Glycan:
     def dfsvisit_post(self,f,m=None,subst=False):
         if m == None:
             self.dfsvisit_post(f,self.root(),subst)
-            for r in self.undetermined_roots():
-		if not r.connected():
-                    self.dfsvisit_post(f,r,subst)
+            for r in self.unconnected_roots():
+                self.dfsvisit_post(f,r,subst)
         else:
             if subst:
                 for s in m.substituents():
@@ -392,9 +412,8 @@ class Glycan:
         todo = []
         if self.root():
             todo.append(self.root())
-	for ur in self.undetermined_roots():
-	    if not ur.connected():
-	        todo.append(ur)
+	for ur in self.unconnected_roots():
+            todo.append(ur)
         for root in todo:
             for m in self.subtree_nodes(root,subst):
                 yield m
@@ -444,18 +463,111 @@ class Glycan:
         return g,f
 
     def equals(self,g):
-	self.set_ids()
-	g.unset_ids()
-        if self.root():
-            if not g.root() or not self.root().subtree_equals(g.root()):
-                return False
-        if not self.undetermined() and not g.undetermined():
-            return True
-        for m in itermatchings(self.undetermined_root_reprs(),
-                               g.undetermined_root_reprs(),
-                               lambda u,v: ((u[1] == v[1]) and self.undetroot_equals(u[0],v[0]))):
-            return True
+
+        # Three cases, at least, sigh.
+
+        # 1) no root => compositions, no edges => "trivial" graph
+        # isomorphism based on enumeration of potential node matchings
+
+        # 2) tree (not undetermined) => subtree-based
+
+        # 3) rooted DAG (due to undetermined nodes) => graph
+        # isomorphism
+
+        # Cases 1 & 3 are implemented by the same code
+
+        # ids in both instances are reset in equal. If returns True,
+        # then the ids of each monosaccharide in each glycan will match
+        # their counterpart.
+
+        self.set_ids()        
+        g.unset_ids()
+
+        if self.hasroot() and g.hasroot():
+
+            if not self.undetermined() and not g.undetermined():
+
+                print >>sys.stderr, "Tree comparison"
+                g.unset_ids()
+                # both are trees, use subtree_equals()
+                return self.root().subtree_equals(g.root(),mapids=True)
+
+            else:
+
+                print >>sys.stderr, "Tree comparison shortcut"
+                # both are trees, use subtree_equals()
+                if not self.root().subtree_equals(g.root(),mapids=False):
+                    return False
+
+        print >>sys.stderr, "Graph isomorphism comparison"
+
+        g.set_ids()
+
+        nodeset1 = list(self.all_nodes(subst=False))
+        nodeset2 = list(g.all_nodes(subst=False))
+
+        if len(nodeset1) != len(nodeset2):
+            return False
+
+        linkset1 = set()
+        for l in self.all_links(uninstantiated=True):
+            linkset1.add((l.parent().id(),l.astuple(),l.child().id()))
+
+        linkset2 = set()
+        for l in g.all_links(uninstantiated=True):
+            linkset2.add((l.parent().id(),l.astuple(),l.child().id()))
+
+        if len(linkset1) != len(linkset2):
+            return False
+
+        print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),nodeset1))
+        print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),nodeset2))
+
+        iters = 0
+        for ii,jj in iterecmatchings(nodeset1, nodeset2,
+                                     self.monosaccharide_match):
+
+            iters += 1
+            matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
+            print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),ii))
+            print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),jj))
+            linkset3 = set()
+            for f,l,t in linkset1:
+                linkset3.add((matching[f],l,matching[t]))
+
+            if linkset3 == linkset2:
+                for mi,mj in zip(ii,jj):
+                    mj.set_id(mi.id())
+                print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                return True
+
         return False
+
+    @staticmethod
+    def monosaccharide_match(a,b):
+        # print a
+	# print b
+        if not a.equals(b):
+            return False
+        # parent_links_match = False
+        # for ii,jj in itermatchings(a.parent_links(),b.parent_links(),
+        #                            lambda i,j: i.equals(j) and i.parent().equals(j.parent())):
+        #     parent_links_match = True
+        #     break
+        # if not parent_links_match:
+        #     return False
+	if len(a.parent_links()) != len(b.parent_links()):
+	    return False
+	if len(a.links(instantiated_only=True)) != len(b.links(instantiated_only=True)):
+	    return False
+	if len(a.links(instantiated_only=False)) != len(b.links(instantiated_only=False)):
+	    return False
+        child_links_match = False
+        for ii,jj in itermatchings(a.links(instantiated_only=False),b.links(instantiated_only=False),
+                                   lambda i,j: i.equals(j) and i.child().equals(j.child())):
+            child_links_match = True
+            break
+        return child_links_match
 
     @staticmethod
     def undetroot_equals(a,b,mapids=True):

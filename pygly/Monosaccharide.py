@@ -164,15 +164,20 @@ class Monosaccharide:
         return False
 
     def subtree_equals(self,m,mapids=True):
+
         if not self.equals(m):
             return False
-	if mapids and self.id():
+        
+        if mapids:
             m.set_id(self.id())
+
         for ii,jj in itermatchings(self.links(),m.links(),
                                    lambda i,j: i.equals(j) and i.child().subtree_equals(j.child(),mapids=mapids)):
             return True
-	if mapids:
+
+        if mapids:
             m.unset_id()
+
         return False
 
     def equals(self,m):
@@ -631,25 +636,42 @@ class Linkage:
         return self._child_type
 
     def set_child_type(self, child_type):
-        self._child_type = child_type
+        # instance setting 
+        if child_type in (1,2,3,4):
+            self._child_type = set([child_type])
+        else:
+            # None or set of 1,2,3,4 hopefully
+            self._child_type = child_type
+
+    def set_child_type2(self, child_type):
+        if child_type == None:
+            return
+        assert child_type in (1,2,3,4)
+        assert self._child_type
+        self._child_type.add(child_type)
 
     def child_pos(self):
         return self._child_pos
 
     def set_child_pos(self, child_pos):
-        self._child_pos = child_pos
-
-    def child_type2(self):
-        return self._child_type2
-
-    def set_child_type2(self, child_type):
-        self._child_type2 = child_type
-
-    def child_pos2(self):
-        return self._child_pos2
+        try:
+            child_pos = int(child_pos)
+            if child_pos == -1:
+                self._child_pos = None
+            else:
+                self._child_pos = set([child_pos])
+        except (ValueError,TypeError):
+            if child_pos == None:
+                self._child_pos = None
+            else:
+                self._child_pos = set(child_pos)
 
     def set_child_pos2(self, child_pos):
-        self._child_pos2 = child_pos
+        if child_pos == None:
+            return
+        assert isinstance(child_pos,int)
+        assert self._child_pos
+        self._child_pos.add(child_pos)
 
     def parent(self):
         return self._parent
@@ -661,31 +683,42 @@ class Linkage:
         return self._parent_type
 
     def set_parent_type(self, parent_type):
-        self._parent_type = parent_type
+        if parent_type in (1,2,3,4):
+            # instance setting 
+            self._parent_type = set([parent_type])
+        else:
+            # None or set of 1,2,3,4 hopefully
+            self._parent_type = parent_type
+
+    def set_parent_type2(self, parent_type):
+        if parent_type == None:
+            return
+        assert parent_type in (1,2,3,4)
+        assert self._parent_type
+        self._parent_type.add(parent_type)
 
     def parent_pos(self):
         return self._parent_pos
 
     def set_parent_pos(self, parent_pos):
-        if parent_pos == -1:
-            self._parent_pos = None
-        else:
-            self._parent_pos = parent_pos
-
-    def parent_type2(self):
-        return self._parent_type2
-
-    def set_parent_type2(self, parent_type):
-        self._parent_type2 = parent_type
-
-    def parent_pos2(self):
-        return self._parent_pos2
+        try:
+            parent_pos = int(parent_pos)
+            if parent_pos == -1:
+                self._parent_pos = None
+            else:
+                self._parent_pos = set([parent_pos])
+        except (ValueError,TypeError):
+            if parent_pos == None:
+                self._parent_pos = None
+            else:
+                self._parent_pos = set(parent_pos)
 
     def set_parent_pos2(self, parent_pos):
-        if parent_pos == -1:
-            self._parent_pos = None
-        else:
-            self._parent_pos2 = parent_pos
+        if parent_pos == None:
+            return
+        assert isinstance(parent_pos,int)
+        assert self._parent_pos
+        self._parent_pos.add(parent_pos)
 
     def set_undetermined(self,und):
 	self._undetermined = und
@@ -699,62 +732,75 @@ class Linkage:
     def instantiated(self):
 	return self._instantiated
 
-    def compatible(self,a):
-	if self._parent_type and a._parent_type and self._parent_type != a._parent_type:
-	    return False
-	if self._child_type and a._child_type and self._child_type != a._child_type:
-	    return False
-	if self._child_pos and a._child_pos and self._child_pos != a._child_pos:
-	    return False
-	ppself = self.parentpos2set()
-	ppa    = a.parentpos2set()
-	if len(ppself) > 0 and len(ppa) > 0 and ppself != ppa:
-	    return False
-	return True
+##     def compatible(self,a):
+## 	if self._parent_type and a._parent_type and self._parent_type != a._parent_type:
+## 	    return False
+## 	if self._child_type and a._child_type and self._child_type != a._child_type:
+## 	    return False
+## 	if self._child_pos and a._child_pos and self._child_pos != a._child_pos:
+## 	    return False
+## 	ppself = self.parentpos2set()
+## 	ppa    = a.parentpos2set()
+## 	if len(ppself) > 0 and len(ppa) > 0 and ppself != ppa:
+## 	    return False
+## 	return True
 
-    def compatiblewith(self,a):
-	if a._parent_type and self._parent_type != a._parent_type:
-	    return False
-	if a._child_type and self._child_type != a._child_type:
-	    return False
-	if a._child_pos and self._child_pos != a._child_pos:
-	    return False
-	ppself = self.parentpos2set()
-	ppa    = a.parentpos2set()
-	if len(ppa) > 0 and ((len(ppself) == 0) or not (ppself <= ppa)):
-	    return False
-	return True
-
-    def parentpos2set(self):
-	ppa = set()
-	if self._parent_pos:
-	    ppa.add(self._parent_pos)
-	if self._parent_pos2:
-	    ppa.add(self._parent_pos2)
-	return ppa
+##     def compatiblewith(self,a):
+## 	if a._parent_type and self._parent_type != a._parent_type:
+## 	    return False
+## 	if a._child_type and self._child_type != a._child_type:
+## 	    return False
+## 	if a._child_pos and self._child_pos != a._child_pos:
+## 	    return False
+## 	ppself = self.parentpos2set()
+## 	ppa    = a.parentpos2set()
+## 	if len(ppa) > 0 and ((len(ppself) == 0) or not (ppself <= ppa)):
+## 	    return False
+## 	return True
 
     def equals(self,a):
+	# print "---"
+	# print repr(self._parent_type), repr(self._child_type), repr(self._child_pos), repr(self._parent_pos)
+	# print repr(a._parent_type), repr(a._child_type), repr(a._child_pos), repr(a._parent_pos)
+	# print "---"
+        # if self._undetermined != a._undetermined:
+        #     return False
+        if self._instantiated != a._instantiated:
+            return False
 	if self._parent_type != a._parent_type:
 	    return False
 	if self._child_type != a._child_type:
 	    return False
 	if self._child_pos != a._child_pos:
 	    return False
-	ppself = self.parentpos2set()
-	ppa    = a.parentpos2set()
-	if ppself != ppa:
+        if self._parent_pos != a._parent_pos:
 	    return False
 	return True
 
+    @staticmethod
+    def valtuple(val):
+        return (tuple(sorted(val)) if val else None)
+
+    @staticmethod
+    def typestr(val,delim="|"):
+        return (delim.join(map(lambda v: constantString(Linkage,v),Linkage.valtuple(val))) if val else "missing")
+                            
+    @staticmethod
+    def posstr(val,delim="|"):
+        return (delim.join(map(str,Linkage.valtuple(val))) if val else -1)
+                            
     def astuple(self):
-        return (self._parent_type,tuple(sorted(self.parentpos2set())) if self._parent_pos else None,
-                self._child_pos, self._child_type)
+        return (self._instantiated,
+                self.valtuple(self._parent_type),
+                self.valtuple(self._parent_pos),
+                self.valtuple(self._child_pos),
+                self.valtuple(self._child_type))
 
     def __str__(self):
-        return "%s (%s+%d) %s"%(constantString(Linkage,self._parent_type) if self._parent_type else 'missing',
-                              "|".join(map(str,sorted(self.parentpos2set()))) if self._parent_pos else -1,
-                              self._child_pos if self._child_pos else -1,
-                              constantString(Linkage,self._child_type) if self._child_type else 'missing')
+        return "%s (%s+%s) %s"%(self.typestr(self._parent_type),
+                                self.posstr(self._parent_pos),
+                                self.posstr(self._child_pos),
+                                self.typestr(self._child_type))
 
 # Should we specialize substituent linkages?
 class SubLinkage(Linkage):

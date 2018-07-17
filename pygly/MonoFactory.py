@@ -49,7 +49,7 @@ class MonoFactory(ReferenceTable):
                     split_subst = [""] + split_subst
                 kwargs = {}
                 for i in range(1,len(split_subst),2):
-                    if split_subst[i].endswith('_pos'):
+                    if split_subst[i].endswith('_pos') or split_subst[i].endswith('_pos2'):
                         kwargs[split_subst[i]] = int(split_subst[i+1])
                     else:
                         kwargs[split_subst[i]] = constantLookup(split_subst[i+1])[1]
