@@ -105,6 +105,7 @@ class GlycoCTFormat(GlycanFormatter):
                 continue
             if first:
                 s += "UND\n"
+		first = False
             undind += 1
             s += "UND%s:100.0:100.0\n"%(undind,)
             parentids = set()
@@ -118,11 +119,11 @@ class GlycoCTFormat(GlycanFormatter):
             s += "RES\n"
             for m in g.subtree_nodes(r,subst=True):
                 s += self.monofmt.toStr(m)+"\n"
-            first = True
+            first1 = True
             for l in sorted(g.subtree_links(r,subst=True),key=lambda l: l.child().id()):
-                if first:
+                if first1:
                     s += "LIN\n"
-                    first = False
+                    first1 = False
                 l.set_id(linkid)
                 linkid += 1
                 s += self.monofmt.linkToStr(l)+"\n"
@@ -234,7 +235,7 @@ class GlycoCTFormat(GlycanFormatter):
         assert len(unconnected) in (1,monocnt)
         # single monosacharides are considered a structure, not a composition...
         if len(unconnected) == 1:
-            g = Glycan(unconnnected[0])
+            g = Glycan(unconnected.pop())
             g.set_undetermined(undets)
         else:
             assert len(undets) == 0
@@ -626,8 +627,8 @@ class WURCS20Format(GlycanFormatter):
 	    distinctmono[i+1] = ms
 	for i,ms in enumerate(m.group(4).split('-')):
             mono[i+1] = self.mf.get(distinctmono[int(ms)])
+            mono[i+1].set_id(i+1)
 
-	root = mono[1]
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):
 
@@ -692,15 +693,11 @@ class WURCS20Format(GlycanFormatter):
                 # if not (parentpos[0] > parentmono.ring_start()):
                 #     raise BadParentPositionLinkError(li)
 
-                if len(parentpos) == 2:
-                    parentmono.add_child(childmono,
-                                         child_pos=childpos,
-                                         parent_pos=parentpos[0],
-                                         parent_pos2=parentpos[1],
-                                         parent_type=Linkage.oxygenPreserved,
-                                         child_type=Linkage.oxygenLost)
-                else:
-                    BadParentPositionLinkError(li)
+                parentmono.add_child(childmono,
+                                     child_pos=childpos,
+                                     parent_pos=parentpos,
+                                     parent_type=Linkage.oxygenPreserved,
+                                     child_type=Linkage.oxygenLost)
 
                 continue
 
@@ -717,6 +714,8 @@ class WURCS20Format(GlycanFormatter):
                     indpos2[ind2].add(pos2)
                 for ind2 in indpos2:
                     indpos2[ind2] = sorted(indpos2[ind2])
+                    if None in indpos2[ind2]:
+                        indpos2[ind2] = None
 
 		# print ind1,indpos2
                 if not (max(indpos2) < ind1):
@@ -724,12 +723,6 @@ class WURCS20Format(GlycanFormatter):
 
                 if len(indpos2) < 2:
                     raise BadParentPositionLinkError(li)
-
-                for ind2 in indpos2:
-                    if len(indpos2[ind2]) > 2:
-                        raise BadParentPositionLinkError(li)
-                    if None in indpos2[ind2] and len(indpos2[ind2]) != 1:
-                        raise BadParentPositionLinkError(li)
 
                 childmono  = mono[ind1]
                 childpos   = pos1
@@ -740,19 +733,15 @@ class WURCS20Format(GlycanFormatter):
 
                 for parentind,parentpos in indpos2.items():
                     parentmono = mono[parentind]
-                    parentpos2 = None
-                    if len(parentpos) == 2:
-                        parentpos2=parentpos[1]
-                    parentpos=parentpos[0]
                     l = parentmono.add_child(childmono,
                                              child_pos=childpos,
                                              parent_pos=parentpos,
-                                             parent_pos2=parentpos2,
                                              parent_type=Linkage.oxygenPreserved,
                                              child_type=Linkage.oxygenLost)
                     l.set_undetermined(True)
                     l.set_instantiated(False)
 		    l.child().set_connected(False)
+
                 continue
 
 
@@ -775,17 +764,14 @@ class WURCS20Format(GlycanFormatter):
         #     print m
         if len(unconnected) == 0:
             raise CircularError(s)
-        assert len(unconnected) in (1,monocnt)
+        assert len(unconnected) in (1,monocnt), "# of unconnected nodes: %s not in {1,%d}"%(len(unconnected),monocnt)
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
-            g.set_ids()
             g.set_undetermined(undets)
         else:
             assert len(undets) == 0
             g = Glycan()
-            g.set_ids()
             g.set_undetermined(unconnected)
-        g.set_ids()
 	return g
 
 if __name__ == '__main__':
@@ -803,7 +789,7 @@ if __name__ == '__main__':
             print "+++", os.path.split(f)[1]
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
-            # print GlycoCTFormat().toStr(g)
+            print GlycoCTFormat().toStr(g)
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
             bad += 1

@@ -1,7 +1,7 @@
 
 from SymbolsTable import SymbolsTable
 from ConstantsTable import ConstantsTable
-from Monosaccharide import Monosaccharide, Substituent, Linkage
+from Monosaccharide import Monosaccharide, Substituent, Linkage, Config
 import re
 import sys
 
@@ -22,9 +22,13 @@ class GlycoCTMonoFormat:
         if isinstance(m,Monosaccharide):
             s += "b:"
             s += self.fromSym[('Anomer',m.anomer())]
-	    if m.config() and m.stem():
-              for cf,st in zip(m.config(),m.stem()):
-                s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
+	    if m.stem() != None:
+	      assert m.config() != None
+	      stm = list(m.stem())
+	      cfg = list(m.config())
+	      assert len(cfg) == len(stm)
+              for cf,st in zip(cfg,stm):
+                  s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
             s += "-%s"%self.fromSym[('SuperClass',m.superclass())]
             rs = m.ring_start()
             if rs == None:
@@ -46,22 +50,18 @@ class GlycoCTMonoFormat:
             s += str(l.id())+":"
         if l.parent().id() != None and not noids:
             s += str(l.parent().id())
-        s += self.fromSym[('Linkage',l.parent_type())]
-        if l.parent_pos() != None and l.parent_pos2() != None:
-            s += '(%d|%d'%(l.parent_pos(),l.parent_pos2())
-        elif l.parent_pos() != None:
-            s += '(%d'%(l.parent_pos(),)
+	if l.parent_type():
+            s += "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.parent_type())))
         else:
-            s += '(-1'
-        if l.child_pos() != None and l.child_pos2() != None:
-            s += '+%d|%d)'%(l.child_pos(),l.child_pos2())
-        elif l.child_pos() != None:
-            s += '+%d)'%l.child_pos()
-        else:
-            s += '+-1)'
+	    s += self.fromSym[('Linkage',Linkage.missing)]
+        s += '(%s'%(l.posstr(l.parent_pos()),)
+        s += '+%s)'%(l.posstr(l.child_pos()),)
         if l.child().id() != None and not noids:
             s += str(l.child().id())
-        s += self.fromSym[('Linkage',l.child_type())]
+	if l.child_type():
+            s += "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.child_type())))
+	else:
+	    s += self.fromSym[('Linkage',Linkage.missing)]
         return s
     fromStrRE = re.compile(r'^(\d+)([bs]):(.*)$')
     def fromStr(self,mstr):
@@ -112,9 +112,11 @@ class GlycoCTMonoFormat:
         for st in MONO:
             configs.append(self.toSym[('Config',st[0])])
             stems.append(self.toSym[('Stem',st[1:])])
+	
 	if len(stems) > 0:
-            m.set_config(*configs)
-            m.set_stem(*stems)
+	    if zip(configs,stems) != [(None,None)]:
+                m.set_config(*configs)
+                m.set_stem(*stems)
 
         #set mods
         for mod in MODS:
@@ -133,13 +135,8 @@ class GlycoCTMonoFormat:
         parenttype = self.toSym[('Linkage',m.group(3))]
         parentpos2 = None
         try:
-            pos = map(int,m.group(4).split('|'))
-            if len(pos) == 1 and pos[0] >= 1:
-                parentpos = pos[0]
-            elif len(pos) == 2 and min(pos) >= 1:
-                parentpos = pos[0]
-                parentpos2 = pos[1]
-            else:
+            parentpos = map(int,m.group(4).split('|'))
+            if -1 in parentpos:
                 parentpos = None
         except ValueError:
             parentpos = None
@@ -165,21 +162,12 @@ class GlycoCTMonoFormat:
             l = parent.add_child(child,
                              parent_type=parenttype,
                              parent_pos=parentpos,
-                             parent_pos2=parentpos2,
                              child_type=childtype,
                              child_pos=childpos)
-	    # if parentpos2 != None:
-	    #	l2 = parent.add_child(child,
-            #                 parent_type=parenttype,
-            #                 parent_pos=parentpos2,
-            #                 child_type=childtype,
-            #                 child_pos=childpos)
-	    #   return [l,l2]
         else:
             l = parent.add_substituent(child,
                                    parent_type=parenttype,
                                    parent_pos=parentpos,
-                                   parent_pos2=parentpos2,
                                    child_type=childtype,
                                    child_pos=childpos)
 	return [l]
