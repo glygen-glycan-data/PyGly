@@ -323,8 +323,8 @@ def iterecmatchings(items1,items2,matchtest):
 	if not found:
 	    raise StopIteration
 
-    print ec1
-    print ec2
+    # print ec1
+    # print ec2
 
     anypairs = []
     args = []
@@ -334,7 +334,7 @@ def iterecmatchings(items1,items2,matchtest):
         args.append(iterpairs(ec1[i],ec2[i]))
         anypairs.extend(zip(ec1[i],ec2[i]))
 
-    print anypairs
+    # print anypairs
 
     # in some cases, we can short cut by just trying some equiv class
     # consistent matching, as there is no topology that matters,

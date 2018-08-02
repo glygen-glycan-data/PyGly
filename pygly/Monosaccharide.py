@@ -280,13 +280,19 @@ class Monosaccharide:
         return self._config
 
     def set_config(self,*config):
-        self._config = config
+	if config[0] == Config.missing:
+	    self._config = None
+        else:
+            self._config = config
 
     def stem(self):
         return self._stem
 
     def set_stem(self,*stem):
-        self._stem = stem
+	if stem[0] == Stem.missing:
+	    self._stem = None
+	else:
+            self._stem = stem
 
     def superclass(self):
         return self._superclass
@@ -418,7 +424,7 @@ class Monosaccharide:
 	return (self.first_child() != None)
 
     def substituents(self):
-        return [l.child() for l in self.substituent_links()]
+        return set([l.child() for l in self.substituent_links()])
 
     def add_substituent(self,sub,**kw):
         if isinstance(sub,Substituent):

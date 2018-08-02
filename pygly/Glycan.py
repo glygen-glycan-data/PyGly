@@ -114,7 +114,7 @@ class Glycan:
                             repr = r
                 yield (repr,count)
 
-    def hasroot(self):
+    def has_root(self):
         return (self._root != None)
 
 ##     def add_instantiation(self, inst):
@@ -483,23 +483,23 @@ class Glycan:
         self.set_ids()        
         g.unset_ids()
 
-        if self.hasroot() and g.hasroot():
+        if self.has_root() and g.has_root():
 
             if not self.undetermined() and not g.undetermined():
 
-                print >>sys.stderr, "Tree comparison"
+                # print >>sys.stderr, "Tree comparison"
                 g.unset_ids()
                 # both are trees, use subtree_equals()
                 return self.root().subtree_equals(g.root(),mapids=True)
 
             else:
 
-                print >>sys.stderr, "Tree comparison shortcut"
+                # print >>sys.stderr, "Tree comparison shortcut"
                 # both are trees, use subtree_equals()
                 if not self.root().subtree_equals(g.root(),mapids=False):
                     return False
 
-        print >>sys.stderr, "Graph isomorphism comparison"
+        # print >>sys.stderr, "Graph isomorphism comparison"
 
         g.set_ids()
 
@@ -520,8 +520,8 @@ class Glycan:
         if len(linkset1) != len(linkset2):
             return False
 
-        print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),nodeset1))
-        print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),nodeset2))
+        # print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),nodeset1))
+        # print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),nodeset2))
 
         iters = 0
         for ii,jj in iterecmatchings(nodeset1, nodeset2,
@@ -529,8 +529,8 @@ class Glycan:
 
             iters += 1
             matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
-            print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),ii))
-            print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),jj))
+            # print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),ii))
+            # print >>sys.stderr, " ".join(map(lambda i: "%2s"%(i.id(),),jj))
             linkset3 = set()
             for f,l,t in linkset1:
                 linkset3.add((matching[f],l,matching[t]))
@@ -538,7 +538,7 @@ class Glycan:
             if linkset3 == linkset2:
                 for mi,mj in zip(ii,jj):
                     mj.set_id(mi.id())
-                print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
                 return True
 
         return False

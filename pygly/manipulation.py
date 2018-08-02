@@ -1,5 +1,5 @@
 
-from Monosaccharide import Anomer, Stem, SuperClass
+from Monosaccharide import Anomer, Stem, SuperClass, Config
 
 class Manipulation(object):
 
@@ -15,17 +15,17 @@ class Topology(Manipulation):
 
     def manip(self,g):
         for m in g.all_nodes():
-            if m.anomer() != Anomer.uncyclized:
-                m.set_anomer(Anomer.missing)
             for l in m.links(instantiated_only=False):
-                # if l.parent_pos() == set([1]) and l.child_pos() == set([1]):
-                #     l.set_parent_pos(None)
+                if l.parent_pos() == set([1]) and l.child_pos() == set([1]) and m.anomer() not in (Anomer.alpha, Anomer.beta):
+                    l.set_parent_pos(None)
                 if l.parent_pos() != set([1]):
                     l.set_parent_pos(None)
                 if l.child_pos() != set([1]) and l.child().superclass() in (SuperClass.HEX,):
                     l.set_child_pos(None)
                 if l.undetermined() and l.child_pos() == set([1]) and l.child().superclass() in (SuperClass.NON,SuperClass.OCT):
                     l.set_child_pos(None)
+            if m.anomer() != Anomer.uncyclized:
+                m.set_anomer(Anomer.missing)
         undets = list(g.undetermined_roots())
         g.set_undetermined(undets)
 
@@ -62,6 +62,7 @@ class BaseComposition(Manipulation):
         self.comp.manip(g)
         for m in g.all_nodes():
             m.set_stem(Stem.missing)
+	    m.set_config(Config.missing)
 
 class LevelSniffer(object):
     topology = Topology()
@@ -72,7 +73,7 @@ class LevelSniffer(object):
         return self.sniff(g)
 
     def sniff(self,g):
-        if g.hasroot():
+        if g.has_root():
             if g.equals(self.topology(g)):
                 return "Topology"
             else:

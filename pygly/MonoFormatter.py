@@ -23,9 +23,11 @@ class GlycoCTMonoFormat:
             s += "b:"
             s += self.fromSym[('Anomer',m.anomer())]
 	    if m.stem() != None:
-	      assert m.config() != None
+	      if m.config() == None:
+		cfg = [Config.missing]*len(m.stem())
+              else:
+	        cfg = list(m.config())
 	      stm = list(m.stem())
-	      cfg = list(m.config())
 	      assert len(cfg) == len(stm)
               for cf,st in zip(cfg,stm):
                   s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
