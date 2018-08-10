@@ -16,7 +16,7 @@ class Topology(Manipulation):
     def manip(self,g):
         for m in g.all_nodes():
             for l in m.links(instantiated_only=False):
-                if l.parent_pos() == set([1]) and l.child_pos() == set([1]) and m.anomer() not in (Anomer.alpha, Anomer.beta):
+                if l.parent_pos() == set([1]) and l.child_pos() == set([1]) and (m.ring_start() == None):
                     l.set_parent_pos(None)
                 if l.parent_pos() != set([1]):
                     l.set_parent_pos(None)
