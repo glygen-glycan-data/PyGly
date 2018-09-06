@@ -2,13 +2,31 @@
 from SMW import SMWSite, SMWClass
 from GlyTouCan import GlyTouCan
 
-class MotifCollection(SMWClass):
-    template = 'MotifCollection'
+class Collection(SMWClass):
+    template = 'Collection'
+    directsubmit = {}
 
     def normalize(self):
         for k in self.keys():
             if self.get(k) in (None,""):
                 self.delete(k)
+
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('pagename')
+        return kwargs.get('pagename')
+
+    def astemplate(self):
+        l = [ "{{%s"%(self.template,) ] 
+        for k in sorted(self.keys()):
+            v = self.get(k)
+	    if k in ('pagename','template','class'):
+		continue
+            if v in (None,""):
+                continue
+            l.append("|%s=%s"%(k,v))
+        l.append("}}")
+        return "\n".join(l)
 
 class Motif(SMWClass):
     template = 'Motif'
@@ -22,7 +40,7 @@ class Motif(SMWClass):
             self.set('name',self.get('name').split('\n'))
         if self.has('sameas') and isinstance(self.get('sameas'),basestring):
             self.set('sameas',self.get('sameas').split(','))
-	if self.has('redend'):
+	if self.has('redend') and isinstance(self.get('redend'),basestring):
 	    self.set('redend',self.get('redend') == "True")
         if self.has('wurcs'):
             self.set('wurcs',self.get('wurcs').lstrip('<pre>').rstrip('</pre>'))
@@ -90,11 +108,12 @@ class GlyGenMotif(Motif):
         super(GlyGenMotif,self).__init__(**kwargs)
 
 class CCRCMotif(Motif):
+    collection = 'UGA-CCRC'
     gtc = None
     def __init__(self,**kwargs):
         assert 'accession' in kwargs
         assert 'glytoucan' in kwargs
-        kwargs['collection'] = 'CCRC'
+        kwargs['collection'] = self.collection
         if 'wurcs' not in kwargs or 'glycoct' not in kwargs:
             if not self.gtc:
                 self.gtc = GlyTouCan()
@@ -104,6 +123,9 @@ class CCRCMotif(Motif):
                 kwargs['glycoct'] = self.gtc.getseq(kwargs['glytoucan'],'glycoct')
         super(CCRCMotif,self).__init__(**kwargs)
 
+class GlycoEpitopeMotif(CCRCMotif):
+    collection = 'GlycoEpitope'
+
 class GlycoMotifWiki(SMWSite):
     # Suitable for running from dalton
     prefix = 'glycomotif'
@@ -111,7 +133,7 @@ class GlycoMotifWiki(SMWSite):
     port = 8282
 
     template2class = {'Motif': Motif, 
-		      'MotifCollection': MotifCollection}
+		      'Collection': Collection}
 
     def get(self,pagename=None,collection=None,accession=None):
 	if pagename:
@@ -123,7 +145,7 @@ class GlycoMotifWiki(SMWSite):
 	    yield self.get(pagename)
 
     def itercollection(self):
-	for pagename in self.itercat('MotifCollection'):
+	for pagename in self.itercat('Collection'):
 	    yield self.get(pagename)
 
 if __name__ == "__main__":

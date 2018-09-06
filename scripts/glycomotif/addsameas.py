@@ -12,7 +12,7 @@ gtc = GlyTouCan()
 
 gtc2motif = defaultdict(list)
 for m in w.itermotif():
-    if m.get('collection') in ('CCRC','GlyTouCan','GlyGen'):
+    if m.get('collection') in ('UGA-CCRC','GlyTouCan','GlyGen','GlycoEpitope'):
         gtc = m.get('glytoucan')
         gtc2motif[gtc].append(m)
 

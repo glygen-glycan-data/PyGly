@@ -87,10 +87,30 @@ class SMWSite(object):
         for row in response.bindings:
 	    yield row.get(response.vars[0]).toPython()
 
-    def delete(self,name):
-        page = self.site.pages[name]
+    def deletemany(self,category=None,regex=None,allpages=None,verbose=False):
+	if category:
+	  for pagename in self.itercat(category):
+	    if verbose:
+	      print >>sys.stderr, pagename
+	    self.delete(pagename)
+	elif regex:
+	  regex = re.compile(regex)
+	  for page in self.site.pages:
+	    if regex.search(page.name):
+	      if verbose:
+	        print >>sys.stderr, page.name
+	      page.delete()
+	elif allpages:
+	  for page in self.site.pages:
+	    if page.name != 'Main_Page':
+	      if verbose:
+	        print >>sys.stderr, page.name
+	      page.delete()
+
+    def delete(self,pagename):
+        page = self.site.pages[pagename]
         if page.exists:
-            page.delete(reason="")
+            page.delete()
                      
     def get(self,name):
         page = self.site.pages[name]
@@ -111,7 +131,7 @@ class SMWSite(object):
         return self.template2class[cls](**data)
 
     def update(self,newobj):
-        pagename = obj.pagename(**newobj.data)
+        pagename = newobj.pagename(**newobj.data)
         obj = self.get(pagename)
         if obj:
             obj.data.update(newobj.data)
@@ -133,8 +153,8 @@ class SMWSite(object):
 
     def put(self,obj):
         pagename = obj.pagename(**obj.data)
-        page = self.site.pages[pagename]
 	obj.set('pagename',pagename)
+        page = self.site.pages[pagename]
         changed = False
         if not page.exists or page.text() != obj.astemplate():
             page.save(obj.astemplate())
