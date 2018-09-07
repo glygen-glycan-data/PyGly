@@ -1,0 +1,55 @@
+<noinclude>
+This is the "Motif" template.
+It should be called in the following format:
+<pre>
+{{Motif
+|name=
+|collection=
+|accession=
+|redend=
+|glytoucan=
+|glycoct=
+|wurcs=
+|sameas=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ 
+{| class="wikitable" style="width=100%" 
+!
+| <p align="center"><img src="https://glytoucan.org/glycans/{{{glytoucan|}}}/image?style=extended&format=png&notation=cfg"></p>
+|-
+! style="width=200px" | Name(s)
+| style="width=100%" | {{#arraymap:{{{name|}}}|\n|x|[[name::x]]|<br/>}}
+|-
+! style="width=200px" | Collection
+| style="width=100%" | [[collection::{{{collection|}}}]] 
+|-
+! style="width=200px" | Accession
+| {{#switch: {{{collection}}} 
+| GlycoEpitope = <span class="plainlinks">[https://www.glycoepitope.jp/epitopes/{{{accession}}} [[accession::{{{accession|}}}]]]</span>
+| GlyGen = <span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/glycomotif/GlyGen.{{{accession}}} [[accession::{{{accession|}}}]]]</span>
+| [[accession::{{{accession|}}}]] 
+}}
+|-
+! style="width=200px" | Reducing-End Only?
+| style="width=100%" | [[reducingend::{{{redend|}}}]] 
+|-
+! style="width=200px" | Same As
+| style="width=100%" | {{#arraymap:{{{sameas|}}}|,|x|[[sameas::x]]}}
+|-
+! style="width=200px" | GlyTouCan Accession
+| style="width=100%" | [[glytoucan::{{{glytoucan|}}}]] 
+|-
+! style="width=200px" | GlycoCT
+| style="width=100%" | {{{glycoct|}}}
+|-
+! style="width=200px" | WURCS
+| style="width=100%" | {{{wurcs|}}}
+|}
+
+[https://sparqlclient.eionet.europa.eu?endpoint=https://edwardslab.bmcb.georgetown.edu/sparql/glycomotif/query&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+property%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%2FSpecial%3AURIResolver%2FProperty-3A%3E%0APREFIX+category%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%2FSpecial%3AURIResolver%2FCategory-3A%3E%0A%0ASELECT+%3Fproperty+%3Fvalue%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+category%3AMotif+.%0A++%3Fmotif+property%3AAccession+%22{{{accession}}}%22+.%0A++%3Fmotif+property%3ACollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+category%3ACollection+.+%0A++%3Fcollection+property%3AName+%22{{{collection}}}%22+.%0A++%3Fmotif+%3Fproperty+%3Fvalue%0A%7D Triple Store]
+
+
+[[Category:Motif]]
+</includeonly>

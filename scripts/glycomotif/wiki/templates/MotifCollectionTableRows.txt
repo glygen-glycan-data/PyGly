@@ -1,0 +1,4 @@
+<includeonly>
+| [[{{{1}}}]] || {{CollectionCount|{{{1}}}}}
+|-
+</includeonly>

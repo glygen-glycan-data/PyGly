@@ -76,9 +76,10 @@ class Motif(SMWClass):
 
 class GlyTouCanMotif(Motif):
     gtc = None
+    collection = 'GlyTouCan'
     def __init__(self,**kwargs):
         assert 'accession' in kwargs
-        kwargs['collection'] = 'GlyTouCan'
+        kwargs['collection'] = self.collection
         if 'glytoucan' not in kwargs:
             kwargs['glytoucan'] = kwargs['accession']
         if 'wurcs' not in kwargs or 'glycoct' not in kwargs:
@@ -90,37 +91,14 @@ class GlyTouCanMotif(Motif):
                 kwargs['glycoct'] = self.gtc.getseq(kwargs['glytoucan'],'glycoct')
         super(GlyTouCanMotif,self).__init__(**kwargs)
 
-class GlyGenMotif(Motif):
-    gtc = None
-    def __init__(self,**kwargs):
-        assert 'accession' in kwargs
-	# This should be the pagename
-        kwargs['collection'] = 'GlyGen'
-        if 'glytoucan' not in kwargs:
-            kwargs['glytoucan'] = kwargs['accession']
-        if 'wurcs' not in kwargs or 'glycoct' not in kwargs:
-            if not self.gtc:
-                self.gtc = GlyTouCan()
-            if 'wurcs' not in kwargs:
-                kwargs['wurcs'] = self.gtc.getseq(kwargs['glytoucan'],'wurcs')
-            if 'glycoct' not in kwargs:
-                kwargs['glycoct'] = self.gtc.getseq(kwargs['glytoucan'],'glycoct')
-        super(GlyGenMotif,self).__init__(**kwargs)
+class GlyGenMotif(GlyTouCanMotif):
+    collection = 'GlyGen'
 
-class CCRCMotif(Motif):
+class CCRCMotif(GlyTouCanMotif):
     collection = 'UGA-CCRC'
-    gtc = None
     def __init__(self,**kwargs):
         assert 'accession' in kwargs
         assert 'glytoucan' in kwargs
-        kwargs['collection'] = self.collection
-        if 'wurcs' not in kwargs or 'glycoct' not in kwargs:
-            if not self.gtc:
-                self.gtc = GlyTouCan()
-            if 'wurcs' not in kwargs:
-                kwargs['wurcs'] = self.gtc.getseq(kwargs['glytoucan'],'wurcs')
-            if 'glycoct' not in kwargs:
-                kwargs['glycoct'] = self.gtc.getseq(kwargs['glytoucan'],'glycoct')
         super(CCRCMotif,self).__init__(**kwargs)
 
 class GlycoEpitopeMotif(CCRCMotif):
@@ -134,6 +112,7 @@ class GlycoMotifWiki(SMWSite):
 
     template2class = {'Motif': Motif, 
 		      'Collection': Collection}
+    dump_exclude_categories = set(['Motif'])
 
     def get(self,pagename=None,collection=None,accession=None):
 	if pagename:
@@ -151,11 +130,11 @@ class GlycoMotifWiki(SMWSite):
 if __name__ == "__main__":
     import sys, os
 
-    smw = GlycoMotifWiki(username='edwardsnj',password='XXXXXXXXXXXXXX_FIX_XXXXXXXXXXXXXX')
-    print smw.get('GlyTouCan','G00026MO')
-    print smw.get('GlyTouCan','G00029MO')
+    smw = GlycoMotifWiki()
+    print smw.get(collection='GlyTouCan',accession='G00026MO')
+    print smw.get(collection='GlyTouCan',accession='G00029MO')
 
     motif = GlyTouCanMotif(accession="G00028MO",
                            name="N-Glycan high mannose")
     smw.put(motif)
-    print smw.get('GlyTouCan','G00028MO')
+    print smw.get(collection='GlyTouCan',accession='G00028MO')

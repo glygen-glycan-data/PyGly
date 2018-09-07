@@ -1,0 +1,45 @@
+<noinclude>
+This is the "Collection" template.
+It should be called in the following format:
+<pre>
+{{Collection
+|contact=
+|email=
+|url=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ 
+{| class="wikitable"
+! Contact
+| [[contact::{{{contact|}}}]] 
+|-
+! E-Mail
+| [[email::{{{email|}}}]] 
+|-
+! URL
+| [[url::{{{url|}}}]] 
+|-
+! Motifs
+| {{CollectionCount|{{PAGENAME}}}}
+|}
+
+== Motifs ==
+
+{{#ask:
+[[Category:Motif]]
+[[collection::{{PAGENAME}}]]
+|?accession
+|?name
+|?reducingend
+|?sameas
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+}}
+
+[[name::{{PAGENAME}}|]]
+[[Category:Collection]]
+</includeonly>

@@ -82,11 +82,84 @@ class SMWSite(object):
           ?o rdf:label ?label
         }
     """
+    
     def itercat(self,category):
 	response = self.tsro.query(self.itercat_sparql%dict(category=category))
         for row in response.bindings:
 	    yield row.get(response.vars[0]).toPython()
 
+    def iternamespace(self,namespace):
+        for t in self.site.allpages(namespace=namespace):
+            if t.exists:
+                yield t
+
+    def itertemplates(self):
+        return self.iternamespace(10)
+
+    def itercategories(self):
+        return self.iternamespace(14)
+
+    def iterproperties(self):
+        return self.iternamespace(102)
+
+    def iterforms(self):
+        return self.iternamespace(106)
+
+    def iterpages(self,regex=None,exclude_categories=None,include_categories=None):
+        if exclude_categories == None and include_categories == None and regex == None:
+            for p in self.iternamespace(0):
+                if p.exists:
+                    yield p
+        else:
+            if regex != None and regex.isinstance(regex,basestring):
+                regex = re.compile(regex)
+            if exclude_categories != None:
+                exclude_categories = set(exclude_categories)
+            if include_categories != None:
+                include_categories = set(include_categories)
+            for p in self.iternamespace(0):
+                if p.exists:
+                    if regex and not regex.search(p.name):
+                        continue
+                    cats = set(map(lambda c: str(c.name.split(':',1)[1]),p.categories()))
+                    if exclude_categories != None and len(cats&exclude_categories) > 0:
+                        continue
+                    if include_categories != None and len(cats&include_categories) == 0:
+                        continue
+                    yield p
+
+    def dumpiterable(self,dir,iter):
+        try:
+            os.makedirs(dir)
+        except OSError:
+            pass
+        for p in iter:
+            name = p.name
+            if ":" in name:
+                name = name.split(":",1)[1]
+            try:
+                print p.name
+            except:
+                continue
+            try:
+                h = open(dir+'/'+name+'.txt','w')
+                h.write(p.text())
+            except:
+                pass
+            finally:
+                h.close()
+
+    def dumpsite(self,dir):
+        try:
+            os.makedirs(dir)
+        except OSError:
+            pass
+        self.dumpiterable(os.path.join(dir,'templates'),self.itertemplates())
+        self.dumpiterable(os.path.join(dir,'categories'),self.itercategories())
+        self.dumpiterable(os.path.join(dir,'forms'),self.iterforms())
+        self.dumpiterable(os.path.join(dir,'properties'),self.iterproperties())
+        self.dumpiterable(os.path.join(dir,'pages'),self.iterpages(exclude_categories=self.dump_exclude_categories))
+        
     def deletemany(self,category=None,regex=None,allpages=None,verbose=False):
 	if category:
 	  for pagename in self.itercat(category):

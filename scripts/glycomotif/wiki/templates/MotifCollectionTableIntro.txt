@@ -1,0 +1,5 @@
+<includeonly>
+{| class="wikitable sortable"
+! Name !! Motifs 
+|-
+</includeonly>

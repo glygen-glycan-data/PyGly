@@ -1,0 +1,5 @@
+{{Collection
+|contact=Kiyoko Aoki-Kinoshita
+|email=kkiyoko@soka.ac.jp
+|url=https://glytoucan.org/Motifs/listAll
+}}

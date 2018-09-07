@@ -21,7 +21,9 @@ for gtc,motiflist in sorted(gtc2motif.iteritems()):
     redend = set()
     for m in motiflist:
 	if m.has('name'):
-	    names.extend(m.get('name'))
+	    for n in m.get('name'):
+		if n not in names:
+	            names.append(n)
 	if m.has('redend'):
 	    redend.add(m.get('redend',False))
     if len(redend) == 1:
