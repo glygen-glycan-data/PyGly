@@ -14,8 +14,7 @@ class GlyRecord(dict):
 		continue
 	    s += "%s = %s\n"%(k,v)
 	try:
-	    for g in self.glycan.instantiations():
-	        s += "glycan = \n%s\n"%(g,)
+	    s += "glycan = \n%s\n"%(self.glycan,)
 	except KeyError:
 	    pass
 	return s

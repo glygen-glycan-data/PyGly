@@ -1,5 +1,0 @@
-{{Collection
-|contact=Nathan Edwards
-|email=nje5@georgetown.edu
-|url=https://edwardslab.bmcb.georgetown.edu/glycomotif/GlyGen
-}}

@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:glytoucan]] 
+{{DISPLAYTITLE:glycomotif:glytoucan}}
+[[External formatter uri::https://glytoucan.org/Structures/Glycans/$1]]
+[[Category:Imported vocabulary]]

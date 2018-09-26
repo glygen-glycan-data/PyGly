@@ -1,0 +1,7 @@
+[[Imported from::glycomotif:aglycon]] 
+{{DISPLAYTITLE:glycomotif:aglycon}}
+[[Allows value::Cer]]
+[[Allows value::Ser/Thr]]
+[[Allows value::Asn]]
+[[Allows value::R]]
+[[Category:Imported vocabulary]]

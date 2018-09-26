@@ -1,0 +1,174 @@
+acc	id	glytoucan	sequence	name
+EP0001	1	G54406UD	HSO3(-3)GlcA(b1-3)Gal(b1-4)GlcNAc-R	HNK-1
+EP0002	2	G59126YU	Neu5Ac(a2-3)Gal(b1-4)GlcNAc(b1-2)Man(a1-)Ser/Thr	O-Mannosyl Glycan / Mammalian
+EP0003	3	G25559RS	Man(a1-2)Man(a1-2)Man(a1-)Ser/Thr	O-Mannosyl Glycan / Yeast
+EP0004	4	G49108TO	GlcNAc(b1-)Ser/Thr	O-GlcNAc
+EP0005	5	G39294YF	Neu5Ac(a2-3/6)Gal(b1-4)GlcNAc(b1-3)Fuc(a1-)Ser/Thr	O-Fucose Glycan /EGF Repeat
+EP0006	6	G36855WW	Glc(b1-3)Fuc(a1-)Ser/Thr	O-Fucose Glycan /Thrombospondin Type 1 Repeat
+EP0007	7	G39023AU	Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	Lewis a
+EP0008	8	G00053MO	Neu5Ac(a2-3)Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	Sialyl Lewis a
+EP0009	9	G78706CK	HSO3(-3)Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	3'-Sulfo Lewis a
+EP0010	10	G00048MO	Fuc(a1-2)Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	Lewis b
+EP0011	11	G00051MO	Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Lewis x
+EP0012	12	G00054MO	Neu5Ac(a2-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Sialyl Lewis x
+EP0013	13	G12295TB	HSO3(-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	3'-Sulfo Lewis x
+EP0014	14	G00672PE	Neu5Ac(a2-3)[HSO3(-6)]Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	6'-Sulfo Sialyl Lewis x
+EP0015	15	G80722US	Neu5Ac(a2-3)Gal(b1-4)[Fuc(a1-3)][HSO3(-6)]GlcNAc(b1-)-R	Sialyl 6-Sulfo Lewis x
+EP0016	16	G00659GQ	Neu5Ac(a2-3)[HSO3(-6)]Gal(b1-4)[Fuc(a1-3)][HSO3(-6)]GlcNAc(b1-)-R	6,6'- Disulfo Sialyl Lewis x
+EP0017	17	G11148DZ	cyclicNeu5Ac(a2-3)Gal(b1-4)[Fuc(a1-3)][HSO3(-6)]GlcNAc-R	Cyclic Sialyl 6-Sulfo Lewis x
+EP0018	18	G00052MO	Fuc(a1-2)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Lewis y
+EP0019	19	G22418PV	Neu5Ac(a2-3)Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	VIM-2
+EP0020	20	G00031MO	Gal(b1-3)GalNAc(a1-)Ser/Thr	T Antigen
+EP0021	21	G57321FI	GalNAc(a1-)Ser/Thr	Tn Antigen
+EP0022	22	G36123IU	Neu5Ac(a2-6)GalNAc(a1-)Ser/Thr	Sialyl Tn Antigen
+EP0023	23	G01614ZM	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)]GalNAc(a1-)Ser/Thr	Disialyl T Antigen
+EP0024	24	G61730RY	Gal(b1-4)GlcNAc(b1-6)GalNAc(a1-)Ser/Thr	F1 Alpha
+EP0032	25	G45770AV	Neu5Ac(a2-8)Neu5Ac(a2-8)Neu5Ac(a2-3)Gal-R	C-Series Gangliosides  Oligosaccharide / Hemato- or Ganglio-Type
+EP0033	26	G78818SP	R-Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-8)Neu5Ac(a2-8)Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	C-Series Gangliosides Oligosaccharide / Gangliotetraosyl Core Structure
+EP0035	28	G62554JH	GalNAc(b1-4)[GlcNAc(b1-3)]Gal(b1-4)Glc(b1-1)Cer	Lactogangliotetraosylceramide
+EP0036	29	G99053DY	Gal(b1-3)GalNAc(b1-3)Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Galactosylgloboside
+EP0037	30	G80062GG	GalNAc(a1-3)GalNAc(b1-3)Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Forssman Antigen
+EP0038	31	G47379VH	Man(a1-6)[Man(a1-3)][Xyl(b1-2)]Man(b1-4)GlcNAc(b1-4)[Fuc(a1-3)]GlcNAc-R	M3FX
+EP0039	32	G25129BT	Gal(b1-3)GalNAc(b1-3)Gal(a1-)-R	SSEA-3
+EP0040	33	G93400AK	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)][Fuc(a1-4)]GlcNAc(b1-)-R	Disialyl Lewis a
+EP0041	34	G46776WR	Neu5Ac(a2-3)Gal(b1-3)GlcNAc(b1-)-R	Sialyl Lewis c
+EP0042	35	G85497PI	Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-3)Gal(b1-4)GlcNAc(b1-3)Gal(b1-)-R	SSEA-1
+EP0043	36	G06597DS	Neu5Ac(a2-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-3)Gal(b1-4)GlcNAc(b1-3)Gal(b1-)-R	Sialyl Lewis x-i
+EP0044	37	G84263XI	Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-3)Gal(a1-)-R	SSEA-4
+EP0045	38	G06000DZ	Gal(a1-4)Gal(b1-4)Glc-R	Pk Antigen
+EP0046	39	G55205ZV	Gal(a1-4)Gal(b1-4)GlcNAc-R	P1 Antigen
+EP0047	40	G21856LC	Gal(b1-3)GalNAc(b1-4)Gal(b1-4)Glc(b1-1)Cer	Asialo GM1
+EP0048	41	G03277YI	Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-4)Gal(b1-4)Glc(b1-1)Cer	GM1b
+EP0049	42	G91532KA	Fuc(a1-2)Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	Fucosyl GM1
+EP0050	43	G48558GR	Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GM1
+EP0051	44	G79389NT	GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	N-Acetyl GM2
+EP0052	45	G56478LD	GalNAc(b1-4)[Neu5Gc(a2-3)]Gal(b1-4)Glc(b1-1)Cer	N-Glycolyl GM2
+EP0053	46	G91237TK	Neu5Ac(a2-3)Gal(b1-4)Glc(b1-1)Cer	N-Acetyl GM3
+EP0054	47	G75789AR	Neu5Gc(a2-3)Gal(b1-4)Glc(b1-1)Cer	N-Glycolyl GM3
+EP0055	48	G30207PZ	Neu5Ac(a2-3)Gal(b1-1)Cer	GM4
+EP0056	49	G46677TE	Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GD1a
+EP0057	50	G57920AK	Fuc(a1-2)Gal(b1-3)GalNAc(b1-4)Gal(b1-4)Glc(b1-1)Cer	Fucosyl Asialo-GM1
+EP0058	51	G92175CL	GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GalNAc-GD1a
+EP0059	52	G37184KW	Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-8)Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GD1b
+EP0061	53	G02657AK	GalNAc(b1-4)[Neu5Ac(a2-8)Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GD2
+EP0062	54	G98544DH	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-4)Glc(b1-1)Cer	N-Acetyl GD3
+EP0063	55	G84891DZ	Neu5Gc(a2-8)Neu5Gc(a2-3)Gal(b1-4)Glc(b1-1)Cer	N-Glycolyl GD3
+EP0064	56	G74121RX	Neu5Ac9Ac(a2-8)Neu5Ac(a2-3)Gal(b1-4)Glc(b1-1)Cer	9-O-Acetyl GD3
+EP0065	57	G47325QT	Neu5Ac9Ac(a2-)-R	9-O-Acetyl Sialic Acid
+EP0066	58	G68110IF	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GT1a
+EP0067	59	G40183QN	Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-8)Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GT1b
+EP0068	60	G65889KE	Gal(b1-)-R-Cer	Bata Galactose
+EP0069	61	G18625KA	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-4)[Neu5Ac(a2-8)Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GQ1b
+EP0070	62	G93899SO	Neu5Ac(a2-8)Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-4)Glc(b1-1)Cer	GT3
+EP0071	63	G00059MO	Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Gb3
+EP0072	64	G91649BT	Gal(a1-3)Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Gal-CTH
+EP0073	65	G00061MO	GalNAc(b1-3)Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Globoside
+EP0074	66	G65889KE	Gal(b1-1)Cer	Galactosylceramide
+EP0075	67	G58896AZ	Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)Glc(b1-1)Cer	Paragloboside
+EP0076	68	G01767JJ	Neu5Ac(a2-3)Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)Glc(b1-1)Cer	2-3 Sialylparagloboside
+EP0077	69	G83513YI	Neu5Ac(a2-6)Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)Glc(b1-1)Cer	2-6 Sialylparagloboside
+EP0078	70	G84224TW	Gal(b1-4)Glc(b1-1)Cer	Lactosylceramide
+EP0079	71	G20044TD	HSO3(-3)Gal(b1-4)Glc(b1-1)Cer	SM3
+EP0080	72	G63813EJ	HSO3(-3)Gal(b1-3)GalNAc(b1-4)[HSO3(-3)]Gal(b1-4)Glc(b1-1)Cer	SD1a
+EP0081	73	G43702JT	-[GlcA(b1-3)GalNAc(b1-4)]n-	Chondroitin
+EP0082	74	G19059PI	-{GlcA(b1-3)[HSO3(-4)]GalNAc(b1-4)}n-	Chondroitin-4-Sulfate
+EP0083	75	G34992DF	-{GlcA(b1-3)[HSO3(-6)]GalNAc(b1-4)}n-	Chondroitin-6-Sulfate
+EP0084	76	G46732TY	-{[HSO3(-2)]GlcA(b1-3)[HSO3(-6)]GalNAc(b1-4)}n-	Chindroitin Sulfate D Unit
+EP0085	77	G82109MW	-{HSO3(-6)GlcNAc(b1-3)&plusmn;[HSO3(-6)]Gal(b1-4)}n-	Keratan Sulfate
+EP0086	78			Heparan Sulfate
+EP0087	79	G17927IW		Delta-Heparan Sulfate
+EP0088	80	G25575JK	-{[HSO3(-2)]IdoA(a1-4)GlcNAc(a1-4)}n-	Acharan Sulfate
+EP0090	81	G21808VY	Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-3)Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	Dimeric Lewis a
+EP0091	82	G07357YR	Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Lewis a- Lewis x Hybrid Antigen
+EP0092	83	G74578MX	Fuc(a1-2)Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-3)Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	Trifucosyl-Lewis b Antigen
+EP0093	84	G79535HZ	Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Dimeric Lewis x
+EP0094	85	G74917JX	Fuc(a1-2)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Trifucosyl-Lewis y Antigen
+EP0095	86	G54937EM	Neu5Ac(a2-3)Gal(b1-4)GlcNAc(b1-6)[Neu5Ac(a2-3)Gal(b1-4)GlcNAc(b1-3)]Gal(b1-4)GlcNAc(b1-)-R	Disialyl I
+EP0096	87	G14000ZZ	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)]GlcNAc(b1-)-R	Disialyl Lewis c
+EP0097	88	G33532XU	GalNAc(b1-4)[NeuAc(a2-3)]Gal(b1-3)[NeuAc(a2-6)]GlcNAc(b1-3)Gal-R	GalNAc Disialyl Lc4 (Hexasaccharide)
+EP0098	89	G97932OH	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)]GalNAc(b1-3)Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Disialyl Gb5
+EP0099	90	G32254QI	Neu5Ac(a2-3)Gal(b1-3)GalNAc(b1-3)Gal(a1-4)Gal(b1-4)Glc(b1-1)Cer	Monosialyl Gb5
+EP0101	91	G80631ZD		Poly-N-Acetylneuraminic Acid
+EP0102	92	G95717TY	(Neu5Gc)n	Poly-N-Glycolylneuraminic Acid
+EP0103	93	G42911NE	(KDN)n	Poly-KDN
+EP0104	94	G82612XX	KDN(a2-3)Gal(b1-)-R	KDN-Gal
+EP0110	95	G07394RV	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)]GalNAc(b1-4)Gal-R	GD1 alpha(Pentasaccharide)
+EP0111	96	G02149VR	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)]GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GT1a alpha
+EP0112	97	G54733XO	Neu5Ac(a2-3)Gal(b1-3)[Neu5Ac(a2-6)]GalNAc(b1-4)[Neu5Ac(a2-8)Neu5Ac(a2-3)]Gal(b1-4)Glc(b1-1)Cer	GQ1b alpha
+EP0113	98	G67988RO	Gal(a1-4)Gal(b1-1)Cer	Galabiosylceramide
+EP0114	99	G00049MO	Gal(b1-3)GlcNAc(b1-3)Gal(b1-4)Glc(b1-1)Cer	Lactotetraosylceramide
+EP0115	100	G30187JM	Neu5Ac(a2-9)Neu5Ac(a2-6)Gal(b1-4)Glc(b1-1)Cer	2-9,2-6 Disialyllactosylceramide
+EP0120	101	G72548RZ	HSO3(-3)Gal(b1-1)Cer	SM4s
+EP0138	102	G56045WU	Gal(b1-4)GlcNAc(b1-6)[Gal(b1-4)GlcNAc(b1-3)]Gal(b1-4)GlcNAc(b1-)-R	I Antigen
+EP0139	103	G00058MO	Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)GlcNAc(b1-)-R	i Antigen
+EP0140	104	G06580KR	Gal(b1-4)GlcNAc(b1-3)Gal(b1-)-R	LacNAc-Gal
+EP0141	105	G13157WZ	Gal(b1-4)[HSO3(-6)]GlcNAc(b1-)-R	6-Sulfo LacNAc
+EP0142	106	G89307GT	Gal(b1-4)[Fuc(a1-3)][HSO3(-6)]GlcNAc(b1-)-R	6-Sulfo Lewis x
+EP0143	107	G99745QX	Neu5Ac(a2-3)Gal(b1-4)[HSO3(-6)]GlcNAc(b1-)-R	Sialyl 6-Sulfo LacNAc
+EP0144	108	G24270KX	HSO3(-6)Gal(b1-4)[HSO3(-6)]GlcNAc(b1-)-R	6,6'-Sulfo LacNAc
+EP0145	109	G41392LY	HSO3(-6)Gal(b1-4)[HSO3(-6)]GlcNAc(b1-3)[HSO3(-6)]Gal(b1-)-R	6,6,6'-Sulfo LacNAc
+EP0150	110	G31736BK	GalNAc(b1-4)GlcNAc-R	LDN
+EP0151	111	G02240AO	GalNAc(b1-4)[Fuc(a1-3)]GlcNAc-R	LDN-F
+EP0200	112	G27798EJ	Gal(a1-3)Gal(b1-4)GlcNAc-R	Alpha-Galactosyl Epitope
+EP0210	113	G69030AU	Fuc(a1-2)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-3)Gal(b1-4)GlcNAc-R	Lewis y (extended) / Hexasaccharide
+EP0211	114	G28420BK	Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-3)Gal-R	Lewis a (b1-3)Gal
+EP0212	115	G64227KZ	Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-3)Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)Glc(b1-1)Cer	Internal Lewis x
+EP0213	116	G93855LZ	Neu5Ac(a2-6)Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	2-6 Sialyl i-Lewis x
+EP0250	117	G00068MO	Fuc(a1-2)Gal(b1-)-R	Blood Group H Disaccharide
+EP0251	118	G40696TO	Fuc(a1-2)Gal(b1-3)GlcNAc(b1-)-R	Blood Group H Type 1
+EP0252	119	G61459JW	Fuc(a1-2)Gal(b1-4)GlcNAc(b1-)-R	Blood Group H Type 2
+EP0253	120	G94435QH	Fuc(a1-2)Gal(b1-3)GalNAc(a1-)-R	Blood Group H Type 3
+EP0254	121	G35778AN	Fuc(a1-2)Gal(b1-3)GalNAc(b1-)-R	Blood Group H Type 4
+EP0255	122	G00066MO	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-)-R	Blood Group A Trisaccharide
+EP0256	123	G66163TI	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-3)GlcNAc(b1-)-R	Blood Group A Type 1
+EP0257	124	G74353FF	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-4)GlcNAc(b1-)-R	Blood Group A Type 2
+EP0258	125	G99315PE	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-3)GalNAc(a1-)-R	Blood Group A Type 3
+EP0259	126	G17480GI	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-3)GalNAc(b1-)-R	Blood Group A Type 4
+EP0260	127	G97501MA	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-3)[Fuc(a1-4)]GlcNAc(b1-)-R	Blood Group A Type 1 (difucosyl)
+EP0261	128	G54826OZ	GalNAc(a1-3)[Fuc(a1-2)]Gal(b1-4)[Fuc(a1-3)]GlcNAc(b1-)-R	Blood Group A Type 2 (difucosyl)
+EP0262	129	G94956AW	Gal(a1-3)[Fuc(a1-2)]Gal(b1-4)GlcNAc(b1-)-R	Blood Group B Type 2
+EP0280	130	G57709BH	Fuc(a1-3)GalNAc(b1-)-R	Fuc(a1-3)GalNAc(b1)
+EP0301	131	G77824XV	Neu5Ac(a2-3)Gal-R	Neu5Ac(a2-3)Gal / Monosialoganglioside
+EP0302	132	G53517XC	Neu5Gc(a2-3)Gal-R	Neu5Gc(a2-3)Gal / Monosialoganglioside
+EP0303	133	G53517XC	Neu5Gc(a2-3)Gal-R	Neu5Gc(a2-3)Gal
+EP0304	134	G30207PZ	Neu5Ac(a2-3)Gal(b1-)-R	Neu5Ac(a2-3)Gal(b1)
+EP0305	135	G56516VH	Neu5Ac(a2-3)Gal(b1-4)Glc-R	Neu5Ac(a2-3)Gal(b1-4)Glc
+EP0306	136	G82974JM	Neu5Ac(a2-8)Neu5Gc(a2-3)Gal-R	Neu5Ac(a2-8)Neu5Gc(a2-3)Gal
+EP0307	137	G16142UJ	Neu5Gc(a2-8)Neu5Gc(a2-3)Gal-R	Neu5Gc(a2-8)Neu5Gc(a2-3)Gal
+EP0308	138	G82775QT	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal-R	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal
+EP0309	139	G61424BA	Neu5Gc(a2-8)Neu5Ac(a2-3)Gal-R	Neu5Gc(a2-8)Neu5Ac(a2-3)Gal
+EP0311	141	G45058HZ	GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1-)-R	GalNAc(b1-4)[Neu5Ac(a2-3)]Gal(b1)
+EP0312	142	G40843KY	HSO3(-3)Gal-R	Galactose 3-O-Sulfate
+EP0313	143	G32969VW	Neu5Gc(a2-3)Gal(b1-4)Glc-R	Neu5Gc(a2-3)Gal(b1-4)Glc
+EP0314	144	G10203DW	Neu5Ac(a2-3)Gal(b1-4)GlcNAc-R	Neu5Ac(a2-3)Gal(b1-4)GlcNAc
+EP0315	145	G48236KP	Neu5Gc(a2-3)Gal(b1-4)GlcNAc-R	Neu5Gc(a2-3)Gal(b1-4)GlcNAc
+EP0316	146	G81928IQ	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-4)Glc-R	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-4)Glc
+EP0317	147	G95233MF	Neu5Ac(a2-8)Neu5Gc(a2-3)Gal(b1-4)Glc-R	Neu5Ac(a2-8)Neu5Gc(a2-3)Gal(b1-4)Glc
+EP0318	148	G61149BD	GalNAc(b1-3)Gal(b1-4)GlcNAc-R	GalNAc(b1-3)Gal(b1-4)GlcNAc
+EP0319	149	G57548NB	Gal(b1-4)[Fuc(a1-3)]Glc(b1-)-R	Gal(b1-4)[Fuc(a1-3)]Glc(b1)
+EP0320	150	G29406SZ	GalNAc(b1-4)[Neu5Gc(a2-3)]Gal(b1-)-R	GalNAc(b1-4)[Neu5Gc(a2-3)]Gal(b1)
+EP0321	151	G60859DF	GalNAc(b1-4)Gal-R	GalNAc(b1-4)Gal
+EP0322	152	G45827GY	Gal(b1-3)GlcNAc(b1-3)Gal(b1-4)Glc-R	Lacto-N-Tetraose
+EP0323	153	G21066IE	Neu5Ac(a2-3)Gal(b1-3)GlcNAc(b1-3)Gal(b1-4)Glc-R	2-3 Sialyl-Lacto-N-Tetraose
+EP0324	154	G78436BB	Gal(b1-3)GalNAc-R	Gal(b1-3)GalNAc
+EP0325	155	G56299XO	Neu5Ac(a2-3)Gal(b1-3)GalNAc-R	Neu5Ac(a2-3)Gal(b1-3)GalNAc
+EP0326	156	G93910CU	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-3)GalNAc-R	Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-3)GalNAc
+EP0350	157	G48059CD	Gal(b1-4)GlcNAc(b1-3)Gal(b1-4)Glc-R	Lacto-N-Neotetraose
+EP0351	158	G44345UH	Neu5Ac(a2-6)Gal-R	Neu5Ac(a2-6)Gal
+EP0352	159	G08371CD	Neu5Ac(a2-6)GalNAc-R	Neu5Ac(a2-6)GalNAc
+EP0353	160	G03509EL	Neu5Ac(a2-6)Gal(b1-4)GlcNAc(b1-3)Gal(b1-)-R	2-6 Sialyl-LacNAc-Gal
+EP0370	161	G02880JU	GlcNAc(b1-3)Gal-R	GlcNAc(b1-3)Gal
+EP0371	162	G48117BL	GlcNAc(b1-3)Gal(b1-4)GlcNAc-R	GlcNAc(b1-3)Gal(b1-4)GlcNAc
+EP0500	163	G25318VQ		Homogalacturonan
+EP0501	164	G00367NK		Xylogalacturonan
+EP0503	165	G98272RS		Arabinogalactan Type I
+EP0504	166	G12828SG		Arabinogalactan Type ll
+EP0506	167	G77076MY	-[Gal(b1-4)]n-	beta 1-4 Galactan
+EP0507	168	G69386QK	-[Gal(b1-6)]n-	1-6 beta Galactan
+EP0508	169	G22535ZZ		Arabinan
+EP0509	170	G88924MD		Glucomannan
+EP0510	171	G93424OB		Galactomannan
+EP0511	172	G25326UC		Xyloglucan
+EP0512	173	G46558JB		1-3,1-4 beta Glucan
+EP0513	174	G94091AV		Glucronoxylan
+EP0514	175	G54315VV		Glucronoarabinoxylan

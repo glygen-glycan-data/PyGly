@@ -1,5 +1,0 @@
-<includeonly>{{#ask:
-[[Category:Motif]]
-[[Collection::{{{1}}}]]
-|format=count
-}}</includeonly>

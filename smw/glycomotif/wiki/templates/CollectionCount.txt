@@ -1,0 +1,5 @@
+<includeonly>{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::{{{1}}}]]
+|format=count
+}}</includeonly>

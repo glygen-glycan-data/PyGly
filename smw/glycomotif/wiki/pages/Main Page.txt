@@ -1,0 +1,51 @@
+__NOTOC__
+__NOEDITSECTION__
+
+DISCLAIMER: This glycosylation motif resource is provided as is and no
+representation of its utility nor correctness is implied. It may go
+down or be wiped at any time. Please do not redistribute or otherwise
+download for further use any of the collections. In some cases, these
+collections have been curated before import. Please do not forward the
+URL for this site to others.
+
+This site has been constructed to provide a basis for discussion of
+glycosylation motifs and naming, glycan classifications and
+categories, and computing motif associations with GlyTouCan
+associations.
+
+== Collections ==
+{{#ask:
+[[Category:Collection]]
+[[glycomotif:id::!GM]]
+|format=template
+|template=MotifCollectionTableRows
+|introtemplate=MotifCollectionTableIntro
+|outrotemplate=MotifCollectionTableOutro
+|link=none
+}}
+
+== Triple Store ==
+
+SPARQL Endpoint: [https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery https://edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query]
+
+=== GlyTouCan motifs ===
+<pre>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?accession ?name ?redend
+WHERE {
+  ?motif rdf:type glycomotif:Motif .
+  ?motif glycomotif:accession ?accession .
+  ?motif glycomotif:name ?name .
+  ?motif glycomotif:reducingend ?redend .
+  ?motif glycomotif:incollection ?collection . 
+  ?collection rdf:type glycomotif:Collection .
+  ?collection glycomotif:id "GTC" 
+}
+</pre>
+[https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Faccession+%3Fname+%3Fredend%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%3Faccession+.%0A++%3Fmotif+glycomotif%3Aname+%3Fname+.%0A++%3Fmotif+glycomotif%3Areducingend+%3Fredend+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22GTC%22+%0A%7D Try Me!]
+
+== Python Modules and Loading Scripts ==
+
+[https://github.com/glygen-glycan-data/PyGly/tree/master/smw/glycomotif GitHub]

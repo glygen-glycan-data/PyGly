@@ -1,5 +1,0 @@
-{{Collection
-|contact=Rene Ranzinger
-|email=rene@ccrc.uga.edu
-|url=https://edwardslab.bmcb.georgetown.edu/glycomotif/images/0/09/MotifsMP2.xlsx
-}}

@@ -1,2 +1,0 @@
-This is a property of type [[Has type::External identifier]].
-[[External formatter uri::https://glytoucan.org/Structures/Glycans/$1]]

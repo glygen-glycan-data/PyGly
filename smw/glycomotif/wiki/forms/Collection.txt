@@ -1,0 +1,28 @@
+<noinclude>
+This is the "Collection" form.
+To create a page with this form, enter the page name below;
+if a page with that name already exists, you will be sent to a form to edit that page.
+
+
+{{#forminput:form=Collection}}
+
+</noinclude><includeonly>
+<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
+{{{for template|Collection}}}
+{| class="formtable"
+! Name: 
+| {{{field|name}}}
+|-
+! Contact: 
+| {{{field|contact}}}
+|-
+! Email: 
+| {{{field|email}}}
+|-
+! URL: 
+| {{{field|url}}}
+|}
+{{{end template}}}
+
+{{{standard input|save}}} {{{standard input|cancel}}}
+</includeonly>

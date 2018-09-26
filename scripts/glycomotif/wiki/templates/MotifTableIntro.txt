@@ -1,5 +1,0 @@
-<includeonly>
-{| class="wikitable sortable"
-! Accession !! Name(s) !! Reducing-End Only? !! Same As
-|-
-</includeonly>

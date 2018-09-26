@@ -1,5 +1,0 @@
-{{Collection
-|contact=Toshisuke Kawasaki
-|email=tkawasak@fc.ritsumei.ac.jp
-|url=https://www.glycoepitope.jp
-}}

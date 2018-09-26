@@ -181,8 +181,8 @@ class MonoSymLookup(dict):
             if self.__class__.__name__ in kv:
                 self[key] = kv[self.__class__.__name__]
     def key(self,m):
-        stem = tuple(sorted(('Stem',s) for s in m.stem()))
-        mods = tuple(sorted(('Mod',m[1]) for m in m.mods()))
+        stem = tuple(sorted(('Stem',s) for s in m.stem()) if m.stem() != None else ())
+        mods = tuple(sorted(('Mod',m[1]) for m in m.mods()) if m.mods() != None else ())
         subst = tuple(sorted(('Substituent',s.name()) for s in m.substituents()))
         return stem,mods,subst
     def toStr(self,m):

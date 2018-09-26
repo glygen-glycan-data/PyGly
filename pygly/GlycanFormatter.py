@@ -54,6 +54,11 @@ class GlycoCTBadLINLineError(GlycoCTParseError):
 	self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
 	self.line = line
 
+class GlycoCTParentLinkError(GlycoCTParseError):
+    def __init__(self,message,lineno,line):
+	self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
+	self.line = line
+
 class GlycoCTUnexpectedLineError(GlycoCTParseError):
     def __init__(self,lineno,line):
 	self.message = "GlycoCT parser, line %d: Unexpected line:\n ==> %s"%(lineno,line)
@@ -62,6 +67,10 @@ class GlycoCTUnexpectedLineError(GlycoCTParseError):
 class GlycoCTUndeterminedLinkageError(GlycoCTParseError):
     def __init__(self):
 	self.message = "GlycoCT parser, undetermined linkage instantiation error"
+
+class GlycoCTUnconnectedCountError(GlycoCTParseError):
+    def __init__(self):
+	self.message = "GlycoCT parser, unconnected node count error"
 
 class GlycoCTFormat(GlycanFormatter):
     def __init__(self):
@@ -195,7 +204,7 @@ class GlycoCTFormat(GlycanFormatter):
 			    l.set_undetermined(True)
 			    l.set_instantiated(False)
 			    l.child().set_connected(False)
-		except RuntimeError, e:
+		except (RuntimeError,AttributeError), e:
 		    raise GlycoCTBadLINLineError(message=e.message,lineno=lineno+1,line=l)	
                 continue
 	    if state == "UND":
@@ -217,11 +226,14 @@ class GlycoCTFormat(GlycanFormatter):
 	    linkagestr = d['stlink'][1]
 	    rootid = d['root']
 	    for pid in d['parentids']:
-		links = self.monofmt.linkFromStr("0:%s%s%s%s"%(pid,linkagestr[:-1],rootid,linkagestr[-1]),res)
-		for l in links:
+		try:
+		  links = self.monofmt.linkFromStr("0:%s%s%s%s"%(pid,linkagestr[:-1],rootid,linkagestr[-1]),res)
+		  for l in links:
 		    l.set_undetermined(True)
 		    l.set_instantiated(False)
 		    l.child().set_connected(False)
+		except (RuntimeError,AttributeError), e:
+		    raise GlycoCTParentLinkError(message=e.message,lineno=lineno+1,line=l)	
         unconnected = set()
         monocnt = 0
         for id,r in res.items():
@@ -232,7 +244,8 @@ class GlycoCTFormat(GlycanFormatter):
                 continue
             r.set_connected(False)
             unconnected.add(r)
-        assert len(unconnected) in (1,monocnt)
+	if len(unconnected) not in (1,monocnt):
+	    raise GlycoCTUnconnectedCountError()
         # single monosacharides are considered a structure, not a composition...
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())

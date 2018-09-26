@@ -586,7 +586,7 @@ class Glycan:
             node = self.root()
         code = monofmt.toStr(node)
         s = codeprefix + code
-        kidlinks = sorted(filter(lambda l: l.instantiated(),node.links()),key=Linkage.parent_pos,reverse=True)
+        kidlinks = sorted(filter(lambda l: l.instantiated(),node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
         kids = map(Linkage.child,kidlinks)
         n = len(kids)
         assert n in (0,1,2,3)

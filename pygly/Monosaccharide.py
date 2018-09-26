@@ -45,6 +45,7 @@ class Mod:
     sp2     = 6
     sp      = 7
     geminal = 8
+    enx     = 9
 
 class Anomer:
     alpha      = 1

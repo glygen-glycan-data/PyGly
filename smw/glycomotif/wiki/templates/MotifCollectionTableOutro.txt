@@ -1,0 +1,5 @@
+<includeonly>
+|-
+! style="text-align: left;" | {{CollectionName|GM}} !! style="text-align: right;" | {{CollectionCount|GM}}
+|}
+</includeonly>

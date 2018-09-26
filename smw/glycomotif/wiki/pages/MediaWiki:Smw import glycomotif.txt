@@ -1,0 +1,16 @@
+http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomotif GlyGen Glycomotif Ontology]
+ id|Type:Text
+ Collection|Category
+ contact|Type:Text
+ email|Type:Email
+ url|Type:Url
+ Motif|Category
+ accession|Type:Text
+ name|Type:Text
+ incollection|Type:Page
+ aglycon|Type:Text
+ reducingend|Type:Boolean
+ glytoucan|Type:External identifier
+ sameas|Type:Page
+
+[[Category:Imported vocabulary]]

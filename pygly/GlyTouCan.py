@@ -27,6 +27,7 @@ class GlyTouCan(object):
 	self.apikey = apikey
 	self.delaytime = .2
 	self.delaybatch = 1
+	self.maxattempts = 3
 	self._lastrequesttime = 0
 	self._lastrequestcount = 0
 	self.alphamap = None
@@ -48,11 +49,34 @@ class GlyTouCan(object):
 	self.opener = urllib2.build_opener(self.handler)
 	self.glycoct_format = None
 
-    def _wait(self):
+    def _wait(self,delaytime=None):
+	if delaytime != None:
+	    time.sleep(delaytime)
+	    return
 	if (self._lastrequestcount % self.delaybatch) == 0 and self._lastrequestcount > 0:
 	    time.sleep(self.delaytime)
 	self._lastrequesttime = time.time()
 	self._lastrequestcount += 1
+
+    def query(self,sparql):
+	self._wait()
+	if self.g == None:
+	    self.setup_sparql()
+
+        attempt = 0
+	response = None
+	while response == None and attempt < self.maxattempts:
+	    try:
+		attempt += 1
+	        response = self.g.query(sparql)
+	    except:
+		traceback.print_exc()
+	        self._wait(self.delaytime**attempt)
+
+	if response == None:
+	    raise IOError("Cannot query SPARQL endpoint")
+
+	return response
 
     exists_sparql = """
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
@@ -66,7 +90,7 @@ class GlyTouCan(object):
 	self._wait()
 	if self.g == None:
 	    self.setup_sparql()
-	response = self.g.query(self.exists_sparql%dict(accession=accession))
+	response = self.query(self.exists_sparql%dict(accession=accession))
         for row in response.bindings:
 	    return True
 	return False
@@ -86,10 +110,9 @@ class GlyTouCan(object):
 
     def getseq(self,accession,format="wurcs"):
         assert(format in ("wurcs","glycoct","iupac_extended","iupac_condensed"))
-	self._wait()
-	if self.g == None:
-	    self.setup_sparql()
-	response = self.g.query(self.getseq_sparql%dict(accession=accession,format=format))
+
+	response = self.query(self.getseq_sparql%dict(accession=accession,format=format))
+	     
         seqkey = response.vars[0]
 	seq = None
         for row in response.bindings:
@@ -109,10 +132,7 @@ class GlyTouCan(object):
 	}
     """
     def getmass(self,accession):
-	self._wait()
-	if self.g == None:
-	    self.setup_sparql()
-	response = self.g.query(self.getmass_sparql%dict(accession=accession))
+	response = self.query(self.getmass_sparql%dict(accession=accession))
         masskey = response.vars[0]
         mass = None
         for row in response.bindings:
@@ -137,10 +157,7 @@ class GlyTouCan(object):
 	}
     """
     def getmonocount(self,accession):
-	self._wait()
-	if self.g == None:
-	    self.setup_sparql()
-	response = self.g.query(self.getmonocount_sparql%dict(accession=accession))
+	response = self.query(self.getmonocount_sparql%dict(accession=accession))
         key = response.vars[0]
         value = None
         for row in response.bindings:
@@ -177,10 +194,7 @@ class GlyTouCan(object):
 	}
     """
     def allmotifs(self):
-	self._wait()
-	if self.g == None:
-	    self.setup_sparql()
-	response = self.g.query(self.allmotif_sparql)
+	response = self.query(self.allmotif_sparql)
         key = response.vars[0]
         value = None
         for row in response.bindings:
