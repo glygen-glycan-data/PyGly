@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Specify whether to work with PROD or DEV
-SMWENV="TEST"
+SMWENV="DEV"
 # SMWENV="PROD"
 export SMWENV
 
