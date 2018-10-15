@@ -1,0 +1,197 @@
+SugarbindID	GlyTouCanID	Aglycon	Name
+1	G65889KE	Ceramide	Galactosylceramide
+2	G21856LC	Ceramide	Gangliotetraosylceramide
+3	G84224TW	Ceramide	Lactosylceramide
+4	G90562PB	Ceramide	Gangliotriaosylceramide
+5	G71142DF	Ceramide	Glucosylceramide
+6	G74621DY		
+7	G68158BT		Galactose
+8	G78436BB		
+9	G61418DU		N-acetyl-D-galactosamine
+10	G78074HX	Ceramide	Isoglobotriaosylceramide
+11	G54721WC	Ceramide	
+12	G99053DY	Ceramide	Gal(b1-3) globoside
+13	G48558GR	Ceramide	Monosialogangliotetraosylceramide
+14	G37184KW	Ceramide	Disialogangliotetraosylceramide
+15	G58896AZ	Ceramide	Neolactotetraosylceramide
+17	G57710SU	Ceramide	
+18	G00061MO	Ceramide	Globotetraosylceramide
+19	G51699SI	Ceramide	
+20	G06239NA	Ceramide	Lactotriaosylceramide
+21	G87315SO		
+22	G46677TE	Ceramide	Disialogangliotetraosylceramide
+23	G78436BB	Protein	Leukosialin
+24	G78436BB	Protein	Leukocyte common antigen
+25	G60859DF		
+26	G00049MO	Ceramide	Lactotetraosylceramide
+27	G00059MO	Ceramide	Globotriaosylceramide
+28	G40183QN	Ceramide	Trisialogangliotetraosylceramide
+29	G04616ST		
+30	G51331BY		
+31	G62763GO		Galabiose
+32	G67988RO	Ceramide	Galabiosylceramide
+33	G20624LQ	Protein	Pentasaccharide N-linked glycan core
+34	G39064VB	Protein	
+35	G81533KY		N-acetylneuraminic acid
+36	G27025MB		N-acetylgalactosamine
+37	G91237TK		Sialyl-3-lactose
+38	G18625KA	Ceramide	
+39	G77824XV		
+40	G03499BP		
+41	G79389NT	Ceramide	
+42	G97569KL		Disialylactose
+43	G61298NX		
+44	G70323CJ		Mannose
+45	G00050MO	Ceramide	
+46	G22689CV	Ceramide	
+47	G63238VS	Ceramide	
+48	G71485PH	Ceramide	
+50	G37830TX	Ceramide	
+51	G04715SK	Ceramide	
+52	G82858KU	Ceramide	
+53	G65507FU	Protein	
+54	G00711NG	Protein	
+55	G76297JC	Protein	
+56	G26123AX	Ceramide	
+57	G33224VN	Ceramide	
+58	G05357CB	Ceramide	Gangliotetraosylceramide
+59	G97932OH	Ceramide	Disialosyl galactosyl globoside
+60	G32254QI	Ceramide	Sialosyl galactosyl globoside
+61	G64581RP	Protein	N-acetylglucosamine
+62	G67988RO		
+63	G98465JN	Ceramide	
+64	G37830TX	Ceramide	
+65	G72565QB	Ceramide	
+66	G75789AR	Ceramide	
+67	G70323CJ		Mannose
+68	G30207PZ		
+69	G32969VW		
+70	G56299XO		
+71	G91237TK	Ceramide	Monosialodihexosylganglioside
+72	G70323CJ		
+73	G17780OR		
+74	G07982RO	Protein	
+75	G50850NI	Protein	N-acetylneuraminic acid
+76	G56516VH		Sialyl-3-lactose
+77	G47395XN		
+78	G56478LD	Ceramide	
+79	G67988RO	Ceramide	Galabiosylceramide
+80	G95034OI	Ceramide	
+81	G83212YI	Ceramide	
+82	G72548RZ	Ceramide	
+83	G20044TD	Ceramide	
+84	G84034JH	Ceramide	Neolactohexosylceramide
+85	G07982RO	Protein	Chitobios
+86	G82576YO		Fucose
+87	G78260AJ		
+88	G65889KE		
+89	G88796WA	Ceramide	
+90	G19336PT	Ceramide	
+91	G62971NJ	Ceramide	
+92	G80062GG	Ceramide	
+93	G24034CH	Ceramide	II3Neu5GcGg4Cer, GM1(Gc)
+94	G02657AK	Ceramide	
+95	G98544DH	Ceramide	
+96	G04165ZA		
+97	G03777BI		
+98	G03277YI	Ceramide	
+99	G08079IN	Protein	
+100	G88393MK		Antigen H
+101	G60395SO		B Lewis b
+102	G48600JD		A Lewis b
+103	G58507AZ		Antigen A
+104	G08855PJ	Ceramide	
+105	G45215IJ	Ceramide	
+106	G96401FK	Ceramide	
+107	G01296LJ	Ceramide	
+108	G01767JJ	Ceramide	Sialosylparagloboside
+109	G03067VG	Ceramide	I-active ganglioside
+110	G26036PN	Ceramide	
+111	G28566CQ	Ceramide	I-Active ganglioside
+112	G09552LA	Ceramide	
+113	G50321QR	Ceramide	
+114	G57920AK	Ceramide	Fuc-gangliotetraosylceramide
+115	G10203DW		3′-sialyl-N-acetyllactosamine
+116	G30207PZ		
+117	G55153IW	Ceramide	
+118	G07169WN	Ceramide	
+119	G96614JE	Ceramide	
+120	G87245HS	Protein	
+121	G32254QI		
+122	G72692DY	Ceramide	
+123	G83513YI	Ceramide	Sialylparagloboside
+124	G21066IE		
+125	G21938SG		
+126	G44345UH		
+127	G46776WR		Sialyl-Lewis c
+128	G80722US		6-sulfo sialyl Lewis X
+129	G00054MO		Sialyl-Lewis X
+130	G99745QX		Sulfated sialyl-3-N-acetyllactosamine
+131	G00065MO		3′-sialyl-N-acetyllactosamine
+132	G09376MR		6′-sialyl-N-acetyllactosamine
+133	G79536OW	Ceramide	
+134	G93779QZ		6-sulfo sialyl Lewis c
+135	G16194TN	Ceramide	
+136	G29313LW		
+137	G04616ST		Globotetraosylceramide
+138	G60645OK	Ceramide	A-galactosylparagloboside
+139	G72548RZ	Ceramide	
+140	G72548RZ	Alkylacylglycerol	
+141	G20044TD	Ceramide	
+142	G60011XD	Ceramide	
+143	G20420WT	Ceramide	Lactosylceramide
+144	G41709CA		
+145	G87727XV		
+146	G39211DH		
+147	G49963IQ		
+148	G58612ZQ		
+149	G55958KV		
+150	G14300ZJ		H type 1 Lewis b
+151	G94938PL		B type 1 B Lewis b
+152	G12068BR		A type 1 A Lewis b
+153	G50899UD		
+154	G66086EX		
+155	G40192EJ		
+156	G23041XK		Precusor Lewis a
+157	G68084OM		
+158	G72494BI	Ceramide	
+159	G37563FN	Ceramide	
+160	G98173LG		
+161	G98173LG		
+162	G91326YS		
+163	G86123DJ		
+164	G00407UJ		
+165	G65889KE		
+166	G65889KE		
+167	G00059MO		
+168	G91649BT	Ceramide	
+169	G12460DL	Ceramide	
+170	G50850NI	Protein	Leukosialin
+171	G50850NI	Protein	Leukocyte common antigen
+172	G50850NI		N-acetylneuraminic acid
+173	G02880JU		
+174	G45827GY		Lactotetraose
+175	G48059CD		Neolactotetrose
+176	G39011KA		
+177	G55205ZV		
+178	G06000DZ		
+179	G23581GL	Protein	
+180	G65191ST	Protein	
+182	G90889KG	Protein	
+183	G28330DZ	Protein	
+184	G47812NS		2'-fluorine-3′-sialyl-N-acetyllactosamine
+185	G62593IS		2'-fluorine-3′-sialyl-N-acetyllactosamine
+186	G59168YE		3′-sialyl-N-acetyllactosamine(1-3)
+187	G65889KE		Galactose
+188	G59508TM	Ceramide	Gg4Cer II3-sulfate
+189	G32417JV	Ceramide	Sialyllacto-N-tetraose b
+190	G00998NI		
+191	G28528AG		
+192	G15021LG		Glucose
+193	G11485ID	Ceramide	
+194	G03506YN	Ceramide	
+195	G68158BT		Galactose beta1
+196	G29313LW	Protein	alpha-oligomannoside
+197	G07490EK	Protein	alpha-oligomannoside
+198	G51379UR	Protein	alpha-oligomannoside
+199	G89659QV	Ceramide	Lewis Y

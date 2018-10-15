@@ -1,0 +1,166 @@
+HayesID	GlyTouCanID	Aglycon	Name
+1	G21066IE		2-3 Sialyl-Lacto-N-Tetraose
+2	G01767JJ	Ceramide	2-3 Sialylparagloboside
+3	G93855LZ		2-6 Sialyl Lewis x
+4	G03509EL		2-6 Sialyl-LacNAc-Gal
+5	G83513YI	Ceramide	2-6 Sialylparagloboside
+6	G30187JM	Ceramide	2-9, 2-6 Disialyllactosylceramide
+7	G78706CK		3'-Sulfo Lewis a
+8	G12295TB		3'-Sulfo Lewis x
+9	G00672PE		6'-Sulfo Sialyl Lewis x
+10	G00659GQ		6,6'-DiSulfo Sialyl Lewis x
+11	G24270KX		6, 6'-Sulfo LacNAc
+12	G41392LY		6,6,6'-Sulfo LacNAc
+13	G13157WZ		6-Sulfo LacNAc
+14	G89307GT		6-Sulfo Lewis x
+15	G74121RX	Ceramide	9-O-Acetyl GD3
+16	G47325QT		9-O-Acetyl Sialic Acid
+17	G25575JK		Acharan Sulfate
+18	G27798EJ		Alpha-Galactosyl Epitope
+19	G21856LC	Ceramide	Asialo GM1
+20	G65889KE	Ceramide	Beta Galoctose
+21	G00066MO		Blood Group A Trisaccharide
+22	G66163TI		Blood Group A Type 1
+23	G97501MA		Blood Group A Type 1 (difucosyl)
+24	G74353FF		Blood Group A Type 2
+25	G54826OZ		Blood Group A Type 2 (difucosyl)
+26	G99315PE		Blood Group A Type 3
+27	G17480GI		Blood Group A Type 4
+28	G94956AW		Blood Group B Type 2
+29	G00068MO		Blood Group H
+30	G40696TO		Blood Group H Type 1
+31	G61459JW		Blood Group H Type 2
+32	G94435QH		Blood Group H Type 3
+33	G35778AN		Blood Group H Type 4
+34	G45770AV		C-Series Gangliosides / Hemato- or Ganglio-Type
+35	G78818SP	Ceramide	C-Series Gangliosides / Gangliotetraosyl Core
+36	G46732TY		Chodroitin Sulfate D Unit
+37	G43702JT		Chondroitin
+42	G21808VY		Dimeric Lewis a
+43	G79535HZ		Dimeric Lewis x
+44	G97932OH	Ceramide	Disialyl Gb5
+45	G54937EM		Disialyl I
+46	G93400AK		Disialyl Lewis a
+47	G14000ZZ		Disialyl Lewis c
+48	G84906ML		Disialyl T Antigen
+49	G21312EA		F1 Alpha
+50	G80062GG	Ceramide	Forssman Antigen
+51	G57709BH		Fuc(a1-3)GalNac(b1)
+52	G57920AK	Ceramide	Fucosyl Asialo-GM1
+53	G91532KA	Ceramide	Fucosyl GM1
+54	G07394RV		GD1 alpha (pentasaccharide)
+55	G46677TE	Ceramide	GD1a
+56	G37184KW	Ceramide	GD1b
+57	G02657AK	Ceramide	GD2
+58	G48558GR	Ceramide	GM1
+59	G03277YI	Ceramide	GM1b
+60	G30207PZ	Ceramide	GM4
+61	G18625KA	Ceramide	GQ1b
+62	G54733XO	Ceramide	GQ1b alpha
+63	G68110IF	Ceramide	GT1a
+64	G02149VR	Ceramide	GT1a alpha
+65	G40183QN	Ceramide	GT1b
+66	G93899SO	Ceramide	GT3
+67	G58645HA		Gal(b1-3)GalNAc
+68	G41323BT		Gal(b1-4)[Fuc(a1-3)]Glc(b1)
+69	G91649BT	Ceramide	Gal-CTH
+70	G33532XU		GalNAc Disialyl Lc4
+71	G61149BD		GalNAc(b1-3)Gal(b1-4)GlcNAc
+72	G60859DF		GalNAc(b1-4)Gal
+73	G23581GL		GalNAc(b1-4)[Neu5Gc(a2-3)]Gal(b1)
+74	G92175CL	Ceramide	GalNAc-GD1a
+75	G67988RO	Ceramide	Galabiosylceramide
+76	G40843KY		Galactose 3-O-Sulfate
+77	G99053DY	Ceramide	Galactosylgloboside
+78	G00059MO	Ceramide	Gb3
+79	G02880JU		GlcNAc(b1-3)Gal
+80	G48117BL		GlcNAc(b1-3)Gal(b1-4)GlcNAc
+81	G00061MO	Ceramide	Globoside
+82	G54406UD		HNK-1
+84	G56045WU		I Antigen
+85	G64227KZ	Ceramide	Internal Lewis x
+86	G82625KX		KDN-Gal
+88	G31736BK		LDN
+89	G02240AO		LDN-F
+90	G06580KR		LacNAc-Gal
+91	G45827GY		Lacto-N-Neotetraose
+92	G48059CD		Lacto-N-Tetraose
+93	G85237WB	Ceramide	Lactogangliotetraosylceramide
+94	G84224TW	Ceramide	Lactosylceramide
+95	G39023AU		Lewis y
+96	G28420BK		Lewis a (b1-3)Gal
+97	G07357YR		Lewis a-Lewis x hybrid
+98	G00048MO		Lewis b
+99	G00051MO		Lewis x
+100	G00052MO		Lewis a
+101	G69030AU		Lewis y (extended)
+102	G26295XE		M3FX
+103	G32254QI	Ceramide	Monosialyl Gb5
+104	G98544DH	Ceramide	N-Acetyl GD3
+105	G79389NT	Ceramide	N-Acetyl GM2
+106	G91237TK	Ceramide	N-Acetyl GM3
+107	G84891DZ	Ceramide	N-Glycolyl GD3
+108	G56478LD	Ceramide	N-Glycolyl GM2
+109	G75789AR	Ceramide	N-Glycolyl GM3
+110	G30207PZ		Neu5Ac(a2-3)Gal / Monosialoganglioside
+111	G56299XO		Neu5Ac(a2-3)Gal(b1-3)GalNAc
+112	G56516VH		Neu5Ac(a2-3)Gal(b1-4)Glc
+113	G10203DW		Neu5Ac(a2-3)Gal(b1-4)GlcNAc
+114	G63069TR		Neu5Ac)a2-6)Gal
+115	G08371CD		Neu5Ac(a2-6)GalNAc
+116	G43195TR		Neu5Ac(a2-8)Neu5Ac(a2-3)Gal
+117	G93910CU		Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-3)GalNAc
+118	G81928IQ		Neu5Ac(a2-8)Neu5Ac(a2-3)Gal(b1-4)Glc
+119	G82974JM		Neu5Ac(a2-8)Neu5Gc(a2-3)Gal
+120	G95233MF		Neu5Ac(a2-8)Neu5Gc(a2-3)Gal(b1-4)Glc
+121	G53517XC		Neu5Gc(a2-3)Gal
+122	G32969VW		Neu5Gc(a2-3)Gal(b1-4)Glc
+123	G48236KP		Neu5Gc(a2-3)Gal(b1-4)GlcNAc
+124	G55286YY		Neu5Gc(a2-8)Neu5Ac(a2-3)Gal
+125	G16775IT		Neu5Gc(a2-8)Neu5Gc(a2-3)Gal
+128	G89565QL		O-GlcNAc
+129	G41959YC		O-Mannosyl Glycan-Mammalian
+130	G63072CF		O-Mannosyl Glycan-Yeast
+131	G00076PK		P1 Antigen
+132	G40585SO	Ceramide	Paragloboside
+133	G00059MO		Pk Antigen
+134	G42911NE		Poly-KDN
+135	G80631ZD		Poly-N-Acetylneuraminic Acid
+136	G95717TY		Poly-N-Glycolylneuraminic Acid
+137	G63813EJ	Ceramide	SD1a
+138	G20044TD	Ceramide	SM3
+139	G72548RZ	Ceramide	SM4s
+140	G85497PI		SSEA-1
+141	G25129BT		SSEA-3
+142	G84263XI		SSEA-4
+143	G82775QT		Sia(a2-8)Sia(a2-3)Gal
+144	G99745QX		Sialyl 6-Sulfo LacNAc
+145	G80722US		Sialyl 6-Sulfo Lewis x
+146	G00053MO		Sialyl Lewis a
+147	G46776WR		Sialyl Lewis c
+148	G00054MO		Sialyl Lewis x
+149	G06597DS		Sialyl Lewis x-i
+150	G38301SX		Sialyl Tn Antigen
+151	G58645HA		Core 1 / T antigen
+152	G61406KC		Tn Antigen
+153	G74578MX		Trifucosyl-Lewis b antigen
+154	G74917JX		Trifucosyl-Lewis y antigen
+155	G22418PV		VIM-2
+156	G00058MO		i antigen
+157	G80722US		6-Sulfo Sialyl Lewis x
+158	G44060QH		Blood Group A1
+159	G62735WZ		Blood Group A2
+160	G00067MO		Blood Group B
+161	G31734OS		Blood Group B Type 1
+162	G81533KY		Sialic Acid
+164	G00056MO		Lactosamine Type 1
+165	G00055MO		Lactosamine Type 2
+166	G47428UI		Lactosamine Like Structure
+167	G24566OP		Lewis a/x Like structure
+168	G96238FJ		I Antigen Like
+169	G82749ZI		Blood Group H Like
+170	G82749ZI		Internal Blood Group H
+171	G25705KO		Sialyl Lewis a/x Like
+172	G10902TC		Blood Group A Like
+173	G20009SF		Lewis b/y Like
+174	G22976NF		MECA-79

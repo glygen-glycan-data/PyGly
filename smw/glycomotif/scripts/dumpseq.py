@@ -1,10 +1,10 @@
 #!/bin/env python27
 
 import findpygly
-from pygly.GlycoMotifWiki import GlycoMotifWiki
+from getwiki import GlycoMotifWiki
 # we must instantiate early, before any use of the command-line. 
 w = GlycoMotifWiki()
-print w._prefix
+#print w._prefix
 
 import sys, os, os.path
 
@@ -20,11 +20,11 @@ seen=set()
 for m in w.itermotif():
     glytoucan = m.get('glytoucan')
     if glytoucan in seen:
-	continue
+        continue
     seen.add(glytoucan)
     seq = m.get(format)
     if not seq:
-	continue
+        continue
     print glytoucan
     # fn = os.path.join(dir,glytoucan+'.txt')
     # wh = open(fn,'w')

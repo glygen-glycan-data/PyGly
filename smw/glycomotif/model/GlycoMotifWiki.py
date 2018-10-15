@@ -1,6 +1,8 @@
 
 __all__ = [ "GlycoMotifWiki", "Collection", "Motif",
-            "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif" ]
+            "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
+            "GlydinMotif",
+            "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif", "GlydinSugarbindMotif", "GlydinBioligoMotif"]
 
 from smw import SMW
 
@@ -10,7 +12,7 @@ class Collection(SMW.SMWClass):
 class Motif(SMW.SMWClass):
     template = 'Motif'
     directsubmit = {'wurcs': "WURCS", 'glycoct': "GlycoCT"}
-    aglyconvalues = ['Cer','Ser/Thr','Asn','R']
+    aglyconvalues = ['Cer','Ser/Thr','Asn','R','Other']
 
     @staticmethod
     def pagename(**kwargs):
@@ -109,6 +111,24 @@ class CCRCMotif(GlyTouCanMotif):
 
 class GlycoEpitopeMotif(CCRCMotif):
     id = 'GE'
+
+class GlydinMotif(CCRCMotif):
+    id = 'GD'
+
+class GlydinCummingsMotif(CCRCMotif):
+    id = 'GDC'
+
+class GlydinHayesMotif(CCRCMotif):
+    id = 'GDH'
+
+class GlydinCermavMotif(CCRCMotif):
+    id = 'GDV'
+
+class GlydinSugarbindMotif(CCRCMotif):
+    id = 'GDSB'
+
+class GlydinBioligoMotif(CCRCMotif):
+    id = 'GDB'
 
 class GlycoMotifWiki(SMW.SMWSite):
     _name = 'glycomotif'

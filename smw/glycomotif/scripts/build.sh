@@ -13,5 +13,7 @@ set -x
 ./loadccrcmotif.py ../data/MotifsMP2.xlsx
 # ./dlglycoepitope.py > ../data/glycoepitope.txt
 ./loadglycoepimotif.py ../data/glycoepitope.txt
+./loadoriginalglydinmotif.py
+./loadglydinmotif.py
 ./loadallmotif.py
 ./addsameas.py

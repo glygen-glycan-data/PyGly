@@ -1,7 +1,7 @@
 #!/bin/env python27
 
 from getwiki import GlycoMotifWiki, Collection, GlyTouCanMotif, CCRCMotif, GlycoEpitopeMotif, AllMotif
-
+from getwiki import GlydinMotif, GlydinCummingsMotif, GlydinHayesMotif, GlydinCermavMotif, GlydinSugarbindMotif, GlydinBioligoMotif
 import sys
 
 w = GlycoMotifWiki()
@@ -26,3 +26,34 @@ w.put(Collection(id=AllMotif.id,
                  contact="Nathan Edwards",
                  email="nje5@georgetown.edu",
                  url=""))
+w.put(Collection(id=GlydinMotif.id,
+                 name="Glydin",
+                 contact="Julien Mariethoz",
+                 email="julien.mariethoz@sib.swiss",
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+w.put(Collection(id=GlydinCummingsMotif.id,
+                 name="Glydin - Cummings",
+                 contact="Julien Mariethoz",
+                 email="julien.mariethoz@sib.swiss",
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+w.put(Collection(id=GlydinHayesMotif.id,
+                 name="Glydin - Hayes",
+                 contact="Julien Mariethoz",
+                 email="julien.mariethoz@sib.swiss",
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+w.put(Collection(id=GlydinCermavMotif.id,
+                 name="Glydin - Cermav",
+                 contact="Julien Mariethoz",
+                 email="julien.mariethoz@sib.swiss",
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+w.put(Collection(id=GlydinSugarbindMotif.id,
+                 name="Glydin - Sugarbind",
+                 contact="Julien Mariethoz",
+                 email="julien.mariethoz@sib.swiss",
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+w.put(Collection(id=GlydinBioligoMotif.id,
+                 name="Glydin - Bioligo",
+                 contact="Julien Mariethoz",
+                 email="julien.mariethoz@sib.swiss",
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+
