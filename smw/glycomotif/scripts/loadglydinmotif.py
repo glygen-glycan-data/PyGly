@@ -45,7 +45,7 @@ for motifnum,filename in enumerate(filenames):
         if aglycon:
             if aglycon in aglycon2stdaglycon:
                 aglycon = aglycon2stdaglycon[aglycon]
-            elif aglycon == "R":
+            elif aglycon in stdaglycon:
                 pass
             else:
                 aglycon = "Other"
