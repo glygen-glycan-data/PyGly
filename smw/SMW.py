@@ -131,7 +131,7 @@ class SMWSite(object):
     def itercat(self,category):
 	response = self.tsro.query(self.itercat_sparql%dict(ns=self.ns,category=category))
         for row in response.bindings:
-	    yield row.get(response.vars[0])
+	    yield str(row.get(response.vars[0]))
 
     def iternamespace(self,namespace):
         for t in self.site.allpages(namespace=namespace):
@@ -349,7 +349,7 @@ class SMWClass(object):
 
     def toPython(self,data):
         for k in list(data.keys()):
-            if data.get(k) in (None,""):
+            if data.get(k) in (None,"",[]):
                 del data[k]
 	return data
 
@@ -358,7 +358,7 @@ class SMWClass(object):
 	    if k in ('template','id','pagename'):
 		del data[k]
 		continue
-	    if data.get(k) in (None,""):
+	    if data.get(k) in (None,"",[]):
 		del data[k]
 		continue
 	return data
