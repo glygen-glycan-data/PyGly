@@ -117,6 +117,7 @@ class GlyTouCan(object):
 	seq = None
         for row in response.bindings:
 	    seq = str(row[seqkey].strip())
+	    seq = re.sub(r'\n\n+',r'\n',seq)
 	    if format == "wurcs" and '~' in seq:
 		continue
 	    break
