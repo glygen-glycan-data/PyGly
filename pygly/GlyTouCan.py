@@ -9,7 +9,7 @@ from GlycanFormatter import GlycoCTFormat
 from Glycan import Glycan
 
 
-class GlyTouCanCredentialsNotFound(RuntimeError):
+class GlyTouCanCeedentialsNotFound(RuntimeError):
     pass
 
 class GlyTouCanRegistrationError(RuntimeError):
@@ -333,6 +333,7 @@ class GlyTouCan(object):
 		    return acc,new
 	else:
 	    sequence = glycan
+	sequence = re.sub(r'\n\n+',r'\n',sequence)
 	params = json.dumps(dict(sequence=sequence))                                                                  
         # print params
         req = urllib2.Request('https://api.glytoucan.org/glycan/register',params)
