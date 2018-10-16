@@ -1,7 +1,7 @@
 #!/bin/env python27
 
-import sys, traceback
-import pandas
+import sys, traceback, re
+from dataset import XLSXFileTable
 import os
 
 from getwiki import GlycoMotifWiki, GlydinMotif
@@ -10,17 +10,14 @@ w = GlycoMotifWiki()
 from pygly.GlyTouCan import GlyTouCan
 gtc = GlyTouCan()
 
-fpath = os.path.dirname(os.path.abspath(sys.argv[0])) + "/../data/epitopes.xlsx"
-cont_excel = pandas.read_excel(fpath, sheet_name="Sheet1")
-cIndex = list(cont_excel.columns)
-
-row = list(cont_excel[cIndex[0]])
-glycoct = list(cont_excel[cIndex[1]])
+fpath = sys.argv[1]
+cont_excel = XLSXFileTable(fpath)
 
 current = set()
-for i in range(len(row)):
-    rowNum = row[i]
-    seq = glycoct[i].strip().replace("\n\n","\n")
+for row in cont_excel:
+    rowNum = row['ID']
+    seq = row['GlycoCT'].strip()
+    seq = re.sub('\n\n+','\n',seq)
     
     try:
         glytoucan, isnew = gtc.register(seq)
@@ -28,7 +25,7 @@ for i in range(len(row)):
         # traceback.print_exc()
         continue
         
-    accession = "r%06d" % int(rowNum)
+    accession = "R%06d" % int(rowNum)
     motif = GlydinMotif(accession=accession, name=None, glytoucan=glytoucan, redend=None, aglycon=None)
     if w.update(motif):
         print accession

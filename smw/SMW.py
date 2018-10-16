@@ -42,7 +42,10 @@ class SMWSite(object):
     def __str__(self):
 	l = ["SMW site %(prefix)s"%self.params]
 	for k,v in sorted(self.params.items()):
-	    l.append("  % 8s = %s"%(k,v))
+	    if k == 'password':
+	        l.append("  % 8s = %s"%(k,"X"*len(v)))
+	    else:
+	        l.append("  % 8s = %s"%(k,v))
 	return "\n".join(l)
 
     def getenvironment(self,**kwargs):
@@ -204,11 +207,12 @@ class SMWSite(object):
                           self.iterpages(exclude_categories=self.dump_exclude_categories))
 
     def loadsite(self,dir):
-	for ns,subdir in (('Template','templates'),
+        for ns,subdir in (('MediaWiki','mediawiki'),
+                          ('Property','properties'),
+                          ('Category','categories'),
+                          ('Template','templates'), 
                           ('Form','forms'),
-		          ('Category','categories'),
-	                  ('Property','properties'),
-		          ('','pages')):
+                          ('','pages')):
 	  if ns:
               ns += ":"
 	  for f in os.listdir(os.path.join(dir,subdir)):

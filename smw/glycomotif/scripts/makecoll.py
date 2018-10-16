@@ -30,30 +30,30 @@ w.put(Collection(id=GlydinMotif.id,
                  name="Glydin",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 w.put(Collection(id=GlydinCummingsMotif.id,
                  name="Glydin - Cummings",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 w.put(Collection(id=GlydinHayesMotif.id,
                  name="Glydin - Hayes",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 w.put(Collection(id=GlydinCermavMotif.id,
                  name="Glydin - Cermav",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 w.put(Collection(id=GlydinSugarbindMotif.id,
-                 name="Glydin - Sugarbind",
+                 name="Glydin - SugarBind",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 w.put(Collection(id=GlydinBioligoMotif.id,
-                 name="Glydin - Bioligo",
+                 name="Glydin - BiOligo",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/epitopes.xlsx?raw=true"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 
