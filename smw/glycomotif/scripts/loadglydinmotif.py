@@ -49,6 +49,7 @@ def slash_handler(id, aglycon, name, gtcid):
 
     return res
 
+print "Loading Glydin Motif\n"
 current = set()
 for r in rows:
 
@@ -105,7 +106,6 @@ for r in rows:
                 collection[eachid0] = objs[eachid0]
 
     # Load Glydin motif in this loop
-    print "Loading Glydin Motif\n"
     accession = "R%06d" % int(index)
     motif = GlydinMotif(accession=accession, name=None, glytoucan=gtcid, redend=None, aglycon=None)
     if w.update(motif):
@@ -131,7 +131,7 @@ for singleletter in classnames2.keys():
     motifClass = classnames2[singleletter]
     collection = collections[singleletter]
     current = set()
-    print "Loading %s Motif\n" % singleletter
+    print "Loading GD%s Motif\n" % singleletter
 
     for acc in sorted(collection.keys()):
         data = collection[acc]
