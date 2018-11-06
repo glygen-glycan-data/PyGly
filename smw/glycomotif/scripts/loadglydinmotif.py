@@ -143,7 +143,7 @@ for singleletter in classnames2.keys():
     motifClass = classnames2[singleletter]
     collection = collections[singleletter]
     current = set()
-    print >>sys.stderr, "Loading %s Motif\n" % singleletter
+    print >>sys.stderr, "Loading GD%s Motif\n" % singleletter
 
     for acc in sorted(collection.keys()):
         data = collection[acc]
