@@ -176,7 +176,7 @@ class GlyTouCan(object):
     def getimage(self,accession,notation="cfg",style="extended",avoidcache=False,trials=1):
 	assert(notation in ("cfg",) and style in ("compact","normal","extended"))
 	self._wait()
-n	if trials > 1:
+	if trials > 1:
 	    avoidcache = True
 	imgcnt = Counter()
 	hash2img = dict()
