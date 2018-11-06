@@ -1,3 +1,5 @@
 [[Imported from::glycomotif:reducingend]] 
 {{DISPLAYTITLE:glycomotif:reducingend}}
+[[Allows value::false]]
+[[Allows value::true]]
 [[Category:Imported vocabulary]]

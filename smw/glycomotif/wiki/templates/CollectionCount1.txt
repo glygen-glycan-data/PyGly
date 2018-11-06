@@ -1,0 +1,6 @@
+<includeonly>{{#ask:
+[[Category:Collection]]
+[[-glycomotif:incollection.glycomotif:glytoucan::{{{1}}}]]
+[[glycomotif:primary::true]]
+|format=count
+}}</includeonly>

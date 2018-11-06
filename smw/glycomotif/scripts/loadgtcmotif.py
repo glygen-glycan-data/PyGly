@@ -1,5 +1,7 @@
 #!/bin/env python27
 
+import sys
+
 from getwiki import GlycoMotifWiki, GlyTouCanMotif
 w = GlycoMotifWiki()
 
@@ -8,11 +10,16 @@ from pygly.GlyTouCan import GlyTouCan
 
 gtc = GlyTouCan()
 
+from gtccache import GlyTouCanCache
+gtccache = GlyTouCanCache()
+
 current = set()
 for m,l,re in sorted(gtc.allmotifs()):
-    motif = GlyTouCanMotif(accession=m,name=l,redend=re)
-    if w.update(motif):
-	print m
+    motif = GlyTouCanMotif(accession=m,name=l,redend=re,
+			   wurcs = gtccache.gtc2wurcs(m),
+			   glycoct = gtccache.gtc2glycoct(m))
+    if w.put(motif):
+	print >>sys.stderr, m
     current.add(m)
 
 for m in w.itermotif(collection=GlyTouCanMotif):

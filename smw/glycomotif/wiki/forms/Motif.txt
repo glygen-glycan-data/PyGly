@@ -14,10 +14,10 @@ if a page with that name already exists, you will be sent to a form to edit that
 | {{{field|name|rows=3|input type=textarea}}}
 |-
 ! Aglycon: 
-| {{{field|aglycon|input type=listbox|size=4}}}
+| {{{field|aglycon|input type=listbox|size=5}}}
 |-
 ! Reducing-End Only?: 
-| {{{field|redend|input type=checkbox}}}
+| {{{field|redend|input type=listbox|size=2}}}
 |}
 {{{end template}}}
 
