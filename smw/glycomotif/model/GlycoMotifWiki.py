@@ -2,16 +2,40 @@
 __all__ = [ "GlycoMotifWiki", "Collection", "Motif",
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
-            "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif", "GlydinSugarbindMotif", "GlydinBioligoMotif"]
+            "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
+            "GlydinSugarbindMotif", "GlydinBioligoMotif"]
+
+import sys
 
 from smw import SMW
 
 class Collection(SMW.SMWClass):
     template = 'Collection'
 
+    def __init__(self,**kwargs):
+	if kwargs.get('primary') == None:
+	    kwargs['primary'] = True
+        super(Collection,self).__init__(**kwargs)
+
+    def toPython(self,data):
+	data = super(Collection,self).toPython(data)
+
+	if isinstance(data.get('primary'),basestring):
+	    data['primary'] = self.asboolean(data.get('primary'))
+	
+	return data
+
+    def toTemplate(self,data):
+	data = super(Collection,self).toTemplate(data)
+
+	if 'primary' in data:
+	    data['primary'] = ("true" if data['primary'] else "false")
+	
+	return data
+	
+
 class Motif(SMW.SMWClass):
     template = 'Motif'
-    directsubmit = {'wurcs': "WURCS", 'glycoct': "GlycoCT"}
     aglyconvalues = ['Cer','Ser/Thr','Asn','R','Other']
 
     @staticmethod
@@ -31,7 +55,7 @@ class Motif(SMW.SMWClass):
         if isinstance(data.get('name'),basestring):
             data['name'] = map(lambda s: s.strip(),data.get('name').split('\n'))
 
-	# aglycon is comma separated, with specific possible values
+	# aglycon is comma separated, with specific possible values, sorted, so behaves as set
         if isinstance(data.get('aglycon'),basestring):
             data['aglycon'] = sorted(map(self.asaglycon,map(lambda s: s.strip(),data.get('aglycon').split(','))))
 	elif data.get('aglycon') != None:
@@ -39,19 +63,23 @@ class Motif(SMW.SMWClass):
 
 	# sameas is comma separated
         if isinstance(data.get('sameas'),basestring):
-            data['sameas'] = map(lambda s: s.strip(),data.get('sameas').split(','))
+            data['sameas'] = sorted(map(lambda s: s.strip(),data.get('sameas').split(',')))
 
-	# redend is a boolean
+	# redend is a list of booleans, sorted, so behaves as set
 	if isinstance(data.get('redend'),basestring):
-	    data['redend'] = self.asboolean(data.get('redend'))
+            data['redend'] = sorted(map(self.asboolean,map(lambda s: s.strip(),data.get('redend').split(','))))
+	elif data.get('redend') in (True,False):
+	    data['redend'] = [ data.get('redend') ]
+	elif data.get('redend') != None:
+	    data['redend'] = sorted(map(self.asboolean,data.get('redend')))
 
 	# Strip <pre> and </pre> if it is there 
-	if 'wurcs' in data:
-            data['wurcs'] = data.get('wurcs').lstrip('<pre>').rstrip('</pre>')
+	# if 'wurcs' in data:
+        #     data['wurcs'] = data.get('wurcs').lstrip('<pre>').rstrip('</pre>')
 
 	# Strip <pre> and </pre> if it is there 
-	if 'glycoct' in data:
-            data['glycoct'] = data.get('glycoct').lstrip('<pre>').rstrip('</pre>')
+	# if 'glycoct' in data:
+        #     data['glycoct'] = data.get('glycoct').lstrip('<pre>').rstrip('</pre>')
 
 	return data
 
@@ -62,19 +90,19 @@ class Motif(SMW.SMWClass):
 	    data['name'] = "\n".join(data['name'])
 
 	if 'sameas' in data:
-	    data['sameas'] = ",".join(data['sameas'])
+	    data['sameas'] = ",".join(sorted(data['sameas']))
 
 	if 'aglycon' in data:
 	    data['aglycon'] = ",".join(sorted(data['aglycon']))
 
 	if 'redend' in data:
-	    data['redend'] = ("true" if data['redend'] else "false")
+	    data['redend'] = ",".join(sorted(("true" if redend else "false") for redend in data['redend']))
 
-	if 'wurcs' in data:
-	    data['wurcs'] = "<pre>" + data['wurcs'] + "</pre>"
+        # if 'wurcs' in data:
+	#     data['wurcs'] = "<pre>" + data['wurcs'] + "</pre>"
 	    
-	if 'glycoct' in data:
-	    data['glycoct'] = "<pre>" + data['glycoct'] + "</pre>"
+	# if 'glycoct' in data:
+	#     data['glycoct'] = "<pre>" + data['glycoct'] + "</pre>"
 	    
 	return data
 
@@ -86,16 +114,16 @@ class GlyTouCanMotif(Motif):
     gtc = None
     id = 'GTC'
     def __init__(self,**kwargs):
-        assert 'accession' in kwargs
+        assert kwargs.get('accession') != None
         kwargs['collection'] = self.id
-        if 'glytoucan' not in kwargs:
+        if kwargs.get('glytoucan') == None:
             kwargs['glytoucan'] = kwargs['accession']
-        if 'wurcs' not in kwargs or 'glycoct' not in kwargs:
+        if kwargs.get('wurcs') == None or kwargs.get('glycoct') == None:
             if not self.gtc:
                 self.gtc = GlyTouCan()
-            if 'wurcs' not in kwargs:
+            if kwargs.get('wurcs') == None:
                 kwargs['wurcs'] = self.gtc.getseq(kwargs['glytoucan'],'wurcs')
-            if 'glycoct' not in kwargs:
+            if kwargs.get('glycoct') == None:
                 kwargs['glycoct'] = self.gtc.getseq(kwargs['glytoucan'],'glycoct')
         super(GlyTouCanMotif,self).__init__(**kwargs)
 
@@ -105,8 +133,8 @@ class AllMotif(GlyTouCanMotif):
 class CCRCMotif(GlyTouCanMotif):
     id = 'CCRC'
     def __init__(self,**kwargs):
-        assert 'accession' in kwargs
-        assert 'glytoucan' in kwargs
+        assert kwargs.get('accession') != None
+        assert kwargs.get('glytoucan') != None
         super(CCRCMotif,self).__init__(**kwargs)
 
 class GlycoEpitopeMotif(CCRCMotif):

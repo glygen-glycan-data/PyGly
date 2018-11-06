@@ -1,0 +1,22 @@
+
+Motifs in the "All Motifs" collection that are found in two or more primary collections. The All Motifs and Glydin collections, both of which aggregate other motif collections, are not considered primary collections. 
+
+These motifs have names, aglycon, and reducing end values that represent the union of the values from their primary collections' motifs, and are likely to have trivial and non-trivial name, aglycon, and reducing end value conflicts. 
+
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GM]]
+[[glycomotif:collectioncount::>2]]
+|?glycomotif:accession
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|sort=glycomotif:accession
+|limit=500
+}}

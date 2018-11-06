@@ -17,12 +17,22 @@ associations.
 {{#ask:
 [[Category:Collection]]
 [[glycomotif:id::!GM]]
+|?glycomotif:collectioncount
 |format=template
 |template=MotifCollectionTableRows
 |introtemplate=MotifCollectionTableIntro
 |outrotemplate=MotifCollectionTableOutro
 |link=none
+|sort=glycomotif:name
 }}
+See also the 
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GM]]
+[[glycomotif:collectioncount::>2]]
+|format=count
+}} 
+[[Multi-Collection Motifs]].
 
 == Triple Store ==
 

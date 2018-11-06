@@ -7,7 +7,7 @@ export SMWENV
 
 set -x
 ./loadsite.py ../wiki
-./clearmotifs.py
+# ./clearmotifs.py
 ./makecoll.py
 ./loadgtcmotif.py
 ./loadccrcmotif.py ../data/MotifsMP2.xlsx
@@ -16,3 +16,4 @@ set -x
 ./loadglydinmotif.py ../data/epitopes.xlsx
 ./loadallmotif.py
 ./addsameas.py
+# ./refresh.py

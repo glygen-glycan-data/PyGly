@@ -3,4 +3,3 @@
 from getwiki import GlycoMotifWiki, GlyTouCanMotif
 
 w = GlycoMotifWiki()
-print "%s (%s)"%(w.name, w.env)

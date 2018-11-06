@@ -3,13 +3,17 @@
 from rdflib import ConjunctiveGraph, Namespace                                                                    
 import urllib2, urllib, json
 import os.path, sys, traceback, re
-import time
-from collections import defaultdict
+import time, random
+from collections import defaultdict, Counter
+from operator import itemgetter
+from hashlib import md5
+from StringIO import StringIO
+from PIL import Image
 from GlycanFormatter import GlycoCTFormat
 from Glycan import Glycan
 
 
-class GlyTouCanCeedentialsNotFound(RuntimeError):
+class GlyTouCanCredentialsNotFound(RuntimeError):
     pass
 
 class GlyTouCanRegistrationError(RuntimeError):
@@ -169,16 +173,38 @@ class GlyTouCan(object):
 		pass
         return value
 
-    def getimage(self,accession,notation="cfg",style="extended"):
+    def getimage(self,accession,notation="cfg",style="extended",avoidcache=False,trials=1):
 	assert(notation in ("cfg",) and style in ("compact","normal","extended"))
 	self._wait()
+n	if trials > 1:
+	    avoidcache = True
+	imgcnt = Counter()
+	hash2img = dict()
+	for t in range(trials):
+	    rand = ""
+	    if avoidcache:
+	        rand = "&rand="+("%.8f"%(random.random(),)).split('.',1)[1]
+	    try:
+	        imgstr = urllib.urlopen("https://glytoucan.org/glycans/%s/image?format=png&notation=%s&style=%s%s"%(accession,notation,style,rand)).read()
+	        if len(imgstr) == 0:
+	            imgstr = None
+	    except IOError:
+	        imgstr = None	
+	    if imgstr != None:
+	        imghash = md5(imgstr).hexdigest().lower()
+	        imgcnt[imghash] += 1
+		hash2img[imghash] = imgstr
+	# print imgcnt
+	if len(imgcnt) == 0:
+	    return None, None, None
+	imgstr = hash2img[max(imgcnt.items(),key=itemgetter(1))[0]]
+	pngh = StringIO(imgstr)
 	try:
-	    imgstr = urllib.urlopen("https://api.glytoucan.org/glycans/%s/image?format=png&notation=%s&style=%s"%(accession,notation,style),).read()
-	    if len(imgstr) == 0:
-	        imgstr = None
-	except IOError:
-	    imgstr = None	
-	return imgstr
+	    pngimg = Image.open(pngh)
+        except IOError:
+	    return imgstr,None,None
+	width,height = pngimg.size
+	return imgstr, width, height
 
     allmotif_sparql = """
 	PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
@@ -314,6 +340,49 @@ class GlyTouCan(object):
 	    return True
 	return False
 
+    gettopo_sparql = """
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT ?topo
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id "%(accession)s" .
+	    ?Saccharide relation:has_topology ?topo
+	}
+    """
+    def gettopo(self,accession):
+        response = self.query(self.gettopo_sparql%dict(accession=accession))
+        key = response.vars[0]
+        value = None
+        for row in response.bindings:
+	    value = str(row[key])
+            break
+	if not value:
+	    return None
+        return value.rsplit('/',1)[1]
+
+    getcomp_sparql = """
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT ?comp
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id "%(accession)s" .
+	    ?Saccharide relation:has_topology ?topo .
+	    ?topo relation:has_composition ?comp
+	}
+    """
+    def getcomp(self,accession):
+        response = self.query(self.getcomp_sparql%dict(accession=accession))
+        key = response.vars[0]
+        value = None
+        for row in response.bindings:
+	    value = str(row[key])
+            break
+	if not value:
+	    return None
+        return value.rsplit('/',1)[1]
+
     def register(self,glycan,user=None,apikey=None):
 	if not self.opener:
 	    self.setup_api(user=user,apikey=apikey)
@@ -349,7 +418,7 @@ class GlyTouCan(object):
 	    # print response
 	    # force reinitialization of opener...
 	    self.opener = None
-	    raise GlyTouCanRegistrationError()
+	    raise GlyTouCanRegistrationError(str(e))
 	if response['error'] == "":
 	    new = True
 	else:
@@ -382,6 +451,7 @@ if __name__ == "__main__":
 		acc,new = gtc.register(sequence)
 		print f,acc,("new" if new else "")
 	    except GlyTouCanRegistrationError:
+		# traceback.print_exc()
 		print f,"-","error"
 	    sys.stdout.flush()
 
@@ -390,6 +460,17 @@ if __name__ == "__main__":
         gtc = GlyTouCan()
 	for acc in items():
 	    print gtc.getseq(acc,cmd)
+
+    elif cmd.lower() in ("image",):
+
+        gtc = GlyTouCan()
+	for acc in items():
+	    imgstr,width,height = gtc.getimage(acc,trials=5)
+	    if imgstr:
+	        print acc,width,height
+	        wh = open(acc+".png",'w')
+		wh.write(imgstr)
+		wh.close()
 
     elif cmd.lower() == "summary":
 
@@ -400,9 +481,14 @@ if __name__ == "__main__":
 	    print "GlycoCT:",bool(gtc.getseq(acc,'glycoct'))
 	    print "Mass:",gtc.getmass(acc)
 	    print "Monosaccharide Count:",gtc.getmonocount(acc)
-	    print "Extended Image:",bool(gtc.getimage(acc,style='extended'))
-	    print "Normal Image:",bool(gtc.getimage(acc,style='normal'))
-	    print "Compact Image:",bool(gtc.getimage(acc,style='compact'))
+	    print "Composition:",gtc.getcomp(acc)
+	    print "Topology:",gtc.gettopo(acc)
+	    imgstr,width,height = gtc.getimage(acc,style='extended')
+	    print "Extended Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	    imgstr,width,height = gtc.getimage(acc,style='normal')
+	    print "Normal Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	    imgstr,width,height = gtc.getimage(acc,style='compact')
+	    print "Compact Image: %s (%dx%d)"%(bool(imgstr),width,height,)
 	    print "HasPage:",gtc.haspage(acc)
 
     elif cmd.lower() == "motifs":

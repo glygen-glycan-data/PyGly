@@ -21,23 +21,20 @@ class SMWSite(object):
         self.site = mwclient.Site((theprotocol,thesmwhost),path=thepath)
 	kwargs['smwurl'] = "%s://%s%s"%(theprotocol,thesmwhost,thepath)
         self.site.login(kwargs['username'],kwargs['password'])
-	self.tsrw = Dataset(store='SPARQLUpdateStore')
-	self.tsro = ConjunctiveGraph(store='SPARQLUpdateStore')
-	thetsport = kwargs['tsport']
-	baseurl = "%s://%s:%s/%s/"%(theprotocol,thehost,thetsport,self.prefix)
-	kwargs['tsurl'] = baseurl
-	self.tsro.open(baseurl+'query')
-        self.tsrw.open((baseurl+'query',baseurl+'update'))
-        ns = "http://glycandata.glygen.org/"+ self.name +"#"
-        self.ns = Namespace(ns)
-        subjns = "http://glycandata.glygen.org/"+ self.prefix +"/Special:URIResolver/"
-        self.subjns = Namespace(subjns)
 	self.params = kwargs
 
 	self.template2class = {}
 	for clsname,cls in inspect.getmembers(sys.modules[self.__class__.__module__], inspect.isclass):
 	    if hasattr(cls,'template'):
 		self.template2class[cls.template] = cls
+        if not kwargs.get('quiet',False):
+	    print >>sys.stderr, "Connected to %s"%(self.title())
+
+    def title(self):
+	env = ""
+        if self.env:
+	    env = " (%s)"%(self.env.upper(),)
+	return self.name+env
 
     def __str__(self):
 	l = ["SMW site %(prefix)s"%self.params]
@@ -56,12 +53,6 @@ class SMWSite(object):
 	    return "dev"
 	if kwargs.get("smwenv") == "TEST":
 	    return "test"
-	if os.environ.get("SMWENV") == "PROD":
-	    return ""
-	if os.environ.get("SMWENV") == "DEV":
-	    return "dev"
-	if os.environ.get("SMWENV") == "TEST":
-	    return "test"
         if (len(sys.argv) > 2 and sys.argv[1] == "--smwenv" and sys.argv[2] == "PROD"):
 	    sys.argv.pop(1) 
 	    sys.argv.pop(1) 
@@ -74,14 +65,20 @@ class SMWSite(object):
             sys.argv.pop(1)
             sys.argv.pop(1)
 	    return "test"
+	if os.environ.get("SMWENV") == "PROD":
+	    return ""
+	if os.environ.get("SMWENV") == "DEV":
+	    return "dev"
+	if os.environ.get("SMWENV") == "TEST":
+	    return "test"
 	return "dev"
 
-    def getparams(self,params):
-	self.env = self.getenvironment(**params)
-	self.name = params.get("name",self._name)
+    def getparams(self,kwargs):
+	self.env = self.getenvironment(**kwargs)
+	self.name = kwargs.get("name",self._name)
 	self.prefix = self.name + self.env
 	params = self.getiniparams()
-	params.update(params)
+	params.update(kwargs)
 	params['name'] = self.name
 	params['prefix'] = self.prefix
 	params['env'] = self.env
@@ -118,20 +115,9 @@ class SMWSite(object):
 
         return dict(iniFile.items(self.prefix))
 
-    itercat_sparql = """
-        PREFIX glycomotif: <%(ns)s>
-
-        SELECT ?id
-        WHERE {
-          ?o rdf:type glycomotif:%(category)s .
-          ?o glycomotif:id ?id
-        }
-    """
-    
     def itercat(self,category):
-	response = self.tsro.query(self.itercat_sparql%dict(ns=self.ns,category=category))
-        for row in response.bindings:
-	    yield str(row.get(response.vars[0]))
+	for p in self.iterpages(include_categories=[category]):
+	    yield p.name
 
     def iternamespace(self,namespace):
         for t in self.site.allpages(namespace=namespace):
@@ -150,13 +136,16 @@ class SMWSite(object):
     def iterforms(self):
         return self.iternamespace(106)
 
+    def itertalk(self):
+        return self.iternamespace(1)
+
     def iterpages(self,regex=None,exclude_categories=None,include_categories=None):
         if exclude_categories == None and include_categories == None and regex == None:
             for p in self.iternamespace(0):
                 if p.exists:
                     yield p
         else:
-            if regex != None and regex.isinstance(regex,basestring):
+            if regex != None and isinstance(regex,basestring):
                 regex = re.compile(regex)
             if exclude_categories != None:
                 exclude_categories = set(exclude_categories)
@@ -188,13 +177,13 @@ class SMWSite(object):
                 continue
             try:
                 h = open(dir+'/'+name+'.txt','w')
-                h.write(p.text())
+                h.write(p.text().rstrip('\n')+'\n')
             except:
                 pass
             finally:
                 h.close()
 
-    def dumpsite(self,dir):
+    def dumpsite(self,dir,exclude_categories=set()):
         try:
             os.makedirs(dir)
         except OSError:
@@ -204,7 +193,8 @@ class SMWSite(object):
         self.dumpiterable(os.path.join(dir,'forms'),self.iterforms())
         self.dumpiterable(os.path.join(dir,'properties'),self.iterproperties())
         self.dumpiterable(os.path.join(dir,'pages'),
-                          self.iterpages(exclude_categories=self.dump_exclude_categories))
+                          self.iterpages(exclude_categories=exclude_categories))
+        self.dumpiterable(os.path.join(dir,'talk'),self.itertalk())
 
     def loadsite(self,dir):
         for ns,subdir in (('MediaWiki','mediawiki'),
@@ -212,13 +202,16 @@ class SMWSite(object):
                           ('Category','categories'),
                           ('Template','templates'), 
                           ('Form','forms'),
-                          ('','pages')):
+                          ('','pages'),
+			  ('Talk','talk')):
+	  if not os.path.exists(os.path.join(dir,subdir)):
+	      continue
 	  if ns:
               ns += ":"
 	  for f in os.listdir(os.path.join(dir,subdir)):
               if not f.endswith('.txt'):
                   continue
-              pagetext = open(os.path.join(dir,subdir,f)).read()
+              pagetext = open(os.path.join(dir,subdir,f)).read().rstrip()
               pagename = ns+f[:-4]
               page = self.site.pages[pagename]
 	      
@@ -258,9 +251,12 @@ class SMWSite(object):
       if subj:
         for t in self.tsrw.triples((subj,None,None)):
           self.tsrw.remove(t)
+
+    def _get(self,name):
+	return self.site.pages[name]
                      
     def get(self,name):
-        page = self.site.pages[name]
+        page = self._get(name)
         if not page.exists:
             return None
         # print repr(page.text())
@@ -282,28 +278,12 @@ class SMWSite(object):
         pagename = newobj.pagename(**newobj.data)
         obj = self.get(pagename)
         if obj:
-            obj.data.update(newobj.data)
+            thedata = dict(obj.data,**newobj.data)
+            if thedata == obj.data:
+                return False
+	    obj.data = thedata
             return self.put(obj)
         return self.put(newobj)
-
-    uribyid_sparql = """
-        PREFIX glycomotif: <%(ns)s>
-        
-        SELECT ?o
-        WHERE {
-          ?o glycomotif:id "%(id)s"
-        }
-        """
-    
-    def uribyid(self,id):
-      response = self.tsro.query(self.uribyid_sparql%dict(ns=self.ns,id=id))
-      for row in response.bindings:
-        return row.get(response.vars[0])
-      # Hack - the URI isn't in the database yet, so we have to scramble.
-      # Essentially we need to simulate the MW label to URI algorithm
-      if re.search(r'^[A-Za-z0-9.]+$',id):
-        return self.subjns[id]
-      return None
 
     def put(self,obj):
         pagename = obj.pagename(**obj.data)
@@ -313,16 +293,11 @@ class SMWSite(object):
         if not page.exists or page.text() != obj.astemplate():
             page.save(obj.astemplate())
             changed = True
-        dummy = page.text(expandtemplates=True, cache=False)
-        for key in obj.directsubmit:
-            if obj.get(key):
-                subj = self.uribyid(pagename)
-                pred = self.ns[obj.directsubmit[key]]
-		val = Literal(obj.get(key))
-                if self.tsrw.value(subj,pred) != val:
-                    self.tsrw.set((subj,pred,val))
-                    changed = True
         return changed
+
+    def refresh(self,page):
+	page.purge()
+        dummy = page.text(expandtemplates=True, cache=False)
 
 class SMWClass(object):
     directsubmit = []
@@ -347,10 +322,39 @@ class SMWClass(object):
 	    raise TypeError("Can't infer boolean value from %r"%(value,))
 	return value
 
+    @staticmethod
+    def smwescape(value):
+        if not re.search(r'[]{}[=|<]',value):
+            return value.strip()
+        value = value.replace('{','{{(}}')
+        value = value.replace('}','{{)}}')
+        value = value.replace('|','{{!}}')
+        value = value.replace('=','{{=}}')
+        value = value.replace('[','{{!(}}')
+        value = value.replace(']','{{!)}}')
+        value = value.replace('<','{{lessthan}}')
+        return value.strip()
+
+    @staticmethod
+    def smwunescape(value):
+        if not re.search(r'\{\{.*\}\}',value):
+            return value.strip()
+        value = value.replace('{{!}}','|')
+        value = value.replace('{{=}}','=')
+        value = value.replace('{{(}}','{')
+        value = value.replace('{{)}}','}')
+        value = value.replace('{{!(}}','[')
+        value = value.replace('{{!)}}',']')
+        value = value.replace('{{lessthan}}','<')
+        return value.strip()
+
     def toPython(self,data):
         for k in list(data.keys()):
             if data.get(k) in (None,"",[]):
                 del data[k]
+                continue
+            if isinstance(data[k],basestring):
+                data[k] = self.smwunescape(data[k])
 	return data
 
     def toTemplate(self,data):
@@ -361,6 +365,8 @@ class SMWClass(object):
 	    if data.get(k) in (None,"",[]):
 		del data[k]
 		continue
+            if isinstance(data[k],basestring):
+                data[k] = self.smwescape(data[k])
 	return data
 
     def astemplate(self):
@@ -393,4 +399,3 @@ class SMWClass(object):
 
     def keys(self):
         return self.data.keys()
-

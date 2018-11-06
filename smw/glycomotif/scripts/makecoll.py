@@ -28,13 +28,15 @@ w.put(Collection(id=AllMotif.id,
 		 name="All Motifs",
                  contact="Nathan Edwards",
                  email="nje5@georgetown.edu",
-                 url=""))
+                 url="",
+		 primary=False))
 current.add(AllMotif.id)
 w.put(Collection(id=GlydinMotif.id,
                  name="Glydin",
                  contact="Julien Mariethoz",
                  email="julien.mariethoz@sib.swiss",
-                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx",
+		 primary=False))
 current.add(GlydinMotif.id)
 w.put(Collection(id=GlydinCummingsMotif.id,
                  name="Glydin - Cummings",
@@ -68,6 +70,8 @@ w.put(Collection(id=GlydinBioligoMotif.id,
 current.add(GlydinBioligoMotif.id)
 
 for c in w.itercollection():
+    if not c:
+	continue
     if c.get('id') not in current:
         print "Deleting:",c.get('pagename')
         w.delete(c.get('pagename'))

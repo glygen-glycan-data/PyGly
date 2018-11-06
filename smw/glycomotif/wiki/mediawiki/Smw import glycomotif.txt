@@ -8,9 +8,13 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  accession|Type:Text
  name|Type:Text
  incollection|Type:Page
+ collectioncount|Type:Number
  aglycon|Type:Text
  reducingend|Type:Boolean
  glytoucan|Type:External identifier
  sameas|Type:Page
+ wurcs|Type:Code
+ glycoct|Type:Code
+ primary|Type:Boolean
 
 [[Category:Imported vocabulary]]

@@ -8,6 +8,9 @@ w = GlycoMotifWiki()
 from pygly.GlyTouCan import GlyTouCan
 gtc = GlyTouCan()
 
+from gtccache import GlyTouCanCache
+gtccache = GlyTouCanCache()
+
 from dataset import XLSXFileTable
 rows = XLSXFileTable(sys.argv[1])
 
@@ -35,11 +38,12 @@ for r in rows:
     if glytoucan:
 	glytoucan = glytoucan.strip()
 
-    redend = False
+    redend = None
     aglycon = None
-    redendstr = r['end']
+    redendstr = r.get('end')
     if redendstr != None:
 	redendstr = redendstr.strip()
+    if redendstr:
         if redendstr in ("-Cer","Cer"):
 	    redend = True
 	    aglycon = "Cer"
@@ -47,10 +51,18 @@ for r in rows:
 	    redend = True
 	    aglycon = "Ser/Thr"
         elif redendstr in ("-R","R"):
+	    redend = False
 	    aglycon = "R"
 	
     if not glycoct and not glytoucan:
 	continue
+
+    accession = "%06d"%(index,)
+
+    if not glytoucan:
+	glytoucan = gtccache.id2gtc(CCRCMotif.id + "." + accession)
+    glycoct1 = gtccache.gtc2glycoct(glytoucan)
+    wurcs = gtccache.gtc2wurcs(glytoucan)
 
     if not glytoucan:
 	try:
@@ -59,13 +71,14 @@ for r in rows:
 	    # traceback.print_exc()
 	    continue
 
-    accession = "%06d"%(index,)
-    motif = CCRCMotif(accession=accession,name=name,glytoucan=glytoucan,redend=redend,aglycon=aglycon)
-    if w.update(motif):
-	print accession
+    motif = CCRCMotif(accession=accession,name=name,glytoucan=glytoucan,redend=redend,aglycon=aglycon,glycoct=glycoct1,wurcs=wurcs)
+    if not motif.get('glycoct'):
+        motif.set('glycoct',glycoct)
+    if w.put(motif):
+	print >>sys.stderr, accession
     current.add(accession)
 
 for m in w.itermotif(collection=CCRCMotif):
     if m.get('accession') not in current:
-        print "Deleting:",m.get('pagename')
+        print >>sys.stderr, "Deleting:",m.get('pagename')
         w.delete(m.get('pagename'))

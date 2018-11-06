@@ -13,6 +13,9 @@ rows = XLSXFileTable(sys.argv[1])
 from pygly.GlyTouCan import GlyTouCan
 gtc = GlyTouCan()
 
+from gtccache import GlyTouCanCache
+gtccache = GlyTouCanCache()
+
 """
 [x]collection structure
 key: id (not row number)
@@ -49,6 +52,7 @@ def slash_handler(id, aglycon, name, gtcid):
 
     return res
 
+gtcid2glycoct = dict()
 current = set()
 for r in rows:
 
@@ -82,11 +86,17 @@ for r in rows:
     b = [bid, baglycon, bname]
     content = {"c": c, "h": h, "v": v, "sb": sb, "b": b}
 
-    try:
-        gtcid, isnew = gtc.register(glycoct)
-    except:
-        # traceback.print_exc()
-        continue
+    accession = "R%06d" % int(index)
+    gtcid=gtccache.id2gtc(GlydinMotif.id + "." + accession)
+
+    if gtcid == None:
+        try:
+            gtcid, isnew = gtc.register(glycoct)
+        except:
+            # traceback.print_exc()
+            continue
+
+    gtcid2glycoct[gtcid] = glycoct
 
     for key in content.keys():
 
@@ -105,16 +115,18 @@ for r in rows:
                 collection[eachid0] = objs[eachid0]
 
     # Load Glydin motif in this loop
-    print "Loading Glydin Motif\n"
-    accession = "R%06d" % int(index)
-    motif = GlydinMotif(accession=accession, name=None, glytoucan=gtcid, redend=None, aglycon=None)
-    if w.update(motif):
-        print accession
+    motif = GlydinMotif(accession=accession, name=None, glytoucan=gtcid, redend=None, aglycon=None, 
+			glycoct=gtccache.gtc2glycoct(gtcid), wurcs=gtccache.gtc2wurcs(gtcid))
+    # if GlyTouCan did not provide the GlycoCT, use ours...
+    if not motif.get('glycoct'):
+	motif.set('glycoct',gtcid2glycoct[gtcid])
+    if w.put(motif):
+        print >>sys.stderr, "Glydin:", accession
     current.add(accession)
 
 for m in w.itermotif(collection=GlydinMotif):
     if m.get('accession') not in current:
-        print "Deleting:", m.get('pagename')
+        print >>sys.stderr, "Deleting:", m.get('pagename')
         w.delete(m.get('pagename'))
 
 
@@ -131,7 +143,7 @@ for singleletter in classnames2.keys():
     motifClass = classnames2[singleletter]
     collection = collections[singleletter]
     current = set()
-    print "Loading %s Motif\n" % singleletter
+    print >>sys.stderr, "Loading %s Motif\n" % singleletter
 
     for acc in sorted(collection.keys()):
         data = collection[acc]
@@ -155,14 +167,18 @@ for singleletter in classnames2.keys():
                 redend = True
         else:
             aglycon = None
+	    redend = None
 
-        motif = motifClass(accession=accession, name=name, glytoucan=glytoucan, redend=redend, aglycon=aglycon)
-
-        if w.update(motif):
-            print accession
+        motif = motifClass(accession=accession, name=name, glytoucan=glytoucan, redend=redend, aglycon=aglycon, 
+	                   glycoct=gtccache.gtc2glycoct(glytoucan), wurcs=gtccache.gtc2wurcs(glytoucan))
+	# if GlyTouCan did not provide the GlycoCT, use ours...
+        if not motif.get('glycoct'):
+	    motif.set('glycoct',gtcid2glycoct[glytoucan])
+        if w.put(motif):
+            print >>sys.stderr, accession
         current.add(accession)
 
     for m in w.itermotif(collection=motifClass):
         if m.get('accession') not in current:
-            print "Deleting:", m.get('pagename')
+            print >>sys.stderr, "Deleting:", m.get('pagename')
             w.delete(m.get('pagename'))

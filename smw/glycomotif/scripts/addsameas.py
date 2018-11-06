@@ -18,7 +18,7 @@ for m in w.itermotif():
 for gtc,motiflist in sorted(gtc2motif.iteritems()):
     print gtc
     for m in motiflist:
-	sameas = map(lambda m1: m1.get('id'),motiflist)
+	sameas = sorted(map(lambda m1: m1.get('id'),motiflist))
 	sameas.remove(m.get('id'))
 	m.set('sameas',sameas)
 	w.put(m)
