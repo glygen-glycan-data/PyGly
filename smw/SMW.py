@@ -5,6 +5,9 @@ import mwclient
 
 from rdflib import Dataset, ConjunctiveGraph, Namespace, Literal, BNode, URIRef
 
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning, InsecurePlatformWarning
+
 class SMWUndefinedSiteParameter(RuntimeError):
     def __init__(self,prefix,key):
 	super(SMWUndefinedSiteParameter,self).__init__("SMW site %s parameter %s not defined"%(prefix,key))
@@ -12,12 +15,14 @@ class SMWUndefinedSiteParameter(RuntimeError):
 class SMWSite(object):
 
     def __init__(self,**kwargs):
-	kwargs = self.getparams(kwargs)
-	
+	defaults = dict(protocol='http',port=None)
+	kwargs = self.getparams(kwargs,defaults)
 	theprotocol = kwargs['protocol']
-	thehost = kwargs['host']
-        thesmwhost = thehost + ":" + kwargs['port']
+	thesmwhost = kwargs['host']
+	if kwargs.get('port') != None:
+            thesmwhost += (":" + kwargs['port'])
 	thepath = '/' + self.prefix + '/'
+        requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
         self.site = mwclient.Site((theprotocol,thesmwhost),path=thepath)
 	kwargs['smwurl'] = "%s://%s%s"%(theprotocol,thesmwhost,thepath)
         self.site.login(kwargs['username'],kwargs['password'])
@@ -73,7 +78,7 @@ class SMWSite(object):
 	    return "test"
 	return "dev"
 
-    def getparams(self,kwargs):
+    def getparams(self,kwargs,defaults={}):
 	self.env = self.getenvironment(**kwargs)
 	self.name = kwargs.get("name",self._name)
 	self.prefix = self.name + self.env
@@ -82,9 +87,12 @@ class SMWSite(object):
 	params['name'] = self.name
 	params['prefix'] = self.prefix
 	params['env'] = self.env
-	for key in ('protocol','host','port','tsport','username','password'):
+	for key in ('protocol','host','port','username','password'):
 	    if key not in params:
-	        raise SMWUndefinedSiteParameter(self.prefix,key)
+		if key not in defaults:
+	            raise SMWUndefinedSiteParameter(self.prefix,key)
+		else:
+		    params[key] = defaults[key]
 	return params
 
     def getiniparams(self):
@@ -123,6 +131,9 @@ class SMWSite(object):
         for t in self.site.allpages(namespace=namespace):
             if t.exists:
                 yield t
+
+    def itermediawiki(self):
+        return self.iternamespace(8)
 
     def itertemplates(self):
         return self.iternamespace(10)
@@ -188,6 +199,7 @@ class SMWSite(object):
             os.makedirs(dir)
         except OSError:
             pass
+        self.dumpiterable(os.path.join(dir,'mediawiki'),self.itermediawiki())
         self.dumpiterable(os.path.join(dir,'templates'),self.itertemplates())
         self.dumpiterable(os.path.join(dir,'categories'),self.itercategories())
         self.dumpiterable(os.path.join(dir,'forms'),self.iterforms())

@@ -9,6 +9,7 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  name|Type:Text
  incollection|Type:Page
  collectioncount|Type:Number
+ instancecount|Type:Number
  aglycon|Type:Text
  reducingend|Type:Boolean
  glytoucan|Type:External identifier

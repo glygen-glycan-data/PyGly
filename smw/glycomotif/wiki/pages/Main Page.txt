@@ -25,14 +25,8 @@ associations.
 |link=none
 |sort=glycomotif:name
 }}
-See also the 
-{{#ask:
-[[Category:Motif]]
-[[glycomotif:incollection::GM]]
-[[glycomotif:collectioncount::>2]]
-|format=count
-}} 
-[[Multi-Collection Motifs]].
+
+See also the [[Multi-Instance Motifs|multi-instance motifs]] and the [[Motif-Instance Frequency|frequency of motifs]] with with specific number of instances or collections. 
 
 == Triple Store ==
 
