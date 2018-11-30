@@ -16,7 +16,7 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}
-{| class="wikitable" style="width=100%" 
+{| class="wikitable" style="width=100%"
 !
 | <p align="center"><img src="https://glytoucan.org/glycans/{{{glytoucan|}}}/image?style=extended&format=png&notation=cfg"></p>
 |-
@@ -30,10 +30,10 @@ Edit the page to see the template text.
 | style="width=100%" | {{CollectionName|{{{collection|}}}}}
 |-
 ! style="width=200px" | Accession
-| {{#switch: {{{collection}}} 
+| {{#switch: {{{collection}}}
 | GE = <span class="plainlinks">[https://www.glycoepitope.jp/epitopes/{{{accession}}} [[glycomotif:accession::{{{accession|}}}]]]</span>
 | GM = <span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/{{{collection}}}.{{{accession}}} [[glycomotif:accession::{{{accession|}}}]]]</span>
-| [[glycomotif:accession::{{{accession|}}}]] 
+| [[glycomotif:accession::{{{accession|}}}]]
 }}
 |-
 ! style="width=200px" | Aglycon
@@ -45,8 +45,11 @@ Edit the page to see the template text.
 ! style="width=200px" | Same As
 | style="width=100%" | {{#arraymap:{{{sameas|}}}|,|x|[[glycomotif:sameas::x]]}}
 |-
+! {{#ifeq:{{{collection}}}|GM|style="width=200px"|style="display: none;"}} | Topology Cluster
+| {{#ifeq:{{{collection}}}|GM|style="width=100%"|style="display: none;"}} | {{#arraymap:{{{topology|}}}|,|x|[[glycomotif:topology::x]]}}
+|-
 ! style="width=200px" | GlyTouCan Accession
-| style="width=100%" | [[glycomotif:glytoucan::{{{glytoucan|}}}]] 
+| style="width=100%" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
 |-
 ! style="width=200px" | GlycoCT
 | style="width=100%" | <div class="smwpre">
@@ -59,6 +62,17 @@ Edit the page to see the template text.
 
 [https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Fproperty+%3Fvalue%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%22{{{accession|}}}%22+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22{{{collection}}}%22+.%0A++%3Fmotif+%3Fproperty+%3Fvalue%0A%7D Try Me!]
 
-{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}|}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{DONOTEDIT}}
+<div id="information_for_commonjs" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}}></div>
+{{#ifeq:{{{collection}}}|GM|
+== Topology Cluster ==
+<div id="viewer_topology" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}}></div>
+== Topology Navigator (Extend on non-reducing end only) ==
+<div id="viewer_topology_navigator" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}}></div>
+== Topology Navigator (Extend on reducing end only) ==
+<div id="viewer_topology_navigator2" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}}></div>
+|
+}}
+
+{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}|}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{DONOTEDIT}}
 [[Category:Motif]]
 </includeonly>
