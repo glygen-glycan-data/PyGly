@@ -63,13 +63,19 @@ var hgv_option_template = {
     contextMenu : {
         enable: true,
         defaultMenu: false,
-        externalURL1: "https://edwardslab.bmcb.georgetown.edu/glycomotifdev/GM.", //"https://edwardslab.bmcb.georgetown.edu/glycomotif/GM.",
+        externalURL1: "", //"https://edwardslab.bmcb.georgetown.edu/glycomotif/GM.",
         externalURL2: ""
     }
 };
 var divid1 = "viewer_topology";
 var divid2 = "viewer_topology_navigator2";
 var divid3 = "viewer_topology_navigator";
+
+var pageCollection = document.getElementById("information_for_commonjs").getAttribute("data-collection");
+var gtcacc = document.getElementById("information_for_commonjs").getAttribute("data-glytoucan");
+var appPrefix = document.getElementById("information_for_commonjs").getAttribute("data-prefix");
+
+hgv_option_template.contextMenu.externalURL1 = "https://edwardslab.bmcb.georgetown.edu/" + appPrefix + "/GM.";
 
 var option1 = jQuery.extend(true, {}, hgv_option_template);
 var option2 = jQuery.extend(true, {}, hgv_option_template);
@@ -81,12 +87,7 @@ option3.essentials.div_ID = divid3;
 option2.essentials.GlyTouCanImagePara.style = "compact";
 option3.essentials.GlyTouCanImagePara.style = "compact";
 
-
 var viewer1, viewer2, viewer3;
-
-var pageCollection = document.getElementById("information_for_commonjs").getAttribute("data-collection");
-var gtcacc = document.getElementById("information_for_commonjs").getAttribute("data-glytoucan");
-
 
 function syncAndContinue (){
     var proceed = true;
