@@ -5,8 +5,10 @@ window.$ = jQuery;
 window.mw = window.mediaWiki = mw;
 console.log("Common.js is running");
 
+var topologyComponents, redonlyComponents, nonredonlyComponents;
+
 // s stands for the scripts, while p stand for the loading status for the page
-var syncStatus = {"s1": false, "s2": false, "s3": false, "s4": false, "p": false};
+var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": false, "c3": false, "p": false};
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
 
@@ -18,14 +20,30 @@ function injectEssentialElementForTheViewer(){
         syncStatus.s2 = true;
         syncAndContinue();
     });
+
+    // test
+    // https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/glycoepitope.txt
+    // http://cdn.jsdelivr.net/gh/<username>/<repo>/path/to/file.js
+    // http://cdn.jsdelivr.net/gh/<username>/<repo>@<version or hash>/path/to/file.js
+
+    // http://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@0ee7fef3ef0838d1f1bf5c593e91ac8cb2c59b9b/smw/glycomotif/data/glycoepitope.txt
     jQuery.getScript("https://d3js.org/d3.v3.min.js", function () {
         syncStatus.s3 = true;
-        syncAndContinue();
-    });
-    // https://edwardslab.bmcb.georgetown.edu/glycomotifdev/index.php?title=MediaWiki:Components.js&action=raw&ctype=text/javascript
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/presentation/glycomotif/components6.js", function () {
-        syncStatus.s4 = true;
-        syncAndContinue();
+        d3.json("", function (data) {
+            topologyComponents = data;
+            syncStatus.c1 = true;
+            syncAndContinue();
+        });
+        d3.json("", function (data) {
+            redonlyComponents = data;
+            syncStatus.c2 = true;
+            syncAndContinue();
+        });
+        d3.json("", function (data) {
+            nonredonlyComponents = data;
+            syncStatus.c3 = true;
+            syncAndContinue();
+        });
     });
     $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css" type="text/css" />');
 }

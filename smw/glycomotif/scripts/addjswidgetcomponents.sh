@@ -13,5 +13,4 @@ set -x
 # Add component will require 3 other scripts
 ./json_substructure.py
 ./json_topology.py
-./addcomponent.py ../wiki
-./loadsite ../wiki
+./mvcomponents.py
