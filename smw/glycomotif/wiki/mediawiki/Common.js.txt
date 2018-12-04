@@ -5,12 +5,14 @@ window.$ = jQuery;
 window.mw = window.mediaWiki = mw;
 console.log("Common.js is running");
 
+var topologyComponents, redonlyComponents, nonredonlyComponents;
+
 // s stands for the scripts, while p stand for the loading status for the page
-var syncStatus = {"s1": false, "s2": false, "s3": false, "s4": false, "p": false};
+var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": false, "c3": false, "p": false};
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
 
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer/hgv.js", function () {
+    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@2b2108b0199c2d249e80767d789bf9bf6fd11ad0/hgv.js", function () {
         syncStatus.s1 = true;
         syncAndContinue();
     });
@@ -18,14 +20,27 @@ function injectEssentialElementForTheViewer(){
         syncStatus.s2 = true;
         syncAndContinue();
     });
+
+    // Test URL: https://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@c01f426fe6147f9ce5c15495fc2dc0d5bd3b1eda/smw/glycomotif/data/glycoepitope.txt
+    // Production URL: https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/topology.json
+
     jQuery.getScript("https://d3js.org/d3.v3.min.js", function () {
         syncStatus.s3 = true;
-        syncAndContinue();
-    });
-    // https://edwardslab.bmcb.georgetown.edu/glycomotifdev/index.php?title=MediaWiki:Components.js&action=raw&ctype=text/javascript
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/presentation/glycomotif/components6.js", function () {
-        syncStatus.s4 = true;
-        syncAndContinue();
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology.json", function (data) {
+            topologyComponents = data;
+            syncStatus.c1 = true;
+            syncAndContinue();
+        });
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/redonly.json", function (data) {
+            redonlyComponents = data;
+            syncStatus.c2 = true;
+            syncAndContinue();
+        });
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/nonredonly.json", function (data) {
+            nonredonlyComponents = data;
+            syncStatus.c3 = true;
+            syncAndContinue();
+        });
     });
     $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css" type="text/css" />');
 }
@@ -68,8 +83,8 @@ var hgv_option_template = {
     }
 };
 var divid1 = "viewer_topology";
-var divid2 = "viewer_topology_navigator2";
-var divid3 = "viewer_topology_navigator";
+var divid2 = "viewer_topology_navigator";
+var divid3 = "viewer_topology_navigator2";
 
 var pageCollection = document.getElementById("information_for_commonjs").getAttribute("data-collection");
 var gtcacc = document.getElementById("information_for_commonjs").getAttribute("data-glytoucan");
@@ -146,9 +161,9 @@ function locateViewer1(){
 // Load sub-structure matching
 function locateViewer2(){
     var flag = false;
-    for (var key in redonlyComponents){
+    for (var key in nonredonlyComponents){
         if (key == gtcacc){
-            option2.essentials.component = redonlyComponents[key];
+            option2.essentials.component = nonredonlyComponents[key];
             option2.essentials.component.nodes[gtcacc].alternativeImageURL = "https://glytoucan.org/glycans/" + gtcacc + "/image?style=extended&format=png&notation=cfg";
             var style = '<style>#'+ divid2 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
@@ -165,15 +180,16 @@ function locateViewer2(){
 
     }
     else{
-        console.log("Bug in load viewer2")
+        console.log("Bug in load viewer3")
     }
 }
 
+
 function locateViewer3(){
     var flag = false;
-    for (var key in nonredonlyComponents){
+    for (var key in redonlyComponents){
         if (key == gtcacc){
-            option3.essentials.component = nonredonlyComponents[key];
+            option3.essentials.component = redonlyComponents[key];
             option3.essentials.component.nodes[gtcacc].alternativeImageURL = "https://glytoucan.org/glycans/" + gtcacc + "/image?style=extended&format=png&notation=cfg";
             var style = '<style>#'+ divid3 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
@@ -190,7 +206,7 @@ function locateViewer3(){
 
     }
     else{
-        console.log("Bug in load viewer3")
+        console.log("Bug in load viewer2")
     }
 }
 

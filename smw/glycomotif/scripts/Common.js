@@ -12,7 +12,7 @@ var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": fals
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
 
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer/hgv.js", function () {
+    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@2b2108b0199c2d249e80767d789bf9bf6fd11ad0/hgv.js", function () {
         syncStatus.s1 = true;
         syncAndContinue();
     });
@@ -21,25 +21,22 @@ function injectEssentialElementForTheViewer(){
         syncAndContinue();
     });
 
-    // test
-    // https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/glycoepitope.txt
-    // http://cdn.jsdelivr.net/gh/<username>/<repo>/path/to/file.js
-    // http://cdn.jsdelivr.net/gh/<username>/<repo>@<version or hash>/path/to/file.js
+    // Test URL: https://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@c01f426fe6147f9ce5c15495fc2dc0d5bd3b1eda/smw/glycomotif/data/glycoepitope.txt
+    // Production URL: https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/topology.json
 
-    // http://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@0ee7fef3ef0838d1f1bf5c593e91ac8cb2c59b9b/smw/glycomotif/data/glycoepitope.txt
     jQuery.getScript("https://d3js.org/d3.v3.min.js", function () {
         syncStatus.s3 = true;
-        d3.json("", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/topology.json", function (data) {
             topologyComponents = data;
             syncStatus.c1 = true;
             syncAndContinue();
         });
-        d3.json("", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/redonly.json", function (data) {
             redonlyComponents = data;
             syncStatus.c2 = true;
             syncAndContinue();
         });
-        d3.json("", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/nonredonly.json", function (data) {
             nonredonlyComponents = data;
             syncStatus.c3 = true;
             syncAndContinue();
@@ -86,8 +83,8 @@ var hgv_option_template = {
     }
 };
 var divid1 = "viewer_topology";
-var divid2 = "viewer_topology_navigator2";
-var divid3 = "viewer_topology_navigator";
+var divid2 = "viewer_topology_navigator";
+var divid3 = "viewer_topology_navigator2";
 
 var pageCollection = document.getElementById("information_for_commonjs").getAttribute("data-collection");
 var gtcacc = document.getElementById("information_for_commonjs").getAttribute("data-glytoucan");
@@ -164,9 +161,9 @@ function locateViewer1(){
 // Load sub-structure matching
 function locateViewer2(){
     var flag = false;
-    for (var key in redonlyComponents){
+    for (var key in nonredonlyComponents){
         if (key == gtcacc){
-            option2.essentials.component = redonlyComponents[key];
+            option2.essentials.component = nonredonlyComponents[key];
             option2.essentials.component.nodes[gtcacc].alternativeImageURL = "https://glytoucan.org/glycans/" + gtcacc + "/image?style=extended&format=png&notation=cfg";
             var style = '<style>#'+ divid2 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
@@ -183,15 +180,16 @@ function locateViewer2(){
 
     }
     else{
-        console.log("Bug in load viewer2")
+        console.log("Bug in load viewer3")
     }
 }
 
+
 function locateViewer3(){
     var flag = false;
-    for (var key in nonredonlyComponents){
+    for (var key in redonlyComponents){
         if (key == gtcacc){
-            option3.essentials.component = nonredonlyComponents[key];
+            option3.essentials.component = redonlyComponents[key];
             option3.essentials.component.nodes[gtcacc].alternativeImageURL = "https://glytoucan.org/glycans/" + gtcacc + "/image?style=extended&format=png&notation=cfg";
             var style = '<style>#'+ divid3 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
@@ -208,7 +206,7 @@ function locateViewer3(){
 
     }
     else{
-        console.log("Bug in load viewer3")
+        console.log("Bug in load viewer2")
     }
 }
 

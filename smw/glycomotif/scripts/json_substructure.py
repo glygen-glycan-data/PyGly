@@ -159,6 +159,8 @@ def viewerdatagenerater(component):
         d["name"] = node
         if node == root:
             d["hidden"] = True
+        if node != gacc:
+            d["label"] = "%s (Cluster)" % node
         nodesd[node] = d
 
     for node in edges.keys():
