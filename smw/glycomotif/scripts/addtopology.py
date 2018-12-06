@@ -107,8 +107,6 @@ for m in w.itermotif():
         print "Bug"
         continue
 
-
-    equivalents.remove(gtcid)
     equivalents = map(lambda x: str(AllMotifpageid + "." + x), equivalents)
 
     print m.get("id")
