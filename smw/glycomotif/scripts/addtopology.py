@@ -1,6 +1,6 @@
 #!/bin/env python27
 
-from smw.glycomotif.scripts.getwiki import GlycoMotifWiki, AllMotif
+from getwiki import GlycoMotifWiki, AllMotif
 
 w = GlycoMotifWiki()
 AllMotifpageid = AllMotif.id
