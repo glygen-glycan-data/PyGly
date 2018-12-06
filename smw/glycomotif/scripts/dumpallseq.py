@@ -1,7 +1,7 @@
 #!/bin/env python27
 
-import smw.glycomotif.scripts.findpygly
-from smw.glycomotif.scripts.getwiki import GlycoMotifWiki, AllMotif
+import findpygly
+from getwiki import GlycoMotifWiki, AllMotif
 # we must instantiate early, before any use of the command-line.
 w = GlycoMotifWiki()
 
