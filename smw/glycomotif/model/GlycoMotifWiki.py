@@ -65,6 +65,12 @@ class Motif(SMW.SMWClass):
         if isinstance(data.get('sameas'),basestring):
             data['sameas'] = sorted(map(lambda s: s.strip(),data.get('sameas').split(',')))
 
+    # topology is comma separated
+        if isinstance(data.get('topology'), basestring):
+            data['topology'] = map(lambda s: s.strip(), data.get('topology').split(','))
+
+        
+
 	# redend is a list of booleans, sorted, so behaves as set
 	if isinstance(data.get('redend'),basestring):
             data['redend'] = sorted(map(self.asboolean,map(lambda s: s.strip(),data.get('redend').split(','))))
@@ -84,27 +90,32 @@ class Motif(SMW.SMWClass):
 	return data
 
     def toTemplate(self,data):
-	data = super(Motif,self).toTemplate(data)
-	
-	if 'name' in data:
-	    data['name'] = "\n".join(data['name'])
+        data = super(Motif,self).toTemplate(data)
 
-	if 'sameas' in data:
-	    data['sameas'] = ",".join(sorted(data['sameas']))
+        if 'name' in data:
+            data['name'] = "\n".join(data['name'])
 
-	if 'aglycon' in data:
-	    data['aglycon'] = ",".join(sorted(data['aglycon']))
+        if 'sameas' in data:
+            data['sameas'] = ",".join(sorted(data['sameas']))
 
-	if 'redend' in data:
-	    data['redend'] = ",".join(sorted(("true" if redend else "false") for redend in data['redend']))
+        if 'aglycon' in data:
+            data['aglycon'] = ",".join(sorted(data['aglycon']))
 
-        # if 'wurcs' in data:
+        if 'redend' in data:
+            data['redend'] = ",".join(sorted(("true" if redend else "false") for redend in data['redend']))
+
+        if 'topology' in data:
+            data['topology'] = ",".join(data['topology'])
+
+
+
+    # if 'wurcs' in data:
 	#     data['wurcs'] = "<pre>" + data['wurcs'] + "</pre>"
 	    
 	# if 'glycoct' in data:
 	#     data['glycoct'] = "<pre>" + data['glycoct'] + "</pre>"
 	    
-	return data
+	    return data
 
 
 import findpygly
