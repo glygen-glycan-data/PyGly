@@ -16,7 +16,7 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}
-<div sytle="position: relative; height: 120px">
+<div sytle="position: relative;">
 	<img src="https://glytoucan.org/glycans/{{{glytoucan|}}}/image?style=extended&format=png&notation=cfg" style="display: block; margin-left: auto; margin-right: auto;">
 	<div style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 </div><br>

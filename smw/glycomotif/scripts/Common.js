@@ -12,7 +12,7 @@ var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": fals
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
 
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@2b2108b0199c2d249e80767d789bf9bf6fd11ad0/hgv.js", function () {
+    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@52a17d6026278e0f68996171ae4addd7a253ed64/hgv.js", function () {
         syncStatus.s1 = true;
         syncAndContinue();
     });
@@ -98,9 +98,9 @@ var option3 = jQuery.extend(true, {}, hgv_option_template);
 option1.essentials.div_ID = divid1;
 option2.essentials.div_ID = divid2;
 option3.essentials.div_ID = divid3;
-//option1.display.orientation = 2;
 option2.essentials.GlyTouCanImagePara.style = "compact";
 option3.essentials.GlyTouCanImagePara.style = "compact";
+option2.display.orientation = 4;
 
 var viewer1, viewer2, viewer3;
 
