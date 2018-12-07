@@ -81,14 +81,15 @@ for s in matchpool:
 
 
 for m in w.itermotif():
-
-    # Remember to check whether this works.
-    # Only loads the equivalent to to the GM collection
+    
     if m.get("collection") != AllMotifpageid:
         continue
 
     gtcid = m.get("glytoucan")
     if not gtcid in glycaninthematchpool:
+        equivalent = AllMotifpageid + "." + gtcid
+        equivalents = [ equivalent ]
+        m.set("topology", equivalents)
         continue
 
     equivalents = []
@@ -96,16 +97,6 @@ for m in w.itermotif():
         if gtcid in matchres:
             equivalents = list(matchres)
             break
-
-    # Remember to delete this part of the code
-    # Just double check
-    if len(equivalents) == 0:
-        print "Bug"
-        continue
-
-    elif len(equivalents) == 1:
-        print "Bug"
-        continue
 
     equivalents = map(lambda x: str(AllMotifpageid + "." + x), equivalents)
 
