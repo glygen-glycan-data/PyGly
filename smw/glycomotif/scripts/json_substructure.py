@@ -160,7 +160,15 @@ def viewerdatagenerater(component):
         if node == root:
             d["hidden"] = True
         if node != gacc:
-            d["label"] = "%s (Cluster)" % node
+            a = [node]
+            for l in topologies.values():
+                if node in l:
+                    a = l
+                    break
+            if len(a) < 2:
+                d["label"] = "%s" % node
+            else:
+                d["label"] = "%s (Cluster)" % node
         nodesd[node] = d
 
     for node in edges.keys():
