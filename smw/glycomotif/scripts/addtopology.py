@@ -90,6 +90,8 @@ for m in w.itermotif():
         equivalent = AllMotifpageid + "." + gtcid
         equivalents = [ equivalent ]
         m.set("topology", equivalents)
+        w.put(m)
+        print "Singleton %s" % m.get("id")
         continue
 
     equivalents = []
