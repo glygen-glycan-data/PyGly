@@ -12,7 +12,7 @@ var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": fals
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
 
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@52a17d6026278e0f68996171ae4addd7a253ed64/hgv.js", function () {
+    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@7ac51c775ccd5323bf3e1a056f01ff1ac2f0ff20/hgv.js", function () {
         syncStatus.s1 = true;
         syncAndContinue();
     });
@@ -138,7 +138,17 @@ function locateViewer1(){
     var flag = false;
     for (var key in topologyComponents){
         if (Object.keys(topologyComponents[key].nodes).includes(gtcacc)){
-            option1.essentials.component = topologyComponents[key];
+            var comp = topologyComponents[key];
+            for (var node in comp.nodes){
+                if (node == "Topology"){
+                    comp.nodes["Topology"].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-compact/" + gtcacc + ".png";
+                }
+                else {
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-extended/" + node + ".png";
+                }
+            }
+
+            option1.essentials.component = comp;
             //var style = '<style>#'+ divid1 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             var style = '<style>#'+ divid1 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
@@ -163,8 +173,16 @@ function locateViewer2(){
     var flag = false;
     for (var key in nonredonlyComponents){
         if (key == gtcacc){
-            option2.essentials.component = nonredonlyComponents[key];
-            option2.essentials.component.nodes[gtcacc].alternativeImageURL = "https://glytoucan.org/glycans/" + gtcacc + "/image?style=extended&format=png&notation=cfg";
+            var comp = nonredonlyComponents[key];
+            for (var node in comp.nodes){
+                if (node == gtcacc){
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-extended/" + node + ".png"
+                }
+                else{
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-compact/" + node + ".png"
+                }
+            }
+            option2.essentials.component = comp;
             var style = '<style>#'+ divid2 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
             flag = true;
@@ -180,7 +198,7 @@ function locateViewer2(){
 
     }
     else{
-        console.log("Bug in load viewer3")
+        console.log("Bug in load viewer2")
     }
 }
 
@@ -189,8 +207,16 @@ function locateViewer3(){
     var flag = false;
     for (var key in redonlyComponents){
         if (key == gtcacc){
-            option3.essentials.component = redonlyComponents[key];
-            option3.essentials.component.nodes[gtcacc].alternativeImageURL = "https://glytoucan.org/glycans/" + gtcacc + "/image?style=extended&format=png&notation=cfg";
+            var comp = redonlyComponents[key];
+            for (var node in comp.nodes){
+                if (node == gtcacc){
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-extended/" + node + ".png"
+                }
+                else{
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-compact/" + node + ".png"
+                }
+            }
+            option3.essentials.component = comp;
             var style = '<style>#'+ divid3 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
             $('head').append(style);
             flag = true;
@@ -206,7 +232,6 @@ function locateViewer3(){
 
     }
     else{
-        console.log("Bug in load viewer2")
+        console.log("Bug in load viewer3")
     }
 }
-
