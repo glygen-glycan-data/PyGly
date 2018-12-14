@@ -141,10 +141,10 @@ function locateViewer1(){
             var comp = topologyComponents[key];
             for (var node in comp.nodes){
                 if (node == "Topology"){
-                    comp.nodes["Topology"].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-compact/" + gtcacc + ".png";
+                    comp.nodes["Topology"].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-compact-checked/" + gtcacc + ".png";
                 }
                 else {
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-extended/" + node + ".png";
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/" + node + ".png";
                 }
             }
 
@@ -176,10 +176,10 @@ function locateViewer2(){
             var comp = nonredonlyComponents[key];
             for (var node in comp.nodes){
                 if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-extended/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/" + node + ".png"
                 }
                 else{
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-compact/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-compact-checked/" + node + ".png"
                 }
             }
             option2.essentials.component = comp;
@@ -210,10 +210,10 @@ function locateViewer3(){
             var comp = redonlyComponents[key];
             for (var node in comp.nodes){
                 if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-extended/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/" + node + ".png"
                 }
                 else{
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/nonred-compact/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-compact-checked/" + node + ".png"
                 }
             }
             option3.essentials.component = comp;

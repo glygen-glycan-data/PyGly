@@ -16,9 +16,10 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}
+<h2 style="display: none;">Summary</h2>
 <div sytle="position: relative;">
-	<img src="https://glytoucan.org/glycans/{{{glytoucan|}}}/image?style=extended&format=png&notation=cfg" style="display: block; margin-left: auto; margin-right: auto;">
-	<div style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
+	<img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{{glytoucan|}}}.png" style="display: block; margin-left: auto; margin-right: auto;">
+	<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 </div><br>
 {| class="wikitable" style="width:100%"
 ! style="width:200px" | ID
@@ -63,7 +64,8 @@ Edit the page to see the template text.
 
 [https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Fproperty+%3Fvalue%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%22{{{accession|}}}%22+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22{{{collection}}}%22+.%0A++%3Fmotif+%3Fproperty+%3Fvalue%0A%7D Try Me!]
 
-<div id="information_for_commonjs" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}} data-prefix={{PREFIX}}></div>
+<div id="information_for_commonjs" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}} data-prefix={{PREFIX}} data-display={{displayhgv}}></div>
+<div id="information_for_commonjs" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}} data-prefix={{PREFIX}} data-display={{{displayhgv|}}}></div>
 {{#ifeq:{{{collection}}}|GM|
 == Topology Cluster ==
 <div id="viewer_topology" data-collection={{{collection|}}} data-glytoucan={{{glytoucan|}}}></div>
