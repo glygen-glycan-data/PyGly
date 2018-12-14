@@ -18,6 +18,6 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  glycoct|Type:Code
  primary|Type:Boolean
  topology|Type:Page
- displayhgv|Type:Boolean
+ displayhgv|Type:Text
 
 [[Category:Imported vocabulary]]
