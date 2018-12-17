@@ -3,7 +3,7 @@ from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
 import os
-fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/brokenimage.json")
+fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/brokenimage.txt")
 
 brokenImage = open(fpath).read().strip().split("\n")
 
