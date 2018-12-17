@@ -89,6 +89,13 @@ var divid3 = "viewer_topology_navigator2";
 var pageCollection = document.getElementById("information_for_commonjs").getAttribute("data-collection");
 var gtcacc = document.getElementById("information_for_commonjs").getAttribute("data-glytoucan");
 var appPrefix = document.getElementById("information_for_commonjs").getAttribute("data-prefix");
+var displayBool = document.getElementById("information_for_commonjs").getAttribute("data-display");
+if (displayBool == "True"){
+    displayBool = true
+}
+else{
+    displayBool = false
+}
 
 hgv_option_template.contextMenu.externalURL1 = "https://edwardslab.bmcb.georgetown.edu/" + appPrefix + "/GM.";
 
@@ -114,7 +121,7 @@ function syncAndContinue (){
     }
     if (proceed){
         console.log("scripts and page loading complete");
-        if (pageCollection == "GM"){
+        if (displayBool){
             deepCopyViewer();
             fillTheDiv();
         }

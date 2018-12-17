@@ -50,7 +50,7 @@ class Motif(SMW.SMWClass):
 
     def toPython(self,data):
         data = super(Motif,self).toPython(data)
-	
+
         # name is newline separated
         if isinstance(data.get('name'),basestring):
             data['name'] = map(lambda s: s.strip(),data.get('name').split('\n'))
@@ -110,8 +110,8 @@ class Motif(SMW.SMWClass):
 
         # if 'glycoct' in data:
         #     data['glycoct'] = "<pre>" + data['glycoct'] + "</pre>"
-	    
-	    return data
+
+        return data
 
 
 import findpygly
