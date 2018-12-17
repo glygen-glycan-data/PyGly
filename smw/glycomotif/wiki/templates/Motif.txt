@@ -65,7 +65,7 @@ Edit the page to see the template text.
 [https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Fproperty+%3Fvalue%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%22{{{accession|}}}%22+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22{{{collection}}}%22+.%0A++%3Fmotif+%3Fproperty+%3Fvalue%0A%7D Try Me!]
 
 {{#ifeq:{{{displayhgv|}}}|True|
-<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}" data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
+<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/" data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
 == Topology Cluster ==
 <div id="hgv_topology"></div>
 == Non-Reducing End Topology Navigator ==
