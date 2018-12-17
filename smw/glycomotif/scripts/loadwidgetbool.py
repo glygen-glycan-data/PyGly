@@ -4,7 +4,10 @@ import json
 from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
-brokenImage = json.loads(open("brokenimage.json").read())
+import os
+jsonpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/brokenimage.json")
+
+brokenImage = json.loads(open(jsonpath).read())
 for m in w.itermotif():
     if m.get("collection") == "GM" and m.get("glytoucan") not in brokenImage:
         print "%s set to display" % m.get("id")

@@ -68,10 +68,13 @@ class Motif(SMW.SMWClass):
         # topology is comma separated
         if isinstance(data.get('topology'), basestring):
             data['topology'] = map(lambda s: s.strip(), data.get('topology').split(','))
+        
+        if isinstance(data.get("displayhgv"), basestring):
+            data["displayhgv"] = self.asboolean(data.get("displayhgv"))
 
         # redend is a list of booleans, sorted, so behaves as set
         if isinstance(data.get('redend'),basestring):
-                data['redend'] = sorted(map(self.asboolean,map(lambda s: s.strip(),data.get('redend').split(','))))
+            data['redend'] = sorted(map(self.asboolean,map(lambda s: s.strip(),data.get('redend').split(','))))
         elif data.get('redend') in (True,False):
             data['redend'] = [ data.get('redend') ]
         elif data.get('redend') != None:
@@ -104,6 +107,9 @@ class Motif(SMW.SMWClass):
 
         if 'topology' in data:
             data['topology'] = ",".join(data['topology'])
+
+        if "displayhgv" in data:
+            data["displayhgv"] = ("true" if data["displayhgv"] else "false")
 
         # if 'wurcs' in data:
         #     data['wurcs'] = "<pre>" + data['wurcs'] + "</pre>"

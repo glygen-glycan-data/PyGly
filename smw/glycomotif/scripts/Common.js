@@ -82,22 +82,27 @@ var hgv_option_template = {
         externalURL2: ""
     }
 };
-var divid1 = "viewer_topology";
-var divid2 = "viewer_topology_navigator";
-var divid3 = "viewer_topology_navigator2";
+var divid1 = "hgv_topology";
+var divid2 = "hgv_topology_navigator";
+var divid3 = "hgv_topology_navigator2";
 
-var pageCollection = document.getElementById("information_for_commonjs").getAttribute("data-collection");
-var gtcacc = document.getElementById("information_for_commonjs").getAttribute("data-glytoucan");
-var appPrefix = document.getElementById("information_for_commonjs").getAttribute("data-prefix");
-var displayBool = document.getElementById("information_for_commonjs").getAttribute("data-display");
-if (displayBool == "True"){
-    displayBool = true
+var externalURL1 = "";
+var imageURLonCluster = "";
+var paraDiv = document.getElementById("hgv_para");
+if (paraDiv){
+    var gtcacc = paraDiv.getAttribute("data-glytoucan");
+    var appPrefix = paraDiv.getAttribute("data-prefix");
+    var displayBool = paraDiv.getAttribute("data-display");
+    externalURL1 = paraDiv.getAttribute("data-jumpurlprefix");
+    imageURLonCluster = paraDiv.getAttribute("data-imageurlprefix");
+    var displayBool = true;
+
 }
 else{
-    displayBool = false
+    var displayBool = false;
 }
 
-hgv_option_template.contextMenu.externalURL1 = "https://edwardslab.bmcb.georgetown.edu/" + appPrefix + "/GM.";
+hgv_option_template.contextMenu.externalURL1 = externalURL1;
 
 var option1 = jQuery.extend(true, {}, hgv_option_template);
 var option2 = jQuery.extend(true, {}, hgv_option_template);
@@ -148,10 +153,10 @@ function locateViewer1(){
             var comp = topologyComponents[key];
             for (var node in comp.nodes){
                 if (node == "Topology"){
-                    comp.nodes["Topology"].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-compact-checked/" + gtcacc + ".png";
+                    comp.nodes["Topology"].alternativeImageURL = imageURLonCluster + "red-compact-checked/" + gtcacc + ".png";
                 }
                 else {
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/" + node + ".png";
+                    comp.nodes[node].alternativeImageURL = imageURLonCluster +  "red-extended-checked/" + node + ".png";
                 }
             }
 
@@ -183,10 +188,10 @@ function locateViewer2(){
             var comp = nonredonlyComponents[key];
             for (var node in comp.nodes){
                 if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = imageURLonCluster + "red-extended-checked/" + node + ".png"
                 }
                 else{
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-compact-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = imageURLonCluster +  "red-compact-checked/" + node + ".png"
                 }
             }
             option2.essentials.component = comp;
@@ -217,10 +222,10 @@ function locateViewer3(){
             var comp = redonlyComponents[key];
             for (var node in comp.nodes){
                 if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = imageURLonCluster + "red-extended-checked/" + node + ".png"
                 }
                 else{
-                    comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-compact-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = imageURLonCluster + "red-compact-checked/" + node + ".png"
                 }
             }
             option3.essentials.component = comp;
