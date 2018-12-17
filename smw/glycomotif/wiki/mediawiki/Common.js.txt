@@ -22,21 +22,21 @@ function injectEssentialElementForTheViewer(){
     });
 
     // Test URL: https://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@c01f426fe6147f9ce5c15495fc2dc0d5bd3b1eda/smw/glycomotif/data/glycoepitope.txt
-    // Production URL: https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/topology.json
+    // Production URL: https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology.json
 
     jQuery.getScript("https://d3js.org/d3.v3.min.js", function () {
         syncStatus.s3 = true;
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/topology.json", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology.json", function (data) {
             topologyComponents = data;
             syncStatus.c1 = true;
             syncAndContinue();
         });
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/redonly.json", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/redonly.json", function (data) {
             redonlyComponents = data;
             syncStatus.c2 = true;
             syncAndContinue();
         });
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/viewer/smw/glycomotif/data/nonredonly.json", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/nonredonly.json", function (data) {
             nonredonlyComponents = data;
             syncStatus.c3 = true;
             syncAndContinue();
