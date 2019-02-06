@@ -939,7 +939,8 @@ class IUPACParserGlycamExtended(IUPACParserAbstract):
     example = "DGalpa1-3DLyxpb1-5[DGalpNAcb1-3]DFrupb2-5DFrupb2-OME"
     alias = "Glycam:"
     precompiledpattern = r"(?P<bpe>(\[))?(?P<skel>((D|L)(Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO)(f|p)(NAc|A|5Ac|5Gc)?(a|b)))(?P<link>(\d-(\d)?))(?P<bps>(\]))?"
-
+    
+    # Not supported mono: Psi, Sor, Tag and Qui
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
         searchres = list(reversed(searchres))
@@ -1111,6 +1112,16 @@ class IUPACGlycamWriter:
     def ChildrenNumIncludingItself(self, id, d):
         gr = d[id]
         return -len(list(Glycan(gr).all_nodes()))
+
+class IUPACGlycamFormat(GlycanFormatter):
+    parser = IUPACParserGlycamExtended()
+    writer = IUPACGlycamWriter()
+    
+    def toGlycan(self, seq):
+        return self.parser.toGlycan(seq)
+    
+    def toStr(self, g):
+        return self.writer.toString(g)
 
 class WURCS20ParseError(GlycanParseError):
     pass
