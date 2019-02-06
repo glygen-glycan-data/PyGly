@@ -425,6 +425,27 @@ class GlyTouCan(object):
 	    new = False
 	return accession,new
 
+    def glycoct2wurcs(self, seq):
+	requestURL = "http://wurcs-wg.org/tool/converter/glycoct/wurcs.json?glycoct="
+	encodedseq = urllib.quote(seq, safe='')
+	requestURL += encodedseq
+	req = urllib2.Request(requestURL)
+	# self._wait(delaytime=0.5)
+	try:
+	    response = urllib2.urlopen(req).read()
+	except urllib2.URLError:
+	    print "Bad internet connection"
+	    return None
+
+	result = json.loads(response)
+	wurcs = result["wurcs"]
+	msg = result["message"]
+
+	if msg != 'Conversion succeeded.':
+            print "conversion not succeeded"
+            raise ValueError
+	return wurcs.strip()
+
 if __name__ == "__main__":
 
     import sys
