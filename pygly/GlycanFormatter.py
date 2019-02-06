@@ -1111,7 +1111,14 @@ class IUPACGlycamWriter:
 
     def ChildrenNumIncludingItself(self, id, d):
         gr = d[id]
-        return -len(list(Glycan(gr).all_nodes()))
+        num = len(list(Glycan(gr).all_nodes()))
+        if num == 1 and gr._stem == tuple([14]) and gr._mods == [((6,), 1)]:
+            # this method is used to sort the children branches
+            # If we have multiple branch under a branch point
+            # And one branch is a single Fructose
+            # Then it makes more sense to put this single fructose in a "[]"
+            return 0
+        return -num
 
 class IUPACGlycamFormat(GlycanFormatter):
     parser = IUPACParserGlycamExtended()
