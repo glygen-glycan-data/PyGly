@@ -212,3 +212,6 @@ class LinCodeRank(MonoSymLookup):
 
 class MassSym(MonoSymLookup):
     pass
+
+class GlycamSym(MonoSymLookup):
+    pass

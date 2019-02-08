@@ -120,7 +120,7 @@ class WURCS20MonoFormat:
 		    # missing *, no sub_name, coresponds to pp = 
 		    pp = sub; sub_name = "anhydro"
                 try:
-                    type = self.subsconfig.get(sub_name,"type")
+                    sub_type = self.subsconfig.get(sub_name,"type")
                     pt = self.subsconfig.get(sub_name,"parent_type")
                     ct = self.subsconfig.get(sub_name,"child_type")
                     cp = self.subsconfig.get(sub_name,"child_pos")
@@ -132,15 +132,15 @@ class WURCS20MonoFormat:
                             pp = -1
 			else:
 			    pp = int(pp)
-                        m.add_substituent(eval(type),parent_pos=pp,parent_type=eval(pt),child_pos=cp,child_type=eval(ct))
+                        m.add_substituent(eval(sub_type),parent_pos=pp,parent_type=eval(pt),child_pos=cp,child_type=eval(ct))
                     elif '|' in pp:
                         pp = map(int,pp.split('|'))
-                        m.add_substituent(eval(type),parent_pos=pp,parent_type=eval(pt),child_pos=cp,child_type=eval(ct))
+                        m.add_substituent(eval(sub_type),parent_pos=pp,parent_type=eval(pt),child_pos=cp,child_type=eval(ct))
 		    elif '-' in pp and sub_name == "anhydro":
 			pp = map(int,pp.split('-'))
 			if len(pp) != 2:
 			    raise  UnsupportedSubstituentError(sub)
-			subst = m.add_substituent(eval(type),parent_pos=pp[0],parent_type=eval(pt),
+			subst = m.add_substituent(eval(sub_type),parent_pos=pp[0],parent_type=eval(pt),
 						 child_pos=cp,child_type=eval(ct)).child()
 			pt = self.subsconfig.get(sub_name+"1","parent_type")
                         ct = self.subsconfig.get(sub_name+"1","child_type")
