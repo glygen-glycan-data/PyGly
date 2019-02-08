@@ -584,6 +584,27 @@ class IUPACLinearFormat(GlycanFormatter):
                 raise RuntimeError("Bad IUPAC linear format!")
         return Glycan(root)
 
+
+class IUPACParseError(GlycanParseError):
+    pass
+
+class IUPACBranchingError(IUPACParseError):
+    def __init__(self):
+        self.message = "Input IUPAC string contains multiple adjacent branch point, which is not allowed"
+
+class IUPACUnsupportedAnomer(IUPACParseError):
+    def __init__(self, sym, a):
+        self.message = "Unsupported anomer: %s in link/mono: %s" % (a, sym)
+
+class IUPACUnsupportedSym(IUPACParseError):
+    def __init__(self, sym):
+        self.message = "Unsupported sym: %s" % sym
+
+class IUPACSkippedMonosaccharide(IUPACParseError):
+    def __init__(self):
+        self.message = "Parsing error, some monosaccharide from IUPAC string are not parsed in"
+
+
 class IUPACParserAbstract():
     # Link tuple (parent_pos, child_pos)
     regexResTemplate = {
@@ -646,17 +667,29 @@ class IUPACParserAbstract():
                 # It doesn't really make any sense to be honest.
                 if add_stack != 0:
                     if add_stack > 1:
-                        raise IUPACLinearBadPosition("Multiple branching starting bracket", 0, 0)
+                        raise IUPACBranchingError
                     branchPoint.append(parentMono)
                 parentMono = mono
 
                 # Well... It can make sense if there are multiple ending bracket. Just pop n element from branchPoint
                 if remove_stack != 0:
                     if remove_stack > 1:
-                        raise IUPACLinearBadPosition("Multiple branching ending bracket", 0, 0)
+                        raise IUPACBranchingError
                     parentMono = branchPoint.pop(-1)
         glycanObj = Glycan(root)
+        if len(list(glycanObj.all_nodes())) != self.monoNumCheck(seq):
+            raise IUPACSkippedMonosaccharide
         return glycanObj
+
+    def monoNumCheck(seq):
+        possibleTriletter = "Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO"
+        possibleTriletter = possibleTriletter.lower()
+        ptl = possibleTriletter.split("|")
+        s = seq.lower()
+        c = 0
+        for tri in ptl:
+            c += s.count(tri)
+        return c
 
     def patternCompilation(self):
         raise NotImplemented
@@ -681,15 +714,6 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
 
     alias = "GTCC:"
     precompiledpattern = r"(?P<bpe>(\[)*)(?P<mono>(Glc|Gal|Man|Fuc|Xyl)([a-zA-Z5926,]+)?)(?P<link>(\([ab?]?[1-9?](/[1-9])*-([1-9?](/[1-9])*\))?))(?P<bps>(\])*)"
-    pattern = ""
-
-    def patternCompilation(self):
-        # Deprecated
-        pm = r'(?P<mono>(Glc|Gal|Man|Fuc|Xyl)([a-zA-Z5926,]+)?)'
-        pl = r'(?P<link>(\([ab?]?[1-9?](/[1-9])*-([1-9?](/[1-9])*\))?))'
-        pc = r"(?P<bpe>(\[)*)" + pm + pl + r"(?P<bps>(\])*)"
-        compiledpattern = re.compile(pc)
-        self.pattern = compiledpattern
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -707,8 +731,7 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
             elif anomersl == "?":
                 anomer = None
             else:
-                # Unsupported anomer
-                raise ValueError
+                raise IUPACUnsupportedAnomer(s["link"], anomersl)
 
             link = s["link"].lstrip("(").rstrip(")")
             link = link[1:].split("-")
@@ -731,16 +754,6 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
 
     alias = "GTCE:"
     precompiledpattern = r"(?P<bpe>(\[)*)(?P<anomer>(alpha-|beta-)?)(?P<mono>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl)([a-zA-Z5926,]+)?)(-)?(?P<link>(\([1-9?](/[1-9])*->([1-9?](/[1-9])*\))?)(-)?)(?P<bps>(\])*)"
-    pattern = ""
-
-    def patternCompilation(self):
-        # Deprecated
-        pa = r'(?P<anomer>(alpha-|beta-)?)'
-        pm = r'(?P<mono>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl)([a-zA-Z5926,]+)?)(-)?'  # Why do I need 5926 here
-        pl = r'(?P<link>(\([1-9?](/[1-9])*->([1-9?](/[1-9])*\))?)(-)?)'
-        pc = r"(?P<bpe>(\[)*)" + pa + pm + pl + r"(?P<bps>(\])*)"
-        compiledpattern = re.compile(pc)
-        self.pattern = compiledpattern
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -758,8 +771,7 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
             elif anomersl == "":
                 anomer = None
             else:
-                # Unsupported anomer
-                raise ValueError
+                raise IUPACUnsupportedAnomer(s["mono"], anomersl)
 
             link = s["link"].lstrip("(").rstrip("-").rstrip(")")
             link = link.split("->")
@@ -783,15 +795,6 @@ class IUPACParserExtended1(IUPACParserAbstract):
     alias = "IUPACExtended1:"
     precompiledpattern = r"(?P<bpe>(\[)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido)([a-zA-Z5926,]+)?)(?P<link>(\([ab]([1-9](/[1-9])*)-([1-9])?(/[1-9])*\)))?(?P<bps>(\])*)"
 
-    def patternCompilation(self):
-        # deprecated
-        ps = r'(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?'
-        pm = r'(?P<skel>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN)([a-zA-Z5926,]+)?)'
-        pl = r'(?P<link>(\([ab][1-9]-([1-9])?\)))?'
-        pattern = r"(?P<bpe>(\[)*)" + ps + pm + pl + r"(?P<bps>(\])*)"
-        compiledpattern = re.compile(pattern)
-        self.pattern = compiledpattern
-
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
         searchres = list(reversed(searchres))
@@ -811,7 +814,7 @@ class IUPACParserExtended1(IUPACParserAbstract):
                 elif anomersl == "?":
                     anomer = None
                 else:
-                    raise IUPACLinearBadAnomer(seq, len(seq), anomersl)
+                    raise IUPACUnsupportedAnomer(s["link"], anomersl)
 
                 link = s["link"].lstrip("(").rstrip(")")
                 link = link[1:].split("-")
@@ -882,7 +885,7 @@ class IUPACParserCFG(IUPACParserAbstract):
                 trueskel = skelori
                 anomer = None
             else:
-                raise ValueError
+                raise IUPACUnsupportedSym(skelori)
 
             rawlink = s["link"]
             if rawlink:
@@ -956,7 +959,7 @@ class IUPACParserGlycamExtended(IUPACParserAbstract):
             if anomer in "ab":
                 anomer = {"a": "Anomer.alpha", "b": "Anomer.beta"}[anomer]
             else:
-                raise ValueError
+                raise IUPACUnsupportedAnomer(s["skel"], ["skel"][-1])
 
             rawlink = s["link"]
             if rawlink:
@@ -1012,12 +1015,6 @@ class IUPACGlycamWriter:
                     pp = l._parent_pos
                     cp = l._child_pos
                     linkinfo[childindex] = tuple([pp, cp])
-
-        # Debug purposes only
-        #for k, v in enumerate(nodes):
-        #    print k
-        #    print v
-        #    print
 
         monostrings = {}
         for i, node in nodesdict.items():
