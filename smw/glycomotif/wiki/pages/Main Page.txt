@@ -30,7 +30,7 @@ See also the [[Multi-Instance Motifs|multi-instance motifs]] and the [[Motif-Ins
 
 == Triple Store ==
 
-SPARQL Endpoint: [https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery https://edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query]
+SPARQL Endpoint: https://edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query
 
 === GlyTouCan motifs ===
 <pre>
@@ -49,7 +49,7 @@ WHERE {
   OPTIONAL { ?motif glycomotif:reducingend ?redend }
 }
 </pre>
-[https://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Faccession+%3Fname+%3Fredend+%3Faglycon+%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%3Faccession+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22GTC%22+%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Aaglycon+%3Faglycon+%7D%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Areducingend+%3Fredend+%7D%0A%7D Try Me!]
+[http://edwardslab.bmcb.georgetown.edu/yasgui#endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Faccession+%3Fname+%3Fredend+%3Faglycon+%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%3Faccession+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22GTC%22+%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Aaglycon+%3Faglycon+%7D%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Areducingend+%3Fredend+%7D%0A%7D&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table Try Me!]
 
 == Python Modules and Loading Scripts ==
 
