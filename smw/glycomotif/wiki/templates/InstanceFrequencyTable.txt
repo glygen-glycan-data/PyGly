@@ -1,0 +1,14 @@
+<includeonly>{|class="wikitable sortable"
+! Instances !! Frequency
+{{InstanceFrequencyRow|1}}
+{{InstanceFrequencyRow|2}}
+{{InstanceFrequencyRow|3}}
+{{InstanceFrequencyRow|4}}
+{{InstanceFrequencyRow|5}}
+{{InstanceFrequencyRow|6}}
+{{InstanceFrequencyRow|7}}
+{{InstanceFrequencyRow|8}}
+{{InstanceFrequencyRow|9}}
+{{InstanceFrequencyRow|10}}
+{{InstanceFrequencyRow|11}}
+|}</includeonly>

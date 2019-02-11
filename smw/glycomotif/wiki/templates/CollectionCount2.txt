@@ -1,0 +1,6 @@
+<includeonly>{{#ask:
+[[Category:Motif]]
+[[glycomotif:glytoucan::{{{1}}}]]
+[[glycomotif:incollection.glycomotif:primary::true]]
+|format=count
+}}</includeonly>

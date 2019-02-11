@@ -1,0 +1,11 @@
+<includeonly>{|class="wikitable sortable"
+! Collections !! Frequency
+{{CollectionFrequencyRow|1}}
+{{CollectionFrequencyRow|2}}
+{{CollectionFrequencyRow|3}}
+{{CollectionFrequencyRow|4}}
+{{CollectionFrequencyRow|5}}
+{{CollectionFrequencyRow|6}}
+{{CollectionFrequencyRow|7}}
+{{CollectionFrequencyRow|8}}
+|}</includeonly>
