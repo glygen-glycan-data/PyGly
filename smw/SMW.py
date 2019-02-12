@@ -255,14 +255,13 @@ class SMWSite(object):
 	        print >>sys.stderr, page.name
 	      page.delete()
 
+    def update(self,**kw):
+      self.data.update(kw)
+ 
     def delete(self,pagename):
       page = self.site.pages[pagename]
       if page.exists:
         page.delete()
-      subj = self.uribyid(pagename)
-      if subj:
-        for t in self.tsrw.triples((subj,None,None)):
-          self.tsrw.remove(t)
 
     def _get(self,name):
 	return self.site.pages[name]
