@@ -127,6 +127,28 @@ class GlyTouCan(object):
 	    break
 	return seq
 
+    allmass_sparql = """
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	
+	SELECT ?accession ?mass
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id ?accession .
+   	    ?Saccharide glytoucan:has_derivatized_mass ?mass
+	}
+    """
+    def allmass(self):
+	response = self.query(self.allmass_sparql)
+        acckey = response.vars[0]
+        mwkey = response.vars[1]
+        mass = None
+        for row in response.bindings:
+	    try:
+                accval = str(row[acckey])
+                mwval = float(row[mwkey].split('/')[-1])
+	    except (TypeError,ValueError):
+		continue
+	    yield accval,mwval
+
     getmass_sparql = """
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
 	
@@ -147,6 +169,31 @@ class GlyTouCan(object):
 	    except (TypeError,ValueError):
 		pass
         return mass
+
+    allmonocount_sparql = """
+	PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX wurcs: <http://www.glycoinfo.org/glyco/owl/wurcs#>
+	
+	SELECT ?accession ?cnt
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id ?accession .
+   	    ?Saccharide glycan:has_glycosequence ?GlycoSequence .
+   	    ?GlycoSequence glycan:in_carbohydrate_format glycan:carbohydrate_format_wurcs . 
+	    ?GlycoSequence wurcs:RES_count ?cnt
+	}
+    """
+    def allmonocount(self):
+	response = self.query(self.allmonocount_sparql)
+        acckey = response.vars[0]
+        cntkey = response.vars[1]
+        for row in response.bindings:
+	    try:
+                accval = str(row[acckey])
+                cntval = int(row[cntkey])
+	    except (TypeError,ValueError):
+		continue
+	    yield accval,cntval
 
     getmonocount_sparql = """
 	PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
@@ -222,8 +269,6 @@ class GlyTouCan(object):
     """
     def allmotifs(self):
 	response = self.query(self.allmotif_sparql)
-        key = response.vars[0]
-        value = None
         for row in response.bindings:
 	    yield tuple(map(str,map(row.get,response.vars)))
 
@@ -383,6 +428,40 @@ class GlyTouCan(object):
 	    return None
         return value.rsplit('/',1)[1]
 
+    getrefs_sparql = """
+        PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+        PREFIX dcterms: <http://purl.org/dc/terms/>
+        
+        SELECT ?ref
+        WHERE {
+            ?Saccharide glytoucan:has_primary_id "%(accession)s" .
+            ?Saccharide dcterms:references ?ref
+        }
+    """
+    def getrefs(self,accession):
+	response = self.query(self.getrefs_sparql%dict(accession=accession))
+        key = response.vars[0]
+	refs = []
+        for row in response.bindings:
+            value = str(row[key])
+	    refs.append(str(row[key]).rsplit('/',1)[1])
+        return sorted(set(refs),key=int)
+
+    getallrefs_sparql = """
+        PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+        PREFIX dcterms: <http://purl.org/dc/terms/>
+        
+        SELECT ?acc ?ref
+        WHERE {
+            ?Saccharide glytoucan:has_primary_id ?acc .
+            ?Saccharide dcterms:references ?ref
+        }
+    """
+    def allrefs(self):
+	response = self.query(self.getallrefs_sparql)
+        for row in response.bindings:
+	    yield tuple(map(lambda s: s.rsplit('/')[-1],map(row.get,response.vars)))
+
     def register(self,glycan,user=None,apikey=None):
 	if not self.opener:
 	    self.setup_api(user=user,apikey=apikey)
@@ -510,6 +589,7 @@ if __name__ == "__main__":
 	    print "Normal Image: %s (%dx%d)"%(bool(imgstr),width,height,)
 	    imgstr,width,height = gtc.getimage(acc,style='compact')
 	    print "Compact Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	    print "References: %s"%(", ".join(gtc.getrefs(acc),))
 	    print "HasPage:",gtc.haspage(acc)
 
     elif cmd.lower() == "motifs":
@@ -517,6 +597,12 @@ if __name__ == "__main__":
 	gtc = GlyTouCan()
 	for acc,label,redend in gtc.allmotifs():
 	    print acc,label,redend
+
+    elif cmd.lower() == "references":
+
+	gtc = GlyTouCan()
+	for acc,pubmed in gtc.allrefs():
+	    print acc,pubmed
 
     else:
 	print >>sys.stderr, "Bad command: %s"%(cmd,)
