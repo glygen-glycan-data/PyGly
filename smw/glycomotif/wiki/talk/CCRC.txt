@@ -1,0 +1,43 @@
+
+Source is the linked excel spreadsheet provided by Rene.
+
+The accession is taken as the first column, with label #. 
+
+Aglycon values are provided (all except for #62), as -R, -Ser/Thr, and Cer, and the reducing end status is inferred from these values. 
+
+Also, there are a number of entries [[CCRC.000001]] for example, which appear to have multiple names, separated by commas (and the spreadsheet contains an additional unnamed column that might be considered to provide additional "name" or "subname" information). We do support multiple names per motif and could split/augment the names if appropriate. 
+
+A number of the motifs listed in the Excel spreadsheet provided by Rene cannot be registered with GlyTouCan - a list of their ids is provided below. Some have the following issue with the provided GlycoCT format sequence:
+'''
+  RES
+  1b:x-dglc-HEX-1:5
+  2s:n-acetyl
+  3b:b-dgal-HEX-1:5
+  4b:x-dglc-HEX-1:5
+  5s:n-acetyl
+  6b:b-dgal-HEX-1:5
+  7b:b-dglc-HEX-1:5
+  8s:n-acetyl
+  9b:b-dgal-HEX-1:5
+  LIN
+  1:1d(2+1)2n
+  2:1o(4+1)3d
+  3:3x(-1+-1)4x
+  4:4d(2+1)5n
+  5:4o(4+1)6d
+  6:3o(3+1)7d
+  7:7d(2+1)8n
+  8:7o(4+1)9d
+'''
+
+The issue is the "child" position as -1 specified for link 3 between residues 3 and 4. Most of the other problematic sequences have a similar issue. Its not clear why this link would be annotated in such a manner when other links are fully specified. 
+
+A complete list of motifs # with GlycoCT sequence that cannot be registered at GlyTouCan:
+
+  3, 56, 63, 123, 125.
+
+The following motif # provide no GlycoCT sequence:
+
+  8, 52, 54, 55, 61, 62, 72, 86.
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:33, 31 October 2018 (EDT)

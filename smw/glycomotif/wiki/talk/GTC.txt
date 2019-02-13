@@ -1,0 +1,25 @@
+
+GlyTouCan motifs are imported directly from the GlyTouCan triple-store using the SPARQL query:
+
+'''
+        PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+        PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+        PREFIX rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX rdf: <http://www.w3.org/2000/01/rdf-schema#>
+        
+        SELECT DISTINCT ?primary_id ?label ?redend
+        WHERE {
+            ?Saccharide glytoucan:has_primary_id ?primary_id . 
+            ?Saccharide rdfs:type glycan:glycan_motif . 
+            ?Saccharide rdf:label ?label .
+            ?Saccharide glytoucan:is_reducing_end ?redend
+        }
+'''
+
+Note that the motif "count" here is one more than shown on the GlyTouCan motifs page - there is an extra motif ([[GTC.G54161DR]]) for Heparin (other one is [[GTC.G00021MO]]). 
+
+GlyTouCan motif accessions are the GlyTouCan accessions of the structures. 
+
+GlyTouCan motifs provide a reducing end boolean for each motif, but no aglycon value(s). 
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:27, 31 October 2018 (EDT)

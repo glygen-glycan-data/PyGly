@@ -1,0 +1,4 @@
+
+GlycoEpitope motifs are periodically scraped from the GlycoEpitope site into the TSV file in the data subdirectory. Aglycon values are derived from the ("IUPAC") Sequence value, and reducing end only status inferred from the extracted aglycon. "R" indicates reducing end only false, while Ser/Thr , Asn, and Cer indicate true. No aglycon is asserted where the Sequence value does not end with an expected aglycon value, and reducing end is not set. The exceptions are mostly structures that denote repeating units - we can't do much with these at this time anyway.
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 12:06, 31 October 2018 (EDT)
