@@ -1,7 +1,7 @@
 #!/bin/env python27
 
 import itertools
-from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
+from GlycanFormatter import GlycoCTFormat, WURCS20Format
 
 class GlycanLinkEqual():
 

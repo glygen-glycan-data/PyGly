@@ -2,8 +2,8 @@
 
 import os
 import json
-from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
-from pygly.GlyTouCan import GlyTouCan
+from GlycanFormatter import GlycoCTFormat, WURCS20Format
+from GlyTouCan import GlyTouCan
 
 g = GlyTouCan()
 

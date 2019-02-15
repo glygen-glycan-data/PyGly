@@ -12,7 +12,7 @@ var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": fals
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
 
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/Hendricks27/Glycan_hierarchical_relationship_viewer@7ac51c775ccd5323bf3e1a056f01ff1ac2f0ff20/hgv.js", function () {
+    jQuery.getScript("https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/HGV/hgv.js", function () {
         syncStatus.s1 = true;
         syncAndContinue();
     });

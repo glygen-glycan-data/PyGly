@@ -681,8 +681,8 @@ class IUPACParserAbstract():
             raise IUPACSkippedMonosaccharide
         return glycanObj
 
-    def monoNumCheck(seq):
-        possibleTriletter = "Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO"
+    def monoNumCheck(self, seq):
+        possibleTriletter = "Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO|Neu"
         possibleTriletter = possibleTriletter.lower()
         ptl = possibleTriletter.split("|")
         s = seq.lower()
@@ -793,7 +793,7 @@ class IUPACParserExtended1(IUPACParserAbstract):
     description = "UniCarb IUPAC string"
     example = "D-Neu5Ac(a2-3)[HSO3(-3)]D-Gal(b1-3)D-GalNAc(b1-4)[D-Neu5Ac(a2-8)D-Neu5Ac(a2-3)]D-Gal(b1-4)D-Glc(b1-1)Cer"
     alias = "IUPACExtended1:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido)([a-zA-Z5926,]+)?)(?P<link>(\([ab]([1-9](/[1-9])*)-([1-9])?(/[1-9])*\)))?(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<bpe>(\[)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN)([a-zA-Z5926,]+)?)(?P<link>(\([ab]([1-9](/[1-9])*)-([1-9])?(/[1-9])*\)))?(?P<bps>(\])*)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
