@@ -361,11 +361,14 @@ class SMWClass(object):
 
     def toPython(self,data):
         for k in list(data.keys()):
-            if data.get(k) in (None,"",[]):
+            if data.get(k) in (None,[]):
                 del data[k]
                 continue
             if isinstance(data[k],basestring):
                 data[k] = self.smwunescape(data[k])
+		if not data[k]:
+		    del data[k]
+		    continue
 	return data
 
     def toTemplate(self,data):
