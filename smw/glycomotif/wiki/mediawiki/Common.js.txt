@@ -11,7 +11,7 @@ var topologyComponents, redonlyComponents, nonredonlyComponents;
 var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": false, "c3": false, "p": false};
 function injectEssentialElementForTheViewer(){
     /* Inject the 3 script and the style sheet into each page */
-
+    jQuery.ajaxSetup({cache: true});
     jQuery.getScript("https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/HGV/hgv.js", function () {
         syncStatus.s1 = true;
         syncAndContinue();
