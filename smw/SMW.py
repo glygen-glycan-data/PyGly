@@ -30,7 +30,7 @@ class SMWSite(object):
 
 	self.template2class = {}
 	for clsname,cls in inspect.getmembers(sys.modules[self.__class__.__module__], inspect.isclass):
-	    if hasattr(cls,'template'):
+            if 'template' in cls.__dict__:
 		self.template2class[cls.template] = cls
         if not kwargs.get('quiet',False):
 	    print >>sys.stderr, "Connected to %s"%(self.title())
