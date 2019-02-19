@@ -14,6 +14,7 @@ set -x
 # ./dlglycoepitope.py > ../data/glycoepitope.txt
 ./loadglycoepimotif.py ../data/glycoepitope.txt
 ./loadglydinmotif.py ../data/epitopes.xlsx
+./loadunicarbmotif.py ../data/Unicarb.xlsx
 ./loadallmotif.py
 ./addsameas.py
 # ./refresh.py
