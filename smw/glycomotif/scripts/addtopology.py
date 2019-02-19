@@ -8,7 +8,7 @@ AllMotifpageid = AllMotif.id
 from glycancomparison import GlycanTopologySameAs
 gtsa = GlycanTopologySameAs()
 
-from GlycanFormatter import GlycoCTFormat, WURCS20Format
+from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 wurcs_parser = WURCS20Format()
 glycoct_parser = GlycoCTFormat()
 
