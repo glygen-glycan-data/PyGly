@@ -1,0 +1,16 @@
+<includeonly>
+<table class="wikitable sortable smwtable">
+<tr>
+<th></th>
+<th>R.T.</th>
+<th>Norm. R.T.</th>
+<th>Prec. m/z</th>
+<th>Prec. z</th>
+<th>Prod. m/z</th>
+<th>Prod. z</th>
+<th>Label</th>
+<th>%Int</th>
+</tr>
+{{#arraymap:{{{3}}}|,|xxx|{{TransitionGroupTableRow|{{{1}}}|{{{2}}}|{{#explode:xxx|;|0}}|{{#explode:xxx|;|1}}}}|}}
+</table>
+</includeonly>

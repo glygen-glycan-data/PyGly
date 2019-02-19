@@ -1,0 +1,4 @@
+[[Imported from::gptwiki:hastransition]] 
+{{DISPLAYTITLE:gptwiki:hastransition}}
+[[Has fields::Property:gptwiki:transition;Property:gptwiki:relintensity]]
+[[Category:Imported vocabulary]]

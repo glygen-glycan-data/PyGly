@@ -1,0 +1,7 @@
+Methods for Orbitrap Fusion data-dependent collection of soft HCD fragmentation spectra plus glycopeptide identification spectra (EThcD) of the same precursor triggered by glycan oxonium ions the HCD spectrum. Chromatography and HCD glycopeptide fragmentation is expected to be consistent with GlycoSWATH quantitation workflows. 
+
+== Chromatography ==
+
+== Mass Spectrometry ==
+
+{{Method|Orbitrap Fusion, DDA HCD+EThcD}}

@@ -1,0 +1,47 @@
+<noinclude>
+This is the "Glycan" template.
+It should be called in the following format:
+<pre>
+{{Glycan
+|accession=
+|name=
+|mw=
+|class=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
+{| class="wikitable" style="width=100%" 
+!
+| <p align="center"><img
+src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
+|-
+! style="width=200px" | Name(s)
+| style="width=100%" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
+|-
+! style="width=200px" | Molecular Weight
+| style="width=100%" | [[gptwiki:mw::{{{mw|}}}]]
+|-
+! style="width=200px" | Class(es)
+| style="width=100%" | {{#arraymap:{{{class|}}}|,|x|[[gptwiki:class::x]]}}
+|-
+! style="width=200px" | GlyTouCan
+| style="width=100%" |
+[https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
+|}
+
+== Peptides ==
+
+{{#ask:
+[[Category:Peptide]]
+[[gptwiki:hasglycan::{{PAGENAME}};?]]
+|?gptwiki:name=Peptide
+|?gptwiki:mw #-p3 =Mol. Wt.
+|?gptwiki:hasprotein=Protein
+|?gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:transitioncount=Transitions
+}}
+
+{{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}
+[[Category:Glycan]]
+</includeonly>

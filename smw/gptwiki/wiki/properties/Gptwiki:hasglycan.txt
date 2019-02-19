@@ -1,0 +1,4 @@
+[[Imported from::gptwiki:hasglycan]] 
+{{DISPLAYTITLE:gptwiki:hasglycan}}
+[[Has fields::Property:gptwiki:glycan;Property:gptwiki:site]]
+[[Category:Imported vocabulary]]

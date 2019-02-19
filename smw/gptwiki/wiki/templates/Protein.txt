@@ -1,0 +1,42 @@
+<noinclude>
+This is the "Protein" template.
+It should be called in the following format:
+<pre>
+{{Protein
+|accession=
+|description=
+|gene=
+|species=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession|}}}}}
+{| class="wikitable" style="width=100%" 
+! style="width=200px" | Description
+| style="width=100%" | {{{description|}}}
+|-
+! style="width=200px" | Gene
+| style="width=100%" | [[gptwiki:gene::{{{gene|}}}]]
+|-
+! style="width=200px" | Species
+| style="width=100%" | [[gptwiki:species::{{{species|}}}]]
+|-
+! style="width=200px" | UniProt
+| style="width=100%" | [https://www.uniprot.org/uniprot/{{{accession}}} {{{accession}}}]
+|}
+
+== Peptides ==
+
+{{#ask:
+[[Category:Peptide]]
+[[gptwiki:hasprotein::{{PAGENAME}}]]
+|?gptwiki:name=Peptide
+|?gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:transitioncount=Transitions
+|sep=,&ensp;
+|header=plain
+}}
+
+{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Peptide]][[gptwiki:hasprotein::{{PAGENAME}}]]|format=count}}}}
+[[Category:Protein]]
+</includeonly>

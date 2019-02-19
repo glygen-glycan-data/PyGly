@@ -1,0 +1,4 @@
+<includeonly>{{DISPLAYTITLE:{{{1}}}}}{{#set:
+|gptwiki:name={{{1}}}
+|gptwiki:id={{PAGENAME}}
+}}[[Category:Method]]</includeonly>

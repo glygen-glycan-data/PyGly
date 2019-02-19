@@ -1,0 +1,4 @@
+[[Imported from::gptwiki:hasalignment]] 
+{{DISPLAYTITLE:gptwiki:hasalignment}}
+[[Has fields::Property:gptwiki:hasprotein;Property:gptwiki:alignstart;Property:gptwiki:alignend]]
+[[Category:Imported vocabulary]]

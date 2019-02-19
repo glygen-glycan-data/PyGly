@@ -1,0 +1,4 @@
+[[Imported from::gptwiki:scan]] 
+{{DISPLAYTITLE:gptwiki:scan}}
+[[Has fields::Property:gptwiki:scannumber;Property:gptwiki:scanmode]]
+[[Category:Imported vocabulary]]

@@ -1,0 +1,4 @@
+[[Imported from::gptwiki:hasmod]] 
+{{DISPLAYTITLE:gptwiki:hasmod}}
+[[Has fields::Property:gptwiki:mw;Property:gptwiki:site]]
+[[Category:Imported vocabulary]]

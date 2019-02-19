@@ -1,0 +1,2 @@
+[[Imported from::gptwiki:Peptide]] 
+{{#default_form:Peptide}}

@@ -1,0 +1,23 @@
+
+== Proteins ==
+{{#ask:
+[[Category:Protein]]
+|?gptwiki:gene=Gene
+|?gptwiki:description=Description
+|?gptwiki:species=Species
+|?gptwiki:peptidecount=Peptides
+|format=broadtable
+|headers=plain
+}}
+
+== Peptides ==
+{{#ask:
+[[Category:Peptide]]
+|?gptwiki:name=Peptide
+|?gptwiki:mw #-p3 =Mol. Wt. 
+|?gptwiki:hasprotein=Protein(s)
+|?gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:transitioncount=Transitions
+|format=broadtable
+|headers=plain
+}}

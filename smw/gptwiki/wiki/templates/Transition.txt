@@ -1,0 +1,46 @@
+<noinclude>
+This is the "Transition" template.
+It should be called in the following format:
+<pre>
+{{Transition
+|id=
+|mz1=
+|z1=
+|mz2=
+|z2=
+|label=
+|peptide=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{id|}}}}}
+{| class="wikitable" style="width=100%" 
+! Peptide
+| {{NameWithLink|{{{peptide|}}}}}
+|-
+! Prec. m/z
+| [[gptwiki:mz1::{{{mz1|}}}]]
+|-
+! Prec. z
+| [[gptwiki:z1::{{{z1|}}}]]+
+|-
+! Prod. m/z
+| [[gptwiki:mz2::{{{mz2|}}}]]
+|-
+! Prod. z
+| [[gptwiki:z2::{{{z2|}}}]]+
+|-
+! Label
+| {{{label|}}}
+|-
+! Trans. Group(s)
+| {{#ask:[[Category:TransitionGroup]][[gptwiki:hastransition::{{PAGENAME}};?]]}}
+|}
+
+{{#set:
+|gptwiki:label={{{label|}}}
+|gptwiki:id={{PAGENAME}}
+|gptwiki:forpeptide={{{peptide|}}}
+|gptwiki:transgroupcount={{#ask:[[Category:TransitionGroup]][[gptwiki:hastransition::{{PAGENAME}};?]]|format=count}}
+}}[[Category:Transition]]
+</includeonly>

@@ -1,0 +1,50 @@
+<noinclude>
+This is the "TransitionGroup" template.
+It should be called in the following format:
+<pre>
+{{TransitionGroup
+|id=
+|method=
+|mz1=
+|nrt=
+|peptide=
+|rt=
+|scans=
+|spectra=
+|transitions=
+|z1=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{id|}}}}}
+{| class="wikitable" style="width=100%" 
+! Peptide
+| {{NameWithLink|{{{peptide|}}}}}
+|-
+! Spectrum File
+| {{{spectra|}}}
+|-
+! Method
+| {{LinkedName|{{{method|}}}}}
+|}
+
+== Transitions ==
+
+{{TransitionGroupTable|{{{rt|}}}|{{{nrt|}}}|{{{transitions|}}}}}
+== Spectra ==
+
+{{#arraymap:{{{scans|}}}|,|x|x|<br/>}}
+
+{{#set:
+|gptwiki:formethod={{{method|}}}
+|gptwiki:spectra={{{spectra|}}}
+|gptwiki:nrt={{{nrt|}}}
+|gptwiki:rt={{{rt|}}}
+|gptwiki:mz1={{{mz1|}}}
+|gptwiki:z1={{{z1|}}}
+|gptwiki:forpeptide={{{peptide|}}}
+|gptwiki:id={{PAGENAME}}
+|gptwiki:transitioncount={{#ask:[[Category:Transition]][[-gptwiki:transition::{{PAGENAME}}]]|format=count}}
+}}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}
+[[Category:TransitionGroup]]
+</includeonly>
