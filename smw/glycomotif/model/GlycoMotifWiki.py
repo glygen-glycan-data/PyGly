@@ -3,7 +3,8 @@ __all__ = [ "GlycoMotifWiki", "Collection", "Motif",
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
-            "GlydinSugarbindMotif", "GlydinBioligoMotif"]
+            "GlydinSugarbindMotif", "GlydinBioligoMotif",
+            "UniCarbMotif"]
 
 import sys
 
@@ -170,6 +171,9 @@ class GlydinSugarbindMotif(CCRCMotif):
 
 class GlydinBioligoMotif(CCRCMotif):
     id = 'GDB'
+
+class UniCarbMotif(CCRCMotif):
+    id = 'UCM'
 
 class GlycoMotifWiki(SMW.SMWSite):
     _name = 'glycomotif'
