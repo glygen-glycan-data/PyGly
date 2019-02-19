@@ -2,6 +2,7 @@
 
 import os
 import json
+import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlyTouCan import GlyTouCan
 
@@ -207,7 +208,8 @@ for acc in glycanobj.keys():
 
 
 f1 = open("topology.json", "w")
-jsonstr = json.dumps(jsondata) + '\n'
+# Make the JSON dump more predictable...
+jsonstr = json.dumps(jsondata, sort_keys=True, indent=2, separators=(',', ': ')) + '\n'
 f1.write(jsonstr)
 f1.close()
 

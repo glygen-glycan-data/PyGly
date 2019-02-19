@@ -18,7 +18,7 @@ for m,l,re in sorted(gtc.allmotifs()):
     motif = GlyTouCanMotif(accession=m,name=l,redend=re,
 			   wurcs = gtccache.gtc2wurcs(m),
 			   glycoct = gtccache.gtc2glycoct(m))
-    if w.put(motif):
+    if w.update(motif):
 	print >>sys.stderr, m
     current.add(m)
 

@@ -68,7 +68,7 @@ for r in rows:
                     glycoct=glycoct, wurcs=wurcs)
     if not motif.get('glycoct'):
         motif.set('glycoct', glycoct)
-    if w.put(motif):
+    if w.update(motif):
         print >> sys.stderr, accession
     current.add(accession)
 

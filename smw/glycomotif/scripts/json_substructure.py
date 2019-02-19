@@ -2,6 +2,7 @@
 
 import os, sys
 import json
+import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlyTouCan import GlyTouCan
 
@@ -310,7 +311,7 @@ for gacc, gobj in glycanobj.items():
     json_data[gacc] = viewerdatagenerater(data)
 
 f2 = open("nonredonly.json", "w")
-jsonstr = json.dumps(json_data) + '\n\n\n\n\n\n'
+jsonstr = json.dumps(json_data, sort_keys=True, indent=2, separators=(',', ': ')) + '\n\n\n\n\n\n'
 f2.write(jsonstr)
 f2.close()
 

@@ -1,6 +1,7 @@
 #!/bin/env python27
 
 import itertools
+import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 
 class GlycanLinkEqual():
@@ -216,10 +217,32 @@ class MonosaccharideTopologySameAs(MonosaccharideEqual):
 
         return True
 
+class  RootMonosaccharideTopologySameAs(MonosaccharideTopologySameAs):
+
+    def get(self, m1, m2):
+        if m1._config != m2._config:
+            return False
+        if m1._stem != m2._stem:
+            return False
+        if m1._superclass != m2._superclass:
+            return False
+        # if m1._ring_start != None and m2._ring_start != None and m1._ring_start != m2._ring_start:
+        #     return False
+        # if m1._ring_end != None and m2._ring_end != None and m1._ring_end != m2._ring_end:
+        #     return False
+        if m1._mods != m2._mods:
+            return False
+
+        if not self.subCheck.get(m1, m2):
+            return False
+
+        return True
+
 class GlycanEqual():
     
     linkCheck = GlycanLinkEqual()
     monoCheck = MonosaccharideEqual()
+    rootMonoCheck = MonosaccharideEqual()
     
     def __init__(self):
         pass
@@ -227,12 +250,12 @@ class GlycanEqual():
     def get(self,g1,g2):
         r1 = g1.root()
         r2 = g2.root()
-        return self.recursiveComparison(r1,r2)
+        return self.recursiveComparison(r1,r2,root=True)
     
-    def recursiveComparison(self, r1, r2):
+    def recursiveComparison(self, r1, r2,root=False):
         links1 = list(r1.links())
         links2 = list(r2.links())
-        if self.monoCheck.get(r1, r2) and (len(links1) == len(links2)):
+        if ((root and self.rootMonoCheck.get(r1,r2)) or (not root and self.monoCheck.get(r1, r2))) and (len(links1) == len(links2)):
             if len(links1) == 0:
                 return True
             else:
@@ -255,12 +278,14 @@ class GlycanCompatibleOneway(GlycanEqual):
     
     linkCheck = GlycanLinkCompatibleOneway()
     monoCheck = MonosaccharideCompatibleOneway()
+    rootMonoCheck = MonosaccharideCompatibleOneway()
 
 
 class GlycanCompatibleEitherway(GlycanEqual):
 
     linkCheck = GlycanLinkCompatibleEitherway()
     monoCheck = MonosaccharideCompatibleEitherway()
+    rootMonoCheck = MonosaccharideCompatibleEitherway()
 
 
 
@@ -270,6 +295,7 @@ class GlycanTopologySameAs(GlycanEqual):
     
     linkCheck = GlycanLinkTopologicalSameAs()
     monoCheck = MonosaccharideTopologySameAs()
+    rootMonoCheck = RootMonosaccharideTopologySameAs()
 
 
 

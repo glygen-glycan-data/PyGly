@@ -27,7 +27,7 @@ for r in csv.DictReader(open(sys.argv[1]),dialect='excel-tab'):
     wurcs=gtccache.gtc2wurcs(r['glytoucan'])
     glycoct=gtccache.gtc2glycoct(r['glytoucan'])
     motif = GlycoEpitopeMotif(accession=r['acc'],name=r['name'],glytoucan=r['glytoucan'],redend=redend,aglycon=aglycon,wurcs=wurcs,glycoct=glycoct)
-    if w.put(motif):
+    if w.update(motif):
 	print >>sys.stderr, r['acc']
     current.add(r['acc'])
 

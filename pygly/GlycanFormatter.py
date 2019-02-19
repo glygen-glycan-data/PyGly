@@ -191,7 +191,7 @@ class GlycoCTFormat(GlycanFormatter):
 		try:
                     m = self.monofmt.fromStr(l)
 		except RuntimeError, e:
-		    raise GycoCTBadRESLineError(message=e.message,lineno=lineno+1,line=l)
+		    raise GycoCTBadRESLineError(message=e.args[0],lineno=lineno+1,line=l)
                 res[m.id()] = m
 		if state == "UNDRES" and undind != None and 'root' not in und[undind]:
 		    und[undind]['root'] = m.id()

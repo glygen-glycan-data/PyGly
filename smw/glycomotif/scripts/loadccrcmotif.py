@@ -74,7 +74,7 @@ for r in rows:
     motif = CCRCMotif(accession=accession,name=name,glytoucan=glytoucan,redend=redend,aglycon=aglycon,glycoct=glycoct1,wurcs=wurcs)
     if not motif.get('glycoct'):
         motif.set('glycoct',glycoct)
-    if w.put(motif):
+    if w.update(motif):
 	print >>sys.stderr, accession
     current.add(accession)
 

@@ -26,7 +26,7 @@ for m in w.itermotif():
     if not seq:
         continue
     print glytoucan
-    # fn = os.path.join(dir,glytoucan+'.txt')
-    # wh = open(fn,'w')
-    # wh.write(seq.strip()+"\n")
-    # wh.close()
+    fn = os.path.join(dir,glytoucan+'.txt')
+    wh = open(fn,'w')
+    wh.write(seq.strip()+"\n")
+    wh.close()

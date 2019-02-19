@@ -5,7 +5,7 @@ w = GlycoMotifWiki()
 import os
 fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/brokenimage.txt")
 
-brokenImage = open(fpath).read().strip().split("\n")
+brokenImage = open(fpath).read().split()
 
 for m in w.itermotif():
     if m.get("collection") == "GM" and m.get("glytoucan") not in brokenImage:

@@ -90,7 +90,7 @@ for m in w.itermotif():
         equivalent = AllMotifpageid + "." + gtcid
         equivalents = [ equivalent ]
         m.set("topology", equivalents)
-        w.put(m)
+        w.update(m)
         print "Singleton %s" % m.get("id")
         continue
 
@@ -104,4 +104,4 @@ for m in w.itermotif():
 
     print m.get("id")
     m.set("topology", equivalents)
-    w.put(m)
+    w.update(m)

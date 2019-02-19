@@ -120,7 +120,7 @@ for r in rows:
     # if GlyTouCan did not provide the GlycoCT, use ours...
     if not motif.get('glycoct'):
 	motif.set('glycoct',gtcid2glycoct[gtcid])
-    if w.put(motif):
+    if w.update(motif):
         print >>sys.stderr, "Glydin:", accession
     current.add(accession)
 
@@ -174,7 +174,7 @@ for singleletter in classnames2.keys():
 	# if GlyTouCan did not provide the GlycoCT, use ours...
         if not motif.get('glycoct'):
 	    motif.set('glycoct',gtcid2glycoct[glytoucan])
-        if w.put(motif):
+        if w.update(motif):
             print >>sys.stderr, accession
         current.add(accession)
 

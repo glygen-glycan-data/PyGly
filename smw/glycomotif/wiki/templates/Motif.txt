@@ -19,7 +19,7 @@ Edit the page to see the template text.
 <h2 style="display: none;">Summary</h2>
 <div sytle="position: relative;">
 	<img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{{glytoucan|}}}.png" style="display: block; margin-left: auto; margin-right: auto;">
-        {{#ifeq:{{{displayhgv|}}}|True|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}
+        {{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}
 </div><br>
 {| class="wikitable" style="width:100%"
 ! style="width:200px" | ID
@@ -64,7 +64,7 @@ Edit the page to see the template text.
 
 [http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Fproperty+%3Fvalue%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%22{{{accession|}}}%22+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22{{{collection}}}%22+.%0A++%3Fmotif+%3Fproperty+%3Fvalue%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2Fglycomotifdev%2Fquery&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table Try Me!]
 
-{{#ifeq:{{{displayhgv|}}}|True|
+{{#ifeq:{{{displayhgv|}}}|true|
 <div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
 == Topology Cluster ==
 <div id="hgv_topology"></div>

@@ -11,6 +11,7 @@ for m in w.itermotif():
         gtc = m.get('glytoucan')
         gtc2motif[gtc].append(m)
 
+current = set()
 for gtc,motiflist in sorted(gtc2motif.iteritems()):
     names = []
     redend = set()
@@ -29,5 +30,11 @@ for gtc,motiflist in sorted(gtc2motif.iteritems()):
     if len(aglycon) == 0:
 	aglycon = None
     motif = AllMotif(accession=gtc,name=names,redend=redend,aglycon=aglycon)
-    if w.put(motif):
-	print gtc
+    current.add(gtc)
+    if w.update(motif):
+	print >>sys.stderr, gtc
+
+for m in w.itermotif(collection=AllMotif):
+    if m.get('accession') not in current:
+        print >>sys.stderr, "Deleting:",m.get('pagename')
+        w.delete(m.get('pagename'))
