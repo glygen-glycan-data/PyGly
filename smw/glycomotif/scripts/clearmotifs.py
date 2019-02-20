@@ -4,5 +4,7 @@ from getwiki import GlycoMotifWiki
 import sys
 
 w = GlycoMotifWiki()
-w.deletemany(category='Motif',verbose=True)
-
+if len(sys.argv) > 1:
+    w.deletemany(regex=sys.argv[1],verbose=True)
+else:
+    w.deletemany(category='Motif')
