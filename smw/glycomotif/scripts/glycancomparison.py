@@ -150,15 +150,15 @@ class MonosaccharideCompatibleOneway(MonosaccharideEqual):
     def get(self, m1, m2):
         if (m1._anomer) and m1._anomer != m2._anomer:
             return False
-        if m1._config != m2._config:
+        if m1._config != None and m1._config != m2._config:
             return False
         if m1._stem != m2._stem:
             return False
         if m1._superclass != m2._superclass:
             return False
-        if m1._ring_start != m2._ring_start:
+        if m1._ring_start != None and m1._ring_start != m2._ring_start:
             return False
-        if m1._ring_end != m2._ring_end:
+        if m1._ring_end != None and m1._ring_end != m2._ring_end:
             return False
         if m1._mods != m2._mods:
             return False

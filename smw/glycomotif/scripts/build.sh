@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # Specify whether to work with PROD or DEV
-SMWENV="TEST"
+# SMWENV="TEST"
 # SMWENV="PROD"
+SMWENV="DEV"
 export SMWENV
 
 set -x
 ./loadsite.py ../wiki
-# ./clearmotifs.py
 ./makecoll.py
 ./loadgtcmotif.py
 ./loadccrcmotif.py ../data/MotifsMP2.xlsx
@@ -17,4 +17,11 @@ set -x
 ./loadunicarbmotif.py ../data/Unicarb.xlsx
 ./loadallmotif.py
 ./addsameas.py
-# ./refresh.py
+rm -rf ./dumps
+./dumpallseq.py
+./json_substructure.py
+./json_topology.py
+./loadwidgetbool.py
+./addtopology.py
+./refresh.sh
+./refresh.sh -
