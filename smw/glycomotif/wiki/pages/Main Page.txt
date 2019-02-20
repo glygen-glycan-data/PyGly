@@ -26,7 +26,10 @@ associations.
 |sort=glycomotif:name
 }}
 
-See also the [[Multi-Instance Motifs|multi-instance motifs]] and the [[Motif-Instance Frequency|frequency of motifs]] with with specific number of instances or collections. 
+See also:
+* [[Multi-Instance Motifs|multi-instance motifs]]
+* [[Motif-Instance Frequency|frequency of motifs]] by instances or collections
+* [[Topology Clusters by Size|topology clusters by size]]
 
 == Triple Store ==
 
