@@ -8,4 +8,5 @@
 {{CollectionFrequencyRow|6}}
 {{CollectionFrequencyRow|7}}
 {{CollectionFrequencyRow|8}}
+{{CollectionFrequencyRow|9}}
 |}</includeonly>

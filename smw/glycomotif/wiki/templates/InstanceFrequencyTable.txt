@@ -11,4 +11,5 @@
 {{InstanceFrequencyRow|9}}
 {{InstanceFrequencyRow|10}}
 {{InstanceFrequencyRow|11}}
+{{InstanceFrequencyRow|12}}
 |}</includeonly>
