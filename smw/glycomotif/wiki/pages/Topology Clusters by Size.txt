@@ -1,0 +1,9 @@
+
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GM]]
+[[glycomotif:topologycount::>2]]
+|?glycomotif:topologycount = Cluster Size
+|sort=glycomotif:topologycount
+|order=desc
+}}
