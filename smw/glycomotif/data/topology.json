@@ -2708,72 +2708,6 @@
     },
     "root": "Topology"
   },
-  "G07169WN": {
-    "edges": {
-      "G07169WN": [
-        {
-          "from": "G07169WN",
-          "to": "G60011XD",
-          "type": "contains"
-        },
-        {
-          "from": "G07169WN",
-          "to": "G72548RZ",
-          "type": "contains"
-        }
-      ],
-      "G40843KY": [
-        {
-          "from": "G40843KY",
-          "to": "G72548RZ",
-          "type": "contains"
-        }
-      ],
-      "Topology": [
-        {
-          "from": "Topology",
-          "to": "G07169WN",
-          "type": "contains"
-        },
-        {
-          "from": "Topology",
-          "to": "G40843KY",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "Topology",
-    "nodes": {
-      "G07169WN": {
-        "level": 0,
-        "name": "G07169WN",
-        "type": "Whatever"
-      },
-      "G40843KY": {
-        "level": 0,
-        "name": "G40843KY",
-        "type": "Whatever"
-      },
-      "G60011XD": {
-        "level": 0,
-        "name": "G60011XD",
-        "type": "Whatever"
-      },
-      "G72548RZ": {
-        "level": 0,
-        "name": "G72548RZ",
-        "type": "Whatever"
-      },
-      "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G07169WN/image?style=compact&format=png&notation=cfg",
-        "level": 0,
-        "name": "Topology",
-        "type": "Whatever"
-      }
-    },
-    "root": "Topology"
-  },
   "G07394RV": {
     "edges": {
       "Topology": [
@@ -4541,6 +4475,45 @@
       },
       "Topology": {
         "alternativeImageURL": "https://glytoucan.org/glycans/G17927IW/image?style=compact&format=png&notation=cfg",
+        "level": 0,
+        "name": "Topology",
+        "type": "Whatever"
+      }
+    },
+    "root": "Topology"
+  },
+  "G17931GP": {
+    "edges": {
+      "G17931GP": [
+        {
+          "from": "G17931GP",
+          "to": "G39294YF",
+          "type": "contains"
+        }
+      ],
+      "Topology": [
+        {
+          "from": "Topology",
+          "to": "G17931GP",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "Topology",
+    "nodes": {
+      "G17931GP": {
+        "level": 0,
+        "name": "G17931GP",
+        "type": "Whatever"
+      },
+      "G39294YF": {
+        "level": 0,
+        "name": "G39294YF",
+        "type": "Whatever"
+      },
+      "Topology": {
+        "alternativeImageURL": "https://glytoucan.org/glycans/G39294YF/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -7115,45 +7088,6 @@
     },
     "root": "Topology"
   },
-  "G39294YF": {
-    "edges": {
-      "G39294YF": [
-        {
-          "from": "G39294YF",
-          "to": "G17931GP",
-          "type": "contains"
-        }
-      ],
-      "Topology": [
-        {
-          "from": "Topology",
-          "to": "G39294YF",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "Topology",
-    "nodes": {
-      "G17931GP": {
-        "level": 0,
-        "name": "G17931GP",
-        "type": "Whatever"
-      },
-      "G39294YF": {
-        "level": 0,
-        "name": "G39294YF",
-        "type": "Whatever"
-      },
-      "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G39294YF/image?style=compact&format=png&notation=cfg",
-        "level": 0,
-        "name": "Topology",
-        "type": "Whatever"
-      }
-    },
-    "root": "Topology"
-  },
   "G40192EJ": {
     "edges": {
       "Topology": [
@@ -7184,6 +7118,86 @@
       },
       "Topology": {
         "alternativeImageURL": "https://glytoucan.org/glycans/G40192EJ/image?style=compact&format=png&notation=cfg",
+        "level": 0,
+        "name": "Topology",
+        "type": "Whatever"
+      }
+    },
+    "root": "Topology"
+  },
+  "G40843KY": {
+    "edges": {
+      "G07169WN": [
+        {
+          "from": "G07169WN",
+          "to": "G60011XD",
+          "type": "contains"
+        },
+        {
+          "from": "G07169WN",
+          "to": "G72548RZ",
+          "type": "contains"
+        }
+      ],
+      "G40843KY": [
+        {
+          "from": "G40843KY",
+          "to": "G07169WN",
+          "type": "contains"
+        },
+        {
+          "from": "G40843KY",
+          "to": "G72548RZ",
+          "type": "contains"
+        }
+      ],
+      "G60011XD": [
+        {
+          "from": "G60011XD",
+          "to": "G07169WN",
+          "type": "contains"
+        }
+      ],
+      "G72548RZ": [
+        {
+          "from": "G72548RZ",
+          "to": "G07169WN",
+          "type": "contains"
+        }
+      ],
+      "Topology": [
+        {
+          "from": "Topology",
+          "to": "G40843KY",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "Topology",
+    "nodes": {
+      "G07169WN": {
+        "level": 0,
+        "name": "G07169WN",
+        "type": "Whatever"
+      },
+      "G40843KY": {
+        "level": 0,
+        "name": "G40843KY",
+        "type": "Whatever"
+      },
+      "G60011XD": {
+        "level": 0,
+        "name": "G60011XD",
+        "type": "Whatever"
+      },
+      "G72548RZ": {
+        "level": 0,
+        "name": "G72548RZ",
+        "type": "Whatever"
+      },
+      "Topology": {
+        "alternativeImageURL": "https://glytoucan.org/glycans/G07169WN/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -9302,6 +9316,18 @@
           "from": "G59736KH",
           "to": "G96596OC",
           "type": "contains"
+        },
+        {
+          "from": "G59736KH",
+          "to": "G96614JE",
+          "type": "contains"
+        }
+      ],
+      "G96596OC": [
+        {
+          "from": "G96596OC",
+          "to": "G96614JE",
+          "type": "contains"
         }
       ],
       "G96614JE": [
@@ -9315,11 +9341,6 @@
         {
           "from": "Topology",
           "to": "G59736KH",
-          "type": "contains"
-        },
-        {
-          "from": "Topology",
-          "to": "G96614JE",
           "type": "contains"
         }
       ]

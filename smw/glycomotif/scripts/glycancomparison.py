@@ -39,7 +39,7 @@ class GlycanLinkCompatibleOneway():
             pp1 = set()
         if pp2 == None:
             pp2 = set()
-        if len(pp1) == 0 or (pp1 <= pp2):
+        if len(pp1) == 0 or (pp2 <= pp1):
             return True
         return False
 
