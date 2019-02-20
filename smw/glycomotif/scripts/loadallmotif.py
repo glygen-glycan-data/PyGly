@@ -1,6 +1,7 @@
 #!/bin/env python27
 
 from collections import defaultdict
+import sys
 
 from getwiki import GlycoMotifWiki, AllMotif
 w = GlycoMotifWiki()

@@ -564,8 +564,12 @@ if __name__ == "__main__":
     elif cmd.lower() in ("image",):
 
         gtc = GlyTouCan()
+	fmt = "extended"
 	for acc in items():
-	    imgstr,width,height = gtc.getimage(acc,trials=5)
+	    if acc in ("extended","compact","normal"):
+		fmt = acc
+		continue
+	    imgstr,width,height = gtc.getimage(acc,style=fmt,trials=5)
 	    if imgstr:
 	        print acc,width,height
 	        wh = open(acc+".png",'w')
@@ -584,11 +588,20 @@ if __name__ == "__main__":
 	    print "Composition:",gtc.getcomp(acc)
 	    print "Topology:",gtc.gettopo(acc)
 	    imgstr,width,height = gtc.getimage(acc,style='extended')
-	    print "Extended Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	    if not imgstr:
+	        print "Extended Image: None"
+	    else:
+	        print "Extended Image: %s (%dx%d)"%(bool(imgstr),width,height,)
 	    imgstr,width,height = gtc.getimage(acc,style='normal')
-	    print "Normal Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	    if not imgstr:
+	        print "Normal Image: None"
+	    else:
+	        print "Normal Image: %s (%dx%d)"%(bool(imgstr),width,height,)
 	    imgstr,width,height = gtc.getimage(acc,style='compact')
-	    print "Compact Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	    if not imgstr:
+	        print "Compacct Image: None"
+	    else:
+	        print "Compact Image: %s (%dx%d)"%(bool(imgstr),width,height,)
 	    print "References: %s"%(", ".join(gtc.getrefs(acc),))
 	    print "HasPage:",gtc.haspage(acc)
 

@@ -70,7 +70,7 @@ w.put(Collection(id=GlydinBioligoMotif.id,
                  url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx"))
 current.add(GlydinBioligoMotif.id)
 w.put(Collection(id=UniCarbMotif.id,
-                 name="UniCarb Motifs",
+                 name="UniCarbKB Motifs",
                  contact="Matthew Campbell",
                  email="m.campbell2@griffith.edu.au",
                  url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/Unicarb.xlsx"))
