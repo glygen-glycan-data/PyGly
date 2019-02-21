@@ -1,0 +1,8 @@
+<includeonly>{{#ask:
+[[Category:Motif]]
+[[-glycomotif:topology::{{{1}}}]]
+|sort=
+|link=none
+|limit=1
+|searchlabel=
+}}</includeonly>

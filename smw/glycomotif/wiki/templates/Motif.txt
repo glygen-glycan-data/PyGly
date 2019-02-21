@@ -75,6 +75,6 @@ Edit the page to see the template text.
 |
 }}
 
-{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}|}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{DONOTEDIT}}
+{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}|}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{DONOTEDIT}}
 [[Category:Motif]]
 </includeonly>

@@ -19,6 +19,7 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  primary|Type:Boolean
  topology|Type:Page
  topologycount|Type:Number
+ topologyrepr|Type:Boolean
  displayhgv|Type:Boolean
 
 [[Category:Imported vocabulary]]
