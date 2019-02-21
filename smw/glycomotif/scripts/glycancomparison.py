@@ -306,20 +306,21 @@ class MotifSearchStrict():
 
     linkCheck = GlycanLinkEqual()
     monoCheck = MonosaccharideEqual()
+    rootMonoCheck = MonosaccharideEqual()
     
     def get(self, m, g, reonly = False):
         motif_root = m.root()
         allNodes = g.all_nodes()
         
         for node in allNodes:
-            if self.recursiveComparison(motif_root, node):
+            if self.recursiveComparison(motif_root, node, root=True):
                 return True
         return False
     
-    def recursiveComparison(self, motif_root, gq_node):
+    def recursiveComparison(self, motif_root, gq_node, root=False):
         links1 = list(motif_root.links())
         links2 = list(gq_node.links())
-        if self.monoCheck.get(motif_root, gq_node) and (len(links1) <= len(links2)):
+        if ((root and self.rootMonoCheck.get(motif_root,gq_node)) or (not root and self.monoCheck.get(motif_root, gq_node))) and (len(links1) <= len(links2)):
             if len(links1) == 0:
                 return True
             else:
@@ -361,6 +362,7 @@ class MotifSearchAllowWildCards(MotifSearchStrict):
 
     linkCheck = GlycanLinkCompatibleEitherway()
     monoCheck = MonosaccharideCompatibleEitherway()
+    rootMonoCheck = MonosaccharideCompatibleEitherway()
     
 class MotifSearchLoose(MotifSearchStrict):
 
@@ -369,6 +371,7 @@ class MotifSearchLoose(MotifSearchStrict):
 
     linkCheck = GlycanLinkCompatibleEitherway()
     monoCheck = MonosaccharideCompatibleEitherway()
+    rootMonoCheck = MonosaccharideCompatibleOneway()
 
 class MotifSearchTopologicalSameAs(MotifSearchStrict):
 
@@ -377,29 +380,32 @@ class MotifSearchTopologicalSameAs(MotifSearchStrict):
 
     linkCheck = GlycanLinkTopologicalSameAs()
     monoCheck = MonosaccharideTopologySameAs()
+    rootMonoCheck = RootMonosaccharideTopologySameAs()
+
 
 if __name__ == "__main__":
     seq1 = """RES
-1b:x-dgal-HEX-x:x
-2b:a-dgal-HEX-1:5
-LIN
-1:1o(3+1)2d"""
-    
+    1b:x-dgal-HEX-x:x
+    2b:a-dgal-HEX-1:5
+    LIN
+    1:1o(4+1)2d"""
+
     seq2 = """RES
-1b:x-dgal-HEX-x:x
-2b:a-dgal-HEX-1:5
-LIN
-1:1o(-1+1)2d"""
-    
+    1b:x-dglc-HEX-1:5
+    2s:n-acetyl
+    3b:b-dgal-HEX-x:x
+    4b:a-dgal-HEX-1:5
+    LIN
+    1:1d(2+1)2n
+    2:1o(4+1)3d
+    3:3o(4+1)4d"""
+
     wurcsp = WURCS20Format()
     glycoctp = GlycoCTFormat()
-    
+
     g1 = glycoctp.toGlycan(seq1)
     g2 = glycoctp.toGlycan(seq2)
-    
-    print g1
-    print g2
-    
-    gce = GlycanCompatibleEitherway()
-    ge = GlycanEqual()
-    print gce.get(g1, g2)
+
+    mstsa = MotifSearchTopologicalSameAs()
+    print mstsa.get(g1, g2)
+
