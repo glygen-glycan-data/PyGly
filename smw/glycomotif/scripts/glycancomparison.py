@@ -342,7 +342,7 @@ class MotifSearchStrict():
         motif_root = m.root()
         node = g.root()
 
-        return self.recursiveComparison(motif_root, node)
+        return self.recursiveComparison(motif_root, node, root=True)
     
     def nonReducingEndOnly(self, m, g):
         motif_root = m.root()
@@ -351,7 +351,7 @@ class MotifSearchStrict():
         else:
             allOtherNodes = list(g.all_nodes())
         for node in allOtherNodes:
-            if self.recursiveComparison(motif_root, node):
+            if self.recursiveComparison(motif_root, node, root=True):
                 return True
         return False
 
@@ -385,15 +385,15 @@ class MotifSearchTopologicalSameAs(MotifSearchStrict):
 
 if __name__ == "__main__":
     seq1 = """RES
-    1b:x-dgal-HEX-x:x
+    1b:x-dgal-HEX-1:5
     2b:a-dgal-HEX-1:5
     LIN
-    1:1o(4+1)2d"""
+    1:1o(3+1)2d"""
 
     seq2 = """RES
     1b:x-dglc-HEX-1:5
     2s:n-acetyl
-    3b:b-dgal-HEX-x:x
+    3b:b-dgal-HEX-1:5
     4b:a-dgal-HEX-1:5
     LIN
     1:1d(2+1)2n
