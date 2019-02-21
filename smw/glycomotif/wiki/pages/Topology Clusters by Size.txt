@@ -4,7 +4,9 @@
 [[glycomotif:incollection::GM]]
 [[glycomotif:topologycount::>2]]
 [[glycomotif:topologyrepr::true]]
+|? = Representative
 |?glycomotif:topologycount = Cluster Size
 |sort=glycomotif:topologycount
 |order=desc
+|mainlabel=-
 }}
