@@ -4,11 +4,6 @@
       "G00012MO": [
         {
           "from": "G00012MO",
-          "to": "G57710SU",
-          "type": "contains"
-        },
-        {
-          "from": "G00012MO",
           "to": "G19926LY",
           "type": "contains"
         }
@@ -195,19 +190,9 @@
           "from": "G00016MO",
           "to": "G62763GO",
           "type": "contains"
-        },
-        {
-          "from": "G00016MO",
-          "to": "G67988RO",
-          "type": "contains"
         }
       ],
       "G00046MO": [
-        {
-          "from": "G00046MO",
-          "to": "G24432YB",
-          "type": "contains"
-        },
         {
           "from": "G00046MO",
           "to": "G78260AJ",
@@ -555,11 +540,6 @@
           "from": "G00026MO",
           "to": "G20624LQ",
           "type": "contains"
-        },
-        {
-          "from": "G00026MO",
-          "to": "G22768VO",
-          "type": "contains"
         }
       ],
       "G20624LQ": [
@@ -730,11 +710,6 @@
         {
           "from": "G00032MO",
           "to": "G78436BB",
-          "type": "contains"
-        },
-        {
-          "from": "G00032MO",
-          "to": "G00031MO",
           "type": "contains"
         }
       ],
@@ -1311,22 +1286,12 @@
           "from": "G00069MO",
           "to": "G45827GY",
           "type": "contains"
-        },
-        {
-          "from": "G00069MO",
-          "to": "G00049MO",
-          "type": "contains"
         }
       ],
       "G00070MO": [
         {
           "from": "G00070MO",
           "to": "G48059CD",
-          "type": "contains"
-        },
-        {
-          "from": "G00070MO",
-          "to": "G58896AZ",
           "type": "contains"
         }
       ],
@@ -1401,7 +1366,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G00070MO/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G58896AZ/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -1415,11 +1380,6 @@
         {
           "from": "G00071MO",
           "to": "G00407UJ",
-          "type": "contains"
-        },
-        {
-          "from": "G00071MO",
-          "to": "G21856LC",
           "type": "contains"
         }
       ],
@@ -2068,7 +2028,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G60395SO/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G89208KM/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -2181,12 +2141,12 @@
       "G47428UI": [
         {
           "from": "G47428UI",
-          "to": "G00055MO",
+          "to": "G00056MO",
           "type": "contains"
         },
         {
           "from": "G47428UI",
-          "to": "G00056MO",
+          "to": "G00055MO",
           "type": "contains"
         }
       ],
@@ -6052,7 +6012,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G61418DU/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G57321FI/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -7211,18 +7171,7 @@
           "type": "contains"
         }
       ],
-      "G40843KY": [
-        {
-          "from": "G40843KY",
-          "to": "G07169WN",
-          "type": "contains"
-        },
-        {
-          "from": "G40843KY",
-          "to": "G72548RZ",
-          "type": "contains"
-        }
-      ],
+      "G40843KY": [],
       "G60011XD": [
         {
           "from": "G60011XD",
@@ -9383,18 +9332,7 @@
   },
   "G59736KH": {
     "edges": {
-      "G59736KH": [
-        {
-          "from": "G59736KH",
-          "to": "G96596OC",
-          "type": "contains"
-        },
-        {
-          "from": "G59736KH",
-          "to": "G96614JE",
-          "type": "contains"
-        }
-      ],
+      "G59736KH": [],
       "G96596OC": [
         {
           "from": "G96596OC",
@@ -10912,7 +10850,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G26203DP/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G77608BK/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"

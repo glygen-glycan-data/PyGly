@@ -2,6 +2,7 @@
 
 import os
 import json
+import copy
 import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlyTouCan import GlyTouCan
@@ -140,6 +141,39 @@ def viewerdatagenerater(component):
     json_data = json.dumps(data)
     return data
 
+def removeShortcut(relationship):
+    shortcut = {}
+    res = copy.deepcopy(relationship)
+
+    parents = relationship.keys()
+
+    for p in parents:
+        children = relationship[p]
+
+        for c in children:
+            try:
+                grandchildren = relationship[c]
+            except KeyError:
+                continue
+
+            for cc in relationship[c]:
+                if cc in children:
+                    if p in shortcut:
+                        shortcut[p].append(cc)
+                    else:
+                        shortcut[p] = [cc]
+
+    for k in shortcut.keys():
+        shortcut[k] = sorted(list(set(shortcut[k])))
+
+    for k, vchild in shortcut.items():
+        for v in vchild:
+            res[k].remove(v)
+
+    return res
+
+
+
 # For each cluster, generate the json
 jsondata = {}
 fakeroot = "Topology"
@@ -176,6 +210,8 @@ for i in topomatchpool:
 
     nodes = cluster + [fakeroot]
 
+    link = removeShortcut(link)
+
     res = {
         "nodes": nodes,
         "edges": link,
@@ -203,7 +239,7 @@ for acc in glycanobj.keys():
     }
 
     data = viewerdatagenerater(res)
-    print data
+    # print data
     jsondata[acc] = data
 
 
