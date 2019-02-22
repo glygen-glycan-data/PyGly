@@ -44,7 +44,9 @@ function injectEssentialElementForTheViewer(){
     });
     $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css" type="text/css" />');
 }
-injectEssentialElementForTheViewer();
+if (document.getElementById("hgv_para") != null){
+    injectEssentialElementForTheViewer();
+}
 
 jQuery(document).ready(function() {
     syncStatus.p = true;
