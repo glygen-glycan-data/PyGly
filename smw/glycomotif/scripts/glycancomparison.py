@@ -382,6 +382,15 @@ class MotifSearchTopologicalSameAs(MotifSearchStrict):
     monoCheck = MonosaccharideTopologySameAs()
     rootMonoCheck = RootMonosaccharideTopologySameAs()
 
+class MotifSearchGlyTouCan(MotifSearchStrict):
+
+    def __init__(self):
+        pass
+
+    linkCheck = GlycanLinkCompatibleEitherway()
+    monoCheck = MonosaccharideCompatibleOneway()
+    rootMonoCheck = MonosaccharideCompatibleOneway()
+
 
 if __name__ == "__main__":
     seq1 = """RES
