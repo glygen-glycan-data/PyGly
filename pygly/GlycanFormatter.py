@@ -941,7 +941,7 @@ class IUPACParserGlycamExtended(IUPACParserAbstract):
     description = "The extended IUPAC format for Glycam.org"
     example = "DGalpa1-3DLyxpb1-5[DGalpNAcb1-3]DFrupb2-5DFrupb2-OME"
     alias = "Glycam:"
-    precompiledpattern = r"(?P<bpe>(\[))?(?P<skel>((D|L)(Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO)(f|p)(NAc|A|5Ac|5Gc)?(a|b)))(?P<link>(\d-(\d)?))(?P<bps>(\]))?"
+    precompiledpattern = r"(?P<bpe>(\[))?(?P<skel>((D|L)(Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO)(f|p)(NAc|A|5Ac|5Gc)?(\[(((\d(S|P|A|Me))(,)?)+)\])?(a|b)))(?P<link>(\d-(\d)?))(?P<bps>(\]))?"
     
     # Not supported mono: Psi, Sor, Tag and Qui
     def regexSearch(self, seq):
@@ -1060,19 +1060,24 @@ class IUPACGlycamWriter:
         return "".join(newtree)
 
     def mono2str(self, m, l, root=False):
+        m, subsstr = self.subs2str(m)
         sym = self.sym.toStr(m)
 
-        config = "D"
+        config = "?"
         if m._config[0]:
+            if m._config[0] == 1:
+                config = "D"
             if m._config[0] == 2:
                 config = "L"
 
-        ringtype = "p"
+        ringtype = "?"
         ringstart = m._ring_start
         ringend = m._ring_end
-        if type(ringstart) == int or type(ringend) == int:
+        if type(ringstart) == int and type(ringend) == int:
             if ringend - ringstart + 1 == 4:
                 ringtype = "f"
+            elif ringend - ringstart + 1 == 5:
+                ringtype = "p"
 
         anomer = "?"
         if m._anomer:
@@ -1104,7 +1109,38 @@ class IUPACGlycamWriter:
                 cp = map(str, cp)
                 cpo = "/".join(cp)
             link = cpo + "-" + ppo
-        return config + skel + ringtype + modi + anomer + link
+        return config + skel + ringtype + modi + subsstr + anomer + link
+
+    def subs2str(self, m):
+        subs = []
+        sub2str = {
+            Substituent.sulfate: "S",
+            Substituent.phosphate: "P",
+            Substituent.acetyl: "A",
+            Substituent.methyl: "Me"
+        }
+
+        for sub in m.substituent_links():
+            if sub._parent_pos == None:
+                pp = "?"
+            else:
+                pp = "|".join(map(str, list(sub._parent_pos)))
+
+            if sub.child()._sub != Substituent.nAcetyl:
+                try:
+                    subname = sub2str[sub.child()._sub]
+                except KeyError:
+                    raise KeyError
+                subs.append(pp + subname)
+
+                m._substituent_links.remove(sub)
+
+        subs = sorted(subs)
+        if subs:
+            subsstr = "[" + "/".join(subs) + "]"
+        else:
+            subsstr = ""
+        return m, subsstr
 
     def ChildrenNumIncludingItself(self, id, d):
         gr = d[id]
