@@ -1064,7 +1064,7 @@ class IUPACGlycamWriter:
         sym = self.sym.toStr(m)
 
         config = "?"
-        if m._config[0]:
+        if m._config:
             if m._config[0] == 1:
                 config = "D"
             if m._config[0] == 2:
