@@ -1,0 +1,43 @@
+<noinclude>
+This is the "Glycan" template.
+It should be called in the following format:
+<pre>
+{{Glycan
+|accession=
+|glycoct=
+|wurcs=
+|iupac=
+|mw=
+|monocount=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
+<p align="center"><img
+src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
+{| class="wikitable" style="width=100%" 
+! style="width:200px" | Molecular Weight
+| style="" | [[glycandata:mw::{{{mw|}}}]]
+|-
+! style="" | Monosaccharide Count
+| style="" | [[glycandata:monocount::{{{monocount|}}}]]
+|-
+! style="" | GlyTouCan
+| style="" |
+[https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
+|-
+! style="" | GlycoCT
+| style="" | <div class="smwpre">
+{{{glycoct|}}}
+</div>
+|-
+! style="" | WURCS
+| style="" | <div class="smwpre">{{{wurcs|}}}</div>
+|-
+! style="" | IUPAC
+| style="" | <div class="smwpre">{{{iupac|}}}</div>
+|}
+
+{{#set:|glycandata:id={{PAGENAME}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
+[[Category:Glycan]]
+</includeonly>

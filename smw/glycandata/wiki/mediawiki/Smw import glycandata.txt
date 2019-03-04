@@ -1,0 +1,11 @@
+http://glycandata.glygen.org/glycandata#|[http://glycandata.glygen.org/glycandata GlyGen Glycan Data Ontology]
+ id|Type:Text
+ Glycan|Category
+ accession|Type:Text
+ wurcs|Type:Code
+ glycoct|Type:Code
+ iupac|Type:Code
+ mw|Type:Number
+ monocount|Type:Number
+
+[[Category:Imported vocabulary]]
