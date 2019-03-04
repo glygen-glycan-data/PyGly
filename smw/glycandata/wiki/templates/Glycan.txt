@@ -15,7 +15,7 @@ Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
 <p align="center"><img
 src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
-{| class="wikitable" style="width=100%" 
+{| class="wikitable" style="width:100%" 
 ! style="width:200px" | Molecular Weight
 | style="" | [[glycandata:mw::{{{mw|}}}]]
 |-
@@ -38,6 +38,6 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 | style="" | <div class="smwpre">{{{iupac|}}}</div>
 |}
 
-{{#set:|glycandata:id={{PAGENAME}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
+{{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
 [[Category:Glycan]]
 </includeonly>

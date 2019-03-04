@@ -14,7 +14,7 @@ current = set()
 for gtcacc in open(sys.argv[1]):
     gtcacc = gtcacc.strip()
     g = Glycan(accession=gtcacc,mw=gtc.getmass(gtcacc),iupac=gtc.getseq(gtcacc,'iupac_extended'))
-    if w.update(g):
+    if w.put(g):
 	print >>sys.stderr, g.get('accession')
     current.add(gtcacc)
 
