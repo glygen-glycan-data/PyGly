@@ -13,7 +13,24 @@ gtc = GlyTouCan()
 current = set()
 for gtcacc in open(sys.argv[1]):
     gtcacc = gtcacc.strip()
-    g = Glycan(accession=gtcacc,mw=gtc.getmass(gtcacc),iupac=gtc.getseq(gtcacc,'iupac_extended'))
+    g = Glycan(accession=gtcacc,
+               iupac=gtc.getseq(gtcacc,'iupac_extended'))
+    g.add_annotation(value=gtc.getmass(gtcacc),
+                     property='UnderivitizedMW',
+                     source='GlyTouCan',type='MolWt')
+    if gtcacc == 'G00031MO':
+	g.add_annotation(value='O-linked',
+			 property='GlycanType',
+		 	 source='EdwardsLab',
+			 type='Classification',
+			 method='Glycan Type by Motif Match',
+			 reference='https://glytoucan.org/Structures/Glycans/G00032MO')
+	g.add_annotation(value='core 1',
+			 property='GlycanSubtype',
+		 	 source='EdwardsLab',
+			 type='Classification',
+			 method='Glycan Type by Motif Match',
+			 reference='https://glytoucan.org/Structures/Glycans/G00032MO')
     if w.put(g):
 	print >>sys.stderr, g.get('accession')
     current.add(gtcacc)

@@ -25,6 +25,10 @@ class Glycan(SMW.SMWClass):
         if isinstance(data.get('monocount'),basestring):
             data['mw'] = int(data.get('monocount'))
 
+        if '_subobjs' in data:
+            data['annotations'] = data['_subobjs']
+            del data['_subobjs']
+
 	return data
 
     def toTemplate(self,data):
@@ -35,10 +39,25 @@ class Glycan(SMW.SMWClass):
         
         if 'monocount' in data:
             data['monocount'] = str(data.get('monocount'))
+
+        if 'annotations' in data:
+            data['_subobjs'] = data['annotations']
+            del data['annotations']
         
 	return data
 
-class Annotation(SMW.SMWSite):
+    def add_annotation(self,**kwargs):
+        assert 'type' in kwargs
+        assert 'property' in kwargs
+        assert 'source' in kwargs
+        self.append('annotations',Annotation(**kwargs))
+
+    def annotations(self,type=None):
+        for an in self.get('annotations',[]):
+            if type == None or an.get('type') == type:
+                yield an
+
+class Annotation(SMW.SMWClass):
     template = 'Annotation'
 
 class GlycanDataWiki(SMW.SMWSite):

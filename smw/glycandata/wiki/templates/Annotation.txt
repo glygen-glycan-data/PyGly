@@ -1,0 +1,28 @@
+<noinclude>
+This is the "Annotation" template.
+It should be called in the following format:
+<pre>
+{{Annotation
+|type=
+|property=
+|value=
+|source=
+|comment=
+|reference=
+|method=
+|preferred=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>{{#subobject:
+|glycandata:type={{{type|}}}
+|glycandata:property={{{property|}}}
+|glycandata:value={{{value|}}}
+|glycandata:source={{{source|}}}
+|glycandata:comment={{{comment|}}}
+|glycandata:reference={{{reference|}}}
+|glycandata:method={{{method|}}}
+|glycandata:preferred={{{preferred|}}}
+|glycandata:hasglycan={{PAGENAME}}
+|@category=Annotation
+}}</includeonly>

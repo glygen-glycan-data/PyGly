@@ -271,19 +271,42 @@ class SMWSite(object):
         if not page.exists:
             return None
         # print repr(page.text())
-        data = dict()
-        splrest = map(lambda s: s.strip(),re.split(r'\|(\w+)=',page.text()))
-        splrest[0]=splrest[0].lstrip('{').strip()
-        splrest[-1]=splrest[-1].rstrip('}').strip()
-        cls = splrest[0]
-        for i in range(1,len(splrest),2):
-            key = splrest[i]
-            val = splrest[i+1]
-            data[key] = val
-	data['template'] = cls
-	data['pagename'] = name
-        data['id'] = name
-        return self.template2class[cls](**data)
+
+        thepage = page.text()
+        chunks = []
+        level = 0
+        for m in re.finditer(r'({{)|(}})', thepage):
+            if m.group() == '{{':
+                if level == 0:
+                    startpos = m.end()
+                level += 1
+            if m.group() == '}}':
+                level -= 1
+                if level == 0:
+                    endpos = m.start()
+                    chunks.append(thepage[startpos:endpos])
+        assert level == 0
+
+        subobjs = []
+        for index, chunk in enumerate(chunks[1:]+chunks[:1]):
+            data = dict()
+            splrest = map(lambda s: s.strip(),re.split(r'\|(\w+)=',chunk))
+            cls = splrest[0]
+            for i in range(1,len(splrest),2):
+                key = splrest[i]
+                val = splrest[i+1]
+                data[key] = val
+            data['template'] = cls
+            data['pagename'] = name
+            data['id'] = name
+            if index == len(chunks)-1:
+                if len(subobjs) > 0:
+                    data['_subobjs'] = subobjs
+                obj = self.template2class[cls](**data)
+            else:
+                subobjs.append(self.template2class[cls](**data))
+            
+        return obj
 
     def update(self,newobj):
         pagename = newobj.pagename(**newobj.data)
@@ -311,6 +334,7 @@ class SMWSite(object):
         dummy = page.text(expandtemplates=True, cache=False)
 
 class SMWClass(object):
+
     directsubmit = []
     def __init__(self,**kwargs):
         self.data = self.toPython(kwargs)
@@ -387,15 +411,31 @@ class SMWClass(object):
         l = [ "{{%s"%(self.template,) ] 
 	data = self.toTemplate(copy.copy(self.data))
         for k in sorted(data.keys()):
-            v = data.get(k)
-            l.append("|%s=%s"%(k,v))
+            if k != "_subobjs":
+                v = data.get(k)
+                l.append("|%s=%s"%(k,v))
         l.append("}}")
+        if "_subobjs" in data:
+            for subobj in data['_subobjs']:
+                l[-1] += subobj.astemplate()
         return "\n".join(l)
 
     def __str__(self):
         l = [self.__class__.__name__]
         for k,v in sorted(self.data.items()):
-            l.append("%s = %r"%(k,v))
+            if isinstance(v,list) and isinstance(v[0],SMWClass):
+                l.append("%s = ["%k)
+                for i,vi in enumerate(v):
+                    si = str(vi).strip()
+                    si = "  " + si.replace('\n','\n  ')
+                    if i > 0:
+                        si = "\n" + si;
+                    if i < (len(v)-1):
+                        si += ','
+                    l.append(si)
+                l.append("  ]")
+            else:
+                l.append("%s = %r"%(k,v))
         return "\n".join(l)
 
     def get(self,key,default=None):
@@ -406,6 +446,11 @@ class SMWClass(object):
 
     def has(self,key):
         return (key in self.data)
+
+    def append(self,key,value):
+        if key not in self.data:
+            self.data[key] = []
+        self.data[key].append(value)
 
     def delete(self,key):
         if key in self.data:

@@ -16,12 +16,6 @@ Edit the page to see the template text.
 <p align="center"><img
 src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
 {| class="wikitable" style="width:100%" 
-! style="width:200px" | Molecular Weight
-| style="" | [[glycandata:mw::{{{mw|}}}]]
-|-
-! style="" | Monosaccharide Count
-| style="" | [[glycandata:monocount::{{{monocount|}}}]]
-|-
 ! style="" | GlyTouCan
 | style="" |
 [https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
@@ -37,6 +31,31 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 ! style="" | IUPAC
 | style="" | <div class="smwpre">{{{iupac|}}}</div>
 |}
+
+{{#ask:
+[[Category:Annotation]]
+[[glycandata:hasglycan::{{PAGENAME}}]]
+[[glycandata:type::MolWt]]
+|?glycandata:property=Property
+|?glycandata:value=Value
+|?glycandata:source=Source
+|mainlabel=-
+|sort=glycandata:source, glycandata:property
+|intro= <h2>Molecular Weight Annotations</h2>
+}}
+
+{{#ask:
+[[Category:Annotation]]
+[[glycandata:hasglycan::{{PAGENAME}}]]
+[[glycandata:type::Classification]]
+|?glycandata:property=Property
+|?glycandata:value=Value
+|?glycandata:source=Source
+|mainlabel=-
+|sort=glycandata:source, glycandata:property
+|intro= <h2>Glycan Classification Annotations</h2>
+}}
+
 
 {{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
 [[Category:Glycan]]
