@@ -271,6 +271,24 @@ class Monosaccharide:
 	  return False
         return True
 
+    def fully_determined(self):
+        if self._anomer == Anomer.missing:
+            return False
+        if self._config == Config.missing:
+            return False
+        if self._stem == Stem.missing:
+            return False
+        if self._superclass == SuperClass.missing:
+            return False
+        if self._ring_start == None:
+            return False
+        if self._ring_end == None:
+            return False
+        for m in self._mods:
+            if m[0] == None:
+                return False
+        return True
+
     def anomer(self):
         return self._anomer
 
@@ -566,6 +584,9 @@ class Substituent:
     def equals(self,s):
 	return (self._sub == s._sub)
 
+    def fully_determined(self):
+        return True
+
 class Linkage:
 
     # Atom Replacement constants (link types)
@@ -783,6 +804,19 @@ class Linkage:
         if self._parent_pos != a._parent_pos:
 	    return False
 	return True
+
+    def fully_determined(self):
+        if not self._instantiated:
+            return False
+        if self._parent_type == None:
+	    return False
+        if self._child_type == None:
+            return False
+        if self._parent_pos == None:
+            return False
+        if self._child_pos == None:
+            return False
+        return True
 
     @staticmethod
     def valtuple(val):

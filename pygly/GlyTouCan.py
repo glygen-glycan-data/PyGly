@@ -9,7 +9,7 @@ from operator import itemgetter
 from hashlib import md5
 from StringIO import StringIO
 from PIL import Image
-from GlycanFormatter import GlycoCTFormat
+from GlycanFormatter import GlycoCTFormat, WURCS20Format
 from Glycan import Glycan
 
 
@@ -35,6 +35,8 @@ class GlyTouCan(object):
 	self._lastrequesttime = 0
 	self._lastrequestcount = 0
 	self.alphamap = None
+	self.glycoct_format = None
+	self.wurcs_format = None
 
     def setup_sparql(self):
 	 self.g = ConjunctiveGraph(store='SPARQLStore')
@@ -51,7 +53,6 @@ class GlyTouCan(object):
 	self.password_mgr.add_password(None, self.api, user, apikey)
 	self.handler = urllib2.HTTPBasicAuthHandler(self.password_mgr)
 	self.opener = urllib2.build_opener(self.handler)
-	self.glycoct_format = None
 
     def _wait(self,delaytime=None):
 	if delaytime != None:
@@ -91,9 +92,6 @@ class GlyTouCan(object):
 	}
     """
     def exists(self,accession):
-	self._wait()
-	if self.g == None:
-	    self.setup_sparql()
 	response = self.query(self.exists_sparql%dict(accession=accession))
         for row in response.bindings:
 	    return True
@@ -428,13 +426,77 @@ class GlyTouCan(object):
 	    return None
         return value.rsplit('/',1)[1]
 
+    @staticmethod 
+    def intstrsortkey(value):
+	if len(value) == 1:
+	    try:
+	        return (int(value[0]),"")
+	    except:
+	        pass
+	    return (1e+20,value[0])
+	try:
+	    return (value[0],int(value[1]),"")
+	except:
+	    pass
+	return (value[0],1e+20,value[1])
+
+    getcrossrefs_sparql = """
+        PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+        PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+
+        SELECT ?gdb
+        WHERE {
+             ?saccharide glytoucan:has_primary_id "%(accession)s" .
+	     ?saccharide a glycan:saccharide . 
+             ?saccharide glycan:has_resource_entry ?gdb
+        } 
+    """
+    resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank']
+    def getcrossrefs(self,accession,resource=None):
+        assert resource in [None]+self.resources
+	response = self.query(self.getcrossrefs_sparql%dict(accession=accession))
+        key = response.vars[0]
+	xrefs = []
+        for row in response.bindings:
+	    xref = str(row[key]).rsplit('/',2)[-2:]
+	    if resource != None and xref[0] == resource:
+		xrefs.append(tuple(xref[1:]))
+	    elif resource == None and xref[0] in self.resources:
+		xrefs.append(tuple(xref))
+        return map(lambda t: ":".join(t), sorted(set(xrefs),key=self.intstrsortkey))
+
+    allcrossrefs_sparql = """
+        PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+        PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+
+        SELECT DISTINCT ?acc ?gdb
+        WHERE {
+             ?saccharide glytoucan:has_primary_id ?acc .
+	     ?saccharide a glycan:saccharide . 
+             ?saccharide glycan:has_resource_entry ?gdb
+        } 
+    """
+    def allcrossrefs(self,resource=None):
+        assert resource in [None]+self.resources
+	response = self.query(self.allcrossrefs_sparql)
+	for row in response.bindings:
+	    acc,xref = map(row.get,response.vars)
+	    acc = str(acc)
+	    xref = str(xref).rsplit('/',2)[-2:]
+	    if resource != None and xref[0] == resource:
+		yield (acc,xref[1])
+	    elif resource == None and xref[0] in self.resources:
+		yield (acc,":".join(xref))
+
     getrefs_sparql = """
         PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+        PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
         PREFIX dcterms: <http://purl.org/dc/terms/>
         
         SELECT ?ref
         WHERE {
             ?Saccharide glytoucan:has_primary_id "%(accession)s" .
+	    ?Saccharide a glycan:saccharide . 
             ?Saccharide dcterms:references ?ref
         }
     """
@@ -449,11 +511,13 @@ class GlyTouCan(object):
 
     getallrefs_sparql = """
         PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+        PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
         PREFIX dcterms: <http://purl.org/dc/terms/>
         
         SELECT ?acc ?ref
         WHERE {
             ?Saccharide glytoucan:has_primary_id ?acc .
+	    ?Saccharide a glycan:saccharide . 
             ?Saccharide dcterms:references ?ref
         }
     """
@@ -525,6 +589,19 @@ class GlyTouCan(object):
             raise ValueError
 	return wurcs.strip()
 
+    def getGlycan(self,acc):
+        sequence = self.getseq(acc,'glycoct')
+        if sequence:
+            if not self.glycoct_format:
+                self.glycoct_format = GlycoCTFormat()
+            return self.glycoct_format.toGlycan(sequence)
+        sequence = self.getseq(acc,'wurcs')
+        if sequence:
+            if not self.wurcs_format:
+                self.wurcs_format = WURCS20Format()
+            return self.wurcs_format.toGlycan(sequence)
+        return None
+
 if __name__ == "__main__":
 
     import sys
@@ -583,6 +660,10 @@ if __name__ == "__main__":
 	    print "Exists:",gtc.exists(acc)
 	    print "WURCS:",bool(gtc.getseq(acc,'wurcs'))
 	    print "GlycoCT:",bool(gtc.getseq(acc,'glycoct'))
+	    print "KEGG:",", ".join(gtc.getcrossrefs(acc,'kegg'))
+	    print "PubChem:",", ".join(gtc.getcrossrefs(acc,'pubchem'))
+	    print "UniCarbKB:",", ".join(gtc.getcrossrefs(acc,'unicarbkb'))
+	    print "XRefs:",", ".join(gtc.getcrossrefs(acc))
 	    print "Mass:",gtc.getmass(acc)
 	    print "Monosaccharide Count:",gtc.getmonocount(acc)
 	    print "Composition:",gtc.getcomp(acc)
@@ -616,6 +697,19 @@ if __name__ == "__main__":
 	gtc = GlyTouCan()
 	for acc,pubmed in gtc.allrefs():
 	    print acc,pubmed
+
+    elif cmd.lower() == "kegg":
+	
+	gtc = GlyTouCan()
+        for acc,keggacc in gtc.allcrossrefs('kegg'):
+            print acc,keggacc
+
+    elif cmd.lower() == "fully_determined":
+
+        gtc = GlyTouCan()
+        for acc in items():
+            g = gtc.getGlycan(acc)
+            print acc,g.fully_determined()
 
     else:
 	print >>sys.stderr, "Bad command: %s"%(cmd,)

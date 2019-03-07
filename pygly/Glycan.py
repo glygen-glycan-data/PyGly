@@ -117,6 +117,17 @@ class Glycan:
     def has_root(self):
         return (self._root != None)
 
+    def fully_determined(self):
+        if self.undetermined():
+            return False
+        for m in self.all_nodes(subst=True):
+            if not m.fully_determined():
+                return False
+        for l in self.all_links(subst=True):
+            if not m.fully_determined():
+                return False
+        return True
+
 ##     def add_instantiation(self, inst):
 ## 	if self._instantiations == None:
 ## 	    self._instantiations = []
@@ -433,6 +444,7 @@ class Glycan:
                     yield sl
             for l in m.links(instantiated_only=(not uninstantiated)):
                 yield l
+
 
     def clone(self):
         self.set_ids()
