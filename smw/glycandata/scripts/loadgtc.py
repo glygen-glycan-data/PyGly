@@ -14,6 +14,8 @@ current = set()
 for gtcacc in open(sys.argv[1]):
     gtcacc = gtcacc.strip()
     g = Glycan(accession=gtcacc,
+	       wurcs=gtc.getseq(gtcacc,'wurcs'),
+	       glycoct=gtc.getseq(gtcacc,'glycoct'),
                iupac=gtc.getseq(gtcacc,'iupac_extended'))
     g.add_annotation(value=gtc.getmass(gtcacc),
                      property='UnderivitizedMW',
