@@ -20,6 +20,9 @@ for gtcacc in open(sys.argv[1]):
     g.add_annotation(value=gtc.getmass(gtcacc),
                      property='UnderivitizedMW',
                      source='GlyTouCan',type='MolWt')
+	g.add_annotation(value=gtc.allmonocount(gtcacc),
+					 property='monosaccharidecount',
+					 source='GlyTouCan',type='monocount')
     if gtcacc == 'G00031MO':
 	g.add_annotation(value='O-linked',
 			 property='GlycanType',
