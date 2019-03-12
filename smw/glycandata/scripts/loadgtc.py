@@ -23,6 +23,12 @@ for gtcacc in open(sys.argv[1]):
     g.add_annotation(value=gtc.getmonocount(gtcacc),
 		     property='MonosaccharideCount',
 		     source='GlyTouCan',type='MonosaccharideCount')
+    for xref in gtc.getcrossrefs(gtcacc):
+	ref, c = xref.split(":")
+        g.add_annotation(value=c,
+	         property='CrossReferences',
+	         source=ref,type='CrossReferences')			 
+			 
     if gtcacc == 'G00031MO':
 	g.add_annotation(value='O-linked',
 			 property='GlycanType',
