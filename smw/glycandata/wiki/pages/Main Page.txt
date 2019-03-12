@@ -1,5 +1,1 @@
-
-This wiki contains information about {{#ask:
-[[Category:Glycan]]
-|format=count
-}} glycans.
+This wiki contains information about {{CountLink|[[Category:Glycan]]}} glycans.
