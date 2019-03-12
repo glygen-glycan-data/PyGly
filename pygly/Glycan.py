@@ -347,8 +347,16 @@ class Glycan:
     def native_elemental_composition(self):
         return self.elemental_composition(ctable)
     
-    def permethlyated_elemental_composition(self):
+    def permethylated_elemental_composition(self):
         return self.elemental_composition(pctable)
+
+    def underivitized_molecular_weight(self,adduct='H2O'):
+        return self.native_elemental_composition().mass(elmt) + \
+               Composition.fromstr(adduct).mass(elmt)
+
+    def permethylated_molecular_weight(self,adduct='C2H6O'):
+        return self.permethylated_elemental_composition().mass(elmt) + \
+	       Composition.fromstr(adduct).mass(elmt)
     
     def fragments(self,r=None,force=False):
         atroot = False
@@ -428,6 +436,32 @@ class Glycan:
         for root in todo:
             for m in self.subtree_nodes(root,subst):
                 yield m
+
+    def iupac_composition(self):
+	c = Composition()
+	for sym in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Xxx'):
+	    c[sym] = 0
+	for m in self.all_nodes():
+	    try:
+	        sym = iupacSym.toStr(m)
+		if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc'):
+		    sym = 'Xxx'
+	    except KeyError:
+		if m == self.root() and len(self.mods()) == 1 and self.count_mod(Mod.aldi) == 1:
+		    m1 = m.clone()
+		    m1.clear_mods()
+		    try:
+			sym = iupacSym.toStr(m1)
+			if sym not in ('GlcNAc',):
+                            sym = 'Xxx'
+		    except KeyError:
+			sym = 'Xxx'
+	    c[sym] += 1
+	c['Count'] = sum(c.values())
+	c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc')))
+	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc')))
+	c['dHex'] = sum(map(c.__getitem__,('Fuc',)))
+	return c
 
     def subtree_links(self,root,subst=False,uninstantiated=False):
         for m in self.subtree_nodes(root):

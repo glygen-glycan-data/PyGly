@@ -9,9 +9,9 @@ from operator import itemgetter
 from hashlib import md5
 from StringIO import StringIO
 from PIL import Image
-from GlycanFormatter import GlycoCTFormat, WURCS20Format
+from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
 from Glycan import Glycan
-
+from memoize import memoize
 
 class GlyTouCanCredentialsNotFound(RuntimeError):
     pass
@@ -63,6 +63,7 @@ class GlyTouCan(object):
 	self._lastrequesttime = time.time()
 	self._lastrequestcount += 1
 
+    @memoize()
     def query(self,sparql):
 	self._wait()
 	if self.g == None:
@@ -594,12 +595,18 @@ class GlyTouCan(object):
         if sequence:
             if not self.glycoct_format:
                 self.glycoct_format = GlycoCTFormat()
-            return self.glycoct_format.toGlycan(sequence)
+	    try:
+                return self.glycoct_format.toGlycan(sequence)
+	    except GlycanParseError:
+		pass
         sequence = self.getseq(acc,'wurcs')
         if sequence:
             if not self.wurcs_format:
                 self.wurcs_format = WURCS20Format()
-            return self.wurcs_format.toGlycan(sequence)
+	    try:
+                return self.wurcs_format.toGlycan(sequence)
+	    except GlycanParseError:
+		pass
         return None
 
 if __name__ == "__main__":
@@ -665,7 +672,6 @@ if __name__ == "__main__":
 	    print "UniCarbKB:",", ".join(gtc.getcrossrefs(acc,'unicarbkb'))
 	    print "XRefs:",", ".join(gtc.getcrossrefs(acc))
 	    print "Mass:",gtc.getmass(acc)
-	    print "Monosaccharide Count:",gtc.getmonocount(acc)
 	    print "Composition:",gtc.getcomp(acc)
 	    print "Topology:",gtc.gettopo(acc)
 	    imgstr,width,height = gtc.getimage(acc,style='extended')
