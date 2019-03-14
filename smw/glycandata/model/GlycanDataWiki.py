@@ -46,10 +46,12 @@ class Glycan(SMW.SMWClass):
         
 	return data
 
-    def add_annotation(self,**kwargs):
+    def add_annotation(self,*args,**kwargs):
         assert 'type' in kwargs
         assert 'property' in kwargs
         assert 'source' in kwargs
+	if 'value' not in kwargs:
+	    kwargs['value'] = args
         self.append('annotations',Annotation(**kwargs))
 
     def annotations(self,type=None):
@@ -59,6 +61,32 @@ class Glycan(SMW.SMWClass):
 
 class Annotation(SMW.SMWClass):
     template = 'Annotation'
+
+    @staticmethod
+    def intstrvalue(v):
+        try:
+            return int(v),""
+        except:
+            return 1e+20,v
+
+    def toPython(self,data):
+	data = super(Annotation,self).toPython(data)
+
+        # value may be a list
+        if isinstance(data.get('value'),basestring):
+            data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
+        
+	return data
+
+    def toTemplate(self,data):
+	data = super(Annotation,self).toTemplate(data)
+
+        if 'value' in data:
+            data['value'] = ";".join(sorted(data['value'],key=self.intstrvalue))
+
+	return data
+
+
 
 class GlycanDataWiki(SMW.SMWSite):
     _name = 'glycandata'

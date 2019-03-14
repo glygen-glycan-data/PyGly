@@ -17,7 +17,7 @@ Edit the page to see the template text.
 </noinclude><includeonly>{{#subobject:
 |glycandata:type={{{type|}}}
 |glycandata:property={{{property|}}}
-|glycandata:value={{{value|}}}
+|glycandata:value={{{value|}}}|+sep=;
 |glycandata:source={{{source|}}}
 |glycandata:comment={{{comment|}}}
 |glycandata:reference={{{reference|}}}
