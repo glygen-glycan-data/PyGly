@@ -41,15 +41,15 @@ for gtcacc in open(sys.argv[1]):
         comp = gtc.getGlycan(gtcacc).iupac_composition()
 	for ckey in comp.keys():
             count = comp[ckey]
-                if count > 0:
-		    if ckey=='Count':
-		        g.add_annotation(value=count,
-		             property='MonosaccharideCount',
-		             source='EdwardsLab',type='MonosaccharideCount')
-		    else:
-			g.add_annotation(value=count,
-		             property=ckey+'Count',
-		             source='EdwardsLab',type='MonosaccharideCount')
+            if count > 0:
+		if ckey=='Count':
+		    g.add_annotation(value=count,
+		         property='MonosaccharideCount',
+		         source='EdwardsLab',type='MonosaccharideCount')
+		else:
+	            g.add_annotation(value=count,
+		        property=ckey+'Count',
+		        source='EdwardsLab',type='MonosaccharideCount')
     except (TypeError, ValueError):
         continue
     
