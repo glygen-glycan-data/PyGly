@@ -67,7 +67,12 @@ class Annotation(SMW.SMWClass):
         try:
             return int(v),""
         except:
-            return 1e+20,v
+	    pass
+	try:
+	    return float(v),""
+	except:
+	    pass
+        return 1e+20,v
 
     def toPython(self,data):
 	data = super(Annotation,self).toPython(data)
@@ -75,6 +80,8 @@ class Annotation(SMW.SMWClass):
         # value may be a list
         if isinstance(data.get('value'),basestring):
             data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
+	elif isinstance(data.get('value'),float) or isinstance(data.get('value'),int):
+	    data['value'] = [ str(data['value']) ]
         
 	return data
 
@@ -82,11 +89,9 @@ class Annotation(SMW.SMWClass):
 	data = super(Annotation,self).toTemplate(data)
 
         if 'value' in data:
-            data['value'] = ";".join(sorted(data['value'],key=self.intstrvalue))
+            data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
 
 	return data
-
-
 
 class GlycanDataWiki(SMW.SMWSite):
     _name = 'glycandata'
