@@ -84,7 +84,7 @@ class Annotation(SMW.SMWClass):
 	data = super(Annotation,self).toTemplate(data)
 
         if 'value' in data:
-            data['value'] = ";".join(sorted(data['value'],key=self.intstrvalue))
+            data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
 
 	return data
 
