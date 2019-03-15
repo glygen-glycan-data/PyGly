@@ -48,6 +48,7 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 |mainlabel=-
 |sort=glycandata:source, glycandata:property
 |intro= <h2>Glycan Classification Annotations</h2>
+|headers=hide
 }}{{#ask:
 [[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
@@ -58,6 +59,7 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 |mainlabel=-
 |sort=glycandata:source, glycandata:property
 |intro= <h2>Glycan Monosaccharide Counts</h2>
+|headers=hide
 }}{{#ask:
 [[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
@@ -68,7 +70,8 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 |mainlabel=-
 |sort=glycandata:source, glycandata:property
 |intro= <h2>Cross References</h2>
-|sep=, 
+|sep=,&thinsp;
+|headers=hide
 }}
 
 {{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
