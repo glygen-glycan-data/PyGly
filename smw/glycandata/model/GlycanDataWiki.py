@@ -75,6 +75,8 @@ class Annotation(SMW.SMWClass):
         # value may be a list
         if isinstance(data.get('value'),basestring):
             data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
+	elif isinstance(data.get('value'),float) or isinstance(data.get('value'),int):
+	    data['value'] = [ data['value'] ]
         
 	return data
 
