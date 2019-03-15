@@ -27,7 +27,7 @@ for gtcacc in open(sys.argv[1]):
 			 source='EdwardsLab', type='MolWt')
     except: (TypeError, ValueError)
         continue
-    try
+    try:
         pmw = gtc.getGlycan(gtcacc).permethylated_molecular_weight()
         g.add_annotation(value=pmw,
 			 property='PermethylatedMW',
@@ -37,7 +37,7 @@ for gtcacc in open(sys.argv[1]):
     g.add_annotation(value=gtc.getmonocount(gtcacc),
 		             property='MonosaccharideCount',
 		             source='GlyTouCan',type='MonosaccharideCount')
-    try 
+    try: 
         comp = gtc.getGlycan(gtcacc).iupac_composition()
 	for ckey in comp.keys():
             count = comp[ckey]
