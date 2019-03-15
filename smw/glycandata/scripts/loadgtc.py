@@ -25,15 +25,15 @@ for gtcacc in open(sys.argv[1]):
         g.add_annotation(value=mw,
 			 property='UnderivitizedMW',
 			 source='EdwardsLab', type='MolWt')
-    except (TypeError, ValueError):
-        continue
+    except:
+        pass
     try:
         pmw = gtc.getGlycan(gtcacc).permethylated_molecular_weight()
         g.add_annotation(value=pmw,
 			 property='PermethylatedMW',
 			 source='EdwardsLab', type='MolWt')
-    except (TypeError, ValueError):
-        continue
+    except:
+        pass
     g.add_annotation(value=gtc.getmonocount(gtcacc),
 		             property='MonosaccharideCount',
 		             source='GlyTouCan',type='MonosaccharideCount')
@@ -50,8 +50,8 @@ for gtcacc in open(sys.argv[1]):
 	            g.add_annotation(value=count,
 		        property=ckey+'Count',
 		        source='EdwardsLab',type='MonosaccharideCount')
-    except (TypeError, ValueError):
-        continue
+    except:
+        pass
     
     dic = {}    
     for xref in gtc.getcrossrefs(gtcacc):
