@@ -89,7 +89,7 @@ class GlyTouCan(object):
 	
 	SELECT ?Saccharide
 	WHERE {
-   	    ?Saccharide glytoucan:has_primary_id "%(accession)s" .
+   	    ?Saccharide glytoucan:has_primary_id "%(accession)s"
 	}
     """
     def exists(self,accession):
@@ -270,6 +270,26 @@ class GlyTouCan(object):
 	response = self.query(self.allmotif_sparql)
         for row in response.bindings:
 	    yield tuple(map(str,map(row.get,response.vars)))
+
+    getmotif_sparql = """
+	PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+	PREFIX rdf: <http://www.w3.org/2000/01/rdf-schema#>
+	
+	SELECT DISTINCT ?motif_id ?motif_name
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id "%(accession)s" . 
+	    ?Saccharide glycan:has_motif ?Motif .
+	    ?Motif rdfs:type glycan:glycan_motif . 
+	    ?Motif rdf:label ?motif_name .
+   	    ?Motif glytoucan:has_primary_id ?motif_id
+	}
+    """
+    def getmotif(self,accession):
+	response = self.query(self.getmotif_sparql%dict(accession=accession))
+        for row in response.bindings:
+            yield tuple(map(str,map(row.get,response.vars)))
 
     credfile = ".gtccred"
     @staticmethod
@@ -671,6 +691,7 @@ if __name__ == "__main__":
 	    print "PubChem:",", ".join(gtc.getcrossrefs(acc,'pubchem'))
 	    print "UniCarbKB:",", ".join(gtc.getcrossrefs(acc,'unicarbkb'))
 	    print "XRefs:",", ".join(gtc.getcrossrefs(acc))
+	    print "Motif:",", ".join(map(itemgetter(0),gtc.getmotif(acc)))
 	    print "Mass:",gtc.getmass(acc)
 	    print "Composition:",gtc.getcomp(acc)
 	    print "Topology:",gtc.gettopo(acc)
@@ -678,17 +699,17 @@ if __name__ == "__main__":
 	    if not imgstr:
 	        print "Extended Image: None"
 	    else:
-	        print "Extended Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	        print "Extended Image: %s (%sx%s)"%(bool(imgstr),width,height,)
 	    imgstr,width,height = gtc.getimage(acc,style='normal')
 	    if not imgstr:
 	        print "Normal Image: None"
 	    else:
-	        print "Normal Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	        print "Normal Image: %s (%sx%s)"%(bool(imgstr),width,height,)
 	    imgstr,width,height = gtc.getimage(acc,style='compact')
 	    if not imgstr:
 	        print "Compacct Image: None"
 	    else:
-	        print "Compact Image: %s (%dx%d)"%(bool(imgstr),width,height,)
+	        print "Compact Image: %s (%sx%s)"%(bool(imgstr),width,height,)
 	    print "References: %s"%(", ".join(gtc.getrefs(acc),))
 	    print "HasPage:",gtc.haspage(acc)
 
