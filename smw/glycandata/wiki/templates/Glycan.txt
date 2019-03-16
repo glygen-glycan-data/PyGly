@@ -28,48 +28,7 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 |-
 ! style="" | IUPAC
 | style="" | <div class="smwpre">{{{iupac|}}}</div>
-|}{{#ask:
-[[Category:Annotation]]
-[[glycandata:hasglycan::{{PAGENAME}}]]
-[[glycandata:type::MolWt]]
-|?glycandata:property=Property
-|?glycandata:value=Value
-|?glycandata:source=Source
-|mainlabel=-
-|sort=glycandata:source, glycandata:property
-|intro= <h2>Molecular Weight Annotations</h2>
-}}{{#ask:
-[[Category:Annotation]]
-[[glycandata:hasglycan::{{PAGENAME}}]]
-[[glycandata:type::Classification]]
-|?glycandata:property=Property
-|?glycandata:value=Value
-|?glycandata:source=Source
-|mainlabel=-
-|sort=glycandata:source, glycandata:property
-|intro= <h2>Glycan Classification Annotations</h2>
-}}{{#ask:
-[[Category:Annotation]]
-[[glycandata:hasglycan::{{PAGENAME}}]]
-[[glycandata:type::MonosaccharideCount]]
-|?glycandata:property=Property
-|?glycandata:value=Value
-|?glycandata:source=Source
-|mainlabel=-
-|sort=glycandata:source, glycandata:property
-|intro= <h2>Glycan Monosaccharide Counts</h2>
-}}{{#ask:
-[[Category:Annotation]]
-[[glycandata:hasglycan::{{PAGENAME}}]]
-[[glycandata:type::CrossReferences]]
-|?glycandata:property=Property
-|?glycandata:value=Value
-|?glycandata:source=Source
-|mainlabel=-
-|sort=glycandata:source, glycandata:property
-|intro= <h2>Cross References</h2>
-|sep=, 
-}}
+|}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{AnnotationTable|Cross References|CrossReference}}
 
 {{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
 [[Category:Glycan]]
