@@ -60,7 +60,12 @@ for gtcacc in open(sys.argv[1]):
     for key in dic:		
 	g.add_annotation(value=dic[key],
 		property=key,
-		source='GlyTouCan',type='CrossReference')					 
+		source='GlyTouCan',type='CrossReference')	
+    for motif in list(gtc.getmotif(gtcacc)):
+        acc, name = motif
+        g.add_annotation(value=acc,
+                property='Motif',
+                source='GlyTouCan', type='Motif')		
     if gtcacc == 'G00031MO':
 	g.add_annotation(value='O-linked',
 			 property='GlycanType',
