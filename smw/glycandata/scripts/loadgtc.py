@@ -53,13 +53,20 @@ for gtcacc in open(sys.argv[1]):
     except:
         pass
     
-    dic = {}    
+    dic = {}
+    xref_dic = {'glycosciences_de':'GLYCOSCIENCES.de',
+                'pubchem':'PubChem',
+                'kegg':'KEGG',
+                'unicarbkb':'UniCarbKB',
+                'glyconnect':'GlyConnect',
+                'glycome-db':'GlycomeDB',
+                'carbbank':'Carbbank(CCSB)'}    
     for xref in gtc.getcrossrefs(gtcacc):
         ref, c = xref.split(":")
 	dic.setdefault(ref,[]).append(c)
     for key in dic:		
 	g.add_annotation(value=dic[key],
-		property=key,
+		property=xref_dic[key],
 		source='GlyTouCan',type='CrossReference')	
     for motif in list(gtc.getmotif(gtcacc)):
         acc, name = motif
