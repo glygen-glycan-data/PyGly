@@ -21,11 +21,13 @@ class GlyTouCanRegistrationError(RuntimeError):
 
 class GlyTouCan(object):
     endpt = 'http://ts.glytoucan.org/sparql'
-    api = 'https://api.glytoucan.org/glycan'
+    substr_endpt = 'http://test.ts.glytoucan.org/sparql'
+    api = 'https://api.glytoucan.org/'
     
     def __init__(self,user=None,apikey=None):
 
 	self.g = None
+	self.ssg = None
 	self.opener = None
 	self.user = user
 	self.apikey = apikey
@@ -39,8 +41,12 @@ class GlyTouCan(object):
 	self.wurcs_format = None
 
     def setup_sparql(self):
-	 self.g = ConjunctiveGraph(store='SPARQLStore')
-         self.g.open(self.endpt)
+        self.g = ConjunctiveGraph(store='SPARQLStore')
+        self.g.open(self.endpt)
+
+    def setup_substr_sparql(self):
+        self.ssg = ConjunctiveGraph(store='SPARQLStore')
+        self.ssg.open(self.substr_endpt)
 
     def setup_api(self,user=None,apikey=None):
 	if user == None:
@@ -64,17 +70,24 @@ class GlyTouCan(object):
 	self._lastrequestcount += 1
 
     @memoize()
-    def query(self,sparql):
+    def query(self,sparql,substr=False):
 	self._wait()
-	if self.g == None:
-	    self.setup_sparql()
+        if substr:
+            if self.ssg == None:
+                self.setup_substr_sparql()
+        else:
+            if self.g == None:
+                self.setup_sparql()
 
         attempt = 0
 	response = None
 	while response == None and attempt < self.maxattempts:
 	    try:
 		attempt += 1
-	        response = self.g.query(sparql)
+                if substr:
+                    response = self.ssg.query(sparql)
+                else:
+                    response = self.g.query(sparql)
 	    except:
 		traceback.print_exc()
 	        self._wait(self.delaytime**attempt)
@@ -547,6 +560,51 @@ class GlyTouCan(object):
         for row in response.bindings:
 	    yield tuple(map(lambda s: s.rsplit('/')[-1],map(row.get,response.vars)))
 
+    def getsubstr(self,acc):
+        sparql = self.getsubstr_sparql(acc)
+        if sparql:
+            sparql = """
+                PREFIX foaf:<http://xmlns.com/foaf/0.1/>
+                PREFIX glycan:<http://purl.jp/bio/12/glyco/glycan#>
+                PREFIX glytoucan:<http://www.glytoucan.org/glyco/owl/glytoucan#>
+                PREFIX wurcs:<http://www.glycoinfo.org/glyco/owl/wurcs#>
+                SELECT DISTINCT ?acc
+		WHERE {
+                  {
+		    SELECT DISTINCT ?acc
+                    %(from)s
+                    WHERE {
+                      %(where)s
+                      ?glycan glytoucan:has_primary_id ?acc
+                    }
+	            ORDER BY ?acc
+	          }
+                }
+                """%sparql
+            response = self.query(sparql,substr=True)
+            for r in response.bindings:
+                yield r.get(response.vars[0])
+
+    def getsubstr_sparql(self,acc):
+        seq = self.getseq(acc,'wurcs')
+        if not seq:
+            return None
+        params = dict(sequence=seq,format='wurcs')
+
+        if not self.opener:
+	    self.setup_api()
+
+        req = urllib2.Request(self.api+'glycans/sparql/substructure?'+urllib.urlencode(params))
+        req.add_header('Accept','application/json')
+        try:
+	    response = None
+	    self._wait()
+            response = json.loads(self.opener.open(req).read())
+	except (ValueError,IOError), e:
+	    self.opener = None
+            return None
+        return response
+
     def register(self,glycan,user=None,apikey=None):
 	if not self.opener:
 	    self.setup_api(user=user,apikey=apikey)
@@ -569,7 +627,7 @@ class GlyTouCan(object):
 	sequence = re.sub(r'\n\n+',r'\n',sequence)
 	params = json.dumps(dict(sequence=sequence))                                                                  
         # print params
-        req = urllib2.Request('https://api.glytoucan.org/glycan/register',params)
+        req = urllib2.Request(self.api+'glycan/register',params)
     	req.add_header('Content-Type', 'application/json')
         req.add_header('Accept','application/json')
         try:
@@ -737,6 +795,13 @@ if __name__ == "__main__":
         for acc in items():
             g = gtc.getGlycan(acc)
             print acc,g.fully_determined()
+
+    elif cmd.lower() == "substructure":
+
+        gtc = GlyTouCan()
+        for acc in items():
+            for ss in gtc.getsubstr(acc):
+                print ss
 
     else:
 	print >>sys.stderr, "Bad command: %s"%(cmd,)
