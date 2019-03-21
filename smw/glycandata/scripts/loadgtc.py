@@ -65,7 +65,17 @@ for gtcacc in open(sys.argv[1]):
         acc, name = motif
         g.add_annotation(value=acc,
                 property='Motif',
-                source='GlyTouCan', type='Motif')		
+                source='GlyTouCan', type='Motif')
+    topo = gtc.gettopo(gtcacc)
+    if topo:
+        g.add_annotation(value=topo,
+                property='Topology',
+		source='GlyTouCan', type='Subsumption')
+    comp = gtc.getcomp(gtcacc)
+    if comp:
+        g.add_annotation(value=comp,
+                property='Composition',
+		source='GlyTouCan', type='Subsumption')
     if gtcacc == 'G00031MO':
 	g.add_annotation(value='O-linked',
 			 property='GlycanType',
