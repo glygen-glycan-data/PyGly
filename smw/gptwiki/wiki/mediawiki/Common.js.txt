@@ -117,7 +117,7 @@ function loadSVG() {
     }
 
 
-    msmsv.addTitles('specpanel', titles, 3, "h3");
+    msmsv.addTitles('specpanel', titles, 2, "h3");
 }
 
 
