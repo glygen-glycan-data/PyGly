@@ -472,7 +472,7 @@ class GlyTouCan(object):
              ?saccharide glycan:has_resource_entry ?gdb
         } 
     """
-    resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank']
+    resources = ['GLYCOSCIENCES.de','PubChem','KEGG','UniCarbKB','GlyConnect','GlycomeDB','Carbbank(CCSB)']
     def getcrossrefs(self,accession,resource=None):
         assert resource in [None]+self.resources
 	response = self.query(self.getcrossrefs_sparql%dict(accession=accession))
