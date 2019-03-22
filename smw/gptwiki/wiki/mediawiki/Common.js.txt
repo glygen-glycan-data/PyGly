@@ -1,0 +1,127 @@
+var curl = window.location.href.split("/");
+var pagename = curl[curl.length-1];
+var paraFromPage = [];
+
+if ( pagename.startsWith("TG") ){ //pagename.startsWith("TG")
+    checkElement();
+}
+
+function checkElement() {
+    var pot = document.getElementsByClassName("mw-parser-output");
+    var msl = pot[0].getElementsByTagName("p");
+    var msele = msl[msl.length - 1];
+
+    var elestring = "";
+    for (var i in msele.innerText.split("\n")){
+
+        var sth = msele.innerText.split("\n")[i];
+        if (sth == ""){
+            continue
+        }
+        var scan = sth.split(";")[0];
+        var method = sth.split(";")[1];
+        var title = "#"+ scan + " (Method: " + method + ")";
+
+        paraFromPage.push({title: title, scan: scan})
+    }
+
+    msele.innerHTML = "";
+}
+
+if (!( Object.keys(paraFromPage).length === 0 && paraFromPage.constructor === Object)){
+    injectResources();
+}
+
+
+function injectResources() {
+
+    var external_resources = [
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js",
+        "https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/spectrum-parsers.js",
+        "https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/MSV.js",
+        "https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/util.js"
+    ];
+
+    var js_status = {};
+    for (var i in external_resources){
+        var jsurl = external_resources[i];
+        js_status[jsurl] = false;
+        getScript(jsurl, sync1);
+    }
+
+    jQuery.ajaxSetup({cache: true});
+    function getScript(url, func) {
+        jQuery.getScript(url, function () {
+            js_status[url] = true;
+            func();
+        });
+    }
+
+    $("head").append("<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/spectrum-viewer.css' type='text/css'>");
+
+    function sync1() {
+
+        var flag = true;
+        for (var i in js_status){
+            if (!js_status[i]){
+                flag = false;
+            }
+        }
+        if (flag){
+            // console.log("loading partial complete");
+            getD3TIP();
+        }
+    }
+
+    function getD3TIP() {
+        getScript("https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js", sync2);
+    }
+
+    function sync2() {
+        // console.log("loading complete");
+        loadSVG();
+    }
+}
+
+function loadSVG() {
+    // console.log("Start drawing");
+
+    var pot = document.getElementsByClassName("mw-parser-output")[0];
+    var msContainer = document.createElement("div");
+    msContainer.setAttribute("class", "specpanel");
+    pot.appendChild(msContainer);
+
+    var titles = [];
+
+    var params = {
+        spectra: "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3.mgf",
+        scan: ""
+    };
+
+    // Delete
+    //params.spectra = "MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3.mgf";
+
+    params["width"] = pot.clientWidth * 0.995;
+    if ("spectra" in params) {
+
+        for (var i in paraFromPage) {
+            var sc = paraFromPage[i]["scan"];
+            var title = paraFromPage[i]["title"];
+            console.log(sc);
+
+            params["scan"] = sc;
+            // console.log(params);
+            msmsv.showUnlabelledSpectrum('specpanel','spec'+sc, params);
+            titles.push(title);
+        }
+    }
+
+
+    msmsv.addTitles('specpanel', titles, 2, "h3");
+}
+
+
+
+
+
+
