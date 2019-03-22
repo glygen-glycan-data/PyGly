@@ -64,10 +64,15 @@ for gtcacc in open(sys.argv[1]):
     for xref in gtc.getcrossrefs(gtcacc):
         ref, c = xref.split(":")
 	dic.setdefault(ref,[]).append(c)
-    for key in dic:		
-	g.add_annotation(value=dic[key],
-		property=xref_dic[key],
-		source='GlyTouCan',type='CrossReference')	
+    for key in dic:       
+        if key in xref_dic:    
+            g.add_annotation(value=dic[key],
+                property=xref_dic[key],
+                source='GlyTouCan',type='CrossReference')
+        else:	
+            g.add_annotation(value=dic[key],
+                property=key,
+                source='GlyTouCan',type='CrossReference')	
     for motif in list(gtc.getmotif(gtcacc)):
         acc, name = motif
         g.add_annotation(value=acc,
