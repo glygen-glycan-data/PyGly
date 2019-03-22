@@ -8,5 +8,11 @@
 |mainlabel=-
 |sort=glycandata:source, glycandata:property
 |intro= <h2>{{{1}}}</h2>
-|sep=,&thinsp;
+|format=template
+|template=AnnotationTableRows
+|introtemplate=AnnotationTableIntro
+|outrotemplate=AnnotationTableOutro
+|link=none
+|valuesep=,&thinsp;
+|sep=
 }}</includeonly>

@@ -1,0 +1,3 @@
+<includeonly>
+{| class="wikitable" style="width:100%"
+</includeonly>

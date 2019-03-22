@@ -14,21 +14,21 @@ Edit the page to see the template text.
 <p align="center"><img
 src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
 {| class="wikitable" style="width:100%" 
-! style="" | GlyTouCan
+! style="width:200px" | GlyTouCan
 | style="" |
 [https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
 |-
-! style="" | GlycoCT
+! style="width:200px" | GlycoCT
 | style="" | <div class="smwpre">
 {{{glycoct|}}}
 </div>
 |-
-! style="" | WURCS
+! style="width:200px" | WURCS
 | style="" | <div class="smwpre">{{{wurcs|}}}</div>
 |-
-! style="" | IUPAC
+! style="width:200px" | IUPAC
 | style="" | <div class="smwpre">{{{iupac|}}}</div>
-|}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{AnnotationTable|Cross References|CrossReference}}
+|}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{AnnotationTable|Cross References|CrossReference}}{{AnnotationTable|Glycan Motif|Motif}}{{AnnotationTable|Subsumption|Subsumption}}
 
 {{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
 [[Category:Glycan]]
