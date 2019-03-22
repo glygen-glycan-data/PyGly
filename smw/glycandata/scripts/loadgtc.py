@@ -72,10 +72,12 @@ for gtcacc in open(sys.argv[1]):
         else:	
             g.add_annotation(value=dic[key],
                 property=key,
-                source='GlyTouCan',type='CrossReference')	
+                source='GlyTouCan',type='CrossReference')
+    motif_list = []	
     for motif in list(gtc.getmotif(gtcacc)):
         acc, name = motif
-        g.add_annotation(value=acc,
+	motif_list.append(acc)
+        g.add_annotation(value=motif_list,
                 property='Motif',
                 source='GlyTouCan', type='Motif')
     topo = gtc.gettopo(gtcacc)
