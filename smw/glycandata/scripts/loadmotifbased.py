@@ -34,7 +34,8 @@ for gtcacc in open(sys.argv[1]):
     for motif in list(gtc.getmotif(gtcacc)):
         count += 1
         acc, name = motif
-        subtype_list.append(subtype_dic[acc])
+	if acc in subtype_dic:
+            subtype_list.append(subtype_dic[acc])
         if acc in N_Glycan & count==0:
             g.add_annotation(value='N-linked',
                     property='GlycanType',
