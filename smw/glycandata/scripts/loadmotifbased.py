@@ -26,7 +26,7 @@ subtype_dic = {'G00026MO':'core basic','G00028MO':'high mannose', 'G00029MO':'hy
 for m in w.iterglycan():
     subtype_list = []
     count = 0    
-    for motif in list(gtc.getmotif(gtcacc)):
+    for motif in list(gtc.getmotif(m)):
         count += 1
         acc, name = motif
 	if acc in subtype_dic:
