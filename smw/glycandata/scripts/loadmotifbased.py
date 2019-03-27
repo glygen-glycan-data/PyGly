@@ -36,11 +36,11 @@ for gtcacc in open(sys.argv[1]):
         acc, name = motif
 	if acc in subtype_dic:
             subtype_list.append(subtype_dic[acc])
-        if acc in N_Glycan and count==0:
+        if acc in N_Glycan and count==1:
             g.add_annotation(value='N-linked',
                     property='GlycanType',
                     source='EdwardsLab', type='Classification')
-        elif acc in O_Glycan and count==0:
+        elif acc in O_Glycan and count==1:
             g.add_annotation(value='O-linked',
                     property='GlycanType',
                     source='EdwardsLab', type='Classification')
