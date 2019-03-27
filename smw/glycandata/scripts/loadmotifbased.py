@@ -36,6 +36,9 @@ for gtcacc in open(sys.argv[1]):
         acc, name = motif
 	if acc in subtype_dic:
             subtype_list.append(subtype_dic[acc])
+            g.add_annotation(value=subtype_list,
+                    property='GlycanSubtype',
+                    source='EdwardsLab', type='Classification')	    
         if acc in N_Glycan and count==1:
             g.add_annotation(value='N-linked',
                     property='GlycanType',
@@ -44,9 +47,7 @@ for gtcacc in open(sys.argv[1]):
             g.add_annotation(value='O-linked',
                     property='GlycanType',
                     source='EdwardsLab', type='Classification')
-        g.add_annotation(value=subtype_list,
-                    property='GlycanSubtype',
-                    source='EdwardsLab', type='Classification')
+        
     if w.put(g):
         print >>sys.stderr, g.get('accession')
         current.add(gtcacc)
