@@ -23,12 +23,7 @@ subtype_dic = {'G00026MO':'core basic','G00028MO':'high mannose', 'G00029MO':'hy
 	'G00038MO':'core 4 fuzzy','G00039MO':'core 5','G00040MO':'core 5 fuzzy','G00041MO':'core 6',
 	'G00042MO':'core 6 fuzzy','G00043MO':'core 7','G00044MO':'core 7 fuzzy'}
 	
-for gtcacc in open(sys.argv[1]):
-    gtcacc = gtcacc.strip()
-    g = Glycan(accession=gtcacc,
-	       wurcs=gtc.getseq(gtcacc,'wurcs'),
-	       glycoct=gtc.getseq(gtcacc,'glycoct'),
-               iupac=gtc.getseq(gtcacc,'iupac_extended'))
+for m in w.iterglycan():
     subtype_list = []
     count = 0    
     for motif in list(gtc.getmotif(gtcacc)):
@@ -36,22 +31,17 @@ for gtcacc in open(sys.argv[1]):
         acc, name = motif
 	if acc in subtype_dic:
             subtype_list.append(subtype_dic[acc])
-            g.add_annotation(value=subtype_list,
+            m.add_annotation(value=subtype_list,
                     property='GlycanSubtype',
                     source='EdwardsLab', type='Classification')	    
         if acc in N_Glycan and count==1:
-            g.add_annotation(value='N-linked',
+            m.add_annotation(value='N-linked',
                     property='GlycanType',
                     source='EdwardsLab', type='Classification')
         elif acc in O_Glycan and count==1:
-            g.add_annotation(value='O-linked',
+            m.add_annotation(value='O-linked',
                     property='GlycanType',
                     source='EdwardsLab', type='Classification')
-        
-    if w.put(g):
-        print >>sys.stderr, g.get('accession')
-        current.add(gtcacc)
-
 for m in w.iterglycan():
     if m.get('accession') not in current:
         print >>sys.stderr, "Deleting:",m.get('pagename')
