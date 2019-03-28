@@ -2,7 +2,7 @@ var curl = window.location.href.split("/");
 var pagename = curl[curl.length-1];
 var paraFromPage = [];
 
-if ( pagename.startsWith("TG") ){ //pagename.startsWith("TG")
+if ( pagename.startsWith("TG") ){
     checkElement();
 }
 
@@ -94,26 +94,25 @@ function loadSVG() {
     var titles = [];
 
     var params = {
-        spectra: "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3.mgf",
+        spectra: "",
+        format: "json",
         scan: ""
     };
 
     // Delete
-    //params.spectra = "MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3.mgf";
+    // params.spectra = "MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3.mgf";
 
     params["width"] = pot.clientWidth * 0.995;
-    if ("spectra" in params) {
+    for (var i in paraFromPage) {
+        var sc = paraFromPage[i]["scan"];
+        var title = paraFromPage[i]["title"];
 
-        for (var i in paraFromPage) {
-            var sc = paraFromPage[i]["scan"];
-            var title = paraFromPage[i]["title"];
-            console.log(sc);
-
-            params["scan"] = sc;
-            // console.log(params);
-            msmsv.showUnlabelledSpectrum('specpanel','spec'+sc, params);
-            titles.push(title);
-        }
+        params["scan"] = sc;
+        //params["spectra"] = "https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + sc + '.json';
+        params["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + sc + '.json';
+        // console.log(params);
+        msmsv.showUnlabelledSpectrum('specpanel','spec'+sc, params);
+        titles.push(title);
     }
 
 
