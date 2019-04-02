@@ -452,6 +452,9 @@ class SMWClass(object):
             self.data[key] = []
         self.data[key].append(value)
 
+    def update(self,**kwargs):
+        self.data = self.toPyton(kwargs)
+
     def delete(self,key):
         if key in self.data:
             del self.data[key]
