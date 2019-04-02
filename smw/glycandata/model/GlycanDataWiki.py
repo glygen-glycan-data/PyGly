@@ -56,7 +56,7 @@ class Glycan(SMW.SMWClass):
         assert kwargs.get('type')
         assert kwargs.get('property')
         assert kwargs.get('source')
-        ans = list(self.annotations(**kargs))
+        ans = list(self.annotations(type=kwargs.get('type'),property=kwargs.get('property'),source=kwargs.get('source')))
         if len(ans) == 0:
             self.add_annotation(**kwargs)
         elif len(ans) == 1:
