@@ -418,13 +418,19 @@ class GlyTouCan(object):
 	return False
 
     gettopo_sparql = """
+        PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
 	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
 	
-	SELECT ?topo
+	SELECT DISTINCT ?topo
 	WHERE {
+	  {
    	    ?Saccharide glytoucan:has_primary_id "%(accession)s" .
 	    ?Saccharide relation:has_topology ?topo
+          } UNION {
+	    ?Saccharide relation:has_topology glytoucanacc:%(accession)s .
+	    ?Saccharide relation:has_topology ?topo
+          }
 	}
     """
     def gettopo(self,accession):
@@ -438,19 +444,48 @@ class GlyTouCan(object):
 	    return None
         return value.rsplit('/',1)[1]
 
-    getcomp_sparql = """
+    hastopo_sparql = """
+        PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
 	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
 	
-	SELECT ?comp
+	SELECT DISTINCT ?acc
 	WHERE {
-   	    ?Saccharide glytoucan:has_primary_id "%(accession)s" .
+          {
+   	    ?Saccharide glytoucan:has_primary_id ?acc .
+	    ?Saccharide relation:has_topology glytoucanacc:%(accession)s
+          } UNION {
+	    ?Saccharide relation:has_topology glytoucanacc:%(accession)s .
 	    ?Saccharide relation:has_topology ?topo .
+	    ?topo glytoucan:has_primary_id ?acc
+          }
+	}
+    """
+    def hastopo(self,accession):
+        response = self.query(self.hastopo_sparql%dict(accession=accession))
+        key = response.vars[0]
+        for row in response.bindings:
+	    yield str(row[key])
+
+    getcomp_sparql = """
+	PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT DISTINCT ?comp
+	WHERE {
+	  {
+   	    ?topo glytoucan:has_primary_id "%(topo)s" .
 	    ?topo relation:has_composition ?comp
+          } UNION {
+	    ?Saccharide relation:has_composition glytoucanacc:%(accession)s .
+	    ?Saccharide relation:has_composition ?comp
+	  }
 	}
     """
     def getcomp(self,accession):
-        response = self.query(self.getcomp_sparql%dict(accession=accession))
+        topo = self.gettopo(accession)
+        response = self.query(self.getcomp_sparql%dict(accession=accession,topo=topo))
         key = response.vars[0]
         value = None
         for row in response.bindings:
@@ -460,6 +495,33 @@ class GlyTouCan(object):
 	    return None
         return value.rsplit('/',1)[1]
 
+    hascomp_sparql = """
+        PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT DISTINCT ?acc
+	WHERE {
+          {
+   	    ?Saccharide glytoucan:has_primary_id ?acc .
+	    ?Saccharide relation:has_topology ?topo .
+	    ?topo relation:has_composition glytoucanacc:%(accession)s
+          } UNION {
+   	    ?topo glytoucan:has_primary_id ?acc .
+	    ?topo relation:has_composition glytoucanacc:%(accession)s
+          } UNION {
+	    ?Saccharide relation:has_composition glytoucanacc:%(accession)s .
+	    ?Saccharide relation:has_composition ?comp .
+	    ?comp glytoucan:has_primary_id ?acc
+          }
+	}
+    """
+    def hascomp(self,accession):
+        response = self.query(self.hascomp_sparql%dict(accession=accession))
+        key = response.vars[0]
+        for row in response.bindings:
+	    yield str(row[key])
+            
     @staticmethod 
     def intstrsortkey(value):
 	if len(value) == 1:
@@ -753,6 +815,8 @@ if __name__ == "__main__":
 	    print "Mass:",gtc.getmass(acc)
 	    print "Composition:",gtc.getcomp(acc)
 	    print "Topology:",gtc.gettopo(acc)
+            print "Has Topology:",", ".join(gtc.hastopo(acc))
+            print "Has Composition:",", ".join(gtc.hascomp(acc))
 	    imgstr,width,height = gtc.getimage(acc,style='extended')
 	    if not imgstr:
 	        print "Extended Image: None"
