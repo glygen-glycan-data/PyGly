@@ -26,7 +26,7 @@ class Glycan(SMW.SMWClass):
             data['mw'] = int(data.get('monocount'))
 
         if '_subobjs' in data:
-            data['annotations'] = sorted(data['_subobjs'],lambda an: an.get('type'),an.get('property'),an.get('source'))
+            data['annotations'] = sorted(data['_subobjs'],key=lambda an: (an.get('type'),an.get('property'),an.get('source')))
             del data['_subobjs']
 
 	return data
@@ -41,7 +41,7 @@ class Glycan(SMW.SMWClass):
             data['monocount'] = str(data.get('monocount'))
 
         if 'annotations' in data:
-            data['_subobjs'] = sorted(data['annotations'],lambda an: an.get('type'),an.get('property'),an.get('source'))
+            data['_subobjs'] = sorted(data['annotations'],key=lambda an: (an.get('type'),an.get('property'),an.get('source')))
             del data['annotations']
         
 	return data
@@ -124,6 +124,6 @@ class GlycanDataWiki(SMW.SMWSite):
         return super(GlycanDataWiki,self).get(accession)
 
     def iterglycan(self):
-    for pagename in self.itercat('Glycan'):
-        m  = self.get(pagename)
-        yield m
+        for pagename in self.itercat('Glycan'):
+            m  = self.get(pagename)
+            yield m
