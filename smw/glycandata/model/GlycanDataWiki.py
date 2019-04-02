@@ -26,7 +26,7 @@ class Glycan(SMW.SMWClass):
             data['mw'] = int(data.get('monocount'))
 
         if '_subobjs' in data:
-            data['annotations'] = data['_subobjs']
+            data['annotations'] = sorted(data['_subobjs'],lambda an: an.get('type'),an.get('property'),an.get('source'))
             del data['_subobjs']
 
 	return data
@@ -41,22 +41,42 @@ class Glycan(SMW.SMWClass):
             data['monocount'] = str(data.get('monocount'))
 
         if 'annotations' in data:
-            data['_subobjs'] = data['annotations']
+            data['_subobjs'] = sorted(data['annotations'],lambda an: an.get('type'),an.get('property'),an.get('source'))
             del data['annotations']
         
 	return data
 
-    def add_annotation(self,*args,**kwargs):
-        assert 'type' in kwargs
-        assert 'property' in kwargs
-        assert 'source' in kwargs
-	if 'value' not in kwargs:
-	    kwargs['value'] = args
+    def add_annotation(self,**kwargs):
+        assert kwargs.get('type')
+        assert kwargs.get('property')
+        assert kwargs.get('source')
         self.append('annotations',Annotation(**kwargs))
 
-    def annotations(self,type=None):
+    def set_annotation(self,**kwargs):
+        assert kwargs.get('type')
+        assert kwargs.get('property')
+        assert kwargs.get('source')
+        ans = list(self.annotations(**kargs))
+        if len(ans) == 0:
+            self.add_annotation(**kwargs)
+        elif len(ans) == 1:
+            ans[0].update(**kwargs)
+        else:
+            raise RuntimeError('Annotation(type="%(type)s",property="%(property)s",source="%(source)s") not unique'%(kwargs,))
+
+    def delete_annotations(self,**kwargs):
+        todel = list(self.annotations(**kwargs))
+        ans = self.get('annotations',[])
+        for i in range(len(ans)-1,-1,-1):
+            if ans[i] in todel:
+                del ans[i]
+        self.set('annotations',ans)
+
+    def annotations(self,type=None,property=None,source=None):
         for an in self.get('annotations',[]):
-            if type == None or an.get('type') == type:
+            if (type == None or an.get('type') == type) and \
+               (property == None or an.get('property') == property) and \
+               (source == None or an.get('source') == source):
                 yield an
 
 class Annotation(SMW.SMWClass):
@@ -67,31 +87,31 @@ class Annotation(SMW.SMWClass):
         try:
             return int(v),""
         except:
-	    pass
-	try:
-	    return float(v),""
-	except:
-	    pass
+           pass
+        try:
+           return float(v),""
+        except:
+           pass
         return 1e+20,v
 
     def toPython(self,data):
-	data = super(Annotation,self).toPython(data)
+        data = super(Annotation,self).toPython(data)
 
         # value may be a list
         if isinstance(data.get('value'),basestring):
             data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
-	elif isinstance(data.get('value'),float) or isinstance(data.get('value'),int):
-	    data['value'] = [ str(data['value']) ]
+        elif isinstance(data.get('value'),float) or isinstance(data.get('value'),int):
+              data['value'] = [ str(data['value']) ]
         
-	return data
+        return data
 
     def toTemplate(self,data):
-	data = super(Annotation,self).toTemplate(data)
+        data = super(Annotation,self).toTemplate(data)
 
         if 'value' in data:
-            data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
+               data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
 
-	return data
+        return data
 
 class GlycanDataWiki(SMW.SMWSite):
     _name = 'glycandata'
@@ -104,6 +124,6 @@ class GlycanDataWiki(SMW.SMWSite):
         return super(GlycanDataWiki,self).get(accession)
 
     def iterglycan(self):
-	for pagename in self.itercat('Glycan'):
-	    m  = self.get(pagename)
-            yield m
+    for pagename in self.itercat('Glycan'):
+        m  = self.get(pagename)
+        yield m
