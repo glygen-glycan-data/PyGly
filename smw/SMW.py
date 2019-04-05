@@ -280,18 +280,18 @@ class SMWSite(object):
             if m.group() == '{{':
                 if level == 0:
                     startpos = m.end()
-		print "  "*level,thepage[lastpos:m.end()]
+		# print "  "*level,thepage[lastpos:m.end()]
 		lastpos = m.end()
                 level += 1
             if m.group() == '}}':
-		print "  "*level,thepage[lastpos:m.start()]
+		# print "  "*level,thepage[lastpos:m.start()]
 		lastpos = m.start()
                 level -= 1
                 if level == 0:
                     endpos = m.start()
-		    print "!",thepage[startpos:endpos]
+		    # print "!",thepage[startpos:endpos]
                     chunks.append(thepage[startpos:endpos])
-        assert level == 0
+        assert level == 0, name
 
         subobjs = []
         for index, chunk in enumerate(chunks[1:]+chunks[:1]):
