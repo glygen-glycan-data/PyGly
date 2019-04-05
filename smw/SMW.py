@@ -270,20 +270,26 @@ class SMWSite(object):
         page = self._get(name)
         if not page.exists:
             return None
-        # print repr(page.text())
+        print repr(page.text())
 
         thepage = page.text()
         chunks = []
         level = 0
+	lastpos = 0
         for m in re.finditer(r'({{)|(}})', thepage):
             if m.group() == '{{':
                 if level == 0:
                     startpos = m.end()
+		print "  "*level,thepage[lastpos:m.end()]
+		lastpos = m.end()
                 level += 1
             if m.group() == '}}':
+		print "  "*level,thepage[lastpos:m.start()]
+		lastpos = m.start()
                 level -= 1
                 if level == 0:
                     endpos = m.start()
+		    print "!",thepage[startpos:endpos]
                     chunks.append(thepage[startpos:endpos])
         assert level == 0
 
@@ -361,8 +367,9 @@ class SMWClass(object):
     def smwescape(value):
         if not re.search(r'[]{}[=|<]',value):
             return value.strip()
-        value = value.replace('{','{{(}}')
-        value = value.replace('}','{{)}}')
+        # value = value.replace('{','{{(}}')
+        # value = value.replace('}','{{)}}')
+	value = re.sub(r'[{}]', lambda mo: '{{(}}' if mo.group() == '{' else '{{)}}', value)
         value = value.replace('|','{{!}}')
         value = value.replace('=','{{=}}')
         value = value.replace('[','{{!(}}')
