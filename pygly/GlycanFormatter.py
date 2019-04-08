@@ -76,6 +76,84 @@ class GlycoCTUnconnectedCountError(GlycoCTParseError):
 class GlycoCTFormat(GlycanFormatter):
     def __init__(self):
         self.monofmt = GlycoCTMonoFormat()
+    
+    def monoteardown(self, m):
+        m = copy.deepcopy(m)
+        m.set_id(None)
+        mstr = self.monofmt.toStr(m)
+        mstr = mstr[2:]
+
+        subs = []
+        for sl in list(m.substituent_links()):
+
+            if sl.parent_pos():
+                parent_pos = sorted(list(sl.parent_pos()))
+                pp = "/".join(map(str, parent_pos))
+            else:
+                pp = "?"
+
+            if sl.child_pos():
+                child_pos = sorted(list(sl.child_pos()))
+                cp = "/".join(map(str, child_pos))
+            else:
+                cp = "?"
+
+            if sl.parent_type():
+                pt = {1: "o",
+                      2: "d",
+                      3: "x",
+                      4: "n"}.get(list(sl.parent_type())[0], "?")
+            else:
+                pt = "?"
+
+            sl.child().set_id(None)
+            subname = self.monofmt.toStr(sl.child())[2:]
+
+            subs.append({"pp": pp,
+                         "cp": cp,
+                         "pt": pt,
+                         "subname": subname, })
+
+        return (mstr, subs)
+
+    def mtoStr(self, m):
+        mstr, subs = self.monoteardown(m)
+
+        substrs = []
+        for s in subs:
+            pp = s["pp"]
+            cp = s["cp"]
+            pt = s["pt"]
+            subname = s["subname"]
+
+            substr = "(%s%s:%s)%s" % (pp, pt, cp, subname)
+            substrs.append(substr)
+
+        if substrs:
+            substrs = sorted(substrs)
+            allsub = "|".join(substrs)
+            mstr += "||%s" % allsub
+
+        return mstr
+
+    def mtodict(self, m):
+        mstr, subs = self.monoteardown(m)
+
+        subdict = []
+        for s in subs:
+            pp = s["pp"]
+            cp = s["cp"]
+            pt = s["pt"]
+            subname = s["subname"]
+
+            d = {"substMsPos": pp,
+                 "substName": subname,
+                 "substMsLinktype": pt}
+            substr = "(%s%s:%s)%s" % (pp, pt, cp, subname)
+            subdict.append(d)
+
+        return (mstr, subdict)
+    
     def toStr(self,g):
 
         g.set_ids()
@@ -256,6 +334,7 @@ class GlycoCTFormat(GlycanFormatter):
             g = Glycan()
             g.set_undetermined(unconnected)
         return g
+
 
 class LinearCodeParseError(GlycanParseError):
     pass
