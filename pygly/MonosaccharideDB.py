@@ -2,6 +2,7 @@ import sys
 import xml
 import urllib
 import urllib2
+import copy
 import xml.etree.ElementTree as ET
 from GlyTouCan import *
 from GlycanFormatter import GlycoCTFormat
@@ -10,6 +11,9 @@ GlycoctParser = GlycoCTFormat()
 gtc = GlyTouCan()
 
 class MonosaccharideDB:
+    
+    page_cache_by_id = {}
+    page_cache_by_glycoct = {}
 
     def __init__(self):
         pass
@@ -30,19 +34,42 @@ class MonosaccharideDB:
             apiurl += "&%s" % urllib.urlencode(params)
         
         # print apiurl
+        
+        req = urllib2.Request(apiurl.replace("output=xml&", ""))
+        httpdoc = urllib2.urlopen(req).read()
         req = urllib2.Request(apiurl)
         xmldoc = urllib2.urlopen(req).read()
+        # Well, sometimes you have to request the URL twice to load IUPAC name
+        # I don't know why what happens either.
+    
         root = ET.fromstring(xmldoc)
         
         return root
+
+    def get_document_by_mono_object(self, m):
+        s = GlycoctParser.mtoStr(m)
+        if s in self.page_cache_by_glycoct:
+            return copy.deepcopy(self.page_cache_by_glycoct[s])
+        else:
+            basetype, substlist = GlycoctParser.mtodict(m)
+            docroot = self.get_document_by_glycoct(basetype, substlist)
+            self.page_cache_by_glycoct[s] = copy.deepcopy(docroot)
+            
+            return docroot
         
     def get_document_by_id(self, id):
-        apiurl = "http://www.monosaccharidedb.org/display_monosaccharide.action?id=%s&output=xml" % id
-        req = urllib2.Request(apiurl)
-        xmldoc = urllib2.urlopen(req).read()
-        root = ET.fromstring(xmldoc)
-        
-        return root
+        if id in self.page_cache_by_id:
+            return copy.deepcopy(self.page_cache_by_id[id])
+        else:
+            apiurl = "http://www.monosaccharidedb.org/display_monosaccharide.action?id=%s&output=xml" % id
+            req = urllib2.Request(apiurl.replace("&output=xml", ""))
+            httpdoc = urllib2.urlopen(req).read()
+            req = urllib2.Request(apiurl)
+            xmldoc = urllib2.urlopen(req).read()
+            root = ET.fromstring(xmldoc)
+            self.page_cache_by_id[id] = copy.deepcopy(root)
+            
+            return root
     
     def parse_doc(self, root):
         res = {}
@@ -69,7 +96,11 @@ class MonosaccharideDB:
             elif child.tag == "synonyms":
                 synonyms = []
                 for c in child:
-                    synonyms.append(c.attrib)
+                    sym = c.attrib
+                    sym["external_substituent"] = []
+                    for gc in c:
+                        sym["external_substituent"].append(gc.attrib)
+                    synonyms.append(sym)
                 res[child.tag] = synonyms
             elif child.tag == "substitutions":
                 subst = []
@@ -115,6 +146,7 @@ class MonosaccharideDB:
 if __name__ == "__main__":
     m = MonosaccharideDB()
     gtcacc = sys.argv[1]
+    # gtcacc = "G24536EZ"
     m.summary(gtcacc)
 
 
