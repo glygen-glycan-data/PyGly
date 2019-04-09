@@ -270,7 +270,7 @@ class SMWSite(object):
         page = self._get(name)
         if not page.exists:
             return None
-        print repr(page.text())
+        # print repr(page.text())
 
         thepage = page.text()
         chunks = []

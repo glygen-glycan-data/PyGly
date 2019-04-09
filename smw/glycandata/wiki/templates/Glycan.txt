@@ -28,7 +28,7 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 |-
 ! style="width:200px" | IUPAC
 | style="" | <div class="smwpre">{{{iupac|}}}</div>
-|}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{AnnotationTable|Cross References|CrossReference}}{{AnnotationTable|Glycan Motif|Motif}}{{AnnotationTable|Subsumption|Subsumption}}
+|}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{AnnotationTable|Cross References|CrossReference}}{{GlycomotifTable|Glycan Motif|Motif}}{{SubsumptionTable|Subsumption|Subsumption}}
 
 {{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
 [[Category:Glycan]]
