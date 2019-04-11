@@ -13,7 +13,7 @@ except ImportError:
 
 from combinatorics import itermatchings, iterecmatchings
 
-from Monosaccharide import Monosaccharide, Linkage
+from Monosaccharide import Monosaccharide, Linkage, Mod
 from MonoFormatter import IUPACSym, LinCodeSym
 
 iupacSym = IUPACSym()
@@ -447,12 +447,12 @@ class Glycan:
 		if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc'):
 		    sym = 'Xxx'
 	    except KeyError:
-		if m == self.root() and len(self.mods()) == 1 and self.count_mod(Mod.aldi) == 1:
+		if m == self.root() and len(m.mods()) == 1 and m.count_mod(Mod.aldi) == 1:
 		    m1 = m.clone()
 		    m1.clear_mods()
 		    try:
 			sym = iupacSym.toStr(m1)
-			if sym not in ('GlcNAc',):
+			if sym not in ('GlcNAc','GalNAc'):
                             sym = 'Xxx'
 		    except KeyError:
 			sym = 'Xxx'

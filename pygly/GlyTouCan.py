@@ -860,6 +860,13 @@ if __name__ == "__main__":
             g = gtc.getGlycan(acc)
             print acc,g.fully_determined()
 
+    elif cmd.lower() == "composition":
+
+        gtc = GlyTouCan()
+        for acc in items():
+            g = gtc.getGlycan(acc)
+            print acc," ".join(map(lambda t: "%s: %d"%t,filter(lambda t: t[1]>0,sorted(g.iupac_composition().items()))))
+
     elif cmd.lower() == "substructure":
 
         gtc = GlyTouCan()
