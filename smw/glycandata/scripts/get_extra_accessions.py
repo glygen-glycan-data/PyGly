@@ -17,7 +17,7 @@ for acc in accs:
     if topo:
         newaccs.add(topo)
     if comp:
-        for newacc in gtc.hascomp(comp)
+        for newacc in gtc.hascomp(comp):
             newaccs.add(newacc)    
         newaccs.add(comp)
 newaccs = (newaccs-accs)
