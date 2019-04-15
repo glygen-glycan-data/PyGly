@@ -444,6 +444,21 @@ class GlyTouCan(object):
 	    return None
         return value.rsplit('/',1)[1]
 
+    alltopo_sparql = """
+	PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT DISTINCT ?sacc ?topo
+	WHERE {
+	    ?sacc relation:has_topology ?topo
+	}
+    """
+    def alltopo(self):
+	response = self.query(self.alltopo_sparql)
+	for row in response.bindings:
+	    yield map(lambda uri: str(uri).rsplit('/',1)[1],map(row.get,response.vars))
+
     hastopo_sparql = """
         PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
@@ -495,6 +510,26 @@ class GlyTouCan(object):
 	    return None
         return value.rsplit('/',1)[1]
 
+    allcomp_sparql = """
+	PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT DISTINCT ?topo ?comp
+	WHERE {
+	    ?topo relation:has_composition ?comp
+	}
+    """
+    def allcomp(self):
+	topo = defaultdict(set)
+        for s,t in self.alltopo():
+	    topo[t].add(s)
+	response = self.query(self.allcomp_sparql)
+	for row in response.bindings:
+	    t,c = map(lambda uri: str(uri).rsplit('/',1)[1],map(row.get,response.vars))
+	    for s in topo[t]:
+		yield s,c
+
     hascomp_sparql = """
         PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
@@ -521,6 +556,34 @@ class GlyTouCan(object):
         key = response.vars[0]
         for row in response.bindings:
 	    yield str(row[key])
+
+    getbasecomp_sparql = """
+	PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT DISTINCT ?bcomp
+	WHERE {
+	  {
+   	    ?comp glytoucan:has_primary_id "%(comp)s" .
+	    ?comp relation:has_base_composition ?bcomp
+          } UNION {
+	    ?Saccharide relation:has_base_composition glytoucanacc:%(accession)s .
+	    ?Saccharide relation:has_base_composition ?bcomp
+	  }
+	}
+    """
+    def getbasecomp(self,accession):
+        comp = self.getcomp(accession)
+        response = self.query(self.getbasecomp_sparql%dict(accession=accession,comp=comp))
+        key = response.vars[0]
+        value = None
+        for row in response.bindings:
+	    value = str(row[key])
+            break
+	if not value:
+	    return None
+        return value.rsplit('/',1)[1]
             
     @staticmethod 
     def intstrsortkey(value):
@@ -673,7 +736,7 @@ class GlyTouCan(object):
 	if isinstance(glycan,Glycan):
 	    if not self.glycoct_format:
 		self.glycoct_format = GlycoCTFormat()
-	    sequence = self.glycoct_format.toStr(glycan)
+	    sequence = self.glycoct2wurcs(self.glycoct_format.toStr(glycan))
 	    # print sequence
 	    if not glycan.has_root():
 		acc,new = self.register(sequence)
@@ -685,6 +748,8 @@ class GlyTouCan(object):
 		else:
 		    return acc,new
 	else:
+	    if glycan.strip().startswith('RES'):
+		glycan = self.glycoct2wurcs(glycan)
 	    sequence = glycan
 	sequence = re.sub(r'\n\n+',r'\n',sequence)
 	params = json.dumps(dict(sequence=sequence))                                                                  
@@ -813,8 +878,9 @@ if __name__ == "__main__":
 	    print "XRefs:",", ".join(gtc.getcrossrefs(acc))
 	    print "Motif:",", ".join(map(itemgetter(0),gtc.getmotif(acc)))
 	    print "Mass:",gtc.getmass(acc)
-	    print "Composition:",gtc.getcomp(acc)
 	    print "Topology:",gtc.gettopo(acc)
+	    print "Composition:",gtc.getcomp(acc)
+	    print "BaseComposition:",gtc.getbasecomp(acc)
             print "Has Topology:",", ".join(gtc.hastopo(acc))
             print "Has Composition:",", ".join(gtc.hascomp(acc))
 	    imgstr,width,height = gtc.getimage(acc,style='extended')
@@ -873,6 +939,18 @@ if __name__ == "__main__":
         for acc in items():
             for ss in gtc.getsubstr(acc):
                 print ss
+
+    elif cmd.lower() == "allcomp":
+
+        gtc = GlyTouCan()
+        for s,c in gtc.allcomp():
+	    print "\t".join([s,c])
+
+    elif cmd.lower() == "alltopo":
+
+        gtc = GlyTouCan()
+        for s,t in gtc.alltopo():
+	    print "\t".join([s,t])
 
     else:
 	print >>sys.stderr, "Bad command: %s"%(cmd,)

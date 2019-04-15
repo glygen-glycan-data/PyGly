@@ -447,20 +447,24 @@ class Glycan:
 		if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc'):
 		    sym = 'Xxx'
 	    except KeyError:
-		if m == self.root() and len(m.mods()) == 1 and m.count_mod(Mod.aldi) == 1:
-		    m1 = m.clone()
-		    m1.clear_mods()
-		    try:
-			sym = iupacSym.toStr(m1)
-			if sym not in ('GlcNAc','GalNAc'):
-                            sym = 'Xxx'
-		    except KeyError:
-			sym = 'Xxx'
+		sym = 'Xxx'
+		# if m == self.root() and len(m.mods()) == 1 and m.count_mod(Mod.aldi) == 1:
+		#     m1 = m.clone()
+		#     m1.clear_mods()
+		#     try:
+		# 	sym = iupacSym.toStr(m1)
+		# 	if sym not in ('GlcNAc','GalNAc'):
+                #             sym = 'Xxx'
+		#     except KeyError:
+		# 	sym = 'Xxx'
+		# else:
+		#     sym = 'Xxx'
 	    c[sym] += 1
 	c['Count'] = sum(c.values())
 	c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc')))
 	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc')))
 	c['dHex'] = sum(map(c.__getitem__,('Fuc',)))
+	c['Pent'] = sum(map(c.__getitem__,('Xyl',)))
 	return c
 
     def subtree_links(self,root,subst=False,uninstantiated=False):
