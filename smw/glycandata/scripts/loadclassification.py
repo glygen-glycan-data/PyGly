@@ -37,15 +37,29 @@ for l in motif_rules_data.splitlines():
 
 for m in w.iterglycan():
     acc = m.get('accession')
+
     classifications = set()
+
+    count = 0; mancount = 0; xxxcount = 0;
+    for ann in m.annotations(type='MonosaccharideCount',source='EdwardsLab'):
+	if ann.get('property') == "MonosaccharideCount":
+	    count = int(ann.get('value',[0])[0])
+	elif ann.get('property') == "ManCount":
+	    mancount = int(ann.get('value',[0])[0])
+	elif ann.get('property') == "XxxCount":
+	    xxxcount = int(ann.get('value',[0])[0])
+
+    m.delete_annotations(source='EdwardsLab', type='Classification')
+
     try:
         motifann = list(m.annotations(property='Motif',type='Motif',source='GlyTouCan'))[0]
-    except:
+    except IndexError:
+	w.put(m)
 	continue
+
     for motifacc in motifann.get('value',[]):
 	if motifacc in motifrules:
 	    classifications.add(motifrules[motifacc])
-    m.delete_annotations(source='EdwardsLab', type='Classification')
 
     # Add logic for multi-classifications...
     types = list(set(map(itemgetter(0),classifications)))
@@ -60,6 +74,7 @@ for m in w.iterglycan():
             subtypes = ["core 2"]
         if thetype == "O-linked" and set(subtypes) == set(["core 4","core 3","core 6"]):
             subtypes = ["core 4"]
+
     # Make various checks on the details of the subtypes and types values. 
     if len(types) > 1:
 	print >>sys.stderr, "Glycan %s has more than one type: %s."%(acc,", ".join(sorted(types)))
@@ -67,6 +82,11 @@ for m in w.iterglycan():
     if len(subtypes) > 1:
 	print >>sys.stderr, "Glycan %s has more than one subtype: %s."%(acc,", ".join(sorted(subtypes)))
         continue
+
+    # Check for additional issues...
+    if types == ["N-linked"] and subtypes == ["high mannose"] and count > 0 and (mancount + 2) != count:
+        subtypes = []
+
     if len(types) > 0:
         m.set_annotation(value=list(types), property='GlycanType',
                          source='EdwardsLab', type='Classification')

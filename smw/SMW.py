@@ -274,6 +274,7 @@ class SMWSite(object):
         if not page.exists:
             return None
 
+	obj = None
         thepage = page.text()
         chunks = []
         level = 0
