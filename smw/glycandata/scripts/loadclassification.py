@@ -56,7 +56,10 @@ for m in w.iterglycan():
 	thetype = types[0]
 	if thetype == "N-linked" and set(subtypes) == set(["hybrid","high mannose"]):
 	    subtypes = ["hybrid"]
-
+        if thetype == "O-linked" and set(subtypes) == set(["core 2", "core 1","core 6"]):
+            subtypes = ["core 2"]
+        if thetype == "O-linked" and set(subtypes) == set(["core 4","core 3","core 6"]):
+            subtypes = ["core 4"]
     # Make various checks on the details of the subtypes and types values. 
     if len(types) > 1:
 	print >>sys.stderr, "Glycan %s has more than one type: %s."%(acc,", ".join(sorted(types)))

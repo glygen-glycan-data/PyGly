@@ -17,28 +17,14 @@ class Glycan(SMW.SMWClass):
     def toPython(self,data):
 	data = super(Glycan,self).toPython(data)
 
-        # mw is a float
-        if isinstance(data.get('mw'),basestring):
-            data['mw'] = float(data.get('mw'))
-
-        # monocount is an integer
-        if isinstance(data.get('monocount'),basestring):
-            data['mw'] = int(data.get('monocount'))
-
         if '_subobjs' in data:
-            data['annotations'] = sorted(data['_subobjs'],key=lambda an: (an.get('type'),an.get('property'),an.get('source')))
+	    data['annotations'] = sorted(data['_subobjs'],key=lambda an: (an.get('type'),an.get('property'),an.get('source')))
             del data['_subobjs']
 
 	return data
 
     def toTemplate(self,data):
 	data = super(Glycan,self).toTemplate(data)
-
-        if 'mw' in data:
-            data['mw'] = str(data.get('mw'))
-        
-        if 'monocount' in data:
-            data['monocount'] = str(data.get('monocount'))
 
         if 'annotations' in data:
             data['_subobjs'] = sorted(data['annotations'],key=lambda an: (an.get('type'),an.get('property'),an.get('source')))
@@ -55,14 +41,19 @@ class Glycan(SMW.SMWClass):
     def set_annotation(self,**kwargs):
         assert kwargs.get('type')
         assert kwargs.get('property')
-        assert kwargs.get('source')
-        ans = list(self.annotations(type=kwargs.get('type'),property=kwargs.get('property'),source=kwargs.get('source')))
-        if len(ans) == 0:
+        assert kwargs.get('source')        
+        ans = list(self.annotations(type=kwargs.get('type'),
+                                    property=kwargs.get('property'),
+                                    source=kwargs.get('source')))
+        goodvalue = (kwargs.get('value') not in (None,"",[]))
+        if len(ans) == 0 and goodvalue:
             self.add_annotation(**kwargs)
-        elif len(ans) == 1:
+        elif len(ans) == 1 and goodvalue:
             ans[0].update(**kwargs)
         else:
-            raise RuntimeError('Annotation(type="%(type)s",property="%(property)s",source="%(source)s") not unique'%(kwargs,))
+	    self.delete_annotations(type=kwargs.get('type'),property=kwargs.get('property'),source=kwargs.get('source'))
+            if goodvalue:
+                self.add_annotation(**kwargs)
 
     def delete_annotations(self,**kwargs):
         todel = list(self.annotations(**kwargs))
@@ -101,7 +92,7 @@ class Annotation(SMW.SMWClass):
         if isinstance(data.get('value'),basestring):
             data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         elif isinstance(data.get('value'),float) or isinstance(data.get('value'),int):
-              data['value'] = [ str(data['value']) ]
+            data['value'] = [ str(data['value']) ]
         
         return data
 
@@ -109,7 +100,7 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toTemplate(data)
 
         if 'value' in data:
-               data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
+            data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
 
         return data
 
@@ -124,6 +115,6 @@ class GlycanDataWiki(SMW.SMWSite):
         return super(GlycanDataWiki,self).get(accession)
 
     def iterglycan(self):
-        for pagename in self.itercat('Glycan'):
+        for pagename in sorted(self.itercat('Glycan')):
             m  = self.get(pagename)
             yield m

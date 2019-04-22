@@ -105,11 +105,17 @@ class WURCS20MonoFormat:
             elif anomer[2] == "b":
                 m.set_anomer(2)
 
-        if ring and not ("?" in ring):
-            r_s = int(ring[1])
-            r_e = int(ring[-1])
-            m.set_ring_start(r_s)
-            m.set_ring_end(r_e)
+        if ring:
+            try:
+                r_s = int(ring[1])
+                m.set_ring_start(r_s)
+            except ValueError:
+                pass
+            try:
+                r_e = int(ring[-1])
+                m.set_ring_end(r_e)
+            except ValueError:
+                pass
 
         if substs:
             sub_list = substs[1:].split("_")

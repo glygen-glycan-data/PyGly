@@ -103,7 +103,7 @@ for gtcacc in open(sys.argv[1]):
 			 type='Classification',
 			 method='Glycan Type by Motif Match',
 			 reference='https://glytoucan.org/Structures/Glycans/G00032MO')
-    if w.update(g):
+    if w.put(g):
 	print >>sys.stderr, g.get('accession')
     current.add(gtcacc)
 

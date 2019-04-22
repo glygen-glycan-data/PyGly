@@ -255,8 +255,8 @@ class SMWSite(object):
 	        print >>sys.stderr, page.name
 	      page.delete()
 
-    def update(self,**kw):
-      self.data.update(kw)
+    # def update(self,**kw):
+    #   self.data.update(kw)
  
     def delete(self,pagename):
       page = self.site.pages[pagename]
@@ -267,10 +267,12 @@ class SMWSite(object):
 	return self.site.pages[name]
                      
     def get(self,name):
+	name = name.strip()
+	if not name:
+	    return None
         page = self._get(name)
         if not page.exists:
             return None
-        print repr(page.text())
 
         thepage = page.text()
         chunks = []
@@ -343,6 +345,8 @@ class SMWClass(object):
 
     directsubmit = []
     def __init__(self,**kwargs):
+	if kwargs.get('template'):
+	    self.template = kwargs.get('template')
         self.data = self.toPython(kwargs)
 
     @staticmethod
@@ -460,7 +464,7 @@ class SMWClass(object):
         self.data[key].append(value)
 
     def update(self,**kwargs):
-        self.data = self.toPyton(kwargs)
+        self.data.update(self.toPython(kwargs))
 
     def delete(self,key):
         if key in self.data:
