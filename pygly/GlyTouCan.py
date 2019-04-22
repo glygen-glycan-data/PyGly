@@ -3,7 +3,7 @@
 from rdflib import ConjunctiveGraph, Namespace                                                                    
 import urllib2, urllib, json
 import os.path, sys, traceback, re
-import time, random
+import time, random, math
 from collections import defaultdict, Counter
 from operator import itemgetter
 from hashlib import md5
@@ -139,6 +139,27 @@ class GlyTouCan(object):
 	    break
 	return seq
 
+    allseq_sparql = """
+	PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	
+	SELECT DISTINCT ?Accession ?Format ?Sequence
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id ?Accession .
+   	    ?Saccharide glycan:has_glycosequence ?GlycoSequence .
+   	    ?GlycoSequence glycan:has_sequence ?Sequence .
+   	    ?GlycoSequence glycan:in_carbohydrate_format ?Format
+	}
+    """
+
+    def allseq(self):
+	response = self.query(self.allseq_sparql)
+        for row in response.bindings:
+	    acc,format,seq = tuple(map(str,map(row.get,response.vars)))
+	    seq = re.sub(r'\n\n+',r'\n',seq)
+	    format = format.rsplit('_',1)[1]
+	    yield acc,format,seq
+
     allmass_sparql = """
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
 	
@@ -160,6 +181,37 @@ class GlyTouCan(object):
 	    except (TypeError,ValueError):
 		continue
 	    yield accval,mwval
+
+    hasmass_sparql = """
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	
+	SELECT DISTINCT ?accession ?mass
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id ?accession .
+   	    ?Saccharide glytoucan:has_derivatized_mass ?mass .
+            FILTER(regex(str(?mass),"/%(valueregex)s"))
+	}
+    """
+    def hasmass(self,target,precision=2):
+        target = float(target)
+        scale = 10.0**precision;
+        value = round(target,precision)
+        value1 = value-(1.0/scale)
+        # valueregex = str(value)
+        valueregex = '(%s|%s)'%(value,value1)
+        backslash = '\\'
+        valueregex = valueregex.replace('.',backslash*2+'.')
+        # print valueregex
+                
+	response = self.query(self.hasmass_sparql%dict(valueregex=valueregex))
+        for row in response.bindings:
+            acc,mass = tuple(map(str,map(row.get,response.vars)))
+	    try:
+                mass = float(mass.split('/')[-1])
+	    except (TypeError,ValueError):
+		continue
+            if round(mass,precision) == value:
+                yield acc
 
     getmass_sparql = """
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
@@ -456,8 +508,15 @@ class GlyTouCan(object):
     """
     def alltopo(self):
 	response = self.query(self.alltopo_sparql)
+	seen = set()
 	for row in response.bindings:
-	    yield map(lambda uri: str(uri).rsplit('/',1)[1],map(row.get,response.vars))
+	    t = map(lambda uri: str(uri).rsplit('/',1)[1],map(row.get,response.vars))
+	    if (t[0],t[1]) not in seen:
+		yield t[0],t[1]
+		seen.add((t[0],t[1]))
+	    if (t[1],t[1]) not in seen:
+		yield t[1],t[1]
+		seen.add((t[0],t[1]))
 
     hastopo_sparql = """
         PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
@@ -525,10 +584,16 @@ class GlyTouCan(object):
         for s,t in self.alltopo():
 	    topo[t].add(s)
 	response = self.query(self.allcomp_sparql)
+        seen = set()
 	for row in response.bindings:
 	    t,c = map(lambda uri: str(uri).rsplit('/',1)[1],map(row.get,response.vars))
 	    for s in topo[t]:
-		yield s,c
+		if (s,c) not in seen:
+		    yield s,c
+		    seen.add((s,c))
+		if (c,c) not in seen:
+		    yield c,c
+		    seen.add((c,c))
 
     hascomp_sparql = """
         PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
@@ -556,6 +621,32 @@ class GlyTouCan(object):
         key = response.vars[0]
         for row in response.bindings:
 	    yield str(row[key])
+
+    allbasecomp_sparql = """
+	PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX relation:  <http://www.glycoinfo.org/glyco/owl/relation#>
+	
+	SELECT DISTINCT ?comp ?bcomp
+	WHERE {
+	    ?comp relation:has_base_composition ?bcomp
+	}
+    """
+    def allbasecomp(self):
+	comp = defaultdict(set)
+        for s,c in self.allcomp():
+	    comp[c].add(s)
+	response = self.query(self.allbasecomp_sparql)
+        seen = set()
+	for row in response.bindings:
+	    c,bc = map(lambda uri: str(uri).rsplit('/',1)[1],map(row.get,response.vars))
+	    for s in comp[c]:
+		if (s,bc) not in seen:
+		    yield s,bc
+		    seen.add((s,bc))
+		if (bc,bc) not in seen:
+		    yield bc,bc
+		    seen.add((bc,bc))
 
     getbasecomp_sparql = """
 	PREFIX glytoucanacc: <http://rdf.glycoinfo.org/glycan/>
@@ -938,7 +1029,7 @@ if __name__ == "__main__":
         gtc = GlyTouCan()
         for acc in items():
             for ss in gtc.getsubstr(acc):
-                print ss
+                print "\t".join([acc,ss])
 
     elif cmd.lower() == "allcomp":
 
