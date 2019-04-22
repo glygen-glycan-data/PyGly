@@ -267,10 +267,14 @@ class SMWSite(object):
 	return self.site.pages[name]
                      
     def get(self,name):
+	name = name.strip()
+	if not name:
+	    return None
         page = self._get(name)
         if not page.exists:
             return None
 
+	obj = None
         thepage = page.text()
         chunks = []
         level = 0
