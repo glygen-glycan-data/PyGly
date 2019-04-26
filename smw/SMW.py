@@ -450,6 +450,9 @@ class SMWClass(object):
                 l.append("%s = %r"%(k,v))
         return "\n".join(l)
 
+    def save(self,wiki):
+        return wiki.put(self)
+
     def get(self,key,default=None):
         return self.data.get(key,default)
 
