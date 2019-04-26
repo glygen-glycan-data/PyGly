@@ -1,0 +1,69 @@
+#!/bin/env python27
+
+import sys, time, traceback
+
+from getwiki import GlycanDataWiki
+w = GlycanDataWiki()
+
+for g in w.iterglycan():
+    start = time.time()
+
+    glycan = g.getGlycan()
+
+    if not glycan:
+	continue
+
+    if glycan and len(list(g.annotations(property='GlycoCT',type='Sequence',source='GlyTouCan'))) == 0:
+	value = glycan.glycoct()
+	g.set_annotation(property='GlycoCT',type='Sequence',
+			 value=value,source='EdwardsLab')
+
+    g.delete_annotations(source='EdwardsLab',type='MolWt')
+    try:
+        if glycan:
+            mw = glycan.underivitized_molecular_weight()
+            g.set_annotation(value=mw,
+                             property='UnderivitizedMW',
+                             source='EdwardsLab', type='MolWt')
+    except KeyError:
+	pass
+    except:
+        traceback.print_exc()
+
+    try:
+        if glycan:
+            pmw = glycan.permethylated_molecular_weight()
+            g.set_annotation(value=pmw,
+                             property='PermethylatedMW',
+                             source='EdwardsLab', type='MolWt')
+    except KeyError:
+        pass
+    except:
+        traceback.print_exc()
+
+    g.delete_annotations(source='EdwardsLab',type='MonosaccharideCount')
+    try: 
+	if glycan:
+            comp = glycan.iupac_composition()
+	else:
+	    comp = {}
+	for ckey,count in comp.items():
+            if count > 0 and not ckey.startswith('_'):
+		if ckey=='Count':
+		    g.set_annotation(value=count,
+		         property='MonosaccharideCount',
+		         source='EdwardsLab',type='MonosaccharideCount')
+		else:
+	            g.set_annotation(value=count,
+		        property=ckey+'Count',
+		        source='EdwardsLab',type='MonosaccharideCount')
+    except KeyError:
+        pass
+    except:
+        traceback.print_exc()
+    
+    if w.put(g):
+        print >>sys.stderr, "%s updated in %.2f sec"%(g.get('accession'),time.time()-start,)
+    else:
+	print >>sys.stderr, "%s checked in %.2f sec"%(g.get('accession'),time.time()-start,)
+

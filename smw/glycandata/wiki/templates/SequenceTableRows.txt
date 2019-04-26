@@ -1,0 +1,8 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{2}}}
+| {{#ifeq:{{{2}}}|GlycoCT|<div class="smwpre">
+{{#show: {{{1}}} |?glycandata:value }}
+</div>|<div class="smwpre">{{#show: {{{1}}} |?glycandata:value }}</div>}}
+| style="width: 150px;" | {{{3}}}
+</includeonly>

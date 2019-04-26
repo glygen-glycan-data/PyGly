@@ -3,6 +3,7 @@ This is the "Annotation" template.
 It should be called in the following format:
 <pre>
 {{Annotation
+|glycan=
 |type=
 |property=
 |value=
@@ -11,18 +12,25 @@ It should be called in the following format:
 |reference=
 |method=
 |preferred=
+|multivaluesep=
 }}
 </pre>
 Edit the page to see the template text.
-</noinclude><includeonly>{{#subobject:
-|glycandata:type={{{type|}}}
-|glycandata:property={{{property|}}}
-|glycandata:value={{{value|}}}|+sep=;
-|glycandata:source={{{source|}}}
-|glycandata:comment={{{comment|}}}
-|glycandata:reference={{{reference|}}}
-|glycandata:method={{{method|}}}
-|glycandata:preferred={{{preferred|}}}
-|glycandata:hasglycan={{PAGENAME}}
-|@category=Annotation
-}}</includeonly>
+</noinclude><includeonly>{{DISPLAYTITLE:{{{glycan|}}}.{{{property|}}}}}[[Category:Annotation]]
+{| class="wikitable" style="width:100%" 
+! style="width:200px" | Glycan
+| style="" | [[glycandata:hasglycan::{{{glycan|}}}]]
+|-
+! style="width:200px" | Type
+| style="" | [[glycandata:type::{{{type|}}}]]
+|-
+! style="width:200px" | Property
+| style="" | [[glycandata:property::{{{property|}}}]]
+|-
+! style="width:200px" | Value
+| style="" | {{#if:{{{multivaluesep|}}}|{{#arraymap:{{{value|}}}|{{{multivaluesep|}}}|xxxx|xxxx|,&thinsp;}}|{{{value|}}}}}
+|-
+! style="width:200px" | Source
+| style="" | [[glycandata:source::{{{source|}}}]]
+|}{{#if:{{{multivaluesep|}}}|{{#arraymap:{{{value|}}}|{{{multivaluesep|}}}|xxxx|{{#set:|glycandata:value=xxxx}}}}|{{#set:|glycandata:value={{{value|}}}}}}}
+</includeonly>

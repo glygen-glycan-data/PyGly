@@ -4,32 +4,9 @@ It should be called in the following format:
 <pre>
 {{Glycan
 |accession=
-|glycoct=
-|wurcs=
-|iupac=
 }}
 </pre>
 Edit the page to see the template text.
-</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
-<p align="center"><img
-src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
-{| class="wikitable" style="width:100%" 
-! style="width:200px" | GlyTouCan
-| style="" |
-[https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
-|-
-! style="width:200px" | GlycoCT
-| style="" | <div class="smwpre">
-{{{glycoct|}}}
-</div>
-|-
-! style="width:200px" | WURCS
-| style="" | <div class="smwpre">{{{wurcs|}}}</div>
-|-
-! style="width:200px" | IUPAC
-| style="" | <div class="smwpre">{{{iupac|}}}</div>
-|}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{AnnotationTable|Cross References|CrossReference}}{{GlycomotifTable|Glycan Motif|Motif}}{{SubsumptionTable|Subsumption|Subsumption}}
-
-{{#set:|glycandata:accession={{{accession}}}}}{{#set:|glycandata:wurcs={{{wurcs|}}}}}{{#set:|glycandata:glycoct={{{glycoct|}}}}}{{#set:|glycandata:iupac={{{iupac|}}}}}
-[[Category:Glycan]]
-</includeonly>
+</noinclude><includeonly>__NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}[[Category:Glycan]]
+<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div><p align="center"><img
+src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>{{#set:|glycandata:accession={{{accession}}}}}{{SequenceTable|Sequence|Sequence}}{{AnnotationTable|Molecular Weight|MolWt}}{{AnnotationTable|Classification|Classification}}{{AnnotationTable|Monosaccharide Counts|MonosaccharideCount}}{{CrossReferenceTable|Cross Reference|CrossReference}}{{GlycomotifTable|Glycan Motif|Motif}}{{SubsumptionTable|Subsumption|Subsumption}}</includeonly>

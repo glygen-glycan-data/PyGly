@@ -1,0 +1,16 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{1}}}
+| {{#switch:{{{1}}}
+|GlyTouCan={{#arraymap:{{{2}}}|;|xxx|[https://glytoucan.org/Structures/Glycans/xxx xxx]|,&thinsp;}}
+|GlycomeDB={{#arraymap:{{{2}}}|;|xxx|[http://www.glycome-db.org/database/showStructure.action?glycomeId=xxx xxx]|,&thinsp;}}
+|KEGG={{#arraymap:{{{2}}}|;|xxx|[http://www.genome.jp/dbget-bin/www_bget?gl:xxx xxx]|,&thinsp;}}
+|GlyConnect={{#arraymap:{{{2}}}|;|xxx|[https://glyconnect.expasy.org/browser/structures/xxx xxx]|,&thinsp;}}
+|PubChem={{#arraymap:{{{2}}}|;|xxx|[https://pubchem.ncbi.nlm.nih.gov/xxx xxx]|,&thinsp;}}
+|UniCarbKB={{#arraymap:{{{2}}}|;|xxx|[http://www.unicarbkb.org/structure/xxx xxx]|,&thinsp;}}
+|GLYCOSCIENCES.de={{#arraymap:{{{2}}}|;|xxx|[http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=xxx xxx]|,&thinsp;}}
+|Carbbank(CCSB)={{#arraymap:{{{2}}}|;|xxx|[http://www.genome.jp/dbget-bin/www_bget?carbbank+xxx xxx]|,&thinsp;}}
+|{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
+}}
+| style="width: 150px;" | {{{3}}}
+</includeonly>
