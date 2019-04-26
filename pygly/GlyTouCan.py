@@ -1,9 +1,11 @@
 #!/bin/env python27
 
 from rdflib import ConjunctiveGraph, Namespace                                                                    
-import urllib2, urllib, json
+import urllib2, urllib, json, gzip
 import os.path, sys, traceback, re
 import time, random, math
+import itertools, functools
+import cPickle as pickle
 from collections import defaultdict, Counter
 from operator import itemgetter
 from hashlib import md5
@@ -12,6 +14,8 @@ from PIL import Image
 from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
 from Glycan import Glycan
 from memoize import memoize
+import atexit
+
 
 class GlyTouCanCredentialsNotFound(RuntimeError):
     pass
@@ -23,8 +27,9 @@ class GlyTouCan(object):
     endpt = 'http://ts.glytoucan.org/sparql'
     substr_endpt = 'http://test.ts.glytoucan.org/sparql'
     api = 'https://api.glytoucan.org/'
-    
-    def __init__(self,user=None,apikey=None):
+    cachefile = ".gtccache"
+            
+    def __init__(self,user=None,apikey=None,usecache=False):
 
 	self.g = None
 	self.ssg = None
@@ -39,6 +44,43 @@ class GlyTouCan(object):
 	self.alphamap = None
 	self.glycoct_format = None
 	self.wurcs_format = None
+        self.usecache = usecache
+        self.cachedata = None
+        self.cacheupdated = False
+        if self.usecache:
+            if os.path.exists(self.cachefile):
+                try:
+                    self.cachedata = pickle.load(gzip.open(self.cachefile,'rb'))
+                    # print >>sys.stderr, "Loaded cached data"
+                except:
+                    self.cachedata = {}
+            else:
+                self.cachedata = {}
+            atexit.register(self.__del__)
+
+    def __del__(self):
+        if self.cacheupdated:
+            try:
+                wh = gzip.open(self.cachefile,'wb')
+                pickle.dump(self.cachedata,wh,-1)
+                wh.close()
+                # print >>sys.stderr, "Saved cached data"
+                self.cacheupdated = False
+            except:
+                pass
+
+    def cachegetmany(self,valuekey,acc,iterable):
+        if valuekey not in self.cachedata:
+            self.cachedata[valuekey] = reduce(lambda d,x: d.setdefault(x[0],[]).append(x[1]) or d,
+                                              iterable, {})
+            self.cacheupdated = True
+        return self.cachedata[valuekey].get(acc)
+
+    def cacheget(self,valuekey,acc,iterable):
+        if valuekey not in self.cachedata:
+            self.cachedata[valuekey] = dict(iterable)
+            self.cacheupdated = True
+        return self.cachedata[valuekey].get(acc)
 
     def setup_sparql(self):
         self.g = ConjunctiveGraph(store='SPARQLStore')
@@ -71,6 +113,7 @@ class GlyTouCan(object):
 
     @memoize()
     def query(self,sparql,substr=False):
+        # print >>sys.stderr, sparql
 	self._wait()
         if substr:
             if self.ssg == None:
@@ -127,6 +170,10 @@ class GlyTouCan(object):
     def getseq(self,accession,format="wurcs"):
         assert(format in ("wurcs","glycoct","iupac_extended","iupac_condensed"))
 
+        if self.usecache:
+            return self.cacheget('seq',(accession,format),
+                                 itertools.imap(lambda t: ((t[0],t[1]),t[2]),self.allseq()))
+
 	response = self.query(self.getseq_sparql%dict(accession=accession,format=format))
 	     
         seqkey = response.vars[0]
@@ -134,8 +181,6 @@ class GlyTouCan(object):
         for row in response.bindings:
 	    seq = str(row[seqkey].strip())
 	    seq = re.sub(r'\n\n+',r'\n',seq)
-	    if format == "wurcs" and '~' in seq:
-		continue
 	    break
 	return seq
 
@@ -157,7 +202,7 @@ class GlyTouCan(object):
         for row in response.bindings:
 	    acc,format,seq = tuple(map(str,map(row.get,response.vars)))
 	    seq = re.sub(r'\n\n+',r'\n',seq)
-	    format = format.rsplit('_',1)[1]
+	    format = format.rsplit('/',1)[1].split('_',2)[-1]
 	    yield acc,format,seq
 
     allmass_sparql = """
@@ -223,6 +268,10 @@ class GlyTouCan(object):
 	}
     """
     def getmass(self,accession):
+
+        if self.usecache:
+            return self.cacheget('mass',accession,self.allmass())
+
 	response = self.query(self.getmass_sparql%dict(accession=accession))
         masskey = response.vars[0]
         mass = None
@@ -273,6 +322,10 @@ class GlyTouCan(object):
 	}
     """
     def getmonocount(self,accession):
+
+        if self.usecache:
+            return self.cacheget('monocnt',accession,self.allmonocount())
+
 	response = self.query(self.getmonocount_sparql%dict(accession=accession))
         key = response.vars[0]
         value = None
@@ -342,17 +395,38 @@ class GlyTouCan(object):
 	PREFIX rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 	PREFIX rdf: <http://www.w3.org/2000/01/rdf-schema#>
 	
-	SELECT DISTINCT ?motif_id ?motif_name
+	SELECT DISTINCT ?motif_id
 	WHERE {
    	    ?Saccharide glytoucan:has_primary_id "%(accession)s" . 
 	    ?Saccharide glycan:has_motif ?Motif .
 	    ?Motif rdfs:type glycan:glycan_motif . 
-	    ?Motif rdf:label ?motif_name .
    	    ?Motif glytoucan:has_primary_id ?motif_id
 	}
     """
     def getmotif(self,accession):
+
+        if self.usecache:
+            return self.cachegetmany('motif',accession,self.allmotifaligns())
+            
 	response = self.query(self.getmotif_sparql%dict(accession=accession))
+        return map(lambda row: str(row.get(response.vars[0])), response.bindings)
+
+    allmotifaligns_sparql = """
+	PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+	PREFIX rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+	PREFIX rdf: <http://www.w3.org/2000/01/rdf-schema#>
+	
+	SELECT DISTINCT ?acc ?motif_id 
+	WHERE {
+   	    ?Saccharide glytoucan:has_primary_id ?acc . 
+	    ?Saccharide glycan:has_motif ?Motif .
+	    ?Motif rdfs:type glycan:glycan_motif . 
+   	    ?Motif glytoucan:has_primary_id ?motif_id
+	}
+    """
+    def allmotifaligns(self):
+	response = self.query(self.allmotifaligns_sparql)
         for row in response.bindings:
             yield tuple(map(str,map(row.get,response.vars)))
 
@@ -486,6 +560,10 @@ class GlyTouCan(object):
 	}
     """
     def gettopo(self,accession):
+
+        if self.usecache:
+            return self.cacheget('topo',accession,self.alltopo())
+
         response = self.query(self.gettopo_sparql%dict(accession=accession))
         key = response.vars[0]
         value = None
@@ -558,6 +636,10 @@ class GlyTouCan(object):
 	}
     """
     def getcomp(self,accession):
+
+        if self.usecache:
+            return self.cacheget('comp',accession,self.allcomp())
+
         topo = self.gettopo(accession)
         response = self.query(self.getcomp_sparql%dict(accession=accession,topo=topo))
         key = response.vars[0]
@@ -665,6 +747,10 @@ class GlyTouCan(object):
 	}
     """
     def getbasecomp(self,accession):
+
+        if self.usecache:
+            return self.cacheget('basecomp',accession,self.allbasecomp())
+
         comp = self.getcomp(accession)
         response = self.query(self.getbasecomp_sparql%dict(accession=accession,comp=comp))
         key = response.vars[0]
@@ -704,6 +790,13 @@ class GlyTouCan(object):
     resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank']
     def getcrossrefs(self,accession,resource=None):
         assert resource in [None]+self.resources
+
+        if self.usecache:
+            key = 'crossrefs'
+            if resource != None:
+                key += (":"+resource)
+            return self.cachegetmany(key,accession,self.allcrossrefs())
+
 	response = self.query(self.getcrossrefs_sparql%dict(accession=accession))
         key = response.vars[0]
 	xrefs = []
@@ -1030,6 +1123,12 @@ if __name__ == "__main__":
         for acc in items():
             for ss in gtc.getsubstr(acc):
                 print "\t".join([acc,ss])
+
+    elif cmd.lower() == "allmass":
+
+        gtc = GlyTouCan()
+        for s,m in gtc.allmass():
+	    print "\t".join(map(str,[s,m]))
 
     elif cmd.lower() == "allcomp":
 
