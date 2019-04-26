@@ -346,6 +346,35 @@ def iterecmatchings(items1,items2,matchtest):
         pairs = reduce(lambda a,b: a + b, mp)
         yield map(lambda t: list1[t[0]],pairs),map(lambda t: list2[t[1]],pairs) 
 
+def itergenmatchings(items1,items2,matchtest):
+    list1 = list(items1)
+    n1 = len(list1)
+    list2 = list(items2)
+    n2 = len(list2)
+
+    if n1 != n2:
+        raise StopIteration
+
+    edges = defaultdict(set)
+    for i,i1 in enumerate(list1):
+	for j,i2 in enumerate(list2):
+	    if matchtest(i1,i2):
+		edges[i].add(j)
+
+    empty = ([],set(range(n1)),set(range(n2)))
+    partialsolutions = [empty]
+    while len(partialsolutions) > 0:
+	pairs,tochoose1,tochoose2 = partialsolutions.pop()
+	# print pairs
+	if len(tochoose1) == 0:
+	    yield map(lambda t: list1[t[0]],pairs),map(lambda t: list2[t[1]],pairs)
+	else:
+	    i1 = iter(tochoose1).next()
+	    newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
+	    for i2 in (edges[i1]&tochoose2):
+	        newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
+	        partialsolutions.append((list(pairs)+[(i1,i2)],newtochoose1,newtochoose2))
+
 def testperm(l):
     print "Permutations of",','.join(map(str,l))
     for p in permutations(l):
@@ -374,6 +403,14 @@ def testiterecmatch(*args):
     for i,p in enumerate(iterecmatchings(*args)):
         print i+1,p
 
+def testitergenmatch(*args):
+    print "Iter general matching of"
+    print "  ",args[0]
+    print "and"
+    print "  ",args[1]
+    for i,p in enumerate(itergenmatchings(*args)):
+        print i+1,p
+
 if __name__ == "__main__":
 
     testprod('abc','def','ijk',[1,2,3,4],
@@ -397,3 +434,7 @@ if __name__ == "__main__":
     testiterecmatch(["1.1","1.2","1.3","2.1","2.2","3.1","3.2","3.3","3.4"],
                     ["2.1","2.2","1.1","3.1","3.2","1.2","3.3","3.4","1.3"],
                     lambda x,y: int(float(x))==int(float(y)))
+
+    testitergenmatch(["1.1","1.2","1.3","2.1","2.2","3.1","3.2","3.3","3.4"],
+                     ["2.1","2.2","1.1","3.1","3.2","1.2","3.3","3.4","1.3"],
+                     lambda x,y: int(float(x))==int(float(y)))
