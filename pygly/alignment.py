@@ -709,8 +709,7 @@ def subsumed(gd1,gd2):
 if __name__ == "__main__":
 
     import time
-    start = time.time()
-
+    from collections import defaultdict
 
     from manipulation import Topology, Composition
     topology = Topology()
@@ -728,16 +727,16 @@ if __name__ == "__main__":
     gcompeq = GlycanCompEqual()
     subsumption = GlycanSubsumption()
 
-    allacc = []; allgly = dict()
-    for mass in items():
-        count = 0
-        for acc1 in sorted(list(gtc.hasmass(mass,2))):
+    masscluster = defaultdict(list)
+    for glyacc,mass in gtc.allmass():
+        rmass = round(mass,2)
+        masscluster[rmass].append(glyacc)
 
-            # if acc1 not in ('G29636OK','G68646SF'):
-            #     continue
+    for rmass in sorted(masscluster):
 
-            # if acc1 not in ('G94131HY', 'G54691SH'):
-            #     continue
+        start = time.time()
+        allgly = dict()
+        for acc1 in masscluster[rmass]:
 
             topoacc = gtc.gettopo(acc1)
             compacc = gtc.getcomp(acc1)
@@ -776,8 +775,8 @@ if __name__ == "__main__":
                                 comp=compacc,
                                 topo=topoacc,
                                 level=level,
-				levelsort=levelsort,
-				mass=gtc.getmass(acc1),
+                                levelsort=levelsort,
+                                mass=gtc.getmass(acc1),
                                 glycan=gly)
 
 	check = True
@@ -804,8 +803,15 @@ if __name__ == "__main__":
 		del allgly[acc1]
 	        check = True
 		continue
+            # if not gtc.haspage(acc1):
+            #     del allgly[acc1]
+            #     check = True
+            #     continue
 
-	print "# NODES - %d glycans in molecular weight cluster for %s"%(len(allgly),mass)
+        if len(allgly) < 2:
+            continue
+
+	print "# NODES - %d glycans in molecular weight cluster for %s"%(len(allgly),rmass)
 	for acc1,g in sorted(allgly.items(),key=lambda t: (t[1].get('levelsort',10),t[0])):
             print acc1,g.get('mass'),g.get('level'),g.get('topo'),g.get('comp'),g.get('bcomp'),
 	    gly = g.get('glycan')
@@ -814,56 +820,57 @@ if __name__ == "__main__":
                   ("FULL" if gly.fully_determined() else "")
 	sys.stdout.flush()
         
-    from collections import defaultdict
-    outedges = defaultdict(list)
-    inedges = defaultdict(list)
-    allacc = sorted(allgly)
-    for acc1 in allacc:
-        gly1 = allgly[acc1];
-        for acc2 in allacc:
+        outedges = defaultdict(list)
+        inedges = defaultdict(list)
+        allacc = sorted(allgly)
+        for acc1 in allacc:
+          gly1 = allgly[acc1];
+          for acc2 in allacc:
             gly2 = allgly[acc2]
             if acc1 != acc2:
-                if subsumption.leq(gly1['glycan'],gly2['glycan']):
-                    outedges[acc2].append(acc1)
-                    inedges[acc1].append(acc2)
+              if subsumption.leq(gly1['glycan'],gly2['glycan']):
+                # print acc2,"->",acc1
+                outedges[acc2].append(acc1)
+                inedges[acc1].append(acc2)
 
-    roots = set(outedges)-set(inedges)
+        for acc1 in allgly:
+          if acc1 not in outedges[allgly[acc1]['bcomp']] and allgly[acc1]['bcomp'] and acc1 != allgly[acc1]['bcomp']:
+            print "WARNING: %s not subsumed by BaseComposition %s"%(acc1,allgly[acc1]['bcomp'])
+          if acc1 not in outedges[allgly[acc1]['comp']] and allgly[acc1]['comp'] and acc1 != allgly[acc1]['comp']:
+            print "WARNING: %s not subsumed by Composition %s"%(acc1,allgly[acc1]['comp'])
+          if acc1 not in outedges[allgly[acc1]['topo']] and allgly[acc1]['topo'] and acc1 != allgly[acc1]['topo']:
+            print "WARNING: %s not subsumed by Topology %s"%(acc1,allgly[acc1]['topo'])
 
-    def printtree(root,edges,multiparents=set(),indent=0):
-        print "%s%s%s"%(" "*indent,root,"*" if root in multiparents else ""),allgly[root]['level']
-        for ch in edges[root]:
-            printtree(ch,edges,multiparents,indent+2)
+        def printtree(root,edges,indent=0):
+          print "%s%s"%(" "*indent,root),allgly[root]['level']
+          for ch in edges[root]:
+            printtree(ch,edges,indent+2)
 
-    def prune_edges(edges):
-        toremove = set()
-        for n1 in list(edges):
+        def prune_edges(edges):
+          toremove = set()
+          for n1 in list(edges):
             for n2 in edges[n1]:
               for n3 in edges[n2]:
-                  assert n3 in edges[n1], ", ".join([n1, n2, n3,":"]+edges[n1]+[":"]+edges[n2])
-                  if n3 in edges[n1]:
-                      toremove.add((n1,n3))
-        for n1,n3 in toremove:
+                assert n3 in edges[n1], ", ".join([n1, n2, n3,":"]+edges[n1]+[":"]+edges[n2])
+                if n3 in edges[n1]:
+                  toremove.add((n1,n3))
+          for n1,n3 in toremove:
             edges[n1].remove(n3)
-        return edges
+          return edges
 
-    outedges = prune_edges(outedges)
-    inedges = prune_edges(inedges)
+        outedges = prune_edges(outedges)
+        inedges = prune_edges(inedges)
 
-    multiparents = set()
-    for n1 in inedges:
-        if len(inedges[n1]) > 1:
-            multiparents.add(n1)
-      
-    print "# TREE"
-    for r in inedges:
-        if len(inedges[r]) == 0:
-            printtree(r,outedges,multiparents)
-    sys.stdout.flush()
+        print "# TREE"
+        for r in allgly:
+          if len(inedges[r]) == 0:
+            printtree(r,outedges)
+        sys.stdout.flush()
 
-    print "# EDGES"
-    for n1 in outedges:
-	if len(outedges[n1]) > 0:
-	    print "%s:"%(n1,)," ".join(outedges[n1])
-    sys.stdout.flush()
+        print "# EDGES"
+        for n1 in allgly:
+          print "%s:"%(n1,),
+          print " ".join(outedges[n1])
+        sys.stdout.flush()
 
-    print "# DONE - Elapsed time %s sec."%(time.time()-start,)
+        print "# DONE - Elapsed time %s sec."%(time.time()-start,)
