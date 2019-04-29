@@ -234,10 +234,6 @@ class CompositionEquivalence(Comparitor):
 
 class GlycanPartialOrder(Comparitor):
 
-    # Only correct for identical topologies, will need to be
-    # extended/changed to handle different topologies with the same
-    # composition
-
     def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,**kw):
         self._monocmp = monocmp
 	if rootmonocmp:
@@ -728,9 +724,25 @@ if __name__ == "__main__":
     subsumption = GlycanSubsumption()
 
     masscluster = defaultdict(list)
-    for glyacc,mass in gtc.allmass():
+
+    if len(sys.argv) > 1:
+      for mass in map(float,sys.argv[1:]):
+        rmass = round(mass,2)
+	for glyacc in gtc.hasmass(rmass):
+	  masscluster[rmass].append(glyacc)
+    else:
+      for glyacc,mass in gtc.allmass():
         rmass = round(mass,2)
         masscluster[rmass].append(glyacc)
+
+    # for glyacc in gtc.hasmass(814.36):
+    #  masscluster[814.36].append(glyacc)
+
+    # for glyacc in gtc.hasmass(254.10):
+    #   masscluster[254.10].append(glyacc)
+
+    # 4,5:enx|6:a mod cluster...
+    # masscluster[395.11] = ['G02625SJ','G28863OR','G76650GT','G85752KA']
 
     for rmass in sorted(masscluster):
 
@@ -767,9 +779,6 @@ if __name__ == "__main__":
             # if level == 'Saccharide' and not gly.undetermined():
             #     continue
 
-            # for m in gly.all_nodes():
-            #     print m
-            
             allgly[acc1] = dict(acc=acc1,
                                 bcomp=bcompacc,
                                 comp=compacc,
@@ -818,6 +827,9 @@ if __name__ == "__main__":
             print ("COMP " if (not gly.has_root()) else "") + \
                   ("UNDET " if (gly.undetermined() and gly.has_root()) else "") + \
                   ("FULL" if gly.fully_determined() else "")
+            # for m in gly.all_nodes():
+            #    print m
+            
 	sys.stdout.flush()
         
         outedges = defaultdict(list)
@@ -830,8 +842,9 @@ if __name__ == "__main__":
             if acc1 != acc2:
               if subsumption.leq(gly1['glycan'],gly2['glycan']):
                 # print acc2,"->",acc1
-                outedges[acc2].append(acc1)
-                inedges[acc1].append(acc2)
+		if not geq.eq(gly1['glycan'],gly2['glycan']) or acc2 < acc1:
+                  outedges[acc2].append(acc1)
+                  inedges[acc1].append(acc2)
 
         for acc1 in allgly:
           if acc1 not in outedges[allgly[acc1]['bcomp']] and allgly[acc1]['bcomp'] and acc1 != allgly[acc1]['bcomp']:
@@ -840,6 +853,9 @@ if __name__ == "__main__":
             print "WARNING: %s not subsumed by Composition %s"%(acc1,allgly[acc1]['comp'])
           if acc1 not in outedges[allgly[acc1]['topo']] and allgly[acc1]['topo'] and acc1 != allgly[acc1]['topo']:
             print "WARNING: %s not subsumed by Topology %s"%(acc1,allgly[acc1]['topo'])
+	  if abs(allgly[acc1]['mass']-allgly[acc1]['glycan'].underivitized_molecular_weight()) > 0.0001:
+            print "WARNING: %s mass (%s) does not match annotation %s, delta = %s"%(acc1,allgly[acc1]['glycan'].underivitized_molecular_weight(),allgly[acc1]['mass'],allgly[acc1]['mass']-allgly[acc1]['glycan'].underivitized_molecular_weight())
+	
 
         def printtree(root,edges,indent=0):
           print "%s%s"%(" "*indent,root),allgly[root]['level']

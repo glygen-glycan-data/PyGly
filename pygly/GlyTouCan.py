@@ -980,20 +980,20 @@ class GlyTouCan(object):
 	return wurcs.strip()
 
     def getGlycan(self,acc):
-        sequence = self.getseq(acc,'glycoct')
-        if sequence:
-            if not self.glycoct_format:
-                self.glycoct_format = GlycoCTFormat()
-	    try:
-                return self.glycoct_format.toGlycan(sequence)
-	    except GlycanParseError:
-		pass
         sequence = self.getseq(acc,'wurcs')
         if sequence:
             if not self.wurcs_format:
                 self.wurcs_format = WURCS20Format()
 	    try:
                 return self.wurcs_format.toGlycan(sequence)
+	    except GlycanParseError:
+		pass
+        sequence = self.getseq(acc,'glycoct')
+        if sequence:
+            if not self.glycoct_format:
+                self.glycoct_format = GlycoCTFormat()
+	    try:
+                return self.glycoct_format.toGlycan(sequence)
 	    except GlycanParseError:
 		pass
         return None

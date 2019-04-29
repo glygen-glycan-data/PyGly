@@ -5,6 +5,7 @@ __all__ = [ 'permutations', 'select', 'choose', 'product', 'list_accumulator',
 
 import copy, sys
 from collections import defaultdict
+from operator import itemgetter
 import itertools
 
 def permutations(x):
@@ -365,15 +366,17 @@ def itergenmatchings(items1,items2,matchtest):
     partialsolutions = [empty]
     while len(partialsolutions) > 0:
 	pairs,tochoose1,tochoose2 = partialsolutions.pop()
-	# print pairs
-	if len(tochoose1) == 0:
-	    yield map(lambda t: list1[t[0]],pairs),map(lambda t: list2[t[1]],pairs)
+	i1 = iter(tochoose1).next()
+	if len(tochoose1) == 1:
+	    l1 = map(lambda t: list1[t[0]],pairs)
+	    l2 = map(lambda t: list2[t[1]],pairs)
+	    for i2 in (edges[i1]&tochoose2):
+		yield l1+[list1[i1]],l2+[list2[i2]]
 	else:
-	    i1 = iter(tochoose1).next()
 	    newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
 	    for i2 in (edges[i1]&tochoose2):
 	        newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
-	        partialsolutions.append((list(pairs)+[(i1,i2)],newtochoose1,newtochoose2))
+	        partialsolutions.append((pairs+[(i1,i2)],newtochoose1,newtochoose2))
 
 def testperm(l):
     print "Permutations of",','.join(map(str,l))
