@@ -61,6 +61,21 @@ for g in w.iterglycan():
         pass
     except:
         traceback.print_exc()
+
+    g.delete_annotations(source='EdwardsLab',type='Structure')
+    try:
+	if glycan:
+	    g.set_annotation(value='true' if glycan.fully_determined() else 'false',
+                             property='FullyDetermined',
+                             source='EdwardsLab',type='Structure')
+	    g.set_annotation(value='true' if (glycan.undetermined() and glycan.has_root()) else 'false',
+                             property='UndeterminedTopology',
+                             source='EdwardsLab',type='Structure')
+	    g.set_annotation(value='true' if (not glycan.has_root()) else 'false',
+                             property='Composition',
+                             source='EdwardsLab',type='Structure')
+    except:
+        traceback.print_exc()
     
     if w.put(g):
         print >>sys.stderr, "%s updated in %.2f sec"%(g.get('accession'),time.time()-start,)

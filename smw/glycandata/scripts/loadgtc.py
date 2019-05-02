@@ -84,6 +84,16 @@ for gtcacc in accessions(sys.argv[1:]):
                      property='Motif',
                      source='GlyTouCan', type='Motif')
 
+    g.delete_annotations(source='GlyTouCan',type='Taxonomy')
+    g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),
+                     property='Taxonomy',
+                     source='GlyTouCan', type='Taxonomy')
+
+    g.delete_annotations(source='GlyTouCan',type='Publication')
+    g.set_annotation(value=list(set(gtc.getrefs(gtcacc))),
+                     property='Publication',
+                     source='GlyTouCan', type='Publication')
+
     g.delete_annotations(source='GlyTouCan',type='Subsumption')
     topo = gtc.gettopo(gtcacc)
     if topo:
