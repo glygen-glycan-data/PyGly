@@ -1,3 +1,5 @@
+__NOEDITSECTION__
+<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 This wiki contains information about {{CountLink|[[Category:Glycan]]}} glycans.
 
 == Sequence == 

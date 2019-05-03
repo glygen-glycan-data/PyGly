@@ -141,7 +141,8 @@ class Annotation(SMW.SMWClass):
 
         data = super(Annotation,self).toTemplate(data)
         
-	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication']:
+	if data.get('value'):
+	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication']:
 	    if isinstance(data['value'],list):
 		if len(data['value']) > 1:
                     data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
