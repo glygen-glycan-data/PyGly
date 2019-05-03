@@ -13,7 +13,6 @@ ctable = ResidueCompositionTable()
 glycoctformat = GlycoCTFormat()
 
 for g in w.iterglycan():
-    print g.get('accession')
     if not g.has_annotations(property='UnderivitizedMW',source='EdwardsLab'):
         glycan = g.getGlycan()
 	if not glycan:

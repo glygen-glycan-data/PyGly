@@ -13,6 +13,7 @@ for g in w.iterglycan():
     if not glycan:
 	continue
 
+    g.delete_annotations(source='EdwardsLab',property='GlycoCT',type='Sequence')
     if glycan and len(list(g.annotations(property='GlycoCT',type='Sequence',source='GlyTouCan'))) == 0:
 	value = glycan.glycoct()
 	g.set_annotation(property='GlycoCT',type='Sequence',
