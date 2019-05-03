@@ -1,0 +1,1 @@
+<includeonly>{{CountLink|[[Category:Glycan]][[-glycandata:hasglycan::<q>[[Category:Annotation]][[glycandata:type::{{{1}}}]][[glycandata:property::{{{2}}}]][[glycandata:value::{{{3}}}]]</q>]]}}</includeonly>

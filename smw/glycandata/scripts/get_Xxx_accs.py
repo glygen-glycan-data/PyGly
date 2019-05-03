@@ -5,18 +5,27 @@ import sys
 from getwiki import GlycanDataWiki
 w = GlycanDataWiki()
 
-Xxx_accs = set()
+import findpygly
+from pygly.MonoFormatter import IUPACSym
+from pygly.GlycanFormatter import GlycoCTFormat
 
-for m in w.iterglycan():
-    try:
-        comp_ann = list(m.annotations(property='XxxCount',type='MonosaccharideCount',source='EdwardsLab'))[0]
-        Xxx_accs.add(comp_ann.get('id'))
-    except:
-        continue
+iupacSym = IUPACSym()
+glycoctformat = GlycoCTFormat()
 
-wh = open('../data/Xxx_count.txt','w')
-for acc in sorted(Xxx_accs):
-    print >> wh, acc
-wh.close()
+for g in w.iterglycan():
+    if g.has_annotations(property='XxxCount'):
+        xxx_count = int(g.get_annotation_value('XxxCount'))
+	if xxx_count > 0:
+            glycan = g.getGlycan()
+            if not glycan:
+                continue
+            for m in glycan.all_nodes():
+                try:
+                    sym = iupacSym.toStr(m)
+                    if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc'):
+                        print g.get('accession'),glycoctformat.mtoStr(m)
+                except KeyError:
+                    print g.get('accession'),glycoctformat.mtoStr(m)
+                
 
         

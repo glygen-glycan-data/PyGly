@@ -34,6 +34,7 @@ class Glycan:
 
     iupacSym = IUPACSym()
     lcSym = LinCodeSym()
+    glycoctformat = None
 
     def __init__(self,root=None):
         self.set_root(root)
@@ -448,17 +449,6 @@ class Glycan:
 		    sym = 'Xxx'
 	    except KeyError:
 		sym = 'Xxx'
-		# if m == self.root() and len(m.mods()) == 1 and m.count_mod(Mod.aldi) == 1:
-		#     m1 = m.clone()
-		#     m1.clear_mods()
-		#     try:
-		# 	sym = iupacSym.toStr(m1)
-		# 	if sym not in ('GlcNAc','GalNAc'):
-                #             sym = 'Xxx'
-		#     except KeyError:
-		# 	sym = 'Xxx'
-		# else:
-		#     sym = 'Xxx'
 	    c[sym] += 1
 	c['Count'] = sum(c.values())
 	c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc')))
@@ -466,6 +456,12 @@ class Glycan:
 	c['dHex'] = sum(map(c.__getitem__,('Fuc',)))
 	c['Pent'] = sum(map(c.__getitem__,('Xyl',)))
 	return c
+
+    def glycoct(self):
+	from GlycanFormatter import GlycoCTFormat
+        if not self.glycoctformat:
+            self.glycoctformat = GlycoCTFormat()
+	return self.glycoctformat.toStr(self)
 
     def subtree_links(self,root,subst=False,uninstantiated=False):
         for m in self.subtree_nodes(root):

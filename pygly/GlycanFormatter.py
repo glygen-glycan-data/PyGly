@@ -268,7 +268,7 @@ class GlycoCTFormat(GlycanFormatter):
             if state in ("RES","UNDRES"):
 		try:
                     m = self.monofmt.fromStr(l)
-		except RuntimeError, e:
+		except (TypeError,LookupError,ValueError,RuntimeError), e:
 		    raise GycoCTBadRESLineError(message=e.args[0],lineno=lineno+1,line=l)
                 res[m.id()] = m
 		if state == "UNDRES" and undind != None and 'root' not in und[undind]:
