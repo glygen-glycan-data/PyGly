@@ -10,6 +10,8 @@
 |UniCarbKB={{#arraymap:{{{2}}}|;|xxx|[http://www.unicarbkb.org/structure/xxx xxx]|,&thinsp;}}
 |GLYCOSCIENCES.de={{#arraymap:{{{2}}}|;|xxx|[http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=xxx xxx]|,&thinsp;}}
 |Carbbank(CCSB)={{#arraymap:{{{2}}}|;|xxx|[http://www.genome.jp/dbget-bin/www_bget?carbbank+xxx xxx]|,&thinsp;}}
+|GlyGen={{#arraymap:{{{2}}}|;|xxx|[http://glygen.org/glycan_detail.html?glytoucan_ac=xxx xxx]|,&thinsp;}}
+|MonosaccharideDB={{#arraymap:{{{2}}}|;|xxx|[http://www.monosaccharidedb.org/display_monosaccharide.action?id=xxx xxx]|,&thinsp;}}
 |{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
 }}
 | style="width: 150px;" | {{{3}}}
