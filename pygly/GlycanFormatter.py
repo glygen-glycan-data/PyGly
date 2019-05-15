@@ -1329,6 +1329,8 @@ class WURCS20Format(GlycanFormatter):
                     parentpos  = pos2
                     childmono  = mono[ind1]
                     childpos   = pos1
+		else:
+		    raise UnsupportedLinkError(li)
 
                 # if not (childpos == None or childpos == childmono.ring_start()):
                 #     raise BadChildPositionLinkError(li)
