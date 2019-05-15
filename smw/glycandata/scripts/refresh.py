@@ -21,7 +21,10 @@ if len(sys.argv) > 1:
 
 else:
 
-  for p in w.iterpages(include_categories=['Glycan','Annotation']):
+  for p in w.iterpages(include_categories=['Annotation']):
+    print >>sys.stderr, p.name
+    w.refresh(p)
+  for p in w.iterpages(include_categories=['Glycan']):
     print >>sys.stderr, p.name
     w.refresh(p)
 

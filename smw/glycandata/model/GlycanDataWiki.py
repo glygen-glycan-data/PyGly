@@ -20,6 +20,9 @@ class Glycan(SMW.SMWClass):
     def toPython(self,data):
 	data = super(Glycan,self).toPython(data)
 
+	if '_subobjs' in data:
+	    del data['_subobjs']
+
 	return data
 
     def toTemplate(self,data):
@@ -131,7 +134,8 @@ class Annotation(SMW.SMWClass):
     def toPython(self,data):
         data = super(Annotation,self).toPython(data)
 
-	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication']:
+	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication'] or \
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes']:
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -142,7 +146,8 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toTemplate(data)
         
 	if data.get('value'):
-	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication']:
+	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication'] or \
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes']:
 	    if isinstance(data['value'],list):
 		if len(data['value']) > 1:
                     data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))

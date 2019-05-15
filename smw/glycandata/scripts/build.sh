@@ -1,8 +1,8 @@
 #!/bin/sh
-
+set -x
 # Specify whether to work with TEST or DEV
 # SMWENV="TEST"
-SMWENV="DEV"
+SMWENV=${1:-DEV}
 export SMWENV
 
 set -x
@@ -13,5 +13,6 @@ set -x
 ./loadedlab.py
 ./loadclassification.py
 ./loadmonosDB.py ../data/GlyGen_glycans2monodbID.tsv
+./loadsubsump.py ../data/gnome_subsumption_raw.txt ../data/glygen_accessions.txt ../data/extra_accessions.txt
 ./refresh.sh
 ./refresh.sh -
