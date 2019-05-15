@@ -284,7 +284,7 @@ class GlycoCTFormat(GlycanFormatter):
 			    l.set_instantiated(False)
 			    l.child().set_connected(False)
 		except (RuntimeError,AttributeError), e:
-		    raise GlycoCTBadLINLineError(message=e.message,lineno=lineno+1,line=l)	
+		    raise GlycoCTBadLINLineError(message=e.args[0],lineno=lineno+1,line=l)	
                 continue
 	    if state == "UND":
 		m = re.search(r"^UND(\d+):",l)
@@ -312,7 +312,7 @@ class GlycoCTFormat(GlycanFormatter):
 		    l.set_instantiated(False)
 		    l.child().set_connected(False)
 		except (RuntimeError,AttributeError), e:
-		    raise GlycoCTParentLinkError(message=e.message,lineno=lineno+1,line=l)	
+		    raise GlycoCTParentLinkError(message=e.args[0],lineno=lineno+1,line=l)	
         unconnected = set()
         monocnt = 0
         for id,r in res.items():
