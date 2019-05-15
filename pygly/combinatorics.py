@@ -357,16 +357,63 @@ def itergenmatchings(items1,items2,matchtest):
         raise StopIteration
 
     edges = defaultdict(set)
+    inedges = defaultdict(set)
     for i,i1 in enumerate(list1):
 	for j,i2 in enumerate(list2):
 	    if matchtest(i1,i2):
 		edges[i].add(j)
+		inedges[j].add(i)
 
-    empty = ([],set(range(n1)),set(range(n2)))
-    partialsolutions = [empty]
+    # for i in edges:
+    #     print "%s:"%i," ".join(map(str,sorted(edges[i])))
+
+    outdegree = defaultdict(int)
+    indegree = defaultdict(int)
+    for i in range(n1):
+	outdegree[i] = len(edges[i])
+    for j in range(n2):
+	indegree[j] = len(inedges[j])
+
+    startpairs = []
+    for i in range(n1):
+	if outdegree[i] == 0:
+	    raise StopIteration
+	if outdegree[i] == 1:
+	    j = iter(edges[i]).next()
+	    startpairs.append((i,j))
+
+    for j in range(n2):
+	if indegree[j] == 0:
+	    raise StopIteration
+	if indegree[j] == 1:
+	    i = iter(inedges[j]).next()
+	    startpairs.append((i,j))
+
+    startpairs = list(set(startpairs))
+
+    # print startpairs
+
+    if len(startpairs) != len(set(map(itemgetter(0),startpairs))):
+	raise StopIteration
+    if len(startpairs) != len(set(map(itemgetter(1),startpairs))):
+	raise StopIteration
+
+    startn1set = set(range(n1)) - set(map(itemgetter(0),startpairs))
+    startn2set = set(range(n2)) - set(map(itemgetter(1),startpairs))
+
+    # print startn1set,startn2set
+
+    if len(startn1set) == 0:
+	l1 = map(lambda t: list1[t[0]],startpairs)
+        l2 = map(lambda t: list2[t[1]],startpairs)
+	yield l1,l2
+        return
+
+    start = (startpairs,startn1set,startn2set)
+    partialsolutions = [start]
     while len(partialsolutions) > 0:
 	pairs,tochoose1,tochoose2 = partialsolutions.pop()
-	i1 = iter(tochoose1).next()
+	i1 = sorted(tochoose1,key=outdegree.get)[0]
 	if len(tochoose1) == 1:
 	    l1 = map(lambda t: list1[t[0]],pairs)
 	    l2 = map(lambda t: list2[t[1]],pairs)

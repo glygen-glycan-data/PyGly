@@ -4,17 +4,20 @@ from combinatorics import itermatchings, iterecmatchings, itergenmatchings
 
 import inspect
 import sys, os.path
+import time
 
+verbose = False
 def lineno(msg=None):
+  if not verbose:
+      return
   callerframerecord = inspect.stack()[1]    # 0 represents this line
                                             # 1 represents line at caller
   frame = callerframerecord[0]
   info = inspect.getframeinfo(frame)
-  return 
   if msg:
-      print "[%s] %s:%s: %s"%(info.function,os.path.split(info.filename)[1],info.lineno,msg)
+      print "[%s, %s] %s:%s: %s"%(time.asctime(),info.function,os.path.split(info.filename)[1],info.lineno,msg)
   else:
-      print "[%s] %s:%s"%(info.function,os.path.split(info.filename)[1],info.lineno)
+      print "[%s, %s] %s:%s"%(time.asctime(),info.function,os.path.split(info.filename)[1],info.lineno)
 
 class Comparitor(object):
 
@@ -262,6 +265,27 @@ class GlycanPartialOrder(Comparitor):
     def linkleq(self,a,b):
         return self._linkcmp.leq(a,b)
 
+    def monosaccharide_leq(self,a,b):
+
+        if not self.monoleq(a,b):
+            return False
+	if len(filter(lambda l: not l.undetermined(),a.parent_links())) < len(filter(lambda l: not l.undetermined(),b.parent_links())):
+	    return False
+	if len(a.parent_links()) > len(b.parent_links()):
+	    return False
+	if len(a.links(instantiated_only=True)) < len(b.links(instantiated_only=True)):
+            return False
+	if len(a.links(instantiated_only=False)) > len(b.links(instantiated_only=False)):
+	    return False
+	assert self.adist and self.bdist
+	# Using uninstantiated edges, a cannot be closer to the root
+	if self.adist[0].get(a.id(),1e+20) < self.bdist[0].get(b.id(),1e+20):
+            return False
+	# Using instantiated edges only, b cannot be closer to the root
+	if self.adist[1].get(a.id(),1e+20) > self.bdist[1].get(b.id(),1e+20):
+            return False
+        return True
+
     def subtree_leq(self,a,b,root=True):
 
         if root:
@@ -277,7 +301,30 @@ class GlycanPartialOrder(Comparitor):
 
         return False
 
+    def dist_from_root1(self,r,d=0,dist=None):
+	if not dist:
+	    dist = dict()
+	if dist.get(r.id(),1e+20) > d:
+	    dist[r.id()] = d
+	for l in r.links(instantiated_only=False):
+	    ch = l.child()
+	    dist = self.dist_from_root1(ch,d+1,dist)
+	return dist
+
+    def dist_from_root2(self,r,d=0,dist=None):
+	if not dist:
+	    dist = dict()
+	if dist.get(r.id(),1e+20) > d:
+	    dist[r.id()] = d
+	for l in r.links():
+	    ch = l.child()
+	    dist = self.dist_from_root2(ch,d+1,dist)
+	return dist
+
     def leq(self,a,b):
+
+	self.adist = None
+	self.bdist = None
 
         lineno("Start of Subsumption leq")
 
@@ -310,6 +357,9 @@ class GlycanPartialOrder(Comparitor):
         a.set_ids()
         b.set_ids()
 
+	self.adist = (self.dist_from_root1(a.root()),self.dist_from_root2(a.root()))
+	self.bdist = (self.dist_from_root1(b.root()),self.dist_from_root2(b.root()))
+
         lineno()
 
         nodeset1 = list(a.all_nodes(subst=False))
@@ -323,7 +373,7 @@ class GlycanPartialOrder(Comparitor):
         nodeset1.remove(a.root())
         nodeset2.remove(b.root())
 
-        # we assume each node pairs has a single link between it
+        # we assume each node pair has a single link between it
         linkset1 = dict()
         for l in a.all_links(uninstantiated=True):
             key = (l.parent().id(),l.child().id())
@@ -353,7 +403,7 @@ class GlycanPartialOrder(Comparitor):
         lineno()
 
         iters = 0
-        for ii,jj in itergenmatchings(nodeset1, nodeset2, self.monoleq):
+        for ii,jj in itergenmatchings(nodeset1, nodeset2, self.monosaccharide_leq):
 
             iters += 1
             matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
@@ -379,11 +429,12 @@ class GlycanPartialOrder(Comparitor):
                         break
                 
             if good:
-                # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
                 return True
                 
         lineno()
 
+        print >>sys.stderr, "%d iterations to prove no isomorphism exists"%(iters,)
         return False
 
 class CompositionPartialOrder(Comparitor):
@@ -704,7 +755,6 @@ def subsumed(gd1,gd2):
        
 if __name__ == "__main__":
 
-    import time
     from collections import defaultdict
 
     from manipulation import Topology, Composition
@@ -712,7 +762,6 @@ if __name__ == "__main__":
     composition = Composition()
   
     from GlyTouCan import GlyTouCan
-    gtc = GlyTouCan(usecache=True)
 
     from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
     glycoct_format = GlycoCTFormat()
@@ -725,7 +774,26 @@ if __name__ == "__main__":
 
     masscluster = defaultdict(list)
 
+    if len(sys.argv) == 3:
+	if sys.argv[1].startswith('G') and sys.argv[2].startswith('G'):
+            gtc = GlyTouCan()
+	    verbose=True
+	    acc1 = sys.argv[1]
+	    acc2 = sys.argv[2]
+	    gly1 = gtc.getGlycan(acc1)
+	    gly2 = gtc.getGlycan(acc2)
+            start1 = time.time()                                                                                
+            print acc2,"-?>",acc1
+            sys.stdout.flush()
+            if subsumption.leq(gly1,gly2):
+                print acc2,"-->",acc1,"elapsed time",time.time()-start1
+            else:
+                print acc2,"-/>",acc1,"elapsed time",time.time()-start1
+	    sys.exit(0)
+
+    gtc = GlyTouCan(usecache=True)
     if len(sys.argv) > 1:
+      verbose=True
       for mass in map(float,sys.argv[1:]):
         rmass = round(mass,2)
 	for glyacc in gtc.hasmass(rmass):
@@ -840,11 +908,19 @@ if __name__ == "__main__":
           for acc2 in allacc:
             gly2 = allgly[acc2]
             if acc1 != acc2:
+	      if verbose:
+	        start1 = time.time()
+                print acc2,"-?>",acc1
+	        sys.stdout.flush()
               if subsumption.leq(gly1['glycan'],gly2['glycan']):
-                # print acc2,"->",acc1
+		if verbose:
+                  print acc2,"-->",acc1,"elapsed time",time.time()-start1
 		if not geq.eq(gly1['glycan'],gly2['glycan']) or acc2 < acc1:
                   outedges[acc2].append(acc1)
                   inedges[acc1].append(acc2)
+	      else:
+                if verbose:
+		  print acc2,"-/>",acc1,"elapsed time",time.time()-start1
 
         for acc1 in allgly:
           if acc1 not in outedges[allgly[acc1]['bcomp']] and allgly[acc1]['bcomp'] and acc1 != allgly[acc1]['bcomp']:
