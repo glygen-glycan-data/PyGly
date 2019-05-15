@@ -25,11 +25,11 @@ for acc,name in read_aliases(sys.argv[2:]):
     
 # for m in w.iterglycan():
 #     acc = m.get('accession')
-for acc in names:
+for acc in sorted(names):
     m = w.get(acc)
     if not m:
 	continue
-    m.delete_annotations(property="Name",type="Name")
+    m.delete_annotations(property="Name",type="Name",source=source)
     # try:
     #     thenames = set(m.get_annotation_value(property="Name",source=source,type="Name"))
     # except LookupError:
