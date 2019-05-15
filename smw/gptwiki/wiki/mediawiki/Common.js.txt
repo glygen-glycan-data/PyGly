@@ -87,9 +87,26 @@ function loadSVG() {
     // console.log("Start drawing");
 
     var pot = document.getElementsByClassName("mw-parser-output")[0];
+    var chromatographContainer = document.createElement("div");
+    chromatographContainer.setAttribute("class", "specpane0");
+    pot.appendChild(chromatographContainer);
+
     var msContainer = document.createElement("div");
     msContainer.setAttribute("class", "specpanel");
     pot.appendChild(msContainer);
+
+    var peptideAcc = document.getElementById("msv_para").getAttribute("data-peptide");
+    var charger = document.getElementById("msv_para").getAttribute("data-z1");
+
+    var param0 = {
+        spectra: "",
+        format: "json",
+        graphtype: "chromatogram"
+    };
+    param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + peptideAcc + "." + charger + '.json';
+    param0["width"] = pot.clientWidth * 0.995;
+    msmsv.showLabelledSpectrum('specpane0','chrom', param0);
+    msmsv.addTitles('specpane0', ["Chromatogram"], 1, "h3");
 
     var titles = [];
 
@@ -112,12 +129,9 @@ function loadSVG() {
         //params["spectra"] = "https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + sc + '.json';
         params["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + sc + '.json';
 
-        var peptideAcc = document.getElementById("msv_para").getAttribute("data-peptide");
-        var charger = document.getElementById("msv_para").getAttribute("data-z1");
-
         params["annotations"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/annotations/" + peptideAcc + "." + charger + ".json";
         // console.log(params);
-        msmsv.showUnlabelledSpectrum('specpanel','spec'+sc, params);
+        msmsv.showLabelledSpectrum('specpanel','spec'+sc, params);
         titles.push(title);
     }
 

@@ -12,6 +12,6 @@
 |template=SubsumptionTableRows
 |introtemplate=AnnotationTableIntro
 |outrotemplate=AnnotationTableOutro
-|valuesep=,&thinsp;
+|valuesep=;
 |sep=
 }}</includeonly>

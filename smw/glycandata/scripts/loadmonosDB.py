@@ -1,31 +1,30 @@
 #!/bin/env python27
 
 import sys
+from collections import defaultdict
 
 from getwiki import GlycanDataWiki, Glycan
 w = GlycanDataWiki()
 
-def monosDB():
-    d = {}
-    f = open('../data/GlyGen_glycans2monodbID.tsv','r').read().strip().split("\n")
+
+def monosDB(infile):
+    d = defaultdict(set)
+    f = open(infile,'r')
     
     for line in f:
-	k,v = line.split("\t")
-	if v == "Some monosaccharide(s) has no ID in monosaccharide DB" or v == "MonosaccharideDB_ID":
+	if "Some monosaccharide" in line or "MonosaccharideDB_ID" in line:
 	    continue
-	if k in d:
-	    d[k].append(v)
-	else:
-	    d[k] = [v]    
+	k,v = line.split()
+	d[k].add(v)
     return d
 
-monosdb = monosDB()
+monosdb = monosDB(sys.argv[1])
 
 for m in w.iterglycan():
     acc = m.get('accession')
+    m.delete_annotations(source="EdwardsLab",property="MonosaccharideDB",type="CrossReference")
     if acc in monosdb:
-        m.delete_annotations(source="EdwardsLab",type="CrossReference")
-        m.set_annotation(value=monosdb[acc], property="MonosaccharideDB",source="EdwardsLab",type="CrossReference")
+        m.set_annotation(value=list(monosdb[acc]), property="MonosaccharideDB",source="EdwardsLab",type="CrossReference")
     if w.put(m):
         print acc
 

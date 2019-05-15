@@ -74,7 +74,7 @@ class GlyTouCan(object):
             self.cachedata[valuekey] = reduce(lambda d,x: d.setdefault(x[0],[]).append(x[1]) or d,
                                               iterable, {})
             self.cacheupdated = True
-        return self.cachedata[valuekey].get(acc)
+        return self.cachedata[valuekey].get(acc,[])
 
     def cacheget(self,valuekey,acc,iterable):
         if valuekey not in self.cachedata:
@@ -844,11 +844,13 @@ class GlyTouCan(object):
         }
     """
     def getrefs(self,accession):
+        if self.usecache:
+            key = 'references'
+            return self.cachegetmany(key,accession,self.allrefs())
 	response = self.query(self.getrefs_sparql%dict(accession=accession))
         key = response.vars[0]
 	refs = []
         for row in response.bindings:
-            value = str(row[key])
 	    refs.append(str(row[key]).rsplit('/',1)[1])
         return sorted(set(refs),key=int)
 
@@ -868,6 +870,71 @@ class GlyTouCan(object):
 	response = self.query(self.getallrefs_sparql)
         for row in response.bindings:
 	    yield tuple(map(lambda s: s.rsplit('/')[-1],map(row.get,response.vars)))
+
+    gettaxa_sparql = """
+    PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+    PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+    SELECT DISTINCT ?taxon
+    WHERE {
+       {
+         ?saccharide glytoucan:has_primary_id "%(accession)s" .
+         ?saccharide a glycan:saccharide .
+         ?saccharide skos:exactMatch ?gdb .
+         ?gdb glycan:has_reference ?ref .
+         ?ref glycan:is_from_source ?taxon
+       } UNION {
+         ?saccharide glytoucan:has_primary_id "%(accession)s" .
+         ?saccharide a glycan:saccharide .
+         ?saccharide glycan:is_from_source ?taxon
+       }
+    }
+    """
+    def gettaxa(self,accession):
+        if self.usecache:
+            key = 'taxa'
+            return self.cachegetmany(key,accession,self.alltaxa())
+	response = self.query(self.gettaxa_sparql%dict(accession=accession))
+        key = response.vars[0]
+	taxa = []
+        for row in response.bindings:
+            try:
+                taxid = int(str(row[key]).rsplit('/',1)[1])
+                taxa.append(str(taxid))
+            except ValueError:
+                pass
+        return sorted(set(taxa),key=int)
+
+    getalltaxa_sparql = """
+    PREFIX glycan: <http://purl.jp/bio/12/glyco/glycan#>
+    PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+    SELECT DISTINCT ?acc ?taxon
+    WHERE {
+       {
+         ?saccharide glytoucan:has_primary_id ?acc .
+         ?saccharide a glycan:saccharide .
+         ?saccharide skos:exactMatch ?gdb .
+         ?gdb glycan:has_reference ?ref .
+         ?ref glycan:is_from_source ?taxon
+       } UNION {
+         ?saccharide glytoucan:has_primary_id ?acc .
+         ?saccharide a glycan:saccharide .
+         ?saccharide glycan:is_from_source ?taxon
+       }
+    }
+    """
+    def alltaxa(self):
+	response = self.query(self.getalltaxa_sparql)
+        for row in response.bindings:
+	    vals = map(lambda s: s.rsplit('/')[-1],map(row.get,response.vars))
+            try:
+                dummy = int(vals[1])
+            except ValueError:
+                continue
+            yield tuple(vals)
 
     def getsubstr(self,acc):
         sparql = self.getsubstr_sparql(acc)
@@ -1060,6 +1127,7 @@ if __name__ == "__main__":
 	    print "PubChem:",", ".join(gtc.getcrossrefs(acc,'pubchem'))
 	    print "UniCarbKB:",", ".join(gtc.getcrossrefs(acc,'unicarbkb'))
 	    print "XRefs:",", ".join(gtc.getcrossrefs(acc))
+	    print "Taxa:",", ".join(gtc.gettaxa(acc))
 	    print "Motif:",", ".join(map(itemgetter(0),gtc.getmotif(acc)))
 	    print "Mass:",gtc.getmass(acc)
 	    print "Topology:",gtc.gettopo(acc)
@@ -1095,6 +1163,12 @@ if __name__ == "__main__":
 
 	gtc = GlyTouCan()
 	for acc,pubmed in gtc.allrefs():
+	    print acc,pubmed
+
+    elif cmd.lower() == "taxa":
+
+	gtc = GlyTouCan()
+	for acc,pubmed in gtc.alltaxa():
 	    print acc,pubmed
 
     elif cmd.lower() == "kegg":

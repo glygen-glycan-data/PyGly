@@ -88,10 +88,10 @@ for m in w.iterglycan():
         subtypes = []
 
     if len(types) > 0:
-        m.set_annotation(value=list(types), property='GlycanType',
+        m.set_annotation(value=types[0], property='GlycanType',
                          source='EdwardsLab', type='Classification')
         if len(subtypes) > 0:
-            m.set_annotation(value=list(subtypes), property='GlycanSubtype',
+            m.set_annotation(value=subtypes[0], property='GlycanSubtype',
                              source='EdwardsLab', type='Classification')
     if w.put(m):
 	print acc

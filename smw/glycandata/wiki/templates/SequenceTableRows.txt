@@ -1,0 +1,6 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{2}}}
+| {{SeqShowBlock|{{{1}}}}}
+| style="width: 150px;" | {{{3}}}
+</includeonly>

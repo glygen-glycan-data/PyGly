@@ -1,1 +1,68 @@
+__NOEDITSECTION__
+<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 This wiki contains information about {{CountLink|[[Category:Glycan]]}} glycans.
+
+== Sequence == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | GlycoCT
+| {{CountPropertyValueLink|GlycoCT|+}} 
+|-
+! style="width: 200px;" | IUPAC
+| {{CountPropertyValueLink|IUPAC|+}} 
+|-
+! style="width: 200px;" | WURCS
+| {{CountPropertyValueLink|WURCS|+}} 
+|-
+|}
+
+== Molecular Weight == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Underivitized
+| {{CountPropertyValueLink|UnderivitizedMW|+}} 
+|-
+! style="width: 200px;" | Permethylated
+| {{CountPropertyValueLink|PermethylatedMW|+}} 
+|-
+|}
+
+== Cross References ==
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | GlyGen
+| {{CountPropertyValueLink|GlyGen|+}} 
+|-
+! style="width: 200px;" | KEGG
+| {{CountPropertyValueLink|KEGG|+}} 
+|-
+! style="width: 200px;" | PubChem
+| {{CountPropertyValueLink|PubChem|+}} 
+|-
+|}
+
+== Subsumption Levels ==
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | BaseComposition 
+| {{CountPropertyValueLink|SubsumptionLevel|BaseComposition}} 
+|-
+! style="width: 200px;" | Composition 
+| {{CountPropertyValueLink|SubsumptionLevel|Composition}} 
+|-
+! style="width: 200px;" | Topology 
+| {{CountPropertyValueLink|SubsumptionLevel|Topology}} 
+|-
+! style="width: 200px;" | Saccharide 
+| {{CountPropertyValueLink|SubsumptionLevel|Saccharide}} 
+|-
+|}
+
+== Glycan Structure ==
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Composition
+| {{CountPropertyValueLink1|Structure|Composition|true}} 
+|-
+! style="width: 200px;" | Undetermined Topology
+| {{CountPropertyValueLink|UndeterminedTopology|true}} 
+|-
+! style="width: 200px;" | Fully Determined
+| {{CountPropertyValueLink|FullyDetermined|true}} 
+|-
+|}

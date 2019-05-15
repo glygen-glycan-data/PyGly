@@ -1,0 +1,3 @@
+<includeonly><div class="smwpre">
+{{#show: {{{1}}} |?glycandata:value }}
+</div></includeonly>

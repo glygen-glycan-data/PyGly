@@ -5,18 +5,20 @@ import sys
 from getwiki import GlycanDataWiki
 w = GlycanDataWiki()
 
-u_mw = set()
+import findpygly
+from pygly.CompositionTable import ResidueCompositionTable
+from pygly.GlycanFormatter import GlycoCTFormat
 
-for m in w.iterglycan():
-    gtcmw_ann = list(m.annotations(property='UnderivitizedMW',type='MolWt',source='GlyTouCan'))[0]
-    try:
-        umw_ann = list(m.annotations(property='UnderivitizedMW',type='MolWt',source='EdwardsLab'))[0]
-    except:   
-        u_mw.add(gtcmw_ann.get('id'))
-        continue
+ctable = ResidueCompositionTable()
+glycoctformat = GlycoCTFormat()
 
-umw_wh = open('../data/missing_umw.txt','w')
-for acc in sorted(u_mw):
-    print >> umw_wh,acc
-umw_wh.close()
-        
+for g in w.iterglycan():
+    if not g.has_annotations(property='UnderivitizedMW',source='EdwardsLab'):
+        glycan = g.getGlycan()
+	if not glycan:
+            continue
+        for m in glycan.all_nodes():
+            try:
+                eltcomp = m.composition(ctable)
+            except KeyError:
+                print g.get('accession'),glycoctformat.mtoStr(m)

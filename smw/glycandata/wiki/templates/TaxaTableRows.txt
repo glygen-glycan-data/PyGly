@@ -1,0 +1,6 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{1}}}
+| {{#arraymap:{{{2}}}|;|xxx|[http://identifiers.org/taxonomy/xxx xxx]|,&thinsp;}}
+| style="width: 150px;" | {{{3}}}
+</includeonly>
