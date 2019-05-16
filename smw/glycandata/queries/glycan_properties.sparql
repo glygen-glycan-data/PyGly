@@ -1,0 +1,53 @@
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession AS ?glytoucan_acc)
+       (?SubsumptionLevel AS ?glytoucan_type)
+       (?UnderivitizedMW AS ?glycan_mass)
+       (?PermethylatedMW AS ?glycan_permass)
+       (?BaseComposition as ?base_composition)
+       (?Composition as ?composition)
+       (?Topology as ?topology)
+       (?MonosaccharideCount as ?monosaccharides)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann0 glycandata:property "GlyGen" .
+  ?ann0 glycandata:hasglycan ?glycan
+  OPTIONAL {
+    ?ann1 glycandata:property "SubsumptionLevel" .
+    ?ann1 glycandata:value ?SubsumptionLevel . 
+    ?ann1 glycandata:hasglycan ?glycan
+  }
+  OPTIONAL {
+    ?ann2 glycandata:property "UnderivitizedMW" .
+    ?ann2 glycandata:value ?UnderivitizedMW . 
+    ?ann2 glycandata:source "EdwardsLab" .
+    ?ann2 glycandata:hasglycan ?glycan
+  }
+  OPTIONAL {
+    ?ann3 glycandata:property "BaseComposition" .
+    ?ann3 glycandata:value ?BaseComposition . 
+    ?ann3 glycandata:hasglycan ?glycan
+  }
+  OPTIONAL {
+    ?ann4 glycandata:property "Composition" .
+    ?ann4 glycandata:type "Subsumption" .
+    ?ann4 glycandata:value ?Composition . 
+    ?ann4 glycandata:hasglycan ?glycan
+  }
+  OPTIONAL {
+    ?ann5 glycandata:property "Topology" .
+    ?ann5 glycandata:value ?Topology . 
+    ?ann5 glycandata:hasglycan ?glycan
+  }
+  OPTIONAL {
+    ?ann6 glycandata:property "MonosaccharideCount" .
+    ?ann6 glycandata:value ?MonosaccharideCount . 
+    ?ann6 glycandata:source "EdwardsLab" .
+    ?ann6 glycandata:hasglycan ?glycan
+  }
+  OPTIONAL {
+    ?ann7 glycandata:property "PermethylatedMW" .
+    ?ann7 glycandata:value ?PermethylatedMW . 
+    ?ann7 glycandata:hasglycan ?glycan
+  }
+}

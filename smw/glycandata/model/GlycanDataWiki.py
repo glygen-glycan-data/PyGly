@@ -199,3 +199,8 @@ class GlycanDataWiki(SMW.SMWSite):
         for pagename in self.itercat('Glycan'):
             m = self.get(pagename)
             yield m
+
+    def iterannotation(self):
+        for pagename in self.itercat('Annotation'):
+            m = self.get(pagename)
+            yield m
