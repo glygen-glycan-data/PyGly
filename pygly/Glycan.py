@@ -440,12 +440,12 @@ class Glycan:
 
     def iupac_composition(self):
 	c = Composition()
-	for sym in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Xxx'):
+	for sym in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','Xxx'):
 	    c[sym] = 0
 	for m in self.all_nodes():
 	    try:
 	        sym = iupacSym.toStr(m)
-		if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent'):
+		if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia'):
 		    sym = 'Xxx'
 	    except KeyError:
 		sym = 'Xxx'
@@ -455,6 +455,7 @@ class Glycan:
 	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','HexNAc')))
 	c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
 	c['Pent'] = sum(map(c.__getitem__,('Xyl','Pent')))
+	c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
 	return c
 
     def glycoct(self):
