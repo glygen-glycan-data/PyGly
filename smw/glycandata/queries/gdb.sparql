@@ -1,0 +1,11 @@
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+       (?value as ?GlycomeDBID)
+WHERE {
+  ?glycan a glycandata:Glycan . 
+  ?glycan glycandata:accession ?accession .
+  ?ann glycandata:property "GlycomeDB" .
+  ?ann glycandata:value ?value .
+  ?ann glycandata:hasglycan ?glycan
+} 
