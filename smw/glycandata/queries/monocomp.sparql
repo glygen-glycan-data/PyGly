@@ -1,37 +1,44 @@
-EFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?accession ?Hex ?HexNAc ?Fuc ?NeuAc ?NeuGc ((?Total-?Hex-?HexNAc-?Fuc-?NeuAc-?NeuGc) as ?Xxx) ?Total
+SELECT ?accession ?Hex ?HexNAc ?Fuc ?NeuAc ?NeuGc ((?Count - ?Hex - ?HexNAc - ?Fuc - ?NeuAc - ?NeuGc) as ?Xxx) ?Count
 WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann0 glycandata:property "GlyGen" .
   ?ann0 glycandata:hasglycan ?glycan
   OPTIONAL {
     ?ann1 glycandata:property "HexCount" .
-    ?ann1 glycandata:value ?Hex .
+    ?ann1 glycandata:value ?HexCount .
     ?ann1 glycandata:hasglycan ?glycan
   }
   OPTIONAL {
     ?ann2 glycandata:property "HexNAcCount" .
-    ?ann2 glycandata:value ?HexNAc .
+    ?ann2 glycandata:value ?HexNAcCount .
     ?ann2 glycandata:hasglycan ?glycan
   }
-  OPTIONAL {
+    OPTIONAL {
     ?ann3 glycandata:property "FucCount" .
-    ?ann3 glycandata:value ?Fuc .
+    ?ann3 glycandata:value ?FucCount .
     ?ann3 glycandata:hasglycan ?glycan
   }  
   OPTIONAL {
     ?ann4 glycandata:property "NeuAcCount" .
-    ?ann4 glycandata:value ?NeuAc .
+    ?ann4 glycandata:value ?NeuAcCount .
     ?ann4 glycandata:hasglycan ?glycan
   }  
   OPTIONAL {
     ?ann5 glycandata:property "NeuGcCount" .
-    ?ann5 glycandata:value ?NeuGc .
+    ?ann5 glycandata:value ?NeuGcCount .
     ?ann5 glycandata:hasglycan ?glycan
   }
   ?ann6 glycandata:property "MonosaccharideCount" .
   ?ann6 glycandata:source "EdwardsLab" .
-  ?ann6 glycandata:value ?Total .
+  ?ann6 glycandata:value ?MonoCount .
   ?ann6 glycandata:hasglycan ?glycan
-} 
+  BIND(xsd:integer(IF(BOUND(?HexCount),?HexCount,0)) as ?Hex)
+  BIND(xsd:integer(IF(BOUND(?HexNAcCount),?HexNAcCount,0)) as ?HexNAc)
+  BIND(xsd:integer(IF(BOUND(?FucCount),?FucCount,0)) as ?Fuc)
+  BIND(xsd:integer(IF(BOUND(?NeuAcCount),?NewAcCount,0)) as ?NeuAc)
+  BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NewGcCount,0)) as ?NeuGc)
+  BIND(xsd:integer(?MonoCount) as ?Count)
+}

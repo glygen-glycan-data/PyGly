@@ -2,6 +2,8 @@ __NOEDITSECTION__
 <div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 This wiki contains information about {{CountLink|[[Category:Glycan]]}} glycans.
 
+The [[Data Export|data export]] page demonstrates a variety of different sparql queries for extracting data from the triple-store. 
+
 == Sequence == 
 {| class="wikitable" style="text-align: right;"
 ! style="width: 200px;" | GlycoCT
