@@ -137,8 +137,8 @@ WHERE {
   BIND(xsd:integer(IF(BOUND(?HexCount),?HexCount,0)) as ?Hex)
   BIND(xsd:integer(IF(BOUND(?HexNAcCount),?HexNAcCount,0)) as ?HexNAc)
   BIND(xsd:integer(IF(BOUND(?FucCount),?FucCount,0)) as ?Fuc)
-  BIND(xsd:integer(IF(BOUND(?NeuAcCount),?NewAcCount,0)) as ?NeuAc)
-  BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NewGcCount,0)) as ?NeuGc)
+  BIND(xsd:integer(IF(BOUND(?NeuAcCount),?NeuAcCount,0)) as ?NeuAc)
+  BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NeuGcCount,0)) as ?NeuGc)
   BIND(xsd:integer(?MonoCount) as ?Count)
 }
 </pre>
