@@ -127,7 +127,6 @@ class TransitionGroup(SMW.SMWClass):
 
     @staticmethod
     def scan2str(scan):
-	print scan
 	if len(scan) == 2:
 	    return "%d;%s"%(int(scan[0]),scan[1])
 	if len(scan) == 4:
@@ -231,8 +230,8 @@ class Peptide(SMW.SMWClass):
 class GPTWiki(SMW.SMWSite):
     _name = 'gptwiki'
 
-    def __init__(self):
-        super(GPTWiki,self).__init__()
+    def __init__(self,*args,**kwargs):
+        super(GPTWiki,self).__init__(*args,**kwargs)
         self._peptides = {}
         for p in map(self.get,self.itercat('Peptide')):
             key = Peptide.key(p.get('sequence'),p.get('glycan',[]),p.get('mod',[]))
