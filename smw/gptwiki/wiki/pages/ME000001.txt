@@ -1,0 +1,14 @@
+
+== Analytical Sample Preparation ==
+
+Aliquots of dissolved proteins (plasma, CSF, cell lysate) were diluted with sodium bicarbonate in concentration 1ug/ul. Protein solution was reduced with 5 mM DTT for 60 min at 60°C and alkylated with 15 mM iodoacetamide for 30 min in the dark. Trypsin Gold (Promega, Madison, WI) digestion (2.5 ng/μl) was carried out at 37°C in Barocycler NEP2320 (Pressure BioSciences, South Easton, MA) for 1 hour.
+
+== Chromatography ==
+
+Digested proteins were separated using a 90 minute ACN gradient on a 250 mm x 75 μm C18 pepmap column at a flow rate of 0.3 μL/min. In brief, peptide and glycopeptide separation  was achieved by a 5 min trapping/washing step using 99% solvent A (2% acetonitrile, 0.1%  formic  acid)  at  10  μL/min  followed  by  a  90  min  acetonitrile  gradient  at  a  flow  rate  of  0.3 μL/min: 0-3 min 2% B (0.1% formic acid in ACN), 3-5 min 2-10% B; 5-60 min 10-45% B; 60-65 min 45-98% B; 65-70 min 98% B, 70-90 min equilibration by 2% B. 
+
+== Mass Spectrometry ==
+
+Glycopeptides were analyzed using Orbitrap Lumos Fusion mass spectrometer. The electrospray ionization voltage was 3 kV, the capillary temperature 275°C. MS1 scans were performed over m/z 400–1800 with the wide quadrupole isolation on a resolution of 120,000 (m/z 200), RF Lens at 40%, intensity threshold for MS2 was set to 2.0e4,  selected  precursors  for  MS2  were with charge state  3-8, Dynamic exclusion 30s. Data-dependent EThcD tandem mass spectra were collected with a resolution of 30,000 in Orbitrap with fixed first mass 120 and normalized collision energy 25%. Data-dependent HCD scan was triggered by presence of 204.0867, 138.0545 or 366.1396 m/z in EThcD spectra.  HCD tandem mass spectra were collected with a resolution of 30,000 in Orbitrap with fixed first mass 120 and normalized collision energy 20%.
+
+{{Method|Orbitrap Fusion-Lumos, DDA (EThcd pd HCD), nano LC-MS/MS}}

@@ -188,9 +188,9 @@ class SMWSite(object):
                 continue
             try:
                 h = open(dir+'/'+name+'.txt','w')
-                h.write(p.text().rstrip('\n')+'\n')
+                h.write((p.text().rstrip('\n')+'\n').encode('utf8').replace(r'\n',r'\\n').decode('string_escape'))
             except:
-                pass
+                raise
             finally:
                 h.close()
 
@@ -223,7 +223,7 @@ class SMWSite(object):
 	  for f in os.listdir(os.path.join(dir,subdir)):
               if not f.endswith('.txt'):
                   continue
-              pagetext = open(os.path.join(dir,subdir,f)).read().rstrip()
+              pagetext = open(os.path.join(dir,subdir,f)).read().rstrip().decode('utf8')
               pagename = ns+f[:-4]
               page = self.site.pages[pagename]
 	      
