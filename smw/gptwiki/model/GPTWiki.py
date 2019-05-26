@@ -67,7 +67,7 @@ class Transition(SMW.SMWClass):
     def toPython(self,data):
 	data = super(Transition,self).toPython(data)
 
-        for k in ('nrt','mz1','mz2'):
+        for k in ('nrt','rt','mz1','mz2'):
             if isinstance(data.get(k),basestring):
                 data[k] = float(data.get(k))
                 
@@ -80,7 +80,7 @@ class Transition(SMW.SMWClass):
     def toTemplate(self,data):
 	data = super(Transition,self).toTemplate(data)
 
-        for k in ('nrt','mz1','mz2'):
+        for k in ('nrt','rt','mz1','mz2'):
             if k in data:
                 data[k] = "%.3f"%(data[k])
 
@@ -99,7 +99,11 @@ class TransitionGroup(SMW.SMWClass):
 
     def asscans(self,sc):
         str = sc.split(';')
-        return (int(str[0]),str[1])
+	if len(str) == 2:
+            return (int(str[0]),str[1])
+	if len(str) == 4:
+            return (int(str[0]),str[1],float(str[2]),int(str[3]))
+        return (int(str[0]),str[1],float(str[2]),int(str[3]),float(str[4]))
 
     def toPython(self,data):
 	data = super(TransitionGroup,self).toPython(data)
@@ -111,7 +115,7 @@ class TransitionGroup(SMW.SMWClass):
         if isinstance(data.get('scans'),basestring):
             data['scans'] = map(lambda t: self.asscans(t),data.get('scans').split(','))
 
-        for k in ('nrt','mz1'):
+        for k in ('rt','nrt','mz1'):
             if isinstance(data.get(k),basestring):
                 data[k] = float(data.get(k))
                 
@@ -121,6 +125,15 @@ class TransitionGroup(SMW.SMWClass):
 
 	return data
 
+    @staticmethod
+    def scan2str(scan):
+	print scan
+	if len(scan) == 2:
+	    return "%d;%s"%(int(scan[0]),scan[1])
+	if len(scan) == 4:
+            return "%d;%s;%.3f;%d"%(int(scan[0]),scan[1],float(scan[2]),int(scan[3]))
+        return "%d;%s;%.3f;%d;%.3f"%(int(scan[0]),scan[1],float(scan[2]),int(scan[3]),float(scan[4]))
+
     def toTemplate(self,data):
 	data = super(TransitionGroup,self).toTemplate(data)
 
@@ -128,9 +141,9 @@ class TransitionGroup(SMW.SMWClass):
             data['transitions'] = ",".join(map(lambda t: "%s;%.1f"%t,data['transitions']))
 
         if 'scans' in data:
-            data['scans'] = ",".join(map(lambda t: "%d;%s"%t,data['scans']))
+            data['scans'] = ",".join(map(self.scan2str,data['scans']))
 
-        for k in ('nrt','mz1'):
+        for k in ('rt','nrt','mz1'):
             if k in data:
                 data[k] = "%.3f"%(data[k])
 

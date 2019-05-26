@@ -47,5 +47,5 @@ Edit the page to see the template text.
 |gptwiki:transitioncount={{#ask:[[Category:Transition]][[-gptwiki:transition::{{PAGENAME}}]]|format=count}}
 }}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}
 [[Category:TransitionGroup]]
-<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}"></div>
+<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}"></div>
 </includeonly>

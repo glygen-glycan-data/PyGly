@@ -18,11 +18,14 @@ function checkElement() {
         if (sth == ""){
             continue
         }
-        var scan = sth.split(";")[0];
-        var method = sth.split(";")[1];
-        var title = "#"+ scan + " (Method: " + method + ")";
-
-        paraFromPage.push({title: title, scan: scan})
+        var scandetails = sth.split(";");
+        var title = "";
+        if (scandetails.length == 2) {
+            title = "Scan: "+scandetails[0]+" ("+scandetails[1]+")";
+        } else {
+            title = "Scan: "+scandetails[0]+" ("+scandetails[1]+" @ "+scandetails[2]+" min, m/z "+scandetails[4]+")"; 
+        }
+        paraFromPage.push({title: title, scan: scandetails[0]})
     }
 
     msele.innerHTML = "";
@@ -97,6 +100,7 @@ function loadSVG() {
 
     var peptideAcc = document.getElementById("msv_para").getAttribute("data-peptide");
     var charger = document.getElementById("msv_para").getAttribute("data-z1");
+    var pmz = document.getElementById("msv_para").getAttribute("data-mz1");
 
     var param0 = {
         spectra: "",
@@ -106,7 +110,7 @@ function loadSVG() {
     param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + peptideAcc + "." + charger + '.json';
     param0["width"] = pot.clientWidth * 0.995;
     msmsv.showLabelledSpectrum('specpane0','chrom', param0);
-    msmsv.addTitles('specpane0', ["Chromatogram"], 1, "h3");
+    msmsv.addTitles('specpane0', ["XIC: m/z "+pmz], 1, "h3");
 
     var titles = [];
 

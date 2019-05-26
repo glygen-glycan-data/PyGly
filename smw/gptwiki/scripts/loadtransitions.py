@@ -9,7 +9,7 @@ from util import peptide_mw, mod_mw
 
 def asscan(s):
     t = s.rstrip(')').split('(')
-    return int(t[0]),t[1]
+    return [int(t[0])]+t[1].split(',')
 
 w = GPTWiki()
 for transfile in sys.argv[1:]:
@@ -44,7 +44,7 @@ for transfile in sys.argv[1:]:
     label = l['Annotation']
     relint = float(l['LibraryIntensity'])
     label = label.rstrip('+')
-    scans = map(asscan,l['Scans'].split(','))
+    scans = map(asscan,l['Scans'].split(';'))
     
     t,modified = w.addtransition(peptide=pid,label=label,mz1=mz1,z1=z1,mz2=mz2,z2=z2)
     if modified:
