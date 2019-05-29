@@ -787,7 +787,7 @@ class GlyTouCan(object):
              ?saccharide glycan:has_resource_entry ?gdb
         } 
     """
-    resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank','pdb']
+    resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank','pdb','cfg']
     def getcrossrefs(self,accession,resource=None):
         assert resource in [None]+self.resources
 
@@ -1128,7 +1128,7 @@ if __name__ == "__main__":
 	    print "UniCarbKB:",", ".join(gtc.getcrossrefs(acc,'unicarbkb'))
 	    print "XRefs:",", ".join(gtc.getcrossrefs(acc))
 	    print "Taxa:",", ".join(gtc.gettaxa(acc))
-	    print "Motif:",", ".join(map(itemgetter(0),gtc.getmotif(acc)))
+	    print "Motif:",", ".join(gtc.getmotif(acc))
 	    print "Mass:",gtc.getmass(acc)
 	    print "Topology:",gtc.gettopo(acc)
 	    print "Composition:",gtc.getcomp(acc)

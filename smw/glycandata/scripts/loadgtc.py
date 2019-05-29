@@ -68,6 +68,7 @@ for gtcacc in accessions(sys.argv[1:]):
                 'unicarbkb':'UniCarbKB',
                 'glyconnect':'GlyConnect',
                 'glycome-db':'GlycomeDB',
+                'cfg':'CFG',
                 'pdb':'PDB',
                 'carbbank':'Carbbank(CCSB)'}    
     for xref in gtc.getcrossrefs(gtcacc):

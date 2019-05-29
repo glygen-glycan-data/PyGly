@@ -12,6 +12,7 @@
 |Carbbank(CCSB)={{#arraymap:{{{2}}}|;|xxx|[http://www.genome.jp/dbget-bin/www_bget?carbbank+xxx xxx]|,&thinsp;}}
 |GlyGen={{#arraymap:{{{2}}}|;|xxx|[http://glygen.org/glycan_detail.html?glytoucan_ac=xxx xxx]|,&thinsp;}}
 |MonosaccharideDB={{#arraymap:{{{2}}}|;|xxx|[http://www.monosaccharidedb.org/display_monosaccharide.action?id=xxx xxx]|,&thinsp;}}
+|PDB={{#arraymap:{{{2}}}|;|xxx|[https://www.rcsb.org/structure/xxx xxx]|,&thinsp;}}
 |{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
 }}
 | style="width: 150px;" | {{{3}}}
