@@ -1,4 +1,6 @@
 
+See also the [https://github.com/glygen-glycan-data/PyGly/tree/master/smw/glycandata/queries sparql queries] and [https://github.com/glygen-glycan-data/PyGly/tree/master/smw/glycandata/export exported data tables] in the [https://github.com/glygen-glycan-data/PyGly/tree/master/smw/glycandata GlycanDataWiki github repository].
+
 == Glycan Properties ==
 
 <pre>
@@ -56,7 +58,7 @@ WHERE {
   }
 }
 </pre>
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession+AS+%3Fglytoucan_acc)%0A+++++++(%3FSubsumptionLevel+AS+%3Fglytoucan_type)%0A+++++++(%3FUnderivitizedMW+AS+%3Fglycan_mass)%0A+++++++(%3FPermethylatedMW+AS+%3Fglycan_permass)%0A+++++++(%3FBaseComposition+as+%3Fbase_composition)%0A+++++++(%3FComposition+as+%3Fcomposition)%0A+++++++(%3FTopology+as+%3Ftopology)%0A+++++++(%3FMonosaccharideCount+as+%3Fmonosaccharides)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan%0A++OPTIONAL+%7B%0A++++%3Fann1+glycandata%3Aproperty+%22SubsumptionLevel%22+.%0A++++%3Fann1+glycandata%3Avalue+%3FSubsumptionLevel+.+%0A++++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann2+glycandata%3Aproperty+%22UnderivitizedMW%22+.%0A++++%3Fann2+glycandata%3Avalue+%3FUnderivitizedMW+.+%0A++++%3Fann2+glycandata%3Asource+%22EdwardsLab%22+.%0A++++%3Fann2+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann3+glycandata%3Aproperty+%22BaseComposition%22+.%0A++++%3Fann3+glycandata%3Avalue+%3FBaseComposition+.+%0A++++%3Fann3+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann4+glycandata%3Aproperty+%22Composition%22+.%0A++++%3Fann4+glycandata%3Atype+%22Subsumption%22+.%0A++++%3Fann4+glycandata%3Avalue+%3FComposition+.+%0A++++%3Fann4+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann5+glycandata%3Aproperty+%22Topology%22+.%0A++++%3Fann5+glycandata%3Avalue+%3FTopology+.+%0A++++%3Fann5+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann6+glycandata%3Aproperty+%22MonosaccharideCount%22+.%0A++++%3Fann6+glycandata%3Avalue+%3FMonosaccharideCount+.+%0A++++%3Fann6+glycandata%3Asource+%22EdwardsLab%22+.%0A++++%3Fann6+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann7+glycandata%3Aproperty+%22PermethylatedMW%22+.%0A++++%3Fann7+glycandata%3Avalue+%3FPermethylatedMW+.+%0A++++%3Fann7+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession+AS+%3Fglytoucan_acc)%0A+++++++(%3FSubsumptionLevel+AS+%3Fglytoucan_type)%0A+++++++(%3FUnderivitizedMW+AS+%3Fglycan_mass)%0A+++++++(%3FPermethylatedMW+AS+%3Fglycan_permass)%0A+++++++(%3FBaseComposition+as+%3Fbase_composition)%0A+++++++(%3FComposition+as+%3Fcomposition)%0A+++++++(%3FTopology+as+%3Ftopology)%0A+++++++(%3FMonosaccharideCount+as+%3Fmonosaccharides)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan%0A++OPTIONAL+%7B%0A++++%3Fann1+glycandata%3Aproperty+%22SubsumptionLevel%22+.%0A++++%3Fann1+glycandata%3Avalue+%3FSubsumptionLevel+.+%0A++++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann2+glycandata%3Aproperty+%22UnderivitizedMW%22+.%0A++++%3Fann2+glycandata%3Avalue+%3FUnderivitizedMW+.+%0A++++%3Fann2+glycandata%3Asource+%22EdwardsLab%22+.%0A++++%3Fann2+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann3+glycandata%3Aproperty+%22BaseComposition%22+.%0A++++%3Fann3+glycandata%3Avalue+%3FBaseComposition+.+%0A++++%3Fann3+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann4+glycandata%3Aproperty+%22Composition%22+.%0A++++%3Fann4+glycandata%3Atype+%22Subsumption%22+.%0A++++%3Fann4+glycandata%3Avalue+%3FComposition+.+%0A++++%3Fann4+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann5+glycandata%3Aproperty+%22Topology%22+.%0A++++%3Fann5+glycandata%3Avalue+%3FTopology+.+%0A++++%3Fann5+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann6+glycandata%3Aproperty+%22MonosaccharideCount%22+.%0A++++%3Fann6+glycandata%3Avalue+%3FMonosaccharideCount+.+%0A++++%3Fann6+glycandata%3Asource+%22EdwardsLab%22+.%0A++++%3Fann6+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann7+glycandata%3Aproperty+%22PermethylatedMW%22+.%0A++++%3Fann7+glycandata%3Avalue+%3FPermethylatedMW+.+%0A++++%3Fann7+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
 
 == GlycomeDB Cross References ==
 
@@ -74,7 +76,7 @@ WHERE {
   ?ann1 glycandata:hasglycan ?glycan
 }</pre>
 
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FGlycomeDBID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22GlycomeDB%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FGlycomeDBID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22GlycomeDB%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
 
 == KEGG Cross References ==
 
@@ -92,7 +94,61 @@ WHERE {
   ?ann1 glycandata:hasglycan ?glycan
 }</pre>
 
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FKEGGAccession)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22KEGG%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FKEGGAccession)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22KEGG%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+
+== UniCarbKB Cross References ==
+
+<pre>
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+       (?value as ?UniCarbKBID)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann0 glycandata:property "GlyGen" .
+  ?ann0 glycandata:hasglycan ?glycan .
+  ?ann1 glycandata:property "UniCarbKB" .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:hasglycan ?glycan
+}</pre>
+
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FUniCarbKBID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22UniCarbKB%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
+
+== PubChem Cross References ==
+
+<pre>
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+       (?value as ?PubChemID)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann0 glycandata:property "GlyGen" .
+  ?ann0 glycandata:hasglycan ?glycan .
+  ?ann1 glycandata:property "PubChem" .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:hasglycan ?glycan
+}</pre>
+
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FPubChemID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22PubChem%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
+
+== PDB Cross References ==
+
+<pre>
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+       (?value as ?PDBID)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann0 glycandata:property "GlyGen" .
+  ?ann0 glycandata:hasglycan ?glycan .
+  ?ann1 glycandata:property "PDB" .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:hasglycan ?glycan
+}</pre>
+
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FPDBID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22PDB%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
 
 == Monosaccharide Composition ==
 
