@@ -1,7 +1,7 @@
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?accession ?Hex ?HexNAc ?Fuc ?NeuAc ?NeuGc ((?Count - ?Hex - ?HexNAc - ?Fuc - ?NeuAc - ?NeuGc) as ?Xxx) ?Count
+SELECT ?accession ?Hex ?HexNAc ?dHex ?NeuAc ?NeuGc ((?Count - ?Hex - ?HexNAc - ?dHex - ?NeuAc - ?NeuGc) as ?Xxx) ?Count
 WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann0 glycandata:property "GlyGen" .
@@ -17,8 +17,8 @@ WHERE {
     ?ann2 glycandata:hasglycan ?glycan
   }
     OPTIONAL {
-    ?ann3 glycandata:property "FucCount" .
-    ?ann3 glycandata:value ?FucCount .
+    ?ann3 glycandata:property "dHexCount" .
+    ?ann3 glycandata:value ?dHexCount .
     ?ann3 glycandata:hasglycan ?glycan
   }  
   OPTIONAL {
@@ -37,7 +37,7 @@ WHERE {
   ?ann6 glycandata:hasglycan ?glycan
   BIND(xsd:integer(IF(BOUND(?HexCount),?HexCount,0)) as ?Hex)
   BIND(xsd:integer(IF(BOUND(?HexNAcCount),?HexNAcCount,0)) as ?HexNAc)
-  BIND(xsd:integer(IF(BOUND(?FucCount),?FucCount,0)) as ?Fuc)
+  BIND(xsd:integer(IF(BOUND(?dHexCount),?dHexCount,0)) as ?dHex)
   BIND(xsd:integer(IF(BOUND(?NeuAcCount),?NeuAcCount,0)) as ?NeuAc)
   BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NeuGcCount,0)) as ?NeuGc)
   BIND(xsd:integer(?MonoCount) as ?Count)
