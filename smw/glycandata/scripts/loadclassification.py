@@ -35,26 +35,45 @@ for l in motif_rules_data.splitlines():
     assert len(sl) == 3
     motifrules[sl[0]] = (sl[1],sl[2])
 
-for m in w.iterglycan():
+debug = False
+def iterglycan():
+    if len(sys.argv) > 1:
+	for acc in sys.argv[1:]:
+	    m = w.get(acc)
+	    if m:
+		debug = True
+		yield m
+    else:
+	for m in w.iterglycan():
+	    yield m
+    
+for m in iterglycan():
     acc = m.get('accession')
 
     classifications = set()
 
-    count = 0; mancount = 0; xxxcount = 0;
-    for ann in m.annotations(type='MonosaccharideCount',source='EdwardsLab'):
-	if ann.get('property') == "MonosaccharideCount":
-	    count = int(ann.get('value',[0])[0])
-	elif ann.get('property') == "ManCount":
-	    mancount = int(ann.get('value',[0])[0])
-	elif ann.get('property') == "XxxCount":
-	    xxxcount = int(ann.get('value',[0])[0])
+    try:
+        count = int(m.get_annotation_value('MonosaccharideCount',source='EdwardsLab'))
+    except LookupError:
+	count = 0
+
+    try:
+        mancount = int(m.get_annotation_value('ManCount',source='EdwardsLab'))
+    except LookupError:
+	mancount = 0
+
+    try:
+        xxxcount = int(m.get_annotation_value('XxxCount',source='EdwardsLab'))
+    except LookupError:
+	xxxcount = 0
 
     m.delete_annotations(source='EdwardsLab', type='Classification')
 
     try:
         motifann = list(m.annotations(property='Motif',type='Motif',source='GlyTouCan'))[0]
     except IndexError:
-	w.put(m)
+	if not debug:
+	    w.put(m)
 	continue
 
     for motifacc in motifann.get('value',[]):
@@ -93,5 +112,8 @@ for m in w.iterglycan():
         if len(subtypes) > 0:
             m.set_annotation(value=subtypes[0], property='GlycanSubtype',
                              source='EdwardsLab', type='Classification')
-    if w.put(m):
-	print acc
+    if not debug:
+	if w.put(m):
+	    print acc
+    else:
+	    print m
