@@ -438,14 +438,15 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
+    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia']
     def iupac_composition(self):
 	c = Composition()
-	for sym in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','Xxx'):
+	for sym in (self.iupac_composition_syms + ['Xxx']):
 	    c[sym] = 0
 	for m in self.all_nodes():
 	    try:
 	        sym = iupacSym.toStr(m)
-		if sym not in ('Man','Gal','Glc','Xyl','Fuc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia'):
+		if sym not in self.iupac_composition_syms:
 		    sym = 'Xxx'
 	    except KeyError:
 		sym = 'Xxx'

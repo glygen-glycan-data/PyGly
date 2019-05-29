@@ -162,9 +162,6 @@ class Annotation(SMW.SMWClass):
 class GlycanDataWiki(SMW.SMWSite):
     _name = 'glycandata'
 
-    def __init__(self):
-        super(GlycanDataWiki,self).__init__()
-
     # Assumes accession == pagename, see above
     def get(self,accession):
         g = super(GlycanDataWiki,self).get(accession)
