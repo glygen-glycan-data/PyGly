@@ -787,7 +787,7 @@ class GlyTouCan(object):
              ?saccharide glycan:has_resource_entry ?gdb
         } 
     """
-    resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank','pdb','cfg']
+    resources = ['glycosciences_de','pubchem','kegg','unicarbkb','glyconnect','glycome-db','carbbank','pdb','cfg','bcsdb']
     def getcrossrefs(self,accession,resource=None):
         assert resource in [None]+self.resources
 
