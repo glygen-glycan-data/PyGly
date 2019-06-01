@@ -1,3 +1,4 @@
+#!/bin/env python27
 import sys
 
 import findpygly
@@ -5,7 +6,10 @@ from pygly.GlyTouCan import GlyTouCan
 
 gtc = GlyTouCan(usecache=True)
 
-accs = set(open('../data/glytoucan_accessions.txt').read().split())
+accs = set()
+for f in sys.argv[1:]:
+    accs.update(open(f).read().split())
+
 newaccs = set()
 
 for acc in accs:
@@ -22,9 +26,6 @@ for acc in accs:
         newaccs.add(bcomp)
 newaccs = (newaccs-accs)
 
-wh = open('../data/extra_accessions.txt','w')
 for acc in sorted(newaccs):
-    print >> wh, acc
-wh.close()
-
+    print acc
 

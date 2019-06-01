@@ -7,7 +7,7 @@ export SMWENV
 
 set -x
 ./loadsite.py ../wiki
-./loadgtc.py ../data/glygen_accessions.txt
+./loadgtc.py ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt
 ./loadgtc.py ../data/extra_accessions.txt
 ./loadglygen.py ../data/glygen_accessions.txt
 ./loadedlab.py
