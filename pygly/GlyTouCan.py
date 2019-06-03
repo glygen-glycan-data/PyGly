@@ -1177,6 +1177,13 @@ if __name__ == "__main__":
         for acc,keggacc in gtc.allcrossrefs('kegg'):
             print acc,keggacc
 
+    elif cmd.lower() == "xref":
+	
+	gtc = GlyTouCan()
+        for acc,xref in gtc.allcrossrefs():
+	    res,id = xref.split(':',1)
+            print acc,res,id
+
     elif cmd.lower() == "fully_determined":
 
         gtc = GlyTouCan()
