@@ -476,9 +476,9 @@ class GlyTouCan(object):
         return "%s/%s,%d,%d/%s%s"%(prefix,unodes,nodes,edges,rest,"_".join(ambigedges))
 
     def monotocomp(self,mstr):
-	m = re.search(r'-(\d)[abx]_\d-\d',mstr)
+	m = re.search(r'-(\d)[abx]_\d-(\d|\?)',mstr)
         if m:
-            mstr = re.sub(r'-\d[abx]_\d-\d','',mstr)
+            mstr = re.sub(r'-\d[abx]_\d-(\d|\?)','',mstr)
             assert mstr[int(m.group(1))-1] == 'a', mstr
             mstr = list(mstr)
             if m.group(1) == '2':
@@ -988,6 +988,7 @@ class GlyTouCan(object):
 	    if not self.glycoct_format:
 		self.glycoct_format = GlycoCTFormat()
 	    sequence = self.glycoct2wurcs(self.glycoct_format.toStr(glycan))
+	    # sequence = self.glycoct_format.toStr(glycan)
 	    # print sequence
 	    if not glycan.has_root():
 		acc,new = self.register(sequence)
@@ -1000,7 +1001,7 @@ class GlyTouCan(object):
 		    return acc,new
 	else:
 	    if glycan.strip().startswith('RES'):
-		glycan = self.glycoct2wurcs(glycan)
+            	glycan = self.glycoct2wurcs(glycan)
 	    sequence = glycan
 	sequence = re.sub(r'\n\n+',r'\n',sequence)
 	params = json.dumps(dict(sequence=sequence))                                                                  
