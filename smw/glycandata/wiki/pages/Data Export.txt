@@ -130,7 +130,7 @@ WHERE {
   ?ann1 glycandata:hasglycan ?glycan
 }</pre>
 
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FPubChemID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22PubChem%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FPubChemID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22PubChem%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
 
 == PDB Cross References ==
 
@@ -148,7 +148,7 @@ WHERE {
   ?ann1 glycandata:hasglycan ?glycan
 }</pre>
 
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FPDBID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22PDB%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FPDBID)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22PDB%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me]
 
 == Monosaccharide Composition ==
 
@@ -156,7 +156,7 @@ WHERE {
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?accession ?Hex ?HexNAc ?Fuc ?NeuAc ?NeuGc ((?Count - ?Hex - ?HexNAc - ?Fuc - ?NeuAc - ?NeuGc) as ?Xxx) ?Count
+SELECT ?accession ?Hex ?HexNAc ?dHex ?NeuAc ?NeuGc ((?Count - ?Hex - ?HexNAc - ?dHex - ?NeuAc - ?NeuGc) as ?Xxx) ?Count
 WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann0 glycandata:property "GlyGen" .
@@ -172,8 +172,8 @@ WHERE {
     ?ann2 glycandata:hasglycan ?glycan
   }
     OPTIONAL {
-    ?ann3 glycandata:property "FucCount" .
-    ?ann3 glycandata:value ?FucCount .
+    ?ann3 glycandata:property "dHexCount" .
+    ?ann3 glycandata:value ?dHexCount .
     ?ann3 glycandata:hasglycan ?glycan
   }  
   OPTIONAL {
@@ -192,11 +192,34 @@ WHERE {
   ?ann6 glycandata:hasglycan ?glycan
   BIND(xsd:integer(IF(BOUND(?HexCount),?HexCount,0)) as ?Hex)
   BIND(xsd:integer(IF(BOUND(?HexNAcCount),?HexNAcCount,0)) as ?HexNAc)
-  BIND(xsd:integer(IF(BOUND(?FucCount),?FucCount,0)) as ?Fuc)
+  BIND(xsd:integer(IF(BOUND(?dHexCount),?dHexCount,0)) as ?dHex)
   BIND(xsd:integer(IF(BOUND(?NeuAcCount),?NeuAcCount,0)) as ?NeuAc)
   BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NeuGcCount,0)) as ?NeuGc)
   BIND(xsd:integer(?MonoCount) as ?Count)
 }
 </pre>
 
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0APREFIX+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0A%0ASELECT+%3Faccession+%3FHex+%3FHexNAc+%3FFuc+%3FNeuAc+%3FNeuGc+((%3FCount+-+%3FHex+-+%3FHexNAc+-+%3FFuc+-+%3FNeuAc+-+%3FNeuGc)+as+%3FXxx)+%3FCount%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan%0A++OPTIONAL+%7B%0A++++%3Fann1+glycandata%3Aproperty+%22HexCount%22+.%0A++++%3Fann1+glycandata%3Avalue+%3FHexCount+.%0A++++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann2+glycandata%3Aproperty+%22HexNAcCount%22+.%0A++++%3Fann2+glycandata%3Avalue+%3FHexNAcCount+.%0A++++%3Fann2+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++++OPTIONAL+%7B%0A++++%3Fann3+glycandata%3Aproperty+%22FucCount%22+.%0A++++%3Fann3+glycandata%3Avalue+%3FFucCount+.%0A++++%3Fann3+glycandata%3Ahasglycan+%3Fglycan%0A++%7D++%0A++OPTIONAL+%7B%0A++++%3Fann4+glycandata%3Aproperty+%22NeuAcCount%22+.%0A++++%3Fann4+glycandata%3Avalue+%3FNeuAcCount+.%0A++++%3Fann4+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann5+glycandata%3Aproperty+%22NeuGcCount%22+.%0A++++%3Fann5+glycandata%3Avalue+%3FNeuGcCount+.%0A++++%3Fann5+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++%3Fann6+glycandata%3Aproperty+%22MonosaccharideCount%22+.%0A++%3Fann6+glycandata%3Asource+%22EdwardsLab%22+.%0A++%3Fann6+glycandata%3Avalue+%3FMonoCount+.%0A++%3Fann6+glycandata%3Ahasglycan+%3Fglycan%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FHexCount)%2C%3FHexCount%2C0))+as+%3FHex)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FHexNAcCount)%2C%3FHexNAcCount%2C0))+as+%3FHexNAc)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FFucCount)%2C%3FFucCount%2C0))+as+%3FFuc)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FNeuAcCount)%2C%3FNewAcCount%2C0))+as+%3FNeuAc)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FNeuGcCount)%2C%3FNewGcCount%2C0))+as+%3FNeuGc)%0A++BIND(xsd%3Ainteger(%3FMonoCount)+as+%3FCount)%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0APREFIX+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0A%0ASELECT+%3Faccession+%3FHex+%3FHexNAc+%3FdHex+%3FNeuAc+%3FNeuGc+((%3FCount+-+%3FHex+-+%3FHexNAc+-+%3FdHex+-+%3FNeuAc+-+%3FNeuGc)+as+%3FXxx)+%3FCount%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan%0A++OPTIONAL+%7B%0A++++%3Fann1+glycandata%3Aproperty+%22HexCount%22+.%0A++++%3Fann1+glycandata%3Avalue+%3FHexCount+.%0A++++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann2+glycandata%3Aproperty+%22HexNAcCount%22+.%0A++++%3Fann2+glycandata%3Avalue+%3FHexNAcCount+.%0A++++%3Fann2+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++++OPTIONAL+%7B%0A++++%3Fann3+glycandata%3Aproperty+%22dHexCount%22+.%0A++++%3Fann3+glycandata%3Avalue+%3FdHexCount+.%0A++++%3Fann3+glycandata%3Ahasglycan+%3Fglycan%0A++%7D++%0A++OPTIONAL+%7B%0A++++%3Fann4+glycandata%3Aproperty+%22NeuAcCount%22+.%0A++++%3Fann4+glycandata%3Avalue+%3FNeuAcCount+.%0A++++%3Fann4+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++OPTIONAL+%7B%0A++++%3Fann5+glycandata%3Aproperty+%22NeuGcCount%22+.%0A++++%3Fann5+glycandata%3Avalue+%3FNeuGcCount+.%0A++++%3Fann5+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A++%3Fann6+glycandata%3Aproperty+%22MonosaccharideCount%22+.%0A++%3Fann6+glycandata%3Asource+%22EdwardsLab%22+.%0A++%3Fann6+glycandata%3Avalue+%3FMonoCount+.%0A++%3Fann6+glycandata%3Ahasglycan+%3Fglycan%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FHexCount)%2C%3FHexCount%2C0))+as+%3FHex)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FHexNAcCount)%2C%3FHexNAcCount%2C0))+as+%3FHexNAc)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FdHexCount)%2C%3FdHexCount%2C0))+as+%3FdHex)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FNeuAcCount)%2C%3FNeuAcCount%2C0))+as+%3FNeuAc)%0A++BIND(xsd%3Ainteger(IF(BOUND(%3FNeuGcCount)%2C%3FNeuGcCount%2C0))+as+%3FNeuGc)%0A++BIND(xsd%3Ainteger(%3FMonoCount)+as+%3FCount)%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+
+== Glycan Classification ==
+
+<pre>
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession as ?GlyTouCanAccession) ?Type ?Subtype
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann0 glycandata:property "GlyGen" .
+  ?ann0 glycandata:hasglycan ?glycan .
+  ?ann1 glycandata:property "GlycanType" .
+  ?ann1 glycandata:value ?Type .
+  ?ann1 glycandata:hasglycan ?glycan
+  OPTIONAL {
+    ?ann2 glycandata:property "GlycanSubtype" .
+    ?ann2 glycandata:value ?Subtype .
+    ?ann2 glycandata:hasglycan ?glycan
+  }
+}
+</pre>
+
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession+as+%3FGlyTouCanAccession)+%3FType+%3FSubtype%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22GlycanType%22+.%0A++%3Fann1+glycandata%3Avalue+%3FType+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A++OPTIONAL+%7B%0A++++%3Fann2+glycandata%3Aproperty+%22GlycanSubtype%22+.%0A++++%3Fann2+glycandata%3Avalue+%3FSubtype+.%0A++++%3Fann2+glycandata%3Ahasglycan+%3Fglycan%0A++%7D%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]

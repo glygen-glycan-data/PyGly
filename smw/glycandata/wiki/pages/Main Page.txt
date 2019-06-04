@@ -27,6 +27,20 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 |}
 
+== Species by Taxonomy ID ==
+
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Human (9606)
+| {{CountPropertyValueLink|Taxonomy|9606}} 
+|-
+! style="width: 200px;" | Mouse (10090)
+| {{CountPropertyValueLink|Taxonomy|10090}} 
+|-
+! style="width: 200px;" | Rat (10116)
+| {{CountPropertyValueLink|Taxonomy|10116}} 
+|-
+|}
+
 == Cross References ==
 {| class="wikitable" style="text-align: right;"
 ! style="width: 200px;" | GlyGen
