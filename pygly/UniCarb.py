@@ -6,9 +6,9 @@ import urllib2
 import time
 import csv
 import re
-from pygly.memoize import memoize
+from memoize import memoize
 from rdflib import ConjunctiveGraph, Namespace
-
+from collections import defaultdict
 
 class APIError(RuntimeError):
     pass
@@ -154,15 +154,10 @@ class UniCarb(Triple_store_api):
             raise RuntimeError
     
     def unicarbGlycanURL2id(self, url):
-        glycanType = url.split("/")[-2]
-        if glycanType == "structure":
-            key = url.split("/")[-1]
-        elif glycanType == "composition":
-            key = url.split("/")[-1]
-        else:
-            print "A glycan is neither structure nor composition"
-            raise ValueError
-        return glycanType, key
+        glycanType,key = url.split("/")[-2:]
+	if glycanType not in ('structure','composition'):
+            raise ValueError("Glycan URI is neither structure nor composition")
+	return glycanType,key
     
     def getProtein(self, filepath):
         # The columns will be: UniProt ID,Position,PubMed ID,UniCarb ID,GlyTouCan ID,AminoAcid,TypeAminoAcid,Notes
@@ -190,35 +185,28 @@ class UniCarb(Triple_store_api):
         g = ConjunctiveGraph(store='SPARQLStore')
         g.open(self.endpt)
         results = g.query(self.unicarb2glytoucan_query)
-        res = {}
+        res = defaultdict(set)
         for r in results.bindings:
             row = map(str, map(r.get, results.vars))
-            if self.unicarbGlycanURL2id(row[0])[0] == 'structure':
-                uid = self.unicarbGlycanURL2id(row[0])[1]
-            else:
+	    gtype,uid = self.unicarbGlycanURL2id(row[0])
+            if gtype != 'structure' or not uid:
                 continue
             gid = row[1]
-
-            res[uid] = gid
+            res[uid].add(gid)
         return res
 
     def taxonomy(self):
         g = ConjunctiveGraph(store='SPARQLStore')
         g.open(self.endpt)
         results = g.query(self.taxonomy_query)
-        res = {}
+        res = defaultdict(set)
         for r in results.bindings:
             row = map(str, map(r.get, results.vars))
-            if self.unicarbGlycanURL2id(row[0])[0] == 'structure':
-                uid = self.unicarbGlycanURL2id(row[0])[1]
-            else:
+	    gtype,uid = self.unicarbGlycanURL2id(row[0])
+            if gtype != 'structure' or not uid:
                 continue
             taxonomy = self.stripURL(row[1])
-            
-            if uid not in res:
-                res[uid] = []
-            
-            res[uid].append(taxonomy)
+            res[uid].add(taxonomy)
         return res
     
     idmapping = False
@@ -231,12 +219,27 @@ class UniCarb(Triple_store_api):
 
 
 if __name__ == "__main__":
-    uc = UniCarb()
-    #uc.q1()
-    uc.IDmapping("6156")
 
-    uc.protein_mouse()
-    
-    uc.protein_human()
-    
-    uc.taxonomy()
+    import sys
+
+    cmd = sys.argv.pop(1)                                                                                                 
+                                                                                                                          
+    if cmd.lower() == "taxa":                                                                                         
+
+        uc = UniCarb()
+        taxa = uc.taxonomy()
+	for k,v in taxa.items():
+	    for vi in v:
+		print k,vi
+
+    elif cmd.lower() == "glytoucan":
+
+        uc = UniCarb()
+	gtc = uc.unicarb2glytoucan()
+	for k,v in gtc.items():
+	    for vi in v:
+		print k,vi
+
+    else:
+        print >>sys.stderr, "Bad command: %s"%(cmd,)
+        sys.exit(1)
