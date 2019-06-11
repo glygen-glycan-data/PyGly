@@ -21,10 +21,19 @@ for l in open(sys.argv[1]):
     if sec == "NODES":
 	sl = l.split()
 	acc = sl[0]
-        topo[acc] = sl[3]
-        comp[acc] = sl[4]
-        bcomp[acc] = sl[5]
-        cat[acc] = sl[2]
+	if sl[3] != "None":
+            topo[acc] = (sl[3].strip("*"),sl[3].endswith("*"))
+	else:
+	    topo[acc] = (None,False)
+	if sl[4] != "None":
+            comp[acc] = (sl[4].strip("*"),sl[4].endswith("*"))
+        else:
+	    comp[acc] = (None,False)
+	if sl[5] != "None":
+            bcomp[acc] = (sl[5].strip("*"),sl[5].endswith("*"))
+	else:
+	    bcomp[acc] = (None,False)
+        cat[acc] = (sl[2].strip("*"),sl[2].endswith("*"))
 	continue
     if sec == "EDGES":
         sl = l.split()
@@ -35,13 +44,13 @@ for l in open(sys.argv[1]):
 # print >>sys.stderr, "Inverse subsumption groups"
 
 hascomp = defaultdict(set)
-for acc,c in comp.iteritems():
+for acc,(c,edlab) in comp.iteritems():
     hascomp[c].add(acc)
 hastopo = defaultdict(set)
-for acc,t in topo.iteritems():
+for acc,(t,edlab) in topo.iteritems():
     hastopo[t].add(acc)
 hasbcomp = defaultdict(set)
-for acc,bc in bcomp.iteritems():
+for acc,(bc,edlab) in bcomp.iteritems():
     hasbcomp[bc].add(acc)
 
 # print >>sys.stderr, "Read restriction(s)"
@@ -104,28 +113,44 @@ def keepcat(c,acc):
 for m in w.iterglycan():
 
     acc = m.get('accession')
-    if cat.get(acc) == "BaseComposition":
+    if cat.get(acc,(None,False))[0] == "BaseComposition":
         comps = filter(partial(keepcat,"Composition"),hasbcomp[acc])
         m.set_annotation(property="Compositions",value=comps,source="EdwardsLab",type="Subsumption")
         topos = filter(partial(keepcat,"Topology"),hasbcomp[acc])
         m.set_annotation(property="Topologies",value=topos,source="EdwardsLab",type="Subsumption")
         saccs = filter(partial(keepcat,"Saccharide"),hasbcomp[acc])
         m.set_annotation(property="Saccharides",value=saccs,source="EdwardsLab",type="Subsumption")
-    elif cat.get(acc) == "Composition":
+    elif cat.get(acc,(None,False))[0] == "Composition":
         topos = filter(partial(keepcat,"Topology"),hascomp[acc])
         m.set_annotation(property="Topologies",value=topos,source="EdwardsLab",type="Subsumption")
         saccs = filter(partial(keepcat,"Saccharide"),hascomp[acc])
         m.set_annotation(property="Saccharides",value=saccs,source="EdwardsLab",type="Subsumption")
-    elif cat.get(acc) == "Topology":
+    elif cat.get(acc,(None,False))[0] == "Topology":
         saccs = filter(partial(keepcat,"Saccharide"),hastopo[acc])
         m.set_annotation(property="Saccharides",value=saccs,source="EdwardsLab",type="Subsumption")
+
+    if topo.get(acc,(None,False))[1] and not m.has_annotations(property="Topology",source="GlyTouCan",type="Subsumption"):
+	m.set_annotation(property="Topology",value=topo.get(acc)[0],source="EdwardsLab",type="Subsumption")
+    else:
+	m.delete_annotations(property="Topology",source="EdwardsLab",type="Subsumption")
+
+    if comp.get(acc,(None,False))[1] and not m.has_annotations(property="Composition",source="GlyTouCan",type="Subsumption"):
+	m.set_annotation(property="Composition",value=comp.get(acc)[0],source="EdwardsLab",type="Subsumption")
+    else:
+	m.delete_annotations(property="Composition",source="EdwardsLab",type="Subsumption")
+
+    if bcomp.get(acc,(None,False))[1] and not m.has_annotations(property="BaseComposition",source="GlyTouCan",type="Subsumption"):
+	m.set_annotation(property="BaseComposition",value=bcomp.get(acc)[0],source="EdwardsLab",type="Subsumption")
+    else:
+	m.delete_annotations(property="BaseComposition",source="EdwardsLab",type="Subsumption")
+
+    if cat.get(acc,(None,False))[1] and not m.has_annotations(property="SubsumptionLevel",source="GlyTouCan",type="Subsumption"):
+	m.set_annotation(property="SubsumptionLevel",value=cat.get(acc)[0],source="EdwardsLab",type="Subsumption")
+    else:
+	m.delete_annotations(property="SubsumptionLevel",source="EdwardsLab",type="Subsumption")
 
     m.set_annotation(property="Subsumes",value=list(subsumes[acc]),source="EdwardsLab",type="Subsumption")
     m.set_annotation(property="SubsumedBy",value=list(subsumedby[acc]),source="EdwardsLab",type="Subsumption")
     
     if w.put(m):
         print acc
-    
-    
-    
-

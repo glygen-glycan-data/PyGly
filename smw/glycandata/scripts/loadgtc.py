@@ -76,6 +76,9 @@ for gtcacc in accessions(sys.argv[1:]):
         ref, c = xref.split(":")
 	dic[ref].append(c)
     for key in dic:       
+	if key in ('unicarbkb','pubchem'):
+	    # these are comming from other sources now...
+	    continue
         g.set_annotation(value=dic[key],
                          property=xref_dic.get(key,key),
                          source='GlyTouCan',type='CrossReference')
