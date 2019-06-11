@@ -166,8 +166,8 @@ class GlycanDataWiki(SMW.SMWSite):
     def get(self,accession):
         g = super(GlycanDataWiki,self).get(accession)
         if g:
-            for anpage in self.site.allpages(prefix='%s.'%(accession)):
-                an = super(GlycanDataWiki,self).get(anpage.name)
+            for anpagename in self.site.allpages(prefix='%s.'%(accession),generator=False):
+                an = super(GlycanDataWiki,self).get(anpagename)
                 g.set_annotation(annotation=an)
         return g
 
