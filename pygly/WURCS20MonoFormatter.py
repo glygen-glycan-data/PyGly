@@ -7,6 +7,13 @@ from Monosaccharide import *
 # This line import the package mutually, be careful
 from GlycanFormatter import WURCS20ParseError
 
+class InvalidMonoError(WURCS20ParseError):
+    def __init__(self,monostr):
+        self.message = "WURCS2.0 parser: Invalid monosaccharide: %s"%(monostr,)
+
+    def __str__(self):
+        return self.message
+
 class UnsupportedMonoError(WURCS20ParseError):
     def __init__(self,monostr):
         self.message = "WURCS2.0 parser: Unsupported monosaccharide: %s"%(monostr,)
@@ -125,6 +132,10 @@ class WURCS20MonoFormat:
 		except ValueError:
 		    # missing *, no sub_name, coresponds to pp = 
 		    pp = sub; sub_name = "anhydro"
+		    # Note, we appear to require \d-\d for sub, otherwise it is a no-op?
+		    # cases with \d only do not appear to change the mass...
+		    if not re.search(r'^\d-\d$',sub):
+			raise InvalidMonoError(mono_string)
                 try:
                     sub_type = self.subsconfig.get(sub_name,"type")
                     pt = self.subsconfig.get(sub_name,"parent_type")

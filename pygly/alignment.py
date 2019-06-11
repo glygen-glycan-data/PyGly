@@ -429,12 +429,12 @@ class GlycanPartialOrder(Comparitor):
                         break
                 
             if good:
-                print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
                 return True
                 
         lineno()
 
-        print >>sys.stderr, "%d iterations to prove no isomorphism exists"%(iters,)
+        # print >>sys.stderr, "%d iterations to prove no isomorphism exists"%(iters,)
         return False
 
 class CompositionPartialOrder(Comparitor):
@@ -758,8 +758,6 @@ if __name__ == "__main__":
     from collections import defaultdict
 
     from manipulation import Topology, Composition
-    topology = Topology()
-    composition = Composition()
   
     from GlyTouCan import GlyTouCan
 
@@ -771,198 +769,3 @@ if __name__ == "__main__":
     gtopoeq = GlycanTopoEqual()
     gcompeq = GlycanCompEqual()
     subsumption = GlycanSubsumption()
-
-    masscluster = defaultdict(list)
-
-    if len(sys.argv) == 3:
-	if sys.argv[1].startswith('G') and sys.argv[2].startswith('G'):
-            gtc = GlyTouCan()
-	    verbose=True
-	    acc1 = sys.argv[1]
-	    acc2 = sys.argv[2]
-	    gly1 = gtc.getGlycan(acc1)
-	    gly2 = gtc.getGlycan(acc2)
-            start1 = time.time()                                                                                
-            print acc2,"-?>",acc1
-            sys.stdout.flush()
-            if subsumption.leq(gly1,gly2):
-                print acc2,"-->",acc1,"elapsed time",time.time()-start1
-            else:
-                print acc2,"-/>",acc1,"elapsed time",time.time()-start1
-	    sys.exit(0)
-
-    gtc = GlyTouCan(usecache=True)
-    if len(sys.argv) > 1:
-      verbose=True
-      for mass in map(float,sys.argv[1:]):
-        rmass = round(mass,2)
-	for glyacc in gtc.hasmass(rmass):
-	  masscluster[rmass].append(glyacc)
-    else:
-      for glyacc,mass in gtc.allmass():
-        rmass = round(mass,2)
-        masscluster[rmass].append(glyacc)
-
-    # for glyacc in gtc.hasmass(814.36):
-    #  masscluster[814.36].append(glyacc)
-
-    # for glyacc in gtc.hasmass(254.10):
-    #   masscluster[254.10].append(glyacc)
-
-    # 4,5:enx|6:a mod cluster...
-    # masscluster[395.11] = ['G02625SJ','G28863OR','G76650GT','G85752KA']
-
-    for rmass in sorted(masscluster):
-
-        start = time.time()
-        allgly = dict()
-        for acc1 in masscluster[rmass]:
-
-            topoacc = gtc.gettopo(acc1)
-            compacc = gtc.getcomp(acc1)
-            bcompacc = gtc.getbasecomp(acc1)
-            if acc1 == bcompacc:
-                level = 'BaseComposition'
-		levelsort = 0
-            elif acc1 == compacc:
-                level = 'Composition'
-		levelsort = 1
-            elif acc1 == topoacc:
-                level = 'Topology'
-		levelsort = 2
-            else:
-                level = 'Saccharide'
-		levelsort = 3
-
-            gly = gtc.getGlycan(acc1)
-            if not gly:
-                continue
-
-            # if level == 'Saccharide':
-            #     continue
-
-	    if not bcompacc:
-		continue
-
-            # if level == 'Saccharide' and not gly.undetermined():
-            #     continue
-
-            allgly[acc1] = dict(acc=acc1,
-                                bcomp=bcompacc,
-                                comp=compacc,
-                                topo=topoacc,
-                                level=level,
-                                levelsort=levelsort,
-                                mass=gtc.getmass(acc1),
-                                glycan=gly)
-
-	check = True
-	while check:
-	  check = False
-	  for acc1 in list(allgly):
-	    if allgly[acc1]['bcomp'] not in allgly:
-		del allgly[acc1]
-	        check = True
-		continue
-	    if allgly[acc1]['comp'] and allgly[acc1]['comp'] not in allgly:
-		del allgly[acc1]
-	        check = True
-		continue
-	    if allgly[acc1]['topo'] and allgly[acc1]['topo'] not in allgly:
-		del allgly[acc1]
-	        check = True
-		continue
-	    if not allgly[acc1]['comp'] and allgly[acc1]['level'] != 'BaseComposition':
-		del allgly[acc1]
-	        check = True
-		continue
-	    if not allgly[acc1]['topo'] and allgly[acc1]['level'] not in ('BaseComposition','Composition'):
-		del allgly[acc1]
-	        check = True
-		continue
-            # if not gtc.haspage(acc1):
-            #     del allgly[acc1]
-            #     check = True
-            #     continue
-
-        if len(allgly) < 2:
-            continue
-
-	print "# NODES - %d glycans in molecular weight cluster for %s"%(len(allgly),rmass)
-	for acc1,g in sorted(allgly.items(),key=lambda t: (t[1].get('levelsort',10),t[0])):
-            print acc1,g.get('mass'),g.get('level'),g.get('topo'),g.get('comp'),g.get('bcomp'),
-	    gly = g.get('glycan')
-            print ("COMP " if (not gly.has_root()) else "") + \
-                  ("UNDET " if (gly.undetermined() and gly.has_root()) else "") + \
-                  ("FULL" if gly.fully_determined() else "")
-            # for m in gly.all_nodes():
-            #    print m
-            
-	sys.stdout.flush()
-        
-        outedges = defaultdict(list)
-        inedges = defaultdict(list)
-        allacc = sorted(allgly)
-        for acc1 in allacc:
-          gly1 = allgly[acc1];
-          for acc2 in allacc:
-            gly2 = allgly[acc2]
-            if acc1 != acc2:
-	      if verbose:
-	        start1 = time.time()
-                print acc2,"-?>",acc1
-	        sys.stdout.flush()
-              if subsumption.leq(gly1['glycan'],gly2['glycan']):
-		if verbose:
-                  print acc2,"-->",acc1,"elapsed time",time.time()-start1
-		if not geq.eq(gly1['glycan'],gly2['glycan']) or acc2 < acc1:
-                  outedges[acc2].append(acc1)
-                  inedges[acc1].append(acc2)
-	      else:
-                if verbose:
-		  print acc2,"-/>",acc1,"elapsed time",time.time()-start1
-
-        for acc1 in allgly:
-          if acc1 not in outedges[allgly[acc1]['bcomp']] and allgly[acc1]['bcomp'] and acc1 != allgly[acc1]['bcomp']:
-            print "WARNING: %s not subsumed by BaseComposition %s"%(acc1,allgly[acc1]['bcomp'])
-          if acc1 not in outedges[allgly[acc1]['comp']] and allgly[acc1]['comp'] and acc1 != allgly[acc1]['comp']:
-            print "WARNING: %s not subsumed by Composition %s"%(acc1,allgly[acc1]['comp'])
-          if acc1 not in outedges[allgly[acc1]['topo']] and allgly[acc1]['topo'] and acc1 != allgly[acc1]['topo']:
-            print "WARNING: %s not subsumed by Topology %s"%(acc1,allgly[acc1]['topo'])
-	  if abs(allgly[acc1]['mass']-allgly[acc1]['glycan'].underivitized_molecular_weight()) > 0.0001:
-            print "WARNING: %s mass (%s) does not match annotation %s, delta = %s"%(acc1,allgly[acc1]['glycan'].underivitized_molecular_weight(),allgly[acc1]['mass'],allgly[acc1]['mass']-allgly[acc1]['glycan'].underivitized_molecular_weight())
-	
-
-        def printtree(root,edges,indent=0):
-          print "%s%s"%(" "*indent,root),allgly[root]['level']
-          for ch in edges[root]:
-            printtree(ch,edges,indent+2)
-
-        def prune_edges(edges):
-          toremove = set()
-          for n1 in list(edges):
-            for n2 in edges[n1]:
-              for n3 in edges[n2]:
-                assert n3 in edges[n1], ", ".join([n1, n2, n3,":"]+edges[n1]+[":"]+edges[n2])
-                if n3 in edges[n1]:
-                  toremove.add((n1,n3))
-          for n1,n3 in toremove:
-            edges[n1].remove(n3)
-          return edges
-
-        outedges = prune_edges(outedges)
-        inedges = prune_edges(inedges)
-
-        print "# TREE"
-        for r in allgly:
-          if len(inedges[r]) == 0:
-            printtree(r,outedges)
-        sys.stdout.flush()
-
-        print "# EDGES"
-        for n1 in allgly:
-          print "%s:"%(n1,),
-          print " ".join(outedges[n1])
-        sys.stdout.flush()
-
-        print "# DONE - Elapsed time %s sec."%(time.time()-start,)

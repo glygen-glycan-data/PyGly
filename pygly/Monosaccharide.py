@@ -553,6 +553,7 @@ class Substituent:
     rcarboxyethyl	= 37
     scarboxyethyl	= 38
     phosphocholine	= 39
+    methyl_oxygen_lost  = 40
 
     def __init__(self,sub):
         self._sub = sub

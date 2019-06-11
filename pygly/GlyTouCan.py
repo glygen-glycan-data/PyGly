@@ -12,6 +12,7 @@ from hashlib import md5
 from StringIO import StringIO
 from PIL import Image
 from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
+from WURCS20MonoFormatter import WURCS20MonoFormat, UnsupportedSkeletonCodeError
 from Glycan import Glycan
 from memoize import memoize
 import atexit
@@ -44,6 +45,7 @@ class GlyTouCan(object):
 	self.alphamap = None
 	self.glycoct_format = None
 	self.wurcs_format = None
+	self.wurcs_mono_format = None
         self.usecache = usecache
         self.cachedata = None
         self.cacheupdated = False
@@ -1043,27 +1045,46 @@ class GlyTouCan(object):
 	msg = result["message"]
 
 	if msg != 'Conversion succeeded.':
-            print "conversion not succeeded"
-            raise ValueError
+            # print "conversion not succeeded"
+            raise ValueError("GlycoCT 2 WURCS conversion failed")
 	return wurcs.strip()
 
-    def getGlycan(self,acc):
+    def getUnsupportedSkeletonCodes(self,acc):
+        codes = set()
         sequence = self.getseq(acc,'wurcs')
-        if sequence:
-            if not self.wurcs_format:
-                self.wurcs_format = WURCS20Format()
-	    try:
-                return self.wurcs_format.toGlycan(sequence)
-	    except GlycanParseError:
-		pass
-        sequence = self.getseq(acc,'glycoct')
-        if sequence:
-            if not self.glycoct_format:
-                self.glycoct_format = GlycoCTFormat()
-	    try:
-                return self.glycoct_format.toGlycan(sequence)
-	    except GlycanParseError:
-		pass
+        if not sequence:
+	    return codes
+	if not self.wurcs_mono_format:
+            self.wurcs_mono_format = WURCS20MonoFormat()
+        monos = sequence.split('/[',1)[1].split(']/')[0].split('][')
+        for m in monos:
+            try:
+                g = self.wurcs_mono_format.parsing(m)
+            except UnsupportedSkeletonCodeError,e:
+                codes.add(e.message.rsplit(None,1)[-1])
+            except GlycanParseError:
+                pass
+	return codes
+
+    def getGlycan(self,acc,format=None):
+	if not format or (format == 'wurcs'):
+            sequence = self.getseq(acc,'wurcs')
+            if sequence:
+                if not self.wurcs_format:
+                    self.wurcs_format = WURCS20Format()
+	        try:
+                    return self.wurcs_format.toGlycan(sequence)
+	        except GlycanParseError:
+		    pass #traceback.print_exc()
+	if not format or (format == 'glycoct'):
+            sequence = self.getseq(acc,'glycoct')
+            if sequence:
+                if not self.glycoct_format:
+                    self.glycoct_format = GlycoCTFormat()
+	        try:
+                    return self.glycoct_format.toGlycan(sequence)
+	        except GlycanParseError:
+		    pass
         return None
 
 if __name__ == "__main__":
@@ -1198,6 +1219,17 @@ if __name__ == "__main__":
         for acc in items():
             g = gtc.getGlycan(acc)
             print acc," ".join(map(lambda t: "%s: %d"%t,filter(lambda t: t[1]>0,sorted(g.iupac_composition().items()))))
+
+    elif cmd.lower() == "getglycan":
+
+        gtc = GlyTouCan()
+        for acc in items():
+            g = gtc.getGlycan(acc)
+	    if g:
+	        print acc
+	        print g.glycoct()
+	        for m in g.all_nodes():
+		    print m
 
     elif cmd.lower() == "substructure":
 
