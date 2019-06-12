@@ -1230,6 +1230,8 @@ if __name__ == "__main__":
 	        print g.glycoct()
 	        for m in g.all_nodes():
 		    print m
+		print g.underivitized_molecular_weight()
+		print g.permethylated_molecular_weight()
 
     elif cmd.lower() == "substructure":
 
@@ -1255,6 +1257,34 @@ if __name__ == "__main__":
         gtc = GlyTouCan()
         for s,t in gtc.alltopo():
 	    print "\t".join([s,t])
+
+    elif cmd.lower() == "makecomp4uckb":
+
+        gtc = GlyTouCan()
+	skels = dict(Hex="uxxxxh",
+		     HexNAc="uxxxxh_2*NCC/3=O",
+		     dHex="uxxxxm",
+		     NeuAc="AUd21122h_5*NCC/3=O",
+		     NeuGc="AUd21122h_5*NCCO/3=O")
+        for compstr in sys.argv[1:]:
+	    vals = re.split(r'(\d+)',compstr)
+	    comp = dict()
+	    for i in range(0,len(vals)-1,2):
+	        key,cnt = vals[i],int(vals[i+1])
+	        if cnt > 0:
+		    comp[skels[key]] = cnt
+	    skellist = list(comp)
+	    total = sum(comp.values())
+	    uniq = len(skellist)
+	    wurcsseq = "WURCS=2.0/%s,%s,%s/"%(uniq,total,"0+")
+	    wurcsseq += "".join(map(lambda sk: "[%s]"%(sk,),skellist)) + "/"
+	    inds = []
+	    for i,sk in enumerate(skellist):
+	        inds.extend([str(i+1)]*comp[sk])
+	    wurcsseq += "-".join(inds)
+	    wurcsseq += "/"
+	    acc,new = gtc.register(gtc.fixcompwurcs(wurcsseq))
+	    print acc,compstr
 
     else:
 	print >>sys.stderr, "Bad command: %s"%(cmd,)
