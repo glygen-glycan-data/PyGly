@@ -5,8 +5,6 @@ SELECT (?accession  as ?GlyTouCanAccession)
        (?source as ?Source)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann0 glycandata:property "GlyGen" .
-  ?ann0 glycandata:hasglycan ?glycan .
   ?ann1 glycandata:property "Publication" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:source ?source .

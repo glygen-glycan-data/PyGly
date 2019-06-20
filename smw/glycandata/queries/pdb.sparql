@@ -4,8 +4,6 @@ SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?PDBAccession)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann0 glycandata:property "GlyGen" .
-  ?ann0 glycandata:hasglycan ?glycan .
   ?ann1 glycandata:property "PDB" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan

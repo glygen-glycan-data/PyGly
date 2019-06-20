@@ -1,10 +1,10 @@
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
-       (?value as ?CarbbankAccession)
+       (?value as ?MotifAccession)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann1 glycandata:property "Carbbank(CCSB)" .
+  ?ann1 glycandata:property "Motif" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
 }
