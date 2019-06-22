@@ -1,10 +1,10 @@
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
-       (?value as ?KEGGAccession)
+       (?value as ?UniCarbDBID)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann1 glycandata:property "KEGG" .
+  ?ann1 glycandata:property "UniCarb-DB" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
 }

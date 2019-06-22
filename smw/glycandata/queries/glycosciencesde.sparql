@@ -7,4 +7,5 @@ WHERE {
   ?ann1 glycandata:property "GLYCOSCIENCES.de" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
-}
+} 
+ORDER BY ?accession ?value

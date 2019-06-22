@@ -1,10 +1,17 @@
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
-       (?value as ?MotifAccession)
+       (?motif as ?MotifAccession)
+       (?label as ?MotifLabel)
+       (?redend as ?MotifRedEnd)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann1 glycandata:property "Motif" .
+  ?ann1 glycandata:property "NamedMotif" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
+  BIND(STRBEFORE(?value,":") as ?motif)
+  BIND(STRAFTER(?value,":") as ?remainder)
+  BIND(STRBEFORE(?remainder,":") as ?label)
+  BIND(STRAFTER(?remainder,":") as ?redend)
 }
+ORDER BY ?accession ?motif

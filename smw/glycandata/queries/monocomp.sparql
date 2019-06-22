@@ -40,3 +40,4 @@ WHERE {
   BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NeuGcCount,0)) as ?NeuGc)
   BIND(xsd:integer(?MonoCount) as ?Count)
 }
+ORDER BY ?accession

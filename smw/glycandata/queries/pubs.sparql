@@ -10,3 +10,4 @@ WHERE {
   ?ann1 glycandata:source ?source .
   ?ann1 glycandata:hasglycan ?glycan .
 }
+ORDER BY ?accession ?value ?source

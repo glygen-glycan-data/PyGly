@@ -14,3 +14,4 @@ WHERE {
     ?ann2 glycandata:hasglycan ?glycan
   }
 }
+ORDER BY ?accession ?value1 ?value2
