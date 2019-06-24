@@ -3,7 +3,7 @@ import sys, os, os.path, urllib, rdflib, copy
 from collections import defaultdict
 
 class GNOme(object):
-    version = "1.0.1"
+    version = "1.1.0"
     referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl"%(version,)
     referencefmt = 'xml'
 
@@ -61,9 +61,12 @@ class GNOme(object):
 	    plab = self.label(p)
 	    if plab != "subClassOf":
 	        olab = self.label(o)
+                attr[plab] = olab
 	    else:
 		olab = self.accession(o)
-            attr[plab] = olab
+		if plab not in attr:
+		    attr[plab] = []
+                attr[plab].append(olab)
 	attr[u'level'] = self.level(accession)
 	return attr
 
