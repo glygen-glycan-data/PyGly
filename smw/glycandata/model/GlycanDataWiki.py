@@ -1,7 +1,6 @@
+__all__ = [ "GlycanDataWiki", "GlycanDataDiskCache", "GlycanData", "Glycan", "Annotation" ]
 
-__all__ = [ "GlycanDataWiki", "Glycan", "Annotation" ]
-
-import sys
+import sys, re
 from operator import itemgetter
 
 from smw import SMW
@@ -49,6 +48,9 @@ class Glycan(SMW.SMWClass):
 
     def count_annotations(self,**kwargs):
 	return len(list(self.annotations(**kwargs)))
+
+    def get_annotation_values(self,property=None,**kwargs):
+	return map(str,self.get_annotation(property=property,**kwargs).get('value'))
 
     def get_annotation_value(self,property=None,**kwargs):
 	return str(self.get_annotation(property=property,**kwargs).get('value'))
@@ -192,12 +194,147 @@ class GlycanDataWiki(SMW.SMWSite):
             changed += 1
         return (changed>0)
 
+    def delete(self,acc):
+	super(GlycanDataWiki,self).delete(acc)
+        for anpagename in self.site.allpages(prefix='%s.'%(acc),generator=False):
+	     super(GlycanDataWiki,self).delete(anpagename)
+
     def iterglycan(self):
         for pagename in self.itercat('Glycan'):
             m = self.get(pagename)
             yield m
 
+    def iterglycanid(self,**kwargs):
+	if kwargs.get('property') == None and \
+	   kwargs.get('type') == None and \
+	   kwargs.get('source') == None:
+	    regex = kwargs.get('regex',r'^(G\d{5}[A-Z]{2})$')
+	else:
+	    values = [kwargs.get('type',r'[^.]+'),
+                      kwargs.get('property',r'[^.]+'),
+	              kwargs.get('source',r'[^.]+')]
+	    regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + '$'
+	regex = re.compile(regex)
+	for pagename in self.site.allpages(generator=False):
+	    m = regex.search(pagename)
+	    if m:
+		yield m.group(1)
+
     def iterannotation(self):
         for pagename in self.itercat('Annotation'):
             m = self.get(pagename)
             yield m
+
+import os.path, shutil, os, glob
+
+class GlycanDataDiskCache(object):
+
+    def __init__(self,location=".cache"):
+        self.path = '/' + os.path.abspath(location).strip('/')
+        assert os.path.isdir(os.path.split(self.path)[0])
+        if not os.path.isdir(self.path):
+            os.makedirs(self.path)
+	print >>sys.stderr, "Connected to disk cache: %s"%(self.path,)
+
+    def acc2path(self,acc):
+        assert re.search(r'^G\d{5}[A-Z]{2}$',acc)
+        return "/".join([self.path,acc[1],acc[2],acc[3],acc])
+
+    def acc2glypath(self,acc):
+        return "/".join([self.acc2path(acc),acc+".txt"])
+
+    def acc2annpath(self,acc):
+        return "/".join([self.acc2path(acc),acc+".*.txt"])
+
+    def get(self,accession):
+
+        glypath = self.acc2glypath(accession)
+        if not os.path.exists(glypath):
+            return None
+        g = Glycan(**SMW.SMWSite.parse_template_text(accession,open(glypath).read()))
+        for anpath in glob.glob(self.acc2annpath(accession)):
+            an = Annotation(**SMW.SMWSite.parse_template_text(accession,open(anpath).read()))
+            g.set_annotation(annotation=an)
+        return g
+
+    def write(self,filename,text):
+        data = None
+        if os.path.exists(filename):
+            data = open(filename).read()
+        if text == data:
+            return False
+        wh = open(filename,'w')
+        wh.write(text)
+        wh.close()
+        return True
+
+    def put(self,g):
+
+        changes = 0
+
+        accession = g.get('accession')
+        path = self.acc2path(accession)
+	if not os.path.exists(path):
+            os.makedirs(path)
+
+        glypath = self.acc2glypath(accession)
+        if self.write(glypath,g.astemplate()):
+            changes += 1
+
+        ankeys = set()
+        for an in g.annotations():
+            an.set('glycan',accession)
+            ankey = ".".join(an.key())
+            ankeys.add(ankey)
+            anpath = "/".join([path,accession+"."+ankey+".txt"])
+            if self.write(anpath,an.astemplate()):
+                changes += 1
+
+        for anfile in glob.glob(self.acc2annpath(accession)):
+            ankey = os.path.split(anfile)[1].rsplit('.',1)[0].split('.',1)[1]
+            if ankey not in ankeys:
+                os.unlink(anfile)
+                changes += 1
+
+        return (changes>0)
+        
+    def delete(self,accession):
+        
+        path = self.acc2path(accession)
+        shutil.rmtree(path)
+
+    def iterglycan(self):
+        for acc in self.iterglycanid():
+            yield self.get(acc)
+        
+    def iterglycanid(self):
+
+        for root, dirs, files in os.walk(self.path):
+	    dirs.sort()
+	    any = False
+            for d in dirs:
+                if re.search(r'^G\d{5}[A-Z]{2}$',d):
+		    any = False
+                    yield d
+	    if any:
+		dirs = []
+            
+    def tocache(self,wiki):
+
+        for g in wiki.iterglycan():
+            if self.put(g):
+                print g.get('accession')
+
+    def towiki(self,wiki):
+
+        for g in self.iterglycan():
+            if wiki.put(g):
+                print g.get('accession')
+
+def GlycanData():
+    if os.path.isdir(sys.argv[1]):
+	dir = sys.argv[1]
+	sys.argv.pop(1)
+	return GlycanDataDiskCache(dir)
+    else:
+	return GlycanDataWiki()
