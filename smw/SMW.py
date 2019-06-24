@@ -265,17 +265,10 @@ class SMWSite(object):
 
     def _get(self,name):
 	return self.site.pages[name]
-                     
-    def get(self,name):
-	name = name.strip()
-	if not name:
-	    return None
-        page = self._get(name)
-        if not page.exists:
-            return None
 
+    @staticmethod
+    def parse_template_text(name,thepage):
 	obj = None
-        thepage = page.text()
         chunks = []
         level = 0
 	lastpos = 0
@@ -311,10 +304,32 @@ class SMWSite(object):
             if index == len(chunks)-1:
                 if len(subobjs) > 0:
                     data['_subobjs'] = subobjs
-                obj = self.template2class[cls](**data)
+                obj = data
             else:
-                subobjs.append(self.template2class[cls](**data))
+                subobjs.append(data)
             
+        return obj
+        
+                     
+    def get(self,name):
+	name = name.strip()
+	if not name:
+	    return None
+        page = self._get(name)
+        if not page.exists:
+            return None
+
+        thepage = page.text()
+        obj = self.parse_template_text(name,thepage)
+
+        if '_subobjs' in obj:
+            for i in range(len(obj['_subobjs'])):
+                subobj = obj['_subobjs'][i]
+                cls = subobj['template']
+                obj['_subobjs'][i] = self.template2class[cls](**subobj)
+        cls = obj['template']
+        obj = self.template2class[cls](**obj)
+        
         return obj
 
     def update(self,newobj):
