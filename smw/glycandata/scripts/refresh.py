@@ -13,6 +13,12 @@ if len(sys.argv) > 1:
       print >>sys.stderr, p.name
       w.refresh(p)
 
+  elif sys.argv[1] == "stdin":
+
+    for p in map(str.strip,sys.stdin):
+      print >>sys.stderr, p
+      w.refresh(p)
+	
   else:
 
     for p in w.iterpages(regex=sys.argv[1]):
