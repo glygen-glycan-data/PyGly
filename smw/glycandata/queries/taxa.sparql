@@ -1,7 +1,7 @@
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
-       (?value as ?TaxonomyID)
+       (?value as ?TaxID)
        (?source as ?Source)
 WHERE {
   ?glycan glycandata:accession ?accession .

@@ -2,8 +2,8 @@ PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
        (?motif as ?MotifAccession)
-       (?label as ?MotifLabel)
-       (?redend as ?MotifRedEnd)
+       (?label as ?Label)
+       (?redend as ?IsReducingEnd)
 WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann1 glycandata:property "NamedMotif" .

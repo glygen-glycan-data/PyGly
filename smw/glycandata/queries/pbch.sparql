@@ -1,10 +1,10 @@
 PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
-       (?value as ?PDB)
+       (?value as ?PubChem)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann1 glycandata:property "PDB" .
+  ?ann1 glycandata:property "PubChem" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
 }
