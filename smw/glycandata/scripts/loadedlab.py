@@ -2,8 +2,8 @@
 
 import sys, time, traceback
 
-from getwiki import GlycanDataWiki
-w = GlycanDataWiki()
+from getwiki import GlycanData
+w = GlycanData()
 
 for g in w.iterglycan():
     start = time.time()

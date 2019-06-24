@@ -1,9 +1,9 @@
 #!/bin/env python27
 
 import sys
-from getwiki import GlycanDataWiki
+from getwiki import GlycanData
 
-w = GlycanDataWiki()
+w = GlycanData()
 
 if len(sys.argv) > 1:
 

@@ -4,5 +4,6 @@ import re, sys
 from getwiki import GlycanData
 
 w = GlycanData()
-for g in w.iterglycanid():
-    print g
+for l in sys.stdin:
+    print l.strip()
+    w.delete(l.strip())

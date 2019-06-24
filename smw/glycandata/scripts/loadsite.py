@@ -1,7 +1,7 @@
 #!/bin/env python27
 
-from getwiki import GlycanDataWiki
+from getwiki import GlycanData
 import sys
 
-w = GlycanDataWiki()
+w = GlycanData()
 w.loadsite(sys.argv[1])

@@ -1,8 +1,8 @@
 #!/bin/env python27
 
-from getwiki import GlycanDataWiki
+from getwiki import GlycanData
 import sys
-w = GlycanDataWiki()
+w = GlycanData()
 if sys.argv[1] == "--all":
     sys.argv.pop(1)
     w.dumpsite(sys.argv[1])
