@@ -1,4 +1,4 @@
-GlyTouCanAccession	MotifAccession	MotifLabel	MotifRedEnd
+GlyTouCanAccession	MotifAccession	Label	IsReducingEnd
 G13495RN	G00026MO	N-Glycan core basic	true
 G13495RN	G00030MO	N-Glycan complex	true
 G13495RN	G00055MO	Lactosamine motif	false
