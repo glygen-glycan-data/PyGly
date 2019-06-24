@@ -6,9 +6,11 @@ WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann1 glycandata:property "FullyDetermined" .
   ?ann1 glycandata:value "true" .
-  ?ann1 glycandata:hasglycan ?glycan .
-  ?ann2 glycandata:property "GlycoCT" .
-  ?ann2 glycandata:value ?value .
-  ?ann2 glycandata:hasglycan ?glycan
+  ?ann1 glycandata:hasglycan ?glycan
+  OPTIONAL {
+    ?ann2 glycandata:property "GlycoCT" .
+    ?ann2 glycandata:value ?value .
+    ?ann2 glycandata:hasglycan ?glycan
+  }
 }
 ORDER BY ?accession
