@@ -3,7 +3,7 @@ import sys, os, os.path, urllib, rdflib, copy
 from collections import defaultdict
 
 class GNOme(object):
-    version = "1.1.0"
+    version = "1.1.1"
     referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl"%(version,)
     referencefmt = 'xml'
 
@@ -468,7 +468,7 @@ class SubsumptionGraph:
 
     def any_parent_pos(self,gly):
         for l in gly.all_links():
-            if l.parent_pos() != None and l.parent_pos() != set([1]):
+            if l.parent_pos() != None and l.parent_pos() != set([l.parent().ring_start()]):
                 return True
         return False
 
