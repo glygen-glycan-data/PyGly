@@ -3,7 +3,7 @@ from collections import defaultdict
 
 
 class GNOme(object):
-    version = "1.0.1"
+    version = "1.1.1"
     referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl" % (version,)
     referencefmt = 'xml'
 
@@ -224,8 +224,9 @@ class GNOme(object):
                     self.gnome.add((self.uri("gno:" + n), self.uri("rdfs:subClassOf"), self.uri("gno:" + n1)))
 
     def write(self, handle):
-        self.gnome.serialize(handle)
-
+        writer = OWLWriter()
+        writer.write(handle, self.gnome)
+        
     def dump(self):
         for acc in sorted(g.nodes()):
             print acc
@@ -237,7 +238,6 @@ from alignment import GlycanSubsumption, GlycanEqual
 from GlyTouCan import GlyTouCan
 from Monosaccharide import Anomer
 import time
-
 
 class SubsumptionGraph:
     def __init__(self, *args, **kwargs):
@@ -331,7 +331,7 @@ class SubsumptionGraph:
                 elif acc not in outedges[bcomp] and acc != bcomp:
                     self.warning("annotated base composition %s does not subsume %s" % (bcomp, acc), 1)
             try:
-                umw = cluster[acc]['glycan'].underivitized_molecular_weight()
+                umw = cluster[acc]['glycan'].underivitized_moleGNO_00000016cular_weight()
             except LookupError:
                 umw = None
             if umw == None:
@@ -612,8 +612,10 @@ class NormalLink:
         self._sideA.getLink().remove(self)
         self._sideB.getLink().remove(self)
 
+from rdflib import Literal, URIRef, Namespace
 
-class relationship():
+
+class OWLWriter():
     _nodes = {}
 
     def __init__(self):
@@ -663,140 +665,223 @@ class relationship():
             f.write("%s\t%.2f\n" % (id, mass))
         f.close()
 
-    def OWLgenerate(self):
+    gno = "http://purl.obolibrary.org/obo/"
+    gtcs = "http://glytoucan.org/Structures/Glycans/"
+    iao = "http://purl.obolibrary.org/obo/"
+    gtco = "http://www.glytoucan.org/glyco/owl/glytoucan#"
+    rocs = "http://www.glycoinfo.org/glyco/owl/relation#"
+
+    glycan_class = 1
+    definition_class = "IAO_0000115"
+    subsumption_level_class = 11
+    subsumption_level_annotation_property = 21
+    glytoucan_id_annotation_property = 22
+    glytoucan_link_annotation_property = 23
+
+    subsumption_level = {
+
+	"molecularweight": {"id": 12, 
+                            "label": "subsumption category molecular weight",
+	                    "definition": """
+                                A subsumption category for glycans
+                                described by their underivatized
+                                molecular weight.
+					  """,
+			    "seeAlso": ["gtco:has_derivatization_type",
+                                        "gtco:derivatization_type",
+                                        "gtco:derivatization_type_permethylated"],
+			    "comment": """
+                                Underivatized molecular weight: The
+                                molecular weight in the absence of any
+                                chemical manipulation of a glycan for
+                                analytical purposes. A common glycan
+                                derivitization (chemical manipulation)
+                                that affects glycan molecular weight
+                                is permethylation.
+                                       """
+                           },
+
+	"basecomposition": {"id": 13,
+			    "label": "subsumption category basecomposition", 
+                            "definition": """
+				A subsumption category for glycans
+				described by the number and type of
+				monosaccharides with no monosaccharide
+				stereochemistry or glycosidic bonds
+				linking monosaccharides indicated.
+					  """,
+			    "seeAlso": ["rocs:Base_composition"]
+			   },
+
+	"composition":     {"id": 14,
+			    "label": "subsumption category composition", 
+                            "definition": """
+				A subsumption category for glycans
+				described by the number and type
+				of monosaccharides with partial or
+				complete monosaccharide stereochemistry,
+				but with no glycosidic bonds linking
+				monosaccharides indicated.
+					  """,                                                                   
+                            "seeAlso": ["rocs:Monosaccharide_composition"]
+                           },
+
+	"topology":        {"id": 15,
+			    "label": "subsumption category topology", 
+                            "definition": """
+				A subsumption category for glycans
+				described by the arrangement of
+				monosaccharides and the glycosidic bonds
+				linking them, but with no linkage position
+				or anomeric configuration indicated.
+					  """,                                                                   
+                            "seeAlso": ["rocs:Glycosidic_topology"]
+                           },
+
+	"saccharide":      {"id": 16,
+			    "label": "subsumption category saccharide", 
+                            "definition": """
+                                A subsumption category for glycans
+                                described by the arrangement of
+                                monosaccharides and the glycosidic
+                                bonds linking them, and with partial or
+                                complete linkage position or anomeric
+                                configuration indicated.
+					  """,                                                                   
+                            "seeAlso": ["rocs:Linkage_defined_saccharide"] 
+                           },
+
+    }
+
+    def gnoid(self,id):
+	try:
+	    id = int(id)
+	    return "GNO_%08d"%(id,)
+	except:
+	    pass
+	assert re.search('^G[0-9]{5}[A-Z]{2}$',id)
+	return "GNO_"+id
+
+    def gnouri(self,id):
+        return rdflib.URIRef(self.gno+self.gnoid(id))
+
+    def make_graph(self):
+
         outputGraph = rdflib.Graph()
 
-        ns = rdflib.Namespace("http://ontology.glygen.org/gnome/")
-        nsgtc = rdflib.Namespace("http://glytoucan.org/Structures/Glycans/")
-        nsiao = rdflib.Namespace("http://purl.obolibrary.org/obo/")
-        nsgtco = rdflib.Namespace("http://www.glytoucan.org/glyco/owl/glytoucan#")
-        # nsrocks = rdflib.Namespace("")
+        rdf = rdflib.RDF
+        rdfs = rdflib.RDFS
+        owl = rdflib.OWL
+        dc = rdflib.namespace.DC
 
-        outputGraph.bind("owl", rdflib.OWL)
-        outputGraph.bind("gno", ns)
-        outputGraph.bind("obo", nsiao)
-        outputGraph.bind("dc", rdflib.namespace.DC)
-        # outputGraph.bind("rocks", nsrocks)
+        Literal = rdflib.Literal
+        
+        gno = Namespace(self.gno)
+        gtcs = Namespace(self.gtcs)
+        iao = Namespace(self.iao)
+        gtco = Namespace(self.gtco)
+        rocs = Namespace(self.rocs)
+
+        outputGraph.bind("owl", owl)
+        outputGraph.bind("gno", gno)
+        outputGraph.bind("obo", iao)
+        outputGraph.bind("dc", dc)
+        outputGraph.bind("rocs", rocs)
 
         root = rdflib.URIRef("http://purl.obolibrary.org/obo/gno.owl")
 
         # Add ontology
-        outputGraph.add((root, rdflib.namespace.RDF.type, rdflib.OWL.Ontology))
+        outputGraph.add((root, rdf.type, owl.Ontology))
 
         # Copyright
         outputGraph.add(
-            (root, rdflib.namespace.DC.license, rdflib.URIRef("http://creativecommons.org/licenses/by/4.0/")))
-        outputGraph.add((root, rdflib.namespace.RDFS.comment, rdflib.Literal(
+            (root, dc.license, URIRef("http://creativecommons.org/licenses/by/4.0/")))
+        outputGraph.add((root, rdfs.comment, Literal(
             "Glycan Naming Ontology is licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).")))
-        outputGraph.add((root, rdflib.namespace.RDFS.comment, rdflib.Literal(
-            "Glycan Naming Ontology is licensed under CC BY 4.0. You are free to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon the material) for any purpose, even commercially. for any purpose, even commercially. The licensor cannot revoke these freedoms as long as you follow the license terms. You must give appropriate credit (by using the original ontology IRI for the whole ontology and original term IRIs for individual terms), provide a link to the license, and indicate if any changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.")))
+        outputGraph.add((root, rdfs.comment, Literal(" ".join("""
+               Glycan Naming Ontology is licensed under CC BY 4.0. You
+               are free to share (copy and redistribute the material
+               in any medium or format) and adapt (remix, transform,
+               and build upon the material) for any purpose, even
+               commercially. for any purpose, even commercially. The
+               licensor cannot revoke these freedoms as long as you follow
+               the license terms. You must give appropriate credit (by
+               using the original ontology IRI for the whole ontology and
+               original term IRIs for individual terms), provide a link
+               to the license, and indicate if any changes were made. You
+               may do so in any reasonable manner, but not in any way
+               that suggests the licensor endorses you or your use.
+        """.split()))))
 
         # Add AnnotationProperty for definition
-        definition_node = nsiao["IAO_0000115"]
-        outputGraph.add((definition_node, rdflib.namespace.RDF.type, rdflib.OWL.AnnotationProperty))
-        outputGraph.add((definition_node, rdflib.namespace.RDFS.isDefinedBy, nsiao["iao.owl"]))
-        outputGraph.add((definition_node, rdflib.namespace.RDFS.label, rdflib.Literal("definition")))
+        definition = iao[self.definition_class]
+        outputGraph.add((definition, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((definition, rdfs.isDefinedBy, iao["iao.owl"]))
+        outputGraph.add((definition, rdfs.label, Literal("definition")))
 
         # Add AnnotationProperty for subsumption level
-        has_subsumption_level_node = ns["GNO_00000021"]
-        outputGraph.add((has_subsumption_level_node, rdflib.namespace.RDF.type, rdflib.OWL.AnnotationProperty))
+        has_subsumption_level_node = self.gnouri(self.subsumption_level_annotation_property)
+
+        outputGraph.add((has_subsumption_level_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add(
-            (has_subsumption_level_node, rdflib.namespace.RDFS.label, rdflib.Literal("has_subsumption_category")))
-        outputGraph.add((has_subsumption_level_node, definition_node,
-                         rdflib.Literal("A metadata relation between a glycan and its subsumption category.")))
+            (has_subsumption_level_node, rdfs.label, Literal("has_subsumption_category")))
+        outputGraph.add((has_subsumption_level_node, definition,
+                         Literal("A metadata relation between a glycan and its subsumption category.")))
 
         # Add AnnotationProperty for linking Glytoucan
-        has_glytoucan_id_node = ns["GNO_00000022"]
-        outputGraph.add((has_glytoucan_id_node, rdflib.namespace.RDF.type, rdflib.OWL.AnnotationProperty))
-        outputGraph.add((has_glytoucan_id_node, rdflib.namespace.RDFS.label, rdflib.Literal("has_glytoucan_id")))
-        outputGraph.add((has_glytoucan_id_node, definition_node,
-                         rdflib.Literal("The accession of the GlyTouCan entry describing the indicated glycan.")))
+        has_glytoucan_id_node = self.gnouri(self.glytoucan_id_annotation_property)
 
-        has_glytoucan_link_node = ns["GNO_00000023"]
-        outputGraph.add((has_glytoucan_link_node, rdflib.namespace.RDF.type, rdflib.OWL.AnnotationProperty))
-        outputGraph.add((has_glytoucan_link_node, rdflib.namespace.RDFS.label, rdflib.Literal("has_glytoucan_link")))
-        outputGraph.add((has_glytoucan_link_node, definition_node,
-                         rdflib.Literal("The URL of the GlyTouCan entry describing the indicated glycan.")))
+        outputGraph.add((has_glytoucan_id_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_glytoucan_id_node, rdfs.label, Literal("has_glytoucan_id")))
+        outputGraph.add((has_glytoucan_id_node, definition,
+                         Literal("The accession of the GlyTouCan entry describing the indicated glycan.")))
+
+        has_glytoucan_link_node = self.gnouri(self.glytoucan_link_annotation_property)
+
+        outputGraph.add((has_glytoucan_link_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_glytoucan_link_node, rdfs.label, Literal("has_glytoucan_link")))
+        outputGraph.add((has_glytoucan_link_node, definition,
+                         Literal("The URL of the GlyTouCan entry describing the indicated glycan.")))
 
         # Add sumbsumption level class and its instances
-        rdfNodeSubsumption = ns["GNO_00000011"]
-        outputGraph.add((rdfNodeSubsumption, rdflib.namespace.RDF.type, rdflib.OWL.Class))
-        outputGraph.add((rdfNodeSubsumption, rdflib.namespace.RDFS.label, rdflib.Literal("subsumption category")))
-        outputGraph.add((rdfNodeSubsumption, definition_node,
-                         rdflib.Literal("Extent of glycan characterization provided by a glycan description.")))
+        rdfNodeSubsumption = self.gnouri(self.subsumption_level_class)
+        
+        outputGraph.add((rdfNodeSubsumption, rdf.type, owl.Class))
+        outputGraph.add((rdfNodeSubsumption, rdfs.label, Literal("subsumption category")))
+        outputGraph.add((rdfNodeSubsumption, definition,
+                         Literal("Extent of glycan characterization provided by a glycan description.")))
 
         subsumptionLevel = {}
-        rdfNode = ns["GNO_000000%s" % (12)]
-        subsumptionLevel["molecularweight"] = rdfNode
-        outputGraph.add((rdfNode, rdflib.namespace.RDF.type, rdflib.OWL.NamedIndividual))
-        outputGraph.add((rdfNode, rdflib.RDF.type, rdfNodeSubsumption))
-        outputGraph.add(
-            (rdfNode, rdflib.namespace.RDFS.label, rdflib.Literal("subsumption category %s" % "molecular weight")))
-        outputGraph.add((rdfNode, definition_node, rdflib.Literal(
-            "A subsumption category for glycans described by their underivatized molecular weight.")))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.comment, rdflib.Literal(
-            "Underivatized molecular weight: The molecular weight in the absence of any chemical manipulation of a glycan for analytical purposes. A common glycan derivitization (chemical manipulation) that affects glycan molecular weight is permethylation.")))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso, nsgtco["has_derivatization_type"]))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso, nsgtco["derivatization_type"]))
-        # outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso, nsgtco["derivatization_type_none"]))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso, nsgtco["derivatization_type_permethylated"]))
-        # outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso, nsgtco["derivatization_type_peracetylated"]))
-
-        rdfNode = ns["GNO_000000%s" % (13)]
-        subsumptionLevel["basecomposition"] = rdfNode
-        outputGraph.add((rdfNode, rdflib.namespace.RDF.type, rdflib.OWL.NamedIndividual))
-        outputGraph.add((rdfNode, rdflib.RDF.type, rdfNodeSubsumption))
-        outputGraph.add(
-            (rdfNode, rdflib.namespace.RDFS.label, rdflib.Literal("subsumption category %s" % "basecomposition")))
-        outputGraph.add((rdfNode, definition_node, rdflib.Literal(
-            "A subsumption category for glycans described by the number and type of monosaccharides with no monosaccharide stereochemistry or glycosidic bonds linking monosaccharides indicated.")))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso,
-                         rdflib.URIRef("http://www.glycoinfo.org/glyco/owl/relation#Base_composition")))
-
-        rdfNode = ns["GNO_000000%s" % (14)]
-        subsumptionLevel["composition"] = rdfNode
-        outputGraph.add((rdfNode, rdflib.namespace.RDF.type, rdflib.OWL.NamedIndividual))
-        outputGraph.add((rdfNode, rdflib.RDF.type, rdfNodeSubsumption))
-        outputGraph.add(
-            (rdfNode, rdflib.namespace.RDFS.label, rdflib.Literal("subsumption category %s" % "composition")))
-        outputGraph.add((rdfNode, definition_node, rdflib.Literal(
-            "A subsumption category for glycans described by the number and type of monosaccharides with partial or complete monosaccharide stereochemistry, but with no glycosidic bonds linking monosaccharides indicated.")))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso,
-                         rdflib.URIRef("http://www.glycoinfo.org/glyco/owl/relation#Monosaccharide_composition")))
-
-        rdfNode = ns["GNO_000000%s" % (15)]
-        subsumptionLevel["topology"] = rdfNode
-        outputGraph.add((rdfNode, rdflib.namespace.RDF.type, rdflib.OWL.NamedIndividual))
-        outputGraph.add((rdfNode, rdflib.RDF.type, rdfNodeSubsumption))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.label, rdflib.Literal("subsumption category %s" % "topology")))
-        outputGraph.add((rdfNode, definition_node, rdflib.Literal(
-            "A subsumption category for glycans described by the arrangement of monosaccharides and the glycosidic bonds linking them, but with no linkage position or anomeric configuration indicated.")))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso,
-                         rdflib.URIRef("http://www.glycoinfo.org/glyco/owl/relation#Glycosidic_topology")))
-
-        rdfNode = ns["GNO_000000%s" % (16)]
-        subsumptionLevel["saccharide"] = rdfNode
-        outputGraph.add((rdfNode, rdflib.namespace.RDF.type, rdflib.OWL.NamedIndividual))
-        outputGraph.add((rdfNode, rdflib.RDF.type, rdfNodeSubsumption))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.label, rdflib.Literal("subsumption level %s" % "saccharide")))
-        outputGraph.add((rdfNode, definition_node, rdflib.Literal(
-            "A subsumption category for glycans described by the arrangement of monosaccharides and the glycosidic bonds linking them, and with partial or complete linkage position or anomeric configuration indicated.")))
-        outputGraph.add((rdfNode, rdflib.namespace.RDFS.seeAlso,
-                         rdflib.URIRef("http://www.glycoinfo.org/glyco/owl/relation#Linkage_defined_saccharide")))
+	
+	for level in ("molecularweight","basecomposition","composition","topology","saccharide"):
+	    details = self.subsumption_level[level]
+            rdfNode = self.gnouri(details["id"])
+            subsumptionLevel[level] = rdfNode
+	    outputGraph.add((rdfNode, rdf.type,   owl.NamedIndividual))
+            outputGraph.add((rdfNode, rdf.type,   rdfNodeSubsumption))
+            outputGraph.add((rdfNode, rdfs.label, Literal(details["label"])))
+            outputGraph.add((rdfNode, definition, Literal(" ".join(details["definition"].split()))))
+            if "comment" in details:
+                outputGraph.add((rdfNode, rdfs.comment, Literal(" ".join(details["comment"].split()))))
+            for sa in details.get('seeAlso',[]):
+                ns,term = sa.split(":")
+                outputGraph.add((rdfNode, rdfs.seeAlso, eval("%s.%s"%(ns,term))))
 
         # Glycan class under OWL things
-        outputGraph.add((ns["GNO_00000001"], rdflib.namespace.RDF.type, rdflib.OWL.Class))
-        outputGraph.add((ns["GNO_00000001"], rdflib.namespace.RDFS.label, rdflib.Literal("glycan")))
-        outputGraph.add((ns["GNO_00000001"], definition_node,
-                         rdflib.Literal("A compound consisting of monosaccharides linked by glycosidic bonds.")))
-        outputGraph.add((ns["GNO_00000001"], rdflib.namespace.RDFS.seeAlso,
+        rdfNode = self.gnouri(self.glycan_class)
+        
+        outputGraph.add((rdfNode, rdf.type, owl.Class))
+        outputGraph.add((rdfNode, rdfs.label, Literal("glycan")))
+        outputGraph.add((rdfNode, definition,
+                         Literal("A compound consisting of monosaccharides linked by glycosidic bonds.")))
+        outputGraph.add((rdfNode, rdfs.seeAlso,
                          rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_50699")))
-        outputGraph.add((ns["GNO_00000001"], rdflib.namespace.RDFS.seeAlso,
+        outputGraph.add((rdfNode, rdfs.seeAlso,
                          rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_18154")))
 
         for n in self._nodes.values():
             if n._nodeType != "molecularweight":
-                rdfNode = ns["GNO_%s" % n.getID()]
+                rdfNode = self.gnouri(n.getID())
             else:
                 try:
                     id = self.massiddict[float(n.getID())]
@@ -805,43 +890,92 @@ class relationship():
                     id = str(int(max(self.massiddict.values())) + 1)
                     self.massiddict[float(mass)] = id
                     self.newMass = True
-                rdfNode = ns["GNO_%s" % id]
-            outputGraph.add((rdfNode, rdflib.namespace.RDF.type, rdflib.OWL.Class))
+                rdfNode = self.gnouri(id)
+            outputGraph.add((rdfNode, rdf.type, owl.Class))
 
             if n._nodeType:
-                # outputGraph.add((rdfNode, rdflib.namespace.RDFS.label, ns2[n._nodeType]))
+                # outputGraph.add((rdfNode, rdfs.label, ns2[n._nodeType]))
                 outputGraph.add((rdfNode, has_subsumption_level_node, subsumptionLevel[n._nodeType.lower()]))
             else:
                 raise ValueError
 
             if n._nodeType != "molecularweight":
-                outputGraph.add((rdfNode, has_glytoucan_id_node, rdflib.Literal(n.getID())))
-                outputGraph.add((rdfNode, has_glytoucan_link_node, nsgtc[n.getID()]))
+                outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
+                outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
             else:
-                outputGraph.add((rdfNode, rdflib.namespace.RDFS.subClassOf, ns["GNO_00000001"]))
-                outputGraph.add((rdfNode, rdflib.namespace.RDFS.label,
-                                 rdflib.Literal("glycan of molecular weight %s Da." % n.getID())))
-                outputGraph.add((rdfNode, definition_node,
-                                 rdflib.Literal(
+                outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
+                outputGraph.add((rdfNode, rdfs.label,
+                                 Literal("glycan of molecular weight %s Da." % n.getID())))
+                outputGraph.add((rdfNode, definition,
+                                 Literal(
                                      "A glycan characterized by underivitized molecular weight of %s Daltons" % n.getID())))
 
         for l in self.allRelationship():
             if l.getEdgeType() == "subsumes":
                 if l._sideA._nodeType == "molecularweight":
                     id = self.massiddict[float(l._sideA.getID())]
-                    n1 = ns["GNO_%s" % id]
+                    n1 = self.gnouri(id)
                 else:
-                    n1 = ns["GNO_%s" % l._sideA.getID()]
-                n2 = ns["GNO_%s" % l._sideB.getID()]
-                outputGraph.add((n2, rdflib.namespace.RDFS.subClassOf, n1))
+                    n1 = self.gnouri(l._sideA.getID())
+                n2 = self.gnouri(l._sideB.getID())
+                outputGraph.add((n2, rdfs.subClassOf, n1))
 
         if self.newMass:
             self.overwritemasslookuptable()
 
         return outputGraph
 
-    def OWLoutput(self):
-        return self.OWLgenerate().serialize(format="pretty-xml")
+    def write(self,handle,graph):
+	from rdflib.plugins.serializers.rdfxml import PrettyXMLSerializer
+	writer = PrettyXMLSerializer(SubjectOrderedGraph(graph), max_depth=1)
+        writer.serialize(handle)
+
+# Defined solely to manipulate the accessor methods used by
+# rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer so that subjects
+# and predictates are output in a deterministic order, and without nesting.
+
+class SubjectOrderedGraph(object):
+
+    def __init__(self,graph):
+	self.graph = graph
+        self.namespace_manager = self.graph.namespace_manager
+        self.subjects_callno = 0
+	self.subjects_order = {'gno.owl': 0, 'IAO_0000115': 1}
+
+    def sortkey(self,*args):
+        return tuple(map(str,args))
+
+    def subject_sortkey(self,node):
+	strnode = str(node)
+	item = strnode.rsplit('/',1)[1]
+	return (self.subjects_order.get(item,2),strnode)
+
+    def subjects(self, *args, **kwargs):
+        self.subjects_callno += 1
+        if self.subjects_callno > 1:
+            for n in sorted(self.graph.subjects(*args, **kwargs),
+			    key=self.subject_sortkey):
+                yield n
+
+    def predicate_objects(self, *args, **kwargs):
+        for p,o in sorted(self.graph.predicate_objects(*args, **kwargs),
+                          key=lambda t: self.sortkey(*t)):
+            yield p,o
+
+    def objects(self, *args, **kwargs):
+        for o in sorted(self.graph.objects(*args, **kwargs),
+                        key=self.sortkey,reverse=True):
+            yield o
+
+    def __contains__(self, *args, **kwargs):
+        return self.graph.__contains__(*args, **kwargs)
+
+    def predicates(self, *args, **kwargs):
+        return self.graph.predicates(*args, **kwargs)
+
+    def triples_choices(self, *args, **kwargs):
+	return self.graph.triples_choices(*args, **kwargs)
+
 
 
 class dumpFile:
@@ -914,7 +1048,7 @@ if __name__ == "__main__":
 
     elif cmd == "writeowl":
         def write_owl():
-            r = relationship()
+            r = OWLWriter()
             df = dumpFile()
             # "gnome_subsumption_raw.txt"
             ifn = sys.argv[1] # path to input file
@@ -949,8 +1083,8 @@ if __name__ == "__main__":
             else:
                 ofn = "GNOme_temp.owl"
             f = open(ofn, "w")
-            s = r.OWLoutput()
-            f.write(s)
+            s = r.write(f,r.make_graph())
+            f.close()
         write_owl()
 
     else:
