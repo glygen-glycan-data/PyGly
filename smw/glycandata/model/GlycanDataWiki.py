@@ -88,13 +88,13 @@ class Glycan(SMW.SMWClass):
     wurcs_format = WURCS20Format()
     def getGlycan(self):
         try:
-            sequence = self.get_annotation_value('GlycoCT')
-            return self.glycoct_format.toGlycan(sequence)
+            sequence = self.get_annotation_value('WURCS')
+            return self.wurcs_format.toGlycan(sequence)
         except (LookupError,GlycanParseError):
             pass
         try:
-            sequence = self.get_annotation_value('WURCS')
-            return self.wurcs_format.toGlycan(sequence)
+            sequence = self.get_annotation_value('GlycoCT')
+            return self.glycoct_format.toGlycan(sequence)
         except (LookupError,GlycanParseError):
             pass
         return None
@@ -332,7 +332,7 @@ class GlycanDataDiskCache(object):
                 print g.get('accession')
 
 def GlycanData():
-    if os.path.isdir(sys.argv[1]):
+    if len(sys.argv) > 1 and os.path.isdir(sys.argv[1]):
 	dir = sys.argv[1]
 	sys.argv.pop(1)
 	return GlycanDataDiskCache(dir)
