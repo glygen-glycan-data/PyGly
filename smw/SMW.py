@@ -354,7 +354,10 @@ class SMWSite(object):
         return changed
 
     def refresh(self,page):
-	page.purge()
+	if isinstance(page,basestring):
+	    page = self.site.pages[page]
+	if page.exists:
+	    page.purge()
         dummy = page.text(expandtemplates=True, cache=False)
 
 class SMWClass(object):
