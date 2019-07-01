@@ -23,7 +23,7 @@ class GNOme(object):
         self.gnome.parse(resource, format=format)
         self.ns = dict()
         self.ns['owl'] = rdflib.Namespace('http://www.w3.org/2002/07/owl#')
-        self.ns['gno'] = rdflib.Namespace('http://ontology.glygen.org/gnome/GNO_')
+        self.ns['gno'] = rdflib.Namespace('http://purl.obolibrary.org/obo/GNO_')
         self.ns['rdf'] = rdflib.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         self.ns['rdfs'] = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
         self.ns[None] = rdflib.Namespace("")
