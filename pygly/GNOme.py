@@ -1,5 +1,10 @@
-import sys, os, os.path, urllib, rdflib, copy, re
+import copy
+import re
+import sys
+import os, os.path, urllib
 from collections import defaultdict
+
+import rdflib
 
 
 class GNOme(object):
@@ -226,7 +231,7 @@ class GNOme(object):
     def write(self, handle):
         writer = OWLWriter()
         writer.write(handle, self.gnome)
-        
+
     def dump(self):
         for acc in sorted(g.nodes()):
             print acc
@@ -238,6 +243,7 @@ from alignment import GlycanSubsumption, GlycanEqual
 from GlyTouCan import GlyTouCan
 from Monosaccharide import Anomer
 import time
+
 
 class SubsumptionGraph:
     def __init__(self, *args, **kwargs):
@@ -519,6 +525,522 @@ class SubsumptionGraph:
             self.print_tree(cluster, edges, ch, indent + 2)
 
 
+from rdflib import URIRef, Namespace
+
+
+class OWLWriter():
+    _nodes = {}
+
+    def __init__(self):
+        self.readmassidmap()
+
+    def addNode(self, nodeID, nodetype=None):
+        self._nodes[nodeID] = NormalNode(nodeID, nodetype=nodetype)
+
+    def addNodes(self, nodes):
+        for nodeID in nodes:
+            if nodeID not in self._nodes:
+                self.addNode(nodeID)
+            else:
+                raise Exception
+
+    def connect(self, n1, n2, edgeType):
+        n1.connect(n2, edgeType)
+
+    def getNode(self, nodeID):
+        return self._nodes[nodeID]
+
+    def allRelationship(self):
+        res = set()
+        for n in self._nodes.values():
+            for r in n.getLink():
+                res.add(r)
+        res = list(res)
+        return res
+
+    def readmassidmap(self):
+        d = {}
+        # todo get from internet
+        f = open("mass_lookup_2decimal").read().strip().split("\n")
+        for e, i in enumerate(f):
+            if e == 0:
+                continue
+            x = i.split("\t")
+            d[float(x[1])] = x[0]
+        self.massiddict = d
+
+    newMass = False
+
+    def overwritemasslookuptable(self):
+        f = open("mass_lookup_2decimal_new", "w")
+        for mass in sorted(self.massiddict.keys()):
+            id = self.massiddict[mass]
+            f.write("%s\t%.2f\n" % (id, mass))
+        f.close()
+
+    gno = "http://purl.obolibrary.org/obo/"
+    gtcs = "http://glytoucan.org/Structures/Glycans/"
+    iao = "http://purl.obolibrary.org/obo/"
+    gtco = "http://www.glytoucan.org/glyco/owl/glytoucan#"
+    rocs = "http://www.glycoinfo.org/glyco/owl/relation#"
+
+    glycan_class = 1
+    definition_class = "IAO_0000115"
+    subsumption_level_class = 11
+    subsumption_level_annotation_property = 21
+    glytoucan_id_annotation_property = 22
+    glytoucan_link_annotation_property = 23
+
+    subsumption_level = {
+
+        "molecularweight": {"id": 12,
+                            "label": "subsumption category molecular weight",
+                            "definition": """
+                                A subsumption category for glycans
+                                described by their underivatized
+                                molecular weight.
+					  """,
+                            "seeAlso": ["gtco:has_derivatization_type",
+                                        "gtco:derivatization_type",
+                                        "gtco:derivatization_type_permethylated"],
+                            "comment": """
+                                Underivatized molecular weight: The
+                                molecular weight in the absence of any
+                                chemical manipulation of a glycan for
+                                analytical purposes. A common glycan
+                                derivitization (chemical manipulation)
+                                that affects glycan molecular weight
+                                is permethylation.
+                                       """
+                            },
+
+        "basecomposition": {"id": 13,
+                            "label": "subsumption category basecomposition",
+                            "definition": """
+				A subsumption category for glycans
+				described by the number and type of
+				monosaccharides with no monosaccharide
+				stereochemistry or glycosidic bonds
+				linking monosaccharides indicated.
+					  """,
+                            "seeAlso": ["rocs:Base_composition"]
+                            },
+
+        "composition": {"id": 14,
+                        "label": "subsumption category composition",
+                        "definition": """
+				A subsumption category for glycans
+				described by the number and type
+				of monosaccharides with partial or
+				complete monosaccharide stereochemistry,
+				but with no glycosidic bonds linking
+				monosaccharides indicated.
+					  """,
+                        "seeAlso": ["rocs:Monosaccharide_composition"]
+                        },
+
+        "topology": {"id": 15,
+                     "label": "subsumption category topology",
+                     "definition": """
+				A subsumption category for glycans
+				described by the arrangement of
+				monosaccharides and the glycosidic bonds
+				linking them, but with no linkage position
+				or anomeric configuration indicated.
+					  """,
+                     "seeAlso": ["rocs:Glycosidic_topology"]
+                     },
+
+        "saccharide": {"id": 16,
+                       "label": "subsumption category saccharide",
+                       "definition": """
+                                A subsumption category for glycans
+                                described by the arrangement of
+                                monosaccharides and the glycosidic
+                                bonds linking them, and with partial or
+                                complete linkage position or anomeric
+                                configuration indicated.
+					  """,
+                       "seeAlso": ["rocs:Linkage_defined_saccharide"]
+                       },
+
+    }
+
+    def gnoid(self, id):
+        try:
+            id = int(id)
+            return "GNO_%08d" % (id,)
+        except:
+            pass
+        assert re.search('^G[0-9]{5}[A-Z]{2}$', id)
+        return "GNO_" + id
+
+    def gnouri(self, id):
+        return rdflib.URIRef(self.gno + self.gnoid(id))
+
+    def make_graph(self):
+
+        outputGraph = rdflib.Graph()
+
+        rdf = rdflib.RDF
+        rdfs = rdflib.RDFS
+        owl = rdflib.OWL
+        dc = rdflib.namespace.DC
+
+        Literal = rdflib.Literal
+
+        gno = Namespace(self.gno)
+        gtcs = Namespace(self.gtcs)
+        iao = Namespace(self.iao)
+        gtco = Namespace(self.gtco)
+        rocs = Namespace(self.rocs)
+
+        outputGraph.bind("owl", owl)
+        outputGraph.bind("gno", gno)
+        outputGraph.bind("obo", iao)
+        outputGraph.bind("dc", dc)
+        outputGraph.bind("rocs", rocs)
+
+        root = rdflib.URIRef("http://purl.obolibrary.org/obo/gno.owl")
+
+        # Add ontology
+        outputGraph.add((root, rdf.type, owl.Ontology))
+
+        # Copyright
+        outputGraph.add(
+            (root, dc.license, URIRef("http://creativecommons.org/licenses/by/4.0/")))
+        outputGraph.add((root, rdfs.comment, Literal(
+            "Glycan Naming Ontology is licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).")))
+        outputGraph.add((root, rdfs.comment, Literal(" ".join("""
+               Glycan Naming Ontology is licensed under CC BY 4.0. You
+               are free to share (copy and redistribute the material
+               in any medium or format) and adapt (remix, transform,
+               and build upon the material) for any purpose, even
+               commercially. for any purpose, even commercially. The
+               licensor cannot revoke these freedoms as long as you follow
+               the license terms. You must give appropriate credit (by
+               using the original ontology IRI for the whole ontology and
+               original term IRIs for individual terms), provide a link
+               to the license, and indicate if any changes were made. You
+               may do so in any reasonable manner, but not in any way
+               that suggests the licensor endorses you or your use.
+        """.split()))))
+
+        # Add AnnotationProperty for definition
+        definition = iao[self.definition_class]
+        outputGraph.add((definition, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((definition, rdfs.isDefinedBy, iao["iao.owl"]))
+        outputGraph.add((definition, rdfs.label, Literal("definition")))
+
+        # Add AnnotationProperty for subsumption level
+        has_subsumption_level_node = self.gnouri(self.subsumption_level_annotation_property)
+
+        outputGraph.add((has_subsumption_level_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add(
+            (has_subsumption_level_node, rdfs.label, Literal("has_subsumption_category")))
+        outputGraph.add((has_subsumption_level_node, definition,
+                         Literal("A metadata relation between a glycan and its subsumption category.")))
+
+        # Add AnnotationProperty for linking Glytoucan
+        has_glytoucan_id_node = self.gnouri(self.glytoucan_id_annotation_property)
+
+        outputGraph.add((has_glytoucan_id_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_glytoucan_id_node, rdfs.label, Literal("has_glytoucan_id")))
+        outputGraph.add((has_glytoucan_id_node, definition,
+                         Literal("The accession of the GlyTouCan entry describing the indicated glycan.")))
+
+        has_glytoucan_link_node = self.gnouri(self.glytoucan_link_annotation_property)
+
+        outputGraph.add((has_glytoucan_link_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_glytoucan_link_node, rdfs.label, Literal("has_glytoucan_link")))
+        outputGraph.add((has_glytoucan_link_node, definition,
+                         Literal("The URL of the GlyTouCan entry describing the indicated glycan.")))
+
+        # Add sumbsumption level class and its instances
+        rdfNodeSubsumption = self.gnouri(self.subsumption_level_class)
+
+        outputGraph.add((rdfNodeSubsumption, rdf.type, owl.Class))
+        outputGraph.add((rdfNodeSubsumption, rdfs.label, Literal("subsumption category")))
+        outputGraph.add((rdfNodeSubsumption, definition,
+                         Literal("Extent of glycan characterization provided by a glycan description.")))
+
+        subsumptionLevel = {}
+
+        for level in ("molecularweight", "basecomposition", "composition", "topology", "saccharide"):
+            details = self.subsumption_level[level]
+            rdfNode = self.gnouri(details["id"])
+            subsumptionLevel[level] = rdfNode
+            outputGraph.add((rdfNode, rdf.type, owl.NamedIndividual))
+            outputGraph.add((rdfNode, rdf.type, rdfNodeSubsumption))
+            outputGraph.add((rdfNode, rdfs.label, Literal(details["label"])))
+            outputGraph.add((rdfNode, definition, Literal(" ".join(details["definition"].split()))))
+            if "comment" in details:
+                outputGraph.add((rdfNode, rdfs.comment, Literal(" ".join(details["comment"].split()))))
+            for sa in details.get('seeAlso', []):
+                ns, term = sa.split(":")
+                outputGraph.add((rdfNode, rdfs.seeAlso, eval("%s.%s" % (ns, term))))
+
+        # Glycan class under OWL things
+        rdfNode = self.gnouri(self.glycan_class)
+
+        outputGraph.add((rdfNode, rdf.type, owl.Class))
+        outputGraph.add((rdfNode, rdfs.label, Literal("glycan")))
+        outputGraph.add((rdfNode, definition,
+                         Literal("A compound consisting of monosaccharides linked by glycosidic bonds.")))
+        outputGraph.add((rdfNode, rdfs.seeAlso,
+                         rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_50699")))
+        outputGraph.add((rdfNode, rdfs.seeAlso,
+                         rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_18154")))
+
+        for n in self._nodes.values():
+            if n._nodeType != "molecularweight":
+                rdfNode = self.gnouri(n.getID())
+            else:
+                try:
+                    id = self.massiddict[float(n.getID())]
+                except KeyError:
+                    mass = n.getID()
+                    id = str(int(max(self.massiddict.values())) + 1)
+                    self.massiddict[float(mass)] = id
+                    self.newMass = True
+                rdfNode = self.gnouri(id)
+            outputGraph.add((rdfNode, rdf.type, owl.Class))
+
+            if n._nodeType:
+                # outputGraph.add((rdfNode, rdfs.label, ns2[n._nodeType]))
+                outputGraph.add((rdfNode, has_subsumption_level_node, subsumptionLevel[n._nodeType.lower()]))
+            else:
+                raise ValueError
+
+            if n._nodeType != "molecularweight":
+                outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
+                outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
+            else:
+                outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
+                outputGraph.add((rdfNode, rdfs.label,
+                                 Literal("glycan of molecular weight %s Da." % n.getID())))
+                outputGraph.add((rdfNode, definition,
+                                 Literal(
+                                     "A glycan characterized by underivitized molecular weight of %s Daltons" % n.getID())))
+
+        for l in self.allRelationship():
+            if l.getEdgeType() == "subsumes":
+                if l._sideA._nodeType == "molecularweight":
+                    id = self.massiddict[float(l._sideA.getID())]
+                    n1 = self.gnouri(id)
+                else:
+                    n1 = self.gnouri(l._sideA.getID())
+                n2 = self.gnouri(l._sideB.getID())
+                outputGraph.add((n2, rdfs.subClassOf, n1))
+
+        if self.newMass:
+            self.overwritemasslookuptable()
+
+        return outputGraph
+
+    def write(self, handle, graph):
+        from rdflib.plugins.serializers.rdfxml import PrettyXMLSerializer
+        writer = PrettyXMLSerializer(SubjectOrderedGraph(graph), max_depth=1)
+        writer.serialize(handle)
+
+
+# Defined solely to manipulate the accessor methods used by
+# rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer so that subjects
+# and predictates are output in a deterministic order, and without nesting.
+
+class SubjectOrderedGraph(object):
+
+    def __init__(self, graph):
+        self.graph = graph
+        self.namespace_manager = self.graph.namespace_manager
+        self.subjects_callno = 0
+        self.subjects_order = {'gno.owl': 0, 'IAO_0000115': 1}
+
+    def sortkey(self, *args):
+        return tuple(map(str, args))
+
+    def subject_sortkey(self, node):
+        strnode = str(node)
+        item = strnode.rsplit('/', 1)[1]
+        return (self.subjects_order.get(item, 2), strnode)
+
+    def subjects(self, *args, **kwargs):
+        self.subjects_callno += 1
+        if self.subjects_callno > 1:
+            for n in sorted(self.graph.subjects(*args, **kwargs),
+                            key=self.subject_sortkey):
+                yield n
+
+    def predicate_objects(self, *args, **kwargs):
+        for p, o in sorted(self.graph.predicate_objects(*args, **kwargs),
+                           key=lambda t: self.sortkey(*t)):
+            yield p, o
+
+    def objects(self, *args, **kwargs):
+        for o in sorted(self.graph.objects(*args, **kwargs),
+                        key=self.sortkey, reverse=True):
+            yield o
+
+    def __contains__(self, *args, **kwargs):
+        return self.graph.__contains__(*args, **kwargs)
+
+    def predicates(self, *args, **kwargs):
+        return self.graph.predicates(*args, **kwargs)
+
+    def triples_choices(self, *args, **kwargs):
+        return self.graph.triples_choices(*args, **kwargs)
+
+
+class dumpFile:
+    raw_data = {}
+    dumpfilepath = ""
+    warnings = defaultdict(set)
+    warningsbytype = None
+
+    def __init__(self, dumpfilepath):
+        self.readfile(dumpfilepath)
+        self.dumpfilepath = dumpfilepath
+        for index in range(len(self.errorcategory)):
+            self.errorcategory[index][1] = re.compile(self.errorcategory[index][1])
+
+    def readfile(self, dumpfilepath):
+        f = open(dumpfilepath)
+        raw_data = {}
+        for l in f:
+            l = l.strip()
+
+            if l.startswith("#"):
+                if l.startswith("# WARNING"):
+                    t1, msg = l.split(" - ")
+                    temp1 = re.compile(r"\d").findall(t1)
+                    if len(temp1) != 1:
+                        raise RuntimeError
+                    level = temp1[0]
+                    self.warnings[level].add(msg)
+                    continue
+
+                lineInfo = "node"  # node type none
+                if l.startswith("# NODES"):
+                    lineInfo = "node"
+                    mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
+                    mass = "%.2f" % mass
+                    content = {"nodes": {}, "edges": {}}
+                    raw_data[mass] = content
+                elif l.startswith("# EDGES"):
+                    lineInfo = "edge"
+                else:
+                    lineInfo = "none"
+            else:
+
+                if lineInfo == "none":
+                    continue
+                elif lineInfo == "node":
+                    nodeacc = l.split()[0]
+                    nodetype = l.split()[2]
+                    nodetype = nodetype.rstrip("*")
+                    content["nodes"][nodeacc] = nodetype
+                elif lineInfo == "edge":
+                    to = re.compile("G\d{5}\w{2}").findall(l)
+                    fromx = to.pop(0)
+                    if to:
+                        content["edges"][fromx] = to
+                else:
+                    raise RuntimeError
+        self.raw_data = raw_data
+
+        self.allnodestype = {}
+        self.alledges = {}
+        for component in raw_data.values():
+            self.allnodestype.update(copy.deepcopy(component["nodes"]))
+            self.alledges.update(copy.deepcopy(component["edges"]))
+
+        return raw_data
+
+    def getmass(self):
+        res = self.raw_data.keys()
+        res = map(str, sorted(map(float, res)))
+        return res
+
+    def getnodesbymass(self, m):
+        m = str(m)
+        return self.raw_data[m]["nodes"].keys()
+
+    def getnodessubsumedbymass(self, m):
+        m = str(m)
+        allnodes = self.raw_data[m]["nodes"].keys()
+        notparents = []
+        for v in self.raw_data[m]["edges"].values():
+            notparents += v
+        return list(set(set(allnodes) - set(notparents)))
+
+    def getnodetype(self, acc):
+        return self.allnodestype.get(acc, None)
+
+    def getchild(self, acc):
+        return self.alledges.get(acc, [])
+
+    def getparrent(self, acc):
+        res = []
+        found = False
+        for mass, temp in self.raw_data.items():
+            if acc not in temp["nodes"].keys():
+                continue
+            found = True
+            for p, children in temp["edges"].items():
+                if acc in children:
+                    res.append(p)
+        if found:
+            if res:
+                return res
+            else:
+                return None
+        else:
+            raise KeyError("%s not found" % acc)
+
+    def regexget(self, p, s):
+        searchres = list(p.finditer(s))
+        if len(searchres) == 1:
+            return searchres[0].groupdict()["ans"]
+        else:
+            return None
+
+    errorcategory = [
+        ["cannot_parse_glycan_at_upper_subsumption",
+         r"annotated (topology|composition|base composition) (?P<ans>(G\d{5}\w{2})) of G\d{5}\w{2} cannot be parsed"],
+        ["cannot_parse_glycan_unknown", r"unknown problem parsing glycan (?P<ans>(G\d{5}\w{2}))"],
+        ["unsupported_skeleton_code", r"unsupported skeleton code: (?P<ans>(.{1,10})) in glycan G\d{5}\w{2}"],
+        ["mass_cannot_be_computed", r"mass could not be computed for (?P<ans>(G\d{5}\w{2}))"],
+        ["mass_inconsistency",
+         r"annotated mass \d*\.\d* for (?P<ans>(G\d{5}\w{2})) is different than computed mass \d*\.\d*"],
+        # ["", r""],
+    ]
+
+    def geterrortype(self, s):
+        for errortype, p in self.errorcategory:
+            res0 = self.regexget(p, s)
+            if res0:
+                return errortype, res0
+        return None, s
+
+    def getwarningsbytype(self):
+        if self.warningsbytype:
+            return self.warningsbytype
+
+        res = defaultdict(set)
+
+        for i in reduce(lambda x, y: list(set(list(x) + list(y))), self.warnings.values()):
+            errortype, ans = self.geterrortype(i)
+            res[errortype].add(ans)
+
+        self.warningsbytype = res
+        return res
+
+    def warningbytypetotal(self):
+        warnings = self.getwarningsbytype()
+        temp = map(lambda x: len(x), warnings.values())
+        return reduce(lambda x, y: x + y, temp)
+
+
 class NormalNode:
     _id = None
     _nodeType = None
@@ -612,413 +1134,6 @@ class NormalLink:
         self._sideA.getLink().remove(self)
         self._sideB.getLink().remove(self)
 
-from rdflib import Literal, URIRef, Namespace
-
-
-class OWLWriter():
-    _nodes = {}
-
-    def __init__(self):
-        self.readmassidmap()
-
-    def addNode(self, nodeID, nodetype=None):
-        self._nodes[nodeID] = NormalNode(nodeID, nodetype=nodetype)
-
-    def addNodes(self, nodes):
-        for nodeID in nodes:
-            if nodeID not in self._nodes:
-                self.addNode(nodeID)
-            else:
-                raise Exception
-
-    def connect(self, n1, n2, edgeType):
-        n1.connect(n2, edgeType)
-
-    def getNode(self, nodeID):
-        return self._nodes[nodeID]
-
-    def allRelationship(self):
-        res = set()
-        for n in self._nodes.values():
-            for r in n.getLink():
-                res.add(r)
-        res = list(res)
-        return res
-
-    def readmassidmap(self):
-        d = {}
-        # todo get from internet
-        f = open("mass_lookup_2decimal").read().strip().split("\n")
-        for e, i in enumerate(f):
-            if e == 0:
-                continue
-            x = i.split("\t")
-            d[float(x[1])] = x[0]
-        self.massiddict = d
-
-    newMass = False
-
-    def overwritemasslookuptable(self):
-        f = open("mass_lookup_2decimal_new", "w")
-        for mass in sorted(self.massiddict.keys()):
-            id = self.massiddict[mass]
-            f.write("%s\t%.2f\n" % (id, mass))
-        f.close()
-
-    gno = "http://purl.obolibrary.org/obo/"
-    gtcs = "http://glytoucan.org/Structures/Glycans/"
-    iao = "http://purl.obolibrary.org/obo/"
-    gtco = "http://www.glytoucan.org/glyco/owl/glytoucan#"
-    rocs = "http://www.glycoinfo.org/glyco/owl/relation#"
-
-    glycan_class = 1
-    definition_class = "IAO_0000115"
-    subsumption_level_class = 11
-    subsumption_level_annotation_property = 21
-    glytoucan_id_annotation_property = 22
-    glytoucan_link_annotation_property = 23
-
-    subsumption_level = {
-
-	"molecularweight": {"id": 12, 
-                            "label": "subsumption category molecular weight",
-	                    "definition": """
-                                A subsumption category for glycans
-                                described by their underivatized
-                                molecular weight.
-					  """,
-			    "seeAlso": ["gtco:has_derivatization_type",
-                                        "gtco:derivatization_type",
-                                        "gtco:derivatization_type_permethylated"],
-			    "comment": """
-                                Underivatized molecular weight: The
-                                molecular weight in the absence of any
-                                chemical manipulation of a glycan for
-                                analytical purposes. A common glycan
-                                derivitization (chemical manipulation)
-                                that affects glycan molecular weight
-                                is permethylation.
-                                       """
-                           },
-
-	"basecomposition": {"id": 13,
-			    "label": "subsumption category basecomposition", 
-                            "definition": """
-				A subsumption category for glycans
-				described by the number and type of
-				monosaccharides with no monosaccharide
-				stereochemistry or glycosidic bonds
-				linking monosaccharides indicated.
-					  """,
-			    "seeAlso": ["rocs:Base_composition"]
-			   },
-
-	"composition":     {"id": 14,
-			    "label": "subsumption category composition", 
-                            "definition": """
-				A subsumption category for glycans
-				described by the number and type
-				of monosaccharides with partial or
-				complete monosaccharide stereochemistry,
-				but with no glycosidic bonds linking
-				monosaccharides indicated.
-					  """,                                                                   
-                            "seeAlso": ["rocs:Monosaccharide_composition"]
-                           },
-
-	"topology":        {"id": 15,
-			    "label": "subsumption category topology", 
-                            "definition": """
-				A subsumption category for glycans
-				described by the arrangement of
-				monosaccharides and the glycosidic bonds
-				linking them, but with no linkage position
-				or anomeric configuration indicated.
-					  """,                                                                   
-                            "seeAlso": ["rocs:Glycosidic_topology"]
-                           },
-
-	"saccharide":      {"id": 16,
-			    "label": "subsumption category saccharide", 
-                            "definition": """
-                                A subsumption category for glycans
-                                described by the arrangement of
-                                monosaccharides and the glycosidic
-                                bonds linking them, and with partial or
-                                complete linkage position or anomeric
-                                configuration indicated.
-					  """,                                                                   
-                            "seeAlso": ["rocs:Linkage_defined_saccharide"] 
-                           },
-
-    }
-
-    def gnoid(self,id):
-	try:
-	    id = int(id)
-	    return "GNO_%08d"%(id,)
-	except:
-	    pass
-	assert re.search('^G[0-9]{5}[A-Z]{2}$',id)
-	return "GNO_"+id
-
-    def gnouri(self,id):
-        return rdflib.URIRef(self.gno+self.gnoid(id))
-
-    def make_graph(self):
-
-        outputGraph = rdflib.Graph()
-
-        rdf = rdflib.RDF
-        rdfs = rdflib.RDFS
-        owl = rdflib.OWL
-        dc = rdflib.namespace.DC
-
-        Literal = rdflib.Literal
-        
-        gno = Namespace(self.gno)
-        gtcs = Namespace(self.gtcs)
-        iao = Namespace(self.iao)
-        gtco = Namespace(self.gtco)
-        rocs = Namespace(self.rocs)
-
-        outputGraph.bind("owl", owl)
-        outputGraph.bind("gno", gno)
-        outputGraph.bind("obo", iao)
-        outputGraph.bind("dc", dc)
-        outputGraph.bind("rocs", rocs)
-
-        root = rdflib.URIRef("http://purl.obolibrary.org/obo/gno.owl")
-
-        # Add ontology
-        outputGraph.add((root, rdf.type, owl.Ontology))
-
-        # Copyright
-        outputGraph.add(
-            (root, dc.license, URIRef("http://creativecommons.org/licenses/by/4.0/")))
-        outputGraph.add((root, rdfs.comment, Literal(
-            "Glycan Naming Ontology is licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).")))
-        outputGraph.add((root, rdfs.comment, Literal(" ".join("""
-               Glycan Naming Ontology is licensed under CC BY 4.0. You
-               are free to share (copy and redistribute the material
-               in any medium or format) and adapt (remix, transform,
-               and build upon the material) for any purpose, even
-               commercially. for any purpose, even commercially. The
-               licensor cannot revoke these freedoms as long as you follow
-               the license terms. You must give appropriate credit (by
-               using the original ontology IRI for the whole ontology and
-               original term IRIs for individual terms), provide a link
-               to the license, and indicate if any changes were made. You
-               may do so in any reasonable manner, but not in any way
-               that suggests the licensor endorses you or your use.
-        """.split()))))
-
-        # Add AnnotationProperty for definition
-        definition = iao[self.definition_class]
-        outputGraph.add((definition, rdf.type, owl.AnnotationProperty))
-        outputGraph.add((definition, rdfs.isDefinedBy, iao["iao.owl"]))
-        outputGraph.add((definition, rdfs.label, Literal("definition")))
-
-        # Add AnnotationProperty for subsumption level
-        has_subsumption_level_node = self.gnouri(self.subsumption_level_annotation_property)
-
-        outputGraph.add((has_subsumption_level_node, rdf.type, owl.AnnotationProperty))
-        outputGraph.add(
-            (has_subsumption_level_node, rdfs.label, Literal("has_subsumption_category")))
-        outputGraph.add((has_subsumption_level_node, definition,
-                         Literal("A metadata relation between a glycan and its subsumption category.")))
-
-        # Add AnnotationProperty for linking Glytoucan
-        has_glytoucan_id_node = self.gnouri(self.glytoucan_id_annotation_property)
-
-        outputGraph.add((has_glytoucan_id_node, rdf.type, owl.AnnotationProperty))
-        outputGraph.add((has_glytoucan_id_node, rdfs.label, Literal("has_glytoucan_id")))
-        outputGraph.add((has_glytoucan_id_node, definition,
-                         Literal("The accession of the GlyTouCan entry describing the indicated glycan.")))
-
-        has_glytoucan_link_node = self.gnouri(self.glytoucan_link_annotation_property)
-
-        outputGraph.add((has_glytoucan_link_node, rdf.type, owl.AnnotationProperty))
-        outputGraph.add((has_glytoucan_link_node, rdfs.label, Literal("has_glytoucan_link")))
-        outputGraph.add((has_glytoucan_link_node, definition,
-                         Literal("The URL of the GlyTouCan entry describing the indicated glycan.")))
-
-        # Add sumbsumption level class and its instances
-        rdfNodeSubsumption = self.gnouri(self.subsumption_level_class)
-        
-        outputGraph.add((rdfNodeSubsumption, rdf.type, owl.Class))
-        outputGraph.add((rdfNodeSubsumption, rdfs.label, Literal("subsumption category")))
-        outputGraph.add((rdfNodeSubsumption, definition,
-                         Literal("Extent of glycan characterization provided by a glycan description.")))
-
-        subsumptionLevel = {}
-	
-	for level in ("molecularweight","basecomposition","composition","topology","saccharide"):
-	    details = self.subsumption_level[level]
-            rdfNode = self.gnouri(details["id"])
-            subsumptionLevel[level] = rdfNode
-	    outputGraph.add((rdfNode, rdf.type,   owl.NamedIndividual))
-            outputGraph.add((rdfNode, rdf.type,   rdfNodeSubsumption))
-            outputGraph.add((rdfNode, rdfs.label, Literal(details["label"])))
-            outputGraph.add((rdfNode, definition, Literal(" ".join(details["definition"].split()))))
-            if "comment" in details:
-                outputGraph.add((rdfNode, rdfs.comment, Literal(" ".join(details["comment"].split()))))
-            for sa in details.get('seeAlso',[]):
-                ns,term = sa.split(":")
-                outputGraph.add((rdfNode, rdfs.seeAlso, eval("%s.%s"%(ns,term))))
-
-        # Glycan class under OWL things
-        rdfNode = self.gnouri(self.glycan_class)
-        
-        outputGraph.add((rdfNode, rdf.type, owl.Class))
-        outputGraph.add((rdfNode, rdfs.label, Literal("glycan")))
-        outputGraph.add((rdfNode, definition,
-                         Literal("A compound consisting of monosaccharides linked by glycosidic bonds.")))
-        outputGraph.add((rdfNode, rdfs.seeAlso,
-                         rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_50699")))
-        outputGraph.add((rdfNode, rdfs.seeAlso,
-                         rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_18154")))
-
-        for n in self._nodes.values():
-            if n._nodeType != "molecularweight":
-                rdfNode = self.gnouri(n.getID())
-            else:
-                try:
-                    id = self.massiddict[float(n.getID())]
-                except KeyError:
-                    mass = n.getID()
-                    id = str(int(max(self.massiddict.values())) + 1)
-                    self.massiddict[float(mass)] = id
-                    self.newMass = True
-                rdfNode = self.gnouri(id)
-            outputGraph.add((rdfNode, rdf.type, owl.Class))
-
-            if n._nodeType:
-                # outputGraph.add((rdfNode, rdfs.label, ns2[n._nodeType]))
-                outputGraph.add((rdfNode, has_subsumption_level_node, subsumptionLevel[n._nodeType.lower()]))
-            else:
-                raise ValueError
-
-            if n._nodeType != "molecularweight":
-                outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
-                outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
-            else:
-                outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
-                outputGraph.add((rdfNode, rdfs.label,
-                                 Literal("glycan of molecular weight %s Da." % n.getID())))
-                outputGraph.add((rdfNode, definition,
-                                 Literal(
-                                     "A glycan characterized by underivitized molecular weight of %s Daltons" % n.getID())))
-
-        for l in self.allRelationship():
-            if l.getEdgeType() == "subsumes":
-                if l._sideA._nodeType == "molecularweight":
-                    id = self.massiddict[float(l._sideA.getID())]
-                    n1 = self.gnouri(id)
-                else:
-                    n1 = self.gnouri(l._sideA.getID())
-                n2 = self.gnouri(l._sideB.getID())
-                outputGraph.add((n2, rdfs.subClassOf, n1))
-
-        if self.newMass:
-            self.overwritemasslookuptable()
-
-        return outputGraph
-
-    def write(self,handle,graph):
-	from rdflib.plugins.serializers.rdfxml import PrettyXMLSerializer
-	writer = PrettyXMLSerializer(SubjectOrderedGraph(graph), max_depth=1)
-        writer.serialize(handle)
-
-# Defined solely to manipulate the accessor methods used by
-# rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer so that subjects
-# and predictates are output in a deterministic order, and without nesting.
-
-class SubjectOrderedGraph(object):
-
-    def __init__(self,graph):
-	self.graph = graph
-        self.namespace_manager = self.graph.namespace_manager
-        self.subjects_callno = 0
-	self.subjects_order = {'gno.owl': 0, 'IAO_0000115': 1}
-
-    def sortkey(self,*args):
-        return tuple(map(str,args))
-
-    def subject_sortkey(self,node):
-	strnode = str(node)
-	item = strnode.rsplit('/',1)[1]
-	return (self.subjects_order.get(item,2),strnode)
-
-    def subjects(self, *args, **kwargs):
-        self.subjects_callno += 1
-        if self.subjects_callno > 1:
-            for n in sorted(self.graph.subjects(*args, **kwargs),
-			    key=self.subject_sortkey):
-                yield n
-
-    def predicate_objects(self, *args, **kwargs):
-        for p,o in sorted(self.graph.predicate_objects(*args, **kwargs),
-                          key=lambda t: self.sortkey(*t)):
-            yield p,o
-
-    def objects(self, *args, **kwargs):
-        for o in sorted(self.graph.objects(*args, **kwargs),
-                        key=self.sortkey,reverse=True):
-            yield o
-
-    def __contains__(self, *args, **kwargs):
-        return self.graph.__contains__(*args, **kwargs)
-
-    def predicates(self, *args, **kwargs):
-        return self.graph.predicates(*args, **kwargs)
-
-    def triples_choices(self, *args, **kwargs):
-	return self.graph.triples_choices(*args, **kwargs)
-
-
-
-class dumpFile:
-    nodes = {}
-    edges = {}
-
-    def readfile(self, dumpfilepath):
-        f = open(dumpfilepath)
-        raw_data = {}
-        for l in f:
-            l = l.strip()
-            if l.startswith("#"):
-                lineInfo = "node"  # node type none
-                if l.startswith("# NODES"):
-                    lineInfo = "node"
-                    mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
-                    mass = "%.2f" % mass
-                    content = {"nodes": {}, "edges": {}}
-                    raw_data[mass] = content
-                elif l.startswith("# EDGES"):
-                    lineInfo = "edge"
-                else:
-                    lineInfo = "none"
-            else:
-                if l.startswith("WARNING"):
-                    continue
-
-                if lineInfo == "none":
-                    continue
-                elif lineInfo == "node":
-                    nodeacc = l.split()[0]
-                    nodetype = l.split()[2]
-                    nodetype = nodetype.rstrip("*")
-                    content["nodes"][nodeacc] = nodetype
-                elif lineInfo == "edge":
-                    to = re.compile("G\d{5}\w{2}").findall(l)
-                    fromx = to.pop(0)
-                    if to:
-                        content["edges"][fromx] = to
-                else:
-                    raise RuntimeError
-        return raw_data
-
 
 if __name__ == "__main__":
     cmd = sys.argv[1]
@@ -1047,45 +1162,38 @@ if __name__ == "__main__":
         g = SubsumptionGraph(*sys.argv[1:], verbose=verbose)
 
     elif cmd == "writeowl":
-        def write_owl():
-            r = OWLWriter()
-            df = dumpFile()
-            # "gnome_subsumption_raw.txt"
-            ifn = sys.argv[1] # path to input file
-            data = df.readfile(ifn)
+        r = OWLWriter()
 
-            for mass, v in data.items():
-                mass = str(float(mass))
-                # print mass
-                nodes = v["nodes"]
-                edges = v["edges"]
+        # "../smw/glycandata/data/gnome_subsumption_raw.txt"
+        ifn = sys.argv[1]  # path to input file
+        df = dumpFile(ifn)
 
-                r.addNode(mass, nodetype="molecularweight")
-                notParents = []
-                for son in edges.values():
-                    notParents += son
+        for mass in df.getmass():
+            mass = "%.2f" % float(mass)
+            # print mass
+            nodes = df.getnodesbymass(mass)
 
-                for n, t in nodes.items():
-                    r.addNode(n, nodetype=t)
+            r.addNode(mass, nodetype="molecularweight")
 
-                for p, cs in edges.items():
-                    # print mass
-                    for c in cs:
-                        # print p,c
-                        r.connect(r.getNode(p), r.getNode(c), "subsumes")
+            for n in nodes:
+                r.addNode(n, nodetype=df.getnodetype(n))
 
-                for potentialr in (set(nodes.keys()) - set(notParents)):
-                    r.connect(r.getNode(mass), r.getNode(potentialr), "subsumes")
-                # print nodes
-                # print edges
-            if len(sys.argv) > 2:
-                ofn = sys.argv[2]
-            else:
-                ofn = "GNOme_temp.owl"
-            f = open(ofn, "w")
-            s = r.write(f,r.make_graph())
-            f.close()
-        write_owl()
+            for n in nodes:
+                if df.getchild(n):
+                    for c in df.getchild(n):
+                        r.connect(r.getNode(n), r.getNode(c), "subsumes")
+
+            for n in df.getnodessubsumedbymass(mass):
+                r.connect(r.getNode(mass), r.getNode(n), "subsumes")
+
+        if len(sys.argv) > 2:
+            ofn = sys.argv[2]
+        else:
+            ofn = "GNOme_temp.owl"
+        f = open(ofn, "w")
+        s = r.write(f, r.make_graph())
+        f.close()
+
 
     else:
 
