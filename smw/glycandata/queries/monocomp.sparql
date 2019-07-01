@@ -4,8 +4,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?accession ?Hex ?HexNAc ?dHex ?NeuAc ?NeuGc ((?Count - ?Hex - ?HexNAc - ?dHex - ?NeuAc - ?NeuGc) as ?Xxx) ?Count
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann0 glycandata:property "GlyGen" .
-  ?ann0 glycandata:hasglycan ?glycan
   OPTIONAL {
     ?ann1 glycandata:property "HexCount" .
     ?ann1 glycandata:value ?HexCount .
@@ -42,3 +40,4 @@ WHERE {
   BIND(xsd:integer(IF(BOUND(?NeuGcCount),?NeuGcCount,0)) as ?NeuGc)
   BIND(xsd:integer(?MonoCount) as ?Count)
 }
+ORDER BY ?accession

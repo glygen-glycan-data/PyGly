@@ -4,9 +4,8 @@ SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?GlyConnectAccession)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann0 glycandata:property "GlyGen" .
-  ?ann0 glycandata:hasglycan ?glycan .
   ?ann1 glycandata:property "GlyConnect" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
 }
+ORDER BY ?accession ?value

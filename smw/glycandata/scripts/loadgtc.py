@@ -3,15 +3,11 @@
 import sys, time, traceback
 from collections import defaultdict
 
-from getwiki import GlycanDataWiki, Glycan
-w = GlycanDataWiki()
+from getwiki import GlycanData, Glycan
+w = GlycanData()
 
 import findpygly
 from pygly.GlyTouCan import GlyTouCan
-
-remove_extras = False
-if len(sys.argv) >= 2 and sys.argv[1] == "--clean":
-    remove_extras = True
 
 def accessions(args):
     if len(args) == 0:
@@ -23,6 +19,10 @@ def accessions(args):
 		yield it.strip()
 
 gtc = GlyTouCan(usecache=True)
+
+allmotifs = dict()
+for acc,label,redend in gtc.allmotifs():
+    allmotifs[acc] = dict(label=label,redend=redend)
 
 current = set()
 for gtcacc in accessions(sys.argv[1:]):
@@ -60,27 +60,28 @@ for gtcacc in accessions(sys.argv[1:]):
 		             property='MonosaccharideCount',
 		             source='GlyTouCan',type='MonosaccharideCount')
 
-    g.delete_annotations(source='GlyTouCan',type='CrossReference')
-    dic = defaultdict(list)
     xref_dic = {'glycosciences_de':'GLYCOSCIENCES.de',
-                'pubchem':'PubChem',
+                # 'pubchem':'PubChem',
                 'kegg':'KEGG',
-                'unicarbkb':'UniCarbKB',
+                # 'unicarbkb':'UniCarbKB',
+                'unicarb-db':'UniCarb-DB',
                 'glyconnect':'GlyConnect',
                 'glycome-db':'GlycomeDB',
                 'cfg':'CFG',
                 'pdb':'PDB',
 		'bcsdb':'BCSDB',
                 'carbbank':'Carbbank(CCSB)'}    
+    for prop in xref_dic.values():
+	g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
+    dic = defaultdict(list)
     for xref in gtc.getcrossrefs(gtcacc):
         ref, c = xref.split(":")
 	dic[ref].append(c)
     for key in dic:       
-	if key in ('unicarbkb','pubchem'):
-	    # these are comming from other sources now...
+	if key not in xref_dic:
 	    continue
         g.set_annotation(value=dic[key],
-                         property=xref_dic.get(key,key),
+                         property=xref_dic[key],
                          source='GlyTouCan',type='CrossReference')
     g.set_annotation(value=gtcacc,property='GlyTouCan',
                      source='GlyTouCan',type='CrossReference')
@@ -88,6 +89,10 @@ for gtcacc in accessions(sys.argv[1:]):
     g.delete_annotations(source='GlyTouCan',type='Motif')
     g.set_annotation(value=gtc.getmotif(gtcacc),
                      property='Motif',
+                     source='GlyTouCan', type='Motif')
+    value = map(lambda acc: ":".join([acc,allmotifs[acc]['label'],allmotifs[acc]['redend']]),gtc.getmotif(gtcacc))
+    g.set_annotation(value=value,
+                     property='NamedMotif',
                      source='GlyTouCan', type='Motif')
 
     g.delete_annotations(source='GlyTouCan',type='Taxonomy')
@@ -144,8 +149,3 @@ for gtcacc in accessions(sys.argv[1:]):
 
     current.add(gtcacc)
 
-if remove_extras:
-    for g in w.iterglycan():
-        if g.get('accession') not in current:
-            print >>sys.stderr, "Deleting:",g.get('pagename')
-            g.delete(w)

@@ -10,8 +10,6 @@ SELECT (?accession AS ?glytoucan_acc)
        (?MonosaccharideCount as ?monosaccharides)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann0 glycandata:property "GlyGen" .
-  ?ann0 glycandata:hasglycan ?glycan
   OPTIONAL {
     ?ann1 glycandata:property "SubsumptionLevel" .
     ?ann1 glycandata:value ?SubsumptionLevel . 
@@ -51,3 +49,4 @@ WHERE {
     ?ann7 glycandata:hasglycan ?glycan
   }
 }
+ORDER BY ?accession

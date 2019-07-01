@@ -15,6 +15,8 @@ gtc = GlyTouCan(usecache=True)
 compdict = dict()
 topodict = dict()
 bcompdict = dict()
+outedges = defaultdict(set)
+inedges = defaultdict(set)
 sec = None
 for l in open(sys.argv[1]):
     if l.startswith('#'):
@@ -36,12 +38,33 @@ for l in open(sys.argv[1]):
         else:
             bcompdict[acc] = (None,False) 
         continue                                                                                                  
+    if sec == "EDGES":
+	sl = l.split()
+        f = sl[0].strip(':')
+	for t in sl[1:]:
+	    outedges[f].add(t)
+	    inedges[t].add(f)
+	continue
 
 hascompdict = defaultdict(set)
 for acc,c in compdict.items():
     hascompdict[c].add(acc)
 
 dummy = sys.argv.pop(1)
+
+def getanc(acc):
+    anc = set()
+    for p in inedges[acc]:
+	anc.add(p)
+	anc.update(getanc(p))
+    return anc
+
+def getdesc(acc):
+    desc = set()
+    for c in outedges[acc]:
+	desc.add(c)
+	desc.update(getdesc(c))
+    return desc
  
 def gettopo(acc):
     if acc in topodict:
@@ -70,17 +93,13 @@ for f in sys.argv[1:]:
 newaccs = set()
 
 for acc in accs:
+    newaccs.update(getanc(acc))
     topo = gettopo(acc)
     comp = getcomp(acc)
-    bcomp = getbcomp(acc)
-    if topo:
-        newaccs.add(topo)
     if comp:
-        for newacc in hascomp(comp):
-            newaccs.add(newacc)    
-        newaccs.add(comp)
-    if bcomp:
-        newaccs.add(bcomp)
+        newaccs.update(getdesc(comp))
+    elif topo:
+        newaccs.update(getdesc(topo))
 newaccs = (newaccs-accs)
 
 for acc in sorted(newaccs):

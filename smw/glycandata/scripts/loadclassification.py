@@ -3,8 +3,8 @@
 import sys
 from operator import itemgetter
 
-from getwiki import GlycanDataWiki, Glycan
-w = GlycanDataWiki()
+from getwiki import GlycanData, Glycan
+w = GlycanData()
 
 motif_rules_data = """
 G00026MO	N-linked	

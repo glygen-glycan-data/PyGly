@@ -1191,6 +1191,7 @@ class IUPACGlycamWriter:
         return config + skel + ringtype + modi + subsstr + anomer + link
 
     def subs2str(self, m):
+        m = copy.deepcopy(m)
         subs = []
         sub2str = {
             Substituent.sulfate: "S",

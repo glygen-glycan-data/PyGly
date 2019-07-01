@@ -2,8 +2,8 @@
 
 import sys
 
-from getwiki import GlycanDataWiki
-w = GlycanDataWiki()
+from getwiki import GlycanData
+w = GlycanData()
 
 import findpygly
 from pygly.MonoFormatter import IUPACSym

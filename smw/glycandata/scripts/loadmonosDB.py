@@ -3,8 +3,8 @@
 import sys
 from collections import defaultdict
 
-from getwiki import GlycanDataWiki, Glycan
-w = GlycanDataWiki()
+from getwiki import GlycanData, Glycan
+w = GlycanData()
 
 
 def monosDB(infile):

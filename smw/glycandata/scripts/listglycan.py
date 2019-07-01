@@ -1,8 +1,8 @@
 #!/bin/env python27
 
-from getwiki import GlycanDataWiki
+import re, sys
+from getwiki import GlycanData
 
-w = GlycanDataWiki()
-
-for m in w.iterglycan():
-    print m
+w = GlycanData()
+for g in w.iterglycanid():
+    print g

@@ -3,8 +3,6 @@ PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 SELECT (?accession as ?GlyTouCanAccession) ?Type ?Subtype
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann0 glycandata:property "GlyGen" .
-  ?ann0 glycandata:hasglycan ?glycan .
   ?ann1 glycandata:property "GlycanType" .
   ?ann1 glycandata:value ?Type .
   ?ann1 glycandata:hasglycan ?glycan
@@ -14,3 +12,4 @@ WHERE {
     ?ann2 glycandata:hasglycan ?glycan
   }
 }
+ORDER BY ?accession

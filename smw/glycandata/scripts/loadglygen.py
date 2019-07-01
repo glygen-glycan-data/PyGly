@@ -2,8 +2,8 @@
 
 import sys
 
-from getwiki import GlycanDataWiki, Glycan
-w = GlycanDataWiki()
+from getwiki import GlycanData
+w = GlycanData()
 
 def accessions(args):
     if len(args) == 0:
@@ -16,10 +16,13 @@ def accessions(args):
 
 current_glygen = set(accessions(sys.argv[1:]))
 
-for m in w.iterglycan():
-    m.delete_annotations(property="GlyGen",source="EdwardsLab",type="CrossReference")
-    acc = m.get('accession')
+for acc in w.iterglycanid():
+    m = w.get(acc)
     if acc in current_glygen:
         m.set_annotation(value=acc,property="GlyGen",source="EdwardsLab",type="CrossReference")
+    else:
+        m.delete_annotations(property="GlyGen",source="EdwardsLab",type="CrossReference")
     if w.put(m):
-        print acc
+        print acc,"updated"
+    else:
+        print acc,"checked"

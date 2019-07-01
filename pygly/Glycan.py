@@ -35,6 +35,7 @@ class Glycan:
     iupacSym = IUPACSym()
     lcSym = LinCodeSym()
     glycoctformat = None
+    glycamformat = None
 
     def __init__(self,root=None):
         self.set_root(root)
@@ -464,6 +465,12 @@ class Glycan:
         if not self.glycoctformat:
             self.glycoctformat = GlycoCTFormat()
 	return self.glycoctformat.toStr(self)
+
+    def glycam(self):
+	from GlycanFormatter import IUPACGlycamFormat
+        if not self.glycamformat:
+            self.glycamformat = IUPACGlycamFormat()
+	return self.glycamformat.toStr(self)
 
     def subtree_links(self,root,subst=False,uninstantiated=False):
         for m in self.subtree_nodes(root):

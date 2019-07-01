@@ -4,8 +4,8 @@ import sys, time
 from collections import defaultdict
 import csv
 
-from getwiki import GlycanDataWiki, Glycan
-w = GlycanDataWiki()
+from getwiki import GlycanData, Glycan
+w = GlycanData()
 
 gtc2uc = defaultdict(set)
 for l in open(sys.argv[1]):

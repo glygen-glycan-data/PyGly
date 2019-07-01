@@ -10,6 +10,7 @@ import rdflib
 class GNOme(object):
     version = "1.1.1"
     referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl" % (version,)
+
     referencefmt = 'xml'
 
     def __init__(self, resource=None, format=None):
@@ -63,15 +64,20 @@ class GNOme(object):
     def attributes(self, accession):
         uri = "gno:%s" % (accession,)
         attr = dict()
+
         for s, p, o in self.triples(uri):
             plab = self.label(p)
             if plab != "subClassOf":
                 olab = self.label(o)
+                attr[plab] = olab
             else:
                 olab = self.accession(o)
-            attr[plab] = olab
+                if plab not in attr:
+		                attr[plab] = []
+                attr[plab].append(olab)
         attr[u'level'] = self.level(accession)
         return attr
+
 
     def edges(self):
         for n in self.nodes():
@@ -482,7 +488,7 @@ class SubsumptionGraph:
 
     def any_parent_pos(self, gly):
         for l in gly.all_links():
-            if l.parent_pos() != None and l.parent_pos() != set([1]):
+            if l.parent_pos() != None and l.parent_pos() != set([l.parent().ring_start()]):
                 return True
         return False
 
