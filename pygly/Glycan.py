@@ -439,7 +439,7 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
-    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia']
+    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
     def iupac_composition(self):
 	c = Composition()
 	for sym in (self.iupac_composition_syms + ['Xxx']):
@@ -457,7 +457,10 @@ class Glycan:
 	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
 	c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
 	c['Pent'] = sum(map(c.__getitem__,('Xyl','Pent')))
-	c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
+        c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
+        c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
+        c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
+ 
 	return c
 
     def glycoct(self):
