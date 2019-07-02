@@ -457,9 +457,9 @@ class Glycan:
 	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
 	c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
 	c['Pent'] = sum(map(c.__getitem__,('Xyl','Pent')))
-  c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
-  c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
-  c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
+        c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
+        c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
+        c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
  
 	return c
 
