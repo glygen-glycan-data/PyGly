@@ -439,15 +439,22 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
-    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
+    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN','S','P']
     def iupac_composition(self):
 	c = Composition()
 	for sym in (self.iupac_composition_syms + ['Xxx']):
 	    c[sym] = 0
-	for m in self.all_nodes():
+	for m in self.all_nodes():           
 	    try:
 	        sym = iupacSym.toStr(m)
-		if sym not in self.iupac_composition_syms:
+                if '+' in sym:
+                    c[sym] -= 1
+                    syms = sym.split('+')
+                    for s in syms:
+                        if s not in self.iupac_composition_syms:
+                            s = 'Xxx'
+                        c[s] += 1
+		elif sym not in self.iupac_composition_syms:
 		    sym = 'Xxx'
 	    except KeyError:
 		sym = 'Xxx'
