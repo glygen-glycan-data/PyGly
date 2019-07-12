@@ -81,6 +81,8 @@ class WURCS20MonoFormat:
             anomer_s = self.skel_config_get("anomer")
             if anomer_s:
                 m.set_anomer(eval(anomer_s))
+                m.set_ring_start(0)
+                m.set_ring_end(0)
 
             stem = self.skel_config_get("stem")
             if stem:
@@ -154,6 +156,7 @@ class WURCS20MonoFormat:
                     if re.search(r"^\d-\d$", pp):
                         subins = Substituent(eval(sub_type))
                         for pp in pp.split("-"):
+                            pp = int(pp)
                             m.add_substituent(subins, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
                                               child_type=eval(ct))
 
