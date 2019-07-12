@@ -439,7 +439,7 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
-    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN','S','P']
+    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN','S','P','Aldi']
     def iupac_composition(self):
 	c = Composition()
 	for sym in (self.iupac_composition_syms + ['Xxx']):
@@ -459,7 +459,7 @@ class Glycan:
 	    except KeyError:
 		sym = 'Xxx'
 	    c[sym] += 1
-	c['Count'] = sum(c.values())
+	c['Count'] = sum(c.values())-sum(map(c.__getitem__,('S','P','Aldi')))
 	c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc','Hex')))
 	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
 	c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
