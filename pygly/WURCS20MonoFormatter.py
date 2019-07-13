@@ -121,16 +121,19 @@ class WURCS20MonoFormat:
                 m.set_anomer(2)
 
         if ring:
-            try:
-                r_s = int(ring[1])
-                m.set_ring_start(r_s)
-            except ValueError:
+            if re.search(r"_\d-\?", ring):
                 pass
-            try:
-                r_e = int(ring[-1])
-                m.set_ring_end(r_e)
-            except ValueError:
-                pass
+            else:
+                try:
+                    r_s = int(ring[1])
+                    m.set_ring_start(r_s)
+                except ValueError:
+                    pass
+                try:
+                    r_e = int(ring[-1])
+                    m.set_ring_end(r_e)
+                except ValueError:
+                    pass
 
         if substs:
             sub_list = substs[1:].split("_")
@@ -153,7 +156,7 @@ class WURCS20MonoFormat:
                     if cp != None:
                         cp = int(cp)
 
-                    if re.search(r"^\d-\d$", pp):
+                    if re.search(r"^\d-\d$", pp) and sub_name != "anhydro":
                         subins = Substituent(eval(sub_type))
                         for pp in pp.split("-"):
                             pp = int(pp)
@@ -175,14 +178,15 @@ class WURCS20MonoFormat:
                         pp = map(int, pp.split('-'))
                         if len(pp) != 2:
                             raise UnsupportedSubstituentError(sub)
-                        subst = m.add_substituent(eval(sub_type), parent_pos=pp[0], parent_type=eval(pt),
+                        anhydro = Substituent(eval(sub_type))
+                        m.add_substituent(anhydro, parent_pos=pp[0], parent_type=eval(pt),
                                                   child_pos=cp, child_type=eval(ct)).child()
                         pt = self.subsconfig.get(sub_name + "1", "parent_type")
                         ct = self.subsconfig.get(sub_name + "1", "child_type")
                         cp = self.subsconfig.get(sub_name + "1", "child_pos")
                         if cp != None:
                             cp = int(cp)
-                        m.add_substituent(subst, parent_pos=pp[1], parent_type=eval(pt), child_pos=cp,
+                        m.add_substituent(anhydro, parent_pos=pp[1], parent_type=eval(pt), child_pos=cp,
                                           child_type=eval(ct))
                     else:
                         raise UnsupportedSubstituentError(sub)
