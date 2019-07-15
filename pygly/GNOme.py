@@ -531,6 +531,220 @@ class SubsumptionGraph:
             self.print_tree(cluster, edges, ch, indent + 2)
 
 
+    # Dump file parsing part starts here
+    raw_data = {}
+    dumpfilepath = ""
+    warnings = defaultdict(set)
+    warningsbytype = None
+
+    def loaddata(self, dumpfilepath):
+        self.readfile(dumpfilepath)
+        self.dumpfilepath = dumpfilepath
+        for index in range(len(self.errorcategory)):
+            self.errorcategory[index][1] = re.compile(self.errorcategory[index][1])
+
+    def readfile(self, dumpfilepath):
+        f = open(dumpfilepath)
+        raw_data = {}
+        for l in f:
+            l = l.strip()
+
+            if l.startswith("#"):
+                if l.startswith("# WARNING"):
+                    t1, msg = l.split(" - ")
+                    temp1 = re.compile(r"\d").findall(t1)
+                    if len(temp1) != 1:
+                        raise RuntimeError
+                    level = temp1[0]
+                    self.warnings[level].add(msg)
+                    continue
+
+                lineInfo = "node"  # node type none
+                if l.startswith("# NODES"):
+                    lineInfo = "node"
+                    mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
+                    mass = "%.2f" % mass
+                    content = {"nodes": {}, "edges": {}}
+                    raw_data[mass] = content
+                elif l.startswith("# EDGES"):
+                    lineInfo = "edge"
+                else:
+                    lineInfo = "none"
+            else:
+
+                if lineInfo == "none":
+                    continue
+                elif lineInfo == "node":
+                    nodeacc = l.split()[0]
+                    nodetype = l.split()[2]
+                    nodetype = nodetype.rstrip("*")
+                    content["nodes"][nodeacc] = nodetype
+                elif lineInfo == "edge":
+                    to = re.compile("G\d{5}\w{2}").findall(l)
+                    fromx = to.pop(0)
+                    if to:
+                        content["edges"][fromx] = to
+                else:
+                    raise RuntimeError
+        self.raw_data = raw_data
+
+        self.allnodestype = {}
+        self.alledges = {}
+        for component in raw_data.values():
+            self.allnodestype.update(copy.deepcopy(component["nodes"]))
+            self.alledges.update(copy.deepcopy(component["edges"]))
+
+        allmass = list()
+        for m in self.raw_data.keys():
+            self.allnodestype[m] = "molecular weight"
+            allmass.append(m)
+            top = set(raw_data[m]["nodes"].keys())
+            for chilren in raw_data[m]["edges"].values():
+                top = top - set(chilren)
+            top = list(top)
+            self.alledges[m] = top
+
+        self.allnodestype["00000001"] = "glycan"
+        self.alledges["00000001"] = allmass
+
+        return raw_data
+
+    def root(self):
+        return "00000001"
+
+    def nodes(self):
+        for n in self.allnodestype.keys():
+            yield n
+
+    def edges(self):
+        for n in self.nodes():
+            if n in self.alledges:
+                for c in self.alledges[n]:
+                    yield (n, c)
+
+    def parents(self, accession):
+        for p, c in self.alledges.items():
+            if accession in c:
+                yield p
+
+    def ancestors(self, accession):
+        anc = set()
+        for p in self.parents(accession):
+            anc.add(p)
+            anc.update(self.ancestors(p))
+        return anc
+
+    def children(self, accession):
+        for c in self.alledges.get(accession, []):
+            yield c
+
+    def descendants(self, accession):
+        desc = set()
+        for c in self.children(accession):
+            desc.add(c)
+            desc.update(self.descendants(c))
+        return desc
+
+    def isleaf(self, accession):
+        for ch in self.children(accession):
+            return False
+        return True
+
+    def isroot(self, accession):
+        return accession == self.root()
+
+    def level(self, accession):
+        return self.allnodestype[accession]
+
+    def islevel(self, accession, level):
+        return self.level(accession) == level
+
+    def ismolecularweight(self, accession):
+        return self.islevel(accession, 'molecular weight')
+
+    def isbasecomposition(self, accession):
+        return self.islevel(accession, 'BaseComposition')
+
+    def iscomposition(self, accession):
+        return self.islevel(accession, 'Composition')
+
+    def istopology(self, accession):
+        return self.islevel(accession, 'Topology')
+
+    def issaccharide(self, accession):
+        return self.islevel(accession, 'Saccharide')
+
+    def get_basecomposition(self, accession):
+        for n, t in self.allnodestype.items():
+            if self.isbasecomposition(n) and accession in self.descendants(n):
+                yield n
+
+    def get_composition(self, accession):
+        for n, t in self.allnodestype.items():
+            if self.iscomposition(n) and accession in self.descendants(n):
+                yield n
+
+    def get_topology(self, accession):
+        for n, t in self.allnodestype.items():
+            if self.istopology(n) and accession in self.descendants(n):
+                yield n
+
+    def has_basecomposition(self, accession):
+        assert self.isbasecomposition(accession)
+        return self.descendants(accession)
+
+    def has_composition(self, accession):
+        assert self.iscomposition(accession)
+        return self.descendants(accession)
+
+    def has_topology(self, accession):
+        assert self.istopology(accession)
+        return self.descendants(accession)
+
+    def regexget(self, p, s):
+        searchres = list(p.finditer(s))
+        if len(searchres) == 1:
+            return searchres[0].groupdict()["ans"]
+        else:
+            return None
+
+    errorcategory = [
+        ["cannot_parse_glycan_at_upper_subsumption",
+         r"annotated (topology|composition|base composition) (?P<ans>(G\d{5}\w{2})) of G\d{5}\w{2} cannot be parsed"],
+        ["cannot_parse_glycan_unknown", r"unknown problem parsing glycan (?P<ans>(G\d{5}\w{2}))"],
+        ["unsupported_skeleton_code", r"unsupported skeleton code: (?P<ans>(.{1,10})) in glycan G\d{5}\w{2}"],
+        ["mass_cannot_be_computed", r"mass could not be computed for (?P<ans>(G\d{5}\w{2}))"],
+        ["mass_inconsistency",
+         r"annotated mass \d*\.\d* for (?P<ans>(G\d{5}\w{2})) is different than computed mass \d*\.\d*"],
+        # ["", r""],
+    ]
+
+    def geterrortype(self, s):
+        for errortype, p in self.errorcategory:
+            res0 = self.regexget(p, s)
+            if res0:
+                return errortype, res0
+        return None, s
+
+    def getwarningsbytype(self):
+        if self.warningsbytype:
+            return self.warningsbytype
+
+        res = defaultdict(set)
+
+        for i in reduce(lambda x, y: list(set(list(x) + list(y))), self.warnings.values()):
+            errortype, ans = self.geterrortype(i)
+            res[errortype].add(ans)
+
+        self.warningsbytype = res
+        return res
+
+    def warningbytypetotal(self):
+        warnings = self.getwarningsbytype()
+        temp = map(lambda x: len(x), warnings.values())
+        return reduce(lambda x, y: x + y, temp)
+
+
 from rdflib import URIRef, Namespace
 
 
@@ -896,155 +1110,6 @@ class SubjectOrderedGraph(object):
     def triples_choices(self, *args, **kwargs):
         return self.graph.triples_choices(*args, **kwargs)
 
-
-class dumpFile:
-    raw_data = {}
-    dumpfilepath = ""
-    warnings = defaultdict(set)
-    warningsbytype = None
-
-    def __init__(self, dumpfilepath):
-        self.readfile(dumpfilepath)
-        self.dumpfilepath = dumpfilepath
-        for index in range(len(self.errorcategory)):
-            self.errorcategory[index][1] = re.compile(self.errorcategory[index][1])
-
-    def readfile(self, dumpfilepath):
-        f = open(dumpfilepath)
-        raw_data = {}
-        for l in f:
-            l = l.strip()
-
-            if l.startswith("#"):
-                if l.startswith("# WARNING"):
-                    t1, msg = l.split(" - ")
-                    temp1 = re.compile(r"\d").findall(t1)
-                    if len(temp1) != 1:
-                        raise RuntimeError
-                    level = temp1[0]
-                    self.warnings[level].add(msg)
-                    continue
-
-                lineInfo = "node"  # node type none
-                if l.startswith("# NODES"):
-                    lineInfo = "node"
-                    mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
-                    mass = "%.2f" % mass
-                    content = {"nodes": {}, "edges": {}}
-                    raw_data[mass] = content
-                elif l.startswith("# EDGES"):
-                    lineInfo = "edge"
-                else:
-                    lineInfo = "none"
-            else:
-
-                if lineInfo == "none":
-                    continue
-                elif lineInfo == "node":
-                    nodeacc = l.split()[0]
-                    nodetype = l.split()[2]
-                    nodetype = nodetype.rstrip("*")
-                    content["nodes"][nodeacc] = nodetype
-                elif lineInfo == "edge":
-                    to = re.compile("G\d{5}\w{2}").findall(l)
-                    fromx = to.pop(0)
-                    if to:
-                        content["edges"][fromx] = to
-                else:
-                    raise RuntimeError
-        self.raw_data = raw_data
-
-        self.allnodestype = {}
-        self.alledges = {}
-        for component in raw_data.values():
-            self.allnodestype.update(copy.deepcopy(component["nodes"]))
-            self.alledges.update(copy.deepcopy(component["edges"]))
-
-        return raw_data
-
-    def getmass(self):
-        res = self.raw_data.keys()
-        res = map(str, sorted(map(float, res)))
-        return res
-
-    def getnodesbymass(self, m):
-        m = str(m)
-        return self.raw_data[m]["nodes"].keys()
-
-    def getnodessubsumedbymass(self, m):
-        m = str(m)
-        allnodes = self.raw_data[m]["nodes"].keys()
-        notparents = []
-        for v in self.raw_data[m]["edges"].values():
-            notparents += v
-        return list(set(set(allnodes) - set(notparents)))
-
-    def getnodetype(self, acc):
-        return self.allnodestype.get(acc, None)
-
-    def getchild(self, acc):
-        return self.alledges.get(acc, [])
-
-    def getparrent(self, acc):
-        res = []
-        found = False
-        for mass, temp in self.raw_data.items():
-            if acc not in temp["nodes"].keys():
-                continue
-            found = True
-            for p, children in temp["edges"].items():
-                if acc in children:
-                    res.append(p)
-        if found:
-            if res:
-                return res
-            else:
-                return None
-        else:
-            raise KeyError("%s not found" % acc)
-
-    def regexget(self, p, s):
-        searchres = list(p.finditer(s))
-        if len(searchres) == 1:
-            return searchres[0].groupdict()["ans"]
-        else:
-            return None
-
-    errorcategory = [
-        ["cannot_parse_glycan_at_upper_subsumption",
-         r"annotated (topology|composition|base composition) (?P<ans>(G\d{5}\w{2})) of G\d{5}\w{2} cannot be parsed"],
-        ["cannot_parse_glycan_unknown", r"unknown problem parsing glycan (?P<ans>(G\d{5}\w{2}))"],
-        ["unsupported_skeleton_code", r"unsupported skeleton code: (?P<ans>(.{1,10})) in glycan G\d{5}\w{2}"],
-        ["mass_cannot_be_computed", r"mass could not be computed for (?P<ans>(G\d{5}\w{2}))"],
-        ["mass_inconsistency",
-         r"annotated mass \d*\.\d* for (?P<ans>(G\d{5}\w{2})) is different than computed mass \d*\.\d*"],
-        # ["", r""],
-    ]
-
-    def geterrortype(self, s):
-        for errortype, p in self.errorcategory:
-            res0 = self.regexget(p, s)
-            if res0:
-                return errortype, res0
-        return None, s
-
-    def getwarningsbytype(self):
-        if self.warningsbytype:
-            return self.warningsbytype
-
-        res = defaultdict(set)
-
-        for i in reduce(lambda x, y: list(set(list(x) + list(y))), self.warnings.values()):
-            errortype, ans = self.geterrortype(i)
-            res[errortype].add(ans)
-
-        self.warningsbytype = res
-        return res
-
-    def warningbytypetotal(self):
-        warnings = self.getwarningsbytype()
-        temp = map(lambda x: len(x), warnings.values())
-        return reduce(lambda x, y: x + y, temp)
 
 
 class NormalNode:
