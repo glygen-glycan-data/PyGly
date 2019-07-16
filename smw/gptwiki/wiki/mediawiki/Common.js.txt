@@ -22,14 +22,14 @@ function checkElement() {
         var scandetails = sth.split(";");
         var precscan = scandetails[3];
         if (precscan != lastprecscan && 0) {
-            paraFromPage.push({title: "Scan: "+precscan, scan: precscan, annotations: 0}); 
+            paraFromPage.push({title: "Scan: "+precscan, scan: precscan, annotations: 0});
             lastprecscan = precscan;
         }
         var title = "";
         if (scandetails.length == 2) {
             title = "Scan: "+scandetails[0]+" ("+scandetails[1]+")";
         } else {
-            title = "Scan: "+scandetails[0]+" ("+scandetails[1]+" @ "+scandetails[2]+" min, m/z "+scandetails[4]+")"; 
+            title = "Scan: "+scandetails[0]+" ("+scandetails[1]+" @ "+scandetails[2]+" min, m/z "+scandetails[4]+")";
         }
         paraFromPage.push({title: title, scan: scandetails[0], annotations: 1});
     }
@@ -112,9 +112,10 @@ function loadSVG() {
     var param0 = {
         spectra: "",
         format: "json",
-        graphtype: "chromatogram"
+        graphtype: "chromatogram",
+        zoomHeight: true
     };
-    param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + peptideAcc + "." + charger + '.json';
+    param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + '.json';
     param0["width"] = pot.clientWidth * 0.995;
     msmsv.showLabelledSpectrum('specpane0','chrom', param0);
     msmsv.addTitles('specpane0', ["XIC: m/z "+pmz], 1, "h3");
@@ -125,7 +126,8 @@ function loadSVG() {
         spectra: "",
         format: "json",
         scan: "",
-        annotations: ""
+        annotations: "",
+        zoomHeight: false
     };
 
     // Delete
@@ -141,9 +143,9 @@ function loadSVG() {
         params["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + sc + '.json';
 
         if (paraFromPage[i]["annotations"] == 1) {
-          params["annotations"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/annotations/" + peptideAcc + "." + charger + ".json";
+            params["annotations"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/annotations/" + peptideAcc + "." + charger + ".json";
         } else {
-          delete params["annotations"];
+            delete params["annotations"];
         }
         // console.log(params);
         msmsv.showLabelledSpectrum('specpanel','spec'+sc, params);
