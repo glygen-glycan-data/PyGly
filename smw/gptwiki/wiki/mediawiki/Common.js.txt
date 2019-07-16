@@ -115,7 +115,7 @@ function loadSVG() {
         graphtype: "chromatogram",
         zoomHeight: true
     };
-    param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/MS_24_UO1_HCD20_5X25_EThcd_nondplserum_neutry3/" + peptideAcc + "." + charger + '.json';
+    param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + '.json';
     param0["width"] = pot.clientWidth * 0.995;
     msmsv.showLabelledSpectrum('specpane0','chrom', param0);
     msmsv.addTitles('specpane0', ["XIC: m/z "+pmz], 1, "h3");
