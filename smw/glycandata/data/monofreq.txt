@@ -158,7 +158,7 @@ Gal	x-lgal-HEX-x:x	2
 Gal	x-xgal-HEX-1:x	2
 Gal	a-dgal-HEX-1:x	1
 Gal	a-xgal-HEX-1:4	1
-Gal+aldi	o-dgal-HEX-x:x|1:aldi	65
+Gal+Aldi	o-dgal-HEX-x:x|1:aldi	65
 Gal+P	a-dgal-HEX-1:5||(6o:1)phosphate	1
 Gal+P	b-dgal-HEX-1:5||(?o:1)phosphate	1
 Gal+P	x-dgal-HEX-1:5||(6o:1)phosphate	1
@@ -191,8 +191,8 @@ GalNAc	a-dgal-HEX-1:x||(2d:1)n-acetyl	5
 GalNAc	a-dgal-HEX-1:5||(?d:1)n-acetyl	1
 GalNAc	b-dgal-HEX-1:5||(?d:1)n-acetyl	1
 GalNAc	b-xgal-HEX-1:5||(2d:1)n-acetyl	1
-GalNAc+aldi	o-dgal-HEX-x:x|1:aldi||(2d:1)n-acetyl	966
-GalNAc+aldi	o-dgal-HEX-0:0|1:aldi||(2d:1)n-acetyl	1
+GalNAc+Aldi	o-dgal-HEX-x:x|1:aldi||(2d:1)n-acetyl	966
+GalNAc+Aldi	o-dgal-HEX-0:0|1:aldi||(2d:1)n-acetyl	1
 GalNAc+S	b-dgal-HEX-1:5||(2d:1)n-acetyl|(4o:1)sulfate	76
 GalNAc+S	x-dgal-HEX-1:5||(2d:1)n-acetyl|(4o:1)sulfate	65
 GalNAc+S	b-dgal-HEX-1:5||(2d:1)n-acetyl|(?o:1)sulfate	44
@@ -226,7 +226,7 @@ Glc	a-dglc-HEX-1:4	2
 Glc	a-dglc-HEX-1:x	2
 Glc	b-dglc-HEX-1:4	2
 Glc	b-xglc-HEX-1:5	1
-Glc+aldi	o-dglc-HEX-x:x|1:aldi	107
+Glc+Aldi	o-dglc-HEX-x:x|1:aldi	107
 Glc+S	b-dglc-HEX-1:5||(3o:1)sulfate	1
 Glc+S	b-dglc-HEX-1:5||(?o:1)sulfate	1
 Glc+S	x-dglc-HEX-1:5||(3o:1)sulfate	1
@@ -264,7 +264,7 @@ GlcNAc	o-dglc-HEX-x:x||(2d:1)n-acetyl	6
 GlcNAc	a-dglc-HEX-1:x||(2d:1)n-acetyl	4
 GlcNAc	b-xglc-HEX-1:5||(2d:1)n-acetyl	2
 GlcNAc	b-dglc-HEX-1:5||(?d:1)n-acetyl	1
-GlcNAc+aldi	o-dglc-HEX-x:x|1:aldi||(2d:1)n-acetyl	972
+GlcNAc+Aldi	o-dglc-HEX-x:x|1:aldi||(2d:1)n-acetyl	972
 GlcNAc+S	b-dglc-HEX-1:5||(2d:1)n-acetyl|(6o:1)sulfate	47
 GlcNAc+S	x-dglc-HEX-1:5||(2d:1)n-acetyl|(6o:1)sulfate	37
 GlcNAc+S	x-dglc-HEX-x:x||(2d:1)n-acetyl|(6o:1)sulfate	37
@@ -272,7 +272,7 @@ GlcNAc+S	x-dglc-HEX-1:5||(2d:1)n-acetyl|(?o:1)sulfate	14
 GlcNAc+S	b-dglc-HEX-1:5||(2d:1)n-acetyl|(?o:1)sulfate	4
 GlcNAc+S	x-dglc-HEX-x:x||(2d:1)n-acetyl|(?o:1)sulfate	4
 GlcNAc+S	x-xglc-HEX-1:5||(2d:1)n-acetyl|(6o:1)sulfate	2
-GlcNAc+S+aldi	o-dglc-HEX-x:x|1:aldi||(2d:1)n-acetyl|(6o:1)sulfate	31
+GlcNAc+S+Aldi	o-dglc-HEX-x:x|1:aldi||(2d:1)n-acetyl|(6o:1)sulfate	31
 Hex	x-HEX-x:x	3033
 Hex	x-HEX-1:5	564
 Hex	x-HEX-1:x	101
@@ -308,7 +308,7 @@ Man	b-dman-HEX-1:6	1
 Man	o-dman-HEX-x:x	1
 Man	x-dman-HEX-1:4	1
 Man	x-xman-HEX-x:x	1
-Man+aldi	o-dman-HEX-x:x|1:aldi	12
+Man+Aldi	o-dman-HEX-x:x|1:aldi	12
 Man+P	a-dman-HEX-1:5||(?o:1)phosphate	5
 Man+P	a-dman-HEX-1:5||(6o:1)phosphate	2
 Man+P	x-dman-HEX-1:5||(6o:1)phosphate	1
