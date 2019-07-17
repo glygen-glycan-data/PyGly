@@ -32,8 +32,9 @@ class abstract_api(object):
         self.delaytime = .2
         self.delaybatch = 1
 
+        self.usecache = usecache
+        self.cacheupdated = False
         if usecache:
-            self.usecache = usecache
             self.cache_init()
 
     def cache_init(self):
@@ -150,7 +151,7 @@ class web_api(abstract_api):
         raise NotImplemented
 
 
-class UniCarb(Triple_store_api):
+class UniCarbKB(Triple_store_api):
     # endpt = 'http://137.92.56.159:40935/unicarbkb'
     # endpt = 'http://137.92.56.159:40935//unicarbkb'
     # endpt = 'http://137.92.56.159:40935/unicarbkbv2_test_only/query'
@@ -216,7 +217,7 @@ class UniCarb(Triple_store_api):
 
 
     def __init__(self, usecache=False):
-        super(UniCarb, self).__init__(usecache=usecache)
+        super(UniCarbKB, self).__init__(usecache=usecache)
 
     def stripURL(self, url):
         return url.split("/")[-1]
@@ -327,7 +328,7 @@ if __name__ == "__main__":
 
     if cmd.lower() == "taxa":
 
-        uc = UniCarb()
+        uc = UniCarbKB()
         taxa = uc.taxonomy()
         for k, v in taxa.items():
             for vi in v:
@@ -335,7 +336,7 @@ if __name__ == "__main__":
 
     elif cmd.lower() == "glytoucan":
 
-        uc = UniCarb()
+        uc = UniCarbKB()
         gtc = uc.unicarb2glytoucan()
         for k, v in gtc.items():
             for vi in v:
