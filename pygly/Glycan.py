@@ -440,19 +440,30 @@ class Glycan:
                 yield m
 
     iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
+    subst_composition_syms = ['S','P','aldi']
     def iupac_composition(self):
 	c = Composition()
-	for sym in (self.iupac_composition_syms + ['Xxx']):
+	for sym in (self.iupac_composition_syms + self.subst_composition_syms + ['Xxx']):
 	    c[sym] = 0
-	for m in self.all_nodes():
+	for m in self.all_nodes():           
 	    try:
 	        sym = iupacSym.toStr(m)
-		if sym not in self.iupac_composition_syms:
-		    sym = 'Xxx'
 	    except KeyError:
-		sym = 'Xxx'
-	    c[sym] += 1
-	c['Count'] = sum(c.values())
+	        c['Xxx'] += 1
+		continue
+	    syms = map(str.strip,sym.split('+'))
+	    if syms[0] not in self.iupac_composition_syms:
+	        syms[0] = 'Xxx'
+	    for i in range(1,len(syms)):
+		if syms[i] not in self.subst_composition_syms:
+		    syms[i] = 'Xxx'
+	    if 'Xxx' in syms:
+		c['Xxx'] += 1
+		continue
+	    for sym in syms:
+		c[sym] += 1
+
+	c['Count'] = sum(map(c.__getitem__,self.iupac_composition_syms + ['Xxx']))
 	c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc','Hex')))
 	c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
 	c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
