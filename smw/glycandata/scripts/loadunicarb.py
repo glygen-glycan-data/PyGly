@@ -13,7 +13,8 @@ for l in open(sys.argv[1]):
     gtc2uc[sl[1]].add(sl[0])
 
 uc2taxa = defaultdict(set)
-for l in open(sys.argv[2]):
+for taxafile in sys.argv[2:]:
+  for l in open(taxafile):
     sl = l.split()
     uc2taxa[sl[0]].add(sl[1])
 

@@ -14,7 +14,7 @@ fi
 # Load/Modify Disk cache...
 ./loadgtc.py $CACHE ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt
 ./loadgtc.py $CACHE ../data/extra_accessions.txt
-./loadunicarb.py $CACHE ../data/uc2gtc.txt ../data/uc2taxa.txt
+./loadunicarb.py $CACHE ../data/uc2gtc.txt ../data/uc2taxa.txt ../data/uc2taxa-new.txt
 ./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem_2019-04-19.csv
 ./loadglygen.py $CACHE ../data/glygen_accessions.txt
 ./loadedlab.py $CACHE 
