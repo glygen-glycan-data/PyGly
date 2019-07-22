@@ -524,6 +524,24 @@ class MonosaccharideTopoEqual(MonosaccharideComparitor):
             return False
         return True
 
+class MonosaccharideImageEqual(MonosaccharideComparitor):
+
+    def eq(self,a,b):
+        if a._stem != b._stem:
+            return False
+        if a._superclass != b._superclass:
+            return False
+        if a._mods != b._mods:
+            return False
+        any = False
+        for ii,jj in itermatchings(a.substituent_links(),b.substituent_links(),
+                                   lambda i,j: self.sublinkeq(i,j) and self.substeq(i.child(),j.child())):
+            any = True
+            break
+        if not any:
+            return False
+        return True
+
 class MonosaccharideSubsumed(MonosaccharideComparitor):
 
     @staticmethod
@@ -614,6 +632,12 @@ class LinkageTopoEqual(LinkageComparitor):
             return False
 	return True
 
+class LinkageImageEqual(LinkageComparitor):
+    def eq(self,a,b):
+        if a._undetermined != b._undetermined:
+            return False
+	return True
+
 class LinkageSubsumed(LinkageComparitor):
 
     @staticmethod
@@ -666,6 +690,15 @@ class GlycanTopoEqual(GlycanEquivalence):
         # monotest needs a subst test and a sublink test
         kw['monocmp']=MonosaccharideTopoEqual(**kw)
         super(GlycanTopoEqual,self).__init__(**kw)
+
+class GlycanImageEqual(GlycanEquivalence):
+    def __init__(self,**kw):
+        kw['substcmp']=SubstituentEqual(**kw)
+        kw['linkcmp']=LinkageImageEqual(**kw)
+        kw['sublinkcmp']=kw['linkcmp']
+        # monotest needs a subst test and a sublink test
+        kw['monocmp']=MonosaccharideImageEqual(**kw)
+        super(GlycanImageEqual,self).__init__(**kw)
 
 class GlycanCompEqual(CompositionEquivalence):
     def __init__(self,**kw):
