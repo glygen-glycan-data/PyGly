@@ -560,6 +560,7 @@ class Substituent:
     sulfate_oxygen_lost = 41
     amino_oxygen_lost = 42
     phosphate_oxygen_lost = 43
+    acetyl_oxygen_lost = 44
 
     def __init__(self,sub):
         self._sub = sub
