@@ -1,6 +1,8 @@
 
 import copy
+
 from combinatorics import select, itermatchings
+
 
 class SuperClass:
     TRI   = 3
@@ -10,6 +12,7 @@ class SuperClass:
     HEPT  = 7
     OCT   = 8
     NON   = 9
+    DEC   = 10
     missing = None
 
 class Stem:
@@ -554,6 +557,9 @@ class Substituent:
     scarboxyethyl	= 38
     phosphocholine	= 39
     methyl_oxygen_lost  = 40
+    sulfate_oxygen_lost = 41
+    amino_oxygen_lost = 42
+    phosphate_oxygen_lost = 43
 
     def __init__(self,sub):
         self._sub = sub
