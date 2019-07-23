@@ -558,7 +558,7 @@ class Substituent:
     phosphocholine	= 39
     methyl_oxygen_lost  = 40
     sulfate_oxygen_lost = 41
-    amino_oxygen_lost = 42
+    amino_oxygen_preserved = 42
     phosphate_oxygen_lost = 43
     acetyl_oxygen_lost = 44
 
