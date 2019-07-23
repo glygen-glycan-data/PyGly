@@ -169,7 +169,7 @@ class GlycoCTFormat(GlycanFormatter):
         for r in roots:
             if len(r.parent_links()) == 0 or r == g.root():
                 for m in g.subtree_nodes(r,subst=True):
-                    s += self.monofmt.toStr(m)+"\n"
+                    s += self.monofmt.toStr(m).strip('!')+"\n"
         
         first = True
         linkid = 1
@@ -1465,6 +1465,8 @@ if __name__ == '__main__':
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
             print GlycoCTFormat().toStr(g)
+	    for m in g.all_nodes():
+		print m
 	    print g.underivitized_molecular_weight()
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
