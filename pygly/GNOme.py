@@ -8,7 +8,7 @@ import rdflib
 
 
 class GNOme(object):
-    version = "1.1.1"
+    version = "1.1.2"
     referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl" % (version,)
 
     referencefmt = 'xml'
