@@ -162,16 +162,26 @@ class GlycoCTMonoFormat:
         child = res[childid]
         if isinstance(child,Monosaccharide):
             l = parent.add_child(child,
-                             parent_type=parenttype,
-                             parent_pos=parentpos,
-                             child_type=childtype,
-                             child_pos=childpos)
+                                 parent_type=parenttype,
+                                 parent_pos=parentpos,
+                                 child_type=childtype,
+                                 child_pos=childpos)
         else:
+            if child.name() == Substituent.amino and parenttype == Linkage.oxygenPreserved:
+                child._sub = Substituent.amino_oxygen_preserved
+            elif child.name() == Substituent.methyl and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.methyl_oxygen_lost
+            elif child.name() == Substituent.phosphate and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.phosphate_oxygen_lost
+            elif child.name() == Substituent.sulfate and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.sulfate_oxygen_lost
+            elif child.name() == Substituent.acetyl and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.acetyl_oxygen_lost
             l = parent.add_substituent(child,
-                                   parent_type=parenttype,
-                                   parent_pos=parentpos,
-                                   child_type=childtype,
-                                   child_pos=childpos)
+                                       parent_type=parenttype,
+                                       parent_pos=parentpos,
+                                       child_type=childtype,
+                                       child_pos=childpos)
 	return [l]
 
 class MonoSymLookup(dict):

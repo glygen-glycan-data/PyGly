@@ -1465,6 +1465,7 @@ if __name__ == '__main__':
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
             print GlycoCTFormat().toStr(g)
+	    print g.underivitized_molecular_weight()
         except GlycanParseError, e:
             print "!!!", os.path.split(f)[1], e
             bad += 1

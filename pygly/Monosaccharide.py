@@ -656,6 +656,18 @@ class Linkage:
     def id(self):
         return self._id
 
+    def clone(self):
+        l = Linkage(child=self.child(),
+                    parent_pos=self.parent_pos(),
+                    parent_type=self.parent_type(),
+                    child_pos=self.child_pos(),
+                    child_type=self.child_type(),
+                    undetermined=self.undetermined())
+        l.set_id(self.id())
+        l.set_parent(self.parent())
+        l.set_instantiated(self.instantiated())
+        return l
+
     def set_id(self,id):
         self._id = id
 
