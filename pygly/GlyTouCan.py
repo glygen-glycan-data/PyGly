@@ -1190,8 +1190,15 @@ if __name__ == "__main__":
     elif cmd.lower() == "taxa":
 
 	gtc = GlyTouCan()
-	for acc,pubmed in gtc.alltaxa():
-	    print acc,pubmed
+	for acc,taxid in gtc.alltaxa():
+	    print acc,taxid
+
+    elif cmd.lower() == "bytaxa":
+
+	gtc = GlyTouCan()
+	for acc,taxid in gtc.alltaxa():
+	    if taxid == sys.argv[1]:
+                print acc
 
     elif cmd.lower() == "kegg":
 	

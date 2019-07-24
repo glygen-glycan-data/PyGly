@@ -2,7 +2,7 @@
 
 import sys
 import traceback
-import urllib2
+import urllib2, urllib
 import time
 import csv
 import re
@@ -13,7 +13,9 @@ import cPickle as pickle
 from memoize import memoize
 from rdflib import ConjunctiveGraph, Namespace
 from collections import defaultdict
+import warnings
 
+warnings.filterwarnings('ignore')
 
 class APIError(RuntimeError):
     pass
@@ -160,6 +162,16 @@ class UniCarbKB(Triple_store_api):
     # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.1'
     # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.1/query'
     endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.4/query'
+    # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.5/query'
+
+    # human_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.4/human/unicarbkb_2_0_4_human.csv"
+    human_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/human_18072019.csv"
+
+    # mouse_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.4/mouse/unicarbkb_2_0_4_mouse.csv"
+    mouse_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/mouse.csv"
+
+    # rat_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.4/rat/unicarbkb_rat.csv"
+    rat_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/rat.csv"
 
     cachefile = ".unicarbcache"
 
@@ -223,12 +235,12 @@ class UniCarbKB(Triple_store_api):
         return url.split("/")[-1]
 
     def intConversion(self, s):
-        temp = re.compile(r"^\d+\^\^xsd\:int$").findall(s)
-        if len(temp) == 1:
-            t = temp[0]
-            return int(re.compile(r"^\d+").findall(s)[0])
-        else:
-            raise RuntimeError
+	if not s.endswith("^^xsd:int"):
+	    raise ValueError("Can't parse int field: %s"%(s,))
+	s1 = s[:-9].strip()
+	if s1:
+	    return int(s1)
+	return None
 
     def unicarbGlycanURL2id(self, url):
         glycanType, key = url.split("/")[-2:]
@@ -236,29 +248,50 @@ class UniCarbKB(Triple_store_api):
             raise ValueError("Glycan URI is neither structure nor composition")
         return glycanType, key
 
-    def getProtein(self, filepath):
+    def unicarbGlycan2id(self, id):
+	if re.search('^comp_',id):
+	    return "composition",id
+	try:
+	    id = int(id)
+	except ValueError:
+	    raise ValueError("Glycan id is neither structure nor composition")
+	return "structure",str(id)
+
+    def getExportFile(self, taxid, url):
         # The columns will be: UniProt ID, Position, PubMed ID, UniCarb ID, GlyTouCan ID, AminoAcid, TypeAminoAcid, Notes
-        res = []
-        with open(filepath) as f:
-            for i, row in enumerate(csv.reader(f)):
-                if i == 0:
-                    continue
-                processedRow = []
-                row[0] = self.stripURL(row[0])
-                row[1] = self.intConversion(row[1])
-                res.append(row)
-        return res
+	# identifer,Position,Id,Toucan,AminoAcid,TypeAminoAcid,Notes,Pmid,AdditionalNotes
+        f = urllib.urlopen(url)
+        for row in csv.DictReader(f):
+	    for k in row:
+		row[k] = row[k].strip()
+            row['UniProt'] = self.stripURL(row['identifer'])
+            row['Position'] = self.intConversion(row['Position'])
+            row['GlyTouCan'] = row['Toucan']
+            row['UniCarbKB'] = str(row['Id'])
+            row['AminoAcid'] = row['TypeAminoAcid']
+	    row['TaxonomyID'] = str(taxid)
+	    for k in list(row):
+		if row.get(k) in (None,""):
+		    del row[k]
+	    yield row
+	f.close()
 
-    def protein_human(self):
-        return self.getProtein(
-            "./unicarb_temp/data_files_unicarbkb_QC_build_triplestore_2.0.4_human_unicarbkb_2_0_4_human.csv")
+    def human_exports(self):
+	for r in self.getExportFile(9606,self.human_export_url):
+	    yield r
 
-    def protein_mouse(self):
-        return self.getProtein(
-            "./unicarb_temp/data_files_unicarbkb_QC_build_triplestore_2.0.4_mouse_unicarbkb_2_0_4_mouse.csv")
+    def mouse_exports(self):
+	for r in self.getExportFile(10090,self.mouse_export_url):
+	    yield r
 
-    def getAllProtein(self):
-        return self.protein_human() + self.protein_mouse()
+    def rat_exports(self):
+	for r in self.getExportFile(10116,self.rat_export_url):
+	    yield r
+
+    def exports(self):
+	for iter in (self.human_exports(),self.mouse_exports(),self.rat_exports()):
+	    for r in iter:
+		yield r
 
     def unicarb2glytoucan(self):
         querykey = "unicarb2glytoucan"
@@ -269,11 +302,25 @@ class UniCarbKB(Triple_store_api):
         res = defaultdict(set)
         for r in results.bindings:
             row = map(str, map(r.get, results.vars))
-            gtype, uid = self.unicarbGlycanURL2id(row[0])
-            if gtype != 'structure' or not uid:
-                continue
+	    try:
+                gtype, uid = self.unicarbGlycanURL2id(row[0])
+	    except ValueError:
+		continue
+	    if not uid:
+		continue
             gid = row[1]
             res[uid].add(gid)
+	for row in self.exports():
+	    try:
+	        gtype, uid = self.unicarbGlycan2id(row['UniCarbKB'])
+	    except ValueError:
+		continue
+	    if not uid:
+		continue
+	    gtcacc = row.get('GlyTouCan')
+	    if not gtcacc:
+		continue
+	    res[uid].add(gtcacc)
         if self.usecache:
             self.cachedata[querykey] = res
             self.cacheupdated = True
@@ -287,11 +334,23 @@ class UniCarbKB(Triple_store_api):
         res = defaultdict(set)
         for r in results.bindings:
             row = map(str, map(r.get, results.vars))
-            gtype, uid = self.unicarbGlycanURL2id(row[0])
-            if gtype != 'structure' or not uid:
-                continue
+	    try:
+                gtype, uid = self.unicarbGlycanURL2id(row[0])
+	    except ValueError:
+		continue
+	    if not uid:
+		continue
             taxonomy = self.stripURL(row[1])
             res[uid].add(taxonomy)
+	for row in self.exports():
+	    try:
+	        gtype, uid = self.unicarbGlycan2id(row['UniCarbKB'])
+	    except ValueError:
+		continue
+	    if not uid:
+		continue
+	    taxonomy = row['TaxonomyID']
+	    res[uid].add(taxonomy)
         if self.usecache:
             self.cachedata[querykey] = res
             self.cacheupdated = True
@@ -319,6 +378,13 @@ class UniCarbKB(Triple_store_api):
         UniCarbID = str(UniCarbID)
         return self.idmapping[UniCarbID]
 
+def intstr(id,*args):
+    try:
+        id = int(id)
+        return (id,"")
+    except ValueError:
+        pass
+    return (1e+20,id)
 
 if __name__ == "__main__":
 
@@ -330,17 +396,31 @@ if __name__ == "__main__":
 
         uc = UniCarbKB()
         taxa = uc.taxonomy()
-        for k, v in taxa.items():
-            for vi in v:
+        for k, v in sorted(taxa.items(),key=lambda t: intstr(*t)):
+            for vi in sorted(v,key=intstr):
                 print k, vi
 
     elif cmd.lower() == "glytoucan":
 
         uc = UniCarbKB()
         gtc = uc.unicarb2glytoucan()
-        for k, v in gtc.items():
-            for vi in v:
+        for k, v in sorted(gtc.items(),key=lambda t: intstr(*t)):
+            for vi in sorted(v,key=intstr):
                 print k, vi
+
+    elif cmd.lower() == "gtcbytaxa":
+
+        res = set()
+	uc = UniCarbKB()
+	gtc = uc.unicarb2glytoucan()
+	taxa = uc.taxonomy()
+	for k,v in taxa.items():
+	    if sys.argv[1] in v:
+		for vi in gtc[k]:
+		    res.add(vi)
+
+	for k in sorted(res,key=intstr):
+	    print k
 
     else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
