@@ -250,6 +250,8 @@ class UniCarbKB(Triple_store_api):
 
     def unicarbGlycan2id(self, id):
 	if re.search('^comp_',id):
+	    return "composition",id[5:]
+	if re.search('^HexNAc',id):
 	    return "composition",id
 	try:
 	    id = int(id)
@@ -270,6 +272,12 @@ class UniCarbKB(Triple_store_api):
             row['UniCarbKB'] = str(row['Id'])
             row['AminoAcid'] = row['TypeAminoAcid']
 	    row['TaxonomyID'] = str(taxid)
+	    try:
+                row['PubMedID'] = str(int(row['Pmid']))
+		if int(row['PubMedID']) <= 0:
+		    del row['PubMedID']
+	    except ValueError:
+		pass
 	    for k in list(row):
 		if row.get(k) in (None,""):
 		    del row[k]
@@ -350,11 +358,26 @@ class UniCarbKB(Triple_store_api):
 	    if not uid:
 		continue
 	    taxonomy = row['TaxonomyID']
-	    res[uid].add(taxonomy)
+	    if taxonomy:
+	        res[uid].add(taxonomy)
         if self.usecache:
             self.cachedata[querykey] = res
             self.cacheupdated = True
         return res
+
+    def references(self):
+        res = defaultdict(set)
+	for row in self.exports():
+	    try:
+                gtype, uid = self.unicarbGlycan2id(row['UniCarbKB'])
+            except ValueError:
+                continue
+            if not uid:
+                continue
+            pubmed = row.get('PubMedID')
+	    if pubmed:
+	        res[uid].add(pubmed)
+	return res
 
     def protein_query_search(self):
         querykey = "fullpriteindetail"
@@ -422,6 +445,14 @@ if __name__ == "__main__":
 	for k in sorted(res,key=intstr):
 	    print k
 
+    if cmd.lower() == "references":
+	
+	uc = UniCarbKB()
+        pubmed = uc.references()
+	for k,v in sorted(pubmed.items(),key=lambda t: intstr(*t)):
+	    for vi in sorted(v,key=intstr):
+		print k, vi
+	
     else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
         sys.exit(1)

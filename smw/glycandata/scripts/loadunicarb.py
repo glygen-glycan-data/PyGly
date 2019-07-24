@@ -13,10 +13,14 @@ for l in open(sys.argv[1]):
     gtc2uc[sl[1]].add(sl[0])
 
 uc2taxa = defaultdict(set)
-for taxafile in sys.argv[2:]:
-  for l in open(taxafile):
+for l in open(sys.argv[2]):
     sl = l.split()
     uc2taxa[sl[0]].add(sl[1])
+
+uc2pubmed = defaultdict(set)
+for l in open(sys.argv[3]):
+    sl = l.split()
+    uc2pubmed[sl[0]].add(sl[1])
 
 for m in w.iterglycan():
     start = time.time()
@@ -35,6 +39,14 @@ for m in w.iterglycan():
 	m.set_annotation(value=list(uctaxa), property="Taxonomy", source="UniCarbKB", type="Taxonomy")
     else:
         m.delete_annotations(property="Taxonomy", source="UniCarbKB", type="Taxonomy")
+
+    ucpubmed = set()
+    for ucacc in ucaccs:
+	ucpubmed.update(uc2pubmed[ucacc])
+    if len(ucpubmed) > 0:
+	m.set_annotation(value=list(ucpubmed), property="Publication", source="UniCarbKB", type="Publication")
+    else:
+        m.delete_annotations(property="Publication", source="UniCarbKB", type="Publication")
 
     if w.put(m):
         print >>sys.stderr, "%s updated in %.2f sec"%(m.get('accession'),time.time()-start,)
