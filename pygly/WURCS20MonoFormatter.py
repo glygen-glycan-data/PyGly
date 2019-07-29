@@ -81,8 +81,9 @@ class WURCS20MonoFormat:
             anomer_s = self.skel_config_get("anomer")
             if anomer_s:
                 m.set_anomer(eval(anomer_s))
-                m.set_ring_start(0)
-                m.set_ring_end(0)
+		if m.anomer() == Anomer.uncyclized:
+                    m.set_ring_start(0)
+                    m.set_ring_end(0)
 
             stem = self.skel_config_get("stem")
             if stem:
@@ -114,11 +115,16 @@ class WURCS20MonoFormat:
             # skeleton code not supported
             raise UnsupportedSkeletonCodeError(skel)
 
-        if (not anomer_s) and anomer:
-            if anomer[2] == "a":
-                m.set_anomer(1)
-            elif anomer[2] == "b":
-                m.set_anomer(2)
+        if anomer:
+	    # anomer includes the leading _, I guess ?
+	    if anomer_s and eval(anomer_s) != Anomer.missing:
+		raise InvalidMonoError(mono_string)
+            if anomer[2:] == "a":
+                m.set_anomer(Anomer.alpha)
+            elif anomer[2:] == "b":
+                m.set_anomer(Anomer.beta)
+	    else:
+		raise InvalidMonoError(mono_string)
 
         if ring:
             if re.search(r"_\d-\?", ring):

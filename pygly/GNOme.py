@@ -343,7 +343,7 @@ class SubsumptionGraph:
                 elif acc not in outedges[bcomp] and acc != bcomp:
                     self.warning("annotated base composition %s does not subsume %s" % (bcomp, acc), 1)
             try:
-                umw = cluster[acc]['glycan'].underivitized_moleGNO_00000016cular_weight()
+                umw = cluster[acc]['glycan'].underivitized_molecular_weight()
             except LookupError:
                 umw = None
             if umw == None:
@@ -387,6 +387,7 @@ class SubsumptionGraph:
                 elif level != "Saccharide":
                     self.warning(
                         "annotation inferred level %s for %s != computed level Saccharide (anomer)" % (level, acc), 1)
+		    # cluster[acc]['level'] = 'Saccharide*'
                 continue
             if self.any_parent_pos(gly):
                 if not level:
@@ -395,29 +396,34 @@ class SubsumptionGraph:
                     self.warning(
                         "annotation inferred level %s for %s != computed level Saccharide (parent_pos)" % (level, acc),
                         1)
+                    # cluster[acc]['level'] = 'Saccharide*'
                 continue
             if self.any_links(gly):
                 if not level:
                     cluster[acc]['level'] = 'Topology*'
                 elif level != "Topology":
                     self.warning("annotation inferred level %s for %s != computed level Topology" % (level, acc), 1)
+                    # cluster[acc]['level'] = 'Topology*'
                 continue
             if self.monosaccharide_count(gly) == 1 and self.any_ring(gly):
                 if not level:
                     cluster[acc]['level'] = 'Topology*'
                 elif level != "Topology":
                     self.warning("annotation inferred level %s for %s != computed level Topology" % (level, acc), 1)
+                    # cluster[acc]['level'] = 'Topology*'
                 continue
             if self.any_stem(gly):
                 if not level:
                     cluster[acc]['level'] = 'Composition*'
                 elif level != "Composition":
                     self.warning("annotation inferred level %s for %s != computed level Composition" % (level, acc), 1)
+                    # cluster[acc]['level'] = 'Composition*'
                 continue
             if not level:
                 cluster[acc]['level'] = 'BaseComposition*'
             elif level != "BaseComposition":
                 self.warning("annotation inferred level %s for %s != computed level BaseComposition" % (level, acc), 1)
+                # cluster[acc]['level'] = 'BaseComposition*'
 
         for acc in clusteracc:
             g = cluster[acc]
