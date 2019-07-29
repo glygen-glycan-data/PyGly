@@ -1,0 +1,9 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{1}}}
+| {{#ifeq:{{{1}}}|EnzymeDetails|{{#arraymap:{{{2}}}|;|xxx|xxx|<br/>}}|{{#switch:{{{1}}}
+|Human Enzyme={{#arraymap:{{{2}}}|;|xxx|[https://www.ncbi.nlm.nih.gov/gene/?term=xxx%5Bsym%5D+AND+%22Homo+sapiens%22%5BOrganism%5D xxx]|,&thinsp;}}
+|Mouse Enzyme={{#arraymap:{{{2}}}|;|xxx|[https://www.ncbi.nlm.nih.gov/gene/?term=xxx%5Bsym%5D+AND+%22Mus+musculus%22%5BOrganism%5D xxx]|,&thinsp;}}
+}}}}
+| style="width: 150px;" | {{{3}}}
+</includeonly>

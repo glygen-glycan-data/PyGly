@@ -1,8 +1,8 @@
 <includeonly>{{#ask:
 [[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
+[[glycandata:property::!EnzymeDetails]]
 [[glycandata:type::{{{2}}}]]
-[[glycandata:property::!NamedMotif]]
 |?glycandata:property=Property
 |?glycandata:value=Value
 |?glycandata:source=Source
@@ -10,7 +10,7 @@
 |sort=glycandata:source, glycandata:property
 |intro= <h2>{{{1}}}</h2>
 |format=template
-|template=GlycomotifTableRows
+|template=EnzymeTableRows
 |introtemplate=AnnotationTableIntro
 |outrotemplate=AnnotationTableOutro
 |valuesep=;
