@@ -1275,6 +1275,10 @@ class CircularError(WURCS20ParseError):
   def __init__(self,instr):
    self.message = "WURCS2.0 parser: Circular structure not supported:\n     %s"%(instr,)
 
+class UnexpectedConnectivityError(WURCS20ParseError):
+  def __init__(self,instr):
+   self.message = "WURCS2.0 parser: Unexpected or strange connectivity:\n     %s"%(instr,)
+
 import WURCS20MonoFormatter
 
 class WURCS20Format(GlycanFormatter):
@@ -1434,12 +1438,32 @@ class WURCS20Format(GlycanFormatter):
                 continue
             m.set_connected(False)
             unconnected.add(m)
+
+        if len(unconnected) not in (1,monocnt):
+ 	    tofix = set()
+	    for m in unconnected:
+	        if len(m.links()) != 1:
+		    continue
+		for l in m.links():
+		    if l.parent_pos() == None and l.child_pos() == None:
+			tofix.add(m)
+	    
+	    if len(tofix) == (len(unconnected)-1):
+		for m in tofix:
+		    m.links()[0].reverse()
+		    m.set_connected(True)
+		    unconnected.remove(m)
+
         # print len(unconnected)
         # for m in unconnected:
         #     print m
+
         if len(unconnected) == 0:
             raise CircularError(s)
-        assert len(unconnected) in (1,monocnt), "# of unconnected nodes: %s not in {1,%d}"%(len(unconnected),monocnt)
+        # assert len(unconnected) in (1,monocnt), "# of unconnected nodes: %s not in {1,%d}"%(len(unconnected),monocnt)
+	if len(unconnected) not in (1,monocnt):
+	    raise UnexpectedConnectivityError(s)
+	    
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
             g.set_undetermined(undets)

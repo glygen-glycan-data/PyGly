@@ -116,30 +116,34 @@ class WURCS20MonoFormat:
             raise UnsupportedSkeletonCodeError(skel)
 
         if anomer:
-	    # anomer includes the leading _, I guess ?
+            match = re.search(r"^-(\d)(.)$", anomer)
+	    if not match:
+		raise InvalidMonoError(mono_string)
 	    if anomer_s and eval(anomer_s) != Anomer.missing:
 		raise InvalidMonoError(mono_string)
-            if anomer[2:] == "a":
+            if match.group(2) == "a":
                 m.set_anomer(Anomer.alpha)
-            elif anomer[2:] == "b":
+            elif match.group(2) == "b":
                 m.set_anomer(Anomer.beta)
+            elif match.group(2) == "x":
+                m.set_anomer(Anomer.missing)
 	    else:
 		raise InvalidMonoError(mono_string)
 
         if ring:
-            if re.search(r"_\d-\?", ring):
+            match = re.search(r"^_(\d|\?)-(\d|\?)$", ring)
+	    if not match:
+		raise InvalidMonoError(mono_string)
+            try:
+                r_s = int(match.group(1))
+                m.set_ring_start(r_s)
+            except ValueError:
                 pass
-            else:
-                try:
-                    r_s = int(ring[1])
-                    m.set_ring_start(r_s)
-                except ValueError:
-                    pass
-                try:
-                    r_e = int(ring[-1])
-                    m.set_ring_end(r_e)
-                except ValueError:
-                    pass
+            try:
+                r_e = int(match.group(2))
+                m.set_ring_end(r_e)
+            except ValueError:
+                pass
 
         if substs:
             sub_list = substs[1:].split("_")

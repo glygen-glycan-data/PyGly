@@ -656,6 +656,21 @@ class Linkage:
     def id(self):
         return self._id
 
+    def reverse(self):
+	assert self.parent()
+	l = Linkage(child=self.parent(),
+                    parent_pos=self.child_pos(),
+                    parent_type=self.child_type(),
+                    child_pos=self.parent_pos(),
+                    child_type=self.parent_type(),
+                    undetermined=self.undetermined())
+	l.set_parent(self.child())
+	self.child().del_parent_link(self)
+	self.child().add_link(l)
+	self.parent().del_link(self)
+	self.parent().add_parent_link(l)
+	return l
+
     def clone(self):
         l = Linkage(child=self.child(),
                     parent_pos=self.parent_pos(),
