@@ -1,0 +1,267 @@
+residue_name,local_residue_ID,Uniprot,Protein RefSeq,DNA RefSeq,gene name,gene id,species,uniprot,Protein RefSeq,DNA RefSeq,gene name,gene id,species,Notes:,Branch site specificity 
+N-glycan_core_b-D-GlcpNAc_B,NB,Q9D081,NP_077140,NM_024178,Alg14,66789,mouse,Q96F25,NP_659425,NM_144988,ALG14,199857,human,,
+N-glycan_core_b-D-GlcpNAc_B,NB,Q9D8C3,NP_080523,NM_026247 ,Alg13,67574,mouse,Q9NP73,NP_060936,NM_018466               ,ALG13,79868,human,,
+N-glycan_core_b-D-GlcpNAc_B,NB,Q8BML3,NP_796104,NM_177130 ,Glt28d2,320302,mouse,N/A,N/A,N/A,N/A,N/A,human,not in human,
+N-glycan_core_b-D-Manp,NC,Q921Q3,NP_663337,NM_145362,Alg1,208211,mouse,Q9BT22,NP_061982,NM_019109,ALG1,56052,human,,
+N-glycan_a-D-Manp_4,N4,Q9DBE8,NP_064382,NM_019998,Alg2,56737,mouse,Q9H553,NP_149078,NM_033087,ALG2,85365,human,,
+N-glycan_a-D-Manp_1,N1,Q9DBE8,NP_064382,NM_019998,Alg2,56737,mouse,Q9H553,NP_149078,NM_033087,ALG2,85365,human,,
+N-glycan_a-D-Manp_21,N21,Q3TZM9,NP_898965,NM_183142,Alg11,207958,mouse,Q2TAA5,NP_001004127.1,NM_001004127,ALG11,440138,human,,
+N-glycan_a-D-Manp_22,N22,Q3TZM9,NP_898965,NM_183142,Alg11,207958,mouse,Q2TAA5,NP_001004127.1,NM_001004127,ALG11,440138,human,,
+N-glycan_a-D-Manp_19,N19,Q8K2A8,NP_666051,NM_145939,Alg3,208624,mouse,Q92685,NP_005778,NM_005787,ALG3,10195,human,,
+N-glycan_a-D-Manp_24,N24,Q8VDI9,NP_598742,NM_133981,Alg9,102580,mouse,Q9H6U8,NP_079016 ,NM_024740,ALG9,79796,human,,
+N-glycan_a-D-Manp_20,N20,Q8K2A8,NP_666051,NM_145939,Alg3,208624,mouse,Q92685,NP_005778,NM_005787,ALG3,10195,human,,
+N-glycan_a-D-Manp_23,N23,Q8VDB2,NP_663452,NM_145477 ,Alg12,223774,mouse,Q9BV10,NP_077010,NM_024105,ALG12,79087,human,,
+N-glycan_a-D-Glcp_25,N25,Q3TAE8,NP_001074733,NM_001081264,Alg6,320438,mouse,Q9Y672,NP_037471,NM_013339,ALG6,29929,human,,
+N-glycan_a-D-Glcp_26,N26,Q6P8H8,NP_950200,NM_199035,Alg8,381903,mouse,Q9BVK2,NP_076984,NM_024079,ALG8,79053,human,,
+N-glycan_a-D-Glcp_27,N27,Q3UGP8,NP_001028613,NM_001033441,Alg10b,380959,mouse,Q5BKT4,NP_116223,NM_032834,ALG10,84920,human,,
+N-glycan_b-D-GlcpNAc_2,N2,P27808,NP_034924,NM_010794,Mgat1,17308,mouse,P26572,NP_001108090 ,NM_001114618 ,MGAT1,4245,human,,
+N-glycan_a-L-Fucp_15,N15,Q9WTS2,NP_058589,NM_016893,Fut8,53618,mouse,Q9BYC5,NP_835368 ,NM_178155 ,FUT8,2530,human,,
+N-glycan_b-D-GlcpNAc_5,N5,Q921V5,NP_666147,NM_146035,Mgat2,217664,mouse,Q10469,NP_002399,NM_002408,MGAT2,4247,human,,
+N-glycan_b-D-Galp_3,N3,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_3,N3,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_3,N3,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_7,N7,Q812G0,NP_776295,NM_173870,Mgat4a,269181,mouse,Q9UM21,NP_036346,NM_012214,MGAT4A,11320,human,,
+N-glycan_b-D-GlcpNAc_7,N7,Q812F8,NP_666038,NM_145926,Mgat4b,103534,mouse,Q9UQ53,NP_055090,NM_014275 ,MGAT4B,11282,human,,
+N-glycan_b-D-GlcpNAc_7,N7,Q9D306,NP_080519,NM_026243,Mgat4c,67569,mouse,Q9UBM8,NP_037376,NM_013244,MGAT4C,25834,human,,
+N-glycan_b-D-Galp_6,N6,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_6,N6,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_6,N6,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_28,N28,O54905,NP_064409,NM_020025,B3gal2,26878,mouse,O43825,NP_003774,NM_003783,B3GALT2,8707,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_28,N28,Q9JI67,NP_149161,NM_033149,B3galt5,96961,mouse,Q9Y2C3,NP_006048,NM_006057,B3GALT5,10317,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_12,N12,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,major,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_12,N12,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,minor,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_13,N13,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,major,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_13,N13,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,minor,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_33,N33,P97325,NP_033202,NM_099176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279,ST3GAL3,6487,human,major,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_33,N33,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,minor,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_33,N33,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,minor,Branch site specificity unknown
+N-glycan_b-D-Galp_8,N8,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_8,N8,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_8,N8,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_14,N14,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,major,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_14,N14,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528  ,ST6GAL2,84620,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_9,N9,Q8R4G6,NP_660110,NM_145128,Mgat5,107895,mouse,Q09328,NP_002401,NM_002410,MGAT5,4249,human,major,
+N-glycan_b-D-GlcpNAc_9,N9,Q765H6,NP_766536,NM_172948,Mgat5b,268510,mouse,Q3V5L5,NP_653278,NM_144677,MGAT5B,146664,human,minor?,
+N-glycan_b-D-Galp_10,N10,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_10,N10,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_10,N10,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_36,N36,Q9Z222,NP_058584,NM_016888,B3gnt2,53625,mouse,Q9NY97,NP_006568,NM_006577,B3GNT2,10678,human,major,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_36,N36,Q1RLK6,NP_941013,NM_198611,B3gnt4,231727,mouse,Q9C0J1,NP_110392,NM_030765,B3GNT4,79369,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_36,N36,Q8R3I9,NP_666296,NM_146184,B3gnt8,232984,mouse,Q7Z7M8,NP_940942,NM_198540,B3GNT8,374907,human,,only adds to tetra-anntenary
+N-glycan_b-D-GlcpNAc_59,N59,Q9Z222,NP_058584,NM_016888,B3gnt2,53625,mouse,Q9NY97,NP_006568,NM_006577,B3GNT2,10678,human,major,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_59,N59,Q1RLK6,NP_941013,NM_198611,B3gnt4,231727,mouse,Q9C0J1,NP_110392,NM_030765,B3GNT4,79369,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_59,N59,Q8R3I9,NP_666296,NM_146184,B3gnt8,232984,mouse,Q7Z7M8,NP_940942,NM_198540,B3GNT8,374907,human,,only adds to tetra-anntenary
+N-glycan_b-D-GlcpNAc_62,N62,Q9Z222,NP_058584,NM_016888,B3gnt2,53625,mouse,Q9NY97,NP_006568,NM_006577,B3GNT2,10678,human,major,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_62,N62,Q1RLK6,NP_941013,NM_198611,B3gnt4,231727,mouse,Q9C0J1,NP_110392,NM_030765,B3GNT4,79369,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_62,N62,Q8R3I9,NP_666296,NM_146184,B3gnt8,232984,mouse,Q7Z7M8,NP_940942,NM_198540,B3GNT8,374907,human,,only adds to tetra-anntenary
+N-glycan_b-D-GlcpNAc_75,N75,Q9Z222,NP_058584,NM_016888,B3gnt2,53625,mouse,Q9NY97,NP_006568,NM_006577,B3GNT2,10678,human,major,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_75,N75,Q1RLK6,NP_941013,NM_198611,B3gnt4,231727,mouse,Q9C0J1,NP_110392,NM_030765,B3GNT4,79369,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_75,N75,Q8R3I9,NP_666296,NM_146184,B3gnt8,232984,mouse,Q7Z7M8,NP_940942,NM_198540,B3GNT8,374907,human,,only adds to tetra-anntenary
+N-glycan_b-D-Galp_37,N37,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_37,N37,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_37,N37,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_60,N60,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_60,N60,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_60,N60,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_80,N80,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_80,N80,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_80,N80,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_17,N17,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_17,N17,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_17,N17,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_34,N34,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_34,N34,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_34,N34,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_38,N38,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_38,N38,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_38,N38,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_16,N16,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_16,N16,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_16,N16,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100 ,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-L-Fucp_18,N18,N/A,N/A,N/A,Fut3,N/A,mouse,P21217,NP_000140,NM_000149 ,FUT3,2525,human,Not in mouse,Branch site specificity unknown
+N-glycan_a-L-Fucp_18,N18,Q11127,NP_034372,NM_010242,Fut4,14345,mouse,P22083,NP_002024,NM_002033,FUT4,2526,human,,Branch site specificity unknown
+N-glycan_a-L-Fucp_18,N18,N/A,N/A,N/A,Fut5,N/A,mouse,Q11128,NP_002025 ,NM_002034,FUT5,2527,human,Not in mouse,Branch site specificity unknown
+N-glycan_a-L-Fucp_18,N18,N/A,N/A,N/A,Fut6,N/A,mouse,P51993,NP_000141,NM_000150,FUT6,2528,human,Not in mouse,Branch site specificity unknown
+N-glycan_a-L-Fucp_18,N18,O88819,NP_034373,NM_010243,Fut9,14348,mouse,Q9Y231,NP_006572,NM_006581,FUT9,10690,human,,Branch site specificity unknown
+N-glycan_a-L-Fucp_41,N41,Q5F2L2,NP_598922,NM_134161,Fut10,171167,mouse,Q6P4F1,NP_116053,NM_032664,FUT10,84750,human,??? May add to GlcNAc with out attached B4Gal residue,Branch site specificity unknown
+N-glycan_a-L-Fucp_41,N41,Q8BHC9,NP_082704,NM_028428,Fut11,73068,mouse,Q495W5,NP_775811,NM_173540,FUT11,170384,human,???,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_35,N35,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,Prefers a3 manose arm over a6,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_35,N35,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_11,N11,Q10470,NP_034925,NM_010795,Mgat3,17309,mouse,Q09327,NP_003500,NM_002409,MGAT3,4248,human,,
+N-glycan_a-D-Neup5Gc_47,N47,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,"Prefers a3 mannose arm over a6, mouse enzyme utilized CMP-NeuGc 7x faster and CMP-NeuAc in vitro (Hamamoto et al ,1995), unknown preference by human enzyme, low amt of NeuGc in Human glycans as it can't be synthesized by comes from external sources",Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_47,N47,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_48,N48,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,"Prefers a3 mannose arm over a6, mouse enzyme utilized CMP-NeuGc 7x faster and CMP-NeuAc in vitro (Hamamoto et al ,1995), unknown preference by human enzyme, low amt of NeuGc in Human glycans as it can't be synthesized by comes from external sources",Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_48,N48,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528   ,ST6GAL2,84620,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_49,N49,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,"Prefers a3 mannose arm over a6, mouse enzyme utilized CMP-NeuGc 7x faster and CMP-NeuAc in vitro (Hamamoto et al ,1995), unknown preference by human enzyme, low amt of NeuGc in Human glycans as it can't be synthesized by comes from external sources",Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_49,N49,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,,Branch site specificity unknown
+N-glycan_a-D-Galp_50,N50,P38649,NP_109643,NM_030718,Abo,80908,mouse,P16442,NP_065202,NM_020469,ABO,28,human,The minimal acceptor is an H-disaccharide (aFuc1-2bGal),"This stucture is missing the Fucose residue, potentially a catabolic product"
+N-glycan_b-D-GlcpNAc_31,N31,Q9D306,NP_080519,NM_026243,Mgat4c,67569,mouse,Q9UBM8,NP_037376,NM_013244,MGAT4C,25834,human,putative acivity,
+N-glycan_a-D-Galp_39,N39,P38649,NP_109643,NM_030718,Abo,80908,mouse,P16442,NP_065202,NM_020469,ABO,28,human,The minimal acceptor is an H-disaccharide (aFuc1-2bGal),"This stucture is missing the Fucose residue, potentially a catabolic product"
+N-glycan_a-D-Galp_51,N51,P38649,NP_109643,NM_030718,Abo,80908,mouse,P16442,NP_065202,NM_020469,ABO,28,human,The minimal acceptor is an H-disaccharide (aFuc1-2bGal),"This stucture is missing the Fucose residue, potentially a catabolic product"
+N-glycan_b-D-Galp_32,N32,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,"No record of this substrate being tested, These enzymes will add to B1,4 linked GlcNAc on the a3 arm mannose, b4 GlcNAc on the a6 arm (#31) is putative",
+N-glycan_b-D-Galp_32,N32,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,
+N-glycan_b-D-Galp_32,N32,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,
+N-glycan_a-L-Fucp_42,N42,O88819,NP_034373,NM_010243,Fut9,14348,mouse,Q9Y231,NP_006572,NM_006581,FUT9,10690,human,"Pref Non-SO4 & Non-SA, little to no act on 3O SO4 or SA",Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_42,N42,Q11127,NP_034372,NM_010242,Fut4,14345,mouse,P22083,NP_002024,NM_002033,FUT4,2526,human,"Equal pref for 3O sulf and Non-SO4 and Non-SA Type 1 and 2, Little act on Sial",Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_42,N42,N/A,N/A,N/A,Fut3,N/A,mouse,P21217,NP_000140,NM_000149,FUT3,2525,human,Pref 3O sulf Type I and 2> Non-SO4 & Non-SA> Sial Type 1 & 2,Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_42,N42,N/A,N/A,N/A,Fut5,N/A,mouse,Q11128,NP_002025 ,NM_002034,FUT5,2527,human,Pref 3O sulf Type I and 2> Sial Type 1&2>Non-SO4 & Non-SA,Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_42,N42,N/A,N/A,N/A,Fut6,N/A,mouse,P51993,NP_000141,NM_000150,FUT6,2528,human,Pref 3O sulf Type I and 2> Sial Type 1&2>Non-SO4 & Non-SA,Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_43,N43,O88819,NP_034373,NM_010243,Fut9,14348,mouse,Q9Y231,NP_006572,NM_006581,FUT9,10690,human,"Pref Non-SO4 & Non-SA, little to no act on 3O SO4 or SA",Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_43,N43,Q11127,NP_034372,NM_010242,Fut4,14345,mouse,P22083,NP_002024,NM_002033,FUT4,2526,human,"Equal pref for 3O sulf and Non-SO4 and Non-SA Type 1 and 2, Little act on Sial",Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_43,N43,N/A,N/A,N/A,Fut3,N/A,mouse,P21217,NP_000140,NM_000149,FUT3,2525,human,Pref 3O sulf Type I and 2> Non-SO4 & Non-SA> Sial Type 1 & 2,Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_43,N43,N/A,N/A,N/A,Fut5,N/A,mouse,Q11128,NP_002025 ,NM_002034,FUT5,2527,human,Pref 3O sulf Type I and 2> Sial Type 1&2>Non-SO4 & Non-SA,Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_a-L-Fucp_43,N43,N/A,N/A,N/A,Fut6,N/A,mouse,P51993,NP_000141,NM_000150 ,FUT6,2528,human,Pref 3O sulf Type I and 2> Sial Type 1&2>Non-SO4 & Non-SA,Branch site specificity unknown: Listed in potential order of specificity
+N-glycan_b-D-Galp_44,N44,O54905,NP_064409,NM_020025,B3gal2,26878,mouse,O43825,NP_003774,NM_003783,B3GALT2,8707,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_44,N44,Q9JI67,NP_149161,NM_033149,B3galt5,96961,mouse,Q9Y2C3,NP_006048,NM_006057,B3GALT5,10317,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_46,N46,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_46,N46,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_46,N46,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Galp_52,N52,P38649,NP_109643,NM_030718,Abo,80908,mouse,P16442,NP_065202,NM_020469,ABO,28,human,The minimal acceptor is an H-disaccharide (aFuc1-2bGal),"This stucture is missing the Fucose residue, potentially a catabolic product"
+N-glycan_a-L-Fucp_53,N53,O09160,NP_032077,NM_008051,Fut1,14343,mouse,P19526,NP_000139,NM_000148 ,FUT1,2523,human,,
+N-glycan_a-L-Fucp_53,N53,Q9JL27,NP_061364,NM_018876,Fut2,14344,mouse,Q10981,NP_000502 ,NM_000511,FUT2,2524,human,,
+N-glycan_a-L-Fucp_53,N53,P97353,NP_001258507,NM_019934,Sec1,56546,mouse,N/A,N/A,N/A,N/A,N/A,human,not in human,
+N-glycan_a-L-Fucp_54,N54,O09160,NP_032077,NM_008051,Fut1,14343,mouse,P19526,NP_000139,NM_000148,FUT1,2523,human,,
+N-glycan_a-L-Fucp_54,N54,Q9JL27,NP_061364,NM_018876,Fut2,14344,mouse,Q10981,NP_000502 ,NM_000511,FUT2,2524,human,,
+N-glycan_a-L-Fucp_54,N54,P97353,NP_001258507,NM_019934,Sec1,56546,mouse,N/A,N/A,N/A,N/A,N/A,human,not in human,
+N-glycan_a-D-Neup5Gc_55,N55,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_55,N55,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_55,N55,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_56,N56,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_56,N56,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_56,N56,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_57,N57,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_57,N57,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Gc_57,N57,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_b-D-Galp_63,N63,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_63,N63,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_63,N63,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_58,N58,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_58,N58,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_58,N58,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_61,N61,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_61,N61,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_61,N61,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_64,N64,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_64,N64,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_64,N64,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_29,N29,A0A1D5RMF7,NP_942585,NM_198884,B4galnt3,330406,mouse,Q6L9W6,NP_775864,NM_173593,B4GALNT3,283358,human,,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_29,N29,Q766D5,NP_808565,NM_177897,B4galnt4,330671,mouse,Q76KP1,NP_848632,NM_178537,B4GALNT4,338707,human,,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_30,N30,A0A1D5RMF7,NP_942585,NM_198884,B4galnt3,330406,mouse,Q6L9W6,NP_775864,NM_173593,B4GALNT3,283358,human,,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_30,N30,Q766D5,NP_808565,NM_177897,B4galnt4,330671,mouse,Q76KP1,NP_848632,NM_178537,B4GALNT4,338707,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_73,N73,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_73,N73,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_73,N73,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_101,N101,P97325,NP_033202,NM_009176,St3gal3,20441,mouse,Q11203,NP_777623 ,NM_006279  ,ST3GAL3,6487,human,minor (type 1> type2),Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_101,N101,Q91Y74,NP_033204,NM_009178,St3gal4,20443,mouse,Q11206,NP_006269,NM_006278,ST3GAL4,6484,human,type 2> type1,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_101,N101,Q8VIB3,NP_061254,NM_018784,St3gal6,54613,mouse,Q9Y274,NP_006091,NM_006100,ST3GAL6,10402,human,type 2,Branch site specificity unknown
+N-glycan_b-D-Galp_86,N86,O54905,NP_064409,NM_020025,B3gal2,26878,mouse,O43825,NP_003774,NM_003783,B3GALT2,8707,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_86,N86,Q9JI67,NP_149161,NM_033149,B3galt5,96961,mouse,Q9Y2C3,NP_006048,NM_006057,B3GALT5,10317,human,,Branch site specificity unknown
+N-glycan_core_b-D-GlcpNAc_A,NA,P42867,NP_031901,NM_007875,Dpagt1,13478,mouse,Q9H3H5,NP_001373,NM_001382,DPAGT1,1798,human,,
+N-glycan_a-L-Fucp_71,N71,O09160,NP_032077,NM_008051,Fut1,14343,mouse,P19526,NP_000139,NM_000148,FUT1,2523,human,,
+N-glycan_a-L-Fucp_71,N71,Q9JL27,NP_061364,NM_018876,Fut2,14344,mouse,Q10981,NP_000502 ,NM_000511,FUT2,2524,human,,
+N-glycan_a-L-Fucp_71,N71,P97353,NP_001258507,NM_019934,Sec1,56546,mouse,N/A,N/A,N/A,N/A,N/A,human,not in human,
+N-glycan_b-D-GlcpNAc_65,N65,Q9Z222,NP_058584,NM_016888,B3gnt2,53625,mouse,Q9NY97,NP_006568,NM_006577,B3GNT2,10678,human,major,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_65,N65,Q1RLK6,NP_941013,NM_198611,B3gnt4,231727,mouse,Q9C0J1,NP_110392,NM_030765,B3GNT4,79369,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_65,N65,Q8R3I9,NP_666296,NM_146184,B3gnt8,232984,mouse,Q7Z7M8,NP_940942,NM_198540,B3GNT8,374907,human,,only adds to tetra-anntenary
+N-glycan_b-D-Galp_66,N66,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_66,N66,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_66,N66,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_67,N67,Q9Z222,NP_058584,NM_016888,B3gnt2,53625,mouse,Q9NY97,NP_006568,NM_006577,B3GNT2,10678,human,major,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_67,N67,Q1RLK6,NP_941013,NM_198611,B3gnt4,231727,mouse,Q9C0J1,NP_110392,NM_030765,B3GNT4,79369,human,minor,Branch site specificity unknown
+N-glycan_b-D-GlcpNAc_67,N67,Q8R3I9,NP_666296,NM_146184,B3gnt8,232984,mouse,Q7Z7M8,NP_940942,NM_198540,B3GNT8,374907,human,,only adds to tetra-anntenary
+N-glycan_b-D-Galp_68,N68,P15535,NP_071641,NM_022305,B4galt1,14595,mouse,P15291,NP_001488,NM_001497,B4GALT1,2683,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_68,N68,Q9Z2Y2,NP_059073,NM_017377 ,B4galt2,53418,mouse,O60909,NP_085076,NM_030587,B4GALT2,8704,human,,Branch site specificity unknown
+N-glycan_b-D-Galp_68,N68,Q91YY2,NP_065604,NM_020579,B4galt3,57370,mouse,O60512,NP_003770,NM_003779,B4GALT3,8703,human,,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_69,N69,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,major,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_69,N69,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,minor,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_70,N70,Q64685,NP_666045,NM_145933,St6gal1,20440,mouse,P15907,NP_775323,NM_173216 ,ST6GAL1,6480,human,major,Branch site specificity unknown
+N-glycan_a-D-Neup5Ac_70,N70,Q76K27,NP_766417,NM_172829,St6gal2,240119,mouse,Q96JF0,NP_115917,NM_032528,ST6GAL2,84620,human,minor,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_72,N72,A0A1D5RMF7,NP_942585,NM_198884,B4galnt3,330406,mouse,Q6L9W6,NP_775864,NM_173593,B4GALNT3,283358,human,,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_72,N72,Q766D5,NP_808565,NM_177897,B4galnt4,330671,mouse,Q76KP1,NP_848632,NM_178537,B4GALNT4,338707,human,,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_74,N74,A0A1D5RMF7,NP_942585,NM_198884,B4galnt3,330406,mouse,Q6L9W6,NP_775864,NM_173593,B4GALNT3,283358,human,,Branch site specificity unknown
+N-glycan_b-D-GalpNAc_74,N74,Q766D5,NP_808565,NM_177897,B4galnt4,330671,mouse,Q76KP1,NP_848632,NM_178537,B4GALNT4,338707,human,,Branch site specificity unknown
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+Unassigned residues,,,1,31,61,99,129,,,,,,,,
+N-glycan_b-D-GlcpNAc_76,76,,2,32,62,100,130,,KEY,,,,,,
+N-glycan_b-D-Galp_77,77,,3,33,63,101,131,,assigned,,,,,,
+N-glycan_b-D-Galp_78,78,,4,34,64,102,132,,maybe,,,,,,
+N-glycan_a-L-Fucp_81,81,,5,35,65,103,133,,not in human or  mouse,,,,,,
+N-glycan_b-D-GalpNAc_82,82,,6,36,66,104,134,,,,,,,,
+N-glycan_a-D-Galp_83,83,,7,37,67,105,135,,,,,,,,
+N-glycan_b-D-GlcpNAc_84,84,,8,38,68,106,136,,,,,,,,
+N-glycan_b-D-Galp_85,85,,9,39,69,107,137,,,,,,,,
+N-glycan_b-D-GlcpNAc_87,87,,10,40,70,108,138,,,,,,,,
+N-glycan_b-D-Galp_88,88,,11,41,71,109,139,,,N-glycan_a-D-KDN_120,120,,,,
+N-glycan_a-D-Neup5Ac_96,96,,12,42,72,110,140,,,N-glycan_b-D-Galp_45,45,"Gal b3 to Gal b4 found in GAG tetrasaccharide, not in N-linked glycans",,,
+N-glycan_a-D-GalpNAc_97,97,,13,43,73,111,141,,,N-glycan_a-L-Fucp_40,40,Only known core fucosylation is a6 via FUT8,,,
+N-glycan_a-L-Fucp_98,98,,14,44,74,112,142,,,,,,,,
+N-glycan_a-L-Fucp_99,99,,15,45,75,113,143,,,,,,,,
+N-glycan_a-D-Neup5Ac_100,100,,16,46,76,114,144,,,,,,,,
+N-glycan_a-L-Fucp_102,102,,17,47,77,115,145,,,,,,,,
+N-glycan_a-L-Fucp_103,103,,18,48,78,116,146,,,,,,,,
+N-glycan_a-D-GalpNAc_104,104,,19,49,80,117,147,,,,,,,,
+N-glycan_a-D-Neup5Ac_105,105,,20,50,81,118,150,,,,,,,,
+N-glycan_a-D-Neup5Ac_106,106,,21,51,82,119,A,,,,,,,,
+N-glycan_b-D-GalpNAc_107,107,,22,52,83,120,B,,,,,,,,
+N-glycan_b-D-GalpNAc_108,108,,23,53,84,121,C,,,,,,,,
+N-glycan_b-D-GalpNAc_109,109,,24,54,85,122,,,,,,,,,
+N-glycan_b-D-GlcpNAc_110,110,,25,55,86,123,,,,,,,,,
+N-glycan_b-D-Galp_111,111,,26,56,87,124,,,,,,,,,
+N-glycan_b-D-GlcpNAc_112,112,,27,57,88*,125,,,,,,,,,
+N-glycan_b-D-Galp_113,113,,28,58,96,126,,,,,,,,,
+N-glycan_a-D-Galp_114,114,,29,59,97,127,,,,,,,,,
+N-glycan_a-D-Galp_115,115,,30,60,98,128,,,,,,,,,
+N-glycan_a-D-GalpNAc_116,116,,,,,,,,,,,,,,
+N-glycan_a-D-GalpNAc_117,117,,,,,,,,,,,,,,
+N-glycan_a-L-Fucp_118,118,,,,,,,,,,,,,,
+N-glycan_a-L-Fucp_119,119,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_121,121,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_122,122,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_123,123,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_124,124,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_125,125,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_126,126,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_127,127,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_128,128,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_129,129,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_130,130,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_131,131,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_132,132,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_133,133,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_134,134,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_135,135,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_136,136,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_137,137,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_138,138,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_139,139,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_140,140,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_141,141,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_142,142,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_143,143,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_144,144,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_145,145,,,,,,,,,,,,,,
+N-glycan_a-D-Neup5Gc_146,146,,,,,,,,,,,,,,
+N-glycan_a-D-KDN_147,147,,,,,,,,,,,,,,
+N-glycan_b-D-GlcpNAc_150,150,,,,,,,,,,,,,,
+N-glycan_b-D-Galp_151,151,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+N-glycan_a-D-GlcpNAc_A,no_id,,,,,,,,,,,,,,
