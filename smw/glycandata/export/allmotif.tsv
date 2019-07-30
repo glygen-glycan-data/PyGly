@@ -3667,6 +3667,11 @@ G09397UV	G00026MO	N-Glycan core basic	true
 G09397UV	G00030MO	N-Glycan complex	true
 G09397UV	G00055MO	Lactosamine motif	false
 G09403OT	G00055MO	Lactosamine motif	false
+G09405BO	G00026MO	N-Glycan core basic	true
+G09405BO	G00051MO	Lewis X	false
+G09405BO	G00054MO	Sialyl Lewis X	false
+G09405BO	G00055MO	Lactosamine motif	false
+G09405BO	G00065MO	VIM	false
 G09406JN	G00026MO	N-Glycan core basic	true
 G09406JN	G00030MO	N-Glycan complex	true
 G09406JN	G00046MO	Galalpha1-3Gal epitope	false
@@ -7017,6 +7022,7 @@ G18609BT	G00055MO	Lactosamine motif	false
 G18612LP	G00051MO	Lewis X	false
 G18612LP	G00055MO	Lactosamine motif	false
 G18612LP	G00070MO	Glycosphingolipid Neo-lacto series	true
+G18619IO	G00026MO	N-Glycan core basic	true
 G18625KA	G00071MO	Glycosphingolipid Ganglio series	true
 G18627LZ	G00026MO	N-Glycan core basic	true
 G18627LZ	G00028MO	N-Glycan high mannose	true
@@ -8566,6 +8572,9 @@ G23119MJ	G00068MO	Blood group H	false
 G23124TV	G00055MO	Lactosamine motif	false
 G23124TV	G00066MO	Blood group A	false
 G23124TV	G00068MO	Blood group H	false
+G23126YQ	G00015MO	Glycosphingolipid Mollu series	true
+G23126YQ	G00055MO	Lactosamine motif	false
+G23126YQ	G00065MO	VIM	false
 G23132GK	G00046MO	Galalpha1-3Gal epitope	false
 G23132GK	G00055MO	Lactosamine motif	false
 G23149XD	G00051MO	Lewis X	false
@@ -9088,6 +9097,12 @@ G24563OC	G00048MO	Lewis B	false
 G24563OC	G00056MO	Neo Lactosamine	false
 G24563OC	G00068MO	Blood group H	false
 G24569EC	G00032MO	O-Glycan core 1 fuzzy	true
+G24573UJ	G00026MO	N-Glycan core basic	true
+G24573UJ	G00030MO	N-Glycan complex	true
+G24573UJ	G00051MO	Lewis X	false
+G24573UJ	G00054MO	Sialyl Lewis X	false
+G24573UJ	G00055MO	Lactosamine motif	false
+G24573UJ	G00065MO	VIM	false
 G24585JV	G00026MO	N-Glycan core basic	true
 G24585JV	G00030MO	N-Glycan complex	true
 G24585JV	G00055MO	Lactosamine motif	false
@@ -13180,6 +13195,11 @@ G36479RD	G00042MO	O-Glycan core 6 Fuzzy	true
 G36479RD	G00055MO	Lactosamine motif	false
 G36479RD	G00068MO	Blood group H	false
 G36480VP	G00056MO	Neo Lactosamine	false
+G36498HK	G00026MO	N-Glycan core basic	true
+G36498HK	G00030MO	N-Glycan complex	true
+G36498HK	G00051MO	Lewis X	false
+G36498HK	G00055MO	Lactosamine motif	false
+G36498HK	G00065MO	VIM	false
 G36519NW	G00026MO	N-Glycan core basic	true
 G36519NW	G00030MO	N-Glycan complex	true
 G36519NW	G00055MO	Lactosamine motif	false
@@ -18664,6 +18684,15 @@ G51340HW	G00068MO	Blood group H	false
 G51343UJ	G00036MO	O-Glycan core 3 fuzzy	true
 G51343UJ	G00055MO	Lactosamine motif	false
 G51343UJ	G00056MO	Neo Lactosamine	false
+G51347IO	G00026MO	N-Glycan core basic	true
+G51347IO	G00030MO	N-Glycan complex	true
+G51347IO	G00046MO	Galalpha1-3Gal epitope	false
+G51347IO	G00051MO	Lewis X	false
+G51347IO	G00052MO	Lewis Y	false
+G51347IO	G00054MO	Sialyl Lewis X	false
+G51347IO	G00055MO	Lactosamine motif	false
+G51347IO	G00065MO	VIM	false
+G51347IO	G00068MO	Blood group H	false
 G51349BU	G00032MO	O-Glycan core 1 fuzzy	true
 G51349BU	G00034MO	O-Glycan core 2 fuzzy	true
 G51349BU	G00042MO	O-Glycan core 6 Fuzzy	true
@@ -21044,6 +21073,14 @@ G58217PP	G00026MO	N-Glycan core basic	true
 G58217PP	G00030MO	N-Glycan complex	true
 G58217PP	G00055MO	Lactosamine motif	false
 G58217PP	G00065MO	VIM	false
+G58219MI	G00026MO	N-Glycan core basic	true
+G58219MI	G00030MO	N-Glycan complex	true
+G58219MI	G00051MO	Lewis X	false
+G58219MI	G00052MO	Lewis Y	false
+G58219MI	G00054MO	Sialyl Lewis X	false
+G58219MI	G00055MO	Lactosamine motif	false
+G58219MI	G00065MO	VIM	false
+G58219MI	G00068MO	Blood group H	false
 G58223WL	G00051MO	Lewis X	false
 G58223WL	G00055MO	Lactosamine motif	false
 G58223WL	G00070MO	Glycosphingolipid Neo-lacto series	true
@@ -35345,6 +35382,9 @@ G98690XB	G00026MO	N-Glycan core basic	true
 G98690XB	G00030MO	N-Glycan complex	true
 G98690XB	G00055MO	Lactosamine motif	false
 G98690XB	G00065MO	VIM	false
+G98692NA	G00015MO	Glycosphingolipid Mollu series	true
+G98692NA	G00055MO	Lactosamine motif	false
+G98692NA	G00065MO	VIM	false
 G98699SF	G00051MO	Lewis X	false
 G98699SF	G00052MO	Lewis Y	false
 G98699SF	G00055MO	Lactosamine motif	false
