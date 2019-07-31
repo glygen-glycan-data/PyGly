@@ -253,6 +253,9 @@ import time
 
 class SubsumptionGraph:
     def __init__(self, *args, **kwargs):
+	pass 
+
+    def compute(self, *args, **kwargs):
         self.gtc = GlyTouCan(usecache=True)
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
@@ -660,7 +663,7 @@ class SubsumptionGraph:
         return accession == self.root()
 
     def level(self, accession):
-        return self.allnodestype[accession]
+        return self.allnodestype[accession].lower()
 
     def islevel(self, accession, level):
         return self.level(accession) == level
@@ -669,16 +672,16 @@ class SubsumptionGraph:
         return self.islevel(accession, 'molecular weight')
 
     def isbasecomposition(self, accession):
-        return self.islevel(accession, 'BaseComposition')
+        return self.islevel(accession, 'basecomposition')
 
     def iscomposition(self, accession):
-        return self.islevel(accession, 'Composition')
+        return self.islevel(accession, 'composition')
 
     def istopology(self, accession):
-        return self.islevel(accession, 'Topology')
+        return self.islevel(accession, 'topology')
 
     def issaccharide(self, accession):
-        return self.islevel(accession, 'Saccharide')
+        return self.islevel(accession, 'saccharide')
 
     def get_basecomposition(self, accession):
         for n, t in self.allnodestype.items():
@@ -1236,7 +1239,8 @@ if __name__ == "__main__":
             verbose += 1
             sys.argv.pop(1)
 
-        g = SubsumptionGraph(*sys.argv[1:], verbose=verbose)
+        g = SubsumptionGraph()
+	g.compute(*sys.argv[1:], verbose=verbose)
 
     elif cmd == "writeowl":
         r = OWLWriter()

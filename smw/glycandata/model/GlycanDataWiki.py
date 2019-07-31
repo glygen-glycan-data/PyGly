@@ -137,7 +137,7 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toPython(data)
 
 	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme'] or \
-           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name']:
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence']:
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -149,13 +149,13 @@ class Annotation(SMW.SMWClass):
         
 	if data.get('value'):
 	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme'] or \
-             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name']:
-	    if isinstance(data['value'],list):
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence']:
+	    if isinstance(data['value'],list) or isinstance(data['value'],set):
 		if len(data['value']) > 1:
                     data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
 	            data['multivaluesep'] = ";"
 	        else:
-	            data['value'] = str(data['value'][0])
+	            data['value'] = str(iter(data['value']).next())
 	    else:
 		data['value'] = str(data['value'])
 
@@ -237,7 +237,7 @@ class GlycanDataDiskCache(object):
 	print >>sys.stderr, "Connected to disk cache: %s"%(self.path,)
 
     def acc2path(self,acc):
-        assert re.search(r'^G\d{5}[A-Z]{2}$',acc)
+        assert re.search(r'^G\d{5}[A-Z]{2}$',acc), acc
         return "/".join([self.path,acc[1],acc[2],acc[3],acc])
 
     def acc2glypath(self,acc):

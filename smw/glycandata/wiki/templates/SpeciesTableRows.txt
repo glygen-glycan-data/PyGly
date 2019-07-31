@@ -1,0 +1,10 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{1}}}
+| {{#switch:{{{1}}}
+|Human Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
+|Mouse Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
+|Rat Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
+|{{{2}}}}}
+| style="width: 150px;" | {{{3}}}
+</includeonly>
