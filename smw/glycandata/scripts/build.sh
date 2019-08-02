@@ -19,7 +19,7 @@ fi
 ./loadglygen.py $CACHE ../data/glygen_accessions.txt
 ./loadedlab.py $CACHE 
 ./loadclassification.py $CACHE
-./loadmonosDB.py $CACHE ../data/GlyGen_glycans2monodbID.tsv
+./loadmonosDB.py $CACHE ../data/allmonosaccharideDB.tsv
 ./loadgdb2gog.py $CACHE ../data/gdb2gog.txt
 ./loadcanonres.py $CACHE ../data/canonres.csv ../data/canonres2gtc.csv
 ./loadsubsump.py $CACHE ../data/gnome_subsumption_raw.txt ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt ../data/extra_accessions.txt

@@ -16,8 +16,8 @@ for line in f:
     monosdb[k] = v
 
 for g in w.iterglycan():
-    monosdic = defaultdict(set)
     acc = g.get('accession')
+    monodbids = set()
     glycan = g.getGlycan()
     if not glycan:
         continue
@@ -25,15 +25,13 @@ for g in w.iterglycan():
         try:
             glycoctsym = glycoctformat.mtoStr(m)
         except KeyError:
-            print acc,"-"
             continue
         try:
-            monosdic[acc].add(monosdb[glycoctsym])
+            monodbids.add(monosdb[glycoctsym])
         except KeyError:
             continue
     g.delete_annotations(source="EdwardsLab",property="MonosaccharideDB",type="CrossReference")
-    g.set_annotation(value=list(monosdic[acc]), property="MonosaccharideDB",source="EdwardsLab",type="CrossReference")
+    g.set_annotation(value=monodbids, property="MonosaccharideDB",source="EdwardsLab",type="CrossReference")
     if w.put(g):
         print acc
-
 
