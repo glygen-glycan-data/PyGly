@@ -23,6 +23,7 @@ fi
 ./loadgdb2gog.py $CACHE ../data/gdb2gog.txt
 ./loadcanonres.py $CACHE ../data/canonres.csv ../data/canonres2gtc.csv
 ./loadsubsump.py $CACHE ../data/gnome_subsumption_raw.txt ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt ../data/extra_accessions.txt
+./loadspecies.py $CACHE ../data/gnome_subsumption_raw.txt
 ./loadnames.py $CACHE EdwardsLab ../data/uckbcomp2glytoucan.txt ../data/shortuckbcomp2glytoucan.txt
 
 # Load to wiki
