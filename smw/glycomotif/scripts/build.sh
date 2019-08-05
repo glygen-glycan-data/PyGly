@@ -23,5 +23,5 @@ rm -rf ./dumps
 ./json_topology.py
 ./loadwidgetbool.py
 ./addtopology.py
-./refresh.sh
-./refresh.sh -
+./refresh.py
+./refresh.py -
