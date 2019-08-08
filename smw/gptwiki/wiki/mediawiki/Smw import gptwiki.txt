@@ -2,6 +2,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  id|Type:Text
  mw|Type:Number
  name|Type:Text
+ sym|Type:Text
  class|Type:Text
  label|Type:Text
  Glycan|Category
@@ -38,7 +39,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  transition|Type:Page
  hastransition|Type:Record
  formethod|Type:Page
- spectra|Type:Text
+ spectra|Type:Page
  scan|Type:Record
  scannumber|Type:Number
  scanmode|Type:Text
@@ -46,5 +47,9 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  precursormz|Type:Number
  Method|Category
  Sample|Category
+ Acquisition|Category
+ analfraction|Type:Text
+ analsample|Type:Text
+ hasxics|Type:Text
 
 [[Category:Imported vocabulary]]

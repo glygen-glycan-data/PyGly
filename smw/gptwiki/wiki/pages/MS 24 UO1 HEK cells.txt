@@ -1,0 +1,6 @@
+{{Acquisition
+|ansamp=HEK293.01
+|method=ME000002
+|name=MS_24_UO1_HEK_cells
+|sample=SA000002
+}}

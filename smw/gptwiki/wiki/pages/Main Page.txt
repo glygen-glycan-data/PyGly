@@ -2,6 +2,7 @@
 == Proteins ==
 {{#ask:
 [[Category:Protein]]
+[[gptwiki:peptidecount::>1]]
 |?gptwiki:gene=Gene
 |?gptwiki:description=Description
 |?gptwiki:species=Species
@@ -10,14 +11,14 @@
 |headers=plain
 }}
 
-== Peptides ==
+== Glycans ==
 {{#ask:
-[[Category:Peptide]]
-|?gptwiki:name=Peptide
-|?gptwiki:mw #-p3 =Mol. Wt. 
-|?gptwiki:hasprotein=Protein(s)
-|?gptwiki:transgroupcount=Trans. Groups
-|?gptwiki:transitioncount=Transitions
+[[Category:Glycan]]
+|?gptwiki:sym = Name
+|?gptwiki:mw = Mol. Wt. 
+|?gptwiki:class = Classification
+|?gptwiki:peptidecount=Peptides
 |format=broadtable
 |headers=plain
+|sort=gptwiki:mw
 }}

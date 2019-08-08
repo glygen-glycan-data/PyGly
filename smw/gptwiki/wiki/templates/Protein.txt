@@ -30,13 +30,19 @@ Edit the page to see the template text.
 {{#ask:
 [[Category:Peptide]]
 [[gptwiki:hasprotein::{{PAGENAME}}]]
+[[gptwiki:transgroupcount::>1]]
+|?gptwiki:alignstart=Start
 |?gptwiki:name=Peptide
+|?gptwiki:alignend=End
+|?gptwiki:mw #-p3 =Mol. Wt. 
 |?gptwiki:transgroupcount=Trans. Groups
 |?gptwiki:transitioncount=Transitions
 |sep=,&ensp;
-|header=plain
+|sort=gptwiki:alignstart,gptwiki:alignend
+|headers=plain
+|format=broadtable
 }}
 
-{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Peptide]][[gptwiki:hasprotein::{{PAGENAME}}]]|format=count}}}}
+{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Peptide]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:transgroupcount::>1]]|format=count}}}}
 [[Category:Protein]]
 </includeonly>

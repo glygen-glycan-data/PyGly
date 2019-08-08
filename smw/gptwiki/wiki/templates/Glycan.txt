@@ -12,10 +12,6 @@ It should be called in the following format:
 Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
 {| class="wikitable" style="width=100%" 
-!
-| <p align="center"><img
-src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=png&notation=cfg"></p>
-|-
 ! style="width=200px" | Name(s)
 | style="width=100%" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
 |-
@@ -30,18 +26,27 @@ src="https://glytoucan.org/glycans/{{{accession}}}/image?style=extended&format=p
 [https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
 |}
 
+== Topologies ==
+<p>{{#arraymap:{{{images|}}}|,|xxxxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxxxx <img src="https://glytoucan.org/glycans/xxxxx/image?style=compact&format=png&notation=cfg">]</span>| }}</p>
+
 == Peptides ==
 
 {{#ask:
 [[Category:Peptide]]
 [[gptwiki:hasglycan::{{PAGENAME}};?]]
-|?gptwiki:name=Peptide
+[[gptwiki:transgroupcount::>1]]
+|?gptwiki:sequence=Peptide
+|?gptwiki:hasglycan=Site |+index=2
 |?gptwiki:mw #-p3 =Mol. Wt.
 |?gptwiki:hasprotein=Protein
 |?gptwiki:transgroupcount=Trans. Groups
 |?gptwiki:transitioncount=Transitions
 }}
 
-{{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}
+{{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:sym={{{sym|}}}}}{{#set:|gptwiki:peptidecount={{#ask:
+[[Category:Peptide]]
+[[gptwiki:hasglycan::{{PAGENAME}};?]]
+[[gptwiki:transgroupcount::>1]]
+|format=count}}}}
 [[Category:Glycan]]
 </includeonly>

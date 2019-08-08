@@ -1,0 +1,1 @@
+{{Method|QExactive, DDA (HCD), Multi-CE}}

@@ -4,14 +4,12 @@ It should be called in the following format:
 <pre>
 {{TransitionGroup
 |id=
-|method=
 |mz1=
 |nrt=
 |peptide=
 |rt=
 |scans=
 |spectra=
-|transitions=
 |z1=
 }}
 </pre>
@@ -21,11 +19,35 @@ Edit the page to see the template text.
 ! Peptide
 | {{NameWithLink|{{{peptide|}}}}}
 |-
+! Sequence
+| {{#show:{{{peptide|}}}|?gptwiki:sequence}}
+|-
+! Glycans(s)
+| {{#show:{{{peptide|}}}|?gptwiki:hasglycan}}
+|-
+! Mod(s)
+| {{#show:{{{peptide|}}}|?gptwiki:hasmod}}
+|-
+! Molecular Weight
+| {{#show:{{{peptide|}}}|?gptwiki:mw}}
+|-
+! Protein
+| {{AttrNameWithLInk|{{{peptide|}}}|gptwiki:hasprotein}}
+|-
 ! Spectrum File
-| {{{spectra|}}}
+| {{LinkedName|{{{spectra|}}}}}
 |-
 ! Method
-| {{LinkedName|{{{method|}}}}}
+| {{LinkedAttrName|{{{spectra|}}}|gptwiki:formethod}}
+|-
+! Analytical Fraction
+| {{#show:{{{spectra|}}}|?gptwiki:analfraction}}
+|-
+! Analytical Sample ID
+| {{#show:{{{spectra|}}}|?gptwiki:analsample}}
+|-
+! Sample
+| {{LinkedAttrName|{{{spectra|}}}|gptwiki:forsample}}
 |}
 
 == Transitions ==
@@ -36,7 +58,6 @@ Edit the page to see the template text.
 {{#arraymap:{{{scans|}}}|,|x|x|<br/>}}
 </div>
 {{#set:
-|gptwiki:formethod={{{method|}}}
 |gptwiki:spectra={{{spectra|}}}
 |gptwiki:nrt={{{nrt|}}}
 |gptwiki:rt={{{rt|}}}
@@ -47,5 +68,5 @@ Edit the page to see the template text.
 |gptwiki:transitioncount={{#ask:[[Category:Transition]][[-gptwiki:transition::{{PAGENAME}}]]|format=count}}
 }}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}
 [[Category:TransitionGroup]]
-<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}} data-spectra="{{{spectra|}}}"></div>
+<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-spectra="{{{spectra|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}"></div>
 </includeonly>

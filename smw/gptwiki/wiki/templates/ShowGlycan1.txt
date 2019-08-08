@@ -1,0 +1,1 @@
+<includeonly>[[{{{1}}}|{{#show:{{{1}}}|?gptwiki:sym}}]] ({{{2}}})</includeonly>

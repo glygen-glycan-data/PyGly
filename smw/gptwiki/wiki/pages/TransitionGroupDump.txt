@@ -1,0 +1,16 @@
+
+{{#ask: 
+[[Category:TransitionGroup]]
+ |?Gptwiki:spectra=Spectra
+ |?gptwiki:forpeptide.gptwiki:id=PeptideID
+ |?gptwiki:forpeptide.gptwiki:name=Peptide
+ |?Gptwiki:rt=ExpRT
+ |?Gptwiki:nrt=NormRT
+ |?Gptwiki:mz1=PrecMZ
+ |?Gptwiki:z1=PrecZ
+ |?Gptwiki:scan=Scans
+ |sort=gptwiki:forpeptide.gptwiki:name
+ |sep=, 
+ |limit=0
+ |searchlabel=Generate TransitionGroup Dump Table
+}}

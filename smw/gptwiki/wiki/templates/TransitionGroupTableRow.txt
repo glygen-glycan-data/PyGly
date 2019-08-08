@@ -1,5 +1,5 @@
 <includeonly>
-<tr><td>[[{{{3}}}]]</td>
+<tr>
 <td align="right">{{{1}}}</td>
 <td align="right">{{{2}}}</td>
 <td align="right">{{#show: {{{3}}} |? gptwiki:mz1 #-p3}}</td>

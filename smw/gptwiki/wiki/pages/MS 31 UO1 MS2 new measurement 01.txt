@@ -1,0 +1,6 @@
+{{Acquisition
+|ansamp=HSPOOL.01
+|method=ME000001
+|name=MS_31_UO1_MS2_new_measurement_01
+|sample=SA000001
+}}

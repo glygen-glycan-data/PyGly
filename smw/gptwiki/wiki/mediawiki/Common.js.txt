@@ -108,6 +108,12 @@ function loadSVG() {
     var charger = document.getElementById("msv_para").getAttribute("data-z1");
     var pmz = document.getElementById("msv_para").getAttribute("data-mz1");
     var spectra_folder = document.getElementById("msv_para").getAttribute("data-spectra");
+    var showxic = document.getElementById("msv_para").getAttribute("data-showxic");
+    if (showxic == "false") {
+      showxic = false;
+    } else {
+      showxic = true;
+    }
 
     var param0 = {
         spectra: "",
@@ -115,11 +121,16 @@ function loadSVG() {
         graphtype: "chromatogram",
         zoomHeight: true
     };
-    param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + '.json';
-    param0["width"] = pot.clientWidth * 0.995;
-    msmsv.showLabelledSpectrum('specpane0','chrom', param0);
-    msmsv.addTitles('specpane0', ["XIC: m/z "+pmz], 1, "h3");
 
+    if (showxic) {
+
+      param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + '.json';
+      param0["width"] = pot.clientWidth * 0.995;
+      msmsv.showLabelledSpectrum('specpane0','chrom', param0);
+      msmsv.addTitles('specpane0', ["XIC: m/z "+pmz], 1, "h3");
+
+    }
+    
     var titles = [];
 
     var params = {

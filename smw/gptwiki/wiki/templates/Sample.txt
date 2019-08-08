@@ -2,15 +2,14 @@
 == Acquisitions == 
 {{#ask:
 [[Category:Acquisition]]
-[[gptwiki:formethod::{{PAGENAME}}]]
-|?gptwiki:forsample=Sample
-|?=Spectrum File
-|mainlabel=-
+[[gptwiki:forsample::{{PAGENAME}}]]
+|mainlabel=Spectrum File
+|?gptwiki:analfraction=Anal. Fraction
+|?gptwiki:formethod=Method
 |headers=plain
-|sort=gptwiki:forsample,gptwiki:name
 |format=broadtable
 }}
 {{#set:
 |gptwiki:name={{{1}}}
 |gptwiki:id={{PAGENAME}}
-}}[[Category:Method]]</includeonly>
+}}[[Category:Sample]]</includeonly>
