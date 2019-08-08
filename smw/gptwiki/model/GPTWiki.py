@@ -103,6 +103,8 @@ class TransitionGroup(SMW.SMWClass):
             return (int(str[0]),str[1])
 	if len(str) == 4:
             return (int(str[0]),str[1],float(str[2]),int(str[3]))
+	if not str[3]:
+	    return (int(str[0]),str[1],float(str[2]),None,float(str[4]))
         return (int(str[0]),str[1],float(str[2]),int(str[3]),float(str[4]))
 
     def toPython(self,data):
@@ -198,7 +200,7 @@ class Peptide(SMW.SMWClass):
             data['transgroup'] = sorted(data.get('transgroup').split(','))
 
         if isinstance(data.get('sample'),basestring):
-            data['sample'] = sorted(map(string.strip,data.get('sample').split('\n')))
+            data['sample'] = sorted(map(lambda s: s.strip(),data.get('sample').split('\n')))
 
 	return data
 

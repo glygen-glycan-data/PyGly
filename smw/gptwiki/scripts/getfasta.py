@@ -1,27 +1,41 @@
 #!/bin/env python27
 
-import sys
+import sys, re
 import urllib
 
 acclist = sys.argv[1:]
 for acc in acclist:
     link = "https://www.uniprot.org/uniprot/" + acc + ".fasta"
     lines = urllib.urlopen(link).readlines()
-    seqlist = lines[1:]
-    sequence = ""
-    for i in seqlist:
-        sequence += str(i)
-    accession = lines[0][1:].split('|')[1]
-    description = lines[0].split(' ', 1)[1].split('=')[0][:-3]
-    species = lines[0].split(' ', 1)[1].split('=')[1][:-3]
-    gene = lines[0].split(' ', 1)[1].split('=')[3][:-3]
 
-    f = open("../wiki/pages/" + acc + ".txt", "w")
+    desc = lines[0][1:]
+    sequence = "".join(lines[1:])
+
+    accessions,rest = desc.split(None,1)
+    
+    accession = accessions.split('|')[1]
+
+    assert acc == accession
+
+    restsplit = re.split(r' ([A-Z]+)=',rest)
+    
+    description = restsplit[0].strip()
+
+    keyvaluepairs = dict()
+    for i in range(1,len(restsplit),2):
+        keyvaluepairs[restsplit[i]] = restsplit[i+1].strip()
+
+    species = keyvaluepairs.get('OS')
+    gene = keyvaluepairs.get('GN')
+    
+    f = open(acc + ".txt", "w")
     f.write("{{Protein\n")
     f.write("|accession=" + accession + "\n")
     f.write("|description=" + description + "\n")
-    f.write("|gene=" + gene + "\n")
+    if gene:
+        f.write("|gene=" + gene + "\n")
     f.write("|sequence=" + sequence)
-    f.write("|species=" + species + "\n}}")
+    if species:
+        f.write("|species=" + species + "\n}}")
     f.close
 
