@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G44211QA
+|name=H6N5F
+A3G3F1
+FA3G3
+HexNAc(5)Hex(6)Fuc(1)
+|sym=H6N5F
+|mw=2151.78227759
+|topo=G03799FY,G09773WX
+|class=N-glycan
+}}

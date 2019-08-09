@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G60033FS
+|name=H6N5
+A3G3
+HexNAc(5)Hex(6)
+|sym=H6N5
+|mw=2005.72436873 
+|topo=G49778TF
+|class=N-glycan
+}}

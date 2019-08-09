@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G08293MJ
+|name=H5N4FS
+A2G2F1S1
+FA2G2S1
+HexNAc(4)Hex(5)Fuc(1)NeuAc(1)
+|sym=H5N4FS
+|mw=2077.74549812
+|topo=G11630WW,G23753FY,G28742GV
+|class=N-glycan
+}}
