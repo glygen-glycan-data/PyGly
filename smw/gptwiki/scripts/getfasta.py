@@ -34,6 +34,7 @@ for acc in acclist:
     f.write("|description=" + description + "\n")
     if gene:
         f.write("|gene=" + gene + "\n")
+        f.write("|name=" + gene + "\n")
     f.write("|sequence=" + sequence)
     if species:
         f.write("|species=" + species + "\n}}")
