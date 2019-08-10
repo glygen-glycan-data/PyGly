@@ -16,7 +16,7 @@ Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{id|}}}}}
 {| class="wikitable" style="width=100%" 
 ! Name
-| [[gptwiki:name::{{{name|}}}]]
+| {{{name|}}}
 |-
 ! Sequence
 | [[gptwiki:sequence::{{{sequence|}}}]]
@@ -65,7 +65,7 @@ Edit the page to see the template text.
 |headers=plain
 }}
 
-{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycan={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:hasglycan=xxxx}}}}{{#set:|gptwiki:transgroupcount={{#ask:
+{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycan={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:hasglycan=xxxx}}}}{{#set:|gptwiki:transgroupcount={{#ask:
 [[Category:TransitionGroup]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
 |format=count}}}}{{#set:|gptwiki:transitioncount={{#ask:
