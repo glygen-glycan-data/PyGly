@@ -32,7 +32,17 @@ Edit the page to see the template text.
 | {{#show:{{{peptide|}}}|?gptwiki:mw}}
 |-
 ! Protein
-| {{AttrNameWithLInk|{{{peptide|}}}|gptwiki:hasprotein}}
+| {{#ask:
+[[Category:Alignment]]
+[[gptwiki:haspeptide::{{{peptide|}}}]]
+|?gptwiki:hasprotein=
+|mainlabel=-
+|link=none
+|format=template
+|template=NameWithLink
+|sep=,&thinsp;
+|sort=gptwiki:hasprotein
+}}
 |-
 ! Spectrum File
 | {{LinkedName|{{{spectra|}}}}}
