@@ -35,12 +35,14 @@ Edit the page to see the template text.
 [[Category:Peptide]]
 [[gptwiki:hasglycan::{{PAGENAME}};?]]
 [[gptwiki:transgroupcount::>1]]
-|?gptwiki:sequence=Peptide
-|?gptwiki:hasglycan=Site |+index=2
+|?gptwiki:name=Peptide
 |?gptwiki:mw #-p3 =Mol. Wt.
-|?gptwiki:hasprotein=Protein
+|?-gptwiki:haspeptide.gptwiki:hasprotein=Protein
+|?-gptwiki:haspeptide.gptwiki:site=Site
 |?gptwiki:transgroupcount=Trans. Groups
 |?gptwiki:transitioncount=Transitions
+|sep=,&thinsp;
+|headers=plain
 }}
 
 {{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:sym={{{sym|}}}}}{{#set:|gptwiki:peptidecount={{#ask:
