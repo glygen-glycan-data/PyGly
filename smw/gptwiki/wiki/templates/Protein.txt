@@ -47,6 +47,6 @@ Edit the page to see the template text.
 |mainlabel=-
 }}
 
-{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Peptide]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:transgroupcount::>1]]|format=count}}}}
+{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]|format=count}}}}
 [[Category:Protein]]
 </includeonly>
