@@ -8,7 +8,6 @@ It should be called in the following format:
 |mw=
 |glycan=
 |mod=
-|alignment=
 |transgroup=
 |sample=
 }}
@@ -29,7 +28,17 @@ Edit the page to see the template text.
 | [[gptwiki:mw::{{{mw|}}}]]
 |-
 ! Protein
-| {{#arraymap:{{{alignment|}}}|,|xxxx|{{NameWithLink|{{#explode:xxxx|;|0}}}}}}
+| {{#ask:
+[[Category:Alignment]]
+[[gptwiki:haspeptide::{{PAGENAME}}]]
+|?gptwiki:hasprotein=
+|mainlabel=-
+|link=none
+|format=template
+|template=NameWithLink
+|sep=,&thinsp;
+|sort=gptwiki:hasprotein
+}}
 |}
 
 == Samples ==
@@ -53,7 +62,7 @@ Edit the page to see the template text.
 |headers=plain
 }}
 
-{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|gptwiki:hasalignment=x}}}}{{#arraymap:{{{alignment|}}}|,|xxxx|{{#set:|gptwiki:hasprotein={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{alignment|}}}|,|xxxx|{{#set:|gptwiki:alignstart={{#explode:xxxx|;|1}}}}}}{{#arraymap:{{{alignment|}}}|,|xxxx|{{#set:|gptwiki:alignend={{#explode:xxxx|;|2}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycan={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:hasglycan=xxxx}}}}{{#set:|gptwiki:transgroupcount={{#ask:
+{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycan={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:hasglycan=xxxx}}}}{{#set:|gptwiki:transgroupcount={{#ask:
 [[Category:TransitionGroup]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
 |format=count}}}}{{#set:|gptwiki:transitioncount={{#ask:

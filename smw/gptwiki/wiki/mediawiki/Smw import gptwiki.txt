@@ -13,6 +13,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  hasglycan|Type:Record
  modacc|Type:External identifier
  hasmod|Type:Record
+ Alignment|Category
  alignstart|Type:Number
  alignend|Type:Number
  alignlaa|Type:Text

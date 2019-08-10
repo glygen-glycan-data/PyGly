@@ -1,6 +1,6 @@
 #!/bin/env python27
 
-from getwiki import GPTWiki, Protein
+from getwiki import GPTWiki, Alignment
 
 import sys, urllib, string, csv
 import Bio.SeqIO
@@ -52,7 +52,9 @@ for peptidefile in sys.argv[1:]:
       while pos < len(seq):
         try:
             st = prseq.index(seq,pos)
-            alignments.append((pracc,st+1,st+len(seq),prseq[st-1] if st > 0 else "-",prseq[st+len(seq)] if (st+len(seq)) < len(prseq) else "-"))
+	    prsites = "|".join(map(lambda t: t[1][0]+str(st+int(t[1][1:])),glycan))
+            alignments.append(Alignment(protein=pracc,start=st+1,end=st+len(seq),laa=prseq[st-1] if st > 0 else "-",
+                                        raa=prseq[st+len(seq)] if (st+len(seq)) < len(prseq) else "-",prsites=prsites))
 	    pos = st+1
         except ValueError:
 	    break
@@ -60,7 +62,8 @@ for peptidefile in sys.argv[1:]:
         print >>sys.stderr, "Warning: Can't find peptide %s in protein's sequence for accession: %s"%(seq,pracc)
         continue
 
-    laa,raa = alignments[0][3:5]
+    laa = alignments[0].get('laa')
+    raa = alignments[0].get('raa')
     
     modsyms = []
     for i in range(len(glycan)):
@@ -92,9 +95,8 @@ for peptidefile in sys.argv[1:]:
     # for i,m in enumerate(glycan):
     #	name += "%s%s@%s"%(("+" if i == 0 else ","),m[0],m[1])
     if pepid:
-      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignment=alignments,id=pepid)
+      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignments=alignments,id=pepid)
     else:
-      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignment=alignments)
+      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignments=alignments)
     if modified:
         print p.get('id')
-    
