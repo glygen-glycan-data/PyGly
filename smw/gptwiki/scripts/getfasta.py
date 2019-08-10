@@ -38,5 +38,6 @@ for acc in acclist:
     f.write("|sequence=" + sequence)
     if species:
         f.write("|species=" + species + "\n}}")
+    f.write('\n')
     f.close
 
