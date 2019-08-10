@@ -8,5 +8,5 @@ HexNAc(5)Hex(6)dHex(1)
 |sym=H6N5F
 |mw=2151.78227759
 |topo=G03799FY,G09773WX
-|class=N-glycan
+|class=N-Glycan
 }}

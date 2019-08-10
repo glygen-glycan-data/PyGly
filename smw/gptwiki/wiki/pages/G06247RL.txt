@@ -6,5 +6,5 @@ HexNAc(5)Hex(6)NeuAc(3)
 |sym=H6N5S3
 |mw=2879.01061863
 |topo=G67579EM
-|class=N-glycan
+|class=N-Glycan
 }}

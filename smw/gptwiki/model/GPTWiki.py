@@ -1,5 +1,5 @@
 
-__all__ = [ "GPTWiki", "Glycan", "Protein", "Peptide", "TransitionGroup", "Transition" ]
+__all__ = [ "GPTWiki", "Glycan", "Protein", "Peptide", "TransitionGroup", "Transition", "Acquisition" ]
 
 import sys
 from operator import itemgetter
@@ -99,11 +99,7 @@ class TransitionGroup(SMW.SMWClass):
 
     def asscans(self,sc):
         str = sc.split(';')
-	if len(str) == 2:
-            return (int(str[0]),str[1])
-	if len(str) == 4:
-            return (int(str[0]),str[1],float(str[2]),int(str[3]))
-	if not str[3]:
+        if str[3] in ("","None",None):
 	    return (int(str[0]),str[1],float(str[2]),None,float(str[4]))
         return (int(str[0]),str[1],float(str[2]),int(str[3]),float(str[4]))
 
@@ -125,14 +121,15 @@ class TransitionGroup(SMW.SMWClass):
             if isinstance(data.get(k),basestring):
                 data[k] = int(data.get(k))
 
+	if 'method' in data:
+	    del data['method']
+
 	return data
 
     @staticmethod
     def scan2str(scan):
-	if len(scan) == 2:
-	    return "%d;%s"%(int(scan[0]),scan[1])
-	if len(scan) == 4:
-            return "%d;%s;%.3f;%d"%(int(scan[0]),scan[1],float(scan[2]),int(scan[3]))
+        if scan[3] in (None,"None",""):
+	    return "%d;%s;%.3f;%s;%.3f"%(int(scan[0]),scan[1],float(scan[2]),"",float(scan[4]))
         return "%d;%s;%.3f;%d;%.3f"%(int(scan[0]),scan[1],float(scan[2]),int(scan[3]),float(scan[4]))
 
     def toTemplate(self,data):
@@ -177,7 +174,7 @@ class Peptide(SMW.SMWClass):
 
     def asalign(self,a):
         sa = a.split(';')
-        return (sa[0],int(sa[1]),int(sa[2]))
+        return (sa[0],int(sa[1]),int(sa[2]),sa[3],sa[4])
 
     def toPython(self,data):
 	data = super(Peptide,self).toPython(data)
@@ -199,8 +196,8 @@ class Peptide(SMW.SMWClass):
         if isinstance(data.get('transgroup'),basestring):
             data['transgroup'] = sorted(data.get('transgroup').split(','))
 
-        if isinstance(data.get('sample'),basestring):
-            data['sample'] = sorted(map(lambda s: s.strip(),data.get('sample').split('\n')))
+	if 'sample' in data:
+	    del data['sample']
 
 	return data
 
@@ -218,17 +215,30 @@ class Peptide(SMW.SMWClass):
                                        sorted(data['mod'],key=lambda t: int(t[1][1:]))))
 
         if 'alignment' in data:
-            data['alignment'] = ",".join(map(lambda t: "%s;%d;%d"%t,sorted(data['alignment'])))
+            data['alignment'] = ",".join(map(lambda t: "%s;%d;%d;%s;%s"%t,sorted(data['alignment'])))
             # data['protein'] = ",".join(set(map(lambda t: t.split(';')[0],sorted(data['alignment'].split(',')))))
 
         if 'transgroup' in data:
             data['transgroup'] = ",".join(data.get('transgroup'))
 
-        if 'sample' in data:
-            data['sample'] = "\n".join(data.get('sample'))
-
 	return data    
 	
+class Acquisition(SMW.SMWClass):
+    template = 'Acquisition'
+
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('name')
+        return kwargs.get('name')
+
+    def toPython(self,data):
+	data = super(Acquisition,self).toPython(data)
+	return data
+
+    def toTemplate(self,data):
+	data = super(Acquisition,self).toTemplate(data)
+	return data
+
 class GPTWiki(SMW.SMWSite):
     _name = 'gptwiki'
 
@@ -240,7 +250,7 @@ class GPTWiki(SMW.SMWSite):
             self._peptides[key] = p.get('id')
         self._transgroups = {}
         for tg in map(self.get,self.itercat('TransitionGroup')):
-            key = (tg.get('peptide'),tg.get('z1'),tg.get('spectra'),tg.get('method'))
+            key = (tg.get('peptide'),tg.get('z1'),tg.get('spectra'))
             self._transgroups[key] = tg.get('id')
         self._transitions = {}
         for t in map(self.get,self.itercat('Transition')):
@@ -262,6 +272,14 @@ class GPTWiki(SMW.SMWSite):
         else:
             p = Glycan(accession=accession,**kw)
         self.put(p)
+
+    def addacquisition(self,name,**kw):
+	a = self.get(name)
+	if a:
+	    a.update(**kw)
+	else:
+	    a = Acquisition(name=name,**kw)
+	self.put(a)
 
     def newtransid(self):
         maxid = 0
@@ -290,20 +308,24 @@ class GPTWiki(SMW.SMWSite):
             maxid = id
         return "TG%06d"%(maxid+1,)
 
-    def addtransgroup(self,peptide,z1,spectra,method,**kw):
-        id = self._transgroups.get((peptide,z1,spectra,method))
+    def addtransgroup(self,peptide,z1,spectra,**kw):
+        id = self._transgroups.get((peptide,z1,spectra))
         # print self._transgroups
         if id:
             tg = self.get(id)
             tg.update(**kw)
         else:
             id = self.newtransgrpid()
-            tg = TransitionGroup(id=id,peptide=peptide,z1=z1,spectra=spectra,method=method,**kw)
-            self._transgroups[(peptide,z1,spectra,method)] = id
+            tg = TransitionGroup(id=id,peptide=peptide,z1=z1,spectra=spectra,**kw)
+            self._transgroups[(peptide,z1,spectra)] = id
         return tg,self.put(tg)
 
     def iterpeptides(self):
 	for p in map(self.get,self.itercat('Peptide')):
+            yield p
+
+    def iterproteins(self):
+	for p in map(self.get,self.itercat('Protein')):
             yield p
 
     def newpeptideid(self):
@@ -319,6 +341,12 @@ class GPTWiki(SMW.SMWSite):
         return key,self._peptides.get(key)
 
     def addpeptide(self,sequence,glycans=[],mods=[],**kw):
+        if kw.get('id'):
+            key = Peptide.key(sequence,glycan=glycans,mod=mods)
+            p = Peptide(sequence=sequence,glycan=glycans,mod=mods,**kw)
+            self._peptides[key] = kw.get('id')
+            return p,self.put(p)
+        
         key,id = self.findpeptide(sequence,glycans=glycans,mods=mods)
         if id:
             p = self.get(id)
