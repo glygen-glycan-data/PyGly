@@ -41,10 +41,10 @@ Edit the page to see the template text.
 |?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
 |?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
 |sep=,&thinsp;
-|sort=gptwiki:site,gptwiki:haspeptide.gptwiki:glycan
 |headers=plain
 |format=broadtable
 |mainlabel=-
+|sort=gptwiki:sitepos,gptwiki:haspeptide.gptwiki:glycansym
 }}
 
 {{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]|format=count}}}}

@@ -32,17 +32,19 @@ Edit the page to see the template text.
 == Peptides ==
 
 {{#ask:
-[[Category:Peptide]]
-[[gptwiki:hasglycan::{{PAGENAME}};?]]
-[[gptwiki:transgroupcount::>1]]
-|?gptwiki:name=Peptide
-|?gptwiki:mw #-p3 =Mol. Wt.
-|?-gptwiki:haspeptide.gptwiki:hasprotein=Protein
-|?-gptwiki:haspeptide.gptwiki:site=Site
-|?gptwiki:transgroupcount=Trans. Groups
-|?gptwiki:transitioncount=Transitions
-|sep=,&thinsp;
+[[Category:Alignment]]
+[[gptwiki:haspeptide.gptwiki:hasglycan::{{PAGENAME}};?]]
+[[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
+|?gptwiki:haspeptide=
+|?gptwiki:haspeptide.gptwiki:name=Peptide
+|?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt.
+|?gptwiki:hasprotein=Protein
+|?gptwiki:site=Site
+|?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
 |headers=plain
+|mainlabel=-
+|sort=gptwiki:hasprotein,gptwiki:sitepos
 }}
 
 {{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:sym={{{sym|}}}}}{{#set:|gptwiki:peptidecount={{#ask:

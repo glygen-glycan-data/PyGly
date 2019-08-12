@@ -19,6 +19,7 @@ Edit the page to see the template text.
 |gptwiki:alignraa={{{raa|}}}
 |gptwiki:hasprotein={{{protein|}}}
 |gptwiki:site={{{prsites|}}}
+|gptwiki:sitepos={{#sub:{{{prsites|}}}|1}}
 |gptwiki:haspeptide={{PAGENAME}}
 |@category=Alignment
 }}</includeonly>

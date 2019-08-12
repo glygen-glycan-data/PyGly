@@ -9,7 +9,9 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  Peptide|Category
  sequence|Type:Text
  site|Type:Text
+ sitepos|Type:Number
  glycan|Type:Page
+ glycansym|Type:Text
  hasglycan|Type:Record
  modacc|Type:External identifier
  hasmod|Type:Record
@@ -18,6 +20,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  alignend|Type:Number
  alignlaa|Type:Text
  alignraa|Type:Text
+ haspeptide|Type:Page
  hasprotein|Type:Page
  hasalignment|Type:Record
  transgroupcount|Type:Number
