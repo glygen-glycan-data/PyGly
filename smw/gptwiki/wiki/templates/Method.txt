@@ -1,5 +1,4 @@
 <includeonly>{{DISPLAYTITLE:{{{1}}}}}
-== Acquisitions == 
 {{#ask:
 [[Category:Acquisition]]
 [[gptwiki:formethod::{{PAGENAME}}]]
@@ -9,6 +8,7 @@
 |headers=plain
 |sort=gptwiki:forsample,gptwiki:name
 |format=broadtable
+|intro=<h2>Acquisitions</h2>
 }}
 {{#set:
 |gptwiki:name={{{1}}}
