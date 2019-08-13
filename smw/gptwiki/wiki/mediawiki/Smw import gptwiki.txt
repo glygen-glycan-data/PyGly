@@ -57,5 +57,6 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  analfraction|Type:Text
  analsample|Type:Text
  hasxics|Type:Text
+ showcycle|Type:Text
 
 [[Category:Imported vocabulary]]

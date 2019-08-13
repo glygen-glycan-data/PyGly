@@ -10,5 +10,4 @@ Digested proteins were separated using a 90 minute ACN gradient on a 250 mm x 75
 == Mass Spectrometry ==
 
 Glycopeptides were analyzed using Orbitrap Lumos Fusion mass spectrometer. The electrospray ionization voltage was 3 kV, the capillary temperature 275°C. MS1 scans were performed over m/z 400–1800 with the wide quadrupole isolation on a resolution of 120,000 (m/z 200), RF Lens at 40%, intensity threshold for MS2 was set to 2.0e4,  selected  precursors  for  MS2  were with charge state  3-8, Dynamic exclusion 30s. Data-dependent EThcD tandem mass spectra were collected with a resolution of 30,000 in Orbitrap with fixed first mass 120 and normalized collision energy 25%. Data-dependent HCD scan was triggered by presence of 204.0867, 138.0545 or 366.1396 m/z in EThcD spectra.  HCD tandem mass spectra were collected with a resolution of 30,000 in Orbitrap with fixed first mass 120 and normalized collision energy 20%.
-
 {{Method|Orbitrap Fusion-Lumos, DDA (EThcD pd HCD), nano LC-MS/MS}}

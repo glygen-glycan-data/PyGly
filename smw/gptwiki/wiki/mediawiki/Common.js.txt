@@ -21,7 +21,7 @@ function checkElement() {
         }
         var scandetails = sth.split(";");
         var precscan = scandetails[3];
-        if (precscan != lastprecscan && 0) {
+        if (precscan != lastprecscan) {
             paraFromPage.push({title: "Scan: "+precscan, scan: precscan, annotations: 0});
             lastprecscan = precscan;
         }
@@ -108,11 +108,18 @@ function loadSVG() {
     var charger = document.getElementById("msv_para").getAttribute("data-z1");
     var pmz = document.getElementById("msv_para").getAttribute("data-mz1");
     var spectra_folder = document.getElementById("msv_para").getAttribute("data-spectra");
-    var showxic = document.getElementById("msv_para").getAttribute("data-showxic");
-    if (showxic == "false") {
-      showxic = false;
-    } else {
-      showxic = true;
+    var showxic = document.getElementById("msv_para").getAttribute("data-showxic") || "true";
+
+    // convert to boolean...
+    showxic = (showxic.trim().toLowerCase() != "false");
+    
+    var showcycle = document.getElementById("msv_para").getAttribute("data-showcycle") || "false,true,true";
+
+    // convert to array of boolean...
+    showcycle = showcycle.split(",");
+    var showcyclearray = [];
+    for (var i in showcycle) {
+         showcyclearray.push((showcycle[i].trim().toLowerCase() != "false"));
     }
 
     var param0 = {
@@ -163,6 +170,11 @@ function loadSVG() {
         titles.push(title);
     }
 
-
-    msmsv.addTitles('specpanel', titles, 2, "h3");
+    for (var i in titles) {
+        if (i >= showcyclearray.length) {
+            showcyclearray.push(false);
+        }
+    }
+    console.log(showcyclearray);
+    msmsv.addTitles('specpanel', titles, 2, "h3", showcyclearray);
 }

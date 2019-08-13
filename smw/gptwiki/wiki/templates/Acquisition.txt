@@ -40,5 +40,5 @@ Edit the page to see the template text.
 |sort=gptwiki:rt
 }}
 
-{{#set:|gptwiki:name={{{name|}}}|gptwiki:hasxics={{{hasxics|}}}}}{{#set:|gptwiki:formethod={{{method|}}}}}{{#set:|gptwiki:forsample={{{sample|}}}}}
+{{#set:|gptwiki:name={{{name|}}}|gptwiki:hasxics={{{hasxics|}}}|gptwiki:showcycle={{{showcycle|}}}}}{{#set:|gptwiki:formethod={{{method|}}}}}{{#set:|gptwiki:forsample={{{sample|}}}}}
 [[Category:Acquisition]]
