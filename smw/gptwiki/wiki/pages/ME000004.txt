@@ -1,0 +1,8 @@
+
+Strong anion exchange chromatography using ERLIC (Totten et al., 2017) (SAX-ERLIC) was performed on two aliquots following immunodepletion, with no prior desalting with C18 SPE. SOLA SAX SPE cartridges (ThermoFisher Scientific) were loaded on a vacuum manifold. The cartridges were preconditioned using in-house vacuum during washing. One mL of each wash solution was applied at a time including 3 mL of ACN, followed by 3 mL of 100 mM triethylammonium acetate in water, 3 mL of 1% TFA in water, and 3 mL of 95% ACN with 1% TFA in water. The organic content of the tryptic peptide solution was adjusted to 95% ACN with 1% TFA in water. Peptides were applied to the SPE cartridge; then, the cartridge was washed with 500 μL of 95% ACN with 1% TFA in water. Positive pressure from a pipet bulb was used to assist with flow across the SPE cartridge. The SPE cartridge was then washed with an additional 6 mL of 95% ACN with 1% TFA in water. The peptides were next eluted in three 500 μL aliquots of 50% ACN with 0.1% TFA in water. Larger peptides were eluted in two 1 mL aliquots of 5% ACN with 0.1% TFA in water. Eluates were combined and dried in a Speedvac.
+
+== References ==
+
+Totten SM, Feasley CL, Bermudez A, Pitteri SJ. [https://dx.doi.org/10.1021/acs.jproteome.6b00849 Parallel Comparison of N-Linked Glycopeptide Enrichment Techniques Reveals Extensive Glycoproteomic Analysis of Plasma Enabled by SAX-ERLIC]. J Proteome Res. 2017 Mar 3;16(3):1249-1260. Epub 2017 Feb 15
+
+{{Method|SAX-ERLICH Glycopeptide Enrichment}}

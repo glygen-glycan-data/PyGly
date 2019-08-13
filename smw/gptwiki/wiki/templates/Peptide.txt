@@ -8,7 +8,6 @@ It should be called in the following format:
 |mw=
 |glycan=
 |mod=
-|alignment=
 |transgroup=
 |sample=
 }}
@@ -16,11 +15,14 @@ It should be called in the following format:
 Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{id|}}}}}
 {| class="wikitable" style="width=100%" 
+! Name
+| {{{name|}}}
+|-
 ! Sequence
 | [[gptwiki:sequence::{{{sequence|}}}]]
 |-
 ! Glycans(s)
-| {{#arraymap:{{{glycan|}}}|,|x|[[gptwiki:hasglycan::x]]}}
+| {{#arraymap:{{{glycan|}}}|,|x|{{ShowGlycan|x}}}}
 |-
 ! Mod(s)
 | {{#arraymap:{{{mod|}}}|,|x|[[gptwiki:hasmod::x]]}}
@@ -29,39 +31,41 @@ Edit the page to see the template text.
 | [[gptwiki:mw::{{{mw|}}}]]
 |-
 ! Protein
-| {{#arraymap:{{{alignment|}}}|,|xxxx|{{NameWithLink|{{#explode:xxxx|;|0}}}}}}
-|-
-! Sample(s)
-| {{#arraymap:{{{sample|}}}|,|x|[[gptwiki:forsample::x]]}}
+| {{#ask:
+[[Category:Alignment]]
+[[gptwiki:haspeptide::{{PAGENAME}}]]
+|?gptwiki:hasprotein=
+|mainlabel=-
+|link=none
+|format=template
+|template=NameWithLink
+|sep=,&thinsp;
+|sort=gptwiki:hasprotein
+}}
 |}
+
+== Samples ==
+{{#ask:
+[[Category:Sample]]
+[[-gptwiki:forsample.-gptwiki:spectra.gptwiki:forpeptide::{{PAGENAME}}]]
+|headers=plain
+}}
 
 == Transition Groups ==
 {{#ask:
 [[Category:TransitionGroup]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
+|?gptwiki:rt #-p3 =Exp. R.T. |+align=right 
 |?gptwiki:nrt #-p3 =Norm. R.T. |+align=right 
 |?gptwiki:mz1 #-p3 =Prec. m/z |+align=right 
 |?gptwiki:z1=Prec. z |+align=right 
-|?gptwiki:formethod=Method
+|?gptwiki:spectra.gptwiki:formethod=Method
+|?gptwiki:spectra=Spectra
 |?gptwiki:transitioncount=Transitions |+align=right
 |headers=plain
 }}
 
-== Transitions ==
-{{#ask:
-[[Category:Transition]]
-[[gptwiki:forpeptide::{{PAGENAME}}]]
-|?gptwiki:mz1 #-p3 =Prec. m/z |+align=right 
-|?gptwiki:z1=Prec. z |+align=right 
-|?gptwiki:mz2 #-p3 =Prod. m/z |+align=right
-|?gptwiki:z2=Prod. z |+align=right 
-|?gptwiki:label=Label
-|?gptwiki:transgroupcount=Trans. Groups |+align=right
-|sort=gptwiki:z1,gptwiki:mz2
-|headers=plain
-}}
-
-{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|gptwiki:hasalignment=x}}}}{{#arraymap:{{{alignment|}}}|,|xxxx|{{#set:|gptwiki:hasprotein={{#explode:xxxx|;|0}}}}}}{{#set:|gptwiki:transgroupcount={{#ask:
+{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycan={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycansym={{#show:{{#explode:xxxx|;|0}}|?gptwiki:sym}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:hasglycan=xxxx}}}}{{#set:|gptwiki:transgroupcount={{#ask:
 [[Category:TransitionGroup]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
 |format=count}}}}{{#set:|gptwiki:transitioncount={{#ask:

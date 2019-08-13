@@ -1,0 +1,7 @@
+{{Acquisition
+|anfrac=MARS Depleted
+|ansamp=HSPOOL.01
+|method=ME000001
+|name=MS_31_UO1_MARS_MS2_1ug_longn_CE20_std
+|sample=SA000001
+}}

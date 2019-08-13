@@ -1,4 +1,16 @@
-<includeonly>{{DISPLAYTITLE:{{{1}}}}}{{#set:
+<includeonly>{{DISPLAYTITLE:{{{1}}}}}
+{{#ask:
+[[Category:Acquisition]]
+[[gptwiki:formethod::{{PAGENAME}}]]
+|?gptwiki:forsample=Sample
+|?=Spectrum File
+|mainlabel=-
+|headers=plain
+|sort=gptwiki:forsample,gptwiki:name
+|format=broadtable
+|intro=<h2>Acquisitions</h2>
+}}
+{{#set:
 |gptwiki:name={{{1}}}
 |gptwiki:id={{PAGENAME}}
 }}[[Category:Method]]</includeonly>

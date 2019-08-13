@@ -14,14 +14,24 @@ gnome = SubsumptionGraph()
 gnome.loaddata(sys.argv[1])
 sys.argv.pop(1)
 
-debug = False
 def iterglycan():
     if len(sys.argv) > 1:
+	seen = set()
 	for acc in sys.argv[1:]:
+	    if acc in seen:
+		continue
 	    m = w.get(acc)
 	    if m:
-		debug = True
+		seen.add(acc)
 		yield m
+	    for desc in gnome.descendants(acc):
+		if desc in seen:
+		    continue
+		m = w.get(desc)
+		if m:
+		    seen.add(desc)
+		    yield m
+		
     else:
 	for m in w.iterglycan():
 	    yield m
@@ -51,8 +61,6 @@ species = defaultdict(dict)
 
 for m in iterglycan():
     acc = m.get('accession')
-
-    print "Pass1:",acc
 
     try:
         gtctaxids = set(m.get_annotation_values(property="Taxonomy",source="GlyTouCan",type="Taxonomy"))
@@ -117,8 +125,6 @@ for m in iterglycan():
 
 for acc in sorted(species):
 
-    print "Pass2:",acc
-
     any = False
     for sp in species[acc]:
         if species[acc][sp][0] and species[acc][sp][1]:
@@ -127,6 +133,10 @@ for acc in sorted(species):
 
     if not any:
         continue
+
+    # for sp in species[acc]:
+    #     print acc,sp,species[acc][sp]
+    print "Propagating species to ancestors of",acc
         
     for anc in gnome.ancestors(acc):
 
@@ -137,6 +147,8 @@ for acc in sorted(species):
 
             if species[acc][sp][0] and species[acc][sp][1]:
 
+		# print anc,sp,species[anc][sp]
+
                 isa,direct,evidence = species[anc][sp]
 
                 evidence = sorted(set(list(evidence) + [ec('sub',acc)]))
@@ -146,10 +158,11 @@ for acc in sorted(species):
                 else:
                     species[anc][sp] = (True,direct,evidence)
 
+		# print anc,sp,species[anc][sp]
+
                     
 for acc in sorted(species):
-
-    print "Pass3:",acc
+    m = w.get(acc)
 
     m.delete_annotations(type="Species",source="EdwardsLab")
 
@@ -179,7 +192,7 @@ for acc in sorted(species):
                      value='true' if species[acc]['rat'][0] else 'false',
                      type="Species",
                      source="EdwardsLab")
-    
+
     if w.put(m):
         print acc
 

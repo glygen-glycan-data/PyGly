@@ -18,7 +18,7 @@ print >>sys.stderr, "  to: %s"%(w2.title(),)
 dummy = raw_input("Enter to proceed, <Ctrl-C> to abort:")
 
 currentids = set()
-for page in w1.iterpages(include_categories=('Transition','Peptide','Protein','Glycan','TransitionGroup','Glycan')):
+for page in w1.iterpages(include_categories=('Transition','Peptide','TransitionGroup')):
     id = page.name
     currentids.add(id)
     it = w1.get(id)
@@ -27,7 +27,7 @@ for page in w1.iterpages(include_categories=('Transition','Peptide','Protein','G
     else:
         print >>sys.stderr, "No change to %s in %s"%(id,w2.title())
 
-for page in w2.iterpages(include_categories=('Transition','Peptide','Protein','Glycan','TransitionGroup','Glycan')):
+for page in w2.iterpages(include_categories=('Transition','Peptide','TransitionGroup')):
     id = page.name
     if id not in currentids:
 	w2.delete(id)

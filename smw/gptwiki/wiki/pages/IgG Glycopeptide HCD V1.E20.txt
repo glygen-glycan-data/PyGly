@@ -1,0 +1,7 @@
+{{Acquisition
+|hasxics=false
+|method=ME000003
+|name=IgG_Glycopeptide_HCD_V1.E20
+|sample=SA000003
+|showcycle=true,true
+}}

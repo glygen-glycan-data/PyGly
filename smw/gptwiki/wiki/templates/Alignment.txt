@@ -1,0 +1,25 @@
+<noinclude>
+This is the "Alignment" template.
+It should be called in the following format:
+<pre>
+{{Alignment
+|start=
+|end=
+|protein=
+|laa=
+|raa=
+|prsites=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>{{#subobject:
+|gptwiki:alignstart={{{start|}}}
+|gptwiki:alignend={{{end|}}}
+|gptwiki:alignlaa={{{laa|}}}
+|gptwiki:alignraa={{{raa|}}}
+|gptwiki:hasprotein={{{protein|}}}
+|gptwiki:site={{{prsites|}}}
+|gptwiki:sitepos={{#sub:{{{prsites|}}}|1}}
+|gptwiki:haspeptide={{PAGENAME}}
+|@category=Alignment
+}}</includeonly>

@@ -28,15 +28,25 @@ Edit the page to see the template text.
 == Peptides ==
 
 {{#ask:
-[[Category:Peptide]]
+[[Category:Alignment]]
 [[gptwiki:hasprotein::{{PAGENAME}}]]
-|?gptwiki:name=Peptide
-|?gptwiki:transgroupcount=Trans. Groups
-|?gptwiki:transitioncount=Transitions
-|sep=,&ensp;
-|header=plain
+[[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
+|?gptwiki:haspeptide=
+|?gptwiki:alignstart=Start
+|?gptwiki:haspeptide.gptwiki:name=Peptide
+|?gptwiki:alignend=End
+|?gptwiki:haspeptide.gptwiki:glycan.gptwiki:sym=Glycan
+|?gptwiki:site=Site
+|?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt. 
+|?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
+|sep=,&thinsp;
+|headers=plain
+|format=broadtable
+|mainlabel=-
+|sort=gptwiki:sitepos,gptwiki:haspeptide.gptwiki:glycansym
 }}
 
-{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Peptide]][[gptwiki:hasprotein::{{PAGENAME}}]]|format=count}}}}
+{{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]|format=count}}}}
 [[Category:Protein]]
 </includeonly>

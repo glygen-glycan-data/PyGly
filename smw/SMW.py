@@ -23,7 +23,11 @@ class SMWSite(object):
             thesmwhost += (":" + kwargs['port'])
 	thepath = '/' + self.prefix + '/'
         requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
-        self.site = mwclient.Site((theprotocol,thesmwhost),path=thepath)
+        try:
+	    self.site = mwclient.Site(scheme=theprotocol,host=thesmwhost,path=thepath)
+	except TypeError:
+	    #mwclient, pre 0.10.0
+            self.site = mwclient.Site(host=(theprotocol,thesmwhost),path=thepath)
 	kwargs['smwurl'] = "%s://%s%s"%(theprotocol,thesmwhost,thepath)
         self.site.login(kwargs['username'],kwargs['password'])
 	self.params = kwargs

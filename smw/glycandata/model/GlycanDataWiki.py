@@ -119,7 +119,7 @@ class Annotation(SMW.SMWClass):
         return tuple(map(self.get,('type','property','source')))
 
     def goodvalue(self):
-        return (self.get('value') not in (None,"",[]))
+        return (self.get('value') not in (None,"",[],set([])))
 
     @staticmethod
     def intstrvalue(v):
@@ -303,11 +303,11 @@ class GlycanDataDiskCache(object):
         path = self.acc2path(accession)
         shutil.rmtree(path)
 
-    def iterglycan(self):
-        for acc in self.iterglycanid():
+    def iterglycan(self,fr=None,to=None):
+        for acc in self.iterglycanid(fr,to):
             yield self.get(acc)
         
-    def iterglycanid(self):
+    def iterglycanid(self,fr=None,to=None):
 
         for root, dirs, files in os.walk(self.path):
 	    dirs.sort()
@@ -315,7 +315,8 @@ class GlycanDataDiskCache(object):
             for d in dirs:
                 if re.search(r'^G\d{5}[A-Z]{2}$',d):
 		    any = False
-                    yield d
+		    if ((fr==None) or (fr <= d)) and ((to==None) or (to >= d)):
+                        yield d
 	    if any:
 		dirs = []
             
@@ -325,9 +326,9 @@ class GlycanDataDiskCache(object):
             if self.put(g):
                 print g.get('accession')
 
-    def towiki(self,wiki):
+    def towiki(self,wiki,fr=None,to=None):
 
-        for g in self.iterglycan():
+        for g in self.iterglycan(fr,to):
             if wiki.put(g):
                 print g.get('accession')
 

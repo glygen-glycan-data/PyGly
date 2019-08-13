@@ -1,0 +1,4 @@
+== Publication == 
+
+Dong, Q.; Yan, X.; Liang, Y.; and Stein, S.E. [https://doi.org/10.1021/acs.jproteome.5b01046 In-depth Characterization and Spectral Library Building of Glycopeptides in the Tryptic Digest of a Monoclonal Antibody Using 1D and 2D LC-MS/MS], J Proteome Res. 2016 May 6;15(5):1472-86.
+{{Method|QExactive, DDA (HCD), Multi-CE}}

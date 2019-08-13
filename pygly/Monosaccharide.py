@@ -302,7 +302,7 @@ class Monosaccharide:
         return self._config
 
     def set_config(self,*config):
-	if config[0] == Config.missing:
+	if set([config]) == set([Config.missing]):
 	    self._config = None
         else:
             self._config = config
@@ -311,7 +311,7 @@ class Monosaccharide:
         return self._stem
 
     def set_stem(self,*stem):
-	if stem[0] == Stem.missing:
+	if set([stem]) == set([Stem.missing]):
 	    self._stem = None
 	else:
             self._stem = stem

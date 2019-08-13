@@ -1,0 +1,7 @@
+{{Acquisition
+|anfrac=IGM protein standard
+|ansamp=IGM.01
+|method=ME000002
+|name=MS_24_UO1_IGM_UO1
+|sample=SA000001
+}}

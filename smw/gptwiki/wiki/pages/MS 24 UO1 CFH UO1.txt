@@ -1,0 +1,7 @@
+{{Acquisition
+|anfrac=CFH protein standard
+|ansamp=CFH.01
+|method=ME000002
+|name=MS_24_UO1_CFH_UO1
+|sample=SA000001
+}}

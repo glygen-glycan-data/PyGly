@@ -33,7 +33,8 @@ def peptide_mw(seq):
 
 modmw = {\
      '+57.02:C': (+57.021464,''), # Fixed mod
-     '+16.00:M': (+15.9994,'Ox') # Var mod
+     '+16.00:M': (+15.994915,'Ox'), # Var mod
+     '+15.99:M': (+15.994915,'Ox') # Var mod
 }
 
 def mod_mw(delta,pos,seq):

@@ -1,8 +1,7 @@
 <includeonly>
 <table class="wikitable sortable smwtable">
 <tr>
-<th></th>
-<th>R.T.</th>
+<th>Exp. R.T.</th>
 <th>Norm. R.T.</th>
 <th>Prec. m/z</th>
 <th>Prec. z</th>

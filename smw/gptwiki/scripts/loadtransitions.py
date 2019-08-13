@@ -12,9 +12,20 @@ def asscan(s):
     return [int(t[0])]+t[1].split(',')
 
 w = GPTWiki()
+
+spectra2tg = defaultdict(set)
+for tgpage in w.iterpages(include_categories=['TransitionGroup']):
+    tg = w.get(tgpage.name)
+    spectra = tg.get('spectra')
+    spectra2tg[spectra].add(tg.get('id'))
+
+allspectra = set()
+
 for transfile in sys.argv[1:]:
-  spectra,method,index,extn = transfile.rsplit('.',3)
+  spectra,sample,method,index,extn = transfile.rsplit('.',4)
   spectra = os.path.split(spectra)[1]
+  allspectra.add(spectra)
+  w.addacquisition(name=spectra,method=method,sample=sample)
   tgroup = defaultdict(dict)
   for l in csv.DictReader(open(transfile),dialect='excel-tab'):
     seq = l['PeptideSequence']
@@ -31,7 +42,7 @@ for transfile in sys.argv[1:]:
 	    mods.append((delta,site))
     key,pid = w.findpeptide(sequence=seq,glycans=glycan,mods=mods)
     if not pid:
-	print >>sys.stderr, "Warning: Can't resolve peptide %s, %s, %s"%(seq,glycans,mods)
+	print >>sys.stderr, "Warning: Can't resolve peptide %s, %s, %s"%(seq,glycan,mods)
 	continue
     rt = float(l['RetentionTime'])
     nrt = l['NormalizedRetentionTime']
@@ -45,17 +56,24 @@ for transfile in sys.argv[1:]:
     relint = float(l['LibraryIntensity'])
     label = label.rstrip('+')
     scans = map(asscan,l['Scans'].split(';'))
-    
+
     t,modified = w.addtransition(peptide=pid,label=label,mz1=mz1,z1=z1,mz2=mz2,z2=z2)
     if modified:
         print t.get('id')
 
-    if (pid,z1) not in tgroup:
-        tgroup[(pid,z1)] = dict(transitions=[],nrt=nrt,rt=rt,mz1=mz1,method=method,spectra=spectra,scans=scans)
-    tgroup[(pid,z1)]['transitions'].append((t.get('id'),relint))
+    if (pid,z1,spectra) not in tgroup:
+        tgroup[(pid,z1,spectra)] = dict(transitions=[],nrt=nrt,rt=rt,mz1=mz1,scans=scans)
+    tgroup[(pid,z1,spectra)]['transitions'].append((t.get('id'),relint))
     
-  for pid,z1 in tgroup:
-    tgroup[(pid,z1)]['ntransition'] = len(tgroup[(pid,z1)]['transitions'])
-    tg,mod = w.addtransgroup(peptide=pid,z1=z1,**tgroup[(pid,z1)])
+  for pid,z1,spectra in tgroup:
+    tgroup[(pid,z1,spectra)]['ntransition'] = len(tgroup[(pid,z1,spectra)]['transitions'])
+    tg,mod = w.addtransgroup(peptide=pid,z1=z1,spectra=spectra,**tgroup[(pid,z1,spectra)])
     if mod:
         print tg.get('id')
+    if tg.get('id') in spectra2tg[spectra]:
+        spectra2tg[spectra].remove(tg.get('id'))
+
+for spectra in allspectra:
+  for tgid in spectra2tg[spectra]:
+    print "Deleting transition group",tgid
+    w.delete(tgid)
