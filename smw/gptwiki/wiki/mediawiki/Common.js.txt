@@ -175,6 +175,6 @@ function loadSVG() {
             showcyclearray.push(false);
         }
     }
-    console.log(showcyclearray);
+    // console.log(showcyclearray);
     msmsv.addTitles('specpanel', titles, 2, "h3", showcyclearray);
 }
