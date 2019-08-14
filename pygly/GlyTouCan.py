@@ -84,6 +84,12 @@ class GlyTouCan(object):
             self.cacheupdated = True
         return self.cachedata[valuekey].get(acc)
 
+    def cache_haskey(self,valuekey):
+	return (valuekey in self.cachedata)
+
+    def cachegetall(self,valuekey):
+	return self.cachedata[valuekey].iteritems()
+
     def setup_sparql(self):
         self.g = ConjunctiveGraph(store='SPARQLStore')
         self.g.open(self.endpt)
@@ -217,6 +223,10 @@ class GlyTouCan(object):
 	}
     """
     def allmass(self):
+	if self.usecache and self.cache_haskey('mass'):
+	    for it in self.cachegetall('mass'):
+		yield it
+	    raise StopIteration
 	response = self.query(self.allmass_sparql)
         acckey = response.vars[0]
         mwkey = response.vars[1]
@@ -1249,7 +1259,7 @@ if __name__ == "__main__":
 
     elif cmd.lower() == "allmass":
 
-        gtc = GlyTouCan()
+        gtc = GlyTouCan(usecache=True)
         for s,m in gtc.allmass():
 	    print "\t".join(map(str,[s,m]))
 
