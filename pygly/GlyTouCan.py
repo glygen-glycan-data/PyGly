@@ -206,6 +206,10 @@ class GlyTouCan(object):
     """
 
     def allseq(self):
+	if self.usecache and self.cache_haskey('seq'):
+            for it in self.cachegetall('seq'):
+                yield it
+            raise StopIteration
 	response = self.query(self.allseq_sparql)
         for row in response.bindings:
 	    acc,format,seq = tuple(map(str,map(row.get,response.vars)))
