@@ -1305,6 +1305,7 @@ class WURCS20Format(GlycanFormatter):
 	for i,ms in enumerate(m.group(4).split('-')):
             mono[i+1] = self.mf.get(distinctmono[int(ms)])
             mono[i+1].set_id(i+1)
+            mono[i+1].set_external_descriptor_id(i+1)
 
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):
