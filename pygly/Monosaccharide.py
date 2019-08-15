@@ -420,6 +420,9 @@ class Monosaccharide:
     def set_external_descriptor_id(self, eid):
         self._eid = eid
 
+    def get_external_descriptor_id(self):
+        return self._eid
+
     def unset_id(self):
         self._id = None
 
