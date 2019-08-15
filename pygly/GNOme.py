@@ -253,7 +253,7 @@ import time
 
 class SubsumptionGraph:
     def __init__(self, *args, **kwargs):
-	pass 
+        pass
 
     def compute(self, *args, **kwargs):
         self.gtc = GlyTouCan(usecache=True)
@@ -682,6 +682,11 @@ class SubsumptionGraph:
 
     def issaccharide(self, accession):
         return self.islevel(accession, 'saccharide')
+
+    def get_molecularweight(self, accession):
+        for n, t in self.allnodestype.items():
+            if self.ismolecularweight(n) and accession in self.descendants(n):
+                yield n
 
     def get_basecomposition(self, accession):
         for n, t in self.allnodestype.items():
@@ -1244,28 +1249,30 @@ if __name__ == "__main__":
 
     elif cmd == "writeowl":
         r = OWLWriter()
+        subsumptiongraphinstance = SubsumptionGraph()
 
         # "../smw/glycandata/data/gnome_subsumption_raw.txt"
         ifn = sys.argv[1]  # path to input file
-        df = dumpFile(ifn)
+        subsumptiongraphinstance.loaddata(ifn)
 
-        for mass in df.getmass():
+        for mass in subsumptiongraphinstance.nodes():
+            if not subsumptiongraphinstance.ismolecularweight(mass):
+                continue
             mass = "%.2f" % float(mass)
-            # print mass
-            nodes = df.getnodesbymass(mass)
+
+            nodes = subsumptiongraphinstance.descendants(mass)
 
             r.addNode(mass, nodetype="molecularweight")
 
             for n in nodes:
-                r.addNode(n, nodetype=df.getnodetype(n))
+                # molecular weight has a space between two words
+                r.addNode(n, nodetype=subsumptiongraphinstance.level(n))
+            nodes.add(mass)
 
             for n in nodes:
-                if df.getchild(n):
-                    for c in df.getchild(n):
+                if subsumptiongraphinstance.children(n):
+                    for c in subsumptiongraphinstance.children(n):
                         r.connect(r.getNode(n), r.getNode(c), "subsumes")
-
-            for n in df.getnodessubsumedbymass(mass):
-                r.connect(r.getNode(mass), r.getNode(n), "subsumes")
 
         if len(sys.argv) > 2:
             ofn = sys.argv[2]
