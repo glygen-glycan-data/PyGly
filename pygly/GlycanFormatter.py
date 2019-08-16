@@ -6,6 +6,7 @@ from MonoFactory import MonoFactory
 
 import re, sys
 import copy
+import string
 from collections import defaultdict
 
 class GlycanFormatter:
@@ -1285,15 +1286,27 @@ class WURCS20Format(GlycanFormatter):
     def __init__(self):
         self.mf = WURCS20MonoFormatter.WURCS20MonoFormat()
 	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
-	self.simplelinkre = re.compile(r'^([a-zA-Z])([0-9?])-([a-zA-Z])([0-9?])$')
-	self.multilinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|\4([0-9?]))*)$')
-	self.ambiglinkre = re.compile(r'^([a-zA-Z])([0-9?])-(([a-zA-Z])([0-9?])(\|([a-zA-Z])([0-9?]))+)\}$')
-        self.complinkre = re.compile(r'^([a-zA-Z][0-9?](\|[a-zA-Z][0-9?])*)\}-\{\1$')
+	self.simplelinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])$')
+	self.multilinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|\4([0-9?]))*)$')
+	self.ambiglinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|([a-zA-Z]{1,2})([0-9?]))+)\}$')
+        self.complinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}-\{\1$')
         self.char2int = {}
+        self.int2char = {}
         for i in range(26):
             self.char2int[chr(i+ord('a'))] = i+1
+            self.int2char[i+1] = chr(i+ord('a'))
         for i in range(26):
             self.char2int[chr(i+ord('A'))] = i+26+1
+            self.int2char[i + 1 + 26] = chr(i+ord('A'))
+
+        allLetters = string.ascii_lowercase + string.ascii_uppercase
+        for l1 in allLetters:
+            for l2 in allLetters:
+                doubledigit = l1+l2
+                intfordoubledigit = self.char2int[l2] + self.char2int[l1]*52
+                self.int2char[intfordoubledigit] = doubledigit
+                self.char2int[doubledigit] = intfordoubledigit
+
     def toGlycan(self,s):
 	m = self.wurcsre.search(s)
 	if not m:
@@ -1305,6 +1318,7 @@ class WURCS20Format(GlycanFormatter):
 	for i,ms in enumerate(m.group(4).split('-')):
             mono[i+1] = self.mf.get(distinctmono[int(ms)])
             mono[i+1].set_id(i+1)
+            mono[i+1].set_external_descriptor_id(i+1)
 
         undets = set()
         for li in map(str.strip,m.group(6).split('_')):

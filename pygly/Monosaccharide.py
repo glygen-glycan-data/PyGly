@@ -103,6 +103,10 @@ class Monosaccharide:
         # useful for a variety of general processing tasks...
         self._id = None
 
+        # Short for external descriptor(eg. WURCS) identifier
+        # Could be used for keeping track of monosaccharide from descriptor assigned ID
+        self._eid = None
+
     def clone(self):
         m = Monosaccharide()
         m._anomer = self._anomer
@@ -410,8 +414,14 @@ class Monosaccharide:
     def id(self):
         return self._id
 
-    def set_id(self,id):
+    def set_id(self, id):
         self._id = id
+
+    def set_external_descriptor_id(self, eid):
+        self._eid = eid
+
+    def get_external_descriptor_id(self):
+        return self._eid
 
     def unset_id(self):
         self._id = None
