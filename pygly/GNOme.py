@@ -2,6 +2,7 @@ import copy
 import re
 import sys
 import os, os.path, urllib
+import urllib2
 from collections import defaultdict
 
 import rdflib
@@ -758,6 +759,36 @@ class SubsumptionGraph:
         temp = map(lambda x: len(x), warnings.values())
         return reduce(lambda x, y: x + y, temp)
 
+    def generateOWL(self, input_file_path, output_file_path):
+        self.loaddata(input_file_path)
+
+        r = OWLWriter()
+
+        for mass in self.nodes():
+            if not self.ismolecularweight(mass):
+                continue
+            mass = "%.2f" % float(mass)
+
+            nodes = self.descendants(mass)
+
+            r.addNode(mass, nodetype="molecularweight")
+
+            for n in nodes:
+                # molecular weight has a space between two words
+                r.addNode(n, nodetype=self.level(n))
+            nodes.add(mass)
+
+            for n in nodes:
+                if self.children(n):
+                    for c in self.children(n):
+                        r.connect(r.getNode(n), r.getNode(c), "subsumes")
+
+        f = open(output_file_path, "w")
+        s = r.write(f, r.make_graph())
+        f.close()
+
+
+
 
 from rdflib import URIRef, Namespace
 
@@ -1245,43 +1276,44 @@ if __name__ == "__main__":
             sys.argv.pop(1)
 
         g = SubsumptionGraph()
-	g.compute(*sys.argv[1:], verbose=verbose)
+        g.compute(*sys.argv[1:], verbose=verbose)
 
     elif cmd == "writeowl":
-        r = OWLWriter()
-        subsumptiongraphinstance = SubsumptionGraph()
 
         # "../smw/glycandata/data/gnome_subsumption_raw.txt"
         ifn = sys.argv[1]  # path to input file
-        subsumptiongraphinstance.loaddata(ifn)
-
-        for mass in subsumptiongraphinstance.nodes():
-            if not subsumptiongraphinstance.ismolecularweight(mass):
-                continue
-            mass = "%.2f" % float(mass)
-
-            nodes = subsumptiongraphinstance.descendants(mass)
-
-            r.addNode(mass, nodetype="molecularweight")
-
-            for n in nodes:
-                # molecular weight has a space between two words
-                r.addNode(n, nodetype=subsumptiongraphinstance.level(n))
-            nodes.add(mass)
-
-            for n in nodes:
-                if subsumptiongraphinstance.children(n):
-                    for c in subsumptiongraphinstance.children(n):
-                        r.connect(r.getNode(n), r.getNode(c), "subsumes")
 
         if len(sys.argv) > 2:
-            ofn = sys.argv[2]
+            # Output file parent (folder) path
+            ofpp = sys.argv[2]
+            if not ofpp.endswith("/"):
+                ofpp += "/"
         else:
-            ofn = "GNOme_temp.owl"
-        f = open(ofn, "w")
-        s = r.write(f, r.make_graph())
-        f.close()
+            ofpp = "./"
+        ofn = ofpp + "GNOme.owl"
 
+        subsumption_instance = SubsumptionGraph()
+        subsumption_instance.generateOWL(ifn, ofn)
+
+        # generate the restriction sets
+        bcsdb_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_BCSDB.accessions.txt"
+        glygen_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_GlyGen.accessions.txt"
+
+        def restriction_GNOme(name, url):
+
+            ofn_restriction = ofpp + "GNOme_%s.owl" % name
+            handle = urllib2.urlopen(url)
+            accs = handle.read().strip().split()
+
+            GNOme_res = GNOme(resource=ofn)
+            GNOme_res.restrict(accs)
+
+            f = open(ofn_restriction, "w")
+            GNOme_res.write(f)
+            f.close()
+
+        restriction_GNOme("BCSDB", bcsdb_url)
+        restriction_GNOme("GlyGen", glygen_url)
 
     else:
 
