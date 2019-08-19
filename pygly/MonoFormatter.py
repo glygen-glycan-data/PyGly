@@ -82,6 +82,7 @@ class GlycoCTMonoFormat:
 
         m = Monosaccharide()
         m.set_id(id)
+        m.set_external_descriptor_id(id)
         MODS = desc.split('|')
         MONO = MODS.pop(0).split('-')
         
