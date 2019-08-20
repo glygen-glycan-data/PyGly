@@ -1,4 +1,6 @@
 {{Acquisition
+|anfrac=SAX-ERLICH Enriched
+|ansamp=HSPOOL.01
 |method=ME000001
 |name=MS_35_Frac_plasma_run02_fr2
 |sample=SA000001
