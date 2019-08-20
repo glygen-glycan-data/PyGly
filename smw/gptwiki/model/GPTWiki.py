@@ -384,6 +384,8 @@ class GPTWiki(SMW.SMWSite):
         return "PE%06d"%(maxid+1,)
 
     def findpeptide(self,sequence,glycans=[],mods=[]):
+	if self._peptides == None:
+	    self.peptideindex()
         key = Peptide.key(sequence,glycan=glycans,mod=mods)
         return key,self._peptides.get(key)
 

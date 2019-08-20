@@ -1,0 +1,5 @@
+{{Acquisition
+|method=ME000001
+|name=MS_35_Frac_plasma_run02_fr4
+|sample=SA000001
+}}

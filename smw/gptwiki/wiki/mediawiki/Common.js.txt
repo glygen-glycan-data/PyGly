@@ -22,7 +22,7 @@ function checkElement() {
         var scandetails = sth.split(";");
         var precscan = scandetails[3];
         if (precscan != lastprecscan) {
-            paraFromPage.push({title: "Scan: "+precscan, scan: precscan, annotations: 0});
+            paraFromPage.push({title: "Scan: "+precscan, scan: precscan, annotations: 0, zoomHeight: true});
             lastprecscan = precscan;
         }
         var title = "";
@@ -165,7 +165,13 @@ function loadSVG() {
         } else {
             delete params["annotations"];
         }
-        // console.log(params);
+        if (paraFromPage[i]["zoomHeight"] == true) {
+            params["zoomHeight"] = true;
+        } else {
+            params["zoomHeight"] = false;
+        }
+
+        console.log(params);
         msmsv.showLabelledSpectrum('specpanel','spec'+sc, params);
         titles.push(title);
     }
@@ -176,5 +182,5 @@ function loadSVG() {
         }
     }
     // console.log(showcyclearray);
-    msmsv.addTitles('specpanel', titles, 2, "h3", showcyclearray);
+    msmsv.addTitles('specpanel', titles, 0, "h3", showcyclearray);
 }
