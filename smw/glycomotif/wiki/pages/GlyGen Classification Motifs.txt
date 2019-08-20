@@ -1,0 +1,22 @@
+{{#ask: [[Category:Motif]]
+[[Glycomotif:incollection::GTC]]
+[[Glycomotif:accession::!G00027MO]]
+ |?Glycomotif:accession=glycomotif:accession
+ |?Glycomotif:name=glycomotif:name
+ |?Glycomotif:aglycon=glycomotif:aglycon
+ |?Glycomotif:reducingend=glycomotif:reducingend
+ |?Glycomotif:collectioncount=glycomotif:collectioncount
+ |?Glycomotif:instancecount=glycomotif:instancecount
+ |format=template
+ |limit=18
+ |offset=14
+ |link=none
+ |sort=Glycomotif:accession
+ |order=ascending
+ |headers=show
+ |searchlabel=... further results
+ |valuesep=,
+ |template=MotifTableRows
+ |introtemplate=MotifTableIntro
+ |outrotemplate=MotifTableOutro
+}}
