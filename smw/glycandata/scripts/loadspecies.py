@@ -109,7 +109,7 @@ for m in iterglycan():
         species[acc]['mouse'] = (False,True,sorted(evidence))
 
     evidence = set()
-    for taxid in (10116,):
+    for taxid in (10116,10114):
         if str(taxid) in gtctaxids:
             evidence.add(ec('GTC',taxid))
         if str(taxid) in uckbtaxids:
@@ -121,7 +121,45 @@ for m in iterglycan():
         species[acc]['rat'] = (True,True,sorted(evidence))
     else:
         species[acc]['rat'] = (False,True,sorted(evidence))
+    
+    hcvspecies_descendents = set([11103,33745, 31653, 356418, 44022, 44023,
+        128819, 128820, 128821, 693426, 693427, 745709, 1094898, 1094899,
+        1094900, 1208062, 33746, 31654, 356390, 356419, 40271, 31649, 11113,
+        356411, 31650, 11115, 356412, 31651, 356413, 40361, 44021, 356387,
+        56388, 356466, 356414, 693428, 693429, 760561, 1094901, 41856,
+        31646, 11104, 11108, 63746, 31647, 11105, 11116, 31642, 31645, 333284,
+        20174, 421877, 421879, 31648, 356386, 356410, 40360, 44019, 44020,
+        484894, 42182, 31655, 356391, 356420, 356427, 356423, 356465, 356421,
+        356467, 356424, 356468, 356422, 356469, 356425, 378506, 378507,
+        413255, 413256, 413257, 438880, 438881, 467337, 467338, 467339,
+        467354, 569610, 1193076, 356113, 11106, 11107, 11109, 11110, 11111,
+        11112, 11114, 11117, 31643, 31644, 36390, 329389, 357985, 357986,
+        357987, 357988, 357989, 357990, 357991, 668553, 668554, 668555,
+        758864, 761189, 761190, 761191, 761192, 1173523, 1208063, 356114,
+        2791, 357355, 42792, 356115, 356116, 356417, 356426, 356415, 356416,
+        759939, 1094895, 1405107, 578319, 487624, 578303, 578306, 595609,
+        595610, 595611, 595612, 679182, 761967, 945057, 945058, 945059,
+        45060, 945061, 945062, 945063, 945064, 945065, 945066, 945067,
+        945068, 945069, 945070, 945071, 945072, 945073, 1006431, 1006432,
+        1006433, 1006434, 1006435, 1006436, 1006437, 1006438, 1006439,
+        1006440, 1006441, 1006442, 1006443, 1006444, 1053139, 1053140,
+        053141, 1053142, 1053143, 1053144, 1053145, 1053146, 1053147,
+        1259832, 1406420, 1406421, 1406422, 1406423, 1406424, 1406425,
+        1406426, 1406427])
 
+    evidence = set()
+    for taxid in hcvspecies_descendents:
+        if str(taxid) in gtctaxids:
+            evidence.add(ec('GTC',taxid))
+        if str(taxid) in uckbtaxids:
+            evidence.add(ec('UCKB',taxid))
+    # if len(evidence) > 0 and comp['Xyl'] == 0:
+    #	evidence.add(ec('noXyl'))
+
+    if len(evidence) > 0:
+        species[acc]['hcv'] = (True,True,sorted(evidence))
+    else:
+        species[acc]['hcv'] = (False,True,sorted(evidence))
 
 for acc in sorted(species):
 
@@ -174,6 +212,10 @@ for acc in sorted(species):
                      value='true' if species[acc]['human'][0] else 'false',
                      type="Species",
                      source="EdwardsLab")
+    m.set_annotation(property="Human Direct",
+                     value='true' if species[acc]['human'][1] else 'false',
+                     type="Species",
+                     source="EdwardsLab")
 
     m.set_annotation(property="Mouse Evidence",
                      value=species[acc]['mouse'][2],
@@ -183,6 +225,10 @@ for acc in sorted(species):
                      value='true' if species[acc]['mouse'][0] else 'false',
                      type="Species",
                      source="EdwardsLab")
+    m.set_annotation(property="Mouse Direct",
+                     value='true' if species[acc]['mouse'][1] else 'false',
+                     type="Species",
+                     source="EdwardsLab")
     
     m.set_annotation(property="Rat Evidence",
                      value=species[acc]['rat'][2],
@@ -190,6 +236,23 @@ for acc in sorted(species):
                      source="EdwardsLab")
     m.set_annotation(property="Rat",
                      value='true' if species[acc]['rat'][0] else 'false',
+                     type="Species",
+                     source="EdwardsLab")
+    m.set_annotation(property="Rat Direct",
+                     value='true' if species[acc]['rat'][1] else 'false',
+                     type="Species",
+                     source="EdwardsLab")
+
+    m.set_annotation(property="HCV Evidence",
+                     value=species[acc]['hcv'][2],
+                     type="Species",
+                     source="EdwardsLab")
+    m.set_annotation(property="HCV",
+                     value='true' if species[acc]['hcv'][0] else 'false',
+                     type="Species",
+                     source="EdwardsLab")
+    m.set_annotation(property="HCV Direct",
+                     value='true' if species[acc]['hcv'][1] else 'false',
                      type="Species",
                      source="EdwardsLab")
 
