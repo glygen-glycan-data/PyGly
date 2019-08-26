@@ -4,10 +4,13 @@ import sys
 
 import findpygly
 
-from pygly.GNOme import GNOme
+from pygly.GNOme import GNOme, SubsumptionGraph
 from pygly.GlyTouCan import GlyTouCan
 
-g = GNOme()
+g = SubsumptionGraph()
+g.readfile(sys.argv[1])
+sys.argv.pop(1)
+# g = GNOme()
 gtc = GlyTouCan(usecache=True)
 
 for acc in sys.argv[1:]:
