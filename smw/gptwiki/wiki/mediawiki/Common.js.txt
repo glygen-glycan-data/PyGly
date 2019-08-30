@@ -57,6 +57,16 @@ function injectResources() {
         js_status[jsurl] = false;
         getScript(jsurl, sync1);
     }
+    
+    jQuery.getScript = function(url, callback){
+        jQuery.ajax({
+            type: "GET",
+            url: url,
+            success: callback,
+            dataType: "script",
+            cache: true
+        })
+    };
 
     jQuery.ajaxSetup({cache: true});
     function getScript(url, func) {
