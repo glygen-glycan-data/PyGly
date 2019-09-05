@@ -767,10 +767,10 @@ class SubsumptionGraph:
         temp = map(lambda x: len(x), warnings.values())
         return reduce(lambda x, y: x + y, temp)
 
-    def generateOWL(self, input_file_path, output_file_path):
+    def generateOWL(self, input_file_path, output_file_path, version=None):
         self.loaddata(input_file_path)
 
-        r = OWLWriter()
+        r = OWLWriter(version=version)
 
         for mass in self.nodes():
             if not self.ismolecularweight(mass):
@@ -804,7 +804,8 @@ from rdflib import URIRef, Namespace
 class OWLWriter():
     _nodes = {}
 
-    def __init__(self):
+    def __init__(self, version=None):
+        self.version = version
         self.readmassidmap()
 
     def addNode(self, nodeID, nodetype=None):
@@ -978,6 +979,12 @@ class OWLWriter():
 
         # Add ontology
         outputGraph.add((root, rdf.type, owl.Ontology))
+
+        # VersionIRI
+        if self.version:
+            outputGraph.add(
+                (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/GNOme.owl" % self.version))
+            )
 
         # Copyright
         outputGraph.add(
@@ -1287,10 +1294,14 @@ if __name__ == "__main__":
         g.compute(*sys.argv[1:], verbose=verbose)
 
     elif cmd == "writeowl":
+        # python GNOme.py writeowl ../smw/glycandata/data/gnome_subsumption_raw.txt "./" v1.1.5
 
         # "../smw/glycandata/data/gnome_subsumption_raw.txt"
         ifn = sys.argv[1]  # path to input file
 
+        versionTag = None
+        if len(sys.argv) > 3:
+            versionTag = sys.argv[3]
         if len(sys.argv) > 2:
             # Output file parent (folder) path
             ofpp = sys.argv[2]
@@ -1301,7 +1312,7 @@ if __name__ == "__main__":
         ofn = ofpp + "GNOme.owl"
 
         subsumption_instance = SubsumptionGraph()
-        subsumption_instance.generateOWL(ifn, ofn)
+        subsumption_instance.generateOWL(ifn, ofn, version=versionTag)
 
         # generate the restriction sets
         bcsdb_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_BCSDB.accessions.txt"

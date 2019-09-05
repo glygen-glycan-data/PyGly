@@ -57,10 +57,20 @@ function injectResources() {
         js_status[jsurl] = false;
         getScript(jsurl, sync1);
     }
+    
+    function getScriptCached(url, callback) {
+        jQuery.ajax({
+            type: "GET",
+            url: url,
+            success: callback,
+            dataType: "script",
+            cache: true
+        });
+    }
 
-    jQuery.ajaxSetup({cache: true});
+    //jQuery.ajaxSetup({cache: true});
     function getScript(url, func) {
-        jQuery.getScript(url, function () {
+        getScriptCached(url, function () {
             js_status[url] = true;
             func();
         });
@@ -171,4 +181,5 @@ function loadSVG() {
     }
     // console.log(showcyclearray);
     msmsv.addTitles('specpanel', titles, 0, "h3", showcyclearray);
+    msmsv.done();
 }
