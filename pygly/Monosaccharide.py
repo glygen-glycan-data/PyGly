@@ -56,12 +56,124 @@ class Anomer:
     uncyclized = 3
     missing    = None
 
-class Monosaccharide:
+class Node(object):
+
+    # The Node class represents the functionality common to Monosaccaharides and Substituents...
+
+    def __init__(self):
+
+        # Contains a list of links specifying residues that the monosaccharide is linked to
+        # Linkage objects in no particular order...
+        self._links = []
+        
+        # Useful primarily for undetermined roots
+        self._parent_links = []
+
+        # Mark undetermined roots that have instantiated links to them...
+        self._connected = True
+
+        # These are not primary data associated with monosaccharides, but are
+        # useful for a variety of general processing tasks...
+        self._id = None
+
+        return 
+
+    def links(self,instantiated_only=True):
+        if instantiated_only:
+            return filter(lambda l: l.instantiated(),self._links)
+        return self._links
+
+    def parent_links(self):
+        return self._parent_links
+
+    def add_link(self, l):
+        self._links.append(l)
+
+    def del_link(self, l):
+        self._links.remove(l)
+
+    def clear_links(self):
+        self._links = []
+
+    def add_parent_link(self, l):
+        self._parent_links.append(l)
+
+    def del_parent_link(self, l):
+        self._parent_links.remove(l)
+
+    def clear_parent_links(self):
+        self._parent_links = []
+
+    def children(self):
+        return [l.child() for l in self.links() ]
+
+    def first_child(self):
+	for l in self.links():
+            return l.child()
+	return None
+
+    def add_child(self,m,**kw):
+        l = Linkage(child=m,**kw)
+        self.add_link(l)
+        l.set_parent(self)
+        m.add_parent_link(l)
+	return l
+
+    def has_children(self):
+	return (self.first_child() != None)
+
+    def set_connected(self,conn):
+	self._connected = conn
+
+    def connected(self):
+	return self._connected
+
+    def id(self):
+        return self._id
+
+    def set_id(self, id):
+        self._id = id
+
+    def unset_id(self):
+        self._id = None
+
+    def subtree_equals(self,m,mapids=True):
+
+        if not self.equals(m):
+            return False
+        
+        if mapids:
+            m.set_id(self.id())
+
+        for ii,jj in itermatchings(self.links(),m.links(),
+                                   lambda i,j: i.equals(j) and i.child().subtree_equals(j.child(),mapids=mapids)):
+            return True
+
+        if mapids:
+            m.unset_id()
+
+        return False
+
+    def has_substituents(self):
+        return False
+
+    def substituents(self):
+        return []
+
+    def substituent_links(self):
+        return []
+
+    def is_monosaccharide(self):
+        return False
+
+class Monosaccharide(Node):
 
     # Note that we use None to indicate unset or null values
     # throughout. To unset a value, assign None to it.
 
-    def __init__(self,m=None):
+    def __init__(self):
+
+        super(Monosaccharide,self).__init__()
 
         # Configuration of anomeric carbon 
         self._anomer = None
@@ -86,26 +198,15 @@ class Monosaccharide:
         # Modifier type (Optional, Repeatable)
         self._mods = []
 
-        # Contains a list of links specifying residues that the monosaccharide is linked to
-        # Linkage objects in no particular order...
-        self._links = []
-
         # A list of 0 or more links to substituent objects.
         self._substituent_links = []
-
-        # Useful primarily for undetermined roots
-        self._parent_links = []
-
-	# Mark undetermined roots that have instantiated links to them...
-	self._connected = True
-
-        # These are not primary data associated with monosaccharides, but are
-        # useful for a variety of general processing tasks...
-        self._id = None
 
         # Short for external descriptor(eg. WURCS) identifier
         # Could be used for keeping track of monosaccharide from descriptor assigned ID
         self._eid = None
+
+    def is_monosaccharide(self):
+        return True
 
     def clone(self):
         m = Monosaccharide()
@@ -128,12 +229,6 @@ class Monosaccharide:
 
     def noring(self):
         return (self.ring() == (0,0))
-
-    def clear_links(self):
-        self._links = []
-
-    def clear_parent_links(self):
-        self._parent_links = []
 
     def deepclone(self,identified_link=None,cache=None):
         if cache == None:
@@ -171,24 +266,9 @@ class Monosaccharide:
             return True
         return False
 
-    def subtree_equals(self,m,mapids=True):
-
-        if not self.equals(m):
-            return False
-        
-        if mapids:
-            m.set_id(self.id())
-
-        for ii,jj in itermatchings(self.links(),m.links(),
-                                   lambda i,j: i.equals(j) and i.child().subtree_equals(j.child(),mapids=mapids)):
-            return True
-
-        if mapids:
-            m.unset_id()
-
-        return False
-
     def equals(self,m):
+        if not isinstance(m,Monosaccharide):
+            return False
         if self._anomer != m._anomer:
             return False
         if self._config != m._config:
@@ -391,69 +471,16 @@ class Monosaccharide:
     def add_substituent_link(self, l):
         self._substituent_links.append(l)
 
-    def links(self,instantiated_only=True):
-        if instantiated_only:
-            return filter(lambda l: l.instantiated(),self._links)
-        return self._links
-
-    def parent_links(self):
-        return self._parent_links
-
-    def add_link(self, l):
-        self._links.append(l)
-
-    def del_link(self, l):
-        self._links.remove(l)
-
-    def add_parent_link(self, l):
-        self._parent_links.append(l)
-
-    def del_parent_link(self, l):
-        self._parent_links.remove(l)
-
-    def id(self):
-        return self._id
-
-    def set_id(self, id):
-        self._id = id
-
     def set_external_descriptor_id(self, eid):
         self._eid = eid
 
     def external_descriptor_id(self):
         return self._eid
 
-    def unset_id(self):
-        self._id = None
-
-    def set_connected(self,conn):
-	self._connected = conn
-
-    def connected(self):
-	return self._connected
-
 ##     def mass(self,mass_table=None):
 ##         if not mass_table:
 ##             mass_table = Monosaccharide.elementMassTable
 ##         return self._composition.mass(mass_table)
-
-    def children(self):
-        return [l.child() for l in self.links() ]
-
-    def first_child(self):
-	for l in self.links():
-            return l.child()
-	return None
-
-    def add_child(self,m,**kw):
-        l = Linkage(child=m,**kw)
-        self.add_link(l)
-        l.set_parent(self)
-        m.add_parent_link(l)
-	return l
-
-    def has_children(self):
-	return (self.first_child() != None)
 
     def substituents(self):
         return set([l.child() for l in self.substituent_links()])
@@ -524,7 +551,7 @@ class Monosaccharide:
 
         return s
 
-class Substituent:
+class Substituent(Node):
 
     #Substituents
     nAcetyl             = 1
@@ -573,26 +600,21 @@ class Substituent:
     acetyl_oxygen_lost = 44
 
     def __init__(self,sub):
+
+        super(Substituent,self).__init__()
+
         self._sub = sub
-        self._id = None
 
     def name(self):
         return self._sub
 
-    def id(self):
-        return self._id
-
-    def set_id(self,id):
-        self._id = id
-
-    def unset_id(self):
-        self._id = None
-
     def isNAc(self):
         return (self._sub == Substituent.nAcetyl)
 
-    def has_links(self):
-        return False
+    def composition(self,comp_table):
+        c = comp_table.new()
+        c.add(comp_table[('Substituent',self.name())])
+        return c
 
     def __str__(self):
         if self._id:
@@ -600,6 +622,8 @@ class Substituent:
         return constantString(Substituent,self._sub)
 
     def equals(self,s):
+        if not isinstance(s,Substituent):
+            return False
 	return (self._sub == s._sub)
 
     def fully_determined(self):

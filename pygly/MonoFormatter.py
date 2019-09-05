@@ -192,10 +192,16 @@ class MonoSymLookup(dict):
             if self.__class__.__name__ in kv:
                 self[key] = kv[self.__class__.__name__]
     def key(self,m):
-        supcls = tuple(sorted(('SuperClass',s) for s in [m.superclass()]) if m.superclass() != None else ())
-        stem = tuple(sorted(('Stem',s) for s in m.stem()) if m.stem() != None else ())
-        mods = tuple(sorted(('Mod',m[1]) for m in m.mods()) if m.mods() != None else ())
-        subst = tuple(sorted(('Substituent',s.name()) for s in m.substituents()))
+	if isinstance(m,Monosaccharide):
+            supcls = tuple(sorted(('SuperClass',s) for s in [m.superclass()]) if m.superclass() != None else ())
+            stem = tuple(sorted(('Stem',s) for s in m.stem()) if m.stem() != None else ())
+            mods = tuple(sorted(('Mod',m[1]) for m in m.mods()) if m.mods() != None else ())
+            subst = tuple(sorted(('Substituent',s.name()) for s in m.substituents()))
+	elif isinstance(m,Substituent):
+	    supcls = ()
+	    stem = ()
+	    mods = ()
+	    subst = (('Substituent',m.name()),)
         return supcls,stem,mods,subst
     def toStr(self,m):
 	k = self.key(m)

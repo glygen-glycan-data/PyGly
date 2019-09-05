@@ -1280,6 +1280,10 @@ class UnexpectedConnectivityError(WURCS20ParseError):
   def __init__(self,instr):
    self.message = "WURCS2.0 parser: Unexpected or strange connectivity:\n     %s"%(instr,)
 
+class UnexpectedFloatingSubstError(WURCS20ParseError):
+  def __init__(self,instr):
+   self.message = "WURCS2.0 parser: Unexpected floating substituent:\n     %s"%(instr,)
+
 import WURCS20MonoFormatter
 
 class WURCS20Format(GlycanFormatter):
@@ -1290,6 +1294,7 @@ class WURCS20Format(GlycanFormatter):
 	self.multilinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|\4([0-9?]))*)$')
 	self.ambiglinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|([a-zA-Z]{1,2})([0-9?]))+)\}$')
         self.complinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}-\{\1$')
+        self.compsubstlinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}\*(.*)$')
         self.char2int = {}
         self.int2char = {}
         for i in range(26):
@@ -1321,6 +1326,7 @@ class WURCS20Format(GlycanFormatter):
             mono[i+1].set_external_descriptor_id(i+1)
 
         undets = set()
+	floating_substs = []
         for li in map(str.strip,m.group(6).split('_')):
 
             if not li:
@@ -1437,9 +1443,15 @@ class WURCS20Format(GlycanFormatter):
 
                 continue
 
-
             mi = self.complinkre.search(li)
             if mi:
+                continue
+
+            mi = self.compsubstlinkre.search(li)
+            if mi:
+                subst = self.mf.getsubst(mi.group(3))
+                subst.set_connected(False)
+                floating_substs.append(subst)
                 continue
 
             raise UnsupportedLinkError(li)
@@ -1480,11 +1492,13 @@ class WURCS20Format(GlycanFormatter):
 	    
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
+	    if len(floating_substs) > 0:
+		raise UnexpectedFloatingSubstError(s)
             g.set_undetermined(undets)
         else:
             assert len(undets) == 0
             g = Glycan()
-            g.set_undetermined(unconnected)
+            g.set_undetermined(set(list(unconnected)+floating_substs))
 	return g
 
 if __name__ == '__main__':
@@ -1503,7 +1517,7 @@ if __name__ == '__main__':
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
             print GlycoCTFormat().toStr(g)
-	    for m in g.all_nodes():
+	    for m in g.all_nodes(undet_subst=True):
 		print m
 	    print g.underivitized_molecular_weight()
         except GlycanParseError, e:

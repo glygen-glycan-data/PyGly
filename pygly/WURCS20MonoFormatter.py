@@ -51,6 +51,14 @@ class WURCS20MonoFormat:
         self.subsconfig = ConfigParser.SafeConfigParser()
         self.subsconfig.readfp(subsconfigfile)
 
+    def getsubst(self,sub_name):
+	try:
+	    sub_type = self.subsconfig.get(sub_name, "type")
+	    subst = Substituent(eval(sub_type))
+	except (ConfigParser.NoSectionError, ValueError):
+            raise UnsupportedSubstituentError(sub_name)
+	return subst
+
     skel_config_get_default_section = ""
 
     def skel_config_get(self, optionx, skelton_code=skel_config_get_default_section):

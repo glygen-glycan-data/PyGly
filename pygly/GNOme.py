@@ -465,9 +465,17 @@ class SubsumptionGraph:
             g = cluster[acc]
             print acc, g.get('mass'), g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
             gly = g.get('glycan')
-            print ("COMP " if (not gly.has_root()) else "") + \
-                  ("UNDET " if (gly.undetermined() and gly.has_root()) else "") + \
-                  ("FULL" if gly.fully_determined() else "")
+	    extras = []
+	    if not gly.has_root():
+		extras.append("COMP")
+	    if gly.undetermined() and gly.has_root():
+	        extras.append("UNDET")
+	    if gly.fully_determined():
+		extras.append("FULL")
+	    for m,c in sorted(gly.iupac_composition(floating_substituents=True,aggregate_basecomposition=False).items()):
+                if m != "Count" and c > 0:
+		    extras.append("%s:%d"%(m,c))
+	    print " ".join(extras)
         print "# ENDNODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
         sys.stdout.flush()
 
