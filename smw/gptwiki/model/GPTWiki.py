@@ -1,7 +1,7 @@
 
 __all__ = [ "GPTWiki", "Glycan", "Protein", "Peptide", "TransitionGroup", "Transition", "Acquisition", "Alignment" ]
 
-import sys
+import sys, re
 from operator import itemgetter
 
 from smw import SMW
@@ -27,6 +27,10 @@ class Glycan(SMW.SMWClass):
         if isinstance(data.get('name'),basestring):
             data['name'] = map(lambda s: s.strip(),data.get('name').split('\n'))
 
+        # topo is comma separated
+        if isinstance(data.get('topo'),basestring):
+            data['topo'] = map(lambda s: s.strip(),data.get('topo').split(','))
+
         # mw is a float
         if isinstance(data.get('mw'),basestring):
             data['mw'] = float(data.get('mw'))
@@ -44,6 +48,9 @@ class Glycan(SMW.SMWClass):
 
         if 'name' in data:
 	    data['name'] = "\n".join(data['name'])
+
+        if 'topo' in data:
+            data['topo'] = ",".join(data['topo'])
 
         if 'mw' in data:
             data['mw'] = str(data.get('mw'))
@@ -374,6 +381,14 @@ class GPTWiki(SMW.SMWSite):
     def iterproteins(self):
 	for p in map(self.get,self.itercat('Protein')):
             yield p
+
+    def iterglycans(self):
+        regex = r'^G\d{5}[A-Z]{2}$'
+        regex = re.compile(regex)
+        for pagename in self.site.allpages(generator=False):
+            m = regex.search(pagename)
+            if m:
+                yield self.get(m.group(0))
 
     def newpeptideid(self):
         maxid = 0
