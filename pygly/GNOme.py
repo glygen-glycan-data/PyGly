@@ -767,10 +767,10 @@ class SubsumptionGraph:
         temp = map(lambda x: len(x), warnings.values())
         return reduce(lambda x, y: x + y, temp)
 
-    def generateOWL(self, input_file_path, output_file_path, version=None):
+    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, version=None):
         self.loaddata(input_file_path)
 
-        r = OWLWriter(version=version)
+        r = OWLWriter(mass_LUT_file_path=mass_lut_file_path, version=version)
 
         for mass in self.nodes():
             if not self.ismolecularweight(mass):
@@ -804,9 +804,11 @@ from rdflib import URIRef, Namespace
 class OWLWriter():
     _nodes = {}
 
-    def __init__(self, version=None):
+    def __init__(self, mass_LUT_file_path=None ,version=None):
         self.version = version
-        self.readmassidmap()
+        self.mass_LUT_file_path = mass_LUT_file_path
+        if mass_LUT_file_path:
+            self.readmassidmap(mass_LUT_file_path)
 
     def addNode(self, nodeID, nodetype=None):
         self._nodes[nodeID] = NormalNode(nodeID, nodetype=nodetype)
@@ -832,10 +834,9 @@ class OWLWriter():
         res = list(res)
         return res
 
-    def readmassidmap(self):
+    def readmassidmap(self, mass_LUT_file_path):
         d = {}
-        # todo get from internet
-        f = open("mass_lookup_2decimal").read().strip().split("\n")
+        f = open(mass_LUT_file_path).read().strip().split("\n")
         for e, i in enumerate(f):
             if e == 0:
                 continue
@@ -846,7 +847,8 @@ class OWLWriter():
     newMass = False
 
     def overwritemasslookuptable(self):
-        f = open("mass_lookup_2decimal_new", "w")
+        f = open(self.mass_LUT_file_path, "w")
+        f.write("id\tmass\n")
         for mass in sorted(self.massiddict.keys()):
             id = self.massiddict[mass]
             f.write("%s\t%.2f\n" % (id, mass))
@@ -1294,45 +1296,47 @@ if __name__ == "__main__":
         g.compute(*sys.argv[1:], verbose=verbose)
 
     elif cmd == "writeowl":
-        # python GNOme.py writeowl ../smw/glycandata/data/gnome_subsumption_raw.txt "./" v1.1.5
+        # python GNOme.py writeowl ../smw/glycandata/data/gnome_subsumption_raw.txt ./GNOme.owl mass_lookup_2decimal v1.1.5
 
         # "../smw/glycandata/data/gnome_subsumption_raw.txt"
-        ifn = sys.argv[1]  # path to input file
 
         versionTag = None
-        if len(sys.argv) > 3:
-            versionTag = sys.argv[3]
-        if len(sys.argv) > 2:
-            # Output file parent (folder) path
-            ofpp = sys.argv[2]
-            if not ofpp.endswith("/"):
-                ofpp += "/"
-        else:
-            ofpp = "./"
-        ofn = ofpp + "GNOme.owl"
+        if len(sys.argv) < 4:
+            print "Please provide dumpfile, output file path(with file name), mass LUT path and version (optional)"
+            sys.exit(1)
+        if len(sys.argv) > 4:
+            versionTag = sys.argv[4]
+
+        ifn = sys.argv[1]  # path to input file
+        ofn = sys.argv[2]
+        mass_lut = sys.argv[3]
 
         subsumption_instance = SubsumptionGraph()
-        subsumption_instance.generateOWL(ifn, ofn, version=versionTag)
+        subsumption_instance.generateOWL(ifn, ofn, mass_lut, version=versionTag)
 
-        # generate the restriction sets
-        bcsdb_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_BCSDB.accessions.txt"
-        glygen_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_GlyGen.accessions.txt"
+    elif cmd == "writeresowl":
+        # python GNOme.py writeresowl ./GNOme.owl BCSDB ./GNOme_BCSDB.owl
+        # python GNOme.py writeresowl ./GNOme.owl GlyGen ./GNOme_GlyGen.owl
 
-        def restriction_GNOme(name, url):
+        if len(sys.argv) < 4:
+            print "Please provide GNOme.owl, restriction set name, output file path"
+            sys.exit(1)
 
-            ofn_restriction = ofpp + "GNOme_%s.owl" % name
-            handle = urllib2.urlopen(url)
-            accs = handle.read().strip().split()
+        ifn = sys.argv[1]
+        ofn = sys.argv[3]
+        restriction_name = sys.argv[2]
 
-            GNOme_res = GNOme(resource=ofn)
-            GNOme_res.restrict(accs)
+        accs_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_%s.accessions.txt" % restriction_name
 
-            f = open(ofn_restriction, "w")
-            GNOme_res.write(f)
-            f.close()
+        handle = urllib2.urlopen(accs_url)
+        accs = handle.read().strip().split()
 
-        restriction_GNOme("BCSDB", bcsdb_url)
-        restriction_GNOme("GlyGen", glygen_url)
+        GNOme_res = GNOme(resource=ifn)
+        GNOme_res.restrict(accs)
+
+        f = open(ofn, "w")
+        GNOme_res.write(f)
+        f.close()
 
     else:
 
