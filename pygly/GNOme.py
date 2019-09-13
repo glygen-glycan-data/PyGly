@@ -6,6 +6,8 @@ import urllib2
 from collections import defaultdict
 
 import rdflib
+import json
+from GlyTouCan import GlyTouCan
 
 
 class GNOme(object):
@@ -14,7 +16,7 @@ class GNOme(object):
 
     referencefmt = 'xml'
 
-    def __init__(self, resource=None, format=None):
+    def __init__(self, resource=None, format=None, needGTC=False):
         if not resource:
             resource = self.referenceowl
             format = self.referencefmt
@@ -28,6 +30,9 @@ class GNOme(object):
         self.ns['rdf'] = rdflib.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         self.ns['rdfs'] = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
         self.ns[None] = rdflib.Namespace("")
+
+        if needGTC:
+            self.gtc = GlyTouCan(usecache=True)
 
     def triples(self, subj=None, pred=None, obj=None):
         for (s, p, o) in self.gnome.triples(((self.uri(subj) if subj else None), (self.uri(pred) if pred else None),
@@ -245,9 +250,64 @@ class GNOme(object):
             for k, v in sorted(g.attributes(acc).items()):
                 print "  %s: %s" % (k, v)
 
+    def getComposition(self, acc):
+        g = self.gtc.getGlycan(acc)
+        if not g:
+            raise RuntimeError
+        res = {}
+        temp = g.iupac_composition(floating_substituents=False, aggregate_basecomposition=True)
+        for iupac in ['GlcNAc', 'GalNAc', 'ManNAc', 'HexNAc', 'Glc', 'Gal', 'Man', 'Hex', 'Fuc', 'NeuAc', 'NeuGc']:
+            if temp[iupac] != 0:
+                res[iupac] = temp[iupac]
+        other = 0
+        for iupac in ['HexNAc', 'Hex', 'Fuc', 'NeuAc', 'NeuGc']:
+            other += temp[iupac]
+        res["Xxx"] = temp["Count"] - other
+        return res
+
+    def toViewerData(self, output_file_path):
+        res = {}
+        issueList = []
+        for n in self.nodes():
+            t = ""
+            if self.issaccharide(n):
+                t = "saccharide"
+            elif self.istopology(n):
+                t = "topology"
+            else:
+                continue
+
+            try:
+                comp = self.getComposition(n)
+            except:
+                issueList.append(n)
+                continue
+
+            per = {}
+            per["children"] = list(self.children(n))
+            per["type"] = t
+            per["comp"] = comp
+
+            top = False
+            parents = list(self.parents(n))
+            if parents:
+                top = True
+            for p in parents:
+                if self.istopology(p) or self.issaccharide(p):
+                    top = False
+                    break
+
+            if top and self.istopology(n):
+                per["top"] = True
+
+            res[n] = per
+
+        f = open(output_file_path, "w")
+        f.write("""var data = %s;""" % json.dumps(res))
+        f.close()
+
 
 from alignment import GlycanSubsumption, GlycanEqual
-from GlyTouCan import GlyTouCan
 from Monosaccharide import Anomer
 import time
 
@@ -1315,8 +1375,6 @@ if __name__ == "__main__":
         subsumption_instance.generateOWL(ifn, ofn, mass_lut, version=versionTag)
 
     elif cmd == "writeresowl":
-        # python GNOme.py writeresowl ./GNOme.owl BCSDB ./GNOme_BCSDB.owl
-        # python GNOme.py writeresowl ./GNOme.owl GlyGen ./GNOme_GlyGen.owl
 
         if len(sys.argv) < 4:
             print "Please provide GNOme.owl, restriction set name, output file path"
@@ -1338,7 +1396,18 @@ if __name__ == "__main__":
         GNOme_res.write(f)
         f.close()
 
-    else:
+    elif cmd == "viewerdata":
+        # python GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.js
 
+        if len(sys.argv) < 3:
+            print "Please provide GNOme.owl and output file path"
+            sys.exit(1)
+
+        ifn = sys.argv[1]
+        ofn = sys.argv[2]
+        gnome = GNOme(resource=ifn, needGTC=True)
+        gnome.toViewerData(ofn)
+
+    else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
         sys.exit(1)
