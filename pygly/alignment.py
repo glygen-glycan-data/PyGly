@@ -1,10 +1,11 @@
 
 from Monosaccharide import Linkage, Substituent, Monosaccharide, Mod, Anomer, Stem
-from combinatorics import itermatchings, iterecmatchings, itergenmatchings
+from combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings
 
 import inspect
 import sys, os.path
 import time
+from collections import defaultdict
 
 verbose = False
 def lineno(msg=None):
@@ -205,39 +206,38 @@ class CompositionEquivalence(Comparitor):
 
     ### Assumes we only compare monosaccharides...
 
-    def __init__(self,monocmp=None,**kw):
+    def __init__(self,monocmp=None,substcmp=None,**kw):
         self._monocmp = monocmp
+        self._substcmp = substcmp
         super(CompositionEquivalence,self).__init__(**kw)
 
-    def monoeq(self,a,b):
-        return self._monocmp.eq(a,b)
-
-    def monosaccharide_match(self,a,b):
-
-        if not self.monoeq(a,b):
-            return False
-        return True
+    def nodeeq(self,a,b):
+	if a.is_monosaccharide() and b.is_monosaccharide():
+            return self._monocmp.eq(a,b)
+	elif not a.is_monosaccharide() and not b.is_monosaccharide():
+	    return self._substcmp.eq(a,b)
+	return False
 
     def eq(self,a,b):
       
         a.set_ids()        
         b.set_ids()
 
-        nodeset1 = list(a.all_nodes(subst=False))
-        nodeset2 = list(b.all_nodes(subst=False))
+        nodeset1 = list(a.all_nodes(subst=False,undet_subst=True))
+        nodeset2 = list(b.all_nodes(subst=False,undet_subst=True))
 
         if len(nodeset1) != len(nodeset2):
             return False
 
-        for ii,jj in iterecmatchings(nodeset1, nodeset2, self.monosaccharide_match):
-            matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
+        for ii,jj in iterecmatchings(nodeset1, nodeset2, self.nodeeq):
+            # matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
             return True
 
         return False
 
 class GlycanPartialOrder(Comparitor):
 
-    def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,**kw):
+    def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,substcmp=None,**kw):
         self._monocmp = monocmp
 	if rootmonocmp:
 	    self._rootmonocmp = rootmonocmp
@@ -245,7 +245,7 @@ class GlycanPartialOrder(Comparitor):
 	    self._rootmonocmp = monocmp
         self._linkcmp = linkcmp
 
-        self._glycompcmp = CompositionPartialOrder(monocmp=self._monocmp)
+        self._glycompcmp = CompositionPartialOrder(monocmp=self._monocmp,substcmp=substcmp)
         self._topocmp = GlycanTopoEqual()
 
         super(GlycanPartialOrder,self).__init__(**kw)
@@ -439,14 +439,20 @@ class GlycanPartialOrder(Comparitor):
 
 class CompositionPartialOrder(Comparitor):
 
-    ### Assumes we only compare monosaccharides...
+    ### Assumes we only compare nodes to each other...
+    ### Complication is in dealing with floating substituents
 
-    def __init__(self,monocmp=None,**kw):
+    def __init__(self,monocmp=None,substcmp=None,**kw):
         self._monocmp = monocmp
+        self._substcmp = substcmp
         super(CompositionPartialOrder,self).__init__(**kw)
 
-    def monoleq(self,a,b):
-        return self._monocmp.leq(a,b)
+    def nodeleq(self,a,b):
+	if a.is_monosaccharide() and b.is_monosaccharide():
+            return self._monocmp.leq(a,b)
+	elif not a.is_monosaccharide() and not b.is_monosaccharide():
+	    return self._substcmp.leq(a,b)
+	return False
 
     def leq(self,a,b):
       
@@ -458,15 +464,121 @@ class CompositionPartialOrder(Comparitor):
         nodeset1 = list(a.all_nodes(subst=False))
         nodeset2 = list(b.all_nodes(subst=False))
 
+        nodeset1all = list(a.all_nodes(subst=False,undet_subst=True))
+        nodeset2all = list(b.all_nodes(subst=False,undet_subst=True))
+
+        nodeset1uds = filter(lambda n: not n.is_monosaccharide(),nodeset1all)
+        nodeset2uds = filter(lambda n: not n.is_monosaccharide(),nodeset2all)
+
         lineno()
 
         if len(nodeset1) != len(nodeset2):
             return False
 
         lineno()
-             
-        for ii,jj in itergenmatchings(nodeset1, nodeset2, self.monoleq):
-            return True
+
+        # print len(nodeset1),len(nodeset1uds),len(nodeset2),len(nodeset2uds)
+
+        # for m in nodeset1all:
+        #     print m
+
+        # for m in nodeset2all:
+        #     print m
+
+        # sys.stdout.flush()
+
+	# allow for # floating substituent monosaccharides not to match, then deal with these in loop
+	fs1 = len(nodeset1uds)
+	fs2 = len(nodeset2uds)
+
+	if fs1 > fs2:
+	    return False
+
+        # we deal with three cases, for now...
+        # 1. No floating substituents at all (fs1 == fs2 == 0)
+        # 2. Same number of floating substituents (fs1 == fs2)
+        # 3. All or nothing: instances of a specific substituent are
+        #    either all floating or all linked. If all floating on one
+        #    and all linked on the other, must be floating for b and
+        #    linked for a.
+	
+	if fs2 == fs1:
+            for ii,jj in itergenmatchings(nodeset1all,nodeset2all,self.nodeleq):
+		return True
+
+	else:
+
+            allsubst = set()
+            subst1link = defaultdict(int)
+            subst1float= defaultdict(int)
+            for n in nodeset1all:
+                if n.is_monosaccharide():
+                    for s in n.substituents():
+                        subst1link[s.name()] += 1
+                        allsubst.add(s.name())
+                else:
+                    subst1float[n.name()] += 1
+                    allsubst.add(n.name())
+
+            subst2link = defaultdict(int)
+            subst2float= defaultdict(int)
+            for n in nodeset2all:
+                if n.is_monosaccharide():
+                    for s in n.substituents():
+                        subst2link[s.name()] += 1
+                        allsubst.add(s.name())
+                else:
+                    subst2float[n.name()] += 1
+                    allsubst.add(n.name())
+
+            # print allsubst
+            # print subst1link
+            # print subst1float
+            # print subst2link
+            # print subst2float
+
+            subst2move = []
+            bad = False
+            for s in allsubst:
+                if (subst1link[s]+subst1float[s]) != (subst2link[s]+subst2float[s]):
+                    return False
+                elif subst2float[s] > 0 and \
+                         subst2link[s] == 0 and \
+                         subst1float[s] == 0 and \
+                         subst2float[s] == subst1link[s]:
+                    subst2move.append(s)
+                elif subst2float[s] > 0 and \
+                         subst2link[s] == 0 and \
+                         subst1link[s] == 0 and \
+                         subst2float[s] == subst1float[s]:
+                    # Do nothing, but not a problem
+                    pass
+		elif subst2float[s] == 0 and \
+			 subst1float[s] == 0 and \
+			 subst1link[s] == subst2link[s]:
+		    # Do nothing, but not a problem
+		    pass
+                else:
+                    bad = True
+                    break
+
+            if bad:
+                raise RuntimeError("Cannot resolve composition-partial order, floating substituents too complicated")
+
+            # print subst2move
+            
+            # strip specific floating substituents from nodes in nodeset1
+            newnodeset1 = []
+            for m in nodeset1:
+                m1 = m.clone()
+                for sl in m1.substituent_links():
+                    if sl.child().name() in subst2move:
+                        m1.remove_substituent_link(sl)
+                newnodeset1.append(m1)
+
+            # Now the monosaccharides should match....
+            for ii,jj in itergenmatchings(newnodeset1,nodeset2,self.nodeleq):
+		return True
 
         lineno()
 
@@ -603,6 +715,10 @@ class MonosaccharideTopoSubsumed(MonosaccharideSubsumed):
       
 class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
+	if a._sub != b._sub:
+            return False
+        return True
+    def leq(self,a,b):
 	if a._sub != b._sub:
             return False
         return True
@@ -793,6 +909,7 @@ if __name__ == "__main__":
     from manipulation import Topology, Composition
   
     from GlyTouCan import GlyTouCan
+    gtc = GlyTouCan(usecache=True)
 
     from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
     glycoct_format = GlycoCTFormat()
@@ -802,3 +919,13 @@ if __name__ == "__main__":
     gtopoeq = GlycanTopoEqual()
     gcompeq = GlycanCompEqual()
     subsumption = GlycanSubsumption()
+
+    acc1 = sys.argv[1]
+    acc2 = sys.argv[2]
+    g1 = gtc.getGlycan(acc1)
+    g2 = gtc.getGlycan(acc2)
+
+    verbose = True
+    subshow(acc1,acc2,"g1 <= g2",subsumption.leq(g1,g2))
+
+    

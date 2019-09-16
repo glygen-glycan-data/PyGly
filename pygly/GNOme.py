@@ -266,8 +266,9 @@ class SubsumptionGraph:
         if len(args) > 0:
             for mass in map(float, args):
                 rmass = round(mass, 2)
-                for glyacc in self.gtc.hasmass(rmass):
-                    masscluster[rmass][glyacc] = dict(accession=glyacc)
+                for glyacc, mass in self.gtc.allmass():
+                    if rmass == round(mass, 2):
+                        masscluster[rmass][glyacc] = dict(accession=glyacc)
         else:
             for glyacc, mass in self.gtc.allmass():
                 rmass = round(mass, 2)
@@ -278,6 +279,7 @@ class SubsumptionGraph:
     def warning(self, msg, level):
         if self.verbose >= level:
             print "# WARNING:%d - %s" % (level, msg)
+	    sys.stdout.flush()
 
     def compute_component(self, rmass, cluster):
         start = time.time()
@@ -307,15 +309,18 @@ class SubsumptionGraph:
         outedges = defaultdict(set)
         inedges = defaultdict(set)
 
+	self.warning("Computation of subsumption relationships started",5)
         for acc1 in sorted(clusteracc):
             gly1 = cluster[acc1]['glycan']
             for acc2 in sorted(clusteracc):
                 gly2 = cluster[acc2]['glycan']
                 if acc1 != acc2:
+		    self.warning("%s <?= %s"%(acc1,acc2),5)
                     if self.subsumption.leq(gly1, gly2):
                         if not self.geq.eq(gly1, gly2) or acc2 < acc1:
                             outedges[acc2].add(acc1)
                             inedges[acc1].add(acc2)
+	self.warning("Computation of subsumption relationships done",5)
 
         for acc in clusteracc:
             topo = self.gtc.gettopo(acc)
@@ -472,7 +477,7 @@ class SubsumptionGraph:
 	        extras.append("UNDET")
 	    if gly.fully_determined():
 		extras.append("FULL")
-	    for m,c in sorted(gly.iupac_composition(floating_substituents=True,aggregate_basecomposition=False).items()):
+	    for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=False).items()):
                 if m != "Count" and c > 0:
 		    extras.append("%s:%d"%(m,c))
 	    print " ".join(extras)
@@ -536,7 +541,7 @@ class SubsumptionGraph:
         for n1 in list(edges):
             for n2 in edges[n1]:
                 for n3 in edges[n2]:
-                    assert n3 in edges[n1], ", ".join([n1, n2, n3, ":"] + edges[n1] + [":"] + edges[n2])
+                    assert n3 in edges[n1], ", ".join([n1, n2, n3, ":"] + list(edges[n1]) + [":"] + list(edges[n2]))
                     if n3 in edges[n1]:
                         toremove.add((n1, n3))
         for n1, n3 in toremove:

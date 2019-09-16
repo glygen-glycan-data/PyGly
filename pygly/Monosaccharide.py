@@ -471,6 +471,9 @@ class Monosaccharide(Node):
     def add_substituent_link(self, l):
         self._substituent_links.append(l)
 
+    def remove_substituent_link(self, l):
+        self._substituent_links.remove(l)
+
     def set_external_descriptor_id(self, eid):
         self._eid = eid
 
@@ -604,6 +607,11 @@ class Substituent(Node):
         super(Substituent,self).__init__()
 
         self._sub = sub
+
+    def clone(self):
+        s = Substituent(self.name())
+        s.set_id(self.id())
+        return s
 
     def name(self):
         return self._sub
