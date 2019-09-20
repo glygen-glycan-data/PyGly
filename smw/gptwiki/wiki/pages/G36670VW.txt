@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G36670VW
+|name=H5N5FS2
+HexNAc(5)Hex(5)Fuc(1)NeuAc(2)
+HexNAc(5)Hex(5)dHex(1)NeuAc(2)
+|sym=H5N5FS2
+|mw=2571.9202862 
+|topo=G19935MZ,G52512ZN,G75079FY,G92869UT
+|topo2=G33516GE,G74741GG
+|class=N-Glycan
+}}

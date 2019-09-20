@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G01650EU
+|name=H6N3S
+HexNAc(3)Hex(6)NeuAc(1)
+|sym=H6N3S
+|mw=1890.6610393 
+|topo=G17018UT,G21874KT,G28230EL
+|topo2=G22244UZ,G40830UG,G65898DT
+|class=N-Glycan
+}}

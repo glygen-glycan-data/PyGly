@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G27126ED
+|name=H6N4S
+HexNAc(4)Hex(6)NeuAc(1)
+|sym=H6N4S
+|mw=2093.7404118
+|topo=G41068JX,G42562GD,G57111NV,G80492CD
+|topo2=G27006LO,G55633AI,G61881PR,G85109FK
+|class=N-Glycan
+}}

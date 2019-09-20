@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G44753VC
+|name=H7N6S
+HexNAc(6)Hex(7)NeuAc(1)
+|sym=H7N6S
+|mw=2661.9519803
+|topo=G07232FJ
+|topo2=G07091AK,G65900XG
+|class=N-Glycan
+}}

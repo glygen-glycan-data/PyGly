@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G98611JV
+|name=H5N5S2
+HexNAc(5)Hex(5)NeuAc(2)
+|sym=H5N5S2
+|mw=2425.8623774
+|topo=G20746DT,G36581OT
+|topo2=G79162UM
+|class=N-Glycan
+}}

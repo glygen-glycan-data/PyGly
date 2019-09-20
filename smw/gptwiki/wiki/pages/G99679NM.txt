@@ -1,0 +1,9 @@
+{{Glycan
+|accession=G99679NM
+|name=H7N6S3
+HexNAc(6)Hex(7)NeuAc(3)
+|sym=H7N6S3
+|mw=3244.142813 
+|topo=G46575CV
+|class=N-Glycan
+}}

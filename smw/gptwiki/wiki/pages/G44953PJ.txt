@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G44953PJ
+|name=H4N5FS
+HexNAc(5)Hex(4)Fuc(1)NeuAc(1)
+HexNAc(5)Hex(4)dHex(1)NeuAc(1)
+|sym=H4N5FS
+|mw=2118.7720463
+|topo=G33876XT,G35118MS,G25304PN
+|topo2=G02086EJ,G61572IO,G72172MU,G87823PQ
+|class=N-Glycan
+}}

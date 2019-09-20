@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G05933EN
+|name=H5N4F4
+HexNAc(4)Hex(5)Fuc(4)
+HexNAc(4)Hex(5)dHex(4)
+|sym=H5N4F4
+|mw=2224.8238071
+|topo=G58110AA,G63904XT,G69378OY
+|class=N-Glycan
+}}

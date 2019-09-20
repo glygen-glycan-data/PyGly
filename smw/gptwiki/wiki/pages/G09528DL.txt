@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G09528DL
+|name=H6N3FS
+HexNAc(3)Hex(6)Fuc(1)NeuAc(1)
+HexNAc(3)Hex(6)dHex(1)NeuAc(1)
+|sym=H6N3FS
+|mw=2036.7189481
+|topo=G42184CY,G51511NW,G85964RL
+|topo2=G03888GC,G84471TB
+|class=N-Glycan
+}}

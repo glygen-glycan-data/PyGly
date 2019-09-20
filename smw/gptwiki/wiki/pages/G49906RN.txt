@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G49906RN
+|name=H6N6
+HexNAc(6)Hex(6)
+|sym=H6N6
+|mw=2208.8037404
+|topo=G27440SE,G40135HT
+|topo2=G19144JR,G28649NI,G35319OJ
+|class=N-Glycan
+}}

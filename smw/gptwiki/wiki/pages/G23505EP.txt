@@ -1,0 +1,9 @@
+{{Glycan
+|accession=G23505EP
+|name=H4N6S
+HexNAc(6)Hex(4)NeuAc(1)
+|sym=H4N6S
+|mw=2175.79351
+|topo=G72650QL,G88931YV
+|class=N-Glycan
+}}

@@ -1,0 +1,9 @@
+{{Glycan
+|accession=G12341GU
+|name=H8N7S
+HexNAc(7)Hex(8)NeuAc(1)
+|sym=H8N7S
+|mw=3027.0841762
+|topo=G11121QU,G80874WH,G94679DO
+|class=N-Glycan
+}}

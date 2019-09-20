@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G49739MP
+|name=H7N6F
+HexNAc(6)Hex(7)Fuc(1)
+HexNAc(6)Hex(7)dHex(1)
+|sym=H7N6F
+|mw=2516.9144726
+|topo=G43386RH,G91316EK
+|topo2=G04731IF,G15076CR,G24773KR,G60360RS,G73764WH,G88426XR,G97625RT
+|class=N-Glycan
+}}

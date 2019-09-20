@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G58802FE
+|name=H6N4F3
+HexNAc(4)Hex(6)Fuc(3)
+HexNAc(4)Hex(6)dHex(3)
+|sym=H6N4F3
+|mw=2240.8187217
+|topo=G99712UF,G58072SU
+|topo2=G79682WT
+|class=N-Glycan
+}}

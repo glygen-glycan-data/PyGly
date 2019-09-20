@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G81128KB
+|name=H7N6F4S
+HexNAc(6)Hex(7)Fuc(4)NeuAc(1)
+HexNAc(6)Hex(7)dHex(4)NeuAc(1)
+|sym=H7N6F4S
+|mw=3246.1836155
+|topo=G27857PC,G70312UL
+|topo2=G49762HP,G51255RA,G90358VT
+|class=N-Glycan
+}}

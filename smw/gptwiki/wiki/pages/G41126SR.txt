@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G41126SR
+|name=H6N5F3
+HexNAc(5)Hex(6)Fuc(3)
+HexNAc(5)Hex(6)dHex(3)
+|sym=H6N5F3
+|mw=2443.8980942
+|topo=G02618MZ,G62065RK,G62595XB
+|topo2=G09324VU,G52407QQ
+|class=N-Glycan
+}}

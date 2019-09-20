@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G95865ZB
+|name=H4N3S
+HexNAc(3)Hex(4)NeuAc(1)
+|sym=H4N3S
+|mw=1566.5553925
+|topo=G36949LL
+|topo2=G24675SB,G33079YK,G48934IR,G93257MA
+|class=N-Glycan
+}}

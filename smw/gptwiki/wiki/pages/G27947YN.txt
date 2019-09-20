@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G27947YN
+|name=H6N5S2
+HexNAc(5)Hex(6)NeuAc(2)
+|sym=H6N5S2
+|mw=2587.915201 
+|topo=G61759AH,G87840XY
+|topo2=G38422IY
+|class=N-Glycan
+}}

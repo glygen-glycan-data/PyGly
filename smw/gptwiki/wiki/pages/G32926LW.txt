@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G32926LW
+|name=H7N6FS2
+HexNAc(6)Hex(7)Fuc(1)NeuAc(2)
+HexNAc(6)Hex(7)dHex(1)NeuAc(2)
+|sym=H7N6FS2
+|mw=3099.1053056
+|topo=G15019WR,G43756IO,G72877CE
+|topo2=G37873UC
+|class=N-Glycan
+}}

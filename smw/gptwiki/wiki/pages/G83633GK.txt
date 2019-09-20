@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G83633GK
+|name=H3N6
+HexNAc(6)Hex(3)
+|sym=H3N6
+|mw=1722.6452701
+|topo=G84808TE,G15321SN
+|topo2=G02054MB,G07024ZV,G22058OT,G46928MX,G56952JL
+|class=N-Glycan
+}}

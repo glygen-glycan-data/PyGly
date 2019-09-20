@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G27391WQ
+|name=N2
+HexNAc(2)
+|sym=N2
+|mw=424.16930973
+|topo=G59480BZ
+|topo2=G01948WD,G39208KU,G43482PE,G48983CF,G61590WF,G68646SF
+|class=N-Glycan
+}}

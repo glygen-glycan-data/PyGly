@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G45504EY
+|name=H4N4S
+HexNAc(4)Hex(4)NeuAc(1)
+|sym=H4N4S
+|mw=1769.634765 
+|topo=G61326KG,G89597MB
+|topo2=G20392AW,G26511YU,G32005GF,G34466UT,G88776LK,G96486IM
+|class=N-Glycan
+}}

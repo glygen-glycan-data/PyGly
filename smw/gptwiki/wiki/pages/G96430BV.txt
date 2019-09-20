@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G96430BV
+|name=H3N8
+HexNAc(8)Hex(3)
+|sym=H3N8
+|mw=2128.8040151
+|topo=G46808JY,G66045IA
+|topo2=G43869VZ
+|class=N-Glycan
+}}

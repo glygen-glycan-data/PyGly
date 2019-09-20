@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G37659EV
+|name=H4N9F
+HexNAc(9)Hex(4)Fuc(1)
+HexNAc(9)Hex(4)dHex(1)
+|sym=H4N9F
+|mw=2639.9941199
+|topo=G23923UW,G48877GX
+|class=N-Glycan
+}}
