@@ -16,7 +16,7 @@ class GNOme(object):
 
     referencefmt = 'xml'
 
-    def __init__(self, resource=None, format=None, needGTC=False):
+    def __init__(self, resource=None, format=None):
         if not resource:
             resource = self.referenceowl
             format = self.referencefmt
@@ -30,9 +30,6 @@ class GNOme(object):
         self.ns['rdf'] = rdflib.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         self.ns['rdfs'] = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
         self.ns[None] = rdflib.Namespace("")
-
-        if needGTC:
-            self.gtc = GlyTouCan(usecache=True)
 
     def triples(self, subj=None, pred=None, obj=None):
         for (s, p, o) in self.gnome.triples(((self.uri(subj) if subj else None), (self.uri(pred) if pred else None),
@@ -250,24 +247,13 @@ class GNOme(object):
             for k, v in sorted(g.attributes(acc).items()):
                 print "  %s: %s" % (k, v)
 
-    def getComposition(self, acc):
-        g = self.gtc.getGlycan(acc)
-        if not g:
-            raise RuntimeError
-        res = {}
-        temp = g.iupac_composition(floating_substituents=False, aggregate_basecomposition=True)
-        for iupac in ['GlcNAc', 'GalNAc', 'ManNAc', 'HexNAc', 'Glc', 'Gal', 'Man', 'Hex', 'Fuc', 'NeuAc', 'NeuGc']:
-            if temp[iupac] != 0:
-                res[iupac] = temp[iupac]
-        other = 0
-        for iupac in ['HexNAc', 'Hex', 'Fuc', 'NeuAc', 'NeuGc']:
-            other += temp[iupac]
-        res["Xxx"] = temp["Count"] - other
-        return res
-
-    def toViewerData(self, output_file_path):
+    def toViewerData(self, subsumption_raw_file_path ,output_file_path):
         res = {}
         issueList = []
+
+        iupac_composition_getter = SubsumptionGraph()
+        iupac_composition_getter.loaddata(subsumption_raw_file_path)
+
         for n in self.nodes():
             t = ""
             if self.issaccharide(n):
@@ -278,8 +264,9 @@ class GNOme(object):
                 continue
 
             try:
-                comp = self.getComposition(n)
+                comp = iupac_composition_getter.get_iupac_composition_for_viewer(n)
             except:
+                print >>sys.stderr, "%s iupac composition is not found" % n
                 issueList.append(n)
                 continue
 
@@ -303,7 +290,7 @@ class GNOme(object):
             res[n] = per
 
         f = open(output_file_path, "w")
-        f.write("""var data = %s;""" % json.dumps(res))
+        f.write(json.dumps(res))
         f.close()
 
 
@@ -619,6 +606,8 @@ class SubsumptionGraph:
     dumpfilepath = ""
     warnings = defaultdict(set)
     warningsbytype = None
+    monosaccharide_count = {}
+    monosaccharide_count_pattern = re.compile(r"\w{3,8}:\d{1,2}")
 
     def loaddata(self, dumpfilepath):
         self.readfile(dumpfilepath)
@@ -662,6 +651,20 @@ class SubsumptionGraph:
                     nodetype = l.split()[2]
                     nodetype = nodetype.rstrip("*")
                     content["nodes"][nodeacc] = nodetype
+
+                    mono_count = {}
+                    for cell in l.split():
+                        temp2 = self.monosaccharide_count_pattern.findall(cell)
+                        if len(temp2) == 1:
+                            temp2 = temp2[0].split(":")
+                            iupac_comp_mono, count = temp2[0], int(temp2[1])
+                            mono_count[iupac_comp_mono] = count
+                        if mono_count:
+                            temp3 = ""
+                            for iupac_mono_str, mono_count_eatch in sorted(mono_count.items()):
+                                temp3 += iupac_mono_str + str(mono_count_eatch)
+                            self.monosaccharide_count[nodeacc] = mono_count
+
                 elif lineInfo == "edge":
                     to = re.compile("G\d{5}\w{2}").findall(l)
                     fromx = to.pop(0)
@@ -776,6 +779,38 @@ class SubsumptionGraph:
         for n, t in self.allnodestype.items():
             if self.istopology(n) and accession in self.descendants(n):
                 yield n
+
+    def get_iupac_composition(self, accession):
+        return self.monosaccharide_count.get(accession, None)
+
+    def get_iupac_composition_for_viewer(self, accession):
+        mono_count = self.get_iupac_composition(accession)
+        if not mono_count:
+            return None
+
+        res = {}
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc']:
+            if m in mono_count:
+                res[m] = mono_count[m]
+
+        for nac in ["", "NAc"]:
+            hexcount = 0
+            for m0 in ['Glc', 'Gal', 'Man', 'Hex']:
+                m = m0+nac
+                if m in mono_count:
+                    hexcount += mono_count[m]
+            if hexcount > 0:
+                res[m] = hexcount
+
+        xxx = 0 if "Xxx" not in mono_count else mono_count["Xxx"]
+        for m in mono_count.keys():
+            if m not in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
+                xxx += mono_count[m]
+        if xxx > 0:
+            res["Xxx"] = xxx
+        return res
+
+
 
     def has_basecomposition(self, accession):
         assert self.isbasecomposition(accession)
@@ -1402,16 +1437,17 @@ if __name__ == "__main__":
         f.close()
 
     elif cmd == "viewerdata":
-        # python GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.js
+        # python GNOme.py viewerdata ./GNOme.owl ./gnome_subsumption_raw.txt ./GNOme.browser.js
 
-        if len(sys.argv) < 3:
+        if len(sys.argv) < 4:
             print "Please provide GNOme.owl and output file path"
             sys.exit(1)
 
         ifn = sys.argv[1]
-        ofn = sys.argv[2]
-        gnome = GNOme(resource=ifn, needGTC=True)
-        gnome.toViewerData(ofn)
+        ofn = sys.argv[3]
+        subsumption_raw_file_path = sys.argv[2]
+        gnome = GNOme(resource=ifn)
+        gnome.toViewerData(subsumption_raw_file_path ,ofn)
 
     else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
