@@ -29,7 +29,11 @@ function checkElement() {
         if (scandetails.length == 2) {
             title = "Scan: "+scandetails[0]+" ("+scandetails[1]+")";
         } else {
-            title = "Scan: "+scandetails[0]+" ("+scandetails[1]+" @ "+scandetails[2]+" min, m/z "+scandetails[4]+" scan " +scandetails[3]+")";
+            if (scandetails[3] == "") {
+                title = scandetails[1]+" @ "+scandetails[2]+" min, m/z "+scandetails[4];
+            } else {
+                title = scandetails[1]+" @ "+scandetails[2]+" min, m/z "+scandetails[4]+" (Scan: " + scandetails[0] + ", Precursor scan: " +scandetails[3]+")";
+            }
         }
         paraFromPage.push({title: title, scan: scandetails[0], annotations: true});
     }
