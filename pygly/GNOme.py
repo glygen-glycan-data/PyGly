@@ -904,11 +904,14 @@ from rdflib import URIRef, Namespace
 class OWLWriter():
     _nodes = {}
 
-    def __init__(self, mass_LUT_file_path=None ,version=None):
+    def __init__(self, mass_LUT_file_path=None, version=None):
         self.version = version
-        self.mass_LUT_file_path = mass_LUT_file_path
         if mass_LUT_file_path:
-            self.readmassidmap(mass_LUT_file_path)
+            self.mass_LUT_file_path = mass_LUT_file_path
+        else:
+            self.mass_LUT_file_path = "./mass_lut.txt"
+        self.readmassidmap(mass_LUT_file_path)
+
 
     def addNode(self, nodeID, nodetype=None):
         self._nodes[nodeID] = NormalNode(nodeID, nodetype=nodetype)
@@ -936,23 +939,27 @@ class OWLWriter():
 
     def readmassidmap(self, mass_LUT_file_path):
         d = {}
-        f = open(mass_LUT_file_path).read().strip().split("\n")
-        for e, i in enumerate(f):
-            if e == 0:
-                continue
-            x = i.split("\t")
-            d[float(x[1])] = x[0]
+        if mass_LUT_file_path:
+            mass_lut_file_content = open(mass_LUT_file_path).read().strip().split("\n")
+            for e, i in enumerate(mass_lut_file_content):
+                if e == 0:
+                    continue
+                x = i.split("\t")
+                d[float(x[1])] = x[0]
+        else:
+            d[1.01] = "10000001"
         self.massiddict = d
 
     newMass = False
 
     def overwritemasslookuptable(self):
-        f = open(self.mass_LUT_file_path, "w")
-        f.write("id\tmass\n")
+        print "new mass ID was assigned"
+        mass_lut_file_handle = open(self.mass_LUT_file_path, "w")
+        mass_lut_file_handle.write("id\tmass\n")
         for mass in sorted(self.massiddict.keys()):
             id = self.massiddict[mass]
-            f.write("%s\t%.2f\n" % (id, mass))
-        f.close()
+            mass_lut_file_handle.write("%s\t%.2f\n" % (id, mass))
+        mass_lut_file_handle.close()
 
     gno = "http://purl.obolibrary.org/obo/"
     gtcs = "http://glytoucan.org/Structures/Glycans/"
