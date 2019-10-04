@@ -1,10 +1,7 @@
-
+__NOEDITSECTION__
 == Summary ==
 
 {| class="wikitable"  style="text-align: right;"
-|-
-! Samples
-| {{CountLink|[[Category:Sample]]}}
 |-
 ! Proteins 
 | {{CountLink|[[Category:Protein]][[gptwiki:peptidecount::>1]]}}
@@ -13,13 +10,7 @@
 | {{CountLink|[[Category:Glycan]][[gptwiki:peptidecount::>1]]}}
 |- 
 ! Glycopeptides
-| {{CountLink|[[Category:Peptide]][[gptwiki:transgroupcount::>1]]}}
-|- 
-! Transition Groups
-| {{CountLink|[[Category:TransitionGroup]]}}
-|- 
-! Transitions
-| {{CountLink|[[Category:Transition]]}}
+| {{CountLink|[[Category:Peptide]][[gptwiki:transgroupcount::>1]]}} 
 |}
 
 == Proteins ==
@@ -32,6 +23,9 @@
 |?gptwiki:peptidecount=Peptides
 |format=broadtable
 |headers=plain
+|sort=gptwiki:peptidecount
+|order=desc
+|limit=20
 }}
 
 == Glycans ==
@@ -44,5 +38,7 @@
 |?gptwiki:peptidecount=Peptides
 |format=broadtable
 |headers=plain
-|sort=gptwiki:mw
+|sort=gptwiki:peptidecount
+|order=desc
+|limit=20
 }}
