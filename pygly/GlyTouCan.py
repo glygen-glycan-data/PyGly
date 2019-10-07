@@ -152,13 +152,11 @@ class GlyTouCan(object):
 
     # Partition query based on GlyTouCan Accessions
     def query_partition(self, q):
-        res = []
         for i in range(10):
             prefix = "^G%s" % i
             query = q % prefix
             # print query
-            res.append(self.query(query))
-        return res
+            yield self.query(query)
 
     exists_sparql = """
 	PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>
