@@ -5,7 +5,7 @@ from pygly.GlycanImage import GlycanImage
 from pygly.GlyTouCan import GlyTouCan
 
 if len(sys.argv) <= 1:
-    print >>sys.stderr, "GlyDbImage.py [ image options ] <gtc-accession> [ <gtc-accession> ... ]"
+    print >>sys.stderr, "glyimg.py [ image options ] <gtc-accession> [ <gtc-accession> ... ]"
     print >>sys.stderr, """
     Image options:
     scale        <float>                               [4.0]
