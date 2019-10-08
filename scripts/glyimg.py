@@ -8,7 +8,7 @@ if len(sys.argv) <= 1:
     print >>sys.stderr, "glyimg.py [ image options ] <gtc-accession> [ <gtc-accession> ... ]"
     print >>sys.stderr, """
     Image options:
-    scale        <float>                               [4.0]
+    scale        <float>                               [1.0]
     reducing_end (true|false)                          [true]
     orientation  (RL|LR|TB|BT)                         [RL]
     notation     (cfg|cfgbw|cfglink|uoxf|text|uoxfcol) [cfg]
