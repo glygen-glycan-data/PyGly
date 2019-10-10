@@ -45,6 +45,7 @@ Edit the page to see the template text.
 |headers=plain
 |mainlabel=-
 |sort=gptwiki:hasprotein,gptwiki:sitepos
+|format=broadtable
 }}
 
 {{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:sym={{{sym|}}}}}{{#set:|gptwiki:peptidecount={{#ask:
