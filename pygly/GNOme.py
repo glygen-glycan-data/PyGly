@@ -802,7 +802,7 @@ class SubsumptionGraph:
             if hexcount > 0:
                 res[m] = hexcount
 
-        xxx = 0 if "Xxx" not in mono_count else mono_count["Xxx"]
+        xxx = 0
         for m in mono_count.keys():
             if m not in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
                 xxx += mono_count[m]
