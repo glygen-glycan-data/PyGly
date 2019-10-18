@@ -524,7 +524,7 @@ class SubsumptionGraph:
 	        extras.append("UNDET")
 	    if gly.fully_determined():
 		extras.append("FULL")
-	    for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=False).items()):
+	    for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=True).items()):
                 if m != "Count" and c > 0:
 		    extras.append("%s:%d"%(m,c))
 	    print " ".join(extras)
