@@ -1,6 +1,5 @@
+<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 __NOEDITSECTION__
-== Summary ==
-
 {| class="wikitable"  style="text-align: right;"
 |-
 ! Proteins 
@@ -13,7 +12,7 @@ __NOEDITSECTION__
 | {{CountLink|[[Category:Peptide]][[gptwiki:transgroupcount::>1]]}} 
 |}
 
-== Proteins ==
+== Proteins by Glycopeptide Count ==
 {{#ask:
 [[Category:Protein]]
 [[gptwiki:peptidecount::>1]]
@@ -28,7 +27,7 @@ __NOEDITSECTION__
 |limit=20
 }}
 
-== Glycans ==
+== Glycans by Glycopeptide Count ==
 {{#ask:
 [[Category:Glycan]]
 [[gptwiki:peptidecount::>1]]
@@ -40,5 +39,19 @@ __NOEDITSECTION__
 |headers=plain
 |sort=gptwiki:peptidecount
 |order=desc
+|limit=20
+}}
+
+== Glycans by Mol. Wt. ==
+{{#ask:
+[[Category:Glycan]]
+[[gptwiki:peptidecount::>1]]
+|?gptwiki:sym = Name
+|?gptwiki:mw = Mol. Wt. 
+|?gptwiki:class = Classification
+|?gptwiki:peptidecount=Peptides
+|format=broadtable
+|headers=plain
+|sort=gptwiki:mw
 |limit=20
 }}
