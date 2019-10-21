@@ -25,6 +25,65 @@ class GlyTouCanCredentialsNotFound(RuntimeError):
 class GlyTouCanRegistrationError(RuntimeError):
     pass
 
+class GlyTouCanRegistrationStatus:
+
+    def __init__(self):
+        self._warning = []
+        self._error = []
+        self._acc = None
+        self._seq_type = None
+        self._other = []
+
+    def read_msg(self, msg_type, msg):
+        if "error" in msg_type:
+            self._error.append(msg)
+        elif "warning" in msg_type:
+            self._warning.append(msg)
+        elif "glyconvert" in msg_type:
+            self._seq_type = msg
+        elif "wurcs2GTCID" in msg_type:
+            self._acc = msg.split("/")[-1]
+        else:
+            self._other.append((msg_type, msg))
+
+    def __str__(self):
+        if self._error:
+            return "error"
+        if self._warning:
+            return "warning"
+        if self._acc:
+            return "registered"
+        return "not submitted"
+
+    def accession(self):
+        return self._acc
+
+    def seq_type(self):
+        return self._seq_type
+
+    def warning(self):
+        return self._warning
+
+    def error(self):
+        return self._error
+
+    def other_msg(self):
+        return self._other
+
+    def has_warning(self):
+        return len(self._warning) != 0
+
+    def has_error(self):
+        return len(self._error) != 0
+
+    def not_submitted(self):
+        if self._error or self._warning or self._acc or self._seq_type:
+            return False
+        return True
+
+    def submitted(self):
+        return not self.not_submitted()
+
 
 class GlyTouCan(object):
     endpt = 'https://endpoint.glycosmos.org/sparql'
@@ -1103,7 +1162,7 @@ class GlyTouCan(object):
             return None
         return response
 
-    def register(self, glycan, user=None, apikey=None):
+    def register_old(self, glycan, user=None, apikey=None):
         if not self.opener:
             self.setup_api(user=user, apikey=apikey)
         if isinstance(glycan, Glycan):
@@ -1147,6 +1206,132 @@ class GlyTouCan(object):
         else:
             new = False
         return accession, new
+
+    allhash2wurcs_sparql = """
+            PREFIX repo: <http://repository.sparqlite.com/terms#>
+
+            SELECT DISTINCT ?hashkey ?WURCSLabel
+            WHERE{
+              # HashKey
+              ?hash_uri ?p_sacc ?sacc_uri.
+              BIND(STRAFTER(STR(?hash_uri), "http://repository.sparqlite.com/key#") AS ?hashkey)
+
+              # WURCS
+              ?hash_uri ?p_detect "wurcs".
+              ?hash_uri repo:input ?WURCSLabel.
+            }"""
+
+    hash_and_wurcs = []
+
+    def allhashandwurcs(self):
+        # TODO query partition
+        response = self.query(self.allhash2wurcs_sparql)
+        for row in response.bindings:
+            hashkey, wurcs = tuple(map(str, map(row.get, response.vars)))
+            self.hash_and_wurcs.append((hashkey, wurcs))
+
+    def wurcs2hash(self, wurcs):
+        if not self.hash_and_wurcs:
+            self.allhashandwurcs()
+        for h, w in self.hash_and_wurcs:
+            if w == wurcs:
+                return h
+
+    def hash2wurcs(self, hashkey):
+        if not self.hash_and_wurcs:
+            self.allhashandwurcs()
+        for h, w in self.hash_and_wurcs:
+            if h == hashkey:
+                return w
+
+    status_sparql = """
+        PREFIX repo: <http://repository.sparqlite.com/terms#>
+
+        SELECT DISTINCT ?batch_p ?batch_value
+        FROM <http://glycosmos.org/structureType>
+        FROM <http://glycosmos.org/batch/wurcsvalid>
+        FROM <http://glycosmos.org/batch/wurcs/accession>
+        FROM <http://glycosmos.org/batch/image>
+        FROM <http://glycosmos.org/batch/resource>
+        WHERE{
+        # HashKey
+            VALUES ?HashKey {"%s"}
+            BIND(IRI(CONCAT("http://repository.sparqlite.com/key#", ?HashKey)) AS ?hash_uri)
+            ?hash_uri ?batch_p ?batch_value.
+        }"""
+
+    def status(self, wurcs):
+        hashkey = self.wurcs2hash(wurcs)
+        if hashkey:
+            return self.status_by_hash(hashkey)
+        else:
+            return GlyTouCanRegistrationStatus()
+
+    def status_by_hash(self, hashkey):
+        status = GlyTouCanRegistrationStatus()
+        response = self.query(self.status_sparql % hashkey)
+
+        for row in response.bindings:
+            msg_type, msg = tuple(map(str, map(row.get, response.vars)))
+            status.read_msg(msg_type, msg)
+        return status
+
+    def find(self, wurcs):
+        status = self.status(wurcs)
+        return status.accession()
+
+    def register(self, glycan, user=None, apikey=None):
+        sequence = self.anyglycan2wurcs(glycan)
+        status = self.status(sequence)
+        if status.accession():
+            return status.accession()
+
+        if status.has_error():
+            for e in status.error():
+                print >> sys.stderr, e
+            raise GlyTouCanRegistrationError()
+
+        if status.not_submitted():
+            print "r"
+            self.register_request(sequence, user=user, apikey=apikey)
+        return None
+
+    def anyglycan2wurcs(self, glycan):
+        sequence = ""
+        if isinstance(glycan, Glycan):
+            if not self.glycoct_format:
+                self.glycoct_format = GlycoCTFormat()
+            sequence = self.glycoct2wurcs(self.glycoct_format.toStr(glycan))
+            if '0+' in sequence:
+                sequence = self.fixcompwurcs(sequence)
+        else:
+            sequence = re.sub(r'\n\n+', r'\n', glycan)
+            if sequence.strip().startswith('RES'):
+                sequence = self.glycoct2wurcs(glycan)
+        return sequence
+
+    def register_request(self, sequence, user=None, apikey=None):
+        if not self.opener:
+            self.setup_api(user=user, apikey=apikey)
+
+        params = json.dumps(dict(sequence=sequence))
+        # print params
+        req = urllib2.Request(self.api + 'glycan/register', params)
+        req.add_header('Content-Type', 'application/json')
+        req.add_header('Accept', 'application/json')
+        try:
+            response = None
+            self._wait()
+            response = json.loads(self.opener.open(req).read())
+            accession = response['message']
+        except (ValueError, IOError), e:
+            # print traceback.format_exc()
+            # print response
+            # force reinitialization of opener...
+            # self.opener = None
+            # raise GlyTouCanRegistrationError(str(e))
+            pass
+        return None
 
     def glycoct2wurcs(self, seq):
         requestURL = "http://wurcs-wg.org/tool/converter/glycoct/wurcs.json?glycoct="
