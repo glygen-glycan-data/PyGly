@@ -195,15 +195,27 @@ class GNOme(object):
 
     def has_basecomposition(self, accession):
         assert self.isbasecomposition(accession)
-        return self.descendants(accession)
+	if self.get_basecomposition(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_basecomposition(desc) == accession:
+		yield desc
 
     def has_composition(self, accession):
         assert self.iscomposition(accession)
-        return self.descendants(accession)
+	if self.get_composition(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_composition(desc) == accession:
+		yield desc
 
     def has_topology(self, accession):
         assert self.istopology(accession)
-        return self.descendants(accession)
+	if self.get_topology(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_topology(desc) == accession:
+		yield desc
 
     def restrict(self, restriction):
         parents = defaultdict(set)
@@ -648,9 +660,18 @@ class SubsumptionGraph:
                     continue
                 elif lineInfo == "node":
                     nodeacc = l.split()[0]
-                    nodetype = l.split()[2]
-                    nodetype = nodetype.rstrip("*")
-                    content["nodes"][nodeacc] = nodetype
+		    nodemw = "%.2f"%(float(l.split()[1]),)
+                    nodetype = l.split()[2].rstrip("*")
+                    topoacc = l.split()[3].rstrip("*")
+		    if topoacc == "None":
+			topoacc = None
+                    compacc = l.split()[4].rstrip("*")
+		    if compacc == "None":
+			compacc = None
+                    bcompacc = l.split()[5].rstrip("*")
+		    if bcompacc == "None":
+			bcompacc = None
+                    content["nodes"][nodeacc] = (nodemw,nodetype,topoacc,compacc,bcompacc)
 
                     mono_count = {}
                     for cell in l.split():
@@ -693,6 +714,11 @@ class SubsumptionGraph:
         self.allnodestype["00000001"] = "glycan"
         self.alledges["00000001"] = allmass
 
+	self.allinedges = defaultdict(set)
+	for pa,chs in self.alledges.items():
+	    for ch in chs:
+		self.allinedges[ch].add(pa)
+
         return raw_data
 
     def root(self):
@@ -709,9 +735,8 @@ class SubsumptionGraph:
                     yield (n, c)
 
     def parents(self, accession):
-        for p, c in self.alledges.items():
-            if accession in c:
-                yield p
+        for p in self.allinedges.get(accession, []):
+            yield p
 
     def ancestors(self, accession):
         anc = set()
@@ -740,7 +765,9 @@ class SubsumptionGraph:
         return accession == self.root()
 
     def level(self, accession):
-        return self.allnodestype[accession].lower()
+	if accession in self.allnodestype:
+	    return self.allnodestype[accession][1].lower()
+        return None
 
     def islevel(self, accession, level):
         return self.level(accession) == level
@@ -761,24 +788,30 @@ class SubsumptionGraph:
         return self.islevel(accession, 'saccharide')
 
     def get_molecularweight(self, accession):
-        for n, t in self.allnodestype.items():
-            if self.ismolecularweight(n) and accession in self.descendants(n):
-                yield n
+	if accession in self.allnodestype:
+	    return self.allnodestype[accession][0]
+	return None
 
     def get_basecomposition(self, accession):
-        for n, t in self.allnodestype.items():
-            if self.isbasecomposition(n) and accession in self.descendants(n):
-                yield n
+	if accession in self.allnodestype:
+	    bcomp = self.allnodestype[accession][4]
+	    if bcomp and bcomp in self.allnodestype:
+	        return bcomp
+	return None
 
     def get_composition(self, accession):
-        for n, t in self.allnodestype.items():
-            if self.iscomposition(n) and accession in self.descendants(n):
-                yield n
+	if accession in self.allnodestype:
+	    comp = self.allnodestype[accession][3]
+	    if comp and comp in self.allnodestype:
+	        return comp
+	return None
 
     def get_topology(self, accession):
-        for n, t in self.allnodestype.items():
-            if self.istopology(n) and accession in self.descendants(n):
-                yield n
+	if accession in self.allnodestype:
+	    topo = self.allnodestype[accession][2]
+	    if topo and topo in self.allnodestype:
+	        return topo
+	return None
 
     def get_iupac_composition(self, accession):
         return self.monosaccharide_count.get(accession, None)
@@ -810,19 +843,29 @@ class SubsumptionGraph:
             res["Xxx"] = xxx
         return res
 
-
-
     def has_basecomposition(self, accession):
-        assert self.isbasecomposition(accession)
-        return self.descendants(accession)
+        assert self.isbasecomposition(accession), accession
+	if self.get_basecomposition(accession) == accession:
+	    yield accession
+	for desc in self.descendants(accession):
+	    if self.get_basecomposition(desc) == accession:
+		yield desc
 
     def has_composition(self, accession):
-        assert self.iscomposition(accession)
-        return self.descendants(accession)
+        assert self.iscomposition(accession), accession
+	if self.get_composition(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_composition(desc) == accession:
+		yield desc
 
     def has_topology(self, accession):
-        assert self.istopology(accession)
-        return self.descendants(accession)
+        assert self.istopology(accession), accession
+	if self.get_topology(accession) == accession:
+	    yield accession
+	for desc in self.descendants(accession):
+	    if self.get_topology(desc) == accession:
+		yield desc
 
     def regexget(self, p, s):
         searchres = list(p.finditer(s))
