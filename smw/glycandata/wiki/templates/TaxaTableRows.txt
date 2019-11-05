@@ -1,6 +1,8 @@
 <includeonly>
 |- style="vertical-align: top;"
 ! style="width: 200px;" | {{{1}}}
-| {{#arraymap:{{{2}}}|;|xxx|[http://identifiers.org/taxonomy/xxx xxx]|,&thinsp;}}
-| style="width: 150px;" | {{{3}}}
+| {{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://identifiers.org/taxonomy/xxx xxx]</span>|,&thinsp;}} 
+| style="width: 150px;" | {{#switch:{{{3}}}
+|UniCarbKB={{{3}}}:<span class="plainlinks">[http://unicarbkb.org/structure/{{{4}}} {{{4}}}]</span>
+|{{{3}}}}}
 </includeonly>

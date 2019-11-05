@@ -5,6 +5,7 @@
 |?glycandata:property=Property
 |?glycandata:value=Value
 |?glycandata:source=Source
+|?glycandata:sourceid=SourceID
 |mainlabel=-
 |sort=glycandata:source, glycandata:property
 |intro= <h2>{{{1}}}</h2>

@@ -12,6 +12,7 @@ http://glycandata.glygen.org/glycandata#|[http://glycandata.glygen.org/glycandat
  property|Type:Text
  value|Type:Text
  source|Type:Text
+ sourceid|Type:Text
  reference|Type:URL
  method|Type:Page
  hasglycan|Type:Page

@@ -8,6 +8,7 @@ It should be called in the following format:
 |property=
 |value=
 |source=
+|sourceid=
 |comment=
 |reference=
 |method=
@@ -32,5 +33,8 @@ Edit the page to see the template text.
 |-
 ! style="width:200px" | Source
 | style="" | [[glycandata:source::{{{source|}}}]]
+|-
+! style="width:200px" | Source ID
+| style="" | [[glycandata:sourceid::{{{sourceid|}}}]]
 |}{{#if:{{{multivaluesep|}}}|{{#arraymap:{{{value|}}}|{{{multivaluesep|}}}|xxxx|{{#set:|glycandata:value=xxxx}}}}|{{#set:|glycandata:value={{{value|}}}}}}}
 </includeonly>

@@ -2,6 +2,10 @@
 [[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:type::{{{2}}}]]
+[[glycandata:property::!HCV Direct]]
+[[glycandata:property::!Human Direct]]
+[[glycandata:property::!Mouse Direct]]
+[[glycandata:property::!Rat Direct]]
 |?glycandata:property=Property
 |?glycandata:value=Value
 |?glycandata:source=Source

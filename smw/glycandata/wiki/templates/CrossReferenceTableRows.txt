@@ -2,18 +2,18 @@
 |- style="vertical-align: top;"
 ! style="width: 200px;" | {{{1}}}
 | {{#switch:{{{1}}}
-|GlyTouCan={{#arraymap:{{{2}}}|;|xxx|[https://glytoucan.org/Structures/Glycans/xxx xxx]|,&thinsp;}}
-|GlycomeDB={{#arraymap:{{{2}}}|;|xxx|[http://www.glycome-db.org/database/showStructure.action?glycomeId=xxx xxx]|,&thinsp;}}
-|KEGG={{#arraymap:{{{2}}}|;|xxx|[http://www.genome.jp/dbget-bin/www_bget?gl:xxx xxx]|,&thinsp;}}
-|GlyConnect={{#arraymap:{{{2}}}|;|xxx|[https://glyconnect.expasy.org/browser/structures/xxx xxx]|,&thinsp;}}
-|PubChem={{#arraymap:{{{2}}}|;|xxx|[https://pubchem.ncbi.nlm.nih.gov/xxx xxx]|,&thinsp;}}
-|UniCarbKB={{#arraymap:{{{2}}}|;|xxx|[http://www.unicarbkb.org/structure/xxx xxx]|,&thinsp;}}
-|GLYCOSCIENCES.de={{#arraymap:{{{2}}}|;|xxx|[http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=xxx xxx]|,&thinsp;}}
-|Carbbank(CCSB)={{#arraymap:{{{2}}}|;|xxx|[http://www.genome.jp/dbget-bin/www_bget?carbbank+xxx xxx]|,&thinsp;}}
-|GlyGen={{#arraymap:{{{2}}}|;|xxx|[http://glygen.org/glycan_detail.html?glytoucan_ac=xxx xxx]|,&thinsp;}}
-|MonosaccharideDB={{#arraymap:{{{2}}}|;|xxx|[http://www.monosaccharidedb.org/display_monosaccharide.action?id=xxx xxx]|,&thinsp;}}
-|PDB={{#arraymap:{{{2}}}|;|xxx|[https://www.rcsb.org/structure/xxx xxx]|,&thinsp;}}
-|CFG={{#arraymap:{{{2}}}|;|xxx|[http://www.functionalglycomics.org/glycomics/CarbohydrateServlet?pageType=view&view=view&operationType=view&carbId=xxx&sideMenu=no xxx]|,&thinsp;}}
+|GlyTouCan={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxx xxx]</span>|,&thinsp;}}
+|GlycomeDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.glycome-db.org/database/showStructure.action?glycomeId=xxx xxx]</span>|,&thinsp;}}
+|KEGG={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.genome.jp/dbget-bin/www_bget?gl:xxx xxx]</span>|,&thinsp;}}
+|GlyConnect={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/xxx xxx]</span>|,&thinsp;}}
+|PubChem={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://pubchem.ncbi.nlm.nih.gov/xxx xxx]</span>|,&thinsp;}}
+|UniCarbKB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.unicarbkb.org/structure/xxx xxx]</span>|,&thinsp;}}
+|GLYCOSCIENCES.de={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=xxx xxx]</span>|,&thinsp;}}
+|Carbbank(CCSB)={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.genome.jp/dbget-bin/www_bget?carbbank+xxx xxx]</span>|,&thinsp;}}
+|GlyGen={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://glygen.org/glycan_detail.html?glytoucan_ac=xxx xxx]</span>|,&thinsp;}}
+|MonosaccharideDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.monosaccharidedb.org/display_monosaccharide.action?id=xxx xxx]</span>|,&thinsp;}}
+|PDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.rcsb.org/structure/xxx xxx]</span>|,&thinsp;}}
+|CFG={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.functionalglycomics.org/glycomics/CarbohydrateServlet?pageType=view&view=view&operationType=view&carbId=xxx&sideMenu=no xxx]</span>|,&thinsp;}}
 |{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
 }}
 | style="width: 150px;" | {{{3}}}

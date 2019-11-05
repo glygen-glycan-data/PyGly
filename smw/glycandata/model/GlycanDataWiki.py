@@ -108,7 +108,7 @@ class Annotation(SMW.SMWClass):
         assert kwargs.get('type')
         assert kwargs.get('property')
         assert kwargs.get('source') 
-        pagename = ".".join(tuple(map(kwargs.get,('glycan','type','property','source'))))
+        pagename = ".".join(tuple(filter(None,map(kwargs.get,('glycan','type','property','source','sourceid')))))
 	assert ':' not in pagename
 	return pagename
 
@@ -116,7 +116,7 @@ class Annotation(SMW.SMWClass):
         assert self.get('type')
         assert self.get('property')
         assert self.get('source') 
-        return tuple(map(self.get,('type','property','source')))
+        return tuple(filter(None,map(self.get,('type','property','source','sourceid'))))
 
     def goodvalue(self):
         return (self.get('value') not in (None,"",[],set([])))
@@ -213,7 +213,7 @@ class GlycanDataWiki(SMW.SMWSite):
 	    values = [kwargs.get('type',r'[^.]+'),
                       kwargs.get('property',r'[^.]+'),
 	              kwargs.get('source',r'[^.]+')]
-	    regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + '$'
+	    regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + '(\.[^.]+)?$'
 	regex = re.compile(regex)
 	for pagename in self.site.allpages(generator=False):
 	    m = regex.search(pagename)
