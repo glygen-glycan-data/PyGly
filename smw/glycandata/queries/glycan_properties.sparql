@@ -11,7 +11,8 @@ SELECT (?accession AS ?glytoucan_acc)
 WHERE {
   ?glycan glycandata:accession ?accession .
   OPTIONAL {
-    ?ann1 glycandata:property "SubsumptionLevel" .
+    ?ann1 glycandata:property "Level" .
+    ?ann1 glycandata:type "Subsumption" . 
     ?ann1 glycandata:value ?SubsumptionLevel . 
     ?ann1 glycandata:hasglycan ?glycan
   }
@@ -23,6 +24,7 @@ WHERE {
   }
   OPTIONAL {
     ?ann3 glycandata:property "BaseComposition" .
+    ?ann3 glycandata:type "Subsumption" . 
     ?ann3 glycandata:value ?BaseComposition . 
     ?ann3 glycandata:hasglycan ?glycan
   }
@@ -34,6 +36,7 @@ WHERE {
   }
   OPTIONAL {
     ?ann5 glycandata:property "Topology" .
+    ?ann5 glycandata:type "Subsumption" .
     ?ann5 glycandata:value ?Topology . 
     ?ann5 glycandata:hasglycan ?glycan
   }

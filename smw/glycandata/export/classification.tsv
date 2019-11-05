@@ -1,7 +1,7 @@
 GlyTouCanAccession	Type	Subtype
 G00012RZ	N-linked	complex
 G00025YC	N-linked	complex
-G00026MO	N-linked	
+G00026MO	N-linked	paucimannose
 G00027JG	O-linked	core 2
 G00028MO	N-linked	high mannose
 G00029MO	N-linked	hybrid
@@ -24,6 +24,7 @@ G00063MO	O-linked	core 1
 G00094SE	O-linked	core 2
 G00155YT	N-linked	complex
 G00167VE	N-linked	complex
+G00171RJ	N-linked	complex
 G00176HZ	N-linked	complex
 G00186OS	N-linked	complex
 G00211WY	N-linked	complex
@@ -31,6 +32,7 @@ G00219DO	N-linked	complex
 G00221CZ	N-linked	complex
 G00227RN	N-linked	complex
 G00230CO	N-linked	complex
+G00231IQ	N-linked	
 G00231WL	N-linked	complex
 G00247JV	N-linked	
 G00247PL	N-linked	hybrid
@@ -39,17 +41,22 @@ G00279YF	N-linked	complex
 G00281HB	N-linked	
 G00318AV	N-linked	
 G00320ZP	N-linked	complex
+G00325UK	N-linked	complex
 G00328CG	N-linked	
 G00335DM	N-linked	
+G00349CA	N-linked	
 G00361YF	N-linked	complex
 G00371DJ	O-linked	core 3
+G00383KP	N-linked	
 G00383YF	N-linked	complex
 G00396IE	N-linked	
 G00412SV	N-linked	
 G00413UF	N-linked	complex
+G00423TL	O-linked	core 1
 G00430ZK	O-linked	core 2
 G00432WV	N-linked	complex
 G00433KW	N-linked	
+G00438EF	N-linked	complex
 G00451UT	N-linked	complex
 G00463XD	N-linked	complex
 G00468KU	N-linked	
@@ -70,7 +77,7 @@ G00551JZ	N-linked
 G00553AN	N-linked	
 G00565QJ	N-linked	
 G00582VL	N-linked	hybrid
-G00588HO	N-linked	
+G00591PZ	N-linked	complex
 G00594AV	N-linked	
 G00598SQ	N-linked	complex
 G00606LX	N-linked	complex
@@ -126,6 +133,8 @@ G00986YT	N-linked	complex
 G00995HW	N-linked	complex
 G00998NI	N-linked	complex
 G01001RL	N-linked	complex
+G01010HW	N-linked	complex
+G01028FJ	N-linked	
 G01034MJ	N-linked	complex
 G01040ZV	O-linked	core 1
 G01069AK	N-linked	complex
@@ -135,6 +144,7 @@ G01100DE	N-linked
 G01107YB	N-linked	
 G01120GS	N-linked	complex
 G01169EW	N-linked	complex
+G01174QS	N-linked	
 G01178HS	N-linked	complex
 G01180ZJ	N-linked	
 G01181WH	N-linked	
@@ -143,6 +153,7 @@ G01220PX	N-linked	high mannose
 G01223AA	N-linked	complex
 G01243KR	O-linked	core 4
 G01244DB	N-linked	complex
+G01260KO	N-linked	
 G01260RY	N-linked	high mannose
 G01268DU	N-linked	
 G01282UD	O-linked	core 4
@@ -163,6 +174,7 @@ G01378OV	N-linked	complex
 G01386NB	N-linked	complex
 G01406RR	N-linked	complex
 G01414CL	N-linked	complex
+G01424EN	N-linked	
 G01450RG	O-linked	core 1
 G01450UB	N-linked	
 G01453BU	O-linked	core 2
@@ -175,6 +187,7 @@ G01521YU	N-linked	complex
 G01534TU	O-linked	core 1
 G01543ZX	N-linked	complex
 G01546PE	O-linked	core 1
+G01577DB	O-linked	core 2
 G01587DQ	N-linked	complex
 G01590HD	N-linked	
 G01600VV	N-linked	
@@ -184,15 +197,18 @@ G01614ZM	O-linked	core 1
 G01625GQ	O-linked	core 2
 G01643LM	O-linked	core 2
 G01654FP	N-linked	complex
+G01657DW	N-linked	hybrid
 G01657UH	O-linked	core 1
 G01659NO	N-linked	
 G01669LU	N-linked	complex
 G01670UQ	N-linked	complex
+G01685IB	N-linked	complex
 G01707KB	O-linked	core 2
 G01726PL	N-linked	
 G01727PW	N-linked	complex
 G01744JD	O-linked	core 4
 G01749YL	O-linked	core 3
+G01752VH	N-linked	complex
 G01759NM	O-linked	core 2
 G01769FS	N-linked	complex
 G01791PK	N-linked	
@@ -214,9 +230,11 @@ G02000AU	N-linked	complex
 G02025MF	N-linked	complex
 G02032MW	O-linked	core 4
 G02050BR	N-linked	hybrid
+G02081QK	N-linked	hybrid
 G02122FK	N-linked	complex
 G02152MS	N-linked	complex
 G02156UW	N-linked	complex
+G02161CI	O-linked	core 2
 G02162DJ	N-linked	
 G02170ZK	N-linked	
 G02193CV	N-linked	complex
@@ -231,6 +249,7 @@ G02290KA	N-linked	complex
 G02310VX	N-linked	
 G02311IE	N-linked	complex
 G02322JK	N-linked	complex
+G02368JK	O-linked	core 1
 G02387FV	O-linked	core 3
 G02397SF	N-linked	complex
 G02402FF	N-linked	
@@ -247,6 +266,7 @@ G02482JV	N-linked	complex
 G02483WT	N-linked	complex
 G02494HC	N-linked	complex
 G02522JF	O-linked	core 3
+G02526NN	N-linked	high mannose
 G02527CE	N-linked	complex
 G02558LA	N-linked	
 G02561FC	N-linked	
@@ -257,6 +277,7 @@ G02624IW	N-linked	complex
 G02630BJ	N-linked	complex
 G02654EL	N-linked	complex
 G02660HR	N-linked	
+G02660WC	N-linked	
 G02661MY	N-linked	complex
 G02679YX	N-linked	complex
 G02684WR	O-linked	core 1
@@ -285,6 +306,7 @@ G03081ER	N-linked
 G03081NO	N-linked	complex
 G03109ER	N-linked	
 G03127AL	N-linked	
+G03136UJ	N-linked	complex
 G03140AX	O-linked	core 2
 G03151MA	N-linked	
 G03164NE	N-linked	complex
@@ -311,10 +333,12 @@ G03385XG	N-linked	complex
 G03399GQ	N-linked	
 G03412UM	O-linked	core 2
 G03414KZ	N-linked	complex
+G03425VF	O-linked	core 6
 G03430DD	N-linked	
 G03431NA	N-linked	complex
 G03433NI	O-linked	core 1
 G03436RQ	N-linked	
+G03438WE	O-linked	core 1
 G03445UI	N-linked	complex
 G03473UD	N-linked	complex
 G03479ZN	N-linked	complex
@@ -341,6 +365,7 @@ G03654ML	N-linked	complex
 G03670RH	O-linked	core 2
 G03674DU	O-linked	core 3
 G03681UF	N-linked	complex
+G03682TM	N-linked	
 G03700EN	N-linked	complex
 G03706EO	N-linked	complex
 G03714XC	O-linked	core 1
@@ -356,13 +381,16 @@ G03783BX	N-linked
 G03792OA	O-linked	core 6
 G03802LT	N-linked	
 G03807MJ	N-linked	complex
+G03819IX	O-linked	core 1
 G03820FM	N-linked	
 G03825XC	O-linked	core 1
 G03834RX	N-linked	
 G03847RK	O-linked	core 1
 G03860PZ	N-linked	
+G03861ES	N-linked	complex
 G03877AD	O-linked	core 6
 G03889MY	N-linked	complex
+G03895CL	N-linked	
 G03895SR	N-linked	complex
 G03900NK	O-linked	core 2
 G03913NS	N-linked	
@@ -381,9 +409,12 @@ G04014FP	O-linked	core 4
 G04023GJ	N-linked	complex
 G04041QU	N-linked	complex
 G04048YA	N-linked	
+G04065SU	N-linked	complex
 G04074KJ	O-linked	core 2
 G04077XA	N-linked	complex
 G04078TP	N-linked	complex
+G04082SK	O-linked	core 1
+G04091CN	O-linked	core 1
 G04109RU	N-linked	hybrid
 G04114CX	O-linked	core 2
 G04116CC	O-linked	core 2
@@ -393,12 +424,16 @@ G04139QL	N-linked	complex
 G04146DI	N-linked	hybrid
 G04171XX	N-linked	complex
 G04209KR	N-linked	complex
+G04213EK	N-linked	complex
 G04214MY	N-linked	complex
 G04216GB	N-linked	
 G04220HB	N-linked	
 G04245TA	N-linked	complex
+G04246XX	N-linked	
+G04261UG	N-linked	hybrid
 G04267HE	N-linked	complex
 G04267XF	O-linked	core 1
+G04269TC	N-linked	
 G04273XP	N-linked	complex
 G04286YE	N-linked	complex
 G04291AF	N-linked	complex
@@ -406,10 +441,12 @@ G04328BO	N-linked
 G04355NX	N-linked	complex
 G04414GO	N-linked	
 G04423CA	N-linked	complex
+G04428BJ	O-linked	core 2
 G04432FE	N-linked	complex
 G04445KN	N-linked	hybrid
 G04448SK	N-linked	complex
 G04467BX	N-linked	complex
+G04471LY	N-linked	complex
 G04483QG	O-linked	core 1
 G04483SK	N-linked	complex
 G04501IZ	N-linked	
@@ -420,6 +457,7 @@ G04522ZB	O-linked	core 1
 G04527KW	O-linked	core 2
 G04528DU	N-linked	complex
 G04531ET	O-linked	core 1
+G04544OS	N-linked	complex
 G04554UL	N-linked	complex
 G04561MG	N-linked	complex
 G04576KS	N-linked	hybrid
@@ -434,6 +472,7 @@ G04678VQ	N-linked	complex
 G04689DA	N-linked	high mannose
 G04699RP	N-linked	complex
 G04703AJ	N-linked	complex
+G04708ME	N-linked	complex
 G04715AF	N-linked	complex
 G04717US	N-linked	complex
 G04719BG	N-linked	complex
@@ -454,17 +493,21 @@ G04816EV	N-linked
 G04820ZR	N-linked	complex
 G04820ZT	N-linked	complex
 G04823YN	N-linked	complex
+G04829RO	N-linked	complex
+G04842IW	O-linked	core 1
 G04846SY	N-linked	hybrid
 G04855ZO	N-linked	complex
 G04861MP	N-linked	complex
 G04873JX	N-linked	complex
 G04909DG	N-linked	
+G04914MH	N-linked	
 G04920ZE	N-linked	
 G04930QT	N-linked	hybrid
 G04951KA	N-linked	
 G04959WS	N-linked	
 G04964UA	N-linked	complex
 G04976EC	N-linked	
+G04987NY	N-linked	
 G04989WY	N-linked	complex
 G05005SO	N-linked	complex
 G05027SR	N-linked	
@@ -499,10 +542,11 @@ G05382JE	N-linked	complex
 G05395FV	N-linked	
 G05402FG	O-linked	core 2
 G05421KO	N-linked	
-G05454SP	N-linked	
+G05421OW	N-linked	high mannose
 G05470LY	N-linked	complex
 G05478GN	N-linked	complex
 G05511KY	N-linked	complex
+G05546WG	N-linked	complex
 G05550LT	N-linked	
 G05553PQ	N-linked	complex
 G05562XX	N-linked	complex
@@ -515,6 +559,7 @@ G05620VJ	O-linked	core 1
 G05633TS	O-linked	core 1
 G05642HQ	N-linked	
 G05644LC	O-linked	core 2
+G05654CV	N-linked	complex
 G05675LB	O-linked	core 6
 G05690OR	O-linked	core 2
 G05698FC	N-linked	complex
@@ -548,6 +593,7 @@ G06067KZ	N-linked	complex
 G06069CG	N-linked	
 G06070KG	N-linked	
 G06070ZH	N-linked	
+G06078SG	N-linked	complex
 G06098SY	N-linked	
 G06100EH	N-linked	
 G06100NA	N-linked	
@@ -560,11 +606,13 @@ G06162IF	N-linked	complex
 G06191GU	N-linked	complex
 G06192YD	N-linked	
 G06194HJ	N-linked	complex
+G06195HM	N-linked	complex
 G06209KS	N-linked	
 G06215DG	N-linked	complex
 G06215XQ	N-linked	
 G06216GN	N-linked	complex
 G06216UH	N-linked	complex
+G06240OP	O-linked	core 1
 G06276SU	N-linked	complex
 G06279KD	N-linked	complex
 G06279ZC	N-linked	complex
@@ -576,9 +624,12 @@ G06328AN	N-linked	complex
 G06366AC	O-linked	core 2
 G06371NP	N-linked	
 G06374YY	N-linked	hybrid
+G06404BM	O-linked	core 2
 G06404ZJ	N-linked	complex
 G06407UW	N-linked	complex
+G06408QU	O-linked	core 2
 G06422VO	N-linked	complex
+G06432WK	N-linked	complex
 G06437BU	N-linked	complex
 G06442NS	N-linked	
 G06444RU	N-linked	complex
@@ -603,11 +654,13 @@ G06673TD	N-linked	complex
 G06676BQ	O-linked	core 2
 G06703UH	N-linked	complex
 G06707ZH	N-linked	complex
+G06714AG	O-linked	core 4
 G06721LM	N-linked	
 G06728MM	N-linked	complex
 G06730AH	N-linked	complex
 G06731AE	N-linked	complex
 G06756XE	N-linked	complex
+G06768XI	N-linked	high mannose
 G06772YH	N-linked	hybrid
 G06786CI	O-linked	core 2
 G06795XH	N-linked	complex
@@ -618,6 +671,7 @@ G06833NJ	N-linked
 G06878CS	N-linked	
 G06895PM	N-linked	complex
 G06900UR	N-linked	
+G06906MP	N-linked	complex
 G06920GM	N-linked	
 G06921UA	N-linked	
 G06928XT	N-linked	
@@ -638,6 +692,7 @@ G07097VH	N-linked	complex
 G07098TP	N-linked	complex
 G07137NF	N-linked	
 G07140RV	N-linked	complex
+G07142IU	N-linked	complex
 G07145VL	O-linked	core 3
 G07151FE	N-linked	complex
 G07162IJ	N-linked	complex
@@ -670,6 +725,7 @@ G07483YN	N-linked
 G07493GF	N-linked	
 G07505DF	N-linked	high mannose
 G07568IR	N-linked	complex
+G07575HR	O-linked	core 2
 G07578MJ	O-linked	core 2
 G07593CW	N-linked	
 G07610JY	O-linked	core 2
@@ -677,6 +733,8 @@ G07617FP	N-linked
 G07626WD	N-linked	
 G07627PO	N-linked	hybrid
 G07639BG	N-linked	complex
+G07640EG	N-linked	complex
+G07644TA	N-linked	hybrid
 G07646UD	O-linked	core 4
 G07666IB	N-linked	complex
 G07668UR	N-linked	complex
@@ -693,12 +751,15 @@ G07703ST	N-linked	complex
 G07767MC	N-linked	complex
 G07783DH	N-linked	complex
 G07800ED	N-linked	complex
+G07802IC	N-linked	
+G07810DU	N-linked	hybrid
 G07815PK	N-linked	complex
 G07819HC	O-linked	core 2
 G07842DQ	N-linked	complex
 G07863NE	N-linked	
 G07865ET	N-linked	complex
 G07869UA	O-linked	core 2
+G07887XY	N-linked	hybrid
 G07904XW	O-linked	core 1
 G07920XA	N-linked	complex
 G07929VT	N-linked	
@@ -706,10 +767,13 @@ G07932PU	O-linked	core 3
 G07947TY	N-linked	complex
 G07982BU	N-linked	complex
 G07982LO	O-linked	core 2
+G07988QE	O-linked	core 1
 G07995VK	N-linked	complex
 G08011QI	N-linked	
 G08060JF	N-linked	
+G08062CY	N-linked	complex
 G08076GP	N-linked	hybrid
+G08078RH	N-linked	complex
 G08096ND	N-linked	
 G08107SW	O-linked	core 6
 G08111FJ	N-linked	complex
@@ -724,6 +788,7 @@ G08190JB	O-linked	core 4
 G08191RW	N-linked	complex
 G08194HH	N-linked	complex
 G08205LJ	N-linked	complex
+G08230UB	N-linked	complex
 G08242BT	N-linked	complex
 G08340FW	N-linked	
 G08358DN	O-linked	core 2
@@ -741,6 +806,7 @@ G08492JZ	N-linked	complex
 G08493GY	N-linked	complex
 G08520NM	N-linked	hybrid
 G08527WT	N-linked	
+G08551YA	N-linked	
 G08569VN	O-linked	core 2
 G08570LJ	N-linked	complex
 G08577PR	N-linked	complex
@@ -754,6 +820,7 @@ G08646IB	N-linked	complex
 G08646YJ	N-linked	complex
 G08673AT	N-linked	
 G08675PK	N-linked	complex
+G08679EM	N-linked	complex
 G08679LR	N-linked	complex
 G08681CU	N-linked	
 G08700OQ	O-linked	core 1
@@ -771,17 +838,21 @@ G08894MB	N-linked	complex
 G08896RO	N-linked	complex
 G08907YK	N-linked	
 G08916CY	N-linked	complex
+G08936DJ	N-linked	
 G08939IS	N-linked	
+G08949VK	N-linked	complex
 G08997GC	N-linked	
 G09009DV	N-linked	hybrid
 G09019KT	N-linked	complex
 G09020HN	N-linked	complex
+G09025ID	N-linked	hybrid
 G09026AJ	N-linked	complex
 G09057LN	N-linked	complex
 G09057YJ	N-linked	
 G09058KZ	N-linked	complex
 G09060YK	N-linked	complex
 G09064IP	N-linked	
+G09066KJ	N-linked	
 G09087VQ	N-linked	complex
 G09108HO	O-linked	core 1
 G09115OQ	N-linked	complex
@@ -835,6 +906,7 @@ G09579YO	N-linked	complex
 G09588MX	O-linked	core 4
 G09601WV	N-linked	complex
 G09605DV	N-linked	complex
+G09629PQ	N-linked	complex
 G09633HU	N-linked	complex
 G09635US	N-linked	complex
 G09639SZ	N-linked	
@@ -847,12 +919,14 @@ G09670SR	N-linked	complex
 G09684AX	N-linked	
 G09696LD	N-linked	
 G09696LZ	N-linked	complex
+G09702SG	N-linked	
 G09709WX	N-linked	hybrid
 G09724ZC	N-linked	
 G09727XA	N-linked	complex
 G09730EH	N-linked	complex
 G09775CH	N-linked	high mannose
 G09777HT	N-linked	complex
+G09782JM	N-linked	complex
 G09811YI	N-linked	
 G09826WW	N-linked	complex
 G09831CM	O-linked	core 3
@@ -868,6 +942,8 @@ G09976WS	N-linked
 G10008NR	N-linked	complex
 G10023KT	O-linked	core 1
 G10026RE	N-linked	complex
+G10034LM	N-linked	complex
+G10040DS	N-linked	high mannose
 G10073SM	N-linked	high mannose
 G10106TL	N-linked	
 G10108GZ	N-linked	complex
@@ -879,14 +955,17 @@ G10189EJ	N-linked	complex
 G10197JO	N-linked	complex
 G10209QU	N-linked	
 G10219AA	N-linked	complex
+G10223RO	N-linked	
 G10225UW	O-linked	core 1
 G10228AY	N-linked	complex
 G10228OD	N-linked	complex
+G10235QZ	N-linked	complex
 G10240SH	N-linked	complex
 G10254QG	N-linked	complex
 G10258MC	N-linked	complex
 G10292TC	N-linked	complex
 G10295MW	N-linked	
+G10300BI	N-linked	complex
 G10300DY	N-linked	hybrid
 G10302FA	N-linked	
 G10308PQ	N-linked	complex
@@ -923,6 +1002,7 @@ G10617KL	N-linked
 G10617MG	N-linked	complex
 G10625VD	N-linked	complex
 G10627KR	N-linked	complex
+G10637WE	N-linked	
 G10650OV	N-linked	complex
 G10664FL	N-linked	complex
 G10664JU	N-linked	
@@ -938,6 +1018,7 @@ G10725II	N-linked	complex
 G10733HY	N-linked	complex
 G10741VJ	N-linked	complex
 G10770RR	N-linked	complex
+G10776PT	N-linked	
 G10816YX	O-linked	core 2
 G10818TP	O-linked	core 1
 G10820KD	N-linked	complex
@@ -953,7 +1034,9 @@ G10898KH	N-linked
 G10924UK	O-linked	core 4
 G10925II	O-linked	core 2
 G10944ZI	N-linked	complex
+G10954XM	O-linked	core 3
 G10965EB	N-linked	hybrid
+G10989IB	N-linked	complex
 G10995NB	N-linked	complex
 G10996NE	N-linked	complex
 G11010AN	N-linked	complex
@@ -965,6 +1048,7 @@ G11041DA	N-linked	complex
 G11052OE	N-linked	
 G11058FS	N-linked	
 G11061VC	O-linked	core 1
+G11075DR	N-linked	complex
 G11083DH	O-linked	core 2
 G11091XO	O-linked	core 1
 G11107QZ	N-linked	complex
@@ -976,8 +1060,11 @@ G11165BC	N-linked	complex
 G11176QN	N-linked	
 G11180GU	N-linked	complex
 G11189WY	N-linked	
+G11192KF	N-linked	complex
 G11198HA	O-linked	core 2
 G11213NA	N-linked	complex
+G11236BB	O-linked	core 1
+G11249YX	N-linked	complex
 G11253PI	O-linked	core 2
 G11254FL	N-linked	
 G11260US	O-linked	core 3
@@ -991,7 +1078,9 @@ G11329LI	N-linked	complex
 G11333WT	N-linked	
 G11346GZ	N-linked	complex
 G11350UX	N-linked	complex
+G11376KE	N-linked	
 G11392CL	N-linked	complex
+G11402KL	N-linked	complex
 G11450PA	N-linked	complex
 G11453BM	N-linked	complex
 G11457RF	O-linked	core 2
@@ -1001,10 +1090,13 @@ G11482NO	O-linked	core 3
 G11509RN	N-linked	complex
 G11528MV	N-linked	
 G11535IB	N-linked	complex
+G11540FP	N-linked	complex
 G11551UU	N-linked	complex
 G11561RV	N-linked	complex
 G11571JL	N-linked	complex
+G11588II	N-linked	complex
 G11613HW	N-linked	complex
+G11615SW	N-linked	complex
 G11619JT	N-linked	complex
 G11635LG	N-linked	complex
 G11637WL	N-linked	hybrid
@@ -1014,8 +1106,11 @@ G11679NT	N-linked
 G11688DS	N-linked	
 G11696PX	N-linked	complex
 G11700UP	N-linked	complex
+G11704PO	O-linked	core 3
 G11712ZQ	N-linked	high mannose
 G11737JS	O-linked	core 1
+G11740AG	N-linked	hybrid
+G11745DB	N-linked	complex
 G11745XZ	N-linked	complex
 G11800WA	N-linked	complex
 G11801TI	N-linked	
@@ -1023,14 +1118,18 @@ G11819NV	O-linked	core 2
 G11827HH	O-linked	core 2
 G11844EV	O-linked	core 1
 G11846US	O-linked	core 2
+G11860YJ	N-linked	
 G11863CH	O-linked	core 1
 G11865ZE	N-linked	
 G11876US	O-linked	core 1
 G11885NX	N-linked	high mannose
 G11908FF	N-linked	
+G11910RR	N-linked	complex
+G11929CD	N-linked	complex
 G11929SN	N-linked	complex
 G11942BB	N-linked	complex
 G11948QD	N-linked	complex
+G11953VE	N-linked	complex
 G11960UF	N-linked	complex
 G11970DE	N-linked	complex
 G11974GJ	N-linked	
@@ -1057,6 +1156,7 @@ G12252PH	N-linked	complex
 G12254MW	N-linked	complex
 G12259JN	N-linked	complex
 G12266SO	N-linked	complex
+G12274AS	N-linked	high mannose
 G12318EJ	N-linked	complex
 G12338DQ	N-linked	
 G12352RJ	N-linked	complex
@@ -1066,11 +1166,13 @@ G12378KS	N-linked
 G12396GB	O-linked	core 2
 G12398HZ	N-linked	
 G12405JG	O-linked	core 2
+G12406MX	N-linked	complex
 G12417OE	N-linked	complex
 G12425WW	N-linked	complex
 G12436UO	N-linked	complex
 G12438DW	N-linked	complex
 G12438YM	N-linked	
+G12450CJ	N-linked	complex
 G12455XO	O-linked	core 1
 G12457EA	N-linked	complex
 G12464FX	N-linked	
@@ -1079,9 +1181,11 @@ G12474XI	N-linked
 G12479WC	N-linked	complex
 G12483SU	N-linked	complex
 G12486YB	O-linked	core 6
+G12504XV	N-linked	hybrid
 G12511VU	N-linked	
 G12524BD	N-linked	complex
 G12531EE	N-linked	
+G12541EY	O-linked	core 6
 G12555FT	N-linked	complex
 G12576FD	N-linked	complex
 G12593TX	N-linked	
@@ -1099,13 +1203,17 @@ G12699VT	N-linked	complex
 G12704ID	N-linked	complex
 G12708JQ	N-linked	
 G12715AH	N-linked	
+G12727SF	N-linked	hybrid
+G12740VA	N-linked	complex
 G12746TT	N-linked	complex
 G12757LB	N-linked	complex
 G12761QA	O-linked	core 1
+G12764SQ	N-linked	complex
 G12775RU	N-linked	
 G12788PX	N-linked	complex
 G12802HY	N-linked	
 G12817WM	N-linked	complex
+G12852SA	N-linked	
 G12861CT	N-linked	
 G12866IA	N-linked	high mannose
 G12878NK	N-linked	complex
@@ -1132,6 +1240,7 @@ G13091NP	N-linked	complex
 G13113SB	N-linked	
 G13135UM	N-linked	
 G13144BT	N-linked	complex
+G13146JE	N-linked	
 G13151XE	N-linked	hybrid
 G13156PQ	N-linked	complex
 G13165FV	N-linked	
@@ -1151,21 +1260,26 @@ G13282WA	N-linked	complex
 G13290KJ	N-linked	complex
 G13291XJ	N-linked	complex
 G13292BE	N-linked	complex
+G13292XY	O-linked	core 2
+G13305QJ	N-linked	high mannose
 G13322RS	N-linked	complex
 G13335AQ	N-linked	high mannose
 G13343UZ	N-linked	complex
 G13346MU	N-linked	complex
 G13366MT	N-linked	
 G13397YQ	N-linked	complex
+G13433DK	N-linked	
 G13441KG	N-linked	complex
 G13450PJ	N-linked	complex
 G13454LA	N-linked	hybrid
 G13477DY	O-linked	core 1
+G13477HM	N-linked	complex
 G13483MH	N-linked	hybrid
 G13483MW	O-linked	core 2
 G13495RN	N-linked	complex
 G13500HV	N-linked	
 G13515ZY	N-linked	complex
+G13535FD	N-linked	complex
 G13537KO	N-linked	complex
 G13541NC	N-linked	complex
 G13563KX	N-linked	complex
@@ -1181,17 +1295,21 @@ G13657KC	N-linked	complex
 G13659RH	N-linked	complex
 G13661YX	N-linked	
 G13672YG	N-linked	complex
+G13676RE	N-linked	complex
 G13687TQ	N-linked	complex
 G13695SV	O-linked	core 2
+G13708VM	N-linked	hybrid
 G13720TX	N-linked	complex
 G13744OG	N-linked	complex
 G13746SQ	N-linked	
 G13751NN	N-linked	complex
 G13753JW	N-linked	hybrid
 G13782TA	N-linked	complex
+G13785QH	N-linked	complex
 G13814UH	O-linked	core 2
 G13824WQ	O-linked	core 3
 G13836YR	N-linked	complex
+G13843CF	N-linked	hybrid
 G13849JB	N-linked	complex
 G13849YJ	N-linked	hybrid
 G13858YJ	O-linked	core 2
@@ -1199,7 +1317,9 @@ G13863XN	O-linked	core 2
 G13890JV	O-linked	core 2
 G13897ZB	N-linked	
 G13934FE	N-linked	
+G13964RX	N-linked	complex
 G13968BO	O-linked	core 2
+G13968LT	N-linked	complex
 G13968YX	N-linked	complex
 G13976VB	O-linked	core 2
 G13991MC	N-linked	complex
@@ -1243,6 +1363,7 @@ G14393TF	N-linked	complex
 G14428PM	N-linked	complex
 G14431ZQ	N-linked	complex
 G14438ZT	N-linked	complex
+G14439NS	N-linked	high mannose
 G14442NU	O-linked	core 1
 G14453LC	O-linked	core 2
 G14462MX	N-linked	complex
@@ -1256,6 +1377,7 @@ G14522GP	N-linked	complex
 G14533ZS	O-linked	core 1
 G14548ZL	N-linked	high mannose
 G14549GA	N-linked	
+G14555ST	O-linked	core 4
 G14567OB	N-linked	
 G14572XX	N-linked	
 G14576KZ	N-linked	
@@ -1265,6 +1387,7 @@ G14615WQ	N-linked	complex
 G14617QG	N-linked	complex
 G14646AF	O-linked	core 2
 G14658TS	N-linked	complex
+G14664YA	N-linked	
 G14693JJ	O-linked	core 2
 G14696LD	N-linked	hybrid
 G14727CI	N-linked	complex
@@ -1281,11 +1404,14 @@ G14854WL	N-linked	complex
 G14867MM	N-linked	complex
 G14870EV	O-linked	core 3
 G14882EB	N-linked	complex
+G14888AE	N-linked	
 G14889WU	N-linked	
 G14899VS	N-linked	complex
 G14905AZ	N-linked	
 G14905MK	N-linked	complex
 G14919CV	O-linked	core 2
+G14927KP	N-linked	
+G14938IR	N-linked	complex
 G14942ZU	N-linked	complex
 G14948VS	N-linked	complex
 G14950CY	N-linked	complex
@@ -1293,6 +1419,8 @@ G14959WS	N-linked	complex
 G14972EL	N-linked	
 G14985NB	N-linked	
 G14987GD	N-linked	complex
+G14988GH	N-linked	
+G14992IW	N-linked	complex
 G14996IQ	N-linked	
 G14998UC	N-linked	complex
 G15001YX	N-linked	
@@ -1301,30 +1429,39 @@ G15013TW	N-linked	complex
 G15016TE	N-linked	complex
 G15023FV	O-linked	core 1
 G15033WI	O-linked	core 2
+G15039AD	N-linked	complex
 G15053SL	O-linked	core 5
 G15064VB	N-linked	
 G15065YV	N-linked	complex
 G15112UU	N-linked	complex
+G15158LV	N-linked	high mannose
+G15164ZG	N-linked	complex
 G15173TI	O-linked	core 1
 G15178AV	O-linked	core 1
 G15191JE	N-linked	
 G15192BD	N-linked	
 G15198VK	N-linked	complex
+G15204IM	N-linked	
 G15216UP	N-linked	complex
+G15222RS	N-linked	
 G15249CA	O-linked	core 2
+G15269NF	N-linked	
 G15289EW	N-linked	complex
 G15320FW	N-linked	
 G15323YQ	N-linked	complex
 G15327MX	N-linked	complex
+G15329MZ	N-linked	paucimannose
 G15355KC	N-linked	complex
 G15355XO	N-linked	
 G15365AE	N-linked	complex
 G15369VN	N-linked	
 G15393WU	O-linked	core 4
+G15403PA	N-linked	complex
 G15410OI	N-linked	complex
 G15433HJ	N-linked	complex
 G15455NO	N-linked	complex
 G15467EU	O-linked	core 3
+G15499BW	N-linked	complex
 G15522RV	N-linked	complex
 G15527QL	N-linked	complex
 G15555MR	O-linked	core 2
@@ -1343,11 +1480,14 @@ G15681WF	N-linked	complex
 G15683CN	N-linked	
 G15687DE	N-linked	
 G15720UK	N-linked	
+G15727JK	N-linked	
 G15730FJ	N-linked	complex
+G15732HH	N-linked	hybrid
 G15747DD	N-linked	
 G15772KA	O-linked	core 2
 G15791TK	N-linked	
 G15825OT	N-linked	complex
+G15826PZ	N-linked	complex
 G15828HX	N-linked	
 G15828WB	N-linked	complex
 G15859AU	N-linked	complex
@@ -1364,11 +1504,12 @@ G16038YA	N-linked	complex
 G16057DE	N-linked	complex
 G16086VT	N-linked	complex
 G16117GO	N-linked	
-G16119YF	N-linked	
+G16119YF	N-linked	paucimannose
 G16122GW	N-linked	hybrid
 G16150CJ	N-linked	complex
 G16151YX	N-linked	
 G16155TD	N-linked	complex
+G16201LW	N-linked	
 G16204NU	N-linked	
 G16233TX	N-linked	complex
 G16265MV	N-linked	complex
@@ -1377,11 +1518,13 @@ G16325IK	N-linked	complex
 G16341ZC	N-linked	complex
 G16344ZG	N-linked	complex
 G16370GQ	O-linked	core 1
+G16374KD	O-linked	core 2
 G16389EC	N-linked	complex
 G16397GM	N-linked	complex
 G16403CC	N-linked	complex
 G16404YH	N-linked	
 G16411DN	N-linked	
+G16426GN	N-linked	complex
 G16437LH	N-linked	complex
 G16441MS	N-linked	complex
 G16444ZD	N-linked	complex
@@ -1403,6 +1546,7 @@ G16614GV	N-linked	hybrid
 G16633VX	N-linked	complex
 G16666MF	N-linked	complex
 G16679DU	N-linked	complex
+G16682CP	O-linked	core 2
 G16733YD	N-linked	complex
 G16739XD	O-linked	core 2
 G16739XK	N-linked	complex
@@ -1417,6 +1561,7 @@ G16778ZK	N-linked	complex
 G16808DC	N-linked	complex
 G16809IL	N-linked	complex
 G16828VN	N-linked	hybrid
+G16829SN	N-linked	hybrid
 G16873EF	N-linked	
 G16873YG	N-linked	complex
 G16879YK	N-linked	high mannose
@@ -1426,6 +1571,7 @@ G16928QI	N-linked	complex
 G16932ML	N-linked	
 G16933JU	N-linked	complex
 G16938IW	N-linked	complex
+G16956YO	N-linked	complex
 G16967GJ	N-linked	complex
 G16976BN	N-linked	hybrid
 G16999DQ	N-linked	
@@ -1435,11 +1581,13 @@ G17041QN	O-linked	core 1
 G17077YF	O-linked	core 3
 G17095DP	N-linked	complex
 G17107VB	N-linked	hybrid
+G17114GC	N-linked	complex
 G17126MK	O-linked	core 1
 G17134VG	N-linked	complex
 G17153CQ	N-linked	complex
 G17155VX	N-linked	complex
 G17157SF	N-linked	hybrid
+G17160IJ	N-linked	
 G17164DX	N-linked	complex
 G17168RO	N-linked	complex
 G17171MV	N-linked	complex
@@ -1448,9 +1596,12 @@ G17173XA	O-linked	core 3
 G17205DU	N-linked	complex
 G17207FU	N-linked	complex
 G17207YJ	N-linked	
+G17213JF	N-linked	hybrid
+G17218WW	O-linked	core 2
 G17226QK	N-linked	
 G17251XF	O-linked	core 6
 G17264LS	N-linked	hybrid
+G17269LY	O-linked	core 1
 G17274VA	N-linked	complex
 G17286ZM	N-linked	complex
 G17294JY	O-linked	core 2
@@ -1471,6 +1622,7 @@ G17389UM	N-linked	complex
 G17400KY	N-linked	
 G17409FQ	N-linked	
 G17410PS	N-linked	
+G17413FR	N-linked	
 G17431SG	N-linked	complex
 G17437BX	N-linked	complex
 G17441MI	N-linked	complex
@@ -1482,17 +1634,19 @@ G17473NR	N-linked	complex
 G17480GI	O-linked	core 1
 G17483AZ	N-linked	
 G17483QF	N-linked	
-G17536AW	N-linked	
+G17490CY	N-linked	
 G17540HT	N-linked	complex
 G17541OC	N-linked	high mannose
 G17547KJ	N-linked	
 G17568ZS	N-linked	complex
+G17580TM	N-linked	complex
 G17595XL	N-linked	high mannose
 G17638QU	N-linked	complex
 G17639DA	N-linked	
 G17644VM	N-linked	complex
 G17652MS	N-linked	complex
 G17661OZ	N-linked	complex
+G17667YX	O-linked	core 1
 G17689DH	N-linked	complex
 G17697SQ	N-linked	
 G17698NO	N-linked	
@@ -1505,6 +1659,7 @@ G17752YB	O-linked	core 2
 G17758YV	O-linked	core 1
 G17779DH	N-linked	complex
 G17791VR	N-linked	complex
+G17801HD	N-linked	complex
 G17804IQ	N-linked	
 G17807LO	N-linked	complex
 G17810KS	O-linked	core 3
@@ -1545,14 +1700,18 @@ G18211PK	N-linked	complex
 G18214MO	O-linked	core 2
 G18219CJ	N-linked	complex
 G18223CA	N-linked	complex
+G18244ZK	N-linked	hybrid
 G18264WJ	N-linked	complex
+G18295XA	N-linked	complex
 G18340ZI	N-linked	complex
 G18360DA	N-linked	
+G18391RR	N-linked	complex
 G18393MZ	N-linked	complex
 G18410AS	N-linked	
 G18410UY	N-linked	
 G18442YA	N-linked	complex
 G18447KU	N-linked	
+G18458OT	N-linked	
 G18463FK	O-linked	core 3
 G18472TI	O-linked	core 1
 G18510WC	N-linked	complex
@@ -1560,13 +1719,16 @@ G18516QW	N-linked	high mannose
 G18519LX	O-linked	core 2
 G18544DI	N-linked	
 G18548RP	N-linked	high mannose
+G18559LN	O-linked	core 1
 G18561NH	N-linked	
 G18578CO	N-linked	complex
 G18581LO	N-linked	complex
 G18584GW	N-linked	complex
 G18588JO	N-linked	
+G18591BK	N-linked	complex
 G18594JZ	N-linked	high mannose
 G18594ZT	N-linked	complex
+G18603ZQ	O-linked	core 2
 G18609BT	N-linked	complex
 G18619IO	N-linked	
 G18627LZ	N-linked	high mannose
@@ -1587,8 +1749,10 @@ G18803CK	N-linked	complex
 G18808AB	N-linked	
 G18814PP	N-linked	complex
 G18841NY	O-linked	core 1
+G18855WX	O-linked	core 1
 G18859UG	N-linked	complex
 G18869TR	N-linked	complex
+G18875WG	N-linked	complex
 G18877VR	N-linked	complex
 G18890KW	O-linked	core 2
 G18890TE	N-linked	
@@ -1602,6 +1766,7 @@ G18946TX	O-linked	core 2
 G18947DS	N-linked	
 G18948TG	N-linked	
 G18960KY	N-linked	complex
+G18963DQ	O-linked	core 1
 G18995DL	N-linked	
 G19002DQ	O-linked	core 1
 G19019TY	N-linked	complex
@@ -1610,10 +1775,12 @@ G19026NP	N-linked	complex
 G19043KB	O-linked	core 1
 G19053XS	N-linked	complex
 G19099PA	N-linked	
+G19103IX	N-linked	
 G19104OH	N-linked	complex
 G19106CR	N-linked	
 G19120ZM	N-linked	complex
 G19124KK	N-linked	complex
+G19140RD	N-linked	
 G19173US	N-linked	
 G19203SG	O-linked	core 2
 G19226BI	N-linked	
@@ -1636,13 +1803,17 @@ G19429IT	N-linked	complex
 G19430NR	N-linked	complex
 G19444JC	N-linked	complex
 G19447ZX	N-linked	complex
+G19463UP	N-linked	
 G19469VZ	N-linked	complex
 G19483RZ	N-linked	complex
 G19490DN	N-linked	complex
+G19517HH	N-linked	hybrid
 G19520XO	N-linked	complex
 G19532EC	N-linked	complex
 G19537TS	N-linked	complex
+G19539RD	N-linked	
 G19541IU	N-linked	complex
+G19562CL	O-linked	core 6
 G19568JE	N-linked	complex
 G19572NG	N-linked	complex
 G19588HA	N-linked	complex
@@ -1657,16 +1828,19 @@ G19677EK	N-linked
 G19687OL	N-linked	complex
 G19697JA	N-linked	complex
 G19726AG	N-linked	complex
+G19739KB	N-linked	complex
 G19747OA	N-linked	high mannose
 G19749DC	O-linked	core 3
 G19790PJ	N-linked	
 G19805HY	N-linked	high mannose
+G19811YA	O-linked	core 2
 G19813SH	O-linked	core 1
 G19826RH	N-linked	high mannose
 G19839OY	N-linked	complex
 G19840AF	N-linked	complex
 G19841IT	N-linked	
 G19854PG	N-linked	complex
+G19866OD	N-linked	complex
 G19868AX	N-linked	complex
 G19886LH	N-linked	
 G19914RN	N-linked	complex
@@ -1692,9 +1866,13 @@ G20176YB	O-linked	core 3
 G20212GT	N-linked	high mannose
 G20218ZS	N-linked	
 G20222KH	O-linked	core 2
+G20248TO	N-linked	high mannose
 G20266PH	N-linked	complex
 G20284VH	N-linked	complex
+G20285AX	N-linked	
+G20290UI	O-linked	core 3
 G20295SP	N-linked	
+G20297OI	N-linked	complex
 G20305DX	N-linked	complex
 G20352YV	N-linked	complex
 G20358OC	N-linked	complex
@@ -1702,15 +1880,17 @@ G20367UY	N-linked	complex
 G20372QO	O-linked	core 4
 G20426LM	N-linked	complex
 G20440GC	O-linked	core 2
+G20455AW	N-linked	complex
 G20463HA	N-linked	
 G20510FY	N-linked	
 G20538OA	N-linked	complex
 G20544CY	N-linked	complex
 G20551LK	N-linked	complex
+G20559VV	N-linked	hybrid
 G20564XL	N-linked	complex
 G20576NE	N-linked	complex
 G20621ZX	N-linked	
-G20624LQ	N-linked	
+G20624LQ	N-linked	paucimannose
 G20636FS	N-linked	complex
 G20662UG	N-linked	complex
 G20692QU	N-linked	complex
@@ -1725,6 +1905,7 @@ G20751GZ	N-linked	complex
 G20758LC	N-linked	complex
 G20767LB	N-linked	complex
 G20779SK	N-linked	complex
+G20785YF	O-linked	core 4
 G20815TK	N-linked	complex
 G20841PR	N-linked	complex
 G20873FQ	N-linked	complex
@@ -1748,6 +1929,7 @@ G20993TP	O-linked	core 2
 G21001NA	N-linked	
 G21005TQ	N-linked	
 G21010YO	N-linked	complex
+G21030SX	N-linked	complex
 G21050RT	N-linked	complex
 G21072IJ	N-linked	complex
 G21078FZ	N-linked	
@@ -1755,7 +1937,10 @@ G21100JS	N-linked	complex
 G21109OS	N-linked	hybrid
 G21112KH	N-linked	complex
 G21118MX	N-linked	complex
+G21130MT	N-linked	complex
+G21147BK	O-linked	core 2
 G21167SG	N-linked	complex
+G21167TN	N-linked	complex
 G21196UL	N-linked	
 G21211KU	N-linked	complex
 G21218WO	N-linked	complex
@@ -1766,7 +1951,6 @@ G21246WW	O-linked	core 6
 G21255ER	N-linked	complex
 G21256CQ	N-linked	complex
 G21257CI	N-linked	complex
-G21284IS	N-linked	
 G21297DP	O-linked	core 1
 G21305WL	N-linked	
 G21311PN	N-linked	complex
@@ -1778,6 +1962,7 @@ G21359LU	N-linked
 G21359NQ	N-linked	complex
 G21361AZ	N-linked	complex
 G21380FF	N-linked	complex
+G21393DK	N-linked	complex
 G21411AR	N-linked	
 G21411GO	N-linked	
 G21412CQ	O-linked	core 4
@@ -1792,14 +1977,19 @@ G21507RO	O-linked	core 1
 G21513QX	N-linked	complex
 G21514JX	N-linked	complex
 G21573FN	N-linked	complex
+G21586RO	N-linked	complex
 G21627CA	N-linked	complex
 G21663DV	N-linked	complex
+G21672LC	O-linked	core 1
 G21676JO	N-linked	
 G21679ID	N-linked	complex
+G21695CC	N-linked	
 G21696DT	O-linked	core 2
 G21729HC	N-linked	complex
 G21737WY	N-linked	complex
+G21739GH	N-linked	complex
 G21746MX	N-linked	complex
+G21755KD	N-linked	complex
 G21756MV	N-linked	complex
 G21758DI	O-linked	core 1
 G21760UP	N-linked	complex
@@ -1819,10 +2009,12 @@ G21928TI	O-linked	core 4
 G21933CU	N-linked	complex
 G21969UD	N-linked	complex
 G21982KM	N-linked	
+G21984NX	N-linked	complex
 G21986MJ	N-linked	complex
 G21989SY	O-linked	core 2
 G22012EW	O-linked	core 3
 G22018VM	N-linked	
+G22022NY	N-linked	complex
 G22043HZ	N-linked	complex
 G22048BB	N-linked	complex
 G22070LE	O-linked	core 2
@@ -1840,11 +2032,13 @@ G22159OA	N-linked
 G22163FP	N-linked	
 G22171KQ	O-linked	core 6
 G22185MF	O-linked	core 6
+G22204JI	N-linked	hybrid
 G22208HN	N-linked	
 G22220FW	N-linked	
 G22222BH	O-linked	core 1
 G22237ZE	N-linked	complex
 G22246QW	N-linked	complex
+G22254MF	N-linked	complex
 G22313SX	N-linked	
 G22330AF	N-linked	
 G22340YC	N-linked	complex
@@ -1869,16 +2063,19 @@ G22538PK	N-linked	complex
 G22550VJ	N-linked	complex
 G22558JP	N-linked	complex
 G22562DG	N-linked	complex
+G22571UF	N-linked	complex
 G22587DK	N-linked	
 G22626SX	O-linked	core 4
 G22632KM	N-linked	
 G22658BN	N-linked	
 G22674CI	N-linked	complex
+G22678XU	N-linked	hybrid
+G22687XW	N-linked	
 G22721QX	N-linked	
 G22728HO	N-linked	complex
 G22732WO	N-linked	complex
 G22747ZM	N-linked	
-G22768VO	N-linked	
+G22768VO	N-linked	paucimannose
 G22782LH	O-linked	core 2
 G22787WJ	O-linked	core 2
 G22815DC	O-linked	core 2
@@ -1896,6 +2093,7 @@ G22923ZP	N-linked	complex
 G22927MQ	N-linked	complex
 G22946YB	N-linked	hybrid
 G22949KX	N-linked	complex
+G22970UG	O-linked	core 2
 G22979QH	N-linked	complex
 G22981GY	N-linked	high mannose
 G23021IW	O-linked	core 2
@@ -1907,13 +2105,19 @@ G23099XP	N-linked
 G23109YO	N-linked	
 G23113ER	O-linked	core 2
 G23113NH	N-linked	complex
+G23117SI	N-linked	complex
 G23119MJ	O-linked	core 2
+G23142YD	N-linked	
 G23166NU	N-linked	complex
+G23175TS	N-linked	
 G23202WP	O-linked	core 1
 G23210FC	N-linked	complex
 G23212XQ	N-linked	
 G23252EB	O-linked	core 1
+G23258AA	N-linked	hybrid
+G23262BU	O-linked	core 1
 G23280RB	N-linked	
+G23285KY	O-linked	core 1
 G23295TF	N-linked	complex
 G23296IL	N-linked	complex
 G23305TF	N-linked	complex
@@ -1924,6 +2128,7 @@ G23378YH	N-linked	complex
 G23394RR	N-linked	
 G23399NX	N-linked	
 G23416CI	N-linked	complex
+G23416IW	N-linked	complex
 G23416VJ	N-linked	complex
 G23419AQ	N-linked	complex
 G23436FC	N-linked	complex
@@ -1933,9 +2138,11 @@ G23447MZ	O-linked	core 6
 G23451HI	N-linked	complex
 G23458QH	N-linked	complex
 G23463KX	O-linked	core 2
+G23472ZS	N-linked	complex
 G23484GM	N-linked	complex
 G23491CM	O-linked	core 3
 G23494UZ	O-linked	core 1
+G23502AY	O-linked	core 2
 G23511JD	N-linked	complex
 G23512SE	N-linked	complex
 G23546LY	N-linked	complex
@@ -1956,6 +2163,7 @@ G23661JI	N-linked	complex
 G23667EF	N-linked	complex
 G23695IQ	N-linked	
 G23706HG	N-linked	complex
+G23709VK	N-linked	complex
 G23718VU	N-linked	complex
 G23722TU	N-linked	complex
 G23726CO	N-linked	complex
@@ -1976,11 +2184,15 @@ G23927CE	N-linked	complex
 G23938MO	N-linked	
 G23946TS	N-linked	
 G23949TZ	N-linked	
+G23979XZ	O-linked	core 1
 G23980PE	N-linked	complex
+G24000JV	N-linked	
 G24003BN	N-linked	
 G24005JZ	N-linked	
+G24046UO	N-linked	
 G24051KM	N-linked	
 G24068UY	N-linked	
+G24094XC	N-linked	
 G24095BS	N-linked	complex
 G24120OI	O-linked	core 2
 G24121ID	N-linked	complex
@@ -1990,6 +2202,7 @@ G24131KD	N-linked
 G24132CP	N-linked	
 G24142JB	O-linked	core 2
 G24155DW	N-linked	complex
+G24172SG	N-linked	
 G24191XX	N-linked	hybrid
 G24202BK	N-linked	complex
 G24203XI	N-linked	complex
@@ -2011,6 +2224,7 @@ G24366XJ	N-linked	complex
 G24371XA	N-linked	complex
 G24374BW	N-linked	
 G24374US	N-linked	
+G24390VY	N-linked	complex
 G24402OX	N-linked	complex
 G24413UY	N-linked	complex
 G24420RT	N-linked	
@@ -2021,6 +2235,7 @@ G24498DI	N-linked	complex
 G24501HF	N-linked	complex
 G24508MA	O-linked	core 1
 G24511TX	N-linked	complex
+G24517QL	N-linked	
 G24523DO	N-linked	complex
 G24529GI	N-linked	
 G24552KE	N-linked	complex
@@ -2032,6 +2247,7 @@ G24599MW	N-linked
 G24604HV	N-linked	complex
 G24616QB	N-linked	complex
 G24620AI	N-linked	
+G24630CF	N-linked	complex
 G24635ZS	N-linked	complex
 G24657IT	N-linked	hybrid
 G24660HK	N-linked	
@@ -2042,6 +2258,7 @@ G24691QN	N-linked
 G24705DL	N-linked	complex
 G24720OO	O-linked	core 2
 G24748QU	N-linked	complex
+G24752UA	N-linked	
 G24758NZ	N-linked	hybrid
 G24763HX	N-linked	
 G24766QM	N-linked	complex
@@ -2071,9 +2288,12 @@ G24936MG	N-linked	complex
 G24954RW	N-linked	complex
 G24956HQ	N-linked	
 G24970IL	O-linked	core 1
+G24977IR	N-linked	
 G24984RR	N-linked	complex
 G24987DS	N-linked	complex
 G24994OK	N-linked	
+G25000QN	N-linked	complex
+G25040YL	N-linked	complex
 G25044JE	O-linked	core 3
 G25064SU	O-linked	core 2
 G25067TK	N-linked	complex
@@ -2082,10 +2302,13 @@ G25096GQ	N-linked	complex
 G25097RR	N-linked	complex
 G25127JU	O-linked	core 2
 G25140TA	N-linked	complex
+G25142NH	N-linked	complex
 G25146DY	O-linked	core 2
 G25164FO	N-linked	hybrid
+G25165FI	N-linked	complex
 G25168RI	N-linked	
 G25180HQ	N-linked	
+G25233TU	O-linked	core 4
 G25264CN	N-linked	complex
 G25280VW	N-linked	
 G25297CU	N-linked	complex
@@ -2108,16 +2331,22 @@ G25429RR	N-linked	complex
 G25432CN	N-linked	high mannose
 G25459WN	O-linked	core 3
 G25460BQ	N-linked	complex
+G25463XU	N-linked	high mannose
 G25471TG	N-linked	complex
 G25481DT	N-linked	complex
 G25495RY	N-linked	
+G25495SR	N-linked	complex
 G25497SH	N-linked	complex
 G25498HI	O-linked	core 4
+G25505NO	N-linked	complex
 G25505UF	N-linked	complex
+G25512MC	O-linked	core 2
 G25520XG	N-linked	complex
+G25529RM	O-linked	core 2
 G25534RX	N-linked	complex
 G25538MM	O-linked	core 2
 G25571LJ	O-linked	core 1
+G25596NP	N-linked	complex
 G25601BM	N-linked	
 G25605GB	N-linked	
 G25612NR	N-linked	
@@ -2156,6 +2385,7 @@ G25965IE	N-linked
 G25977RW	O-linked	core 2
 G25984CA	N-linked	
 G25986DW	N-linked	complex
+G26014HJ	N-linked	complex
 G26014MK	N-linked	
 G26018HD	N-linked	complex
 G26021BY	O-linked	core 2
@@ -2163,6 +2393,7 @@ G26030JN	N-linked	complex
 G26034OB	N-linked	complex
 G26065RX	N-linked	complex
 G26068PU	N-linked	complex
+G26069FK	N-linked	hybrid
 G26076FX	N-linked	complex
 G26080SE	N-linked	complex
 G26099QT	O-linked	core 4
@@ -2172,6 +2403,7 @@ G26142HL	N-linked	complex
 G26144DH	N-linked	complex
 G26145IL	N-linked	complex
 G26150FI	N-linked	complex
+G26160AS	N-linked	complex
 G26164VG	N-linked	complex
 G26176JA	O-linked	core 2
 G26179TW	N-linked	complex
@@ -2180,6 +2412,7 @@ G26189BB	N-linked	complex
 G26206DX	N-linked	complex
 G26215AL	N-linked	complex
 G26246KG	N-linked	
+G26255AN	N-linked	hybrid
 G26264SQ	N-linked	complex
 G26267FS	N-linked	
 G26274XD	N-linked	hybrid
@@ -2187,18 +2420,24 @@ G26275JI	N-linked	complex
 G26287OA	N-linked	complex
 G26295XE	N-linked	
 G26296KU	N-linked	complex
+G26298FT	N-linked	complex
 G26302TI	N-linked	
 G26315ZA	N-linked	hybrid
 G26320VO	N-linked	complex
 G26335RK	N-linked	
+G26341TZ	O-linked	core 1
 G26347KH	N-linked	complex
 G26371XR	N-linked	
 G26383OK	N-linked	
 G26391HA	N-linked	
 G26394UA	N-linked	complex
 G26399DO	N-linked	complex
+G26421QW	N-linked	
+G26439LE	N-linked	hybrid
 G26441EY	N-linked	complex
+G26441FH	O-linked	core 2
 G26452XA	O-linked	core 6
+G26474XX	N-linked	high mannose
 G26487VT	N-linked	
 G26493RP	O-linked	core 1
 G26495GJ	N-linked	complex
@@ -2210,6 +2449,7 @@ G26596ON	O-linked	core 4
 G26600MH	N-linked	hybrid
 G26624YG	N-linked	
 G26629TM	N-linked	
+G26640MK	N-linked	complex
 G26644DW	N-linked	complex
 G26664GH	N-linked	
 G26684GN	N-linked	
@@ -2218,6 +2458,7 @@ G26703BH	N-linked	complex
 G26709HU	N-linked	complex
 G26725PG	O-linked	core 1
 G26730QM	N-linked	complex
+G26756UI	N-linked	
 G26756VT	N-linked	complex
 G26762AY	N-linked	complex
 G26768NU	N-linked	complex
@@ -2226,7 +2467,9 @@ G26777RD	N-linked
 G26778RK	O-linked	core 2
 G26795PW	N-linked	complex
 G26798CI	N-linked	complex
+G26800YB	N-linked	complex
 G26827ST	O-linked	core 2
+G26844MI	N-linked	complex
 G26877LE	N-linked	complex
 G26877ST	N-linked	complex
 G26881SV	N-linked	complex
@@ -2242,6 +2485,7 @@ G26952EK	N-linked
 G26983WI	N-linked	
 G26985TZ	N-linked	
 G26985YI	N-linked	
+G26999VA	N-linked	hybrid
 G27040MJ	N-linked	complex
 G27048LG	N-linked	complex
 G27067YD	N-linked	complex
@@ -2255,6 +2499,7 @@ G27122CE	N-linked
 G27123NH	N-linked	complex
 G27123OG	N-linked	
 G27165KO	N-linked	
+G27167BO	N-linked	complex
 G27168SG	N-linked	hybrid
 G27170BX	N-linked	complex
 G27171ZS	N-linked	
@@ -2264,6 +2509,7 @@ G27236KE	O-linked	core 2
 G27248RA	O-linked	core 2
 G27249YD	N-linked	complex
 G27251WT	N-linked	
+G27263RW	N-linked	hybrid
 G27273FD	N-linked	complex
 G27281KS	N-linked	complex
 G27290LL	N-linked	
@@ -2277,7 +2523,9 @@ G27383GK	N-linked
 G27389SR	N-linked	
 G27399PB	N-linked	complex
 G27419MQ	N-linked	
+G27432KC	N-linked	complex
 G27434RW	N-linked	complex
+G27444TT	N-linked	complex
 G27456PF	N-linked	
 G27461ST	N-linked	
 G27476HK	N-linked	complex
@@ -2303,23 +2551,32 @@ G27692UI	N-linked
 G27719XP	N-linked	
 G27726WH	O-linked	core 3
 G27763JP	N-linked	
+G27776PG	N-linked	
 G27783SY	N-linked	hybrid
 G27817KG	O-linked	core 1
 G27817LK	N-linked	
 G27826HM	N-linked	
+G27827RI	N-linked	complex
 G27844UM	N-linked	complex
 G27874QL	N-linked	
 G27919IH	N-linked	complex
 G27929ZE	N-linked	
 G27933RJ	N-linked	
+G27939KO	N-linked	
 G27946NT	N-linked	
+G27967WE	O-linked	core 1
 G27983PC	N-linked	complex
+G27992WA	N-linked	complex
 G27993JQ	N-linked	
+G27996AZ	N-linked	
 G28003YJ	N-linked	
 G28010TC	O-linked	core 2
+G28090UW	N-linked	
 G28103WK	N-linked	
 G28106CM	N-linked	complex
 G28116PK	O-linked	core 2
+G28118QI	N-linked	
+G28127QJ	N-linked	complex
 G28128KH	N-linked	complex
 G28132XE	O-linked	core 2
 G28144EE	N-linked	complex
@@ -2329,6 +2586,7 @@ G28176UJ	N-linked
 G28189ZX	N-linked	
 G28218GE	N-linked	complex
 G28226YW	O-linked	core 3
+G28231AL	N-linked	complex
 G28270MO	N-linked	complex
 G28281DE	N-linked	
 G28298VW	N-linked	complex
@@ -2339,6 +2597,7 @@ G28355VE	N-linked
 G28355WG	N-linked	hybrid
 G28360IT	N-linked	complex
 G28362DW	N-linked	complex
+G28371PC	O-linked	core 2
 G28387ZC	N-linked	high mannose
 G28421RZ	N-linked	complex
 G28436VD	N-linked	complex
@@ -2353,6 +2612,7 @@ G28550OD	N-linked
 G28558PZ	N-linked	
 G28570RY	N-linked	complex
 G28579RV	N-linked	complex
+G28593TO	N-linked	complex
 G28599FB	O-linked	core 3
 G28615QI	N-linked	
 G28635EM	N-linked	complex
@@ -2369,8 +2629,10 @@ G28695FK	N-linked	complex
 G28698EI	N-linked	
 G28720MP	N-linked	complex
 G28723UT	N-linked	complex
+G28747XN	N-linked	
 G28751LD	N-linked	
 G28763UO	N-linked	complex
+G28826SH	N-linked	complex
 G28839WC	N-linked	complex
 G28863FI	N-linked	complex
 G28882QV	N-linked	complex
@@ -2390,6 +2652,8 @@ G29011JC	N-linked	complex
 G29014XV	O-linked	core 2
 G29024OJ	N-linked	complex
 G29025YS	O-linked	core 3
+G29026MS	N-linked	complex
+G29032AL	N-linked	complex
 G29039FY	N-linked	
 G29056SI	N-linked	high mannose
 G29078QN	N-linked	
@@ -2401,12 +2665,14 @@ G29144HY	O-linked	core 2
 G29147GG	N-linked	complex
 G29159BL	N-linked	
 G29188SG	N-linked	complex
+G29197GH	N-linked	complex
 G29228MX	N-linked	complex
 G29230PI	N-linked	complex
 G29231AT	O-linked	core 2
-G29231QJ	N-linked	
+G29239NH	N-linked	
 G29248WR	N-linked	complex
 G29255IL	N-linked	complex
+G29260RF	O-linked	core 1
 G29271US	N-linked	
 G29288DT	N-linked	high mannose
 G29290EB	N-linked	high mannose
@@ -2425,6 +2691,7 @@ G29461HI	N-linked	complex
 G29467ZM	N-linked	
 G29483LI	N-linked	complex
 G29489PN	O-linked	core 1
+G29492IF	N-linked	
 G29495CE	O-linked	core 2
 G29500SJ	N-linked	
 G29535RH	N-linked	complex
@@ -2444,13 +2711,13 @@ G29680KY	N-linked	hybrid
 G29695SR	N-linked	complex
 G29706UC	N-linked	complex
 G29713JZ	N-linked	complex
+G29717FW	N-linked	hybrid
 G29721UX	N-linked	
 G29725MK	O-linked	core 2
 G29728RE	N-linked	complex
 G29729BX	N-linked	
 G29754CL	N-linked	complex
 G29764SO	N-linked	complex
-G29780RE	N-linked	
 G29783JJ	N-linked	complex
 G29797YX	N-linked	complex
 G29799SM	N-linked	
@@ -2461,6 +2728,7 @@ G29857PJ	N-linked	complex
 G29857RC	N-linked	complex
 G29884LW	N-linked	complex
 G29895JE	N-linked	
+G29897FU	N-linked	complex
 G29898IW	N-linked	
 G29905OR	N-linked	
 G29908ZA	O-linked	core 5
@@ -2468,10 +2736,13 @@ G29914BX	O-linked	core 1
 G29931YE	N-linked	complex
 G29940LU	O-linked	core 2
 G29948BS	N-linked	complex
+G29955AF	N-linked	
 G29969FK	N-linked	hybrid
 G29972ZX	N-linked	complex
+G30007CD	N-linked	complex
 G30011VO	O-linked	core 1
 G30013YE	N-linked	complex
+G30015VH	N-linked	complex
 G30031SW	N-linked	complex
 G30048DT	N-linked	
 G30048YR	N-linked	complex
@@ -2480,10 +2751,12 @@ G30055GV	N-linked	complex
 G30060ZO	N-linked	complex
 G30062BR	N-linked	complex
 G30084YQ	N-linked	hybrid
+G30085SO	N-linked	complex
 G30106GO	N-linked	
 G30109UP	N-linked	
 G30110UW	O-linked	core 1
 G30115SP	N-linked	complex
+G30129GW	N-linked	complex
 G30140II	N-linked	
 G30142LS	N-linked	complex
 G30159WR	N-linked	complex
@@ -2494,6 +2767,7 @@ G30252GL	N-linked
 G30255XL	O-linked	core 2
 G30268KJ	N-linked	
 G30284BK	O-linked	core 2
+G30293NE	N-linked	complex
 G30302VM	N-linked	complex
 G30303UZ	N-linked	complex
 G30304DE	O-linked	core 2
@@ -2504,6 +2778,8 @@ G30344LH	N-linked	complex
 G30351CM	N-linked	
 G30356CR	O-linked	core 3
 G30372WK	N-linked	complex
+G30392XP	O-linked	core 2
+G30404XZ	N-linked	complex
 G30416OM	N-linked	
 G30425ZJ	O-linked	core 2
 G30437YI	N-linked	complex
@@ -2518,10 +2794,13 @@ G30505TQ	N-linked	high mannose
 G30514JJ	N-linked	hybrid
 G30529FG	N-linked	complex
 G30542PN	N-linked	complex
+G30547LG	N-linked	complex
+G30553WH	N-linked	
 G30569KZ	N-linked	complex
 G30578JR	N-linked	complex
 G30585MP	N-linked	
 G30588SI	N-linked	hybrid
+G30609WQ	O-linked	core 1
 G30614QN	O-linked	core 2
 G30615JE	N-linked	complex
 G30617IL	N-linked	complex
@@ -2529,13 +2808,16 @@ G30618VC	N-linked
 G30623ZE	N-linked	complex
 G30627OI	N-linked	complex
 G30633FJ	N-linked	
+G30647NK	O-linked	core 1
 G30651IU	N-linked	complex
 G30673AC	N-linked	
 G30687DL	N-linked	
+G30690LP	N-linked	complex
 G30694RX	N-linked	complex
 G30697FM	O-linked	core 3
 G30700VP	N-linked	complex
 G30708CB	N-linked	complex
+G30733VD	N-linked	
 G30743QX	N-linked	
 G30762QR	N-linked	
 G30792JM	N-linked	complex
@@ -2549,17 +2831,18 @@ G30871VQ	O-linked	core 2
 G30880RA	N-linked	complex
 G30888FF	N-linked	
 G30897RJ	O-linked	core 1
+G30897RN	N-linked	complex
 G30901GC	N-linked	complex
 G30915AU	N-linked	
 G30928KF	N-linked	
 G30939HN	N-linked	
 G30969JI	N-linked	
+G31004HS	N-linked	complex
 G31010RQ	N-linked	complex
 G31019WF	N-linked	
 G31021LA	N-linked	complex
 G31026DI	N-linked	
 G31032XG	N-linked	complex
-G31033KO	N-linked	
 G31037WG	N-linked	complex
 G31040SL	N-linked	complex
 G31061SB	O-linked	core 4
@@ -2567,13 +2850,18 @@ G31110RD	N-linked	complex
 G31118FR	N-linked	
 G31153XO	N-linked	
 G31186LT	N-linked	complex
+G31213GU	N-linked	hybrid
 G31219GT	N-linked	complex
 G31220IW	N-linked	hybrid
 G31223MN	N-linked	complex
+G31242TK	N-linked	
 G31249TS	N-linked	complex
 G31254TP	N-linked	complex
+G31276XF	N-linked	
 G31294RU	N-linked	
+G31302OY	N-linked	complex
 G31316SG	N-linked	complex
+G31337GK	N-linked	
 G31337VE	N-linked	complex
 G31341PC	N-linked	complex
 G31372JR	N-linked	
@@ -2585,6 +2873,7 @@ G31415DK	N-linked	complex
 G31416KB	N-linked	
 G31429YW	N-linked	high mannose
 G31438WA	N-linked	
+G31493NN	O-linked	core 3
 G31494OZ	N-linked	complex
 G31515BE	N-linked	complex
 G31520YP	N-linked	
@@ -2599,13 +2888,14 @@ G31576LD	N-linked
 G31587OK	N-linked	complex
 G31604HF	N-linked	
 G31606TH	N-linked	complex
-G31616YD	N-linked	
+G31616YD	N-linked	paucimannose
 G31618AH	N-linked	
 G31627MW	N-linked	complex
 G31632OD	N-linked	
 G31632QM	N-linked	
 G31637BB	N-linked	complex
 G31639NG	N-linked	complex
+G31642UV	N-linked	
 G31662BR	N-linked	complex
 G31670BC	N-linked	complex
 G31674DQ	N-linked	
@@ -2615,6 +2905,7 @@ G31720WP	N-linked	complex
 G31744OB	N-linked	
 G31747RS	N-linked	complex
 G31774SW	N-linked	complex
+G31776ML	O-linked	core 6
 G31787HV	N-linked	complex
 G31814JO	N-linked	
 G31822CM	N-linked	complex
@@ -2649,9 +2940,11 @@ G32246SI	N-linked
 G32250QD	N-linked	
 G32253LY	O-linked	core 3
 G32283ZK	N-linked	
+G32303JY	N-linked	complex
 G32303MT	N-linked	complex
 G32305RZ	N-linked	complex
 G32319IP	N-linked	hybrid
+G32324QA	N-linked	complex
 G32332OM	N-linked	complex
 G32364DF	N-linked	complex
 G32375YW	N-linked	
@@ -2660,6 +2953,7 @@ G32397EL	O-linked	core 5
 G32405GG	O-linked	core 3
 G32417DU	O-linked	core 3
 G32426JY	O-linked	core 2
+G32446GZ	N-linked	complex
 G32447FC	N-linked	high mannose
 G32460TA	O-linked	core 1
 G32461GF	N-linked	complex
@@ -2678,6 +2972,7 @@ G32659RY	N-linked	complex
 G32660GU	N-linked	
 G32671AN	N-linked	
 G32692TS	N-linked	
+G32704TW	N-linked	
 G32705EO	N-linked	
 G32711PR	N-linked	complex
 G32722PR	O-linked	core 3
@@ -2686,6 +2981,7 @@ G32744YO	N-linked
 G32746QI	N-linked	complex
 G32774AR	N-linked	complex
 G32779JS	N-linked	
+G32803SE	N-linked	
 G32808NL	N-linked	complex
 G32825OO	N-linked	complex
 G32829EU	N-linked	complex
@@ -2700,10 +2996,13 @@ G32948PW	O-linked	core 1
 G32954SJ	N-linked	
 G32974DS	N-linked	complex
 G32977ZV	N-linked	hybrid
+G33018IJ	O-linked	core 1
 G33019PZ	N-linked	complex
 G33024FX	O-linked	core 2
 G33030OB	N-linked	high mannose
 G33052EK	N-linked	
+G33066WV	N-linked	high mannose
+G33068BF	O-linked	core 3
 G33070IY	N-linked	complex
 G33089BG	N-linked	complex
 G33101WA	N-linked	complex
@@ -2718,10 +3017,14 @@ G33241WC	N-linked	complex
 G33244HE	N-linked	complex
 G33249PE	N-linked	high mannose
 G33251FY	N-linked	
+G33262KR	N-linked	hybrid
 G33262YZ	N-linked	complex
+G33264BF	N-linked	
 G33269XL	N-linked	
 G33271XM	N-linked	complex
+G33275DG	N-linked	high mannose
 G33279YE	N-linked	complex
+G33284MM	N-linked	complex
 G33284WZ	N-linked	
 G33286MK	O-linked	core 1
 G33303XH	N-linked	
@@ -2737,6 +3040,7 @@ G33427JX	N-linked	complex
 G33438CM	N-linked	complex
 G33451YI	N-linked	high mannose
 G33452ME	N-linked	complex
+G33473DN	N-linked	
 G33508VK	O-linked	core 2
 G33522ME	N-linked	complex
 G33530VI	N-linked	
@@ -2759,6 +3063,7 @@ G33721WT	N-linked	complex
 G33734YD	N-linked	
 G33740YL	O-linked	core 3
 G33742YO	N-linked	complex
+G33748AU	N-linked	complex
 G33753EI	N-linked	complex
 G33755SK	N-linked	
 G33780DA	N-linked	
@@ -2774,6 +3079,7 @@ G33860PM	O-linked	core 2
 G33862NZ	N-linked	complex
 G33876UV	N-linked	
 G33894ZI	N-linked	high mannose
+G33899KJ	O-linked	core 1
 G33908QE	O-linked	core 2
 G33909XJ	N-linked	complex
 G33947BV	N-linked	complex
@@ -2782,12 +3088,16 @@ G33981FE	N-linked	complex
 G34018EC	N-linked	complex
 G34039PA	N-linked	complex
 G34046HV	N-linked	complex
+G34049BA	O-linked	core 2
 G34059IB	N-linked	
+G34072RB	N-linked	
 G34073UX	O-linked	core 6
 G34100DU	O-linked	core 2
 G34108KW	N-linked	complex
+G34118NA	O-linked	core 3
 G34126VO	N-linked	complex
 G34135IW	N-linked	
+G34143CH	O-linked	core 2
 G34158QP	N-linked	complex
 G34168KI	O-linked	core 1
 G34175ZP	N-linked	complex
@@ -2802,10 +3112,12 @@ G34311UE	N-linked	complex
 G34314SG	N-linked	
 G34325IS	N-linked	complex
 G34343FT	N-linked	complex
+G34351ZQ	N-linked	complex
 G34381JF	N-linked	
 G34383AG	N-linked	hybrid
 G34392KZ	N-linked	
 G34394BR	N-linked	
+G34394KR	N-linked	hybrid
 G34435HX	N-linked	high mannose
 G34442SS	N-linked	
 G34449FW	N-linked	complex
@@ -2823,6 +3135,8 @@ G34585DT	N-linked	complex
 G34595KJ	N-linked	
 G34608VE	O-linked	core 3
 G34612DX	N-linked	complex
+G34625UY	N-linked	complex
+G34634NL	N-linked	
 G34650EM	N-linked	
 G34669ZJ	N-linked	complex
 G34718WT	N-linked	complex
@@ -2838,6 +3152,7 @@ G34821YB	N-linked
 G34824ZD	O-linked	core 1
 G34838RM	N-linked	complex
 G34852ZG	N-linked	
+G34854XJ	O-linked	core 2
 G34859KW	N-linked	complex
 G34861PV	N-linked	
 G34863TS	O-linked	core 4
@@ -2861,6 +3176,7 @@ G35111CK	N-linked	complex
 G35127VU	O-linked	core 2
 G35150SV	N-linked	complex
 G35174SC	N-linked	
+G35210SH	N-linked	complex
 G35211AB	N-linked	complex
 G35226HQ	N-linked	complex
 G35231LE	N-linked	
@@ -2872,6 +3188,7 @@ G35257SQ	N-linked
 G35257UG	N-linked	complex
 G35283JZ	N-linked	complex
 G35291GU	N-linked	hybrid
+G35310KA	N-linked	complex
 G35324SL	N-linked	complex
 G35338HV	O-linked	core 1
 G35364KM	N-linked	
@@ -2880,6 +3197,7 @@ G35402TO	N-linked	complex
 G35409SK	O-linked	core 2
 G35419IZ	O-linked	core 1
 G35429JB	N-linked	complex
+G35437KG	O-linked	core 1
 G35438GZ	N-linked	complex
 G35452CG	N-linked	complex
 G35452GG	N-linked	complex
@@ -2888,6 +3206,7 @@ G35455VF	N-linked	complex
 G35479XP	N-linked	
 G35484EX	N-linked	complex
 G35523WT	N-linked	complex
+G35553IK	N-linked	complex
 G35560JL	N-linked	complex
 G35565NM	N-linked	complex
 G35577EK	N-linked	complex
@@ -2906,9 +3225,9 @@ G35734AU	N-linked	complex
 G35740ZG	N-linked	complex
 G35747ZX	N-linked	complex
 G35748HH	N-linked	complex
+G35748VK	N-linked	complex
 G35758CT	O-linked	core 1
 G35769UV	N-linked	
-G35777BH	N-linked	
 G35778AN	O-linked	core 1
 G35787ED	N-linked	
 G35791OW	N-linked	complex
@@ -2922,6 +3241,8 @@ G35825BV	O-linked	core 2
 G35837ET	N-linked	complex
 G35841YO	N-linked	
 G35842UG	O-linked	core 1
+G35878KK	N-linked	complex
+G35884UD	O-linked	core 4
 G35887PW	N-linked	
 G35888BV	N-linked	
 G35896AC	O-linked	core 4
@@ -2939,6 +3260,7 @@ G35952BG	N-linked
 G35975NI	N-linked	
 G36004BS	N-linked	
 G36020VB	N-linked	complex
+G36039YA	O-linked	core 1
 G36042WR	N-linked	complex
 G36046VV	O-linked	core 2
 G36047BO	O-linked	core 2
@@ -2984,6 +3306,7 @@ G36359GN	O-linked	core 1
 G36362BK	N-linked	complex
 G36366CN	N-linked	
 G36378FM	N-linked	complex
+G36400RA	N-linked	
 G36404TW	O-linked	core 4
 G36411SK	N-linked	
 G36426PE	N-linked	complex
@@ -3011,12 +3334,15 @@ G36639KI	N-linked
 G36651MN	N-linked	complex
 G36656LV	N-linked	complex
 G36674QY	O-linked	core 2
+G36684NC	N-linked	complex
 G36699PG	N-linked	high mannose
 G36701GV	N-linked	complex
 G36727AR	N-linked	complex
 G36747XY	N-linked	complex
 G36759VO	N-linked	complex
+G36761DZ	O-linked	core 1
 G36766ZC	N-linked	complex
+G36772MC	N-linked	
 G36774NW	O-linked	core 2
 G36777IJ	O-linked	core 4
 G36787EI	N-linked	complex
@@ -3068,6 +3394,7 @@ G37319YE	N-linked	complex
 G37320GX	N-linked	complex
 G37359EL	N-linked	complex
 G37369XO	N-linked	hybrid
+G37378XK	O-linked	core 5
 G37385TT	N-linked	complex
 G37427PW	N-linked	
 G37442IW	N-linked	
@@ -3095,6 +3422,7 @@ G37664BH	N-linked
 G37676KD	N-linked	
 G37682CJ	N-linked	complex
 G37689ZA	O-linked	core 6
+G37718JO	N-linked	complex
 G37745NY	N-linked	complex
 G37772CO	N-linked	complex
 G37779JP	O-linked	core 2
@@ -3103,6 +3431,7 @@ G37825LG	N-linked	complex
 G37827FY	N-linked	complex
 G37841NF	N-linked	
 G37845OW	N-linked	complex
+G37855JI	N-linked	high mannose
 G37863SX	N-linked	complex
 G37868JH	N-linked	complex
 G37868ZX	N-linked	
@@ -3113,6 +3442,7 @@ G37969WK	N-linked
 G37986HU	N-linked	
 G37990ZT	N-linked	complex
 G37997JT	N-linked	
+G38002BK	O-linked	core 2
 G38019PR	N-linked	complex
 G38022PE	N-linked	complex
 G38029ML	N-linked	high mannose
@@ -3122,6 +3452,8 @@ G38078TR	O-linked	core 1
 G38113WG	N-linked	hybrid
 G38115KZ	N-linked	complex
 G38121JC	N-linked	complex
+G38159EA	N-linked	complex
+G38189CI	O-linked	core 4
 G38208CY	N-linked	complex
 G38217AM	N-linked	complex
 G38217CX	N-linked	complex
@@ -3150,13 +3482,14 @@ G38421BP	O-linked	core 3
 G38445HB	N-linked	complex
 G38473PC	N-linked	complex
 G38488ZJ	N-linked	
+G38506CT	O-linked	core 1
 G38541LS	N-linked	
 G38549YL	N-linked	complex
 G38586WN	N-linked	hybrid
 G38618HZ	N-linked	
 G38625SV	N-linked	complex
 G38637SA	N-linked	complex
-G38638WU	N-linked	
+G38638WU	N-linked	paucimannose
 G38643HC	N-linked	complex
 G38655UZ	N-linked	
 G38658JL	N-linked	complex
@@ -3171,7 +3504,9 @@ G38738YC	N-linked
 G38753OV	N-linked	complex
 G38756OC	N-linked	complex
 G38767OS	O-linked	core 6
+G38773BX	N-linked	complex
 G38800CP	N-linked	complex
+G38802SW	N-linked	complex
 G38802WX	O-linked	core 1
 G38849GM	N-linked	complex
 G38859XU	O-linked	core 3
@@ -3182,6 +3517,7 @@ G38887TM	O-linked	core 2
 G38909RH	N-linked	complex
 G38919QI	N-linked	
 G38946SH	N-linked	
+G38951VC	N-linked	complex
 G38955TH	N-linked	hybrid
 G38960EZ	N-linked	
 G38977DN	N-linked	complex
@@ -3204,6 +3540,7 @@ G39116LG	N-linked	complex
 G39119ZF	N-linked	high mannose
 G39125OY	N-linked	complex
 G39130DL	O-linked	core 3
+G39135DL	O-linked	core 2
 G39167RG	N-linked	complex
 G39172SO	N-linked	complex
 G39174FS	N-linked	high mannose
@@ -3211,6 +3548,7 @@ G39181YB	N-linked	complex
 G39183DW	N-linked	complex
 G39213VZ	N-linked	complex
 G39229GR	N-linked	complex
+G39232QP	N-linked	complex
 G39247UK	O-linked	core 3
 G39253LL	N-linked	
 G39298CN	N-linked	hybrid
@@ -3222,10 +3560,12 @@ G39326PP	O-linked	core 4
 G39338NX	N-linked	
 G39340CD	N-linked	complex
 G39344CL	N-linked	complex
+G39353RT	N-linked	complex
 G39374GZ	N-linked	
 G39377DE	N-linked	complex
 G39377JQ	N-linked	complex
 G39383KR	N-linked	
+G39394NX	N-linked	
 G39397SW	N-linked	
 G39401ES	O-linked	core 3
 G39401OQ	N-linked	
@@ -3240,6 +3580,7 @@ G39478RR	N-linked
 G39504IG	N-linked	complex
 G39509DP	N-linked	complex
 G39523KI	O-linked	core 2
+G39528SQ	N-linked	complex
 G39531LA	N-linked	complex
 G39540XG	N-linked	complex
 G39558MO	O-linked	core 1
@@ -3256,18 +3597,22 @@ G39624YQ	O-linked	core 4
 G39631PS	N-linked	complex
 G39632AS	O-linked	core 1
 G39645AX	N-linked	complex
+G39662GV	N-linked	high mannose
 G39666ZK	N-linked	complex
 G39687WG	N-linked	
+G39691JY	N-linked	
 G39722LF	N-linked	complex
 G39756ZC	N-linked	complex
 G39758MG	N-linked	complex
 G39759RL	O-linked	core 2
 G39764AC	N-linked	complex
+G39765RY	N-linked	complex
 G39794DN	N-linked	complex
 G39799BM	N-linked	complex
 G39809FW	N-linked	complex
 G39810GC	N-linked	
 G39813YP	N-linked	complex
+G39829HV	N-linked	
 G39841VH	N-linked	complex
 G39856ST	N-linked	complex
 G39868EL	N-linked	complex
@@ -3275,6 +3620,7 @@ G39887ME	N-linked	complex
 G39890DX	O-linked	core 2
 G39893KL	N-linked	
 G39906AT	N-linked	hybrid
+G39916NT	O-linked	core 1
 G39917RN	N-linked	
 G39943KJ	N-linked	
 G39945EK	N-linked	
@@ -3298,22 +3644,27 @@ G40097PQ	N-linked
 G40119MV	O-linked	core 2
 G40124HY	N-linked	complex
 G40142NX	N-linked	complex
+G40149KF	N-linked	complex
 G40173TB	N-linked	complex
 G40183VY	N-linked	
+G40193LX	O-linked	core 3
 G40194MN	N-linked	complex
 G40198OD	N-linked	high mannose
 G40200RC	N-linked	
 G40221OX	N-linked	complex
 G40236GK	N-linked	complex
+G40238CQ	N-linked	hybrid
 G40244KN	N-linked	
 G40245CP	N-linked	complex
 G40264QS	N-linked	complex
 G40268BC	N-linked	complex
 G40270LS	O-linked	core 3
+G40289AW	N-linked	
 G40289RO	N-linked	hybrid
 G40289VL	O-linked	core 2
 G40291QP	O-linked	core 4
 G40294ED	O-linked	core 2
+G40306EB	N-linked	complex
 G40317YZ	N-linked	
 G40319SF	O-linked	core 2
 G40331VO	O-linked	core 6
@@ -3326,7 +3677,6 @@ G40365PX	N-linked
 G40373LS	N-linked	complex
 G40393FZ	O-linked	core 2
 G40428GO	N-linked	complex
-G40442UK	N-linked	
 G40447LJ	N-linked	complex
 G40452FK	N-linked	complex
 G40452ID	N-linked	
@@ -3335,16 +3685,20 @@ G40461OS	N-linked	complex
 G40480SU	O-linked	core 6
 G40482NA	N-linked	complex
 G40490KT	N-linked	complex
+G40493BL	N-linked	complex
 G40513EI	N-linked	complex
 G40523QS	O-linked	core 1
+G40537VT	N-linked	high mannose
 G40542QP	N-linked	complex
 G40554DX	N-linked	complex
+G40558VT	N-linked	complex
 G40560HO	O-linked	core 2
 G40564KP	N-linked	complex
 G40569DS	N-linked	complex
 G40576JC	N-linked	complex
 G40578SN	N-linked	
 G40579SX	N-linked	complex
+G40606GB	N-linked	complex
 G40606LI	O-linked	core 2
 G40608DF	N-linked	
 G40660XA	O-linked	core 2
@@ -3357,6 +3711,8 @@ G40707SF	N-linked	complex
 G40734VV	N-linked	
 G40735XY	N-linked	complex
 G40757HO	O-linked	core 4
+G40760CH	N-linked	hybrid
+G40762ZY	N-linked	complex
 G40785MA	N-linked	complex
 G40786FB	N-linked	complex
 G40791GU	N-linked	complex
@@ -3368,16 +3724,20 @@ G40821RK	N-linked	high mannose
 G40838GB	O-linked	core 1
 G40852TV	O-linked	core 2
 G40865GN	N-linked	complex
+G40874QJ	O-linked	core 2
 G40900UQ	N-linked	
 G40906DZ	N-linked	complex
 G40909AN	N-linked	complex
 G40909HG	O-linked	core 3
 G40915GX	N-linked	
 G40922OB	N-linked	complex
+G40957MU	O-linked	core 1
 G40966IE	N-linked	complex
 G40970QY	N-linked	complex
+G40991AO	N-linked	
 G40998BL	N-linked	complex
 G41014HY	N-linked	complex
+G41015OA	N-linked	
 G41036NU	N-linked	
 G41063JS	N-linked	complex
 G41081WD	N-linked	
@@ -3392,6 +3752,7 @@ G41191PN	N-linked	complex
 G41209QO	N-linked	complex
 G41223DK	N-linked	
 G41245OZ	O-linked	core 2
+G41263IO	N-linked	
 G41278YY	N-linked	complex
 G41304KE	N-linked	complex
 G41310VR	N-linked	complex
@@ -3411,19 +3772,23 @@ G41405AU	N-linked	hybrid
 G41405QQ	N-linked	complex
 G41421SQ	N-linked	complex
 G41424HD	O-linked	core 2
+G41437NK	N-linked	complex
 G41440AQ	N-linked	
 G41449ZD	N-linked	hybrid
 G41455NO	N-linked	complex
 G41458MM	N-linked	complex
+G41486SZ	N-linked	
 G41498BE	O-linked	core 1
 G41504VL	N-linked	complex
 G41510DX	N-linked	
 G41522EV	N-linked	
 G41523QO	N-linked	complex
 G41539MU	O-linked	core 2
+G41551CD	N-linked	complex
 G41552FO	O-linked	core 2
 G41563EN	N-linked	complex
 G41566AJ	N-linked	complex
+G41569OP	N-linked	complex
 G41576FY	N-linked	complex
 G41596PV	N-linked	complex
 G41605VJ	N-linked	
@@ -3450,6 +3815,7 @@ G41817BL	N-linked	hybrid
 G41820ZZ	N-linked	complex
 G41821MR	N-linked	complex
 G41824PC	N-linked	
+G41827IE	N-linked	
 G41847IM	N-linked	
 G41850LO	N-linked	complex
 G41854MC	N-linked	complex
@@ -3461,9 +3827,11 @@ G41929NX	N-linked
 G41934AP	N-linked	complex
 G41937ED	N-linked	hybrid
 G41940MB	N-linked	
+G41940YX	N-linked	
 G41943OZ	N-linked	
 G41953RN	N-linked	complex
 G41957CI	N-linked	complex
+G41960NE	N-linked	complex
 G41964LZ	O-linked	core 2
 G41981MA	N-linked	complex
 G42013HP	N-linked	complex
@@ -3479,15 +3847,20 @@ G42061BV	N-linked	complex
 G42081JA	N-linked	
 G42089IU	O-linked	core 2
 G42096BU	N-linked	complex
+G42097JO	N-linked	complex
 G42110JE	N-linked	complex
 G42120JR	O-linked	core 1
+G42130KX	N-linked	complex
 G42139GR	N-linked	complex
 G42155ZX	N-linked	
 G42173FT	N-linked	
 G42175IR	N-linked	hybrid
+G42177JE	N-linked	complex
 G42193NQ	N-linked	hybrid
 G42212IP	N-linked	complex
+G42239OO	O-linked	core 2
 G42240DE	N-linked	complex
+G42247WE	N-linked	complex
 G42262TV	N-linked	
 G42264OV	N-linked	
 G42292MP	N-linked	complex
@@ -3497,6 +3870,7 @@ G42305NI	N-linked	complex
 G42306MH	N-linked	complex
 G42322YV	N-linked	complex
 G42332YT	N-linked	complex
+G42343WF	N-linked	complex
 G42358LZ	N-linked	
 G42362AN	N-linked	
 G42365AT	N-linked	complex
@@ -3517,7 +3891,6 @@ G42493LZ	N-linked
 G42501VF	N-linked	complex
 G42504VW	N-linked	complex
 G42525DE	N-linked	complex
-G42528HF	N-linked	
 G42545LJ	O-linked	core 2
 G42548XF	N-linked	
 G42552PM	N-linked	
@@ -3534,7 +3907,9 @@ G42674AX	N-linked
 G42674LI	N-linked	high mannose
 G42679AH	N-linked	complex
 G42680EX	N-linked	
+G42686NP	N-linked	hybrid
 G42686NQ	N-linked	complex
+G42705JU	N-linked	hybrid
 G42713IF	N-linked	hybrid
 G42713ZO	N-linked	complex
 G42714PB	N-linked	complex
@@ -3561,6 +3936,7 @@ G42944BA	N-linked
 G42962KI	N-linked	
 G42970AZ	N-linked	complex
 G42984ZU	N-linked	
+G42986JR	N-linked	complex
 G42989XH	N-linked	complex
 G42993UG	O-linked	core 1
 G43014FZ	N-linked	
@@ -3570,6 +3946,7 @@ G43040IL	N-linked	complex
 G43050FO	N-linked	complex
 G43059PA	O-linked	core 2
 G43070PV	N-linked	complex
+G43072YM	N-linked	
 G43075NB	N-linked	
 G43075VF	N-linked	complex
 G43079BH	O-linked	core 1
@@ -3584,6 +3961,8 @@ G43164CL	N-linked	complex
 G43167FQ	O-linked	core 4
 G43216EX	N-linked	
 G43220WQ	O-linked	core 2
+G43255OW	N-linked	
+G43288IJ	N-linked	
 G43290KL	N-linked	complex
 G43290WV	N-linked	complex
 G43299SD	N-linked	complex
@@ -3606,38 +3985,45 @@ G43447HY	N-linked	complex
 G43449ON	O-linked	core 2
 G43453KC	N-linked	
 G43454VB	N-linked	complex
+G43460JV	N-linked	complex
 G43473VD	N-linked	complex
 G43499QE	N-linked	complex
 G43505GC	N-linked	hybrid
 G43507KQ	N-linked	complex
 G43523KB	N-linked	complex
 G43526DL	N-linked	complex
-G43547MI	N-linked	
+G43547MI	N-linked	paucimannose
 G43549OX	N-linked	
 G43553YK	N-linked	complex
 G43558RC	N-linked	complex
 G43560SB	N-linked	complex
 G43610AB	N-linked	complex
-G43648DB	N-linked	
+G43648DB	N-linked	paucimannose
+G43654PQ	N-linked	complex
 G43657WC	N-linked	complex
 G43660IT	N-linked	complex
 G43664YB	N-linked	
 G43665PB	N-linked	complex
 G43677TG	N-linked	
+G43685DC	N-linked	complex
 G43694RQ	N-linked	complex
 G43702IX	N-linked	complex
 G43708QI	N-linked	high mannose
+G43744JB	O-linked	core 1
 G43753QH	N-linked	
 G43761WH	N-linked	
 G43765GZ	N-linked	complex
 G43790PG	N-linked	complex
 G43814TV	N-linked	complex
 G43821JZ	N-linked	complex
+G43830WV	N-linked	complex
 G43832DJ	N-linked	complex
 G43835NS	N-linked	
 G43838OY	N-linked	complex
+G43864TG	N-linked	complex
 G43869EE	N-linked	complex
 G43873MM	N-linked	complex
+G43875XT	O-linked	core 1
 G43876NZ	N-linked	complex
 G43925AD	O-linked	core 2
 G43946PN	O-linked	core 3
@@ -3656,6 +4042,7 @@ G44046WQ	N-linked
 G44066XU	N-linked	complex
 G44067HP	N-linked	
 G44073EJ	N-linked	
+G44079HZ	N-linked	complex
 G44092XR	N-linked	complex
 G44121LY	N-linked	complex
 G44127LD	O-linked	core 2
@@ -3666,12 +4053,16 @@ G44151FI	N-linked
 G44152CO	N-linked	complex
 G44182FH	N-linked	complex
 G44199IU	O-linked	core 1
+G44201QD	N-linked	paucimannose
 G44202NB	N-linked	
 G44204WA	N-linked	complex
 G44207BG	N-linked	complex
 G44210FS	N-linked	
 G44218WP	N-linked	
+G44223QP	N-linked	hybrid
+G44236OL	O-linked	core 2
 G44264DI	N-linked	complex
+G44267UL	N-linked	complex
 G44268RP	N-linked	complex
 G44276EF	N-linked	
 G44306ED	N-linked	high mannose
@@ -3687,7 +4078,9 @@ G44411RJ	O-linked	core 4
 G44413JJ	N-linked	complex
 G44414DH	N-linked	complex
 G44444MB	N-linked	complex
+G44497AH	N-linked	complex
 G44504SC	N-linked	complex
+G44504WW	O-linked	core 1
 G44513XM	N-linked	
 G44514JE	N-linked	
 G44515AZ	N-linked	complex
@@ -3715,6 +4108,7 @@ G44754IE	N-linked	complex
 G44770ZI	N-linked	complex
 G44772RK	O-linked	core 3
 G44782HB	N-linked	
+G44790NU	N-linked	complex
 G44799JP	N-linked	complex
 G44809JX	O-linked	core 6
 G44825QL	N-linked	complex
@@ -3723,6 +4117,7 @@ G44842OK	N-linked	hybrid
 G44845VH	N-linked	
 G44865OQ	N-linked	
 G44865WY	N-linked	complex
+G44880NI	O-linked	core 3
 G44883NU	N-linked	complex
 G44904UE	N-linked	complex
 G44905SX	N-linked	
@@ -3732,6 +4127,7 @@ G44946WH	N-linked	complex
 G44962ZM	N-linked	hybrid
 G44974AB	N-linked	
 G44979MG	N-linked	complex
+G44980KU	O-linked	core 1
 G44982DH	N-linked	
 G44982ZA	N-linked	complex
 G44988YY	N-linked	complex
@@ -3777,6 +4173,7 @@ G45335XP	O-linked	core 2
 G45359RY	N-linked	complex
 G45365RV	N-linked	complex
 G45374ZW	N-linked	hybrid
+G45378DO	N-linked	
 G45388GV	O-linked	core 5
 G45388VA	O-linked	core 1
 G45402WV	O-linked	core 2
@@ -3804,6 +4201,8 @@ G45603BW	N-linked	complex
 G45603KW	N-linked	complex
 G45660WC	N-linked	complex
 G45661NA	N-linked	complex
+G45664QZ	N-linked	complex
+G45686NF	N-linked	complex
 G45694ZE	N-linked	
 G45695EY	N-linked	complex
 G45700OA	N-linked	complex
@@ -3814,9 +4213,11 @@ G45747TC	N-linked	complex
 G45755VQ	N-linked	complex
 G45756OH	N-linked	
 G45767XH	O-linked	core 1
+G45775XU	N-linked	
 G45776ET	N-linked	complex
 G45777DE	N-linked	complex
 G45826PJ	N-linked	complex
+G45832UN	N-linked	complex
 G45841FE	N-linked	
 G45844BS	N-linked	complex
 G45844RR	N-linked	complex
@@ -3831,7 +4232,7 @@ G45939NL	O-linked	core 3
 G45953IA	N-linked	
 G45957IW	N-linked	
 G45981GB	N-linked	
-G45995IV	N-linked	
+G45995IV	N-linked	paucimannose
 G45996VR	N-linked	complex
 G45997JW	N-linked	complex
 G46021KV	N-linked	complex
@@ -3847,12 +4248,14 @@ G46113WD	N-linked
 G46123YD	N-linked	complex
 G46125OQ	N-linked	
 G46141DD	N-linked	complex
+G46152KR	N-linked	
 G46168RR	O-linked	core 2
 G46185ND	N-linked	complex
 G46213JU	N-linked	hybrid
 G46222DM	O-linked	core 1
 G46224CH	N-linked	complex
 G46226SX	N-linked	complex
+G46241WB	O-linked	core 1
 G46298TE	N-linked	complex
 G46304CE	O-linked	core 1
 G46308WD	N-linked	
@@ -3871,6 +4274,7 @@ G46449AK	N-linked	complex
 G46455GO	N-linked	complex
 G46470AD	N-linked	complex
 G46503KK	N-linked	complex
+G46511PG	N-linked	complex
 G46519JV	N-linked	complex
 G46520SL	N-linked	complex
 G46542RN	N-linked	complex
@@ -3884,6 +4288,7 @@ G46626WO	N-linked
 G46633SL	N-linked	complex
 G46638GC	N-linked	complex
 G46652ST	N-linked	complex
+G46661UU	N-linked	complex
 G46666WR	N-linked	complex
 G46711IU	O-linked	core 3
 G46712PI	N-linked	complex
@@ -3899,6 +4304,7 @@ G46764AW	N-linked
 G46767VX	N-linked	complex
 G46768QH	N-linked	complex
 G46772BG	O-linked	core 3
+G46807BA	N-linked	complex
 G46823OG	N-linked	high mannose
 G46836GH	N-linked	
 G46849ZO	N-linked	complex
@@ -3909,6 +4315,7 @@ G46929BM	N-linked
 G46936YB	N-linked	
 G46945LQ	N-linked	complex
 G46946SC	N-linked	
+G46974YF	N-linked	
 G46991EQ	N-linked	complex
 G46998LN	N-linked	complex
 G47006SF	N-linked	high mannose
@@ -3932,7 +4339,6 @@ G47180UC	O-linked	core 1
 G47190LU	O-linked	core 1
 G47206MY	N-linked	
 G47206OM	N-linked	hybrid
-G47206TB	N-linked	
 G47252EW	N-linked	complex
 G47253CO	N-linked	
 G47253OG	N-linked	complex
@@ -3963,12 +4369,14 @@ G47557KS	O-linked	core 3
 G47566FL	N-linked	
 G47606XQ	N-linked	complex
 G47613FH	N-linked	
+G47645YK	N-linked	hybrid
 G47651FM	N-linked	complex
 G47669IJ	N-linked	
 G47675LW	N-linked	
 G47679MT	N-linked	complex
 G47690ND	O-linked	core 1
 G47741BL	N-linked	complex
+G47756FE	N-linked	complex
 G47760VS	N-linked	
 G47766VH	N-linked	complex
 G47782UT	N-linked	complex
@@ -3985,6 +4393,7 @@ G47870LR	N-linked	complex
 G47871MN	N-linked	complex
 G47877IZ	N-linked	
 G47909JD	N-linked	
+G47911PU	N-linked	complex
 G47914FM	N-linked	
 G47921ZO	O-linked	core 3
 G47925EV	N-linked	complex
@@ -3995,15 +4404,19 @@ G47961DI	N-linked	complex
 G47961RS	N-linked	
 G47963XB	N-linked	complex
 G47975JA	N-linked	complex
+G47975LL	O-linked	core 2
 G47992RQ	N-linked	
 G48020LQ	N-linked	complex
 G48040FY	N-linked	complex
 G48054GJ	N-linked	
+G48058UE	N-linked	hybrid
 G48069JX	N-linked	complex
 G48109OV	N-linked	complex
 G48115MG	N-linked	complex
 G48133KR	N-linked	
+G48140IM	N-linked	
 G48148JS	N-linked	high mannose
+G48168SI	N-linked	
 G48185FI	N-linked	complex
 G48213MO	N-linked	
 G48275DN	N-linked	complex
@@ -4026,12 +4439,14 @@ G48421GV	N-linked
 G48440GN	O-linked	core 6
 G48442VP	N-linked	high mannose
 G48465YI	O-linked	core 3
+G48468PF	N-linked	complex
 G48488XT	N-linked	complex
 G48489PM	N-linked	complex
 G48504ND	N-linked	
 G48515VQ	N-linked	complex
 G48527XN	N-linked	complex
 G48585WR	O-linked	core 1
+G48595FA	N-linked	hybrid
 G48614JL	N-linked	complex
 G48626HI	N-linked	
 G48630BP	N-linked	
@@ -4044,6 +4459,7 @@ G48707RS	O-linked	core 1
 G48712ZJ	N-linked	
 G48713OY	N-linked	complex
 G48714KU	N-linked	complex
+G48753IC	N-linked	hybrid
 G48767NV	N-linked	complex
 G48787LE	N-linked	complex
 G48802KI	N-linked	
@@ -4053,6 +4469,7 @@ G48822BJ	N-linked	complex
 G48822HK	O-linked	core 1
 G48844XN	N-linked	
 G48848IF	N-linked	complex
+G48854JY	O-linked	core 1
 G48856VC	O-linked	core 2
 G48860TK	N-linked	
 G48884SG	O-linked	core 3
@@ -4060,6 +4477,7 @@ G48886SH	N-linked
 G48945UO	N-linked	complex
 G48954CA	N-linked	
 G48975GN	N-linked	complex
+G48980RC	N-linked	
 G48992SV	N-linked	
 G49009JI	N-linked	
 G49013BK	N-linked	complex
@@ -4092,10 +4510,12 @@ G49307MQ	N-linked	complex
 G49322HB	O-linked	core 6
 G49329HX	N-linked	
 G49349BS	O-linked	core 2
+G49357ZK	N-linked	
 G49369WH	N-linked	complex
 G49370IN	O-linked	core 1
 G49380CI	N-linked	complex
 G49382OI	N-linked	hybrid
+G49383JW	N-linked	high mannose
 G49401CB	N-linked	hybrid
 G49401WK	N-linked	complex
 G49407NB	N-linked	complex
@@ -4145,9 +4565,12 @@ G49854OS	O-linked	core 2
 G49872TN	N-linked	complex
 G49889OJ	N-linked	hybrid
 G49915LA	N-linked	complex
+G49923GC	N-linked	
 G49930HB	N-linked	complex
 G49933AX	N-linked	hybrid
 G49935CA	N-linked	complex
+G49951NR	N-linked	hybrid
+G49961MS	N-linked	high mannose
 G49961XO	N-linked	complex
 G49991UY	N-linked	
 G49993RR	N-linked	complex
@@ -4166,6 +4589,7 @@ G50119EM	N-linked	high mannose
 G50131RA	N-linked	
 G50135PA	N-linked	complex
 G50139IU	N-linked	high mannose
+G50159UX	N-linked	
 G50165MW	O-linked	core 2
 G50165QT	N-linked	high mannose
 G50210FA	N-linked	
@@ -4176,6 +4600,7 @@ G50234BV	N-linked	complex
 G50258QB	N-linked	complex
 G50272UH	N-linked	complex
 G50273OO	N-linked	high mannose
+G50278HE	N-linked	
 G50329HB	N-linked	
 G50343XZ	N-linked	complex
 G50353FU	N-linked	complex
@@ -4198,6 +4623,7 @@ G50489VC	N-linked	complex
 G50502BT	N-linked	complex
 G50507PS	N-linked	high mannose
 G50508SG	N-linked	complex
+G50509CK	N-linked	complex
 G50518XT	N-linked	complex
 G50531NJ	N-linked	complex
 G50535IT	N-linked	complex
@@ -4206,6 +4632,7 @@ G50549VU	N-linked	complex
 G50554LM	N-linked	complex
 G50579NE	N-linked	complex
 G50619VO	O-linked	core 4
+G50625MG	N-linked	hybrid
 G50636SI	N-linked	
 G50638US	N-linked	complex
 G50659JL	N-linked	
@@ -4220,15 +4647,19 @@ G50730KL	N-linked	hybrid
 G50739NP	N-linked	
 G50755IT	O-linked	core 2
 G50762OP	O-linked	core 2
+G50774CV	N-linked	complex
+G50775GL	N-linked	complex
 G50775RM	N-linked	
 G50779LX	N-linked	complex
 G50782HI	N-linked	hybrid
 G50782LR	N-linked	complex
 G50783JY	N-linked	complex
 G50785UU	N-linked	complex
+G50791ES	N-linked	
 G50808YS	O-linked	core 2
 G50817TZ	N-linked	complex
 G50837EH	N-linked	
+G50846BW	N-linked	hybrid
 G50869YE	N-linked	complex
 G50871KO	N-linked	complex
 G50880EE	N-linked	complex
@@ -4236,6 +4667,7 @@ G50888WV	N-linked
 G50896EJ	O-linked	core 2
 G50896TP	N-linked	complex
 G50903RY	N-linked	
+G50905UI	O-linked	core 2
 G50933UG	N-linked	complex
 G50943ZX	N-linked	
 G50959AX	N-linked	complex
@@ -4256,6 +4688,7 @@ G51071LC	O-linked	core 1
 G51080VE	O-linked	core 3
 G51086FE	N-linked	complex
 G51098AA	N-linked	complex
+G51103QO	O-linked	core 2
 G51107TC	N-linked	
 G51114IJ	O-linked	core 2
 G51114UP	N-linked	complex
@@ -4270,11 +4703,13 @@ G51192NL	O-linked	core 2
 G51212OK	N-linked	complex
 G51216AJ	O-linked	core 2
 G51247KG	O-linked	core 5
+G51253QV	N-linked	
 G51265ES	N-linked	complex
 G51266ML	N-linked	
 G51274LI	N-linked	complex
 G51278BZ	N-linked	
 G51299JY	N-linked	complex
+G51304JG	N-linked	
 G51324UL	N-linked	complex
 G51333KM	N-linked	complex
 G51340HW	O-linked	core 4
@@ -4283,7 +4718,9 @@ G51347IO	N-linked	complex
 G51349BU	O-linked	core 2
 G51367TM	N-linked	hybrid
 G51369CD	N-linked	
+G51378TN	N-linked	complex
 G51419BH	N-linked	
+G51440UR	N-linked	hybrid
 G51444LH	N-linked	
 G51471ON	N-linked	hybrid
 G51472TJ	N-linked	complex
@@ -4307,11 +4744,15 @@ G51654CU	N-linked	complex
 G51657FI	N-linked	
 G51677OC	N-linked	hybrid
 G51688VK	N-linked	
+G51695DM	N-linked	complex
 G51699IR	N-linked	
+G51699UE	N-linked	
 G51705EB	N-linked	complex
 G51710QD	N-linked	complex
+G51715FH	N-linked	hybrid
 G51722UJ	N-linked	
 G51739IA	N-linked	
+G51743KG	N-linked	hybrid
 G51766BM	N-linked	complex
 G51768ZH	N-linked	complex
 G51778XS	N-linked	complex
@@ -4319,7 +4760,9 @@ G51783BY	N-linked
 G51793MY	N-linked	complex
 G51799AX	N-linked	complex
 G51809TM	O-linked	core 2
+G51827GO	O-linked	core 2
 G51883EC	O-linked	core 2
+G51890HE	O-linked	core 1
 G51891DI	N-linked	complex
 G51896IF	N-linked	complex
 G51908QJ	N-linked	complex
@@ -4336,6 +4779,7 @@ G51963NX	O-linked	core 4
 G51971TR	N-linked	complex
 G51987NK	N-linked	high mannose
 G51992CI	O-linked	core 2
+G51995LA	N-linked	complex
 G52003QG	N-linked	
 G52004GX	N-linked	complex
 G52038JM	N-linked	complex
@@ -4353,16 +4797,20 @@ G52126RR	N-linked	complex
 G52144RR	O-linked	core 2
 G52166GV	N-linked	high mannose
 G52179YJ	O-linked	core 2
+G52187WF	N-linked	complex
 G52216BO	N-linked	complex
 G52225DV	N-linked	complex
 G52231BF	N-linked	complex
 G52233KF	N-linked	complex
+G52236XX	O-linked	core 2
 G52238TO	N-linked	complex
 G52242HT	N-linked	
 G52262VT	O-linked	core 2
 G52266YB	N-linked	complex
 G52286UI	N-linked	complex
+G52302PL	N-linked	hybrid
 G52308VC	N-linked	
+G52333AW	N-linked	
 G52336LJ	N-linked	complex
 G52345FK	N-linked	complex
 G52354QX	N-linked	complex
@@ -4379,6 +4827,7 @@ G52461YB	N-linked	high mannose
 G52471BY	O-linked	core 1
 G52477OC	N-linked	
 G52483OL	N-linked	complex
+G52498MU	N-linked	
 G52518HE	N-linked	high mannose
 G52524GO	N-linked	complex
 G52526MZ	N-linked	complex
@@ -4399,6 +4848,7 @@ G52770HR	N-linked	complex
 G52773YO	N-linked	complex
 G52776UT	N-linked	complex
 G52782YT	N-linked	
+G52783KP	N-linked	
 G52790YS	N-linked	complex
 G52801WH	N-linked	
 G52802XR	N-linked	complex
@@ -4413,16 +4863,20 @@ G52902IE	N-linked
 G52928OQ	N-linked	hybrid
 G52934AK	N-linked	complex
 G52937XP	O-linked	core 1
+G52946YT	N-linked	hybrid
 G52953EP	O-linked	core 1
 G52956BX	N-linked	
 G52962ZI	N-linked	
 G52971DE	N-linked	complex
 G52971SZ	O-linked	core 2
 G52972TJ	O-linked	core 1
+G53000RQ	N-linked	complex
 G53031JB	N-linked	complex
+G53038IF	N-linked	complex
 G53046TR	N-linked	complex
 G53050ZJ	N-linked	
 G53064IK	O-linked	core 2
+G53084MW	O-linked	core 1
 G53093MO	N-linked	complex
 G53096UD	N-linked	complex
 G53098FA	N-linked	complex
@@ -4444,7 +4898,9 @@ G53272SL	N-linked	complex
 G53276NK	N-linked	complex
 G53280MT	N-linked	complex
 G53288JQ	N-linked	complex
+G53308ZH	N-linked	hybrid
 G53322JT	N-linked	complex
+G53342MA	N-linked	complex
 G53342VT	N-linked	complex
 G53372OG	N-linked	complex
 G53396PX	N-linked	complex
@@ -4454,7 +4910,9 @@ G53435KM	O-linked	core 2
 G53440PM	O-linked	core 1
 G53450AF	N-linked	
 G53452PP	N-linked	
+G53454TA	N-linked	
 G53460CX	N-linked	complex
+G53464HK	N-linked	hybrid
 G53471VF	N-linked	hybrid
 G53472RQ	O-linked	core 2
 G53476DF	N-linked	
@@ -4464,6 +4922,7 @@ G53492UE	N-linked
 G53502ZZ	O-linked	core 2
 G53504BR	N-linked	complex
 G53521RZ	N-linked	complex
+G53527OK	N-linked	complex
 G53539XB	N-linked	
 G53542OI	O-linked	core 3
 G53557CQ	O-linked	core 4
@@ -4484,6 +4943,7 @@ G53728DU	N-linked	complex
 G53752QB	N-linked	complex
 G53752TA	N-linked	complex
 G53758RJ	N-linked	high mannose
+G53770LT	N-linked	
 G53795OV	N-linked	complex
 G53800MQ	N-linked	complex
 G53809CJ	N-linked	complex
@@ -4512,13 +4972,17 @@ G54059XR	N-linked
 G54067ZR	N-linked	
 G54079AB	N-linked	
 G54083SI	O-linked	core 2
+G54096IJ	N-linked	complex
 G54121EO	O-linked	core 1
 G54133WC	N-linked	complex
 G54140NM	N-linked	
 G54151YB	N-linked	complex
 G54158IT	N-linked	complex
-G54162CJ	N-linked	
+G54162CJ	N-linked	paucimannose
+G54177WI	N-linked	
 G54190AS	O-linked	core 2
+G54195NF	N-linked	complex
+G54255OI	N-linked	hybrid
 G54258NG	N-linked	complex
 G54260SD	N-linked	
 G54264AR	O-linked	core 2
@@ -4532,6 +4996,7 @@ G54334WY	O-linked	core 4
 G54335XN	O-linked	core 3
 G54338PJ	N-linked	complex
 G54341KJ	N-linked	
+G54371SF	O-linked	core 1
 G54375EU	N-linked	complex
 G54380FJ	N-linked	complex
 G54384PL	N-linked	complex
@@ -4546,6 +5011,7 @@ G54499PQ	N-linked	complex
 G54505OS	N-linked	complex
 G54513OG	N-linked	complex
 G54533TM	N-linked	complex
+G54552DT	N-linked	
 G54555OW	N-linked	complex
 G54560ZD	N-linked	
 G54561II	O-linked	core 4
@@ -4555,6 +5021,7 @@ G54584ER	N-linked	complex
 G54584SU	N-linked	
 G54590FS	N-linked	complex
 G54599TH	N-linked	complex
+G54599TV	N-linked	complex
 G54602DZ	O-linked	core 2
 G54611ZT	N-linked	complex
 G54626GN	N-linked	high mannose
@@ -4562,6 +5029,7 @@ G54639VI	N-linked
 G54645BJ	N-linked	
 G54652ZD	N-linked	
 G54659TT	N-linked	complex
+G54669IO	N-linked	complex
 G54682XF	N-linked	
 G54683UA	N-linked	complex
 G54696PD	N-linked	complex
@@ -4569,6 +5037,7 @@ G54702KT	N-linked	complex
 G54704JW	N-linked	complex
 G54706BB	O-linked	core 2
 G54709AG	N-linked	complex
+G54715UD	N-linked	
 G54745CW	N-linked	
 G54760IB	O-linked	core 1
 G54764AV	N-linked	complex
@@ -4578,6 +5047,7 @@ G54884LT	N-linked	complex
 G54896JZ	O-linked	core 2
 G54904QW	N-linked	complex
 G54929QT	N-linked	complex
+G54931GY	N-linked	
 G54950JZ	N-linked	
 G54951OQ	N-linked	
 G54953LX	N-linked	complex
@@ -4593,6 +5063,7 @@ G55065WV	N-linked	complex
 G55075ZC	N-linked	complex
 G55086SI	N-linked	high mannose
 G55097ES	N-linked	complex
+G55099PN	N-linked	complex
 G55104BW	O-linked	core 4
 G55126WZ	O-linked	core 3
 G55143IM	N-linked	
@@ -4616,6 +5087,8 @@ G55396DW	N-linked	complex
 G55402HS	N-linked	
 G55406JQ	N-linked	high mannose
 G55453IK	N-linked	hybrid
+G55455WR	N-linked	complex
+G55479DB	N-linked	complex
 G55481KF	N-linked	
 G55484MX	N-linked	complex
 G55487QV	O-linked	core 3
@@ -4634,10 +5107,12 @@ G55648EG	N-linked	complex
 G55653LB	N-linked	complex
 G55661CO	N-linked	complex
 G55667OC	N-linked	complex
+G55668HM	N-linked	
 G55700PF	O-linked	core 2
 G55701FR	N-linked	complex
 G55706KC	N-linked	
 G55728EM	O-linked	core 3
+G55743SL	N-linked	
 G55763ZI	N-linked	
 G55781KV	N-linked	complex
 G55783TD	N-linked	
@@ -4648,6 +5123,7 @@ G55812LA	N-linked
 G55818EE	N-linked	complex
 G55832RR	N-linked	
 G55861FV	N-linked	complex
+G55864VP	N-linked	complex
 G55866KK	O-linked	core 1
 G55867TY	N-linked	complex
 G55868RH	N-linked	
@@ -4656,12 +5132,14 @@ G55897OF	N-linked	complex
 G55914FN	N-linked	complex
 G55922CA	N-linked	complex
 G55953GF	N-linked	hybrid
+G55974RB	N-linked	hybrid
 G55982TK	N-linked	
 G56014GC	N-linked	
 G56017FW	N-linked	
 G56034WQ	N-linked	
 G56036XY	N-linked	
 G56038AR	N-linked	
+G56039JB	N-linked	hybrid
 G56042JM	O-linked	core 1
 G56063TZ	N-linked	complex
 G56069TX	N-linked	
@@ -4675,6 +5153,7 @@ G56111FM	O-linked	core 2
 G56147VV	N-linked	complex
 G56163DR	N-linked	
 G56175ED	N-linked	complex
+G56175MM	N-linked	complex
 G56202KK	O-linked	core 3
 G56202TA	N-linked	high mannose
 G56238AO	N-linked	
@@ -4692,9 +5171,11 @@ G56299XO	O-linked	core 1
 G56318NV	N-linked	complex
 G56321MP	N-linked	complex
 G56327CO	N-linked	complex
+G56329KE	N-linked	high mannose
 G56339QG	N-linked	complex
 G56340GX	N-linked	complex
 G56354PO	N-linked	complex
+G56364PT	N-linked	hybrid
 G56376TA	N-linked	hybrid
 G56381GN	N-linked	complex
 G56381GU	N-linked	high mannose
@@ -4712,6 +5193,7 @@ G56546LQ	N-linked	complex
 G56549DH	N-linked	complex
 G56555MU	N-linked	hybrid
 G56571DA	N-linked	complex
+G56575BH	O-linked	core 1
 G56577TY	N-linked	complex
 G56591LC	N-linked	complex
 G56615HF	N-linked	complex
@@ -4722,6 +5204,7 @@ G56655CC	N-linked	complex
 G56657CK	N-linked	complex
 G56682BC	O-linked	core 1
 G56703XH	N-linked	complex
+G56716RH	O-linked	core 1
 G56720TK	N-linked	complex
 G56721EV	N-linked	complex
 G56724VL	N-linked	complex
@@ -4733,14 +5216,18 @@ G56749GV	N-linked	complex
 G56770AH	N-linked	complex
 G56784HS	N-linked	complex
 G56791SN	N-linked	complex
+G56800JG	N-linked	
 G56809XB	N-linked	complex
+G56811RE	N-linked	complex
 G56830SM	N-linked	complex
+G56851CO	N-linked	
 G56852BX	N-linked	complex
 G56856OI	N-linked	complex
 G56867YK	N-linked	high mannose
 G56869RQ	N-linked	complex
 G56876DF	N-linked	
 G56891ZN	N-linked	complex
+G56893CG	N-linked	
 G56903ZB	N-linked	
 G56913CG	O-linked	core 3
 G56955UZ	N-linked	
@@ -4774,9 +5261,11 @@ G57208CK	N-linked	complex
 G57247BR	O-linked	core 6
 G57248BB	N-linked	
 G57250OO	N-linked	complex
+G57260LH	N-linked	complex
 G57262WV	N-linked	
 G57267KB	N-linked	
 G57292SX	N-linked	high mannose
+G57293IF	N-linked	
 G57296XM	O-linked	core 1
 G57345HS	N-linked	
 G57410TH	N-linked	high mannose
@@ -4788,11 +5277,14 @@ G57466QX	N-linked	complex
 G57484FV	N-linked	high mannose
 G57504TA	N-linked	complex
 G57522MT	N-linked	
+G57535KW	N-linked	complex
 G57539MP	N-linked	complex
 G57565PX	N-linked	complex
 G57565TQ	N-linked	complex
 G57591KJ	O-linked	core 6
 G57595UE	N-linked	
+G57601AP	N-linked	complex
+G57601KU	N-linked	complex
 G57607BW	N-linked	hybrid
 G57611UV	N-linked	complex
 G57626SM	N-linked	hybrid
@@ -4802,6 +5294,7 @@ G57671LP	N-linked	hybrid
 G57675TR	N-linked	complex
 G57677EU	N-linked	complex
 G57707WO	N-linked	
+G57741SS	N-linked	hybrid
 G57762GE	N-linked	complex
 G57774MT	N-linked	complex
 G57789QC	N-linked	complex
@@ -4817,6 +5310,7 @@ G57881VN	N-linked	complex
 G57914GV	N-linked	
 G57930PW	N-linked	
 G57937LQ	N-linked	complex
+G57941UT	N-linked	complex
 G57943ZV	N-linked	complex
 G57951WQ	N-linked	
 G57955DP	N-linked	complex
@@ -4826,7 +5320,6 @@ G57970NA	N-linked	complex
 G57971KJ	O-linked	core 2
 G57971XD	N-linked	
 G57984PA	N-linked	
-G57989AD	N-linked	
 G57997IN	N-linked	complex
 G57999XS	N-linked	complex
 G58004KD	N-linked	complex
@@ -4838,7 +5331,9 @@ G58039VY	N-linked	complex
 G58063ME	N-linked	complex
 G58066JR	O-linked	core 2
 G58111YY	N-linked	complex
+G58143RL	N-linked	
 G58169YV	N-linked	
+G58183RP	N-linked	
 G58195CE	O-linked	core 2
 G58198HJ	N-linked	complex
 G58214IQ	N-linked	high mannose
@@ -4861,16 +5356,19 @@ G58288KD	N-linked	complex
 G58328JK	N-linked	
 G58331OS	N-linked	complex
 G58331XF	N-linked	complex
+G58338QG	N-linked	
 G58362DI	O-linked	core 1
 G58370UT	N-linked	complex
 G58381OV	N-linked	
 G58386NJ	N-linked	
 G58402CL	O-linked	core 6
 G58403SV	N-linked	complex
+G58422UX	N-linked	complex
 G58444TO	N-linked	complex
 G58473KL	N-linked	complex
 G58478JZ	N-linked	complex
 G58481XO	N-linked	complex
+G58482BJ	N-linked	
 G58489WT	O-linked	core 1
 G58489ZK	N-linked	complex
 G58516UP	N-linked	
@@ -4901,6 +5399,7 @@ G58827HR	N-linked	complex
 G58846EV	O-linked	core 1
 G58848QS	N-linked	complex
 G58852KZ	N-linked	complex
+G58881VU	N-linked	complex
 G58886BN	N-linked	
 G58897VR	N-linked	complex
 G58931VV	N-linked	complex
@@ -4920,7 +5419,6 @@ G59063MX	N-linked
 G59081JJ	N-linked	complex
 G59128IS	N-linked	complex
 G59130GH	N-linked	complex
-G59130YV	N-linked	
 G59132RG	N-linked	
 G59141EN	N-linked	complex
 G59149SL	N-linked	complex
@@ -4948,6 +5446,7 @@ G59403TM	N-linked
 G59405LU	N-linked	complex
 G59406KS	N-linked	
 G59411JK	N-linked	
+G59417ID	O-linked	core 1
 G59451NL	N-linked	complex
 G59456VR	N-linked	complex
 G59458AW	N-linked	complex
@@ -4957,6 +5456,7 @@ G59471JC	N-linked	complex
 G59471TH	N-linked	complex
 G59513YA	N-linked	high mannose
 G59522PY	N-linked	
+G59529PB	N-linked	hybrid
 G59532XE	N-linked	
 G59576IJ	N-linked	
 G59579TL	N-linked	complex
@@ -4981,10 +5481,13 @@ G59752BW	N-linked	complex
 G59761EF	N-linked	complex
 G59784AY	N-linked	
 G59804RR	N-linked	complex
+G59813BD	N-linked	
 G59821FL	N-linked	complex
 G59869XG	N-linked	
 G59877ET	N-linked	complex
+G59877NF	N-linked	complex
 G59897WN	N-linked	complex
+G59915YZ	N-linked	complex
 G59922XB	N-linked	complex
 G59942FB	N-linked	hybrid
 G59944EN	O-linked	core 2
@@ -4995,6 +5498,7 @@ G59983FU	N-linked	complex
 G59984BF	N-linked	complex
 G59989VG	N-linked	complex
 G59999BN	O-linked	core 2
+G60004UW	N-linked	hybrid
 G60012HO	N-linked	complex
 G60026QM	N-linked	
 G60059UH	N-linked	complex
@@ -5005,6 +5509,7 @@ G60092VE	N-linked
 G60103QI	N-linked	complex
 G60149QJ	N-linked	
 G60170CX	N-linked	complex
+G60176QG	N-linked	complex
 G60215UL	N-linked	complex
 G60227QI	N-linked	complex
 G60229VG	N-linked	
@@ -5019,6 +5524,7 @@ G60320IS	N-linked	complex
 G60330MA	N-linked	complex
 G60341PX	O-linked	core 2
 G60343KO	N-linked	complex
+G60359JC	N-linked	complex
 G60383WH	N-linked	
 G60413OP	N-linked	complex
 G60415BS	N-linked	
@@ -5026,6 +5532,7 @@ G60419KX	N-linked	complex
 G60439QY	N-linked	complex
 G60452UF	N-linked	complex
 G60458LX	N-linked	
+G60461BM	O-linked	core 2
 G60464IB	N-linked	
 G60468EV	N-linked	complex
 G60496TU	N-linked	complex
@@ -5043,9 +5550,11 @@ G60615ZD	O-linked	core 2
 G60631GY	N-linked	hybrid
 G60634GK	N-linked	
 G60646UB	N-linked	
+G60648KY	N-linked	hybrid
 G60653VD	N-linked	complex
 G60660BN	N-linked	complex
 G60676HA	N-linked	complex
+G60679DR	N-linked	complex
 G60682GY	N-linked	
 G60687DB	O-linked	core 4
 G60689VV	N-linked	
@@ -5059,11 +5568,15 @@ G60736DD	N-linked	complex
 G60740VC	N-linked	
 G60741OC	O-linked	core 6
 G60799ZL	O-linked	core 2
+G60803QX	N-linked	
+G60807BK	O-linked	core 1
 G60814ZB	N-linked	complex
 G60829NM	N-linked	complex
 G60833BB	O-linked	core 3
+G60837AI	N-linked	
 G60853DO	N-linked	
 G60883HN	O-linked	core 1
+G60887NT	N-linked	complex
 G60890ZT	O-linked	core 2
 G60925RS	O-linked	core 2
 G60926LS	N-linked	complex
@@ -5075,12 +5588,14 @@ G60955ML	O-linked	core 3
 G60956VN	N-linked	complex
 G60963AS	N-linked	complex
 G60967EN	N-linked	complex
+G60971WV	N-linked	
 G60984DZ	N-linked	
 G61001HU	N-linked	
 G61002BJ	N-linked	complex
 G61009EJ	O-linked	core 3
 G61071ZB	N-linked	complex
 G61072JZ	O-linked	core 2
+G61086FK	N-linked	
 G61086WG	N-linked	
 G61088TM	N-linked	complex
 G61151LQ	N-linked	complex
@@ -5089,13 +5604,13 @@ G61159LY	O-linked	core 2
 G61170KL	N-linked	
 G61186MM	N-linked	
 G61203OK	N-linked	complex
-G61206XE	N-linked	
 G61207RZ	N-linked	complex
 G61244WO	N-linked	complex
 G61250GU	N-linked	complex
 G61283FH	N-linked	
 G61302NC	N-linked	
 G61311ZY	O-linked	core 2
+G61312PU	N-linked	complex
 G61330YQ	N-linked	
 G61334IA	N-linked	
 G61358KS	O-linked	core 2
@@ -5111,18 +5626,24 @@ G61505ZR	N-linked	complex
 G61519GA	N-linked	complex
 G61530CE	N-linked	hybrid
 G61551YB	N-linked	
+G61553DD	N-linked	complex
 G61575RT	N-linked	complex
 G61581BE	N-linked	complex
+G61582HZ	O-linked	core 2
 G61601ZZ	N-linked	
 G61602PD	N-linked	complex
 G61608CO	N-linked	complex
+G61614JZ	N-linked	
 G61627IG	N-linked	
 G61636KP	N-linked	complex
+G61640TZ	N-linked	complex
+G61646LF	N-linked	complex
 G61684ET	N-linked	complex
 G61698UE	N-linked	
 G61702UX	N-linked	high mannose
 G61705AR	N-linked	complex
 G61706MD	N-linked	complex
+G61707PW	N-linked	complex
 G61714PI	N-linked	hybrid
 G61717JN	N-linked	
 G61718TK	N-linked	complex
@@ -5141,6 +5662,7 @@ G61862FV	N-linked
 G61866NY	N-linked	complex
 G61884GF	N-linked	
 G61886WA	O-linked	core 1
+G61887VA	O-linked	core 2
 G61889LW	O-linked	core 3
 G61894MD	N-linked	high mannose
 G61903HE	N-linked	complex
@@ -5160,10 +5682,13 @@ G62055DD	O-linked	core 2
 G62070TZ	O-linked	core 2
 G62088FQ	N-linked	complex
 G62091GQ	N-linked	
+G62094ME	N-linked	
+G62107VQ	O-linked	core 5
 G62109NW	N-linked	complex
 G62112AO	N-linked	
 G62120FH	N-linked	complex
 G62130AA	N-linked	
+G62142PS	N-linked	
 G62145FH	N-linked	complex
 G62165AG	N-linked	
 G62176QT	N-linked	
@@ -5179,6 +5704,7 @@ G62307SM	N-linked	complex
 G62326NX	N-linked	complex
 G62333MG	N-linked	complex
 G62349ZP	N-linked	
+G62360SN	N-linked	hybrid
 G62364JZ	N-linked	
 G62387ZO	N-linked	complex
 G62389NM	N-linked	hybrid
@@ -5227,10 +5753,13 @@ G62837IG	N-linked
 G62837OZ	N-linked	
 G62848AR	N-linked	complex
 G62869IR	N-linked	complex
+G62880PC	N-linked	complex
+G62883YA	N-linked	complex
 G62899XL	N-linked	complex
 G62922WK	N-linked	
 G62944LA	N-linked	
 G62945MQ	N-linked	complex
+G62955ZH	N-linked	hybrid
 G62958XQ	N-linked	
 G62968IF	N-linked	complex
 G62970ZD	N-linked	complex
@@ -5242,6 +5771,7 @@ G63035DM	N-linked	high mannose
 G63046OH	N-linked	
 G63065KG	N-linked	complex
 G63065ZE	N-linked	complex
+G63075AF	N-linked	complex
 G63100CN	N-linked	complex
 G63100TS	N-linked	complex
 G63110FE	O-linked	core 1
@@ -5258,6 +5788,7 @@ G63208BT	N-linked	complex
 G63242HY	O-linked	core 1
 G63247UK	N-linked	complex
 G63285XT	N-linked	
+G63286MF	O-linked	core 6
 G63303ZY	N-linked	complex
 G63317CA	O-linked	core 4
 G63329SO	O-linked	core 3
@@ -5267,6 +5798,7 @@ G63337DU	N-linked
 G63337SS	N-linked	high mannose
 G63342TJ	O-linked	core 1
 G63349JM	O-linked	core 1
+G63366CP	N-linked	
 G63382KW	N-linked	
 G63411NB	N-linked	
 G63413QV	N-linked	complex
@@ -5277,6 +5809,7 @@ G63444WV	O-linked	core 4
 G63469RX	N-linked	complex
 G63480NF	N-linked	complex
 G63491LI	N-linked	complex
+G63536HB	N-linked	
 G63547QM	N-linked	complex
 G63565MO	N-linked	complex
 G63571FM	N-linked	high mannose
@@ -5288,6 +5821,7 @@ G63640QH	N-linked	complex
 G63644AZ	N-linked	complex
 G63648EU	N-linked	complex
 G63648XO	N-linked	complex
+G63659FK	N-linked	complex
 G63660JP	O-linked	core 1
 G63664GB	O-linked	core 1
 G63665MU	N-linked	complex
@@ -5296,8 +5830,10 @@ G63679SF	N-linked	complex
 G63699VG	N-linked	
 G63708BZ	N-linked	complex
 G63710WS	N-linked	complex
+G63712AL	N-linked	complex
 G63714PL	N-linked	complex
 G63717SU	O-linked	core 1
+G63720BV	N-linked	complex
 G63727MV	N-linked	complex
 G63727WO	O-linked	core 2
 G63734KU	N-linked	complex
@@ -5311,6 +5847,7 @@ G63820GM	N-linked
 G63821SF	N-linked	complex
 G63838JW	N-linked	hybrid
 G63889NK	N-linked	complex
+G63898DA	N-linked	complex
 G63899VB	N-linked	complex
 G63904JQ	N-linked	
 G63907MA	N-linked	complex
@@ -5318,7 +5855,9 @@ G63919RG	N-linked	complex
 G63923YN	N-linked	
 G63939TP	N-linked	complex
 G63976LA	N-linked	high mannose
+G64002SF	O-linked	core 2
 G64020XR	N-linked	
+G64029DP	O-linked	core 1
 G64048GU	N-linked	complex
 G64050LH	O-linked	core 1
 G64076LG	N-linked	complex
@@ -5329,6 +5868,7 @@ G64102JR	O-linked	core 3
 G64126JS	N-linked	complex
 G64127GJ	N-linked	complex
 G64132UH	N-linked	
+G64139XJ	N-linked	complex
 G64144LP	N-linked	
 G64161CC	N-linked	
 G64165TJ	O-linked	core 1
@@ -5339,6 +5879,7 @@ G64206XB	O-linked	core 2
 G64271PC	N-linked	complex
 G64276SW	N-linked	
 G64285PF	O-linked	core 1
+G64324VB	N-linked	
 G64330NA	N-linked	hybrid
 G64334QQ	N-linked	
 G64343WH	N-linked	
@@ -5364,6 +5905,7 @@ G64538ZR	N-linked	complex
 G64541LV	N-linked	
 G64555FT	N-linked	complex
 G64563CQ	O-linked	core 2
+G64582TJ	N-linked	
 G64586PM	N-linked	complex
 G64592EN	N-linked	hybrid
 G64604UL	O-linked	core 1
@@ -5377,6 +5919,7 @@ G64666BO	N-linked	complex
 G64669AQ	N-linked	complex
 G64687ON	N-linked	complex
 G64693IG	N-linked	complex
+G64697JB	N-linked	complex
 G64703DQ	N-linked	complex
 G64706DG	N-linked	complex
 G64712UU	O-linked	core 1
@@ -5405,6 +5948,8 @@ G64857LW	N-linked	complex
 G64860JV	N-linked	complex
 G64878VD	O-linked	core 4
 G64894MA	N-linked	complex
+G64897QL	N-linked	complex
+G64899EB	O-linked	core 1
 G64901XZ	N-linked	
 G64904FE	O-linked	core 2
 G64931FF	O-linked	core 3
@@ -5428,10 +5973,12 @@ G65243FP	N-linked	complex
 G65244XM	N-linked	
 G65288NK	O-linked	core 1
 G65294YU	N-linked	complex
+G65296TL	N-linked	complex
 G65307GS	N-linked	complex
 G65340BF	N-linked	complex
 G65343UJ	N-linked	
 G65356DX	N-linked	complex
+G65364FS	O-linked	core 2
 G65365UP	N-linked	
 G65365ZJ	O-linked	core 2
 G65370RS	N-linked	
@@ -5444,6 +5991,8 @@ G65449BO	N-linked	complex
 G65460ES	O-linked	core 6
 G65464PI	N-linked	complex
 G65466VT	N-linked	complex
+G65481GA	O-linked	core 1
+G65500VO	N-linked	
 G65508FE	N-linked	complex
 G65515HD	N-linked	
 G65516CQ	N-linked	complex
@@ -5451,23 +6000,28 @@ G65518IK	N-linked	high mannose
 G65550TC	N-linked	
 G65562ZE	O-linked	core 1
 G65575TV	N-linked	
+G65593RU	N-linked	
 G65594XM	N-linked	complex
 G65597BI	N-linked	complex
 G65600KO	O-linked	core 2
 G65603XA	N-linked	complex
 G65617KZ	N-linked	complex
+G65621RR	N-linked	
 G65635AB	N-linked	complex
 G65638YM	N-linked	
 G65660BL	O-linked	core 1
 G65668CK	N-linked	
 G65680SX	N-linked	complex
+G65681OO	N-linked	complex
 G65697SK	N-linked	complex
 G65703ID	N-linked	
 G65712VD	N-linked	
+G65721TS	N-linked	
 G65760UO	N-linked	complex
 G65761WK	N-linked	complex
 G65796FM	N-linked	complex
 G65799WV	N-linked	complex
+G65809MG	O-linked	core 1
 G65825CX	N-linked	
 G65832JS	N-linked	complex
 G65835SY	N-linked	
@@ -5480,18 +6034,22 @@ G65893EZ	N-linked	hybrid
 G65896IX	N-linked	
 G65937EW	N-linked	
 G65945PP	N-linked	complex
+G65948NJ	N-linked	complex
 G65962DP	N-linked	complex
 G65981EG	N-linked	complex
 G65984FE	N-linked	complex
 G66008HG	N-linked	complex
+G66016NA	N-linked	complex
 G66032DV	N-linked	
 G66040YD	O-linked	core 2
 G66072SG	N-linked	
+G66098KC	N-linked	complex
 G66102DS	N-linked	complex
 G66106WQ	N-linked	complex
 G66111ZR	N-linked	complex
 G66116BW	N-linked	hybrid
 G66118UZ	N-linked	
+G66121LF	N-linked	
 G66122ZT	N-linked	complex
 G66129DI	N-linked	hybrid
 G66150CE	N-linked	complex
@@ -5504,6 +6062,7 @@ G66190PM	N-linked	complex
 G66191UP	O-linked	core 1
 G66193EV	N-linked	complex
 G66204OA	N-linked	
+G66205BF	O-linked	core 2
 G66211LT	N-linked	high mannose
 G66215MG	N-linked	complex
 G66265KN	N-linked	complex
@@ -5513,6 +6072,7 @@ G66286WQ	N-linked	complex
 G66301VC	O-linked	core 2
 G66313YW	N-linked	complex
 G66348MF	N-linked	complex
+G66357NZ	N-linked	complex
 G66360FX	O-linked	core 2
 G66362JB	N-linked	complex
 G66367EU	O-linked	core 3
@@ -5523,6 +6083,7 @@ G66408EY	N-linked	complex
 G66414OW	O-linked	core 2
 G66419SM	O-linked	core 2
 G66422NV	N-linked	complex
+G66439FH	N-linked	complex
 G66441ML	N-linked	complex
 G66474IG	N-linked	complex
 G66488GE	N-linked	
@@ -5536,6 +6097,7 @@ G66580IT	N-linked	complex
 G66595IQ	N-linked	complex
 G66602EI	N-linked	complex
 G66629ZO	N-linked	complex
+G66634LZ	N-linked	
 G66653BX	N-linked	complex
 G66654PP	O-linked	core 1
 G66655HQ	N-linked	complex
@@ -5548,6 +6110,7 @@ G66685IX	N-linked	complex
 G66689PB	N-linked	complex
 G66692CW	N-linked	
 G66723VB	N-linked	high mannose
+G66724VW	N-linked	
 G66728LX	N-linked	
 G66741YQ	N-linked	complex
 G66751BK	N-linked	complex
@@ -5571,6 +6134,7 @@ G66991YE	O-linked	core 4
 G66992XO	N-linked	complex
 G66998OZ	N-linked	complex
 G66998XX	N-linked	
+G67020AY	N-linked	complex
 G67025AF	N-linked	
 G67030CA	N-linked	
 G67038VS	N-linked	
@@ -5582,6 +6146,7 @@ G67062YO	N-linked	high mannose
 G67065XE	N-linked	complex
 G67066JI	N-linked	complex
 G67079AO	N-linked	complex
+G67167QM	N-linked	
 G67173FM	N-linked	complex
 G67185CY	N-linked	complex
 G67191UH	N-linked	hybrid
@@ -5589,6 +6154,7 @@ G67196QU	N-linked	complex
 G67212WQ	O-linked	core 4
 G67215MI	N-linked	hybrid
 G67223RN	N-linked	complex
+G67227DY	N-linked	hybrid
 G67262JO	N-linked	
 G67265VZ	O-linked	core 6
 G67269NB	N-linked	hybrid
@@ -5625,11 +6191,15 @@ G67628PC	N-linked
 G67642SS	N-linked	complex
 G67646EV	N-linked	hybrid
 G67656PN	N-linked	complex
+G67660KD	N-linked	high mannose
 G67682CC	O-linked	core 1
 G67719WQ	N-linked	
+G67728UJ	N-linked	
 G67760NX	N-linked	complex
 G67767BR	N-linked	complex
-G67806KQ	N-linked	
+G67776JA	N-linked	
+G67782JV	N-linked	complex
+G67806KQ	N-linked	paucimannose
 G67855QE	N-linked	
 G67887EF	N-linked	hybrid
 G67895PX	N-linked	
@@ -5638,6 +6208,7 @@ G67913LB	N-linked
 G67915MO	N-linked	complex
 G67924FL	N-linked	
 G67942CH	N-linked	complex
+G67954RA	N-linked	high mannose
 G67967AS	N-linked	complex
 G67971GL	N-linked	high mannose
 G67976OZ	N-linked	
@@ -5651,6 +6222,7 @@ G68043NM	N-linked
 G68059HB	N-linked	complex
 G68062BK	O-linked	core 3
 G68080UR	N-linked	complex
+G68125GD	N-linked	complex
 G68140PE	N-linked	
 G68164MW	N-linked	
 G68175NA	N-linked	
@@ -5661,6 +6233,7 @@ G68200GL	O-linked	core 1
 G68203DZ	N-linked	complex
 G68209WQ	N-linked	
 G68221KD	N-linked	
+G68252UZ	N-linked	complex
 G68253RD	O-linked	core 4
 G68281CW	N-linked	complex
 G68283NG	N-linked	complex
@@ -5672,16 +6245,21 @@ G68345FH	N-linked
 G68354TY	N-linked	complex
 G68391RZ	O-linked	core 2
 G68395LV	N-linked	
+G68411DS	N-linked	hybrid
 G68412PR	O-linked	core 1
 G68427CL	N-linked	hybrid
 G68429EK	N-linked	
 G68442BQ	N-linked	complex
+G68452OO	N-linked	
 G68474CQ	N-linked	
 G68508VU	N-linked	complex
+G68546CJ	N-linked	complex
 G68556TO	N-linked	complex
 G68560MK	N-linked	complex
 G68563JG	O-linked	core 2
+G68578NZ	N-linked	complex
 G68614NL	O-linked	core 2
+G68615TX	O-linked	core 1
 G68651MF	N-linked	complex
 G68668TB	N-linked	high mannose
 G68679LW	N-linked	complex
@@ -5690,11 +6268,13 @@ G68691YG	N-linked
 G68696RQ	N-linked	complex
 G68698AP	N-linked	
 G68712AK	N-linked	complex
+G68713BO	O-linked	core 2
 G68732HN	N-linked	hybrid
 G68758PE	N-linked	complex
 G68774DG	N-linked	complex
 G68778FY	N-linked	complex
 G68780JJ	N-linked	
+G68795JE	N-linked	
 G68796SF	N-linked	
 G68800OF	N-linked	
 G68801RI	N-linked	complex
@@ -5706,6 +6286,7 @@ G68865YV	N-linked	complex
 G68866GS	N-linked	complex
 G68892PJ	N-linked	complex
 G68893BQ	O-linked	core 2
+G68903PJ	N-linked	complex
 G68907ZA	N-linked	complex
 G68908VL	N-linked	
 G68912OX	N-linked	
@@ -5718,6 +6299,7 @@ G68959TR	N-linked
 G68963BB	N-linked	complex
 G68964XC	O-linked	core 1
 G68969GZ	N-linked	
+G68985NT	N-linked	complex
 G68991BW	N-linked	complex
 G69018AJ	N-linked	complex
 G69022KK	O-linked	core 2
@@ -5728,8 +6310,11 @@ G69062KW	N-linked	complex
 G69082TL	N-linked	complex
 G69083KH	N-linked	complex
 G69086TY	N-linked	complex
+G69118GP	O-linked	core 2
 G69118IP	N-linked	complex
 G69121YI	N-linked	complex
+G69137CP	N-linked	
+G69148CH	N-linked	complex
 G69149KK	N-linked	complex
 G69164YL	N-linked	complex
 G69168XY	N-linked	complex
@@ -5746,6 +6331,7 @@ G69299FB	N-linked
 G69303AY	N-linked	complex
 G69315KN	N-linked	complex
 G69319YQ	N-linked	complex
+G69327YC	O-linked	core 1
 G69337UU	N-linked	
 G69390GI	N-linked	
 G69411IG	N-linked	
@@ -5758,6 +6344,8 @@ G69480BN	N-linked
 G69485SE	N-linked	complex
 G69500TM	O-linked	core 2
 G69575FS	N-linked	complex
+G69584VD	N-linked	complex
+G69585DZ	O-linked	core 3
 G69591OQ	N-linked	
 G69600TI	N-linked	complex
 G69672LF	N-linked	complex
@@ -5767,16 +6355,19 @@ G69725KG	N-linked	complex
 G69734OB	N-linked	
 G69735UM	O-linked	core 2
 G69745HX	N-linked	complex
+G69758TR	N-linked	hybrid
 G69762CO	O-linked	core 2
 G69774ND	O-linked	core 2
 G69788BR	O-linked	core 1
 G69802ND	N-linked	complex
+G69812OF	N-linked	complex
 G69813CQ	N-linked	complex
 G69905CP	N-linked	complex
 G69905EH	N-linked	complex
 G69912LP	N-linked	complex
 G69943PA	N-linked	complex
 G69957XS	N-linked	complex
+G69960SA	N-linked	hybrid
 G69964CA	N-linked	complex
 G69969LR	O-linked	core 1
 G69976JD	N-linked	complex
@@ -5787,6 +6378,7 @@ G69987TD	N-linked
 G69994YJ	N-linked	complex
 G70052MF	N-linked	hybrid
 G70059SD	N-linked	complex
+G70069EN	N-linked	complex
 G70072FZ	N-linked	complex
 G70073SG	N-linked	
 G70076VV	N-linked	complex
@@ -5800,8 +6392,10 @@ G70125XL	O-linked	core 2
 G70160EA	N-linked	high mannose
 G70163ZD	N-linked	complex
 G70165AM	O-linked	core 2
+G70192XQ	N-linked	
 G70194YY	N-linked	complex
 G70236HL	N-linked	complex
+G70241IE	N-linked	complex
 G70246WA	N-linked	
 G70248YW	N-linked	complex
 G70258ML	N-linked	
@@ -5811,12 +6405,15 @@ G70301QJ	N-linked	complex
 G70339XQ	N-linked	
 G70342DW	N-linked	complex
 G70355HG	N-linked	complex
+G70374KJ	N-linked	complex
 G70377VS	N-linked	
 G70382WT	N-linked	complex
 G70387YT	N-linked	
+G70410NP	N-linked	hybrid
 G70442IZ	N-linked	complex
 G70444FA	O-linked	core 1
 G70478PS	N-linked	complex
+G70486AZ	N-linked	complex
 G70490JW	N-linked	complex
 G70494TJ	N-linked	complex
 G70511VE	N-linked	complex
@@ -5828,8 +6425,10 @@ G70568SB	O-linked	core 1
 G70572KM	O-linked	core 1
 G70579MZ	O-linked	core 1
 G70582LE	O-linked	core 1
+G70583LH	N-linked	complex
 G70586HR	N-linked	
 G70590VH	O-linked	core 4
+G70593DF	N-linked	high mannose
 G70594XD	N-linked	complex
 G70596QH	N-linked	
 G70613ZY	N-linked	high mannose
@@ -5844,6 +6443,7 @@ G70693FX	O-linked	core 1
 G70708LW	N-linked	complex
 G70736PI	N-linked	
 G70751HC	N-linked	complex
+G70754FJ	N-linked	complex
 G70757BE	N-linked	
 G70757IC	N-linked	complex
 G70783BY	O-linked	core 2
@@ -5869,11 +6469,14 @@ G70978CR	N-linked
 G70991JO	N-linked	
 G71013KY	N-linked	complex
 G71017QR	N-linked	high mannose
+G71042XC	N-linked	hybrid
 G71063DT	N-linked	complex
 G71066WE	N-linked	
 G71071YT	N-linked	
+G71076CH	N-linked	complex
 G71077LD	O-linked	core 1
 G71094TJ	N-linked	complex
+G71102UV	N-linked	hybrid
 G71105IW	N-linked	complex
 G71118NV	N-linked	complex
 G71121NN	O-linked	core 2
@@ -5885,10 +6488,12 @@ G71156OO	N-linked	complex
 G71174VV	O-linked	core 2
 G71200GP	N-linked	
 G71202JE	O-linked	core 1
+G71204PH	N-linked	
 G71237SD	N-linked	complex
 G71247WG	O-linked	core 2
 G71249CV	O-linked	core 1
 G71255YR	N-linked	complex
+G71261YD	N-linked	complex
 G71269BI	N-linked	complex
 G71296WI	N-linked	complex
 G71298BD	N-linked	hybrid
@@ -5905,8 +6510,11 @@ G71341VM	N-linked
 G71356JZ	N-linked	complex
 G71360BB	N-linked	complex
 G71367OV	N-linked	complex
+G71378VQ	N-linked	
 G71388EZ	N-linked	
+G71388ZW	N-linked	
 G71397MM	N-linked	complex
+G71407IE	N-linked	
 G71409LF	O-linked	core 4
 G71431OY	N-linked	
 G71442FU	N-linked	complex
@@ -5921,11 +6529,13 @@ G71537VS	N-linked	hybrid
 G71549MK	N-linked	
 G71549TN	O-linked	core 1
 G71549XT	N-linked	
+G71575PR	O-linked	core 1
 G71602GO	N-linked	complex
 G71630AZ	O-linked	core 2
 G71652FK	N-linked	complex
 G71662HP	N-linked	complex
 G71679MX	N-linked	complex
+G71681UC	N-linked	
 G71690HK	N-linked	complex
 G71704AG	N-linked	complex
 G71714EQ	N-linked	
@@ -5950,6 +6560,9 @@ G71923IX	N-linked	complex
 G71957GO	N-linked	complex
 G71958XX	O-linked	core 3
 G71964JP	O-linked	core 2
+G71972AT	N-linked	hybrid
+G71989CT	O-linked	core 1
+G71989MV	N-linked	
 G71999UY	O-linked	core 2
 G72008IY	O-linked	core 1
 G72011DH	N-linked	complex
@@ -5961,6 +6574,7 @@ G72060AW	N-linked	complex
 G72067BD	N-linked	
 G72075FO	N-linked	complex
 G72079JG	N-linked	
+G72082VM	N-linked	complex
 G72085DL	N-linked	complex
 G72103RY	N-linked	
 G72103VZ	N-linked	
@@ -5983,13 +6597,16 @@ G72300VE	N-linked	complex
 G72304KR	O-linked	core 4
 G72309KR	N-linked	
 G72319HC	O-linked	core 1
+G72338UH	O-linked	core 1
 G72353NN	N-linked	complex
 G72356JA	N-linked	complex
+G72356TB	N-linked	complex
 G72356VO	N-linked	complex
 G72369ZI	N-linked	complex
 G72393PG	N-linked	high mannose
 G72406BE	N-linked	complex
 G72407WU	N-linked	complex
+G72411HX	N-linked	complex
 G72419BR	N-linked	
 G72442XA	N-linked	
 G72446TS	O-linked	core 2
@@ -5998,6 +6615,7 @@ G72475NE	N-linked	complex
 G72512NM	N-linked	complex
 G72527VN	N-linked	
 G72533FB	N-linked	complex
+G72536JI	N-linked	complex
 G72547ER	N-linked	complex
 G72580QS	N-linked	complex
 G72614KG	O-linked	core 4
@@ -6005,6 +6623,7 @@ G72626YH	N-linked
 G72647JE	O-linked	core 2
 G72662IG	N-linked	complex
 G72687GQ	N-linked	complex
+G72687PY	N-linked	complex
 G72690KN	N-linked	complex
 G72698LT	N-linked	complex
 G72718TT	N-linked	complex
@@ -6015,8 +6634,10 @@ G72758WN	N-linked	complex
 G72766JQ	N-linked	complex
 G72769FF	N-linked	complex
 G72771HB	N-linked	complex
+G72790LD	O-linked	core 2
 G72818RC	N-linked	
 G72821WX	N-linked	
+G72828OR	N-linked	complex
 G72851IY	N-linked	
 G72893LL	N-linked	
 G72900AG	O-linked	core 3
@@ -6029,10 +6650,12 @@ G72923FK	N-linked	complex
 G72937LG	N-linked	complex
 G72942AT	N-linked	
 G72952WX	N-linked	complex
+G72954IC	N-linked	high mannose
 G72954XC	N-linked	complex
 G72956NR	N-linked	
 G72974NP	N-linked	complex
 G73006TR	N-linked	complex
+G73019DE	O-linked	core 1
 G73029YR	N-linked	
 G73051OD	N-linked	
 G73057DA	N-linked	
@@ -6064,8 +6687,10 @@ G73455AR	N-linked
 G73492AT	N-linked	complex
 G73499UJ	N-linked	complex
 G73507OY	O-linked	core 2
+G73515IW	N-linked	complex
 G73517CY	N-linked	complex
 G73519FS	N-linked	
+G73520AV	N-linked	complex
 G73539WK	N-linked	complex
 G73560HZ	N-linked	complex
 G73572ZZ	N-linked	complex
@@ -6075,11 +6700,13 @@ G73582RP	O-linked	core 3
 G73643TI	N-linked	complex
 G73663PS	N-linked	complex
 G73683LQ	N-linked	complex
+G73716BT	N-linked	high mannose
 G73723ZY	O-linked	core 2
 G73752AL	N-linked	complex
 G73759SD	N-linked	complex
 G73763NQ	N-linked	complex
 G73775WR	N-linked	complex
+G73817GH	N-linked	complex
 G73825BL	N-linked	complex
 G73836ED	N-linked	complex
 G73866ZM	N-linked	complex
@@ -6089,13 +6716,16 @@ G73907HE	N-linked	complex
 G73913LV	O-linked	core 6
 G73915OF	N-linked	
 G73930OK	N-linked	complex
+G73946HM	N-linked	hybrid
 G73971ME	O-linked	core 3
+G73977KO	N-linked	complex
 G73991ZU	O-linked	core 3
 G73994XG	N-linked	
 G74004KO	N-linked	high mannose
 G74012OU	N-linked	
 G74038AG	O-linked	core 2
 G74049SP	O-linked	core 1
+G74054RO	N-linked	high mannose
 G74066YL	N-linked	
 G74074HU	N-linked	complex
 G74090KZ	N-linked	
@@ -6106,8 +6736,10 @@ G74111MH	N-linked
 G74111QE	N-linked	
 G74120DW	N-linked	complex
 G74120KH	N-linked	complex
+G74179EL	O-linked	core 1
 G74238CC	N-linked	complex
 G74239ZQ	N-linked	complex
+G74241QD	O-linked	core 2
 G74242PX	O-linked	core 4
 G74242UP	N-linked	complex
 G74246AM	N-linked	
@@ -6140,6 +6772,7 @@ G74508NJ	N-linked	complex
 G74518AV	N-linked	complex
 G74541EU	N-linked	high mannose
 G74542HC	O-linked	core 2
+G74554CO	O-linked	core 2
 G74563LV	O-linked	core 6
 G74571ZF	N-linked	high mannose
 G74574VX	N-linked	complex
@@ -6159,6 +6792,7 @@ G74758HW	O-linked	core 1
 G74772YG	N-linked	
 G74788NK	N-linked	complex
 G74793LO	O-linked	core 3
+G74807KC	N-linked	complex
 G74809AE	N-linked	high mannose
 G74814DO	N-linked	complex
 G74814JR	O-linked	core 2
@@ -6178,7 +6812,9 @@ G74933IS	N-linked
 G74945NC	O-linked	core 1
 G74960IM	O-linked	core 5
 G74962RY	N-linked	
+G74966SW	N-linked	hybrid
 G74975UG	O-linked	core 2
+G74981KB	N-linked	complex
 G74986SQ	N-linked	complex
 G74992YO	O-linked	core 1
 G75023MF	N-linked	
@@ -6197,6 +6833,7 @@ G75097UM	N-linked
 G75107JX	N-linked	complex
 G75113PZ	O-linked	core 3
 G75120WS	N-linked	complex
+G75121VU	O-linked	core 1
 G75143LK	N-linked	complex
 G75168BA	O-linked	core 1
 G75185NU	N-linked	complex
@@ -6210,14 +6847,19 @@ G75310PZ	N-linked	complex
 G75311GD	N-linked	
 G75314QO	N-linked	complex
 G75318VB	N-linked	complex
+G75327CG	N-linked	complex
 G75333EX	N-linked	complex
 G75339TN	N-linked	
 G75345ZM	N-linked	
 G75348SF	N-linked	complex
+G75355YV	N-linked	complex
 G75359HS	N-linked	hybrid
+G75376YT	O-linked	core 1
 G75381NI	N-linked	complex
+G75389LS	O-linked	core 1
 G75398ZA	N-linked	complex
 G75410AW	N-linked	
+G75412QZ	N-linked	complex
 G75439BK	N-linked	complex
 G75445NA	N-linked	complex
 G75472JW	N-linked	
@@ -6250,6 +6892,7 @@ G75697JJ	N-linked	complex
 G75698JE	N-linked	
 G75701BM	N-linked	complex
 G75704ZB	N-linked	complex
+G75710HI	O-linked	core 1
 G75712YX	N-linked	complex
 G75717AV	O-linked	core 1
 G75727PF	N-linked	complex
@@ -6260,6 +6903,7 @@ G75750DH	N-linked	complex
 G75764FQ	N-linked	complex
 G75786FQ	O-linked	core 2
 G75798PH	N-linked	
+G75811ON	N-linked	high mannose
 G75812MR	N-linked	
 G75817RU	N-linked	complex
 G75824WJ	N-linked	complex
@@ -6272,11 +6916,13 @@ G75850OP	N-linked	complex
 G75853FN	N-linked	complex
 G75859QM	N-linked	
 G75860QV	N-linked	complex
+G75868SR	O-linked	core 3
 G75896PD	N-linked	hybrid
 G75896QL	N-linked	high mannose
 G75902JL	N-linked	complex
 G75903TQ	N-linked	complex
 G75927AR	N-linked	
+G75935HW	N-linked	complex
 G75937YG	N-linked	complex
 G75972ZC	N-linked	complex
 G75977KH	N-linked	complex
@@ -6317,6 +6963,7 @@ G76370ST	N-linked	complex
 G76384QV	N-linked	complex
 G76387IG	O-linked	core 2
 G76389HC	O-linked	core 2
+G76408CE	N-linked	complex
 G76420FO	O-linked	core 2
 G76422GC	N-linked	complex
 G76430NK	N-linked	complex
@@ -6325,6 +6972,7 @@ G76478FT	N-linked	complex
 G76481US	O-linked	core 4
 G76489QB	N-linked	complex
 G76496FO	N-linked	
+G76504RH	N-linked	complex
 G76504TU	N-linked	hybrid
 G76505ZE	O-linked	core 2
 G76519VT	N-linked	
@@ -6336,6 +6984,7 @@ G76582OA	N-linked	complex
 G76583MP	N-linked	complex
 G76599PL	N-linked	complex
 G76603DR	O-linked	core 1
+G76603UJ	N-linked	complex
 G76607YV	O-linked	core 1
 G76645JW	N-linked	
 G76666KS	N-linked	high mannose
@@ -6346,9 +6995,11 @@ G76703CC	O-linked	core 2
 G76705RJ	N-linked	complex
 G76705YY	N-linked	complex
 G76710EM	N-linked	hybrid
+G76713YY	N-linked	
 G76746DW	N-linked	complex
 G76763LN	O-linked	core 3
 G76781AI	N-linked	complex
+G76802ZU	N-linked	complex
 G76807JB	N-linked	hybrid
 G76812VG	N-linked	complex
 G76824BS	N-linked	
@@ -6362,6 +7013,7 @@ G76945TE	N-linked	complex
 G76975IV	N-linked	
 G76980RS	N-linked	complex
 G76983CM	N-linked	complex
+G76986IU	N-linked	hybrid
 G76997PL	O-linked	core 1
 G77025HC	N-linked	
 G77037YG	N-linked	complex
@@ -6386,26 +7038,34 @@ G77218JF	O-linked	core 3
 G77244ZA	N-linked	complex
 G77252PU	N-linked	complex
 G77282MO	N-linked	complex
+G77310FC	N-linked	hybrid
 G77371VZ	N-linked	
 G77384FE	N-linked	complex
+G77385XQ	N-linked	complex
 G77396HT	N-linked	complex
 G77408FM	N-linked	complex
 G77447DK	N-linked	
 G77451VF	N-linked	complex
 G77459ND	N-linked	
 G77466MH	N-linked	complex
+G77467SI	N-linked	complex
 G77475MM	N-linked	complex
 G77477NL	O-linked	core 1
 G77479VH	N-linked	
+G77485UZ	N-linked	complex
 G77498XG	N-linked	complex
 G77503IE	O-linked	core 2
 G77521TX	N-linked	complex
 G77537OB	N-linked	complex
 G77550KK	O-linked	core 2
+G77561JZ	N-linked	complex
+G77562VR	N-linked	hybrid
 G77608VQ	N-linked	complex
 G77621PZ	N-linked	
+G77633IZ	O-linked	core 2
 G77639OD	N-linked	complex
 G77646FX	N-linked	complex
+G77657MH	N-linked	complex
 G77679NJ	N-linked	
 G77696JC	N-linked	complex
 G77725ZE	N-linked	
@@ -6418,6 +7078,7 @@ G77812KJ	N-linked	complex
 G77852EK	N-linked	high mannose
 G77858IX	N-linked	
 G77861QN	N-linked	complex
+G77889NO	N-linked	complex
 G77915NM	N-linked	complex
 G77915WT	O-linked	core 3
 G77922WZ	N-linked	
@@ -6426,6 +7087,7 @@ G77938WM	O-linked	core 6
 G77939VD	N-linked	complex
 G77964WB	N-linked	
 G77974XY	N-linked	complex
+G77997TA	N-linked	complex
 G78000JX	N-linked	complex
 G78003VE	N-linked	complex
 G78011JO	N-linked	complex
@@ -6441,6 +7103,7 @@ G78097CL	N-linked	complex
 G78098GH	N-linked	complex
 G78106KK	O-linked	core 4
 G78108ZM	O-linked	core 3
+G78136QC	N-linked	hybrid
 G78155FK	N-linked	complex
 G78157SE	N-linked	
 G78161IO	N-linked	complex
@@ -6451,15 +7114,18 @@ G78205VT	N-linked	complex
 G78211AM	N-linked	complex
 G78239VB	N-linked	
 G78261DB	N-linked	
+G78266GU	N-linked	complex
 G78276SQ	N-linked	complex
 G78279JR	N-linked	
 G78280YO	N-linked	high mannose
+G78304UB	N-linked	
 G78308MA	N-linked	complex
 G78315BS	O-linked	core 3
 G78315FS	O-linked	core 2
 G78325SJ	N-linked	
 G78333MH	O-linked	core 3
 G78341DP	N-linked	
+G78341OF	N-linked	complex
 G78342SP	N-linked	
 G78368CZ	N-linked	
 G78369LH	O-linked	core 1
@@ -6474,13 +7140,19 @@ G78481LC	N-linked
 G78502FJ	N-linked	hybrid
 G78503JC	N-linked	complex
 G78509IY	N-linked	complex
+G78513VM	N-linked	
+G78519JI	O-linked	core 2
 G78525CL	N-linked	
 G78555BT	N-linked	complex
 G78577JJ	N-linked	
+G78597QW	N-linked	complex
+G78602KL	N-linked	
 G78608GK	N-linked	complex
 G78617GO	O-linked	core 2
+G78625LN	N-linked	complex
 G78627AJ	N-linked	complex
 G78644BR	N-linked	
+G78644SZ	N-linked	hybrid
 G78648QN	N-linked	complex
 G78661LW	N-linked	complex
 G78681QL	N-linked	complex
@@ -6495,6 +7167,7 @@ G78768UQ	N-linked	complex
 G78779MC	N-linked	
 G78803YD	N-linked	complex
 G78813BX	N-linked	complex
+G78841KJ	N-linked	complex
 G78848UG	N-linked	complex
 G78863BJ	N-linked	complex
 G78885XB	N-linked	
@@ -6509,6 +7182,7 @@ G78951XL	N-linked
 G78956IC	N-linked	complex
 G78980OK	N-linked	hybrid
 G78992FU	O-linked	core 2
+G79010UT	N-linked	complex
 G79014VD	N-linked	complex
 G79017QZ	O-linked	core 6
 G79018NX	N-linked	complex
@@ -6517,6 +7191,8 @@ G79029VZ	N-linked
 G79037RU	N-linked	complex
 G79051IT	N-linked	hybrid
 G79066FM	N-linked	complex
+G79066ZG	N-linked	
+G79071YL	N-linked	
 G79083TK	N-linked	complex
 G79083TY	O-linked	core 2
 G79084MU	N-linked	complex
@@ -6554,6 +7230,7 @@ G79370VG	N-linked
 G79388JI	N-linked	
 G79394LC	N-linked	complex
 G79404OF	N-linked	complex
+G79412GP	N-linked	complex
 G79416RI	N-linked	complex
 G79457WN	N-linked	complex
 G79464QJ	O-linked	core 2
@@ -6564,13 +7241,19 @@ G79508LR	N-linked
 G79508WH	N-linked	hybrid
 G79518SC	N-linked	complex
 G79520GQ	N-linked	complex
+G79523YN	N-linked	
+G79546WW	N-linked	hybrid
 G79552AN	N-linked	complex
 G79556AB	N-linked	complex
+G79564AD	N-linked	complex
 G79564YR	N-linked	complex
 G79565XA	N-linked	complex
 G79578JB	N-linked	complex
 G79595QQ	N-linked	complex
+G79609RF	N-linked	complex
 G79617NL	N-linked	complex
+G79643VQ	N-linked	
+G79662AK	N-linked	complex
 G79702QE	N-linked	complex
 G79713BZ	N-linked	hybrid
 G79726HB	N-linked	
@@ -6605,18 +7288,21 @@ G80098ET	N-linked	complex
 G80123ZU	N-linked	complex
 G80124PG	N-linked	complex
 G80138RC	N-linked	complex
+G80142NN	N-linked	
 G80147HT	O-linked	core 2
 G80147LG	N-linked	complex
 G80155BS	N-linked	
 G80155SP	O-linked	core 1
 G80163ME	N-linked	complex
 G80176YK	O-linked	core 4
+G80194BT	N-linked	complex
 G80200DN	N-linked	complex
 G80201UB	N-linked	complex
 G80202YF	N-linked	complex
 G80211PE	N-linked	complex
 G80218BM	N-linked	complex
 G80228NL	N-linked	
+G80251DR	O-linked	core 1
 G80264ZA	N-linked	complex
 G80268ZC	N-linked	complex
 G80281PU	O-linked	core 3
@@ -6630,6 +7316,8 @@ G80355WT	N-linked
 G80366RR	N-linked	complex
 G80382WR	N-linked	complex
 G80393PG	N-linked	complex
+G80416YI	O-linked	core 1
+G80439QE	N-linked	complex
 G80443OV	N-linked	complex
 G80487YW	N-linked	complex
 G80510YA	N-linked	complex
@@ -6645,6 +7333,7 @@ G80612BO	N-linked	complex
 G80637VS	N-linked	complex
 G80643JD	O-linked	core 2
 G80650PW	N-linked	
+G80652ZF	N-linked	complex
 G80654ZK	N-linked	complex
 G80661IW	N-linked	complex
 G80661YI	N-linked	
@@ -6663,10 +7352,13 @@ G80804PR	N-linked	complex
 G80858MF	N-linked	complex
 G80903UK	O-linked	core 2
 G80920TO	N-linked	complex
+G80932OW	N-linked	complex
 G80943NY	N-linked	complex
 G80945SX	N-linked	high mannose
+G80952QT	N-linked	complex
 G80962OX	N-linked	complex
 G80966KZ	N-linked	high mannose
+G80986RU	N-linked	complex
 G81016SV	O-linked	core 5
 G81041HS	O-linked	core 2
 G81070NY	N-linked	complex
@@ -6703,11 +7395,13 @@ G81356WP	N-linked	complex
 G81358TE	N-linked	complex
 G81384WY	N-linked	
 G81389EF	N-linked	complex
+G81392TU	N-linked	complex
 G81397LO	N-linked	complex
 G81397TP	N-linked	complex
 G81410HG	N-linked	complex
 G81413UE	N-linked	complex
 G81430ON	N-linked	complex
+G81432SH	N-linked	complex
 G81439BR	O-linked	core 1
 G81459MV	N-linked	complex
 G81466NG	O-linked	core 1
@@ -6724,6 +7418,8 @@ G81581UV	N-linked
 G81604KV	N-linked	complex
 G81632WR	O-linked	core 2
 G81650EZ	N-linked	complex
+G81663ZI	N-linked	complex
+G81680BU	O-linked	core 2
 G81711SM	N-linked	complex
 G81728BG	N-linked	complex
 G81738MQ	N-linked	complex
@@ -6735,6 +7431,7 @@ G81813WJ	N-linked	complex
 G81832XS	O-linked	core 1
 G81869MY	N-linked	complex
 G81873QA	N-linked	complex
+G81874HD	N-linked	
 G81874XM	N-linked	complex
 G81877PA	N-linked	complex
 G81898FC	N-linked	complex
@@ -6780,9 +7477,11 @@ G82312JY	N-linked	complex
 G82320NZ	N-linked	complex
 G82324DC	O-linked	core 2
 G82341NZ	N-linked	complex
-G82348BZ	N-linked	
+G82348BZ	N-linked	paucimannose
 G82356VZ	N-linked	
+G82357WL	N-linked	complex
 G82362HL	O-linked	core 2
+G82363EY	O-linked	core 1
 G82368PU	N-linked	complex
 G82381FE	N-linked	complex
 G82388RB	N-linked	complex
@@ -6794,6 +7493,7 @@ G82417CI	N-linked	complex
 G82420AC	N-linked	complex
 G82420SH	N-linked	complex
 G82458BB	N-linked	complex
+G82466NI	N-linked	
 G82487CR	N-linked	complex
 G82512PT	O-linked	core 2
 G82514MH	N-linked	
@@ -6809,6 +7509,7 @@ G82664ZC	N-linked	complex
 G82675BX	N-linked	complex
 G82680EC	N-linked	
 G82699NN	N-linked	complex
+G82701UX	N-linked	
 G82719GT	N-linked	complex
 G82724NW	N-linked	complex
 G82728DG	N-linked	complex
@@ -6817,6 +7518,7 @@ G82753OZ	N-linked	complex
 G82761BO	N-linked	complex
 G82763XK	N-linked	complex
 G82779CI	N-linked	complex
+G82782PE	N-linked	complex
 G82801WV	N-linked	complex
 G82802AE	N-linked	complex
 G82811EP	N-linked	complex
@@ -6834,23 +7536,29 @@ G82881HF	O-linked	core 1
 G82886WI	N-linked	
 G82889XG	N-linked	
 G82894XV	N-linked	complex
+G82917RE	N-linked	
+G82921XU	N-linked	
 G82924BW	N-linked	
 G82942ZJ	N-linked	hybrid
 G82950HY	O-linked	core 2
 G82953UJ	N-linked	
+G82954PR	N-linked	complex
 G82955EQ	N-linked	complex
+G82977OF	N-linked	complex
 G83001IJ	N-linked	
 G83006TR	N-linked	complex
 G83009TH	N-linked	
 G83022ZQ	N-linked	complex
 G83062JW	N-linked	complex
 G83092KU	O-linked	core 2
+G83101KA	N-linked	complex
 G83104JJ	O-linked	core 1
 G83106XM	N-linked	complex
 G83134ZR	O-linked	core 2
 G83159ZN	N-linked	
 G83161QT	N-linked	high mannose
 G83165OA	N-linked	complex
+G83192EO	O-linked	core 2
 G83192FQ	N-linked	complex
 G83200RP	N-linked	
 G83204BU	N-linked	
@@ -6877,6 +7585,7 @@ G83382OZ	N-linked
 G83386PJ	N-linked	complex
 G83393GK	N-linked	
 G83402YY	N-linked	complex
+G83412BV	O-linked	core 1
 G83417GO	N-linked	
 G83423JP	N-linked	complex
 G83425EJ	N-linked	complex
@@ -6893,12 +7602,16 @@ G83541HL	N-linked	complex
 G83553MC	N-linked	
 G83568RU	N-linked	
 G83582BK	N-linked	
+G83588YY	N-linked	complex
+G83594ZB	N-linked	complex
 G83600PQ	N-linked	high mannose
 G83624CJ	N-linked	
 G83635VI	N-linked	complex
+G83643ND	O-linked	core 3
 G83644CC	N-linked	complex
 G83645LY	N-linked	complex
 G83653PM	N-linked	
+G83666RE	N-linked	
 G83689NL	N-linked	complex
 G83709GS	N-linked	complex
 G83710OS	N-linked	complex
@@ -6910,6 +7623,7 @@ G83737UD	N-linked	complex
 G83738AG	N-linked	complex
 G83754KL	O-linked	core 2
 G83833IM	O-linked	core 1
+G83845ZV	N-linked	
 G83892WB	N-linked	complex
 G83926PC	N-linked	complex
 G83928WG	N-linked	complex
@@ -6919,12 +7633,16 @@ G83948CA	N-linked
 G83950JR	O-linked	core 1
 G83957LU	N-linked	
 G83958MI	N-linked	
+G83971HS	N-linked	complex
 G83992YN	N-linked	complex
+G83998HE	O-linked	core 2
 G84000CM	N-linked	
+G84038SS	N-linked	complex
 G84041GN	N-linked	complex
 G84064AY	N-linked	hybrid
 G84106ZV	N-linked	complex
 G84108IZ	N-linked	complex
+G84147VQ	O-linked	core 3
 G84153KU	N-linked	complex
 G84155GY	N-linked	
 G84160ZT	N-linked	
@@ -6934,6 +7652,7 @@ G84181KU	N-linked	complex
 G84186YN	N-linked	complex
 G84222WV	N-linked	
 G84223RT	N-linked	complex
+G84226PM	O-linked	core 1
 G84227HS	N-linked	complex
 G84228AV	N-linked	complex
 G84228OY	O-linked	core 2
@@ -6949,9 +7668,11 @@ G84362VL	N-linked
 G84363RQ	N-linked	complex
 G84368MT	N-linked	complex
 G84369XK	N-linked	complex
+G84371FJ	N-linked	complex
 G84376FR	N-linked	complex
 G84390MS	N-linked	complex
 G84398ZW	O-linked	core 2
+G84423SZ	N-linked	complex
 G84467IZ	N-linked	complex
 G84480OF	N-linked	complex
 G84494PZ	N-linked	complex
@@ -6962,6 +7683,7 @@ G84532IX	O-linked	core 1
 G84532YF	N-linked	complex
 G84536BM	N-linked	complex
 G84540IP	N-linked	
+G84542XB	N-linked	
 G84543RP	N-linked	complex
 G84552CD	N-linked	
 G84553QQ	N-linked	
@@ -6973,16 +7695,20 @@ G84674JQ	N-linked	complex
 G84678BK	N-linked	complex
 G84680HD	N-linked	complex
 G84689MX	N-linked	complex
+G84692YW	N-linked	
 G84709FG	N-linked	complex
 G84712FF	N-linked	complex
 G84712FX	N-linked	complex
 G84753IL	N-linked	complex
 G84756CG	N-linked	complex
+G84764CL	N-linked	high mannose
+G84776VF	N-linked	complex
 G84777MO	N-linked	complex
 G84778XH	N-linked	complex
 G84783XD	N-linked	complex
-G84811LS	N-linked	
+G84811LS	N-linked	paucimannose
 G84818UM	O-linked	core 2
+G84821OV	O-linked	core 2
 G84852GW	N-linked	
 G84853WN	O-linked	core 2
 G84874EV	N-linked	complex
@@ -7010,16 +7736,23 @@ G85100QD	N-linked
 G85101OA	N-linked	complex
 G85106DS	N-linked	complex
 G85116XO	N-linked	complex
+G85116ZD	N-linked	
 G85121LW	N-linked	high mannose
 G85121UD	N-linked	hybrid
 G85122WC	N-linked	complex
+G85139RC	N-linked	high mannose
+G85141ZP	N-linked	high mannose
 G85159UF	N-linked	
 G85176IW	N-linked	hybrid
+G85180ML	N-linked	complex
 G85192EG	N-linked	complex
 G85194VU	N-linked	complex
 G85196QC	N-linked	complex
 G85200FA	N-linked	high mannose
 G85200GZ	N-linked	complex
+G85208SY	N-linked	complex
+G85213FQ	N-linked	
+G85213IC	O-linked	core 2
 G85213NF	O-linked	core 6
 G85250EQ	N-linked	
 G85256OK	N-linked	
@@ -7052,6 +7785,7 @@ G85595RO	O-linked	core 1
 G85599NG	N-linked	
 G85608AG	O-linked	core 2
 G85633MF	O-linked	core 2
+G85650LS	N-linked	complex
 G85652EW	N-linked	complex
 G85652RK	N-linked	complex
 G85656BP	N-linked	complex
@@ -7066,6 +7800,7 @@ G85734JO	O-linked	core 6
 G85737WG	N-linked	
 G85755BV	N-linked	complex
 G85767HW	N-linked	complex
+G85768QF	N-linked	complex
 G85795PL	N-linked	hybrid
 G85828UH	O-linked	core 2
 G85839YN	N-linked	complex
@@ -7073,8 +7808,10 @@ G85862MS	O-linked	core 5
 G85882GP	N-linked	complex
 G85885QD	N-linked	
 G85890AG	O-linked	core 4
+G85891FA	N-linked	hybrid
 G85891RL	N-linked	complex
 G85895SP	N-linked	
+G85900AY	N-linked	high mannose
 G85972OZ	O-linked	core 1
 G85989DY	N-linked	complex
 G86002PC	N-linked	
@@ -7095,9 +7832,12 @@ G86191DF	N-linked
 G86199GK	O-linked	core 2
 G86202BL	N-linked	complex
 G86215UQ	N-linked	complex
+G86270DU	N-linked	
 G86280ZQ	N-linked	complex
 G86282DQ	N-linked	complex
+G86294AN	O-linked	core 1
 G86294KR	N-linked	complex
+G86294MW	N-linked	complex
 G86298IX	N-linked	complex
 G86321OX	N-linked	complex
 G86357DX	N-linked	complex
@@ -7115,6 +7855,7 @@ G86401DW	N-linked	complex
 G86414TE	N-linked	complex
 G86445KR	N-linked	hybrid
 G86450IC	O-linked	core 1
+G86466QK	N-linked	complex
 G86469VE	O-linked	core 1
 G86471YN	N-linked	complex
 G86475BX	N-linked	complex
@@ -7131,6 +7872,8 @@ G86533KK	O-linked	core 3
 G86537AD	O-linked	core 2
 G86555OF	N-linked	hybrid
 G86582QF	N-linked	
+G86598ZY	N-linked	complex
+G86601RH	N-linked	paucimannose
 G86606NT	N-linked	complex
 G86632ZU	N-linked	complex
 G86654CJ	N-linked	
@@ -7151,11 +7894,13 @@ G86770JF	N-linked	complex
 G86781KH	N-linked	complex
 G86782KC	N-linked	complex
 G86789PZ	N-linked	complex
+G86809TI	N-linked	complex
 G86822MM	N-linked	hybrid
 G86837CD	N-linked	complex
 G86852HZ	N-linked	
 G86869CZ	N-linked	complex
 G86881ZW	N-linked	complex
+G86884BW	N-linked	complex
 G86904UH	N-linked	complex
 G86912FM	N-linked	complex
 G86928SV	N-linked	complex
@@ -7173,10 +7918,14 @@ G87136DV	N-linked	complex
 G87138HL	N-linked	high mannose
 G87139MR	N-linked	hybrid
 G87140NS	N-linked	complex
+G87178PF	N-linked	
 G87181RG	N-linked	
+G87187SG	N-linked	hybrid
+G87192TH	N-linked	complex
 G87202LK	N-linked	complex
 G87202UX	N-linked	complex
 G87217OF	N-linked	complex
+G87222YB	N-linked	complex
 G87256FP	O-linked	core 1
 G87260SO	N-linked	complex
 G87267JO	N-linked	
@@ -7198,12 +7947,14 @@ G87433AX	N-linked	complex
 G87444MS	O-linked	core 1
 G87457SB	N-linked	complex
 G87489PB	N-linked	
+G87504BP	N-linked	complex
 G87505EW	N-linked	complex
 G87513SK	N-linked	complex
 G87519TU	N-linked	complex
 G87535DG	N-linked	complex
 G87550UN	N-linked	
 G87557PZ	N-linked	
+G87574LM	O-linked	core 2
 G87618BG	N-linked	high mannose
 G87633UQ	N-linked	complex
 G87639RD	N-linked	complex
@@ -7243,8 +7994,10 @@ G87984PA	O-linked	core 2
 G87996EB	O-linked	core 1
 G88027AL	N-linked	complex
 G88035KQ	O-linked	core 1
+G88038QS	N-linked	complex
 G88067KZ	N-linked	
 G88068QT	N-linked	complex
+G88069QW	N-linked	complex
 G88089UV	O-linked	core 3
 G88094DN	N-linked	complex
 G88122BX	O-linked	core 3
@@ -7310,7 +8063,6 @@ G88818UA	N-linked	complex
 G88827CD	N-linked	hybrid
 G88828CK	O-linked	core 3
 G88864RV	N-linked	complex
-G88865JK	N-linked	
 G88876JD	N-linked	complex
 G88876JQ	N-linked	complex
 G88884NJ	N-linked	complex
@@ -7347,12 +8099,13 @@ G89194TJ	O-linked	core 1
 G89210OT	O-linked	core 2
 G89230YO	O-linked	core 3
 G89241QS	N-linked	
+G89253ZV	N-linked	high mannose
 G89255EP	N-linked	complex
 G89261EQ	N-linked	complex
 G89264ZR	N-linked	
 G89285HT	N-linked	complex
 G89285QP	N-linked	complex
-G89290XU	N-linked	
+G89290XU	N-linked	paucimannose
 G89315II	O-linked	core 2
 G89319AW	N-linked	
 G89325VN	N-linked	complex
@@ -7370,13 +8123,17 @@ G89425XZ	N-linked	complex
 G89466MK	N-linked	
 G89498BT	N-linked	complex
 G89532GI	N-linked	complex
+G89539AQ	N-linked	complex
+G89547PG	N-linked	complex
 G89561DW	N-linked	complex
 G89585FG	O-linked	core 1
 G89587BP	N-linked	
+G89603EU	O-linked	core 1
 G89611JH	O-linked	core 1
 G89620UQ	N-linked	complex
 G89624LF	N-linked	
 G89637WE	N-linked	complex
+G89637YC	N-linked	hybrid
 G89641ZV	N-linked	complex
 G89654YT	N-linked	complex
 G89663TB	N-linked	complex
@@ -7386,11 +8143,12 @@ G89721BJ	O-linked	core 1
 G89738LW	N-linked	
 G89738UT	N-linked	
 G89748NG	O-linked	core 2
-G89797IW	N-linked	
+G89797IW	N-linked	paucimannose
 G89799OK	N-linked	complex
 G89808TP	N-linked	complex
 G89816MU	O-linked	core 2
 G89826GE	N-linked	complex
+G89838LO	N-linked	
 G89845CN	N-linked	
 G89846HT	N-linked	complex
 G89864BN	N-linked	high mannose
@@ -7406,6 +8164,7 @@ G89946SW	O-linked	core 1
 G89949WN	N-linked	complex
 G89970IY	N-linked	complex
 G89993FE	N-linked	complex
+G90000WS	N-linked	
 G90017UO	N-linked	complex
 G90028HY	N-linked	complex
 G90033AN	N-linked	complex
@@ -7420,6 +8179,9 @@ G90107JW	N-linked
 G90111MD	N-linked	complex
 G90130AG	N-linked	complex
 G90146ME	O-linked	core 2
+G90150OT	N-linked	hybrid
+G90163GT	N-linked	complex
+G90175OT	N-linked	
 G90182FM	O-linked	core 2
 G90202LF	N-linked	
 G90204HK	N-linked	complex
@@ -7428,8 +8190,11 @@ G90206GU	N-linked
 G90211BB	N-linked	complex
 G90221FQ	O-linked	core 3
 G90223GH	N-linked	complex
+G90244AZ	N-linked	
+G90284FM	N-linked	complex
 G90295ID	O-linked	core 2
 G90304FZ	N-linked	complex
+G90333LS	O-linked	core 5
 G90334GI	O-linked	core 1
 G90348RI	N-linked	complex
 G90350EB	O-linked	core 2
@@ -7437,6 +8202,7 @@ G90352XZ	N-linked	complex
 G90356TP	N-linked	complex
 G90363CW	N-linked	
 G90364OQ	N-linked	complex
+G90396JH	N-linked	
 G90402OU	O-linked	core 3
 G90423CD	O-linked	core 4
 G90426CG	N-linked	complex
@@ -7451,6 +8217,7 @@ G90484GL	N-linked
 G90509QW	N-linked	complex
 G90542MP	N-linked	complex
 G90543DL	N-linked	complex
+G90564EX	N-linked	complex
 G90575VK	O-linked	core 2
 G90596ME	N-linked	complex
 G90598OC	N-linked	complex
@@ -7470,10 +8237,12 @@ G90712YJ	N-linked	complex
 G90717TP	N-linked	complex
 G90719NY	O-linked	core 1
 G90725ZC	N-linked	complex
+G90739UE	O-linked	core 1
 G90743AT	N-linked	
 G90746ZG	O-linked	core 2
 G90766ZI	N-linked	hybrid
 G90769IN	N-linked	complex
+G90774IS	N-linked	
 G90779DH	N-linked	complex
 G90784AP	N-linked	complex
 G90789YQ	N-linked	
@@ -7486,6 +8255,8 @@ G90870DG	N-linked	complex
 G90882XB	N-linked	complex
 G90889KG	N-linked	complex
 G90922MJ	N-linked	
+G90928ZN	O-linked	core 3
+G90937WW	O-linked	core 2
 G90950UC	N-linked	complex
 G90966FR	N-linked	
 G90983BT	N-linked	complex
@@ -7504,6 +8275,7 @@ G91103IY	N-linked	complex
 G91121ZF	N-linked	complex
 G91130VE	N-linked	
 G91151XY	N-linked	complex
+G91177IA	N-linked	complex
 G91180QG	N-linked	complex
 G91181WA	O-linked	core 2
 G91199QX	N-linked	complex
@@ -7511,6 +8283,7 @@ G91208VE	N-linked	complex
 G91215YF	N-linked	
 G91219PM	N-linked	
 G91227PM	O-linked	core 2
+G91227VL	N-linked	complex
 G91236EO	O-linked	core 1
 G91247EH	N-linked	complex
 G91247WI	N-linked	complex
@@ -7522,6 +8295,7 @@ G91303GW	N-linked	complex
 G91312MX	N-linked	complex
 G91313DF	O-linked	core 4
 G91322IG	N-linked	
+G91330NI	N-linked	complex
 G91337ZP	N-linked	complex
 G91345JE	N-linked	complex
 G91365ZQ	N-linked	complex
@@ -7538,6 +8312,7 @@ G91459EI	O-linked	core 2
 G91470EV	N-linked	complex
 G91471TQ	N-linked	
 G91484JV	O-linked	core 1
+G91484XT	O-linked	core 1
 G91487MA	N-linked	complex
 G91503PY	N-linked	complex
 G91511MZ	N-linked	complex
@@ -7552,6 +8327,7 @@ G91627PX	O-linked	core 1
 G91637SF	O-linked	core 2
 G91644JA	N-linked	
 G91704UR	N-linked	high mannose
+G91718UR	O-linked	core 2
 G91729DG	N-linked	
 G91732VA	O-linked	core 2
 G91743DM	N-linked	high mannose
@@ -7560,10 +8336,12 @@ G91775YA	O-linked	core 1
 G91819LE	N-linked	high mannose
 G91827TX	N-linked	complex
 G91832SW	N-linked	complex
+G91847ME	N-linked	hybrid
 G91873GT	N-linked	complex
 G91875JA	O-linked	core 2
 G91905FJ	N-linked	complex
 G91948CG	N-linked	
+G91954DE	N-linked	hybrid
 G91972CK	N-linked	
 G91979JZ	N-linked	
 G92008YL	N-linked	
@@ -7587,6 +8365,7 @@ G92188CK	N-linked	high mannose
 G92219PK	N-linked	complex
 G92241FG	N-linked	complex
 G92257YN	N-linked	
+G92278VP	N-linked	hybrid
 G92279JC	N-linked	complex
 G92288VU	N-linked	
 G92289SP	N-linked	complex
@@ -7616,7 +8395,7 @@ G92570PJ	N-linked	hybrid
 G92574YO	N-linked	complex
 G92575UZ	N-linked	complex
 G92594VG	N-linked	complex
-G92612ZM	N-linked	
+G92612ZM	N-linked	paucimannose
 G92617LF	N-linked	complex
 G92627GM	N-linked	complex
 G92681HQ	N-linked	complex
@@ -7635,7 +8414,9 @@ G92826BL	N-linked	complex
 G92848CF	N-linked	complex
 G92848QA	N-linked	
 G92854IJ	N-linked	complex
+G92882FR	N-linked	
 G92908SH	N-linked	
+G92918FJ	N-linked	complex
 G92918JF	N-linked	
 G92940AF	N-linked	complex
 G92974UU	N-linked	high mannose
@@ -7649,6 +8430,7 @@ G93045SX	O-linked	core 2
 G93048PP	N-linked	complex
 G93054SS	N-linked	
 G93058GD	N-linked	complex
+G93075HW	N-linked	hybrid
 G93088EE	N-linked	high mannose
 G93096CK	N-linked	
 G93107BF	N-linked	hybrid
@@ -7664,12 +8446,16 @@ G93176JI	N-linked	complex
 G93193OD	N-linked	complex
 G93198UO	N-linked	complex
 G93204KY	N-linked	complex
+G93211HX	N-linked	
+G93265QH	N-linked	
 G93279TH	N-linked	complex
 G93279YE	O-linked	core 2
 G93284HQ	N-linked	complex
+G93285LF	N-linked	complex
 G93299MA	N-linked	high mannose
 G93309ZC	O-linked	core 2
 G93310KW	N-linked	
+G93317NJ	N-linked	complex
 G93320VA	N-linked	complex
 G93324RN	N-linked	complex
 G93365SG	N-linked	complex
@@ -7690,6 +8476,7 @@ G93520MA	O-linked	core 1
 G93520OM	O-linked	core 2
 G93523MF	O-linked	core 1
 G93526OI	O-linked	core 1
+G93527UH	N-linked	high mannose
 G93542VJ	N-linked	
 G93575MM	N-linked	
 G93597FN	O-linked	core 2
@@ -7702,6 +8489,7 @@ G93655SG	N-linked	complex
 G93698KA	N-linked	complex
 G93707PO	N-linked	hybrid
 G93720QH	N-linked	complex
+G93722FJ	N-linked	complex
 G93742BI	N-linked	complex
 G93746CY	N-linked	complex
 G93758YP	N-linked	complex
@@ -7730,6 +8518,7 @@ G93922AL	N-linked	complex
 G93930NP	N-linked	
 G93933CG	N-linked	complex
 G93934MI	N-linked	
+G93939TT	O-linked	core 2
 G93975QL	N-linked	
 G93986UQ	N-linked	
 G93993PD	N-linked	high mannose
@@ -7743,15 +8532,19 @@ G94019IV	N-linked	complex
 G94027HD	N-linked	complex
 G94045IP	N-linked	complex
 G94047VH	N-linked	complex
+G94070CG	N-linked	hybrid
 G94097IH	N-linked	complex
 G94113YV	N-linked	
 G94116NC	N-linked	complex
 G94120DZ	N-linked	
+G94132EL	N-linked	
 G94141FZ	N-linked	complex
+G94150XA	N-linked	complex
 G94156YI	N-linked	
 G94161VQ	O-linked	core 1
 G94163JU	N-linked	
 G94163JZ	N-linked	complex
+G94166OZ	N-linked	
 G94166QX	N-linked	
 G94177LC	N-linked	complex
 G94180RN	O-linked	core 3
@@ -7764,12 +8557,15 @@ G94264FX	O-linked	core 1
 G94267KU	N-linked	complex
 G94277TH	N-linked	complex
 G94296FS	N-linked	hybrid
+G94297FY	N-linked	
 G94322NS	N-linked	complex
 G94363RH	N-linked	complex
 G94366XH	N-linked	complex
+G94371ES	O-linked	core 4
 G94373HA	N-linked	
 G94394GK	N-linked	complex
 G94396RB	N-linked	complex
+G94401RA	N-linked	complex
 G94416QP	O-linked	core 4
 G94423NC	N-linked	complex
 G94435QH	O-linked	core 1
@@ -7787,11 +8583,13 @@ G94543DB	N-linked	complex
 G94566ZN	O-linked	core 3
 G94568XL	N-linked	
 G94595ZZ	O-linked	core 2
+G94600JO	N-linked	
 G94610SC	N-linked	complex
 G94626AX	N-linked	complex
 G94666VJ	N-linked	
 G94679TQ	N-linked	complex
 G94692TX	N-linked	
+G94702LB	N-linked	
 G94705OR	O-linked	core 1
 G94718HG	N-linked	
 G94733WZ	N-linked	complex
@@ -7820,6 +8618,8 @@ G94973XS	N-linked	complex
 G94975UV	N-linked	complex
 G94979RS	N-linked	complex
 G94989HM	N-linked	
+G95006CL	O-linked	core 1
+G95010JN	N-linked	complex
 G95019KZ	N-linked	complex
 G95081VM	N-linked	complex
 G95109CV	N-linked	complex
@@ -7828,6 +8628,7 @@ G95151JF	O-linked	core 2
 G95166FG	N-linked	
 G95186HE	N-linked	complex
 G95198OA	N-linked	hybrid
+G95201NS	N-linked	complex
 G95206VT	N-linked	
 G95218UC	N-linked	complex
 G95222PD	N-linked	complex
@@ -7839,6 +8640,8 @@ G95251MI	N-linked	complex
 G95259QI	O-linked	core 2
 G95260HV	N-linked	complex
 G95271EU	N-linked	complex
+G95272YB	N-linked	
+G95273QR	N-linked	complex
 G95294MZ	N-linked	complex
 G95298UR	N-linked	complex
 G95324VU	O-linked	core 2
@@ -7852,6 +8655,7 @@ G95368PR	N-linked
 G95382MF	N-linked	
 G95393JS	N-linked	
 G95402JB	N-linked	
+G95404EQ	N-linked	complex
 G95415LS	N-linked	
 G95423TN	N-linked	complex
 G95426VJ	N-linked	complex
@@ -7866,6 +8670,7 @@ G95512GZ	N-linked	complex
 G95513KP	N-linked	
 G95536UW	N-linked	complex
 G95542JQ	N-linked	complex
+G95560ML	O-linked	core 2
 G95575GS	N-linked	
 G95617FJ	N-linked	complex
 G95633RJ	N-linked	high mannose
@@ -7881,6 +8686,7 @@ G95706CX	O-linked	core 3
 G95713LQ	N-linked	
 G95720YT	N-linked	
 G95721QY	N-linked	
+G95729FI	N-linked	
 G95732UV	N-linked	
 G95759LT	N-linked	complex
 G95761EB	N-linked	complex
@@ -7896,6 +8702,7 @@ G95901MC	N-linked
 G95910WJ	N-linked	complex
 G95919TI	N-linked	complex
 G95924JX	N-linked	complex
+G95940WS	N-linked	complex
 G95952ST	N-linked	
 G95956WE	N-linked	
 G95963DM	N-linked	high mannose
@@ -7910,6 +8717,7 @@ G96014TN	N-linked	complex
 G96017QA	O-linked	core 2
 G96024GG	N-linked	high mannose
 G96057TO	O-linked	core 1
+G96060VZ	N-linked	
 G96063MG	N-linked	complex
 G96066HD	O-linked	core 2
 G96079KC	N-linked	complex
@@ -7939,13 +8747,16 @@ G96417PJ	N-linked
 G96430HF	N-linked	
 G96444IW	N-linked	complex
 G96463EY	O-linked	core 2
+G96484SJ	N-linked	complex
 G96489SM	N-linked	complex
 G96503EZ	N-linked	complex
 G96508BN	N-linked	complex
 G96540EH	O-linked	core 2
 G96569DL	N-linked	
+G96576WB	O-linked	core 2
 G96578MW	N-linked	complex
 G96579KL	N-linked	complex
+G96585HS	N-linked	hybrid
 G96587VR	N-linked	complex
 G96622FI	O-linked	core 2
 G96622LK	N-linked	complex
@@ -7961,6 +8772,7 @@ G96768SN	N-linked
 G96771UL	N-linked	
 G96794ZC	N-linked	complex
 G96852FA	N-linked	complex
+G96852SM	N-linked	complex
 G96861IW	N-linked	complex
 G96866DI	N-linked	
 G96867EP	N-linked	complex
@@ -7984,7 +8796,10 @@ G97007IY	N-linked	complex
 G97023FS	N-linked	
 G97028UT	N-linked	
 G97037FD	N-linked	
+G97039HI	N-linked	complex
 G97052YY	N-linked	
+G97057SU	N-linked	
+G97066VR	N-linked	
 G97067GW	N-linked	
 G97078FW	N-linked	complex
 G97083VO	O-linked	core 3
@@ -7994,10 +8809,10 @@ G97101NC	N-linked	complex
 G97105ZG	N-linked	complex
 G97109LT	N-linked	complex
 G97123TW	N-linked	complex
-G97129CF	N-linked	
 G97130PD	N-linked	complex
 G97160DA	O-linked	core 1
 G97166FW	N-linked	high mannose
+G97179UV	N-linked	
 G97185IQ	N-linked	complex
 G97213ID	O-linked	core 1
 G97234ZU	N-linked	complex
@@ -8012,11 +8827,13 @@ G97345NY	O-linked	core 2
 G97352VJ	N-linked	complex
 G97367IY	N-linked	complex
 G97423PY	N-linked	
+G97436VY	O-linked	core 2
 G97452SL	O-linked	core 3
 G97453GF	N-linked	complex
 G97455PT	N-linked	high mannose
 G97459BD	N-linked	complex
 G97473TX	O-linked	core 2
+G97474SU	O-linked	core 4
 G97483RC	N-linked	
 G97487DU	N-linked	complex
 G97494HI	O-linked	core 2
@@ -8027,6 +8844,7 @@ G97539CG	N-linked	complex
 G97545TB	N-linked	
 G97545UW	N-linked	complex
 G97548TA	N-linked	complex
+G97553OZ	O-linked	core 2
 G97564QK	N-linked	
 G97575FW	N-linked	hybrid
 G97576UM	N-linked	
@@ -8039,17 +8857,21 @@ G97644GG	O-linked	core 1
 G97645ML	N-linked	complex
 G97657WO	O-linked	core 2
 G97674NY	N-linked	complex
+G97682ZN	N-linked	complex
 G97686QU	N-linked	hybrid
 G97693ZT	N-linked	complex
 G97709WW	N-linked	complex
 G97720QM	N-linked	
 G97765TT	N-linked	complex
+G97781PB	O-linked	core 1
 G97793RN	O-linked	core 6
 G97798SS	N-linked	
 G97805EZ	N-linked	complex
 G97814YJ	N-linked	complex
 G97823BP	N-linked	complex
+G97828HF	N-linked	
 G97831CJ	N-linked	
+G97832AX	N-linked	complex
 G97832IV	N-linked	complex
 G97834OQ	O-linked	core 5
 G97840DJ	O-linked	core 4
@@ -8081,6 +8903,7 @@ G98068RN	N-linked
 G98073MH	O-linked	core 2
 G98112EU	N-linked	complex
 G98115AV	N-linked	complex
+G98117HW	N-linked	hybrid
 G98127AN	O-linked	core 3
 G98131ZY	N-linked	
 G98132BH	N-linked	complex
@@ -8088,6 +8911,7 @@ G98140IX	N-linked
 G98159BN	N-linked	complex
 G98178JY	N-linked	
 G98190RD	N-linked	complex
+G98200VV	O-linked	core 1
 G98205FV	N-linked	
 G98207CW	N-linked	complex
 G98211UF	N-linked	complex
@@ -8104,10 +8928,12 @@ G98338IO	N-linked
 G98348QS	N-linked	complex
 G98366ZJ	N-linked	complex
 G98369DU	N-linked	complex
+G98380JU	N-linked	complex
 G98393IW	O-linked	core 1
 G98412TA	O-linked	core 2
 G98417SQ	O-linked	core 1
 G98425JK	N-linked	
+G98428TW	N-linked	hybrid
 G98452OT	N-linked	complex
 G98453VS	N-linked	complex
 G98455QP	N-linked	
@@ -8122,6 +8948,8 @@ G98557ZA	N-linked	complex
 G98559XP	N-linked	complex
 G98565KP	N-linked	complex
 G98568VG	N-linked	complex
+G98572JS	N-linked	complex
+G98590PE	N-linked	complex
 G98602UY	N-linked	hybrid
 G98615GD	N-linked	complex
 G98666DD	N-linked	
@@ -8136,8 +8964,11 @@ G98723AA	N-linked	hybrid
 G98725UL	N-linked	complex
 G98728LU	N-linked	
 G98732QD	N-linked	complex
+G98732ZL	N-linked	complex
 G98736SM	N-linked	complex
+G98766GK	N-linked	hybrid
 G98790NR	N-linked	complex
+G98795XC	N-linked	
 G98809PE	N-linked	complex
 G98836DL	N-linked	complex
 G98852TR	N-linked	complex
@@ -8187,11 +9018,13 @@ G99342HD	N-linked	complex
 G99354AR	O-linked	core 2
 G99354MR	N-linked	complex
 G99356PZ	N-linked	
+G99370TQ	N-linked	hybrid
 G99372JL	O-linked	core 2
 G99372TR	N-linked	complex
 G99382AP	N-linked	complex
 G99390JL	N-linked	complex
 G99393DF	N-linked	complex
+G99402IB	O-linked	core 3
 G99403QU	N-linked	complex
 G99411XJ	N-linked	complex
 G99419RR	N-linked	
@@ -8203,10 +9036,12 @@ G99465IE	N-linked	complex
 G99493HM	N-linked	
 G99502WP	N-linked	complex
 G99503MW	N-linked	complex
+G99505XE	N-linked	complex
 G99507PM	O-linked	core 6
 G99511DI	N-linked	complex
 G99516QU	N-linked	
 G99518NJ	N-linked	
+G99519QZ	N-linked	
 G99527BL	O-linked	core 1
 G99533GU	N-linked	complex
 G99533KM	N-linked	
@@ -8225,6 +9060,7 @@ G99683ND	N-linked
 G99689NZ	N-linked	
 G99729IU	N-linked	complex
 G99738HT	O-linked	core 2
+G99738PW	O-linked	core 2
 G99770NO	N-linked	complex
 G99796NW	N-linked	complex
 G99797PH	N-linked	complex
@@ -8247,3 +9083,4 @@ G99954ZJ	N-linked	complex
 G99969SS	N-linked	hybrid
 G99981ST	N-linked	complex
 G99992LL	N-linked	complex
+G99997WS	N-linked	

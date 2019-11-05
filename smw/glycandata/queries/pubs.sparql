@@ -3,11 +3,16 @@ PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
 SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?PubMedID)
        (?source as ?Source)
+       (?sourceid as ?SourceID)
 WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann1 glycandata:property "Publication" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:source ?source .
-  ?ann1 glycandata:hasglycan ?glycan .
+  ?ann1 glycandata:hasglycan ?glycan
+  OPTIONAL {
+    ?ann1 glycandata:sourceid ?sourceid0
+  }
+  BIND(IF(BOUND(?sourceid0),?sourceid0,IF(?source="GlyTouCan",?accession,"")) as ?sourceid)
 }
-ORDER BY ?accession ?value ?source
+ORDER BY ?accession ?value ?source ?sourceid 

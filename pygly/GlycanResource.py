@@ -351,13 +351,62 @@ class GlyTouCan(TripleStoreResource):
 	for row in self.query_taxonomy():
 	    yield row['accession'],row['taxon']
 
+    def gettopo(self,accession):
+	for row in self.query_topology(accession=accession):
+	    yield row['topology']
+
+    def alltopo(self):
+	for row in self.query_topology():
+	    yield row['accession'],row['topology']
+
+    def getcomp(self,accession):
+	for acc in set(list(self.gettopo(accession)) + [accession]):
+	    for row in self.query_composition(accession=acc):
+	        yield row['composition']
+
+    def allcomp(self):
+        topo = defaultdict(set)
+        for s, t in self.alltopo():
+            topo[t].add(s)
+        seen = set()
+        for row in self.query_composition():
+	    t,c = row['accession'],row['composition']
+            for s in topo[t]:
+                if (s, c) not in seen:
+                    seen.add((s, c))
+                    yield s, c
+                if (c, c) not in seen:
+                    seen.add((c, c))
+                    yield c, c
+
+    def getbasecomp(self,accession):
+	for acc in set(list(self.getcomp(accession))+[accession]):
+	    for row in self.query_basecomposition(accession=acc):
+	        yield row['basecomposition']
+
+    def allbasecomp(self):
+	comp = defaultdict(set)
+	for s, c in self.allcomp():
+	    comp[c].add(s)
+	seen = set()
+	for row in self.query_basecomposition():
+	    c,bc = row['accession'],row['basecomposition']
+	    for s in comp[c]:
+		if (s,bc) not in seen:
+		    seen.add((s,bc))
+		    yield s, bc
+		if (bc,bc) not in seen:
+		    seen.add((bc,bc))
+		    yield bc,bc
+
 class UniCarbKBTS(TripleStoreResource):
 
     endpt = "http://130.56.249.35:40935/unicarbkb/query"
     defns = "http://rdf.unicarbkb.org/structure/"
 
     def __init__(self):
-	super(UniCarbKBTS,self).__init__(iniFile="unicarbkb.ini")
+	iniFile = os.path.join(os.path.dirname(os.path.realpath(__file__)),"unicarbkb.ini")
+	super(UniCarbKBTS,self).__init__(iniFile=iniFile)
 
     def alltaxa(self):
 	for row in self.query_taxonomy():
@@ -405,7 +454,7 @@ class UniCarbKBDump(object):
     def allpub(self):
 	seen = set()
 	for row in self.records():
-	    if not row['Pmid']:
+	    if not row['Pmid'] or row['Pmid'] == "0":
 		continue
 	    data = (row['Id'],row['Pmid'])
 	    if data in seen:
