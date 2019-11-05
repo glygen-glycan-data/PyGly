@@ -14,6 +14,7 @@
 |MonosaccharideDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.monosaccharidedb.org/display_monosaccharide.action?id=xxx xxx]</span>|,&thinsp;}}
 |PDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.rcsb.org/structure/xxx xxx]</span>|,&thinsp;}}
 |CFG={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.functionalglycomics.org/glycomics/CarbohydrateServlet?pageType=view&view=view&operationType=view&carbId=xxx&sideMenu=no xxx]</span>|,&thinsp;}}
+|ChEBI={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.ebi.ac.uk/chebi/searchId.do?chebiId=xxx xxx]</span>|,&thinsp;}}
 |{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
 }}
 | style="width: 150px;" | {{{3}}}
