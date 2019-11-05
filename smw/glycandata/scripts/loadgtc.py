@@ -105,39 +105,41 @@ for gtcacc in accessions(sys.argv[1:]):
                      property='Publication',
                      source='GlyTouCan', type='Publication')
 
+    # get this stuff from GNOme, now...
     g.delete_annotations(source='GlyTouCan',type='Subsumption')
-    topo = gtc.gettopo(gtcacc)
-    if topo:
-        g.set_annotation(value=topo,
-                         property='Topology',
-                         source='GlyTouCan', type='Subsumption')
-    comp = gtc.getcomp(gtcacc)
-    if comp:
-        g.set_annotation(value=comp,
-                         property='Composition',
-                         source='GlyTouCan', type='Subsumption')
-    basecomp = gtc.getbasecomp(gtcacc)
-    if basecomp:
-        g.set_annotation(value=basecomp,
-                         property='BaseComposition',
-                         source='GlyTouCan', type='Subsumption')
 
-    if gtcacc == topo:
-        g.set_annotation(value='Topology',
-                         property='SubsumptionLevel',
-                         source='GlyTouCan', type='Subsumption')
-    elif gtcacc == comp:
-        g.set_annotation(value='Composition',
-                         property='SubsumptionLevel',
-                         source='GlyTouCan', type='Subsumption')
-    elif gtcacc == basecomp:
-        g.set_annotation(value='BaseComposition',
-                         property='SubsumptionLevel',
-                         source='GlyTouCan', type='Subsumption')
-    else:
-        g.set_annotation(value='Saccharide',
-                         property='SubsumptionLevel',
-                         source='GlyTouCan', type='Subsumption')
+    # topo = gtc.gettopo(gtcacc)
+    # if topo:
+    #    g.set_annotation(value=topo,
+    #                     property='Topology',
+    #                     source='GlyTouCan', type='Subsumption')
+    # comp = gtc.getcomp(gtcacc)
+    # if comp:
+    #     g.set_annotation(value=comp,
+    #                      property='Composition',
+    #                      source='GlyTouCan', type='Subsumption')
+    # basecomp = gtc.getbasecomp(gtcacc)
+    # if basecomp:
+    #     g.set_annotation(value=basecomp,
+    #                      property='BaseComposition',
+    #                      source='GlyTouCan', type='Subsumption')
+
+    # if gtcacc == topo:
+    #     g.set_annotation(value='Topology',
+    #                      property='SubsumptionLevel',
+    #                      source='GlyTouCan', type='Subsumption')
+    # elif gtcacc == comp:
+    #     g.set_annotation(value='Composition',
+    #                      property='SubsumptionLevel',
+    #                      source='GlyTouCan', type='Subsumption')
+    # elif gtcacc == basecomp:
+    #     g.set_annotation(value='BaseComposition',
+    #                      property='SubsumptionLevel',
+    #                      source='GlyTouCan', type='Subsumption')
+    # else:
+    #     g.set_annotation(value='Saccharide',
+    #                      property='SubsumptionLevel',
+    #                      source='GlyTouCan', type='Subsumption')
     
     if w.put(g):
 	if newgly:

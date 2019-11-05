@@ -4,6 +4,10 @@ import sys
 from operator import itemgetter
 
 from getwiki import GlycanData, Glycan
+
+from pygly.GlyNLinkedFilter import GlyNLinkedFilter
+mnlc = GlyNLinkedFilter(None).test1
+
 w = GlycanData()
 
 motif_rules_data = """
@@ -63,6 +67,16 @@ for m in iterglycan():
 	mancount = 0
 
     try:
+        glcnaccount = int(m.get_annotation_value('GlcNAcCount',source='EdwardsLab'))
+    except LookupError:
+	glcnaccount = 0
+
+    try:
+        fuccount = int(m.get_annotation_value('FucCount',source='EdwardsLab'))
+    except LookupError:
+	fuccount = 0
+
+    try:
         xxxcount = int(m.get_annotation_value('XxxCount',source='EdwardsLab'))
     except LookupError:
 	xxxcount = 0
@@ -105,6 +119,14 @@ for m in iterglycan():
     # Check for additional issues...
     if types == ["N-linked"] and subtypes == ["high mannose"] and count > 0 and (mancount + 2) != count:
         subtypes = []
+
+    # Paucimannose
+    if subtypes == [] and count <= 6:
+	g = m.getGlycan()
+	if (g and not g.undetermined() and mnlc(g) and count <= 4) or (types == ["N-linked"] and count in (5,6)):
+	    if count == (mancount + glcnaccount + fuccount) and glcnaccount == 2 and (count == 5 and fuccount == 0) or (count == 6 and fuccount == 1):
+	        types = ["N-linked"]
+	        subtypes = ['paucimannose']
 
     if len(types) > 0:
         m.set_annotation(value=types[0], property='GlycanType',
