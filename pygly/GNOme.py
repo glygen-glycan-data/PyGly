@@ -259,12 +259,34 @@ class GNOme(object):
             for k, v in sorted(g.attributes(acc).items()):
                 print "  %s: %s" % (k, v)
 
-    def toViewerData(self, subsumption_raw_file_path ,output_file_path):
+        def get_cb_button_str(self, acc):
+        for s, p, o in self.triples(None, "gno:00000101", None):
+            if acc == self.accession(s):
+                return o
+
+    ics2dp = re.compile(r"(\D{3,6})(\d{1,2})")
+    def iupac_composition_str_to_dict(self, s):
+        res = {}
+        for p in self.ics2dp.findall(s):
+            res[p[0]] = int(p[1])
+        return res
+
+    def get_cbbutton(self, acc):
+        return self.iupac_composition_str_to_dict(self.get_cb_button_str(acc))
+
+    def all_cbbutton(self):
+        res = {}
+        for s, p, o in self.triples(None, "gno:00000101", None):
+            acc = self.accession(s)
+            res[acc] = self.iupac_composition_str_to_dict(o)
+        return res
+
+    def toViewerData(self, output_file_path1, output_file_path2):
         res = {}
         issueList = []
 
-        iupac_composition_getter = SubsumptionGraph()
-        iupac_composition_getter.loaddata(subsumption_raw_file_path)
+        all_comp = self.all_cbbutton()
+        data_composition = {}
 
         for n in self.nodes():
             t = ""
@@ -273,12 +295,21 @@ class GNOme(object):
             elif self.istopology(n):
                 t = "topology"
             else:
+                f1 = self.iscomposition(n)
+                f2 = self.isbasecomposition(n)
+
+                if f1 or f2:
+                    data_composition[n] = {"comp": all_comp[n]}
+                    if f1:
+                        data_composition[n]["type"] = "composition"
+                    else:
+                        data_composition[n]["type"] = "basecomposition"
                 continue
 
             try:
-                comp = iupac_composition_getter.get_iupac_composition_for_viewer(n)
+                comp = all_comp[n]
             except:
-                print >>sys.stderr, "%s iupac composition is not found" % n
+                print >> sys.stderr, "%s iupac composition is not found" % n
                 issueList.append(n)
                 continue
 
@@ -287,23 +318,40 @@ class GNOme(object):
             per["type"] = t
             per["comp"] = comp
 
-            top = False
-            parents = list(self.parents(n))
-            if parents:
-                top = True
-            for p in parents:
-                if self.istopology(p) or self.issaccharide(p):
-                    top = False
-                    break
-
-            if top and self.istopology(n):
-                per["top"] = True
-
             res[n] = per
 
-        f = open(output_file_path, "w")
+        for n, component in res.items():
+            comp = component["comp"]
+            t = component["type"]
+            if t != "topology":
+                continue
+
+            parent = list(self.parents(n))
+            topflag = True
+            for p in parent:
+                try:
+                    comp_p = all_comp[p]
+                    tors = self.issaccharide(p) or self.istopology(p)
+                except:
+                    continue
+
+                if not tors:
+                    continue
+
+                if comp == comp_p:
+                    topflag = False
+                    break
+
+            if topflag:
+                component["top"] = True
+
+        f = open(output_file_path1, "w")
         f.write(json.dumps(res))
         f.close()
+
+        f2 = open(output_file_path2, "w")
+        f2.write(json.dumps(data_composition))
+        f2.close()
 
 
 from alignment import GlycanSubsumption, GlycanEqual
@@ -703,7 +751,7 @@ class SubsumptionGraph:
 
         allmass = list()
         for m in self.raw_data.keys():
-            self.allnodestype[m] = "molecular weight"
+            self.allnodestype[m] =  (m, "molecular weight", None, None, None)
             allmass.append(m)
             top = set(raw_data[m]["nodes"].keys())
             for chilren in raw_data[m]["edges"].values():
@@ -843,6 +891,13 @@ class SubsumptionGraph:
             res["Xxx"] = xxx
         return res
 
+    def get_iupac_composition_str_for_viewer(self, accession):
+        s = ""
+        d = self.get_iupac_composition_for_viewer(accession)
+        for iupac in sorted(d.keys()):
+            s += iupac+str(d[iupac])
+        return s
+
     def has_basecomposition(self, accession):
         assert self.isbasecomposition(accession), accession
 	if self.get_basecomposition(accession) == accession:
@@ -927,6 +982,13 @@ class SubsumptionGraph:
             for n in nodes:
                 # molecular weight has a space between two words
                 r.addNode(n, nodetype=self.level(n))
+                node_obj = r.getNode(n)
+                node_obj.set_basecomposition(self.get_basecomposition(n))
+                node_obj.set_composition(self.get_composition(n))
+                node_obj.set_topology(self.get_topology(n))
+                node_obj.set_iupac_composition(self.get_iupac_composition_str_for_viewer(n))
+
+
             nodes.add(mass)
 
             for n in nodes:
@@ -1017,6 +1079,8 @@ class OWLWriter():
     glytoucan_id_annotation_property = 22
     glytoucan_link_annotation_property = 23
 
+    cbbutton_annotation_property = 101
+
     subsumption_level = {
 
         "molecularweight": {"id": 12,
@@ -1090,6 +1154,27 @@ class OWLWriter():
                        "seeAlso": ["rocs:Linkage_defined_saccharide"]
                        },
 
+    }
+
+    has_subsumption_level = {
+
+        "basecomposition": {
+            "id": 33,
+            "label": "has_basecomposition",
+            "definition": """A metadata relation between a glycan and a glycan, with subsumption level basecomposition, that is equivalent to the glycan after the removal of all glycosidic bonds linking its monosaccharides and all monosaccharide stereochemistry information."""
+        },
+
+        "composition": {
+            "id": 34,
+            "label": "has_composition",
+            "definition": """A metadata relation between a glycan and a glycan, with subsumption level composition, that is equivalent to the glycan after the removal of all glycosidic bonds linking its monosaccharides."""
+        },
+
+        "topology": {
+            "id": 35,
+            "label": "has_topology",
+            "definition": """A metadata relation between a glycan and a glycan, with subsumption level topology, that is equivalent to the glycan after the removal of all linkage positions and anomeric configurations."""
+        }
     }
 
     def gnoid(self, id):
@@ -1212,6 +1297,28 @@ class OWLWriter():
                 ns, term = sa.split(":")
                 outputGraph.add((rdfNode, rdfs.seeAlso, eval("%s.%s" % (ns, term))))
 
+        # Add AnnotationProperty for 3 different has subsumption level
+        has_xxx_nodes = {}
+        for sl in ("basecomposition", "composition", "topology"):
+            has_xxx_node = self.gnouri(self.has_subsumption_level[sl]["id"])
+
+            outputGraph.add((has_xxx_node, rdf.type, owl.AnnotationProperty))
+            outputGraph.add((has_xxx_node, rdfs.label, Literal(self.has_subsumption_level[sl]["label"])))
+            outputGraph.add((has_xxx_node, definition, Literal(self.has_subsumption_level[sl]["definition"])))
+
+            has_xxx_nodes[sl] = has_xxx_node
+
+        has_topology_node = has_xxx_nodes["topology"]
+        has_composition_node = has_xxx_nodes["composition"]
+        has_basecomposition_node = has_xxx_nodes["basecomposition"]
+
+        # Add AnnotationProperty for IUPAC composition (for the viewer)
+        cbbutton_node = self.gnouri(self.cbbutton_annotation_property)
+
+        outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((cbbutton_node, rdfs.label, Literal("CB button")))
+
+
         # Glycan class under OWL things
         rdfNode = self.gnouri(self.glycan_class)
 
@@ -1254,6 +1361,23 @@ class OWLWriter():
                 outputGraph.add((rdfNode, definition,
                                  Literal(
                                      "A glycan characterized by underivitized molecular weight of %s Daltons" % n.getID())))
+
+            bcomp_acc = n.get_basecomposition()
+            comp_acc = n.get_composition()
+            topo_acc = n.get_topology()
+            if bcomp_acc:
+                outputGraph.add((rdfNode, has_basecomposition_node, self.gnouri(bcomp_acc)))
+            if comp_acc:
+                outputGraph.add((rdfNode, has_composition_node, self.gnouri(comp_acc)))
+            if topo_acc:
+                outputGraph.add((rdfNode, has_topology_node, self.gnouri(topo_acc)))
+
+            cbbutton_str = n.get_iupac_composition()
+            if cbbutton_str:
+                outputGraph.add((rdfNode, cbbutton_node, Literal(cbbutton_str)))
+
+
+
 
         for l in self.allRelationship():
             if l.getEdgeType() == "subsumes":
@@ -1378,6 +1502,43 @@ class NormalNode:
             res.append(l.getoppositenode(self))
         return res
 
+    def set_basecomposition(self, bc):
+        self._basecomposition = bc
+
+    def get_basecomposition(self):
+        try:
+            return self._basecomposition
+        except AttributeError:
+            return None
+
+    def set_composition(self, c):
+        self._composition = c
+
+    def get_composition(self):
+        try:
+            return self._composition
+        except AttributeError:
+            return None
+
+    def set_topology(self, topology):
+        self._topology = topology
+
+    def get_topology(self):
+        try:
+            return self._topology
+        except AttributeError:
+            return None
+
+    def set_iupac_composition(self, ic):
+        self._iupac_composition_str = ic
+
+    def get_iupac_composition(self):
+        try:
+            return self._iupac_composition_str
+        except AttributeError:
+            return None
+
+
 
 class NormalLink:
     _id = None
@@ -1494,10 +1655,10 @@ if __name__ == "__main__":
             sys.exit(1)
 
         ifn = sys.argv[1]
-        ofn = sys.argv[3]
-        subsumption_raw_file_path = sys.argv[2]
+        ofn_data = sys.argv[2]
+        ofn_comp = sys.argv[3]
         gnome = GNOme(resource=ifn)
-        gnome.toViewerData(subsumption_raw_file_path ,ofn)
+        gnome.toViewerData(ofn_data, ofn_comp)
 
     else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
