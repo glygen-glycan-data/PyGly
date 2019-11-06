@@ -20,13 +20,13 @@ fi
 
 git clone git@github.com:glygen-glycan-data/GNOme.git
 python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal $1
-python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.browser.json
+python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.browser.composition.json
 
 
 for Restriction_set in "${restriction_set_names[@]}"
 do
   python27 ../pygly/GNOme.py writeresowl ./GNOme.owl $Restriction_set ./GNOme_$Restriction_set.owl
-  python27 ../pygly/GNOme.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme_$Restriction_set.browser.json
+  python27 ../pygly/GNOme.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme_$Restriction_set.browser.json ./GNOme_$Restriction_set.browser.composition.json
 done
 
 
@@ -36,9 +36,8 @@ mv ./GNOme.* ./GNOme/
 
 for Restriction_set in "${restriction_set_names[@]}"
 do
-	for file_ext in "owl" "obo" "json" "browser.json"
+	for file_ext in "owl" "obo" "json" "browser.json" "browser.composition.json"
   do
-      # touch ./GNOme_$Restriction_set.$file_ext
     	mv ./GNOme_$Restriction_set.$file_ext ./GNOme/restrictions/
   done
 done
