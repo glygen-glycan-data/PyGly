@@ -114,7 +114,7 @@ function loadSVG() {
         graphtype: "chromatogram",
         zoomHeight: true,
         width: pot.clientWidth * 0.995,
-        titleTag: "h4"
+        titleTag: "h3"
     };
 
     if (showxic) {
@@ -132,7 +132,7 @@ function loadSVG() {
             spectra: "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + sc + '.json',
             width: pot.clientWidth * 0.995,
             title: title,
-            titleTag: "h4",
+            titleTag: "h3",
             zoomgroup: 3
         };
 
