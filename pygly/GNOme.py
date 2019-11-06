@@ -259,7 +259,7 @@ class GNOme(object):
             for k, v in sorted(g.attributes(acc).items()):
                 print "  %s: %s" % (k, v)
 
-        def get_cb_button_str(self, acc):
+    def get_cb_button_str(self, acc):
         for s, p, o in self.triples(None, "gno:00000101", None):
             if acc == self.accession(s):
                 return o
