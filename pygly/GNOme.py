@@ -363,7 +363,7 @@ class SubsumptionGraph:
         pass
 
     def compute(self, *args, **kwargs):
-        self.gtc = GlyTouCan(usecache=True,verbose=True)
+        self.gtc = GlyTouCan(usecache=True)
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
         self.verbose = kwargs.get('verbose', 0)
