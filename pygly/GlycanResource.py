@@ -3,10 +3,14 @@ from ReferenceTable import ReferenceTable
 import os, os.path, sys, time, traceback
 from collections import defaultdict
 from lockfile import FileLock
+import shelve
 import cPickle as pickle
 import gzip
 import csv
 import urllib
+
+from GlycanFormatter import WURCS20Format, GlycoCTFormat, GlycanParseError
+from WURCS20MonoFormatter import WURCS20MonoFormat, UnsupportedSkeletonCodeError
 
 import warnings                                                                                                 
 warnings.filterwarnings('ignore')
@@ -29,8 +33,11 @@ class GlycanResource(ReferenceTable):
         self._lastrequesttime = 0
         self._requestcount = 0
 
-        self._cache = None
         self.attr(kw,"cachefile",default=None)
+	if self._cachefile:
+	    self._cacheondisk = shelve.open(self._cachefile,flag='c')
+	    self._cache = {}
+	    self._cachedirty = {}
         
         super(GlycanResource,self).__init__(iniFile=kw.get('iniFile'))
 
@@ -40,27 +47,13 @@ class GlycanResource(ReferenceTable):
         filelock = FileLock(self._cachefile)
         try:
             filelock.acquire()
-            cache = self.readcache()
-            for key in self._cache:
-                if key not in cache:
-                    cache[key] = dict()
-                cache[key].update(self._cache[key])
-            wh = gzip.open(self._cachefile, 'wb')
-            pickle.dump(cache, wh, -1)
-            wh.close()
-            self._cache = cache
+	    for key in self._cache:
+		if self._cachedirty.get(key,False):
+		    # write out "query" for key
+		    self._cacheondisk[key] = self._cache[key]
+		    self._cachedirty[key] = False
         finally:
             filelock.release()
-
-    def readcache(self):
-	try:
-	    print >>sys.stderr, "Reading cache...."
-            data = pickle.load(gzip.open(self._cachefile, 'rb'))
-	    print >>sys.stderr, "Done."
-	    return data
-	except (IOError,ValueError,TypeError,AttributeError):
-	    pass
-        return dict()
 
     def wait(self,delay=None):
         elapsed = time.time() - self._lastrequesttime
@@ -77,7 +70,7 @@ class GlycanResource(ReferenceTable):
         if hasattr(self,key):
             setattr(self,"_"+key,getattr(self,key))
         elif key in kw:
-            setattr(self,"_"+key,kw['key'])
+            setattr(self,"_"+key,kw[key])
         elif not required:
             setattr(self,"_"+key,default)
         else:
@@ -98,10 +91,11 @@ class TripleStoreResource(GlycanResource):
 
     """
 
-    def __init__(self,**kw):
-        super(TripleStoreResource,self).__init__(**kw)
+    def __init__(self,*args,**kw):
+        super(TripleStoreResource,self).__init__(*args,**kw)
         self.attr(kw,'defns',default=None)
         self.attr(kw,'endpt',required=True)
+	self.attr(kw,'verbose',default=False)
         if self._defns:
             self._ns = rdflib.Namespace(self._defns)
         self._ts = rdflib.ConjunctiveGraph(store='SPARQLStore')
@@ -109,6 +103,11 @@ class TripleStoreResource(GlycanResource):
 
     def queryts(self,sparql):
         self.wait()
+
+	if self._verbose:
+	    print >>sys.stderr, "SPARQL Query:\n"
+	    print >>sys.stderr, sparql
+	    print >>sys.stderr, ""
 
         attempt = 0
         response = None
@@ -182,7 +181,7 @@ class TripleStoreResource(GlycanResource):
         self.set_method("query_"+name, _query)
         return [("query_"+name,params)]
 
-class GlyTouCan(TripleStoreResource):
+class GlyTouCanTS(TripleStoreResource):
 
     endpt = "http://ts.glytoucan.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
@@ -193,7 +192,11 @@ class GlyTouCan(TripleStoreResource):
     crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg',
                               'unicarbkb', 'glyconnect', 'glycome-db',
                               'unicarb-db', 'carbbank', 'pdb', 'cfg',
-                              'bcsdb'])
+                              'bcsdb','matrixdb'])
+
+    def __init__(self,*args,**kwargs):
+	kwargs['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glytoucan.ini")
+	super(GlyTouCanTS,self).__init__(*args,**kwargs)
 
     @staticmethod
     def partition(fn):
@@ -211,20 +214,22 @@ class GlyTouCan(TripleStoreResource):
     @staticmethod
     def prefetch(fn):
         def wrapper(self,**kw):
-            # print >>sys.stderr, "prefetch:",kw
-	    if not self._cache:
-	        self._cache = self.readcache()
             kw1 = dict((k,v) for k,v in kw.items() if k != 'accession')
             key = fn.__name__+":"+":".join("%s=%s"%(k,v) for k,v in sorted(kw1.items()))
             # print >>sys.stderr, "cache key:",key
             if key not in self._cache:
-                # print >>sys.stderr, "fill cache:",key
-                self._cache[key] = dict()
-                for row in fn(self,**kw1):
-                    if row['accession'] not in self._cache[key]:
-                        self._cache[key][row['accession']] = []
-                    self._cache[key][row['accession']].append(row)
-                self.writecache()
+		if not self._cacheondisk.has_key(key):
+                    # print >>sys.stderr, "fill cache:",key
+		    self._cache[key] = {}
+		    self._cachedirty[key] = True
+                    for row in fn(self,**kw1):
+                        if row['accession'] not in self._cache[key]:
+                            self._cache[key][row['accession']] = []
+                        self._cache[key][row['accession']].append(row)
+                    self.writecache()
+		else:
+                    self._cache[key] = self._cacheondisk[key]
+		    self._cachedirty[key] = False
             if 'accession' in kw:
                 for row in self._cache[key].get(kw['accession'],[]):
                     yield row
@@ -235,10 +240,10 @@ class GlyTouCan(TripleStoreResource):
         return wrapper
 
     def __init__(self,**kw):
-        super(GlyTouCan,self).__init__(**kw)
+        super(GlyTouCanTS,self).__init__(**kw)
         for k in self.keys():
             self.modify_method(k,self.partition)
-	    if kw.get('usecache',False):
+	    if kw.get('usecache',True):
                 self.modify_method(k,self.prefetch)
 
     def getseq(self,accession,format='wurcs'):
@@ -353,16 +358,17 @@ class GlyTouCan(TripleStoreResource):
 
     def gettopo(self,accession):
 	for row in self.query_topology(accession=accession):
-	    yield row['topology']
+	    return row['topology']
+	return None
 
     def alltopo(self):
 	for row in self.query_topology():
 	    yield row['accession'],row['topology']
 
     def getcomp(self,accession):
-	for acc in set(list(self.gettopo(accession)) + [accession]):
+	for acc in set([self.gettopo(accession),accession]):
 	    for row in self.query_composition(accession=acc):
-	        yield row['composition']
+	        return row['composition']
 
     def allcomp(self):
         topo = defaultdict(set)
@@ -380,9 +386,9 @@ class GlyTouCan(TripleStoreResource):
                     yield c, c
 
     def getbasecomp(self,accession):
-	for acc in set(list(self.getcomp(accession))+[accession]):
+	for acc in set([self.getcomp(accession),accession]):
 	    for row in self.query_basecomposition(accession=acc):
-	        yield row['basecomposition']
+	        return row['basecomposition']
 
     def allbasecomp(self):
 	comp = defaultdict(set)
@@ -399,9 +405,53 @@ class GlyTouCan(TripleStoreResource):
 		    seen.add((bc,bc))
 		    yield bc,bc
 
+class GlyTouCanUtil(object):
+    _wurcs_mono_format = WURCS20MonoFormat()
+    _wurcs_format = WURCS20Format()
+    _glycoct_format = GlycoCTFormat()
+
+    def getUnsupportedSkeletonCodes(self, acc):
+        codes = set()
+        sequence = self.getseq(acc, 'wurcs')
+        if not sequence:
+            return codes
+        monos = sequence.split('/[', 1)[1].split(']/')[0].split('][')
+        for m in monos:
+            try:
+                g = self._wurcs_mono_format.parsing(m)
+            except UnsupportedSkeletonCodeError, e:
+                codes.add(e.message.rsplit(None, 1)[-1])
+            except GlycanParseError:
+                pass
+        return codes
+
+    def getGlycan(self, acc, format=None):
+        if not format or (format == 'wurcs'):
+            sequence = self.getseq(acc, 'wurcs')
+            if sequence:
+                try:
+                    return self._wurcs_format.toGlycan(sequence)
+                except GlycanParseError:
+                    pass  # traceback.print_exc()
+        if not format or (format == 'glycoct'):
+            sequence = self.getseq(acc, 'glycoct')
+            if sequence:
+                try:
+                    return self._glycoct_format.toGlycan(sequence)
+                except GlycanParseError:
+                    pass
+        return None
+
+class GlyTouCan(GlyTouCanTS,GlyTouCanUtil):
+    pass
+
+
+
+
 class UniCarbKBTS(TripleStoreResource):
 
-    endpt = "http://130.56.249.35:40935/unicarbkb/query"
+    # endpt = "http://130.56.249.35:40935/unicarbkb/query"
+    endpt = "http://203.101.226.128:40935/unicarbkb/query"
     defns = "http://rdf.unicarbkb.org/structure/"
 
     def __init__(self):
@@ -489,17 +539,21 @@ if __name__ == "__main__":
     query = sys.argv[2]
     method = getattr(resource,query)
     headers = None
-    for r in method(*sys.argv[3:]):
-	if isinstance(r,basestring):
-	    print r
-	elif isinstance(r,dict):
-	    if headers == None:
-		headers = sorted(r.keys())
-		headers.remove('accession')
-		headers = ['accession'] + headers
-	    print "\t".join(map(r.get,headers))
-	else:
-	    print "\t".join(map(str,r))
+    result = method(*sys.argv[3:])
+    if isinstance(result,basestring) or not hasattr(result,'next'):
+	print result
+    else:
+	for r in result:
+	    if isinstance(r,basestring):
+	        print r
+	    elif isinstance(r,dict):
+	        if headers == None:
+		    headers = sorted(r.keys())
+		    headers.remove('accession')
+		    headers = ['accession'] + headers
+	        print "\t".join(map(r.get,headers))
+	    else:
+	        print "\t".join(map(str,r))
 
     # gtc = GlyTouCan(usecache=True)
     # for acc,format,seq in gtc.allseq():

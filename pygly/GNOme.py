@@ -7,11 +7,10 @@ from collections import defaultdict
 
 import rdflib
 import json
-from GlyTouCan import GlyTouCan
-
+from GlycanResource import GlyTouCan
 
 class GNOme(object):
-    version = "1.1.2"
+    version = "1.2.0"
     referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl" % (version,)
 
     referencefmt = 'xml'
@@ -364,23 +363,23 @@ class SubsumptionGraph:
         pass
 
     def compute(self, *args, **kwargs):
-        self.gtc = GlyTouCan(usecache=True)
+        self.gtc = GlyTouCan(usecache=True,verbose=True)
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
         self.verbose = kwargs.get('verbose', 0)
 
         masscluster = defaultdict(dict)
         if len(args) > 0:
-            for mass in map(float, args):
-                rmass = round(mass, 2)
-                for glyacc, mass in self.gtc.allmass():
-                    if rmass == round(mass, 2):
-                        masscluster[rmass][glyacc] = dict(accession=glyacc)
+	    argmass = set(map(lambda a: str(round(float(a),2)),args))
+            for glyacc, mass in self.gtc.allmass():
+		rmass = str(round(mass, 2))
+                if rmass in argmass:
+                    masscluster[rmass][glyacc] = dict(accession=glyacc)
         else:
             for glyacc, mass in self.gtc.allmass():
-                rmass = round(mass, 2)
+                rmass = str(round(mass, 2))
                 masscluster[rmass][glyacc] = dict(accession=glyacc)
-        for rmass, cluster in sorted(masscluster.items()):
+        for rmass, cluster in sorted(masscluster.items(),key=lambda t: float(t[0])):
             self.compute_component(rmass, cluster)
 
     def warning(self, msg, level):
@@ -397,7 +396,7 @@ class SubsumptionGraph:
         badparse = 0
         total = len(cluster)
         allgly = dict()
-        for acc in cluster:
+        for acc in sorted(cluster):
             gly = self.gtc.getGlycan(acc)
             if not gly:
                 badparse += 1
@@ -429,7 +428,7 @@ class SubsumptionGraph:
                             inedges[acc1].add(acc2)
 	self.warning("Computation of subsumption relationships done",5)
 
-        for acc in clusteracc:
+        for acc in sorted(clusteracc):
             topo = self.gtc.gettopo(acc)
             if topo:
                 if topo not in cluster:
@@ -468,7 +467,7 @@ class SubsumptionGraph:
                 self.warning(
                     "annotated mass %s for %s is different than computed mass %s" % (cluster[acc]['mass'], acc, umw), 1)
 
-        for acc in clusteracc:
+        for acc in sorted(clusteracc):
 
             if acc == self.gtc.getbasecomp(acc):
                 cluster[acc]['level'] = "BaseComposition"
@@ -494,7 +493,7 @@ class SubsumptionGraph:
                     if self.gtc.getcomp(acc):
                         cluster[acc]['comp'] = self.gtc.getcomp(acc)
 
-        for acc in clusteracc:
+        for acc in sorted(clusteracc):
             gly = cluster[acc]['glycan']
             level = cluster[acc].get('level')
             if self.any_anomer(gly):
@@ -521,13 +520,15 @@ class SubsumptionGraph:
                     self.warning("annotation inferred level %s for %s != computed level Topology" % (level, acc), 1)
                     # cluster[acc]['level'] = 'Topology*'
                 continue
-            if self.monosaccharide_count(gly) == 1 and self.any_ring(gly):
+            if self.mono_count(gly) == 1 and self.any_ring(gly):
                 if not level:
                     cluster[acc]['level'] = 'Topology*'
                 elif level != "Topology":
                     self.warning("annotation inferred level %s for %s != computed level Topology" % (level, acc), 1)
                     # cluster[acc]['level'] = 'Topology*'
                 continue
+	    if self.any_ring(gly):
+                self.warning("%s has no linkages but does have ring values" % (acc,), 1)
             if self.any_stem(gly):
                 if not level:
                     cluster[acc]['level'] = 'Composition*'
@@ -541,7 +542,7 @@ class SubsumptionGraph:
                 self.warning("annotation inferred level %s for %s != computed level BaseComposition" % (level, acc), 1)
                 # cluster[acc]['level'] = 'BaseComposition*'
 
-        for acc in clusteracc:
+        for acc in sorted(clusteracc):
             g = cluster[acc]
             if not g.get('topo'):
                 if g.get('level') in ("Topology", "Topology*"):
@@ -573,7 +574,7 @@ class SubsumptionGraph:
             return
 
         print "# NODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
-        for acc in sorted(clusteracc, key=lambda acc: cluster[acc].get('level')):
+        for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level'),acc) ):
             g = cluster[acc]
             print acc, g.get('mass'), g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
             gly = g.get('glycan')
@@ -595,15 +596,15 @@ class SubsumptionGraph:
         prunedinedges = self.prune_edges(inedges)
 
         print "# TREE"
-        for r in clusteracc:
+        for r in sorted(clusteracc):
             if len(prunedinedges[r]) == 0:
                 self.print_tree(cluster, prunedoutedges, r)
         print "# ENDTREE"
 
         print "# EDGES"
-        for n in clusteracc:
+        for n in sorted(clusteracc):
             print "%s:" % (n,),
-            print " ".join(prunedoutedges[n])
+            print " ".join(sorted(prunedoutedges[n]))
         print "# ENDEDGES"
         sys.stdout.flush()
 
@@ -639,7 +640,7 @@ class SubsumptionGraph:
                 return True
         return False
 
-    def monosaccharide_count(self, gly):
+    def mono_count(self, gly):
         return sum(1 for _ in gly.all_nodes())
 
     def prune_edges(self, inedges):
@@ -657,7 +658,7 @@ class SubsumptionGraph:
 
     def print_tree(self, cluster, edges, root, indent=0):
         print "%s%s" % (" " * indent, root), cluster[root]['level']
-        for ch in edges[root]:
+        for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
 
