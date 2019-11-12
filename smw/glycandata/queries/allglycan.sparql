@@ -1,0 +1,7 @@
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession as ?GlyTouCanAccession)
+WHERE {
+  ?glycan glycandata:accession ?accession
+}
+ORDER BY ?accession
