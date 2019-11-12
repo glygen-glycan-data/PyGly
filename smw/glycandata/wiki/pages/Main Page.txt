@@ -57,16 +57,16 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 == Subsumption Levels ==
 {| class="wikitable" style="text-align: right;"
 ! style="width: 200px;" | BaseComposition 
-| {{CountPropertyValueLink|SubsumptionLevel|BaseComposition}} 
+| {{CountPropertyValueLink|Level|BaseComposition}} 
 |-
 ! style="width: 200px;" | Composition 
-| {{CountPropertyValueLink|SubsumptionLevel|Composition}} 
+| {{CountPropertyValueLink|Level|Composition}} 
 |-
 ! style="width: 200px;" | Topology 
-| {{CountPropertyValueLink|SubsumptionLevel|Topology}} 
+| {{CountPropertyValueLink|Level|Topology}} 
 |-
 ! style="width: 200px;" | Saccharide 
-| {{CountPropertyValueLink|SubsumptionLevel|Saccharide}} 
+| {{CountPropertyValueLink|Level|Saccharide}} 
 |-
 |}
 
