@@ -287,6 +287,7 @@ class GNOme(object):
         all_comp = self.all_cbbutton()
         data_composition = {}
 
+
         for n in self.nodes():
             t = ""
             if self.issaccharide(n):
@@ -298,7 +299,12 @@ class GNOme(object):
                 f2 = self.isbasecomposition(n)
 
                 if f1 or f2:
-                    data_composition[n] = {"comp": all_comp[n]}
+                    try:
+                        data_composition[n] = {"comp": all_comp[n]}
+                    except:
+                        print >> sys.stderr, "%s iupac composition is not found" % n
+                        issueList.append(n)
+                        continue
                     if f1:
                         data_composition[n]["type"] = "composition"
                     else:
@@ -871,23 +877,15 @@ class SubsumptionGraph:
             return None
 
         res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc']:
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
             if m in mono_count:
                 res[m] = mono_count[m]
-
-        for nac in ["", "NAc"]:
-            hexcount = 0
-            for m0 in ['Glc', 'Gal', 'Man', 'Hex']:
-                m = m0+nac
-                if m in mono_count:
-                    hexcount += mono_count[m]
-            if hexcount > 0:
-                res[m] = hexcount
 
         xxx = 0
         for m in mono_count.keys():
             if m not in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
-                xxx += mono_count[m]
+                if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
+                    xxx += mono_count[m]
         if xxx > 0:
             res["Xxx"] = xxx
         return res
@@ -1636,10 +1634,19 @@ if __name__ == "__main__":
         ofn = sys.argv[3]
         restriction_name = sys.argv[2]
 
-        accs_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_%s.accessions.txt" % restriction_name
+        if restriction_name in ["GlyGen", "BCSDB"]:
+            accs_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_%s.accessions.txt" % restriction_name
 
-        handle = urllib2.urlopen(accs_url)
-        accs = handle.read().strip().split()
+            handle = urllib2.urlopen(accs_url)
+            accs = handle.read().strip().split()
+        elif restriction_name in ["GlycanData"]:
+            accs_url = "https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycandata/export/allglycan.tsv"
+
+            handle = urllib2.urlopen(accs_url)
+            accs = handle.read().strip().split()
+        else:
+            print "Restriction set (%s) is not supported" % restriction_name
+            raise RuntimeError
 
         GNOme_res = GNOme(resource=ifn)
         GNOme_res.restrict(accs)
