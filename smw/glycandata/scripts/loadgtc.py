@@ -7,7 +7,7 @@ from getwiki import GlycanData, Glycan
 w = GlycanData()
 
 import findpygly
-from pygly.GlyTouCan import GlyTouCan
+from pygly.GlycanResource import GlyTouCan
 
 def accessions(args):
     if len(args) == 0:
@@ -74,8 +74,8 @@ for gtcacc in accessions(sys.argv[1:]):
     for prop in xref_dic.values():
 	g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
     dic = defaultdict(list)
-    for xref in gtc.getcrossrefs(gtcacc):
-        ref, c = xref.split(":")
+    for ref, c in gtc.getcrossrefs(gtcacc):
+        # ref, c = xref.split(":")
 	dic[ref].append(c)
     for key in dic:       
 	if key not in xref_dic:

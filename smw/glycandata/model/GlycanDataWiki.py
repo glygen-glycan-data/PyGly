@@ -137,7 +137,7 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toPython(data)
 
 	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme'] or \
-           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence']:
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence']:
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -149,7 +149,7 @@ class Annotation(SMW.SMWClass):
         
 	if data.get('value'):
 	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme'] or \
-             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence']:
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence']:
 	    if isinstance(data['value'],list) or isinstance(data['value'],set):
 		if len(data['value']) > 1:
                     data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
