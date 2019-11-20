@@ -1,6 +1,7 @@
 import copy
 import re
 import sys
+import ssl
 import os, os.path, urllib
 import urllib2
 from collections import defaultdict
@@ -287,6 +288,7 @@ class GNOme(object):
         all_comp = self.all_cbbutton()
         data_composition = {}
 
+
         for n in self.nodes():
             t = ""
             if self.issaccharide(n):
@@ -298,7 +300,12 @@ class GNOme(object):
                 f2 = self.isbasecomposition(n)
 
                 if f1 or f2:
-                    data_composition[n] = {"comp": all_comp[n]}
+                    try:
+                        data_composition[n] = {"comp": all_comp[n]}
+                    except:
+                        print >> sys.stderr, "%s iupac composition is not found" % n
+                        issueList.append(n)
+                        continue
                     if f1:
                         data_composition[n]["type"] = "composition"
                     else:
@@ -871,23 +878,15 @@ class SubsumptionGraph:
             return None
 
         res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc']:
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
             if m in mono_count:
                 res[m] = mono_count[m]
-
-        for nac in ["", "NAc"]:
-            hexcount = 0
-            for m0 in ['Glc', 'Gal', 'Man', 'Hex']:
-                m = m0+nac
-                if m in mono_count:
-                    hexcount += mono_count[m]
-            if hexcount > 0:
-                res[m] = hexcount
 
         xxx = 0
         for m in mono_count.keys():
             if m not in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
-                xxx += mono_count[m]
+                if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
+                    xxx += mono_count[m]
         if xxx > 0:
             res["Xxx"] = xxx
         return res
@@ -1634,12 +1633,9 @@ if __name__ == "__main__":
 
         ifn = sys.argv[1]
         ofn = sys.argv[3]
-        restriction_name = sys.argv[2]
+        restriction_accs_file = sys.argv[2]
 
-        accs_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_%s.accessions.txt" % restriction_name
-
-        handle = urllib2.urlopen(accs_url)
-        accs = handle.read().strip().split()
+        accs = open(restriction_accs_file).read().strip().split()
 
         GNOme_res = GNOme(resource=ifn)
         GNOme_res.restrict(accs)
@@ -1660,6 +1656,48 @@ if __name__ == "__main__":
         ofn_comp = sys.argv[3]
         gnome = GNOme(resource=ifn)
         gnome.toViewerData(ofn_data, ofn_comp)
+
+    elif cmd == "UpdateAcc":
+
+        if len(sys.argv) < 4:
+            print "Please provide restriction set name and file path"
+            sys.exit(1)
+
+        restriction_set_name = sys.argv[1]
+        fp = sys.argv[2]
+
+        restriction_set = []
+        if restriction_set_name == "BCSDB":
+            sys.exit(0)
+
+        elif restriction_set_name == "GlyGen":
+            context = ssl._create_unverified_context()
+
+            r = urllib.urlopen(
+                "https://api.glygen.org/glycan/search?query=%7B%22operation%22:%22AND%22,%22query_type%22:%22search_glycan%22,%20%22mass_type%22:%22native%22%7D",
+                context=context)
+            list_id = json.loads(r.read())["list_id"]
+
+            url2 = """https://api.glygen.org/glycan/list?query={"id":"%s","offset":1,"limit":90000,"sort":"glytoucan_ac","order":"asc"}""" % list_id
+
+            r = urllib.urlopen(url2, context=context)
+            temp = json.loads(r.read())
+            restriction_set = map(lambda x: x["glytoucan_ac"], temp["results"])
+
+        elif restriction_set_name == "GlycanData":
+            glycandata_tsv_fp = "../smw/glycandata/export/allglycan.tsv"
+
+            restriction_set = open(glycandata_tsv_fp).read().strip().split()
+            restriction_set.pop(0)
+        else:
+            print "Restriction set: %s is not supported"
+            sys.exit(1)
+
+        open(fp, "w").write("\n".join(restriction_set))
+
+        json_fp = open(sys.argv[3], "w")
+        json.dump(restriction_set, json_fp)
+
 
     else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
