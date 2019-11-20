@@ -74,7 +74,7 @@ class Transition(SMW.SMWClass):
     def toPython(self,data):
 	data = super(Transition,self).toPython(data)
 
-        for k in ('nrt','rt','mz1','mz2'):
+        for k in ('nrt','prt','rt','mz1','mz2'):
             if isinstance(data.get(k),basestring):
                 data[k] = float(data.get(k))
                 
@@ -87,7 +87,7 @@ class Transition(SMW.SMWClass):
     def toTemplate(self,data):
 	data = super(Transition,self).toTemplate(data)
 
-        for k in ('nrt','rt','mz1','mz2'):
+        for k in ('nrt','prt','rt','mz1','mz2'):
             if k in data:
                 data[k] = "%.3f"%(data[k])
 
@@ -120,7 +120,7 @@ class TransitionGroup(SMW.SMWClass):
         if isinstance(data.get('scans'),basestring):
             data['scans'] = map(lambda t: self.asscans(t),data.get('scans').split(','))
 
-        for k in ('rt','nrt','mz1'):
+        for k in ('rt','prt','nrt','mz1'):
             if isinstance(data.get(k),basestring):
                 data[k] = float(data.get(k))
                 
@@ -148,7 +148,7 @@ class TransitionGroup(SMW.SMWClass):
         if 'scans' in data:
             data['scans'] = ",".join(map(self.scan2str,data['scans']))
 
-        for k in ('rt','nrt','mz1'):
+        for k in ('rt','prt','nrt','mz1'):
             if k in data:
                 data[k] = "%.3f"%(data[k])
 
