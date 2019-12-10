@@ -1671,18 +1671,8 @@ if __name__ == "__main__":
             sys.exit(0)
 
         elif restriction_set_name == "GlyGen":
-            context = ssl._create_unverified_context()
-
-            r = urllib.urlopen(
-                "https://api.glygen.org/glycan/search?query=%7B%22operation%22:%22AND%22,%22query_type%22:%22search_glycan%22,%20%22mass_type%22:%22native%22%7D",
-                context=context)
-            list_id = json.loads(r.read())["list_id"]
-
-            url2 = """https://api.glygen.org/glycan/list?query={"id":"%s","offset":1,"limit":90000,"sort":"glytoucan_ac","order":"asc"}""" % list_id
-
-            r = urllib.urlopen(url2, context=context)
-            temp = json.loads(r.read())
-            restriction_set = map(lambda x: x["glytoucan_ac"], temp["results"])
+            fp = os.path.dirname(os.path.abspath(__file__)) + "/../smw/glycandata/data/glygen_accessions.txt"
+            restriction_set = open(fp).read().strip().split()
 
         elif restriction_set_name == "GlycanData":
             glycandata_tsv_fp = "../smw/glycandata/export/allglycan.tsv"
