@@ -202,7 +202,7 @@ class Peptide(SMW.SMWClass):
 
 	alignments = []
 	for so in data.get('_subobjs',[]):
-	    if so.get('class') == 'Alignment':
+	    if so.get('template') == 'Alignment':
 		alignments.append(so)
 	if len(alignments) > 0:
 	    alignments = sorted(alignments,key=Alignment.sortkey)
@@ -374,21 +374,32 @@ class GPTWiki(SMW.SMWSite):
             self._transgroups[(peptide,z1,spectra)] = id
         return tg,self.put(tg)
 
-    def iterpeptides(self):
-	for p in map(self.get,self.itercat('Peptide')):
-            yield p
+    # def iterpeptides(self):
+    #	for p in map(self.get,self.itercat('Peptide')):
+    #        yield p
 
     def iterproteins(self):
 	for p in map(self.get,self.itercat('Protein')):
             yield p
 
-    def iterglycans(self):
-        regex = r'^G\d{5}[A-Z]{2}$'
-        regex = re.compile(regex)
-        for pagename in self.site.allpages(generator=False):
+    def iterregex(self,regex):
+	regex = re.compile(regex)
+        for pagename in sorted(self.site.allpages(generator=False)):
             m = regex.search(pagename)
             if m:
                 yield self.get(m.group(0))
+
+    def iterglycans(self):
+	for g in self.iterregex(r'^G\d{5}[A-Z]{2}$'):
+	    yield g
+
+    def itertransgroups(self):
+	for tg in self.iterregex(r'^TG\d{6}$'):
+	    yield tg
+
+    def iterpeptides(self):
+	for p in self.iterregex(r'^PE\d{6}$'):
+	    yield p
 
     def newpeptideid(self):
         maxid = 0
