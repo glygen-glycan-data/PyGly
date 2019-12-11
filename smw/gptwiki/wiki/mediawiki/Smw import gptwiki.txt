@@ -34,6 +34,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  peptidecount|Type:Number
  Transition|Category
  rt|type:Number
+ prt|Type:Number
  nrt|Type:Number
  mz1|Type:Number
  z1|Type:Number

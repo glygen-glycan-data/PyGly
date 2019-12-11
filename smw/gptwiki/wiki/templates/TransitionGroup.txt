@@ -6,6 +6,7 @@ It should be called in the following format:
 |id=
 |mz1=
 |nrt=
+|prt=
 |peptide=
 |rt=
 |scans=
@@ -62,7 +63,7 @@ Edit the page to see the template text.
 
 == Transitions ==
 
-{{TransitionGroupTable|{{{rt|}}}|{{{nrt|}}}|{{{transitions|}}}}}
+{{TransitionGroupTable|{{{rt|}}}|{{{prt|}}}|{{{nrt|}}}|{{{transitions|}}}}}
 == Spectra ==
 <div id="viewer-data">
 {{#arraymap:{{{scans|}}}|,|x|x|<br/>}}
@@ -70,6 +71,7 @@ Edit the page to see the template text.
 {{#set:
 |gptwiki:spectra={{{spectra|}}}
 |gptwiki:nrt={{{nrt|}}}
+|gptwiki:prt={{{prt|}}}
 |gptwiki:rt={{{rt|}}}
 |gptwiki:mz1={{{mz1|}}}
 |gptwiki:z1={{{z1|}}}
@@ -78,5 +80,5 @@ Edit the page to see the template text.
 |gptwiki:transitioncount={{#ask:[[Category:Transition]][[-gptwiki:transition::{{PAGENAME}}]]|format=count}}
 }}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}
 [[Category:TransitionGroup]]
-<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-spectra="{{{spectra|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}" data-showcycle="{{#show:{{{spectra|}}}|?gptwiki:showcycle}}"></div>
+<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-spectra="{{{spectra|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}" data-xicmmu="10" data-showcycle="{{#show:{{{spectra|}}}|?gptwiki:showcycle}}"></div>
 </includeonly>

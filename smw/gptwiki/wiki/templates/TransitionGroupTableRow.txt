@@ -2,11 +2,12 @@
 <tr>
 <td align="right">{{{1}}}</td>
 <td align="right">{{{2}}}</td>
-<td align="right">{{#show: {{{3}}} |? gptwiki:mz1 #-p3}}</td>
-<td align="right">{{#show: {{{3}}} |? gptwiki:z1 }}+</td>
-<td align="right">{{#show: {{{3}}} |? gptwiki:mz2 #-p3}}</td>
-<td align="right">{{#show: {{{3}}} |? gptwiki:z2 }}+</td>
-<td>{{#show: {{{3}}} |? gptwiki:label }}</td>
-<td align="right">{{{4}}}</td>
+<td align="right">{{{3}}}</td>
+<td align="right">{{#show: {{{4}}} |? gptwiki:mz1 #-p3}}</td>
+<td align="right">{{#show: {{{4}}} |? gptwiki:z1 }}+</td>
+<td align="right">{{#show: {{{4}}} |? gptwiki:mz2 #-p3}}</td>
+<td align="right">{{#show: {{{4}}} |? gptwiki:z2 }}+</td>
+<td>{{#show: {{{4}}} |? gptwiki:label }}</td>
+<td align="right">{{{5}}}</td>
 </tr>
 </includeonly>

@@ -95,9 +95,13 @@ function loadSVG() {
     var pmz = document.getElementById("msv_para").getAttribute("data-mz1");
     var spectra_folder = document.getElementById("msv_para").getAttribute("data-spectra");
     var showxic = document.getElementById("msv_para").getAttribute("data-showxic") || "true";
+    var xicmmu = document.getElementById("msv_para").getAttribute("data-xicmmu") || "";
 
     // convert to boolean...
     showxic = (showxic.trim().toLowerCase() != "false");
+    if (xicmmu != "") {
+      xicmmu = "."+xicmmu;
+    }
 
     var showcycle = document.getElementById("msv_para").getAttribute("data-showcycle") || "false,true,true";
 
@@ -119,7 +123,7 @@ function loadSVG() {
 
     if (showxic) {
         param0["title"] = ["XIC: m/z "+pmz];
-        param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + '.json';
+        param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + xicmmu + '.json';
         msmsv.addLabelledSpectrum('specpanel','chrom', param0);
     }
 
