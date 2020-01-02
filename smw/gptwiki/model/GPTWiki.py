@@ -190,6 +190,9 @@ class Peptide(SMW.SMWClass):
         if isinstance(data.get('mw'),basestring):
             data['mw'] = float(data.get('mw'))
             
+        if isinstance(data.get('nrt'),basestring):
+            data['mw'] = float(data.get('nrt'))
+            
         if isinstance(data.get('glycan'),basestring):
             data['glycan'] = map(self.asglycan,data.get('glycan').split(','))
 
@@ -221,6 +224,9 @@ class Peptide(SMW.SMWClass):
 
         if 'mw' in data:
             data['mw'] = "%.3f"%(data.get('mw'),)
+
+        if 'nrt' in data:
+            data['nrt'] = "%.3f"%(data.get('nrt'),)
 
         if 'glycan' in data:
             data['glycan'] = ",".join(map(lambda t: "%s;%s"%t,sorted(data['glycan'],key=lambda t: int(t[1][1:]))))            
