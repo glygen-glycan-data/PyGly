@@ -280,10 +280,20 @@ class Acquisition(SMW.SMWClass):
 
     def toPython(self,data):
 	data = super(Acquisition,self).toPython(data)
+
+        for k in ('nrtslope','nrtintercept'):
+            if isinstance(data.get(k),basestring):
+                data[k] = float(data.get(k))
+
 	return data
 
     def toTemplate(self,data):
 	data = super(Acquisition,self).toTemplate(data)
+
+        for k in ('nrtslope','nrtintercept'):
+            if k in data:
+                data[k] = "%.8f"%(data[k])
+
 	return data
 
 class GPTWiki(SMW.SMWSite):
