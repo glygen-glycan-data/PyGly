@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO theme update not supported yet
+
 restriction_set_names=(
   "BCSDB"
   "GlyGen"
@@ -22,6 +24,7 @@ fi
 git clone git@github.com:glygen-glycan-data/GNOme.git
 python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal $1
 python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.browser.composition.json
+# python27 ../pygly/GNOme.py viewerdata2 ./GNOme.owl ./GNOme.browser.json ./GNOme.browser.composition.json
 
 
 for Restriction_set in "${restriction_set_names[@]}"

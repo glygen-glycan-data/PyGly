@@ -264,13 +264,15 @@ class GNOme(object):
             if acc == self.accession(s):
                 return o
 
-    ics2dp = re.compile(r"(\D{3,6})(\d{1,2})")
+    # ics2dp: IUPAC composition string to dictionary pattern(regex)
+    ics2dp = re.compile(r"(\D{1,8})(\d{1,3})")
     def iupac_composition_str_to_dict(self, s):
         res = {}
         for p in self.ics2dp.findall(s):
             res[p[0]] = int(p[1])
         return res
 
+    # cbbutton -> composition browser button
     def get_cbbutton(self, acc):
         return self.iupac_composition_str_to_dict(self.get_cb_button_str(acc))
 
@@ -281,11 +283,84 @@ class GNOme(object):
             res[acc] = self.iupac_composition_str_to_dict(o)
         return res
 
+    # method for composition and topology viewer
+    def get_cbbutton1(self, acc):
+        return self.cbbutton_filter1(self.get_cbbutton(acc))
+
+    def all_cbbutton1(self):
+        res = {}
+        for s, p, o in self.triples(None, "gno:00000101", None):
+            acc = self.accession(s)
+            res[acc] = self.cbbutton_filter1(self.iupac_composition_str_to_dict(o))
+        return res
+
+    def cbbutton_filter1(self, mono_count):
+        iupac_composition_syms = ['Man', 'Gal', 'Glc', 'Xyl', 'Fuc', 'ManNAc', 'GlcNAc', 'GalNAc', 'NeuAc', 'NeuGc',
+                                  'Hex', 'HexNAc', 'dHex', 'Pent', 'Sia', 'GlcA', 'GalA', 'IdoA', 'ManA', 'HexA',
+                                  'GlcN', 'GalN', 'ManN', 'HexN']
+        subst_composition_syms = ['S', 'P', 'Me', 'aldi']
+
+
+        res = {}
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
+            if m in mono_count:
+                res[m] = mono_count[m]
+
+        #for m in subst_composition_syms:
+        #    if m in mono_count:
+        #        res[m] = mono_count[m]
+
+        xxx = 0
+        for m in mono_count.keys():
+            if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
+                xxx += mono_count[m]
+
+        if "dHex" in mono_count:
+            xxx += mono_count["dHex"] - mono_count.get("Fuc", 0)
+
+        if xxx > 0:
+            res["Xxx"] = xxx
+        return res
+
+    # method for composition and base composition viewer
+    def get_cbbutton2(self, acc):
+        return self.cbbutton_filter2(self.get_cbbutton(acc))
+
+    def all_cbbutton2(self):
+        res = {}
+        for s, p, o in self.triples(None, "gno:00000101", None):
+            acc = self.accession(s)
+            res[acc] = self.cbbutton_filter2(self.iupac_composition_str_to_dict(o))
+        return res
+
+    def cbbutton_filter2(self, mono_count):
+        iupac_composition_syms = ['Man', 'Gal', 'Glc', 'Xyl', 'Fuc', 'ManNAc', 'GlcNAc', 'GalNAc', 'NeuAc', 'NeuGc',
+                                  'Hex', 'HexNAc', 'dHex', 'Pent', 'Sia', 'GlcA', 'GalA', 'IdoA', 'ManA', 'HexA',
+                                  'GlcN', 'GalN', 'ManN', 'HexN']
+        subst_composition_syms = ['S', 'P', 'Me', 'aldi']
+
+        res = {}
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc", "dHex"]:
+            if m in mono_count:
+                res[m] = mono_count[m]
+
+        for m in subst_composition_syms:
+            if m in mono_count:
+                res[m] = mono_count[m]
+
+        xxx = 0
+        for m in mono_count.keys():
+            if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
+                xxx += mono_count[m]
+        if xxx > 0:
+            res["Xxx"] = xxx
+        return res
+
     def toViewerData(self, output_file_path1, output_file_path2):
         res = {}
         issueList = []
 
-        all_comp = self.all_cbbutton()
+        all_comp = self.all_cbbutton1()
         data_composition = {}
 
 
@@ -358,6 +433,64 @@ class GNOme(object):
         f2 = open(output_file_path2, "w")
         f2.write(json.dumps(data_composition))
         f2.close()
+
+    def toViewerData2(self, output_file_path1):
+        res = {}
+        issueList = []
+
+        all_comp = self.all_cbbutton2()
+
+        for n in self.nodes():
+            t = ""
+            if self.isbasecomposition(n):
+                t = "basecomposition"
+            elif self.iscomposition(n):
+                t = "composition"
+            else:
+                continue
+
+            try:
+                comp = all_comp[n]
+            except:
+                print >> sys.stderr, "%s iupac composition is not found" % n
+                issueList.append(n)
+                continue
+
+            per = {}
+
+            children = list(self.children(n))
+            children = filter(lambda x:self.iscomposition(x) or self.isbasecomposition(x), children)
+
+            per["children"] = children
+            per["type"] = t
+            per["comp"] = comp
+
+            res[n] = per
+
+        for n, component in res.items():
+            comp = component["comp"]
+            t = component["type"]
+
+            parent = list(self.parents(n))
+            topflag = True
+            for p in parent:
+                try:
+                    comp_p = all_comp[p]
+                    # tors = self.isbasecomposition(p) or self.iscomposition(p)
+                except:
+                    continue
+
+
+                if comp == comp_p:
+                    topflag = False
+                    break
+
+            if topflag:
+                component["top"] = True
+
+        f = open(output_file_path1, "w")
+        f.write(json.dumps(res))
+        f.close()
 
 
 from alignment import GlycanSubsumption, GlycanEqual
@@ -675,7 +808,7 @@ class SubsumptionGraph:
     warnings = defaultdict(set)
     warningsbytype = None
     monosaccharide_count = {}
-    monosaccharide_count_pattern = re.compile(r"\w{3,8}:\d{1,2}")
+    monosaccharide_count_pattern = re.compile(r"\w{1,8}:\d{1,3}")
 
     def loaddata(self, dumpfilepath):
         self.readfile(dumpfilepath)
@@ -873,23 +1006,7 @@ class SubsumptionGraph:
         return self.monosaccharide_count.get(accession, None)
 
     def get_iupac_composition_for_viewer(self, accession):
-        mono_count = self.get_iupac_composition(accession)
-        if not mono_count:
-            return None
-
-        res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
-            if m in mono_count:
-                res[m] = mono_count[m]
-
-        xxx = 0
-        for m in mono_count.keys():
-            if m not in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
-                if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
-                    xxx += mono_count[m]
-        if xxx > 0:
-            res["Xxx"] = xxx
-        return res
+        return self.get_iupac_composition(accession)
 
     def get_iupac_composition_str_for_viewer(self, accession):
         s = ""
@@ -1656,6 +1773,18 @@ if __name__ == "__main__":
         ofn_comp = sys.argv[3]
         gnome = GNOme(resource=ifn)
         gnome.toViewerData(ofn_data, ofn_comp)
+
+    elif cmd == "viewerdata2":
+        # python GNOme.py viewerdata2 ./GNOme.owl ./gnome_subsumption_raw.txt ./GNOme.browser2.js
+
+        if len(sys.argv) < 3:
+            print "Please provide GNOme.owl and output file path"
+            sys.exit(1)
+
+        ifn = sys.argv[1]
+        ofn_data = sys.argv[2]
+        gnome = GNOme(resource=ifn)
+        gnome.toViewerData2(ofn_data)
 
     elif cmd == "UpdateAcc":
 
