@@ -446,7 +446,7 @@ class Glycan:
                           floating_substituents=True,
                           aggregate_basecomposition=True):
 	c = Composition()
-	for sym in (self.iupac_composition_syms + self.subst_composition_syms + ['Xxx']):
+	for sym in (self.iupac_composition_syms + self.subst_composition_syms + ['Xxx','X']):
 	    c[sym] = 0
 	for m in self.all_nodes(undet_subst=True):           
 
@@ -455,6 +455,8 @@ class Glycan:
 	    except KeyError:
 		if isinstance(m,Monosaccharide):	
 	            c['Xxx'] += 1
+		else:
+		    c['X'] += 1
 		continue
 
             if floating_substituents:
@@ -463,16 +465,22 @@ class Glycan:
                 syms = [sym]
 
             if syms[0] not in (self.iupac_composition_syms + self.subst_composition_syms):
-                syms[0] = 'Xxx'
+		if isinstance(m,Monosaccharide):
+                    syms[0] = 'Xxx'
+		else:
+		    syms[0] = 'X'
             
             for i in range(1,len(syms)):
                 if syms[i] not in self.subst_composition_syms:
-                    syms[i] = 'Xxx'
+                    syms[i] = 'X'
 
-            if 'Xxx' in syms:
-                if m.is_monosaccharide():
-                    c['Xxx'] += 1
-                    continue
+            if syms[0] == 'Xxx' or 'X' in syms:
+                c['Xxx'] += 1
+                continue
+
+	    if syms[0] == 'X':
+		c['X'] += 1
+		continue
 
 	    for sym in syms:
 		c[sym] += 1

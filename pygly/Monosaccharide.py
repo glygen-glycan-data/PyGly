@@ -386,7 +386,7 @@ class Monosaccharide(Node):
         return self._config
 
     def set_config(self,*config):
-	if set([config]) == set([Config.missing]):
+	if set(config) == set([Config.missing]):
 	    self._config = None
         else:
             self._config = config
@@ -395,7 +395,7 @@ class Monosaccharide(Node):
         return self._stem
 
     def set_stem(self,*stem):
-	if set([stem]) == set([Stem.missing]):
+	if set(stem) == set([Stem.missing]):
 	    self._stem = None
 	else:
             self._stem = stem
@@ -495,6 +495,7 @@ class Monosaccharide(Node):
             l = SubLinkage(child=Substituent(sub),**kw)
         self.add_substituent_link(l)
         l.set_parent(self)
+	l.child().add_parent_link(l)
 	return l
 
     def has_substituents(self):
@@ -601,6 +602,7 @@ class Substituent(Node):
     amino_oxygen_preserved = 42
     phosphate_oxygen_lost = 43
     acetyl_oxygen_lost = 44
+    phosphate_bridged = 45
 
     def __init__(self,sub):
 
@@ -612,6 +614,38 @@ class Substituent(Node):
         s = Substituent(self.name())
         s.set_id(self.id())
         return s
+
+    def deepclone(self,identified_link=None,cache=None):
+        if cache == None:
+            cache = dict()
+	m = self.clone()
+        identified_link_copy = None
+	for l in self._links:
+            assert l.child().id() != None
+            if l.child().id() not in cache:
+                if identified_link:
+                    c,idlc = l.child().deepclone(identified_link=identified_link,cache=cache)
+                else:
+                    c = l.child().deepclone(cache=cache)
+                    idlc = None
+                cache[l.child().id()] = c
+            else:
+                c = cache[l.child().id()]
+                idlc = None
+	    cl = copy.deepcopy(l)
+	    cl.set_child(c)
+	    cl.set_parent(m)
+	    m.add_link(cl)
+            c.add_parent_link(cl)
+            if l == identified_link:
+                identified_link_copy = cl
+            elif idlc != None:
+                identified_link_copy = idlc
+	if identified_link:
+	    return m,identified_link_copy
+	return m
+
+        
 
     def name(self):
         return self._sub

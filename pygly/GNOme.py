@@ -2,18 +2,195 @@ import copy
 import re
 import sys
 import ssl
-import os, os.path, urllib
+import os, os.path, urllib, time
 import urllib2
 from collections import defaultdict
 
 import rdflib
 import json
-from GlycanResource import GlyTouCan
 
-class GNOme(object):
-    version = "1.2.0"
-    referenceowl = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/V%s/GNOme.owl" % (version,)
+class GNOmeAPI(object):
 
+    # Base class for GNOme and subsumption API supported by both the
+    # released OWL file and the so-called Subsumption Graph raw dump
+    # file. 
+
+    # All nodes
+    def nodes(self):
+        raise NotImplemented("GNOme API method nodes not implemented")
+
+    # Remove a node
+    def delete_node(self, accession):
+        raise NotImplemented("GNOme API method delete_node not implemented")
+
+    # Child nodes of a node
+    def children(self, accession):
+        raise NotImplemented("GNOme API method children not implemented")
+
+    # Parent nodes of a node
+    def parents(self, accession):
+        raise NotImplemented("GNOme API method parents not implemented")
+
+    # Set the parents of a node
+    def set_parents(self, accession, parents):
+        raise NotImplemented("GNOme API method set_parents not implemented")
+
+    # Subsumption level of a node
+    def level(self, accession):
+        raise NotImplemented("GNOme API method level not implemented")
+
+    def get_molecularweight(self, accession):
+        raise NotImplemented("GNOme API method get_molecularweight not implemented")
+
+    # Base composition node of a node
+    def get_basecomposition(self, accession):
+        raise NotImplemented("GNOme API method get_basecomposition not implemented")
+
+    # Composition node of a node
+    def get_composition(self, accession):
+        raise NotImplemented("GNOme API method get_composition not implemented")
+
+    # Topology node of a node
+    def get_topology(self, accession):
+        raise NotImplemented("GNOme API method get_topology not implemented")
+
+    ####
+    #### Derived functionality, in terms of primitives above...
+    #### 
+
+    # All edges
+    def edges(self):
+        for n in self.nodes():
+            for c in self.children(n):
+                yield n,c
+
+    # Descendants of a node
+    def descendants(self, accession):
+        desc = set()
+        for c in self.children(accession):
+            desc.add(c)
+            desc.update(self.descendants(c))
+        return desc
+
+    # Ancestors of a node
+    def ancestors(self, accession):
+        anc = set()
+        for p in self.parents(accession):
+            anc.add(p)
+            anc.update(self.ancestors(p))
+        return anc
+
+    # Whether a node is a leaf
+    def isleaf(self, accession):
+        for ch in self.children(accession):
+            return False
+        return True
+
+    # Whether a node is a root node
+    def isroot(self,accession):
+        for pt in self.parents(accession):
+            return False
+        return True
+
+    LEVEL_MOLECULAR_WEIGHT = 'molecular weight'
+    LEVEL_BASECOMPOSITION = 'basecomposition'
+    LEVEL_COMPOSITION = 'composition'
+    LEVEL_TOPOLOGY = 'topology'
+    LEVEL_SACCHARIDE = 'saccharide'
+
+    def islevel(self, accession, level):
+        return self.level(accession) == level
+
+    def ismolecularweight(self, accession):
+        return self.islevel(accession, self.LEVEL_MOLECULAR_WEIGHT)
+
+    def isbasecomposition(self, accession):
+        return self.islevel(accession, self.LEVEL_BASECOMPOSITION)
+
+    def iscomposition(self, accession):
+        return self.islevel(accession, self.LEVEL_COMPOSITION)
+
+    def istopology(self, accession):
+        return self.islevel(accession, self.LEVEL_TOPOLOGY)
+
+    def issaccharide(self, accession):
+        return self.islevel(accession, self.LEVEL_SACCHARIDE)
+
+    # All nodes with a base composition node
+    def has_molecularweight(self, accession):
+        assert self.ismolecularweight(accession)
+	if self.get_molecularweight(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_molecularweight(desc) == accession:
+		yield desc
+
+    # All nodes with a base composition node
+    def has_basecomposition(self, accession):
+        assert self.isbasecomposition(accession)
+	if self.get_basecomposition(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_basecomposition(desc) == accession:
+		yield desc
+
+    # All nodes with a composition node
+    def has_composition(self, accession):
+        assert self.iscomposition(accession)
+	if self.get_composition(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_composition(desc) == accession:
+		yield desc
+
+    # All nodes with a topology node
+    def has_topology(self, accession):
+        assert self.istopology(accession), "Not a topology: "+accession
+	if self.get_topology(accession) == accession:
+	    yield accession
+        for desc in self.descendants(accession):
+	    if self.get_topology(desc) == accession:
+		yield desc
+
+    def restrict(self, restriction):
+
+        # Update the restriction set to include "landmark" topology, composition, etc nodes
+        keep = set(restriction)
+        keep.add(self.root())
+        for acc in restriction:
+            keep.add(self.get_topology(acc))
+            keep.add(self.get_composition(acc))
+            keep.add(self.get_basecomposition(acc))
+            keep.add(self.get_molecularweight(acc))
+        if None in keep:
+            keep.remove(None)
+                     
+        # find all ancestors of each kept node
+        parents = defaultdict(set)
+        for acc in keep:
+            for anc in self.ancestors(acc):
+		if anc in keep:
+                    parents[acc].add(anc)
+
+        # then eliminate shortcuts
+        toremove = set()
+        for n1 in keep:
+            for n2 in parents[n1]:
+                for n3 in parents[n2]:
+                    if n3 in parents[n1]:
+                        toremove.add((n1, n3))
+        for n1, n3 in toremove:
+            parents[n1].remove(n3)
+
+        for n in self.nodes():
+            if n not in keep:
+                self.delete_node(n)
+            else:
+                self.set_parents(n,parents[n])
+
+class GNOme(GNOmeAPI):
+    referenceowl = "http://purl.obolibrary.org/obo/gno.owl"
+    # referenceowl = "http://github.com/glygen-glycan-data/GNOme/releases/latest/download/GNOme.owl"
     referencefmt = 'xml'
 
     def __init__(self, resource=None, format=None):
@@ -30,9 +207,16 @@ class GNOme(object):
         self.ns['rdf'] = rdflib.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         self.ns['rdfs'] = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
         self.ns[None] = rdflib.Namespace("")
+	versionurl = None
+        for s,p,o in self.triples("owl:Ontology","owl:versionIRI",None):
+            versionurl = str(o)
+            break
+	if versionurl:
+            self.version = versionurl.split('/')[-2][1:]
 
     def triples(self, subj=None, pred=None, obj=None):
-        for (s, p, o) in self.gnome.triples(((self.uri(subj) if subj else None), (self.uri(pred) if pred else None),
+        for (s, p, o) in self.gnome.triples(((self.uri(subj) if subj else None),
+                                             (self.uri(pred) if pred else None),
                                              (self.uri(obj) if obj else None))):
             yield s, p, o
 
@@ -81,173 +265,61 @@ class GNOme(object):
         attr[u'level'] = self.level(accession)
         return attr
 
-
-    def edges(self):
-        for n in self.nodes():
-            for p in self.parents(n):
-                yield p, n
-
     def root(self):
         return "00000001"
 
     def parents(self, accession):
         uri = "gno:%s" % (accession,)
-        for s, p, o in self.triples(uri, 'rdfs:subClassOf'):
+        for s, p, o in self.triples(uri, 'rdfs:subClassOf', None):
             yield self.accession(o)
-
-    def ancestors(self, accession):
-        anc = set()
-        for p in self.parents(accession):
-            anc.add(p)
-            anc.update(self.ancestors(p))
-        return anc
 
     def children(self, accession):
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(None, 'rdfs:subClassOf', uri):
             yield self.accession(s)
 
-    def descendants(self, accession):
-        desc = set()
-        for c in self.children(accession):
-            desc.add(c)
-            desc.update(self.descendants(c))
-        return desc
-
-    def isleaf(self, accession):
-        for ch in self.children(accession):
-            return False
-        return True
-
-    def isroot(self, accession):
-        return accession == self.root()
-
     def level(self, accession):
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(uri, "gno:00000021", None):
             return " ".join(unicode(self.label(o)).split()[2:])
 
-    def islevel(self, accession, level):
-        return self.level(accession) == level
-
-    def ismolecularweight(self, accession):
-        return self.islevel(accession, 'molecular weight')
-
-    def isbasecomposition(self, accession):
-        return self.islevel(accession, 'basecomposition')
-
-    def iscomposition(self, accession):
-        return self.islevel(accession, 'composition')
-
-    def istopology(self, accession):
-        return self.islevel(accession, 'topology')
-
-    def issaccharide(self, accession):
-        return self.islevel(accession, 'saccharide')
+    def get_molecularweight(self, accession):
+        # There is a single molecular weight node at or above any node
+        # (that is not the root), so it can be determined by the hierarchy
+        if self.ismolecularweight(accession):
+            return accession
+        for anc in self.ancestors(accession):
+            if self.ismolecularweight(anc):
+                return anc
 
     def get_basecomposition(self, accession):
-        bcomps = set()
-        for t in self.ancestors(accession):
-            if self.isbasecomposition(t):
-                bcomps.add(t)
-        exclude = set()
-        for t in bcomps:
-            if len(self.descendants(t) & bcomps) > 0:
-                exclude.add(t)
-        for t in exclude:
-            bcomps.remove(t)
-        assert len(bcomps) <= 1
-        if len(bcomps) == 0:
-            return None
-        return iter(bcomps).next()
+        if self.isbasecomposition(accession):
+            return accession
+        uri = "gno:%s" % (accession,)
+        for s, p, o in self.triples(uri, "gno:00000033", None):
+            return " ".join(unicode(self.label(o)).split()[2:])
 
     def get_composition(self, accession):
-        comps = set()
-        for t in self.ancestors(accession):
-            if self.iscomposition(t):
-                comps.add(t)
-        exclude = set()
-        for t in comps:
-            if len(self.descendants(t) & comps) > 0:
-                exclude.add(t)
-        for t in exclude:
-            comps.remove(t)
-        assert len(comps) <= 1
-        if len(comps) == 0:
-            return None
-        return iter(comps).next()
+        if self.iscomposition(accession):
+            return accession
+        uri = "gno:%s" % (accession,)
+        for s, p, o in self.triples(uri, "gno:00000034", None):
+            return " ".join(unicode(self.label(o)).split()[2:])
 
     def get_topology(self, accession):
-        topos = set()
-        for t in self.ancestors(accession):
-            if self.istopology(t):
-                topos.add(t)
-        exclude = set()
-        for t in topos:
-            if len(self.descendants(t) & topos) > 0:
-                exclude.add(t)
-        for t in exclude:
-            topos.remove(t)
-        assert len(topos) <= 1
-        if len(topos) == 0:
-            return None
-        return iter(topos).next()
+        if self.istopology(accession):
+            return accession
+        uri = "gno:%s" % (accession,)
+        for s, p, o in self.triples(uri, "gno:00000035", None):
+            return " ".join(unicode(self.label(o)).split()[2:])
 
-    def has_basecomposition(self, accession):
-        assert self.isbasecomposition(accession)
-	if self.get_basecomposition(accession) == accession:
-	    yield accession
-        for desc in self.descendants(accession):
-	    if self.get_basecomposition(desc) == accession:
-		yield desc
+    def delete_node(self, accession):
+        self.gnome.remove((self.uri("gno:" + accession), None, None))
 
-    def has_composition(self, accession):
-        assert self.iscomposition(accession)
-	if self.get_composition(accession) == accession:
-	    yield accession
-        for desc in self.descendants(accession):
-	    if self.get_composition(desc) == accession:
-		yield desc
-
-    def has_topology(self, accession):
-        assert self.istopology(accession)
-	if self.get_topology(accession) == accession:
-	    yield accession
-        for desc in self.descendants(accession):
-	    if self.get_topology(desc) == accession:
-		yield desc
-
-    def restrict(self, restriction):
-        parents = defaultdict(set)
-        keep = set()
-        for acc in restriction:
-            keep.add(acc)
-            for anc in self.ancestors(acc):
-                if self.issaccharide(anc):
-                    if anc in restriction:
-                        parents[acc].add(anc)
-                        keep.add(anc)
-                else:
-                    parents[acc].add(anc)
-                    parents[anc].update(self.parents(anc))
-                    keep.add(anc)
-
-        toremove = set()
-        for n1 in restriction:
-            for n2 in parents[n1]:
-                for n3 in parents[n2]:
-                    if n3 in parents[n1]:
-                        toremove.add((n1, n3))
-        for n1, n3 in toremove:
-            parents[n1].remove(n3)
-
-        for n in self.nodes():
-            if n not in keep:
-                self.gnome.remove((self.uri("gno:" + n), None, None))
-            else:
-                self.gnome.remove((self.uri("gno:" + n), self.uri("rdfs:subClassOf"), None))
-                for n1 in parents[n]:
-                    self.gnome.add((self.uri("gno:" + n), self.uri("rdfs:subClassOf"), self.uri("gno:" + n1)))
+    def set_parents(self, accession, parents):
+        self.gnome.remove((self.uri("gno:" + accession), self.uri("rdfs:subClassOf"), None))
+        for parent in parents:
+            self.gnome.add((self.uri("gno:" + accession), self.uri("rdfs:subClassOf"), self.uri("gno:" + parent)))
 
     def write(self, handle):
         writer = OWLWriter()
@@ -495,10 +567,11 @@ class GNOme(object):
 
 from alignment import GlycanSubsumption, GlycanEqual
 from Monosaccharide import Anomer
-import time
+from GlycanResource import GlyTouCan
+from manipulation import Topology, Composition, BaseComposition
 
 
-class SubsumptionGraph:
+class SubsumptionGraph(GNOmeAPI):
     def __init__(self, *args, **kwargs):
         pass
 
@@ -506,19 +579,66 @@ class SubsumptionGraph:
         self.gtc = GlyTouCan(usecache=True)
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
+        self.topology = Topology()
+        self.composition = Composition()
+        self.basecomposition = BaseComposition()
         self.verbose = kwargs.get('verbose', 0)
 
+	# invalid = set(self.gtc.allinvalid())
+	invalid = set()
+
         masscluster = defaultdict(dict)
+	clustermap = dict()
         if len(args) > 0:
-	    argmass = set(map(lambda a: str(round(float(a),2)),args))
+	    argmass = []
+	    for a in args:
+		if '-' in a:
+		    low,high = map(str.strip,a.split('-'))
+		    if not low:
+			low = 0.0
+		    if not high:
+			high = 1e+20
+		    low = str(round(float(low),2))
+		    high = str(round(float(high),2))
+		else:
+		    low = str(round(float(a),2))
+		    high = low
+		argmass.append((low,high))
             for glyacc, mass in self.gtc.allmass():
+		if glyacc in invalid:
+		    continue
 		rmass = str(round(mass, 2))
-                if rmass in argmass:
-                    masscluster[rmass][glyacc] = dict(accession=glyacc)
+		for low,high in argmass:
+		    if float(low) <= float(rmass) <= float(high):
+                        masscluster[rmass][glyacc] = dict(accession=glyacc)
+			clustermap[glyacc] = rmass
+			break
         else:
             for glyacc, mass in self.gtc.allmass():
+		if glyacc in invalid:
+		    continue
                 rmass = str(round(mass, 2))
                 masscluster[rmass][glyacc] = dict(accession=glyacc)
+		clustermap[glyacc] = rmass
+
+	for rmass,cluster in masscluster.items():
+	    for acc in list(cluster):
+		topo = self.gtc.gettopo(acc)
+	        if topo and topo not in cluster:
+		    masscluster[rmass][topo] = dict(accession=topo)
+		    if topo in clustermap and topo in masscluster[clustermap[topo]]:
+		        del masscluster[clustermap[topo]][topo]
+		comp = self.gtc.getcomp(acc)
+	        if comp and comp not in cluster:
+		    masscluster[rmass][comp] = dict(accession=comp)
+		    if comp in clustermap and comp in masscluster[clustermap[comp]]:
+		        del masscluster[clustermap[comp]][comp]
+		bcomp = self.gtc.getbasecomp(acc)
+	        if bcomp and bcomp not in cluster:
+		    masscluster[rmass][bcomp] = dict(accession=bcomp)
+		    if bcomp in clustermap and bcomp in masscluster[clustermap[bcomp]]:
+		        del masscluster[clustermap[bcomp]][bcomp]
+
         for rmass, cluster in sorted(masscluster.items(),key=lambda t: float(t[0])):
             self.compute_component(rmass, cluster)
 
@@ -537,18 +657,30 @@ class SubsumptionGraph:
         total = len(cluster)
         allgly = dict()
         for acc in sorted(cluster):
-            gly = self.gtc.getGlycan(acc)
+            gly = self.gtc.getGlycan(acc,format='wurcs')
+            # gly = self.gtc.getGlycan(acc,format='glycoct')
             if not gly:
                 badparse += 1
-                skels = self.gtc.getUnsupportedSkeletonCodes(acc)
+                skels, substs, invalid, other = self.gtc.getUnsupportedCodes(acc)
                 if len(skels) > 0:
                     for skel in skels:
                         self.warning("unsupported skeleton code: " + skel + " in glycan " + acc, 2)
-                else:
+		if len(substs) > 0:
+		    for subst in substs:
+                        self.warning("unsupported substituent: " + subst + " in glycan " + acc, 2)
+		if len(invalid) > 0:
+		    for inv in invalid:
+                        self.warning("unsupported monosaccharide: " + inv + " in glycan " + acc, 2)
+		if len(other) > 0:
+		    for oth in other:
+                        self.warning("other glycan error: " + oth + " in glycan " + acc, 2)
+		if max(map(len,[skels,substs,invalid,other])) == 0:
                     self.warning("unknown problem parsing glycan " + acc, 2)
                 continue
             cluster[acc]['glycan'] = gly
             cluster[acc]['mass'] = self.gtc.getmass(acc)
+	    if cluster[acc]['mass'] == None:
+		cluster[acc]['mass'] = float(rmass)
 
         clusteracc = set(map(lambda t: t[0], filter(lambda t: t[1].has_key('glycan'), cluster.items())))
 
@@ -568,55 +700,63 @@ class SubsumptionGraph:
                             inedges[acc1].add(acc2)
 	self.warning("Computation of subsumption relationships done",5)
 
+        # Check GlyTouCan topology, composition, basecomposition, and
+        # molecular weight annotations with respect to computed
+        # subsumption relationships and computed molecular weight
+        
         for acc in sorted(clusteracc):
+
             topo = self.gtc.gettopo(acc)
             if topo:
                 if topo not in cluster:
-                    self.warning("annotated topology %s of %s is not in %s rounded mass cluster" % (topo, acc, rmass),
-                                 1)
+                    self.warning("annotated topology %s of %s is not in %s rounded mass cluster" % (topo, acc, rmass), 1)
                 elif not cluster[topo].get('glycan'):
                     self.warning("annotated topology %s of %s cannot be parsed" % (topo, acc), 1)
                 elif acc not in outedges[topo] and acc != topo:
                     self.warning("annotated topology %s does not subsume %s" % (topo, acc), 1)
+
             comp = self.gtc.getcomp(acc)
             if comp:
                 if comp not in cluster:
-                    self.warning(
-                        "annotated composition %s of %s is not in %s rounded mass cluster" % (comp, acc, rmass), 1)
+                    self.warning("annotated composition %s of %s is not in %s rounded mass cluster" % (comp, acc, rmass), 1)
                 elif not cluster[comp].get('glycan'):
                     self.warning("annotated composition %s of %s cannot be parsed" % (comp, acc), 1)
                 elif acc not in outedges[comp] and acc != comp:
                     self.warning("annotated composition %s does not subsume %s" % (comp, acc), 1)
+
             bcomp = self.gtc.getbasecomp(acc)
             if bcomp:
                 if bcomp not in cluster:
-                    self.warning(
-                        "annotated base composition %s of %s is not in %s rounded mass cluster" % (bcomp, acc, rmass),
-                        1)
+                    self.warning("annotated base composition %s of %s is not in %s rounded mass cluster" % (bcomp, acc, rmass),1)
                 elif not cluster[bcomp].get('glycan'):
                     self.warning("annotated base composition %s of %s cannot be parsed" % (bcomp, acc), 1)
                 elif acc not in outedges[bcomp] and acc != bcomp:
                     self.warning("annotated base composition %s does not subsume %s" % (bcomp, acc), 1)
+
             try:
                 umw = cluster[acc]['glycan'].underivitized_molecular_weight()
             except LookupError:
                 umw = None
             if umw == None:
                 self.warning("mass could not be computed for %s" % (acc), 2)
-            elif abs(cluster[acc]['mass'] - umw) > 0.0001:
-                self.warning(
-                    "annotated mass %s for %s is different than computed mass %s" % (cluster[acc]['mass'], acc, umw), 1)
+            elif cluster[acc]['mass'] == None or abs(cluster[acc]['mass'] - umw) > 0.0001:
+                self.warning("annotated mass %s for %s is different than computed mass %s" % (cluster[acc]['mass'], acc, umw), 1)
+
+        # Infer subsumption level and and store topology, composition,
+        # basecomposition based on GlyTouCan annotations.
 
         for acc in sorted(clusteracc):
 
             if acc == self.gtc.getbasecomp(acc):
                 cluster[acc]['level'] = "BaseComposition"
                 cluster[acc]['bcomp'] = acc
+
             elif acc == self.gtc.getcomp(acc):
                 cluster[acc]['level'] = "Composition"
                 if self.gtc.getbasecomp(acc):
                     cluster[acc]['bcomp'] = self.gtc.getbasecomp(acc)
                 cluster[acc]['comp'] = acc
+
             elif acc == self.gtc.gettopo(acc):
                 cluster[acc]['level'] = "Topology"
                 if self.gtc.getbasecomp(acc):
@@ -624,6 +764,7 @@ class SubsumptionGraph:
                 if self.gtc.getcomp(acc):
                     cluster[acc]['comp'] = self.gtc.getcomp(acc)
                 cluster[acc]['topo'] = acc
+
             else:
                 if self.gtc.gettopo(acc):
                     cluster[acc]['level'] = "Saccharide"
@@ -632,27 +773,34 @@ class SubsumptionGraph:
                         cluster[acc]['bcomp'] = self.gtc.getbasecomp(acc)
                     if self.gtc.getcomp(acc):
                         cluster[acc]['comp'] = self.gtc.getcomp(acc)
+                        
+        # Augment GlyTouCan level annotations with levels inferred
+        # from glycan structure characteristics. Check to see these
+        # are consistent with levels inferred from GlyTouCan
+        # annotations. Put a * on those levels we set. Currently,
+        # GlyTouCan annotations take precedence.
 
         for acc in sorted(clusteracc):
             gly = cluster[acc]['glycan']
             level = cluster[acc].get('level')
+
             if self.any_anomer(gly):
                 if not level:
                     cluster[acc]['level'] = 'Saccharide*'
                 elif level != "Saccharide":
-                    self.warning(
-                        "annotation inferred level %s for %s != computed level Saccharide (anomer)" % (level, acc), 1)
+                    self.warning("annotation inferred level %s for %s != computed level Saccharide (anomer)" % (level, acc), 1)
 		    # cluster[acc]['level'] = 'Saccharide*'
                 continue
+
             if self.any_parent_pos(gly):
                 if not level:
                     cluster[acc]['level'] = 'Saccharide*'
                 elif level != "Saccharide":
-                    self.warning(
-                        "annotation inferred level %s for %s != computed level Saccharide (parent_pos)" % (level, acc),
+                    self.warning("annotation inferred level %s for %s != computed level Saccharide (parent_pos)" % (level, acc),
                         1)
                     # cluster[acc]['level'] = 'Saccharide*'
                 continue
+
             if self.any_links(gly):
                 if not level:
                     cluster[acc]['level'] = 'Topology*'
@@ -660,6 +808,7 @@ class SubsumptionGraph:
                     self.warning("annotation inferred level %s for %s != computed level Topology" % (level, acc), 1)
                     # cluster[acc]['level'] = 'Topology*'
                 continue
+
             if self.mono_count(gly) == 1 and self.any_ring(gly):
                 if not level:
                     cluster[acc]['level'] = 'Topology*'
@@ -667,8 +816,10 @@ class SubsumptionGraph:
                     self.warning("annotation inferred level %s for %s != computed level Topology" % (level, acc), 1)
                     # cluster[acc]['level'] = 'Topology*'
                 continue
+
 	    if self.any_ring(gly):
                 self.warning("%s has no linkages but does have ring values" % (acc,), 1)
+
             if self.any_stem(gly):
                 if not level:
                     cluster[acc]['level'] = 'Composition*'
@@ -676,47 +827,151 @@ class SubsumptionGraph:
                     self.warning("annotation inferred level %s for %s != computed level Composition" % (level, acc), 1)
                     # cluster[acc]['level'] = 'Composition*'
                 continue
+
             if not level:
                 cluster[acc]['level'] = 'BaseComposition*'
             elif level != "BaseComposition":
                 self.warning("annotation inferred level %s for %s != computed level BaseComposition" % (level, acc), 1)
                 # cluster[acc]['level'] = 'BaseComposition*'
 
+        # Add topology, composition, basecomposition annotations for
+        # those missing from GlyTouCan. Check GlyTouCan annotations to
+        # make sure they are consistent with ours. Put a * on those we
+        # set. Currently, GlyTouCan annotations take precedence.
+
+
+	self.warning("Checking topo, comp, bcomp relationships...",5)
         for acc in sorted(clusteracc):
+	    self.warning("Checking topo, comp, bcomp relationships for %s"%(acc,),5)
             g = cluster[acc]
-            if not g.get('topo'):
-                if g.get('level') in ("Topology", "Topology*"):
-                    g['topo'] = acc + "*"
+
+            gly = g['glycan']
+
+            topo = set()
+            comp = set()
+            bcomp = set()
+            for acc1 in (list(inedges[acc]) + [acc]):
+                level1 = cluster[acc1].get('level').strip("*")
+                if level1 == "Saccharide":
+                    continue
+                gly1 = cluster[acc1]['glycan']
+
+                if False and level1 == "Topology" and acc == "G65022XW":
+                    print self.geq.eq(gly1,self.topology(gly))
+                    print "topology(%s)"%(acc,)
+                    print self.topology(gly).glycoct()
+                    print acc1
+                    print gly1.glycoct()
+
+                if False and level1 == "Composition" and acc == "G76453ML":
+                    print self.geq.eq(gly1,self.composition(gly))
+                    print "composition(%s)"%(acc,)
+                    print self.composition(gly).glycoct()
+                    print acc1
+                    print gly1.glycoct()
+		
+	        self.warning("Checking topo, comp, bcomp relationships for %s: %s (%s)"%(acc,acc1,level1),5)
+                if level1 == "BaseComposition" and self.geq.eq(gly1,self.basecomposition(gly)):
+                    bcomp.add(acc1)
+                elif level1 == "Composition" and self.geq.eq(gly1,self.composition(gly)):
+                    comp.add(acc1)
+                elif level1 == "Topology" and self.geq.eq(gly1,self.topology(gly)):
+                    topo.add(acc1)
+
+            if len(topo) > 1:
+                self.warning("multiple topologies %s for %s"%(", ".join(topo), acc), 1)
+                if g.get('topo') in topo:
+		    # Take GTC one if present
+                    topo = g.get('topo')
                 else:
-                    for acc1 in inedges[acc]:
-                        if cluster[acc1].get('level') in ("Topology", "Topology*"):
-                            if not g.get('topo') or g.get('topo').rstrip("*") in inedges[acc1]:
-                                g['topo'] = acc1 + "*"
-            if not g.get('comp'):
-                if g.get('level') in ("Composition", "Composition*"):
-                    g['comp'] = acc + "*"
+		    # Take the one subsumed by all the others... 
+		    topo1=None
+		    for acc in topo:
+			if (topo-inedges[acc]) == set([acc]):
+			    topo1 = acc
+			    break
+		    topo = topo1
+            elif len(topo) == 0:
+                topo = None
+            else:
+                topo = topo.pop()
+
+            if len(comp) > 1:
+                self.warning("multiple compositions %s for %s"%(", ".join(comp), acc), 1)
+                if g.get('comp') in comp:
+		    # Take GTC one if present
+                    comp = g.get('comp')
                 else:
-                    for acc1 in inedges[acc]:
-                        if cluster[acc1].get('level') in ("Composition", "Composition*"):
-                            if not g.get('comp') or g.get('comp').rstrip("*") in inedges[acc1]:
-                                g['comp'] = acc1 + "*"
-            if not g.get('bcomp'):
-                if g.get('level') in ("BaseComposition", "BaseComposition*"):
-                    g['bcomp'] = acc + "*"
+		    comp1=None
+		    for acc in comp:
+			if (comp-inedges[acc]) == set([acc]):
+			    comp1 = acc
+			    break
+                    comp = comp1
+            elif len(comp) == 0:
+                comp = None
+            else:
+                comp = comp.pop()
+
+            if len(bcomp) > 1:
+                self.warning("multiple base compositions %s for %s"%(", ".join(bcomp), acc), 1)
+                if g.get('bcomp') in bcomp:
+		    # Take GTC one if present
+                    bcomp = g.get('bcomp')
                 else:
-                    for acc1 in inedges[acc]:
-                        if cluster[acc1].get('level') in ("BaseComposition", "BaseComposition*"):
-                            if not g.get('bcomp') or g.get('bcomp').rstrip("*") in inedges[acc1]:
-                                g['bcomp'] = acc1 + "*"
+		    bcomp1=None
+		    for acc in bcomp:
+			if (bcomp-inedges[acc]) == set([acc]):
+			    bcomp1 = acc
+			    break
+                    bcomp = bcomp1
+            elif len(bcomp) == 0:
+                bcomp = None
+            else:
+                bcomp = bcomp.pop()
+
+            if g.get('topo') and g.get('topo') != topo and g.get('topo') in cluster:
+                self.warning("annotated topology %s for %s != computed topology %s"%(g.get('topo'),acc,topo),1)
+            if acc == topo and cluster[acc].get('level').strip("*") != "Topology":
+                self.warning("bad level %s for %s with topology %s"%(cluster[acc].get('level'),acc,topo),1)
+            if not g.get('topo') and topo:
+                g['topo'] = topo + "*"
+
+            if g.get('comp') and g.get('comp') != comp:
+                self.warning("annotated composition %s for %s != computed composition %s"%(g.get('comp'),acc,comp),1)
+	        if g.get('comp') in cluster and 'glycan' in cluster[g.get('comp')]:
+		    glycomp = cluster[g.get('comp')]['glycan']
+		    floating = set()
+		    for r in glycomp.all_nodes(undet_subst=True):
+		        if not r.is_monosaccharide():
+			    if r.name() not in Composition.floating_substs:
+			        floating.add(str(r).split(":")[1])
+		    assert len(floating) == 0, "Unaccounted for floating substs: "+", ".join(floating)
+            if acc == comp and cluster[acc].get('level').strip("*") != "Composition":
+                self.warning("bad level %s for %s with composition %s"%(cluster[acc].get('level'),acc,comp),1)
+            if not g.get('comp') and comp:
+                g['comp'] = comp + "*"
+
+            if g.get('bcomp') and g.get('bcomp') != bcomp and g.get('bcomp') in cluster:
+                self.warning("annotated base composition %s for %s != computed base composition %s"%(g.get('bcomp'),acc,bcomp),1)
+            if acc == bcomp and cluster[acc].get('level').strip("*") != "BaseComposition":
+                self.warning("bad level %s for %s with topology %s"%(cluster[acc].get('level'),acc,bcomp),1)
+            if not g.get('bcomp') and bcomp:
+                g['bcomp'] = bcomp + "*"
+
+	self.warning("Checking topo, comp, bcomp relationships... done.",5)
+
         if len(clusteracc) < 1:
             print "# DONE - Elapsed time %.2f sec." % (time.time() - start,)
             sys.stdout.flush()
             return
 
         print "# NODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
-        for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level'),acc) ):
+        for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level').rstrip('*'),acc) ):
             g = cluster[acc]
-            print acc, g.get('mass'), g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
+            print acc, 
+	    print g.get('mass'), 
+            print g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
             gly = g.get('glycan')
 	    extras = []
 	    if not gly.has_root():
@@ -917,64 +1172,18 @@ class SubsumptionGraph:
         for n in self.allnodestype.keys():
             yield n
 
-    def edges(self):
-        for n in self.nodes():
-            if n in self.alledges:
-                for c in self.alledges[n]:
-                    yield (n, c)
-
     def parents(self, accession):
         for p in self.allinedges.get(accession, []):
             yield p
-
-    def ancestors(self, accession):
-        anc = set()
-        for p in self.parents(accession):
-            anc.add(p)
-            anc.update(self.ancestors(p))
-        return anc
 
     def children(self, accession):
         for c in self.alledges.get(accession, []):
             yield c
 
-    def descendants(self, accession):
-        desc = set()
-        for c in self.children(accession):
-            desc.add(c)
-            desc.update(self.descendants(c))
-        return desc
-
-    def isleaf(self, accession):
-        for ch in self.children(accession):
-            return False
-        return True
-
-    def isroot(self, accession):
-        return accession == self.root()
-
     def level(self, accession):
 	if accession in self.allnodestype:
 	    return self.allnodestype[accession][1].lower()
         return None
-
-    def islevel(self, accession, level):
-        return self.level(accession) == level
-
-    def ismolecularweight(self, accession):
-        return self.islevel(accession, 'molecular weight')
-
-    def isbasecomposition(self, accession):
-        return self.islevel(accession, 'basecomposition')
-
-    def iscomposition(self, accession):
-        return self.islevel(accession, 'composition')
-
-    def istopology(self, accession):
-        return self.islevel(accession, 'topology')
-
-    def issaccharide(self, accession):
-        return self.islevel(accession, 'saccharide')
 
     def get_molecularweight(self, accession):
 	if accession in self.allnodestype:
@@ -1014,30 +1223,6 @@ class SubsumptionGraph:
         for iupac in sorted(d.keys()):
             s += iupac+str(d[iupac])
         return s
-
-    def has_basecomposition(self, accession):
-        assert self.isbasecomposition(accession), accession
-	if self.get_basecomposition(accession) == accession:
-	    yield accession
-	for desc in self.descendants(accession):
-	    if self.get_basecomposition(desc) == accession:
-		yield desc
-
-    def has_composition(self, accession):
-        assert self.iscomposition(accession), accession
-	if self.get_composition(accession) == accession:
-	    yield accession
-        for desc in self.descendants(accession):
-	    if self.get_composition(desc) == accession:
-		yield desc
-
-    def has_topology(self, accession):
-        assert self.istopology(accession), accession
-	if self.get_topology(accession) == accession:
-	    yield accession
-	for desc in self.descendants(accession):
-	    if self.get_topology(desc) == accession:
-		yield desc
 
     def regexget(self, p, s):
         searchres = list(p.finditer(s))
@@ -1817,7 +2002,17 @@ if __name__ == "__main__":
         json_fp = open(sys.argv[3], "w")
         json.dump(restriction_set, json_fp)
 
-
     else:
-        print >> sys.stderr, "Bad command: %s" % (cmd,)
-        sys.exit(1)
+
+	gnome = GNOme()
+
+	if hasattr(gnome,cmd):
+	    result = getattr(gnome,cmd)(*sys.argv[1:])
+	    if isinstance(result,basestring):
+		print result
+	    else:
+	        for r in result:
+		    print r
+	else:
+            print >> sys.stderr, "Bad command: %s" % (cmd,)
+            sys.exit(1)

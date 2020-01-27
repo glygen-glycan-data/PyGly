@@ -161,17 +161,24 @@ class UniCarbKB(Triple_store_api):
     # endpt = 'http://ts.glytoucan.org/sparql'
     # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.1'
     # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.1/query'
-    endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.4/query'
+    # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.4/query'
     # endpt = 'http://203.101.226.16:40935/unicarbkbv2.0.5/query'
+    # endpt = 'http://sparql.unicarbkb.org/query'
+    # endpt = 'http://130.56.249.35:40935/unicarbkb/query'
+    endpt = 'http://130.56.249.35:40935/unicarbkb/query'
 
     # human_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.4/human/unicarbkb_2_0_4_human.csv"
-    human_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/human_18072019.csv"
+    # human_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/human_18072019.csv"
+    human_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/human.csv"
 
     # mouse_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.4/mouse/unicarbkb_2_0_4_mouse.csv"
-    mouse_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/mouse.csv"
+    # mouse_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/mouse.csv"
+    mouse_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/mouse.csv"
+
 
     # rat_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.4/rat/unicarbkb_rat.csv"
-    rat_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/rat.csv"
+    # rat_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/QC/build_triplestore/GlycoCoo_1.3.2/2.0.5/out/rat.csv"
+    rat_export_url = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/rat.csv"
 
     cachefile = ".unicarbcache"
 
@@ -445,7 +452,7 @@ if __name__ == "__main__":
 	for k in sorted(res,key=intstr):
 	    print k
 
-    if cmd.lower() == "references":
+    elif cmd.lower() == "references":
 	
 	uc = UniCarbKB()
         pubmed = uc.references()
@@ -455,4 +462,5 @@ if __name__ == "__main__":
 	
     else:
         print >> sys.stderr, "Bad command: %s" % (cmd,)
+	print >>sys.stderr, "Valid commands: %s."%(", ".join(sorted(["references","gtcbytaxa","glytoucan","taxa"])))
         sys.exit(1)

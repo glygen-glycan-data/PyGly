@@ -4,7 +4,7 @@ from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 from Glycan import Glycan
 from MonoFactory import MonoFactory
 
-import re, sys
+import re, sys, traceback
 import copy
 import string
 from collections import defaultdict
@@ -1260,6 +1260,10 @@ class UnsupportedLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Unsupported link %s"%(linkstr,)
 
+class UndeterminedLinkCountError(WURCS20ParseError):
+    def __init__(self):
+	self.message = "WURCS2.0 parser: undetermined link count"
+
 class BadChildPositionLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Bad child position in link %s"%(linkstr,)
@@ -1271,6 +1275,10 @@ class BadParentPositionLinkError(WURCS20ParseError):
 class MonoOrderLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
+
+class LinkCountError(WURCS20ParseError):
+  def __init__(self,instr):
+   self.message = "WURCS2.0 parser: Bad link count:\n     %s"%(instr,)
 
 class CircularError(WURCS20ParseError):
   def __init__(self,instr):
@@ -1289,7 +1297,7 @@ import WURCS20MonoFormatter
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
         self.mf = WURCS20MonoFormatter.WURCS20MonoFormat()
-	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
+	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+\+?)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
 	self.simplelinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])$')
 	self.multilinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|\4([0-9?]))*)$')
 	self.ambiglinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|([a-zA-Z]{1,2})([0-9?]))+)\}$')
@@ -1316,6 +1324,8 @@ class WURCS20Format(GlycanFormatter):
 	m = self.wurcsre.search(s)
 	if not m:
 	    raise WURCS20FormatError(s)
+	if m.group(1).endswith('+'):
+	    raise UndeterminedLinkCountError()
 	counts = map(int,m.group(1).split(','))
 	distinctmono = {}; mono = {};
 	for i,ms in enumerate(m.group(2)[1:-1].split('][')):
@@ -1455,6 +1465,9 @@ class WURCS20Format(GlycanFormatter):
                 continue
 
             raise UnsupportedLinkError(li)
+
+	if counts[2] != (counts[1] - 1 + len(floating_substs)):
+            raise LinkCountError(s)
 
         unconnected = set()
         monocnt = 0
