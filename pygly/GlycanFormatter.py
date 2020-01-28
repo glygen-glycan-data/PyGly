@@ -1264,6 +1264,10 @@ class UndeterminedLinkCountError(WURCS20ParseError):
     def __init__(self):
 	self.message = "WURCS2.0 parser: undetermined link count"
 
+class ZeroPlusLinkCountError(WURCS20ParseError):
+    def __init__(self):
+	self.message = "WURCS2.0 parser: zero plus link count"
+
 class BadChildPositionLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
 	self.message = "WURCS2.0 parser: Bad child position in link %s"%(linkstr,)
@@ -1325,7 +1329,10 @@ class WURCS20Format(GlycanFormatter):
 	if not m:
 	    raise WURCS20FormatError(s)
 	if m.group(1).endswith('+'):
-	    raise UndeterminedLinkCountError()
+	    if m.group(1).endswith(",0+"):
+	        raise ZeroPlusLinkCountError()
+	    else:
+	        raise UndeterminedLinkCountError()
 	counts = map(int,m.group(1).split(','))
 	distinctmono = {}; mono = {};
 	for i,ms in enumerate(m.group(2)[1:-1].split('][')):

@@ -11,7 +11,7 @@ import csv
 import urllib
 import json
 
-from GlycanFormatter import WURCS20Format, GlycoCTFormat, GlycanParseError, UndeterminedLinkCountError, CircularError, LinkCountError
+from GlycanFormatter import WURCS20Format, GlycoCTFormat, GlycanParseError, ZeroPlusLinkCountError, UndeterminedLinkCountError, CircularError, LinkCountError
 from WURCS20MonoFormatter import WURCS20MonoFormat, UnsupportedSkeletonCodeError, UnsupportedSubstituentError, InvalidMonoError
 
 import warnings                                                                                                 
@@ -476,6 +476,8 @@ class GlyTouCanUtil(object):
                 pass
 	try:
 	    g = self._wurcs_format.toGlycan(sequence)
+	except ZeroPlusLinkCountError:
+	    other.add("0+ link count")
 	except UndeterminedLinkCountError:
 	    other.add("undetermined link count")
 	except CircularError:
@@ -514,6 +516,19 @@ class GlyTouCanUtil(object):
 	if not g:
 	    return None
         return g.underivitized_molecular_weight()
+
+    def wurcs2glycoct(self, acc):
+	sequence = self.getseq(acc,'wurcs')
+	if sequence:
+	    sequence1 = urllib.quote_plus(sequence)
+	    url = 'https://api.glycosmos.org/glycanformatconverter/2.3.2-snapshot/wurcs2glycoct/'+sequence1
+	    try:
+	        data = json.loads(urllib.urlopen(url).read())
+	        if 'GlycoCT' in data:
+	            return data['GlycoCT']
+	    except ValueError:
+		pass
+	return None
 
     def subsumptionbyapi(self, acc):
 	sequence = self.getseq(acc,'wurcs')
