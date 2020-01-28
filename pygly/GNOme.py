@@ -1881,6 +1881,121 @@ class NormalLink:
         self._sideB.getLink().remove(self)
 
 
+# Theme generator for GNOme viewer
+class GNOme_Theme_Base:
+
+    #restriction_url = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/restrictions/GNOme_%s.accessions.txt"
+    restriction_url = ""
+
+    def __init__(self, restrictions_path):
+        self.restriction_url = restrictions_path + "/GNOme_%s.accessions.txt"
+
+    def getdata(self):
+        # icon style
+        # image source
+        # external resources
+        #   glycan URL
+        #   Name
+        #   Set
+        raise NotImplemented()
+
+    def get_accessions(self, restriction_set_name):
+        # url = self.restriction_url%restriction_set_name
+        # accs = urllib2.urlopen(url).read().strip().split()
+        url = self.restriction_url % restriction_set_name
+        accs = list(sorted(open(url).read().strip().split()))
+        return accs
+
+    def getoutputpath(self):
+        raise NotImplemented()
+
+    def write(self, output_path):
+        d = self.getdata()
+        json.dump(d, open(output_path, "w"))
+
+class GNOme_Theme_GlyTouCan(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "snfg",
+            "image_source_prefix": "https://image.glycosmos.org/snfg/png/",
+            "image_source_suffix": "",
+            "external_resources": [
+                {
+                    "name": "GlyTouCan",
+                    "url_prefix": "https://glytoucan.org/Structures/Glycans/",
+                    "url_suffix": "",
+                    "glycan_set": None
+                }
+            ]
+
+        }
+
+class GNOme_Theme_GlyGen(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "cfg",
+            "image_source_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
+            "image_source_suffix": ".png",
+            "external_resources": [
+                {
+                    "name": "GlyGen",
+                    "url_prefix": "https://www.glygen.org/glycan_detail.html?glytoucan_ac=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyGen")
+                }
+            ]
+
+        }
+
+class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "cfg",
+            "image_source_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
+            "image_source_suffix": ".png",
+            "external_resources": [
+                {
+                    "name": "GlyGen Dev",
+                    "url_prefix": "https://beta.glygen.org/glycan_detail.html?glytoucan_ac=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyGen")
+                }
+            ]
+
+        }
+
+class GNOme_Theme_Default(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "cfg",
+            "image_source_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
+            "image_source_suffix": ".png",
+            "external_resources": [
+                {
+                    "name": "GlycanData",
+                    "url_prefix": "https://edwardslab.bmcb.georgetown.edu/glycandata/",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlycanData")
+                },{
+                    "name": "GlyGen",
+                    "url_prefix": "https://www.glygen.org/glycan_detail.html?glytoucan_ac=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyGen")
+                },{
+                    "name": "GlyTouCan",
+                    "url_prefix": "https://glytoucan.org/Structures/Glycans/",
+                    "url_suffix": "",
+                    "glycan_set": None
+                }
+            ]
+
+        }
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
     sys.argv.pop(1)
@@ -1984,11 +2099,11 @@ if __name__ == "__main__":
         if restriction_set_name == "BCSDB":
             sys.exit(0)
 
-        elif restriction_set_name == "GlyGen":
-            fp = os.path.dirname(os.path.abspath(__file__)) + "/../smw/glycandata/data/glygen_accessions.txt"
-            restriction_set = open(fp).read().strip().split()
+        #elif restriction_set_name == "GlyGen":
+        #    fp = os.path.dirname(os.path.abspath(__file__)) + "/../smw/glycandata/data/glygen_accessions.txt"
+        #    restriction_set = open(fp).read().strip().split()
 
-        elif restriction_set_name == "GlycanData":
+        elif restriction_set_name in ["GlycanData", "GlyGen"]:
             glycandata_tsv_fp = "../smw/glycandata/export/allglycan.tsv"
 
             restriction_set = open(glycandata_tsv_fp).read().strip().split()
@@ -2001,6 +2116,26 @@ if __name__ == "__main__":
 
         json_fp = open(sys.argv[3], "w")
         json.dump(restriction_set, json_fp, sort_keys=True, indent=2)
+
+    elif cmd == "UpdateTheme":
+
+        if len(sys.argv) < 3:
+            print "Please provide restriction set name and file path"
+            sys.exit(1)
+
+        restriction_url = sys.argv[1]
+        theme_path = sys.argv[2]
+
+        td = GNOme_Theme_Default(restriction_url)
+        tgtc = GNOme_Theme_GlyTouCan(restriction_url)
+        tgg = GNOme_Theme_GlyGen(restriction_url)
+        tggd = GNOme_Theme_GlyGenDev(restriction_url)
+
+        td.write(theme_path + "default.json")
+        tgtc.write(theme_path + "GlyTouCan.json")
+        tgg.write(theme_path + "GlyGen.json")
+        tggd.write(theme_path + "GlyGenDev.json")
+
 
     else:
 
