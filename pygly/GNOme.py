@@ -13,7 +13,7 @@ class GNOmeAPI(object):
 
     # Base class for GNOme and subsumption API supported by both the
     # released OWL file and the so-called Subsumption Graph raw dump
-    # file. 
+    # file.
 
     # All nodes
     def nodes(self):
@@ -56,7 +56,7 @@ class GNOmeAPI(object):
 
     ####
     #### Derived functionality, in terms of primitives above...
-    #### 
+    ####
 
     # All edges
     def edges(self):
@@ -164,7 +164,7 @@ class GNOmeAPI(object):
             keep.add(self.get_molecularweight(acc))
         if None in keep:
             keep.remove(None)
-                     
+
         # find all ancestors of each kept node
         parents = defaultdict(set)
         for acc in keep:
@@ -499,11 +499,11 @@ class GNOme(GNOmeAPI):
                 component["top"] = True
 
         f = open(output_file_path1, "w")
-        f.write(json.dumps(res))
+        f.write(json.dumps(res, sort_keys=True, indent=2))
         f.close()
 
         f2 = open(output_file_path2, "w")
-        f2.write(json.dumps(data_composition))
+        f2.write(json.dumps(data_composition, sort_keys=True, indent=2))
         f2.close()
 
     def toViewerData2(self, output_file_path1):
@@ -561,7 +561,7 @@ class GNOme(GNOmeAPI):
                 component["top"] = True
 
         f = open(output_file_path1, "w")
-        f.write(json.dumps(res))
+        f.write(json.dumps(res, sort_keys=True, indent=2))
         f.close()
 
 
@@ -703,7 +703,7 @@ class SubsumptionGraph(GNOmeAPI):
         # Check GlyTouCan topology, composition, basecomposition, and
         # molecular weight annotations with respect to computed
         # subsumption relationships and computed molecular weight
-        
+
         for acc in sorted(clusteracc):
 
             topo = self.gtc.gettopo(acc)
@@ -773,7 +773,7 @@ class SubsumptionGraph(GNOmeAPI):
                         cluster[acc]['bcomp'] = self.gtc.getbasecomp(acc)
                     if self.gtc.getcomp(acc):
                         cluster[acc]['comp'] = self.gtc.getcomp(acc)
-                        
+
         # Augment GlyTouCan level annotations with levels inferred
         # from glycan structure characteristics. Check to see these
         # are consistent with levels inferred from GlyTouCan
@@ -884,7 +884,7 @@ class SubsumptionGraph(GNOmeAPI):
 		    # Take GTC one if present
                     topo = g.get('topo')
                 else:
-		    # Take the one subsumed by all the others... 
+		    # Take the one subsumed by all the others...
 		    topo1=None
 		    for acc in topo:
 			if (topo-inedges[acc]) == set([acc]):
@@ -969,8 +969,8 @@ class SubsumptionGraph(GNOmeAPI):
         print "# NODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
         for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level').rstrip('*'),acc) ):
             g = cluster[acc]
-            print acc, 
-	    print g.get('mass'), 
+            print acc,
+	    print g.get('mass'),
             print g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
             gly = g.get('glycan')
 	    extras = []
@@ -2000,7 +2000,7 @@ if __name__ == "__main__":
         open(fp, "w").write("\n".join(restriction_set))
 
         json_fp = open(sys.argv[3], "w")
-        json.dump(restriction_set, json_fp)
+        json.dump(restriction_set, json_fp, sort_keys=True, indent=2)
 
     else:
 
