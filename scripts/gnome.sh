@@ -39,7 +39,7 @@ python27 ../pygly/GNOme.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
 
 cp ./GNOme/convert.sh ./
 ./convert.sh
-mv ./GNOme.* ./GNOme/
+mv ./GNOme.browser.* ./GNOme/
 
 for Restriction_set in "${restriction_set_names[@]}"
 do
