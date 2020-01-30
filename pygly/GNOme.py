@@ -588,7 +588,7 @@ class SubsumptionGraph(GNOmeAPI):
 	invalid = set()
 
         masscluster = defaultdict(dict)
-	clustermap = dict()
+	clustermap = defaultdict(set)
         if len(args) > 0:
 	    argmass = []
 	    for a in args:
@@ -608,36 +608,48 @@ class SubsumptionGraph(GNOmeAPI):
 		if glyacc in invalid:
 		    continue
 		rmass = str(round(mass, 2))
+		if glyacc in clustermap:
+		    for rmi in clustermap[glyacc]:
+		        if glyacc in masscluster[rmi]:
+                            del masscluster[rmi][glyacc]
+		    clustermap[glyacc].add(rmass)
+		    continue
 		for low,high in argmass:
 		    if float(low) <= float(rmass) <= float(high):
                         masscluster[rmass][glyacc] = dict(accession=glyacc)
-			clustermap[glyacc] = rmass
+			clustermap[glyacc].add(rmass)
 			break
         else:
             for glyacc, mass in self.gtc.allmass():
 		if glyacc in invalid:
 		    continue
                 rmass = str(round(mass, 2))
+		if glyacc in clustermap:
+		    for rmi in clustermap[glyacc]:
+                        if glyacc in masscluster[rmi]:
+                            del masscluster[rmi][glyacc]                                                                    
+                    clustermap[glyacc].add(rmass)
+                    continue
                 masscluster[rmass][glyacc] = dict(accession=glyacc)
-		clustermap[glyacc] = rmass
+		clustermap[glyacc].add(rmass)
 
 	for rmass,cluster in masscluster.items():
 	    for acc in list(cluster):
 		topo = self.gtc.gettopo(acc)
 	        if topo and topo not in cluster:
 		    masscluster[rmass][topo] = dict(accession=topo)
-		    if topo in clustermap and topo in masscluster[clustermap[topo]]:
-		        del masscluster[clustermap[topo]][topo]
+		    for rmi in clustermap.get(topo,[]):
+			del masscluster[rmi][topo]
 		comp = self.gtc.getcomp(acc)
 	        if comp and comp not in cluster:
 		    masscluster[rmass][comp] = dict(accession=comp)
-		    if comp in clustermap and comp in masscluster[clustermap[comp]]:
-		        del masscluster[clustermap[comp]][comp]
+		    for rmi in clustermap.get(comp,[]):
+		        del masscluster[rmi][comp]
 		bcomp = self.gtc.getbasecomp(acc)
 	        if bcomp and bcomp not in cluster:
 		    masscluster[rmass][bcomp] = dict(accession=bcomp)
-		    if bcomp in clustermap and bcomp in masscluster[clustermap[bcomp]]:
-		        del masscluster[clustermap[bcomp]][bcomp]
+		    for rmi in clustermap.get(bcomp,[]):
+		        del masscluster[rmi][bcomp]
 
         for rmass, cluster in sorted(masscluster.items(),key=lambda t: float(t[0])):
             self.compute_component(rmass, cluster)
@@ -678,8 +690,10 @@ class SubsumptionGraph(GNOmeAPI):
                     self.warning("unknown problem parsing glycan " + acc, 2)
                 continue
             cluster[acc]['glycan'] = gly
-            cluster[acc]['mass'] = self.gtc.getmass(acc)
-	    if cluster[acc]['mass'] == None:
+	    mass = self.gtc.getmass(acc)
+	    if mass and abs(float(rmass)-mass) <= 0.01:
+                cluster[acc]['mass'] = mass
+	    else:
 		cluster[acc]['mass'] = float(rmass)
 
         clusteracc = set(map(lambda t: t[0], filter(lambda t: t[1].has_key('glycan'), cluster.items())))
