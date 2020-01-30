@@ -30,15 +30,16 @@ python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.b
 for Restriction_set in "${restriction_set_names[@]}"
 do
   lowersetname=$(echo "$Restriction_set" | awk '{print tolower($0)}')
-  python27 ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
+  # python27 ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
   python27 ../pygly/GNOme.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   python27 ../pygly/GNOme.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme_$Restriction_set.browser.json ./GNOme_$Restriction_set.browser.composition.json
 done
 
+python27 ../pygly/GNOme.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
 
 cp ./GNOme/convert.sh ./
 ./convert.sh
-mv ./GNOme.* ./GNOme/
+mv ./GNOme.browser.* ./GNOme/
 
 for Restriction_set in "${restriction_set_names[@]}"
 do
