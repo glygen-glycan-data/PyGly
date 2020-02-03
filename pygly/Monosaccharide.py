@@ -105,7 +105,7 @@ class Node(object):
         self._parent_links = []
 
     def children(self):
-        return [l.child() for l in self.links() ]
+        return [l.child() for l in self.links()]
 
     def first_child(self):
 	for l in self.links():
@@ -513,6 +513,16 @@ class Monosaccharide(Node):
                 return True
         return False
 
+    def links(self,instantiated_only=True):
+        l1 = self._links
+        l2 = []
+        for sub in self.substituents():
+            l2 += sub.links()
+        lall = l1 + l2
+        if instantiated_only:
+            return filter(lambda l: l.instantiated(), lall)
+        return lall
+
     def __str__(self):
 
         s  = "Monosaccharide:%s\n"%self.id()
@@ -538,19 +548,39 @@ class Monosaccharide(Node):
             s += "        Children = "
             ch = []
             for l in self.links(False):
+                l_linked_by_sub = not l.parent().is_monosaccharide()
+                l_linkage_symbol = "~"
                 if l.instantiated():
-                    ch.append("%s -> Monosaccharide:%s"%(l,l.child().id()))
-                else:
-                    ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
+                    l_linkage_symbol = "-"
+                if l_linked_by_sub:
+                    l_linkage_symbol += "Sub(%s)"%l.parent().id()
+                l_linkage_symbol += ">"
+
+                ch.append("%s %s Monosaccharide:%s" % (l, l_linkage_symbol, l.child().id()))
+
+                #if l.instantiated():
+                #    ch.append("%s -> Monosaccharide:%s"%(l,l.child().id()))
+                #else:
+                #    ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
             s += "\n                   ".join(ch) + "\n"
         if len(self.parent_links()) > 0:
             s += "         Parents = "
             ch = []
             for l in self.parent_links():
+                # TODO maybe the real parent mono should be printed
+                l_parent_type = "Substituent"
+                if l.parent().is_monosaccharide():
+                    l_parent_type = "Monosaccharide"
+                l_linkage_symbol = "~>"
                 if l.instantiated():
-                    ch.append("Monosaccharide:%s -> %s"%(l.parent().id(),l))
-                else:
-                    ch.append("Monosaccharide:%s ~> %s"%(l.parent().id(),l))
+                    l_linkage_symbol = "->"
+                ch.append("%s:%s %s %s" % (l_parent_type, l.parent().id(), l_linkage_symbol, l))
+
+
+                #if l.instantiated():
+                #    ch.append("Monosaccharide:%s -> %s"%(l.parent().id(),l))
+                #else:
+                #    ch.append("Monosaccharide:%s ~> %s"%(l.parent().id(),l))
             s += "\n                   ".join(ch) + "\n"
 
         return s

@@ -413,13 +413,19 @@ class GlycanPartialOrder(Comparitor):
         # we assume each node pair has a single link between it
         linkset1 = dict()
         for l in a.all_links(uninstantiated=True):
-            key = (l.parent().id(),l.child().id())
+            if l.parent().is_monosaccharide():
+                key = (l.parent().id(),l.child().id())
+            else:
+                key = (l.parent().parent_links()[0].parent().id(), l.child().id())
             assert (key not in linkset1)
             linkset1[key] = l
 
         linkset2 = dict()
         for l in b.all_links(uninstantiated=True):
-            key = (l.parent().id(),l.child().id())
+            if l.parent().is_monosaccharide():
+                key = (l.parent().id(), l.child().id())
+            else:
+                key = (l.parent().parent_links()[0].parent().id(), l.child().id())
             assert (key not in linkset2)
             linkset2[key] = l
 
@@ -762,6 +768,22 @@ class SubstituentEqual(SubstituentComparitor):
             
 class LinkageEqual(LinkageComparitor):
     def eq(self,a,b):
+        pa = a.parent()
+        pb = b.parent()
+        # print a, b
+        if type(pa) != type(pb):
+            return False
+        elif pa.is_monosaccharide():
+            return self.eq_simple(a, b)
+        else:
+            # substituent in link
+            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
+            la_upper = a.parent().parent_links()[0]
+            lb_upper = b.parent().parent_links()[0]
+
+            return self.eq_simple(la_upper, lb_upper) and self.eq_simple(a, b) and pa.equals(pb)
+
+    def eq_simple(self, a, b):
 	if a._parent_type != b._parent_type:
 	    return False
 	if a._child_type != b._child_type:
@@ -774,8 +796,8 @@ class LinkageEqual(LinkageComparitor):
             return False
 	return True
 
-class LinkageTopoEqual(LinkageComparitor):
-    def eq(self,a,b):
+class LinkageTopoEqual(LinkageEqual):
+    def eq_simple(self,a,b):
 	if a._parent_type != b._parent_type:
 	    return False
 	if a._child_type != b._child_type:
@@ -785,8 +807,8 @@ class LinkageTopoEqual(LinkageComparitor):
             return False
 	return True
 
-class LinkageImageEqual(LinkageComparitor):
-    def eq(self,a,b):
+class LinkageImageEqual(LinkageEqual):
+    def eq_simple(self,a,b):
         if a._undetermined != b._undetermined:
             return False
 	return True
@@ -801,8 +823,27 @@ class LinkageSubsumed(LinkageComparitor):
             return False
         if a <= b:
             return True
-  
+
+    # TODO: 2 linkage leq comparison for sub-linkage and m-m linkage
+    # TODO: definition for parent/child pos for lower linkage is flipped
     def leq(self,a,b):
+        pa = a.parent()
+        pb = b.parent()
+        # print a, b
+        if type(pa) != type(pb):
+            return False
+        elif pa.is_monosaccharide():
+            return self.leq_simple(a, b)
+        else:
+            # substituent in link
+            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
+            la_upper = a.parent().parent_links()[0]
+            lb_upper = b.parent().parent_links()[0]
+
+            return self.leq_simple(la_upper, lb_upper) and self.leq_simple(a, b) and pa.equals(pb)
+
+  
+    def leq_simple(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
 	    return False
         if not self._leq_(a._child_type,b._child_type):
@@ -817,7 +858,7 @@ class LinkageSubsumed(LinkageComparitor):
 
 class LinkageTopoSubsumed(LinkageSubsumed):
 
-    def leq(self,a,b):
+    def leq_simple(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
 	    return False
         if not self._leq_(a._child_type,b._child_type):
