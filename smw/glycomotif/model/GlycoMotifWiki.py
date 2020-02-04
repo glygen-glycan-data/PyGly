@@ -73,10 +73,12 @@ class Motif(SMW.SMWClass):
         # redend_alignments is comma separated
         if isinstance(data.get('redend_alignments'), basestring):
             data['redend_alignments'] = map(lambda s: s.strip(), data.get('redend_alignments').split(','))
+	data['redend_alignments'] = sorted(set(data['redend_alignments']))
         
         # other_alignments is comma separated (these two keys should partition the alignments)
         if isinstance(data.get('other_alignments'), basestring):
             data['other_alignments'] = map(lambda s: s.strip(), data.get('other_alignments').split(','))
+	data['other_alignments'] = sorted(set(data['other_alignments'])-set(data['redend_alignments']))
         
         if isinstance(data.get("displayhgv"), basestring):
             data["displayhgv"] = self.asboolean(data.get("displayhgv"))
@@ -117,11 +119,14 @@ class Motif(SMW.SMWClass):
         if 'topology' in data:
             data['topology'] = ",".join(data['topology'])
 
+	rea = set()
         if 'redend_alignments' in data:
-            data['redend_alignments'] = ",".join(data['redend_alignments'])
+	    rea = sorted(set(data['redend_alignments']))
+            data['redend_alignments'] = ",".join(rea)
 
         if 'other_alignments' in data:
-            data['other_alignments'] = ",".join(data['other_alignments'])
+	    oa = sorted(set(data['other_alignments'])-rea)
+            data['other_alignments'] = ",".join(oa)
 
         if "displayhgv" in data:
             data["displayhgv"] = ("true" if data["displayhgv"] else "false")
