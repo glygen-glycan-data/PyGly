@@ -70,6 +70,14 @@ class Motif(SMW.SMWClass):
         if isinstance(data.get('topology'), basestring):
             data['topology'] = map(lambda s: s.strip(), data.get('topology').split(','))
         
+        # redend_alignments is comma separated
+        if isinstance(data.get('redend_alignments'), basestring):
+            data['redend_alignments'] = map(lambda s: s.strip(), data.get('redend_alignments').split(','))
+        
+        # other_alignments is comma separated (these two keys should partition the alignments)
+        if isinstance(data.get('other_alignments'), basestring):
+            data['other_alignments'] = map(lambda s: s.strip(), data.get('other_alignments').split(','))
+        
         if isinstance(data.get("displayhgv"), basestring):
             data["displayhgv"] = self.asboolean(data.get("displayhgv"))
 
@@ -108,6 +116,12 @@ class Motif(SMW.SMWClass):
 
         if 'topology' in data:
             data['topology'] = ",".join(data['topology'])
+
+        if 'redend_alignments' in data:
+            data['redend_alignments'] = ",".join(data['redend_alignments'])
+
+        if 'other_alignments' in data:
+            data['other_alignments'] = ",".join(data['other_alignments'])
 
         if "displayhgv" in data:
             data["displayhgv"] = ("true" if data["displayhgv"] else "false")
