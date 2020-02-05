@@ -187,13 +187,13 @@ class TripleStoreResource(GlycanResource):
 def partitioner(kwarg="accession",fmt="G%%0%dd.*",digits=1):
     fmtstr = fmt%(digits,)
     def partition(fn):
-        def wrapper(self,**kw):
+        def wrapper(self,*args,**kw):
             if kwarg not in kw:
                 for i in range(0,10**digits):
-                    for row in fn(self,accession=fmtstr%(i,),**kw):
+                    for row in fn(self,*args,accession=fmtstr%(i,),**kw):
                         yield row
             else:
-                for row in fn(self,**kw):
+                for row in fn(self,*args,**kw):
                     yield row
         return wrapper
     return partition
@@ -717,7 +717,14 @@ if __name__ == "__main__":
     query = sys.argv[2]
     method = getattr(resource,query)
     headers = None
-    result = method(*sys.argv[3:])
+    args = sys.argv[3:]
+    kwargs = {}
+    for i in range(len(args)-1,-1,-1):
+	if re.search(r'^[a-z]+=',args[i]):
+	    k,v = args[i].split('=',1)
+	    kwargs[k] = v
+	    del args[i]
+    result = method(*args,**kwargs)
     if isinstance(result,basestring) or not hasattr(result,'next'):
 	print result
     else:
