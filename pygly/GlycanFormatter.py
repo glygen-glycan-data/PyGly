@@ -1427,7 +1427,8 @@ class WURCS20Format(GlycanFormatter):
                 ind2 = self.char2int[mi.group(3)]
                 pos2 = (int(mi.group(4)) if mi.group(4) != "?" else None)
 
-                substtype = self.mf.subsconfig.get(mi.group(5), "type")
+                wurcssubststr = mi.group(5).replace("*", "")
+                substtype = self.mf.subsconfig.get(wurcssubststr, "type")
                 substparenttype1 = eval(self.mf.subsconfig.get(mi.group(5), "parent_type"))
                 substchildtype1 = eval(self.mf.subsconfig.get(mi.group(5), "child_type"))
                 substparenttype2 = Linkage.nitrogenAdded

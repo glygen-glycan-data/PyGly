@@ -68,11 +68,50 @@ class MonosaccharideComparitor(Comparitor):
 class SubstituentComparitor(Comparitor):
     pass
 
-class LinkageComparitor(Comparitor):
+class LinkageComparitorSimple(Comparitor):
     pass
 
-class SubLinkageComparitor(LinkageComparitor):
+class SubLinkageComparitorSimple(LinkageComparitorSimple):
     pass
+
+class LinkageComparitor(Comparitor):
+
+    def __init__(self, substcmp=None, sublinkcmp=None, linkcmp=None, **kw):
+        self._substcmp = substcmp
+        self._sublinkcmp = sublinkcmp
+        self._linkcmp = linkcmp
+        super(Comparitor, self).__init__(**kw)
+
+    def eq(self, a, b):
+        pa = a.parent()
+        pb = b.parent()
+
+        if pa.is_monosaccharide() != pb.is_monosaccharide():
+            return False
+        elif pa.is_monosaccharide():
+            return self._linkcmp.eq(a, b)
+        else:
+            # substituent in link
+            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
+            la_upper = a.parent().parent_links()[0]
+            lb_upper = b.parent().parent_links()[0]
+            return self._sublinkcmp.eq(la_upper, lb_upper) and self._linkcmp.eq(a, b) and self._substcmp.eq(pa, pb)
+
+    def leq(self, a, b):
+        pa = a.parent()
+        pb = b.parent()
+
+        if pa.is_monosaccharide() != pb.is_monosaccharide():
+            return False
+        elif pa.is_monosaccharide():
+            return self._linkcmp.leq(a, b)
+        else:
+            # substituent in link
+            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
+            la_upper = a.parent().parent_links()[0]
+            lb_upper = b.parent().parent_links()[0]
+            return self._sublinkcmp.leq(la_upper, lb_upper) and self._linkcmp.leq(a, b) and self._substcmp.leq(pa, pb)
+
 
 def _mindistsfromroot(r):
     if r:
@@ -766,24 +805,8 @@ class SubstituentEqual(SubstituentComparitor):
             return False
         return True
             
-class LinkageEqual(LinkageComparitor):
-    def eq(self,a,b):
-        pa = a.parent()
-        pb = b.parent()
-        # print a, b
-        if type(pa) != type(pb):
-            return False
-        elif pa.is_monosaccharide():
-            return self.eq_simple(a, b)
-        else:
-            # substituent in link
-            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
-            la_upper = a.parent().parent_links()[0]
-            lb_upper = b.parent().parent_links()[0]
-
-            return self.eq_simple(la_upper, lb_upper) and self.eq_simple(a, b) and pa.equals(pb)
-
-    def eq_simple(self, a, b):
+class LinkageEqualSimple(LinkageComparitorSimple):
+    def eq(self, a, b):
 	if a._parent_type != b._parent_type:
 	    return False
 	if a._child_type != b._child_type:
@@ -796,8 +819,8 @@ class LinkageEqual(LinkageComparitor):
             return False
 	return True
 
-class LinkageTopoEqual(LinkageEqual):
-    def eq_simple(self,a,b):
+class LinkageTopoEqualSimple(LinkageComparitorSimple):
+    def eq(self,a,b):
 	if a._parent_type != b._parent_type:
 	    return False
 	if a._child_type != b._child_type:
@@ -807,13 +830,13 @@ class LinkageTopoEqual(LinkageEqual):
             return False
 	return True
 
-class LinkageImageEqual(LinkageEqual):
-    def eq_simple(self,a,b):
+class LinkageImageEqualSimple(LinkageComparitorSimple):
+    def eq(self,a,b):
         if a._undetermined != b._undetermined:
             return False
 	return True
 
-class LinkageSubsumed(LinkageComparitor):
+class LinkageSubsumedSimple(LinkageComparitorSimple):
 
     @staticmethod
     def _leq_(a,b):
@@ -824,26 +847,7 @@ class LinkageSubsumed(LinkageComparitor):
         if a <= b:
             return True
 
-    # TODO: 2 linkage leq comparison for sub-linkage and m-m linkage
-    # TODO: definition for parent/child pos for lower linkage is flipped
     def leq(self,a,b):
-        pa = a.parent()
-        pb = b.parent()
-        # print a, b
-        if type(pa) != type(pb):
-            return False
-        elif pa.is_monosaccharide():
-            return self.leq_simple(a, b)
-        else:
-            # substituent in link
-            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
-            la_upper = a.parent().parent_links()[0]
-            lb_upper = b.parent().parent_links()[0]
-
-            return self.leq_simple(la_upper, lb_upper) and self.leq_simple(a, b) and pa.equals(pb)
-
-  
-    def leq_simple(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
 	    return False
         if not self._leq_(a._child_type,b._child_type):
@@ -856,9 +860,9 @@ class LinkageSubsumed(LinkageComparitor):
             return False
 	return True
 
-class LinkageTopoSubsumed(LinkageSubsumed):
+class LinkageTopoSubsumedSimple(LinkageSubsumedSimple):
 
-    def leq_simple(self,a,b):
+    def leq(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
 	    return False
         if not self._leq_(a._child_type,b._child_type):
@@ -866,6 +870,52 @@ class LinkageTopoSubsumed(LinkageSubsumed):
         if a._undetermined and not b._undetermined:
             return False
 	return True
+
+
+class LinkageEqual(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageEqualSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageEqual, self).__init__(**kw)
+
+
+
+class LinkageTopoEqual(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageTopoEqualSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageTopoEqual, self).__init__(**kw)
+
+
+class LinkageImageEqual(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageImageEqualSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageImageEqual, self).__init__(**kw)
+
+
+class LinkageSubsumed(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageSubsumedSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageSubsumed, self).__init__(**kw)
+
+
+class LinkageTopoSubsumed(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageTopoSubsumedSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageComparitor, self).__init__(**kw)
 
 class GlycanEqual(GlycanEquivalence):
     def __init__(self,**kw):
