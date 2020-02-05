@@ -68,13 +68,13 @@ class MonosaccharideComparitor(Comparitor):
 class SubstituentComparitor(Comparitor):
     pass
 
-class LinkageComparitorSimple(Comparitor):
+class LinkageComparitorBase(Comparitor):
     pass
 
-class SubLinkageComparitorSimple(LinkageComparitorSimple):
+class SubLinkageComparitor(LinkageComparitorBase):
     pass
 
-class LinkageComparitor(Comparitor):
+class LinkageComparitor(LinkageComparitorBase):
 
     def __init__(self, substcmp=None, sublinkcmp=None, linkcmp=None, **kw):
         self._substcmp = substcmp
@@ -805,7 +805,7 @@ class SubstituentEqual(SubstituentComparitor):
             return False
         return True
             
-class LinkageEqualSimple(LinkageComparitorSimple):
+class LinkageEqualSimple(LinkageComparitorBase):
     def eq(self, a, b):
 	if a._parent_type != b._parent_type:
 	    return False
@@ -819,7 +819,7 @@ class LinkageEqualSimple(LinkageComparitorSimple):
             return False
 	return True
 
-class LinkageTopoEqualSimple(LinkageComparitorSimple):
+class LinkageTopoEqualSimple(LinkageComparitorBase):
     def eq(self,a,b):
 	if a._parent_type != b._parent_type:
 	    return False
@@ -830,13 +830,13 @@ class LinkageTopoEqualSimple(LinkageComparitorSimple):
             return False
 	return True
 
-class LinkageImageEqualSimple(LinkageComparitorSimple):
+class LinkageImageEqualSimple(LinkageComparitorBase):
     def eq(self,a,b):
         if a._undetermined != b._undetermined:
             return False
 	return True
 
-class LinkageSubsumedSimple(LinkageComparitorSimple):
+class LinkageSubsumedSimple(LinkageComparitorBase):
 
     @staticmethod
     def _leq_(a,b):
