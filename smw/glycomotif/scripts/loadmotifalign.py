@@ -48,23 +48,36 @@ for m in w.itermotif():
     #    print m.data["redend_alignments"]
     #    print m.data["other_alignments"]
 
-    if not motif_acc in motif_alignment:
-        del m.data["redend_alignments"]
-        del m.data["other_alignments"]
-        if w.update(m):
-            print >> sys.stderr, motif_acc + "cleared"
-        continue
+    res_r = False
+    res_o = False
 
-    # TODO is there API for change data?
-    if len(motif_alignment[motif_acc]["red_only"]) > 0:
-        m.data["redend_alignments"] = sorted(motif_alignment[motif_acc]["red_only"])
-    else:
-        del m.data["redend_alignments"]
+    try:
+        if len(motif_alignment[motif_acc]["red_only"]) > 0:
+            res_r = motif_alignment[motif_acc]["red_only"]
+    except KeyError:
+        pass
 
-    if len(motif_alignment[motif_acc]["other"]) > 0:
-        m.data["other_alignments"] = sorted(motif_alignment[motif_acc]["other"])
+    try:
+        if len(motif_alignment[motif_acc]["other_alignments"]) > 0:
+            res_o = motif_alignment[motif_acc]["other_alignments"]
+    except KeyError:
+        pass
+
+    if res_r:
+        m.data["redend_alignments"] = sorted(res_r)
     else:
-        del m.data["other_alignments"]
+        try:
+            del m.data["redend_alignments"]
+        except KeyError:
+            pass
+
+    if res_o:
+        m.data["other_alignments"] = sorted(res_o)
+    else:
+        try:
+            del m.data["other_alignments"]
+        except KeyError:
+            pass
 
     if w.update(m):
         print >> sys.stderr, motif_acc
