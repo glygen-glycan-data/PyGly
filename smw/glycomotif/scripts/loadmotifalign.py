@@ -49,14 +49,22 @@ for m in w.itermotif():
     #    print m.data["other_alignments"]
 
     if not motif_acc in motif_alignment:
+        del m.data["redend_alignments"]
+        del m.data["other_alignments"]
+        if w.update(m):
+            print >> sys.stderr, motif_acc + "cleared"
         continue
 
     # TODO is there API for change data?
     if len(motif_alignment[motif_acc]["red_only"]) > 0:
         m.data["redend_alignments"] = sorted(motif_alignment[motif_acc]["red_only"])
+    else:
+        del m.data["redend_alignments"]
 
     if len(motif_alignment[motif_acc]["other"]) > 0:
         m.data["other_alignments"] = sorted(motif_alignment[motif_acc]["other"])
+    else:
+        del m.data["other_alignments"]
 
     if w.update(m):
         print >> sys.stderr, motif_acc

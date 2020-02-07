@@ -17,7 +17,7 @@ set -x
 ./loadunicarbmotif.py ../data/Unicarb.xlsx
 ./loadallmotif.py
 ./addsameas.py
-./loadmotifalign ../data/motif_alignment.tsv
+./loadmotifalign.py ../data/motif_alignment.tsv
 rm -rf ./dumps
 ./dumpallseq.py
 ./json_substructure.py
