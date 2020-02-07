@@ -52,8 +52,8 @@ for m in w.itermotif():
         continue
 
     # TODO is there API for change data?
-    m.data["redend_alignments"] = sorted(motif_alignment["red_only"])
-    m.data["other_alignments"] = sorted(motif_alignment["other"])
+    m.data["redend_alignments"] = sorted(motif_alignment[motif_acc]["red_only"])
+    m.data["other_alignments"] = sorted(motif_alignment[motif_acc]["other"])
 
     if w.update(m):
         print >> sys.stderr, motif_acc
