@@ -19,10 +19,9 @@ with open(motif_alignment_file) as f:
         if motif_acc not in motif_alignment:
             motif_alignment[motif_acc] = copy.deepcopy(motif_alignment_single)
 
-        if reducing_end_match == "re":
+        if reducing_end_match == "True":
             motif_alignment[motif_acc]["red_only"].append(match)
-
-        if reducing_end_match == "other":
+        elif reducing_end_match == "False":
             motif_alignment[motif_acc]["other"].append(match)
 
 
@@ -48,8 +47,8 @@ for m in w.itermotif():
     #    print m.data["redend_alignments"]
     #    print m.data["other_alignments"]
 
-    res_r = False
-    res_o = False
+    res_r = []
+    res_o = []
 
     try:
         if len(motif_alignment[motif_acc]["red_only"]) > 0:
@@ -63,21 +62,8 @@ for m in w.itermotif():
     except KeyError:
         pass
 
-    if res_r:
-        m.data["redend_alignments"] = sorted(res_r)
-    else:
-        try:
-            del m.data["redend_alignments"]
-        except KeyError:
-            pass
-
-    if res_o:
-        m.data["other_alignments"] = sorted(res_o)
-    else:
-        try:
-            del m.data["other_alignments"]
-        except KeyError:
-            pass
+    m.set("redend_alignments", res_r)
+    m.set("other_alignments", res_o)
 
     if w.update(m):
         print >> sys.stderr, motif_acc

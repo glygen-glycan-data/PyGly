@@ -80,7 +80,10 @@ class Motif(SMW.SMWClass):
         if isinstance(data.get('other_alignments'), basestring):
             data['other_alignments'] = map(lambda s: s.strip(), data.get('other_alignments').split(','))
         if data.get('other_alignments') != None:
-            data['other_alignments'] = sorted(set(data['other_alignments']))
+            reo = set()
+            if data.get('redend_alignments') != None:
+                reo = set(data.get('redend_alignments'))
+            data['other_alignments'] = sorted(set(data['other_alignments'])-reo)
         
         if isinstance(data.get("displayhgv"), basestring):
             data["displayhgv"] = self.asboolean(data.get("displayhgv"))
@@ -127,8 +130,7 @@ class Motif(SMW.SMWClass):
             data['redend_alignments'] = ",".join(rea)
 
         if 'other_alignments' in data:
-	    # oa = sorted(set(data['other_alignments'])-set(rea))
-            oa = sorted(set(data['other_alignments']))
+	    oa = sorted(set(data['other_alignments'])-set(rea))
             data['other_alignments'] = ",".join(oa)
 
         if "displayhgv" in data:
