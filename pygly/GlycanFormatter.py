@@ -1430,8 +1430,8 @@ class WURCS20Format(GlycanFormatter):
                 wurcssubststr = mi.group(5).replace("*", "")
                 subst = self.mf.getsubst(wurcssubststr)
 
-                substparenttype1 = eval(self.mf.subsconfig.get(mi.group(5), "parent_type"))
-                substchildtype1 = eval(self.mf.subsconfig.get(mi.group(5), "child_type"))
+                substparenttype1 = eval(self.mf.subsconfig.get(wurcssubststr, "parent_type"))
+                substchildtype1 = eval(self.mf.subsconfig.get(wurcssubststr, "child_type"))
                 substparenttype2 = Linkage.nitrogenAdded
                 substchildtype2 = Linkage.oxygenPreserved
 
