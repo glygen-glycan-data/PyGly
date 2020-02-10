@@ -16,8 +16,22 @@ class Topology(Manipulation):
     def manip(self,g):
         for m in g.all_nodes():
             for l in m.links(instantiated_only=False):
-                if l.parent_pos() != set([m.ring_start()]):
-                    l.set_parent_pos(None)
+
+                lparent = l.parent()  # might be monosaccharide or substituent
+
+                if lparent.is_monosaccharide():
+                    if l.parent_pos() != set([m.ring_start()]):
+                        l.set_parent_pos(None)
+                else:
+                    # Substituent in link
+                    upper_link = l.parent().parent_links()[0]
+                    #if upper_link.parent_pos() != set([m.ring_start()]):
+                    upper_link.set_parent_pos(None)
+
+                    if l.child_pos() != set([m.ring_start()]):
+                        l.set_child_pos(None)
+                # if l.parent_pos() != set([m.ring_start()]):
+                #    l.set_parent_pos(None)
                 # if l.parent_pos() == set([1]) and m.ring_start() != 1 and l.child_pos() == l.child().ring_start():
                 #     l.set_parent_pos(None)
                 # if l.parent_pos() != set([1]) and l.parent_pos() != set([m.ring_start()]):
