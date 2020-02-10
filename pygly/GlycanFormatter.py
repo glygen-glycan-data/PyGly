@@ -1428,12 +1428,12 @@ class WURCS20Format(GlycanFormatter):
                 pos2 = (int(mi.group(4)) if mi.group(4) != "?" else None)
 
                 wurcssubststr = mi.group(5).replace("*", "")
-                substtype = self.mf.subsconfig.get(wurcssubststr, "type")
+                subst = self.mf.getsubst(wurcssubststr)
+
                 substparenttype1 = eval(self.mf.subsconfig.get(mi.group(5), "parent_type"))
                 substchildtype1 = eval(self.mf.subsconfig.get(mi.group(5), "child_type"))
                 substparenttype2 = Linkage.nitrogenAdded
                 substchildtype2 = Linkage.oxygenPreserved
-                subst = Substituent(eval(substtype))
 
                 if not (ind1 < ind2):
                     raise MonoOrderLinkError(li)
