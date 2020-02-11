@@ -1307,6 +1307,8 @@ class WURCS20Format(GlycanFormatter):
 	self.ambiglinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|([a-zA-Z]{1,2})([0-9?]))+)\}$')
         self.complinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}-\{\1$')
         self.compsubstlinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}\*(.*)$')
+        self.substbridgelinkre = re.compile(r"^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])\*(.*?)$")
+        self.substbridgecompre = re.compile(r"^([a-zA-Z]{1,2}[?](\|[a-zA-Z]{1,2}[?])*)\}-\{([a-zA-Z]{1,2}[?](\|[a-zA-Z]{1,2}[?])*)\*(.*?)$")
         self.char2int = {}
         self.int2char = {}
         for i in range(26):
@@ -1416,6 +1418,47 @@ class WURCS20Format(GlycanFormatter):
                                      child_type=Linkage.oxygenLost)
 
                 continue
+
+            mi = self.substbridgelinkre.search(li)
+            if mi:
+                #print mi.group()
+                ind1 = self.char2int[mi.group(1)]
+                pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
+                ind2 = self.char2int[mi.group(3)]
+                pos2 = (int(mi.group(4)) if mi.group(4) != "?" else None)
+
+                wurcssubststr = mi.group(5).replace("*", "")
+                subst = self.mf.getsubst(wurcssubststr)
+
+                substparenttype1 = eval(self.mf.subsconfig.get(wurcssubststr, "parent_type"))
+                substchildtype1 = eval(self.mf.subsconfig.get(wurcssubststr, "child_type"))
+                substparenttype2 = Linkage.nitrogenAdded
+                substchildtype2 = Linkage.oxygenPreserved
+
+                if not (ind1 < ind2):
+                    raise MonoOrderLinkError(li)
+
+                parentmono = mono[ind1]
+                childmono = mono[ind2]
+                parentmono.add_substituent(subst, parent_type=substparenttype1, parent_pos=pos1, child_type=substchildtype1, child_pos=1)
+                subst.add_child(childmono, parent_type=substparenttype2, parent_pos=1, child_type=substchildtype2, child_pos=pos2)
+
+                #print parentmono
+                #print subst
+                #print childmono
+                #print substparenttype1, substparenttype2
+                continue
+
+            mi = self.substbridgecompre.search(li)
+            if mi:
+                # composition like substituent in link-situation
+                # TODO anything to do with link?
+
+                subst = self.mf.getsubst(mi.group(5))
+                subst.set_connected(False)
+                floating_substs.append(subst)
+                continue
+
 
             mi = self.ambiglinkre.search(li)
             if mi:
