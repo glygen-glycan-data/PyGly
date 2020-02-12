@@ -61,7 +61,7 @@ for acc in sorted(motif_alignment.keys()):
         if i in red:
             red_align.append(rdf_red_align%i)
 
-    rdf_s += rdf_per_motif % ("\n".join(normal_align) + "\n".join(red_align))
+    rdf_s += rdf_per_motif % ("\n".join(normal_align) + "\n" + "\n".join(red_align))
 
 rdf_f = open(motif_alignment_file_path_rdf, "w")
 rdf_f.write(rdf_template%rdf_s)
