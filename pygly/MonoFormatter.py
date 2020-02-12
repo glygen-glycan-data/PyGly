@@ -158,8 +158,8 @@ class GlycoCTMonoFormat:
         if parentid >= childid:
             raise RuntimeError("Bad GlycoCT link line, backwards link:"+s)
         parent = res[parentid]
-	if isinstance(parent,Substituent):
-            raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
+	#if isinstance(parent, Substituent):
+        #    raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
         child = res[childid]
         if isinstance(child,Monosaccharide):
             l = parent.add_child(child,

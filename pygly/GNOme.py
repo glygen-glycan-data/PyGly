@@ -1028,6 +1028,11 @@ class SubsumptionGraph(GNOmeAPI):
 
     def any_parent_pos(self, gly):
         for l in gly.all_links():
+            if l.parent().is_monosaccharide():
+                pass
+            else:
+                continue
+                l = l.parent().parent_links()[0]
             if l.parent_pos() != None and l.parent_pos() != set([l.parent().ring_start()]):
                 return True
         return False
