@@ -1,6 +1,6 @@
 
 from Monosaccharide import Linkage, Substituent, Monosaccharide, Mod, Anomer, Stem
-from combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings
+from combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings, choose
 
 import inspect
 import sys, os.path
@@ -519,6 +519,188 @@ class GlycanPartialOrder(Comparitor):
         # print >>sys.stderr, "%d iterations to prove no isomorphism exists"%(iters,)
         return False
 
+class SubstructureSearch(GlycanPartialOrder):
+
+    def __init__(self, **kw):
+        self.nodes_cache = {}
+        self.connected_nodes_pre_computed = kw.get("connected_nodes_pre_computed", True)
+        self.max_nodes_count = kw.get("max_nodes_count", 15)
+        super(SubstructureSearch, self).__init__(**kw)
+
+    def check_links(self, motif, motif_node_set, tg_node_set):
+        motif_nodes = motif_node_set
+        tg_nodes = tg_node_set
+
+        level = -1
+        discover = [motif.root()]
+        while len(discover) > 0:
+            level += 1
+            this_mono = discover.pop()
+
+            for l in this_mono.links():
+                p = this_mono
+                c = l.child()
+                discover.append(c)
+
+                tgp = tg_nodes[motif_nodes.index(p)]
+                tgc = tg_nodes[motif_nodes.index(c)]
+
+                found_matched_link = False
+                for ll in tgp.links(instantiated_only=False):
+                    if ll.child() not in tg_nodes:
+                        continue
+
+                    if motif_nodes.index(c) == tg_nodes.index(ll.child()) and self._linkcmp.leq(l, ll):
+                        found_matched_link = True
+                        break
+
+                if not found_matched_link:
+                    return False
+
+        return True
+
+    def connectedNodes(self, currentSet, candidates, size):
+        # set, set, int
+        if len(currentSet) == size:
+            return [currentSet]
+        elif len(candidates) == 0:
+            return []
+
+        res = []
+        for c in candidates:
+            newCurrentSet = currentSet.copy()
+            newCandidatesSet = candidates.copy()
+
+            newCurrentSet.add(c)
+            newCandidatesSet.remove(c)
+
+            issueFlag = False
+            for cl in c.links(instantiated_only=False):
+                toAdd = cl.child()
+                if toAdd in newCurrentSet and toAdd in newCandidatesSet:
+                    issueFlag = True
+                    break
+                else:
+                    newCandidatesSet.add(toAdd)
+            if issueFlag:
+                continue
+            for r in self.connectedNodes(newCurrentSet, newCandidatesSet, size):
+                if r not in res:
+                    res.append(r)
+        return res
+
+
+    def connectedNodesAdd1(self, currentSet):
+        res = []
+        for n in currentSet:
+            res += [x.child() for x in n.links(instantiated_only=False)]
+        children = filter(lambda x:x not in currentSet, res)
+        children = set(children)
+
+        res = []
+        for n in children:
+            res0 = currentSet.copy()
+            res0.add(n)
+            res.append(res0)
+        return res
+
+    def cache_nodes(self, r):
+        if r in self.nodes_cache:
+            return
+
+        self.nodes_cache[r] = defaultdict(list)
+
+        i = 1
+        self.nodes_cache[r][i] = [{r}]
+        while i < self.max_nodes_count:
+            i += 1
+            for nodeset in self.nodes_cache[r][i-1]:
+                for res in self.connectedNodesAdd1(nodeset):
+                    if res not in self.nodes_cache[r][i]:
+                        self.nodes_cache[r][i].append(res)
+
+    def allConnectedNodesByRoot(self, r, size):
+        if self.connected_nodes_pre_computed:
+            return self.nodes_cache[r][size]
+        else:
+            return self.allConnectedNodesByRootAndSize(r, size)
+
+
+    # Recursive algorithm
+    def allConnectedNodesByRootAndSize(self, r, size):
+        res = []
+
+        for cn in self.connectedNodes({r},
+                                      set([x.child() for x in r.links(instantiated_only=False)]),
+                                      size):
+            res.append(cn)
+
+        return res
+
+    def subtree_leq(self,m, tg,root=True):
+
+        if root:
+            if not self.rootmonoleq(m, tg):
+                return False
+        else:
+            if not self.monoleq(m, tg):
+                return False
+
+        for tg_linkset in choose(tg.links(), len(m.links())):
+            for ii,jj in itermatchings(m.links(), tg_linkset,
+                                       lambda i, j: self.linkleq(i, j) and self.subtree_leq(i.child(), j.child(), root=False)):
+                return True
+
+        return False
+
+
+    def leq(self, m, tg, rootOnly=False):
+
+        if not tg.has_root():
+            return False
+
+        if len(list(m.all_nodes())) > len(list(tg.all_nodes())):
+            return False
+
+        # Use subtree algorithm to save runtime
+        if not tg.undetermined() and not m.undetermined():
+            if rootOnly:
+                return self.subtree_leq(m.root(), tg.root())
+            else:
+                for n in tg.all_nodes():
+                    if self.subtree_leq(m.root(), n):
+                        return True
+                return False
+
+        if tg.undetermined():
+            # pre compute the connected node set
+            for n in tg.all_nodes():
+                self.cache_nodes(n)
+
+        potential_TG_root = []
+        if rootOnly:
+            tg_root = tg.root()
+            if self.rootmonoleq(m.root(), tg_root):
+                potential_TG_root.append(tg_root)
+        else:
+            for tg_root in tg.all_nodes():
+                if not self.rootmonoleq(m.root(), tg_root):
+                    continue
+                potential_TG_root.append(tg_root)
+
+        for tg_root in potential_TG_root:
+
+            for tg_nodes in self.allConnectedNodesByRoot(tg_root, len(list(m.all_nodes()))):
+                # print map(lambda x: x.external_descriptor_id(), tg_nodes),map(lambda x: x.external_descriptor_id(), list(m.all_nodes()))
+
+                for monoset_m, monoset_tg in itergenmatchings(list(m.all_nodes()), tg_nodes, self.monoleq):
+                    # matching = dict(zip(map(lambda m: m.external_descriptor_id(), monoset_m), map(lambda m: m.external_descriptor_id(), monoset_tg)))
+                    # print matching
+                    if self.check_links(m, monoset_m, monoset_tg):
+                        return True
+
+        return False
+
 class CompositionPartialOrder(Comparitor):
 
     ### Assumes we only compare nodes to each other...
@@ -794,6 +976,34 @@ class MonosaccharideTopoSubsumed(MonosaccharideSubsumed):
         if not any:
             return False
         return True
+
+class MonosaccharideMotifComparison(MonosaccharideComparitor):
+
+    def leq(self, m, g):
+        if m._anomer and m._anomer != g._anomer:
+            return False
+        if m._config and m._config != g._config:
+            return False
+        if m._stem and m._stem != g._stem:
+            return False
+        if m._superclass != g._superclass:
+            return False
+        if m._ring_start and m._ring_start != g._ring_start:
+            return False
+        if m._ring_end and m._ring_end != g._ring_end:
+            return False
+        if m._mods != g._mods:
+            return False
+
+        any = False
+        for ii, jj in itermatchings(m.substituent_links(), g.substituent_links(),
+                                    lambda i, j: self.sublinkeq(i, j) and self.substeq(i.child(), j.child())):
+            any = True
+            break
+        if not any:
+            return False
+
+        return True
       
 class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
@@ -871,6 +1081,24 @@ class LinkageTopoSubsumedSimple(LinkageSubsumedSimple):
             return False
 	return True
 
+class LinkageComparitorMotifSimple(LinkageComparitorBase):
+
+    def leq(self, m, g):
+        if m._parent_type != g._parent_type:
+            return False
+        if m._child_type != g._child_type:
+            return False
+        if m._child_pos and g._child_pos and len(set(m._child_pos).intersection(set(g._child_pos))) == 0:
+            return False
+        if m._parent_pos and g._parent_pos and len(set(m._parent_pos).intersection(set(g._parent_pos))) == 0:
+            return False
+        return True
+
+class SubstLinkageComparitorMotifSimple(LinkageEqualSimple):
+
+    def leq(self,a,b):
+        return self.eq(a,b)
+
 
 class LinkageEqual(LinkageComparitor):
 
@@ -916,6 +1144,14 @@ class LinkageTopoSubsumed(LinkageComparitor):
         kw['linkcmp'] = LinkageTopoSubsumedSimple(**kw)
         kw['sublinkcmp'] = kw['linkcmp']
         super(LinkageComparitor, self).__init__(**kw)
+
+class LinkageMotifComparitor(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageComparitorMotifSimple(**kw)
+        kw['sublinkcmp'] = SubstLinkageComparitorMotifSimple(**kw)
+        super(LinkageMotifComparitor, self).__init__(**kw)
 
 class GlycanEqual(GlycanEquivalence):
     def __init__(self,**kw):
@@ -968,6 +1204,16 @@ class GlycanCompositionSubsumption(CompositionPartialOrder):
         # monotest needs a subst test and a sublink test
         kw['monocmp']=MonosaccharideTopoSubsumed(**kw)
         super(GlycanCompositionSubsumption,self).__init__(**kw)
+
+class GlyTouCanMotif(SubstructureSearch):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparison(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(GlyTouCanMotif, self).__init__(**kw)
 
 
 def items():
