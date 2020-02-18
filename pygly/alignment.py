@@ -524,17 +524,14 @@ class SubstructureSearch(GlycanPartialOrder):
     def __init__(self, **kw):
         self.nodes_cache = {}
         self.connected_nodes_pre_computed = kw.get("connected_nodes_pre_computed", True)
-        self.max_nodes_count = kw.get("max_nodes_count", 15)
         super(SubstructureSearch, self).__init__(**kw)
 
     def check_links(self, motif, motif_node_set, tg_node_set):
         motif_nodes = motif_node_set
         tg_nodes = tg_node_set
 
-        level = -1
         discover = [motif.root()]
         while len(discover) > 0:
-            level += 1
             this_mono = discover.pop()
 
             for l in this_mono.links():
@@ -559,13 +556,7 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return True
 
-    def connectedNodes(self, currentSet, candidates, size):
-        # set, set, int
-        if len(currentSet) == size:
-            return [currentSet]
-        elif len(candidates) == 0:
-            return []
-
+    def connectedNodesPlus1(self, currentSet, candidates):
         res = []
         for c in candidates:
             newCurrentSet = currentSet.copy()
@@ -584,58 +575,69 @@ class SubstructureSearch(GlycanPartialOrder):
                     newCandidatesSet.add(toAdd)
             if issueFlag:
                 continue
+
+            r = (newCurrentSet, newCandidatesSet)
+            if r not in res:
+                res.append(r)
+                yield r
+
+    def connectedNodes(self, currentSet, candidates, size):
+        # set, set, int
+        if len(currentSet) == size:
+            yield currentSet
+            raise StopIteration
+        elif len(candidates) == 0:
+            raise StopIteration
+
+        seen = []
+        for newCurrentSet, newCandidatesSet in self.connectedNodesPlus1(currentSet, candidates):
             for r in self.connectedNodes(newCurrentSet, newCandidatesSet, size):
-                if r not in res:
-                    res.append(r)
-        return res
-
-
-    def connectedNodesAdd1(self, currentSet):
-        res = []
-        for n in currentSet:
-            res += [x.child() for x in n.links(instantiated_only=False)]
-        children = filter(lambda x:x not in currentSet, res)
-        children = set(children)
-
-        res = []
-        for n in children:
-            res0 = currentSet.copy()
-            res0.add(n)
-            res.append(res0)
-        return res
-
-    def cache_nodes(self, r):
-        if r in self.nodes_cache:
-            return
-
-        self.nodes_cache[r] = defaultdict(list)
-
-        i = 1
-        self.nodes_cache[r][i] = [{r}]
-        while i < self.max_nodes_count:
-            i += 1
-            for nodeset in self.nodes_cache[r][i-1]:
-                for res in self.connectedNodesAdd1(nodeset):
-                    if res not in self.nodes_cache[r][i]:
-                        self.nodes_cache[r][i].append(res)
-
-    def allConnectedNodesByRoot(self, r, size):
-        if self.connected_nodes_pre_computed:
-            return self.nodes_cache[r][size]
-        else:
-            return self.allConnectedNodesByRootAndSize(r, size)
-
+                if r not in seen:
+                    seen.append(r)
+                    yield r
 
     # Recursive algorithm
-    def allConnectedNodesByRootAndSize(self, r, size):
+    def allConnectedNodesByRootRecursive(self, r, size):
         res = []
-
         for cn in self.connectedNodes({r},
                                       set([x.child() for x in r.links(instantiated_only=False)]),
                                       size):
             res.append(cn)
 
         return res
+
+    def cache_nodes(self, r, size):
+
+        if not self.connected_nodes_pre_computed:
+            return
+
+        if r not in self.nodes_cache:
+            self.nodes_cache[r] = {}
+
+        if len(self.nodes_cache[r]) >= size:
+            return
+
+        if len(self.nodes_cache[r]) >= 1:
+            i = max(self.nodes_cache[r].keys())
+        else:
+            pair = ({r}, set([x.child() for x in r.links(instantiated_only=False)]))
+            self.nodes_cache[r][1] = [pair]
+            i = 1
+
+        while i <= size:
+            i += 1
+            res = []
+            for currentSet, candidateSet in self.nodes_cache[r][i-1]:
+                for res0 in self.connectedNodesPlus1(currentSet, candidateSet):
+                    if res0 not in res:
+                        res.append(res0)
+
+
+    def allConnectedNodesByRoot(self, r, size):
+        if self.connected_nodes_pre_computed:
+            return map(lambda x:x[0], self.nodes_cache[r][size])
+        else:
+            return self.allConnectedNodesByRootRecursive(r, size)
 
     def subtree_leq(self,m, tg,root=True):
 
@@ -675,7 +677,7 @@ class SubstructureSearch(GlycanPartialOrder):
         if tg.undetermined():
             # pre compute the connected node set
             for n in tg.all_nodes():
-                self.cache_nodes(n)
+                self.cache_nodes(n, len(list(m.all_nodes())))
 
         potential_TG_root = []
         if rootOnly:
