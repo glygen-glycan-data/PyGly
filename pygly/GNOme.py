@@ -409,7 +409,7 @@ class GNOme(GNOmeAPI):
         iupac_composition_syms = ['Man', 'Gal', 'Glc', 'Xyl', 'Fuc', 'ManNAc', 'GlcNAc', 'GalNAc', 'NeuAc', 'NeuGc',
                                   'Hex', 'HexNAc', 'dHex', 'Pent', 'Sia', 'GlcA', 'GalA', 'IdoA', 'ManA', 'HexA',
                                   'GlcN', 'GalN', 'ManN', 'HexN']
-        subst_composition_syms = ['S', 'P', 'Me', 'aldi']
+        subst_composition_syms = ['S', 'P', 'Me', 'aldi', "X"]
 
         res = {}
         for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc", "dHex"]:
