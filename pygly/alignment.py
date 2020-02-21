@@ -624,13 +624,14 @@ class SubstructureSearch(GlycanPartialOrder):
             self.nodes_cache[r][1] = [pair]
             i = 1
 
-        while i <= size:
+        while i < size:
             i += 1
             res = []
             for currentSet, candidateSet in self.nodes_cache[r][i-1]:
                 for res0 in self.connectedNodesPlus1(currentSet, candidateSet):
                     if res0 not in res:
                         res.append(res0)
+            self.nodes_cache[r][i] = res
 
 
     def allConnectedNodesByRoot(self, r, size):
