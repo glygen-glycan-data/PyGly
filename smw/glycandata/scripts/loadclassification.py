@@ -103,6 +103,8 @@ for m in iterglycan():
 	thetype = types[0]
 	if thetype == "N-linked" and set(subtypes) == set(["hybrid","high mannose"]):
 	    subtypes = ["hybrid"]
+        if thetype == "O-linked" and set(subtypes) == set(["core 2", "core 1","core 6","core 3"]):
+            subtypes = ["core 2"]
         if thetype == "O-linked" and set(subtypes) == set(["core 2", "core 1","core 6"]):
             subtypes = ["core 2"]
         if thetype == "O-linked" and set(subtypes) == set(["core 4","core 3","core 6"]):
@@ -112,9 +114,9 @@ for m in iterglycan():
     if len(types) > 1:
 	print >>sys.stderr, "Glycan %s has more than one type: %s."%(acc,", ".join(sorted(types)))
 	continue
-    if len(subtypes) > 1:
+    if len(types) == 1 and len(subtypes) > 1:
 	print >>sys.stderr, "Glycan %s has more than one subtype: %s."%(acc,", ".join(sorted(subtypes)))
-        continue
+	subtypes = []
 
     # Check for additional issues...
     if types == ["N-linked"] and subtypes == ["high mannose"] and count > 0 and (mancount + 2) != count:

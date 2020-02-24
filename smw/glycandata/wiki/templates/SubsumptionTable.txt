@@ -15,8 +15,8 @@
 |?glycandata:value=
 |mainlabel=-
 }}
-|Saccharide=<h2><span class="plainlinks">[https://raw.githack.com/glygen-glycan-data/GNOme/master/GNOme.browser.html?focus={{PAGENAME}} {{{1}}}]</span></h2>
-|Topology=<h2><span class="plainlinks">[https://raw.githack.com/glygen-glycan-data/GNOme/master/GNOme.browser.html?focus={{PAGENAME}} {{{1}}}]</span></h2>
+|Saccharide=<h2><span class="plainlinks">[https://raw.githack.com/glygen-glycan-data/GNOme/master/restrictions/GNOme%5FGlycanData.browser.html?focus={{PAGENAME}} {{{1}}}]</span></h2>
+|Topology=<h2><span class="plainlinks">[https://raw.githack.com/glygen-glycan-data/GNOme/master/restrictions/GNOme%5FGlycanData.browser.html?focus={{PAGENAME}} {{{1}}}]</span></h2>
 |<h2>{{{1}}}</h2>
 }}
 |format=template

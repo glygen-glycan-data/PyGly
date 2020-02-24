@@ -2,6 +2,7 @@
 
 import sys, os, os.path
 import findpygly
+# from pygly.GlycanResource import GlyTouCan
 from pygly.GlyTouCan import GlyTouCan
 
 def accessions(args):

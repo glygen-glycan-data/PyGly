@@ -25,7 +25,10 @@ fi
 ./loadcanonres.py $CACHE ../data/canonres.csv ../data/canonres2gtc.csv
 ./loadsubsump.py $CACHE ../data/gnome_subsumption_raw.txt ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt ../data/extra_accessions.txt
 ./loadspecies.py $CACHE ../data/gnome_subsumption_raw.txt
-./loadnames.py $CACHE EdwardsLab ../data/uckbcomp2glytoucan.txt ../data/shortuckbcomp2glytoucan.txt ../data/basecomplist.txt
+./loadnames.py $CACHE UniCarbKB EdwardsLab ../data/uckbcomp2glytoucan.txt 
+./loadnames.py $CACHE ShortUniCarbKB EdwardsLab ../data/shortuckbcomp2glytoucan.txt
+./loadnames.py $CACHE Byonic EdwardsLab ../data/byonic2glytoucan.txt
+./loadnames.py $CACHE ShortComp EdwardsLab ../data/shortcomp2glytoucan.txt
 
 # Load to wiki
 ./loadsite.py --smwenv $SMWENV ../wiki

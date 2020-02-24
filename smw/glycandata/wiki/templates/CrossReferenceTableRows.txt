@@ -15,6 +15,8 @@
 |PDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.rcsb.org/structure/xxx xxx]</span>|,&thinsp;}}
 |CFG={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.functionalglycomics.org/glycomics/CarbohydrateServlet?pageType=view&view=view&operationType=view&carbId=xxx&sideMenu=no xxx]</span>|,&thinsp;}}
 |ChEBI={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.ebi.ac.uk/chebi/searchId.do?chebiId=xxx xxx]</span>|,&thinsp;}}
+|MatrixDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=xxx xxx]</span>|,&thinsp;}}
+|GlycoEpitope={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.glycoepitope.jp/epitopes/xxx xxx]</span>|,&thinsp;}}
 |{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
 }}
 | style="width: 150px;" | {{{3}}}

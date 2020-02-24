@@ -70,7 +70,10 @@ for gtcacc in accessions(sys.argv[1:]):
                 'cfg':'CFG',
                 'pdb':'PDB',
 		'bcsdb':'BCSDB',
-                'carbbank':'Carbbank(CCSB)'}    
+		'matrixdb':'MatrixDB',
+		'glycoepitope':'GlycoEpitope',
+                'carbbank':'Carbbank(CCSB)',
+	       }    
     for prop in xref_dic.values():
 	g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
     dic = defaultdict(list)

@@ -6,7 +6,8 @@ from collections import defaultdict
 from getwiki import GlycanData, Glycan
 w = GlycanData()
 
-source = sys.argv[1]
+property = sys.argv[1]
+source = sys.argv[2]
 
 def read_aliases(args):
     if len(args) == 0:
@@ -18,7 +19,7 @@ def read_aliases(args):
                 yield it.split()[:2]
 
 names = defaultdict(set)
-for acc,name in read_aliases(sys.argv[2:]):
+for acc,name in read_aliases(sys.argv[3:]):
     names[acc].add(name)
 
 # print names
@@ -30,10 +31,11 @@ for acc,name in read_aliases(sys.argv[2:]):
 for m in w.iterglycan():
     acc = m.get('accession')
     m.delete_annotations(property="Name",type="Name",source=source)
+    m.delete_annotations(property=property,type="Name",source=source)
     # try:
     #     thenames = set(m.get_annotation_value(property="Name",source=source,type="Name"))
     # except LookupError:
     # 	thenames = set()
-    m.set_annotation(value=list(names[acc]),property="Name",source=source,type="Name")
+    m.set_annotation(value=list(names[acc]),property=property,source=source,type="Name")
     if w.put(m):
         print acc

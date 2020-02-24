@@ -1,0 +1,13 @@
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession as ?GlyTouCanAccession)
+       (?value as ?Name)
+       (?prop as ?Domain)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann1 glycandata:type "Name" .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:property ?prop .
+  ?ann1 glycandata:hasglycan ?glycan
+}
+ORDER BY ?accession ?value

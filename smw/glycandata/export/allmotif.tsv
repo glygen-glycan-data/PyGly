@@ -338,6 +338,7 @@ G00560KG	G00055MO	Lactosamine motif	false
 G00565QJ	G00026MO	N-Glycan core basic	true
 G00582VL	G00026MO	N-Glycan core basic	true
 G00582VL	G00029MO	N-Glycan hybrid	true
+G00588HO	G00026MO	N-Glycan core basic	true
 G00591PZ	G00026MO	N-Glycan core basic	true
 G00591PZ	G00030MO	N-Glycan complex	true
 G00591PZ	G00055MO	Lactosamine motif	false
@@ -1048,6 +1049,7 @@ G02161CI	G00055MO	Lactosamine motif	false
 G02161CI	G00056MO	Neo Lactosamine	false
 G02161CI	G00068MO	Blood group H	false
 G02162DJ	G00026MO	N-Glycan core basic	true
+G02162HB	G00026MO	N-Glycan core basic	true
 G02168MP	G00071MO	Glycosphingolipid Ganglio series	true
 G02170ZK	G00026MO	N-Glycan core basic	true
 G02174FQ	G00055MO	Lactosamine motif	false
@@ -1323,6 +1325,8 @@ G02945KQ	G00028MO	N-Glycan high mannose	true
 G02945KQ	G00029MO	N-Glycan hybrid	true
 G02946BE	G00051MO	Lewis X	false
 G02946BE	G00055MO	Lactosamine motif	false
+G02952NR	G00026MO	N-Glycan core basic	true
+G02952NR	G00028MO	N-Glycan high mannose	true
 G02953GB	G00056MO	Neo Lactosamine	false
 G02953GB	G00069MO	Glycosphingolipid Lacto series	true
 G02963KR	G00051MO	Lewis X	false
@@ -2112,6 +2116,7 @@ G04576KS	G00028MO	N-Glycan high mannose	true
 G04576KS	G00029MO	N-Glycan hybrid	true
 G04576KS	G00055MO	Lactosamine motif	false
 G04580CX	G00055MO	Lactosamine motif	false
+G04584US	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G04585NN	G00026MO	N-Glycan core basic	true
 G04585NN	G00055MO	Lactosamine motif	false
 G04585NN	G00057MO	LacDiNAc	false
@@ -2455,6 +2460,8 @@ G05421OW	G00026MO	N-Glycan core basic	true
 G05421OW	G00028MO	N-Glycan high mannose	true
 G05441GN	G00055MO	Lactosamine motif	false
 G05441GN	G00065MO	VIM	false
+G05454SP	G00026MO	N-Glycan core basic	true
+G05454SP	G00028MO	N-Glycan high mannose	true
 G05470LY	G00026MO	N-Glycan core basic	true
 G05470LY	G00030MO	N-Glycan complex	true
 G05470LY	G00051MO	Lewis X	false
@@ -5528,6 +5535,7 @@ G13006TG	G00026MO	N-Glycan core basic	true
 G13006TG	G00028MO	N-Glycan high mannose	true
 G13016DY	G00056MO	Neo Lactosamine	false
 G13016DY	G00068MO	Blood group H	false
+G13029JS	G00055MO	Lactosamine motif	false
 G13034PC	G00046MO	Galalpha1-3Gal epitope	false
 G13034PC	G00068MO	Blood group H	false
 G13040AD	G00047MO	Lewis A	false
@@ -6733,6 +6741,7 @@ G16265MV	G00065MO	VIM	false
 G16269RR	G00055MO	Lactosamine motif	false
 G16269RR	G00056MO	Neo Lactosamine	false
 G16269RR	G00069MO	Glycosphingolipid Lacto series	true
+G16272GL	G00026MO	N-Glycan core basic	true
 G16274HY	G00046MO	Galalpha1-3Gal epitope	false
 G16274HY	G00055MO	Lactosamine motif	false
 G16274HY	G00068MO	Blood group H	false
@@ -7279,6 +7288,8 @@ G17483QF	G00026MO	N-Glycan core basic	true
 G17486WU	G00071MO	Glycosphingolipid Ganglio series	true
 G17490CY	G00026MO	N-Glycan core basic	true
 G17490CY	G00028MO	N-Glycan high mannose	true
+G17536AW	G00026MO	N-Glycan core basic	true
+G17536AW	G00028MO	N-Glycan high mannose	true
 G17540HT	G00026MO	N-Glycan core basic	true
 G17540HT	G00030MO	N-Glycan complex	true
 G17540HT	G00055MO	Lactosamine motif	false
@@ -8685,6 +8696,7 @@ G21257CI	G00026MO	N-Glycan core basic	true
 G21257CI	G00030MO	N-Glycan complex	true
 G21257CI	G00055MO	Lactosamine motif	false
 G21257CI	G00065MO	VIM	false
+G21284IS	G00026MO	N-Glycan core basic	true
 G21293AK	G00055MO	Lactosamine motif	false
 G21293AK	G00065MO	VIM	false
 G21295FZ	G00056MO	Neo Lactosamine	false
@@ -10393,6 +10405,7 @@ G25392ZR	G00030MO	N-Glycan complex	true
 G25392ZR	G00055MO	Lactosamine motif	false
 G25392ZR	G00058MO	Polylactosamine	false
 G25392ZR	G00065MO	VIM	false
+G25395JX	G00046MO	Galalpha1-3Gal epitope	false
 G25406HP	G00026MO	N-Glycan core basic	true
 G25406HP	G00030MO	N-Glycan complex	true
 G25406HP	G00055MO	Lactosamine motif	false
@@ -11814,6 +11827,7 @@ G29231AT	G00033MO	O-Glycan core 2	true
 G29231AT	G00034MO	O-Glycan core 2 fuzzy	true
 G29231AT	G00041MO	O-Glycan core 6	true
 G29231AT	G00042MO	O-Glycan core 6 Fuzzy	true
+G29231QJ	G00026MO	N-Glycan core basic	true
 G29232IW	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G29232IW	G00046MO	Galalpha1-3Gal epitope	false
 G29232IW	G00055MO	Lactosamine motif	false
@@ -11892,6 +11906,8 @@ G29483LI	G00026MO	N-Glycan core basic	true
 G29483LI	G00030MO	N-Glycan complex	true
 G29483LI	G00055MO	Lactosamine motif	false
 G29483LI	G00056MO	Neo Lactosamine	false
+G29485PK	G00026MO	N-Glycan core basic	true
+G29485PK	G00030MO	N-Glycan complex	true
 G29487JS	G00055MO	Lactosamine motif	false
 G29489PN	G00032MO	O-Glycan core 1 fuzzy	true
 G29489PN	G00055MO	Lactosamine motif	false
@@ -11998,6 +12014,8 @@ G29764SO	G00026MO	N-Glycan core basic	true
 G29764SO	G00030MO	N-Glycan complex	true
 G29764SO	G00055MO	Lactosamine motif	false
 G29764SO	G00065MO	VIM	false
+G29780RE	G00026MO	N-Glycan core basic	true
+G29780RE	G00028MO	N-Glycan high mannose	true
 G29783JJ	G00026MO	N-Glycan core basic	true
 G29783JJ	G00030MO	N-Glycan complex	true
 G29783JJ	G00055MO	Lactosamine motif	false
@@ -12451,6 +12469,7 @@ G30834XC	G00051MO	Lewis X	false
 G30834XC	G00055MO	Lactosamine motif	false
 G30834XC	G00058MO	Polylactosamine	false
 G30834XC	G00070MO	Glycosphingolipid Neo-lacto series	true
+G30837MK	G00046MO	Galalpha1-3Gal epitope	false
 G30837TR	G00026MO	N-Glycan core basic	true
 G30837TR	G00030MO	N-Glycan complex	true
 G30837TR	G00046MO	Galalpha1-3Gal epitope	false
@@ -12525,6 +12544,8 @@ G31032XG	G00026MO	N-Glycan core basic	true
 G31032XG	G00030MO	N-Glycan complex	true
 G31032XG	G00055MO	Lactosamine motif	false
 G31032XG	G00065MO	VIM	false
+G31033KO	G00026MO	N-Glycan core basic	true
+G31033KO	G00028MO	N-Glycan high mannose	true
 G31037WG	G00026MO	N-Glycan core basic	true
 G31037WG	G00030MO	N-Glycan complex	true
 G31037WG	G00055MO	Lactosamine motif	false
@@ -13137,6 +13158,8 @@ G32801HX	G00055MO	Lactosamine motif	false
 G32801HX	G00068MO	Blood group H	false
 G32801HX	G00070MO	Glycosphingolipid Neo-lacto series	true
 G32803SE	G00026MO	N-Glycan core basic	true
+G32808EP	G00026MO	N-Glycan core basic	true
+G32808EP	G00028MO	N-Glycan high mannose	true
 G32808NL	G00026MO	N-Glycan core basic	true
 G32808NL	G00030MO	N-Glycan complex	true
 G32808NL	G00055MO	Lactosamine motif	false
@@ -13705,6 +13728,8 @@ G34277BH	G00055MO	Lactosamine motif	false
 G34294BW	G00055MO	Lactosamine motif	false
 G34294BW	G00070MO	Glycosphingolipid Neo-lacto series	true
 G34295NM	G00056MO	Neo Lactosamine	false
+G34295PW	G00026MO	N-Glycan core basic	true
+G34295PW	G00028MO	N-Glycan high mannose	true
 G34306IB	G00026MO	N-Glycan core basic	true
 G34308VE	G00055MO	Lactosamine motif	false
 G34311UE	G00026MO	N-Glycan core basic	true
@@ -14209,6 +14234,8 @@ G35749EP	G00058MO	Polylactosamine	false
 G35750SU	G00068MO	Blood group H	false
 G35758CT	G00032MO	O-Glycan core 1 fuzzy	true
 G35769UV	G00026MO	N-Glycan core basic	true
+G35777BH	G00026MO	N-Glycan core basic	true
+G35777BH	G00028MO	N-Glycan high mannose	true
 G35778AN	G00032MO	O-Glycan core 1 fuzzy	true
 G35778AN	G00068MO	Blood group H	false
 G35787ED	G00026MO	N-Glycan core basic	true
@@ -14454,6 +14481,8 @@ G36225RM	G00030MO	N-Glycan complex	true
 G36225RM	G00051MO	Lewis X	false
 G36225RM	G00055MO	Lactosamine motif	false
 G36225RM	G00058MO	Polylactosamine	false
+G36230AV	G00026MO	N-Glycan core basic	true
+G36230AV	G00028MO	N-Glycan high mannose	true
 G36231CI	G00032MO	O-Glycan core 1 fuzzy	true
 G36231CI	G00034MO	O-Glycan core 2 fuzzy	true
 G36231CI	G00042MO	O-Glycan core 6 Fuzzy	true
@@ -15345,6 +15374,9 @@ G38684VZ	G00035MO	O-Glycan core 3	true
 G38684VZ	G00036MO	O-Glycan core 3 fuzzy	true
 G38684VZ	G00055MO	Lactosamine motif	false
 G38684VZ	G00056MO	Neo Lactosamine	false
+G38686NY	G00046MO	Galalpha1-3Gal epitope	false
+G38686NY	G00055MO	Lactosamine motif	false
+G38686NY	G00058MO	Polylactosamine	false
 G38687ZS	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G38697HB	G00057MO	LacDiNAc	false
 G38702PM	G00032MO	O-Glycan core 1 fuzzy	true
@@ -15712,6 +15744,7 @@ G39602UU	G00055MO	Lactosamine motif	false
 G39611QP	G00047MO	Lewis A	false
 G39611QP	G00053MO	Sialyl Lewis A	false
 G39611QP	G00056MO	Neo Lactosamine	false
+G39614IV	G00068MO	Blood group H	false
 G39615UL	G00055MO	Lactosamine motif	false
 G39617JJ	G00026MO	N-Glycan core basic	true
 G39624YQ	G00035MO	O-Glycan core 3	true
@@ -16084,6 +16117,7 @@ G40428GO	G00026MO	N-Glycan core basic	true
 G40428GO	G00030MO	N-Glycan complex	true
 G40428GO	G00055MO	Lactosamine motif	false
 G40428GO	G00058MO	Polylactosamine	false
+G40442UK	G00026MO	N-Glycan core basic	true
 G40446XG	G00051MO	Lewis X	false
 G40446XG	G00055MO	Lactosamine motif	false
 G40446XG	G00068MO	Blood group H	false
@@ -16316,6 +16350,8 @@ G40852TV	G00034MO	O-Glycan core 2 fuzzy	true
 G40852TV	G00041MO	O-Glycan core 6	true
 G40852TV	G00042MO	O-Glycan core 6 Fuzzy	true
 G40852TV	G00055MO	Lactosamine motif	false
+G40857PC	G00026MO	N-Glycan core basic	true
+G40857PC	G00028MO	N-Glycan high mannose	true
 G40865GN	G00026MO	N-Glycan core basic	true
 G40865GN	G00030MO	N-Glycan complex	true
 G40865GN	G00055MO	Lactosamine motif	false
@@ -17075,6 +17111,8 @@ G42521ZV	G00065MO	VIM	false
 G42525DE	G00026MO	N-Glycan core basic	true
 G42525DE	G00030MO	N-Glycan complex	true
 G42526XU	G00055MO	Lactosamine motif	false
+G42528HF	G00026MO	N-Glycan core basic	true
+G42528HF	G00028MO	N-Glycan high mannose	true
 G42545LJ	G00031MO	O-Glycan core 1	true
 G42545LJ	G00032MO	O-Glycan core 1 fuzzy	true
 G42545LJ	G00033MO	O-Glycan core 2	true
@@ -18133,6 +18171,8 @@ G45215IJ	G00070MO	Glycosphingolipid Neo-lacto series	true
 G45217YN	G00026MO	N-Glycan core basic	true
 G45217YN	G00030MO	N-Glycan complex	true
 G45217YN	G00057MO	LacDiNAc	false
+G45219VT	G00026MO	N-Glycan core basic	true
+G45219VT	G00028MO	N-Glycan high mannose	true
 G45220IZ	G00026MO	N-Glycan core basic	true
 G45220IZ	G00030MO	N-Glycan complex	true
 G45220IZ	G00046MO	Galalpha1-3Gal epitope	false
@@ -18161,6 +18201,7 @@ G45287IG	G00026MO	N-Glycan core basic	true
 G45287IG	G00030MO	N-Glycan complex	true
 G45287IG	G00055MO	Lactosamine motif	false
 G45287IG	G00065MO	VIM	false
+G45290DI	G00026MO	N-Glycan core basic	true
 G45294YQ	G00026MO	N-Glycan core basic	true
 G45294YQ	G00028MO	N-Glycan high mannose	true
 G45300SB	G00026MO	N-Glycan core basic	true
@@ -18913,6 +18954,8 @@ G47206MY	G00026MO	N-Glycan core basic	true
 G47206OM	G00026MO	N-Glycan core basic	true
 G47206OM	G00028MO	N-Glycan high mannose	true
 G47206OM	G00029MO	N-Glycan hybrid	true
+G47206TB	G00026MO	N-Glycan core basic	true
+G47206TB	G00028MO	N-Glycan high mannose	true
 G47220NG	G00055MO	Lactosamine motif	false
 G47220NG	G00057MO	LacDiNAc	false
 G47220NG	G00065MO	VIM	false
@@ -19820,6 +19863,8 @@ G49800TU	G00055MO	Lactosamine motif	false
 G49813VF	G00046MO	Galalpha1-3Gal epitope	false
 G49817RV	G00067MO	Blood group B	false
 G49817RV	G00068MO	Blood group H	false
+G49824JU	G00056MO	Neo Lactosamine	false
+G49824JU	G00069MO	Glycosphingolipid Lacto series	true
 G49827WK	G00026MO	N-Glycan core basic	true
 G49827WK	G00030MO	N-Glycan complex	true
 G49827WK	G00055MO	Lactosamine motif	false
@@ -22116,6 +22161,7 @@ G55402MT	G00066MO	Blood group A	false
 G55402MT	G00068MO	Blood group H	false
 G55406JQ	G00026MO	N-Glycan core basic	true
 G55406JQ	G00028MO	N-Glycan high mannose	true
+G55423YK	G00026MO	N-Glycan core basic	true
 G55453IK	G00026MO	N-Glycan core basic	true
 G55453IK	G00028MO	N-Glycan high mannose	true
 G55453IK	G00029MO	N-Glycan hybrid	true
@@ -22663,6 +22709,8 @@ G56784HS	G00055MO	Lactosamine motif	false
 G56791SN	G00026MO	N-Glycan core basic	true
 G56791SN	G00030MO	N-Glycan complex	true
 G56791SN	G00055MO	Lactosamine motif	false
+G56797BW	G00026MO	N-Glycan core basic	true
+G56797BW	G00028MO	N-Glycan high mannose	true
 G56800JG	G00026MO	N-Glycan core basic	true
 G56809FB	G00055MO	Lactosamine motif	false
 G56809FB	G00065MO	VIM	false
@@ -23060,6 +23108,7 @@ G57971KJ	G00034MO	O-Glycan core 2 fuzzy	true
 G57971KJ	G00042MO	O-Glycan core 6 Fuzzy	true
 G57971XD	G00026MO	N-Glycan core basic	true
 G57984PA	G00026MO	N-Glycan core basic	true
+G57989AD	G00026MO	N-Glycan core basic	true
 G57997IN	G00026MO	N-Glycan core basic	true
 G57997IN	G00030MO	N-Glycan complex	true
 G57997IN	G00046MO	Galalpha1-3Gal epitope	false
@@ -23465,6 +23514,9 @@ G59081JJ	G00026MO	N-Glycan core basic	true
 G59081JJ	G00030MO	N-Glycan complex	true
 G59081JJ	G00051MO	Lewis X	false
 G59081JJ	G00055MO	Lactosamine motif	false
+G59083LK	G00026MO	N-Glycan core basic	true
+G59083LK	G00028MO	N-Glycan high mannose	true
+G59100TO	G00026MO	N-Glycan core basic	true
 G59125FH	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G59126YU	G00055MO	Lactosamine motif	false
 G59126YU	G00065MO	VIM	false
@@ -23476,6 +23528,8 @@ G59130GH	G00026MO	N-Glycan core basic	true
 G59130GH	G00030MO	N-Glycan complex	true
 G59130GH	G00046MO	Galalpha1-3Gal epitope	false
 G59130GH	G00055MO	Lactosamine motif	false
+G59130YV	G00026MO	N-Glycan core basic	true
+G59130YV	G00028MO	N-Glycan high mannose	true
 G59132RG	G00026MO	N-Glycan core basic	true
 G59133XT	G00055MO	Lactosamine motif	false
 G59133XT	G00068MO	Blood group H	false
@@ -24334,6 +24388,8 @@ G61203OK	G00026MO	N-Glycan core basic	true
 G61203OK	G00030MO	N-Glycan complex	true
 G61203OK	G00055MO	Lactosamine motif	false
 G61203OK	G00065MO	VIM	false
+G61206XE	G00026MO	N-Glycan core basic	true
+G61206XE	G00028MO	N-Glycan high mannose	true
 G61207RZ	G00026MO	N-Glycan core basic	true
 G61207RZ	G00030MO	N-Glycan complex	true
 G61222QQ	G00055MO	Lactosamine motif	false
@@ -24470,6 +24526,8 @@ G61575RT	G00055MO	Lactosamine motif	false
 G61575RT	G00065MO	VIM	false
 G61576RZ	G00055MO	Lactosamine motif	false
 G61576RZ	G00065MO	VIM	false
+G61576VD	G00026MO	N-Glycan core basic	true
+G61576VD	G00028MO	N-Glycan high mannose	true
 G61581BE	G00026MO	N-Glycan core basic	true
 G61581BE	G00030MO	N-Glycan complex	true
 G61581BE	G00046MO	Galalpha1-3Gal epitope	false
@@ -25199,6 +25257,7 @@ G63382KW	G00026MO	N-Glycan core basic	true
 G63382KW	G00055MO	Lactosamine motif	false
 G63389BN	G00055MO	Lactosamine motif	false
 G63389VQ	G00055MO	Lactosamine motif	false
+G63404PB	G00055MO	Lactosamine motif	false
 G63411NB	G00026MO	N-Glycan core basic	true
 G63413QV	G00026MO	N-Glycan core basic	true
 G63413QV	G00030MO	N-Glycan complex	true
@@ -25980,6 +26039,8 @@ G65294YU	G00055MO	Lactosamine motif	false
 G65296TL	G00026MO	N-Glycan core basic	true
 G65296TL	G00030MO	N-Glycan complex	true
 G65296TL	G00055MO	Lactosamine motif	false
+G65298XR	G00026MO	N-Glycan core basic	true
+G65298XR	G00028MO	N-Glycan high mannose	true
 G65299LG	G00055MO	Lactosamine motif	false
 G65307GS	G00026MO	N-Glycan core basic	true
 G65307GS	G00030MO	N-Glycan complex	true
@@ -27854,6 +27915,7 @@ G70355HG	G00054MO	Sialyl Lewis X	false
 G70355HG	G00055MO	Lactosamine motif	false
 G70355HG	G00057MO	LacDiNAc	false
 G70355HG	G00065MO	VIM	false
+G70357WK	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G70374BH	G00055MO	Lactosamine motif	false
 G70374KJ	G00026MO	N-Glycan core basic	true
 G70374KJ	G00030MO	N-Glycan complex	true
@@ -28098,6 +28160,7 @@ G70958LU	G00030MO	N-Glycan complex	true
 G70958LU	G00051MO	Lewis X	false
 G70958LU	G00055MO	Lactosamine motif	false
 G70978CR	G00026MO	N-Glycan core basic	true
+G70985EU	G00068MO	Blood group H	false
 G70991JO	G00026MO	N-Glycan core basic	true
 G70994WA	G00055MO	Lactosamine motif	false
 G70994WA	G00065MO	VIM	false
@@ -33234,6 +33297,7 @@ G84228OY	G00055MO	Lactosamine motif	false
 G84260SO	G00026MO	N-Glycan core basic	true
 G84260SO	G00030MO	N-Glycan complex	true
 G84260SO	G00055MO	Lactosamine motif	false
+G84271HK	G00055MO	Lactosamine motif	false
 G84272TB	G00026MO	N-Glycan core basic	true
 G84273UX	G00055MO	Lactosamine motif	false
 G84273ZH	G00068MO	Blood group H	false
@@ -35040,6 +35104,8 @@ G88864RV	G00026MO	N-Glycan core basic	true
 G88864RV	G00030MO	N-Glycan complex	true
 G88864RV	G00055MO	Lactosamine motif	false
 G88864RV	G00065MO	VIM	false
+G88865JK	G00026MO	N-Glycan core basic	true
+G88865JK	G00028MO	N-Glycan high mannose	true
 G88869IJ	G00055MO	Lactosamine motif	false
 G88869IJ	G00065MO	VIM	false
 G88869IJ	G00070MO	Glycosphingolipid Neo-lacto series	true
@@ -36458,6 +36524,7 @@ G92695JQ	G00068MO	Blood group H	false
 G92697XR	G00026MO	N-Glycan core basic	true
 G92697ZU	G00055MO	Lactosamine motif	false
 G92697ZU	G00068MO	Blood group H	false
+G92708ST	G00026MO	N-Glycan core basic	true
 G92709EO	G00026MO	N-Glycan core basic	true
 G92712BL	G00026MO	N-Glycan core basic	true
 G92712BL	G00029MO	N-Glycan hybrid	true
@@ -37087,6 +37154,7 @@ G94277TH	G00026MO	N-Glycan core basic	true
 G94277TH	G00030MO	N-Glycan complex	true
 G94277TH	G00055MO	Lactosamine motif	false
 G94277TH	G00065MO	VIM	false
+G94278TT	G00026MO	N-Glycan core basic	true
 G94281RO	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G94281RO	G00055MO	Lactosamine motif	false
 G94296FS	G00026MO	N-Glycan core basic	true
@@ -38267,6 +38335,7 @@ G97123TW	G00030MO	N-Glycan complex	true
 G97123TW	G00051MO	Lewis X	false
 G97123TW	G00055MO	Lactosamine motif	false
 G97123TW	G00065MO	VIM	false
+G97129CF	G00026MO	N-Glycan core basic	true
 G97130PD	G00026MO	N-Glycan core basic	true
 G97130PD	G00030MO	N-Glycan complex	true
 G97130PD	G00055MO	Lactosamine motif	false
@@ -38804,6 +38873,8 @@ G98516TP	G00055MO	Lactosamine motif	false
 G98516TP	G00065MO	VIM	false
 G98535LH	G00031MO	O-Glycan core 1	true
 G98535LH	G00032MO	O-Glycan core 1 fuzzy	true
+G98536AW	G00026MO	N-Glycan core basic	true
+G98536AW	G00028MO	N-Glycan high mannose	true
 G98537XO	G00026MO	N-Glycan core basic	true
 G98537XO	G00030MO	N-Glycan complex	true
 G98537XO	G00055MO	Lactosamine motif	false
@@ -39189,6 +39260,8 @@ G99465IE	G00055MO	Lactosamine motif	false
 G99465IE	G00068MO	Blood group H	false
 G99472MO	G00027MO	N-Glycan truncated motif. First GlcpNAC cut off	true
 G99493HM	G00026MO	N-Glycan core basic	true
+G99502KX	G00026MO	N-Glycan core basic	true
+G99502KX	G00028MO	N-Glycan high mannose	true
 G99502WP	G00026MO	N-Glycan core basic	true
 G99502WP	G00030MO	N-Glycan complex	true
 G99502WP	G00055MO	Lactosamine motif	false
