@@ -479,7 +479,7 @@ class GlyTouCan(object):
         return value
 
     def getimage(self, accession, notation="cfg", style="extended", avoidcache=False, trials=1):
-        assert (notation in ("cfg",) and style in ("compact", "normal", "extended"))
+        assert (notation in ("cfg","snfg") and style in ("extended",))
         self._wait()
         if trials > 1:
             avoidcache = True
@@ -491,7 +491,7 @@ class GlyTouCan(object):
                 rand = "&rand=" + ("%.8f" % (random.random(),)).split('.', 1)[1]
             try:
                 imgstr = urllib.urlopen("https://glytoucan.org/glycans/%s/image?format=png&notation=%s&style=%s%s" % (
-                accession, notation, style, rand)).read()
+                                        accession, notation, style, rand)).read()
                 if len(imgstr) == 0:
                     imgstr = None
             except IOError:

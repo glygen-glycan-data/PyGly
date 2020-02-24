@@ -609,9 +609,9 @@ class UniCarbKBTS(TripleStoreResource):
 	    yield None
 
 class UniCarbKBDump(object):
-    dumpfileurl = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/%s.csv"
+    dumpfileurl = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/mammalian/%s.csv"
     species2taxa = {'human': '9606', 'mouse': '10090', 'rat': '10116'}
-    species2filename = {'human': 'human17122019', 'mouse': 'mouse03122019', 'rat': 'rat03122019'}
+    species2filename = {'human': 'human06022020', 'mouse': 'mouse06022020', 'rat': 'rat06022020'}
 
     def records(self):
 	for species in ('human','mouse','rat'):
