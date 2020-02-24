@@ -540,7 +540,7 @@ class SubstructureSearch(GlycanPartialOrder):
                 discover.append(c)
 
                 tgp = tg_nodes[motif_nodes.index(p)]
-                tgc = tg_nodes[motif_nodes.index(c)]
+                # tgc = tg_nodes[motif_nodes.index(c)]
 
                 found_matched_link = False
                 for ll in tgp.links(instantiated_only=False):
@@ -556,6 +556,7 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return True
 
+    # For recursive algorithm
     def connectedNodesPlus1(self, currentSet, candidates):
         res = []
         for c in candidates:
@@ -606,6 +607,20 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return res
 
+    def connectedNodesPlus1Simple(self, currentSet):
+        res = []
+        for n in currentSet:
+            res += [x.child() for x in n.links(instantiated_only=False)]
+        children = filter(lambda x:x not in currentSet, res)
+        children = set(children)
+
+        res = []
+        for n in children:
+            res0 = currentSet.copy()
+            res0.add(n)
+            res.append(res0)
+        return res
+
     def cache_nodes(self, r, size):
 
         if not self.connected_nodes_pre_computed:
@@ -620,15 +635,14 @@ class SubstructureSearch(GlycanPartialOrder):
         if len(self.nodes_cache[r]) >= 1:
             i = max(self.nodes_cache[r].keys())
         else:
-            pair = ({r}, set([x.child() for x in r.links(instantiated_only=False)]))
-            self.nodes_cache[r][1] = [pair]
+            self.nodes_cache[r][1] = [{r}]
             i = 1
 
         while i < size:
             i += 1
             res = []
-            for currentSet, candidateSet in self.nodes_cache[r][i-1]:
-                for res0 in self.connectedNodesPlus1(currentSet, candidateSet):
+            for currentSet in self.nodes_cache[r][i-1]:
+                for res0 in self.connectedNodesPlus1Simple(currentSet):
                     if res0 not in res:
                         res.append(res0)
             self.nodes_cache[r][i] = res
@@ -636,7 +650,7 @@ class SubstructureSearch(GlycanPartialOrder):
 
     def allConnectedNodesByRoot(self, r, size):
         if self.connected_nodes_pre_computed:
-            return map(lambda x:x[0], self.nodes_cache[r][size])
+            return self.nodes_cache[r][size]
         else:
             return self.allConnectedNodesByRootRecursive(r, size)
 
@@ -666,13 +680,16 @@ class SubstructureSearch(GlycanPartialOrder):
             return False
 
         # Use subtree algorithm to save runtime
-        if not tg.undetermined() and not m.undetermined():
+        if not m.undetermined():
             if rootOnly:
                 return self.subtree_leq(m.root(), tg.root())
             else:
                 for n in tg.all_nodes():
                     if self.subtree_leq(m.root(), n):
                         return True
+
+            # return False when no match based on subtree algorithm and the glycan is not undetermined.
+            if not tg.undetermined():
                 return False
 
         if tg.undetermined():
@@ -691,14 +708,18 @@ class SubstructureSearch(GlycanPartialOrder):
                     continue
                 potential_TG_root.append(tg_root)
 
+        #i = 0
         for tg_root in potential_TG_root:
 
             for tg_nodes in self.allConnectedNodesByRoot(tg_root, len(list(m.all_nodes()))):
                 # print map(lambda x: x.external_descriptor_id(), tg_nodes),map(lambda x: x.external_descriptor_id(), list(m.all_nodes()))
-
+                #i+=1
+                #j=0
                 for monoset_m, monoset_tg in itergenmatchings(list(m.all_nodes()), tg_nodes, self.monoleq):
                     # matching = dict(zip(map(lambda m: m.external_descriptor_id(), monoset_m), map(lambda m: m.external_descriptor_id(), monoset_tg)))
                     # print matching
+                    #j+=1
+                    #print i, j
                     if self.check_links(m, monoset_m, monoset_tg):
                         return True
 
