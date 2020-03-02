@@ -28,6 +28,7 @@ while True:
       newaccs.update(filter(lambda anc: anc.startswith('G'),gnome.ancestors(acc)))
       topo = gnome.get_topology(acc)
       comp = gnome.get_composition(acc)
+      # print acc,topo,comp
       if comp:
           newaccs.update(gnome.has_composition(comp))
       elif topo:

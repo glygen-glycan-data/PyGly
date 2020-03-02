@@ -46,26 +46,26 @@ def method4():
 def method5():
     return open('../data/glygen_accessions.txt').read().split()
 
-freq = defaultdict(int)
-sets = []
-sets.append(method1())
-sets.append(method1(beta=True))
-sets.append(method2())
-sets.append(method3())
-sets.append(method4())
-sets.append(method5())
+# # freq = defaultdict(int)
+# sets = []
+# # # sets.append(method1())
+# sets.append(method1(beta=True))
+# sets.append(method2())
+# sets.append(method3())
+# sets.append(method4())
+# sets.append(method5())
 
-allaccs = set()
-for s in sets:
-    allaccs.update(s)
-
-for acc in allaccs:
-    bm = 0
-    for i,s in enumerate(reversed(sets)):
-	if acc in s:
-	    bm += 10**i
-    freq[bm] += 1
-
+# allaccs = set()
+# for s in sets:
+    # allaccs.update(s)
+# 
+# for acc in allaccs:
+    # bm = 0
+    # for i,s in enumerate(reversed(sets)):
+	# if acc in s:
+	    # bm += 10**i
+    # freq[bm] += 1
+# 
 # for bm,f in sorted(freq.items()):
 #     print "%0*d\t%d"%(len(sets),bm,freq[bm])
 

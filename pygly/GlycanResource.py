@@ -1,6 +1,7 @@
 
 from ReferenceTable import ReferenceTable
-import os, os.path, sys, time, traceback
+import os, os.path, sys, time, traceback, re
+from dateutil import parser as dateutil_parser
 from collections import defaultdict
 from lockfile import FileLock
 import shelve
@@ -8,9 +9,10 @@ import cPickle as pickle
 import gzip
 import csv
 import urllib
+import json
 
-from GlycanFormatter import WURCS20Format, GlycoCTFormat, GlycanParseError
-from WURCS20MonoFormatter import WURCS20MonoFormat, UnsupportedSkeletonCodeError
+from GlycanFormatter import WURCS20Format, GlycoCTFormat, GlycanParseError, ZeroPlusLinkCountError, UndeterminedLinkCountError, CircularError, LinkCountError
+from WURCS20MonoFormatter import WURCS20MonoFormat, UnsupportedSkeletonCodeError, UnsupportedSubstituentError, InvalidMonoError
 
 import warnings                                                                                                 
 warnings.filterwarnings('ignore')
@@ -181,35 +183,38 @@ class TripleStoreResource(GlycanResource):
         self.set_method("query_"+name, _query)
         return [("query_"+name,params)]
 
+# Defaults ensure a 10-way partition of GlyTouCan accessions
+def partitioner(kwarg="accession",fmt="G%%0%dd.*",digits=1):
+    fmtstr = fmt%(digits,)
+    def partition(fn):
+        def wrapper(self,*args,**kw):
+            if kwarg not in kw:
+                for i in range(0,10**digits):
+                    for row in fn(self,*args,accession=fmtstr%(i,),**kw):
+                        yield row
+            else:
+                for row in fn(self,*args,**kw):
+                    yield row
+        return wrapper
+    return partition
+
 class GlyTouCanTS(TripleStoreResource):
 
     endpt = "http://ts.glytoucan.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
     cachefile = ".gtccache_new"
+    # verbose = True
     
     sequence_formats = set(["wurcs", "glycoct", "iupac_extended", "iupac_condensed"])
 
     crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg',
                               'unicarbkb', 'glyconnect', 'glycome-db',
                               'unicarb-db', 'carbbank', 'pdb', 'cfg',
-                              'bcsdb','matrixdb'])
+                              'bcsdb','matrixdb','glycoepitope'])
 
     def __init__(self,*args,**kwargs):
 	kwargs['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glytoucan.ini")
 	super(GlyTouCanTS,self).__init__(*args,**kwargs)
-
-    @staticmethod
-    def partition(fn):
-        def wrapper(self,**kw):
-            # print >>sys.stderr, "partition: %s"%(kw,)
-            if 'accession' not in kw:
-                for i in range(0,10):
-                    for row in fn(self,accession="G%0d.*"%(i,),**kw):
-                        yield row
-            else:
-                for row in fn(self,**kw):
-                    yield row
-        return wrapper
 
     @staticmethod
     def prefetch(fn):
@@ -242,19 +247,27 @@ class GlyTouCanTS(TripleStoreResource):
     def __init__(self,**kw):
         super(GlyTouCanTS,self).__init__(**kw)
         for k in self.keys():
-            self.modify_method(k,self.partition)
+            self.modify_method(k,partitioner())
 	    if kw.get('usecache',True):
                 self.modify_method(k,self.prefetch)
 
     def getseq(self,accession,format='wurcs'):
         assert format in self.sequence_formats
         for row in self.query_sequence(accession=accession,format=format):
+	    if row['format'] == 'wurcs' and not row['sequence'].startswith('WURCS'):
+		continue
+	    if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
+		continue
             return row['sequence']
         return None
 
     def allseq(self,format=None):
         assert format == None or format in self.sequence_formats
         for row in self.query_sequence(format=format):
+	    if row['format'] == 'wurcs' and not row['sequence'].startswith('WURCS'):
+                continue
+	    if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
+                continue
             yield row['accession'], row['format'], row['sequence']
 
     def getmass(self,accession):
@@ -315,9 +328,9 @@ class GlyTouCanTS(TripleStoreResource):
             if row['resource'] in self.crossref_resources:
                 yield row['accession'],row['resource'],row['entry']
 
-    def getmotifs(self,accession):
+    # Named for consistency with GlyTouCan class...
+    def getmotif(self,accession):
         return [ row['motif'] for row in self.query_motifs(accession=accession) ]
-            
 
     def allmotifaligns(self):
         for row in self.query_motifs():
@@ -332,13 +345,22 @@ class GlyTouCanTS(TripleStoreResource):
             return True
         return False
 
+    def allinvalid(self):
+	for row in self.query_invalid():
+	    yield row['accession']
+
+    def invalid(self,accession):
+	for row in self.query_invalid(accession=accession):
+	    return True
+	return False
+
     def allaccessions(self):
         for row in self.query_exists():
             yield row['accession']
 
     def gethash(self,accession):
 	for row in self.query_hash(accession=accession):
-	    yield row['hash']
+	    return row['hash']
 
     def allhash(self):
 	for row in self.query_hash():
@@ -405,25 +427,66 @@ class GlyTouCanTS(TripleStoreResource):
 		    seen.add((bc,bc))
 		    yield bc,bc
 
+    def _query_date_helper(self,**kwargs):
+        lastacc = None; lastaccdates = set()
+	for row in sorted(self.query_date(**kwargs),key=lambda r: r['accession']):
+	    row['date'] = dateutil_parser.parse(row['date']).date()
+	    if row['accession'] != lastacc:
+		if len(lastaccdates) > 0:
+		    yield lastacc,min(lastaccdates).isoformat(),max(lastaccdates).isoformat()
+		lastacc = row['accession']
+		lastaccdates = set([row['date']])
+	    else:
+		lastaccdates.add(row['date'])
+	if len(lastaccdates) > 0:
+	    yield lastacc,min(lastaccdates).isoformat(),max(lastaccdates).isoformat()
+
+    def getdate(self,accession):
+	for row in self._query_date_helper(accession=accession):
+	    yield row[1],row[2]
+
+    def alldate(self):
+	for row in self._query_date_helper():
+	    yield row
+
 class GlyTouCanUtil(object):
     _wurcs_mono_format = WURCS20MonoFormat()
     _wurcs_format = WURCS20Format()
     _glycoct_format = GlycoCTFormat()
 
-    def getUnsupportedSkeletonCodes(self, acc):
+    def getUnsupportedCodes(self, acc):
         codes = set()
+	substs = set()
+	invalid = set()
+	other = set()
         sequence = self.getseq(acc, 'wurcs')
         if not sequence:
-            return codes
+            return codes, substs, invalid, other
         monos = sequence.split('/[', 1)[1].split(']/')[0].split('][')
         for m in monos:
             try:
                 g = self._wurcs_mono_format.parsing(m)
             except UnsupportedSkeletonCodeError, e:
                 codes.add(e.message.rsplit(None, 1)[-1])
+            except UnsupportedSubstituentError, e:
+                substs.add(e.message.rsplit(None, 1)[-1])
+            except InvalidMonoError, e:
+                invalid.add(e.message.rsplit(None, 1)[-1])
             except GlycanParseError:
                 pass
-        return codes
+	try:
+	    g = self._wurcs_format.toGlycan(sequence)
+	except ZeroPlusLinkCountError:
+	    other.add("0+ link count")
+	except UndeterminedLinkCountError:
+	    other.add("undetermined link count")
+	except CircularError:
+	    other.add("circular")
+	except LinkCountError:
+	    other.add("bad link count")
+	except GlycanParseError:
+	    pass
+        return codes, substs, invalid, other
 
     def getGlycan(self, acc, format=None):
         if not format or (format == 'wurcs'):
@@ -442,11 +505,86 @@ class GlyTouCanUtil(object):
                     pass
         return None
 
+    def glycoct(self, acc, fetch=None):
+	g = self.getGlycan(acc,fetch)
+	if not g:
+	    return None
+	return g.glycoct()
+
+    def umw(self, acc, fetch=None):
+	g = self.getGlycan(acc,fetch)                                                                             
+	if not g:
+	    return None
+        return g.underivitized_molecular_weight()
+
+    def wurcs2glycoct(self, acc):
+	sequence = self.getseq(acc,'wurcs')
+	if sequence:
+	    sequence1 = urllib.quote_plus(sequence)
+	    url = 'https://api.glycosmos.org/glycanformatconverter/2.3.2-snapshot/wurcs2glycoct/'+sequence1
+	    try:
+	        data = json.loads(urllib.urlopen(url).read())
+	        if 'GlycoCT' in data:
+	            return data['GlycoCT']
+	    except ValueError:
+		pass
+	return None
+
+    def subsumptionbyapi(self, acc):
+	sequence = self.getseq(acc,'wurcs')
+	if sequence:
+	    sequence1 = urllib.quote_plus(sequence)
+	    url = 'https://api.glycosmos.org/subsumption/0.2.0/'+sequence1
+	    data = urllib.urlopen(url).read()
+	    seen = set()
+	    lasts = None
+	    for triple in sorted(map(lambda t: tuple(map(str.strip,map(str,map(t.get,("S","P","O"))))),json.loads(data))):
+		if triple in seen:
+		    continue
+		seen.add(triple)
+		if triple[0] != lasts:
+		    if lasts != None:
+			print ""
+		    print triple[0]
+		    lasts = triple[0]
+		if triple[2] == sequence:
+		    print ">>  "+"\t".join(triple[1:])
+		else:
+		    print "    "+"\t".join(triple[1:])
+
+    def findskel(self, skel, maxcount=None):
+	if maxcount != None:
+	    maxcount = int(maxcount)
+        
+	for acc, format, wurcs in self.allseq(format='wurcs'):
+            glycoct = self.getseq(acc,format='glycoct')
+            if not glycoct:
+                continue
+	    monos = wurcs.split('/[', 1)[1].split(']/')[0].split('][')
+	    if maxcount != None and len(monos) > maxcount:
+		continue
+            for mono in monos:
+		msk = re.search(r'^(.*?)([-_].*)?$',mono).group(1)
+		assert msk
+		m = re.search(r"^%s$"%(skel,),msk)
+		if m:
+		    yield acc, m.group(0)
+
+    def multiseq(self):
+	counts = defaultdict(set)
+	for acc,fmt,seq in self.allseq():
+	    counts[(acc,fmt)].add(seq)
+	for k,v in counts.items():
+	    if len(v) > 1:
+		yield k
+
 class GlyTouCan(GlyTouCanTS,GlyTouCanUtil):
     pass
 
-
-
+class GlyTouCanNoCache(GlyTouCan):
+    def __init__(self):
+	iniFile = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glytoucan.ini")
+	super(GlyTouCanNoCache,self).__init__(usecache=False,iniFile=iniFile)
 
 class UniCarbKBTS(TripleStoreResource):
 
@@ -471,12 +609,13 @@ class UniCarbKBTS(TripleStoreResource):
 	    yield None
 
 class UniCarbKBDump(object):
-    dumpfileurl = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/%s.csv"
+    dumpfileurl = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/mammalian/%s.csv"
     species2taxa = {'human': '9606', 'mouse': '10090', 'rat': '10116'}
+    species2filename = {'human': 'human06022020', 'mouse': 'mouse06022020', 'rat': 'rat06022020'}
 
     def records(self):
 	for species in ('human','mouse','rat'):
-            url = self.dumpfileurl%(species,)
+            url = self.dumpfileurl%(self.species2filename[species],)
             for row in csv.DictReader(urllib.urlopen(url)):
 		row['taxid'] = self.species2taxa[species]
 		yield row
@@ -532,6 +671,45 @@ class UniCarbKB(UniCarbKBDump,UniCarbKBTS):
     allgtc = union("allgtc")
     allpub = union("allpub")
 
+    def gtcbytaxa(self,taxon):
+	accmap = defaultdict(set)
+	for acc,gtc in self.allgtc():
+	    accmap[acc].add(gtc)
+	seen = set()
+	for acc,taxid in self.alltaxa():
+	    if int(taxid) == int(taxon):
+		for gtc in accmap[acc]:
+		    if gtc not in seen:
+			yield gtc
+			seen.add(gtc)
+
+class GlyGenTS(TripleStoreResource):
+    endpt = "http://sparql.glygen.org:8880/sparql/query"
+    # endpt = "https://sparql.glygen.org/query"
+    defns = "http://glygen.org/glycan/"
+
+    def __init__(self,**kw):
+        super(GlyGenTS,self).__init__(**kw)
+        for k in self.keys():
+            self.modify_method(k,partitioner())
+
+    def allglycans(self):
+	for row in self.query_glycans():
+            yield row['accession']
+
+class GlyGenBetaTS(GlyGenTS):
+    endpt = "http://beta-sparql.glygen.org:8880/sparql/query"
+    # endpt = "https://beta-sparql.glygen.org/"
+    def __init__(self):
+        iniFile = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygen.ini")
+        super(GlyGenBetaTS,self).__init__(usecache=False,iniFile=iniFile)
+
+class GlyGen(GlyGenTS):
+    pass
+
+class GlyGenBeta(GlyGenBetaTS):
+    pass
+
 if __name__ == "__main__":
 
     cls = sys.argv[1]
@@ -539,7 +717,14 @@ if __name__ == "__main__":
     query = sys.argv[2]
     method = getattr(resource,query)
     headers = None
-    result = method(*sys.argv[3:])
+    args = sys.argv[3:]
+    kwargs = {}
+    for i in range(len(args)-1,-1,-1):
+	if re.search(r'^[a-z]+=',args[i]):
+	    k,v = args[i].split('=',1)
+	    kwargs[k] = v
+	    del args[i]
+    result = method(*args,**kwargs)
     if isinstance(result,basestring) or not hasattr(result,'next'):
 	print result
     else:

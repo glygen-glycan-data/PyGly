@@ -1,5 +1,5 @@
 
-from Monosaccharide import Anomer, Stem, SuperClass, Config
+from Monosaccharide import Anomer, Stem, SuperClass, Config, Substituent
 
 class Manipulation(object):
 
@@ -16,12 +16,28 @@ class Topology(Manipulation):
     def manip(self,g):
         for m in g.all_nodes():
             for l in m.links(instantiated_only=False):
-                if l.parent_pos() == set([1]) and l.child_pos() == set([1]) and (m.ring_start() == None):
-                    l.set_parent_pos(None)
-                if l.parent_pos() != set([1]):
-                    l.set_parent_pos(None)
-                if l.child_pos() != set([1]) and l.child().superclass() in (SuperClass.HEX,):
-                    l.set_child_pos(None)
+
+                lparent = l.parent()  # might be monosaccharide or substituent
+
+                if lparent.is_monosaccharide():
+                    if l.parent_pos() != set([m.ring_start()]):
+                        l.set_parent_pos(None)
+                else:
+                    # Substituent in link
+                    upper_link = l.parent().parent_links()[0]
+                    #if upper_link.parent_pos() != set([m.ring_start()]):
+                    upper_link.set_parent_pos(None)
+
+                    if l.child_pos() != set([m.ring_start()]):
+                        l.set_child_pos(None)
+                # if l.parent_pos() != set([m.ring_start()]):
+                #    l.set_parent_pos(None)
+                # if l.parent_pos() == set([1]) and m.ring_start() != 1 and l.child_pos() == l.child().ring_start():
+                #     l.set_parent_pos(None)
+                # if l.parent_pos() != set([1]) and l.parent_pos() != set([m.ring_start()]):
+                #     l.set_parent_pos(None)
+                # if l.child_pos() != set([1]) and l.child().superclass() in (SuperClass.HEX,):
+                #     l.set_child_pos(None)
                 if l.undetermined() and l.child_pos() == set([1]) and l.child().superclass() in (SuperClass.NON,SuperClass.OCT):
                     l.set_child_pos(None)
             if m.anomer() != Anomer.uncyclized:
@@ -33,11 +49,58 @@ class Composition(Manipulation):
 
     topo = Topology()
 
+    non_floating_substs = map(lambda k: getattr(Substituent,k),"""
+	amino
+	nAcetyl
+	anhydro
+	fluoro
+	nformyl
+	chloro
+	ndimethyl
+	hydroxymethyl
+	nsulfate
+	bromo
+	nglycolyl
+	methyl_oxygen_lost
+	scarboxyethyl
+	thio
+	namidino
+	iodo
+	nsuccinate
+	acetyl_oxygen_lost
+	ethanolamine
+	nmethyl
+	sulfate_oxygen_lost
+	spyruvate
+    """.split())
+    floating_substs = map(lambda k: getattr(Substituent,k),"""
+	methyl
+	acetyl
+	formyl
+	sulfate
+	phosphate
+	slactate
+	rlactate
+	rcarboxyethyl
+	phosphoethanolamine
+	pyrophosphate
+	phosphocholine
+	diphosphoethanolamine
+	ethyl
+	amino_oxygen_preserved
+	glycolyl
+	xlactate
+	triphosphate
+	phosphate_bridged
+	pyruvate
+    """.split())
+
     def manip(self,g):
         self.topo.manip(g)
         undets = []
         for m in g.all_nodes():
             undets.append(m)
+        floating = []
         for m in undets:
             m.set_connected(False)
             m.clear_links()
@@ -48,8 +111,20 @@ class Composition(Manipulation):
                 continue
             m.set_ring_start(None)
             m.set_ring_end(None)
-        g.set_root(None)
-        g.set_undetermined(undets)
+            for sublink in m.substituent_links():
+		assert sublink.child().name() in self.floating_substs or sublink.child().name() in self.non_floating_substs, str(sublink.child())
+                if sublink.child().name() in self.floating_substs:
+                    m.remove_substituent_link(sublink)
+		    sublink.child().set_connected(False)
+                    floating.append(sublink.child())
+        undets.extend(floating)
+	if len(undets) == 1:
+	    g.set_root(undets[0])
+	    g.set_undetermined([])
+	    g.root().set_connected(True)
+	else:
+            g.set_root(None)
+            g.set_undetermined(undets)
 
         # for m in g.all_nodes():
         #     print m, m._links, map(str,m.parent_links())
@@ -63,6 +138,9 @@ class BaseComposition(Manipulation):
         for m in g.all_nodes():
             m.set_stem(Stem.missing)
 	    m.set_config(Config.missing)
+            m.set_ring_start(None)
+            m.set_ring_end(None)
+            m.set_anomer(Anomer.missing)
 
 class LevelSniffer(object):
     topology = Topology()

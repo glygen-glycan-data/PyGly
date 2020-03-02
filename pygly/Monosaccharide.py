@@ -105,7 +105,7 @@ class Node(object):
         self._parent_links = []
 
     def children(self):
-        return [l.child() for l in self.links() ]
+        return [l.child() for l in self.links()]
 
     def first_child(self):
 	for l in self.links():
@@ -386,7 +386,7 @@ class Monosaccharide(Node):
         return self._config
 
     def set_config(self,*config):
-	if set([config]) == set([Config.missing]):
+	if set(config) == set([Config.missing]):
 	    self._config = None
         else:
             self._config = config
@@ -395,7 +395,7 @@ class Monosaccharide(Node):
         return self._stem
 
     def set_stem(self,*stem):
-	if set([stem]) == set([Stem.missing]):
+	if set(stem) == set([Stem.missing]):
 	    self._stem = None
 	else:
             self._stem = stem
@@ -495,6 +495,7 @@ class Monosaccharide(Node):
             l = SubLinkage(child=Substituent(sub),**kw)
         self.add_substituent_link(l)
         l.set_parent(self)
+	l.child().add_parent_link(l)
 	return l
 
     def has_substituents(self):
@@ -511,6 +512,16 @@ class Monosaccharide(Node):
             if not s.isNAc():
                 return True
         return False
+
+    def links(self,instantiated_only=True):
+        l1 = self._links
+        l2 = []
+        for sub in self.substituents():
+            l2 += sub.links()
+        lall = l1 + l2
+        if instantiated_only:
+            return filter(lambda l: l.instantiated(), lall)
+        return lall
 
     def __str__(self):
 
@@ -537,19 +548,39 @@ class Monosaccharide(Node):
             s += "        Children = "
             ch = []
             for l in self.links(False):
+                l_linked_by_sub = not l.parent().is_monosaccharide()
+                l_linkage_symbol = "~"
                 if l.instantiated():
-                    ch.append("%s -> Monosaccharide:%s"%(l,l.child().id()))
-                else:
-                    ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
+                    l_linkage_symbol = "-"
+                if l_linked_by_sub:
+                    l_linkage_symbol += "Sub(%s)"%l.parent().id()
+                l_linkage_symbol += ">"
+
+                ch.append("%s %s Monosaccharide:%s" % (l, l_linkage_symbol, l.child().id()))
+
+                #if l.instantiated():
+                #    ch.append("%s -> Monosaccharide:%s"%(l,l.child().id()))
+                #else:
+                #    ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
             s += "\n                   ".join(ch) + "\n"
         if len(self.parent_links()) > 0:
             s += "         Parents = "
             ch = []
             for l in self.parent_links():
+                # TODO maybe the real parent mono should be printed
+                l_parent_type = "Substituent"
+                if l.parent().is_monosaccharide():
+                    l_parent_type = "Monosaccharide"
+                l_linkage_symbol = "~>"
                 if l.instantiated():
-                    ch.append("Monosaccharide:%s -> %s"%(l.parent().id(),l))
-                else:
-                    ch.append("Monosaccharide:%s ~> %s"%(l.parent().id(),l))
+                    l_linkage_symbol = "->"
+                ch.append("%s:%s %s %s" % (l_parent_type, l.parent().id(), l_linkage_symbol, l))
+
+
+                #if l.instantiated():
+                #    ch.append("Monosaccharide:%s -> %s"%(l.parent().id(),l))
+                #else:
+                #    ch.append("Monosaccharide:%s ~> %s"%(l.parent().id(),l))
             s += "\n                   ".join(ch) + "\n"
 
         return s
@@ -601,6 +632,7 @@ class Substituent(Node):
     amino_oxygen_preserved = 42
     phosphate_oxygen_lost = 43
     acetyl_oxygen_lost = 44
+    phosphate_bridged = 45
 
     def __init__(self,sub):
 
@@ -612,6 +644,38 @@ class Substituent(Node):
         s = Substituent(self.name())
         s.set_id(self.id())
         return s
+
+    def deepclone(self,identified_link=None,cache=None):
+        if cache == None:
+            cache = dict()
+	m = self.clone()
+        identified_link_copy = None
+	for l in self._links:
+            assert l.child().id() != None
+            if l.child().id() not in cache:
+                if identified_link:
+                    c,idlc = l.child().deepclone(identified_link=identified_link,cache=cache)
+                else:
+                    c = l.child().deepclone(cache=cache)
+                    idlc = None
+                cache[l.child().id()] = c
+            else:
+                c = cache[l.child().id()]
+                idlc = None
+	    cl = copy.deepcopy(l)
+	    cl.set_child(c)
+	    cl.set_parent(m)
+	    m.add_link(cl)
+            c.add_parent_link(cl)
+            if l == identified_link:
+                identified_link_copy = cl
+            elif idlc != None:
+                identified_link_copy = idlc
+	if identified_link:
+	    return m,identified_link_copy
+	return m
+
+        
 
     def name(self):
         return self._sub

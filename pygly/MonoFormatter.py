@@ -128,7 +128,7 @@ class GlycoCTMonoFormat:
             m.add_mod(num,modi)
         return m
 
-    linkFromStrRE = re.compile(r'^(\d+):(\d+)([dnox])[(](.+)\+(.+)[)](\d+)([dnox])$')
+    linkFromStrRE = re.compile(r'^(\d+):(\d+)([dnohx])[(](.+)\+(.+)[)](\d+)([dnohx])$')
     def linkFromStr(self,s,res):
         m = self.linkFromStrRE.search(s)
         if not m:
@@ -158,8 +158,8 @@ class GlycoCTMonoFormat:
         if parentid >= childid:
             raise RuntimeError("Bad GlycoCT link line, backwards link:"+s)
         parent = res[parentid]
-	if isinstance(parent,Substituent):
-            raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
+	#if isinstance(parent, Substituent):
+        #    raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
         child = res[childid]
         if isinstance(child,Monosaccharide):
             l = parent.add_child(child,
@@ -172,8 +172,12 @@ class GlycoCTMonoFormat:
                 child._sub = Substituent.amino_oxygen_preserved
             elif child.name() == Substituent.methyl and parenttype == Linkage.oxygenLost:
                 child._sub = Substituent.methyl_oxygen_lost
-            elif child.name() == Substituent.phosphate and parenttype == Linkage.oxygenLost:
-                child._sub = Substituent.phosphate_oxygen_lost
+            elif child.name() == Substituent.phosphate:
+		if parenttype == Linkage.oxygenLost:
+                    child._sub = Substituent.phosphate_oxygen_lost
+		elif len(child.parent_links()) > 0:
+		    # already an edge to this substituent...
+		    child._sub = Substituent.phosphate_bridged
             elif child.name() == Substituent.sulfate and parenttype == Linkage.oxygenLost:
                 child._sub = Substituent.sulfate_oxygen_lost
             elif child.name() == Substituent.acetyl and parenttype == Linkage.oxygenLost:

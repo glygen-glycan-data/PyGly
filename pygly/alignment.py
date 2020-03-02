@@ -68,11 +68,65 @@ class MonosaccharideComparitor(Comparitor):
 class SubstituentComparitor(Comparitor):
     pass
 
-class LinkageComparitor(Comparitor):
+class LinkageComparitorBase(Comparitor):
     pass
 
-class SubLinkageComparitor(LinkageComparitor):
+class SubLinkageComparitor(LinkageComparitorBase):
     pass
+
+class LinkageComparitor(LinkageComparitorBase):
+
+    def __init__(self, substcmp=None, sublinkcmp=None, linkcmp=None, **kw):
+        self._substcmp = substcmp
+        self._sublinkcmp = sublinkcmp
+        self._linkcmp = linkcmp
+        super(Comparitor, self).__init__(**kw)
+
+    def eq(self, a, b):
+        pa = a.parent()
+        pb = b.parent()
+
+        if pa.is_monosaccharide() != pb.is_monosaccharide():
+            return False
+        elif pa.is_monosaccharide():
+            return self._linkcmp.eq(a, b)
+        else:
+            # substituent in link
+            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
+            la_upper = a.parent().parent_links()[0]
+            lb_upper = b.parent().parent_links()[0]
+            return self._sublinkcmp.eq(la_upper, lb_upper) and self._linkcmp.eq(a, b) and self._substcmp.eq(pa, pb)
+
+    def leq(self, a, b):
+        pa = a.parent()
+        pb = b.parent()
+
+        if pa.is_monosaccharide() != pb.is_monosaccharide():
+            return False
+        elif pa.is_monosaccharide():
+            return self._linkcmp.leq(a, b)
+        else:
+            # substituent in link
+            # assume substituent has and only has one parent, which should be the monosaccharide it attachs to
+            la_upper = a.parent().parent_links()[0]
+            lb_upper = b.parent().parent_links()[0]
+            return self._sublinkcmp.leq(la_upper, lb_upper) and self._linkcmp.leq(a, b) and self._substcmp.leq(pa, pb)
+
+
+def _mindistsfromroot(r):
+    if r:
+        return _mindistfromroot(r,instonly=False),_mindistfromroot(r,instonly=True)
+    return {},{}
+
+def _mindistfromroot(r,d=0,dist=None,instonly=True):
+    if not dist:
+	dist = dict()
+    if dist.get(r.id(),1e+20) > d:
+	dist[r.id()] = d
+        for l in r.links(instantiated_only=instonly):
+	    ch = l.child()
+	    dist.update(_mindistfromroot(ch,d+1,dist,instonly))
+    return dist
 
 class GlycanEquivalence(Comparitor):
 
@@ -85,6 +139,8 @@ class GlycanEquivalence(Comparitor):
 	else:
 	    self._rootmonocmp = monocmp
         self._linkcmp = linkcmp
+	self.adist = None
+	self.bdist = None
         super(GlycanEquivalence,self).__init__(**kw)
 
     def rootmonoeq(self,a,b):
@@ -127,6 +183,13 @@ class GlycanEquivalence(Comparitor):
 	    return False
 	if len(a.links(instantiated_only=False)) != len(b.links(instantiated_only=False)):
 	    return False
+
+	assert self.adist and self.bdist
+	if self.adist[0].get(a.id()) != self.bdist[0].get(b.id()):
+            return False
+	if self.adist[1].get(a.id()) != self.bdist[1].get(b.id()):
+            return False
+
         child_links_match = False
         for ii,jj in itermatchings(a.links(instantiated_only=False),b.links(instantiated_only=False),
                                    lambda i,j: self.linkeq(i,j) and self.monoeq(i.child(),j.child())):
@@ -135,9 +198,14 @@ class GlycanEquivalence(Comparitor):
         return child_links_match
 
     def eq(self,a,b):
+	
+	self.adist = None
+	self.bdist = None
       
         a.set_ids()        
         b.unset_ids()
+
+	lineno()
 
         if a.has_root() and b.has_root():
             if not a.undetermined() and not b.undetermined():
@@ -147,22 +215,36 @@ class GlycanEquivalence(Comparitor):
                 # non-composition, but might be undetermined toplogy. Determined part should match.
                 return False
 
+	lineno()
+
         b.set_ids()
 
         nodeset1 = list(a.all_nodes(subst=False))
         nodeset2 = list(b.all_nodes(subst=False))
 
+	lineno()
+
         if len(nodeset1) != len(nodeset2):
             return False
+
+	lineno()
+
+        # if len(nodeset1) == 1:
+	#     if a.has_root() and b.has_root():
+	#         return self.rootmonoeq(nodeset1[0],nodeset2[0])
+	#     return self.monoeq(nodeset1[0],nodeset2[0])
+
+	lineno()
 
         if a.has_root() != b.has_root():
             return False
 
         # if there are roots, their equivalence has been tested in subtree_align using self.rootmonoeq
-        if a.has_root():
+        if a.has_root() and b.has_root():
             nodeset1.remove(a.root())
-        if b.has_root():
             nodeset2.remove(b.root())
+
+	lineno()
 
         # we assume each node pairs has a single link between it
         linkset1 = dict()
@@ -177,11 +259,19 @@ class GlycanEquivalence(Comparitor):
             assert (key not in linkset2)
             linkset2[key] = l
 
+	lineno()
+
         if len(linkset1) != len(linkset2):
             return False
-        
+
+	lineno()
+
+	# compute distances 
+	self.adist = _mindistsfromroot(a.root())
+	self.bdist = _mindistsfromroot(b.root())
+
         iters = 0
-        for ii,jj in iterecmatchings(nodeset1, nodeset2, self.monosaccharide_match):
+        for ii,jj in itergenmatchings(nodeset1, nodeset2, self.monosaccharide_match):
 
             iters += 1
             matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
@@ -198,8 +288,14 @@ class GlycanEquivalence(Comparitor):
                     break
             if good:
                 # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+		self.adist = None
+		self.bdist = None
                 return True
+
+        lineno()
                 
+	self.adist = None
+	self.bdist = None
         return False
         
 class CompositionEquivalence(Comparitor):
@@ -301,26 +397,6 @@ class GlycanPartialOrder(Comparitor):
 
         return False
 
-    def dist_from_root1(self,r,d=0,dist=None):
-	if not dist:
-	    dist = dict()
-	if dist.get(r.id(),1e+20) > d:
-	    dist[r.id()] = d
-	for l in r.links(instantiated_only=False):
-	    ch = l.child()
-	    dist = self.dist_from_root1(ch,d+1,dist)
-	return dist
-
-    def dist_from_root2(self,r,d=0,dist=None):
-	if not dist:
-	    dist = dict()
-	if dist.get(r.id(),1e+20) > d:
-	    dist[r.id()] = d
-	for l in r.links():
-	    ch = l.child()
-	    dist = self.dist_from_root2(ch,d+1,dist)
-	return dist
-
     def leq(self,a,b):
 
 	self.adist = None
@@ -357,8 +433,8 @@ class GlycanPartialOrder(Comparitor):
         a.set_ids()
         b.set_ids()
 
-	self.adist = (self.dist_from_root1(a.root()),self.dist_from_root2(a.root()))
-	self.bdist = (self.dist_from_root1(b.root()),self.dist_from_root2(b.root()))
+	self.adist = _mindistsfromroot(a.root())
+	self.bdist = _mindistsfromroot(b.root())
 
         lineno()
 
@@ -376,13 +452,19 @@ class GlycanPartialOrder(Comparitor):
         # we assume each node pair has a single link between it
         linkset1 = dict()
         for l in a.all_links(uninstantiated=True):
-            key = (l.parent().id(),l.child().id())
+            if l.parent().is_monosaccharide():
+                key = (l.parent().id(),l.child().id())
+            else:
+                key = (l.parent().parent_links()[0].parent().id(), l.child().id())
             assert (key not in linkset1)
             linkset1[key] = l
 
         linkset2 = dict()
         for l in b.all_links(uninstantiated=True):
-            key = (l.parent().id(),l.child().id())
+            if l.parent().is_monosaccharide():
+                key = (l.parent().id(), l.child().id())
+            else:
+                key = (l.parent().parent_links()[0].parent().id(), l.child().id())
             assert (key not in linkset2)
             linkset2[key] = l
 
@@ -723,8 +805,8 @@ class SubstituentEqual(SubstituentComparitor):
             return False
         return True
             
-class LinkageEqual(LinkageComparitor):
-    def eq(self,a,b):
+class LinkageEqualSimple(LinkageComparitorBase):
+    def eq(self, a, b):
 	if a._parent_type != b._parent_type:
 	    return False
 	if a._child_type != b._child_type:
@@ -737,7 +819,7 @@ class LinkageEqual(LinkageComparitor):
             return False
 	return True
 
-class LinkageTopoEqual(LinkageComparitor):
+class LinkageTopoEqualSimple(LinkageComparitorBase):
     def eq(self,a,b):
 	if a._parent_type != b._parent_type:
 	    return False
@@ -748,13 +830,13 @@ class LinkageTopoEqual(LinkageComparitor):
             return False
 	return True
 
-class LinkageImageEqual(LinkageComparitor):
+class LinkageImageEqualSimple(LinkageComparitorBase):
     def eq(self,a,b):
         if a._undetermined != b._undetermined:
             return False
 	return True
 
-class LinkageSubsumed(LinkageComparitor):
+class LinkageSubsumedSimple(LinkageComparitorBase):
 
     @staticmethod
     def _leq_(a,b):
@@ -764,7 +846,7 @@ class LinkageSubsumed(LinkageComparitor):
             return False
         if a <= b:
             return True
-  
+
     def leq(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
 	    return False
@@ -778,7 +860,7 @@ class LinkageSubsumed(LinkageComparitor):
             return False
 	return True
 
-class LinkageTopoSubsumed(LinkageSubsumed):
+class LinkageTopoSubsumedSimple(LinkageSubsumedSimple):
 
     def leq(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
@@ -788,6 +870,52 @@ class LinkageTopoSubsumed(LinkageSubsumed):
         if a._undetermined and not b._undetermined:
             return False
 	return True
+
+
+class LinkageEqual(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageEqualSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageEqual, self).__init__(**kw)
+
+
+
+class LinkageTopoEqual(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageTopoEqualSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageTopoEqual, self).__init__(**kw)
+
+
+class LinkageImageEqual(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageImageEqualSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageImageEqual, self).__init__(**kw)
+
+
+class LinkageSubsumed(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageSubsumedSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageSubsumed, self).__init__(**kw)
+
+
+class LinkageTopoSubsumed(LinkageComparitor):
+
+    def __init__(self, **kw):
+        kw['substcmp'] = SubstituentEqual(**kw)
+        kw['linkcmp'] = LinkageTopoSubsumedSimple(**kw)
+        kw['sublinkcmp'] = kw['linkcmp']
+        super(LinkageComparitor, self).__init__(**kw)
 
 class GlycanEqual(GlycanEquivalence):
     def __init__(self,**kw):
@@ -862,7 +990,9 @@ def verify(acc1,acc2,test,result,expected):
 def subshow(acc1,acc2,test,result):
 
     if result:
-        print "%s <= %s"%(acc1,acc2)
+        print "%s %s %s"%(acc1,test,acc2)
+    else:
+        print "%s %s/%s %s"%(acc1,test[0],test[-1],acc2)
 
 def compare(gd1,gd2):
 
@@ -908,8 +1038,9 @@ if __name__ == "__main__":
 
     from manipulation import Topology, Composition
   
-    from GlyTouCan import GlyTouCan
-    gtc = GlyTouCan(usecache=True)
+    # from GlyTouCan import GlyTouCan
+    from GlycanResource import GlyTouCan
+    gtc = GlyTouCan(usecache=False)
 
     from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
     glycoct_format = GlycoCTFormat()
@@ -919,13 +1050,16 @@ if __name__ == "__main__":
     gtopoeq = GlycanTopoEqual()
     gcompeq = GlycanCompEqual()
     subsumption = GlycanSubsumption()
+    topology = Topology()
 
     acc1 = sys.argv[1]
     acc2 = sys.argv[2]
     g1 = gtc.getGlycan(acc1)
     g2 = gtc.getGlycan(acc2)
+    tg2 = topology(g2)
 
     verbose = True
-    subshow(acc1,acc2,"g1 <= g2",subsumption.leq(g1,g2))
+    subshow(acc1,acc2,"<=",subsumption.leq(g1,tg2))
+    subshow(acc1,acc2,"==",geq.eq(g1,tg2))
 
     
