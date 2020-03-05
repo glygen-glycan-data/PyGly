@@ -1,20 +1,17 @@
 #!/bin/sh
 set -x
 DIR=`pwd`
-mkdir -p images; 
-# mkdir -p images/cfg images/cfg/normal images/cfg/compact images/cfg/extended
-mkdir -p images/cfg images/cfg/extended
-# cat "$@" | (cd images/cfg/normal;  $DIR/getimages.py cfg normal )
-# cat "$@" | (cd images/cfg/compact; $DIR/getimages.py cfg compact )
-cat "$@" | (cd images/cfg/extended; $DIR/getimages.py cfg extended )
+mkdir -p images/cfg/extended/png images/snfg/extended/png images/cfg/extended/svg images/snfg/extended/svg
+find images -name ".gtccache*" -exec rm -f {} \;
+# cat "$@" | (cd images/cfg/extended/png; $DIR/getimages.py cfg extended png )
+# cat "$@" | (cd images/snfg/extended/png; $DIR/getimages.py snfg extended png )
+# cat "$@" | (cd images/cfg/extended/svg; $DIR/getimages.py cfg extended svg )
+# cat "$@" | (cd images/snfg/extended/svg; $DIR/getimages.py snfg extended svg )
+rm -f images*.zip images*.tbz*
 cd images
-rm -f ../images*.zip
-zip -9 -q -r "../images-cfg-extended.zip" cfg/extended
-# zip -9 -q -r "../images-cfg-normal" cfg/normal
-# zip -9 -q -r "../images-cfg-compact" cfg/compact
-echo "GlyTouCanAccession" > "../images.tsv"
-find cfg/extended -name "*.png" \! -empty | sed -n 's/\.png$//p' | sed 's/^.*\///' | sort -u >> ../images.tsv
-cd ..
-echo -e "GlyTouCanAccession\tImage-Size\tImage-CRC\tImage-Notation\tImage-Style" > "images-crc.tsv"
-( unzip -lv images-cfg-extended.zip ; ) | awk '{print $1,$7,$8}' | tr '/.' '  ' | awk '{print $5,$1,$2,$3,$4}' | awk 'NF == 5' | egrep -v '(00000000|17981711)' | sort -k5,5 -k1,1 | tr ' ' '\t' >> images-crc.tsv
-# $DIR/checkimg.py images-crc.tsv
+tar cf - cfg/extended/png | bzip2 -c | split -b 40m -d - '../images-cfg-extended-png.tbz.'
+tar cf - snfg/extended/png | bzip2 -c | split -b 40m -d - '../images-snfg-extended-png.tbz.'
+tar cf - cfg/extended/svg | bzip2 -c | split -b 40m -d - '../images-cfg-extended-svg.tbz.'
+tar cf - snfg/extended/svg | bzip2 -c | split -b 40m -d - '../images-snfg-extended-svg.tbz.'
+echo -e "GlyTouCanAccession\tImage-Size\tImage-Notation\tImage-Style\tImage-Format" > "../images.tsv"
+find . \( -name "*.svg" -o -name "*.png" \) -ls | fgrep '/extended/' | awk '{print $7,$11}' | tr '/.' '  ' | awk '{print $5,$1,$2,$3,$4}' | sort -k1,1 -k3,3 -k4,4 -k5,5 | tr ' ' '\t' >> "../images.tsv"

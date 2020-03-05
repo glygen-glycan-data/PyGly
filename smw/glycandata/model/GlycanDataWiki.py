@@ -90,12 +90,12 @@ class Glycan(SMW.SMWClass):
         try:
             sequence = self.get_annotation_value('WURCS')
             return self.wurcs_format.toGlycan(sequence)
-        except (LookupError,GlycanParseError):
+        except (LookupError,GlycanParseError,RuntimeError):
             pass
         try:
             sequence = self.get_annotation_value('GlycoCT')
             return self.glycoct_format.toGlycan(sequence)
-        except (LookupError,GlycanParseError):
+        except (LookupError,GlycanParseError,RuntimeError):
             pass
         return None
 
@@ -136,8 +136,8 @@ class Annotation(SMW.SMWClass):
     def toPython(self,data):
         data = super(Annotation,self).toPython(data)
 
-	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme'] or \
-           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence']:
+	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestors','Descendants','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence']:
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -148,8 +148,8 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toTemplate(data)
         
 	if data.get('value'):
-	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme'] or \
-             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Name','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence']:
+	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestors','Descendants','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence']:
 	    if isinstance(data['value'],list) or isinstance(data['value'],set):
 		if len(data['value']) > 1:
                     data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
