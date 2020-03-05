@@ -16,6 +16,8 @@ basecomp = {'x-HEX-x:x':'Hex',
             'x-HEX-x:x|6:d':'dHex', 
             'x-lgal-HEX-x:x|6:d':'Fuc',
 	    'x-PEN-x:x':'Pent',
+	    'x-dgro-dgal-NON-x:x|1:a|2:keto|3:d':'KDN',
+	    'x-HEX-x:x|6:a':'HexA',
 	    'phosphate':'P',
 	    'sulfate':'S'}
 
@@ -23,14 +25,16 @@ badskel = set("""
 axxxxh-1x
 """.split())
 
-# NeuAc, NeuGc, Fuc, Hex, HexNAc, dHex, Pent
+# NeuAc, NeuGc, KDN, Fuc, Hex, HexNAc, dHex, HexA, Pent
 expskel = set("""
   AUd21122h_5*NCC/3=O
   AUd21122h_5*NCCO/3=O
+  AUd21122h
   u1221m
   uxxxxh
   uxxxxh_2*NCC/3=O
   uxxxxm
+  uxxxxA
   uxxxh
 """.split())
 
@@ -123,15 +127,18 @@ for acc in accessions():
 	sys.exit(1)
 
     byonic_good = False
-    if node_count == sum(map(lambda k: comp.get(k,0),("HexNAc","Hex","Fuc","dHex","NeuAc","NeuGc","Pent","P","S"))):
+    if node_count == sum(map(lambda k: comp.get(k,0),
+                             ("HexNAc","Hex","Fuc","dHex","NeuAc","NeuGc","Pent","S","P"))):
 	byonic_good = True
 
     uckb_good = False
-    if node_count == sum(map(lambda k: comp.get(k,0),("HexNAc","Hex","dHex","NeuAc","NeuGc","P","S","Pent"))):
+    if node_count == sum(map(lambda k: comp.get(k,0),
+                             ("HexNAc","Hex","dHex","NeuAc","NeuGc","Pent","S","P","KDN","HexA"))):
 	uckb_good = True
 
     short_good = False
-    if node_count == sum(map(lambda k: comp.get(k,0),("HexNAc","Hex","Fuc","NeuAc"))):
+    if node_count == sum(map(lambda k: comp.get(k,0),
+                             ("HexNAc","Hex","Fuc","NeuAc"))):
 	short_good = True
 
     if not byonic_good and not uckb_good and not short_good:
@@ -169,26 +176,26 @@ for acc in accessions():
     else:
 
 	byonic_string = ''
-	similar_string = ''
         for k in ['HexNAc','Hex','dHex','NeuAc','NeuGc','Pent','S','P']:
-            if comp[k] != 0:
+            if comp[k] > 0:
 		if k == 'P':
                     byonic_string += 'Phospho' + '(' + str(comp[k]) + ')'
 		elif k == 'S':
                     byonic_string += 'Sulpho' + '(' + str(comp[k]) + ')'
 		else:
                     byonic_string += k + '(' + str(comp[k]) + ')'
-                similar_string += k + str(comp[k])
         if byonic_good:
 	    print "\t".join([acc,byonic_string,"BYONIC"])
-        if uckb_good:
-	    print "\t".join([acc,similar_string,"SHORTUCKB"])
 
-	full_string = ''
+	uckb_string = ''
+	shortuckb_string = ''
         for k in ['HexNAc','Hex','dHex','NeuAc','NeuGc','Pent','S','P','KDN','HexA']:
-            full_string += k + str(comp[k])
+            uckb_string += k + str(comp[k])
+	    if comp[k] > 0:
+                shortuckb_string += k + str(comp[k])
         if uckb_good:
-	    print "\t".join([acc,full_string,"UCKBCOMP"])
+	    print "\t".join([acc,uckb_string,"UCKBCOMP"])
+	    print "\t".join([acc,shortuckb_string,"SHORTUCKB"])
 
         if short_good and comp['dHex'] == 0:
 
