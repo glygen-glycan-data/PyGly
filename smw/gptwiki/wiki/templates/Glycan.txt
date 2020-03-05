@@ -27,7 +27,7 @@ Edit the page to see the template text.
 |}
 
 == Topologies ==
-<p>{{#arraymap:{{{topo|}}}|,|xxxxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxxxx <img src="http://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/LV9HnLIDjc/images/cfg/compact/xxxxx.png">]</span>| }}</p>
+<p>{{#arraymap:{{{topo|}}}|,|xxxxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxxxx <img src="http://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/LV9HnLIDjc/images/cfg/compact/png/xxxxx.png">]</span>| }}</p>
 
 == Peptides ==
 

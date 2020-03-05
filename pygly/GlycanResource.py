@@ -1,6 +1,6 @@
 
 from ReferenceTable import ReferenceTable
-import os, os.path, sys, time, traceback, re
+import os, os.path, sys, time, traceback, re, base64
 from dateutil import parser as dateutil_parser
 from collections import defaultdict
 from lockfile import FileLock
@@ -211,10 +211,6 @@ class GlyTouCanTS(TripleStoreResource):
                               'unicarbkb', 'glyconnect', 'glycome-db',
                               'unicarb-db', 'carbbank', 'pdb', 'cfg',
                               'bcsdb','matrixdb','glycoepitope'])
-
-    def __init__(self,*args,**kwargs):
-	kwargs['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glytoucan.ini")
-	super(GlyTouCanTS,self).__init__(*args,**kwargs)
 
     @staticmethod
     def prefetch(fn):
@@ -448,6 +444,26 @@ class GlyTouCanTS(TripleStoreResource):
     def alldate(self):
 	for row in self._query_date_helper():
 	    yield row
+
+    def getimage(self,accession,notation='snfg',style='extended',format='svg'):
+        assert notation in ('snfg','cfg')                                                                                   
+        assert style in ('extended',)                                                                                       
+        assert format in ('png','svg')                                                                                      
+        for row in self.query_image(accession=accession,notation=notation,style=style,format=format):
+            if format == "png":
+                return base64.standard_b64decode(row['imagedata'])
+            else:
+                return row['imagedata']
+
+    def allimage(self,notation='snfg',style='extended',format='svg'):
+	assert notation in ('snfg','cfg')
+	assert style in ('extended',)
+	assert format in ('png','svg')
+	for row in self.query_image(notation=notation,style=style,format=format):
+	    if format == "png":
+		yield row['accession'],base64.standard_b64decode(row['imagedata'])
+	    else:
+		yield row['accession'],row['imagedata']
 
 class GlyTouCanUtil(object):
     _wurcs_mono_format = WURCS20MonoFormat()
