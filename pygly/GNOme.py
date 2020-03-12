@@ -5,6 +5,7 @@ import ssl
 import os, os.path, urllib, time
 import urllib2
 from collections import defaultdict
+import datetime
 
 import rdflib
 import json
@@ -1576,9 +1577,12 @@ class OWLWriter():
         # VersionIRI
         if self.version:
             outputGraph.add(
-                # TODO Use date instead?
-                # http://purl.obolibrary.org/obo/gno/YYYY-MM-DD/GNOme.owl
-                (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/GNOme.owl" % self.version))
+                (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/GNOme.owl" % str(datetime.date.today())))
+            )
+
+            outputGraph.add(
+                # TODO Use IRI instead of a literal string
+                (root, owl.versionInfo, Literal("%s" % self.version))
             )
 
         # Copyright
@@ -1695,8 +1699,6 @@ class OWLWriter():
             "byonic": has_Byonic_name_node
         }
 
-
-
         # Glycan class under OWL things
         rdfNode = self.gnouri(self.glycan_class)
 
@@ -1733,7 +1735,7 @@ class OWLWriter():
                 outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
                 outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
                 outputGraph.add((rdfNode, rdfs.label,
-                                 Literal("Glycan same as GlyTouCan accession: %s" % n.getID())))
+                                 Literal("A glycan described by the GlyTouCan entry with accession %s." % n.getID())))
             else:
                 outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
                 outputGraph.add((rdfNode, rdfs.label,
