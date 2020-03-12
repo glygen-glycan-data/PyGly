@@ -297,21 +297,21 @@ class GNOme(GNOmeAPI):
             return accession
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(uri, "gno:00000033", None):
-            return " ".join(unicode(self.label(o)).split()[2:])
+            return self.label(o)
 
     def get_composition(self, accession):
         if self.iscomposition(accession):
             return accession
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(uri, "gno:00000034", None):
-            return " ".join(unicode(self.label(o)).split()[2:])
+            return self.label(o)
 
     def get_topology(self, accession):
         if self.istopology(accession):
             return accession
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(uri, "gno:00000035", None):
-            return " ".join(unicode(self.label(o)).split()[2:])
+            return self.label(o)
 
     def delete_node(self, accession):
         self.gnome.remove((self.uri("gno:" + accession), None, None))
@@ -1286,7 +1286,26 @@ class SubsumptionGraph(GNOmeAPI):
         temp = map(lambda x: len(x), warnings.values())
         return reduce(lambda x, y: x + y, temp)
 
-    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, version=None):
+    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, version=None, exact_sym=None, specific_sym=None):
+
+        if specific_sym is None:
+            specific_sym = {}
+        if exact_sym is None:
+            exact_sym = []
+
+        all_syms = defaultdict(list)
+        for e_sym in exactSym:
+            sym_type = "exact"
+            for acc, sym0 in e_sym.items():
+                all_syms[acc].append((sym0, sym_type))
+
+        for sym_type, s_sym in specific_sym.items():
+            for acc, sym0 in s_sym.items():
+                all_syms[acc].append((sym0, sym_type))
+
+        #for acc, syms in all_syms.items():
+        #   print acc, syms
+
         self.loaddata(input_file_path)
 
         r = OWLWriter(mass_LUT_file_path=mass_lut_file_path, version=version)
@@ -1309,6 +1328,10 @@ class SubsumptionGraph(GNOmeAPI):
                 node_obj.set_topology(self.get_topology(n))
                 node_obj.set_iupac_composition(self.get_iupac_composition_str_for_viewer(n))
 
+
+                if n in all_syms:
+                    for sym0, sym0_type in all_syms[n]:
+                        node_obj.addSynonym(sym0, sym0_type)
 
             nodes.add(mass)
 
@@ -1392,6 +1415,7 @@ class OWLWriter():
     iao = "http://purl.obolibrary.org/obo/"
     gtco = "http://www.glytoucan.org/glyco/owl/glytoucan#"
     rocs = "http://www.glycoinfo.org/glyco/owl/relation#"
+    oboInOwl = "http://www.geneontology.org/formats/oboInOwl#"
 
     glycan_class = 1
     definition_class = "IAO_0000115"
@@ -1401,6 +1425,8 @@ class OWLWriter():
     glytoucan_link_annotation_property = 23
 
     cbbutton_annotation_property = 101
+
+    has_Byonic_name_annotation_property = 202
 
     subsumption_level = {
 
@@ -1517,6 +1543,7 @@ class OWLWriter():
         rdf = rdflib.RDF
         rdfs = rdflib.RDFS
         owl = rdflib.OWL
+        dcterms = rdflib.namespace.DCTERMS
         dc = rdflib.namespace.DC
 
         Literal = rdflib.Literal
@@ -1526,27 +1553,37 @@ class OWLWriter():
         iao = Namespace(self.iao)
         gtco = Namespace(self.gtco)
         rocs = Namespace(self.rocs)
+        oboInOwl = Namespace(self.oboInOwl)
 
         outputGraph.bind("owl", owl)
+        # TODO which one to keep? gno and iao has exact same namespace
         outputGraph.bind("gno", gno)
         outputGraph.bind("obo", iao)
         outputGraph.bind("dc", dc)
+        outputGraph.bind("dcterms", dcterms)
         outputGraph.bind("rocs", rocs)
+        outputGraph.bind("oboInOwl", oboInOwl)
 
         root = rdflib.URIRef("http://purl.obolibrary.org/obo/gno.owl")
 
         # Add ontology
         outputGraph.add((root, rdf.type, owl.Ontology))
+        outputGraph.add(
+            (root, dc.title, Literal("Glycan Naming Ontology")))
+        outputGraph.add(
+            (root, dc.description, Literal("An ontology for glycans based on GlyTouCan, but organized by subsumption.")))
 
         # VersionIRI
         if self.version:
             outputGraph.add(
+                # TODO Use date instead?
+                # http://purl.obolibrary.org/obo/gno/YYYY-MM-DD/GNOme.owl
                 (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/GNOme.owl" % self.version))
             )
 
         # Copyright
         outputGraph.add(
-            (root, dc.license, URIRef("http://creativecommons.org/licenses/by/4.0/")))
+            (root, dcterms.license, URIRef("http://creativecommons.org/licenses/by/4.0/")))
         outputGraph.add((root, rdfs.comment, Literal(
             "Glycan Naming Ontology is licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).")))
         outputGraph.add((root, rdfs.comment, Literal(" ".join("""
@@ -1639,6 +1676,26 @@ class OWLWriter():
         outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((cbbutton_node, rdfs.label, Literal("CB button")))
 
+        # Add AnnotationProperty for hasExactSynonym
+        hasExactSynonym_node = oboInOwl["hasExactSynonym"]
+
+        outputGraph.add((hasExactSynonym_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((hasExactSynonym_node, rdfs.isDefinedBy, oboInOwl[""]))
+        outputGraph.add((hasExactSynonym_node, rdfs.label, Literal("hasExactSynonym")))
+
+        # Add AnnotationProperty for has_Byonic_name
+        has_Byonic_name_node = self.gnouri(self.has_Byonic_name_annotation_property)
+
+        outputGraph.add((has_Byonic_name_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_Byonic_name_node, definition, Literal("Glycan composition string used by the Byonic search engine.")))
+        outputGraph.add((has_Byonic_name_node, rdfs.label, Literal("has_Byonic_name")))
+
+        sym_types = {
+            "exact": hasExactSynonym_node,
+            "byonic": has_Byonic_name_node
+        }
+
+
 
         # Glycan class under OWL things
         rdfNode = self.gnouri(self.glycan_class)
@@ -1675,6 +1732,8 @@ class OWLWriter():
             if n._nodeType != "molecularweight":
                 outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
                 outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
+                outputGraph.add((rdfNode, rdfs.label,
+                                 Literal("Glycan same as GlyTouCan accession: %s" % n.getID())))
             else:
                 outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
                 outputGraph.add((rdfNode, rdfs.label,
@@ -1682,6 +1741,9 @@ class OWLWriter():
                 outputGraph.add((rdfNode, definition,
                                  Literal(
                                      "A glycan characterized by underivitized molecular weight of %s Daltons" % n.getID())))
+
+            for sym, sym_type in n.synonym():
+                outputGraph.add((rdfNode, sym_types[sym_type], Literal(sym)))
 
             bcomp_acc = n.get_basecomposition()
             comp_acc = n.get_composition()
@@ -1773,11 +1835,14 @@ class NormalNode:
     _id = None
     _nodeType = None
     _nodeTypes = tuple(["saccharide", "topology", "composition", "basecomposition", "molecularweight"])
+    _synonymTypes = tuple(["exact", "byonic"])
+
 
     def __init__(self, id, nodetype=None):
         self._links = []
         self._id = id
         self._nodeType = nodetype
+        self._synonym = set()
 
     def __str__(self):
         return self._id
@@ -1858,6 +1923,21 @@ class NormalNode:
             return self._iupac_composition_str
         except AttributeError:
             return None
+
+    def addSynonym(self, sym, t):
+        assert t in self._synonymTypes
+
+        pair = (sym, t)
+        self._synonym.add(pair)
+
+        if t != "exact":
+            pair = (sym, "exact")
+            self._synonym.add(pair)
+
+    def synonym(self):
+
+        for sym in self._synonym:
+            yield sym
 
 
 
@@ -2047,19 +2127,52 @@ if __name__ == "__main__":
 
         # "../smw/glycandata/data/gnome_subsumption_raw.txt"
 
-        versionTag = None
+        kv_para = {
+            "version": None
+        }
         if len(sys.argv) < 4:
             print "Please provide dumpfile, output file path(with file name), mass LUT path and version (optional)"
             sys.exit(1)
         if len(sys.argv) > 4:
             versionTag = sys.argv[4]
+            for k, v in zip(sys.argv[4::2], sys.argv[5::2]):#sys.argv[4::2]:
+                assert k.startswith("-")
+                k = k[1:]
+                kv_para[k] = v
+
+        def symFile2dict(fpath):
+            res = {}
+            tmp = open(fpath).read().strip().split("\n")
+            for pair in tmp:
+                k,v = pair.split()
+                res[k] = v
+            return res
+
+        exactSym = []
+        specificSym = {}
+
+        for k, v in kv_para.items():
+            if "_sym" not in k:
+                continue
+
+            k = k.split("_sym")[0]
+            if k == "exact":
+                exactSym.append(symFile2dict(v))
+            else:
+                specificSym[k] = symFile2dict(v)
+
+
+        #for syms in exactSym:
+        #    print len(syms)
+        #for k, syms in specificSym.items():
+        #    print k, len(syms)
 
         ifn = sys.argv[1]  # path to input file
         ofn = sys.argv[2]
         mass_lut = sys.argv[3]
 
         subsumption_instance = SubsumptionGraph()
-        subsumption_instance.generateOWL(ifn, ofn, mass_lut, version=versionTag)
+        subsumption_instance.generateOWL(ifn, ofn, mass_lut, version=kv_para["version"], exact_sym=exactSym, specific_sym=specificSym)
 
     elif cmd == "writeresowl":
 

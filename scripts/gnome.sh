@@ -20,7 +20,9 @@ if [ -z "$1" ]
 fi
 
 git clone git@github.com:glygen-glycan-data/GNOme.git
-python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal $1
+# python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal $1
+python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal -version $1 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt
+# python ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal -version V1.2.3 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt
 python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.browser.composition.json
 # python27 ../pygly/GNOme.py viewerdata2 ./GNOme.owl ./GNOme.browser2.json ./GNOme.browser.composition.json
 
