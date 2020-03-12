@@ -1280,7 +1280,7 @@ class GlyTouCan(object):
         status = self.status(wurcs)
         return status.accession()
 
-    def register(self, glycan, user=None, apikey=None):
+    def register(self, glycan):
         sequence = self.anyglycan2wurcs(glycan)
         status = self.status(sequence)
         if status.accession():
@@ -1292,8 +1292,8 @@ class GlyTouCan(object):
             raise GlyTouCanRegistrationError()
 
         if status.not_submitted():
-            print "r"
-            self.register_request(sequence, user=user, apikey=apikey)
+            print "Registering"
+            self.register_request(sequence)
         return None
 
     def anyglycan2wurcs(self, glycan):
@@ -1310,9 +1310,9 @@ class GlyTouCan(object):
                 sequence = self.glycoct2wurcs(glycan)
         return sequence
 
-    def register_request(self, sequence, user=None, apikey=None):
+    def register_request(self, sequence):
         if not self.opener:
-            self.setup_api(user=user, apikey=apikey)
+            self.setup_api()
 
         params = json.dumps(dict(sequence=sequence))
         # print params
@@ -1334,7 +1334,7 @@ class GlyTouCan(object):
         return None
 
     def glycoct2wurcs(self, seq):
-        requestURL = "http://wurcs-wg.org/tool/converter/glycoct/wurcs.json?glycoct="
+        requestURL = "https://api.glycosmos.org/glycanformatconverter/2.3.2-snapshot/glycoct2wurcs/"
         encodedseq = urllib.quote(seq, safe='')
         requestURL += encodedseq
         req = urllib2.Request(requestURL)
@@ -1346,12 +1346,12 @@ class GlyTouCan(object):
             return None
 
         result = json.loads(response)
-        wurcs = result["wurcs"]
-        msg = result["message"]
 
-        if msg != 'Conversion succeeded.':
-            # print "conversion not succeeded"
+        try:
+            wurcs = result["WURCS"]
+        except:
             raise ValueError("GlycoCT 2 WURCS conversion failed")
+
         return wurcs.strip()
 
     def getUnsupportedSkeletonCodes(self, acc):
