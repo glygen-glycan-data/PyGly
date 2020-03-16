@@ -1577,11 +1577,11 @@ class OWLWriter():
         # VersionIRI
         if self.version:
             outputGraph.add(
-                (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/GNOme.owl" % str(datetime.date.today())))
+                (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/gno.owl" % str(datetime.date.today())))
             )
 
             outputGraph.add(
-                # TODO Use IRI instead of a literal string
+                # TODO Use IRI instead of a literal string?
                 (root, owl.versionInfo, Literal("%s" % self.version))
             )
 
@@ -1734,15 +1734,17 @@ class OWLWriter():
             if n._nodeType != "molecularweight":
                 outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
                 outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
-                outputGraph.add((rdfNode, rdfs.label,
+                outputGraph.add((rdfNode, definition,
                                  Literal("A glycan described by the GlyTouCan entry with accession %s." % n.getID())))
+                outputGraph.add((rdfNode, rdfs.label,
+                                 Literal("%s" % n.getID())))
             else:
                 outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
                 outputGraph.add((rdfNode, rdfs.label,
-                                 Literal("glycan of molecular weight %s Da." % n.getID())))
+                                 Literal("glycan of molecular weight %s Da" % n.getID())))
                 outputGraph.add((rdfNode, definition,
                                  Literal(
-                                     "A glycan characterized by underivitized molecular weight of %s Daltons" % n.getID())))
+                                     "A glycan characterized by underivitized molecular weight of %s Daltons." % n.getID())))
 
             for sym, sym_type in n.synonym():
                 outputGraph.add((rdfNode, sym_types[sym_type], Literal(sym)))
