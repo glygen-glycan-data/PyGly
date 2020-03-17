@@ -126,7 +126,7 @@ class Glycan:
             if not m.fully_determined():
                 return False
         for l in self.all_links(subst=True):
-            if not m.fully_determined():
+            if not l.fully_determined():
                 return False
         return True
 
