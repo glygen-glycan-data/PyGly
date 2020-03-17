@@ -24,6 +24,6 @@ for m in w.iterglycan():
     if len(chebi[acc]) > 0:
         m.set_annotation(value=list(chebi[acc]), property="ChEBI",source="GlyTouCan",type="CrossReference")
     else:
-        m.delete_annotations(source="GlyTouCan",property="PubChem",type="CrossReference")
+        m.delete_annotations(source="GlyTouCan",property="ChEBI",type="CrossReference")
     if w.put(m):
         print acc
