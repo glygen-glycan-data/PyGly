@@ -3,10 +3,11 @@ set -x
 DIR=`pwd`
 mkdir -p images/cfg/extended/png images/snfg/extended/png images/cfg/extended/svg images/snfg/extended/svg
 find images -name ".gtccache*" -exec rm -f {} \;
-# cat "$@" | (cd images/cfg/extended/png; $DIR/getimages.py cfg extended png )
-# cat "$@" | (cd images/snfg/extended/png; $DIR/getimages.py snfg extended png )
-# cat "$@" | (cd images/cfg/extended/svg; $DIR/getimages.py cfg extended svg )
-# cat "$@" | (cd images/snfg/extended/svg; $DIR/getimages.py snfg extended svg )
+cat "$@" | (cd images/cfg/extended/png; $DIR/getimages.py cfg extended png )
+cat "$@" | (cd images/snfg/extended/png; $DIR/getimages.py snfg extended png )
+cat "$@" | (cd images/cfg/extended/svg; $DIR/getimages.py cfg extended svg )
+cat "$@" | (cd images/snfg/extended/svg; $DIR/getimages.py snfg extended svg )
+find images -name ".gtccache*" -exec rm -f {} \;
 rm -f images*.zip images*.tbz*
 cd images
 tar cf - cfg/extended/png | bzip2 -c | split -b 40m -d - '../images-cfg-extended-png.tbz.'

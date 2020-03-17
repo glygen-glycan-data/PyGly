@@ -3,6 +3,7 @@
 import sys, os, os.path
 import findpygly
 from pygly.GlycanResource import GlyTouCan
+from hashlib import md5
 
 def accessions(args):
     if len(args) == 0:
@@ -30,8 +31,11 @@ for gtcacc in accessions(sys.argv[4:]):
     if os.path.exists(imgfn):
 	continue
     imgstr = gtc.getimage(gtcacc,style=style,notation=notation,format=format)
-    if imgstr:
-	print "writing:",imgfn
-        wh = open(imgfn,'w')
-        wh.write(imgstr)
-        wh.close()
+    if not imgstr:
+	continue
+    if md5(imgstr).hexdigest().lower() == "e7183de88ac19ecc75544e939a2d056e":
+	continue
+    print "writing:",imgfn
+    wh = open(imgfn,'w')
+    wh.write(imgstr)
+    wh.close()
