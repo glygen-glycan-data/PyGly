@@ -6005,6 +6005,10 @@ G04977HM	3231	cfg	extended	png
 G04977HM	29893	cfg	extended	svg
 G04977HM	3237	snfg	extended	png
 G04977HM	29897	snfg	extended	svg
+G04978ZJ	3675	cfg	extended	png
+G04978ZJ	25703	cfg	extended	svg
+G04978ZJ	3690	snfg	extended	png
+G04978ZJ	25709	snfg	extended	svg
 G04983EU	1295	cfg	extended	png
 G04983EU	14854	cfg	extended	svg
 G04983EU	1293	snfg	extended	png
@@ -13903,6 +13907,10 @@ G12069NI	1765	cfg	extended	png
 G12069NI	17553	cfg	extended	svg
 G12069NI	1839	snfg	extended	png
 G12069NI	17585	snfg	extended	svg
+G12071DB	1092	cfg	extended	png
+G12071DB	5462	cfg	extended	svg
+G12071DB	1120	snfg	extended	png
+G12071DB	5472	snfg	extended	svg
 G12074QJ	1298	cfg	extended	png
 G12074QJ	15059	cfg	extended	svg
 G12074QJ	1332	snfg	extended	png
@@ -16683,6 +16691,10 @@ G14558IN	2203	cfg	extended	png
 G14558IN	15520	cfg	extended	svg
 G14558IN	2249	snfg	extended	png
 G14558IN	16272	snfg	extended	svg
+G14561HZ	3994	cfg	extended	png
+G14561HZ	30925	cfg	extended	svg
+G14561HZ	4050	snfg	extended	png
+G14561HZ	30953	snfg	extended	svg
 G14561VC	1742	cfg	extended	png
 G14561VC	13063	cfg	extended	svg
 G14561VC	1793	snfg	extended	png
@@ -21145,6 +21157,10 @@ G18658PT	3270	snfg	extended	png
 G18658PT	27634	snfg	extended	svg
 G18662IW	1667	cfg	extended	png
 G18662IW	1666	snfg	extended	png
+G18664TT	3700	cfg	extended	png
+G18664TT	25799	cfg	extended	svg
+G18664TT	3715	snfg	extended	png
+G18664TT	25805	snfg	extended	svg
 G18671GW	2155	cfg	extended	png
 G18671GW	23864	cfg	extended	svg
 G18671GW	2291	snfg	extended	png
@@ -39141,6 +39157,10 @@ G35407XS	4135	cfg	extended	png
 G35407XS	38388	cfg	extended	svg
 G35407XS	4213	snfg	extended	png
 G35407XS	38418	snfg	extended	svg
+G35409ET	2587	cfg	extended	png
+G35409ET	25268	cfg	extended	svg
+G35409ET	2628	snfg	extended	png
+G35409ET	25286	snfg	extended	svg
 G35409SK	2366	cfg	extended	png
 G35409SK	14944	cfg	extended	svg
 G35409SK	2446	snfg	extended	png
@@ -41473,6 +41493,10 @@ G37563FN	3239	cfg	extended	png
 G37563FN	22929	cfg	extended	svg
 G37563FN	3345	snfg	extended	png
 G37563FN	22970	snfg	extended	svg
+G37570TL	3675	cfg	extended	png
+G37570TL	25703	cfg	extended	svg
+G37570TL	3690	snfg	extended	png
+G37570TL	25709	snfg	extended	svg
 G37581LU	3344	cfg	extended	png
 G37581LU	26077	cfg	extended	svg
 G37581LU	3385	snfg	extended	png
@@ -50609,6 +50633,8 @@ G45917TL	2816	cfg	extended	png
 G45917TL	13406	cfg	extended	svg
 G45917TL	2904	snfg	extended	png
 G45917TL	13433	snfg	extended	svg
+G45924NL	917	cfg	extended	png
+G45924NL	917	snfg	extended	png
 G45927FN	2535	cfg	extended	png
 G45927FN	12228	cfg	extended	svg
 G45927FN	2546	snfg	extended	png
@@ -53075,6 +53101,8 @@ G48296OD	3649	cfg	extended	png
 G48296OD	30965	cfg	extended	svg
 G48296OD	3710	snfg	extended	png
 G48296OD	31001	snfg	extended	svg
+G48302UE	1046	cfg	extended	png
+G48302UE	1046	snfg	extended	png
 G48305IM	6898	cfg	extended	png
 G48305IM	38810	cfg	extended	svg
 G48305IM	6993	snfg	extended	png
@@ -76543,6 +76571,10 @@ G69752OZ	3592	cfg	extended	png
 G69752OZ	25360	cfg	extended	svg
 G69752OZ	3544	snfg	extended	png
 G69752OZ	26114	snfg	extended	svg
+G69753WV	3807	cfg	extended	png
+G69753WV	25759	cfg	extended	svg
+G69753WV	3821	snfg	extended	png
+G69753WV	25765	snfg	extended	svg
 G69758RM	4132	cfg	extended	png
 G69758RM	25144	cfg	extended	svg
 G69758RM	4167	snfg	extended	png
@@ -80661,6 +80693,10 @@ G73602OZ	3060	cfg	extended	png
 G73602OZ	3089	snfg	extended	png
 G73603VS	11019	cfg	extended	png
 G73603VS	11098	snfg	extended	png
+G73614SN	3807	cfg	extended	png
+G73614SN	25759	cfg	extended	svg
+G73614SN	3821	snfg	extended	png
+G73614SN	25765	snfg	extended	svg
 G73619PU	1636	cfg	extended	png
 G73619PU	6674	cfg	extended	svg
 G73619PU	1707	snfg	extended	png
@@ -94047,6 +94083,10 @@ G85779MY	1299	cfg	extended	png
 G85779MY	16383	cfg	extended	svg
 G85779MY	1333	snfg	extended	png
 G85779MY	16413	snfg	extended	svg
+G85781VP	1089	cfg	extended	png
+G85781VP	5928	cfg	extended	svg
+G85781VP	1117	snfg	extended	png
+G85781VP	5938	snfg	extended	svg
 G85782OH	4667	cfg	extended	png
 G85782OH	38034	cfg	extended	svg
 G85782OH	4744	snfg	extended	png
@@ -98619,6 +98659,10 @@ G90049YI	971	cfg	extended	png
 G90049YI	3827	cfg	extended	svg
 G90049YI	875	snfg	extended	png
 G90049YI	4538	snfg	extended	svg
+G90053KJ	1098	cfg	extended	png
+G90053KJ	5509	cfg	extended	svg
+G90053KJ	1127	snfg	extended	png
+G90053KJ	5519	snfg	extended	svg
 G90054DB	2653	cfg	extended	png
 G90054DB	20922	cfg	extended	svg
 G90054DB	2669	snfg	extended	png
