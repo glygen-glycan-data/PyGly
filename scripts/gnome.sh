@@ -20,7 +20,7 @@ if [ -z "$1" ]
 fi
 
 git clone git@github.com:glygen-glycan-data/GNOme.git
-python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal $1
+python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal -version $1 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt
 python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.browser.composition.json
 # python27 ../pygly/GNOme.py viewerdata2 ./GNOme.owl ./GNOme.browser2.json ./GNOme.browser.composition.json
 
@@ -28,6 +28,7 @@ python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.b
 for Restriction_set in "${restriction_set_names[@]}"
 do
   lowersetname=$(echo "$Restriction_set" | awk '{print tolower($0)}')
+  echo $Restriction_set
   # python27 ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
   python27 ../pygly/GNOme.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   python27 ../pygly/GNOme.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme_$Restriction_set.browser.json ./GNOme_$Restriction_set.browser.composition.json
@@ -49,7 +50,7 @@ done
 
 
 cd ./GNOme
-# echo $(pwd)
+echo "Ready to commit & push"
 
 git checkout -b "Branch_$1"
 git add -A
