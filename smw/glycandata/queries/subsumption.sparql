@@ -1,0 +1,14 @@
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+       (?property as ?Relationship)
+       (?value as ?RelatedAccession)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann1 glycandata:type "Subsumption" .
+  ?ann1 glycandata:source "GNOme" .
+  ?ann1 glycandata:property ?property .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:hasglycan ?glycan
+  FILTER(regex(?property,"^(SubsumedBy|Subsumes|Ancestor|Descendant)$"))
+}

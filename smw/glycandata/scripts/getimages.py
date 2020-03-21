@@ -4,6 +4,7 @@ import sys, os, os.path
 import findpygly
 from pygly.GlycanResource import GlyTouCan
 from hashlib import md5
+import urllib
 
 def accessions(args):
     if len(args) == 0:
@@ -32,6 +33,11 @@ for gtcacc in accessions(sys.argv[4:]):
 	continue
     imgstr = gtc.getimage(gtcacc,style=style,notation=notation,format=format)
     if not imgstr:
+	if style == "extended":
+	    try:
+	        imgstr = urllib.urlopen("https://image.glycosmos.org/%s/%s/%s"%(notation,format,gtcacc,)).read()
+	    except IOError:
+		pass
 	continue
     if md5(imgstr).hexdigest().lower() == "e7183de88ac19ecc75544e939a2d056e":
 	continue

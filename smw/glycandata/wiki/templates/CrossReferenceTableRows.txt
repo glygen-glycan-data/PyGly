@@ -17,7 +17,7 @@
 |ChEBI={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.ebi.ac.uk/chebi/searchId.do?chebiId=xxx xxx]</span>|,&thinsp;}}
 |MatrixDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=xxx xxx]</span>|,&thinsp;}}
 |GlycoEpitope={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.glycoepitope.jp/epitopes/xxx xxx]</span>|,&thinsp;}}
-|PSI-MOD={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.ebi.ac.uk/ols/search?q=xxx&ontology=mod xxx]</span>|,&thinsp;}}
+|PSI-MOD={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.ebi.ac.uk/ols/ontologies/mod/terms?iri=http://purl.obolibrary.org/obo/xxx xxx]</span>|,&thinsp;}}
 |{{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}}
 }}
 | style="width: 150px;" | {{{3}}}
