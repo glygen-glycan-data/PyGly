@@ -6,6 +6,11 @@ restriction_set_names=(
   "GlycanData"
 )
 
+# Use rdflib on master branch
+#wget -c https://github.com/RDFLib/rdflib/archive/master.zip -O rdflib_master_branch.zip
+#unzip rdflib_master_branch.zip
+#mv ./rdflib-master/rdflib ./../pygly/
+
 
 if [[ ! ("$(pwd)" =~ "/PyGly/scripts") ]]; then
   # Check for executing folder
@@ -22,7 +27,7 @@ fi
 git clone git@github.com:glygen-glycan-data/GNOme.git
 python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal -version $1 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt
 python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json ./GNOme.browser.composition.json
-# python27 ../pygly/GNOme.py viewerdata2 ./GNOme.owl ./GNOme.browser2.json ./GNOme.browser.composition.json
+python27 ../pygly/GNOme.py viewerdata2 ./GNOme.owl ./GNOme.compositionselector.json ./GNOme.compositionselector.composition.json
 
 
 for Restriction_set in "${restriction_set_names[@]}"
@@ -32,6 +37,7 @@ do
   # python27 ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
   python27 ../pygly/GNOme.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   python27 ../pygly/GNOme.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme_$Restriction_set.browser.json ./GNOme_$Restriction_set.browser.composition.json
+  python27 ../pygly/GNOme.py viewerdata2 ./GNOme_$Restriction_set.owl ./GNOme_$Restriction_set.compositionselector.json ./GNOme_$Restriction_set.compositionselector.composition.json
 done
 
 python27 ../pygly/GNOme.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
@@ -39,10 +45,11 @@ python27 ../pygly/GNOme.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
 cp ./GNOme/convert.sh ./
 ./convert.sh
 mv ./GNOme.browser.* ./GNOme/
+mv ./GNOme.compositionselector.* ./GNOme/
 
 for Restriction_set in "${restriction_set_names[@]}"
 do
-	for file_ext in "owl" "obo" "json" "browser.json" "browser.composition.json"
+	for file_ext in "owl" "obo" "json" "browser.json" "browser.composition.json" "compositionselector.json" "compositionselector.composition.json"
   do
     	mv ./GNOme_$Restriction_set.$file_ext ./GNOme/restrictions/
   done
