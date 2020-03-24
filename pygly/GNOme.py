@@ -282,7 +282,7 @@ class GNOme(GNOmeAPI):
     def level(self, accession):
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(uri, "gno:00000021", None):
-            return " ".join(unicode(self.label(o)).split()[2:])
+            return self.label(o)
 
     def get_molecularweight(self, accession):
         # There is a single molecular weight node at or above any node
