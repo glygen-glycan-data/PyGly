@@ -191,7 +191,7 @@ class Peptide(SMW.SMWClass):
             data['mw'] = float(data.get('mw'))
             
         if isinstance(data.get('nrt'),basestring):
-            data['mw'] = float(data.get('nrt'))
+            data['nrt'] = float(data.get('nrt'))
             
         if isinstance(data.get('glycan'),basestring):
             data['glycan'] = map(self.asglycan,data.get('glycan').split(','))
