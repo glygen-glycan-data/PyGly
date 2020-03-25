@@ -282,7 +282,7 @@ class GNOme(GNOmeAPI):
     def level(self, accession):
         uri = "gno:%s" % (accession,)
         for s, p, o in self.triples(uri, "gno:00000021", None):
-            return " ".join(unicode(self.label(o)).split()[2:])
+            return self.label(o)
 
     def get_molecularweight(self, accession):
         # There is a single molecular weight node at or above any node
@@ -507,11 +507,12 @@ class GNOme(GNOmeAPI):
         f2.write(json.dumps(data_composition, sort_keys=True, indent=2))
         f2.close()
 
-    def toViewerData2(self, output_file_path1):
+    def toViewerData2(self, output_file_path1, output_file_path2):
         res = {}
         issueList = []
 
         all_comp = self.all_cbbutton2()
+        data_composition = {}
 
         for n in self.nodes():
             t = ""
@@ -539,6 +540,8 @@ class GNOme(GNOmeAPI):
             per["comp"] = comp
 
             res[n] = per
+            data_composition[n] = {"comp": all_comp[n]}
+            data_composition[n]["type"] = "composition"
 
         for n, component in res.items():
             comp = component["comp"]
@@ -563,6 +566,10 @@ class GNOme(GNOmeAPI):
 
         f = open(output_file_path1, "w")
         f.write(json.dumps(res, sort_keys=True, indent=2))
+        f.close()
+
+        f = open(output_file_path2, "w")
+        f.write(json.dumps(data_composition, sort_keys=True, indent=2))
         f.close()
 
 
@@ -1432,7 +1439,7 @@ class OWLWriter():
     subsumption_level = {
 
         "molecularweight": {"id": 12,
-                            "label": "subsumption category molecular weight",
+                            "label": "molecular weight",
                             "definition": """
                                 A subsumption category for glycans
                                 described by their underivatized
@@ -1453,7 +1460,7 @@ class OWLWriter():
                             },
 
         "basecomposition": {"id": 13,
-                            "label": "subsumption category basecomposition",
+                            "label": "basecomposition",
                             "definition": """
 				A subsumption category for glycans
 				described by the number and type of
@@ -1465,7 +1472,7 @@ class OWLWriter():
                             },
 
         "composition": {"id": 14,
-                        "label": "subsumption category composition",
+                        "label": "composition",
                         "definition": """
 				A subsumption category for glycans
 				described by the number and type
@@ -1478,7 +1485,7 @@ class OWLWriter():
                         },
 
         "topology": {"id": 15,
-                     "label": "subsumption category topology",
+                     "label": "topology",
                      "definition": """
 				A subsumption category for glycans
 				described by the arrangement of
@@ -1490,7 +1497,7 @@ class OWLWriter():
                      },
 
         "saccharide": {"id": 16,
-                       "label": "subsumption category saccharide",
+                       "label": "saccharide",
                        "definition": """
                                 A subsumption category for glycans
                                 described by the arrangement of
@@ -1549,15 +1556,14 @@ class OWLWriter():
 
         Literal = rdflib.Literal
 
-        gno = Namespace(self.gno)
         gtcs = Namespace(self.gtcs)
         iao = Namespace(self.iao)
+        gno = Namespace(self.iao + "GNO_")
         gtco = Namespace(self.gtco)
         rocs = Namespace(self.rocs)
         oboInOwl = Namespace(self.oboInOwl)
 
         outputGraph.bind("owl", owl)
-        # TODO which one to keep? gno and iao has exact same namespace
         outputGraph.bind("gno", gno)
         outputGraph.bind("obo", iao)
         outputGraph.bind("dc", dc)
@@ -1580,10 +1586,7 @@ class OWLWriter():
                 (root, owl.versionIRI, URIRef("http://purl.obolibrary.org/obo/gno/%s/gno.owl" % str(datetime.date.today())))
             )
 
-            outputGraph.add(
-                # TODO Use IRI instead of a literal string?
-                (root, owl.versionInfo, Literal("%s" % self.version))
-            )
+            outputGraph.add((root, owl.versionInfo, Literal("%s" % self.version)))
 
         # Copyright
         outputGraph.add(
@@ -1678,7 +1681,7 @@ class OWLWriter():
         cbbutton_node = self.gnouri(self.cbbutton_annotation_property)
 
         outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
-        outputGraph.add((cbbutton_node, rdfs.label, Literal("CB button")))
+        outputGraph.add((cbbutton_node, rdfs.label, Literal("_widget_button_state")))
 
         # Add AnnotationProperty for hasExactSynonym
         hasExactSynonym_node = oboInOwl["hasExactSynonym"]
@@ -2213,14 +2216,15 @@ if __name__ == "__main__":
     elif cmd == "viewerdata2":
         # python GNOme.py viewerdata2 ./GNOme.owl ./gnome_subsumption_raw.txt ./GNOme.browser2.js
 
-        if len(sys.argv) < 3:
+        if len(sys.argv) < 4:
             print "Please provide GNOme.owl and output file path"
             sys.exit(1)
 
         ifn = sys.argv[1]
         ofn_data = sys.argv[2]
+        ofn_data2 = sys.argv[3]
         gnome = GNOme(resource=ifn)
-        gnome.toViewerData2(ofn_data)
+        gnome.toViewerData2(ofn_data, ofn_data2)
 
     elif cmd == "UpdateAcc":
 

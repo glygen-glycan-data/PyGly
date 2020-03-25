@@ -62,8 +62,8 @@ for m in w.iterglycan():
 
     m.set_annotation(property="Subsumes",value=filter(accs.__contains__,gnome.children(acc)),source="GNOme",type="Subsumption")
     m.set_annotation(property="SubsumedBy",value=filter(accs.__contains__,gnome.parents(acc)),source="GNOme",type="Subsumption")
-    m.set_annotation(property="Descendants",value=filter(accs.__contains__,gnome.descendants(acc)),source="GNOme",type="Subsumption")
-    m.set_annotation(property="Ancestors",value=filter(accs.__contains__,gnome.ancestors(acc)),source="GNOme",type="Subsumption")
+    m.set_annotation(property="Descendant",value=filter(accs.__contains__,gnome.descendants(acc)),source="GNOme",type="Subsumption")
+    m.set_annotation(property="Ancestor",value=filter(accs.__contains__,gnome.ancestors(acc)),source="GNOme",type="Subsumption")
     
     if w.put(m):
         print acc
