@@ -22,6 +22,8 @@ parser.add_option("--progress",action="store_true",dest='progress',default=False
 		  help="Display status at each iteration. Default: False.")
 parser.add_option("--iterations",type="int",dest='iterations',default=1,
 		  help="Number of times to iteratively fit. Default: 1.")
+parser.add_option("--upload",action="store_true",dest='upload',default=False,
+		  help="Upload TG status and peptide nrt to GPTwiki. Default: False.")
 
 opts,args = parser.parse_args()
 
@@ -58,7 +60,7 @@ else:
             elif mono in gsym:
 	        mcnt[mono] = 1
         mcnt['Total'] = sum(mcnt.values())
-        mcnt['Ox'] = max(pepname.count('[Ox]'),1)
+        mcnt['Ox'] = min(pepname.count('[Ox]'),1)
         rows.append((tg.get('id'),pepid,pepseq,gsym,mcnt,nrt))
         tgs[tg.get('id')] = dict(pepseq=pepseq,pepid=pepid)
 	if pepnrt != None:
@@ -88,28 +90,30 @@ for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
 # We skip zero so that the peptide coefficient is the "base" NRT...
 monos = ("S","Ox")
 monoindex = {}
-j = 0
+j = pepseqcount
 for mono in monos:
-    for i in range(1,maxmcnt[mono]+1):
-	monoindex[(mono,i)] = len(pepseqindex)+j
+    for i in range(minmcnt[mono]+1,maxmcnt[mono]+1):
+	monoindex[(mono,i)] = j
 	j += 1
 totalindex = j
 j += 1
+totalcols = j
 
-totalcols = len(pepseqindex)+len(monoindex)+1
+print max(pepseqindex.values())
+print monoindex, totalindex, totalcols
 
 def getvalues(pepseq,mcnt):
     l = [ (pepseqindex[pepseq],1) ]
     for m in monos:
-	if monoindex.get((m,mcnt[m])) != None:
+	if (m,mcnt[m]) in monoindex:
 	    l.append((monoindex[(m,mcnt[m])],1))
     l.append((totalindex,mcnt['Total']))
     return l
 
 def stop(goodresid,badresid):
-    if max(map(abs,goodresid.values())) >= opts.thresh:
+    if max(map(abs,goodresid.values())) > opts.thresh:
 	return False
-    if max(map(abs,badresid.values())) <= opts.thresh:
+    if min(map(abs,badresid.values())) <= opts.thresh:
 	return False
     return True
 
@@ -250,7 +254,7 @@ def pepregress(pepids,beta,nrts):
     rowindex = 0
     seen = set()
     for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
-	if pepid in seen or pepid not in pepids:
+	if pepid in seen or pepid not in pepids or pepid not in nrts:
 	    continue
 	seen.add(pepid)
 	for j,v in getvalues(pepseq,mcnt):
@@ -278,25 +282,31 @@ for iters in range(opts.iterations):
     while True:
 
 	beta,goodresid,badresid = tgregress(badtg)
+	# print beta
     
         done = stop(goodresid,badresid)
+        # print done
+
         newbadtg = choosebad(goodresid)
         newgoodtg = choosegood(badresid)
+
+	# print newbadtg, newgoodtg
+	
         if len(newbadtg) == 0 and len(newgoodtg) == 0:
 	    done = True
 
 	if done:
-	    break;
+	    break
     
         if opts.progress:
-	    status(iteration,badtg,newgoodtg,newbadtg,goodresid,beta);
+	    status(iteration,badtg,newgoodtg,newbadtg,goodresid,beta)
     
         iteration += 1
         badtg |= newbadtg
         badtg -= newgoodtg
 
-    
-    stats = status(iteration,badtg,newgoodtg,newbadtg,goodresid,beta);
+    # print "here"
+    stats = status(iteration,badtg,newgoodtg,newbadtg,goodresid,beta)
     badtgstats.append(stats)
 
 bestallbadstats = 1e+20
@@ -319,14 +329,15 @@ for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
 	continue
     newpepnrt[pepid].append(nrt)
 for pepid in list(newpepnrt):
-    # print pepid,newpepnrt[pepid],
     newpepnrt[pepid] = np.median(array(newpepnrt[pepid]))
-    # print newpepnrt[pepid]
 oldresid = pepregress(set(newpepnrt),beta,origpepnrt)
 newresid = pepregress(set(newpepnrt),beta,newpepnrt)
 for pepid in oldresid:
-    if abs(abs(newresid[pepid]) - abs(oldresid[pepid])) > 0.1:
+    if (abs(newresid[pepid] - oldresid[pepid]) > 0.1) or (abs(newpepnrt[pepid]-origpepnrt[pepid]) > 0.1): 
         print pepid,origpepnrt[pepid],oldresid[pepid],newpepnrt[pepid],newresid[pepid]
+
+if not opts.upload:
+   sys.exit(0)
 
 w = GPTWiki(quiet=True)
 for tg in w.itertransgroups():
