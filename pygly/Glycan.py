@@ -123,8 +123,12 @@ class Glycan:
         if self.undetermined():
             return False
         for m in self.all_nodes(subst=True):
-            if not m.fully_determined():
-                return False
+	    if m == self.root():
+		if not m.root_partially_determined():
+		    return False
+            else:
+		if not m.fully_determined():
+                    return False
         for l in self.all_links(subst=True):
             if not l.fully_determined():
                 return False

@@ -376,6 +376,19 @@ class Monosaccharide(Node):
                 return False
         return True
 
+    def root_partially_determined(self):
+	# Don't test the ring or anomer configuration
+        if self._config == Config.missing:
+            return False
+        if self._stem == Stem.missing:
+            return False
+        if self._superclass == SuperClass.missing:
+            return False
+        for m in self._mods:
+            if m[0] == None:
+                return False
+	return True
+
     def anomer(self):
         return self._anomer
 
