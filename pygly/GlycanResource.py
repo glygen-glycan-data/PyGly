@@ -161,6 +161,7 @@ class TripleStoreResource(GlycanResource):
     def parseSection(self,name,keyvaluepairs):
         sparql = keyvaluepairs['sparql']
         params = filter(None,map(str.strip,keyvaluepairs.get('params',"").split(',')))
+  	escape = filter(None,map(str.strip,keyvaluepairs.get('escape',"").split(',')))
 
         def _query(self,*args,**kw):
             # print >>sys.stderr, "query_%s: %s, %s"%(name,args,kw)
@@ -170,8 +171,12 @@ class TripleStoreResource(GlycanResource):
                     kwargs[param] = keyvaluepairs[param]
                 if i < len(args):
                     kwargs[param] = args[i]
+		    if param in escape:
+			kwargs[param] = re.escape(kwargs[param]).replace("\\","\\\\")
                 elif kw.get(param) != None:
                     kwargs[param] = kw[param]
+		    if param in escape:
+			kwargs[param] = re.escape(kwargs[param]).replace("\\","\\\\")
                 assert param in kwargs, " ".join(map(repr,[param, kwargs]))
             sparqlstr = sparql%kwargs
             response = self.queryts(sparqlstr)
@@ -184,38 +189,33 @@ class TripleStoreResource(GlycanResource):
         return [("query_"+name,params)]
 
 # Defaults ensure a 10-way partition of GlyTouCan accessions
-def partitioner(kwarg="accession",fmt="G%%0%dd.*",digits=1):
+def partitioner(kwarg="accession",fmt="G%%0%dd.*",digits=1,values='decimal'):
     fmtstr = fmt%(digits,)
     def partition(fn):
         def wrapper(self,*args,**kw):
             if kwarg not in kw:
-                for i in range(0,10**digits):
-                    for row in fn(self,*args,accession=fmtstr%(i,),**kw):
-                        yield row
+		if values == "decimal":
+                    for i in range(0,10**digits):
+			kw[kwarg] = fmtstr%(i,)
+                        for row in fn(self,*args,**kw):
+                            yield row
+		elif values == "hexidecimal":
+		    for i in range(0,16**digits):
+			kw[kwarg] = fmtstr%(i,)
+                        for row in fn(self,*args,**kw):
+                            yield row
             else:
                 for row in fn(self,*args,**kw):
                     yield row
         return wrapper
     return partition
 
-class GlyTouCanTS(TripleStoreResource):
-
-    endpt = "http://ts.glytoucan.org/sparql"
-    defns = "http://rdf.glycoinfo.org/glycan/"
-    cachefile = ".gtccache_new"
-    # verbose = True
-    
-    sequence_formats = set(["wurcs", "glycoct", "iupac_extended", "iupac_condensed"])
-
-    crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg',
-                              'unicarbkb', 'glyconnect', 'glycome-db',
-                              'unicarb-db', 'carbbank', 'pdb', 'cfg',
-                              'bcsdb','matrixdb','glycoepitope'])
-
-    @staticmethod
+def prefetcher(*kwargs):
+    if len(kwargs) == 0:
+	kwargs = ["accession"]
     def prefetch(fn):
         def wrapper(self,**kw):
-            kw1 = dict((k,v) for k,v in kw.items() if k != 'accession')
+            kw1 = dict((k,v) for k,v in kw.items() if k not in kwargs)
             key = fn.__name__+":"+":".join("%s=%s"%(k,v) for k,v in sorted(kw1.items()))
             # print >>sys.stderr, "cache key:",key
             if key not in self._cache:
@@ -224,28 +224,55 @@ class GlyTouCanTS(TripleStoreResource):
 		    self._cache[key] = {}
 		    self._cachedirty[key] = True
                     for row in fn(self,**kw1):
-                        if row['accession'] not in self._cache[key]:
-                            self._cache[key][row['accession']] = []
-                        self._cache[key][row['accession']].append(row)
+			for ind,kwarg in enumerate(kwargs):
+                            if (ind,row[kwarg]) not in self._cache[key]:
+                                self._cache[key][(ind,row[kwarg])] = []
+                            self._cache[key][(ind,row[kwarg])].append(row)
                     self.writecache()
 		else:
                     self._cache[key] = self._cacheondisk[key]
 		    self._cachedirty[key] = False
-            if 'accession' in kw:
-                for row in self._cache[key].get(kw['accession'],[]):
-                    yield row
+
+	    for ind,kwarg in enumerate(kwargs):
+                if kwarg in kw:
+                    for row in self._cache[key].get((ind,kw[kwarg]),[]):
+                        yield row
+		    break
             else:
-                for acc in self._cache[key]:
-                    for row in self._cache[key][acc]:
+                for ind,acc in self._cache[key]:
+		    if ind > 0:
+			continue
+                    for row in self._cache[key][(0,acc)]:
                         yield row
         return wrapper
+    return prefetch
+
+class GlyTouCanTS(TripleStoreResource):
+
+    endpt = "http://ts.glytoucan.org/sparql"
+    defns = "http://rdf.glycoinfo.org/glycan/"
+    cachefile = ".gtccache_new"
+    verbose = True
+    
+    sequence_formats = set(["wurcs", "glycoct", "iupac_extended", "iupac_condensed"])
+
+    crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg',
+                              'unicarbkb', 'glyconnect', 'glycome-db',
+                              'unicarb-db', 'carbbank', 'pdb', 'cfg',
+                              'bcsdb','matrixdb','glycoepitope'])
 
     def __init__(self,**kw):
         super(GlyTouCanTS,self).__init__(**kw)
         for k in self.keys():
-            self.modify_method(k,partitioner())
+	    if k == "query_hashedseq":
+                self.modify_method(k,partitioner(kwarg="hash",fmt="%%0%dx.*",values='hexidecimal'))
+	    else:
+                self.modify_method(k,partitioner())
 	    if kw.get('usecache',True):
-                self.modify_method(k,self.prefetch)
+		if k == "query_hashedseq":
+                    self.modify_method(k,prefetcher("hash","seq"))
+		else:
+                    self.modify_method(k,prefetcher())
 
     def getseq(self,accession,format='wurcs'):
         assert format in self.sequence_formats
@@ -361,6 +388,20 @@ class GlyTouCanTS(TripleStoreResource):
     def allhash(self):
 	for row in self.query_hash():
 	    yield row['accession'],row['hash']
+
+    def allhashedseq(self):
+	for row in self.query_hashedseq():
+	    yield row['hash'],row['seq']
+
+    def gethashedseq(self,hash=None,seq=None):
+        # we can lookup with hash or seq
+	kw = {}
+	if seq != None:
+	    kw['seq'] = seq
+	if hash != None:
+	    kw['hash'] = hash
+	for row in self.query_hashedseq(**kw):
+	    yield row['hash'],row['seq']
 
     def gettaxa(self,accession):
 	for row in self.query_taxonomy(accession=accession):
@@ -750,8 +791,9 @@ if __name__ == "__main__":
 	    elif isinstance(r,dict):
 	        if headers == None:
 		    headers = sorted(r.keys())
-		    headers.remove('accession')
-		    headers = ['accession'] + headers
+		    if 'accession' in headers:
+		        headers.remove('accession')
+		        headers = ['accession'] + headers
 	        print "\t".join(map(r.get,headers))
 	    else:
 	        print "\t".join(map(str,r))
