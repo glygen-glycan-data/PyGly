@@ -252,7 +252,7 @@ class GlyTouCanTS(TripleStoreResource):
     endpt = "http://ts.glytoucan.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
     cachefile = ".gtccache_new"
-    verbose = True
+    # verbose = True
     
     sequence_formats = set(["wurcs", "glycoct", "iupac_extended", "iupac_condensed"])
 
