@@ -28,7 +28,7 @@ parser.add_option("--upload",action="store_true",dest='upload',default=False,
 opts,args = parser.parse_args()
 
 if opts.cachefile and os.path.exists(opts.cachefile):
-    data = json.loads(open('gptwikitgs.cache').read())
+    data = json.loads(open(opts.cachefile).read())
     rows = data['rows']
     tgs = data['tgs']
     origpepnrt = data['pepnrt']
@@ -98,9 +98,6 @@ for mono in monos:
 totalindex = j
 j += 1
 totalcols = j
-
-print max(pepseqindex.values())
-print monoindex, totalindex, totalcols
 
 def getvalues(pepseq,mcnt):
     l = [ (pepseqindex[pepseq],1) ]
@@ -236,7 +233,7 @@ def tgregress(badtg,beta=None):
     
     returnbeta=False
     if isinstance(beta,type(None)):
-        beta = linalg.lstsq(A0,nrtvec0)[0]
+        beta = linalg.lstsq(A0,nrtvec0,rcond=None)[0]
 	returnbeta = True
     nrtfit0 = A0.dot(beta)
     goodresid = dict(zip(goodtgids,(nrtvec0-nrtfit0)))
@@ -329,12 +326,16 @@ for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
 	continue
     newpepnrt[pepid].append(nrt)
 for pepid in list(newpepnrt):
-    newpepnrt[pepid] = np.median(array(newpepnrt[pepid]))
-oldresid = pepregress(set(newpepnrt),beta,origpepnrt)
+    newpepnrt[pepid] = float(np.median(array(newpepnrt[pepid])))
+oldresid = pepregress(set(origpepnrt),beta,origpepnrt)
 newresid = pepregress(set(newpepnrt),beta,newpepnrt)
-for pepid in oldresid:
-    if (abs(newresid[pepid] - oldresid[pepid]) > 0.1) or (abs(newpepnrt[pepid]-origpepnrt[pepid]) > 0.1): 
-        print pepid,origpepnrt[pepid],oldresid[pepid],newpepnrt[pepid],newresid[pepid]
+for pepid in sorted((set(origpepnrt)&set(newpepnrt))):
+    if (abs(newresid[pepid] - oldresid[pepid]) > 0.01) or (abs(newpepnrt[pepid]-origpepnrt[pepid]) > 0.01): 
+        print pepid,round(origpepnrt[pepid],3),round(oldresid[pepid]),round(newpepnrt[pepid],3),round(newresid[pepid],3)
+for pepid in sorted((set(origpepnrt)-set(newpepnrt))):
+    print pepid,round(origpepnrt[pepid],3),round(oldresid[pepid],3),"lost"
+for pepid in sorted((set(newpepnrt)-set(origpepnrt))):
+    print pepid,round(newpepnrt[pepid],3),round(newresid[pepid],3),"gained"
 
 if not opts.upload:
    sys.exit(0)
@@ -353,11 +354,9 @@ for tg in w.itertransgroups():
 
 for pep in w.iterpeptides():
     pepid = pep.get('id')
-    if pepid in origpepnrt:
-	if pepid in newpepnrt:
+    if pepid in newpepnrt:
+	if isinstance(newpepnrt[pepid],float):
 	    pep.set('nrt',newpepnrt[pepid])
-	else:
-	    pep.delete('nrt')
     else:
 	pep.delete('nrt')
     if w.put(pep):
