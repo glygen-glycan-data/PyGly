@@ -54,6 +54,7 @@ class GlycanResource(ReferenceTable):
 		    # write out "query" for key
 		    self._cacheondisk[key] = self._cache[key]
 		    self._cachedirty[key] = False
+	    self._cacheondisk.sync()
         finally:
             filelock.release()
 
@@ -215,6 +216,7 @@ def prefetcher(*kwargs):
 	kwargs = ["accession"]
     def prefetch(fn):
         def wrapper(self,**kw):
+            # print >>sys.stderr, kw
             kw1 = dict((k,v) for k,v in kw.items() if k not in kwargs)
             key = fn.__name__+":"+":".join("%s=%s"%(k,v) for k,v in sorted(kw1.items()))
             # print >>sys.stderr, "cache key:",key
@@ -230,6 +232,7 @@ def prefetcher(*kwargs):
                             self._cache[key][(ind,row[kwarg])].append(row)
                     self.writecache()
 		else:
+		    # print >>sys.stderr, key
                     self._cache[key] = self._cacheondisk[key]
 		    self._cachedirty[key] = False
 
