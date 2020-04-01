@@ -1,19 +1,19 @@
-accession	gtc	name	redend	aglycon		
-1001	G00026MO	N-Glycan core basic	TRUE			
-1002	G00028MO	N-Glycan high mannose	TRUE			
-1003	G00029MO	N-Glycan hybrid	TRUE			
-1004	G00030MO	N-Glycan complex	TRUE			
-1005	G00031MO	O-Glycan core 1	TRUE			
-1006	G00032MO	O-Glycan core 1 fuzzy	TRUE			
-1007	G00033MO	O-Glycan core 2	TRUE			
-1008	G00034MO	O-Glycan core 2 fuzzy	TRUE			
-1009	G00035MO	O-Glycan core 3	TRUE			
-1010	G00036MO	O-Glycan core 3 fuzzy	TRUE			
-1011	G00037MO	O-Glycan core 4	TRUE			
-1012	G00038MO	O-Glycan core 4 fuzzy	TRUE			
-1013	G00039MO	O-Glycan core 5	TRUE			
-1014	G00040MO	O-Glycan core 5 fuzzy	TRUE			
-1015	G00041MO	O-Glycan core 6	TRUE			
-1016	G00042MO	O-Glycan core 6 Fuzzy	TRUE			
-1017	G00043MO	O-Glycan core 7	TRUE			
-1018	G00044MO	O-Glycan core 7 fuzzy	TRUE			
+accession	gtc	name	redend	aglycon
+1001	G00026MO	N-Glycan core basic	TRUE	Asn
+1002	G00028MO	N-Glycan high mannose	TRUE	Asn
+1003	G00029MO	N-Glycan hybrid	TRUE	Asn
+1004	G00030MO	N-Glycan complex	TRUE	Asn
+1005	G00031MO	O-Glycan core 1	TRUE	Ser/Thr
+1006	G00032MO	O-Glycan core 1 fuzzy	TRUE	Ser/Thr
+1007	G00033MO	O-Glycan core 2	TRUE	Ser/Thr
+1008	G00034MO	O-Glycan core 2 fuzzy	TRUE	Ser/Thr
+1009	G00035MO	O-Glycan core 3	TRUE	Ser/Thr
+1010	G00036MO	O-Glycan core 3 fuzzy	TRUE	Ser/Thr
+1011	G00037MO	O-Glycan core 4	TRUE	Ser/Thr
+1012	G00038MO	O-Glycan core 4 fuzzy	TRUE	Ser/Thr
+1013	G00039MO	O-Glycan core 5	TRUE	Ser/Thr
+1014	G00040MO	O-Glycan core 5 fuzzy	TRUE	Ser/Thr
+1015	G00041MO	O-Glycan core 6	TRUE	Ser/Thr
+1016	G00042MO	O-Glycan core 6 Fuzzy	TRUE	Ser/Thr
+1017	G00043MO	O-Glycan core 7	TRUE	Ser/Thr
+1018	G00044MO	O-Glycan core 7 fuzzy	TRUE	Ser/Thr
