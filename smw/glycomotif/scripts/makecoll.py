@@ -79,7 +79,7 @@ w.put(Collection(id=GlyGenMotif.id,
                  name="GlyGen Motifs",
                  contact="Rene Ranzinger",
                  email="rene@ccrc.uga.edu",
-                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/GlyGen-Motif.tsv"))
+                 url="https://github.com/glygen-glycan-data/PyGly/blob/master/smw/glycomotif/data/GlyGen-Motif.tsv"))
 current.add(GlyGenMotif.id)
 
 for c in w.itercollection():
