@@ -1,6 +1,6 @@
 #!/bin/env python27
 
-from getwiki import GlycoMotifWiki, Collection, GlyTouCanMotif, CCRCMotif, GlycoEpitopeMotif, AllMotif
+from getwiki import GlycoMotifWiki, Collection, GlyTouCanMotif, CCRCMotif, GlycoEpitopeMotif, AllMotif, GlyGenMotif
 from getwiki import GlydinMotif, GlydinCummingsMotif, GlydinHayesMotif, GlydinCermavMotif, GlydinSugarbindMotif, GlydinBioligoMotif
 from getwiki import UniCarbMotif
 import sys
@@ -75,6 +75,12 @@ w.put(Collection(id=UniCarbMotif.id,
                  email="m.campbell2@griffith.edu.au",
                  url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/Unicarb.xlsx"))
 current.add(UniCarbMotif.id)
+w.put(Collection(id=GlyGenMotif.id,
+                 name="GlyGen Motifs",
+                 contact="Rene Ranzinger",
+                 email="rene@ccrc.uga.edu",
+                 url="https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/GlyGen-Motif.tsv"))
+current.add(GlyGenMotif.id)
 
 for c in w.itercollection():
     if not c:

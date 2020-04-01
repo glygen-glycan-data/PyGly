@@ -1,0 +1,122 @@
+accession	gtc	name	redend	aglycon	altname1	altname2
+1	G00055MO	Type 2 LN	false	R	N-acetyllactosamine	
+2	G00058MO	Type 2 LN2	false	R	I' antigen	
+3	G56045WU	I' antigen	false	R		
+4	G46055MA	I' antigen	false	R		
+5	G00056MO	Type 1 LN	false	R		
+6	G43784HS	Type 1 LN2	false	R		
+7	G17961XM	Type 1 LN3	false	R		
+8	G57321FI	Tn antigen	true	Ser/Thr		
+9	G00031MO	T antigen	true	Ser/Thr	TF antigen	
+10	G94435QH	H antigen (type 3)	true	Ser/Thr		
+11	G99315PE	A antigen (type 3)	true	Ser/Thr		
+12	G36123IU	Sialyl Tn antigen	false	R		
+13	G65562ZE	Sialyl T antigen	true	Ser/Thr		
+14	G01614ZM	Di-sialyl T antigen	true	Ser/Thr		
+15	G24432YB	a-Gal antigen	false	R		
+16	G31736BK	LacdiNAc	false	R	LDN	
+17	G02240AO	Fucosylated LDN	false	R	LDNF	
+18	G01187XC	Lewis x	false	R	Lex	SSEA-1
+19	G49963IQ	Lewis y	false	R	Ley	
+20	G00047MO	Lewis a	false	R	Lea	
+21	G39211DH	Lewis b	false	R	Leb	
+22	G00054MO	Sialyl Lewis x	false	R	Slex	
+23	G53231FE	Cyclic sialyl 6-sulfo Lewis x	false	R		
+24	G00053MO	Sialyl Lewis a	false	R	Slea	CA19-9 antigen
+25	G06378CG	60-Sulfo-sialyl Lewis x	false	R	60-sulfo SLex	
+26	G92341SR	"2,6-sialyl-Sulfo-LN"	false	R	6-sialyl-6-sulfo LN	
+27	G53231FE	6-Sulfo-sialyl Lewis x	false	R	6-sulfo SLex	
+28	G23094GH	"6,60-bisSulfo-Lewis x"	false	R	"6,60-bissulfo Lex"	
+29	G51907PX	30-Sulfo-Lewis x	false	R	30-sulfo Lex	
+30	G14395NH	30-Sulfo-Lewis a	false	R	30-Sulfo Lea	
+31	G79535HZ	Lex-Lex	false	R		
+32	G19619KS	SDLex	false	R		
+33	G22418PV	VIM-2	false	R		
+34	G10203DW	3-Sialyl-LN (type 2)	false	R		
+35	G73708UL	6-Sialyl-GalNAc	false	R	6-Sialyl LN (type 1)	6-Sialyl LN (type 2) 
+36	G70519XK	Blood group H (type 2)	false	R		
+37	G34881WK	Blood group B (type 2)	false	R		
+38	G74353FF	Blood group A (type 2)	false	R		
+39	G54826OZ	Blood group A (type 2)	false	R	A-Ley	
+40	G44060QH	Blood group A1 (type 3)	false	R		
+41	G62735WZ	Blood group A2 (A-associated H type 3)	false	R		
+42	G00294TN	Blood group H (type 1)	false	R		
+43	G31734OS	Blood group B (type 1)	false	R		
+44	G66163TI	Blood group A (type 1)	false	R		
+45	G00052MO	Blood group H (type 2)	false	R	Ley	
+46	G89208KM	Blood group B (type 1)	false	R	B-Ley	
+47	G97501MA	Blood group A (type 1)	false	R	A-Leb	
+48	G00052MO	Lewis b	false	R	Leb	
+49	G31301MT	40-sulfated LDN	false	R		
+50	G55583HW	Sialylated LDN	false	R		
+51	G41052GC	Sda/CT antigen	false	R		
+52	G00065MO	Polysialic acid	false	R		
+53	G97345NY	SLex Core 2 O-glycan	true	Ser/Thr		
+55	G59126YU	O-Linked mannose	true	Ser/Thr		
+56	G06953DR	"2,6-Branched O-mannose "	true	Ser/Thr		
+57	G81516LH	O-Mannose Lex	true	Ser/Thr		
+58	G89591DK	HNK-1 antigen	false	R		
+59	G82061CN	HNK-1 on O-mannose	true	Ser/Thr		
+60	G71142DF	Glucosylceramide	true	Cer		
+61	G65889KE	Galactosylceramide	true	Cer		
+62	G95090DW	Seminolipid	true	Other		
+63	G95090DW	Sulfatide	true	Cer		
+64	G84224TW	Lactosylceramide	true	Cer		
+65	G98482BC	Ceramide dihexosyl sulfate	true	Cer		
+66	G57796RK	Monosulfated gangliotetraosylceramide	true	Cer		
+67	G06239NA	Lactotriaosylceramide	true	Cer	Lc3	
+68	G00059MO	Pk antigen	true	Cer	Gb3	globotriaosylceramide
+69	G12460DL	P1 antigen	true	Cer		
+70	G00061MO	Globoside	true	Cer	P antigen	Gb4
+71	G32862WC	Isoglobotetraosylceramide	true	Cer		
+72	G57710SU	Mono-sulfated globopentaosylceramide	true	Cer		
+73	G44854SQ	Mono-sulfated globotetraosylceramide	true	Cer		
+74	G57036MA	Sulfo-isogloboside	true	Cer		
+75	G62554JH	LcGg4	true	Cer		
+76	G99053DY	Gb5	true	Cer		
+77	G58896AZ	Paragloboside	true	Cer		
+78	G98465JN	GL-6 fucosylated	true	Cer	globoH	
+79	G99053DY	SSEA-3	true	Cer		
+80	G32254QI	GL-7 globoseries ganglioside	true	Cer	SSEA-4	
+81	G50123ZO	Sialosyl paragloboside	true	Cer		
+82	G97932OH	Disialosyl globopentaosylceramide	true	Cer		
+83	G57710SU	Cytolipin R	true	Cer		
+84	G80062GG	Forssman glycolipid	true	Cer		
+85	G51699SI	para-Forssman glycolipid	true	Cer		
+86	G98465JN	Blood group H (type 4)	true	Cer		
+87	G25216QA	Blood group B (type 4)	true	Cer		
+88	G37830TX	Blood group A (type 4)	true	Cer		
+89	G30207PZ	GM4	true	Cer		
+90	G91237TK	GM3	true	Cer		
+91	G98544DH	GD3	true	Cer		
+92	G93899SO	GT3	true	Cer		
+93	G98544DH	9-O-Acetyl GD3	true	Cer		
+94	G02657AK	GD2	true	Cer		
+95	G79389NT	GM2	true	Cer		
+96	G56478LD	N-Glycolyl-GM2	true	Cer		
+97	G13224CR	Sialopentaosylceramide	true	Cer		
+98	G48558GR	GM1	true	Cer		
+99	G21856LC	Asialo-GM1	true	Cer		
+100	G03277YI	cisGM1	true	Cer	GM1b	
+101	G91532KA	2-Fucosyl-GM1	true	Cer		
+102	G11485ID	B-GM1	true	Cer		
+103	G93694YU	2-Fucosyl-GD1b	true	Cer		
+104	G72557NR	B-GD1b	true	Cer		
+105	G81983KG	GD1	true	Cer	GD1c	
+106	G45714BQ	GD1a	true	Cer		
+107	G46677TE	GD1a	true	Cer		
+108	G37184KW	GD1b	true	Cer		
+109	G36476BA	GT2	true	Cer		
+110	G68110IF	GT1a	true	Cer		
+111	G02149VR	GT1aa	true	Cer		
+112	G40183QN	GT1b	true	Cer		
+113	G78818SP	GT1c	true	Cer		
+114	G90598GO	GQ1aa	true	Cer		
+115	G18625KA	GQ1b	true	Cer		
+116	G54733XO	GQ1ba	true	Cer		
+117	G99524KA	GQ1c	true	Cer		
+118	G93805MV	GP1c	true	Cer		
+119	G00552RX	GP1ca	true	Cer		
+120	G14091MR	GH1cav	true	Cer		
+121	G64227KZ	Mono-fucosyl LN5	true	Cer		
+122	G65223RT	Mono-fucosyl LN3	true	Cer		

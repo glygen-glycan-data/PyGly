@@ -4,7 +4,7 @@ __all__ = [ "GlycoMotifWiki", "Collection", "Motif",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
             "GlydinSugarbindMotif", "GlydinBioligoMotif",
-            "UniCarbMotif"]
+            "UniCarbMotif", "GlyGenMotif"]
 
 import sys
 
@@ -143,7 +143,7 @@ class Motif(SMW.SMWClass):
 
 
 import findpygly
-from pygly.GlyTouCan import GlyTouCan
+from pygly.GlycanResource import GlyTouCan
 
 class GlyTouCanMotif(Motif):
     gtc = None
@@ -171,6 +171,13 @@ class CCRCMotif(GlyTouCanMotif):
         assert kwargs.get('accession') != None
         assert kwargs.get('glytoucan') != None
         super(CCRCMotif,self).__init__(**kwargs)
+
+class GlyGenMotif(GlyTouCanMotif):
+    id = 'GGM'
+    def __init__(self,**kwargs):
+        assert kwargs.get('accession') != None
+        assert kwargs.get('glytoucan') != None
+        super(GlyGenMotif,self).__init__(**kwargs)
 
 class GlycoEpitopeMotif(CCRCMotif):
     id = 'GE'

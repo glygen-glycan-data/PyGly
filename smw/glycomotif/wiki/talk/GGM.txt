@@ -1,0 +1,6 @@
+
+The [[GGM|GlyGen Motif]] collection is derived from the [[GDC|Glydin - Cummings]] motif collection.  
+
+More (careful) effort has been made to normalize alternative names (typically shown in parentheses). Accessions correspond to the IDs from the so-called Cummings collection as shown in the Glydin spreadsheet. As we add more GlyGen motifs these IDs will diverge. There are also some accessions with repeated GlyTouCan accessions. We may collapse these at some point.
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 12:02, 1 April 2020 (EDT)

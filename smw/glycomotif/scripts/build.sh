@@ -15,9 +15,10 @@ set -x
 ./loadglycoepimotif.py ../data/glycoepitope.txt
 ./loadglydinmotif.py ../data/epitopes.xlsx
 ./loadunicarbmotif.py ../data/Unicarb.xlsx
+./loadglygenmotif.py ../data/GlyGen-Motif.tsv
 ./loadallmotif.py
 ./addsameas.py
-./loadmotifalign.py ../data/motif_alignment.tsv
+# ./loadmotifalign.py ../data/motif_alignment.tsv
 rm -rf ./dumps
 ./dumpallseq.py
 ./json_substructure.py
