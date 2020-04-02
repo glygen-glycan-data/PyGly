@@ -513,6 +513,7 @@ class GlyTouCanUtil(object):
     _wurcs_mono_format = WURCS20MonoFormat()
     _wurcs_format = WURCS20Format()
     _glycoct_format = GlycoCTFormat()
+    _alphamap = None
 
     def getUnsupportedCodes(self, acc):
         codes = set()
@@ -637,6 +638,25 @@ class GlyTouCanUtil(object):
 	for k,v in counts.items():
 	    if len(v) > 1:
 		yield k
+
+    def fixcompwurcs(self, wurcsseq):
+        if not self._alphamap:
+            self._alphamap = dict()
+            for i, c in enumerate(range(ord('a'), ord('z') + 1)):
+                self._alphamap[i + 1] = chr(c)
+                self._alphamap[chr(c)] = (i + 1)
+            for i, c in enumerate(range(ord('A'), ord('Z') + 1)):
+                self._alphamap[i + 1 + 26] = chr(c)
+                self._alphamap[chr(c)] = (i + 1 + 26)
+        prefix, counts, rest = wurcsseq.split('/', 2)
+        unodes, nodes, edges = counts.split(',')
+        nodes = int(nodes)
+        assert '0+' in edges
+        edges = (nodes - 1)
+        ambignode = "|".join(map(lambda i: "%s?" % (self._alphamap[i],), range(1, nodes + 1)))
+        ambigedge = "%s}-{%s" % (ambignode, ambignode)
+        ambigedges = [ambigedge] * edges
+        return "%s/%s,%d,%d/%s%s" % (prefix, unodes, nodes, edges, rest, "_".join(ambigedges))
 
 class GlyTouCan(GlyTouCanTS,GlyTouCanUtil):
     pass
