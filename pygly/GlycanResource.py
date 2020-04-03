@@ -546,8 +546,6 @@ WHERE{
 }"""
 
     def registration_status(self, seq):
-        # Escape for GlycoCT
-        seq = seq.replace("\n", "\\n")
 
         res = {
             "accession": None,
@@ -728,8 +726,16 @@ class GlyTouCanUtil(object):
     apikey = None
     opener = None
 
-    def register(self, glycan):
-        sequence = self.anyglycan2wurcs(glycan)
+    def register(self, glycan, force2wurcs=False):
+        if force2wurcs:
+            sequence = self.anyglycan2wurcs(glycan)
+        else:
+            if isinstance(glycan, basestring) or isinstance(glycan, unicode):
+                if "RES" in glycan:
+                    sequence = glycan.replace("\n", "\\n")
+            else:
+                sequence = glycan.glycoct()
+                sequence = sequence.replace("\n", "\\n")
         status = self.registration_status(sequence)
 
         acc = None
