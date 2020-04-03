@@ -86,7 +86,7 @@ class GlyTouCanRegistrationStatus:
 
 
 class GlyTouCan(object):
-    endpt = 'https://endpoint.glycosmos.org/sparql'
+    endpt = 'http://ts.glytoucan.org/sparql'
     substr_endpt = 'http://test.ts.glytoucan.org/sparql'
     api = 'https://api.glytoucan.org/'
     cachefile = ".gtccache"
