@@ -1,10 +1,10 @@
 #!/bin/env python27
 
 import findpygly
-from pygly.GlyTouCan import GlyTouCan
+from pygly.GlycanResource import GlyTouCan
 import sys, re
 
-gtc = GlyTouCan()
+gtc = GlyTouCan(retries=0)
 
 symbol2wurcs_definition = """
 NeuAc   AUd21122h_5*NCC/3=O   3
@@ -52,5 +52,11 @@ for l in sys.stdin:
     wurcsseq += "-".join(inds)
     wurcsseq += "/"
     wurcsseq = gtc.fixcompwurcs(wurcsseq)
-    status = gtc.register(wurcsseq)
-    print l,status
+    try:
+        status = gtc.register(wurcsseq)
+    except:
+        status = "issue"
+    print l
+    print status
+    print wurcsseq
+    print "-" * 100 + "\n"
