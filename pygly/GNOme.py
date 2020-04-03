@@ -2181,6 +2181,16 @@ if __name__ == "__main__":
         subsumption_instance = SubsumptionGraph()
         subsumption_instance.generateOWL(ifn, ofn, mass_lut, version=kv_para["version"], exact_sym=exactSym, specific_sym=specificSym)
 
+        if "allExactSymOutput" in kv_para:
+            allexactsym = {}
+            for symset in exactSym + specificSym.values():
+                for acc, sym0 in symset.items():
+                    if acc not in allexactsym:
+                        allexactsym[acc] = []
+                    allexactsym[acc].append(sym0)
+            json.dump(allexactsym, open(kv_para["allExactSymOutput"], "w"), sort_keys=True, indent=2)
+
+
     elif cmd == "writeresowl":
 
         if len(sys.argv) < 4:
