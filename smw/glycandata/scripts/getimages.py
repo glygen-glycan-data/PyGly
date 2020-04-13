@@ -26,7 +26,7 @@ if len(sys.argv) > 2:
 if len(sys.argv) > 3:
     format = sys.argv[3]
 
-gtc = GlyTouCan()
+gtc = GlyTouCan(usecache=False)
 for gtcacc in accessions(sys.argv[4:]):
     imgfn = "%s.%s"%(gtcacc,format)
     if os.path.exists(imgfn):
