@@ -511,68 +511,6 @@ class GlyTouCanTS(TripleStoreResource):
 	    else:
 		yield row['accession'],row['imagedata']
 
-    registration_status_query = """
-PREFIX repo: <http://repository.sparqlite.com/terms#>
-PREFIX rlog: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#>
-SELECT DISTINCT ?batch_p ?batch_value
-WHERE{
-    VALUES ?InputSeq {"%s"}
-    {?log_uri rlog:resource ?normalized_hash_uri.
-    ?log_uri rlog:className ?batch_p.
-    ?log_uri rlog:message  ?batch_value.}
-    UNION
-    { GRAPH <http://glycosmos.org/batch/wurcsvalid> {?normalized_hash_uri ?batch_p ?batch_value} }
-    UNION
-    { GRAPH <http://glycosmos.org/batch/wurcs/accession> {?normalized_hash_uri ?batch_p ?batch_value} }
-    {
-    {?hash_uri repo:input ?InputSeq.
-    ?hash_uri ?p_detect ?detect.
-    ?hash_uri ?PValide  ?NormalizedWurcs.
-    }
-    UNION
-    {?hash_uri repo:input ?InputSeq. 
-    ?hash_uri ?p_ct2w ?wurcs_hash_uri.
-    ?wurcs_hash_uri ?p_detect ?detect.
-    ?wurcs_hash_uri ?PValide  ?NormalizedWurcs.
-    }
-    VALUES ?detect {"wurcs"}
-    FILTER REGEX (?PValide, "SNAPSHOT$")
-    FILTER CONTAINS(STR(?PValide), "valid")
-    BIND(IRI(CONCAT("http://repository.sparqlite.com/key#", SHA256(?NormalizedWurcs))) AS ?normalized_hash_uri)}
-    UNION
-    {?normalized_hash_uri repo:input ?InputSeq.
-    ?normalized_hash_uri ?p_detect ?detect.
-    VALUES ?detect {"wurcs"}}
-}"""
-
-    def registration_status(self, seq):
-
-        res = {
-            "accession": None,
-            "error": [],
-            "warning": [],
-            "submitted": False,
-        }
-        # TODO use post to query result
-        response = self.queryts(self.registration_status_query%seq)
-        for row in response.bindings:
-            res["submitted"] = True
-            predicate, obj = tuple(map(str, map(row.get, response.vars)))
-
-            if "AccessionNumber/wurcs2GTCID".lower() in predicate.lower():
-                res["accession"] = obj.split("/")[-1]
-
-            if "error" in predicate.lower():
-                res["error"].append((predicate, obj))
-
-            if "warning" in predicate.lower():
-                res["warning"].append((predicate, obj))
-
-        return res
-
-class GlyTouCanCredentialsNotFound(RuntimeError):
-    pass
-
 class GlyTouCanUtil(object):
     _wurcs_mono_format = WURCS20MonoFormat()
     _wurcs_format = WURCS20Format()
@@ -722,9 +660,79 @@ class GlyTouCanUtil(object):
         ambigedges = [ambigedge] * edges
         return "%s/%s,%d,%d/%s%s" % (prefix, unodes, nodes, edges, rest, "_".join(ambigedges))
 
-    user = None
-    apikey = None
-    opener = None
+    def anyglycan2wurcs(self, glycan):
+        sequence = ""
+        if isinstance(glycan, Glycan.Glycan):
+            if not self.glycoct_format:
+                self.glycoct_format = GlycoCTFormat()
+            sequence = self.glycoct2wurcs(self.glycoct_format.toStr(glycan))
+            if '0+' in sequence:
+                sequence = self.fixcompwurcs(sequence)
+        else:
+            sequence = re.sub(r'\n\n+', r'\n', glycan)
+            if sequence.strip().startswith('RES'):
+                sequence = self.glycoct2wurcs(glycan)
+        return sequence
+
+    def glycoct2wurcs(self, seq):
+        requestURL = "https://api.glycosmos.org/glycanformatconverter/2.3.2-snapshot/glycoct2wurcs/"
+        encodedseq = urllib.quote(seq, safe='')
+        requestURL += encodedseq
+        req = urllib2.Request(requestURL)
+        # self.wait()
+        response = urllib2.urlopen(req).read()
+
+        result = json.loads(response)
+
+        try:
+            wurcs = result["WURCS"]
+        except:
+            raise ValueError("GlycoCT 2 WURCS conversion failed")
+
+        return wurcs.strip()
+
+class GlyTouCanRegistration(object):
+    _credfile = ".gtccred"
+    _user = None
+    _apikey = None
+    _opener = None
+    
+    @staticmethod
+    def getcredentials():
+
+        # script directory
+        dir = os.path.split(sys.argv[0])[0]
+        credfile = os.path.join(dir, GlyTouCan.credfile)
+        if os.path.exists(credfile):
+            user, apikey = open(credfile).read().split()
+            return user, apikey
+
+        # local directory
+        credfile = GlyTouCan.credfile
+        if os.path.exists(credfile):
+            user, apikey = open(credfile).read().split()
+            return user, apikey
+
+        # home directory
+        dir = os.path.expanduser("~")
+        credfile = os.path.join(dir, GlyTouCan.credfile)
+        if os.path.exists(credfile):
+            user, apikey = open(credfile).read().split()
+            return user, apikey
+
+        raise GlyTouCanCredentialsNotFound()
+
+    def setup_api(self, user=None, apikey=None):
+        if user == None:
+            user = self.user
+            apikey = self.apikey
+        if user == None:
+            user, apikey = self.getcredentials()
+        # print user,apikey
+        self.password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+        self.password_mgr.add_password(None, "https://api.glytoucan.org/glycan", user, apikey)
+        self.handler = urllib2.HTTPBasicAuthHandler(self.password_mgr)
+        self.opener = urllib2.build_opener(self.handler)
 
     def register(self, glycan, force2wurcs=False):
         if force2wurcs:
@@ -766,76 +774,69 @@ class GlyTouCanUtil(object):
             pass
         return None
 
-    def setup_api(self, user=None, apikey=None):
-        if user == None:
-            user = self.user
-            apikey = self.apikey
-        if user == None:
-            user, apikey = self.getcredentials()
-        # print user,apikey
-        self.password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
-        self.password_mgr.add_password(None, "https://api.glytoucan.org/glycan", user, apikey)
-        self.handler = urllib2.HTTPBasicAuthHandler(self.password_mgr)
-        self.opener = urllib2.build_opener(self.handler)
+        registration_status_query = """
+PREFIX repo: <http://repository.sparqlite.com/terms#>
+PREFIX rlog: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#>
+SELECT DISTINCT ?batch_p ?batch_value
+WHERE{
+    VALUES ?InputSeq {"%s"}
+    {?log_uri rlog:resource ?normalized_hash_uri.
+    ?log_uri rlog:className ?batch_p.
+    ?log_uri rlog:message  ?batch_value.}
+    UNION
+    { GRAPH <http://glycosmos.org/batch/wurcsvalid> {?normalized_hash_uri ?batch_p ?batch_value} }
+    UNION
+    { GRAPH <http://glycosmos.org/batch/wurcs/accession> {?normalized_hash_uri ?batch_p ?batch_value} }
+    {
+    {?hash_uri repo:input ?InputSeq.
+    ?hash_uri ?p_detect ?detect.
+    ?hash_uri ?PValide  ?NormalizedWurcs.
+    }
+    UNION
+    {?hash_uri repo:input ?InputSeq. 
+    ?hash_uri ?p_ct2w ?wurcs_hash_uri.
+    ?wurcs_hash_uri ?p_detect ?detect.
+    ?wurcs_hash_uri ?PValide  ?NormalizedWurcs.
+    }
+    VALUES ?detect {"wurcs"}
+    FILTER REGEX (?PValide, "SNAPSHOT$")
+    FILTER CONTAINS(STR(?PValide), "valid")
+    BIND(IRI(CONCAT("http://repository.sparqlite.com/key#", SHA256(?NormalizedWurcs))) AS ?normalized_hash_uri)}
+    UNION
+    {?normalized_hash_uri repo:input ?InputSeq.
+    ?normalized_hash_uri ?p_detect ?detect.
+    VALUES ?detect {"wurcs"}}
+}"""
 
-    @staticmethod
-    def getcredentials():
+    def registration_status(self, seq):
 
-        # script directory
-        dir = os.path.split(sys.argv[0])[0]
-        credfile = os.path.join(dir, GlyTouCan.credfile)
-        if os.path.exists(credfile):
-            user, apikey = open(credfile).read().split()
-            return user, apikey
+        res = {
+            "accession": None,
+            "error": [],
+            "warning": [],
+            "submitted": False,
+        }
+        # TODO use post to query result
+        response = self.queryts(self.registration_status_query%seq)
+        for row in response.bindings:
+            res["submitted"] = True
+            predicate, obj = tuple(map(str, map(row.get, response.vars)))
 
-        # local directory
-        credfile = GlyTouCan.credfile
-        if os.path.exists(credfile):
-            user, apikey = open(credfile).read().split()
-            return user, apikey
+            if "AccessionNumber/wurcs2GTCID".lower() in predicate.lower():
+                res["accession"] = obj.split("/")[-1]
 
-        # home directory
-        dir = os.path.expanduser("~")
-        credfile = os.path.join(dir, GlyTouCan.credfile)
-        if os.path.exists(credfile):
-            user, apikey = open(credfile).read().split()
-            return user, apikey
+            if "error" in predicate.lower():
+                res["error"].append((predicate, obj))
 
-        raise GlyTouCanCredentialsNotFound()
+            if "warning" in predicate.lower():
+                res["warning"].append((predicate, obj))
 
-    def anyglycan2wurcs(self, glycan):
-        sequence = ""
-        if isinstance(glycan, Glycan.Glycan):
-            if not self.glycoct_format:
-                self.glycoct_format = GlycoCTFormat()
-            sequence = self.glycoct2wurcs(self.glycoct_format.toStr(glycan))
-            if '0+' in sequence:
-                sequence = self.fixcompwurcs(sequence)
-        else:
-            sequence = re.sub(r'\n\n+', r'\n', glycan)
-            if sequence.strip().startswith('RES'):
-                sequence = self.glycoct2wurcs(glycan)
-        return sequence
+        return res
 
-    def glycoct2wurcs(self, seq):
-        requestURL = "https://api.glycosmos.org/glycanformatconverter/2.3.2-snapshot/glycoct2wurcs/"
-        encodedseq = urllib.quote(seq, safe='')
-        requestURL += encodedseq
-        req = urllib2.Request(requestURL)
-        # self.wait()
-        response = urllib2.urlopen(req).read()
-
-        result = json.loads(response)
-
-        try:
-            wurcs = result["WURCS"]
-        except:
-            raise ValueError("GlycoCT 2 WURCS conversion failed")
-
-        return wurcs.strip()
+class GlyTouCanCredentialsNotFound(RuntimeError):
+    pass
 
 class GlyTouCan(GlyTouCanTS,GlyTouCanUtil):
-    credfile = ".gtccred"
     pass
 
 class GlyTouCanNoCache(GlyTouCan):
@@ -862,18 +863,27 @@ class UniCarbKBTS(TripleStoreResource):
 	    yield row['accession'],row['glytoucan']
 
     def allpub(self):
-	if False:
-	    yield None
+	for row in self.query_publication():
+	    if row['pmid'] == '0':
+		continue
+	    yield row['accession'],row['pmid']
 
 class UniCarbKBDump(object):
-    dumpfileurl = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/mammalian/%s.csv"
+    dumpfileurl = "https://gitlab.com/matthew.campbell1980/Unicarb-Glygen/-/raw/master/data_files/unicarbkb/DATA_RELEASE/STABLE/mammalian/%s.csv"
     species2taxa = {'human': '9606', 'mouse': '10090', 'rat': '10116'}
     species2filename = {'human': 'human06022020', 'mouse': 'mouse06022020', 'rat': 'rat06022020'}
 
     def records(self):
+	hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+               'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+               'Accept-Encoding': 'none',
+               'Accept-Language': 'en-US,en;q=0.8',
+               'Connection': 'keep-alive'}
 	for species in ('human','mouse','rat'):
             url = self.dumpfileurl%(self.species2filename[species],)
-            for row in csv.DictReader(urllib.urlopen(url)):
+	    req = urllib2.Request(url, headers=hdr)
+            for row in csv.DictReader(urllib2.urlopen(req)):
 		row['taxid'] = self.species2taxa[species]
 		yield row
 

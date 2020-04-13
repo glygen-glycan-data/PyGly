@@ -88,7 +88,7 @@ class GlyTouCanRegistrationStatus:
 class GlyTouCan(object):
     endpt = 'http://ts.glytoucan.org/sparql'
     substr_endpt = 'http://test.ts.glytoucan.org/sparql'
-    api = 'https://api.glytoucan.org/'
+    api = 'https://glytoucan.org/'
     cachefile = ".gtccache"
 
     def __init__(self, user=None, apikey=None, usecache=False):
@@ -621,7 +621,7 @@ class GlyTouCan(object):
 
         raise GlyTouCanCredentialsNotFound()
 
-    def fixcompwurcs(self, wurcsseq):
+    def fixcompwurcs(self, wurcsseq, subst=[]):
         if not self.alphamap:
             self.alphamap = dict()
             for i, c in enumerate(range(ord('a'), ord('z') + 1)):
@@ -638,7 +638,12 @@ class GlyTouCan(object):
         ambignode = "|".join(map(lambda i: "%s?" % (self.alphamap[i],), range(1, nodes + 1)))
         ambigedge = "%s}-{%s" % (ambignode, ambignode)
         ambigedges = [ambigedge] * edges
-        return "%s/%s,%d,%d/%s%s" % (prefix, unodes, nodes, edges, rest, "_".join(ambigedges))
+        if hasattr(subst,'items'):
+            subst = list(subst.items())
+        for sub,cnt in subst:
+	    for i in range(cnt):
+		ambigedges.insert(0,"%s}%s"%(ambignode,sub))
+        return "%s/%s,%d,%d/%s%s" % (prefix, unodes, nodes, len(ambigedges), rest, "_".join(ambigedges))
 
     def monotocomp(self, mstr):
         m = re.search(r'-(\d)[abx]_\d-(\d|\?)', mstr)
@@ -1292,7 +1297,7 @@ class GlyTouCan(object):
             raise GlyTouCanRegistrationError()
 
         if status.not_submitted():
-            print "Registering"
+            # print "Registering"
             self.register_request(sequence)
         return None
 
@@ -1314,8 +1319,8 @@ class GlyTouCan(object):
         if not self.opener:
             self.setup_api()
 
+        # params = urllib.urlencode(dict(req=json.dumps(dict(sequence=sequence))))
         params = json.dumps(dict(sequence=sequence))
-        # print params
         req = urllib2.Request(self.api + 'glycan/register', params)
         req.add_header('Content-Type', 'application/json')
         req.add_header('Accept', 'application/json')
