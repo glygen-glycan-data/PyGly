@@ -5,7 +5,18 @@ PYTHON=apython
 PYGLY=../../../pygly
 DATA=../data
 
-$PYTHON $PYGLY/GlycanResource.py UniCarbKB allgtc  | sort -k1n,1 -k2,2 > $DATA/uc2gtc.txt    2>/dev/null
-$PYTHON $PYGLY/GlycanResource.py UniCarbKB allpub  | sort -k1n,1 -k2,2 > $DATA/uc2pubmed.txt 2>/dev/null
-$PYTHON $PYGLY/GlycanResource.py UniCarbKB alltaxa | sort -k1n,1 -k2,2 > $DATA/uc2taxa.txt   2>/dev/null
-
+$PYTHON $PYGLY/GlycanResource/main.py UniCarbKB allgtc  | \
+  awk '$1 ~ /comp_/ {print "-",$1,$2; next} {print $1,"-",$2}' | \
+  sort -k1n,1 -k2,2 -k3,3 | \
+  awk '$2 ~ /comp_/ {print $2,$3; next} {print $1"\t"$3}' \
+  > $DATA/uc2gtc.txt    2>/dev/null
+$PYTHON $PYGLY/GlycanResource/main.py UniCarbKB allpub  | \
+  awk '$1 ~ /comp_/ {print "-",$1,$2; next} {print $1,"-",$2}' | \
+  sort -k1n,1 -k2,2 -k3n,3 | \
+  awk '$2 ~ /comp_/ {print $2,$3; next} {print $1"\t"$3}' \
+  > $DATA/uc2pubmed.txt 2>/dev/null
+$PYTHON $PYGLY/GlycanResource/main.py UniCarbKB alltaxa | \
+  awk '$1 ~ /comp_/ {print "-",$1,$2; next} {print $1,"-",$2}' | \
+  sort -k1n,1 -k2,2 -k3n,3 | \
+  awk '$2 ~ /comp_/ {print $2,$3; next} {print $1"\t"$3}' \
+  > $DATA/uc2taxa.txt   2>/dev/null

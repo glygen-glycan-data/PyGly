@@ -15,7 +15,7 @@ fi
 ./loadgtc.py $CACHE ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt
 ./loadgtc.py $CACHE ../data/extra_accessions.txt
 ./loadunicarb.py $CACHE ../data/uc2gtc.txt ../data/uc2taxa.txt ../data/uc2pubmed.txt ../data/uckbcomp2glytoucan.txt
-./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem_2019-04-19.csv
+./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem_2020-04-08.csv
 ./loadgtc2chebi.py $CACHE ../data/GlyTouCan-ChEBI_2019-08-23.tsv
 ./loadgtc2psimod.py $CACHE ../data/psimod2glytoucan.txt
 ./loadglygen.py $CACHE ../data/glygen_accessions.txt

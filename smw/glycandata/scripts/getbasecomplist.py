@@ -1,10 +1,10 @@
-import sys
+import sys, re
 from collections import defaultdict
 
 # from getwiki import GlycanData
 import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat
-from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCan
+from pygly.GlycanResource import GlyTouCan
 
 # w = GlycanData()
 glycoctformat = GlycoCTFormat()
@@ -39,8 +39,6 @@ expskel = set("""
 """.split())
 
 #
-# G43642TU and G06577JJ represent the same glycan - broken canonicalization - choose G06577JJ 
-# G43560PI and G94250TD represent the same glycan - broken canonicalization - choose G43560PI
 # G45924NL is floating in-link substituent - IMO this is not a correct representation
 # G99993XU ditto
 # G94401PZ ditto
@@ -49,18 +47,12 @@ expskel = set("""
 # 
 
 badacc = set("""
-G43642TU
-G94250TD
-G45924NL
-G99993XU
-G94401PZ
-G10633KT
-G48302UE
 """.split())
 
 # f = open('../data/basecomplist1.txt','w')
 
-gtc = GlyTouCan()
+# Make sure we get the latest version of everything
+gtc = GlyTouCan(usecache=False)
 
 def accessions():
     if len(sys.argv) == 2 and sys.argv[1] == "-":
@@ -75,7 +67,9 @@ def accessions():
 
 allskel = set()
 
-for acc in accessions():
+seen = defaultdict(set)
+
+for acc in sorted(accessions()):
 
     if acc in badacc:
 	continue
@@ -92,6 +86,20 @@ for acc in accessions():
 	    break
 
     if not allgood:
+	continue
+
+    # hack! detect bad subst in link composition!
+    badlink = 0
+    for link in wurcs.split(']/')[1].split('/',1)[1].split('_'):
+        # a?|b?}-{a?|b?
+	if re.search(r'^([a-zA-Z]\?(\|[a-zA-Z]\?)+)\}-\{\1$',link):
+	    continue
+	# a?|b?}*OSO/3=O/3=O
+	if re.search(r'^([a-zA-Z]\?(\|[a-zA-Z]\?)+)\}\*',link):
+	    continue
+	badlink += 1
+
+    if badlink > 0:
 	continue
 
     node_count = 0
@@ -157,7 +165,9 @@ for acc in accessions():
                         byonic_string += 'Sulpho' + '(' + str(comp[k]) + ')'
 		    else:
                         byonic_string += k + '(' + str(comp[k]) + ')'
-	    print "\t".join([acc,byonic_string,"BYONIC"])
+	    if ("BYONIC",byonic_string) not in seen:
+	        print "\t".join([acc,byonic_string,"BYONIC"])
+	    seen[("BYONIC",byonic_string)].add(acc)
 
 	if short_good:
 
@@ -171,7 +181,9 @@ for acc in accessions():
 		    short_string += k[0]
 		    if comp[k] > 1:
 		        short_string += str(comp[k])
-	    print "\t".join([acc,short_string,"SHORTCOMP"])
+	    if ("SHORTCOMP",short_string) not in seen:
+	        print "\t".join([acc,short_string,"SHORTCOMP"])
+	    seen[("SHORTCOMP",short_string)].add(acc)
 
     else:
 
@@ -185,7 +197,9 @@ for acc in accessions():
 		else:
                     byonic_string += k + '(' + str(comp[k]) + ')'
         if byonic_good:
-	    print "\t".join([acc,byonic_string,"BYONIC"])
+	    if ("BYONIC",byonic_string) not in seen:
+	        print "\t".join([acc,byonic_string,"BYONIC"])
+	    seen[("BYONIC",byonic_string)].add(acc)
 
 	uckb_string = ''
 	shortuckb_string = ''
@@ -194,8 +208,12 @@ for acc in accessions():
 	    if comp[k] > 0:
                 shortuckb_string += k + str(comp[k])
         if uckb_good:
-	    print "\t".join([acc,uckb_string,"UCKBCOMP"])
-	    print "\t".join([acc,shortuckb_string,"SHORTUCKB"])
+	    if ("UCKBCOMP",uckb_string) not in seen:
+	        print "\t".join([acc,uckb_string,"UCKBCOMP"])
+	    seen[("UCKBCOMP",uckb_string)].add(acc)
+	    if ("SHORTUCKB",shortuckb_string) not in seen:
+	        print "\t".join([acc,shortuckb_string,"SHORTUCKB"])
+	    seen[("SHORTUCKB",shortuckb_string)].add(acc)
 
         if short_good and comp['dHex'] == 0:
 
@@ -208,5 +226,10 @@ for acc in accessions():
 	    	    short_string += k[0]
 		    if comp[k] > 1:
 		        short_string += str(comp[k])
-            print "\t".join([acc,short_string,"SHORTCOMP"])
+	    if ("SHORTCOMP",short_string) not in seen:
+                print "\t".join([acc,short_string,"SHORTCOMP"])
+	    seen[("SHORTCOMP",short_string)].add(acc)
 
+for thetype,thestr in seen:
+    if len(seen[(thetype,thestr)]) > 1:
+	print >>sys.stderr, "WARNING: Repeat %s:%s for %s."%(thetype,thestr,", ".join(sorted(seen[(thetype,thestr)])))

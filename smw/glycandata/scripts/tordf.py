@@ -14,6 +14,8 @@ def xmlescape(s):
 
 d = GlycanDataDiskCache(sys.argv[1])
 
+prefix = sys.argv[2]
+
 print """
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF[
@@ -34,14 +36,14 @@ print """
 for g in d.iterglycan():
     glycan = g.get('id')
     print ("""
-        <swivt:Subject rdf:about="http://glycandata.glygen.org/glycandatadev/Special:URIResolver/%(glycan)s">
+        <swivt:Subject rdf:about="http://glycandata.glygen.org/%(prefix)s/Special:URIResolver/%(glycan)s">
                 <rdf:type rdf:resource="http://glycandata.glygen.org/glycandata#Glycan" />
                 <rdfs:label>%(glycan)s</rdfs:label>
                 <glycandata:accession rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%(glycan)s</glycandata:accession>
                 </swivt:Subject>
-"""%dict(glycan=glycan)).strip('\n')
+"""%dict(glycan=glycan,prefix=prefix)).strip('\n')
     for a in g.annotations():
-	d = dict(glycan=glycan)
+	d = dict(glycan=glycan,prefix=prefix)
 	d['property'] = a.get('property')
 	d['type'] = a.get('type')
 	d['source'] = a.get('source')
@@ -57,9 +59,9 @@ for g in d.iterglycan():
 	for k in ('property','type','source','sourcewithsourceid'):
 	    d[k+"_no_space"] = d[k].replace(' ','_')
 	print ("""
-        <swivt:Subject rdf:about="http://glycandata.glygen.org/glycandatadev/Special:URIResolver/%(glycan)s.%(type)s.%(property_no_space)s.%(sourcewithsourceid)s">
+        <swivt:Subject rdf:about="http://glycandata.glygen.org/%(prefix)s/Special:URIResolver/%(glycan)s.%(type)s.%(property_no_space)s.%(sourcewithsourceid)s">
                 <rdf:type rdf:resource="http://glycandata.glygen.org/glycandata#Annotation" />
-                <glycandata:hasglycan rdf:resource="http://glycandata.glygen.org/glycandatadev/Special:URIResolver/%(glycan)s" />
+                <glycandata:hasglycan rdf:resource="http://glycandata.glygen.org/%(prefix)s/Special:URIResolver/%(glycan)s" />
                 <glycandata:property rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%(property)s</glycandata:property>
                 <glycandata:type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%(type)s</glycandata:type>
                 <glycandata:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%(source)s</glycandata:source>
