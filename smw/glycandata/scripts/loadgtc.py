@@ -18,7 +18,7 @@ def accessions(args):
 	    for it in open(fn):
 		yield it.strip()
 
-gtc = GlyTouCan()
+gtc = GlyTouCan(usecache=False)
 
 allmotifs = dict()
 for acc,label,redend in gtc.allmotifs():

@@ -25717,6 +25717,8 @@ G23007XC	3313	cfg	extended	png
 G23007XC	24169	cfg	extended	svg
 G23007XC	3251	snfg	extended	png
 G23007XC	24916	snfg	extended	svg
+G23010ZW	2033	cfg	extended	png
+G23010ZW	2048	snfg	extended	png
 G23021IW	3083	cfg	extended	png
 G23021IW	23775	cfg	extended	svg
 G23021IW	3177	snfg	extended	png
@@ -98897,6 +98899,8 @@ G90111MD	5270	cfg	extended	png
 G90111MD	38579	cfg	extended	svg
 G90111MD	5364	snfg	extended	png
 G90111MD	38617	snfg	extended	svg
+G90112LJ	2090	cfg	extended	png
+G90112LJ	2201	snfg	extended	png
 G90115NI	2354	cfg	extended	png
 G90115NI	23776	cfg	extended	svg
 G90115NI	2446	snfg	extended	png
