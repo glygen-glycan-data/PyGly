@@ -2188,7 +2188,12 @@ if __name__ == "__main__":
                     if acc not in allexactsym:
                         allexactsym[acc] = []
                     allexactsym[acc].append(sym0)
-            json.dump(allexactsym, open(kv_para["allExactSymOutput"], "w"), sort_keys=True, indent=2)
+
+            allExactSymOutputF = open(kv_para["allExactSymOutput"], "w")
+            for acc in sorted(allexactsym.keys()):
+                for sym0 in allexactsym[acc]:
+                    allExactSymOutputF.write("%s\t%s\n" % (acc, sym0))
+            allExactSymOutputF.close()
 
 
     elif cmd == "writeresowl":
