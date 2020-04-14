@@ -375,7 +375,7 @@ class GNOme(GNOmeAPI):
 
 
         res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc", "dHex"]:
             if m in mono_count:
                 res[m] = mono_count[m]
 
@@ -387,9 +387,6 @@ class GNOme(GNOmeAPI):
         for m in mono_count.keys():
             if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
                 xxx += mono_count[m]
-
-        if "dHex" in mono_count:
-            xxx += mono_count["dHex"] - mono_count.get("Fuc", 0)
 
         if xxx > 0:
             res["Xxx"] = xxx
@@ -425,6 +422,7 @@ class GNOme(GNOmeAPI):
         for m in mono_count.keys():
             if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
                 xxx += mono_count[m]
+
         if xxx > 0:
             res["Xxx"] = xxx
         return res
