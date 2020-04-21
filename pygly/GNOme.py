@@ -582,7 +582,7 @@ class SubsumptionGraph(GNOmeAPI):
         pass
 
     def compute(self, *args, **kwargs):
-        self.gtc = GlyTouCan(usecache=True)
+        self.gtc = GlyTouCan(usecache=False)
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
         self.topology = Topology()
