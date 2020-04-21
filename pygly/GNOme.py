@@ -375,7 +375,7 @@ class GNOme(GNOmeAPI):
 
 
         res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc"]:
+        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc", "dHex"]:
             if m in mono_count:
                 res[m] = mono_count[m]
 
@@ -387,9 +387,6 @@ class GNOme(GNOmeAPI):
         for m in mono_count.keys():
             if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
                 xxx += mono_count[m]
-
-        if "dHex" in mono_count:
-            xxx += mono_count["dHex"] - mono_count.get("Fuc", 0)
 
         if xxx > 0:
             res["Xxx"] = xxx
@@ -425,6 +422,7 @@ class GNOme(GNOmeAPI):
         for m in mono_count.keys():
             if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
                 xxx += mono_count[m]
+
         if xxx > 0:
             res["Xxx"] = xxx
         return res
@@ -2188,7 +2186,12 @@ if __name__ == "__main__":
                     if acc not in allexactsym:
                         allexactsym[acc] = []
                     allexactsym[acc].append(sym0)
-            json.dump(allexactsym, open(kv_para["allExactSymOutput"], "w"), sort_keys=True, indent=2)
+
+            allExactSymOutputF = open(kv_para["allExactSymOutput"], "w")
+            for acc in sorted(allexactsym.keys()):
+                for sym0 in allexactsym[acc]:
+                    allExactSymOutputF.write("%s\t%s\n" % (acc, sym0))
+            allExactSymOutputF.close()
 
 
     elif cmd == "writeresowl":
