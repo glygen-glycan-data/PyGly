@@ -24,7 +24,7 @@ awk -F, 'NR > 1 {print $1}' $DATA/canonres2gtc.csv | grep -v '^$' >> $DATA/glyge
 # All GlyTouCan motifs...
 $PYTHON $PYGLY/GlycanResource/main.py GlyTouCan allmotifs | awk '{print $1}' >> $DATA/glygen_req_accessions.txt
 
-for taxid in 9606 10090 10116 10114 11103; do
+for taxid in 9606 10090 10116 10114 11103 11108 694009 2697049; do
   $PYTHON $PYGLY/GlycanResource/main.py GlyTouCan bytaxa $taxid > $DATA/gtc.${taxid}.txt
   $PYTHON $PYGLY/GlycanResource/main.py UniCarbKB gtcbytaxa $taxid > $DATA/uc.${taxid}.txt
 done

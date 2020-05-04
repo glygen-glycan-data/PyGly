@@ -100,12 +100,12 @@ for gtcacc in accessions(sys.argv[1:]):
 
     g.delete_annotations(source='GlyTouCan',type='Taxonomy')
     g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),
-                     property='Taxonomy',
+                     property='Taxonomy', sourceid=gtcacc, 
                      source='GlyTouCan', type='Taxonomy')
 
     g.delete_annotations(source='GlyTouCan',type='Publication')
     g.set_annotation(value=list(set(gtc.getrefs(gtcacc))),
-                     property='Publication',
+                     property='Publication', sourceid=gtcacc, 
                      source='GlyTouCan', type='Publication')
 
     # get this stuff from GNOme, now...

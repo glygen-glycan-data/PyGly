@@ -3,6 +3,7 @@ from collections import defaultdict
 
 # from getwiki import GlycanData
 import findpygly
+from pygly.Glycan import Glycan
 from pygly.GlycanFormatter import GlycoCTFormat
 from pygly.GlycanResource import GlyTouCan
 
@@ -52,16 +53,21 @@ badacc = set("""
 # f = open('../data/basecomplist1.txt','w')
 
 # Make sure we get the latest version of everything
-gtc = GlyTouCan(usecache=False)
+# gtc = GlyTouCan(usecache=False)
+gtc = None
 
 def accessions():
+    global gtc
     if len(sys.argv) == 2 and sys.argv[1] == "-":
+        gtc = GlyTouCan(usecache=False)
 	for acc in sys.stdin:
 	    yield acc.strip()
     elif len(sys.argv) == 2 and sys.argv[1] == "*":
+        gtc = GlyTouCan(usecach=False)
 	for acc in gtc.allaccessions():
 	    yield acc
     else:
+        gtc = GlyTouCan(prefetch=False)
 	for acc in sys.argv[1:]:
 	    yield acc
 
@@ -91,6 +97,8 @@ for acc in sorted(accessions()):
     # hack! detect bad subst in link composition!
     badlink = 0
     for link in wurcs.split(']/')[1].split('/',1)[1].split('_'):
+	if link == "":
+	    continue
         # a?|b?}-{a?|b?
 	if re.search(r'^([a-zA-Z]\?(\|[a-zA-Z]\?)+)\}-\{\1$',link):
 	    continue
@@ -112,6 +120,27 @@ for acc in sorted(accessions()):
     if glycan.has_root() and node_count != 1:
         continue
 
+    special_node_count_one = False
+    if glycan.has_root() and node_count == 1:
+	r = glycan.root()
+	floating_subst = []
+	for sl in r.substituent_links():
+	    try:
+                glycoctsym = glycoctformat.mtoStr(sl.child())
+            except KeyError:
+                continue
+	    if sl.parent_pos() != None:
+		continue
+	    if glycoctsym in basecomp:
+		sub = sl.child()
+		sub.set_connected(False)
+		r.remove_substituent_link(sl)
+		floating_subst.append(sub)
+	glycan.set_root(None)
+	glycan.set_undetermined([r]+floating_subst)
+	node_count = len(floating_subst)+1
+        special_node_count_one = True
+
     comp = defaultdict(int)
 
     for m in glycan.all_nodes(undet_subst=True):
@@ -131,8 +160,19 @@ for acc in sorted(accessions()):
 
     newskel = set(wurcs.split('/[', 1)[1].split(']/')[0].split(']['))
     if len(newskel - expskel) > 0:
-	print >>sys.stderr, "Unexpected skeleton codes:",", ".join(newskel - expskel)
-	sys.exit(1)
+	if not special_node_count_one:
+	    print >>sys.stderr, "Unexpected skeleton codes:",", ".join(newskel - expskel)
+	    sys.exit(1)
+	else:
+	    newelts = newskel.pop().split('_')
+	    newskel = []
+	    for e in newelts:
+		if e not in ('?*OPO/3O/3=O','?*OSO/3=O/3=O'):
+		    newskel.append(e)
+	    newskel = "_".join(newskel)
+	    if newskel not in expskel:
+		print >>sys.stderr, "Unexpected skeleton codes:",newskel
+		sys.exit(1)
 
     byonic_good = False
     if node_count == sum(map(lambda k: comp.get(k,0),

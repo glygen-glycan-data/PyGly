@@ -21,6 +21,8 @@ dHex    uxxxxm                3
 Pent    uxxxh                 10
 P	*OPO/3O/3=O	      -1
 Phospho	*OPO/3O/3=O	      -1
+S	*OSO/3=O/3=O	      -1
+Sulpho	*OSO/3=O/3=O	      -1
 """
 symbol2wurcs={}
 wurcsorder={}
@@ -33,6 +35,7 @@ for l in symbol2wurcs_definition.splitlines():
 
 for lineno,l in enumerate(sys.stdin):
     l = l.strip()
+    l0 = l
     if l.startswith('comp_'):
 	l = l[5:]
     if '(' in l:
@@ -56,12 +59,20 @@ for lineno,l in enumerate(sys.stdin):
 	else:
 	    comp[skel] = cnt
     if badsym:
-	print lineno+1,"Bad symbol!"
+	print lineno+1,l0,"Bad symbol:",sl[i]
 	continue
     skels = sorted(comp,key=wurcsorder.get)
     total = sum(comp.values())
     if total == 0:
 	continue
+    if total == 1 and len(subst) > 0:
+	newskel = skels[0]
+	for subst,cnt in subst.items():
+	    for i in range(cnt):
+	        newskel += "_?" + subst;
+	comp = {newskel:1}
+	skels = [ newskel ]
+	subst = {}
     uniq = len(skels)
     wurcsseq = "WURCS=2.0/%s,%s,%s/" % (uniq, total, "0+")
     wurcsseq += "".join(map(lambda sk: "[%s]" % (sk,), skels)) + "/"
@@ -75,9 +86,9 @@ for lineno,l in enumerate(sys.stdin):
     hash,acc = gtc.gethashedseq(seq=wurcsseq)
     if not hash:
 	gtc.register(wurcsseq)
-        print lineno+1,l,None,wurcsseq,thehash
+        print lineno+1,l0,None,wurcsseq,thehash
 	time.sleep(60)
     elif not acc:
-	print lineno+1,l,hash
+	print lineno+1,l0,hash
     else:
-	print lineno+1,l,acc
+	print lineno+1,l0,acc

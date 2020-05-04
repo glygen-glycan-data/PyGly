@@ -5,6 +5,8 @@ from operator import itemgetter
 
 from getwiki import GlycanData, Glycan
 
+from pygly.Monosaccharide import SuperClass, Stem, Config, Mod, Substituent
+
 from pygly.GlyNLinkedFilter import GlyNLinkedFilter
 mnlc = GlyNLinkedFilter(None).test1
 
@@ -39,8 +41,81 @@ for l in motif_rules_data.splitlines():
     assert len(sl) == 3
     motifrules[sl[0]] = (sl[1],sl[2])
 
+def gal(m):
+    if m.superclass() == SuperClass.HEX and m.stem() == (Stem.gal,):
+        if not m.has_mods() and not m.has_substituents():
+	    return True
+    return False
+
+def glcnac(m):
+    if m.superclass() == SuperClass.HEX and m.stem() == (Stem.glc,):
+        if not m.has_mods() and m.is_nacetylated():
+	    return True
+    return False
+
+def galnac(m):
+    if m.superclass() == SuperClass.HEX and m.stem() == (Stem.gal,):
+        if not m.has_mods() and m.is_nacetylated():
+	    return True
+    return False
+
+def fuc(m):
+    if m.superclass() == SuperClass.HEX and m.stem() == (Stem.gal,) and m.config() == (Config.l,):
+        if m.count_mod(Mod.d) == 1 and m.count_mod() == 1:
+	    return True
+    return False
+
+def sia(m):
+    if m.superclass() == SuperClass.NON and m.stem() == (Stem.gro,Stem.gal):
+	if set(map(itemgetter(1),m.mods())) == set([Mod.a,Mod.keto,Mod.d]):
+	    found = False
+	    for s in m.substituents():
+	        if s.name() in (Substituent.nAcetyl,Substituent.nglycolyl):
+		    found = True
+		    break
+	    if len(m.substituents()) == 1 and found:
+		return True
+    return False
+
+def acceptcore1(g):
+    r = g.root()
+    galseen = False
+    for c in r.children():
+	if gal(c) and not galseen:
+	    galseen = True
+	    continue
+	if fuc(c) or sia(c):
+	    continue
+	return False
+    return True
+
+def acceptcore36(g):
+    r = g.root()
+    glcnacseen = False
+    for c in r.children():
+	if glcnac(c) and not glcnacseen:
+	    glcnacseen = True
+	    continue
+	if fuc(c) or sia(c):
+	    continue
+	return False
+    return True
+
+def acceptcore57(g):
+    r = g.root()
+    galnacseen = False
+    for c in r.children():
+	if galnac(c) and not galnacseen:
+	    galnacseen = True
+	    continue
+	if fuc(c) or sia(c):
+	    continue
+	return False
+    return True
+
 debug = False
 def iterglycan():
+    global debug
     if len(sys.argv) > 1:
 	for acc in sys.argv[1:]:
 	    m = w.get(acc)
@@ -129,6 +204,31 @@ for m in iterglycan():
 	    if count == (mancount + glcnaccount + fuccount) and glcnaccount == 2 and (count == 5 and fuccount == 0) or (count == 6 and fuccount == 1):
 	        types = ["N-linked"]
 	        subtypes = ['paucimannose']
+
+    if types == ["O-linked"] and "core 1" in subtypes:
+	g = m.getGlycan()
+	if g and not acceptcore1(g):
+	    subtypes.remove("core 1")
+
+    if types == ["O-linked"] and "core 3" in subtypes:
+	g = m.getGlycan()
+	if g and not acceptcore36(g):
+	    subtypes.remove("core 3")
+
+    if types == ["O-linked"] and "core 5" in subtypes:
+	g = m.getGlycan()
+	if g and not acceptcore57(g):
+	    subtypes.remove("core 5")
+
+    if types == ["O-linked"] and "core 6" in subtypes:
+	g = m.getGlycan()
+	if g and not acceptcore36(g):
+	    subtypes.remove("core 6")
+
+    if types == ["O-linked"] and "core 7" in subtypes:
+	g = m.getGlycan()
+	if g and not acceptcore57(g):
+	    subtypes.remove("core 7")
 
     if len(types) > 0:
         m.set_annotation(value=types[0], property='GlycanType',
