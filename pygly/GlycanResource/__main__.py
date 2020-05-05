@@ -20,9 +20,9 @@ for i in range(len(args)-1,-1,-1):
         del args[i]
 result = method(*args,**kwargs)
 if isinstance(result,basestring) or not hasattr(result,'next'):
-    if isinstance(result,basestring):
+    if not isinstance(result,list) and not isinstance(result,tuple):
 	result = [ result ]
-    print "\t".join(result)
+    print "\t".join(map(str,result))
 else:
     for r in result:
         if isinstance(r,basestring):

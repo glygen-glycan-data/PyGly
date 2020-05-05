@@ -363,8 +363,12 @@ class Monosaccharide(Node):
             return False
         if self._config == Config.missing:
             return False
+	if any(map(lambda c: c == Config.missing,self._config)):
+	    return False
         if self._stem == Stem.missing:
             return False
+	if any(map(lambda s: s == Stem.missing,self._stem)):
+	    return False
         if self._superclass == SuperClass.missing:
             return False
         if self._ring_start == None:
@@ -485,6 +489,7 @@ class Monosaccharide(Node):
         self._substituent_links.append(l)
 
     def remove_substituent_link(self, l):
+	l.child().del_parent_link(l)
         self._substituent_links.remove(l)
 
     def set_external_descriptor_id(self, eid):
@@ -518,7 +523,8 @@ class Monosaccharide(Node):
 	sl = self.substituents()
 	if len(sl) != 1:
 	    return False
-	return sl[0].isNAc()
+	s = iter(sl).next()
+	return s.isNAc()
 
     def has_non_nacetyl_substituents(self):
         for s in self.substituents():
@@ -962,13 +968,13 @@ class Linkage:
     def fully_determined(self):
         if not self._instantiated:
             return False
-        if self._parent_type == None:
+        if self._parent_type == None or len(self._parent_type) != 1:
 	    return False
-        if self._child_type == None:
+        if self._child_type == None or len(self._child_type) != 1:
             return False
-        if self._parent_pos == None:
+        if self._parent_pos == None or len(self._parent_pos) != 1:
             return False
-        if self._child_pos == None:
+        if self._child_pos == None or len(self._child_pos) != 1:
             return False
         return True
 

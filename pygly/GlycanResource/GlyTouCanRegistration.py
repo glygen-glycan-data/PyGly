@@ -1,7 +1,7 @@
 
-import sys, os.path
+import sys, os.path, traceback
 import urllib2
-import json
+import json, base64
 
 from GlycanResource import GlycanResource
 
@@ -49,12 +49,8 @@ class GlyTouCanRegistration(GlycanResource):
             apikey = self.apikey
         if user == None:
             user, apikey = self.getcredentials()
-        # print user,apikey
-        self.password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
-        self.password_mgr.add_password(None, self.apiendpt, user, apikey)
-        self.handler = urllib2.HTTPBasicAuthHandler(self.password_mgr)
-        # self.opener = urllib2.build_opener(self.handler,urllib2.HTTPSHandler(debuglevel=1),urllib2.HTTPHandler(debuglevel=1))
-        self.opener = urllib2.build_opener(self.handler)
+        self.opener = urllib2.build_opener(urllib2.HTTPSHandler(),urllib2.HTTPHandler())
+        self.basicauthhdr =  "Basic %s"%(base64.b64encode('%s:%s'%(user, apikey)),) 
 
     def register(self, sequence):
         params = json.dumps(dict(sequence=sequence))
@@ -62,11 +58,17 @@ class GlyTouCanRegistration(GlycanResource):
         req = urllib2.Request(self.apiendpt+'glycan/register', params)
         req.add_header('Content-Type', 'application/json')
         req.add_header('Accept', 'application/json')
+        req.add_header("Authorization", self.basicauthhdr)
         try:
             self.wait()
             response = json.loads(self.opener.open(req).read())
-            return response
+	    if response['status'] == '202':
+		return response['message']
+	    print response
+	    return None
+	except urllib2.HTTPError, e:
+	    print >>sys.stderr, str(e)
         except (ValueError, IOError), e:
-	    pass
+	    traceback.print_exc()
         return None
 
