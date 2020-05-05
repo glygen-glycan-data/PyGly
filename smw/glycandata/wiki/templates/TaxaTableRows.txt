@@ -2,7 +2,10 @@
 |- style="vertical-align: top;"
 ! style="width: 200px;" | {{{1}}}
 | {{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://identifiers.org/taxonomy/xxx xxx]</span>|,&thinsp;}} 
-| style="width: 150px;" | {{#switch:{{{3}}}
+| style="width: 150px;" | {{#if:{{{4}}}|{{#switch:{{{3}}}
 |UniCarbKB={{{3}}}:<span class="plainlinks">[http://unicarbkb.org/structure/{{{4}}} {{{4}}}]</span>
-|{{{3}}}}}
+|GlyTouCan={{{3}}}:<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/{{{4}}} {{{4}}}]</span>
+|GlyConnect={{{3}}}:<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/{{{4}}} {{{4}}}]</span>
+|GPTwiki={{{3}}}:<span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/gptwiki/{{{4}}} {{{4}}}]</span>
+|{{{3}}}:{{{4}}}}}|{{{3}}}}}
 </includeonly>
