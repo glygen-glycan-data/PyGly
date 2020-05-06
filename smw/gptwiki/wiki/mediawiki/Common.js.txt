@@ -11,6 +11,10 @@ function checkElement() {
     var msl = pot[0].getElementsByTagName("p");
     var msele = msl[msl.length - 1];
 
+    if (msele == undefined){
+        return
+    }
+
     var lastprecscan = "";
     for (var i in msele.innerText.split("\n")){
 
@@ -41,6 +45,8 @@ function checkElement() {
 }
 
 if (!( Object.keys(paraFromPage).length === 0 && paraFromPage.constructor === Object)){
+    injectResources();
+} else if (document.getElementById("msv_para").getAttribute("data-method_type") == "DIA"){
     injectResources();
 }
 
@@ -96,12 +102,11 @@ function loadSVG() {
     var spectra_folder = document.getElementById("msv_para").getAttribute("data-spectra");
     var showxic = document.getElementById("msv_para").getAttribute("data-showxic") || "true";
     var xicmmu = document.getElementById("msv_para").getAttribute("data-xicmmu") || "";
+    var method_type = document.getElementById("msv_para").getAttribute("data-method_type");
 
     // convert to boolean...
     showxic = (showxic.trim().toLowerCase() != "false");
-    if (xicmmu != "") {
-      xicmmu = "."+xicmmu;
-    }
+
 
     var showcycle = document.getElementById("msv_para").getAttribute("data-showcycle") || "false,true,true";
 
@@ -120,9 +125,26 @@ function loadSVG() {
         width: pot.clientWidth * 0.995,
         titleTag: "h3"
     };
+    if (method_type == "DIA"){
+        param0.graphtype = "multi-chromatogram";
+        var swatches = document.getElementsByClassName("swatch");
+        //var colors = ["#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494","#b3b3b3","#66c2a5","#808080","#fc8d62"];
+        for (var i=0;i<swatches.length;i++) {
+            swatches[i].style.backgroundColor = msmsv.MCColor(i);
+        }
+    }
 
     if (showxic) {
-        param0["title"] = ["XIC: m/z "+pmz];
+        var moreXICref = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/popups/xicpopup.html?spectra_folder=" + spectra_folder + "&peptideAcc=" + peptideAcc + "&charger=" + charger +  "&title=XIC%3A%20m%2Fz%20"+pmz + "&originPage=" + encodeURIComponent(window.location.href);
+        var tmpx;
+        if (xicmmu != "") {
+            tmpx = xicmmu
+            xicmmu = "."+xicmmu;
+        }
+        else {
+            tmpx = "50";
+        }
+        param0["title"] = "XIC: m/z " + pmz + " (<a target='_blank' href='" + moreXICref  + "'>"+tmpx+" mmu</a>)";
         param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + xicmmu + '.json';
         msmsv.addLabelledSpectrum('specpanel','chrom', param0);
     }
