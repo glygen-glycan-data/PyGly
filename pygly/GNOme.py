@@ -1430,6 +1430,9 @@ class OWLWriter():
     glytoucan_id_annotation_property = 22
     glytoucan_link_annotation_property = 23
 
+    structure_browser_link = 41
+    composition_browser_link = 42
+
     cbbutton_annotation_property = 101
 
     has_Byonic_name_annotation_property = 202
@@ -1681,6 +1684,23 @@ class OWLWriter():
         outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((cbbutton_node, rdfs.label, Literal("_widget_button_state")))
 
+        # Add AnnotationProperty quick access to the GNOme browser
+        has_structure_browser_node = self.gnouri(self.structure_browser_link)
+
+        outputGraph.add((has_structure_browser_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_structure_browser_node, rdfs.label, Literal("has_structure_browser_link")))
+        outputGraph.add((has_structure_browser_node, definition,
+                         Literal("The URL of GNOme structure browser entry for the indicated glycan.")))
+
+        has_composition_browser_node = self.gnouri(self.composition_browser_link)
+
+        outputGraph.add((has_composition_browser_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_composition_browser_node, rdfs.label, Literal("has_composition_browser_link")))
+        outputGraph.add((has_composition_browser_node, definition,
+                         Literal("The URL of GNOme composition browser entry for the indicated glycan.")))
+
+
+
         # Add AnnotationProperty for hasExactSynonym
         hasExactSynonym_node = oboInOwl["hasExactSynonym"]
 
@@ -1713,7 +1733,7 @@ class OWLWriter():
                          rdflib.URIRef("http://purl.obolibrary.org/obo/CHEBI_18154")))
 
         for n in self._nodes.values():
-            if n._nodeType != "molecularweight":
+            if not n.ismolecularweight():
                 rdfNode = self.gnouri(n.getID())
             else:
                 try:
@@ -1732,7 +1752,7 @@ class OWLWriter():
             else:
                 raise ValueError
 
-            if n._nodeType != "molecularweight":
+            if not n.ismolecularweight():
                 outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
                 outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
                 outputGraph.add((rdfNode, definition,
@@ -1764,7 +1784,12 @@ class OWLWriter():
             if cbbutton_str:
                 outputGraph.add((rdfNode, cbbutton_node, Literal(cbbutton_str)))
 
-
+            if not n.ismolecularweight():
+                if n.isbasecomposition() or n.iscomposition():
+                    outputGraph.add((rdfNode, has_composition_browser_node, URIRef(
+                        "https://raw.githack.com/glygen-glycan-data/GNOme/master/GNOme.compositionselector.html?focus=%s" % n.getID())))
+                outputGraph.add((rdfNode, has_structure_browser_node, URIRef(
+                    "https://raw.githack.com/glygen-glycan-data/GNOme/master/GNOme.browser.html?focus=%s" % n.getID())))
 
 
         for l in self.allRelationship():
@@ -1943,6 +1968,21 @@ class NormalNode:
 
         for sym in self._synonym:
             yield sym
+
+    def ismolecularweight(self):
+        return self._nodeType == "molecularweight"
+
+    def isbasecomposition(self):
+        return self._nodeType == "basecomposition"
+
+    def iscomposition(self):
+        return self._nodeType == "composition"
+
+    def istopology(self):
+        return self._nodeType == "topology"
+
+    def issaccharide(self):
+        return self._nodeType == "saccharide"
 
 
 
