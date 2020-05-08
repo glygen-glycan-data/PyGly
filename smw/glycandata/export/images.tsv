@@ -24573,6 +24573,8 @@ G21974VP	1366	cfg	extended	png
 G21974VP	6585	cfg	extended	svg
 G21974VP	1433	snfg	extended	png
 G21974VP	6603	snfg	extended	svg
+G21976AG	2096	cfg	extended	png
+G21976AG	2110	snfg	extended	png
 G21978PS	1262	cfg	extended	png
 G21978PS	15338	cfg	extended	svg
 G21978PS	1259	snfg	extended	png
@@ -85011,6 +85013,8 @@ G77329CN	4042	cfg	extended	png
 G77329CN	29873	cfg	extended	svg
 G77329CN	4089	snfg	extended	png
 G77329CN	29901	snfg	extended	svg
+G77338BR	2073	cfg	extended	png
+G77338BR	2087	snfg	extended	png
 G77339RV	2550	cfg	extended	png
 G77339RV	22421	cfg	extended	svg
 G77339RV	2632	snfg	extended	png
