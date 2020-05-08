@@ -8,7 +8,7 @@ parser = OptionParser()
 parser.add_option('-f','--format',type='choice',choices=['UCKBCOMP','SHORTUCKB'],default='UCKBCOMP',
                   dest='format')
 parser.add_option('-p','--position',type='int',default=None,dest='pos')
-parser.add_option('-d','--delim',type='string',default="\t",dest='delim')
+parser.add_option('-d','--delim',type='string',default=None,dest='delim')
 parser.add_option('-r','--require',type='string',default=None,dest='require')
 parser.add_option('-a','--all',action='store_true',default=False,dest='all')
 
@@ -18,26 +18,34 @@ if opt.pos != None:
 if opt.require:
     opt.require = re.compile(opt.require)
 
+if opt.delim == None:
+    outdelim = "\t"
+    indelim = None
+else:
+    outdelim = opt.delim
+    indelim = opt.delim
+
 keys = ['HexNAc','Hex','dHex','NeuAc','NeuGc','Pent','S','P','KDN','HexA']
 
 for l in sys.stdin:
+    l = l.strip()
     if opt.pos != None:
-	sl = l.split()
+	sl = l.split(indelim)
 	if len(sl) <= opt.pos:
 	    if opt.all:
-	        print opt.delim.join(sl)
+	        print outdelim.join(sl)
 	    continue
-	elif not opt.require.search(sl[opt.pos]):
+	elif opt.require and not opt.require.search(sl[opt.pos]):
 	    if opt.all:
-	        print opt.delim.join(sl)
+	        print outdelim.join(sl)
 	    continue
 	compstr = sl[opt.pos]
     else:
-	if not opt.require.search(l.strip()):
+	if opt.require and not opt.require.search(l):
 	    if opt.all:
-		print l.strip()
+		print l
 	    continue
-	compstr = l.strip()
+	compstr = l
     prefix = ""
     if compstr.startswith('comp_'):
 	prefix = 'comp_'
@@ -59,8 +67,8 @@ for l in sys.stdin:
     if prefix:
 	outstr = prefix + outstr;
     if opt.pos != None:
-	sl = l.split()
+	sl = l.split(indelim)
 	sl[opt.pos] = outstr
-	print opt.delim.join(sl)
+	print outdelim.join(sl)
     else:
         print outstr
