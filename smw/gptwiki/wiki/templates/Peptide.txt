@@ -6,6 +6,7 @@ It should be called in the following format:
 |id=
 |sequence=
 |mw=
+|nrt=
 |glycan=
 |mod=
 |transgroup=
@@ -19,7 +20,7 @@ Edit the page to see the template text.
 | {{{name|}}}
 |-
 ! Sequence
-| [[gptwiki:sequence::{{{sequence|}}}]]
+| [[gptwiki:sequence::{{{sequence|}}}]] ([https://edwardslab.bmcb.georgetown.edu/gptwikidev/index.php?title=Special:Ask&x=-5B-5BCategory%3APeptide-5D-5D-20-5B-5BGptwiki%3Asequence%3A%3A{{{sequence|}}}-5D-5D-20-5B-5BGptwiki%3Atransgroupcount%3A%3A%E2%89%A51-5D-5D%2F-3FGptwiki%3Asequence%3Dgptwiki%3Asequence%2F-3FGptwiki%3Aglycan.gptwiki%3Asym%3Dgptwiki%3Asym%2F-3FGptwiki%3Aglycan.gptwiki%3Anneuac%3Dgptwiki%3Anneuac%2F-3FGptwiki%3Anox%3Dgptwiki%3Anox%2F-3FGptwiki%3Anrt%3Dgptwiki%3Anrt%2F-3FGptwiki%3Anrtobs%3Dgptwiki%3Anrtobs%2F-3FGptwiki%3Atransgroupcount%3Dgptwiki%3Atransgroupcount&format=broadtable&limit=100&link=all&sort=Gptwiki%3Aglycan.gptwiki%3Anneuac%2CGptwiki%3Aglycan.gptwiki%3Asym%2CGptwiki%3Anox&headers=show&searchlabel=Peptide%20Norm.%20RT&class=sortable%20wikitable%20smwtable&offset=&mainlabel=&order=ASC%2CASC%2CASC NRT Modeling])
 |-
 ! Glycans(s)
 | {{#arraymap:{{{glycan|}}}|,|x|{{ShowGlycan|x}}}}
@@ -29,6 +30,9 @@ Edit the page to see the template text.
 |-
 ! Molecular Weight
 | [[gptwiki:mw::{{{mw|}}}]]
+|-
+! Norm. RT
+| [[gptwiki:nrt::{{{nrt|}}}]]{{#if:{{{nrt|}}}|&nbsp;({{{nrtobs|}}})|}}
 |-
 ! Protein
 | {{#ask:
@@ -58,6 +62,7 @@ Edit the page to see the template text.
 |?gptwiki:rt #-p3 =Exp. R.T. |+align=right 
 |?gptwiki:prt #-p3 =Peak R.T. |+align=right 
 |?gptwiki:nrt #-p3 =Norm. R.T. |+align=right 
+|?gptwiki:pepnrt =Pep. NRT? |+align=center
 |?gptwiki:mz1 #-p3 =Prec. m/z |+align=right 
 |?gptwiki:z1=Prec. z |+align=right 
 |?gptwiki:spectra.gptwiki:formethod=Method
@@ -72,6 +77,9 @@ Edit the page to see the template text.
 |format=count}}}}{{#set:|gptwiki:transitioncount={{#ask:
 [[Category:Transition]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
-|format=count}}}}
+|format=count}}}}{{#set:
+|gptwiki:nrtobs={{{nrtobs|}}}
+|gptwiki:nox={{{nox|}}}
+}}
 [[Category:Peptide]]
 </includeonly>

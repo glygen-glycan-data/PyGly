@@ -1,11 +1,12 @@
 {{Glycan
 |accession=G19517GM
+|class=N-Glycan
+|mw=2774.9996588
 |name=H5N6FS2
 HexNAc(6)Hex(5)Fuc(1)NeuAc(2)
 HexNAc(6)Hex(5)dHex(1)NeuAc(2)
+|nneuac=2
 |sym=H5N6FS2
-|mw=2774.9996588
 |topo=G52361YY
 |topo2=G34980LJ
-|class=N-Glycan
 }}

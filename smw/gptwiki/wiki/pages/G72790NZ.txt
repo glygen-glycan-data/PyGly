@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G72790NZ
+|class=N-Glycan
+|mw=1681.618721
 |name=H4N5
 HexNAc(5)Hex(4)
+|nneuac=0
 |sym=H4N5
-|mw=1681.618721
 |topo=G10386EL,G16377ZV,G36790JL
 |topo2=G06766RD,G09206KH,G35006ST,G36490QW,G69893LS,G88052AE,G92189KZ
-|class=N-Glycan
 }}

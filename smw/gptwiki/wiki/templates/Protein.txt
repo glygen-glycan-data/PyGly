@@ -38,6 +38,7 @@ Edit the page to see the template text.
 |?gptwiki:haspeptide.gptwiki:glycan.gptwiki:sym=Glycan
 |?gptwiki:site=Site
 |?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt. 
+|?gptwiki:haspeptide.gptwiki:nrt #-p3 = Norm. R.T.
 |?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
 |?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
 |sep=,&thinsp;

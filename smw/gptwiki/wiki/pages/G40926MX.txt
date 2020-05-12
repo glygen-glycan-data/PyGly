@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G40926MX
+|class=N-Glycan
+|mw=2296.8197843
 |name=H6N5S
 HexNAc(5)Hex(6)NeuAc(1)
+|nneuac=1
 |sym=H6N5S
-|mw=2296.8197843
 |topo=G08670FK,G82854VG
 |topo2=G62247MR,G62984HI,G85373AG
-|class=N-Glycan
 }}

@@ -1,0 +1,11 @@
+{{Acquisition
+|anfrac=ME000012
+|ansamp=HSPOOL.01
+|method=ME000005
+|name=MS_47_UO1_SERUM_DIA-15_prof
+|nrtintercept=12.73226507
+|nrtslope=0.40178061
+|sample=SA000001
+|type=DIA
+|xicmmu=50
+}}

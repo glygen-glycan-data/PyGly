@@ -10,7 +10,10 @@
 <th>Prod. z</th>
 <th>Label</th>
 <th>%Int</th>
+{{#ifeq:{{{5}}}|DIA|
+<th></th>
+|}}
 </tr>
-{{#arraymap:{{{4}}}|,|xxx|{{TransitionGroupTableRow|{{{1}}}|{{{2}}}|{{{3}}}|{{#explode:xxx|;|0}}|{{#explode:xxx|;|1}}}}|}}
+{{#arraymap:{{{4}}}|,|xxx|{{TransitionGroupTableRow|{{{1}}}|{{{2}}}|{{{3}}}|{{#explode:xxx|;|0}}|{{#explode:xxx|;|1}}|{{{5}}}}}|}}
 </table>
 </includeonly>

@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G60033FS
+|class=N-Glycan
+|mw=2005.72436873
 |name=H6N5
 A3G3
 HexNAc(5)Hex(6)
+|nneuac=0
 |sym=H6N5
-|mw=2005.72436873 
 |topo=G49778TF
-|class=N-Glycan
 }}

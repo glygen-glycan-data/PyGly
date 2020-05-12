@@ -1,0 +1,6 @@
+{{Acquisition
+|anfrac=ME000004
+|method=ME000001
+|name=MS_48_UO1_Erlic_W13
+|sample=SA000001
+}}

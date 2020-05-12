@@ -1,9 +1,10 @@
 {{Glycan
 |accession=G11115RO
+|class=N-Glycan
+|mw=3535.23823
 |name=H7N6S4
 HexNAc(6)Hex(7)NeuAc(4)
+|nneuac=4
 |sym=H7N6S4
-|mw=3535.23823 
 |topo=G16933RK
-|class=N-Glycan
 }}

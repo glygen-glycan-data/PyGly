@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G59540CB
+|class=N-Glycan
+|mw=2014.7610877
 |name=H3N6F2
 HexNAc(6)Hex(3)Fuc(2)
 HexNAc(6)Hex(3)dHex(2)
+|nneuac=0
 |sym=H3N6F2
-|mw=2014.7610877
 |topo=G21212XH,G66307RE,G95001AQ
-|class=N-Glycan
 }}

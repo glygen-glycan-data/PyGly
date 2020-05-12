@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G10486CT
+|class=N-Glycan
+|mw=1640.59217262
 |name=H5N4
 A2G2
 HexNAc(4)Hex(5)
+|nneuac=0
 |sym=H5N4
-|mw=1640.59217262
 |topo=G17434DR,G19890MT
-|class=N-Glycan
 }}

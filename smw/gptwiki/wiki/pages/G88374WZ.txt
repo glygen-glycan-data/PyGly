@@ -1,12 +1,13 @@
 {{Glycan
 |accession=G88374WZ
+|class=N-Glycan
+|mw=2368.84091476
 |name=H5N4FS2
 A2G2F1S2
 FA2G2S2
 HexNAc(4)Hex(5)Fuc(1)NeuAc(2)
 HexNAc(4)Hex(5)dHex(1)NeuAc(2)
+|nneuac=2
 |sym=H5N4FS2
-|mw=2368.84091476
 |topo=G59973UJ,G69616RY
-|class=N-Glycan
 }}

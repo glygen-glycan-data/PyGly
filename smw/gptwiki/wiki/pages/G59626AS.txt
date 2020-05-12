@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G59626AS
+|class=N-Glycan
+|mw=1931.68758926
 |name=H5N4S
 A2G2S1
 HexNAc(4)Hex(5)NeuAc(1)
+|nneuac=1
 |sym=H5N4S
-|mw=1931.68758926
 |topo=G37427AX
-|class=N-Glycan
 }}

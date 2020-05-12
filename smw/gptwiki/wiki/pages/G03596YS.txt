@@ -1,0 +1,13 @@
+{{Glycan
+|accession=G03596YS
+|class=N-Glycan
+|mw=2588.9356019 
+|name=H6N5F2S
+FA3G3F1S1
+A3G3F2S1
+HexNAc(5)Hex(6)dHex(2)NeuAc(1)
+HexNAc(5)Hex(6)Fuc(2)NeuAc(1)
+|nneuac=1
+|sym=H6N5F2S
+|topo=G03576JS
+}}

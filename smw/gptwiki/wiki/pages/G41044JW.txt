@@ -1,11 +1,12 @@
 {{Glycan
 |accession=G41044JW
+|class=N-Glycan
+|mw=3390.2007221
 |name=H7N6FS3
 HexNAc(6)Hex(7)Fuc(1)NeuAc(3)
 HexNAc(6)Hex(7)dHex(1)NeuAc(3)
+|nneuac=3
 |sym=H7N6FS3
-|mw=3390.2007221
 |topo=G12171MV,G75546AX,G75714OL
 |topo2=G20100CF,G78371ER
-|class=N-Glycan
 }}

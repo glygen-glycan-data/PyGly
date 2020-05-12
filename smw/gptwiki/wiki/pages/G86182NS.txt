@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G86182NS
+|class=N-Glycan
+|mw=1972.7141375
 |name=H4N5S
 HexNAc(5)Hex(4)NeuAc(1)
+|nneuac=1
 |sym=H4N5S
-|mw=1972.7141375 
 |topo=G02635WB,G31213WS
 |topo2=G08351JQ,G16650VJ
-|class=N-Glycan
 }}

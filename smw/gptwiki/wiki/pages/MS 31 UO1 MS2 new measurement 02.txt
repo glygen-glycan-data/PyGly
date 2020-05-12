@@ -1,6 +1,9 @@
 {{Acquisition
+|anfrac=ME000012
 |ansamp=HSPOOL.01
 |method=ME000001
 |name=MS_31_UO1_MS2_new_measurement_02
+|nrtintercept=9.44082574
+|nrtslope=0.38431499
 |sample=SA000001
 }}

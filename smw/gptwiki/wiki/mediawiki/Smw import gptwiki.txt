@@ -2,12 +2,15 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  id|Type:Text
  mw|Type:Number
  name|Type:Text
+ type|Type:Text
  sym|Type:Text
  class|Type:Text
  label|Type:Text
  Glycan|Category
  Peptide|Category
  sequence|Type:Text
+ nneuac|Type:Number
+ nox|Type:Number
  site|Type:Text
  sitepos|Type:Number
  glycan|Type:Page
@@ -36,6 +39,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  rt|type:Number
  prt|Type:Number
  nrt|Type:Number
+ nrtobs|Type:Number
  mz1|Type:Number
  z1|Type:Number
  mz2|Type:Number
@@ -43,6 +47,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  forpeptide|Type:Page
  TransitionGroup|Category
  relintensity|Type:Number
+ pepnrt|Type:Text
  transition|Type:Page
  hastransition|Type:Record
  formethod|Type:Page
@@ -55,9 +60,10 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  Method|Category
  Sample|Category
  Acquisition|Category
- analfraction|Type:Text
+ analfraction|Type:Page
  analsample|Type:Text
  hasxics|Type:Text
  showcycle|Type:Text
+ xicmmu|Type:Number
 
 [[Category:Imported vocabulary]]

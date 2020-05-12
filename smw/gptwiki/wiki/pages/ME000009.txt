@@ -1,0 +1,2 @@
+Analysis of Immunoglobulin heavy constant mu ({{LinkedName|P01871}}) protein standard. 
+{{Method|IGHM Protein Standard}}

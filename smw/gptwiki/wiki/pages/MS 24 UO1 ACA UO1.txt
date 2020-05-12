@@ -1,7 +1,9 @@
 {{Acquisition
-|anfrac=SERPINA3 protein standard
+|anfrac=ME000007
 |ansamp=SERPINA3.01
 |method=ME000002
 |name=MS_24_UO1_ACA_UO1
+|nrtintercept=18.61275495
+|nrtslope=0.38516270
 |sample=SA000001
 }}

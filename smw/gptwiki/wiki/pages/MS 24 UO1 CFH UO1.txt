@@ -1,7 +1,9 @@
 {{Acquisition
-|anfrac=CFH protein standard
+|anfrac=ME000008
 |ansamp=CFH.01
 |method=ME000002
 |name=MS_24_UO1_CFH_UO1
+|nrtintercept=17.67013687
+|nrtslope=0.40267389
 |sample=SA000001
 }}

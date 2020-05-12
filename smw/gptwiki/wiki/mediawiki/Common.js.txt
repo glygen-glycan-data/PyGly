@@ -104,6 +104,9 @@ function loadSVG() {
     var xicmmu = document.getElementById("msv_para").getAttribute("data-xicmmu") || "";
     var method_type = document.getElementById("msv_para").getAttribute("data-method_type");
 
+    var rt = document.getElementById("msv_para").getAttribute("data-rt");
+    var rt_range = document.getElementById("msv_para").getAttribute("data-rtrange");
+
     // convert to boolean...
     showxic = (showxic.trim().toLowerCase() != "false");
 
@@ -131,6 +134,16 @@ function loadSVG() {
         //var colors = ["#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494","#b3b3b3","#66c2a5","#808080","#fc8d62"];
         for (var i=0;i<swatches.length;i++) {
             swatches[i].style.backgroundColor = msmsv.MCColor(i);
+            swatches[i].setAttribute("data-index", i)
+            swatches[i].onclick = function () {
+                var i = this.getAttribute("data-index");
+                if (document.getElementById("specpanel-chrom-chromatogram-" + i).getAttribute("visibility") == "hidden"){
+                    document.getElementById("specpanel-chrom-chromatogram-" + i).setAttribute("visibility", "visible")
+                }
+                else{
+                    document.getElementById("specpanel-chrom-chromatogram-" + i).setAttribute("visibility", "hidden")
+                }
+            }
         }
     }
 
@@ -144,8 +157,18 @@ function loadSVG() {
         else {
             tmpx = "50";
         }
-        param0["title"] = "XIC: m/z " + pmz + " (<a target='_blank' href='" + moreXICref  + "'>"+tmpx+" mmu</a>)";
+
+        if (rt != undefined && rt_range != undefined){
+            param0["range_start"] = parseInt(rt) - parseInt(rt_range);
+            param0["range_end"] = parseInt(rt) + parseInt(rt_range);
+        }
+        if (method_type == "DIA"){
+            param0["title"] = "XIC: m/z " + pmz + " ("+tmpx+" mmu)";
+        } else {
+            param0["title"] = "XIC: m/z " + pmz + " (<a target='_blank' href='" + moreXICref  + "'>"+tmpx+" mmu</a>)";
+        }
         param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + xicmmu + '.json';
+
         msmsv.addLabelledSpectrum('specpanel','chrom', param0);
     }
 

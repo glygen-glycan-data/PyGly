@@ -5,4 +5,4 @@ Strong anion exchange chromatography using ERLIC (Totten et al., 2017) (SAX-ERLI
 
 Totten SM, Feasley CL, Bermudez A, Pitteri SJ. [https://dx.doi.org/10.1021/acs.jproteome.6b00849 Parallel Comparison of N-Linked Glycopeptide Enrichment Techniques Reveals Extensive Glycoproteomic Analysis of Plasma Enabled by SAX-ERLIC]. J Proteome Res. 2017 Mar 3;16(3):1249-1260. Epub 2017 Feb 15
 
-{{Method|SAX-ERLICH Glycopeptide Enrichment}}
+{{Method|SAX-ERLICH Enrichment}}

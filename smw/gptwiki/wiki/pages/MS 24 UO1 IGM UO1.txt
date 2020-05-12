@@ -1,7 +1,9 @@
 {{Acquisition
-|anfrac=IGM protein standard
+|anfrac=ME000009
 |ansamp=IGM.01
 |method=ME000002
 |name=MS_24_UO1_IGM_UO1
+|nrtintercept=16.77405080
+|nrtslope=0.42029713
 |sample=SA000001
 }}

@@ -1,0 +1,12 @@
+{{Glycan
+|accession=G43005HM
+|class=N-Glycan
+|mw=2660.9567313
+|name=H5N4F3S2
+FA2G2F2S2
+HexNAc(4)Hex(5)Fuc(3)NeuAc(2)
+HexNAc(4)Hex(5)dHex(3)NeuAc(2)
+|nneuac=2
+|sym=H5N4F3S2
+|topo=G36509PF
+}}

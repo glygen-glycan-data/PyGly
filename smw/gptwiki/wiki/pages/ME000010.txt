@@ -1,0 +1,2 @@
+Analysis of Alpha-2-HS-glycoprotein ({{LinkedName|P02765}}) protein standard. 
+{{Method|AHSG Protein Standard}}

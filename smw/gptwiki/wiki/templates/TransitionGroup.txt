@@ -9,6 +9,7 @@ It should be called in the following format:
 |prt=
 |peptide=
 |rt=
+|pepnrt=
 |scans=
 |spectra=
 |z1=
@@ -24,7 +25,7 @@ Edit the page to see the template text.
 | {{#show:{{{peptide|}}}|?gptwiki:sequence}}
 |-
 ! Glycans(s)
-| {{#show:{{{peptide|}}}|?gptwiki:hasglycan}}
+| {{ShowGlycan|{{#show:{{{peptide|}}}|?gptwiki:hasglycan|+index=1|link=none}};{{#show:{{{peptide|}}}|?gptwiki:hasglycan|+index=2|link=none}}}}
 |-
 ! Mod(s)
 | {{#show:{{{peptide|}}}|?gptwiki:hasmod}}
@@ -63,7 +64,7 @@ Edit the page to see the template text.
 
 == Transitions ==
 
-{{TransitionGroupTable|{{{rt|}}}|{{{prt|}}}|{{{nrt|}}}|{{{transitions|}}}}}
+{{TransitionGroupTable|{{{rt|}}}|{{{prt|}}}|{{{nrt|}}}|{{{transitions|}}}|{{#show:{{{spectra|}}}|?gptwiki:type}}}}
 == Spectra ==
 <div id="viewer-data">
 {{#arraymap:{{{scans|}}}|,|x|x|<br/>}}
@@ -77,8 +78,9 @@ Edit the page to see the template text.
 |gptwiki:z1={{{z1|}}}
 |gptwiki:forpeptide={{{peptide|}}}
 |gptwiki:id={{PAGENAME}}
+|gptwiki:pepnrt={{{pepnrt|}}}
 |gptwiki:transitioncount={{#ask:[[Category:Transition]][[-gptwiki:transition::{{PAGENAME}}]]|format=count}}
 }}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}
 [[Category:TransitionGroup]]
-<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-spectra="{{{spectra|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}" data-xicmmu="10" data-showcycle="{{#show:{{{spectra|}}}|?gptwiki:showcycle}}"></div>
+<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-rt="{{{prt|{{{rt|}}}}}}" data-rtrange="5" data-spectra="{{{spectra|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}" data-xicmmu="{{#show:{{{spectra|}}}|?gptwiki:xicmmu}}" data-showcycle="{{#show:{{{spectra|}}}|?gptwiki:showcycle}}" data-method_type="{{#show:{{{spectra|}}}|?gptwiki:type}}"></div>
 </includeonly>

@@ -2,6 +2,9 @@
 {{#ask:
 [[Category:Acquisition]]
 [[gptwiki:formethod::{{PAGENAME}}]]
+OR
+[[Category:Acquisition]]
+[[gptwiki:analfraction::{{PAGENAME}}]]
 |?gptwiki:forsample=Sample
 |?=Spectrum File
 |mainlabel=-

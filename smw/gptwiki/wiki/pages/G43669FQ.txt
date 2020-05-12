@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G43669FQ
+|class=N-Glycan
+|mw=2370.8565638
 |name=H7N6
 HexNAc(6)Hex(7)
+|nneuac=0
 |sym=H7N6
-|mw=2370.8565638
 |topo=G19124GC
 |topo2=G09437GG,G40695PW,G46636GN,G84173AH,G89535FF
-|class=N-Glycan
 }}

@@ -4,4 +4,5 @@
 |name=IgG_Glycopeptide_HCD_V1.E20
 |sample=SA000003
 |showcycle=true,true
+|type=LIB
 }}

@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G06247RL
+|class=N-Glycan
+|mw=2879.01061863
 |name=H6N5S3
 A3G3S3
 HexNAc(5)Hex(6)NeuAc(3)
+|nneuac=3
 |sym=H6N5S3
-|mw=2879.01061863
 |topo=G67579EM
-|class=N-Glycan
 }}

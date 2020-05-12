@@ -1,0 +1,8 @@
+{{Acquisition
+|anfrac=ME000004
+|method=ME000001
+|name=MS_48_UO1_Erlic_W7
+|nrtintercept=18.13472200
+|nrtslope=0.35609129
+|sample=SA000001
+}}

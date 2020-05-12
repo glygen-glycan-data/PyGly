@@ -11,6 +11,7 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
+<span class="plainlinks" style="float: right;">[https://glytoucan.org/Structures/Glycans/{{{accession}}} <img style="padding-right: 300px" src="http://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/LV9HnLIDjc/images/cfg/compact/png/{{{accession}}}.png">]</span>
 {| class="wikitable" style="width=100%" 
 ! style="width=200px" | Name(s)
 | style="width=100%" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
@@ -21,9 +22,9 @@ Edit the page to see the template text.
 ! style="width=200px" | Class(es)
 | style="width=100%" | {{#arraymap:{{{class|}}}|,|x|[[gptwiki:class::x]]}}
 |-
-! style="width=200px" | GlyTouCan
+! style="width=200px" | GlyGen
 | style="width=100%" |
-[https://glytoucan.org/Structures/Glycans/{{{accession}}} {{{accession}}}]
+[https://glygen.org/glycan/{{{accession}}} {{{accession}}}]
 |}
 
 == Topologies ==
@@ -38,6 +39,7 @@ Edit the page to see the template text.
 |?gptwiki:haspeptide=
 |?gptwiki:haspeptide.gptwiki:name=Peptide
 |?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt.
+|?gptwiki:haspeptide.gptwiki:nrt#-p3 =Norm. R.T.
 |?gptwiki:hasprotein=Protein
 |?gptwiki:site=Site
 |?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
@@ -52,6 +54,8 @@ Edit the page to see the template text.
 [[Category:Peptide]]
 [[gptwiki:hasglycan::{{PAGENAME}};?]]
 [[gptwiki:transgroupcount::>1]]
-|format=count}}}}
+|format=count}}}}{{#set:
+|gptwiki:nneuac={{{nneuac|}}}
+}}
 [[Category:Glycan]]
 </includeonly>

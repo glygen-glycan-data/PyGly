@@ -1,11 +1,12 @@
 {{Glycan
 |accession=G55216FT
+|class=N-Glycan
+|mw=2882.0466685
 |name=H8N7F
 HexNAc(7)Hex(8)Fuc(1)
 HexNAc(7)Hex(8)dHex(1)
+|nneuac=0
 |sym=H8N7F
-|mw=2882.0466685
 |topo=G49301DO
 |topo2=G03922SR,G46777UE,G75975VG,G82050CF,G85765IR,G87545DU
-|class=N-Glycan
 }}

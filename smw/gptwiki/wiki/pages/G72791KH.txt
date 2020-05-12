@@ -1,11 +1,12 @@
 {{Glycan
 |accession=G72791KH
+|class=N-Glycan
+|mw=1712.6133013
 |name=H4N3FS
 HexNAc(3)Hex(4)Fuc(1)NeuAc(1)
 HexNAc(3)Hex(4)dHex(1)NeuAc(1)
+|nneuac=1
 |sym=H4N3FS
-|mw=1712.6133013
 |topo=G09723NO,G15921HT
 |topo2=G38714AE,G61849TH,G80088VB
-|class=N-Glycan
 }}

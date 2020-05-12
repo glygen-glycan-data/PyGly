@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G90734RJ
+|class=N-Glycan
+|mw=1607.5819416
 |name=H3N4S
 HexNAc(4)Hex(3)NeuAc(1)
+|nneuac=1
 |sym=H3N4S
-|mw=1607.5819416
 |topo=G29465YD
 |topo2=G11218TW
-|class=N-Glycan
 }}

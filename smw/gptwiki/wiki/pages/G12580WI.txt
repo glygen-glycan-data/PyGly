@@ -1,11 +1,12 @@
 {{Glycan
 |accession=G12580WI
+|class=N-Glycan
+|mw=2280.8248697
 |name=H5N5FS
 HexNAc(5)Hex(5)Fuc(1)NeuAc(1)
 HexNAc(5)Hex(5)dHex(1)NeuAc(1)
+|nneuac=1
 |sym=H5N5FS
-|mw=2280.8248697
 |topo=G66601QV,G13839OT,G31502EE
 |topo2=G07804PO,G28907RL,G63481MM,G96835FW,G98098ZY,G99663MH
-|class=N-Glycan
 }}

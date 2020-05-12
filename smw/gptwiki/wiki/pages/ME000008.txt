@@ -1,0 +1,2 @@
+Analysis of Complement factor H ({{LinkedName|P08603}}) protein standard. 
+{{Method|CFH Protein Standard}}

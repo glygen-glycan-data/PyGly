@@ -9,5 +9,8 @@
 <td align="right">{{#show: {{{4}}} |? gptwiki:z2 }}+</td>
 <td>{{#show: {{{4}}} |? gptwiki:label }}</td>
 <td align="right">{{{5}}}</td>
+{{#ifeq:{{{6}}}|DIA|
+<td align="center"><span class="swatch" style="cursor: pointer;">&emsp;</span></td>
+|}}
 </tr>
 </includeonly>

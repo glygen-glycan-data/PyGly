@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G49018RC
+|class=N-Glycan
+|mw=1964.6978187
 |name=H7N4
 HexNAc(4)Hex(7)
+|nneuac=0
 |sym=H7N4
-|mw=1964.6978187
 |topo=G09759ZB,G37208JV
 |topo2=G01361JC,G48017SR,G73120XV
-|class=N-Glycan
 }}

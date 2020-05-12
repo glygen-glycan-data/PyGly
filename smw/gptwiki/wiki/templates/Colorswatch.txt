@@ -1,0 +1,1 @@
+<span class="swatch" style="display:inline-block;width:1em;height:1em;background:{{{1}}};">&emsp;</span>

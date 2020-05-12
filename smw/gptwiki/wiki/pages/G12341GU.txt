@@ -1,9 +1,10 @@
 {{Glycan
 |accession=G12341GU
+|class=N-Glycan
+|mw=3027.0841762
 |name=H8N7S
 HexNAc(7)Hex(8)NeuAc(1)
+|nneuac=1
 |sym=H8N7S
-|mw=3027.0841762
 |topo=G11121QU,G80874WH,G94679DO
-|class=N-Glycan
 }}

@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G28541PG
+|class=N-Glycan
+|mw=1599.5656228
 |name=H6N3
 HexNAc(3)Hex(6)
+|nneuac=0
 |sym=H6N3
-|mw=1599.5656228
 |topo=G03042JU,G22691IW,G89326DO
 |topo2=G15399CV,G28185RI,G34259ZA,G48690MB,G62229FK,G93546EO,G76734QY
-|class=N-Glycan
 }}

@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G77338BR
+|class=N-Glycan
+|mw=2896.0259331 
+|name=H7N5FS2
+HexNAc(5)Hex(7)dHex(1)NeuAc(2)
+HexNAc(5)Hex(7)Fuc(1)NeuAc(2)
+|nneuac=2
+|sym=H7N5FS2
+|topo=G06291FA,G38448UQ
+}}

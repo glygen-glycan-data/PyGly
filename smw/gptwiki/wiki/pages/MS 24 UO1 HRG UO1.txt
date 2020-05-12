@@ -1,5 +1,5 @@
 {{Acquisition
-|anfrac=HRG protein standard
+|anfrac=ME000011
 |ansamp=HRG.01
 |method=ME000002
 |name=MS_24_UO1_HRG_UO1

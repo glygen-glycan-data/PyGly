@@ -1,11 +1,12 @@
 {{Glycan
 |accession=G40664HB
+|class=N-Glycan
+|mw=2061.7505826
 |name=H4N4F2S
 HexNAc(4)Hex(4)Fuc(2)NeuAc(1)
 HexNAc(4)Hex(4)dHex(2)NeuAc(1)
+|nneuac=1
 |sym=H4N4F2S
-|mw=2061.7505826
 |topo=G02913ED,G18654BS,G31467VP,G49201II
 |topo2=G02460JI,G52236QQ
-|class=N-Glycan
 }}

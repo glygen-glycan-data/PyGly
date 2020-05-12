@@ -14,3 +14,35 @@
  |limit=0
  |searchlabel=Generate TransitionGroup Dump Table
 }}
+
+{{#ask: [[Category:TransitionGroup]]
+[[gptwiki:forpeptide.gptwiki:transgroupcount::>2]]
+ |?Gptwiki:spectra=Spectra
+ |?gptwiki:forpeptide.gptwiki:id=PeptideID
+ |?Gptwiki:rt=ExpRT
+ |?Gptwiki:prt=PeakRT
+ |?Gptwiki:nrt=NormRT
+ |?Gptwiki:mz1=PrecMZ
+ |?Gptwiki:z1=PrecZ
+ |format=table
+ |limit=0
+ |link=all
+ |sort=gptwiki:forpeptide.gptwiki:id
+ |headers=show
+ |searchlabel=TransitionGroup Dump Table II
+ |class=sortable wikitable smwtable
+ |sep=,
+}}
+
+{{#ask: [[Category:Peptide]] [[Gptwiki:nrt::+]]
+ |?Gptwiki:sequence=gptwiki:sequence
+ |?Gptwiki:glycan.gptwiki:sym=gptwiki:sym
+ |?Gptwiki:nrt=gptwiki:nrt
+ |format=broadtable
+ |limit=0
+ |link=all
+ |sort=gptwiki:sequence, gptwiki:nrt
+ |headers=show
+ |searchlabel=Peptide Norm. RT
+ |class=sortable wikitable smwtable
+}}

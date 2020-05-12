@@ -1,0 +1,12 @@
+{{Glycan
+|accession=G25079LO
+|class=N-Glycan
+|mw=1884.6980935
+|name=H4N6
+A4G1
+A3BG1
+HexNAc(6)Hex(4)
+|nneuac=0
+|sym=H4N6
+|topo=G97947KM,G53618DZ,G23076XS
+}}

@@ -1,10 +1,11 @@
 {{Glycan
 |accession=G08578KJ
+|class=N-Glycan
+|mw=3450.258237
 |name=H9N9F
 HexNAc(9)Hex(9)Fuc(1)
 HexNAc(9)Hex(9)dHex(1)
+|nneuac=0
 |sym=H9N9F
-|mw=3450.258237
 |topo=G99347WY
-|class=N-Glycan
 }}

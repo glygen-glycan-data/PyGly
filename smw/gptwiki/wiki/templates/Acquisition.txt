@@ -6,8 +6,11 @@ It should be called in the following format:
 |name=
 |sample=
 |method=
+|type=
 |anfrac=
 |ansamp=
+|nrtslope=
+|nrtintercept=
 }}
 </pre>
 Edit the page to see the template text.
@@ -16,14 +19,16 @@ Edit the page to see the template text.
 ! Sample
 | {{LinkedName|{{{sample|}}}}}
 |-
-! Analytical Sample ID
-| [[gptwiki:analsample::{{{ansamp|}}}]]
-|-
 ! Analytical Fraction
-| [[gptwiki:analfraction::{{{anfrac|}}}]]
+| {{#if:{{{anfrac|}}}|{{LinkedName|{{{anfrac|}}}}}|}}
 |-
 ! Method
 | {{LinkedName|{{{method|}}}}}
+|-
+{{#if:{{{nrtslope|}}}|
+! LC Calibration
+{{!}} Norm. R.T. = {{#expr: 1/{{{nrtslope}}} round 2}} Peak R.T. - {{#expr: {{{nrtintercept}}}/{{{nrtslope}}} round 2}} 
+|}}
 |}
 
 == Transition Groups ==
@@ -31,6 +36,7 @@ Edit the page to see the template text.
 [[Category:TransitionGroup]]
 [[gptwiki:spectra::{{{name|}}}]]
 |?gptwiki:rt #-p3 = Exp. R.T. |+align=right 
+|?gptwiki:prt #-p3 =Peak R.T. |+align=right 
 |?gptwiki:nrt #-p3 =Norm. R.T. |+align=right 
 |?gptwiki:mz1 #-p3 =Prec. m/z |+align=right 
 |?gptwiki:z1=Prec. z |+align=right 
@@ -40,5 +46,5 @@ Edit the page to see the template text.
 |sort=gptwiki:rt
 }}
 
-{{#set:|gptwiki:name={{{name|}}}|gptwiki:hasxics={{{hasxics|}}}|gptwiki:showcycle={{{showcycle|}}}}}{{#set:|gptwiki:formethod={{{method|}}}}}{{#set:|gptwiki:forsample={{{sample|}}}}}
+{{#set:|gptwiki:name={{{name|}}}|gptwiki:analfraction={{{anfrac|}}}|gptwiki:type={{{type|DDA}}}|gptwiki:xicmmu={{{xicmmu|10}}}|gptwiki:hasxics={{{hasxics|}}}|gptwiki:showcycle={{{showcycle|}}}}}{{#set:|gptwiki:formethod={{{method|}}}}}{{#set:|gptwiki:forsample={{{sample|}}}}}
 [[Category:Acquisition]]

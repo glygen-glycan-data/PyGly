@@ -1,0 +1,2 @@
+Analysis of Histidine-rich glycoprotein ({{LinkedName|P04196}}) protein standard. 
+{{Method|HRG Protein Standard}}

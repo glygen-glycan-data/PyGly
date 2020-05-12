@@ -1,0 +1,2 @@
+Analysis of Alpha-1-antichymotrypsin ({{LinkedName|P01011}}) protein standard. 
+{{Method|SERPINA3 Protein Standard}}

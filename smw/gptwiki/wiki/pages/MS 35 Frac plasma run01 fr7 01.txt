@@ -1,0 +1,9 @@
+{{Acquisition
+|anfrac=ME000004
+|ansamp=HSPOOL.01
+|method=ME000001
+|name=MS_35_Frac_plasma_run01_fr7_01
+|nrtintercept=12.25757652
+|nrtslope=0.40445429
+|sample=SA000001
+}}
