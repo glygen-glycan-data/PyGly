@@ -29,25 +29,33 @@ opts,args = parser.parse_args()
 
 if opts.cachefile and os.path.exists(opts.cachefile):
     data = json.loads(open(opts.cachefile).read())
-    rows = data['rows']
+    tgrows = data['tgrows']
+    peprows = data['peprows']
     tgs = data['tgs']
     origpepnrt = data['pepnrt']
 else:
     monos = "NHFS"
     tgs = dict()
     origpepnrt = dict()
-    rows = []
+    tgrows = []
+    peprows = []
+    pepseen = set()
     w = GPTWiki(quiet=True)
     for tg in w.itertransgroups():
+        specname = tg.get('spectra')
+        spec = w.get(specname)
+	if spec.get('type',"DDA") != "DDA":
+	    continue
         pepid = tg.get('peptide')
         p = w.get(pepid)
         pepacc = p.get('id')
         pepseq = p.get('sequence')
         pepname = p.get('name')
         pepnrt = p.get('nrt')
-        if not tg.has('nrt'):
-	    continue
-        nrt = float(tg.get('nrt'))
+	pepnrtobs = int(p.get('nrtobs',0))
+	if pepnrtobs == 0:
+	    pepnrt = None
+        nrt = tg.get('nrt')
         glyacc = p.get('glycan')[0][0]
         g = w.get(glyacc)
         gsym = g.get('sym')
@@ -61,14 +69,18 @@ else:
 	        mcnt[mono] = 1
         mcnt['Total'] = sum(mcnt.values())
         mcnt['Ox'] = min(pepname.count('[Ox]'),1)
-        rows.append((tg.get('id'),pepid,pepseq,gsym,mcnt,nrt))
-        tgs[tg.get('id')] = dict(pepseq=pepseq,pepid=pepid)
-	if pepnrt != None:
-            origpepnrt[pepid] = float(pepnrt)
+	if pepid not in pepseen:
+	    peprows.append((pepid,pepseq,gsym,mcnt,pepnrt))
+	    pepseen.add(pepid)
+	    if pepnrt != None:
+                origpepnrt[pepid] = float(pepnrt)
+        if nrt != None:
+            tgrows.append((tg.get('id'),pepid,pepseq,gsym,mcnt,float(nrt)))
+            tgs[tg.get('id')] = dict(pepseq=pepseq,pepid=pepid)
 
     if opts.cachefile:
         h = open(opts.cachefile,'w')
-        h.write(json.dumps({'rows': rows, 'tgs': tgs, 'pepnrt': origpepnrt}))
+        h.write(json.dumps({'tgrows': tgrows, 'peprows': peprows, 'tgs': tgs, 'pepnrt': origpepnrt}))
         h.close()
     
 pepseqcount = 0
@@ -77,7 +89,7 @@ rowcount = 0
 maxmcnt = defaultdict(int)
 minmcnt = defaultdict(lambda: 1e+20)
 monos = ("S","Ox")
-for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
+for tgid,pepid,pepseq,gsym,mcnt,nrt in tgrows:
     if pepseq not in pepseqindex:
         pepseqindex[pepseq] = pepseqcount
         pepseqcount += 1
@@ -121,7 +133,7 @@ def choosebad(goodresid):
 	if abs(resid) > opts.thresh:
 	    tgids.append(tgid)
 	    values.append(abs(resid))
-    values = array(values)/sum(values)
+    values = np.array(values)/sum(values)
     if len(tgids) == 0:
 	return set()
     if opts.heuristic == "uniform":
@@ -168,7 +180,7 @@ def status(iteration,badtg,newgoodtg,newbadtg,goodresid,beta):
     for mono in monos:
         for i in range(1,maxmcnt[mono]+1):
             print "%s%d:%.2f"%(mono,i,beta[monoindex[(mono,i)]],),
-    rms = np.sqrt(np.mean(array(goodresid.values())**2))
+    rms = np.sqrt(np.mean(np.array(goodresid.values())**2))
     print "#:%+.2f"%(beta[totalindex],),"RMS:%.2f"%(rms),
    
     pepseqcounts = {}
@@ -217,7 +229,7 @@ def tgregress(badtg,beta=None):
     badtgids  = []
     a0rowindex = 0
     a1rowindex = 0
-    for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
+    for tgid,pepid,pepseq,gsym,mcnt,nrt in tgrows:
 	if tgid in goodtg:
 	    for j,v in getvalues(pepseq,mcnt):
 	        A0[a0rowindex,j] = v
@@ -233,7 +245,7 @@ def tgregress(badtg,beta=None):
     
     returnbeta=False
     if isinstance(beta,type(None)):
-        beta = linalg.lstsq(A0,nrtvec0,rcond=None)[0]
+        beta = linalg.lstsq(A0,nrtvec0,rcond=1e-15)[0]
 	returnbeta = True
     nrtfit0 = A0.dot(beta)
     goodresid = dict(zip(goodtgids,(nrtvec0-nrtfit0)))
@@ -244,32 +256,36 @@ def tgregress(badtg,beta=None):
     else:
         return goodresid,badresid
 
-def pepregress(pepids,beta,nrts):
+def pepregress(pepids,beta,nrts=None):
     A = zeros(shape=(len(pepids),totalcols))
     nrtvec = zeros(shape=(len(pepids),))
     thepepids = []
     rowindex = 0
-    seen = set()
-    for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
-	if pepid in seen or pepid not in pepids or pepid not in nrts:
+    for pepid,pepseq,gsym,mcnt,nrt in peprows:
+	if pepid not in pepids or (nrts != None and pepid not in nrts) or pepseq not in pepseqindex:
 	    continue
-	seen.add(pepid)
 	for j,v in getvalues(pepseq,mcnt):
 	    A[rowindex,j] = v
-        nrtvec[rowindex] = float(nrts[pepid])
+	if nrts != None and pepid in nrts:
+            nrtvec[rowindex] = float(nrts[pepid])
+	else:
+	    nrtvec[rowindex] = 0.0
 	thepepids.append(pepid)
 	rowindex += 1
     
     nrtfit = A.dot(beta)
-    resid = dict(zip(thepepids,(nrtvec-nrtfit)))
-    return resid
+    fits = dict(zip(thepepids,nrtfit))
+    if nrts != None:
+        resid = dict(zip(thepepids,(nrtvec-nrtfit)))
+        return resid
+    return fits
 
-from numpy import zeros, linalg, array, random
+from numpy import zeros, linalg, random
 import numpy as np
 
 random.seed()
 
-alltg = set(map(itemgetter(0),rows))
+alltg = set(map(itemgetter(0),tgrows))
 badtgstats = []
 
 for iters in range(opts.iterations):
@@ -318,46 +334,66 @@ badtg = beststats['badtg']
 goodresid,badresid = tgregress(badtg,beta)
 newbadtg = map(lambda t: t[0],filter(lambda t: abs(t[1]) > opts.thresh, goodresid.items()))
 newgoodtg = map(lambda t: t[0],filter(lambda t: abs(t[1]) <= opts.thresh, badresid.items()))
-status(-1,badtg,set(),newbadtg,goodresid,beta)
+status(-1,badtg,newgoodtg,newbadtg,goodresid,beta)
 
-newpepnrt = defaultdict(list)
-for tgid,pepid,pepseq,gsym,mcnt,nrt in rows:
+newpepnrtlst = defaultdict(list)
+newpepnrtobs = dict()
+newpepnrt = dict()
+goodpeps = set()
+for tgid,pepid,pepseq,gsym,mcnt,nrt in tgrows:
     if tgid in badtg:
 	continue
-    newpepnrt[pepid].append(nrt)
-for pepid in list(newpepnrt):
-    newpepnrt[pepid] = float(np.median(array(newpepnrt[pepid])))
+    newpepnrtlst[pepid].append(nrt)
+    goodpeps.add(pepseq)
+
+goodpepids = set()
+for pepid,pepseq,gsym,mcnt,nrt in peprows:
+    if pepseq in goodpeps:
+	goodpepids.add(pepid)
+
+for pepid in list(newpepnrtlst.keys()):
+    newpepnrtobs[pepid] = len(newpepnrtlst[pepid])
+    newpepnrt[pepid] = float(np.median(np.array(newpepnrtlst[pepid])))
+
 oldresid = pepregress(set(origpepnrt),beta,origpepnrt)
 newresid = pepregress(set(newpepnrt),beta,newpepnrt)
-for pepid in sorted((set(origpepnrt)&set(newpepnrt))):
+pepfits = pepregress(goodpepids,beta)
+for pepid in sorted((set(origpepnrt)&set(newpepnrt)&set(pepseqindex))):
     if (abs(newresid[pepid] - oldresid[pepid]) > 0.01) or (abs(newpepnrt[pepid]-origpepnrt[pepid]) > 0.01): 
         print pepid,round(origpepnrt[pepid],3),round(oldresid[pepid]),round(newpepnrt[pepid],3),round(newresid[pepid],3)
 for pepid in sorted((set(origpepnrt)-set(newpepnrt))):
-    print pepid,round(origpepnrt[pepid],3),round(oldresid[pepid],3),"lost"
+    print pepid,round(origpepnrt[pepid],3),round(oldresid.get(pepid,1e+20),3),"lost"
 for pepid in sorted((set(newpepnrt)-set(origpepnrt))):
     print pepid,round(newpepnrt[pepid],3),round(newresid[pepid],3),"gained"
 
 if not opts.upload:
-   sys.exit(0)
+    sys.exit(0)
+
+if raw_input("Upload? ") not in ("Y","y"):
+    sys.exit(0)
 
 w = GPTWiki(quiet=True)
 for tg in w.itertransgroups():
     tgid = tg.get('id')
     if tgid in badtg:
-        tg.set('pepnrt','drop')
+        tg.set('pepnrt','drop (%+.3f)'%(badresid[tgid]))
     elif tgid in alltg:
-        tg.set('pepnrt','use')
+        tg.set('pepnrt','use (%+.3f)'%(goodresid[tgid]))
     else:
 	tg.delete('pepnrt')
-    if w.put(tg):
+    if opts.upload and w.put(tg):
 	print tgid
 
 for pep in w.iterpeptides():
     pepid = pep.get('id')
-    if pepid in newpepnrt:
-	if isinstance(newpepnrt[pepid],float):
-	    pep.set('nrt',newpepnrt[pepid])
+    if newpepnrt.get(pepid) != None:
+	pep.set('nrt',newpepnrt[pepid])
+	pep.set('nrtobs',newpepnrtobs[pepid])
+    elif False and pepid in goodpepids and pepfits.get(pepid) != None:
+	pep.set('nrt',pepfits[pepid])
+	pep.set('nrtobs',0)
     else:
 	pep.delete('nrt')
-    if w.put(pep):
+	pep.delete('nrtobs')
+    if opts.upload and w.put(pep):
 	print pepid

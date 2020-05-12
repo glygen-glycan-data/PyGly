@@ -19,6 +19,8 @@ for tg in w.itertransgroups():
     if tg.get('peptide') in seenpeps:
 	continue
     pep = w.get(tg.get('peptide'))
+    if pep.get('nrt') == None:
+	continue
     seenpeps.add(pep.get('id'))
     gly = pep.get('glycan')[0][0]
     glycans.add(gly)

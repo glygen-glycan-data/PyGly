@@ -292,7 +292,8 @@ class Acquisition(SMW.SMWClass):
 
         for k in ('nrtslope','nrtintercept'):
             if k in data:
-                data[k] = "%.8f"%(data[k])
+		# no trailing zeros...
+                data[k] = "%s"%(data[k],)
 
 	return data
 

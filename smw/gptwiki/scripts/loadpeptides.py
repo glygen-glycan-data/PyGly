@@ -94,9 +94,10 @@ for peptidefile in sys.argv[1:]:
     name = "%s.%s.%s"%(laa,name,raa)
     # for i,m in enumerate(glycan):
     #	name += "%s%s@%s"%(("+" if i == 0 else ","),m[0],m[1])
+    nox = name.count('[Ox]')
     if pepid:
-      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignments=alignments,id=pepid)
+      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignments=alignments,nox=nox,id=pepid)
     else:
-      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignments=alignments)
+      p,modified = w.addpeptide(sequence=seq,glycans=glycan,mods=mods,mw=mw,name=name,alignments=alignments,nox=nox)
     if modified:
         print p.get('id')
