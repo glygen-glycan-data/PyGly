@@ -1,5 +1,5 @@
 {{Acquisition
-|anfrac=AHSG protein standard
+|anfrac=ME000010
 |ansamp=AHSG.01
 |method=ME000002
 |name=MS_24_UO1_HS_UO1

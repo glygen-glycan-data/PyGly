@@ -21,8 +21,8 @@ Edit the page to see the template text.
 ! style="width=200px" | Species
 | style="width=100%" | [[gptwiki:species::{{{species|}}}]]
 |-
-! style="width=200px" | UniProt
-| style="width=100%" | [https://www.uniprot.org/uniprot/{{{accession}}} {{{accession}}}]
+! style="width=200px" | GlyGen
+| style="width=100%" | [https://glygen.org/protein/{{{accession}}} {{{accession}}}]
 |}
 
 == Peptides ==
@@ -38,7 +38,6 @@ Edit the page to see the template text.
 |?gptwiki:haspeptide.gptwiki:glycan.gptwiki:sym=Glycan
 |?gptwiki:site=Site
 |?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt. 
-|?gptwiki:haspeptide.gptwiki:nrt #-p3 = Norm. R.T.
 |?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
 |?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
 |sep=,&thinsp;

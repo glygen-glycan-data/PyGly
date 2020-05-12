@@ -39,7 +39,6 @@ Edit the page to see the template text.
 |?gptwiki:haspeptide=
 |?gptwiki:haspeptide.gptwiki:name=Peptide
 |?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt.
-|?gptwiki:haspeptide.gptwiki:nrt#-p3 =Norm. R.T.
 |?gptwiki:hasprotein=Protein
 |?gptwiki:site=Site
 |?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups

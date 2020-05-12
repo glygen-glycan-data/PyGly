@@ -1,5 +1,5 @@
 * navigation
-** mainpage|Home
+** mainpage|mainpage
 ** recentchanges-url
 ** randompage-url
 ** About|About

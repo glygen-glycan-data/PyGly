@@ -55,9 +55,6 @@ Edit the page to see the template text.
 ! Analytical Fraction
 | {{#show:{{{spectra|}}}|?gptwiki:analfraction}}
 |-
-! Analytical Sample ID
-| {{#show:{{{spectra|}}}|?gptwiki:analsample}}
-|-
 ! Sample
 | {{LinkedAttrName|{{{spectra|}}}|gptwiki:forsample}}
 |}
