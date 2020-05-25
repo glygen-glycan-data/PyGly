@@ -682,7 +682,8 @@ class SubstructureSearch(GlycanPartialOrder):
         # Use subtree algorithm to save runtime
         if not m.undetermined():
             if rootOnly:
-                return self.subtree_leq(m.root(), tg.root())
+                if self.subtree_leq(m.root(), tg.root()):
+                    return True
             else:
                 for n in tg.all_nodes():
                     if self.subtree_leq(m.root(), n):
