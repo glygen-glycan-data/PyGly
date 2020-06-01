@@ -356,161 +356,10 @@ class GNOme(GNOmeAPI):
             res[acc] = self.iupac_composition_str_to_dict(o)
         return res
 
-    # method for composition and topology viewer
-    def get_cbbutton1(self, acc):
-        return self.cbbutton_filter1(self.get_cbbutton(acc))
-
-    def all_cbbutton1(self):
+    def toViewerData(self, output_file_path):
         res = {}
-        for s, p, o in self.triples(None, "gno:00000101", None):
-            acc = self.accession(s)
-            res[acc] = self.cbbutton_filter1(self.iupac_composition_str_to_dict(o))
-        return res
-
-    def cbbutton_filter1(self, mono_count):
-        iupac_composition_syms = ['Man', 'Gal', 'Glc', 'Xyl', 'Fuc', 'ManNAc', 'GlcNAc', 'GalNAc', 'NeuAc', 'NeuGc',
-                                  'Hex', 'HexNAc', 'dHex', 'Pent', 'Sia', 'GlcA', 'GalA', 'IdoA', 'ManA', 'HexA',
-                                  'GlcN', 'GalN', 'ManN', 'HexN']
-        subst_composition_syms = ['S', 'P', 'Me', 'aldi']
-
-
-        res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc", "dHex"]:
-            if m in mono_count:
-                res[m] = mono_count[m]
-
-        #for m in subst_composition_syms:
-        #    if m in mono_count:
-        #        res[m] = mono_count[m]
-
-        xxx = 0
-        for m in mono_count.keys():
-            if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
-                xxx += mono_count[m]
-
-        if xxx > 0:
-            res["Xxx"] = xxx
-        return res
-
-    # method for composition and base composition viewer
-    def get_cbbutton2(self, acc):
-        return self.cbbutton_filter2(self.get_cbbutton(acc))
-
-    def all_cbbutton2(self):
-        res = {}
-        for s, p, o in self.triples(None, "gno:00000101", None):
-            acc = self.accession(s)
-            res[acc] = self.cbbutton_filter2(self.iupac_composition_str_to_dict(o))
-        return res
-
-    def cbbutton_filter2(self, mono_count):
-        iupac_composition_syms = ['Man', 'Gal', 'Glc', 'Xyl', 'Fuc', 'ManNAc', 'GlcNAc', 'GalNAc', 'NeuAc', 'NeuGc',
-                                  'Hex', 'HexNAc', 'dHex', 'Pent', 'Sia', 'GlcA', 'GalA', 'IdoA', 'ManA', 'HexA',
-                                  'GlcN', 'GalN', 'ManN', 'HexN']
-        subst_composition_syms = ['S', 'P', 'Me', 'aldi', "X"]
-
-        res = {}
-        for m in ['GlcNAc', 'GalNAc', 'ManNAc', 'Glc', 'Gal', 'Man', 'Fuc', 'NeuAc', 'NeuGc', "Hex", "HexNAc", "dHex"]:
-            if m in mono_count:
-                res[m] = mono_count[m]
-
-        for m in subst_composition_syms:
-            if m in mono_count:
-                res[m] = mono_count[m]
-
-        xxx = 0
-        for m in mono_count.keys():
-            if m in ['Pent', 'HexA', 'HexN', "Xxx"]:
-                xxx += mono_count[m]
-
-        if xxx > 0:
-            res["Xxx"] = xxx
-        return res
-
-    def toViewerData(self, output_file_path1, output_file_path2):
-        res = {}
-        issueList = []
-
-        all_comp = self.all_cbbutton1()
-        data_composition = {}
-
-
-        for n in self.nodes():
-            t = ""
-            if self.issaccharide(n):
-                t = "saccharide"
-            elif self.istopology(n):
-                t = "topology"
-            else:
-                f1 = self.iscomposition(n)
-                f2 = self.isbasecomposition(n)
-
-                if f1 or f2:
-                    try:
-                        data_composition[n] = {"comp": all_comp[n]}
-                    except:
-                        print >> sys.stderr, "%s iupac composition is not found" % n
-                        issueList.append(n)
-                        continue
-                    if f1:
-                        data_composition[n]["type"] = "composition"
-                    else:
-                        data_composition[n]["type"] = "basecomposition"
-                continue
-
-            try:
-                comp = all_comp[n]
-            except:
-                print >> sys.stderr, "%s iupac composition is not found" % n
-                issueList.append(n)
-                continue
-
-            per = {}
-            per["children"] = list(self.children(n))
-            per["type"] = t
-            per["comp"] = comp
-
-            res[n] = per
-
-        for n, component in res.items():
-            comp = component["comp"]
-            t = component["type"]
-            if t != "topology":
-                continue
-
-            parent = list(self.parents(n))
-            topflag = True
-            for p in parent:
-                try:
-                    comp_p = all_comp[p]
-                    tors = self.issaccharide(p) or self.istopology(p)
-                except:
-                    continue
-
-                if not tors:
-                    continue
-
-                if comp == comp_p:
-                    topflag = False
-                    break
-
-            if topflag:
-                component["top"] = True
-
-        f = open(output_file_path1, "w")
-        f.write(json.dumps(res, sort_keys=True, indent=2))
-        f.close()
-
-        f2 = open(output_file_path2, "w")
-        f2.write(json.dumps(data_composition, sort_keys=True, indent=2))
-        f2.close()
-
-    def toViewerData2(self, output_file_path1, output_file_path2):
-        res = {}
-        issueList = []
-
-        all_comp = self.all_cbbutton2()
-        data_composition = {}
+        cbbutton = self.all_cbbutton()
+        byonic = self.all_Byonic()
 
         for n in self.nodes():
             t = ""
@@ -518,57 +367,41 @@ class GNOme(GNOmeAPI):
                 t = "basecomposition"
             elif self.iscomposition(n):
                 t = "composition"
+            elif self.istopology(n):
+                t = "topology"
+            elif self.issaccharide(n):
+                t = "saccharide"
             else:
                 continue
 
-            try:
-                comp = all_comp[n]
-            except:
-                print >> sys.stderr, "%s iupac composition is not found" % n
-                issueList.append(n)
+            if n not in cbbutton:
                 continue
 
-            per = {}
-
             children = list(self.children(n))
-            children = filter(lambda x:self.iscomposition(x) or self.isbasecomposition(x), children)
+            res[n] = {
+                "level": t, "children": children, "count": cbbutton[n]
+            }
+            if len(children) == 0:
+                del res[n]['children']
 
-            per["children"] = children
-            per["type"] = t
-            per["comp"] = comp
+            if n in byonic:
+                res[n]['byonic'] = byonic[n]
 
-            res[n] = per
-            data_composition[n] = {"comp": all_comp[n]}
-            data_composition[n]["type"] = "composition"
+        json.dump(res, open(output_file_path, 'w'))
+        return
 
-        for n, component in res.items():
-            comp = component["comp"]
-            t = component["type"]
+    def get_Byonic(self, acc):
+        for s, p, o in self.triples('gno:'+acc, "gno:00000202", None):
+            yield o
 
-            parent = list(self.parents(n))
-            topflag = True
-            for p in parent:
-                try:
-                    comp_p = all_comp[p]
-                    # tors = self.isbasecomposition(p) or self.iscomposition(p)
-                except:
-                    continue
+    def all_Byonic(self):
+        res = {}
+        for s, p, o in self.triples(None, "gno:00000202", None):
+            acc = self.accession(s)
+            res[acc] = o
+        return res
 
 
-                if comp == comp_p:
-                    topflag = False
-                    break
-
-            if topflag:
-                component["top"] = True
-
-        f = open(output_file_path1, "w")
-        f.write(json.dumps(res, sort_keys=True, indent=2))
-        f.close()
-
-        f = open(output_file_path2, "w")
-        f.write(json.dumps(data_composition, sort_keys=True, indent=2))
-        f.close()
 
 
 from alignment import GlycanSubsumption, GlycanEqual
@@ -2256,28 +2089,15 @@ if __name__ == "__main__":
     elif cmd == "viewerdata":
         # python GNOme.py viewerdata ./GNOme.owl ./gnome_subsumption_raw.txt ./GNOme.browser.js
 
-        if len(sys.argv) < 4:
+        if len(sys.argv) < 3:
             print "Please provide GNOme.owl and output file path"
             sys.exit(1)
 
         ifn = sys.argv[1]
         ofn_data = sys.argv[2]
-        ofn_comp = sys.argv[3]
         gnome = GNOme(resource=ifn)
-        gnome.toViewerData(ofn_data, ofn_comp)
+        gnome.toViewerData(ofn_data)
 
-    elif cmd == "viewerdata2":
-        # python GNOme.py viewerdata2 ./GNOme.owl ./gnome_subsumption_raw.txt ./GNOme.browser2.js
-
-        if len(sys.argv) < 4:
-            print "Please provide GNOme.owl and output file path"
-            sys.exit(1)
-
-        ifn = sys.argv[1]
-        ofn_data = sys.argv[2]
-        ofn_data2 = sys.argv[3]
-        gnome = GNOme(resource=ifn)
-        gnome.toViewerData2(ofn_data, ofn_data2)
 
     elif cmd == "UpdateAcc":
 
