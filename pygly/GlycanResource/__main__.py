@@ -6,6 +6,17 @@ sys.path.append(os.path.dirname(os.path.realpath(os.path.join(os.path.dirname(__
 
 from pygly.GlycanResource import *
 
+def tostr(s):
+    try:
+	return str(s)
+    except ValueError:
+	pass
+    try:
+	return s.value
+    except ValueError:
+	pass
+    return s
+
 cls = sys.argv[1]
 resource = eval(cls+"()")
 query = sys.argv[2]
@@ -22,7 +33,7 @@ result = method(*args,**kwargs)
 if isinstance(result,basestring) or not hasattr(result,'next'):
     if not isinstance(result,list) and not isinstance(result,tuple):
 	result = [ result ]
-    print "\t".join(map(str,result))
+    print "\t".join(map(tostr,result))
 else:
     for r in result:
         if isinstance(r,basestring):
@@ -33,7 +44,9 @@ else:
                 if 'accession' in headers:
                     headers.remove('accession')
                     headers = ['accession'] + headers
-            print "\t".join(map(r.get,headers))
+            print "\t".join(map(tostr,map(r.get,headers)))
         else:
-            print "\t".join(map(str,r))
+	    # print r
+            # print map(tostr,r)
+            sys.stderr.write("\t".join(map(tostr,r))+"\n")
 

@@ -184,4 +184,8 @@ class TripleStoreResource(GlycanResource):
     def tostr(value):
         if value == None:
             return None
-        return str(value)
+	try:
+            return str(value)
+	except ValueError:
+	    pass
+        return value

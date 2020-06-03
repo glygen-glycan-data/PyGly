@@ -46,3 +46,11 @@ class GlycanResource(ReferenceTable):
         else:
             raise RuntimeError("Can't find class/instance parameter %s for class %s"%(key,self.__class__.__name__))
 
+    def set_method(self,name,func):
+        setattr(self.__class__, name, func)
+        func.__name__ = name
+    
+    def modify_method(self,name,func):
+        newfunc = func(getattr(self.__class__,name))
+        setattr(self.__class__, name, newfunc)
+        newfunc.__name__ = name
