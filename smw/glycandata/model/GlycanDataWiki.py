@@ -330,6 +330,7 @@ class GlycanDataDiskCache(object):
 
         for g in self.iterglycan(fr,to):
             if wiki.put(g):
+		# wiki.refresh(g)
                 print g.get('accession')
 
 def GlycanData():
