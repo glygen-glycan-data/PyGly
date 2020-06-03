@@ -13,24 +13,26 @@ mnlc = GlyNLinkedFilter(None).test1
 w = GlycanData()
 
 motif_rules_data = """
-G00026MO	N-linked	
-G00028MO	N-linked	high mannose
-G00029MO	N-linked	hybrid
-G00030MO	N-linked	complex
-G00031MO	O-linked	core 1
-G00032MO	O-linked	core 1
-G00033MO	O-linked	core 2
-G00034MO	O-linked	core 2
-G00035MO	O-linked	core 3
-G00036MO	O-linked	core 3
-G00037MO	O-linked	core 4
-G00038MO	O-linked	core 4
-G00039MO	O-linked	core 5
-G00040MO	O-linked	core 5
-G00041MO	O-linked	core 6
-G00042MO	O-linked	core 6
-G00043MO	O-linked	core 7
-G00044MO	O-linked	core 7
+GGM.001001	N-linked	
+GGM.001002	N-linked	high mannose
+GGM.001003	N-linked	hybrid
+GGM.001004	N-linked	complex
+GGM.001005	O-linked	core 1
+GGM.001006	O-linked	core 1
+GGM.001007	O-linked	core 2
+GGM.001008	O-linked	core 2
+GGM.001009	O-linked	core 3
+GGM.001010	O-linked	core 3
+GGM.001011	O-linked	core 4
+GGM.001012	O-linked	core 4
+GGM.001013	O-linked	core 5
+GGM.001014	O-linked	core 5
+GGM.001015	O-linked	core 6
+GGM.001016	O-linked	core 6
+GGM.001017	O-linked	core 7
+GGM.001018	O-linked	core 7
+GGM.001019	O-linked	O-mannose
+GGM.001020	O-linked	O-fucose
 """
 
 motifrules = dict()
@@ -43,6 +45,12 @@ for l in motif_rules_data.splitlines():
 
 def gal(m):
     if m.superclass() == SuperClass.HEX and m.stem() == (Stem.gal,):
+        if not m.has_mods() and not m.has_substituents():
+	    return True
+    return False
+
+def man(m):
+    if m.superclass() == SuperClass.HEX and m.stem() == (Stem.man,):
         if not m.has_mods() and not m.has_substituents():
 	    return True
     return False
@@ -159,7 +167,7 @@ for m in iterglycan():
     m.delete_annotations(source='EdwardsLab', type='Classification')
 
     try:
-        motifann = list(m.annotations(property='Motif',type='Motif',source='GlyTouCan'))[0]
+        motifann = list(m.annotations(property='Motif',type='Motif',source='GlycoMotif'))[0]
     except IndexError:
 	if not debug:
 	    w.put(m)

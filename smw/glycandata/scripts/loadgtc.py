@@ -20,9 +20,9 @@ def accessions(args):
 
 gtc = GlyTouCan(usecache=False)
 
-allmotifs = dict()
-for acc,label,redend in gtc.allmotifs():
-    allmotifs[acc] = dict(label=label,redend=redend)
+# allmotifs = dict()
+# for acc,label,redend in gtc.allmotifs():
+#     allmotifs[acc] = dict(label=label,redend=redend)
 
 current = set()
 for gtcacc in accessions(sys.argv[1:]):
@@ -89,14 +89,14 @@ for gtcacc in accessions(sys.argv[1:]):
     g.set_annotation(value=gtcacc,property='GlyTouCan',
                      source='GlyTouCan',type='CrossReference')
 
-    g.delete_annotations(source='GlyTouCan',type='Motif')
-    g.set_annotation(value=gtc.getmotif(gtcacc),
-                     property='Motif',
-                     source='GlyTouCan', type='Motif')
-    value = map(lambda acc: ":".join([acc,allmotifs[acc]['label'],allmotifs[acc]['redend']]),gtc.getmotif(gtcacc))
-    g.set_annotation(value=value,
-                     property='NamedMotif',
-                     source='GlyTouCan', type='Motif')
+    # g.delete_annotations(source='GlyTouCan',type='Motif')
+    # g.set_annotation(value=gtc.getmotif(gtcacc),
+    #                  property='Motif',
+    #                  source='GlyTouCan', type='Motif')
+    # value = map(lambda acc: ":".join([acc,allmotifs[acc]['label'],allmotifs[acc]['redend']]),gtc.getmotif(gtcacc))
+    # g.set_annotation(value=value,
+    #                  property='NamedMotif',
+    #                  source='GlyTouCan', type='Motif')
 
     g.delete_annotations(source='GlyTouCan',type='Taxonomy')
     g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),

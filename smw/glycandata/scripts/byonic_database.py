@@ -3,6 +3,12 @@
 import re, sys
 from getwiki import GlycanData
 from collections import defaultdict
+
+import findpygly
+from pygly.ElementMass import MonoisotopicElementMass
+from pygly.CompositionTable import Composition
+mt = MonoisotopicElementMass()
+h2o = Composition(H=2,O=1).mass(mt)
  
 w = GlycanData()
 
@@ -57,6 +63,8 @@ for acc in w.iterglycanid():
         mw = float(g.get_annotation_value(property='UnderivitizedMW',type="MolWt",source="EdwardsLab"))
     except LookupError:
 	continue
+
+    mw -= h2o # account for attachment to the peptide...
 
     output.append(dict(accession=acc,mw=mw,byonic=byonic))
 
