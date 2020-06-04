@@ -1366,7 +1366,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G58896AZ/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G00070MO/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -2028,7 +2028,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G89208KM/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G60395SO/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -2141,12 +2141,12 @@
       "G47428UI": [
         {
           "from": "G47428UI",
-          "to": "G00056MO",
+          "to": "G00055MO",
           "type": "contains"
         },
         {
           "from": "G47428UI",
-          "to": "G00055MO",
+          "to": "G00056MO",
           "type": "contains"
         }
       ],
@@ -3202,6 +3202,43 @@
       },
       "Topology": {
         "alternativeImageURL": "https://glytoucan.org/glycans/G89659QV/image?style=compact&format=png&notation=cfg",
+        "level": 0,
+        "name": "Topology",
+        "type": "Whatever"
+      }
+    },
+    "root": "Topology"
+  },
+  "G10057XH": {
+    "edges": {
+      "Topology": [
+        {
+          "from": "Topology",
+          "to": "G10057XH",
+          "type": "contains"
+        },
+        {
+          "from": "Topology",
+          "to": "G87212TR",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "Topology",
+    "nodes": {
+      "G10057XH": {
+        "level": 0,
+        "name": "G10057XH",
+        "type": "Whatever"
+      },
+      "G87212TR": {
+        "level": 0,
+        "name": "G87212TR",
+        "type": "Whatever"
+      },
+      "Topology": {
+        "alternativeImageURL": "https://glytoucan.org/glycans/G87212TR/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -6012,7 +6049,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G57321FI/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G61418DU/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
@@ -10850,7 +10887,7 @@
         "type": "Whatever"
       },
       "Topology": {
-        "alternativeImageURL": "https://glytoucan.org/glycans/G77608BK/image?style=compact&format=png&notation=cfg",
+        "alternativeImageURL": "https://glytoucan.org/glycans/G26203DP/image?style=compact&format=png&notation=cfg",
         "level": 0,
         "name": "Topology",
         "type": "Whatever"
