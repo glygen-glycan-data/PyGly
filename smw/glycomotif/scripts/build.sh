@@ -23,6 +23,8 @@ rm -rf ./dumps
 ./dumpallseq.py
 ./json_substructure.py
 ./json_topology.py
+mv ./*.json ../data/
+echo "please commit the new json files to GitHub"
 ./loadwidgetbool.py
 ./addtopology.py
 ./refresh.py

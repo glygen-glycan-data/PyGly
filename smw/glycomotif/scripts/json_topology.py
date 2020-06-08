@@ -5,9 +5,7 @@ import json
 import copy
 import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
-from pygly.GlyTouCan import GlyTouCan
 
-g = GlyTouCan()
 
 
 wurcs_parser = WURCS20Format()
