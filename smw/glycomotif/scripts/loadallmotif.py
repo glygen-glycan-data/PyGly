@@ -6,6 +6,11 @@ import sys
 from getwiki import GlycoMotifWiki, AllMotif
 w = GlycoMotifWiki()
 
+import findpygly
+from pygly.GlycanResource import GlyTouCan
+
+gtcres = GlyTouCan(usecache=False,prefetch=True,verbose=False)
+
 gtc2motif = defaultdict(list)
 for m in w.itermotif():
     if m.get('collection') != AllMotif.id:
@@ -30,7 +35,8 @@ for gtc,motiflist in sorted(gtc2motif.iteritems()):
 	redend = None
     if len(aglycon) == 0:
 	aglycon = None
-    motif = AllMotif(accession=gtc,name=names,redend=redend,aglycon=aglycon)
+    motif = AllMotif(accession=gtc,name=names,redend=redend,aglycon=aglycon,
+                     wurcs=gtcres.getseq(gtc,'wurcs'),glycoct=gtcres.getseq(gtc,'glycoct'))
     current.add(gtc)
     if w.update(motif):
 	print >>sys.stderr, gtc

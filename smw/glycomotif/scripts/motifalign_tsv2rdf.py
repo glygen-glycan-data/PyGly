@@ -5,7 +5,9 @@ import csv
 import copy
 
 motif_alignment_file_path_tsv = sys.argv[1]#"../data/motif_alignment.tsv"
-motif_alignment_file_path_rdf = sys.argv[2]#"../data/motif_alignment.rdf"
+# motif_alignment_file_path_rdf = sys.argv[2]#"../data/motif_alignment.rdf"
+prefix = sys.argv[2]
+
 
 motif_alignment = {}
 motif_alignment_single = {
@@ -45,12 +47,12 @@ rdf_template = """<?xml version="1.0" encoding="UTF-8"?>
 rdf_s = ""
 
 for acc in sorted(motif_alignment.keys()):
-    print acc
+    print >>sys.stderr, acc
     # Red-only means matches to reducing end, but actually not limited to reducing end only.
     red = sorted(motif_alignment[acc]["red_only"])
     any = sorted(motif_alignment[acc]["red_only"] + motif_alignment[acc]["other"])
 
-    rdf_per_motif = '\t<swivt:Subject rdf:about="http://glycandata.glygen.org/glycomotif/Special:URIResolver/GM.' + acc + '">\n%s\n\t</swivt:Subject>\n'
+    rdf_per_motif = '\t<swivt:Subject rdf:about="http://glycandata.glygen.org/%s/Special:URIResolver/GM.'%(prefix,) + acc + '">\n%s\n\t</swivt:Subject>\n'
     rdf_normal_align = '\t\t<glycomotif:has_alignment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%s</glycomotif:has_alignment>'
     rdf_red_align = '\t\t<glycomotif:has_redend_alignment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%s</glycomotif:has_redend_alignment>'
 
@@ -64,5 +66,6 @@ for acc in sorted(motif_alignment.keys()):
 
     rdf_s += rdf_per_motif % ("\n".join(normal_align) + "\n" + "\n".join(red_align))
 
-rdf_f = open(motif_alignment_file_path_rdf, "w")
-rdf_f.write(rdf_template % rdf_s)
+# rdf_f = open(motif_alignment_file_path_rdf, "w")
+sys.stdout.write(rdf_template%rdf_s)
+# rdf_f.close()

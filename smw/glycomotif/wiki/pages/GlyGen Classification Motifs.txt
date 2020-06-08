@@ -1,15 +1,14 @@
 {{#ask: [[Category:Motif]]
-[[Glycomotif:incollection::GTC]]
-[[Glycomotif:accession::!G00027MO]]
+[[Glycomotif:incollection::GGM]]
+[[Glycomotif:id::~GGM.001*]]
  |?Glycomotif:accession=glycomotif:accession
  |?Glycomotif:name=glycomotif:name
  |?Glycomotif:aglycon=glycomotif:aglycon
  |?Glycomotif:reducingend=glycomotif:reducingend
  |?Glycomotif:collectioncount=glycomotif:collectioncount
  |?Glycomotif:instancecount=glycomotif:instancecount
+ |?Glycomotif:glytoucan
  |format=template
- |limit=18
- |offset=14
  |link=none
  |sort=Glycomotif:accession
  |order=ascending

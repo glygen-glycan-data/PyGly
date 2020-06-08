@@ -15,28 +15,27 @@ It should be called in the following format:
 }}
 </pre>
 Edit the page to see the template text.
-</noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}
-<h2 style="display: none;">Summary</h2>
-<div sytle="position: relative;">
+</noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}{{PrevNextLinks|{{{collection|}}}|{{{accession|}}}}}{{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}<div style="position: relative;">
 	<img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{{glytoucan|}}}.png" style="display: block; margin-left: auto; margin-right: auto;">
-        {{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}
 </div><br>
 {| class="wikitable" style="width:100%"
-! style="width:200px" | ID
-| style="width:calc(100% - 200px)" | [[glycomotif:id::{{PAGENAME}}]]
-|-
-! style="" | Name(s)
-| style="" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
-|-
 ! style="" | Collection
 | style="" | {{CollectionName|{{{collection|}}}}}
 |-
-! style="" | Accession
-| {{#switch: {{{collection}}}
+! style="width:200px" | Accession
+| style="width:calc(100% - 200px)" | {{#switch: {{{collection}}}
 | GE = <span class="plainlinks">[https://www.glycoepitope.jp/epitopes/{{{accession}}} [[glycomotif:accession::{{{accession|}}}]]]</span>
-| GM = <span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/{{{collection}}}.{{{accession}}} [[glycomotif:accession::{{{accession|}}}]]]</span>
 | [[glycomotif:accession::{{{accession|}}}]]
 }}
+|-
+{{#if:{{{prefname|}}}|
+{{!}}-
+! style="" {{!}} Preferred Name
+{{!}} style="" {{!}} [[glycomotif:preferred_name::{{{prefname|}}}]]
+|}}
+|-
+! style="" | Name(s)
+| style="" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
 |-
 ! style="" | Aglycon
 | style="" | {{#arraymap:{{{aglycon|}}}|,|x|[[glycomotif:aglycon::x]]}}
@@ -44,14 +43,14 @@ Edit the page to see the template text.
 ! style="" | Reducing-End Only?
 | style="" | {{#arraymap:{{{redend|}}}|,|x|[[glycomotif:reducingend::x]]}}
 |-
+! style="" | GlyTouCan Accession
+| style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
+|-
 ! style="" | Same As
 | style="" | {{#arraymap:{{{sameas|}}}|,|x|[[glycomotif:sameas::x]]}}
 |-
 ! {{#ifeq:{{{collection}}}|GM|style="width=200px"|style="display: none;"}} | Topology Cluster
 | {{#ifeq:{{{collection}}}|GM|style="width=100%"|style="display: none;"}} | {{#arraymap:{{{topology|}}}|,|x|[[glycomotif:topology::x]]}}
-|-
-! style="" | GlyTouCan Accession
-| style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
 |-
 ! style="" | GlycoCT
 | style="" | <div class="smwpre">

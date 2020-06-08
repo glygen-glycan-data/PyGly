@@ -1,5 +1,5 @@
 <includeonly>
-{| class="wikitable sortable"
-! Accession !! Name(s) !! Aglycon !! Reducing-End Only? !! Collections !! Instances
+{| class="wikitable sortable" style="width: 100%;"
+! Accession !! Name(s) !! Aglycon !! Reducing-End Only? 
 |-
 </includeonly>

@@ -54,7 +54,7 @@ class Motif(SMW.SMWClass):
 
         # name is newline separated
         if isinstance(data.get('name'),basestring):
-            data['name'] = map(lambda s: s.strip(),data.get('name').split('\n'))
+            data['name'] = filter(None,map(lambda s: s.strip(),data.get('name').split('\n')))
 
         # aglycon is comma separated, with specific possible values, sorted, so behaves as set
         if isinstance(data.get('aglycon'),basestring):
@@ -105,7 +105,7 @@ class Motif(SMW.SMWClass):
         data = super(Motif,self).toTemplate(data)
 
         if 'name' in data:
-            data['name'] = "\n".join(data['name'])
+            data['name'] = "\n".join(filter(None,data['name']))
 
         if 'sameas' in data:
             data['sameas'] = ",".join(sorted(data['sameas']))
@@ -155,7 +155,7 @@ class GlyTouCanMotif(Motif):
             kwargs['glytoucan'] = kwargs['accession']
         if kwargs.get('wurcs') == None or kwargs.get('glycoct') == None:
             if not self.gtc:
-                self.gtc = GlyTouCan()
+                self.gtc = GlyTouCan(usecache=False,prefetch=False)
             if kwargs.get('wurcs') == None:
                 kwargs['wurcs'] = self.gtc.getseq(kwargs['glytoucan'],'wurcs')
             if kwargs.get('glycoct') == None:

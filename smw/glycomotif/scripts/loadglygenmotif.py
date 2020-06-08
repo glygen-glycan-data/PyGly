@@ -6,21 +6,21 @@ from getwiki import GlycoMotifWiki, GlyGenMotif
 w = GlycoMotifWiki()
 
 from dataset import TSVFileTable
-rows = TSVFileTable(sys.argv[1])
-
 current = set()
-for r in rows:
-
+for fn in sys.argv[1:]:
+  rows = TSVFileTable(fn)
+  for r in rows:
     accession = "%06d"%(int(r['accession']),)
-    name = [r['name'].strip()]
+    prefname = r['name'].strip()
+    name = [prefname]
     gtc = r['gtc'].strip()
     redend = r['redend'].strip()
     aglycon = r['aglycon'].strip()
     for h in r.keys():
 	if h.startswith('altname'):
-	    name.append(r[h].strip())
-
-    motif = GlyGenMotif(accession=accession,name=name,glytoucan=gtc,redend=redend,aglycon=aglycon)
+	    if r[h].strip():
+	        name.append(r[h].strip())
+    motif = GlyGenMotif(accession=accession,prefname=prefname,name=name,glytoucan=gtc,redend=redend,aglycon=aglycon)
     if w.update(motif):
 	print >>sys.stderr, accession
     current.add(accession)

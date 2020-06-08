@@ -17,3 +17,5 @@ accession	gtc	name	redend	aglycon
 1016	G00042MO	O-Glycan core 6 Fuzzy	TRUE	Ser/Thr
 1017	G00043MO	O-Glycan core 7	TRUE	Ser/Thr
 1018	G00044MO	O-Glycan core 7 fuzzy	TRUE	Ser/Thr
+1019	G70323CJ	O-Mannose	TRUE	Ser/Thr
+1020	G82576YO	O-Fucose	TRUE	Ser/Thr

@@ -6,16 +6,13 @@ from getwiki import GlycoMotifWiki, GlyTouCanMotif
 w = GlycoMotifWiki()
 
 import findpygly
-from pygly.GlyTouCan import GlyTouCan
+from pygly.GlycanResource import GlyTouCan
 
-gtc = GlyTouCan()
-
-from gtccache import GlyTouCanCache
-gtccache = GlyTouCanCache()
+gtc = GlyTouCan(usecache=False)
 
 current = set()
 for m,l,re in sorted(gtc.allmotifs()):
-    motif = GlyTouCanMotif(accession=m,name=l,redend=re,
+    motif = GlyTouCanMotif(accession=m,prefname=l,name=l,redend=re,
 			   wurcs = gtccache.gtc2wurcs(m),
 			   glycoct = gtccache.gtc2glycoct(m))
     if w.update(motif):

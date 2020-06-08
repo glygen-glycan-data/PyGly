@@ -1,0 +1,1 @@
+{{MakePrevNextLinks|{{PrevInCollection|{{{1}}}|{{{2}}}}}|{{NextInCollection|{{{1}}}|{{{2}}}}}|{{{1}}}}}

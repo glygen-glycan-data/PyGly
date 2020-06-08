@@ -1,24 +1,32 @@
 <noinclude>
 This is the "Motif" form.
-To create a page with this form, enter the page name below;
-if a page with that name already exists, you will be sent to a form to edit that page.
-
-
-{{#forminput:form=Motif}}
-
 </noinclude><includeonly>
-<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
 {{{for template|Motif}}}
-{| class="formtable"
+<img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{#ask:[[{{PAGENAME}}]]|?glycomotif:glytoucan|link=none|mainlabel=-|headers=hide}}.png" style="display: block; margin-left: auto; margin-right: auto;">
+<br/>
+{| class="formtable wikitable" style="width:100%"
+! Collection:
+| {{#show:{{PAGENAME}}|?glycomotif:incollection}}
+|-
+! Accession:
+| {{#show:{{PAGENAME}}|?glycomotif:accession}}
+|-
+! Preferred Name: 
+| {{{field|prefname|input type=dropdown|values={{#show:{{PAGENAME}}|?glycomotif:name}} }}}<br/>Must be a previously added name (see next field).
+|-
 ! Name(s): 
-| {{{field|name|rows=3|input type=textarea}}}
+| {{{field|name|rows=3|input type=textarea}}}<br/>Motif names, in no particular order, each on a separate line.
 |-
 ! Aglycon: 
-| {{{field|aglycon|input type=listbox|size=5}}}
+| {{{field|aglycon|input type=dropdown|values=Asn,Cer,Other,R,Ser/Thr}}}<br/>Motif aglycon. Use R for motifs that are not intended to align only to the reducing end of glycan structures. 
 |-
 ! Reducing-End Only?: 
-| {{{field|redend|input type=listbox|size=2}}}
+| {{{field|redend|input type=dropdown}}}<br/>Motif should align to the reducing end of glycan structures only. 
+|-
+! GlyTouCan:
+| {{#show:{{PAGENAME}}|?glycomotif:glytoucan}}
 |}
+
 {{{end template}}}
 
 {{{standard input|save}}} {{{standard input|cancel}}}

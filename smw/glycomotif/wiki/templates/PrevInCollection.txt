@@ -1,0 +1,14 @@
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::{{{1}}}]]
+[[glycomotif:accession::<<{{{2}}}]]
+|?glycomotif:accession
+|limit=1
+|searchlabel=
+|default=
+|sort=glycomotif:accession
+|order=desc
+|link=none
+|mainlabel=-
+|headers=hide
+}}
