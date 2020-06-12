@@ -6,6 +6,7 @@
 SMWENV="DEV"
 export SMWENV
 
+
 set -x
 ./loadsite.py ../wiki
 ./makecoll.py
@@ -19,13 +20,10 @@ set -x
 ./loadallmotif.py
 ./addsameas.py
 # ./loadmotifalign.py ../data/motif_alignment.tsv
-rm -rf ./dumps
-./dumpallseq.py
-./json_substructure.py
-./json_topology.py
-mv ./*.json ../data/
+./widgetdata.py ../data/topology.json ../data/nonredonly.json ../data/redonly.json
 echo "please commit the new json files to GitHub"
 ./loadwidgetbool.py
 ./addtopology.py
 ./refresh.py
 ./refresh.py -
+
