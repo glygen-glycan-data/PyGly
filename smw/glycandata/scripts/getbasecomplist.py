@@ -63,7 +63,7 @@ def accessions():
 	for acc in sys.stdin:
 	    yield acc.strip()
     elif len(sys.argv) == 2 and sys.argv[1] == "*":
-        gtc = GlyTouCan(usecach=False)
+        gtc = GlyTouCan(usecache=False)
 	for acc in gtc.allaccessions():
 	    yield acc
     else:
