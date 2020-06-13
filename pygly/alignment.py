@@ -671,7 +671,9 @@ class SubstructureSearch(GlycanPartialOrder):
         return False
 
 
-    def leq(self, m, tg, rootOnly=False):
+    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False):
+
+        assert (rootOnly and anywhereExceptRoot) is not True
 
         if not tg.has_root():
             return False
@@ -679,15 +681,26 @@ class SubstructureSearch(GlycanPartialOrder):
         if len(list(m.all_nodes())) > len(list(tg.all_nodes())):
             return False
 
+        tg_root = tg.root()
+        tmp = []
+
+        if rootOnly:
+            tmp = [tg_root]
+        elif anywhereExceptRoot:
+            tmp = filter(lambda n: n != tg_root, tg.all_nodes())
+        else:
+            tmp = list(tg.all_nodes())
+
+        potential_TG_root = []
+        for tg_root in tmp:
+            if self.rootmonoleq(m.root(), tg_root):
+                potential_TG_root.append(tg_root)
+
         # Use subtree algorithm to save runtime
         if not m.undetermined():
-            if rootOnly:
-                if self.subtree_leq(m.root(), tg.root()):
+            for n in potential_TG_root:
+                if self.subtree_leq(m.root(), n):
                     return True
-            else:
-                for n in tg.all_nodes():
-                    if self.subtree_leq(m.root(), n):
-                        return True
 
             # return False when no match based on subtree algorithm and the glycan is not undetermined.
             if not tg.undetermined():
@@ -695,19 +708,9 @@ class SubstructureSearch(GlycanPartialOrder):
 
         if tg.undetermined():
             # pre compute the connected node set
-            for n in tg.all_nodes():
+            for n in potential_TG_root:
                 self.cache_nodes(n, len(list(m.all_nodes())))
 
-        potential_TG_root = []
-        if rootOnly:
-            tg_root = tg.root()
-            if self.rootmonoleq(m.root(), tg_root):
-                potential_TG_root.append(tg_root)
-        else:
-            for tg_root in tg.all_nodes():
-                if not self.rootmonoleq(m.root(), tg_root):
-                    continue
-                potential_TG_root.append(tg_root)
 
         #i = 0
         for tg_root in potential_TG_root:
