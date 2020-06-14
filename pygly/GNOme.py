@@ -359,7 +359,8 @@ class GNOme(GNOmeAPI):
     def toViewerData(self, output_file_path):
         res = {}
         cbbutton = self.all_cbbutton()
-        byonic = self.all_Byonic()
+        # byonic = self.all_Byonic()
+        syms = self.all_synonym()
 
         for n in self.nodes():
             t = ""
@@ -384,8 +385,8 @@ class GNOme(GNOmeAPI):
             if len(children) == 0:
                 del res[n]['children']
 
-            if n in byonic:
-                res[n]['byonic'] = byonic[n]
+            if n in syms:
+                res[n]['syms'] = syms[n]
 
         json.dump(res, open(output_file_path, 'w'))
         return
@@ -399,6 +400,18 @@ class GNOme(GNOmeAPI):
         for s, p, o in self.triples(None, "gno:00000202", None):
             acc = self.accession(s)
             res[acc] = o
+        return res
+
+    def get_synonym(self, acc):
+        for s, p, o in self.triples('gno:'+acc, rdflib.URIRef("http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"), None):
+            yield o
+
+    def all_synonym(self):
+        res = defaultdict(list)
+        for s, p, o in self.triples(None, rdflib.URIRef("http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"), None):
+            acc = self.accession(s)
+            res[acc].append(o)
+        res = dict(res)
         return res
 
 
@@ -1620,9 +1633,9 @@ class OWLWriter():
             if not n.ismolecularweight():
                 if n.isbasecomposition() or n.iscomposition():
                     outputGraph.add((rdfNode, has_composition_browser_node, URIRef(
-                        "https://raw.githack.com/glygen-glycan-data/GNOme/master/GNOme.compositionselector.html?focus=%s" % n.getID())))
+                        "https://gnome.glyomics.org/GNOme.compositionselector.html?focus=%s" % n.getID())))
                 outputGraph.add((rdfNode, has_structure_browser_node, URIRef(
-                    "https://raw.githack.com/glygen-glycan-data/GNOme/master/GNOme.browser.html?focus=%s" % n.getID())))
+                    "https://gnome.glyomics.org/GNOme.browser.html?focus=%s" % n.getID())))
 
 
         for l in self.allRelationship():
@@ -1912,9 +1925,9 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
 
     def getdata(self):
         return {
-            "icon_style": "cfg",
-            "image_source_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
-            "image_source_suffix": ".png",
+            "icon_style": "snfg",
+            "image_url_prefix": "https://api.glygen.org/glycan/image/",
+            "image_url_suffix": "",
             "external_resources": [
                 {
                     "name": "GlyGen",
@@ -1930,9 +1943,9 @@ class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
 
     def getdata(self):
         return {
-            "icon_style": "cfg",
-            "image_source_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
-            "image_source_suffix": ".png",
+            "icon_style": "snfg",
+            "image_url_prefix": "https://api.glygen.org/glycan/image/",
+            "image_url_suffix": "",
             "external_resources": [
                 {
                     "name": "GlyGen Dev",
@@ -1949,8 +1962,8 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "cfg",
-            "image_source_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
-            "image_source_suffix": ".png",
+            "image_url_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlycanData",
