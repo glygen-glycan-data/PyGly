@@ -92,11 +92,11 @@ for m in w.itermotif():
         continue
 
     try:
-        glycans[acc] = wp.toGlycan(m.get("wurcs"))
+        glycans[acc] = wp.toGlycan(str(m.get("wurcs")))
     except:
 
         try:
-            glycans[acc] = wp.toGlycan(m.get("glycoct"))
+            glycans[acc] = gp.toGlycan(m.get("glycoct"))
         except:
             continue
 
