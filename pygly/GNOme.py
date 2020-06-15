@@ -456,8 +456,13 @@ class SubsumptionGraph(GNOmeAPI):
 		    low = str(round(float(a),2))
 		    high = low
 		argmass.append((low,high))
-            for glyacc, mass in self.gtc.allmass():
+	    for glyacc in self.gtc.allaccessions():
 		if glyacc in invalid:
+		    continue
+		mass = self.gtc.getmass(glyacc)
+		if not mass:
+		    mass = self.gtc.umw(glyacc,fetch='wurcs')
+	        if not mass:
 		    continue
 		rmass = str(round(mass, 2))
 		if glyacc in clustermap:
@@ -472,8 +477,13 @@ class SubsumptionGraph(GNOmeAPI):
 			clustermap[glyacc].add(rmass)
 			break
         else:
-            for glyacc, mass in self.gtc.allmass():
+	    for glyacc in self.gtc.allaccessions():
 		if glyacc in invalid:
+		    continue
+		mass = self.gtc.getmass(glyacc)
+		if not mass:
+		    mass = self.gtc.umw(glyacc,fetch='wurcs')
+		if not mass:
 		    continue
                 rmass = str(round(mass, 2))
 		if glyacc in clustermap:
@@ -543,8 +553,11 @@ class SubsumptionGraph(GNOmeAPI):
                 continue
             cluster[acc]['glycan'] = gly
 	    mass = self.gtc.getmass(acc)
+	    mymass = self.gtc.umw(acc)
 	    if mass and abs(float(rmass)-mass) <= 0.01:
                 cluster[acc]['mass'] = mass
+	    elif mymass and abs(float(rmass)-mymass) <= 0.01:
+                cluster[acc]['mass'] = mymass
 	    else:
 		cluster[acc]['mass'] = float(rmass)
 
@@ -561,7 +574,10 @@ class SubsumptionGraph(GNOmeAPI):
                 if acc1 != acc2:
 		    self.warning("%s <?= %s"%(acc1,acc2),5)
                     if self.subsumption.leq(gly1, gly2):
-                        if not self.geq.eq(gly1, gly2) or acc2 < acc1:
+			iseq = self.geq.eq(gly1, gly2)
+			if iseq and acc1 < acc2:
+			    self.warning("Potential WURCS canonicalization issue: %s == %s"%(acc1,acc2),1)
+                        if not iseq or acc2 < acc1:
                             outedges[acc2].add(acc1)
                             inedges[acc1].add(acc2)
 	self.warning("Computation of subsumption relationships done",5)
