@@ -7,5 +7,5 @@ A2G2
 HexNAc(4)Hex(5)
 |nneuac=0
 |sym=H5N4
-|topo=G17434DR,G19890MT
+|topo=G17434DR,G19890MT,G37917YA
 }}

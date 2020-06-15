@@ -25,6 +25,10 @@ Edit the page to see the template text.
 ! style="width=200px" | GlyGen
 | style="width=100%" |
 [https://glygen.org/glycan/{{{accession}}} {{{accession}}}]
+|-
+! style="width=200px" | GNOme
+| style="width=100%" |
+[https://gnome.glyomics.org/GNOme.browser.html?focus={{{accession}}} {{{accession}}}]
 |}
 
 == Topologies ==
@@ -32,7 +36,23 @@ Edit the page to see the template text.
 
 == Peptides ==
 
-{{#ask:
+{{#ifeq:{{PREFIX}}|gptwikidev|{{#ask:
+[[Category:Alignment]]
+[[gptwiki:haspeptide.gptwiki:hasglycan::{{PAGENAME}};?]]
+[[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
+|?gptwiki:haspeptide=
+|?gptwiki:haspeptide.gptwiki:name=Peptide
+|?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt.
+|?gptwiki:haspeptide.gptwiki:nrt#-p3 =Norm. R.T.
+|?gptwiki:hasprotein=Protein
+|?gptwiki:site=Site
+|?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
+|headers=plain
+|mainlabel=-
+|sort=gptwiki:hasprotein,gptwiki:sitepos
+|format=broadtable
+}}|{{#ask:
 [[Category:Alignment]]
 [[gptwiki:haspeptide.gptwiki:hasglycan::{{PAGENAME}};?]]
 [[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
@@ -47,7 +67,7 @@ Edit the page to see the template text.
 |mainlabel=-
 |sort=gptwiki:hasprotein,gptwiki:sitepos
 |format=broadtable
-}}
+}}}}
 
 {{#arraymap:{{{name|}}}|\n|x|{{#set:|gptwiki:name=x}}|}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:sym={{{sym|}}}}}{{#set:|gptwiki:peptidecount={{#ask:
 [[Category:Peptide]]

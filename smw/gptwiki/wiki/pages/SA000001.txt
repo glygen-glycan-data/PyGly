@@ -1,2 +1,1 @@
-
-{{Sample|Human Serum}}
+{{Sample|Human Serum|Homo sapiens|Pooled human plasma of healthy volunteers.}}

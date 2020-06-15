@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G43734MM
+|class=N-Glycan
+|mw=2411.88311393 
+|name=H6N7
+A4BG3
+HexNAc(7)Hex(6)
+|nneuac=0
+|sym=H6N7
+|topo=G39818ST,G46093ZE
+}}

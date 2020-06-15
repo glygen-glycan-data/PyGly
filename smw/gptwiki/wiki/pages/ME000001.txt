@@ -1,4 +1,4 @@
-
+__NOEDITSECTION__ __NOTOC__
 == Analytical Sample Preparation ==
 
 Aliquots of dissolved proteins (plasma, CSF, cell lysate) were diluted with sodium bicarbonate in concentration 1ug/ul. Protein solution was reduced with 5 mM DTT for 60 min at 60°C and alkylated with 15 mM iodoacetamide for 30 min in the dark. Trypsin Gold (Promega, Madison, WI) digestion (2.5 ng/μl) was carried out at 37°C in Barocycler NEP2320 (Pressure BioSciences, South Easton, MA) for 1 hour.

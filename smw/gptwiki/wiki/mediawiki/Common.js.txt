@@ -2,6 +2,9 @@ var curl = window.location.href.split("/");
 var pagename = curl[curl.length-1];
 var paraFromPage = [];
 
+// var tb=document.getElementById("p-tb");
+// tb.style.display = 'none';
+
 if ( pagename.startsWith("TG") ){
     checkElement();
 }

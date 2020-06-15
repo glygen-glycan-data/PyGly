@@ -2,6 +2,9 @@
 __NOEDITSECTION__
 {| class="wikitable"  style="text-align: right;"
 |-
+! Samples
+| {{CountLink|[[Category:Sample]]}} 
+|-
 ! Proteins 
 | {{CountLink|[[Category:Protein]][[gptwiki:peptidecount::>1]]}}
 |-

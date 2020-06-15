@@ -1,3 +1,13 @@
+__NOTOC____NOEDITSECTION__
+[http://gptwiki.glyomics.org GPTwiki] is a product of the collaborative work
+of the [http://glycoscience.georgetown.edu Clinical and Translational
+Glycoscience Research Center] at Georgetown University, led by Drs. Goldman,
+Edwards, and Sanda. 
+
+== Comments, Questions? ==
+
+Please contact Nathan Edwards at <code>nje5@georgetown.edu</code>.
+
 == Funding ==
 
 GPTwiki is supported by the NIH Glycoscience Common Fund, U01 Grant CA230692.

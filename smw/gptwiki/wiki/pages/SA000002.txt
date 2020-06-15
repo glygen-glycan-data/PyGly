@@ -1,1 +1,1 @@
-{{Sample|HEK293 Cells}}
+{{Sample|HEK293 Cells|Homo sapiens|Suspension HEK293F cells (Invitrogen) grown in serum-free 293 Freestyle medium (Invitrogen).}}

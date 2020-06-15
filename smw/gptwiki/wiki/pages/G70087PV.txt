@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G70087PV
+|class=N-Glycan
+|mw=2264.8299561 
+|name=H4N5F2S
+HexNAc(5)Hex(4)dHex(2)NeuAc(1)
+HexNAc(5)Hex(4)Fuc(2)NeuAc(1)
+|nneuac=1
+|sym=H4N5F2S
+|topo=G64045WP,G13570KZ,G22256RY
+}}

@@ -1,0 +1,13 @@
+{{Glycan
+|accession=G55382TU
+|class=N-Glycan
+|mw=1868.7031797
+|name=H3N6F
+FA4
+A4F1
+HexNAc(6)Hex(3)dHex(1)
+HexNAc(6)Hex(3)Fuc(1)
+|nneuac=0
+|sym=H3N6F
+|topo=G86536RG,G45362LV,G76794HC,G07326IT,G99732WB,G61991QV
+}}

@@ -7,6 +7,7 @@ It should be called in the following format:
 |description=
 |gene=
 |species=
+|organism=
 }}
 </pre>
 Edit the page to see the template text.
@@ -18,6 +19,9 @@ Edit the page to see the template text.
 ! style="width=200px" | Gene
 | style="width=100%" | [[gptwiki:gene::{{{gene|}}}]]
 |-
+! style="width=200px" | Organism
+| style="width=100%" | [[gptwiki:organism::{{#if:{{{organism|}}}|{{{organism|}}}|{{{species|}}}}}]]
+|-}}
 ! style="width=200px" | Species
 | style="width=100%" | [[gptwiki:species::{{{species|}}}]]
 |-
@@ -25,9 +29,34 @@ Edit the page to see the template text.
 | style="width=100%" | [https://glygen.org/protein/{{{accession}}} {{{accession}}}]
 |}
 
-== Peptides ==
-
+== Samples == 
 {{#ask:
+[[Category:Sample]]
+[[-gptwiki:forsample.-gptwiki:spectra.gptwiki:forpeptide.-gptwiki:haspeptide.gptwiki:hasprotein::{{PAGENAME}}]]
+|headers=plain
+}} 
+
+== Peptides ==
+{{#ifeq:{{PREFIX}}|gptwikidev|{{#ask:
+[[Category:Alignment]]
+[[gptwiki:hasprotein::{{PAGENAME}}]]
+[[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
+|?gptwiki:haspeptide=
+|?gptwiki:alignstart=Start
+|?gptwiki:haspeptide.gptwiki:name=Peptide
+|?gptwiki:alignend=End
+|?gptwiki:haspeptide.gptwiki:glycan.gptwiki:sym=Glycan
+|?gptwiki:site=Site
+|?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt. 
+|?gptwiki:haspeptide.gptwiki:nrt #-p3 = Norm. R.T.
+|?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
+|sep=,&thinsp;
+|headers=plain
+|format=broadtable
+|mainlabel=-
+|sort=gptwiki:sitepos,gptwiki:haspeptide.gptwiki:glycansym
+}}|{{#ask:
 [[Category:Alignment]]
 [[gptwiki:hasprotein::{{PAGENAME}}]]
 [[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
@@ -45,7 +74,7 @@ Edit the page to see the template text.
 |format=broadtable
 |mainlabel=-
 |sort=gptwiki:sitepos,gptwiki:haspeptide.gptwiki:glycansym
-}}
+}}}}
 
 {{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]|format=count}}}}
 [[Category:Protein]]

@@ -1,0 +1,3 @@
+{{Sample|SARS-CoV-2 Spike Protein (R683A, R685A) over-expressed in HEK293 Cells|Homo sapiens|[https://www.acrobiosystems.com/P3098-SARS-CoV-2-%28COVID-19%29-S-protein-%28R683A-R685A%29-His-Tag.html SARS-CoV-2 S protein (R683A, R685A), His Tag] (SPN-C52H4, ACROBiosystems, Newark, DE) is expressed in human 293 cells (HEK293).
+
+Amino-acids: Val 16 - Pro 1213.}}

@@ -1,4 +1,4 @@
-http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Glycopeptide Transition Wiki Ontology]
+http://glycandata.glygen.org/gptwiki#|[http://glycandata.glygen.org/gptwiki Glycopeptide Transition Wiki Ontology]
  id|Type:Text
  mw|Type:Number
  name|Type:Text
@@ -34,6 +34,7 @@ http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Gl
  description|Type:Text
  gene|Type:Text
  species|Type:Text
+ organism|Type:Text
  peptidecount|Type:Number
  Transition|Category
  rt|type:Number

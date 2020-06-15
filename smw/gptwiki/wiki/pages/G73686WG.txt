@@ -1,0 +1,13 @@
+{{Glycan
+|accession=G73686WG
+|class=N-Glycan
+|mw=2808.00989034
+|name=H7N6FS
+FA4G4S
+A4G4FS
+HexNAc(6)Hex(7)dHex(1)NeuAc(1)
+HexNAc(6)Hex(7)Fuc(1)NeuAc(1)
+|nneuac=1
+|sym=H7N6FS
+|topo=G35487QF,G37648MM,G12566UU
+}}

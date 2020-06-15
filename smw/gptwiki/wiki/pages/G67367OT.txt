@@ -1,0 +1,13 @@
+{{Glycan
+|accession=G67367OT
+|class=N-Glycan
+|mw=2071.78255231 
+|name=H3N7F
+FA4B
+A4BF1
+HexNAc(7)Hex(3)dHex(1)
+HexNAc(7)Hex(3)Fuc(1)
+|nneuac=0
+|sym=H3N7F
+|topo=G29362FG,G75337UB,G11275FH,G37438SW
+}}

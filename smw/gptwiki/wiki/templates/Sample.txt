@@ -1,4 +1,25 @@
-<includeonly>{{DISPLAYTITLE:{{{1}}}}}
+<includeonly>__NOEDITSECTION____NOTOC__{{DISPLAYTITLE:{{{1}}}}}
+{| class="wikitable"  style="text-align: right;"
+|-
+! Organism
+| [[gptwiki:organism::{{{2}}}]]
+|-
+|}
+{{{3|}}}
+== Proteins == 
+{{#ask:
+[[Category:Protein]]
+[[-gptwiki:hasprotein.gptwiki:haspeptide.-gptwiki:forpeptide.gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]]
+|?gptwiki:gene=Gene
+|?gptwiki:description=Description
+|?gptwiki:species=Species
+|?gptwiki:peptidecount=Peptides
+|format=broadtable
+|headers=plain
+|sort=gptwiki:peptidecount
+|order=desc
+|limit=20
+}}
 == Acquisitions == 
 {{#ask:
 [[Category:Acquisition]]
@@ -8,6 +29,7 @@
 |?gptwiki:formethod=Method
 |headers=plain
 |format=broadtable
+|limit=20
 }}
 {{#set:
 |gptwiki:name={{{1}}}

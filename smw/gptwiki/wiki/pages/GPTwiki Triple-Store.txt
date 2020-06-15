@@ -1,0 +1,63 @@
+__NOTOC__ __NOEDITSECTION__ 
+== SPARQL Endpoint ==
+
+https://edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query
+
+== Example SPARQL Query ==
+
+This query links transitions, transition groups, spectra files, glycans, peptides, and proteins. 
+
+This type of global query is not recommended, but it demonstrates how to connect the essential GPTwiki data-model entities. 
+
+<pre>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gptwiki: <http://glycandata.glygen.org/gptwiki#>
+
+SELECT ?transitionid ?transgroupid ?spectraname ?glycanid ?peptideid ?proteinid
+WHERE {
+  ?protein a gptwiki:Protein .
+  ?protein gptwiki:id ?proteinid .
+  ?peptide a gptwiki:Peptide .
+  ?peptide gptwiki:id ?peptideid . 
+  ?glycan a gptwiki:Glycan .
+  ?glycan gptwiki:id ?glycanid .
+  ?alignment a gptwiki:Alignment .
+  ?alignment gptwiki:hasprotein ?protein .
+  ?alignment gptwiki:haspeptide ?peptide .
+  ?transgroup a gptwiki:TransitionGroup .
+  ?transgroup gptwiki:id ?transgroupid .
+  ?transgroup gptwiki:forpeptide ?peptide .
+  ?transition a gptwiki:Transition .
+  ?transition gptwiki:id ?transitionid .
+  ?transgroup gptwiki:transition ?transition .
+  ?spectra a gptwiki:Acquisition .
+  ?spectra gptwiki:name ?spectraname .
+  ?transgroup gptwiki:spectra ?spectra
+}
+LIMIT 1000
+</pre>
+
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+gptwiki%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fgptwiki%23%3E%0A%0ASELECT+%3Ftransitionid+%3Ftransgroupid+%3Fspectraname+%3Fglycanid+%3Fpeptideid+%3Fproteinid%0AWHERE+%7B%0A++%3Fprotein+a+gptwiki%3AProtein+.%0A++%3Fprotein+gptwiki%3Aid+%3Fproteinid+.%0A++%3Fpeptide+a+gptwiki%3APeptide+.%0A++%3Fpeptide+gptwiki%3Aid+%3Fpeptideid+.+%0A++%3Fglycan+a+gptwiki%3AGlycan+.%0A++%3Fglycan+gptwiki%3Aid+%3Fglycanid+.%0A++%3Falignment+a+gptwiki%3AAlignment+.%0A++%3Falignment+gptwiki%3Ahasprotein+%3Fprotein+.%0A++%3Falignment+gptwiki%3Ahaspeptide+%3Fpeptide+.%0A++%3Ftransgroup+a+gptwiki%3ATransitionGroup+.%0A++%3Ftransgroup+gptwiki%3Aid+%3Ftransgroupid+.%0A++%3Ftransgroup+gptwiki%3Aforpeptide+%3Fpeptide+.%0A++%3Ftransition+a+gptwiki%3ATransition+.%0A++%3Ftransition+gptwiki%3Aid+%3Ftransitionid+.%0A++%3Ftransgroup+gptwiki%3Atransition+%3Ftransition+.%0A++%3Fspectra+a+gptwiki%3AAcquisition+.%0A++%3Fspectra+gptwiki%3Aname+%3Fspectraname+.%0A++%3Ftransgroup+gptwiki%3Aspectra+%3Fspectra%0A%7D%0ALIMIT+1000&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table Try Me!]
+
+== Transitions with Transition Group Intensity ==
+
+<pre>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gptwiki: <http://glycandata.glygen.org/gptwiki#>
+
+SELECT ?transitionid ?relint ?transgroupid ?peptideid
+WHERE {
+  ?peptide a gptwiki:Peptide .
+  ?peptide gptwiki:id ?peptideid . 
+  ?transgroup a gptwiki:TransitionGroup .
+  ?transgroup gptwiki:id ?transgroupid .
+  ?transgroup gptwiki:forpeptide ?peptide .
+  ?transgroup gptwiki:hastransition ?transintensity .
+  ?transintensity gptwiki:transition ?transition .
+  ?transintensity gptwiki:relintensity ?relint .
+  ?transition a gptwiki:Transition .
+  ?transition gptwiki:id ?transitionid .
+}
+</pre>
+
+[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+gptwiki%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fgptwiki%23%3E%0A%0ASELECT+%3Ftransitionid+%3Frelint+%3Ftransgroupid+%3Fpeptideid%0AWHERE+%7B%0A++%3Fpeptide+a+gptwiki%3APeptide+.%0A++%3Fpeptide+gptwiki%3Aid+%3Fpeptideid+.+%0A++%3Ftransgroup+a+gptwiki%3ATransitionGroup+.%0A++%3Ftransgroup+gptwiki%3Aid+%3Ftransgroupid+.%0A++%3Ftransgroup+gptwiki%3Aforpeptide+%3Fpeptide+.%0A++%3Ftransgroup+gptwiki%3Ahastransition+%3Ftransintensity+.%0A++%3Ftransintensity+gptwiki%3Atransition+%3Ftransition+.%0A++%3Ftransintensity+gptwiki%3Arelintensity+%3Frelint+.%0A++%3Ftransition+a+gptwiki%3ATransition+.%0A++%3Ftransition+gptwiki%3Aid+%3Ftransitionid+.%0A%7D%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table Try Me!]
