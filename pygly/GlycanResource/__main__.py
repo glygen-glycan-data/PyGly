@@ -48,5 +48,5 @@ else:
         else:
 	    # print r
             # print map(tostr,r)
-            sys.stderr.write("\t".join(map(tostr,r))+"\n")
+            print "\t".join(map(tostr,r))
 

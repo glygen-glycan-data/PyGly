@@ -2,7 +2,8 @@
 try:
     from pygly.GlycanImage import GlycanImage as GI
 except:
-    from GlycanImage import GlycanImage as GI
+    # from GlycanImage import GlycanImage as GI
+    pass
 
 from GlyTouCan import GlyTouCan
 
@@ -12,7 +13,7 @@ class GlycanImage(object):
 	self.gtc = GlyTouCan(prefetch=False)
     def write(self,*args,**kw):
 	for k,v in kw.items():
-	    self.imageWriter(k,v)
+	    self.imageWriter.set(k,v)
 	self.imageWriter.set('format','png')
 	for acc in args:
 	    glycoct = self.gtc.glycoct(acc)

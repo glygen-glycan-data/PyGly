@@ -87,7 +87,11 @@ class GlyTouCanUtil(object):
 	g = self.getGlycan(acc,fetch)                                                                             
 	if not g:
 	    return None
-        return g.underivitized_molecular_weight()
+	try:
+            return g.underivitized_molecular_weight()
+	except LookupError:
+	    pass
+	return None
 
     def wurcs2glycoct(self, acc):
 	sequence = self.getseq(acc,'wurcs')
