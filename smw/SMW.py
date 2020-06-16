@@ -358,7 +358,10 @@ class SMWSite(object):
         return changed
 
     def refresh(self,page):
-	if isinstance(page,basestring):
+	if isinstance(page,SMWClass):
+	    pagename = page.pagename(**page.data)
+	    page = self.site.pages[pagename]
+	elif isinstance(page,basestring):
 	    page = self.site.pages[page]
 	if page.exists:
 	    page.purge()
