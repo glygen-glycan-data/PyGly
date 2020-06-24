@@ -15,8 +15,10 @@ fi
 ./loadgtc.py $CACHE ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt ../data/extra_accessions.txt
 ./loadunicarb.py $CACHE ../data/uc2gtc.txt ../data/uc2pubmed.txt ../data/uckbcomp2glytoucan.txt
 ./unicarbkb_taxid.py ../data/uc2gtc.txt ../data/uc2taxa.txt ../data/uckbcomp2glytoucan.txt > ../data/unicarbkb_taxid.txt
-# ./glygen_taxid.py --unicarbkb "../export/unicarbkb.tsv" --glyconnect ../data/glyconnect2glytoucan.txt > ../data/glygen_taxid.txt
-./loadtaxid.py $CACHE ../data/glygen*_taxid.txt ../data/unicarbkb_taxid.txt ../data/gptwiki_taxid.txt 
+# ./glyconnect_taxid.py > ../data/glyconnect_taxid.txt
+# ./glygends_taxid.py > ../data/glygends_taxid.txt
+## ./glygen_taxid.py --unicarbkb "../export/unicarbkb.tsv" --glyconnect ../data/glyconnect2glytoucan.txt > ../data/glygen_taxid.txt
+./loadtaxid.py $CACHE ../data/glygends_taxid.txt ../data/unicarbkb_taxid.txt ../data/glyconnect_taxid.txt 
 ./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem_2020-04-08.csv
 ./loadgtc2chebi.py $CACHE ../data/GlyTouCan-ChEBI_2019-08-23.tsv
 ./loadgtc2psimod.py $CACHE ../data/psimod2glytoucan.txt

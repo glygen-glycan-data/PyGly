@@ -6,8 +6,10 @@
 
 # ./exports.sh cache 
 set -x 
-./glycanprop.py "$1" > ../exports/glycan_properties.tsv
-./monocomp.py "$1" > ../exports/monocomp.tsv
-./subsumption.py "$1" > ../exports/subsumption.tsv
-./motif.py "$1" allmotifs > ../exports/allmotifs.tsv
-./motif.py "$1" allaligns > ../exports/allmotifaligns.tsv
+./glycanprop.py "$@" > ../export/glycan_properties.tsv
+./monocomp.py "$@" > ../export/monocomp.tsv
+./subsumption.py "$@" > ../export/subsumption.tsv
+./motif.py "$@" allmotifs > ../export/allmotifs.tsv
+./motif.py "$@" allaligns > ../export/allmotifaligns.tsv
+./byonic_database.py "$@" > ../export/byonic_glygen_human_nlinked.txt
+./species.py "$@" > ../export/species_expanded.tsv

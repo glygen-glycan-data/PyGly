@@ -8,20 +8,20 @@ GGM.000001	MotifGlyTouCan	G00055MO
 GGM.000001	ReducingEnd	false
 GGM.000002	Collection	GGM
 GGM.000002	Accession	000002
-GGM.000002	PreferredName	Type 2 LN2
-GGM.000002	AlternativeName	I' antigen
+GGM.000002	PreferredName	i antigen
+GGM.000002	AlternativeName	Type 2 LN2
 GGM.000002	Aglycon	R
 GGM.000002	MotifGlyTouCan	G00058MO
 GGM.000002	ReducingEnd	false
 GGM.000003	Collection	GGM
 GGM.000003	Accession	000003
-GGM.000003	PreferredName	I' antigen
+GGM.000003	PreferredName	I antigen
 GGM.000003	Aglycon	R
 GGM.000003	MotifGlyTouCan	G56045WU
 GGM.000003	ReducingEnd	false
 GGM.000004	Collection	GGM
 GGM.000004	Accession	000004
-GGM.000004	PreferredName	I' antigen
+GGM.000004	PreferredName	i antigen
 GGM.000004	Aglycon	R
 GGM.000004	MotifGlyTouCan	G46055MA
 GGM.000004	ReducingEnd	false
@@ -71,9 +71,9 @@ GGM.000011	ReducingEnd	true
 GGM.000012	Collection	GGM
 GGM.000012	Accession	000012
 GGM.000012	PreferredName	Sialyl Tn antigen
-GGM.000012	Aglycon	R
+GGM.000012	Aglycon	Ser/Thr
 GGM.000012	MotifGlyTouCan	G36123IU
-GGM.000012	ReducingEnd	false
+GGM.000012	ReducingEnd	true
 GGM.000013	Collection	GGM
 GGM.000013	Accession	000013
 GGM.000013	PreferredName	Sialyl T antigen
@@ -146,7 +146,7 @@ GGM.000023	Collection	GGM
 GGM.000023	Accession	000023
 GGM.000023	PreferredName	Cyclic sialyl 6-sulfo Lewis x
 GGM.000023	Aglycon	R
-GGM.000023	MotifGlyTouCan	G53231FE
+GGM.000023	MotifGlyTouCan	G80722US
 GGM.000023	ReducingEnd	false
 GGM.000024	Collection	GGM
 GGM.000024	Accession	000024
@@ -158,45 +158,46 @@ GGM.000024	MotifGlyTouCan	G00053MO
 GGM.000024	ReducingEnd	false
 GGM.000025	Collection	GGM
 GGM.000025	Accession	000025
-GGM.000025	PreferredName	60-Sulfo-sialyl Lewis x
-GGM.000025	AlternativeName	60-sulfo SLex
+GGM.000025	PreferredName	6'-Sulfo Sialyl Lewis x
+GGM.000025	AlternativeName	6'-sulfo SLex
 GGM.000025	Aglycon	R
-GGM.000025	MotifGlyTouCan	G06378CG
+GGM.000025	MotifGlyTouCan	G00672PE
 GGM.000025	ReducingEnd	false
 GGM.000026	Collection	GGM
 GGM.000026	Accession	000026
 GGM.000026	PreferredName	2,6-sialyl-Sulfo-LN
 GGM.000026	AlternativeName	6-sialyl-6-sulfo LN
 GGM.000026	Aglycon	R
-GGM.000026	MotifGlyTouCan	G92341SR
+GGM.000026	MotifGlyTouCan	G43191LZ
 GGM.000026	ReducingEnd	false
 GGM.000027	Collection	GGM
 GGM.000027	Accession	000027
-GGM.000027	PreferredName	6-Sulfo-sialyl Lewis x
+GGM.000027	PreferredName	6-Sulfo Sialyl Lewis x
 GGM.000027	AlternativeName	6-sulfo SLex
 GGM.000027	Aglycon	R
-GGM.000027	MotifGlyTouCan	G53231FE
+GGM.000027	MotifGlyTouCan	G80722US
 GGM.000027	ReducingEnd	false
 GGM.000028	Collection	GGM
 GGM.000028	Accession	000028
-GGM.000028	PreferredName	6,60-bisSulfo-Lewis x
-GGM.000028	AlternativeName	6,60-bissulfo Lex
+GGM.000028	PreferredName	6,6'-bisSulfo-Lewis x
+GGM.000028	AlternativeName	6,6'-bissulfo Lex
+GGM.000028	AlternativeName	6,6'-Disulfo Sialyl Lewis x
 GGM.000028	Aglycon	R
-GGM.000028	MotifGlyTouCan	G23094GH
+GGM.000028	MotifGlyTouCan	G00659GQ
 GGM.000028	ReducingEnd	false
 GGM.000029	Collection	GGM
 GGM.000029	Accession	000029
-GGM.000029	PreferredName	30-Sulfo-Lewis x
-GGM.000029	AlternativeName	30-sulfo Lex
+GGM.000029	PreferredName	3'-Sulfo Lewis x
+GGM.000029	AlternativeName	3'-sulfo Lex
 GGM.000029	Aglycon	R
-GGM.000029	MotifGlyTouCan	G51907PX
+GGM.000029	MotifGlyTouCan	G12295TB
 GGM.000029	ReducingEnd	false
 GGM.000030	Collection	GGM
 GGM.000030	Accession	000030
-GGM.000030	PreferredName	30-Sulfo-Lewis a
-GGM.000030	AlternativeName	30-Sulfo Lea
+GGM.000030	PreferredName	3'-Sulfo Lewis a
+GGM.000030	AlternativeName	3'-Sulfo Lea
 GGM.000030	Aglycon	R
-GGM.000030	MotifGlyTouCan	G14395NH
+GGM.000030	MotifGlyTouCan	G78706CK
 GGM.000030	ReducingEnd	false
 GGM.000031	Collection	GGM
 GGM.000031	Accession	000031
@@ -315,9 +316,9 @@ GGM.000048	MotifGlyTouCan	G00052MO
 GGM.000048	ReducingEnd	false
 GGM.000049	Collection	GGM
 GGM.000049	Accession	000049
-GGM.000049	PreferredName	40-sulfated LDN
+GGM.000049	PreferredName	4'-sulfated LDN
 GGM.000049	Aglycon	R
-GGM.000049	MotifGlyTouCan	G31301MT
+GGM.000049	MotifGlyTouCan	G18464VS
 GGM.000049	ReducingEnd	false
 GGM.000050	Collection	GGM
 GGM.000050	Accession	000050
@@ -365,13 +366,13 @@ GGM.000058	Collection	GGM
 GGM.000058	Accession	000058
 GGM.000058	PreferredName	HNK-1 antigen
 GGM.000058	Aglycon	R
-GGM.000058	MotifGlyTouCan	G89591DK
+GGM.000058	MotifGlyTouCan	G53277CD
 GGM.000058	ReducingEnd	false
 GGM.000059	Collection	GGM
 GGM.000059	Accession	000059
 GGM.000059	PreferredName	HNK-1 on O-mannose
 GGM.000059	Aglycon	Ser/Thr
-GGM.000059	MotifGlyTouCan	G82061CN
+GGM.000059	MotifGlyTouCan	G06898ZN
 GGM.000059	ReducingEnd	true
 GGM.000060	Collection	GGM
 GGM.000060	Accession	000060
@@ -389,13 +390,13 @@ GGM.000062	Collection	GGM
 GGM.000062	Accession	000062
 GGM.000062	PreferredName	Seminolipid
 GGM.000062	Aglycon	Other
-GGM.000062	MotifGlyTouCan	G95090DW
+GGM.000062	MotifGlyTouCan	G72548RZ
 GGM.000062	ReducingEnd	true
 GGM.000063	Collection	GGM
 GGM.000063	Accession	000063
 GGM.000063	PreferredName	Sulfatide
 GGM.000063	Aglycon	Cer
-GGM.000063	MotifGlyTouCan	G95090DW
+GGM.000063	MotifGlyTouCan	G72548RZ
 GGM.000063	ReducingEnd	true
 GGM.000064	Collection	GGM
 GGM.000064	Accession	000064
@@ -407,13 +408,13 @@ GGM.000065	Collection	GGM
 GGM.000065	Accession	000065
 GGM.000065	PreferredName	Ceramide dihexosyl sulfate
 GGM.000065	Aglycon	Cer
-GGM.000065	MotifGlyTouCan	G98482BC
+GGM.000065	MotifGlyTouCan	G50926NK
 GGM.000065	ReducingEnd	true
 GGM.000066	Collection	GGM
 GGM.000066	Accession	000066
 GGM.000066	PreferredName	Monosulfated gangliotetraosylceramide
 GGM.000066	Aglycon	Cer
-GGM.000066	MotifGlyTouCan	G57796RK
+GGM.000066	MotifGlyTouCan	G96596OC
 GGM.000066	ReducingEnd	true
 GGM.000067	Collection	GGM
 GGM.000067	Accession	000067
@@ -460,13 +461,13 @@ GGM.000073	Collection	GGM
 GGM.000073	Accession	000073
 GGM.000073	PreferredName	Mono-sulfated globotetraosylceramide
 GGM.000073	Aglycon	Cer
-GGM.000073	MotifGlyTouCan	G44854SQ
+GGM.000073	MotifGlyTouCan	G87212TR
 GGM.000073	ReducingEnd	true
 GGM.000074	Collection	GGM
 GGM.000074	Accession	000074
 GGM.000074	PreferredName	Sulfo-isogloboside
 GGM.000074	Aglycon	Cer
-GGM.000074	MotifGlyTouCan	G57036MA
+GGM.000074	MotifGlyTouCan	G10057XH
 GGM.000074	ReducingEnd	true
 GGM.000075	Collection	GGM
 GGM.000075	Accession	000075
@@ -527,6 +528,7 @@ GGM.000083	ReducingEnd	true
 GGM.000084	Collection	GGM
 GGM.000084	Accession	000084
 GGM.000084	PreferredName	Forssman glycolipid
+GGM.000084	AlternativeName	Globopentosylceramide
 GGM.000084	Aglycon	Cer
 GGM.000084	MotifGlyTouCan	G80062GG
 GGM.000084	ReducingEnd	true

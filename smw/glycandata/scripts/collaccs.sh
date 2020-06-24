@@ -30,7 +30,11 @@ for taxid in 9606 10090 10116 10114 11103 11108 694009 2697049; do
   $PYTHON $PYGLY/GlycanResource/main.py UniCarbKB gtcbytaxa $taxid > $DATA/uc.${taxid}.txt
 done
 
-( ls $DATA/gtc.*.txt $DATA/uc.*.txt | egrep '(gtc|uc)\.[0-9][0-9]*\.txt$'; \
+$PYTHON $PYGLY/GlycanResource/main.py GlyConnect gtcbyspecies "Homo sapiens" > $DATA/glc.9606.txt
+$PYTHON $PYGLY/GlycanResource/main.py GlyConnect gtcbyspecies "Mus musculus" > $DATA/glc.10090.txt
+$PYTHON $PYGLY/GlycanResource/main.py GlyConnect gtcbyspecies "Rattus norvegicus" > $DATA/glc.10116.txt
+
+( ls $DATA/gtc.*.txt $DATA/uc.*.txt $DATA/glc.*.txt | egrep '(gtc|uc)\.[0-9][0-9]*\.txt$'; \
   ls "$DATA/glygen_req_accessions.txt" "$DATA/glygen_hist_accessions.txt" ) | \
   xargs -n 10 cat | \
     fgrep -v -f $DATA/glygen_accessions.txt | \
