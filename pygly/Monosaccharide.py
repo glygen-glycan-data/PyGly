@@ -76,6 +76,8 @@ class Node(object):
         # useful for a variety of general processing tasks...
         self._id = None
 
+        self._external_descriptor = None
+
         return 
 
     def links(self,instantiated_only=True):
@@ -166,6 +168,13 @@ class Node(object):
     def is_monosaccharide(self):
         return False
 
+    def external_descriptor(self):
+        return self._external_descriptor
+
+    def set_external_descriptor(self, s):
+        self._external_descriptor = s
+
+
 class Monosaccharide(Node):
 
     # Note that we use None to indicate unset or null values
@@ -225,6 +234,7 @@ class Monosaccharide(Node):
         # m._links = copy.deepcopy(self._links)
         m._id = self._id
         m._connected = self._connected
+        m._external_descriptor = self._external_descriptor
         return m
 
     def noring(self):

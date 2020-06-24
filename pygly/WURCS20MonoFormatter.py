@@ -82,6 +82,7 @@ class WURCS20MonoFormat:
         # print mono_string
         # print skel, anomer, ring, substs
         m = Monosaccharide()
+        m.set_external_descriptor(skel)
 
         if skel in self.skelconfig.sections():
             self.skel_config_get_default_section = skel
@@ -171,14 +172,16 @@ class WURCS20MonoFormat:
                     pt = self.subsconfig.get(sub_name, "parent_type")
                     ct = self.subsconfig.get(sub_name, "child_type")
                     cp = self.subsconfig.get(sub_name, "child_pos")
+                    sub_object = Substituent(eval(sub_type))
+                    sub_object.set_external_descriptor(sub_name)
+
                     if cp != None:
                         cp = int(cp)
 
                     if re.search(r"^\d-\d$", pp) and sub_name != "anhydro":
-                        subins = Substituent(eval(sub_type))
                         for pp in pp.split("-"):
                             pp = int(pp)
-                            m.add_substituent(subins, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
+                            m.add_substituent(sub_object, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
                                               child_type=eval(ct))
 
                     elif '|' not in pp and '-' not in pp:
@@ -186,25 +189,24 @@ class WURCS20MonoFormat:
                             pp = -1
                         else:
                             pp = int(pp)
-                        m.add_substituent(eval(sub_type), parent_pos=pp, parent_type=eval(pt), child_pos=cp,
+                        m.add_substituent(sub_object, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
                                           child_type=eval(ct))
                     elif '|' in pp:
                         pp = map(int, pp.split('|'))
-                        m.add_substituent(eval(sub_type), parent_pos=pp, parent_type=eval(pt), child_pos=cp,
+                        m.add_substituent(sub_object, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
                                           child_type=eval(ct))
                     elif '-' in pp and sub_name == "anhydro":
                         pp = map(int, pp.split('-'))
                         if len(pp) != 2:
                             raise UnsupportedSubstituentError(sub)
-                        anhydro = Substituent(eval(sub_type))
-                        m.add_substituent(anhydro, parent_pos=pp[0], parent_type=eval(pt),
+                        m.add_substituent(sub_object, parent_pos=pp[0], parent_type=eval(pt),
                                                   child_pos=cp, child_type=eval(ct)).child()
                         pt = self.subsconfig.get(sub_name + "1", "parent_type")
                         ct = self.subsconfig.get(sub_name + "1", "child_type")
                         cp = self.subsconfig.get(sub_name + "1", "child_pos")
                         if cp != None:
                             cp = int(cp)
-                        m.add_substituent(anhydro, parent_pos=pp[1], parent_type=eval(pt), child_pos=cp,
+                        m.add_substituent(sub_object, parent_pos=pp[1], parent_type=eval(pt), child_pos=cp,
                                           child_type=eval(ct))
                     else:
                         raise UnsupportedSubstituentError(sub)
