@@ -20,8 +20,8 @@ for acc in w.iterglycanid():
     g = w.get(acc)
     for ann in g.annotations(type="Species",source="EdwardsLab"):
 	prop = ann.get('property')
-	species_name = prop.rsplit(None,1)[0]
 	if 'Evidence' in prop:
+	    species_name = prop.rsplit(None,1)[0]
 	    for value in sorted(ann.get('value',[])):
 	        if 'Subsumption of ' in value:
 		    via = value.rsplit(None,1)[1]
