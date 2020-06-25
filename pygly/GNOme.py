@@ -436,8 +436,8 @@ class SubsumptionGraph(GNOmeAPI):
         self.basecomposition = BaseComposition()
         self.verbose = kwargs.get('verbose', 0)
 
-	# invalid = set(self.gtc.allinvalid())
-	invalid = set()
+	invalid = set(self.gtc.allinvalid())
+	# invalid = set()
 
         masscluster = defaultdict(dict)
 	clustermap = defaultdict(set)

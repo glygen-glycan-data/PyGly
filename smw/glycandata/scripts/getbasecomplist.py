@@ -77,6 +77,9 @@ seen = defaultdict(set)
 
 for acc in sorted(accessions()):
 
+    if gtc.invalid(acc):
+	continue
+
     if acc in badacc:
 	continue
 

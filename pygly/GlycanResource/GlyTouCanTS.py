@@ -136,11 +136,11 @@ class GlyTouCanTS(TripleStoreResource):
         return False
 
     def allinvalid(self):
-	for row in self.query_invalid():
+	for row in self.query_validacc():
 	    yield row['accession']
 
     def invalid(self,accession):
-	for row in self.query_invalid(accession=accession):
+	for row in self.query_validacc(accession=accession):
 	    return True
 	return False
 

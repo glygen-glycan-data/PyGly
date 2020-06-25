@@ -20,6 +20,8 @@ except ImportError:
                                      UnsupportedSubstituentError, \
                                      InvalidMonoError
 
+from collections import defaultdict
+
 class GlyTouCanUtil(object):
     _wurcs_mono_format = WURCS20MonoFormat()
     _wurcs_format = WURCS20Format()

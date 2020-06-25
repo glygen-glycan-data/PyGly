@@ -1,6 +1,16 @@
 #!/bin/env python27
 
-import sys, time, traceback
+import sys, time, traceback, hashlib
+from collections import defaultdict
+
+import findpygly
+from pygly.GlycanResource import GlyTouCanNoPrefetch
+
+gtc = GlyTouCanNoPrefetch()
+
+acc2hash = defaultdict(set)
+for hsh,seq,acc in gtc.allhashedseq():
+    acc2hash[acc].add(hsh)
 
 from getwiki import GlycanData
 w = GlycanData()
@@ -29,6 +39,17 @@ for g in accessions():
 	    g.set_annotation(property='GlycoCT',type='Sequence',value=value,source='EdwardsLab')
     else:
 	g.delete_annotations(source='EdwardsLab',type='Sequence',property='GlycoCT')
+
+    hashes = acc2hash[g.get('accession')]
+    for ann in g.annotations(type='Sequence'):
+	if ann.get('property') not in ('GlycoCT','WURCS'):
+	    continue
+	value = ann.get('value')
+	if not value:
+	    continue
+	hashes.add(hashlib.sha256(value).hexdigest().lower())
+    if len(hashes) > 0:
+	g.set_annotation(property='SequenceHash',type='Sequence',value=sorted(hashes),source='EdwardsLab')
 
     try:
 	if glycan.fully_determined():
