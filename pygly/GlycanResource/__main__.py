@@ -44,6 +44,7 @@ else:
                 if 'accession' in headers:
                     headers.remove('accession')
                     headers = ['accession'] + headers
+                print "\t".join(headers)
             print "\t".join(map(tostr,map(r.get,headers)))
         else:
 	    # print r

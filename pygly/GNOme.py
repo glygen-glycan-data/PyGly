@@ -436,7 +436,7 @@ class SubsumptionGraph(GNOmeAPI):
         self.basecomposition = BaseComposition()
         self.verbose = kwargs.get('verbose', 0)
 
-	invalid = set(self.gtc.allinvalid())
+	# invalid = set(self.gtc.allinvalid())
 	# invalid = set()
 
         masscluster = defaultdict(dict)
@@ -456,9 +456,7 @@ class SubsumptionGraph(GNOmeAPI):
 		    low = str(round(float(a),2))
 		    high = low
 		argmass.append((low,high))
-	    for glyacc in self.gtc.allaccessions():
-		if glyacc in invalid:
-		    continue
+	    for glyacc in self.gtc.allvalid():
 		mass = self.gtc.getmass(glyacc)
 		if not mass:
 		    mass = self.gtc.umw(glyacc,fetch='wurcs')
@@ -477,9 +475,7 @@ class SubsumptionGraph(GNOmeAPI):
 			clustermap[glyacc].add(rmass)
 			break
         else:
-	    for glyacc in self.gtc.allaccessions():
-		if glyacc in invalid:
-		    continue
+	    for glyacc in self.gtc.allvalid():
 		mass = self.gtc.getmass(glyacc)
 		if not mass:
 		    mass = self.gtc.umw(glyacc,fetch='wurcs')
@@ -498,17 +494,17 @@ class SubsumptionGraph(GNOmeAPI):
 	for rmass,cluster in masscluster.items():
 	    for acc in list(cluster):
 		topo = self.gtc.gettopo(acc)
-	        if topo and topo not in cluster:
+	        if topo and topo not in cluster and not self.gtc.invalid(topo):
 		    masscluster[rmass][topo] = dict(accession=topo)
 		    for rmi in clustermap.get(topo,[]):
 			del masscluster[rmi][topo]
 		comp = self.gtc.getcomp(acc)
-	        if comp and comp not in cluster:
+	        if comp and comp not in cluster and not self.gtc.invalid(comp):
 		    masscluster[rmass][comp] = dict(accession=comp)
 		    for rmi in clustermap.get(comp,[]):
 		        del masscluster[rmi][comp]
 		bcomp = self.gtc.getbasecomp(acc)
-	        if bcomp and bcomp not in cluster:
+	        if bcomp and bcomp not in cluster and not self.gtc.invalid(bcomp):
 		    masscluster[rmass][bcomp] = dict(accession=bcomp)
 		    for rmi in clustermap.get(bcomp,[]):
 		        del masscluster[rmi][bcomp]

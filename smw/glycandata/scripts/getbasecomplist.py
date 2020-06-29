@@ -64,7 +64,7 @@ def accessions():
 	    yield acc.strip()
     elif len(sys.argv) == 2 and sys.argv[1] == "*":
         gtc = GlyTouCan(usecache=False)
-	for acc in gtc.allaccessions():
+	for acc in gtc.allvalid():
 	    yield acc
     else:
         gtc = GlyTouCan(prefetch=False)
@@ -76,9 +76,6 @@ allskel = set()
 seen = defaultdict(set)
 
 for acc in sorted(accessions()):
-
-    if gtc.invalid(acc):
-	continue
 
     if acc in badacc:
 	continue

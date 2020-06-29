@@ -135,13 +135,30 @@ class GlyTouCanTS(TripleStoreResource):
             return True
         return False
 
+    def allvalid(self):
+	seen = set()
+	for row in self.query_validacc1():
+	    if row['validseqhash'] == row['seqhash']:
+		if row['accession'] in seen:
+		    continue
+		seen.add(row['accession'])
+		if self.invalid(row['accession']):
+		    continue
+	        yield row['accession']
+
     def allinvalid(self):
-	for row in self.query_validacc():
-	    yield row['accession']
+	seen = set()
+	for row in self.query_validacc1():
+	    if row['validseqhash'] != row['seqhash']:
+		if row['accession'] in seen:
+		    continue
+		seen.add(row['accession'])
+	        yield row['accession']
 
     def invalid(self,accession):
-	for row in self.query_validacc(accession=accession):
-	    return True
+	for row in self.query_validacc1(accession=accession):
+	    if row['validseqhash'] != row['seqhash']:
+	        return True
 	return False
 
     def allaccessions(self):
