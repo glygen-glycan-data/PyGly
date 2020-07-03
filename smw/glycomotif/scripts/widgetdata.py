@@ -5,7 +5,10 @@ import sys
 import os
 import json
 import copy
+
+import findpygly
 import pygly.alignment as alignment
+
 from collections import defaultdict
 from pygly.GlycanFormatter import WURCS20Format, GlycoCTFormat
 
@@ -428,10 +431,10 @@ for m in w.itermotif():
     equivalents = []
     for topos in topology_pool:
         if gtcid in topos:
-            equivalents = topos[:]
+            equivalents = topos
             break
 
-    equivalents = map(lambda x: str(AllMotifpageid + "." + x), equivalents)
+    equivalents = sorted(map(lambda x: str(AllMotifpageid + "." + x), equivalents))
 
     print "Set topology cluster attribute for ", m.get("id")
     m.set("topology", equivalents)
