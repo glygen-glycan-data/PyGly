@@ -10,6 +10,7 @@ except ImportError:
             break
     if os.path.exists(os.path.join(base,"smw")):
         sys.path.append(base)
+        sys.path.append(os.path.join(base,"smw","gptwiki"))
     import smw
 
 from smw.gptwiki import *
