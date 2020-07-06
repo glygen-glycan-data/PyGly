@@ -1,0 +1,11 @@
+The structure of glyboside I is provided by the following reference:
+
+Laine R, Sweeley CC, Li YT, Kisic A, Rapport MM. On the structure of cytolipin R, a ceramide tetrahexoside hapten from rat lymphosarcoma. J Lipid Res. 1972;13(4):519-524. [https://pubmed.ncbi.nlm.nih.gov/5068000/ PMID:5068000]
+
+Per the abstract, Cytolipin R is "N-acetylgalactosaminyl(beta1-->3)galactosyl(alpha1-->3) galactosyl(beta1-->4)glucosyl ceramide". 
+
+This abstract also indicates that Cytolipin K (globoside I) differs in having a -galactosyl(alpha1-->4)galactosyl- internal linkage.
+
+Cytolipin R can be found here [[GGM.000083]].
+
+We add the names globoside I and Cytolipin K to this entry based on this reference.
