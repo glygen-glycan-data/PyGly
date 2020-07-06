@@ -1,6 +1,8 @@
 import os
 import sys
 import csv
+
+import findpygly
 from pygly.GlycanResource import GlyTouCan
 from pygly.GlycanFormatter import WURCS20Format, GlycoCTFormat
 from pygly.alignment import GlyTouCanMotif
@@ -10,7 +12,7 @@ wp = WURCS20Format()
 gp = GlycoCTFormat()
 
 gtcm = GlyTouCanMotif()
-gtc = GlyTouCan()
+gtc = GlyTouCan(usecache=False)
 
 
 from getwiki import GlycoMotifWiki

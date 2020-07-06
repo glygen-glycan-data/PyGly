@@ -131,6 +131,20 @@ class SMWSite(object):
 	for p in self.iterpages(include_categories=[category]):
 	    yield p.name
 
+    def iterall(self):
+	for p in self.itermediawiki():
+	    yield p
+	for p in self.itertemplates():
+	    yield p
+	for p in self.itercategories():
+	    yield p
+	for p in self.iterforms():
+	    yield p
+	for p in self.iterpages():
+	    yield p
+	for p in self.itertalk():
+	    yield p
+
     def iternamespace(self,namespace):
         for t in self.site.allpages(namespace=namespace):
             if t.exists:
