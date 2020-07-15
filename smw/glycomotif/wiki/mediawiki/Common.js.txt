@@ -249,3 +249,275 @@ function locateViewer3(){
         console.log("Bug in load viewer3")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (document.getElementById("motif_align_para") != null){
+    // SNFG
+    // var imageURLprefix = "https://image.glycosmos.org/snfg/png/";
+    // var imageURLsuffix = "";
+
+    // CFG
+    var imageURLprefix = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/";
+    var imageURLsuffix = ".png";
+
+    var motifacc = document.getElementById("motif_align_para").getAttribute("data-glytoucan");
+    var motifredonlyraw = document.getElementById("motif_align_para").getAttribute("data-redonly");
+    var motifredonly = motifredonlyraw == "true";
+
+    function alignmentQueryConstructorAll(motif) {
+        var query =
+            'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n' +
+            'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n' +
+            'PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>\n' +
+            '\n' +
+            'SELECT DISTINCT ?accession\n' +
+            'WHERE {\n' +
+            '\n' +
+            '    ?motif glycomotif:glytoucan ?motifgtcacc . \n' +
+            '    ?motif rdf:type glycomotif:Motif .\n' +
+            '    ?motif glycomotif:incollection ?collection . \n' +
+            '    \n' +
+            '    ?collection rdf:type glycomotif:Collection .\n' +
+            '    ?collection glycomotif:id "GM" .\n' +
+            '    \n' +
+            '    ?motif glycomotif:has_alignment ?accession .\n' +
+            '\n' +
+            '    FILTER(regex(STR(?motifgtcacc), "' + motif + '"))\n' +
+            '    \n' +
+            '}';
+        return query
+    }
+
+    function alignmentQueryConstructorReducing(motif) {
+        var query =
+            'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n' +
+            'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n' +
+            'PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>\n' +
+            '\n' +
+            'SELECT DISTINCT ?accession\n' +
+            'WHERE {\n' +
+            '\n' +
+            '    ?motif glycomotif:glytoucan ?motifgtcacc . \n' +
+            '    ?motif rdf:type glycomotif:Motif .\n' +
+            '    ?motif glycomotif:incollection ?collection . \n' +
+            '    \n' +
+            '    ?collection rdf:type glycomotif:Collection .\n' +
+            '    ?collection glycomotif:id "GM" .\n' +
+            '    \n' +
+            '    ?motif glycomotif:has_redend_alignment ?accession .\n' +
+            '\n' +
+            '    FILTER(regex(STR(?motifgtcacc), "' + motif + '"))\n' +
+            '    \n' +
+            '}';
+        return query
+    }
+
+
+
+    function sparqlQuery(endpt, query) {
+
+        var params={
+            "default-graph": "", "should-sponge": "soft", "query": query,
+            "debug": "on", "timeout": 1000, "format": "application/json",
+            "save": "display", "fname": ""
+        };
+
+        var querypart="";
+        for(var k in params) {
+            querypart+=k+"="+encodeURIComponent(params[k])+"&";
+        }
+        var queryURL = endpt + '?' + querypart;
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.open("GET", queryURL, false);
+        xmlhttp.send();
+
+        return xmlhttp.responseText
+
+    }
+
+    function alignment(motif){
+
+        var endpt = "https://edwardslab.bmcb.georgetown.edu/sparql/glycomotifdev/query";
+
+        var res = {
+            "red": [],
+            "all": []
+        };
+
+        var query = alignmentQueryConstructorAll(motif);
+        var response = JSON.parse(sparqlQuery(endpt, query));
+        var result = response.results.bindings;
+        for (var i in result){
+            var pair = result[i];
+            var structureAcc = pair.accession.value;
+            res.all.push(structureAcc);
+        }
+
+        query = alignmentQueryConstructorReducing(motif);
+        response = JSON.parse(sparqlQuery(endpt, query));
+        result = response.results.bindings;
+        for (var i in result){
+            var pair = result[i];
+            var structureAcc = pair.accession.value;
+            res.red.push(structureAcc);
+        }
+        res.all = res.all.sort();
+
+        if (motifredonly){
+            res.all = res.red.sort();
+        }
+        return res
+    }
+
+    function CreateGlycanFigure(gtcid, f) {
+
+        var figure = document.createElement("figure");
+
+        figure.style = "width: 100%; ";
+        figure.style.margin = 0;
+        figure.id = "img_" + gtcid;
+
+        var img = document.createElement("img");
+        img.src = imageURLprefix + gtcid + imageURLsuffix;
+        img.style = "max-width: 100%; height: auto";
+        img.acc = gtcid;
+        img.onclick = function (d) {
+            var acc = this.acc;
+            window.open("https://glytoucan.org/Structures/Glycans/" + acc);
+        }
+
+        var caption = document.createElement("figcaption");
+        caption.innerHTML = gtcid;
+        if (f){
+            caption.innerHTML += "*";
+        }
+        caption.style.textAlign = "center";
+
+        figure.appendChild(img);
+        figure.appendChild(caption);
+
+        return figure
+    }
+
+
+
+    var colNum = 3;
+    var rowNum = 5;
+    function draw(pageNum){
+        var container = document.getElementById("glycomotif_alignment_result");
+
+        var pageTotalNum = Math.ceil(res.all.length / (rowNum * colNum));
+
+        container.innerHTML = "";
+        var table = document.createElement("table");
+        table.style.width = "100%";
+
+        var count = 0;
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+
+        for (var i in res.all.slice((rowNum * colNum)*pageNum, (rowNum * colNum)*pageNum+(rowNum * colNum))){
+            var c = res.all.slice((rowNum * colNum)*pageNum, (rowNum * colNum)*pageNum+(rowNum * colNum))[i];
+            count += 1;
+            if (count == colNum+1){
+                table.appendChild(tr);
+                count = 1;
+                tr = document.createElement("tr");
+            }
+            td = document.createElement("td");
+            var figure = CreateGlycanFigure(c, res.red.includes(c))
+            td.appendChild(figure);
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+
+
+        container.appendChild(table);
+
+        var containerButton = document.createElement("div");
+
+        function jump() {
+            draw(parseInt(this.pageNum));
+        }
+
+        function buttonGenerator() {
+            var button = document.createElement("a");
+            button.onclick = jump;
+            containerButton.appendChild(button);
+            return button
+        }
+
+        var button, valid;
+        valid = pageNum != 0;
+        button = document.createElement("a");
+        containerButton.appendChild(button);
+        button.innerText = "Prev";
+        button.onclick = jump;
+        if (valid){
+            button.pageNum = pageNum-1;
+            button.href = "javascript:;";
+        }
+        else{
+            button.pageNum = 0;
+        }
+
+        var space = document.createElement("span");
+        space.innerHTML = "&nbsp/&nbsp"
+        containerButton.appendChild(space);
+
+        var button, valid;
+        valid = pageNum != pageTotalNum-1;
+        button = document.createElement("a");
+        containerButton.appendChild(button);
+        button.innerText = "Next";
+        button.onclick = jump;
+        if (valid){
+            button.pageNum = pageNum+1;
+            button.href = "javascript:;";
+        }
+        else{
+            button.pageNum = pageNum;
+        }
+
+
+        container.appendChild(document.createElement("br"));
+        container.appendChild(document.createElement("br"));
+        container.appendChild(document.createElement("br"));
+        container.appendChild(containerButton);
+        containerButton.style = "position: absolute; right: 10%; ";
+
+    }
+
+    var res = alignment(motifacc);
+    if (res.all.length > 0){
+        draw(0);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
