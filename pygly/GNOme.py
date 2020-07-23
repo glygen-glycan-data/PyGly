@@ -1997,6 +1997,158 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
 
         }
 
+import pygly.Monosaccharide
+class IncompleteScore:
+
+    def __init__(self):
+        pass
+
+    def monoscore(self, m):
+        res = 0.0
+        anomer = m.anomer()
+        config = m.config()
+        rs = m.ring_start()
+        re = m.ring_end()
+        stem = m.stem()
+        superclass = m.superclass()
+
+        # sublink = m.substituent_links()
+
+        if anomer == None:
+            res += 2
+
+        if config != None:
+            res += float(config.count(None)) / len(config) * 2
+        else:
+            res += 2
+
+        if anomer != pygly.Monosaccharide.Anomer.uncyclized:
+            if rs == None:
+                res += 1
+            if re == None:
+                res += 1
+
+        if stem == None or None in stem:
+            res += 2
+
+        if superclass == None:
+            res += 2
+
+        res = res # max 10
+        return res
+
+    def linksimplescore(self, l):
+        res = 0.0
+        pp = l.parent_pos()
+        cp = l.child_pos()
+        pt = l.parent_type()
+        ct = l.child_type()
+        und = l.undetermined()
+
+        if pp != None:
+            if len(pp) > 1:
+                res += 1
+        else:
+            res += 2
+
+        if cp != None:
+            if len(cp) > 1:
+                res += 1
+        else:
+            res += 2
+
+        if len(pt) > 1:
+            res += 2
+
+        if len(ct) > 1:
+            res += 2
+        # print pp, cp, pt, ct, und
+
+        res = res / 8 * 10 # scale from 8 to 10
+        return res
+
+
+    def substscore(self, s):
+        if s._sub != None:
+            return 2
+        return 0
+
+    def score(self, g):
+
+        monos = list(g.all_nodes())
+        total_mono = len(monos)
+
+        unconnected_mono_root = list(g.unconnected_roots())
+        unconnected_mono_root = filter(lambda m: m.is_monosaccharide(), unconnected_mono_root)
+        det_parent_links = [m.parent_links() for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
+        und_parent_links = [m.parent_links() for m in unconnected_mono_root]
+
+        allsubst = filter(lambda n: not n.is_monosaccharide(), g.all_nodes(subst=True, undet_subst=False))
+
+        mono_score_result = 0.0
+        mono_score_total  = 10.0 * total_mono
+
+        link_score_result = 0.0
+        link_score_total  = 10.0 * (total_mono - 1)
+
+        for m in monos:
+            mono_score_result += self.monoscore(m)
+
+        for ls in und_parent_links + det_parent_links:
+
+            if len(ls) == 1:
+                link_score_result += self.linksimplescore(ls[0]) * 0.25
+
+            elif len(ls) > 1:
+                parent_link_scores = []
+                for pl in ls:
+                    s = self.linksimplescore(pl) * 0.25
+                    parent_link_scores.append(s)
+
+                ave = sum(parent_link_scores) / len(parent_link_scores)
+                und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
+                s = ave + 7.5 * und_ratio
+                link_score_result += s
+
+            else:
+                # Unknown of from-and-to and detail of the link
+                link_score_result += 10.0
+
+
+        for subst in allsubst:
+            if str(subst) == "anhydro":
+                continue
+
+            pl = subst.parent_links()
+            link_score_total += 5
+
+            if len(pl) == 1:
+                link_score_result += self.linksimplescore(pl[0]) * 0.125
+
+            elif len(pl) > 1:
+
+                parent_link_scores = []
+                for pl0 in pl:
+                    s = self.linksimplescore(pl0) * 0.125
+                    parent_link_scores.append(s)
+
+                ave = sum(parent_link_scores) / len(parent_link_scores)
+                und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
+                s = ave + 3.75 * und_ratio
+                link_score_result += s
+
+            else:
+                link_score_result += 5
+
+
+        if link_score_total ==0:
+            if link_score_result != 0:
+                raise RuntimeError
+            link_score_total = 1
+        res = mono_score_result/mono_score_total * 0.35 + link_score_result/link_score_total * 0.65
+        # print mono_score_result / mono_score_total, link_score_result / link_score_total
+        return res
+
 
 if __name__ == "__main__":
     cmd = sys.argv[1]
