@@ -2094,25 +2094,31 @@ class IncompleteScore:
         for m in monos:
             mono_score_result += self.monoscore(m)
 
-        for ls in und_parent_links + det_parent_links:
+        if len(und_parent_links) == total_mono:
+            # Basecomp...
+            link_score_result = 10.0 * (total_mono - 1)
+        else:
+            for ls in und_parent_links + det_parent_links:
 
-            if len(ls) == 1:
-                link_score_result += self.linksimplescore(ls[0]) * 0.25
+                if len(ls) == 1:
+                    link_score_result += self.linksimplescore(ls[0]) * 0.25
 
-            elif len(ls) > 1:
-                parent_link_scores = []
-                for pl in ls:
-                    s = self.linksimplescore(pl) * 0.25
-                    parent_link_scores.append(s)
+                elif len(ls) > 1:
+                    parent_link_scores = []
+                    for pl in ls:
+                        s = self.linksimplescore(pl) * 0.25
+                        parent_link_scores.append(s)
 
-                ave = sum(parent_link_scores) / len(parent_link_scores)
-                und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
-                s = ave + 7.5 * und_ratio
-                link_score_result += s
+                    ave = sum(parent_link_scores) / len(parent_link_scores)
+                    und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
+                    s = ave + 7.5 * und_ratio
+                    link_score_result += s
 
-            else:
-                # Unknown of from-and-to and detail of the link
-                link_score_result += 10.0
+                else:
+                    # Unknown of from-and-to and detail of the link
+                    link_score_result += 10.0
+
+
 
 
         for subst in allsubst:
@@ -2138,15 +2144,17 @@ class IncompleteScore:
                 link_score_result += s
 
             else:
-                link_score_result += 5
+                link_score_result += 5.0
 
 
         if link_score_total ==0:
             if link_score_result != 0:
                 raise RuntimeError
             link_score_total = 1
+
         res = mono_score_result/mono_score_total * 0.35 + link_score_result/link_score_total * 0.65
-        # print mono_score_result / mono_score_total, link_score_result / link_score_total
+        #print mono_score_result / mono_score_total, link_score_result / link_score_total
+        res = int(res * 10000)
         return res
 
 
