@@ -5,6 +5,7 @@ from combinatorics import itermatchings, iterecmatchings, itergenmatchings, iter
 import inspect
 import sys, os.path
 import time
+import copy
 from collections import defaultdict
 
 verbose = False
@@ -1048,43 +1049,8 @@ class MonosaccharideMotifComparison(MonosaccharideComparitor):
         return True
 
 
-class MonosaccharideMotifComparisonLooseRoot(MonosaccharideComparitor):
 
-    def leq(self, m, g):
-
-        if m._anomer and m._anomer != Anomer.uncyclized and g._anomer != Anomer.uncyclized:
-            if m._anomer != g._anomer:
-                return False
-        if m._config and m._config != g._config:
-            return False
-        if m._stem and m._stem != g._stem:
-            return False
-        if m._superclass != g._superclass:
-            return False
-
-        mmod = m._mods
-        gmod = g._mods
-        for mod in mmod:
-            if mod[1] == Mod.aldi:
-                mmod.remove(mod)
-        for mod in gmod:
-            if mod[1] == Mod.aldi:
-                gmod.remove(mod)
-
-        if mmod != gmod:
-            return False
-
-        any = False
-        for ii, jj in itermatchings(m.substituent_links(), g.substituent_links(),
-                                    lambda i, j: self.sublinkeq(i, j) and self.substeq(i.child(), j.child())):
-            any = True
-            break
-        if not any:
-            return False
-
-        return True
-
-class MonosaccharideMotifComparisonAllowOptionalSub(MonosaccharideComparitor):
+class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
 
     def leq(self, m, g):
         if m._anomer and m._anomer != g._anomer:
@@ -1099,62 +1065,13 @@ class MonosaccharideMotifComparisonAllowOptionalSub(MonosaccharideComparitor):
             return False
         if m._ring_end and m._ring_end != g._ring_end:
             return False
-        if m._mods != g._mods:
-            return False
 
-        any = False
-
-        msl = m.substituent_links()
-        gsl = g.substituent_links()
-        if len(msl) > len(gsl):
-            return False
-
-        gsl_mandatory, gsl_optional  = [], []
-        for sl in gsl:
-            if sl.child()._sub in [Substituent.sulfate, Substituent.phosphate]:
-                gsl_optional.append(sl)
-            else:
-                gsl_mandatory.append(sl)
-
-
-        for x in choose(gsl_optional, len(msl) - len(gsl_mandatory)):
-
-            for ii, jj in itermatchings(msl, x+gsl_mandatory,
-                                        lambda i, j: self.sublinkeq(i, j) and self.substeq(i.child(), j.child())):
-                any = True
-                break
-            if any:
-                break
-        if not any:
-            return False
-
-        return True
-
-
-
-class MonosaccharideMotifComparisonAllowOptionalSubAndLooseRoot(MonosaccharideComparitor):
-
-    def leq(self, m, g):
-        if m._anomer and m._anomer != Anomer.uncyclized and g._anomer != Anomer.uncyclized:
-            if m._anomer != g._anomer:
-                return False
-        if m._config and m._config != g._config:
-            return False
-        if m._stem and m._stem != g._stem:
-            return False
-        if m._superclass != g._superclass:
-            return False
-
-        mmod = m._mods
-        gmod = g._mods
-        for mod in mmod:
-            if mod[1] == Mod.aldi:
-                mmod.remove(mod)
+        gmod = copy.deepcopy(g._mods)
         for mod in gmod:
             if mod[1] == Mod.aldi:
                 gmod.remove(mod)
 
-        if mmod != gmod:
+        if m._mods != gmod:
             return False
 
         any = False
@@ -1403,7 +1320,7 @@ class GlyTouCanMotif(SubstructureSearch):
 class MotifAllowOptionalSub(SubstructureSearch):
 
     def __init__(self, **kw):
-        kw["monocmp"] = MonosaccharideMotifComparisonAllowOptionalSub(
+        kw["monocmp"] = MonosaccharideMotifComparisonOptionalSubst(
             substcmp=SubstituentEqual(),
             sublinkcmp=LinkageEqual()
         )
@@ -1411,35 +1328,6 @@ class MotifAllowOptionalSub(SubstructureSearch):
         super(MotifAllowOptionalSub, self).__init__(**kw)
 
 
-
-class MotifLooseRoot(SubstructureSearch):
-
-    def __init__(self, **kw):
-        kw["rootmonocmp"] = MonosaccharideMotifComparisonLooseRoot(
-            substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
-        )
-        kw["monocmp"] = MonosaccharideMotifComparison(
-            substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
-        )
-        kw["linkcmp"] = LinkageMotifComparitor()
-        super(MotifLooseRoot, self).__init__(**kw)
-
-
-class MotifAllowOptionalSubAndLooseRoot(SubstructureSearch):
-
-    def __init__(self, **kw):
-        kw["rootmonocmp"] = MonosaccharideMotifComparisonAllowOptionalSubAndLooseRoot(
-            substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
-        )
-        kw["monocmp"] = MonosaccharideMotifComparisonAllowOptionalSub(
-            substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
-        )
-        kw["linkcmp"] = LinkageMotifComparitor()
-        super(MotifAllowOptionalSubAndLooseRoot, self).__init__(**kw)
 
 
 
