@@ -1973,9 +1973,9 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
 
     def getdata(self):
         return {
-            "icon_style": "cfg",
-            "image_url_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
-            "image_url_suffix": ".png",
+            "icon_style": "snfg",
+            "image_url_prefix": "https://image.glycosmos.org/snfg/png/",
+            "image_url_suffix": "",
             "external_resources": [
                 {
                     "name": "GlycanData",
