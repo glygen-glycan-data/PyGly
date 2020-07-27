@@ -435,6 +435,7 @@ class SubsumptionGraph(GNOmeAPI):
         self.composition = Composition()
         self.basecomposition = BaseComposition()
         self.verbose = kwargs.get('verbose', 0)
+        self.score = IncompleteScore()
 
 	# invalid = set(self.gtc.allinvalid())
 	# invalid = set()
@@ -839,6 +840,14 @@ class SubsumptionGraph(GNOmeAPI):
 
 	self.warning("Checking topo, comp, bcomp relationships... done.",5)
 
+
+        for acc, content in cluster.items():
+            try:
+                content['incompleteness'] = self.score.score(content["glycan"])
+            except:
+                content['incompleteness'] = None
+                self.warning("Unable to compute incompleteness rank for %s" % (acc), 1)
+
         if len(clusteracc) < 1:
             print "# DONE - Elapsed time %.2f sec." % (time.time() - start,)
             sys.stdout.flush()
@@ -935,7 +944,7 @@ class SubsumptionGraph(GNOmeAPI):
         return edges
 
     def print_tree(self, cluster, edges, root, indent=0):
-        print "%s%s" % (" " * indent, root), cluster[root]['level']
+        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root]['incompleteness']
         for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
