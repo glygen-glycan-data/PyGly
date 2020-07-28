@@ -915,6 +915,8 @@ class MonosaccharideEqual(MonosaccharideComparitor):
             break
         if not any:
             return False
+        if a.external_descriptor() != b.external_descriptor():
+            return False
         return True
       
 class MonosaccharideTopoEqual(MonosaccharideComparitor):
@@ -1108,6 +1110,8 @@ class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
 class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
 	if a._sub != b._sub:
+            return False
+        if a.external_descriptor() != b.external_descriptor():
             return False
         return True
     def leq(self,a,b):
