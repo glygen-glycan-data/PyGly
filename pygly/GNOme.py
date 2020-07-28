@@ -417,7 +417,7 @@ class GNOme(GNOmeAPI):
 
 
 
-from alignment import GlycanSubsumption, GlycanEqual
+from alignment import GlycanSubsumption, GlycanEqualWithWURCSCheck
 from Monosaccharide import Anomer
 from GlycanResource import GlyTouCan
 from manipulation import Topology, Composition, BaseComposition
@@ -430,7 +430,7 @@ class SubsumptionGraph(GNOmeAPI):
     def compute(self, *args, **kwargs):
         self.gtc = GlyTouCan(usecache=False)
         self.subsumption = GlycanSubsumption()
-        self.geq = GlycanEqual()
+        self.geq = GlycanEqualWithWURCSCheck()
         self.topology = Topology()
         self.composition = Composition()
         self.basecomposition = BaseComposition()

@@ -915,9 +915,14 @@ class MonosaccharideEqual(MonosaccharideComparitor):
             break
         if not any:
             return False
+        return True
+
+class MonosaccharideEqualWithWURCSCheck(MonosaccharideEqual):
+
+    def eq(self,a,b):
         if a.external_descriptor() != b.external_descriptor():
             return False
-        return True
+        return super(MonosaccharideEqualWithWURCSCheck, self).eq(a, b)
       
 class MonosaccharideTopoEqual(MonosaccharideComparitor):
 
@@ -1111,13 +1116,20 @@ class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
 	if a._sub != b._sub:
             return False
-        if a.external_descriptor() != b.external_descriptor():
-            return False
         return True
     def leq(self,a,b):
 	if a._sub != b._sub:
             return False
         return True
+
+
+class SubstituentEqualWithWURCSCheck(SubstituentEqual):
+    def eq(self,a,b):
+        if a.external_descriptor() != b.external_descriptor():
+            return False
+        return super(SubstituentEqualWithWURCSCheck, self).eq(a, b)
+
+
             
 class LinkageEqualSimple(LinkageComparitorBase):
     def eq(self, a, b):
@@ -1265,6 +1277,15 @@ class GlycanEqual(GlycanEquivalence):
         # monotest needs a subst test and a sublink test
         kw['monocmp']=MonosaccharideEqual(**kw)
         super(GlycanEqual,self).__init__(**kw)
+
+class GlycanEqualWithWURCSCheck(GlycanEquivalence):
+    def __init__(self,**kw):
+        kw['substcmp']=SubstituentEqualWithWURCSCheck(**kw)
+        kw['linkcmp']=LinkageEqual(**kw)
+        kw['sublinkcmp']=kw['linkcmp']
+        # monotest needs a subst test and a sublink test
+        kw['monocmp']=MonosaccharideEqualWithWURCSCheck(**kw)
+        super(GlycanEqualWithWURCSCheck,self).__init__(**kw)
 
 class GlycanTopoEqual(GlycanEquivalence):
     def __init__(self,**kw):
