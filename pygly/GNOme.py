@@ -843,10 +843,10 @@ class SubsumptionGraph(GNOmeAPI):
 
         for acc, content in cluster.items():
             try:
-                content['incompleteness'] = self.score.score(content["glycan"])
+                content['missing'] = self.score.score(content["glycan"])
             except:
-                content['incompleteness'] = None
-                self.warning("Unable to compute incompleteness rank for %s" % (acc), 1)
+                content['missing'] = None
+                self.warning("Unable to compute missing rank for %s" % (acc), 1)
 
         if len(clusteracc) < 1:
             print "# DONE - Elapsed time %.2f sec." % (time.time() - start,)
@@ -912,7 +912,7 @@ class SubsumptionGraph(GNOmeAPI):
 
     def any_ring(self, gly):
         for m in gly.all_nodes():
-            if m.ring_start() or m.ring_end():
+            if m.ring_start() != None or m.ring_end() != None:
                 return True
         return False
 
@@ -944,7 +944,7 @@ class SubsumptionGraph(GNOmeAPI):
         return edges
 
     def print_tree(self, cluster, edges, root, indent=0):
-        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root]['incompleteness']
+        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root]['missing']
         for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
@@ -984,10 +984,12 @@ class SubsumptionGraph(GNOmeAPI):
                     lineInfo = "node"
                     mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
                     mass = "%.2f" % mass
-                    content = {"nodes": {}, "edges": {}}
+                    content = {"nodes": {}, "edges": {}, "missing": {}}
                     raw_data[mass] = content
                 elif l.startswith("# EDGES"):
                     lineInfo = "edge"
+                elif l.startswith("# TREE"):
+                    lineInfo = "tree"
                 else:
                     lineInfo = "none"
             else:
@@ -1027,15 +1029,22 @@ class SubsumptionGraph(GNOmeAPI):
                     fromx = to.pop(0)
                     if to:
                         content["edges"][fromx] = to
+
+                elif lineInfo == "tree":
+                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
+                    content["missing"][gtcacc] = missingrank
+
                 else:
                     raise RuntimeError
         self.raw_data = raw_data
 
         self.allnodestype = {}
         self.alledges = {}
+        self.allmissingrank = {}
         for component in raw_data.values():
             self.allnodestype.update(copy.deepcopy(component["nodes"]))
             self.alledges.update(copy.deepcopy(component["edges"]))
+            self.allmissingrank.update(copy.deepcopy(component["missing"]))
 
         allmass = list()
         for m in self.raw_data.keys():
@@ -1116,6 +1125,9 @@ class SubsumptionGraph(GNOmeAPI):
             s += iupac+str(d[iupac])
         return s
 
+    def get_missing_rank(self, accession):
+        return self.allmissingrank[accession]
+
     def regexget(self, p, s):
         searchres = list(p.finditer(s))
         if len(searchres) == 1:
@@ -1167,7 +1179,7 @@ class SubsumptionGraph(GNOmeAPI):
             exact_sym = []
 
         all_syms = defaultdict(list)
-        for e_sym in exactSym:
+        for e_sym in exact_sym:
             sym_type = "exact"
             for acc, sym0 in e_sym.items():
                 all_syms[acc].append((sym0, sym_type))
@@ -1200,6 +1212,7 @@ class SubsumptionGraph(GNOmeAPI):
                 node_obj.set_composition(self.get_composition(n))
                 node_obj.set_topology(self.get_topology(n))
                 node_obj.set_iupac_composition(self.get_iupac_composition_str_for_viewer(n))
+                node_obj.set_missing_rank(self.get_missing_rank(n))
 
 
                 if n in all_syms:
@@ -1626,6 +1639,8 @@ class OWLWriter():
                                  Literal("A glycan described by the GlyTouCan entry with accession %s." % n.getID())))
                 outputGraph.add((rdfNode, rdfs.label,
                                  Literal("%s" % n.getID())))
+                # TODO add missing rank to GNOme latter here
+                # print n.getID(), n.missing_rank()
             else:
                 outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
                 outputGraph.add((rdfNode, rdfs.label,
@@ -1740,6 +1755,7 @@ class NormalNode:
         self._id = id
         self._nodeType = nodetype
         self._synonym = set()
+        self._missing_rank = None
 
     def __str__(self):
         return self._id
@@ -1850,6 +1866,12 @@ class NormalNode:
 
     def issaccharide(self):
         return self._nodeType == "saccharide"
+
+    def set_missing_rank(self, mr):
+        self._missing_rank = mr
+
+    def missing_rank(self):
+        return self._missing_rank
 
 
 
