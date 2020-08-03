@@ -417,7 +417,7 @@ class GNOme(GNOmeAPI):
 
 
 
-from alignment import GlycanSubsumption, GlycanEqual
+from alignment import GlycanSubsumption, GlycanEqualWithWURCSCheck
 from Monosaccharide import Anomer
 from GlycanResource import GlyTouCan
 from manipulation import Topology, Composition, BaseComposition
@@ -430,11 +430,12 @@ class SubsumptionGraph(GNOmeAPI):
     def compute(self, *args, **kwargs):
         self.gtc = GlyTouCan(usecache=False)
         self.subsumption = GlycanSubsumption()
-        self.geq = GlycanEqual()
+        self.geq = GlycanEqualWithWURCSCheck()
         self.topology = Topology()
         self.composition = Composition()
         self.basecomposition = BaseComposition()
         self.verbose = kwargs.get('verbose', 0)
+        self.score = IncompleteScore()
 
 	# invalid = set(self.gtc.allinvalid())
 	# invalid = set()
@@ -839,6 +840,14 @@ class SubsumptionGraph(GNOmeAPI):
 
 	self.warning("Checking topo, comp, bcomp relationships... done.",5)
 
+
+        for acc, content in cluster.items():
+            try:
+                content['missing'] = self.score.score(content["glycan"])
+            except:
+                content['missing'] = None
+                self.warning("Unable to compute missing rank for %s" % (acc), 1)
+
         if len(clusteracc) < 1:
             print "# DONE - Elapsed time %.2f sec." % (time.time() - start,)
             sys.stdout.flush()
@@ -903,7 +912,7 @@ class SubsumptionGraph(GNOmeAPI):
 
     def any_ring(self, gly):
         for m in gly.all_nodes():
-            if m.ring_start() or m.ring_end():
+            if m.ring_start() != None or m.ring_end() != None:
                 return True
         return False
 
@@ -935,7 +944,7 @@ class SubsumptionGraph(GNOmeAPI):
         return edges
 
     def print_tree(self, cluster, edges, root, indent=0):
-        print "%s%s" % (" " * indent, root), cluster[root]['level']
+        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root]['missing']
         for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
@@ -975,10 +984,12 @@ class SubsumptionGraph(GNOmeAPI):
                     lineInfo = "node"
                     mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
                     mass = "%.2f" % mass
-                    content = {"nodes": {}, "edges": {}}
+                    content = {"nodes": {}, "edges": {}, "missing": {}}
                     raw_data[mass] = content
                 elif l.startswith("# EDGES"):
                     lineInfo = "edge"
+                elif l.startswith("# TREE"):
+                    lineInfo = "tree"
                 else:
                     lineInfo = "none"
             else:
@@ -1018,15 +1029,22 @@ class SubsumptionGraph(GNOmeAPI):
                     fromx = to.pop(0)
                     if to:
                         content["edges"][fromx] = to
+
+                elif lineInfo == "tree":
+                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
+                    content["missing"][gtcacc] = missingrank
+
                 else:
                     raise RuntimeError
         self.raw_data = raw_data
 
         self.allnodestype = {}
         self.alledges = {}
+        self.allmissingrank = {}
         for component in raw_data.values():
             self.allnodestype.update(copy.deepcopy(component["nodes"]))
             self.alledges.update(copy.deepcopy(component["edges"]))
+            self.allmissingrank.update(copy.deepcopy(component["missing"]))
 
         allmass = list()
         for m in self.raw_data.keys():
@@ -1107,6 +1125,9 @@ class SubsumptionGraph(GNOmeAPI):
             s += iupac+str(d[iupac])
         return s
 
+    def get_missing_rank(self, accession):
+        return self.allmissingrank[accession]
+
     def regexget(self, p, s):
         searchres = list(p.finditer(s))
         if len(searchres) == 1:
@@ -1158,7 +1179,7 @@ class SubsumptionGraph(GNOmeAPI):
             exact_sym = []
 
         all_syms = defaultdict(list)
-        for e_sym in exactSym:
+        for e_sym in exact_sym:
             sym_type = "exact"
             for acc, sym0 in e_sym.items():
                 all_syms[acc].append((sym0, sym_type))
@@ -1191,6 +1212,7 @@ class SubsumptionGraph(GNOmeAPI):
                 node_obj.set_composition(self.get_composition(n))
                 node_obj.set_topology(self.get_topology(n))
                 node_obj.set_iupac_composition(self.get_iupac_composition_str_for_viewer(n))
+                node_obj.set_missing_rank(self.get_missing_rank(n))
 
 
                 if n in all_syms:
@@ -1617,6 +1639,8 @@ class OWLWriter():
                                  Literal("A glycan described by the GlyTouCan entry with accession %s." % n.getID())))
                 outputGraph.add((rdfNode, rdfs.label,
                                  Literal("%s" % n.getID())))
+                # TODO add missing rank to GNOme latter here
+                # print n.getID(), n.missing_rank()
             else:
                 outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
                 outputGraph.add((rdfNode, rdfs.label,
@@ -1731,6 +1755,7 @@ class NormalNode:
         self._id = id
         self._nodeType = nodetype
         self._synonym = set()
+        self._missing_rank = None
 
     def __str__(self):
         return self._id
@@ -1841,6 +1866,12 @@ class NormalNode:
 
     def issaccharide(self):
         return self._nodeType == "saccharide"
+
+    def set_missing_rank(self, mr):
+        self._missing_rank = mr
+
+    def missing_rank(self):
+        return self._missing_rank
 
 
 
@@ -1973,9 +2004,9 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
 
     def getdata(self):
         return {
-            "icon_style": "cfg",
-            "image_url_prefix": "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/",
-            "image_url_suffix": ".png",
+            "icon_style": "snfg",
+            "image_url_prefix": "https://image.glycosmos.org/snfg/png/",
+            "image_url_suffix": "",
             "external_resources": [
                 {
                     "name": "GlycanData",
@@ -1996,6 +2027,166 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
             ]
 
         }
+
+import pygly.Monosaccharide
+class IncompleteScore:
+
+    def __init__(self):
+        pass
+
+    def monoscore(self, m):
+        res = 0.0
+        anomer = m.anomer()
+        config = m.config()
+        rs = m.ring_start()
+        re = m.ring_end()
+        stem = m.stem()
+        superclass = m.superclass()
+
+        # sublink = m.substituent_links()
+
+        if anomer == None:
+            res += 2
+
+        if config != None:
+            res += float(config.count(None)) / len(config) * 2
+        else:
+            res += 2
+
+        if anomer != pygly.Monosaccharide.Anomer.uncyclized:
+            if rs == None:
+                res += 1
+            if re == None:
+                res += 1
+
+        if stem == None or None in stem:
+            res += 2
+
+        if superclass == None:
+            res += 2
+
+        res = res # max 10
+        return res
+
+    def linksimplescore(self, l):
+        res = 0.0
+        pp = l.parent_pos()
+        cp = l.child_pos()
+        pt = l.parent_type()
+        ct = l.child_type()
+        und = l.undetermined()
+
+        if pp != None:
+            if len(pp) > 1:
+                res += 1
+        else:
+            res += 2
+
+        if cp != None:
+            if len(cp) > 1:
+                res += 1
+        else:
+            res += 2
+
+        if len(pt) > 1:
+            res += 2
+
+        if len(ct) > 1:
+            res += 2
+        # print pp, cp, pt, ct, und
+
+        res = res / 8 * 10 # scale from 8 to 10
+        return res
+
+
+    def substscore(self, s):
+        if s._sub != None:
+            return 2
+        return 0
+
+    def score(self, g):
+
+        monos = list(g.all_nodes())
+        total_mono = len(monos)
+
+        unconnected_mono_root = list(g.unconnected_roots())
+        unconnected_mono_root = filter(lambda m: m.is_monosaccharide(), unconnected_mono_root)
+        det_parent_links = [m.parent_links() for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
+        und_parent_links = [m.parent_links() for m in unconnected_mono_root]
+
+        allsubst = filter(lambda n: not n.is_monosaccharide(), g.all_nodes(subst=True, undet_subst=False))
+
+        mono_score_result = 0.0
+        mono_score_total  = 10.0 * total_mono
+
+        link_score_result = 0.0
+        link_score_total  = 10.0 * (total_mono - 1)
+
+        for m in monos:
+            mono_score_result += self.monoscore(m)
+
+        if len(und_parent_links) == total_mono:
+            # Basecomp...
+            link_score_result = 10.0 * (total_mono - 1)
+        else:
+            for ls in und_parent_links + det_parent_links:
+
+                if len(ls) == 1:
+                    link_score_result += self.linksimplescore(ls[0]) * 0.25
+
+                elif len(ls) > 1:
+                    parent_link_scores = []
+                    for pl in ls:
+                        s = self.linksimplescore(pl) * 0.25
+                        parent_link_scores.append(s)
+
+                    ave = sum(parent_link_scores) / len(parent_link_scores)
+                    und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
+                    s = ave + 7.5 * und_ratio
+                    link_score_result += s
+
+                else:
+                    # Unknown of from-and-to and detail of the link
+                    link_score_result += 10.0
+
+
+
+
+        for subst in allsubst:
+            if str(subst) == "anhydro":
+                continue
+
+            pl = subst.parent_links()
+            link_score_total += 5
+
+            if len(pl) == 1:
+                link_score_result += self.linksimplescore(pl[0]) * 0.125
+
+            elif len(pl) > 1:
+
+                parent_link_scores = []
+                for pl0 in pl:
+                    s = self.linksimplescore(pl0) * 0.125
+                    parent_link_scores.append(s)
+
+                ave = sum(parent_link_scores) / len(parent_link_scores)
+                und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
+                s = ave + 3.75 * und_ratio
+                link_score_result += s
+
+            else:
+                link_score_result += 5.0
+
+
+        if link_score_total ==0:
+            if link_score_result != 0:
+                raise RuntimeError
+            link_score_total = 1
+
+        res = mono_score_result/mono_score_total * 0.35 + link_score_result/link_score_total * 0.65
+        #print mono_score_result / mono_score_total, link_score_result / link_score_total
+        res = int(res * 10000)
+        return res
 
 
 if __name__ == "__main__":

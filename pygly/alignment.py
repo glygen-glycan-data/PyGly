@@ -5,6 +5,7 @@ from combinatorics import itermatchings, iterecmatchings, itergenmatchings, iter
 import inspect
 import sys, os.path
 import time
+import copy
 from collections import defaultdict
 
 verbose = False
@@ -519,11 +520,64 @@ class GlycanPartialOrder(Comparitor):
         # print >>sys.stderr, "%d iterations to prove no isomorphism exists"%(iters,)
         return False
 
+
+
+class ConnectedNodesCache:
+
+    def __init__(self):
+        self.data = {}
+
+    def put(self, g):
+        for m in g.all_nodes():
+            self.data[m] = {
+                1: [{m}]
+            }
+
+    def update_cache(self, m, size):
+
+        if size in self.data[m]:
+            return
+        i = max(self.data[m].keys())
+
+        while i < size:
+            i += 1
+
+            res = []
+            for currentSet in self.data[m][i-1]:
+                for res0 in self.connectedNodesPlusOneSimple(currentSet):
+                    if res0 not in res:
+                        res.append(res0)
+            self.data[m][i] = res
+
+    def connectedNodesPlusOneSimple(self, currentSet):
+        res = []
+        for n in currentSet:
+            res += [x.child() for x in n.links(instantiated_only=False)]
+        children = filter(lambda x:x not in currentSet, res)
+        children = set(children)
+
+        res = []
+        for n in children:
+            res0 = currentSet.copy()
+            res0.add(n)
+            res.append(res0)
+        return res
+
+    def get(self, m, size):
+        size = int(size)
+        self.update_cache(m, size)
+        return self.data[m][size]
+
+
+
+
+
 class SubstructureSearch(GlycanPartialOrder):
 
     def __init__(self, **kw):
-        self.nodes_cache = {}
         self.connected_nodes_pre_computed = kw.get("connected_nodes_pre_computed", True)
+        if self.connected_nodes_pre_computed:
+            self.nodes_cache = kw.get("connected_nodes_cache", ConnectedNodesCache())
         super(SubstructureSearch, self).__init__(**kw)
 
     def check_links(self, motif, motif_node_set, tg_node_set):
@@ -557,7 +611,7 @@ class SubstructureSearch(GlycanPartialOrder):
         return True
 
     # For recursive algorithm
-    def connectedNodesPlus1(self, currentSet, candidates):
+    def connectedNodesPlusOne(self, currentSet, candidates):
         res = []
         for c in candidates:
             newCurrentSet = currentSet.copy()
@@ -591,7 +645,7 @@ class SubstructureSearch(GlycanPartialOrder):
             raise StopIteration
 
         seen = []
-        for newCurrentSet, newCandidatesSet in self.connectedNodesPlus1(currentSet, candidates):
+        for newCurrentSet, newCandidatesSet in self.connectedNodesPlusOne(currentSet, candidates):
             for r in self.connectedNodes(newCurrentSet, newCandidatesSet, size):
                 if r not in seen:
                     seen.append(r)
@@ -607,50 +661,11 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return res
 
-    def connectedNodesPlus1Simple(self, currentSet):
-        res = []
-        for n in currentSet:
-            res += [x.child() for x in n.links(instantiated_only=False)]
-        children = filter(lambda x:x not in currentSet, res)
-        children = set(children)
-
-        res = []
-        for n in children:
-            res0 = currentSet.copy()
-            res0.add(n)
-            res.append(res0)
-        return res
-
-    def cache_nodes(self, r, size):
-
-        if not self.connected_nodes_pre_computed:
-            return
-
-        if r not in self.nodes_cache:
-            self.nodes_cache[r] = {}
-
-        if len(self.nodes_cache[r]) >= size:
-            return
-
-        if len(self.nodes_cache[r]) >= 1:
-            i = max(self.nodes_cache[r].keys())
-        else:
-            self.nodes_cache[r][1] = [{r}]
-            i = 1
-
-        while i < size:
-            i += 1
-            res = []
-            for currentSet in self.nodes_cache[r][i-1]:
-                for res0 in self.connectedNodesPlus1Simple(currentSet):
-                    if res0 not in res:
-                        res.append(res0)
-            self.nodes_cache[r][i] = res
 
 
     def allConnectedNodesByRoot(self, r, size):
         if self.connected_nodes_pre_computed:
-            return self.nodes_cache[r][size]
+            return self.nodes_cache.get(r, size)
         else:
             return self.allConnectedNodesByRootRecursive(r, size)
 
@@ -706,10 +721,9 @@ class SubstructureSearch(GlycanPartialOrder):
             if not tg.undetermined():
                 return False
 
-        if tg.undetermined():
+        if tg.undetermined() and self.connected_nodes_pre_computed:
             # pre compute the connected node set
-            for n in potential_TG_root:
-                self.cache_nodes(n, len(list(m.all_nodes())))
+            self.nodes_cache.put(tg)
 
 
         #i = 0
@@ -728,6 +742,7 @@ class SubstructureSearch(GlycanPartialOrder):
                         return True
 
         return False
+
 
 class CompositionPartialOrder(Comparitor):
 
@@ -901,6 +916,13 @@ class MonosaccharideEqual(MonosaccharideComparitor):
         if not any:
             return False
         return True
+
+class MonosaccharideEqualWithWURCSCheck(MonosaccharideEqual):
+
+    def eq(self,a,b):
+        if a.external_descriptor() != b.external_descriptor():
+            return False
+        return super(MonosaccharideEqualWithWURCSCheck, self).eq(a, b)
       
 class MonosaccharideTopoEqual(MonosaccharideComparitor):
 
@@ -1032,6 +1054,63 @@ class MonosaccharideMotifComparison(MonosaccharideComparitor):
             return False
 
         return True
+
+
+
+class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
+
+    def leq(self, m, g):
+        if m._anomer and m._anomer != g._anomer:
+            return False
+        if m._config and m._config != g._config:
+            return False
+        if m._stem and m._stem != g._stem:
+            return False
+        if m._superclass != g._superclass:
+            return False
+        if m._ring_start and m._ring_start != g._ring_start:
+            return False
+        if m._ring_end and m._ring_end != g._ring_end:
+            return False
+
+        gmod = copy.deepcopy(g._mods)
+        for mod in gmod:
+            if mod[1] == Mod.aldi:
+                gmod.remove(mod)
+
+        if m._mods != gmod:
+            return False
+
+        any = False
+
+        msl = m.substituent_links()
+        gsl = g.substituent_links()
+        if len(msl) > len(gsl):
+            return False
+
+        gsl_mandatory, gsl_optional = [], []
+        for sl in gsl:
+            if sl.child()._sub in [Substituent.sulfate, Substituent.phosphate]:
+                gsl_optional.append(sl)
+            else:
+                gsl_mandatory.append(sl)
+
+        for x in choose(gsl_optional, len(msl) - len(gsl_mandatory)):
+
+            for ii, jj in itermatchings(msl, x + gsl_mandatory,
+                                        lambda i, j: self.sublinkeq(i, j) and self.substeq(i.child(), j.child())):
+                any = True
+                break
+            if any:
+                break
+        if not any:
+            return False
+
+        return True
+
+
+
+
       
 class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
@@ -1042,6 +1121,15 @@ class SubstituentEqual(SubstituentComparitor):
 	if a._sub != b._sub:
             return False
         return True
+
+
+class SubstituentEqualWithWURCSCheck(SubstituentEqual):
+    def eq(self,a,b):
+        if a.external_descriptor() != b.external_descriptor():
+            return False
+        return super(SubstituentEqualWithWURCSCheck, self).eq(a, b)
+
+
             
 class LinkageEqualSimple(LinkageComparitorBase):
     def eq(self, a, b):
@@ -1190,6 +1278,15 @@ class GlycanEqual(GlycanEquivalence):
         kw['monocmp']=MonosaccharideEqual(**kw)
         super(GlycanEqual,self).__init__(**kw)
 
+class GlycanEqualWithWURCSCheck(GlycanEquivalence):
+    def __init__(self,**kw):
+        kw['substcmp']=SubstituentEqualWithWURCSCheck(**kw)
+        kw['linkcmp']=LinkageEqual(**kw)
+        kw['sublinkcmp']=kw['linkcmp']
+        # monotest needs a subst test and a sublink test
+        kw['monocmp']=MonosaccharideEqualWithWURCSCheck(**kw)
+        super(GlycanEqualWithWURCSCheck,self).__init__(**kw)
+
 class GlycanTopoEqual(GlycanEquivalence):
     def __init__(self,**kw):
         kw['substcmp']=SubstituentEqual(**kw)
@@ -1242,6 +1339,21 @@ class GlyTouCanMotif(SubstructureSearch):
         )
         kw["linkcmp"] = LinkageMotifComparitor()
         super(GlyTouCanMotif, self).__init__(**kw)
+
+
+
+class MotifAllowOptionalSub(SubstructureSearch):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparisonOptionalSubst(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(MotifAllowOptionalSub, self).__init__(**kw)
+
+
+
 
 
 def items():
