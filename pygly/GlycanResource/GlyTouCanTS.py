@@ -4,6 +4,7 @@ from GlycanResourceWrappers import partitioner, prefetcher
 
 import hashlib
 import base64
+from collections import defaultdict
 
 class GlyTouCanTS(TripleStoreResource):
 
@@ -154,6 +155,28 @@ class GlyTouCanTS(TripleStoreResource):
 		    continue
 		seen.add(row['accession'])
 	        yield row['accession']
+
+    def replace(self):
+	vsh2acc = defaultdict(set)
+	acc2vsh = dict()
+	for row in self.query_validacc1():
+	    vsh2acc[row['validseqhash']].add(row['accession'])
+	    acc2vsh[row['accession']] = row['validseqhash']
+	for acc,vsh in acc2vsh.items():
+	    if len(vsh2acc[vsh]) > 1 and self.invalid(acc):
+	        any = False
+		for acc2 in vsh2acc[vsh]:
+		    if acc == acc2:
+			continue
+		    if self.invalid(acc2):
+			continue
+		    assert any==False
+		    any = True
+		    yield acc,acc2
+		if not any:
+		    yield acc,None
+		    # if acc != min(vsh2acc[vsh]):
+		    #     yield acc,min(vsh2acc[vsh]),"*"
 
     def invalid(self,accession):
 	for row in self.query_validacc1(accession=accession):
