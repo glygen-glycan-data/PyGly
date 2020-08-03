@@ -1,7 +1,9 @@
 
+
 import copy
 
 from combinatorics import select, itermatchings
+from past.builtins import basestring    
 
 
 class SuperClass:
@@ -82,7 +84,7 @@ class Node(object):
 
     def links(self,instantiated_only=True):
         if instantiated_only:
-            return filter(lambda l: l.instantiated(),self._links)
+            return list(filter(lambda l: l.instantiated(),self._links))
         return self._links
 
     def parent_links(self):
@@ -110,25 +112,25 @@ class Node(object):
         return [l.child() for l in self.links()]
 
     def first_child(self):
-	for l in self.links():
+        for l in self.links():
             return l.child()
-	return None
+        return None
 
     def add_child(self,m,**kw):
         l = Linkage(child=m,**kw)
         self.add_link(l)
         l.set_parent(self)
         m.add_parent_link(l)
-	return l
+        return l
 
     def has_children(self):
-	return (self.first_child() != None)
+        return (self.first_child() != None)
 
     def set_connected(self,conn):
-	self._connected = conn
+        self._connected = conn
 
     def connected(self):
-	return self._connected
+        return self._connected
 
     def id(self):
         return self._id
@@ -243,9 +245,9 @@ class Monosaccharide(Node):
     def deepclone(self,identified_link=None,cache=None):
         if cache == None:
             cache = dict()
-	m = self.clone()
+        m = self.clone()
         identified_link_copy = None
-	for l in self._links:
+        for l in self._links:
             assert l.child().id() != None
             if l.child().id() not in cache:
                 if identified_link:
@@ -257,18 +259,18 @@ class Monosaccharide(Node):
             else:
                 c = cache[l.child().id()]
                 idlc = None
-	    cl = copy.deepcopy(l)
-	    cl.set_child(c)
-	    cl.set_parent(m)
-	    m.add_link(cl)
+            cl = copy.deepcopy(l)
+            cl.set_child(c)
+            cl.set_parent(m)
+            m.add_link(cl)
             c.add_parent_link(cl)
             if l == identified_link:
                 identified_link_copy = cl
             elif idlc != None:
                 identified_link_copy = idlc
-	if identified_link:
-	    return m,identified_link_copy
-	return m
+        if identified_link:
+            return m,identified_link_copy
+        return m
 
     def anysubstmatching(self,m):
         for ii,jj in itermatchings(self.substituent_links(),m.substituent_links(),
@@ -331,7 +333,7 @@ class Monosaccharide(Node):
     def compatiblewith(self,m,root=False,visibleonly=False):
         if (not visibleonly or not root) and m._anomer and self._anomer != m._anomer:
             return False
-	if not visibleonly:
+        if not visibleonly:
           if len(self._config) != len(m._config):
             return False
           for a,b in zip(self._config,m._config):
@@ -356,16 +358,16 @@ class Monosaccharide(Node):
         if len(self._substituent_links) != len(m._substituent_links):
             return False
         anymatch = False
-	for slinks in select(m._substituent_links,len(self._substituent_links)):
-	  badmatch = False
+        for slinks in select(m._substituent_links,len(self._substituent_links)):
+          badmatch = False
           for a,b in zip(self._substituent_links,slinks):
-	    if not a.equals(b) or not a.child().equals(b.child()):
+            if not a.equals(b) or not a.child().equals(b.child()):
                 badmatch = True
-	  if not badmatch:
-	    anymatch = True
-	    break
-	if not anymatch:
-	  return False
+          if not badmatch:
+            anymatch = True
+            break
+        if not anymatch:
+          return False
         return True
 
     def fully_determined(self):
@@ -373,12 +375,12 @@ class Monosaccharide(Node):
             return False
         if self._config == Config.missing:
             return False
-	if any(map(lambda c: c == Config.missing,self._config)):
-	    return False
+        if any(map(lambda c: c == Config.missing,self._config)):
+            return False
         if self._stem == Stem.missing:
             return False
-	if any(map(lambda s: s == Stem.missing,self._stem)):
-	    return False
+        if any(map(lambda s: s == Stem.missing,self._stem)):
+            return False
         if self._superclass == SuperClass.missing:
             return False
         if self._ring_start == None:
@@ -391,7 +393,7 @@ class Monosaccharide(Node):
         return True
 
     def root_partially_determined(self):
-	# Don't test the ring or anomer configuration
+        # Don't test the ring or anomer configuration
         if self._config == Config.missing:
             return False
         if self._stem == Stem.missing:
@@ -401,7 +403,7 @@ class Monosaccharide(Node):
         for m in self._mods:
             if m[0] == None:
                 return False
-	return True
+        return True
 
     def anomer(self):
         return self._anomer
@@ -413,8 +415,8 @@ class Monosaccharide(Node):
         return self._config
 
     def set_config(self,*config):
-	if set(config) == set([Config.missing]):
-	    self._config = None
+        if set(config) == set([Config.missing]):
+            self._config = None
         else:
             self._config = config
 
@@ -422,9 +424,9 @@ class Monosaccharide(Node):
         return self._stem
 
     def set_stem(self,*stem):
-	if set(stem) == set([Stem.missing]):
-	    self._stem = None
-	else:
+        if set(stem) == set([Stem.missing]):
+            self._stem = None
+        else:
             self._stem = stem
 
     def superclass(self):
@@ -452,7 +454,7 @@ class Monosaccharide(Node):
         return self._mods
 
     def add_mod(self,pos,mod):
-        if isinstance(pos,str):
+        if isinstance(pos,basestring):
             pos = tuple(sorted(map(int,pos.split(','))))
         else:
             pos = (int(pos),)
@@ -485,7 +487,7 @@ class Monosaccharide(Node):
             c.add(comp_table[('Mod',mod)])
         for sub in self.substituents():
             c.add(comp_table[('Substituent',sub.name())])
-	return c
+        return c
 
 ##     def set_composition(self,**kw):
 ##         self._composition.update(kw)
@@ -499,7 +501,7 @@ class Monosaccharide(Node):
         self._substituent_links.append(l)
 
     def remove_substituent_link(self, l):
-	l.child().del_parent_link(l)
+        l.child().del_parent_link(l)
         self._substituent_links.remove(l)
 
     def set_external_descriptor_id(self, eid):
@@ -523,18 +525,18 @@ class Monosaccharide(Node):
             l = SubLinkage(child=Substituent(sub),**kw)
         self.add_substituent_link(l)
         l.set_parent(self)
-	l.child().add_parent_link(l)
-	return l
+        l.child().add_parent_link(l)
+        return l
 
     def has_substituents(self):
         return len(self._substituent_links) > 0
 
     def is_nacetylated(self):
-	sl = self.substituents()
-	if len(sl) != 1:
-	    return False
-	s = iter(sl).next()
-	return s.isNAc()
+        sl = self.substituents()
+        if len(sl) != 1:
+            return False
+        s = iter(sl).next()
+        return s.isNAc()
 
     def has_non_nacetyl_substituents(self):
         for s in self.substituents():
@@ -549,7 +551,7 @@ class Monosaccharide(Node):
             l2 += sub.links()
         lall = l1 + l2
         if instantiated_only:
-            return filter(lambda l: l.instantiated(), lall)
+            return list(filter(lambda l: l.instantiated(), lall))
         return lall
 
     def __str__(self):
@@ -634,28 +636,28 @@ class Substituent(Node):
     pyrophosphate       = 15
     formyl              = 16
     thio                = 17
-    fluoro		= 18
-    bromo		= 19
-    glycolyl		= 20
-    ndimethyl		= 21
-    chloro		= 22
-    ethyl		= 23
-    succinate		= 24
-    nformyl		= 25
-    spyruvate		= 26
-    rpyruvate		= 27
-    namidino		= 28
-    iodo		= 29
-    ethanolamine	= 30 
-    slactate		= 31
-    rlactate		= 32
-    xlactate		= 33
-    hydroxymethyl	= 34
-    triphosphate	= 35
-    lactone		= 36
-    rcarboxyethyl	= 37
-    scarboxyethyl	= 38
-    phosphocholine	= 39
+    fluoro              = 18
+    bromo               = 19
+    glycolyl            = 20
+    ndimethyl           = 21
+    chloro              = 22
+    ethyl               = 23
+    succinate           = 24
+    nformyl             = 25
+    spyruvate           = 26
+    rpyruvate           = 27
+    namidino            = 28
+    iodo                = 29
+    ethanolamine        = 30 
+    slactate            = 31
+    rlactate            = 32
+    xlactate            = 33
+    hydroxymethyl       = 34
+    triphosphate        = 35
+    lactone             = 36
+    rcarboxyethyl       = 37
+    scarboxyethyl       = 38
+    phosphocholine      = 39
     methyl_oxygen_lost  = 40
     sulfate_oxygen_lost = 41
     amino_oxygen_preserved = 42
@@ -677,9 +679,9 @@ class Substituent(Node):
     def deepclone(self,identified_link=None,cache=None):
         if cache == None:
             cache = dict()
-	m = self.clone()
+        m = self.clone()
         identified_link_copy = None
-	for l in self._links:
+        for l in self._links:
             assert l.child().id() != None
             if l.child().id() not in cache:
                 if identified_link:
@@ -691,18 +693,18 @@ class Substituent(Node):
             else:
                 c = cache[l.child().id()]
                 idlc = None
-	    cl = copy.deepcopy(l)
-	    cl.set_child(c)
-	    cl.set_parent(m)
-	    m.add_link(cl)
+            cl = copy.deepcopy(l)
+            cl.set_child(c)
+            cl.set_parent(m)
+            m.add_link(cl)
             c.add_parent_link(cl)
             if l == identified_link:
                 identified_link_copy = cl
             elif idlc != None:
                 identified_link_copy = idlc
-	if identified_link:
-	    return m,identified_link_copy
-	return m
+        if identified_link:
+            return m,identified_link_copy
+        return m
 
         
 
@@ -725,7 +727,7 @@ class Substituent(Node):
     def equals(self,s):
         if not isinstance(s,Substituent):
             return False
-	return (self._sub == s._sub)
+        return (self._sub == s._sub)
 
     def fully_determined(self):
         return True
@@ -747,7 +749,7 @@ class Linkage:
                  child_type=None, child_pos=None,
                  parent_type2=None, parent_pos2=None,
                  child_type2=None, child_pos2=None,
-		 undetermined=False):
+                 undetermined=False):
 
         # the monosaccharide child in the linkage
         self.set_child(child)
@@ -776,12 +778,12 @@ class Linkage:
         # position of 2nd linkage attachment to child
         self.set_child_pos2(child_pos2)
 
-	# Undetermined status of the link 
-	self.set_undetermined(undetermined)
-	if undetermined:
-	    self.set_instantiated(False)
-	else:
-	    self.set_instantiated(True)
+        # Undetermined status of the link 
+        self.set_undetermined(undetermined)
+        if undetermined:
+            self.set_instantiated(False)
+        else:
+            self.set_instantiated(True)
 
         # These are not primary data associated with linkages, but are
         # useful for a variety of general processing tasks...
@@ -792,19 +794,19 @@ class Linkage:
         return self._id
 
     def reverse(self):
-	assert self.parent()
-	l = Linkage(child=self.parent(),
+        assert self.parent()
+        l = Linkage(child=self.parent(),
                     parent_pos=self.child_pos(),
                     parent_type=self.child_type(),
                     child_pos=self.parent_pos(),
                     child_type=self.parent_type(),
                     undetermined=self.undetermined())
-	l.set_parent(self.child())
-	self.child().del_parent_link(self)
-	self.child().add_link(l)
-	self.parent().del_link(self)
-	self.parent().add_parent_link(l)
-	return l
+        l.set_parent(self.child())
+        self.child().del_parent_link(self)
+        self.child().add_link(l)
+        self.parent().del_link(self)
+        self.parent().add_parent_link(l)
+        return l
 
     def clone(self):
         l = Linkage(child=self.child(),
@@ -919,67 +921,67 @@ class Linkage:
         self._parent_pos.add(parent_pos)
 
     def set_undetermined(self,und):
-	self._undetermined = und
+        self._undetermined = und
 
     def undetermined(self):
-	return self._undetermined
+        return self._undetermined
 
     def set_instantiated(self,inst):
-	self._instantiated = inst
+        self._instantiated = inst
 
     def instantiated(self):
-	return self._instantiated
+        return self._instantiated
 
 ##     def compatible(self,a):
-## 	if self._parent_type and a._parent_type and self._parent_type != a._parent_type:
-## 	    return False
-## 	if self._child_type and a._child_type and self._child_type != a._child_type:
-## 	    return False
-## 	if self._child_pos and a._child_pos and self._child_pos != a._child_pos:
-## 	    return False
-## 	ppself = self.parentpos2set()
-## 	ppa    = a.parentpos2set()
-## 	if len(ppself) > 0 and len(ppa) > 0 and ppself != ppa:
-## 	    return False
-## 	return True
+##      if self._parent_type and a._parent_type and self._parent_type != a._parent_type:
+##          return False
+##      if self._child_type and a._child_type and self._child_type != a._child_type:
+##          return False
+##      if self._child_pos and a._child_pos and self._child_pos != a._child_pos:
+##          return False
+##      ppself = self.parentpos2set()
+##      ppa    = a.parentpos2set()
+##      if len(ppself) > 0 and len(ppa) > 0 and ppself != ppa:
+##          return False
+##      return True
 
 ##     def compatiblewith(self,a):
-## 	if a._parent_type and self._parent_type != a._parent_type:
-## 	    return False
-## 	if a._child_type and self._child_type != a._child_type:
-## 	    return False
-## 	if a._child_pos and self._child_pos != a._child_pos:
-## 	    return False
-## 	ppself = self.parentpos2set()
-## 	ppa    = a.parentpos2set()
-## 	if len(ppa) > 0 and ((len(ppself) == 0) or not (ppself <= ppa)):
-## 	    return False
-## 	return True
+##      if a._parent_type and self._parent_type != a._parent_type:
+##          return False
+##      if a._child_type and self._child_type != a._child_type:
+##          return False
+##      if a._child_pos and self._child_pos != a._child_pos:
+##          return False
+##      ppself = self.parentpos2set()
+##      ppa    = a.parentpos2set()
+##      if len(ppa) > 0 and ((len(ppself) == 0) or not (ppself <= ppa)):
+##          return False
+##      return True
 
     def equals(self,a):
-	# print "---"
-	# print repr(self._parent_type), repr(self._child_type), repr(self._child_pos), repr(self._parent_pos)
-	# print repr(a._parent_type), repr(a._child_type), repr(a._child_pos), repr(a._parent_pos)
-	# print "---"
+        # print "---"
+        # print repr(self._parent_type), repr(self._child_type), repr(self._child_pos), repr(self._parent_pos)
+        # print repr(a._parent_type), repr(a._child_type), repr(a._child_pos), repr(a._parent_pos)
+        # print "---"
         # if self._undetermined != a._undetermined:
         #     return False
         if self._instantiated != a._instantiated:
             return False
-	if self._parent_type != a._parent_type:
-	    return False
-	if self._child_type != a._child_type:
-	    return False
-	if self._child_pos != a._child_pos:
-	    return False
+        if self._parent_type != a._parent_type:
+            return False
+        if self._child_type != a._child_type:
+            return False
+        if self._child_pos != a._child_pos:
+            return False
         if self._parent_pos != a._parent_pos:
-	    return False
-	return True
+            return False
+        return True
 
     def fully_determined(self):
         if not self._instantiated:
             return False
         if self._parent_type == None or len(self._parent_type) != 1:
-	    return False
+            return False
         if self._child_type == None or len(self._child_type) != 1:
             return False
         if self._parent_pos == None or len(self._parent_pos) != 1:
@@ -1086,14 +1088,14 @@ if __name__ == '__main__':
     bdGal.set_ring_start(1)
     bdGal.set_ring_end(5)
 
-    print bdGal
+    print(bdGal)
 
     bdGlc = bdGal.clone()
     bdGlc.set_id("bdGlc")
     bdGlc.set_stem(Stem.glc)
 
-    print bdGlc
-    print bdGal
+    print(bdGlc)
+    print(bdGal)
     
     #Make GlcNAc...
     GlcNAc = bdGlc.clone()
@@ -1103,9 +1105,9 @@ if __name__ == '__main__':
                            parent_type=Linkage.oxygenLost,
                            child_type=Linkage.nitrogenAdded)
 
-    print GlcNAc
-    print bdGal
-    print bdGlc
+    print(GlcNAc)
+    print(bdGal)
+    print(bdGlc)
 
     #Neu5Ac test
     Neu5Ac = Monosaccharide()
@@ -1127,12 +1129,12 @@ if __name__ == '__main__':
                            child_type=Linkage.nitrogenAdded)
 
     #print test case
-    print Neu5Ac
+    print(Neu5Ac)
 
     m = Neu5Ac.clone()
     m.set_id("Clone of Neu5Ac")
 
-    print m
+    print(m)
 
     bdGal.add_child(Neu5Ac,
                     parent_type=Linkage.oxygenPreserved,
@@ -1140,5 +1142,5 @@ if __name__ == '__main__':
                     child_pos=2,
                     child_type=Linkage.oxygenLost)
 
-    print bdGal
+    print(bdGal)
 

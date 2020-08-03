@@ -1,5 +1,6 @@
-#Glycan
-#Kevin B Chandler
+
+from __future__ import print_function
+
 import operator
 import sys
 import time
@@ -50,12 +51,12 @@ class Glycan:
         self._root = r
 
     def set_ids(self):
-	for i,m in enumerate(self.all_nodes(subst=True)):
-	    m.set_id(i+1)
+        for i,m in enumerate(self.all_nodes(subst=True)):
+            m.set_id(i+1)
 
     def unset_ids(self):
-	for m in self.all_nodes(subst=True):
-	    m.unset_id()
+        for m in self.all_nodes(subst=True):
+            m.unset_id()
 
     def set_undetermined(self, und):
         if und == None or len(und) == 0:
@@ -72,14 +73,14 @@ class Glycan:
             for j in range(i+1,len(u)):
                 if j in placed:
                     continue
-		if not self.undetroot_equals(u[i],u[j],mapids=False):
-		    continue
+                if not self.undetroot_equals(u[i],u[j],mapids=False):
+                    continue
                 ueq[i].add(u[j])
                 placed.add(j)
         self._undetermined = sorted(ueq.values(),key=lambda ec: 1*(iter(ec).next()).is_monosaccharide(),reverse=True)
 
     def undetermined(self):
-	return self._undetermined != None
+        return self._undetermined != None
 
     def undetermined_roots(self):
         if self._undetermined != None:
@@ -123,11 +124,11 @@ class Glycan:
         if self.undetermined():
             return False
         for m in self.all_nodes(subst=True):
-	    if m == self.root():
-		if not m.root_partially_determined():
-		    return False
+            if m == self.root():
+                if not m.root_partially_determined():
+                    return False
             else:
-		if not m.fully_determined():
+                if not m.fully_determined():
                     return False
         for l in self.all_links(subst=True):
             if not l.fully_determined():
@@ -135,75 +136,75 @@ class Glycan:
         return True
 
 ##     def add_instantiation(self, inst):
-## 	if self._instantiations == None:
-## 	    self._instantiations = []
-## 	self._instantiations.append(inst)
+##         if self._instantiations == None:
+##             self._instantiations = []
+##         self._instantiations.append(inst)
 
 ##     maxlinks = {'Fuc': 0, 'NeuAc': 0, 'NeuGc': 0, 'Xyl': 0}
 ##     def auto_instantiations(self):
-## 	undetsets = defaultdict(set)
-## 	todo = [self.root()]
+##         undetsets = defaultdict(set)
+##         todo = [self.root()]
 ##         while len(todo) > 0:
 ##             m = todo.pop(0)
 ##             for l in m.substituent_links(False):
 ##                 if l.undetermined():
-## 		    undetsets[l.child()].add(l)
+##                     undetsets[l.child()].add(l)
 ##             for l in m.links(False):
 ##                 if l.undetermined():
-## 		    undetsets[l.child()].add(l)
+##                     undetsets[l.child()].add(l)
 ##                 todo.insert(0,l.child())
-## 	# Pick one from each child-set
-## 	for inst in product(*(undetsets.values())):
-## 	    # Potentially, eliminate infeasible combinations of
-## 	    # instantiated edges, too many on a parent, bond already
-## 	    # used, etc.
-## 	    counts = defaultdict(int)
-## 	    counts1 = defaultdict(int)
-## 	    for l in inst:
-## 		if l.parent_pos():
-## 		    counts[(l.parent(),l.parent_pos())] += 1
-## 		counts1[l.parent()] += 1
-## 	    for p in counts1:
-## 		for l in p.links():
-## 		    if l.undetermined():
-## 			continue
-## 		    if l.parent_pos():
-## 		        counts[(l.parent(),l.parent_pos())] += 1
-## 		    counts1[l.parent()] += 1
-## 	    coremannose = set()
-## 	    for m in self.root().children():
-## 		for m1 in m.children():
-## 		    try:
-## 	                if iupacSym.toStr(m1) == 'Man':
-## 			    coremannose.add(m1)
-## 		    except KeyError:
-## 			pass
-## 	    # print counts
-## 	    bad = False
-## 	    for m,c in counts1.items():
-## 		try:
-## 		    sym = iupacSym.toStr(m)
-## 		except KeyError:
-## 		    sym = None
-## 		if m in coremannose:
-## 		    # Probably N-glycan core Manose
-## 		    if c > 3:
-## 			bad = True
-## 			break
-## 		elif c > self.maxlinks.get(sym,2):
-## 		    bad = True
-## 		    break
-## 	    if bad:
-## 		continue		
-## 	    bad = False
-## 	    for m,c in counts.items():
-## 		if c > 1:
-## 		    bad = True
-## 		    break
-## 	    if bad:
-## 		continue		
-## 	    # print counts,counts1
-## 	    self.add_instantiation(inst)
+##         # Pick one from each child-set
+##         for inst in product(*(undetsets.values())):
+##             # Potentially, eliminate infeasible combinations of
+##             # instantiated edges, too many on a parent, bond already
+##             # used, etc.
+##             counts = defaultdict(int)
+##             counts1 = defaultdict(int)
+##             for l in inst:
+##                 if l.parent_pos():
+##                     counts[(l.parent(),l.parent_pos())] += 1
+##                 counts1[l.parent()] += 1
+##             for p in counts1:
+##                 for l in p.links():
+##                     if l.undetermined():
+##                         continue
+##                     if l.parent_pos():
+##                         counts[(l.parent(),l.parent_pos())] += 1
+##                     counts1[l.parent()] += 1
+##             coremannose = set()
+##             for m in self.root().children():
+##                 for m1 in m.children():
+##                     try:
+##                         if iupacSym.toStr(m1) == 'Man':
+##                             coremannose.add(m1)
+##                     except KeyError:
+##                         pass
+##             # print counts
+##             bad = False
+##             for m,c in counts1.items():
+##                 try:
+##                     sym = iupacSym.toStr(m)
+##                 except KeyError:
+##                     sym = None
+##                 if m in coremannose:
+##                     # Probably N-glycan core Manose
+##                     if c > 3:
+##                         bad = True
+##                         break
+##                 elif c > self.maxlinks.get(sym,2):
+##                     bad = True
+##                     break
+##             if bad:
+##                 continue                
+##             bad = False
+##             for m,c in counts.items():
+##                 if c > 1:
+##                     bad = True
+##                     break
+##             if bad:
+##                 continue                
+##             # print counts,counts1
+##             self.add_instantiation(inst)
 
     def set_instantiation(self,inst):
         conn = set()
@@ -214,21 +215,21 @@ class Glycan:
             m = todo.pop(0)
             for l in m.links(False):
                 if l.undetermined():
-		    if l in inst:
+                    if l in inst:
                         l.set_instantiated(True)
-			conn.add(l.child())
+                        conn.add(l.child())
                 todo.insert(0,l.child())
-	for ur in self.undetermined_roots():
-	    ur.set_connected(ur in conn)
+        for ur in self.undetermined_roots():
+            ur.set_connected(ur in conn)
         return
 
     def instantiations(self):
         if not self._undetermined:
-	    yield self
-	    return
+            yield self
+            return
         plsets = []
         for ur in self.undetermined_roots():
-	    if not ur.connected():
+            if not ur.connected():
                 plsets.append(ur.parent_links())
         for inst in combinatorics.product(*plsets,accumulator=combinatorics.set_accumulator):
             self.set_instantiation(inst)
@@ -252,7 +253,7 @@ class Glycan:
         total = 1
         for ur in self.undetermined_roots():
             total *= len(ur.parent_links())
-	return total
+        return total
 
     def dfsvisit(self,f,m=None,subst=False):
         if m == None:
@@ -362,7 +363,7 @@ class Glycan:
 
     def permethylated_molecular_weight(self,adduct='C2H6O'):
         return self.permethylated_elemental_composition().mass(elmt) + \
-	       Composition.fromstr(adduct).mass(elmt)
+               Composition.fromstr(adduct).mass(elmt)
     
     def fragments(self,r=None,force=False):
         atroot = False
@@ -437,7 +438,7 @@ class Glycan:
         todo = []
         if self.root():
             todo.append(self.root())
-	for ur in self.unconnected_roots():
+        for ur in self.unconnected_roots():
             if (subst or undet_subst) or ur.is_monosaccharide():
                 todo.append(ur)
         for root in todo:
@@ -449,19 +450,19 @@ class Glycan:
     def iupac_composition(self,
                           floating_substituents=True,
                           aggregate_basecomposition=True):
-	c = Composition()
-	for sym in (self.iupac_composition_syms + self.subst_composition_syms + ['Xxx','X']):
-	    c[sym] = 0
-	for m in self.all_nodes(undet_subst=True):           
+        c = Composition()
+        for sym in (self.iupac_composition_syms + self.subst_composition_syms + ['Xxx','X']):
+            c[sym] = 0
+        for m in self.all_nodes(undet_subst=True):           
 
-	    try:
-	        sym = iupacSym.toStr(m)
-	    except KeyError:
-		if isinstance(m,Monosaccharide):	
-	            c['Xxx'] += 1
-		else:
-		    c['X'] += 1
-		continue
+            try:
+                sym = iupacSym.toStr(m)
+            except KeyError:
+                if isinstance(m,Monosaccharide):        
+                    c['Xxx'] += 1
+                else:
+                    c['X'] += 1
+                continue
 
             if floating_substituents:
                 syms = map(str.strip,sym.split('+'))
@@ -469,10 +470,10 @@ class Glycan:
                 syms = [sym]
 
             if syms[0] not in (self.iupac_composition_syms + self.subst_composition_syms):
-		if isinstance(m,Monosaccharide):
+                if isinstance(m,Monosaccharide):
                     syms[0] = 'Xxx'
-		else:
-		    syms[0] = 'X'
+                else:
+                    syms[0] = 'X'
             
             for i in range(1,len(syms)):
                 if syms[i] not in self.subst_composition_syms:
@@ -482,14 +483,14 @@ class Glycan:
                 c['Xxx'] += 1
                 continue
 
-	    if syms[0] == 'X':
-		c['X'] += 1
-		continue
+            if syms[0] == 'X':
+                c['X'] += 1
+                continue
 
-	    for sym in syms:
-		c[sym] += 1
+            for sym in syms:
+                c[sym] += 1
 
-	c['Count'] = sum(map(c.__getitem__,self.iupac_composition_syms + ['Xxx']))
+        c['Count'] = sum(map(c.__getitem__,self.iupac_composition_syms + ['Xxx']))
         if aggregate_basecomposition:
             c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc','Hex')))
             c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
@@ -499,19 +500,19 @@ class Glycan:
             c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
             c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
  
-	return c
+        return c
 
     def glycoct(self):
-	from GlycanFormatter import GlycoCTFormat
+        from GlycanFormatter import GlycoCTFormat
         if not self.glycoctformat:
             self.glycoctformat = GlycoCTFormat()
-	return self.glycoctformat.toStr(self)
+        return self.glycoctformat.toStr(self)
 
     def glycam(self):
-	from GlycanFormatter import IUPACGlycamFormat
+        from GlycanFormatter import IUPACGlycamFormat
         if not self.glycamformat:
             self.glycamformat = IUPACGlycamFormat()
-	return self.glycamformat.toStr(self)
+        return self.glycamformat.toStr(self)
 
     def subtree_links(self,root,subst=False,uninstantiated=False):
         for m in self.subtree_nodes(root):
@@ -641,7 +642,7 @@ class Glycan:
     @staticmethod
     def monosaccharide_match(a,b):
         # print a
-	# print b
+        # print b
         if not a.equals(b):
             return False
         # parent_links_match = False
@@ -651,12 +652,12 @@ class Glycan:
         #     break
         # if not parent_links_match:
         #     return False
-	if len(a.parent_links()) != len(b.parent_links()):
-	    return False
-	if len(a.links(instantiated_only=True)) != len(b.links(instantiated_only=True)):
-	    return False
-	if len(a.links(instantiated_only=False)) != len(b.links(instantiated_only=False)):
-	    return False
+        if len(a.parent_links()) != len(b.parent_links()):
+            return False
+        if len(a.links(instantiated_only=True)) != len(b.links(instantiated_only=True)):
+            return False
+        if len(a.links(instantiated_only=False)) != len(b.links(instantiated_only=False)):
+            return False
         child_links_match = False
         for ii,jj in itermatchings(a.links(instantiated_only=False),b.links(instantiated_only=False),
                                    lambda i,j: i.equals(j) and i.child().equals(j.child())):
@@ -666,15 +667,15 @@ class Glycan:
 
     @staticmethod
     def undetroot_equals(a,b,mapids=True):
-	if not a.subtree_equals(b,mapids=mapids):
-	    return False
-	assert(None not in set(l.parent().id() for l in a.parent_links()))
-	assert(None not in set(l.parent().id() for l in b.parent_links()))
-	uipars = set((l.astuple(),l.parent().id()) for l in a.parent_links())
+        if not a.subtree_equals(b,mapids=mapids):
+            return False
+        assert(None not in set(l.parent().id() for l in a.parent_links()))
+        assert(None not in set(l.parent().id() for l in b.parent_links()))
+        uipars = set((l.astuple(),l.parent().id()) for l in a.parent_links())
         ujpars = set((l.astuple(),l.parent().id()) for l in b.parent_links())
         if not (uipars == ujpars):
             return False
-	return True
+        return True
 
     def str(self,node=None,prefix="",codeprefix="",monofmt=lcSym):
         if node == None:
@@ -682,7 +683,7 @@ class Glycan:
         code = monofmt.toStr(node)
         s = codeprefix + code
         kidlinks = sorted(filter(lambda l: l.instantiated(),node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
-        kids = map(Linkage.child,kidlinks)
+        kids = list(map(Linkage.child,kidlinks))
         n = len(kids)
         assert n in (0,1,2,3)
         if n == 0:
@@ -712,9 +713,9 @@ class Glycan:
             child_list.append(link.child())
 
         if len(child_list) == 0:
-            print '    '*level + br
+            print('    '*level + br)
         elif len(child_list) > 1:
-            print '    '*level + br
+            print('    '*level + br)
             level += 1
             for c in child_list:
                 self.dump(c,level, '', monofmt)
@@ -780,10 +781,12 @@ if __name__ == '__main__':
                   child_type=Linkage.oxygenLost)
     
     g = Glycan(gc1)
+
+    print(g.glycoct())
     
     g.dump()
 
-    print g.str(),'\n'
+    print(g.str()+'\n')
     # bions,yions = g.byions()
     # for bi,yi in zip(bions,yions):
     #    c1,c2,bstr = bi
@@ -796,7 +799,7 @@ if __name__ == '__main__':
     for fr in sorted(g.fragments(),key=lambda fr: (fr[1].mass(elmt),fr[3])):
         # if (str(fr[0]),fr[2]) in seen:
         #     continue
-        print "%7.2f"%fr[1].mass(elmt),"cl=%d"%fr[3],"Y=%d"%(1*fr[2]),fr[0]
+        print("%7.2f"%fr[1].mass(elmt),"cl=%d"%fr[3],"Y=%d"%(1*fr[2]),fr[0])
         seen.add((str(fr[0]),fr[2]))
 
     # for fr in sorted(set(map(lambda fr: str(fr[0]),g.fragments()))):

@@ -8,7 +8,7 @@ class MonoFactory(ReferenceTable):
     def new(self,key):
         return self[key].clone()
     def parseSection(self,name,kv):
-	try:
+        try:
             m = Monosaccharide()
             m.set_id(name)
             aliases = [name]
@@ -38,7 +38,8 @@ class MonoFactory(ReferenceTable):
             mods = kv.get('mods','').split()
             for i in range(0,len(mods),2):
                 m.add_mod(mods[i],constantLookup(mods[i+1])[1])
-            substs = filter(None,map(str.strip,kv.get('substituent','').split(';')))
+
+            substs = filter(None,map(lambda s: s.strip(),kv.get('substituent','').split(';')))
             last_subst = None
             for subst in substs:
                 split_subst = subst.split()
@@ -54,11 +55,11 @@ class MonoFactory(ReferenceTable):
                     else:
                         kwargs[split_subst[i]] = constantLookup(split_subst[i+1])[1]
                 last_subst = m.add_substituent(const,**kwargs).child()
-            aliases.extend(map(str.strip,kv.get('aliases','').split(';')))
+            aliases.extend(map(lambda s: s.strip(),kv.get('aliases','').split(';')))
             aliases = filter(None,aliases)
-	except:
-	    print >>sys.stderr, "Problem with section", name
-	    raise
+        except:
+            print >>sys.stderr, "Problem with section", name
+            raise
         return [(a,m) for a in aliases]
 
         

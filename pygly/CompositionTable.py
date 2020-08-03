@@ -14,38 +14,38 @@ class Composition(defaultdict):
             if count == 0:
                 continue
             self[sl[i]] += count
-	return self
+        return self
     def compactparse(self,word):
-	sl = map(str.strip,re.split(r'([A-Z][a-z]?)',word)[1:])
-	for i in range(1,len(sl),2):
-	    if not sl[i]:
-		sl[i] = '1'
-	self.parse((" ".join(sl)).strip())
-	return self
+        sl = map(str.strip,re.split(r'([A-Z][a-z]?)',word)[1:])
+        for i in range(1,len(sl),2):
+            if not sl[i]:
+                sl[i] = '1'
+        self.parse((" ".join(sl)).strip())
+        return self
     @staticmethod
     def fromstr(*args):
-	c = Composition()
-	for w in args:
-	    c.compactparse(w)
-	return c 
+        c = Composition()
+        for w in args:
+            c.compactparse(w)
+        return c 
     def __str__(self):
         return ' '.join("%s %d"%(e,c) for e,c in sorted(self.items()) if c != 0)
     def str(self,keys):
         return ' '.join("%s %d"%(e,self[e]) for e in keys)
     def compactstr(self):
-	return ''.join("%s%s"%(e,c if c > 1 else "") for e,c in sorted(self.items()) if c != 0)
+        return ''.join("%s%s"%(e,c if c > 1 else "") for e,c in sorted(self.items()) if c != 0)
     def add(self,c):
         for k in c:
             self[k] += c[k]
-	return self
+        return self
     def scale(self,s):
         for k in c:
             self[k] = int(s*self[k])
-	return self
+        return self
     def sub(self,c):
         for k in c:
             self[k] -= c[k]
-	return self
+        return self
     def contains(self,c):
         for k in c:
             if self[k] < c[k]:
@@ -57,25 +57,25 @@ class Composition(defaultdict):
                 return False
         return True
     def mass(self,mass_table):
-        return sum(mass_table[e]*c for e,c in self.iteritems())
+        return sum(mass_table[e]*c for e,c in self.items())
     def count(self):
-        return sum(c for e,c in self.iteritems())
+        return sum(c for e,c in self.items())
 
 class ResidueCompositionTable(dict):
     def __init__(self):
         consts = ConstantsTable()
-        for sym,kv in consts.iteritems():
+        for sym,kv in consts.items():
             if 'ResidueComposition' in kv:
                 c = Composition()
                 c.parse(kv['ResidueComposition'])
                 self[sym] = c
     def new(self):
-	return Composition()
+        return Composition()
 
 class PermethylCompositionTable(dict):
     def __init__(self):
         consts = ConstantsTable()
-        for sym,kv in consts.iteritems():
+        for sym,kv in consts.items():
             if 'PermethylComposition' in kv and 'ResidueComposition' in kv:
                 c = Composition()
                 c.parse(kv['ResidueComposition'])
@@ -84,4 +84,4 @@ class PermethylCompositionTable(dict):
                 c.add(c1)
                 self[sym] = c
     def new(self):
-	return Composition()
+        return Composition()

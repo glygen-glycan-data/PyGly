@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 from MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym, GlycamSym
 from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 from Glycan import Glycan
@@ -30,49 +32,49 @@ class GlycoCTParseError(GlycanParseError):
 
 class GlycoCTRepeatedSectionError(GlycoCTParseError):
     def __init__(self,section,lineno):
-	self.section = section
-	self.message = "GlycoCT parser, line %d: Repeated section %s"%(lineno, section)
+        self.section = section
+        self.message = "GlycoCT parser, line %d: Repeated section %s"%(lineno, section)
 
 class GlycoCTLINBeforeRESError(GlycoCTParseError):
     def __init__(self,lineno):
-	self.message = "GlycoCT parser, line %d: LIN section before RES section"%(lineno,)
+        self.message = "GlycoCT parser, line %d: LIN section before RES section"%(lineno,)
 
 class GlycoCTUNDBeforeRESLINError(GlycoCTParseError):
     def __init__(self,lineno):
-	self.message = "GlycoCT parser, line %d: UND section before RES or LIN section"%(lineno,)
+        self.message = "GlycoCT parser, line %d: UND section before RES or LIN section"%(lineno,)
 
 class GlycoCTUnsupportedSectionError(GlycoCTParseError):
     def __init__(self,section,lineno):
-	self.section = section
-	self.message = "GlycoCT parser, line %d: Unsupported section %s"%(lineno, section)
+        self.section = section
+        self.message = "GlycoCT parser, line %d: Unsupported section %s"%(lineno, section)
 
 class GycoCTBadRESLineError(GlycoCTParseError):
     def __init__(self,message,lineno,line):
-	self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
-	self.line = line
+        self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
+        self.line = line
 
 class GlycoCTBadLINLineError(GlycoCTParseError):
     def __init__(self,message,lineno,line):
-	self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
-	self.line = line
+        self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
+        self.line = line
 
 class GlycoCTParentLinkError(GlycoCTParseError):
     def __init__(self,message,lineno,line):
-	self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
-	self.line = line
+        self.message = "GlycoCT parser, line %d: %s"%(lineno, message)
+        self.line = line
 
 class GlycoCTUnexpectedLineError(GlycoCTParseError):
     def __init__(self,lineno,line):
-	self.message = "GlycoCT parser, line %d: Unexpected line:\n ==> %s"%(lineno,line)
-	self.line = line
+        self.message = "GlycoCT parser, line %d: Unexpected line:\n ==> %s"%(lineno,line)
+        self.line = line
 
 class GlycoCTUndeterminedLinkageError(GlycoCTParseError):
     def __init__(self):
-	self.message = "GlycoCT parser, undetermined linkage instantiation error"
+        self.message = "GlycoCT parser, undetermined linkage instantiation error"
 
 class GlycoCTUnconnectedCountError(GlycoCTParseError):
     def __init__(self):
-	self.message = "GlycoCT parser, unconnected node count error"
+        self.message = "GlycoCT parser, unconnected node count error"
 
 class GlycoCTFormat(GlycanFormatter):
     def __init__(self):
@@ -163,7 +165,7 @@ class GlycoCTFormat(GlycanFormatter):
         if g.root():
             roots.append(g.root())
         for ur in g.undetermined_roots():
-	    if not ur.connected():
+            if not ur.connected():
                 roots.append(ur)
 
         s = "RES\n"
@@ -194,7 +196,7 @@ class GlycoCTFormat(GlycanFormatter):
                 continue
             if first:
                 s += "UND\n"
-		first = False
+                first = False
             undind += 1
             s += "UND%s:100.0:100.0\n"%(undind,)
             parentids = set()
@@ -220,100 +222,100 @@ class GlycoCTFormat(GlycanFormatter):
 
     def toGlycan(self,s):
         res = {}
-	und = defaultdict(dict)
-	undind = None
-	state = None
+        und = defaultdict(dict)
+        undind = None
+        state = None
         undets = set()
-	seen = set()
+        seen = set()
         for lineno,l in enumerate(s.splitlines()):
             l = l.strip()
-	    if not l:
-		continue
+            if not l:
+                continue
             if l == "RES":
-		if l in seen and state != "UND":
-		    raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
-		if state == "UND":
+                if l in seen and state != "UND":
+                    raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
+                if state == "UND":
                     state = "UNDRES"
-		else:
-		    state = "RES"
-		seen.add(state)
+                else:
+                    state = "RES"
+                seen.add(state)
                 continue
             if l == "LIN":
-		if l in seen and state != "UNDRES":
-		    raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
-		if "RES" not in seen:
-		    raise GlycoCTLINBeforeRESError()
-		if state == "UND":
-		    state = "UNDLIN"
-		else:
-		    state = "LIN"
-		seen.add(state)
+                if l in seen and state != "UNDRES":
+                    raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
+                if "RES" not in seen:
+                    raise GlycoCTLINBeforeRESError()
+                if state == "UND":
+                    state = "UNDLIN"
+                else:
+                    state = "LIN"
+                seen.add(state)
                 continue
-	    if l == "UND":
-		if l in seen:
-		    raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
-		if "RES" not in seen or "LIN" not in seen:
-		    raise GlycoCTUNDBeforeRESLINError()
-		state = "UND"
-		seen.add(state)
-		continue
-	    if re.search(r'^UND\d+:',l):
-		m = re.search(r"^UND(\d+):",l)
-		state = "UND"
-		if m:
-		    undind = int(m.group(1))	
-		    und[undind]['frac'] = map(float,l.split(':')[1:])
-		    continue
-	    if re.search(r'^[A-Z][A-Z][A-Z]$',l):
-		raise GlycoCTUnsupportedSectionError(lineno=lineno+1,section=l)
+            if l == "UND":
+                if l in seen:
+                    raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
+                if "RES" not in seen or "LIN" not in seen:
+                    raise GlycoCTUNDBeforeRESLINError()
+                state = "UND"
+                seen.add(state)
+                continue
+            if re.search(r'^UND\d+:',l):
+                m = re.search(r"^UND(\d+):",l)
+                state = "UND"
+                if m:
+                    undind = int(m.group(1))    
+                    und[undind]['frac'] = map(float,l.split(':')[1:])
+                    continue
+            if re.search(r'^[A-Z][A-Z][A-Z]$',l):
+                raise GlycoCTUnsupportedSectionError(lineno=lineno+1,section=l)
             if state in ("RES","UNDRES"):
-		try:
+                try:
                     m = self.monofmt.fromStr(l)
-		except (TypeError,LookupError,ValueError,RuntimeError), e:
-		    raise GycoCTBadRESLineError(message=e.args[0],lineno=lineno+1,line=l)
+                except (TypeError,LookupError,ValueError,RuntimeError) as e:
+                    raise GycoCTBadRESLineError(message=e.args[0],lineno=lineno+1,line=l)
                 res[m.id()] = m
-		if state == "UNDRES" and undind != None and 'root' not in und[undind]:
-		    und[undind]['root'] = m.id()
+                if state == "UNDRES" and undind != None and 'root' not in und[undind]:
+                    und[undind]['root'] = m.id()
                     undets.add(m)
                 continue
             if state in ("LIN","UNDLIN"):
-		try:
+                try:
                     links = self.monofmt.linkFromStr(l,res)
-		    if len(links) > 1:
-			for l in links:
-			    l.set_undetermined(True)
-			    l.set_instantiated(False)
-			    l.child().set_connected(False)
-		except (RuntimeError,AttributeError), e:
-		    raise GlycoCTBadLINLineError(message=e.args[0],lineno=lineno+1,line=l)	
+                    if len(links) > 1:
+                        for l in links:
+                            l.set_undetermined(True)
+                            l.set_instantiated(False)
+                            l.child().set_connected(False)
+                except (RuntimeError,AttributeError) as e:
+                    raise GlycoCTBadLINLineError(message=e.args[0],lineno=lineno+1,line=l)      
                 continue
-	    if state == "UND":
-		m = re.search(r"^UND(\d+):",l)
-		if m:
-		    undind = int(m.group(1))	
-		    und[undind]['frac'] = map(float,l.split(':')[1:])
-		    continue
-		m = re.search(r"^ParentIDs:(\d+(\|\d+)*)$",l)
-		if m:
-		    und[undind]['parentids'] = map(int,m.group(1).split('|'))
-		    continue
-		m = re.search(r"^SubtreeLinkageID(\d+):(.*)$",l)
-		if m:
-		    und[undind]['stlink'] = (m.group(1),m.group(2))
-		    continue
-	    raise GlycoCTUnexpectedLineError(lineno=lineno+1,line=l)
-	for d in und.values():
-	    linkagestr = d['stlink'][1]
-	    rootid = d['root']
-	    for pid in d['parentids']:
-		try:
-		  links = self.monofmt.linkFromStr("0:%s%s%s%s"%(pid,linkagestr[:-1],rootid,linkagestr[-1]),res)
-		  for l in links:
-		    l.set_undetermined(True)
-		    l.set_instantiated(False)
-		    l.child().set_connected(False)
-		except (RuntimeError,AttributeError), e:
-		    raise GlycoCTParentLinkError(message=e.args[0],lineno=lineno+1,line=l)	
+            if state == "UND":
+                m = re.search(r"^UND(\d+):",l)
+                if m:
+                    undind = int(m.group(1))    
+                    und[undind]['frac'] = map(float,l.split(':')[1:])
+                    continue
+                m = re.search(r"^ParentIDs:(\d+(\|\d+)*)$",l)
+                if m:
+                    und[undind]['parentids'] = map(int,m.group(1).split('|'))
+                    continue
+                m = re.search(r"^SubtreeLinkageID(\d+):(.*)$",l)
+                if m:
+                    und[undind]['stlink'] = (m.group(1),m.group(2))
+                    continue
+            raise GlycoCTUnexpectedLineError(lineno=lineno+1,line=l)
+        for d in und.values():
+            linkagestr = d['stlink'][1]
+            rootid = d['root']
+            for pid in d['parentids']:
+                try:
+                  links = self.monofmt.linkFromStr("0:%s%s%s%s"%(pid,linkagestr[:-1],rootid,linkagestr[-1]),res)
+                  for l in links:
+                    l.set_undetermined(True)
+                    l.set_instantiated(False)
+                    l.child().set_connected(False)
+                except (RuntimeError,AttributeError) as e:
+                    raise GlycoCTParentLinkError(message=e.args[0],lineno=lineno+1,line=l)      
         unconnected = set()
         monocnt = 0
         for id,r in res.items():
@@ -324,8 +326,8 @@ class GlycoCTFormat(GlycanFormatter):
                 continue
             r.set_connected(False)
             unconnected.add(r)
-	if len(unconnected) not in (1,monocnt):
-	    raise GlycoCTUnconnectedCountError()
+        if len(unconnected) not in (1,monocnt):
+            raise GlycoCTUnconnectedCountError()
         # single monosacharides are considered a structure, not a composition...
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
@@ -342,30 +344,30 @@ class LinearCodeParseError(GlycanParseError):
 
 class LinearCodeBadFormat(LinearCodeParseError):
     def __init__(self,code,pos):
-	self.code = code
-	self.pos = pos
-	self.message = "Linear Code parser, position %d: Bad format in linear code: %s"%(pos,code)
+        self.code = code
+        self.pos = pos
+        self.message = "Linear Code parser, position %d: Bad format in linear code: %s"%(pos,code)
 
 class LinearCodeBadSym(LinearCodeParseError):
     def __init__(self,code,pos,sym):
-	self.code = code
-	self.pos = pos
-	self.sym = sym
-	self.message = "Linear Code parser, position %d: Bad symbol %s linear code: %s"%(pos,sym,code)
+        self.code = code
+        self.pos = pos
+        self.sym = sym
+        self.message = "Linear Code parser, position %d: Bad symbol %s linear code: %s"%(pos,sym,code)
 
 class LinearCodeBadAnomer(LinearCodeParseError):
     def __init__(self,code,pos,anomer):
-	self.code = code
-	self.pos = pos
-	self.anomer = anomer
-	self.message = "Linear Code parser, position %d: Bad anomer %s in linear code: %s"%(pos,anomer,code)
+        self.code = code
+        self.pos = pos
+        self.anomer = anomer
+        self.message = "Linear Code parser, position %d: Bad anomer %s in linear code: %s"%(pos,anomer,code)
 
 class LinearCodeBadPosition(LinearCodeParseError):
     def __init__(self,code,pos,badpos):
-	self.code = code
-	self.pos = pos
-	self.badpos = badpos
-	self.message = "Linear Code parser, position %d: Bad position %s in linear code: %s"%(pos,badpos,code)
+        self.code = code
+        self.pos = pos
+        self.badpos = badpos
+        self.message = "Linear Code parser, position %d: Bad position %s in linear code: %s"%(pos,badpos,code)
 
 class LinearCodeFormat(GlycanFormatter):
     def __init__(self,connection=None):
@@ -410,30 +412,30 @@ class LinearCodeFormat(GlycanFormatter):
             return self.linearstr(kidlinks[-1],kidlinks[-1].child())+t+s+conn
 
     def toGlycan(self, s):
-	orig = s
- 	m = re.search(r'([A-Z]+)$',s)
-	if not m:
-	    raise LinearCodeBadFormat(code=orig,pos=len(s))
-	sym = m.group(1)
+        orig = s
+        m = re.search(r'([A-Z]+)$',s)
+        if not m:
+            raise LinearCodeBadFormat(code=orig,pos=len(s))
+        sym = m.group(1)
         lcsym = "LinearCode:"+sym
         if lcsym in self.mf:
             root = self.mf.new(lcsym)
         else:
             raise LinearCodeBadSym(code=orig,pos=len(s),sym=sym)
-	s = s[:-len(sym)]
+        s = s[:-len(sym)]
 
         branchpoint = []
         parent = root
         while s != "":
             # either a number or a bracket.
             if s[-1] not in '()':
-	        m = re.search(r'([A-Z]+)(.)(.)$',s)
-		if not m:
-		    raise LinearCodeBadFormat(code=orig,pos=len(s))
-		sym = m.group(1)
-		lcsym = "LinearCode:"+sym
+                m = re.search(r'([A-Z]+)(.)(.)$',s)
+                if not m:
+                    raise LinearCodeBadFormat(code=orig,pos=len(s))
+                sym = m.group(1)
+                lcsym = "LinearCode:"+sym
                 anomer = m.group(2)
-		pos = m.group(3)
+                pos = m.group(3)
                 if lcsym not in self.mf:
                     raise LinearCodeBadSym(code=orig,pos=len(s),sym=sym)
                 if anomer not in 'ab?':
@@ -450,10 +452,10 @@ class LinearCodeFormat(GlycanFormatter):
                     pos = None
                 else:
                     pos = int(pos)
-		m = self.mf.new(lcsym)
+                m = self.mf.new(lcsym)
                 m.set_anomer(anomer)
                 parent.add_child(m,parent_pos=pos)
-		s = s[:-(2+len(sym))]
+                s = s[:-(2+len(sym))]
                 parent = m
             elif s[-1] == ')':
                 branchpoint.append(parent)
@@ -472,30 +474,30 @@ class IUPACLinearParseError(GlycanParseError):
 
 class IUPACLinearBadFormat(IUPACLinearParseError):
     def __init__(self,code,pos):
-	self.code = code
-	self.pos = pos
-	self.message = "IUPAC Linear parser, position %d: Bad format in linear code: %s^%s."%(pos,code[:pos],code[pos:])
+        self.code = code
+        self.pos = pos
+        self.message = "IUPAC Linear parser, position %d: Bad format in linear code: %s^%s."%(pos,code[:pos],code[pos:])
 
 class IUPACLinearBadSym(IUPACLinearParseError):
     def __init__(self,code,pos,sym):
-	self.code = code
-	self.pos = pos
-	self.sym = sym
-	self.message = "IUPAC Linear parser, position %d: Bad symbol %s linear code: %s"%(pos,sym,code)
+        self.code = code
+        self.pos = pos
+        self.sym = sym
+        self.message = "IUPAC Linear parser, position %d: Bad symbol %s linear code: %s"%(pos,sym,code)
 
 class IUPACLinearBadAnomer(IUPACLinearParseError):
     def __init__(self,code,pos,anomer):
-	self.code = code
-	self.pos = pos
-	self.anomer = anomer
-	self.message = "IUPAC Linear parser, position %d: Bad anomer %s in linear code: %s"%(pos,anomer,code)
+        self.code = code
+        self.pos = pos
+        self.anomer = anomer
+        self.message = "IUPAC Linear parser, position %d: Bad anomer %s in linear code: %s"%(pos,anomer,code)
 
 class IUPACLinearBadPosition(IUPACLinearParseError):
     def __init__(self,code,pos,badpos):
-	self.code = code
-	self.pos = pos
-	self.badpos = badpos
-	self.message = "IUPAC Linear parser, position %d: Bad position %s in linear code: %s"%(pos,badpos,code)
+        self.code = code
+        self.pos = pos
+        self.badpos = badpos
+        self.message = "IUPAC Linear parser, position %d: Bad position %s in linear code: %s"%(pos,badpos,code)
 
 class IUPACLinearFormat(GlycanFormatter):
     def __init__(self,connection=None):
@@ -528,12 +530,12 @@ class IUPACLinearFormat(GlycanFormatter):
         else:
             s = self.monofmt.toStr(m)
         if not pl:
-	    if m.anomer() == Anomer.alpha:
-		conn = 'a'
-	    elif m.anomer() == Anomer.beta:
-		conn = 'b'
-	    else:
-		conn = ""
+            if m.anomer() == Anomer.alpha:
+                conn = 'a'
+            elif m.anomer() == Anomer.beta:
+                conn = 'b'
+            else:
+                conn = ""
         else:
             pos=pl.parent_pos()
             if not pos:
@@ -561,52 +563,52 @@ class IUPACLinearFormat(GlycanFormatter):
             return self.linearstr(kidlinks[-1],kidlinks[-1].child())+t+s+conn
 
     def toGlycan(self, s):
-	orig = s
-	m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Glc|Gal|Man|Fuc|Xyl)[a-zA-Z5926,]+)$',s)
-	if not m:
-	    raise IUPACLinearBadFormat(code=orig,pos=len(s))
-	sym = m.group('sym')
+        orig = s
+        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Glc|Gal|Man|Fuc|Xyl)[a-zA-Z5926,]+)$',s)
+        if not m:
+            raise IUPACLinearBadFormat(code=orig,pos=len(s))
+        sym = m.group('sym')
         if sym in self.mf:
-	    anomer = None
+            anomer = None
             root = self.mf.new(sym)
-	elif sym[-1] in 'ab' and sym[:-1] in self.mf:
-	    anomer = sym[-1]
-	    root = self.mf.new(sym[:-1])
+        elif sym[-1] in 'ab' and sym[:-1] in self.mf:
+            anomer = sym[-1]
+            root = self.mf.new(sym[:-1])
         else:
             raise IUPACLinearBadSym(code=orig,pos=len(s),sym=sym)
-	if anomer:
-	     if anomer == 'a':
+        if anomer:
+             if anomer == 'a':
                   anomer = Anomer.alpha
              elif anomer == 'b':
                   anomer = Anomer.beta
-	     root.set_anomer(anomer)
+             root.set_anomer(anomer)
         if m.group('subst'):
             for subst in re.findall(r'\d[SP]',m.group('subst')):
                 if subst[1] == 'S':
                     root.add_substituent(Substituent.sulfate,
                                          parent_pos=int(subst[0]),
-					 child_pos=1,
-					 parent_type=Linkage.oxygenPreserved,
-					 child_type=Linkage.nitrogenAdded)
+                                         child_pos=1,
+                                         parent_type=Linkage.oxygenPreserved,
+                                         child_type=Linkage.nitrogenAdded)
                 elif subst[1] == 'P':
                     root.add_substituent(Substituent.phosphate,
                                          parent_pos=int(subst[0]),
-					 child_pos=1,
-					 parent_type=Linkage.oxygenPreserved,
-					 child_type=Linkage.nitrogenAdded)
-	s = s[:-len(m.group(0))]
+                                         child_pos=1,
+                                         parent_type=Linkage.oxygenPreserved,
+                                         child_type=Linkage.nitrogenAdded)
+        s = s[:-len(m.group(0))]
 
         branchpoint = []
         parent = root
         while s != "":
             # either a number or a bracket.
             if s[-1] not in '()':
-	        m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>.)$',s)
+                m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>.)$',s)
                 if not m:
-		    raise IUPACLinearBadFormat(code=orig,pos=len(s))
-		sym = m.group('sym')
-		anomer = m.group('anomer')
-		cpos = m.group('cpos')
+                    raise IUPACLinearBadFormat(code=orig,pos=len(s))
+                sym = m.group('sym')
+                anomer = m.group('anomer')
+                cpos = m.group('cpos')
                 ppos = m.group('ppos')
                 subst = m.group('subst')
                 remove = len(m.group(0))
@@ -632,26 +634,26 @@ class IUPACLinearFormat(GlycanFormatter):
                     ppos = None
                 else:
                     ppos = int(ppos)
-		m = self.mf.new(sym)
+                m = self.mf.new(sym)
                 m.set_anomer(anomer)
                 parent.add_child(m,child_pos=cpos,parent_pos=ppos,
-				   parent_type=Linkage.oxygenPreserved,
+                                   parent_type=Linkage.oxygenPreserved,
                                    child_type=Linkage.oxygenLost)
                 if subst:
                     for si in re.findall(r'\d[SP]',subst):
                         if si[1] == 'S':
                             m.add_substituent(Substituent.sulfate,
                                               parent_pos=int(si[0]),
-					      child_pos=1,
-					      parent_type=Linkage.oxygenPreserved,
-					      child_type=Linkage.nitrogenAdded)
+                                              child_pos=1,
+                                              parent_type=Linkage.oxygenPreserved,
+                                              child_type=Linkage.nitrogenAdded)
                         elif si[1] == 'P':
                             m.add_substituent(Substituent.phosphate,
                                               parent_pos=int(si[0]),
-					      child_pos=1,
-					      parent_type=Linkage.oxygenPreserved,
-					      child_type=Linkage.nitrogenAdded)
-		s = s[:-remove]
+                                              child_pos=1,
+                                              parent_type=Linkage.oxygenPreserved,
+                                              child_type=Linkage.nitrogenAdded)
+                s = s[:-remove]
                 parent = m
 
             elif s[-1] == ')':
@@ -1250,35 +1252,35 @@ class WURCS20ParseError(GlycanParseError):
 
 class WURCS20FormatError(WURCS20ParseError):
     def __init__(self,instr):
-	self.message = "WURCS2.0 parser: Bad WURCS 2.0 format:\n      %s"%(instr,)
+        self.message = "WURCS2.0 parser: Bad WURCS 2.0 format:\n      %s"%(instr,)
 
 class UnsupportedMonoError(WURCS20ParseError):
     def __init__(self,monostr):
-	self.message = "WURCS2.0 parser: Unsupported monosaccharide [%s]"%(monostr,)
+        self.message = "WURCS2.0 parser: Unsupported monosaccharide [%s]"%(monostr,)
 
 class UnsupportedLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
-	self.message = "WURCS2.0 parser: Unsupported link %s"%(linkstr,)
+        self.message = "WURCS2.0 parser: Unsupported link %s"%(linkstr,)
 
 class UndeterminedLinkCountError(WURCS20ParseError):
     def __init__(self):
-	self.message = "WURCS2.0 parser: undetermined link count"
+        self.message = "WURCS2.0 parser: undetermined link count"
 
 class ZeroPlusLinkCountError(WURCS20ParseError):
     def __init__(self):
-	self.message = "WURCS2.0 parser: zero plus link count"
+        self.message = "WURCS2.0 parser: zero plus link count"
 
 class BadChildPositionLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
-	self.message = "WURCS2.0 parser: Bad child position in link %s"%(linkstr,)
+        self.message = "WURCS2.0 parser: Bad child position in link %s"%(linkstr,)
 
 class BadParentPositionLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
-	self.message = "WURCS2.0 parser: Bad parent position in link %s"%(linkstr,)
+        self.message = "WURCS2.0 parser: Bad parent position in link %s"%(linkstr,)
 
 class MonoOrderLinkError(WURCS20ParseError):
     def __init__(self,linkstr):
-	self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
+        self.message = "WURCS2.0 parser: Unexpected monosaccharide order in link %s"%(linkstr,)
 
 class LinkCountError(WURCS20ParseError):
   def __init__(self,instr):
@@ -1301,10 +1303,10 @@ import WURCS20MonoFormatter
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
         self.mf = WURCS20MonoFormatter.WURCS20MonoFormat()
-	self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+\+?)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
-	self.simplelinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])$')
-	self.multilinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|\4([0-9?]))*)$')
-	self.ambiglinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|([a-zA-Z]{1,2})([0-9?]))+)\}$')
+        self.wurcsre = re.compile(r'^WURCS=2\.0/(\d+,\d+,\d+\+?)/((\[[^]]+\])+)/(\d+(-\d+)*)/(.*)$')
+        self.simplelinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])$')
+        self.multilinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|\4([0-9?]))*)$')
+        self.ambiglinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-(([a-zA-Z]{1,2})([0-9?])(\|([a-zA-Z]{1,2})([0-9?]))+)\}$')
         self.complinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}-\{\1$')
         self.compsubstlinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}\*(.*)$')
         self.substbridgelinkre = re.compile(r"^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])\*(.*?)$")
@@ -1327,25 +1329,25 @@ class WURCS20Format(GlycanFormatter):
                 self.char2int[doubledigit] = intfordoubledigit
 
     def toGlycan(self,s):
-	m = self.wurcsre.search(s)
-	if not m:
-	    raise WURCS20FormatError(s)
-	if m.group(1).endswith('+'):
-	    if m.group(1).endswith(",0+"):
-	        raise ZeroPlusLinkCountError()
-	    else:
-	        raise UndeterminedLinkCountError()
-	counts = map(int,m.group(1).split(','))
-	distinctmono = {}; mono = {};
-	for i,ms in enumerate(m.group(2)[1:-1].split('][')):
-	    distinctmono[i+1] = ms
-	for i,ms in enumerate(m.group(4).split('-')):
+        m = self.wurcsre.search(s)
+        if not m:
+            raise WURCS20FormatError(s)
+        if m.group(1).endswith('+'):
+            if m.group(1).endswith(",0+"):
+                raise ZeroPlusLinkCountError()
+            else:
+                raise UndeterminedLinkCountError()
+        counts = map(int,m.group(1).split(','))
+        distinctmono = {}; mono = {};
+        for i,ms in enumerate(m.group(2)[1:-1].split('][')):
+            distinctmono[i+1] = ms
+        for i,ms in enumerate(m.group(4).split('-')):
             mono[i+1] = self.mf.get(distinctmono[int(ms)])
             mono[i+1].set_id(i+1)
             mono[i+1].set_external_descriptor_id(i+1)
 
         undets = set()
-	floating_substs = []
+        floating_substs = []
         for li in map(str.strip,m.group(6).split('_')):
 
             if not li:
@@ -1373,8 +1375,8 @@ class WURCS20Format(GlycanFormatter):
                     parentpos  = pos2
                     childmono  = mono[ind1]
                     childpos   = pos1
-		else:
-		    raise UnsupportedLinkError(li)
+                else:
+                    raise UnsupportedLinkError(li)
 
                 # if not (childpos == None or childpos == childmono.ring_start()):
                 #     raise BadChildPositionLinkError(li)
@@ -1476,7 +1478,7 @@ class WURCS20Format(GlycanFormatter):
                     if None in indpos2[ind2]:
                         indpos2[ind2] = None
 
-		# print ind1,indpos2
+                # print ind1,indpos2
                 if not (max(indpos2) < ind1):
                     raise MonoOrderLinkError(li)
 
@@ -1499,7 +1501,7 @@ class WURCS20Format(GlycanFormatter):
                                              child_type=Linkage.oxygenLost)
                     l.set_undetermined(True)
                     l.set_instantiated(False)
-		    l.child().set_connected(False)
+                    l.child().set_connected(False)
 
                 continue
 
@@ -1516,7 +1518,7 @@ class WURCS20Format(GlycanFormatter):
 
             raise UnsupportedLinkError(li)
 
-	if counts[2] != (counts[1] - 1 + len(floating_substs)):
+        if counts[2] != (counts[1] - 1 + len(floating_substs)):
             raise LinkCountError(s)
 
         unconnected = set()
@@ -1529,19 +1531,19 @@ class WURCS20Format(GlycanFormatter):
             unconnected.add(m)
 
         if len(unconnected) not in (1,monocnt):
- 	    tofix = set()
-	    for m in unconnected:
-	        if len(m.links()) != 1:
-		    continue
-		for l in m.links():
-		    if l.parent_pos() == None and l.child_pos() == None:
-			tofix.add(m)
-	    
-	    if len(tofix) == (len(unconnected)-1):
-		for m in tofix:
-		    m.links()[0].reverse()
-		    m.set_connected(True)
-		    unconnected.remove(m)
+            tofix = set()
+            for m in unconnected:
+                if len(m.links()) != 1:
+                    continue
+                for l in m.links():
+                    if l.parent_pos() == None and l.child_pos() == None:
+                        tofix.add(m)
+            
+            if len(tofix) == (len(unconnected)-1):
+                for m in tofix:
+                    m.links()[0].reverse()
+                    m.set_connected(True)
+                    unconnected.remove(m)
 
         # print len(unconnected)
         # for m in unconnected:
@@ -1550,19 +1552,19 @@ class WURCS20Format(GlycanFormatter):
         if len(unconnected) == 0:
             raise CircularError(s)
         # assert len(unconnected) in (1,monocnt), "# of unconnected nodes: %s not in {1,%d}"%(len(unconnected),monocnt)
-	if len(unconnected) not in (1,monocnt):
-	    raise UnexpectedConnectivityError(s)
-	    
+        if len(unconnected) not in (1,monocnt):
+            raise UnexpectedConnectivityError(s)
+            
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
-	    if len(floating_substs) > 0:
-		raise UnexpectedFloatingSubstError(s)
+            if len(floating_substs) > 0:
+                raise UnexpectedFloatingSubstError(s)
             g.set_undetermined(undets)
         else:
             assert len(undets) == 0
             g = Glycan()
             g.set_undetermined(set(list(unconnected)+floating_substs))
-	return g
+        return g
 
 if __name__ == '__main__':
     import sys, os.path
@@ -1576,14 +1578,14 @@ if __name__ == '__main__':
         seq = open(f).read()
         try:
             g = clsinst.toGlycan(seq)
-            print "+++", os.path.split(f)[1]
+            print("+++", os.path.split(f)[1])
             # for t in g.undetermined_root_reprs():
             #     print t[1],str(t[0])
-            print GlycoCTFormat().toStr(g)
-	    for m in g.all_nodes(undet_subst=True):
-		print m
-	    print g.underivitized_molecular_weight()
-        except GlycanParseError, e:
-            print "!!!", os.path.split(f)[1], e
+            print(GlycoCTFormat().toStr(g))
+            for m in g.all_nodes(undet_subst=True):
+                print(m)
+            print(g.underivitized_molecular_weight())
+        except GlycanParseError as e:
+            print("!!!", os.path.split(f)[1], e)
             bad += 1
-    print "Failed: %d/%d"%(bad,len(files))
+    print("Failed: %d/%d"%(bad,len(files)))

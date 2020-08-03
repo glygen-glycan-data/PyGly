@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 from ElementTable import ElementTable
 from IsoShape import IsoShape
 
@@ -29,4 +31,4 @@ if __name__ == '__main__':
     mt = MonoisotopicElementMass()
     comp = Composition()
     comp.parse(" ".join(sys.argv[1:]))
-    print comp.mass(mt)
+    print(comp.mass(mt))

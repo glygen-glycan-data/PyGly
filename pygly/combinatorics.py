@@ -1,5 +1,7 @@
 #!/bin/env python
 
+from __future__ import print_function
+
 __all__ = [ 'permutations', 'select', 'choose', 'product', 'list_accumulator',
             'tuple_accumulator', 'concat_accumulator', 'set_accumulator', 'itermatchings']
 
@@ -7,6 +9,7 @@ import copy, sys
 from collections import defaultdict
 from operator import itemgetter
 import itertools
+from functools import reduce
 
 def permutations(x):
     """
@@ -47,7 +50,7 @@ def permutations(x):
         yield x
     else:
         for i in range(len(x)):
-            for p in permutations(x[:i] + x[i + 1:]):
+            for p in permutations(list(x[:i]) + list(x[i + 1:])):
                 yield [x[i]] + list(p)
 
 def select(x,k):
@@ -74,12 +77,12 @@ def select(x,k):
     [10, 6] 
                                                                    
     """
-    if k > x:
+    if k > len(x):
         return
     if k == 0:
         yield []
     for i in range(len(x)):
-        for s in select(x[:i] + x[i + 1:],k-1):
+        for s in select(list(x[:i]) + list(x[i + 1:]),k-1):
             yield [x[i]] + list(s)
     
 def choose(x,k):
@@ -106,12 +109,12 @@ def choose(x,k):
     [10, 6] 
                                                                    
     """
-    if k > x:
+    if k > len(x):
         return
     if k == 0:
         yield []
     for i in range(len(x)):
-        for s in choose(x[i+1:],k-1):
+        for s in choose(list(x[i+1:]),k-1):
             yield [x[i]] + list(s)
     
 def subset(x):
@@ -257,7 +260,7 @@ def itermatchings(items1,items2,matchtest):
                 else:
                     eq[(ai,bi)] = True
         if not badmatch:
-            yield list1,map(list2.__getitem__,inds)
+            yield list1,list(map(list2.__getitem__,inds))
 
 def iterplacements(items1,items2):
     list1 = list(items1)
@@ -265,16 +268,16 @@ def iterplacements(items1,items2):
     n1 = len(list1)
     n2 = len(list2)
     if n2 < n1:
-	raise StopIteration
+        raise StopIteration
     if n2 == 0:
-	yield [],[]
-	return
+        yield [],[]
+        return
     args = []
     for j in range(n2):
         args.append(range(n1))
     for pos in product(*args,**dict(accumulator=list_accumulator)):
-	if len(set(pos)) != n1:
-	    continue
+        if len(set(pos)) != n1:
+            continue
         result={}
         for i in range(n1):
             result[i] = []
@@ -283,7 +286,7 @@ def iterplacements(items1,items2):
         retval = []
         for i,js in result.items():
             retval.append((list1[i],map(lambda j: list2[j],js)))
-        yield map(itemgetter(0),retval),map(itemgetter(1),retval)
+        yield list(map(itemgetter(0),retval)),list(map(itemgetter(1),retval))
 
 def iterpairs(items1,items2):
     list1 = list(items1)
@@ -294,7 +297,7 @@ def iterpairs(items1,items2):
     if n1 != n2:
         raise StopIteration
     for inds in itertools.permutations(range(n2)):
-        yield zip(list1,map(list2.__getitem__,inds))
+        yield list(zip(list1,map(list2.__getitem__,inds)))
 
 def iterecmatchings(items1,items2,matchtest):
     list1 = list(items1)
@@ -321,34 +324,34 @@ def iterecmatchings(items1,items2,matchtest):
         for j in range(i+1,n1):
             if j in placed:
                 continue
-	    # print i,j,
-	    # sys.stdout.flush()
+            # print i,j,
+            # sys.stdout.flush()
             if not matchtest(list1[i],list1[j]):
-		# print "no match"
-		# sys.stdout.flush()
+                # print "no match"
+                # sys.stdout.flush()
                 continue
-	    # else:
-            #	print "match"
-	    #	sys.stdout.flush()
+            # else:
+            #   print "match"
+            #   sys.stdout.flush()
             ec1[i].append(j)
             placed.add(j)
 
     for j in range(n2):
-	found = False
+        found = False
         for i in ec1:
-	    # print i,j,
-	    sys.stdout.flush()
+            # print i,j,
+            sys.stdout.flush()
             if matchtest(list1[i],list2[j]):
-		# print "match"
-	        # sys.stdout.flush()
+                # print "match"
+                # sys.stdout.flush()
                 ec2[i].append(j)
-		found = True
+                found = True
                 break
-	    # else:
-	    #	print "no match"
-	    #   sys.stdout.flush()
-	if not found:
-	    raise StopIteration
+            # else:
+            #   print "no match"
+            #   sys.stdout.flush()
+        if not found:
+            raise StopIteration
 
     # print ec1
     # print ec2
@@ -367,11 +370,11 @@ def iterecmatchings(items1,items2,matchtest):
     # consistent matching, as there is no topology that matters,
     # rather than invoking the expensive product enumeration:
 
-    yield map(lambda t: list1[t[0]],anypairs),map(lambda t: list2[t[1]],anypairs) 
+    yield list(map(lambda t: list1[t[0]],anypairs)),list(map(lambda t: list2[t[1]],anypairs)) 
     
     for mp in itertools.product(*args):
-        pairs = reduce(lambda a,b: a + b, mp)
-        yield map(lambda t: list1[t[0]],pairs),map(lambda t: list2[t[1]],pairs) 
+        pairs = reduce(lambda a,b: list(a) + list(b), mp)
+        yield list(map(lambda t: list1[t[0]],pairs)),list(map(lambda t: list2[t[1]],pairs))
 
 def itergenmatchings(items1,items2,matchtest):
 
@@ -386,10 +389,10 @@ def itergenmatchings(items1,items2,matchtest):
     edges = defaultdict(set)
     inedges = defaultdict(set)
     for i,i1 in enumerate(list1):
-	for j,i2 in enumerate(list2):
-	    if matchtest(i1,i2):
-		edges[i].add(j)
-		inedges[j].add(i)
+        for j,i2 in enumerate(list2):
+            if matchtest(i1,i2):
+                edges[i].add(j)
+                inedges[j].add(i)
 
     # for i in edges:
     #     print "%s:"%i," ".join(map(str,sorted(edges[i])))
@@ -397,35 +400,35 @@ def itergenmatchings(items1,items2,matchtest):
     outdegree = defaultdict(int)
     indegree = defaultdict(int)
     for i in range(n1):
-	outdegree[i] = len(edges[i])
+        outdegree[i] = len(edges[i])
     for j in range(n2):
-	indegree[j] = len(inedges[j])
+        indegree[j] = len(inedges[j])
 
     startpairs = []
     outdegreezero = 0
     for i in range(n1):
-	if outdegree[i] == 0:
-	    raise StopIteration
-	if outdegree[i] == 1:
-	    j = iter(edges[i]).next()
-	    startpairs.append((i,j))
+        if outdegree[i] == 0:
+            raise StopIteration
+        if outdegree[i] == 1:
+            j = next(iter(edges[i]))
+            startpairs.append((i,j))
     
     indegreezero = 0
     for j in range(n2):
-	if indegree[j] == 0:
-	    raise StopIteration
-	if indegree[j] == 1:
-	    i = iter(inedges[j]).next()
-	    startpairs.append((i,j))
+        if indegree[j] == 0:
+            raise StopIteration
+        if indegree[j] == 1:
+            i = next(iter(inedges[j]))
+            startpairs.append((i,j))
 
     startpairs = list(set(startpairs))
 
     # print startpairs
 
     if len(startpairs) != len(set(map(itemgetter(0),startpairs))):
-	raise StopIteration
+        raise StopIteration
     if len(startpairs) != len(set(map(itemgetter(1),startpairs))):
-	raise StopIteration
+        raise StopIteration
 
     startn1set = set(range(n1)) - set(map(itemgetter(0),startpairs))
     startn2set = set(range(n2)) - set(map(itemgetter(1),startpairs))
@@ -433,26 +436,26 @@ def itergenmatchings(items1,items2,matchtest):
     # print startn1set,startn2set
 
     if len(startn1set) == 0:
-	l1 = map(lambda t: list1[t[0]],startpairs)
+        l1 = map(lambda t: list1[t[0]],startpairs)
         l2 = map(lambda t: list2[t[1]],startpairs)
-	yield l1,l2
+        yield list(l1),list(l2)
 
     start = (startpairs,startn1set,startn2set)
     partialsolutions = [start]
     while len(partialsolutions) > 0:
-	pairs,tochoose1,tochoose2 = partialsolutions.pop()
+        pairs,tochoose1,tochoose2 = partialsolutions.pop()
         # print pairs,tochoose1,tochoose2
-	if len(tochoose1) == 0:
-	    assert len(tochoose2) == 0
-	    l1 = map(lambda t: list1[t[0]],pairs)
-	    l2 = map(lambda t: list2[t[1]],pairs)
-	    yield l1,l2
-	else:
-	    i1 = sorted(tochoose1,key=outdegree.get)[0]
-	    newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
-	    for i2 in (edges[i1]&tochoose2):
-	        newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
-	        partialsolutions.append((pairs+[(i1,i2)],newtochoose1,newtochoose2))
+        if len(tochoose1) == 0:
+            assert len(tochoose2) == 0
+            l1 = map(lambda t: list1[t[0]],pairs)
+            l2 = map(lambda t: list2[t[1]],pairs)
+            yield list(l1),list(l2)
+        else:
+            i1 = sorted(tochoose1,key=outdegree.get)[0]
+            newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
+            for i2 in (edges[i1]&tochoose2):
+                newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
+                partialsolutions.append((pairs+[(i1,i2)],newtochoose1,newtochoose2))
 
 def itergenmaximalmatchings(items1,items2,matchtest):
 
@@ -464,10 +467,10 @@ def itergenmaximalmatchings(items1,items2,matchtest):
     edges = defaultdict(set)
     inedges = defaultdict(set)
     for i,i1 in enumerate(list1):
-	for j,i2 in enumerate(list2):
-	    if matchtest(i1,i2):
-		edges[i].add(j)
-		inedges[j].add(i)
+        for j,i2 in enumerate(list2):
+            if matchtest(i1,i2):
+                edges[i].add(j)
+                inedges[j].add(i)
 
     # for i in edges:
     #     print "%s:"%i," ".join(map(str,sorted(edges[i])))
@@ -475,7 +478,7 @@ def itergenmaximalmatchings(items1,items2,matchtest):
 
     outdegree = defaultdict(int)
     for i in range(n1):
-	outdegree[i] = len(edges[i])
+        outdegree[i] = len(edges[i])
 
     startn1set = set(range(n1))
     startn2set = set(range(n2))
@@ -487,67 +490,63 @@ def itergenmaximalmatchings(items1,items2,matchtest):
     while len(partialsolutions) > 0:
         pairs,tochoose1,tochoose2 = partialsolutions.pop(0)
         # print pairs, tochoose1, tochoose2
-	if len(tochoose1) == 0:
-	    maximal = True
-	    for i1 in map(lambda t: t[0],filter(lambda t: t[1] == None,pairs)):
-		if len(edges[i1] & tochoose2) > 0:
-		    maximal = False
-		    break
+        if len(tochoose1) == 0:
+            maximal = True
+            for i1 in map(lambda t: t[0],filter(lambda t: t[1] == None,pairs)):
+                if len(edges[i1] & tochoose2) > 0:
+                    maximal = False
+                    break
             # print "!!",pairs,tochoose1,tochoose2,maximal
-	    if maximal:
+            if maximal:
                 l1 = map(lambda t: list1[t[0]],filter(lambda t: t[1] != None,pairs))
                 l2 = map(lambda t: list2[t[1]],filter(lambda t: t[1] != None,pairs))
-	        tc1 = map(lambda i: list1[i],map(lambda t: t[0],filter(lambda t: t[1] == None,pairs)))
-	        tc2 = map(lambda i: list2[i],tochoose2)
-	        yield l1,l2,tc1,tc2
-	else:
-	    i1 = sorted(tochoose1,outdegree.get)[0]
-	    newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
-	    for i2 in (edges[i1]&tochoose2):
-	        newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
-	        partialsolutions.append((pairs+[(i1,i2)],newtochoose1,newtochoose2))
-	    partialsolutions.append((pairs+[(i1,None)],newtochoose1,set(tochoose2)))
+                tc1 = map(lambda i: list1[i],map(lambda t: t[0],filter(lambda t: t[1] == None,pairs)))
+                tc2 = map(lambda i: list2[i],tochoose2)
+                yield list(l1),list(l2),list(tc1),list(tc2)
+        else:
+            i1 = sorted(tochoose1,outdegree.get)[0]
+            newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
+            for i2 in (edges[i1]&tochoose2):
+                newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
+                partialsolutions.append((pairs+[(i1,i2)],newtochoose1,newtochoose2))
+            partialsolutions.append((pairs+[(i1,None)],newtochoose1,set(tochoose2)))
             partialsolutions.sort(key=lambda t: (-len(t[0]),sum(1 for _ in filter(lambda tt: tt[1] == None,t[0]))))
 
 def testperm(l):
-    print "Permutations of",','.join(map(str,l))
+    print("Permutations of",','.join(map(str,l)))
     for p in permutations(l):
-	print ','.join(map(str,p))
+        print(','.join(map(str,p)))
 
 def testselect(l,k):
-    print "Selections (size %d) of"%k,','.join(map(str,l))
+    print("Selections (size %d) of"%k,','.join(map(str,l)))
     for p in select(l,k):
-	print ','.join(map(str,p))
+        print(','.join(map(str,p)))
 
 def testchoose(l,k):
-    print "Choices (size %d) of"%k,','.join(map(str,l))
+    print("Choices (size %d) of"%k,','.join(map(str,l)))
     for p in choose(l,k):
-	print ','.join(map(str,p))
+        print(','.join(map(str,p)))
 
 def testprod(*args,**kw):
-    print "Products of", ", ".join(map(str,args))
+    print("Products of", ", ".join(map(str,args)))
     for p in product(*args,**kw):
-        print p
+        print(p)
 
 def testiterecmatch(*args):
-    print "Iter EC matching of"
-    print "  ",args[0]
-    print "and"
-    print "  ",args[1]
+    print("Iter EC matching of")
+    print("  ",args[0])
+    print("and")
+    print("  ",args[1])
     for i,p in enumerate(iterecmatchings(*args)):
-        print i+1,p
+        print(i+1,p)
 
 def testitergenmatch(*args,**kw):
-    print "Iter general matching of"
-    print "  ",args[0]
-    print "and"
-    print "  ",args[1]
-    if kw.get('nomatch1'):
-        print "nomatch1",kw.get('nomatch1')
-    if kw.get('nomatch2'):
-        print "nomatch2",kw.get('nomatch2')
+    print("Iter general matching of")
+    print("  ",args[0])
+    print("and")
+    print("  ",args[1])
     for i,p in enumerate(itergenmatchings(*args,**kw)):
-        print i+1,p
+        print(i+1,p)
 
 if __name__ == "__main__":
 
@@ -577,6 +576,3 @@ if __name__ == "__main__":
                      ["2.1","2.2","1.1","3.1","3.2","1.2","3.3","3.4","1.3"],
                      lambda x,y: int(float(x))==int(float(y)))
 
-    testitergenmatch(["1.1","1.2","1.3","2.1","2.2","3.1","3.2","3.3","3.4","1.4"],
-                     ["2.1","2.2","1.1","3.1","3.2","1.2","3.3","3.4","1.3"],
-                     lambda x,y: int(float(x))==int(float(y)),1,0)

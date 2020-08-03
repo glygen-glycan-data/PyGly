@@ -9,7 +9,7 @@ class Element:
         self.ave = ave
         self.isotopes = None
         if isotopes:
-            self.isotopes = map(lambda t: tuple(map(float,t.split(':'))),isotopes.split())
+            self.isotopes = list(map(lambda t: tuple(map(float,t.split(':'))),isotopes.split()))
             if len(self.isotopes) < 1:
                 self.isotopes = None
 

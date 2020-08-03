@@ -1,7 +1,13 @@
+
+from __future__ import print_function
+
 import re
 import os
 from pkg_resources import resource_stream
-import ConfigParser
+try:
+    import configparser as ConfigParser
+except ImportError:
+    import ConfigParser
 from Monosaccharide import *
 
 # This line import the package mutually, be careful
@@ -52,12 +58,12 @@ class WURCS20MonoFormat:
         self.subsconfig.readfp(subsconfigfile)
 
     def getsubst(self,sub_name):
-	try:
-	    sub_type = self.subsconfig.get(sub_name, "type")
-	    subst = Substituent(eval(sub_type))
-	except (ConfigParser.NoSectionError, ValueError):
+        try:
+            sub_type = self.subsconfig.get(sub_name, "type")
+            subst = Substituent(eval(sub_type))
+        except (ConfigParser.NoSectionError, ValueError):
             raise UnsupportedSubstituentError(sub_name)
-	return subst
+        return subst
 
     skel_config_get_default_section = ""
 
@@ -90,7 +96,7 @@ class WURCS20MonoFormat:
             anomer_s = self.skel_config_get("anomer")
             if anomer_s:
                 m.set_anomer(eval(anomer_s))
-		if m.anomer() == Anomer.uncyclized:
+                if m.anomer() == Anomer.uncyclized:
                     m.set_ring_start(0)
                     m.set_ring_end(0)
 
@@ -126,23 +132,23 @@ class WURCS20MonoFormat:
 
         if anomer:
             match = re.search(r"^-(\d)(.)$", anomer)
-	    if not match:
-		raise InvalidMonoError(mono_string)
-	    if anomer_s and eval(anomer_s) != Anomer.missing:
-		raise InvalidMonoError(mono_string)
+            if not match:
+                raise InvalidMonoError(mono_string)
+            if anomer_s and eval(anomer_s) != Anomer.missing:
+                raise InvalidMonoError(mono_string)
             if match.group(2) == "a":
                 m.set_anomer(Anomer.alpha)
             elif match.group(2) == "b":
                 m.set_anomer(Anomer.beta)
             elif match.group(2) == "x":
                 m.set_anomer(Anomer.missing)
-	    else:
-		raise InvalidMonoError(mono_string)
+            else:
+                raise InvalidMonoError(mono_string)
 
         if ring:
             match = re.search(r"^_(\d|\?)-(\d|\?)$", ring)
-	    if not match:
-		raise InvalidMonoError(mono_string)
+            if not match:
+                raise InvalidMonoError(mono_string)
             try:
                 r_s = int(match.group(1))
                 m.set_ring_start(r_s)
@@ -235,9 +241,9 @@ if __name__ == "__main__":
     args = False
     for w in sys.argv[1:]:
         args = True
-        print >> sys.stderr, w
-        print mf.get(w)
+        print(w, file=sys.stderr)
+        print(mf.get(w))
     if not args:
         for l in sys.stdin:
-            print >> sys.stderr, l.strip()
-            print mf.get(l.strip())
+            print(l.strip(), file=sys.stderr)
+            print(mf.get(l.strip()))
