@@ -3,8 +3,10 @@
 import copy
 
 from combinatorics import select, itermatchings
-from past.builtins import basestring    
-
+try:
+    from past.builtins import basestring    
+except ImportError:
+    pass
 
 class SuperClass:
     TRI   = 3
