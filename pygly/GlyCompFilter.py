@@ -5,7 +5,7 @@ from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 
 from collections import defaultdict
 
-tochar = defaultdict(lambda: '?',filter(None,map(str.split,"""
+tochar = defaultdict(lambda: '?',filter(None,map(lambda s: s.strip(),"""
 Gal H
 Hex H
 GlcNAc N
