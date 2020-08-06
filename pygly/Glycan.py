@@ -465,7 +465,7 @@ class Glycan:
                 continue
 
             if floating_substituents:
-                syms = map(str.strip,sym.split('+'))
+                syms = [ s.strip() for s in sym.split('+') ]
             else:
                 syms = [sym]
 

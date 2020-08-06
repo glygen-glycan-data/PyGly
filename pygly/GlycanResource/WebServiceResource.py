@@ -33,7 +33,7 @@ class WebServiceResource(GlycanResource):
 	if not url:
 	    req = keyvaluepairs.get("request",name)
 	    url = self.apiurl + "/" + req
-	params = filter(None,map(str.strip,keyvaluepairs.get('params',"").split(',')))
+	params = filter(None,map(lambda s: s.strip(),keyvaluepairs.get('params',"").split(',')))
 	thetype = keyvaluepairs.get("type","JSON")
 
         def _query(self,*args,**kw):

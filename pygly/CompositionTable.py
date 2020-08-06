@@ -16,7 +16,7 @@ class Composition(defaultdict):
             self[sl[i]] += count
         return self
     def compactparse(self,word):
-        sl = map(str.strip,re.split(r'([A-Z][a-z]?)',word)[1:])
+        sl = [ s.strip() for s in re.split(r'([A-Z][a-z]?)',word)[1:] ]
         for i in range(1,len(sl),2):
             if not sl[i]:
                 sl[i] = '1'

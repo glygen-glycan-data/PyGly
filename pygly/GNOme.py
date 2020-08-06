@@ -448,7 +448,7 @@ class SubsumptionGraph(GNOmeAPI):
 	    argmass = []
 	    for a in args:
 		if '-' in a:
-		    low,high = map(str.strip,a.split('-'))
+		    low,high = [ s.strip() for s in split('-') ]
 		    if not low:
 			low = 0.0
 		    if not high:

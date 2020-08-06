@@ -28,7 +28,7 @@ class LinearIUPACDatabase:
 		continue
 	    if l.startswith('#'):
 		continue
-	    sl = map(str.strip,l.split(None,1))
+	    sl = [ s.strip() for s in l.split(None,1) ]
 	    acc = self.acc(sl[0]); glystr = self.preprocess(sl[1])
 	    if acc in seenaccs:
 		continue

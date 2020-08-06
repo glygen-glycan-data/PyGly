@@ -63,7 +63,7 @@ class TripleStoreResource(GlycanResource):
 	    print >>sys.stderr, "TripleStoreResource:cachemode = %s"%(self._cachemode)
 
     def __del__(self):
-        if self._usecache:
+        if hasattr(self,'_usecache') and self._usecache:
             self.closecache()
 
     def opencache(self):
@@ -91,9 +91,10 @@ class TripleStoreResource(GlycanResource):
             filelock.release()
 
     def closecache(self):
-        if self._verbose:
+        if hasattr(self,'_verbose') and hasattr(self,'_cachefile') and self._verbose:
             print >>sys.stderr, "Closing cachefile:",self._cachefile
-        self._cacheondisk.close()
+        if hasattr(self,'_cacheondisk'):
+            self._cacheondisk.close()
 
     def queryts(self,sparql):
         self.wait()
@@ -152,8 +153,8 @@ class TripleStoreResource(GlycanResource):
     
     def parseSection(self,name,keyvaluepairs):
         sparql = keyvaluepairs['sparql']
-        params = filter(None,map(str.strip,keyvaluepairs.get('params',"").split(',')))
-  	escape = filter(None,map(str.strip,keyvaluepairs.get('escape',"").split(',')))
+        params = filter(None,map(lambda s: s.strip(),keyvaluepairs.get('params',"").split(',')))
+  	escape = filter(None,map(lambda s: s.strip(),keyvaluepairs.get('escape',"").split(',')))
 
         def _query(self,*args,**kw):
             # print >>sys.stderr, "query_%s: %s, %s"%(name,args,kw)

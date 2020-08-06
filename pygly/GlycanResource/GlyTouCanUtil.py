@@ -116,7 +116,7 @@ class GlyTouCanUtil(object):
 	    data = urllib.urlopen(url).read()
 	    seen = set()
 	    lasts = None
-	    for triple in sorted(map(lambda t: tuple(map(str.strip,map(str,map(t.get,("S","P","O"))))),json.loads(data))):
+	    for triple in sorted(map(lambda t: tuple(map(lambda s: s.strip(),map(str,map(t.get,("S","P","O"))))),json.loads(data))):
 		if triple in seen:
 		    continue
 		seen.add(triple)

@@ -1348,7 +1348,7 @@ class WURCS20Format(GlycanFormatter):
 
         undets = set()
         floating_substs = []
-        for li in map(str.strip,m.group(6).split('_')):
+        for li in [ s.strip() for s in m.group(6).split('_') ]:
 
             if not li:
                 continue

@@ -20,7 +20,7 @@ class GlycanFactory(ReferenceTable):
     def parseSection(self,name,kv):
         aliases = [name]
         g = self.fmt.toGlycan('\n'.join(kv['GlycoCT'].split()))
-        aliases.extend(map(str.strip,kv.get('Aliases','').split(';')))
+        aliases.extend([ s.strip() for s in kv.get('Aliases','').split(';') ])
         return [(a,g) for a in aliases]
     
     def add_mono(self, parent, name, parent_pos,
