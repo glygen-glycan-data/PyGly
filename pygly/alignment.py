@@ -744,6 +744,51 @@ class SubstructureSearch(GlycanPartialOrder):
         return False
 
 
+class SubstructureSearchNonReducingEnd(SubstructureSearch):
+
+    def subtree_leq(self, m, tg, root=True):
+
+        if len(m.links()) < len(tg.links()):
+            return False
+
+        return super(SubstructureSearchNonReducingEnd, self).subtree_leq(m, tg, root=root)
+
+    def check_links(self, motif, motif_node_set, tg_node_set):
+        motif_nodes = motif_node_set
+        tg_nodes = tg_node_set
+
+        discover = [motif.root()]
+        while len(discover) > 0:
+            this_mono = discover.pop()
+
+            for l in this_mono.links():
+                p = this_mono
+                c = l.child()
+                discover.append(c)
+
+                tgp = tg_nodes[motif_nodes.index(p)]
+                # tgc = tg_nodes[motif_nodes.index(c)]
+
+                found_matched_link = False
+                for ll in tgp.links(instantiated_only=False):
+                    if ll.child() not in tg_nodes:
+                        continue
+
+                    if motif_nodes.index(c) == tg_nodes.index(ll.child()) and self._linkcmp.leq(l, ll):
+
+                        if len(c.links()) < len(ll.child().links()):
+                            # Special case
+                            continue
+                        found_matched_link = True
+                        break
+
+                if not found_matched_link:
+                    return False
+
+        return True
+
+
+
 class CompositionPartialOrder(Comparitor):
 
     ### Assumes we only compare nodes to each other...
@@ -1339,6 +1384,17 @@ class GlyTouCanMotif(SubstructureSearch):
         )
         kw["linkcmp"] = LinkageMotifComparitor()
         super(GlyTouCanMotif, self).__init__(**kw)
+
+
+class GlyTouCanMotifNonReducingEnd(SubstructureSearchNonReducingEnd):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparison(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(GlyTouCanMotifNonReducingEnd, self).__init__(**kw)
 
 
 
