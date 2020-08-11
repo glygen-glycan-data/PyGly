@@ -1,0 +1,11 @@
+{{Publication
+|authors=Rapport MM, Schneider H, Graf L
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;303
+|doi=10.1016/0005-2760(67)90121-x
+|journal=Biochim. Biophys. Acta
+|pages=409-11
+|pmid=6072378
+|title=Cytolipin R: A pure lipid hapten isolated from rat lymphosarcoma
+|volume=137(2)
+|year=1967
+}}

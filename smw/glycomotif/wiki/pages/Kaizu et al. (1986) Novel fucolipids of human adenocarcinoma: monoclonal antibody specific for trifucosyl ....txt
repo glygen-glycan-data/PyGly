@@ -1,0 +1,10 @@
+{{Publication
+|authors=Kaizu T, Levery SB, Nudelman E, Stenkamp RE, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;338
+|journal=J. Biol. Chem
+|pages=11254-8
+|pmid=2426269
+|title=Novel fucolipids of human adenocarcinoma: monoclonal antibody specific for trifucosyl Ley (III3FucV3FucVI2FucnLc6) and a possible three-dimensional epitope structure
+|volume=261(24)
+|year=1986
+}}

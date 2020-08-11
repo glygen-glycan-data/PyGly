@@ -3,7 +3,7 @@
 |name=GQ1b
 |aglycon=Cer
 |redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yamamoto et al. (1990) Tetrasialoganglioside GO1b reactive monoclonal antibodies: their characterization and application for ...
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Susuki et al. (2001) Fine specificity of anti-GQ1b IgG and clinical ...;Yamamoto et al. (1990) Tetrasialoganglioside GO1b reactive monoclonal antibodies: their characterization and application for ...
 |accession=000115
 |collection=GGM
 |displayhgv=false

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Schwerer B, Lassmann H, Bernheimer H
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;318
+|doi=10.1111/j.1365-2990.1982.tb00276.x
+|journal=Neuropathol. Appl. Neurobiol
+|pages=217-26
+|pmid=6214725
+|title=Antisera against ganglioside GM2: immunochemical and immunohistological studies
+|volume=8(3)
+|year=1982
+}}

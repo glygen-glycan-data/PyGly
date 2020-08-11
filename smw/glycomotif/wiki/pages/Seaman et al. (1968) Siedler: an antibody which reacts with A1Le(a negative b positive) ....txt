@@ -1,0 +1,11 @@
+{{Publication
+|authors=Seaman MJ, Chalmers DG, Franks D
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;268
+|doi=10.1111/j.1423-0410.1968.tb04444.x
+|journal=Vox Sang
+|pages=25-30
+|pmid=5686860
+|title=Siedler: an antibody which reacts with A1Le(a negative b positive) red cells
+|volume=15(1)
+|year=1968
+}}

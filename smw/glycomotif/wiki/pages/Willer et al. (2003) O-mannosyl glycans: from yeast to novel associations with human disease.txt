@@ -1,0 +1,11 @@
+{{Publication
+|authors=Willer T, Valero MC, Tanner W, Cruces J, Strahl S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;276
+|title=O-mannosyl glycans: from yeast to novel associations with human disease
+|journal=Curr Opin Struct Biol
+|year=2003
+|volume=13(5)
+|pages=621-630
+|pmid=14568618
+|doi=10.1016/j.sbi.2003.09.003
+}}

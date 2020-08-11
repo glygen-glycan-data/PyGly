@@ -1,0 +1,10 @@
+{{Publication
+|authors=Ohyama K, Hirabayashi Y, Mizoguchi K, Nagase M, Honda N, Nishimura K
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;291
+|journal=Jpn. J. Exp. Med
+|pages=15-9
+|pmid=3379797
+|title=Glycolipids of rat glomerular mesangial cells: antibody against the cells reacts specifically to isoglobotetraosylceramide
+|volume=58(1)
+|year=1988
+}}

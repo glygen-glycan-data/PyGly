@@ -1,0 +1,11 @@
+{{Publication
+|authors=Feizi T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;137
+|doi=10.3109/08820138109050693
+|journal=Immunol. Commun
+|pages=127-56
+|pmid=6169630
+|title=The blood group Ii system: a carbohydrate antigen system defined by naturally monoclonal or oligoclonal autoantibodies of man
+|volume=10(2)
+|year=1981
+}}

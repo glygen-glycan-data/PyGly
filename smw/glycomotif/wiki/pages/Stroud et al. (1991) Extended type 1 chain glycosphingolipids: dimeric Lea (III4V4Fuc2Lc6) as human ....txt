@@ -1,0 +1,10 @@
+{{Publication
+|authors=Stroud MR, Levery SB, Nudelman ED, Salyan ME, Towell JA, Roberts CE, Watanabe M, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;340
+|journal=J. Biol. Chem
+|pages=8439-46
+|pmid=2022659
+|title=Extended type 1 chain glycosphingolipids: dimeric Lea (III4V4Fuc2Lc6) as human tumor-associated antigen
+|volume=266(13)
+|year=1991
+}}

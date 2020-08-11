@@ -151,7 +151,10 @@ class SMWSite(object):
                 yield t
 
     def itermediawiki(self):
-        return self.iternamespace(8)
+        for p in self.iternamespace(8):
+	    if p.name in ('MediaWiki:Smw import foaf','MediaWiki:Smw import owl','MediaWiki:Smw import skos'):
+                continue
+            yield p
 
     def itertemplates(self):
         return self.iternamespace(10)
@@ -160,7 +163,10 @@ class SMWSite(object):
         return self.iternamespace(14)
 
     def iterproperties(self):
-        return self.iternamespace(102)
+        for p in self.iternamespace(102):
+	    if p.name.startswith('Property:Foaf:') or p.name.startswith('Property:Owl:'):
+		continue
+	    yield p
 
     def iterforms(self):
         return self.iternamespace(106)
@@ -168,14 +174,16 @@ class SMWSite(object):
     def itertalk(self):
         return self.iternamespace(1)
 
-    def iterpages(self,regex=None,exclude_categories=None,include_categories=None):
-        if exclude_categories == None and include_categories == None and regex == None:
+    def iterpages(self,regex=None,exclude_regex=None,exclude_categories=None,include_categories=None):
+        if exclude_categories == None and include_categories == None and regex == None and exclude_regex == None:
             for p in self.iternamespace(0):
                 if p.exists:
                     yield p
         else:
             if regex != None and isinstance(regex,basestring):
                 regex = re.compile(regex)
+            if exclude_regex != None and isinstance(exclude_regex,basestring):
+                exclude_regex = re.compile(exclude_regex)
             if exclude_categories != None:
                 exclude_categories = set(exclude_categories)
             if include_categories != None:
@@ -184,6 +192,8 @@ class SMWSite(object):
                 if p.exists:
                     if regex and not regex.search(p.name):
                         continue
+		    if exclude_regex and exclude_regex.search(p.name):
+		        continue
                     cats = set(map(lambda c: str(c.name.split(':',1)[1]),p.categories()))
                     if exclude_categories != None and len(cats&exclude_categories) > 0:
                         continue
@@ -198,7 +208,7 @@ class SMWSite(object):
             pass
         for p in iter:
             name = p.name
-            if ":" in name:
+	    if not dir.endswith('/pages'):
                 name = name.split(":",1)[1]
             try:
                 print p.name
@@ -212,7 +222,7 @@ class SMWSite(object):
             finally:
                 h.close()
 
-    def dumpsite(self,dir,exclude_categories=set()):
+    def dumpsite(self,dir,exclude_regex=None,exclude_categories=set()):
         try:
             os.makedirs(dir)
         except OSError:
@@ -223,7 +233,8 @@ class SMWSite(object):
         self.dumpiterable(os.path.join(dir,'forms'),self.iterforms())
         self.dumpiterable(os.path.join(dir,'properties'),self.iterproperties())
         self.dumpiterable(os.path.join(dir,'pages'),
-                          self.iterpages(exclude_categories=exclude_categories))
+                          self.iterpages(exclude_regex=exclude_regex,
+                                         exclude_categories=exclude_categories))
         self.dumpiterable(os.path.join(dir,'talk'),self.itertalk())
 
     def loadsite(self,dir):

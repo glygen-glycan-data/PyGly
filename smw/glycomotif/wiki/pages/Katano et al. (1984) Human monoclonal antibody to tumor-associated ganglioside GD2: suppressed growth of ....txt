@@ -1,0 +1,11 @@
+{{Publication
+|authors=Katano M, Irie RF
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;317
+|doi=10.1016/0165-2478(84)90072-5
+|journal=Immunol. Lett
+|pages=169-74
+|pmid=6542067
+|title=Human monoclonal antibody to tumor-associated ganglioside GD2: suppressed growth of human melanoma in nude mice
+|volume=8(4)
+|year=1984
+}}

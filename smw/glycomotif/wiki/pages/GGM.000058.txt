@@ -3,7 +3,7 @@
 |name=HNK-1 antigen
 |aglycon=R
 |redend=false
-|reference=Abo et al. (1981) A differentiation antigen of human NK and K cells identified ...;Cummings (2009) The repertoire of glycan determinants in the human glycome;Willer et al. (2003) O-mannosyl glycans: from yeast to novel associations with human disease
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willer et al. (2003) O-mannosyl glycans: from yeast to novel associations with human disease;Abo et al. (1981) A differentiation antigen of human NK and K cells identified ...
 |accession=000058
 |collection=GGM
 |displayhgv=false

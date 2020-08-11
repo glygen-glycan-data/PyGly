@@ -1,0 +1,11 @@
+{{Publication
+|authors=Yamamoto H, Tsuji S, Nagai Y
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;333
+|doi=10.1111/j.1471-4159.1990.tb01901.x
+|journal=J. Neurochem
+|pages=513-7
+|pmid=2299350
+|title=Tetrasialoganglioside GO1b reactive monoclonal antibodies: their characterization and application for quantification of GQ1b in some cell lines of neuronal and adrenal origin(s)
+|volume=54(2)
+|year=1990
+}}
