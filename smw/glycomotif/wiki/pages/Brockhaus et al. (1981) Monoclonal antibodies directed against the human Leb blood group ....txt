@@ -1,0 +1,10 @@
+{{Publication
+|authors=Brockhaus M, Magnani JL, Blaszczyk M, Steplewski Z, Koprowski H, Karlsson KA, Larson G, Ginsburg V
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;253
+|journal=J. Biol. Chem
+|pages=13223-5
+|pmid=7309759
+|title=Monoclonal antibodies directed against the human Leb blood group antigen
+|volume=256(24)
+|year=1981
+}}

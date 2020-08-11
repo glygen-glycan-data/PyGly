@@ -1,0 +1,10 @@
+{{Publication
+|authors=Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;282
+|journal=J. Immunol
+|pages=424-6
+|pmid=4855831
+|title=Preparation and properties of anti-sulfatide serum
+|volume=112(1)
+|year=1974
+}}

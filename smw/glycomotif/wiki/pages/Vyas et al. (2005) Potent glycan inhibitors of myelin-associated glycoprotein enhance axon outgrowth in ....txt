@@ -1,0 +1,11 @@
+{{Publication
+|authors=Vyas AA, Blixt O, Paulson JC, Schnaar RL
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;245
+|doi=10.1074/jbc.M500250200
+|journal=J. Biol. Chem
+|pages=16305-10
+|pmid=15701648
+|title=Potent glycan inhibitors of myelin-associated glycoprotein enhance axon outgrowth in vitro
+|volume=280(16)
+|year=2005
+}}

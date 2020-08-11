@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kimura N, Ohmori K, Miyazaki K, Izawa M, Matsuzaki Y, Yasuda Y, Takematsu H, Kozutsumi Y, Moriyama A, Kannagi R
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;258
+|doi=10.1074/jbc.M702341200
+|journal=J. Biol. Chem
+|pages=32200-7
+|pmid=17728258
+|title=Human B-lymphocytes express alpha2-6-sialylated 6-sulfo-N-acetyllactosamine serving as a preferred ligand for CD22/Siglec-2
+|volume=282(44)
+|year=2007
+}}

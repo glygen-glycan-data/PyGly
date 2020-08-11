@@ -1,0 +1,11 @@
+{{Motif
+|accession=000086
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:x-lgal-HEX-1:5{{!}}6:d
+|glytoucan=G82576YO
+|name=Fucose
+|sameas=GD.R000080,GM.G82576YO
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a1221m-1x_1-5{{!)}}/1/
+}}

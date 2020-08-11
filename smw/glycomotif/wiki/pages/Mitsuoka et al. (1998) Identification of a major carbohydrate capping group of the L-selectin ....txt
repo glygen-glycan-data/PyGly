@@ -1,0 +1,11 @@
+{{Publication
+|authors=Mitsuoka C, Sawada-Kasugai M, Ando-Furui K, Izawa M, Nakanishi H, Nakamura S, Ishida H, Kiso M, Kannagi R
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;106
+|doi=10.1074/jbc.273.18.11225
+|journal=J. Biol. Chem
+|pages=11225-33
+|pmid=9556613
+|title=Identification of a major carbohydrate capping group of the L-selectin ligand on high endothelial venules in human lymph nodes as 6-sulfo sialyl Lewis X
+|volume=273(18)
+|year=1998
+}}

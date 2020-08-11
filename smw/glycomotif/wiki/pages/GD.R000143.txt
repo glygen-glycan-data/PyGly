@@ -1,0 +1,15 @@
+{{Motif
+|accession=R000143
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:o-dman-HEX-0:0{{!}}1:aldi
+2b:a-dman-HEX-1:5
+3b:a-dman-HEX-1:5
+LIN
+1:1o(2+1)2d
+2:2o(2+1)3d
+|glytoucan=G63072CF
+|sameas=GDH.000130,GM.G63072CF
+|wurcs=WURCS{{=}}2.0/2,3,2/{{!(}}h1122h{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-2/a5-b1_b2-c1
+}}

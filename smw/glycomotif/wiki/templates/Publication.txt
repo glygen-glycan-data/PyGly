@@ -1,0 +1,59 @@
+<noinclude>
+This is the "Publication" template.
+It should be called in the following format:
+<pre>
+{{Publication
+|authors=
+|title=
+|journal=
+|year=
+|pages=
+|volume=
+|doi=
+|pmid=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__
+{{DisplayPublication|{{PAGENAME}}}}
+
+{{#if:{{{citedby|}}}|
+=== Cited By ===
+<ul>
+<li> {{#arraymap:{{{citedby|}}}|,|xxx|{{DisplayPublication1|{{#explode:xxx|;|0}}}} #{{#explode:xxx|;|1}}.| <li> }}
+|}}
+</ul>
+
+=== Motifs ===
+
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:reference::{{PAGENAME}}]]
+|?glycomotif:id
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|limit=1000
+}}
+
+
+{{#set:
+|glycomotif:authors={{{authors|}}}
+|glycomotif:title={{{title|}}}
+|glycomotif:journal={{{journal|}}}
+|glycomotif:year={{{year|}}}
+|glycomotif:volume={{{volume|}}}
+|glycomotif:pages={{{pages|}}}
+|glycomotif:doi={{{doi|}}}
+|glycomotif:pmid={{{pmid|}}}
+}}{{#arraymap:{{{citedby|}}}|,|x|{{#set:|glycomotif:citedby=x}}}}
+[[Category:Publication]]
+</includeonly>

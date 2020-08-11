@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:doi]] 
+{{DISPLAYTITLE:glycomotif:doi}}
+[[External formatter uri::http://dx.doi.org/$1]]
+[[Category:Imported vocabulary]]

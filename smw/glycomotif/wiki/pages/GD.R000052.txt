@@ -1,0 +1,15 @@
+{{Motif
+|accession=R000052
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+2b:b-dgal-HEX-1:5
+3b:b-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+2:2o(4+1)3d
+|glytoucan=G21269SH
+|sameas=GDB.002762,GM.G21269SH
+|wurcs=WURCS{{=}}2.0/2,3,2/{{!(}}a2122h-1x_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-2/a4-b1_b4-c1
+}}

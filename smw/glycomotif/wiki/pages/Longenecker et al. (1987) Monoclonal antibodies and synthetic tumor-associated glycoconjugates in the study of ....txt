@@ -1,0 +1,10 @@
+{{Publication
+|authors=Longenecker BM, Willans DJ, MacLean GD, Selvaraj S, Suresh MR, Noujaim AA
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;241
+|journal=J. Natl. Cancer Inst
+|pages=489-96
+|pmid=3469463
+|title=Monoclonal antibodies and synthetic tumor-associated glycoconjugates in the study of the expression of Thomsen-Friedenreich-like and Tn-like antigens on human cancers
+|volume=78(3)
+|year=1987
+}}

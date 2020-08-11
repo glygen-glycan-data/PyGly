@@ -1,0 +1,7 @@
+{{Collection
+|contact=Rene Ranzinger
+|email=rene@ccrc.uga.edu
+|name=CCRC Motifs
+|primary=true
+|url=https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/MotifsMP2.xlsx
+}}

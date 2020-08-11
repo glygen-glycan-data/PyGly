@@ -1,0 +1,15 @@
+{{Motif
+|accession=R000161
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2b:b-dgal-HEX-1:5
+3s:n-acetyl
+LIN
+1:1o(4+1)2d
+2:2d(2+1)3n
+|glytoucan=G60859DF
+|sameas=GDH.000072,GDSB.000025,GE.EP0321,GM.G60859DF,UCM.000072
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1x_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2/a4-b1
+}}

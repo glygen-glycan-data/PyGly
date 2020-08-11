@@ -1,0 +1,7 @@
+{{Collection
+|contact=Julien Mariethoz
+|email=julien.mariethoz@sib.swiss
+|name=Glydin
+|primary=false
+|url=https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/epitopes.xlsx
+}}

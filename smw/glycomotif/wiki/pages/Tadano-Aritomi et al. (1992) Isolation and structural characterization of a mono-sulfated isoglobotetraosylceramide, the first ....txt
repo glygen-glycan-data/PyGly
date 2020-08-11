@@ -1,0 +1,11 @@
+{{Publication
+|authors=Tadano-Aritomi K, Kasama T, Handa S, Ishizuka I
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;295
+|doi=10.1111/j.1432-1033.1992.tb17290.x
+|journal=Eur. J. Biochem
+|pages=305-13
+|pmid=1396705
+|title=Isolation and structural characterization of a mono-sulfated isoglobotetraosylceramide, the first sulfoglycosphingolipid of the isoglobo-series, from rat kidney
+|volume=209(1)
+|year=1992
+}}

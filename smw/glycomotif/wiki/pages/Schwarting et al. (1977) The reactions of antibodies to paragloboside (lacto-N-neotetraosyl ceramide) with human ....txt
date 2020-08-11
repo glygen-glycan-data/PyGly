@@ -1,0 +1,10 @@
+{{Publication
+|authors=Schwarting GA, Marcus DM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;298
+|journal=J. Immunol
+|pages=1415-9
+|pmid=850070
+|title=The reactions of antibodies to paragloboside (lacto-N-neotetraosyl ceramide) with human erythrocytes and lymphocytes
+|volume=118(4)
+|year=1977
+}}

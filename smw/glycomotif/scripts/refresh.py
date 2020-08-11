@@ -13,6 +13,12 @@ if len(sys.argv) > 1:
       print >>sys.stderr, p.name
       w.refresh(p)
 
+  elif sys.argv[1] == "Publications":
+
+    for p in w.iterpages(include_categories=['Publication']):
+      print >>sys.stderr, p.name
+      w.refresh(p)
+
   elif sys.argv[1] == "Collections":
 
     for p in w.iterpages(include_categories=['Collection']):

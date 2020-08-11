@@ -1,0 +1,16 @@
+{{Motif
+|accession=000063
+|aglycon=Cer
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2s:sulfate
+LIN
+1:1d(3+1)2n
+|glytoucan=G95090DW
+|name=Sulfatide
+|redend=true
+|sameas=GD.R000219,GDC.000062,GM.G95090DW
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5_3*SO/2{{=}}O/2{{=}}O{{!)}}/1/
+}}

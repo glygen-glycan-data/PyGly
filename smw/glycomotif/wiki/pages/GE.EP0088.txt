@@ -1,0 +1,22 @@
+{{Motif
+|accession=EP0088
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1r:r1
+REP
+REP1:4o(4+1)2d{{=}}-1--1
+RES
+2b:a-dglc-HEX-1:5
+3s:n-acetyl
+4b:a-lido-HEX-1:5{{!}}6:a
+5s:sulfate
+LIN
+1:2d(2+1)3n
+2:2o(4+1)4d
+3:4o(2+1)5n
+|glytoucan=G25575JK
+|name=Acharan Sulfate
+|sameas=GD.R000231,GDH.000017,GM.G25575JK
+|wurcs=WURCS{{=}}2.0/2,2,2/{{!(}}a2122h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2121A-1a_1-5_2*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a4-b1_a1-b4~n
+}}

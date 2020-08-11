@@ -1,0 +1,11 @@
+{{Publication
+|authors=Breimer ME, Karlsson H, Karlsson KA, Nilson K, Samuelsson BE, Strömberg N
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;243
+|doi=10.1016/0008-6215(88)80105-8
+|journal=Carbohydr. Res
+|pages=111-20
+|pmid=3191504
+|title=Structures of the eight- to nine-sugar glycolipids of human blood group A erythrocytes
+|volume=178
+|year=1988
+}}

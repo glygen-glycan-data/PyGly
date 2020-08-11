@@ -1,0 +1,10 @@
+{{Publication
+|authors=Young WW, Johnson HS, Tamura Y, Karlsson KA, Larson G, Parker JM, Khare DP, Spohr U, Baker DA, Hindsgaul O, Lemieux RU
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;252
+|journal=J. Biol. Chem
+|pages=4890-4
+|pmid=6833281
+|title=Characterization of monoclonal antibodies specific for the Lewis a human blood group determinant
+|volume=258(8)
+|year=1983
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Chai W, Yuen CT, Kogelberg H, Carruthers RA, Margolis RU, Feizi T, Lawson AM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;275
+|doi=10.1046/j.1432-1327.1999.00572.x
+|journal=Eur. J. Biochem
+|pages=879-88
+|pmid=10469154
+|title=High prevalence of 2-mono- and 2,6-di-substituted manol-terminating sequences among O-glycans released from brain glycopeptides by reductive alkaline hydrolysis
+|volume=263(3)
+|year=1999
+}}

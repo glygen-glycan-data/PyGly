@@ -1,0 +1,8 @@
+<noinclude>
+
+The repertoire of glycan determinants in the human glycome: {{TitleStub|The repertoire of glycan determinants in the human glycome}}
+
+Mono-sulfated globopentaosylceramide from human kidney: {{TitleStub|Mono-sulfated globopentaosylceramide from human kidney}}
+
+Carbohydrate structures of nonspecific cross-reacting antigen-2, a glycoprotein purified from meconium as an antigen cross-reacting with anticarcinoembryonic antigen antibody. Occurrence of complex-type sugar chains with the Gal beta 1----3GlcNAc beta 1----3Gal beta 1----4GlcNAc beta 1----outer chains: {{TitleStub|Carbohydrate structures of nonspecific cross-reacting antigen-2, a glycoprotein purified from meconium as an antigen cross-reacting with anticarcinoembryonic antigen antibody. Occurrence of complex-type sugar chains with the Gal beta 1----3GlcNAc beta 1----3Gal beta 1----4GlcNAc beta 1----outer chains}}
+</noinclude><includeonly>{{#explode:{{{1}}}|_|0}} {{#explode:{{{1}}}|_|1}} {{#explode:{{{1}}}|_|2}} {{#explode:{{{1}}}|_|3}} {{#explode:{{{1}}}|_|4}} {{#explode:{{{1}}}|_|5}} {{#explode:{{{1}}}|_|6}} {{#explode:{{{1}}}|_|7}} {{#explode:{{{1}}}|_|8}} {{#explode:{{{1}}}|_|9}} {{#if:{{#explode:{{{1}}}|_|10}}|...}}</includeonly>

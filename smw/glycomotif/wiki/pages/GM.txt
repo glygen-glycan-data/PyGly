@@ -1,0 +1,6 @@
+{{Collection
+|contact=Nathan Edwards
+|email=nje5@georgetown.edu
+|name=All Motifs
+|primary=false
+}}

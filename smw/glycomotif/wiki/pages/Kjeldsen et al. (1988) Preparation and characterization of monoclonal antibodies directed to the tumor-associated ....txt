@@ -1,0 +1,10 @@
+{{Publication
+|authors=Kjeldsen T, Clausen H, Hirohashi S, Ogawa T, Iijima H, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;244
+|journal=Cancer Res
+|pages=2214-20
+|pmid=2450649
+|title=Preparation and characterization of monoclonal antibodies directed to the tumor-associated O-linked sialosyl-2----6 alpha-N-acetylgalactosaminyl (sialosyl-Tn) epitope
+|volume=48(8)
+|year=1988
+}}

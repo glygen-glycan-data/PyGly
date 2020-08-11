@@ -1,0 +1,11 @@
+{{Publication
+|authors=Suzuki Y, Matsunaga M, Nagao Y, Taki T, Hirabayashi Y, Matsumoto M
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;321
+|doi=10.1016/0264-410x(85)90104-5
+|journal=Vaccine
+|pages=201-3
+|pmid=4060848
+|title=Ganglioside GM1b as an influenza virus receptor
+|volume=3(3 Suppl)
+|year=1985
+}}

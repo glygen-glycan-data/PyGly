@@ -1,0 +1,10 @@
+{{Publication
+|authors=Hirabayashi Y, Hamaoka A, Matsumoto M, Matsubara T, Tagawa M, Wakabayashi S, Taniguchi M
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;310
+|journal=J. Biol. Chem
+|pages=13328-33
+|pmid=2414279
+|title=Syngeneic monoclonal antibody against melanoma antigen with interspecies cross-reactivity recognizes GM3, a prominent ganglioside of B16 melanoma
+|volume=260(24)
+|year=1985
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Campos L, Portoukalian J, Bonnier S, Shi ZH, Calmard-Oriol P, Treille D, Guyotat D
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;230
+|doi=10.1016/0959-8049(92)90380-k
+|journal=Eur. J. Cancer
+|pages=37-41
+|pmid=1567687
+|title=Specific binding of anti-N-acetyllactosamine monoclonal antibody 1B2 to acute myeloid leukaemia cells
+|volume=28(1)
+|year=1992
+}}

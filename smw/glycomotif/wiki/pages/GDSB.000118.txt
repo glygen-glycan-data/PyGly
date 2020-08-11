@@ -1,0 +1,15 @@
+{{Motif
+|accession=000118
+|aglycon=Cer
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2s:sulfate
+LIN
+1:1o(-1+1)2n
+|glytoucan=G07169WN
+|redend=true
+|sameas=GD.R000397,GM.G07169WN
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5_?*OSO/3{{=}}O/3{{=}}O{{!)}}/1/
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Stroud MR, Levery SB, Salyan ME, Roberts CE, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;339
+|doi=10.1111/j.1432-1033.1992.tb16586.x
+|journal=Eur. J. Biochem
+|pages=577-86
+|pmid=1735443
+|title=Extended type-1 chain glycosphingolipid antigens. Isolation and characterization of trifucosyl-Leb antigen (III4V4VI2Fuc3Lc6)
+|volume=203(3)
+|year=1992
+}}

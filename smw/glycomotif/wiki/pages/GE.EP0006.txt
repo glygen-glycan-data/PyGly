@@ -1,0 +1,16 @@
+{{Motif
+|accession=EP0006
+|aglycon=Ser/Thr
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1b:a-lgal-HEX-1:5{{!}}6:d
+2b:b-dglc-HEX-1:5
+LIN
+1:1o(3+1)2d
+|glytoucan=G36855WW
+|name=O-Fucose Glycan /Thrombospondin Type 1 Repeat
+|redend=true
+|sameas=GM.G36855WW,UCM.000127
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5{{!)}}/1-2/a3-b1
+}}

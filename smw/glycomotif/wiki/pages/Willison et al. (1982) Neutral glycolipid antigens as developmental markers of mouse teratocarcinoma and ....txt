@@ -1,0 +1,10 @@
+{{Publication
+|authors=Willison KR, Karol RA, Suzuki A, Kundu SK, Marcus DM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;305
+|journal=J. Immunol
+|pages=603-9
+|pmid=7045228
+|title=Neutral glycolipid antigens as developmental markers of mouse teratocarcinoma and early embryos: an immunologic and chemical analysis
+|volume=129(2)
+|year=1982
+}}

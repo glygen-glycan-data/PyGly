@@ -1,0 +1,10 @@
+{{Publication
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;322
+|authors=Ariga T, Kobayashi K, Kuroda Y, Yu RK, Suzuki M, Kitagawa H, Inagaki F, Miyatake T
+|title=Characterization of tumor-associated fucogangliosides from PC 12 pheochromocytoma cells
+|journal=J Biol Chem
+|year=1987
+|volume=262(29)
+|pages=14146-53
+|pmid=3654655
+}}

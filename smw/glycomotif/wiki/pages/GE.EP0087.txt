@@ -1,0 +1,11 @@
+{{Motif
+|accession=EP0087
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1b:a-lthr-HEX-1:5{{!}}4,5:enx{{!}}4:d{{!}}6:a
+|glytoucan=G17927IW
+|name=Delta-Heparan Sulfate
+|sameas=GM.G17927IW
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a21eEA-1a_1-5{{!)}}/1/
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Springer GF, Desai PR
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;237
+|doi=10.1016/0161-5890(85)90050-1
+|journal=Mol. Immunol
+|pages=1303-10
+|pmid=2417112
+|title=Tn epitopes, immunoreactive with ordinary anti-Tn antibodies, on normal, desialylated human erythrocytes and on Thomsen-Friedenreich antigen isolated therefrom
+|volume=22(11)
+|year=1985
+}}

@@ -1,0 +1,10 @@
+{{Publication
+|authors=Fukushi Y, Nudelman E, Levery SB, Hakomori S, Rauvala H
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;260
+|journal=J. Biol. Chem
+|pages=10511-7
+|pmid=6469974
+|title=Novel fucolipids accumulating in human adenocarcinoma. III. A hybridoma antibody (FH6) defining a human cancer-associated difucoganglioside (VI3NeuAcV3III3Fuc2nLc6)
+|volume=259(16)
+|year=1984
+}}

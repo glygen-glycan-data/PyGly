@@ -1,0 +1,11 @@
+{{Publication
+|authors=Lloyd KO, Larson G, Strömberg N, Thurin J, Karlsson KA
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;251
+|doi=10.1007/BF00696877
+|journal=Immunogenetics
+|pages=537-41
+|pmid=6188690
+|title=Mouse monoclonal antibody F-3 recognizes the difucosyl type-2 blood group structure
+|volume=17(5)
+|year=1983
+}}

@@ -1,0 +1,15 @@
+{{Motif
+|accession=002173
+|collection=GDB
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+|glytoucan=G00055MO
+|sameas=CCRC.000001,GD.R000266,GDB.002765,GDC.000001,GDH.000165,GDV.000046,GGM.000001,GM.G00055MO,GTC.G00055MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a4-b1
+}}

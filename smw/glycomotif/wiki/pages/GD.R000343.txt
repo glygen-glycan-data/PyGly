@@ -1,0 +1,10 @@
+{{Motif
+|accession=R000343
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+|glytoucan=G15021LG
+|sameas=GDSB.000192,GM.G15021LG
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2122h-1x_1-5{{!)}}/1/
+}}

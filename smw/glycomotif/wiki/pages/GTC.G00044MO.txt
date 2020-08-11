@@ -1,0 +1,19 @@
+{{Motif
+|accession=G00044MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-x:x
+2s:n-acetyl
+3b:a-dgal-HEX-1:5
+4s:n-acetyl
+LIN
+1:1d(2+1)2n
+2:1o(6+1)3d
+3:3d(2+1)4n
+|glytoucan=G00044MO
+|name=O-Glycan core 7 fuzzy
+|redend=true
+|sameas=GGM.001018,GM.G00044MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2/a6-b1
+}}

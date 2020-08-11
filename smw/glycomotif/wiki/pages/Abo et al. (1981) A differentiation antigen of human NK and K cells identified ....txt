@@ -1,0 +1,10 @@
+{{Publication
+|authors=Abo T, Balch CM
+|citedby=GE;EP0001
+|title=A differentiation antigen of human NK and K cells identified by a monoclonal antibody (HNK-1)
+|journal=J Immunol
+|year=1981
+|volume=127(3)
+|pages=1024-1029
+|pmid=6790607
+}}

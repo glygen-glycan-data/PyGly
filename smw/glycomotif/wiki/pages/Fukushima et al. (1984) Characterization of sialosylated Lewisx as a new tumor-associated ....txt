@@ -1,0 +1,10 @@
+{{Publication
+|authors=Fukushima K, Hirota M, Terasaki PI, Wakisaka A, Togashi H, Chia D, Suyama N, Fukushi Y, Nudelman E, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;254
+|journal=Cancer Res
+|pages=5279-85
+|pmid=6386148
+|title=Characterization of sialosylated Lewisx as a new tumor-associated antigen
+|volume=44(11)
+|year=1984
+}}

@@ -1,0 +1,10 @@
+{{Publication
+|authors=Watanabe K, Hakomori SI, Childs RA, Feizi T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;233
+|journal=J. Biol. Chem
+|pages=3221-8
+|pmid=107170
+|title=Characterization of a blood group I-active ganglioside. Structural requirements for I and i specificities
+|volume=254(9)
+|year=1979
+}}

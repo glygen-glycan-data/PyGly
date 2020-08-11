@@ -1,0 +1,10 @@
+{{Publication
+|authors=Dohi T, Ohta S, Hanai N, Yamaguchi K, Oshima M
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;319
+|journal=J. Biol. Chem
+|pages=7880-5
+|pmid=2139874
+|title=Sialylpentaosylceramide detected with anti-GM2 monoclonal antibody. Structural characterization and complementary expression with GM2 in gastric cancer and normal gastric mucosa
+|volume=265(14)
+|year=1990
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Fredman P, Jeansson S, Lycke E, Svennerholm L
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;327
+|doi=10.1016/0014-5793(85)80834-6
+|journal=FEBS Lett
+|pages=23-6
+|pmid=4029397
+|title=A monoclonal antibody reacting specifically with ganglioside GD1b in human brain
+|volume=189(1)
+|year=1985
+}}

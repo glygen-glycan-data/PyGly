@@ -1,0 +1,10 @@
+{{Publication
+|authors=Nudelman E, Hakomori S, Kannagi R, Levery S, Yeh MY, Hellström KE, Hellström I
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;313
+|journal=J. Biol. Chem
+|pages=12752-6
+|pmid=7130176
+|title=Characterization of a human melanoma-associated ganglioside antigen defined by a monoclonal antibody, 4.2
+|volume=257(21)
+|year=1982
+}}

@@ -1,0 +1,17 @@
+{{Motif
+|accession=R000294
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:a-dman-HEX-1:5
+2b:a-dman-HEX-1:5
+3b:a-dman-HEX-1:5
+4s:phosphate
+LIN
+1:1o(3+1)2d
+2:2o(3+1)3d
+3:3d(6+1)4n
+|glytoucan=G51258AO
+|sameas=GDB.002291,GM.G51258AO
+|wurcs=WURCS{{=}}2.0/2,3,2/{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a1122h-1a_1-5_6*PO/2O/2{{=}}O{{!)}}/1-1-2/a3-b1_b3-c1
+}}

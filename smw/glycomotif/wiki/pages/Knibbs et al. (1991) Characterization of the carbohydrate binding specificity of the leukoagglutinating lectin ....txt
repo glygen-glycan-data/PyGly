@@ -1,0 +1,10 @@
+{{Publication
+|authors=Knibbs RN, Goldstein IJ, Ratcliffe RM, Shibuya N
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;262
+|journal=J. Biol. Chem
+|pages=83-8
+|pmid=1985926
+|title=Characterization of the carbohydrate binding specificity of the leukoagglutinating lectin from Maackia amurensis. Comparison with other sialic acid-specific lectins
+|volume=266(1)
+|year=1991
+}}

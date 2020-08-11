@@ -1,0 +1,10 @@
+{{Publication
+|authors=DAUSSET J, MOULLEC J, BERNARD J
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;238
+|journal=Blood
+|pages=1079-93
+|pmid=13814231
+|title=Acquired hemolytic anemia with polyagglutinability of red blood cells due to a new factor present in normal human serum (Anti-Tn)
+|volume=14
+|year=1959
+}}

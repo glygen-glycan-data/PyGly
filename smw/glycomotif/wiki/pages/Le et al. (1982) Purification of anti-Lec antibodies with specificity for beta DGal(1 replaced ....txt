@@ -1,0 +1,11 @@
+{{Publication
+|authors=Le Pendu J, Lemieux RU, Oriol R
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;235
+|doi=10.1111/j.1423-0410.1982.tb00011.x
+|journal=Vox Sang
+|pages=188-95
+|pmid=6182692
+|title=Purification of anti-Lec antibodies with specificity for beta DGal(1 replaced by 3)beta DGlcNAcO- using a synthetic immunoadsorbent
+|volume=43(4)
+|year=1982
+}}

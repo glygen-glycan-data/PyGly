@@ -3,4 +3,4 @@
 from getwiki import GlycoMotifWiki
 import sys
 w = GlycoMotifWiki()
-w.dumpsite(sys.argv[1],exclude_categories=['Motif','Collection'])
+w.dumpsite(sys.argv[1])

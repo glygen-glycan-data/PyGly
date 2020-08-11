@@ -1,0 +1,15 @@
+{{Motif
+|accession=000139
+|aglycon=Cer
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2s:sulfate
+LIN
+1:1o(3+1)2n
+|glytoucan=G72548RZ
+|redend=true
+|sameas=GD.R000551,GDH.000139,GDSB.000082,GDSB.000140,GDV.000050,GDV.000051,GE.EP0120,GGM.000062,GGM.000063,GM.G72548RZ,UCM.000139
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1/
+}}

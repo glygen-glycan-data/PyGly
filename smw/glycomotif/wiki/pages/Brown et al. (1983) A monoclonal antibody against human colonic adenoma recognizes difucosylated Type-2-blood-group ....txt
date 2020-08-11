@@ -1,0 +1,11 @@
+{{Publication
+|authors=Brown A, Feizi T, Gooi HC, Embleton MJ, Picard JK, Baldwin RW
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;267
+|doi=10.1007/BF01121947
+|journal=Biosci. Rep
+|pages=163-70
+|pmid=6189529
+|title=A monoclonal antibody against human colonic adenoma recognizes difucosylated Type-2-blood-group chains
+|volume=3(2)
+|year=1983
+}}

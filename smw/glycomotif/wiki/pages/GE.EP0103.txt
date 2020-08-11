@@ -1,0 +1,15 @@
+{{Motif
+|accession=EP0103
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1r:r1
+REP
+REP1:2o(-1+2)2d{{=}}-1--1
+RES
+2b:x-dgro-dgal-NON-2:6{{!}}1:a{{!}}2:keto{{!}}3:d
+|glytoucan=G42911NE
+|name=Poly-KDN
+|sameas=GD.R000363,GDH.000134,GM.G42911NE
+|wurcs=WURCS{{=}}2.0/1,1,1/{{!(}}Aad21122h-2x_2-6{{!)}}/1/a2-a?~n
+}}

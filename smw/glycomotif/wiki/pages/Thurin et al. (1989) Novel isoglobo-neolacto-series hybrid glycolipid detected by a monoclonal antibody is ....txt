@@ -1,0 +1,11 @@
+{{Publication
+|authors=Thurin J, Brodin T, Bechtel B, Jovall PA, Karlsson H, Strömberg N, Teneberg S, Sjögren HO, Karlsson KA
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;290
+|doi=10.1016/0005-2760(89)90339-1
+|journal=Biochim. Biophys. Acta
+|pages=267-72
+|pmid=2713378
+|title=Novel isoglobo-neolacto-series hybrid glycolipid detected by a monoclonal antibody is a rat colon tumor-associated antigen
+|volume=1002(3)
+|year=1989
+}}

@@ -1,0 +1,10 @@
+{{Publication
+|authors=Kannagi R, Levery SB, Ishigami F, Hakomori S, Shevinsky LH, Knowles BB, Solter D
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;299
+|journal=J. Biol. Chem
+|pages=8934-42
+|pmid=6863318
+|title=New globoseries glycosphingolipids in human teratocarcinoma reactive with the monoclonal antibody directed to a developmentally regulated antigen, stage-specific embryonic antigen 3
+|volume=258(14)
+|year=1983
+}}

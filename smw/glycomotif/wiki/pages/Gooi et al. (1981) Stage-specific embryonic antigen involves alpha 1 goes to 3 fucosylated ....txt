@@ -1,0 +1,11 @@
+{{Publication
+|authors=Gooi HC, Feizi T, Kapadia A, Knowles BB, Solter D, Evans MJ
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;249
+|doi=10.1038/292156a0
+|journal=Nature
+|pages=156-8
+|pmid=6165896
+|title=Stage-specific embryonic antigen involves alpha 1 goes to 3 fucosylated type 2 blood group chains
+|volume=292(5819)
+|year=1981
+}}

@@ -1,0 +1,17 @@
+{{Motif
+|accession=R000104
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1r:r1
+REP
+REP1:2o(-1+2)2d{{=}}-1--1
+RES
+2b:x-dgro-dgal-NON-2:6{{!}}1:a{{!}}2:keto{{!}}3:d
+3s:n-acetyl
+LIN
+1:2d(5+1)3n
+|glytoucan=G80631ZD
+|sameas=GDH.000135,GE.EP0101,GM.G80631ZD
+|wurcs=WURCS{{=}}2.0/1,1,1/{{!(}}Aad21122h-2x_2-6_5*NCC/3{{=}}O{{!)}}/1/a2-a?~n
+}}

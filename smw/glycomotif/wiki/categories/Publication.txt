@@ -1,0 +1,2 @@
+[[Imported from::glycomotif:Publication]] 
+{{#default_form:Publication}}

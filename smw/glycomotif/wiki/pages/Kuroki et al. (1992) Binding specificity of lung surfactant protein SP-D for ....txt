@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kuroki Y, Gasa S, Ogasawara Y, Shiratori M, Makita A, Akino T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;278
+|doi=10.1016/0006-291x(92)91291-w
+|journal=Biochem. Biophys. Res. Commun
+|pages=963-9
+|pmid=1530650
+|title=Binding specificity of lung surfactant protein SP-D for glucosylceramide
+|volume=187(2)
+|year=1992
+}}

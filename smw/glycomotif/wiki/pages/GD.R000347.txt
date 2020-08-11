@@ -1,0 +1,17 @@
+{{Motif
+|accession=R000347
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:x-lgal-HEX-1:5{{!}}6:d
+3b:x-dgal-HEX-1:5
+4s:n-acetyl
+LIN
+1:1o(-1+1)2d
+2:1o(-1+1)3d
+3:1d(2+1)4n
+|glytoucan=G24566OP
+|sameas=GDH.000167,GM.G24566OP
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1x_1-5{{!)}}{{!(}}a2112h-1x_1-5{{!)}}/1-2-3/a?-b1_a?-c1
+}}

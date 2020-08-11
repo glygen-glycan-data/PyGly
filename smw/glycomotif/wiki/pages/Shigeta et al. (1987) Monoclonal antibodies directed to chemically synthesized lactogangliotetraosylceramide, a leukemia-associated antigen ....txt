@@ -1,0 +1,10 @@
+{{Publication
+|authors=Shigeta K, Ito Y, Ogawa T, Kirihata Y, Hakomori S, Kannagi R
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;296
+|journal=J. Biol. Chem
+|pages=1358-62
+|pmid=3805024
+|title=Monoclonal antibodies directed to chemically synthesized lactogangliotetraosylceramide, a leukemia-associated antigen having a novel branching structure
+|volume=262(3)
+|year=1987
+}}

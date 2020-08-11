@@ -1,0 +1,20 @@
+{{Motif
+|accession=000011
+|collection=UCM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4s:sulfate
+5s:sulfate
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3o(6+1)4n
+4:1o(6+1)5n
+|glytoucan=G24270KX
+|name=6, 6'-Sulfo LacNAc
+|sameas=GD.R000010,GDH.000011,GE.EP0144,GM.G24270KX
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O_6*OSO/3{{=}}O/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_6*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a4-b1
+}}

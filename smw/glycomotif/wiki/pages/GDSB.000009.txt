@@ -1,0 +1,14 @@
+{{Motif
+|accession=000009
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2s:n-acetyl
+LIN
+1:1d(2+1)2n
+|glytoucan=G61418DU
+|name=N-acetyl-D-galactosamine
+|sameas=GD.R000024,GM.G61418DU
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1/
+}}

@@ -1,0 +1,19 @@
+{{Motif
+|accession=G00043MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:a-dgal-HEX-1:5
+2s:n-acetyl
+3b:a-dgal-HEX-1:5
+4s:n-acetyl
+LIN
+1:1d(2+1)2n
+2:1o(6+1)3d
+3:3d(2+1)4n
+|glytoucan=G00043MO
+|name=O-Glycan core 7
+|redend=true
+|sameas=GGM.001017,GM.G00043MO
+|wurcs=WURCS{{=}}2.0/1,2,1/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-1/a6-b1
+}}

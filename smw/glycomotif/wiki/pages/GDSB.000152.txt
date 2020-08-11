@@ -1,0 +1,26 @@
+{{Motif
+|accession=000152
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2b:b-dglc-HEX-1:5
+3s:n-acetyl
+4b:b-dgal-HEX-1:5
+5b:a-lgal-HEX-1:5{{!}}6:d
+6b:a-dgal-HEX-1:5
+7s:n-acetyl
+8b:a-lgal-HEX-1:5{{!}}6:d
+LIN
+1:1o(3+1)2d
+2:2d(2+1)3n
+3:2o(3+1)4d
+4:4o(2+1)5d
+5:4o(3+1)6d
+6:6d(2+1)7n
+7:2o(4+1)8d
+|glytoucan=G12068BR
+|name=A type 1 A Lewis b
+|sameas=GD.R000325,GM.G12068BR
+|wurcs=WURCS{{=}}2.0/5,6,5/{{!(}}a2112h-1x_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4-5-4/a3-b1_b3-c1_b4-f1_c2-d1_c3-e1
+}}

@@ -1,0 +1,20 @@
+{{Motif
+|prefname=Ceramide dihexosyl sulfate
+|name=Ceramide dihexosyl sulfate
+|aglycon=Cer
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nagai et al. (2008) Higher expression of renal sulfoglycolipids in marine ...
+|accession=000065
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2b:b-dgal-HEX-1:5
+3s:sulfate
+LIN
+1:1o(4+1)2d
+2:2o(3+1)3n
+|glytoucan=G50926NK
+|sameas=GD.R000495,GDV.000049,GM.G50926NK
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a4-b1
+}}

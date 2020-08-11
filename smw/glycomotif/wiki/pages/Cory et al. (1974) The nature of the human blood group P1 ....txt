@@ -1,0 +1,11 @@
+{{Publication
+|authors=Cory HT, Yates AD, Donald AS, Watkins WM, Morgan WT
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;289
+|doi=10.1016/s0006-291x(74)80424-9
+|journal=Biochem. Biophys. Res. Commun
+|pages=1289-96
+|pmid=4477014
+|title=The nature of the human blood group P1 determinant
+|volume=61(4)
+|year=1974
+}}

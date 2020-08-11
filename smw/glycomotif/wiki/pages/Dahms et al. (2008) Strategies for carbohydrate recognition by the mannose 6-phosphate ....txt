@@ -1,0 +1,11 @@
+{{Publication
+|authors=Dahms NM, Olson LJ, Kim JJ
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;39
+|doi=10.1093/glycob/cwn061
+|journal=Glycobiology
+|pages=664-78
+|pmid=18621992
+|title=Strategies for carbohydrate recognition by the mannose 6-phosphate receptors
+|volume=18(9)
+|year=2008
+}}

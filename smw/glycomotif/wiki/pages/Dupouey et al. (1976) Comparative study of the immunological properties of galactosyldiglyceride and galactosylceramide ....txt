@@ -1,0 +1,11 @@
+{{Publication
+|authors=Dupouey P, Billecocq A, Lefroit M
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;280
+|doi=10.1016/0019-2791(76)90336-0
+|journal=Immunochemistry
+|pages=289-94
+|pmid=780262
+|title=Comparative study of the immunological properties of galactosyldiglyceride and galactosylceramide included within natural membranes
+|volume=13(4)
+|year=1976
+}}

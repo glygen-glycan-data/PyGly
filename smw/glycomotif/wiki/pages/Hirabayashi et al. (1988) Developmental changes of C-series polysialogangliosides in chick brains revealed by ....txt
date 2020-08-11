@@ -1,0 +1,11 @@
+{{Publication
+|authors=Hirabayashi Y, Hirota M, Matsumoto M, Tanaka H, Obata K, Ando S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;328
+|doi=10.1093/oxfordjournals.jbchem.a122593
+|journal=J. Biochem
+|pages=973-9
+|pmid=2468656
+|title=Developmental changes of C-series polysialogangliosides in chick brains revealed by mouse monoclonal antibodies M6704 and M7103 with different epitope specificities
+|volume=104(6)
+|year=1988
+}}

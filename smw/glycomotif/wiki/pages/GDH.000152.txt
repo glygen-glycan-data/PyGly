@@ -1,0 +1,14 @@
+{{Motif
+|accession=000152
+|collection=GDH
+|displayhgv=false
+|glycoct=RES
+1b:o-dgal-HEX-0:0{{!}}1:aldi
+2s:n-acetyl
+LIN
+1:1d(2+1)2n
+|glytoucan=G61406KC
+|name=Tn Antigen
+|sameas=GD.R000472,GM.G61406KC
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}h2112h_2*NCC/3{{=}}O{{!)}}/1/
+}}

@@ -1,0 +1,17 @@
+{{Motif
+|accession=G00032MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-x:x
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+|glytoucan=G00032MO
+|name=O-Glycan core 1 fuzzy
+|redend=true
+|sameas=GGM.001006,GM.G00032MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a3-b1
+}}

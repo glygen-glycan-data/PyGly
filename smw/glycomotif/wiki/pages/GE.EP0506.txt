@@ -1,0 +1,15 @@
+{{Motif
+|accession=EP0506
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1r:r1
+REP
+REP1:2o(4+1)2d{{=}}-1--1
+RES
+2b:b-dgal-HEX-1:5
+|glytoucan=G77076MY
+|name=beta 1-4 Galactan
+|sameas=GM.G77076MY
+|wurcs=WURCS{{=}}2.0/1,1,1/{{!(}}a2112h-1b_1-5{{!)}}/1/a1-a4~n
+}}

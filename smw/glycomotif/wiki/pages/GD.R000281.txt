@@ -1,0 +1,13 @@
+{{Motif
+|accession=R000281
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(6+1)2d
+|glytoucan=G86123DJ
+|sameas=GDSB.000163,GM.G86123DJ
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1x_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a6-b1
+}}

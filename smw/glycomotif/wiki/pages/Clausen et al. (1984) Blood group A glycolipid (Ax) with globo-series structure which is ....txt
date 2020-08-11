@@ -1,0 +1,11 @@
+{{Publication
+|authors=Clausen H, Watanabe K, Kannagi R, Levery SB, Nudelman E, Arao-Tomono Y, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;307
+|doi=10.1016/0006-291x(84)91585-7
+|journal=Biochem. Biophys. Res. Commun
+|pages=523-9
+|pmid=6497890
+|title=Blood group A glycolipid (Ax) with globo-series structure which is specific for blood group A1 erythrocytes: one of the chemical bases for A1 and A2 distinction
+|volume=124(2)
+|year=1984
+}}

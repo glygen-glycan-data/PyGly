@@ -1,0 +1,11 @@
+{{Publication
+|authors=Walcheck B, Leppanen A, Cummings RD, Knibbs RN, Stoolman LM, Alexander SR, Mattila PE, McEver RP
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;219
+|doi=10.1182/blood-2001-12-0265
+|journal=Blood
+|pages=4063-9
+|pmid=12010808
+|title=The monoclonal antibody CHO-131 binds to a core 2 O-glycan terminated with sialyl-Lewis x, which is a functional glycan ligand for P-selectin
+|volume=99(11)
+|year=2002
+}}

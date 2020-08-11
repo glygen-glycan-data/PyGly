@@ -1,0 +1,9 @@
+{{Publication
+|authors=Stanley P, Cummings RD
+|title=Structures Common to Different Glycans
+|journal=In: Varki A, Cummings RD, Esko JD, et al., editors. Essentials of Glycobiology [Internet]. 3rd edition
+|year=2017
+|volume=14
+|pmid=28876849
+|doi=10.1101/glycobiology.3e.014
+}}

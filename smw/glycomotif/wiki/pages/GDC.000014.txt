@@ -1,0 +1,26 @@
+{{Motif
+|accession=000014
+|aglycon=Ser/Thr
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:a-dgal-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4b:a-dgro-dgal-NON-2:6{{!}}1:a{{!}}2:keto{{!}}3:d
+5s:n-acetyl
+6b:a-dgro-dgal-NON-2:6{{!}}1:a{{!}}2:keto{{!}}3:d
+7s:n-acetyl
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3o(3+2)4d
+4:4d(5+1)5n
+5:1o(6+2)6d
+6:6d(5+1)7n
+|glytoucan=G01614ZM
+|name=Di-sialyl T antigen
+|redend=true
+|sameas=GD.R000282,GDB.002360,GDV.000092,GE.EP0023,GGM.000014,GM.G01614ZM,UCM.000048
+|wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3-3/a3-b1_a6-d2_b3-c2
+}}

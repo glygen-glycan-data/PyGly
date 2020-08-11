@@ -1,0 +1,18 @@
+{{Motif
+|accession=000009
+|aglycon=Ser/Thr
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:a-dgal-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+|glytoucan=G00031MO
+|name=T (also TF) antigen
+|redend=true
+|sameas=GD.R000044,GDV.000027,GE.EP0020,GGM.000009,GGM.001005,GM.G00031MO,GTC.G00031MO,UCM.000151
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a3-b1
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Hamers MN, Donker-Koopman WE, Coulon-Morelec MJ, Dupouey P, Tager JM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;288
+|doi=10.1016/0161-5890(78)90130-x
+|journal=Immunochemistry
+|pages=353-8
+|pmid=700772
+|title=Characterization of antibodies against ceramidetrihexoside and globoside
+|volume=15(6)
+|year=1978
+}}

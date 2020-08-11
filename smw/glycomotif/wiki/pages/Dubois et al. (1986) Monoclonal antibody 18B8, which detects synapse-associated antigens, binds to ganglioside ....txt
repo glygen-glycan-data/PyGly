@@ -1,0 +1,10 @@
+{{Publication
+|authors=Dubois C, Magnani JL, Grunwald GB, Spitalnik SL, Trisler GD, Nirenberg M, Ginsburg V
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;314
+|journal=J. Biol. Chem
+|pages=3826-30
+|pmid=3949793
+|title=Monoclonal antibody 18B8, which detects synapse-associated antigens, binds to ganglioside GT3 (II3 (NeuAc)3LacCer)
+|volume=261(8)
+|year=1986
+}}

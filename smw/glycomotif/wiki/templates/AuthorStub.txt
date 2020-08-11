@@ -1,0 +1,6 @@
+<noinclude>
+
+Cummings RD: {{AuthorStub|Cummings RD}}
+
+Yamashita K, Totani K, Iwaki Y, Kuroki M, Matsuoka Y, Endo T, Kobata A: {{AuthorStub|Yamashita K, Totani K, Iwaki Y, Kuroki M, Matsuoka Y, Endo T, Kobata A}}
+</noinclude><includeonly>{{#if:{{#explode:{{{1}}}|_|2}}|{{#explode:{{{1}}}|_|0}} et al.|{{#explode:{{{1}}}|_|0}}}}</includeonly>

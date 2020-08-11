@@ -1,0 +1,11 @@
+{{Publication
+|authors=Clausen H, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;308
+|doi=10.1111/j.1423-0410.1989.tb03040.x
+|journal=Vox Sang
+|pages=1-20
+|pmid=2464874
+|title=ABH and related histo-blood group antigens; immunochemical differences in carrier isotypes and their distribution
+|volume=56(1)
+|year=1989
+}}

@@ -1,0 +1,5 @@
+<noinclude>
+Fenderson BA, Andrews PW, Nudelman E, Clausen H, Hakomori S. Glycolipid core structure switching from globo- to lacto- and ganglio-series during retinoic acid-induced differentiation of TERA-2-derived human embryonal carcinoma cells. 1987
+
+{{PubName|Fenderson BA, Andrews PW, Nudelman E, Clausen H, Hakomori S|1987|Glycolipid core structure switching from globo- to lacto- and ganglio-series during retinoic acid-induced differentiation of TERA-2-derived human embryonal carcinoma cells}}
+</noinclude><includeonly>{{#replace:{{AuthorStub|{{{1}}}}} ({{{2}}}) {{TitleStub|{{{3}}}}}| |_}}</includeonly>

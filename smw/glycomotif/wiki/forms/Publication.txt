@@ -1,0 +1,41 @@
+<noinclude>
+This is the "Publication" form.
+To create a page with this form, enter the page name below;
+if a page with that name already exists, you will be sent to a form to edit that page.
+
+
+{{#forminput:form=Publication}}
+
+</noinclude><includeonly>
+<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
+{{{info|page name= {{PubName|<Publication[authors]>|<Publication[year]>|<Publication[title]>}} }}}
+{{{for template|Publication}}}
+{| class="formtable"
+! Authors: 
+| {{{field|authors}}}
+|-
+! Title: 
+| {{{field|title}}}
+|-
+! Journal: 
+| {{{field|journal}}}
+|-
+! Year: 
+| {{{field|year}}}
+|-
+! Volume: 
+| {{{field|volume}}}
+|-
+! Pages: 
+| {{{field|pages}}}
+|-
+! Pubmed ID: 
+| {{{field|pmid}}}
+|-
+! DOI:
+| {{{field|doi}}}
+|}
+{{{end template}}}
+
+{{{standard input|save}}} {{{standard input|cancel}}}
+</includeonly>

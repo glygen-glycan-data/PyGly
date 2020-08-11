@@ -1,0 +1,27 @@
+{{Motif
+|prefname=3'-Sulfo-Lewis a
+|name=3'-Sulfo Lewis a
+3'-Sulfo Lea
+3'-Sulfo-Lewis a
+3'-Sulfo Le^a
+|aglycon=R
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yuen et al. (1994) Sulfated blood group Lewis(a). A superior oligosaccharide ligand for human ...
+|accession=000030
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4s:sulfate
+5b:a-lgal-HEX-1:5{{!}}6:d
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3o(3+1)4n
+4:1o(4+1)5d
+|glytoucan=G78706CK
+|sameas=GD.R000415,GDB.002177,GDH.000007,GDV.000047,GE.EP0009,GM.G78706CK,UCM.000007
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a3-b1_a4-c1
+}}

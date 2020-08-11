@@ -1,0 +1,22 @@
+{{Motif
+|accession=000078
+|aglycon=R
+|collection=GDV
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4s:n-acetyl
+5s:sulfate
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3d(2+1)4n
+4:3o(4+1)5n
+|glytoucan=G18464VS
+|name=4-sulfated LDN
+|redend=false
+|sameas=CCRC.000049,GD.R000103,GGM.000049,GM.G18464VS
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O_4*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a4-b1
+}}

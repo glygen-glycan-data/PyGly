@@ -1,0 +1,17 @@
+{{Motif
+|accession=G00059MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:b-dgal-HEX-1:5
+3b:a-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+2:2o(4+1)3d
+|glytoucan=G00059MO
+|name=Pk-Antigen
+|redend=false
+|sameas=CCRC.000068,GD.R000045,GDB.002249,GDB.002750,GDC.000068,GDH.000078,GDH.000133,GDSB.000027,GDSB.000167,GDV.000023,GE.EP0071,GGM.000068,GM.G00059MO,UCM.000078
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3/a4-b1_b4-c1
+}}

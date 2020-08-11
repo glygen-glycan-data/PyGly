@@ -1,0 +1,11 @@
+{{Publication
+|authors=Mitsuoka C, Ohmori K, Kimura N, Kanamori A, Komba S, Ishida H, Kiso M, Kannagi R
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;255
+|doi=10.1073/pnas.96.4.1597
+|journal=Proc. Natl. Acad. Sci. U.S.A
+|pages=1597-602
+|pmid=9990070
+|title=Regulation of selectin binding activity by cyclization of sialic acid moiety of carbohydrate ligands on human leukocytes
+|volume=96(4)
+|year=1999
+}}

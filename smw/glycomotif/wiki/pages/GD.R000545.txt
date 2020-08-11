@@ -1,0 +1,13 @@
+{{Motif
+|accession=R000545
+|collection=GD
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2s:sulfate
+LIN
+1:1o(6+1)2n
+|glytoucan=G60011XD
+|sameas=GDSB.000142,GM.G60011XD
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5_6*OSO/3{{=}}O/3{{=}}O{{!)}}/1/
+}}

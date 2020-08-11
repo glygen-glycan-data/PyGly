@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kusunoki S, Chiba A, Hirabayashi Y, Irie F, Kotani M, Kawashima I, Tai T, Nagai Y
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;330
+|doi=10.1016/0006-8993(93)90013-d
+|journal=Brain Res
+|pages=83-8
+|pmid=8221098
+|title=Generation of a monoclonal antibody specific for a new class of minor ganglioside antigens, GQ1b alpha and GT1a alpha: its binding to dorsal and lateral horn of human thoracic cord
+|volume=623(1)
+|year=1993
+}}

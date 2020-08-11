@@ -1,0 +1,26 @@
+{{Motif
+|accession=000086
+|aglycon=Cer
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:b-dgal-HEX-1:5
+3b:a-dgal-HEX-1:5
+4b:b-dgal-HEX-1:5
+5s:n-acetyl
+6b:b-dgal-HEX-1:5
+7b:a-lgal-HEX-1:5{{!}}6:d
+LIN
+1:1o(4+1)2d
+2:2o(4+1)3d
+3:3o(3+1)4d
+4:4d(2+1)5n
+5:4o(3+1)6d
+6:6o(2+1)7d
+|glytoucan=G98465JN
+|name=Blood group H (type 4)
+|redend=true
+|sameas=GD.R000101,GDC.000078,GDSB.000063,GDV.000007,GDV.000008,GGM.000078,GGM.000086,GM.G98465JN
+|wurcs=WURCS{{=}}2.0/5,6,5/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4-2-5/a4-b1_b4-c1_c3-d1_d3-e1_e2-f1
+}}

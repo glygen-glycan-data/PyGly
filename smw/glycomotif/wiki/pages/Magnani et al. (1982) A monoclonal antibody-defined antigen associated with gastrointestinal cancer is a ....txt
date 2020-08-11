@@ -1,0 +1,10 @@
+{{Publication
+|authors=Magnani JL, Nilsson B, Brockhaus M, Zopf D, Steplewski Z, Koprowski H, Ginsburg V
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;341
+|journal=J. Biol. Chem
+|pages=14365-9
+|pmid=7142214
+|title=A monoclonal antibody-defined antigen associated with gastrointestinal cancer is a ganglioside containing sialylated lacto-N-fucopentaose II
+|volume=257(23)
+|year=1982
+}}

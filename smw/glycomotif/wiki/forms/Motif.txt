@@ -23,6 +23,10 @@ This is the "Motif" form.
 ! Reducing-End Only?: 
 | {{{field|redend|input type=dropdown}}}<br/>Motif should align to the reducing end of glycan structures only. 
 |-
+! Reference(s): 
+| {{{field|reference|input type=token|existing values only|list|delimiter=;|values from category=Publication}}}<br/>References for the structure, name, aglycon, etc. for this motif.<br/>
+{{#formlink:form=Publication|autocomplete on category=Publication|link text=Add new publication.}}
+|-
 ! GlyTouCan:
 | {{#show:{{PAGENAME}}|?glycomotif:glytoucan}}
 |}

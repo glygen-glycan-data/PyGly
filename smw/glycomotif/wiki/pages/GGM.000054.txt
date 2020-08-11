@@ -1,0 +1,35 @@
+{{Motif
+|accession=000054
+|aglycon=R
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dman-HEX-1:5
+4b:a-dman-HEX-1:5
+5b:a-dman-HEX-1:5
+6s:phosphate
+7b:a-dman-HEX-1:5
+8b:a-dman-HEX-1:5
+9s:phosphate
+10b:a-dman-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3o(3+1)4d
+4:4o(2+1)5d
+5:5o(6+1)6n
+6:3o(6+1)7d
+7:7o(3+1)8d
+8:8o(6+1)9n
+9:7o(6+1)10d
+|glytoucan=G52446JQ
+|name=Diphosphorylated Man6
+Diphosphorylated Man_6
+|prefname=Diphosphorylated Man6
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Dahms et al. (2008) Strategies for carbohydrate recognition by the mannose 6-phosphate ...
+|sameas=GM.G52446JQ
+|wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a1122h-1a_1-5_6*OPO/3O/3{{=}}O{{!)}}/1-2-3-4-3-4-3/a4-b1_b3-c1_b6-e1_c2-d1_e3-f1_e6-g1
+}}

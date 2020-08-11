@@ -1,0 +1,11 @@
+{{Publication
+|authors=Nyame AK, Leppanen AM, DeBose-Boyd R, Cummings RD
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;247
+|doi=10.1093/glycob/9.10.1029
+|journal=Glycobiology
+|pages=1029-35
+|pmid=10521539
+|title=Mice infected with Schistosoma mansoni generate antibodies to LacdiNAc (GalNAc beta 1-->4GlcNAc) determinants
+|volume=9(10)
+|year=1999
+}}

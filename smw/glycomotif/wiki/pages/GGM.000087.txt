@@ -1,0 +1,30 @@
+{{Motif
+|prefname=Blood group B (type 4)
+|name=Blood group B (type 4)
+|aglycon=Cer
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1984) Blood group A glycolipid (Ax) with globo-series structure which is ...;Clausen et al. (1989) ABH and related histo-blood group antigens ...
+|accession=000087
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:b-dgal-HEX-1:5
+3b:a-dgal-HEX-1:5
+4b:b-dgal-HEX-1:5
+5s:n-acetyl
+6b:b-dgal-HEX-1:5
+7b:a-lgal-HEX-1:5{{!}}6:d
+8b:a-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+2:2o(4+1)3d
+3:3o(3+1)4d
+4:4d(2+1)5n
+5:4o(3+1)6d
+6:6o(2+1)7d
+7:6o(3+1)8d
+|glytoucan=G25216QA
+|sameas=GD.R000346,GDC.000087,GDV.000017,GM.G25216QA
+|wurcs=WURCS{{=}}2.0/5,7,6/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4-2-5-3/a4-b1_b4-c1_c3-d1_d3-e1_e2-f1_e3-g1
+}}

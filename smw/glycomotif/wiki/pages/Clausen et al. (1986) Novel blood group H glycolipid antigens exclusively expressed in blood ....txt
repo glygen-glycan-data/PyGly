@@ -1,0 +1,10 @@
+{{Publication
+|authors=Clausen H, Levery SB, Kannagi R, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;242
+|journal=J. Biol. Chem
+|pages=1380-7
+|pmid=3944091
+|title=Novel blood group H glycolipid antigens exclusively expressed in blood group A and AB erythrocytes (type 3 chain H). I. Isolation and chemical characterization
+|volume=261(3)
+|year=1986
+}}

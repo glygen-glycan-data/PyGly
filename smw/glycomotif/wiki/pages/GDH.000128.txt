@@ -1,0 +1,14 @@
+{{Motif
+|accession=000128
+|collection=GDH
+|displayhgv=false
+|glycoct=RES
+1b:o-dglc-HEX-0:0{{!}}1:aldi
+2s:n-acetyl
+LIN
+1:1d(2+1)2n
+|glytoucan=G89565QL
+|name=O-GlcNAc
+|sameas=GD.R000398,GM.G89565QL
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}h2122h_2*NCC/3{{=}}O{{!)}}/1/
+}}

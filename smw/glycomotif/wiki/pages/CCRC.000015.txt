@@ -1,0 +1,16 @@
+{{Motif
+|accession=000015
+|aglycon=R
+|collection=CCRC
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-x:x
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(3+1)2d
+|glytoucan=G00046MO
+|name=a-Gal antigen
+|redend=false
+|sameas=GM.G00046MO,GTC.G00046MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2112h{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
+}}

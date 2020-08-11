@@ -1,0 +1,16 @@
+{{Motif
+|accession=000064
+|aglycon=Cer
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:b-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+|glytoucan=G84224TW
+|name=Lactosylceramide
+|redend=true
+|sameas=GD.R000255,GDH.000094,GDSB.000003,GDV.000039,GE.EP0078,GGM.000064,GM.G84224TW,UCM.000094
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a4-b1
+}}

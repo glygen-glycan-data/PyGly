@@ -1,0 +1,11 @@
+{{Publication
+|authors=Leppänen A, Mehta P, Ouyang YB, Ju T, Helin J, Moore KL, van Die I, Canfield WM, McEver RP, Cummings RD
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;121
+|doi=10.1074/jbc.274.35.24838
+|journal=J. Biol. Chem
+|pages=24838-48
+|pmid=10455156
+|title=A novel glycosulfopeptide binds to P-selectin and inhibits leukocyte adhesion to P-selectin
+|volume=274(35)
+|year=1999
+}}

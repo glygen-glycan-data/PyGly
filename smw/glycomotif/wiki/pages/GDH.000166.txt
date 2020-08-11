@@ -1,0 +1,16 @@
+{{Motif
+|accession=000166
+|collection=GDH
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:x-dgal-HEX-1:5
+3s:n-acetyl
+LIN
+1:1o(-1+1)2d
+2:1d(2+1)3n
+|glytoucan=G47428UI
+|name=Lactosamine Like Structure
+|sameas=GD.R000364,GM.G47428UI
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1x_1-5{{!)}}/1-2/a?-b1
+}}

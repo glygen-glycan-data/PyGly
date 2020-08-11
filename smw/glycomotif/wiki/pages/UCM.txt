@@ -1,0 +1,7 @@
+{{Collection
+|contact=Matthew Campbell
+|email=m.campbell2@griffith.edu.au
+|name=UniCarbKB Motifs
+|primary=true
+|url=https://github.com/glygen-glycan-data/PyGly/raw/master/smw/glycomotif/data/Unicarb.xlsx
+}}

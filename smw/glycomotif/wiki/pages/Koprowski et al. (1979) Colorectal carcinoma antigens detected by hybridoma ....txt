@@ -1,0 +1,11 @@
+{{Publication
+|authors=Koprowski H, Steplewski Z, Mitchell K, Herlyn M, Herlyn D, Fuhrer P
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;256
+|doi=10.1007/BF01542654
+|journal=Somatic Cell Genet
+|pages=957-71
+|pmid=94699
+|title=Colorectal carcinoma antigens detected by hybridoma antibodies
+|volume=5(6)
+|year=1979
+}}

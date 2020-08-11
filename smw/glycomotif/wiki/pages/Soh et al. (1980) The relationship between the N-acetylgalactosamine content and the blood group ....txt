@@ -1,0 +1,11 @@
+{{Publication
+|authors=Soh CP, Morgan WT, Watkins WM, Donald AS
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;270
+|doi=10.1016/0006-291x(80)90607-5
+|journal=Biochem. Biophys. Res. Commun
+|pages=1132-9
+|pmid=6156677
+|title=The relationship between the N-acetylgalactosamine content and the blood group Sda activity of Tamm and Horsfall urinary glycoprotein
+|volume=93(4)
+|year=1980
+}}

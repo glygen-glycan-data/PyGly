@@ -1,0 +1,10 @@
+{{Publication
+|authors=Nudelman ED, Mandel U, Levery SB, Kaizu T, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;337
+|journal=J. Biol. Chem
+|pages=18719-25
+|pmid=2509467
+|title=A series of disialogangliosides with binary 2----3 sialosyllactosamine structure, defined by monoclonal antibody NUH2, are oncodevelopmentally regulated antigens
+|volume=264(31)
+|year=1989
+}}

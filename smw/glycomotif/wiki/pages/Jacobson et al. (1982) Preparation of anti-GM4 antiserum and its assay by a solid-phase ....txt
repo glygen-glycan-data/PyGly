@@ -1,0 +1,11 @@
+{{Publication
+|authors=Jacobson RI, Kasai N, Richards FF, Yu RK
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;309
+|doi=10.1016/0165-5728(82)90025-x
+|journal=J. Neuroimmunol
+|pages=225-35
+|pmid=7142381
+|title=Preparation of anti-GM4 antiserum and its assay by a solid-phase radioimmunoassay
+|volume=3(3)
+|year=1982
+}}

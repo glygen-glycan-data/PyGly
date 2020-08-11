@@ -1,0 +1,11 @@
+{{Publication
+|authors=Fenderson BA, Andrews PW, Nudelman E, Clausen H, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;297
+|doi=10.1016/0012-1606(87)90328-9
+|journal=Dev. Biol
+|pages=21-34
+|pmid=3297853
+|title=Glycolipid core structure switching from globo- to lacto- and ganglio-series during retinoic acid-induced differentiation of TERA-2-derived human embryonal carcinoma cells
+|volume=122(1)
+|year=1987
+}}

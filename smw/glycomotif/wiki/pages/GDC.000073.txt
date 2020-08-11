@@ -1,0 +1,22 @@
+{{Motif
+|accession=000073
+|aglycon=Cer
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2b:a-dgal-HEX-1:5
+3b:b-dgal-HEX-1:5
+4s:n-acetyl
+5s:sulfate
+LIN
+1:1o(4+1)2d
+2:2o(3+1)3d
+3:3d(2+1)4n
+4:3d(3+1)5n
+|glytoucan=G44854SQ
+|name=Mono-sulfated globotetraosylceramide
+|redend=true
+|sameas=GD.R000410,GM.G44854SQ
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O_3*SO/2{{=}}O/2{{=}}O{{!)}}/1-2-3/a4-b1_b3-c1
+}}

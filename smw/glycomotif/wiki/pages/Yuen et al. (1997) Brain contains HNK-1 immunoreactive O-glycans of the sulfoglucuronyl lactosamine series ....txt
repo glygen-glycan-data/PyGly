@@ -1,0 +1,11 @@
+{{Publication
+|authors=Yuen CT, Chai W, Loveless RW, Lawson AM, Margolis RU, Feizi T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;277
+|doi=10.1074/jbc.272.14.8924
+|journal=J. Biol. Chem
+|pages=8924-31
+|pmid=9083013
+|title=Brain contains HNK-1 immunoreactive O-glycans of the sulfoglucuronyl lactosamine series that terminate in 2-linked or 2,6-linked hexose (mannose)
+|volume=272(14)
+|year=1997
+}}

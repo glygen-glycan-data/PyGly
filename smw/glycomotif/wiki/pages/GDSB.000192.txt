@@ -1,0 +1,11 @@
+{{Motif
+|accession=000192
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+|glytoucan=G15021LG
+|name=Glucose
+|sameas=GD.R000343,GM.G15021LG
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2122h-1x_1-5{{!)}}/1/
+}}

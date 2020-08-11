@@ -1,0 +1,16 @@
+{{Motif
+|accession=000151
+|collection=GDH
+|displayhgv=false
+|glycoct=RES
+1b:o-dgal-HEX-0:0{{!}}1:aldi
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+|glytoucan=G58645HA
+|name=Core 1 / T antigen
+|sameas=GD.R000002,GDH.000067,GM.G58645HA
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}h2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a3-b1
+}}

@@ -1,0 +1,14 @@
+{{Motif
+|accession=000076
+|collection=GDH
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2s:sulfate
+LIN
+1:1o(3+1)2n
+|glytoucan=G40843KY
+|name=Galactose 3-O-Sulfate
+|sameas=CCRC.000063,GD.R000311,GE.EP0312,GM.G40843KY,UCM.000076
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1x_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1/
+}}

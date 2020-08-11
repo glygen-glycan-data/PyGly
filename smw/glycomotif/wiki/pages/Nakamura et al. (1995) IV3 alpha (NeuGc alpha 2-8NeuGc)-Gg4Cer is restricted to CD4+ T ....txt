@@ -1,0 +1,10 @@
+{{Publication
+|authors=Nakamura K, Suzuki H, Hirabayashi Y, Suzuki A
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;323
+|journal=J. Biol. Chem
+|pages=3876-81
+|pmid=7533156
+|title=IV3 alpha (NeuGc alpha 2-8NeuGc)-Gg4Cer is restricted to CD4+ T cells producing interleukin-2 and a small population of mature thymocytes in mice
+|volume=270(8)
+|year=1995
+}}

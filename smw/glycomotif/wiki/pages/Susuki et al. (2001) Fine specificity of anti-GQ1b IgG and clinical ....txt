@@ -1,0 +1,11 @@
+{{Publication
+|authors=Susuki K, Yuki N, Hirata K
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;225
+|doi=10.1016/s0022-510x(01)00464-6
+|journal=J. Neurol. Sci
+|pages=5-9
+|pmid=11266684
+|title=Fine specificity of anti-GQ1b IgG and clinical features
+|volume=185(1)
+|year=2001
+}}

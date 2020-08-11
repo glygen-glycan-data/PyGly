@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:pmid]] 
+{{DISPLAYTITLE:glycomotif:pmid}}
+[[External formatter uri::https://pubmed.ncbi.nlm.nih.gov/$1/]]
+[[Category:Imported vocabulary]]

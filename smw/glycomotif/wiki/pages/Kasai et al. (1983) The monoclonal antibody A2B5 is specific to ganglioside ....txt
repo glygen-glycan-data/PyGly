@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kasai N, Yu RK
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;334
+|doi=10.1016/0006-8993(83)90918-6
+|journal=Brain Res
+|pages=155-8
+|pmid=6640289
+|title=The monoclonal antibody A2B5 is specific to ganglioside GQ1c
+|volume=277(1)
+|year=1983
+}}

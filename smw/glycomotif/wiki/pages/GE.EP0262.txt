@@ -1,0 +1,22 @@
+{{Motif
+|accession=EP0262
+|aglycon=R
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4b:a-lgal-HEX-1:5{{!}}6:d
+5b:a-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3o(2+1)4d
+4:3o(3+1)5d
+|glytoucan=G94956AW
+|name=Blood Group B Type 2
+|redend=false
+|sameas=GD.R000192,GDB.002191,GDH.000028,GM.G94956AW,UCM.000028
+|wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4/a4-b1_b2-c1_b3-d1
+}}

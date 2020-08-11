@@ -6,6 +6,9 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  url|Type:Url
  Motif|Category
  accession|Type:Text
+ reference|Type:Page
+ citedby|Type:Record
+ refid|Type:Text
  name|Type:Text
  preferred_name|Type:Text
  incollection|Type:Page
@@ -25,6 +28,14 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  has_redend_alignment|Type:External identifier
  has_other_alignment|Type:External identifier
  has_alignment|Type:External identifier
-
+ Publication|Category
+ authors|Type:Text
+ title|Type:Text
+ journal|Type:Text
+ year|Type:Text
+ pmid|Type:External identifier
+ doi|Type:External identifier
+ pages|Type:Text
+ volume|Type:Text
 
 [[Category:Imported vocabulary]]

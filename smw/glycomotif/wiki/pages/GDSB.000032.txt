@@ -1,0 +1,16 @@
+{{Motif
+|accession=000032
+|aglycon=Cer
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+|glytoucan=G67988RO
+|name=Galabiosylceramide
+|redend=true
+|sameas=GD.R000441,GDH.000075,GDSB.000062,GDSB.000079,GE.EP0113,GM.G67988RO,UCM.000075
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a4-b1
+}}

@@ -1,0 +1,10 @@
+{{Publication
+|authors=Nudelman ED, Levery SB, Stroud MR, Salyan ME, Abe K, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;335
+|journal=J. Biol. Chem
+|pages=13942-51
+|pmid=3417685
+|title=A novel tumor-associated, developmentally regulated glycolipid antigen defined by monoclonal antibody ACFH-18
+|volume=263(27)
+|year=1988
+}}

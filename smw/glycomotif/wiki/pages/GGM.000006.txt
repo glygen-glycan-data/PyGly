@@ -1,0 +1,26 @@
+{{Motif
+|prefname=Type 1 LN2
+|name=Type 1 LN2
+|aglycon=R
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yamashita et al. (1989) Carbohydrate structures of nonspecific cross-reacting antigen-2, a glycoprotein purified from ...
+|accession=000006
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4b:b-dglc-HEX-1:5
+5s:n-acetyl
+6b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3o(3+1)4d
+4:4d(2+1)5n
+5:4o(3+1)6d
+|glytoucan=G43784HS
+|sameas=GD.R000378,GDC.000006,GDV.000035,GM.G43784HS
+|wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2/a3-b1_b3-c1_c3-d1
+}}

@@ -1,0 +1,10 @@
+{{Publication
+|authors=Kleene R, Yang H, Kutsche M, Schachner M
+|title=The neural recognition molecule L1 is a sialic acid-binding lectin for CD24, which induces promotion and inhibition of neurite outgrowth
+|journal=J Biol Chem
+|year=2001
+|volume=276(24)
+|pages=21656-21663
+|pmid=11283023
+|doi=10.1074/jbc.M101790200
+}}

@@ -1,0 +1,14 @@
+{{Motif
+|accession=000031
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+|glytoucan=G62763GO
+|name=Galabiose
+|sameas=GD.R000168,GM.G62763GO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1x_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a4-b1
+}}

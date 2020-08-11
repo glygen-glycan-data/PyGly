@@ -1,0 +1,11 @@
+{{Publication
+|authors=Clarke JT, Embil JA
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;287
+|doi=10.1016/0304-4165(79)90391-x
+|journal=Biochim. Biophys. Acta
+|pages=283-94
+|pmid=760826
+|title=Preparation and characterization of antibody to galactosyl(alpha 1 leads to 4)galactosyl(beta 1 leads to 4)glucosylceramide
+|volume=582(2)
+|year=1979
+}}

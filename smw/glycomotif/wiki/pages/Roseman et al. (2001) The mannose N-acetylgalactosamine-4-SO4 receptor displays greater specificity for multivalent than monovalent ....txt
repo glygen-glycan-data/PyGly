@@ -1,0 +1,11 @@
+{{Publication
+|authors=Roseman DS, Baenziger JU
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;223
+|doi=10.1074/jbc.M101027200
+|journal=J. Biol. Chem
+|pages=17052-7
+|pmid=11279168
+|title=The mannose/N-acetylgalactosamine-4-SO4 receptor displays greater specificity for multivalent than monovalent ligands
+|volume=276(20)
+|year=2001
+}}

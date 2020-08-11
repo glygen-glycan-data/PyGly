@@ -1,0 +1,10 @@
+{{Publication
+|authors=Springer GF, Desai PR, Banatwala I
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;239
+|journal=J. Natl. Cancer Inst
+|pages=335-9
+|pmid=163330
+|title=Blood group MN antigens and precursors in normal and malignant human breast glandular tissue
+|volume=54(2)
+|year=1975
+}}

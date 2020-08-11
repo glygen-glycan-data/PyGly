@@ -1,0 +1,24 @@
+{{Motif
+|accession=000050
+|aglycon=R
+|collection=CCRC
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4s:n-acetyl
+5b:a-dgro-dgal-NON-2:6{{!}}1:a{{!}}2:keto{{!}}3:d
+6s:n-acetyl
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3d(2+1)4n
+4:3o(6+2)5d
+5:5d(5+1)6n
+|glytoucan=G55583HW
+|name=Sialylated LDN
+|redend=false
+|sameas=GD.R000196,GDC.000050,GDV.000118,GGM.000050,GM.G55583HW
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3/a4-b1_b6-c2
+}}

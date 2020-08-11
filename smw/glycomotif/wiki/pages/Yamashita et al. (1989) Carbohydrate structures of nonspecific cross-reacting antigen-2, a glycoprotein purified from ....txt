@@ -1,0 +1,10 @@
+{{Publication
+|authors=Yamashita K, Totani K, Iwaki Y, Kuroki M, Matsuoka Y, Endo T, Kobata A
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;236
+|journal=J. Biol. Chem
+|pages=17873-81
+|pmid=2808357
+|title=Carbohydrate structures of nonspecific cross-reacting antigen-2, a glycoprotein purified from meconium as an antigen cross-reacting with anticarcinoembryonic antigen antibody. Occurrence of complex-type sugar chains with the Gal beta 1----3GlcNAc beta 1----3Gal beta 1----4GlcNAc beta 1----outer chains
+|volume=264(30)
+|year=1989
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Ariga T, Suetake K, Nakane M, Kubota M, Usuki S, Kawashima I, Yu RK
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;315
+|doi=10.1159/000111565
+|journal=Neurosignals
+|pages=226-34
+|pmid=18253060
+|title=Glycosphingolipid antigens in neural tumor cell lines and anti-glycosphingolipid antibodies in sera of patients with neural tumors
+|volume=16(2-3)
+|year=2008
+}}

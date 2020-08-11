@@ -1,0 +1,7 @@
+{{Collection
+|contact=Kiyoko Aoki-Kinoshita
+|email=kkiyoko@soka.ac.jp
+|name=GlyTouCan Motifs
+|primary=true
+|url=https://glytoucan.org/Motifs/listAll
+}}

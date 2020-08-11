@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:citedby]] 
+{{DISPLAYTITLE:glycomotif:citedby}}
+[[Has fields::Property:glycomotif:reference;Property:glycomotif:refid]]
+[[Category:Imported vocabulary]]

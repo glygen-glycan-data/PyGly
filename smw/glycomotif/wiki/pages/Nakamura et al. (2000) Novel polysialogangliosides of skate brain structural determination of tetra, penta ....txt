@@ -1,0 +1,11 @@
+{{Publication
+|authors=Nakamura K, Kojima H, Suzuki M, Suzuki A, Tamai Y
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;332
+|doi=10.1046/j.1432-1327.2000.01590.x
+|journal=Eur. J. Biochem
+|pages=5198-208
+|pmid=10931205
+|title=Novel polysialogangliosides of skate brain structural determination of tetra, penta and hexasialogangliosides with a NeuAc-GalNAc linkage
+|volume=267(16)
+|year=2000
+}}

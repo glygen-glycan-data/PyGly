@@ -1,0 +1,10 @@
+{{Publication
+|authors=Cummings RD
+|title=The repertoire of glycan determinants in the human glycome
+|journal=Mol Biosyst
+|year=2009
+|volume=5(10)
+|pages=1087-104
+|pmid=19756298
+|doi=10.1039/b907931a
+}}

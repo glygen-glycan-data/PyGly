@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kyogashima M, Mulshine J, Linnoila RI, Jensen S, Magnani JL, Nudelman E, Hakomori S, Ginsburg V
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;336
+|doi=10.1016/0003-9861(89)90378-0
+|journal=Arch. Biochem. Biophys
+|pages=309-14
+|pmid=2554809
+|title=Antibody 624H12, which detects lung cancer at early stages, recognizes a sugar sequence in the glycosphingolipid difucosylneolactonorhexaosylceramide (V3FucIII3FunLc6Cer)
+|volume=275(1)
+|year=1989
+}}

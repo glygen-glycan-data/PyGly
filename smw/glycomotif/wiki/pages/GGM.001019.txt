@@ -1,0 +1,15 @@
+{{Motif
+|accession=001019
+|aglycon=Ser/Thr
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dman-HEX-1:5
+|glytoucan=G70323CJ
+|name=O-Mannose
+Mannose
+|prefname=O-Mannose
+|redend=true
+|sameas=GD.R000245,GDSB.000044,GDSB.000067,GDSB.000072,GM.G70323CJ
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a1122h-1x_1-5{{!)}}/1/
+}}

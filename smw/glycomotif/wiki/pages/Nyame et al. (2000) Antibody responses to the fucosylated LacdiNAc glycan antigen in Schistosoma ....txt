@@ -1,0 +1,11 @@
+{{Publication
+|authors=Nyame AK, Leppänen AM, Bogitsh BJ, Cummings RD
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;248
+|doi=10.1006/expr.2000.4573
+|journal=Exp. Parasitol
+|pages=202-12
+|pmid=11162373
+|title=Antibody responses to the fucosylated LacdiNAc glycan antigen in Schistosoma mansoni-infected mice and expression of the glycan among schistosomes
+|volume=96(4)
+|year=2000
+}}

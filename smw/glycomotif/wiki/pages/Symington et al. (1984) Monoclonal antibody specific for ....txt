@@ -1,0 +1,10 @@
+{{Publication
+|authors=Symington FW, Bernstein ID, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;283
+|journal=J. Biol. Chem
+|pages=6008-12
+|pmid=6585365
+|title=Monoclonal antibody specific for lactosylceramide
+|volume=259(9)
+|year=1984
+}}

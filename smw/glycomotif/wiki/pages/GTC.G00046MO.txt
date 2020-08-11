@@ -1,0 +1,15 @@
+{{Motif
+|accession=G00046MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-x:x
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(3+1)2d
+|glytoucan=G00046MO
+|name=Galalpha1-3Gal epitope
+|redend=false
+|sameas=CCRC.000015,GM.G00046MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2112h{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
+}}

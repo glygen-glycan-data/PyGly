@@ -1,0 +1,20 @@
+{{Motif
+|prefname=Type 1 LN
+|name=Type 1 LN
+|aglycon=R
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Le et al. (1982) Purification of anti-Lec antibodies with specificity for beta DGal(1 replaced ...
+|accession=000005
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+|glytoucan=G00056MO
+|sameas=GD.R000243,GDB.002273,GDC.000005,GDH.000164,GM.G00056MO,GTC.G00056MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a3-b1
+}}

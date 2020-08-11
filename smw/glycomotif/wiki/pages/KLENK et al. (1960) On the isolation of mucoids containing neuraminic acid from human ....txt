@@ -1,0 +1,11 @@
+{{Publication
+|authors=KLENK E, UHLENBRUCK G
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;240
+|doi=10.1515/bchm2.1960.319.1.151
+|journal=Hoppe-Seyler's Z. Physiol. Chem
+|pages=151-60
+|pmid=13756766
+|title={{!(}}On the isolation of mucoids containing neuraminic acid from human erythrocyte stroma, a contribution to the chemistry of agglutinogens{{!)}}
+|volume=319
+|year=1960
+}}

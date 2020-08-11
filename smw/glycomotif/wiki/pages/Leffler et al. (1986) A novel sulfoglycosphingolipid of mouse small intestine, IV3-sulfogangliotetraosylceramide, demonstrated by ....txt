@@ -1,0 +1,10 @@
+{{Publication
+|authors=Leffler H, Hansson GC, Strömberg N
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;285
+|journal=J. Biol. Chem
+|pages=1440-4
+|pmid=3944094
+|title=A novel sulfoglycosphingolipid of mouse small intestine, IV3-sulfogangliotetraosylceramide, demonstrated by negative ion fast atom bombardment mass spectrometry
+|volume=261(3)
+|year=1986
+}}

@@ -1,0 +1,24 @@
+{{Motif
+|accession=000036
+|collection=GDH
+|displayhgv=false
+|glycoct=RES
+1r:r1
+REP
+REP1:4o(4+1)2d{{=}}-1--1
+RES
+2b:b-dgal-HEX-1:5
+3s:n-acetyl
+4b:b-dglc-HEX-1:5{{!}}6:a
+5s:sulfate
+6s:sulfate
+LIN
+1:2d(2+1)3n
+2:2o(3+1)4d
+3:4o(2+1)5n
+4:2o(6+1)6n
+|glytoucan=G46732TY
+|name=Chodroitin Sulfate D Unit
+|sameas=GD.R000171,GE.EP0084,GM.G46732TY
+|wurcs=WURCS{{=}}2.0/2,2,2/{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O_6*OSO/3{{=}}O/3{{=}}O{{!)}}{{!(}}a2122A-1b_1-5_2*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a3-b1_a1-b4~n
+}}

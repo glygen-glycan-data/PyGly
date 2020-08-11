@@ -1,0 +1,11 @@
+{{Publication
+|authors=Bollensen E, Schipper HI, Steck AJ
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;325
+|doi=10.1007/BF00314380
+|journal=J. Neurol
+|pages=353-5
+|pmid=2795103
+|title=Motor neuropathy with activity of monoclonal IgM antibody to GD1a ganglioside
+|volume=236(6)
+|year=1989
+}}

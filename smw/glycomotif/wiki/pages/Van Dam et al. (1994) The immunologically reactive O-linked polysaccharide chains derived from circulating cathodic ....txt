@@ -1,0 +1,11 @@
+{{Publication
+|authors=Van Dam GJ, Bergwerff AA, Thomas-Oates JE, Rotmans JP, Kamerling JP, Vliegenthart JF, Deelder AM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;220
+|doi=10.1111/j.1432-1033.1994.00467.x
+|journal=Eur. J. Biochem
+|pages=467-82
+|pmid=7925469
+|title=The immunologically reactive O-linked polysaccharide chains derived from circulating cathodic antigen isolated from the human blood fluke Schistosoma mansoni have Lewis x as repeating unit
+|volume=225(1)
+|year=1994
+}}

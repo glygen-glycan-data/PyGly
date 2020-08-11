@@ -1,0 +1,11 @@
+{{Publication
+|authors=Ito A, Saito S, Masuko T, Oh-Eda M, Matsuura T, Satoh M, Nejad FM, Enomoto T, Orikasa S, Hakomori SI
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;302
+|doi=10.1023/a:1016281002344
+|journal=Glycoconj. J
+|pages=475-85
+|pmid=12084983
+|title=Monoclonal antibody (5F3) defining renal cell carcinoma-associated antigen disialosyl globopentaosylceramide (V3NeuAcIV6NeuAcGb5), and distribution pattern of the antigen in tumor and normal tissues
+|volume=18(6)
+|year=2001
+}}

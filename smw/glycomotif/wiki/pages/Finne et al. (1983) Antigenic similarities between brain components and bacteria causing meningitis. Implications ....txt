@@ -1,0 +1,11 @@
+{{Publication
+|authors=Finne J, Leinonen M, Mäkelä PH
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;272
+|doi=10.1016/s0140-6736(83)90340-9
+|journal=Lancet
+|pages=355-7
+|pmid=6135869
+|title=Antigenic similarities between brain components and bacteria causing meningitis. Implications for vaccine development and pathogenesis
+|volume=2(8346)
+|year=1983
+}}

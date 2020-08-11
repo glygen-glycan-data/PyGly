@@ -1,0 +1,13 @@
+{{Motif
+|accession=000087
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(3+1)2d
+|glytoucan=G78260AJ
+|sameas=GD.R000503,GM.G78260AJ
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1x_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
+}}

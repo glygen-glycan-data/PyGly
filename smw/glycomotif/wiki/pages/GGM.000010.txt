@@ -1,0 +1,22 @@
+{{Motif
+|prefname=H antigen (type 3)
+|name=H antigen (type 3)
+|aglycon=Ser/Thr
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1986) Novel blood group H glycolipid antigens exclusively expressed in blood ...
+|accession=000010
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dgal-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4b:a-lgal-HEX-1:5{{!}}6:d
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3o(2+1)4d
+|glytoucan=G94435QH
+|sameas=GD.R000490,GDB.002143,GDC.000010,GDH.000032,GDV.000006,GE.EP0253,GM.G94435QH,UCM.000032
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a3-b1_b2-c1
+}}

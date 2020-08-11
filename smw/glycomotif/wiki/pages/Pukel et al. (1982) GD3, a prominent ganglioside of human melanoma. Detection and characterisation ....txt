@@ -1,0 +1,11 @@
+{{Publication
+|authors=Pukel CS, Lloyd KO, Travassos LR, Dippold WG, Oettgen HF, Old LJ
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;312
+|doi=10.1084/jem.155.4.1133
+|journal=J. Exp. Med
+|pages=1133-47
+|pmid=7061953
+|title=GD3, a prominent ganglioside of human melanoma. Detection and characterisation by mouse monoclonal antibody
+|volume=155(4)
+|year=1982
+}}

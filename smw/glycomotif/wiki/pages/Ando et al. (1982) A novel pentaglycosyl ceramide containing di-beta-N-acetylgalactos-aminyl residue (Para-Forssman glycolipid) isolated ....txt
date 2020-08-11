@@ -1,0 +1,10 @@
+{{Publication
+|authors=Ando S, Kon K, Nagai Y, Yamakawa T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;306
+|journal=Adv. Exp. Med. Biol
+|pages=71-81
+|pmid=6814203
+|title=A novel pentaglycosyl ceramide containing di-beta-N-acetylgalactos-aminyl residue (Para-Forssman glycolipid) isolated from human erythrocyte membrane
+|volume=152
+|year=1982
+}}

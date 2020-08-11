@@ -1,0 +1,10 @@
+{{Publication
+|authors=Nagai K, Roberts DD, Toida T, Matsumoto H, Kushi Y, Handa S, Ishizuka I
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;293
+|title=Mono-sulfated globopentaosylceramide from human kidney
+|journal=J Biol Chem
+|year=1989
+|volume=264(27)
+|pages=16229-37
+|pmid=2777788
+}}

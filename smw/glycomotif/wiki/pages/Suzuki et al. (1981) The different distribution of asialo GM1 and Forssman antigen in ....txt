@@ -1,0 +1,11 @@
+{{Publication
+|authors=Suzuki A, Yamakawa T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;320
+|doi=10.1093/oxfordjournals.jbchem.a133622
+|journal=J. Biochem
+|pages=1541-4
+|pmid=6175621
+|title=The different distribution of asialo GM1 and Forssman antigen in the small intestine of mouse demonstrated by immunofluorescence staining
+|volume=90(5)
+|year=1981
+}}

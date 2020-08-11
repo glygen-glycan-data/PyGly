@@ -1,0 +1,11 @@
+{{Publication
+|authors=Nagai K, Tadano-Aritomi K, Niimura Y, Ishizuka I
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;284
+|doi=10.1007/s10719-008-9132-x
+|journal=Glycoconj. J
+|pages=723-6
+|pmid=18470608
+|title=Higher expression of renal sulfoglycolipids in marine mammals
+|volume=25(8)
+|year=2008
+}}

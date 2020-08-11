@@ -1,0 +1,6 @@
+{{Collection
+|name=GlyGen Motifs
+|contact=Nathan Edwards
+|email=nje5@georgetown.edu
+|primary=true
+}}

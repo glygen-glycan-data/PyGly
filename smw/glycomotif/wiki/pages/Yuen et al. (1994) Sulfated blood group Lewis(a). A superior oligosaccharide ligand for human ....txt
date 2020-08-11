@@ -1,0 +1,10 @@
+{{Publication
+|authors=Yuen CT, Bezouska K, O'Brien J, Stoll M, Lemoine R, Lubineau A, Kiso M, Hasegawa A, Bockovich NJ, Nicolaou KC
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;259
+|journal=J. Biol. Chem
+|pages=1595-8
+|pmid=7507478
+|title=Sulfated blood group Lewis(a). A superior oligosaccharide ligand for human E-selectin
+|volume=269(3)
+|year=1994
+}}

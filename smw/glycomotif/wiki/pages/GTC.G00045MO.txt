@@ -1,0 +1,21 @@
+{{Motif
+|accession=G00045MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-x:x
+2s:amino
+3b:a-dman-HEX-1:5
+4b:a-dman-HEX-1:5
+5b:a-dman-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3o(6+1)4d
+4:4o(2+1)5d
+|glytoucan=G00045MO
+|name=GPI anchor core
+|redend=false
+|sameas=GM.G00045MO
+|wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}u2122h_2*N{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-2-2/a4-b1_b6-c1_c2-d1
+}}

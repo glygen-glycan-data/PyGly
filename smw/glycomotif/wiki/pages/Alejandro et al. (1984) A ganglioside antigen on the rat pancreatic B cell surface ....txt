@@ -1,0 +1,11 @@
+{{Publication
+|authors=Alejandro R, Shienvold FL, Hajek SA, Pierce M, Paul R, Mintz DH
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;326
+|doi=10.1172/JCI111409
+|journal=J. Clin. Invest
+|pages=25-38
+|pmid=6376545
+|title=A ganglioside antigen on the rat pancreatic B cell surface identified by monoclonal antibody R2D6
+|volume=74(1)
+|year=1984
+}}

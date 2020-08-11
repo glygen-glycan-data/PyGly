@@ -1,0 +1,11 @@
+{{Publication
+|authors=Park EI, Mi Y, Unverzagt C, Gabius HJ, Baenziger JU
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;269
+|doi=10.1073/pnas.0508537102
+|journal=Proc. Natl. Acad. Sci. U.S.A
+|pages=17125-9
+|pmid=16286643
+|title=The asialoglycoprotein receptor clears glycoconjugates terminating with sialic acid alpha 2,6GalNAc
+|volume=102(47)
+|year=2005
+}}

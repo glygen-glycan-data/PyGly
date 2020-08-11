@@ -1,0 +1,10 @@
+{{Publication
+|authors=Young WW, Portoukalian J, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;264
+|journal=J. Biol. Chem
+|pages=10967-72
+|pmid=7287743
+|title=Two monoclonal anticarbohydrate antibodies directed to glycosphingolipids with a lacto-N-glycosyl type II chain
+|volume=256(21)
+|year=1981
+}}

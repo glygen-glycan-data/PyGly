@@ -1,0 +1,11 @@
+{{Publication
+|authors=Cahan LD, Irie RF, Singh R, Cassidenti A, Paulson JC
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;316
+|doi=10.1073/pnas.79.24.7629
+|journal=Proc. Natl. Acad. Sci. U.S.A
+|pages=7629-33
+|pmid=6296843
+|title=Identification of a human neuroectodermal tumor antigen (OFA-I-2) as ganglioside GD2
+|volume=79(24)
+|year=1982
+}}

@@ -1,0 +1,15 @@
+{{Motif
+|prefname=Glucosylceramide
+|name=Glucosylceramide
+|aglycon=Cer
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kuroki et al. (1992) Binding specificity of lung surfactant protein SP-D for ...
+|accession=000060
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+|glytoucan=G71142DF
+|sameas=GD.R000532,GDC.000060,GDSB.000005,GDV.000082,GM.G71142DF
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2122h-1b_1-5{{!)}}/1/
+}}

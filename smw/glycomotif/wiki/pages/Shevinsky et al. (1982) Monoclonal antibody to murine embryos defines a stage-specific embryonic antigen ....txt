@@ -1,0 +1,11 @@
+{{Publication
+|authors=Shevinsky LH, Knowles BB, Damjanov I, Solter D
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;300
+|doi=10.1016/0092-8674(82)90274-4
+|journal=Cell
+|pages=697-705
+|pmid=6183004
+|title=Monoclonal antibody to murine embryos defines a stage-specific embryonic antigen expressed on mouse embryos and human teratocarcinoma cells
+|volume=30(3)
+|year=1982
+}}

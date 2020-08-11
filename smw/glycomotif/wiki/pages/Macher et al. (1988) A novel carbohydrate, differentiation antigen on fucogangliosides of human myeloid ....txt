@@ -1,0 +1,10 @@
+{{Publication
+|authors=Macher BA, Buehler J, Scudder P, Knapp W, Feizi T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;222
+|journal=J. Biol. Chem
+|pages=10186-91
+|pmid=3164721
+|title=A novel carbohydrate, differentiation antigen on fucogangliosides of human myeloid cells recognized by monoclonal antibody VIM-2
+|volume=263(21)
+|year=1988
+}}

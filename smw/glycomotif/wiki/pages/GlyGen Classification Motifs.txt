@@ -1,6 +1,6 @@
 {{#ask: [[Category:Motif]]
 [[Glycomotif:incollection::GGM]]
-[[Glycomotif:id::~GGM.001*]]
+[[Glycomotif:accession::~001*]]
  |?Glycomotif:accession=glycomotif:accession
  |?Glycomotif:name=glycomotif:name
  |?Glycomotif:aglycon=glycomotif:aglycon

@@ -1,0 +1,23 @@
+{{Motif
+|accession=G00038MO
+|collection=GTC
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-x:x
+2s:n-acetyl
+3b:b-dglc-HEX-1:5
+4s:n-acetyl
+5b:b-dglc-HEX-1:5
+6s:n-acetyl
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3d(2+1)4n
+4:1o(6+1)5d
+5:5d(2+1)6n
+|glytoucan=G00038MO
+|name=O-Glycan core 4 fuzzy
+|redend=true
+|sameas=GGM.001012,GM.G00038MO
+|wurcs=WURCS{{=}}2.0/2,3,2/{{!(}}u2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-2/a3-b1_a6-c1
+}}

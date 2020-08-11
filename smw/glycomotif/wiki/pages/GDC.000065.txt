@@ -1,0 +1,18 @@
+{{Motif
+|accession=000065
+|aglycon=Cer
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+2b:b-dgal-HEX-1:5
+3s:sulfate
+LIN
+1:1o(4+1)2d
+2:2d(3+1)3n
+|glytoucan=G98482BC
+|name=Ceramide dihexosyl sulfate
+|redend=true
+|sameas=GD.R000049,GM.G98482BC
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5_3*SO/2{{=}}O/2{{=}}O{{!)}}/1-2/a4-b1
+}}

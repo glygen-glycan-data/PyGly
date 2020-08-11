@@ -1,0 +1,11 @@
+{{Publication
+|authors=Symington FW, Fenderson BA, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;286
+|doi=10.1016/0161-5890(84)90142-1
+|journal=Mol. Immunol
+|pages=877-82
+|pmid=6209560
+|title=Fine specificity of a monoclonal anti-testicular cell antibody for glycolipids with terminal N-acetyl-D-glucosamine structure
+|volume=21(10)
+|year=1984
+}}

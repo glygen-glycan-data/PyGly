@@ -1,0 +1,11 @@
+{{Publication
+|authors=Clausen H, Levery SB, McKibbin JM, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;266
+|doi=10.1021/bi00335a028
+|journal=Biochemistry
+|pages=3578-86
+|pmid=4041428
+|title=Blood group A determinants with mono- and difucosyl type 1 chain in human erythrocyte membranes
+|volume=24(14)
+|year=1985
+}}

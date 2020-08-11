@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kundu SK, Marcus DM, Veh RW
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;311
+|title=Preparation and properties of antibodies to GD3 and GM1 gangliosides
+|journal=J Neurochem
+|year=1980
+|volume=34(1)
+|pages=184-188
+|pmid=6778957
+|doi=10.1111/j.1471-4159.1980.tb04638.x
+}}

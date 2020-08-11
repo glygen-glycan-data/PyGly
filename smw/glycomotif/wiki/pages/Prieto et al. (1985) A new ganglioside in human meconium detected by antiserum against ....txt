@@ -1,0 +1,11 @@
+{{Publication
+|authors=Prieto PA, Smith DF
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;342
+|doi=10.1016/0003-9861(85)90384-4
+|journal=Arch. Biochem. Biophys
+|pages=281-9
+|pmid=3896152
+|title=A new ganglioside in human meconium detected by antiserum against the human milk sialyloligosaccharide, LS-tetrasaccharide b
+|volume=241(1)
+|year=1985
+}}

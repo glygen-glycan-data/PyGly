@@ -1,0 +1,11 @@
+{{Publication
+|authors=Galili U, Macher BA, Buehler J, Shohet SB
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;246
+|doi=10.1084/jem.162.2.573
+|journal=J. Exp. Med
+|pages=573-82
+|pmid=2410529
+|title=Human natural anti-alpha-galactosyl IgG. II. The specific recognition of alpha (1----3)-linked galactose residues
+|volume=162(2)
+|year=1985
+}}

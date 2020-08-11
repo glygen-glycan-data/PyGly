@@ -1,0 +1,11 @@
+{{Publication
+|authors=Watanabe K, Hakomori S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;301
+|doi=10.1021/bi00591a037
+|journal=Biochemistry
+|pages=5502-4
+|pmid=518853
+|title=Gangliosides of human erythrocytes. A novel ganglioside with a unique N-acetylneuraminosyl-(2 leads to 3)-N-acetylgalactosamine structure
+|volume=18(24)
+|year=1979
+}}

@@ -1,0 +1,22 @@
+{{Motif
+|accession=000065
+|aglycon=Cer
+|collection=GDV
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2b:b-dgal-HEX-1:5
+3b:a-dgal-HEX-1:5
+4b:b-dgal-HEX-1:5
+5s:n-acetyl
+LIN
+1:1o(4+1)2d
+2:2o(4+1)3d
+3:3o(3+1)4d
+4:4d(2+1)5n
+|glytoucan=G00061MO
+|name=Globoside(P antigen)  (Gb4)
+|redend=true
+|sameas=CCRC.000070,GD.R000034,GDC.000070,GDH.000081,GDSB.000018,GE.EP0073,GGM.000070,GM.G00061MO,GTC.G00061MO,UCM.000081
+|wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4/a4-b1_b4-c1_c3-d1
+}}

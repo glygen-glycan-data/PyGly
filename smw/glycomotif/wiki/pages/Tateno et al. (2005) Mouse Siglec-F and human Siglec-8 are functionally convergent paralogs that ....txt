@@ -1,0 +1,11 @@
+{{Publication
+|authors=Tateno H, Crocker PR, Paulson JC
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;257
+|doi=10.1093/glycob/cwi097
+|journal=Glycobiology
+|pages=1125-35
+|pmid=15972893
+|title=Mouse Siglec-F and human Siglec-8 are functionally convergent paralogs that are selectively expressed on eosinophils and recognize 6'-sulfo-sialyl Lewis X as a preferred glycan ligand
+|volume=15(11)
+|year=2005
+}}

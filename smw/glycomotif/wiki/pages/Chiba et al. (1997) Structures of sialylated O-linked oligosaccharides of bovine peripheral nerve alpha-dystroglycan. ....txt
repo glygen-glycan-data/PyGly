@@ -1,0 +1,11 @@
+{{Publication
+|authors=Chiba A, Matsumura K, Yamada H, Inazu T, Shimizu T, Kusunoki S, Kanazawa I, Kobata A, Endo T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;274,GE;EP002
+|doi=10.1074/jbc.272.4.2156
+|journal=J. Biol. Chem
+|pages=2156-62
+|pmid=8999917
+|title=Structures of sialylated O-linked oligosaccharides of bovine peripheral nerve alpha-dystroglycan. The role of a novel O-mannosyl-type oligosaccharide in the binding of alpha-dystroglycan with laminin
+|volume=272(4)
+|year=1997
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Agui T, Syuto B, Oguma K, Iida H, Kubo S
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;331
+|doi=10.1093/oxfordjournals.jbchem.a135047
+|journal=J. Biochem
+|pages=213-8
+|pmid=2581939
+|title=The structural relation between the antigenic determinants to monoclonal antibodies and binding sites to rat brain synaptosomes and GT1b ganglioside in Clostridium botulinum type C neurotoxin
+|volume=97(1)
+|year=1985
+}}

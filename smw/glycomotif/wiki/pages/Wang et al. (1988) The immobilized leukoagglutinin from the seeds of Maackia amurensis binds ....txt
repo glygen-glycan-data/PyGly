@@ -1,0 +1,10 @@
+{{Publication
+|authors=Wang WC, Cummings RD
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;261
+|journal=J. Biol. Chem
+|pages=4576-85
+|pmid=3350806
+|title=The immobilized leukoagglutinin from the seeds of Maackia amurensis binds with high affinity to complex-type Asn-linked oligosaccharides containing terminal sialic acid-linked alpha-2,3 to penultimate galactose residues
+|volume=263(10)
+|year=1988
+}}

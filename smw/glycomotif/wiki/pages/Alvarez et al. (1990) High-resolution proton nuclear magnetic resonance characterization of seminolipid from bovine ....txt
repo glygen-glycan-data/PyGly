@@ -1,0 +1,10 @@
+{{Publication
+|authors=Alvarez JG, Storey BT, Hemling ML, Grob RL
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;281
+|journal=J. Lipid Res
+|pages=1073-81
+|pmid=2373957
+|title=High-resolution proton nuclear magnetic resonance characterization of seminolipid from bovine spermatozoa
+|volume=31(6)
+|year=1990
+}}

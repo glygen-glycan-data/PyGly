@@ -1,0 +1,10 @@
+{{Publication
+|authors=Furuya S, Irie F, Hashikawa T, Nakazawa K, Kozakai A, Hasegawa A, Sudo K, Hirabayashi Y
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;324
+|journal=J. Biol. Chem
+|pages=32418-25
+|pmid=7528216
+|title=Ganglioside GD1 alpha in cerebellar Purkinje cells. Its specific absence in mouse mutants with Purkinje cell abnormality and altered immunoreactivity in response to conjunctive stimuli causing long-term desensitization
+|volume=269(51)
+|year=1994
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Solter D, Knowles BB
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;250
+|doi=10.1073/pnas.75.11.5565
+|journal=Proc. Natl. Acad. Sci. U.S.A
+|pages=5565-9
+|pmid=281705
+|title=Monoclonal antibody defining a stage-specific mouse embryonic antigen (SSEA-1)
+|volume=75(11)
+|year=1978
+}}

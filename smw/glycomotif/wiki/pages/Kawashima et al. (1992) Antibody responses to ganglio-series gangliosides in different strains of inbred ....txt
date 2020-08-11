@@ -1,0 +1,11 @@
+{{Publication
+|authors=Kawashima I, Nakamura O, Tai T
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;329
+|doi=10.1016/0161-5890(92)90199-8
+|journal=Mol. Immunol
+|pages=625-32
+|pmid=1584231
+|title=Antibody responses to ganglio-series gangliosides in different strains of inbred mice
+|volume=29(5)
+|year=1992
+}}

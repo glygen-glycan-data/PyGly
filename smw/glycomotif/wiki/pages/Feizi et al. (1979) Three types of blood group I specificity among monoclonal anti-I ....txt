@@ -1,0 +1,11 @@
+{{Publication
+|authors=Feizi T, Childs RA, Watanabe K, Hakomori SI
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;234
+|doi=10.1084/jem.149.4.975
+|journal=J. Exp. Med
+|pages=975-80
+|pmid=429966
+|title=Three types of blood group I specificity among monoclonal anti-I autoantibodies revealed by analogues of a branched erythrocyte glycolipid
+|volume=149(4)
+|year=1979
+}}

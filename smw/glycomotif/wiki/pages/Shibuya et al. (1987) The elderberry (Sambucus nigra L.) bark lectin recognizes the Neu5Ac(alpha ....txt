@@ -1,0 +1,10 @@
+{{Publication
+|authors=Shibuya N, Goldstein IJ, Broekaert WF, Nsimba-Lubaki M, Peeters B, Peumans WJ
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;263
+|journal=J. Biol. Chem
+|pages=1596-601
+|pmid=3805045
+|title=The elderberry (Sambucus nigra L.) bark lectin recognizes the Neu5Ac(alpha 2-6)Gal/GalNAc sequence
+|volume=262(4)
+|year=1987
+}}

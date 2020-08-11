@@ -1,0 +1,10 @@
+{{Publication
+|authors=Blanchard D, Cartron JP, Fournet B, Montreuil J, van Halbeek H, Vliegenthart JF
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;271
+|journal=J. Biol. Chem
+|pages=7691-5
+|pmid=6190803
+|title=Primary structure of the oligosaccharide determinant of blood group Cad specificity
+|volume=258(12)
+|year=1983
+}}

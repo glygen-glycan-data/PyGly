@@ -1,0 +1,20 @@
+{{Motif
+|accession=EP0200
+|aglycon=R
+|collection=GE
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4b:a-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3o(3+1)4d
+|glytoucan=G27798EJ
+|name=Alpha-Galactosyl Epitope
+|redend=false
+|sameas=GD.R000288,GDB.002217,GDH.000018,GM.G27798EJ,UCM.000018
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3/a4-b1_b3-c1
+}}

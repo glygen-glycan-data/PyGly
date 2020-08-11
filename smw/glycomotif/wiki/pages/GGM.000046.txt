@@ -1,0 +1,28 @@
+{{Motif
+|prefname=Blood group B (type 1)
+|name=Blood group B (type 1)
+B-Ley
+B-Le^y
+|aglycon=R
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
+|accession=000046
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4b:a-lgal-HEX-1:5{{!}}6:d
+5b:a-dgal-HEX-1:5
+6b:a-lgal-HEX-1:5{{!}}6:d
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3o(2+1)4d
+4:3o(3+1)5d
+5:1o(4+1)6d
+|glytoucan=G89208KM
+|sameas=GD.R000552,GDC.000046,GDV.000016,GM.G89208KM
+|wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4-3/a3-b1_a4-e1_b2-c1_b3-d1
+}}

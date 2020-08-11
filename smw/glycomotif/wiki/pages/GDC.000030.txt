@@ -1,0 +1,22 @@
+{{Motif
+|accession=000030
+|aglycon=R
+|collection=GDC
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+4s:sulfate
+5b:a-lgal-HEX-1:5{{!}}6:d
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+3:3d(3+1)4n
+4:1o(4+1)5d
+|glytoucan=G14395NH
+|name=30-Sulfo-Lewis a (30-Sulfo Lea)
+|redend=false
+|sameas=GD.R000166,GM.G14395NH
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_3*SO/2{{=}}O/2{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a3-b1_a4-c1
+}}

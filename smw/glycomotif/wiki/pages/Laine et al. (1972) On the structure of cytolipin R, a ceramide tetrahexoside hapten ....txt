@@ -1,0 +1,10 @@
+{{Publication
+|authors=Laine R, Sweeley CC, Li YT, Kisic A, Rapport MM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;304
+|journal=J. Lipid Res
+|pages=519-24
+|pmid=5068000
+|title=On the structure of cytolipin R, a ceramide tetrahexoside hapten from rat lymphosarcoma
+|volume=13(4)
+|year=1972
+}}

@@ -1,0 +1,11 @@
+{{Publication
+|authors=Finne J, Finne U, Deagostini-Bazin H, Goridis C
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;273
+|doi=10.1016/0006-291x(83)91490-0
+|journal=Biochem. Biophys. Res. Commun
+|pages=482-7
+|pmid=6847662
+|title=Occurrence of alpha 2-8 linked polysialosyl units in a neural cell adhesion molecule
+|volume=112(2)
+|year=1983
+}}

@@ -1,0 +1,17 @@
+{{Motif
+|accession=002182
+|collection=GDB
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-1:5
+2b:a-lgal-HEX-1:5{{!}}6:d
+3b:b-dgal-HEX-1:5
+4b:a-dgal-HEX-1:5
+LIN
+1:1o(3+1)2d
+2:1o(4+1)3d
+3:3o(4+1)4d
+|glytoucan=G55026RI
+|sameas=GD.R000318,GM.G55026RI
+|wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1x_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4/a3-b1_a4-c1_c4-d1
+}}

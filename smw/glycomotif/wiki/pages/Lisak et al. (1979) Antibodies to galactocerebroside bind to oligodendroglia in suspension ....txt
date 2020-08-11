@@ -1,0 +1,11 @@
+{{Publication
+|authors=Lisak RP, Abramsky O, Dorfman SH, George J, Manning MC, Pleasure DE, Saida T, Silberberg DH
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;279
+|doi=10.1016/0022-510x(79)90009-1
+|journal=J. Neurol. Sci
+|pages=65-73
+|pmid=84053
+|title=Antibodies to galactocerebroside bind to oligodendroglia in suspension culture
+|volume=40(1)
+|year=1979
+}}

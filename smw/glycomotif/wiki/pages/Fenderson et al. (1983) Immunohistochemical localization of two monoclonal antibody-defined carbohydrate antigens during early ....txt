@@ -1,0 +1,11 @@
+{{Publication
+|authors=Fenderson BA, Hahnel AC, Eddy EM
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;231
+|doi=10.1016/0012-1606(83)90226-9
+|journal=Dev. Biol
+|pages=318-27
+|pmid=6653876
+|title=Immunohistochemical localization of two monoclonal antibody-defined carbohydrate antigens during early murine embryogenesis
+|volume=100(2)
+|year=1983
+}}

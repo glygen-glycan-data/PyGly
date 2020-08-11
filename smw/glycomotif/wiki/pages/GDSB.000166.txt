@@ -1,0 +1,10 @@
+{{Motif
+|accession=000166
+|collection=GDSB
+|displayhgv=false
+|glycoct=RES
+1b:b-dgal-HEX-1:5
+|glytoucan=G65889KE
+|sameas=GD.R000114,GDC.000061,GDH.000020,GDSB.000001,GDSB.000088,GDSB.000165,GDSB.000187,GDV.000053,GE.EP0068,GE.EP0074,GGM.000061,GM.G65889KE,UCM.000020
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5{{!)}}/1/
+}}

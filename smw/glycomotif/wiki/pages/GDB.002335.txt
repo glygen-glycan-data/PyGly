@@ -1,0 +1,15 @@
+{{Motif
+|accession=002335
+|collection=GDB
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-1:5
+2b:b-dglc-HEX-1:5
+3b:b-dgal-HEX-1:5
+LIN
+1:1o(1+1)2d
+2:2o(4+1)3d
+|glytoucan=G36810SF
+|sameas=GD.R000511,GDB.002764,GM.G36810SF
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2112h-1x_1-5{{!)}}{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3/a1-b1_b4-c1
+}}

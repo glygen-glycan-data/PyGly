@@ -22,7 +22,7 @@ for gtc,motiflist in sorted(gtc2motif.iteritems()):
     names = []
     redend = set()
     aglycon = set()
-    for m in motiflist:
+    for m in sorted(motiflist,key=lambda m: (m.get('collection'),m.get('accession'))):
 	if m.has('name'):
 	    for n in m.get('name'):
 		if n not in names:

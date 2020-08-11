@@ -1,5 +1,5 @@
 
-__all__ = [ "GlycoMotifWiki", "Collection", "Motif",
+__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", 
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
@@ -202,6 +202,40 @@ class GlydinBioligoMotif(CCRCMotif):
 
 class UniCarbMotif(CCRCMotif):
     id = 'UCM'
+
+class Publication(SMW.SMWClass):
+    template = 'Publication'
+
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('authors') and kwargs.get('title') and kwargs.get('year')
+	authlist = kwargs.get('authors').split(None,3)
+	if len(authlist) > 2 and authlist[2] != "":
+	    authslug = authlist[0]+' et al.'
+	else:
+	    authslug = authlist[0]
+	year = kwargs.get('year')
+        titlewords = kwargs.get('title').split(None,10)
+	titleslug = ' '.join(titlewords[:-1])
+	if titlewords[-1]:
+	    titleslug += ' ...'
+        return ("%s (%s) %s"%(authslug,year,titleslug)).replace(" ",'_').replace("[","").replace(']','')
+
+    def toPython(self,data):
+        data = super(Publication,self).toPython(data)
+
+	if isinstance(data.get('citedby'),basestring):
+	    data['citedby'] = data.get('citedby').split(';')
+
+	return data
+
+    def toTemplate(self,data):
+        data = super(Publication,self).toTemplate(data)
+
+	if 'citedby' in data:
+	    data['citedby'] = ';'.join(map(str,data.get('citedby')))
+
+	return data
 
 class GlycoMotifWiki(SMW.SMWSite):
     _name = 'glycomotif'

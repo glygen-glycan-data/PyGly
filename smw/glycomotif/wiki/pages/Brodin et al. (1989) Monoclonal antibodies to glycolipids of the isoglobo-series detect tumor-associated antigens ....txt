@@ -1,0 +1,11 @@
+{{Publication
+|authors=Brodin NT, Thurin J, Karlsson KA, Mårtensson S, Sjögren HO
+|citedby=Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome;292
+|doi=10.1002/ijc.2910430226
+|journal=Int. J. Cancer
+|pages=317-26
+|pmid=2465279
+|title=Monoclonal antibodies to glycolipids of the isoglobo-series detect tumor-associated antigens in rats
+|volume=43(2)
+|year=1989
+}}
