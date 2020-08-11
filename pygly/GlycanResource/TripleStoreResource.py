@@ -144,12 +144,12 @@ class TripleStoreResource(GlycanResource):
 
     def set_method(self,name,func):
         setattr(self.__class__, name, func)
-        func.__name__ = name
+        func.__name__ = str(name)
     
     def modify_method(self,name,func):
         newfunc = func(getattr(self.__class__,name))
         setattr(self.__class__, name, newfunc)
-        newfunc.__name__ = name
+        newfunc.__name__ = str(name)
     
     def parseSection(self,name,keyvaluepairs):
         sparql = keyvaluepairs['sparql']

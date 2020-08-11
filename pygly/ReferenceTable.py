@@ -6,6 +6,11 @@ except ImportError:
     from ConfigParser import SafeConfigParser
 import os.path, sys
 
+try:
+    from StringIO import StringIO
+except ImportError:
+    pass
+
 class ReferenceTable(dict):
     def __init__(self,iniFile=None):
         if not iniFile:
@@ -16,7 +21,10 @@ class ReferenceTable(dict):
             self.iniFile = iniFile
         cfg = SafeConfigParser()
         cfg.optionxform = str
-        cfg.read_file(iniFile,self.iniFile)
+	if hasattr(cfg,'read_file'):
+            cfg.read_file(iniFile,self.iniFile)
+	else:
+            cfg.readfp(StringIO(u'\n'.join(iniFile)),self.iniFile)
         self.parseConfig(cfg)
     def parseConfig(self,cfg):
         for name in cfg.sections():
