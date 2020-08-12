@@ -568,6 +568,9 @@ class ConnectedNodesCache:
         self.update_cache(m, size)
         return self.data[m][size]
 
+    def clear(self):
+        self.data = {}
+
 
 
 
@@ -1119,11 +1122,28 @@ class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
             return False
 
         gmod = copy.deepcopy(g._mods)
+        galdi = []
         for mod in gmod:
             if mod[1] == Mod.aldi:
                 gmod.remove(mod)
+                galdi.append(mod)
 
-        if m._mods != gmod:
+        mmod = copy.deepcopy(m._mods)
+        maldi = []
+        for mod in mmod:
+            if mod[1] == Mod.aldi:
+                mmod.remove(mod)
+                maldi.append(mod)
+
+        if mmod != gmod:
+            return False
+
+        for aldi in maldi:
+            if aldi in galdi:
+                galdi.remove(aldi)
+                maldi.remove(aldi)
+
+        if len(maldi) > 0:
             return False
 
         any = False
