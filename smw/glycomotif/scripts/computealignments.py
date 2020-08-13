@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import findpygly
-from pygly.alignment import *
+import pygly.alignment
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlycanResource.GlyTouCan import GlyTouCan, GlyTouCanNoCache
 
@@ -12,10 +12,10 @@ wp = WURCS20Format()
 gp = GlycoCTFormat()
 gtc = GlyTouCan()
 
-nodes_cache = ConnectedNodesCache()
-gtcm = GlyTouCanMotif(connected_nodes_cache=nodes_cache)
-gtcmnre = GlyTouCanMotifNonReducingEnd(connected_nodes_cache=nodes_cache)
-mm_st = MotifAllowOptionalSub(connected_nodes_cache=nodes_cache)
+nodes_cache = pygly.alignment.ConnectedNodesCache()
+normal_matcher = pygly.alignment.GlyGenMotif(connected_nodes_cache=nodes_cache)
+nred_matcher = pygly.alignment.GlyGenMotifNonReducingEnd(connected_nodes_cache=nodes_cache)
+gtcm_gen = pygly.alignment.GlyTouCanMotif(connected_nodes_cache=nodes_cache)
 
 
 from getwiki import GlycoMotifWiki
@@ -59,26 +59,23 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     for motif_acc in motif_accs:
         motif_gobj = motif_gobjs[motif_acc]
 
-        c = mm_st.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False)
-        d = mm_st.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True)
+        core = normal_matcher.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False)
+        # Save as much runtime as possible
+        substructure_partial = None
+        if not core:
+            substructure_partial = normal_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True)
 
-        a = False
-        if c:
-            a = gtcm.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False)
+        whole = False
+        if core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
+            whole = gtcm_gen.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False)
 
-        b = False
-        if d:
-            b = gtcm.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True)
+        nred = False
+        if (core or substructure_partial):
+            nred = nred_matcher.leq(motif_gobj, glycan_obj)
 
-        e = False
-        if a or b:
-            e = gtcmnre.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=False)
+        substructure = core or substructure_partial
 
-        f = False
-        if a and len(list(glycan_obj.all_nodes())) == len(list(motif_gobj.all_nodes())):
-            f = True
-
-        res0 = [a, b, c, d, e, f]
+        res0 = [core, substructure, whole, nred]
 
         if True not in res0:
             continue
@@ -92,7 +89,7 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
 
 result = sorted(result)
 result_file = open(res_file_path, "w")
-result_file.write("motif\tstructure\tgeneral_red\tgeneral_other\tst_red\tst_other\tnon_red_only\twhole\n")
+result_file.write("Motif\tStructure\tCore\tSubstructure\tWhole\tNon_Red\n")
 result_file.write("\n".join(result))
 
 

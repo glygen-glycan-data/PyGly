@@ -1112,7 +1112,7 @@ class MonosaccharideMotifComparison(MonosaccharideComparitor):
 
 
 
-class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
+class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
 
     def leq(self, m, g):
         if m._anomer and m._anomer != g._anomer:
@@ -1412,15 +1412,26 @@ class GlyTouCanMotifNonReducingEnd(SubstructureSearchNonReducingEnd):
 
 
 
-class MotifAllowOptionalSub(SubstructureSearch):
+class GlyGenMotif(SubstructureSearch):
 
     def __init__(self, **kw):
-        kw["monocmp"] = MonosaccharideMotifComparisonOptionalSubst(
+        kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
             substcmp=SubstituentEqual(),
             sublinkcmp=LinkageEqual()
         )
         kw["linkcmp"] = LinkageMotifComparitor()
-        super(MotifAllowOptionalSub, self).__init__(**kw)
+        super(GlyGenMotif, self).__init__(**kw)
+
+
+class GlyGenMotifNonReducingEnd(SubstructureSearchNonReducingEnd):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(GlyGenMotifNonReducingEnd, self).__init__(**kw)
 
 
 
