@@ -17,11 +17,6 @@ gtcm = GlyTouCanMotif(connected_nodes_cache=nodes_cache)
 gtcmnre = GlyTouCanMotifNonReducingEnd(connected_nodes_cache=nodes_cache)
 mm_st = MotifAllowOptionalSub(connected_nodes_cache=nodes_cache)
 
-motif_accs = set()
-for l in open("GM.csv"):
-    acc = l.split(",")[1]
-    motif_accs.add(acc)
-
 
 from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
@@ -67,22 +62,23 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         c = mm_st.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False)
         d = mm_st.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True)
 
-        if not c:
-            a = False
-        else:
+        a = False
+        if c:
             a = gtcm.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False)
 
-        if not d:
-            b = False
-        else:
+        b = False
+        if d:
             b = gtcm.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True)
 
-        if not (a or b):
-            e = False
-        else:
+        e = False
+        if a or b:
             e = gtcmnre.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=False)
 
-        res0 = [a, b, c, d, e]
+        f = False
+        if a and len(list(glycan_obj.all_nodes())) == len(list(motif_gobj.all_nodes())):
+            f = True
+
+        res0 = [a, b, c, d, e, f]
 
         if True not in res0:
             continue
@@ -96,7 +92,7 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
 
 result = sorted(result)
 result_file = open(res_file_path, "w")
-result_file.write("motif\tstructure\tgeneral_red\tgeneral_other\tst_red\tst_other\tnon_red_only\n")
+result_file.write("motif\tstructure\tgeneral_red\tgeneral_other\tst_red\tst_other\tnon_red_only\twhole\n")
 result_file.write("\n".join(result))
 
 
