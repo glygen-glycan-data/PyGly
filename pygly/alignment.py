@@ -746,6 +746,13 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return False
 
+    def whole_glycan_match(self, m, tg):
+
+        if len(list(m.all_nodes())) != len(list(tg.all_nodes())):
+            return False
+
+        return self.leq(m, tg, rootOnly=True)
+
 
 class SubstructureSearchNonReducingEnd(SubstructureSearch):
 
@@ -1122,29 +1129,16 @@ class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
             return False
 
         gmod = copy.deepcopy(g._mods)
-        galdi = []
-        for mod in gmod:
-            if mod[1] == Mod.aldi:
+        for mod in m._mods:
+            if mod in gmod:
                 gmod.remove(mod)
-                galdi.append(mod)
+            else:
+                return False
 
-        mmod = copy.deepcopy(m._mods)
-        maldi = []
-        for mod in mmod:
-            if mod[1] == Mod.aldi:
-                mmod.remove(mod)
-                maldi.append(mod)
-
-        if mmod != gmod:
-            return False
-
-        for aldi in maldi:
-            if aldi in galdi:
-                galdi.remove(aldi)
-                maldi.remove(aldi)
-
-        if len(maldi) > 0:
-            return False
+        for mod in gmod:
+            # aldi tolerance
+            if mod[1] != Mod.aldi:
+                return False
 
         any = False
 
