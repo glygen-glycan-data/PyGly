@@ -1,4 +1,0 @@
-[[Imported from::glycomotif:has_redend_alignment]] 
-{{DISPLAYTITLE:glycomotif:has_redend_alignment}}
-[[External formatter uri::https://glytoucan.org/Structures/Glycans/$1]]
-[[Category:Imported vocabulary]]
