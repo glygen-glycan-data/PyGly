@@ -38,6 +38,12 @@ class Collection(SMW.SMWClass):
 class Motif(SMW.SMWClass):
     template = 'Motif'
     aglyconvalues = ['Cer','Ser/Thr','Asn','R','Other']
+    matchtypevalues = [
+        "Substructure",
+        "Core",
+        "Whole",
+        "Non-Reducing"
+    ]
 
     @staticmethod
     def pagename(**kwargs):
@@ -91,6 +97,11 @@ class Motif(SMW.SMWClass):
         elif data.get('redend') != None:
             data['redend'] = sorted(map(self.asboolean,data.get('redend')))
 
+        # matchtype is a list of strings, sorted, so behaves as set
+        if isinstance(data.get('matchtype'), basestring):
+            data['matchtype'] = map(lambda s: s.strip(), data.get('matchtype').split(','))
+            data['matchtype'] = sorted(filter(lambda x: x in self.matchtypevalues, data['matchtype']))
+
         # Strip <pre> and </pre> if it is there
         # if 'wurcs' in data:
             #     data['wurcs'] = data.get('wurcs').lstrip('<pre>').rstrip('</pre>')
@@ -120,18 +131,21 @@ class Motif(SMW.SMWClass):
             data['topology'] = ",".join(data['topology'])
 
 	# rea = set()
-        if 'redend_alignments' in data:
-	    # rea = sorted(set(data['redend_alignments']))
-            # data['redend_alignments'] = ",".join(rea)
-	    del data['redend_alignments']
+        # if 'redend_alignments' in data:
+        #     # rea = sorted(set(data['redend_alignments']))
+        #     # data['redend_alignments'] = ",".join(rea)
+        #     del data['redend_alignments']
 
-        if 'other_alignments' in data:
-	    # oa = sorted(set(data['other_alignments'])-rea)
-            # data['other_alignments'] = ",".join(oa)
-	    del data['other_alignments']
+        # if 'other_alignments' in data:
+        #     # oa = sorted(set(data['other_alignments'])-rea)
+        #      # data['other_alignments'] = ",".join(oa)
+        #     del data['other_alignments']
 
         if "displayhgv" in data:
             data["displayhgv"] = ("true" if data["displayhgv"] else "false")
+
+        if 'matchtype' in data:
+            data['matchtype'] = ",".join(sorted(data['matchtype']))
 
         # if 'wurcs' in data:
         #     data['wurcs'] = "<pre>" + data['wurcs'] + "</pre>"
