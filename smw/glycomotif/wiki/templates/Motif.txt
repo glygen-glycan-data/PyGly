@@ -12,6 +12,7 @@ It should be called in the following format:
 |glycoct=
 |wurcs=
 |sameas=
+|matchtype=
 }}
 </pre>
 Edit the page to see the template text.
