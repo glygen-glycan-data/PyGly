@@ -13,7 +13,6 @@ for m in w.itermotif():
     acc = m.get("glytoucan")
     redend = m.get("redend")
 
-    idnum = pageid.split(",")[1]
 
     # CCRC CCRC.000114 G26199BG [True]
     # print collection, pageid, acc, redend
@@ -26,11 +25,13 @@ for m in w.itermotif():
     # "Substructure" "Core" "Whole" "Non-Reducing"
 
     if True in redend:
-        alignment_type.append("")
+        alignment_type.append("Core")
     else:
-        alignment_type.append("")
+        alignment_type.append("Substructure")
 
     try:
+        # print idnum
+        idnum = pageid.split(",")[1]
         idnum = int(idnum)
         if idnum >=60 and idnum <=122:
             alignment_type = ["Whole"]
@@ -42,7 +43,7 @@ for m in w.itermotif():
         alignment_type = ["Non-Reducing"]
 
 
-    print "%s set to display" % m.get("id")
+    print "%s set to %s" % (m.get("id"), alignment_type)
     m.set("matchtype", alignment_type)
     w.update(m)
 
