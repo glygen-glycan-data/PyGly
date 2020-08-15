@@ -605,12 +605,21 @@ class SubstructureSearch(GlycanPartialOrder):
                         continue
 
                     if motif_nodes.index(c) == tg_nodes.index(ll.child()) and self._linkcmp.leq(l, ll):
+
+                        if not self.check_links_childlink_count(c, ll.child()):
+                            # No real usage in class SubstructureSearch
+                            # Special case for Non-reducing end matcher
+                            continue
+
                         found_matched_link = True
                         break
 
                 if not found_matched_link:
                     return False
 
+        return True
+
+    def check_links_childlink_count(self, m, tg):
         return True
 
     # For recursive algorithm
@@ -756,46 +765,21 @@ class SubstructureSearch(GlycanPartialOrder):
 
 class SubstructureSearchNonReducingEnd(SubstructureSearch):
 
+    def check_links_childlink_count(self, m, tg):
+
+        # Reject condition
+        if len(m.links()) == 0 and len(tg.links()) > 0:
+            return False
+
+        return True
+
     def subtree_leq(self, m, tg, root=True):
 
-        if len(m.links()) < len(tg.links()):
+        if not self.check_links_childlink_count(m, tg):
             return False
 
         return super(SubstructureSearchNonReducingEnd, self).subtree_leq(m, tg, root=root)
 
-    def check_links(self, motif, motif_node_set, tg_node_set):
-        motif_nodes = motif_node_set
-        tg_nodes = tg_node_set
-
-        discover = [motif.root()]
-        while len(discover) > 0:
-            this_mono = discover.pop()
-
-            for l in this_mono.links():
-                p = this_mono
-                c = l.child()
-                discover.append(c)
-
-                tgp = tg_nodes[motif_nodes.index(p)]
-                # tgc = tg_nodes[motif_nodes.index(c)]
-
-                found_matched_link = False
-                for ll in tgp.links(instantiated_only=False):
-                    if ll.child() not in tg_nodes:
-                        continue
-
-                    if motif_nodes.index(c) == tg_nodes.index(ll.child()) and self._linkcmp.leq(l, ll):
-
-                        if len(c.links()) < len(ll.child().links()):
-                            # Special case
-                            continue
-                        found_matched_link = True
-                        break
-
-                if not found_matched_link:
-                    return False
-
-        return True
 
 
 
