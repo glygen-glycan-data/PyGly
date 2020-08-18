@@ -38,11 +38,11 @@ class Collection(SMW.SMWClass):
 class Motif(SMW.SMWClass):
     template = 'Motif'
     aglyconvalues = ['Cer','Ser/Thr','Asn','R','Other']
-    matchtypevalues = [
+    alignmentvalues = [
         "Substructure",
         "Core",
         "Whole",
-        "Non-Reducing"
+        "Nonreducing-End"
     ]
 
     @staticmethod
@@ -97,10 +97,10 @@ class Motif(SMW.SMWClass):
         elif data.get('redend') != None:
             data['redend'] = sorted(map(self.asboolean,data.get('redend')))
 
-        # matchtype is a list of strings, sorted, so behaves as set
-        if isinstance(data.get('matchtype'), basestring):
-            data['matchtype'] = map(lambda s: s.strip(), data.get('matchtype').split(','))
-            data['matchtype'] = sorted(filter(lambda x: x in self.matchtypevalues, data['matchtype']))
+        # alignment is a list of strings, sorted, so behaves as set
+        if isinstance(data.get('alignment'), basestring):
+            data['alignment'] = map(lambda s: s.strip(), data.get('alignment').split(','))
+            data['alignment'] = sorted(filter(lambda x: x in self.alignmentvalues, data['alignment']))
 
         # Strip <pre> and </pre> if it is there
         # if 'wurcs' in data:
@@ -144,8 +144,8 @@ class Motif(SMW.SMWClass):
         if "displayhgv" in data:
             data["displayhgv"] = ("true" if data["displayhgv"] else "false")
 
-        if 'matchtype' in data:
-            data['matchtype'] = ",".join(sorted(data['matchtype']))
+        if 'alignment' in data:
+            data['alignment'] = ",".join(sorted(data['alignment']))
 
         # if 'wurcs' in data:
         #     data['wurcs'] = "<pre>" + data['wurcs'] + "</pre>"

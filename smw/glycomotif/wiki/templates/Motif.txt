@@ -12,7 +12,7 @@ It should be called in the following format:
 |glycoct=
 |wurcs=
 |sameas=
-|matchtype=
+|alignment=
 }}
 </pre>
 Edit the page to see the template text.
@@ -43,6 +43,9 @@ Edit the page to see the template text.
 |-
 ! style="" | Reducing-End Only?
 | style="" | {{#arraymap:{{{redend|}}}|,|x|[[glycomotif:reducingend::x]]}}
+|-
+! style="" | Alignment
+| style="" | {{#arraymap:{{{alignment|}}}|,|x|[[glycomotif:alignment::x]]}}
 |-
 ! style="" | GlyTouCan Accession
 | style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
@@ -83,6 +86,6 @@ Edit the page to see the template text.
 <div id="motif_align_para" data-glytoucan="{{{glytoucan|}}}" data-redonly="{{{redend|}}}"></div>
 <div id="glycomotif_alignment_result"></div><br><br><br>
 
-{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{redend_alignments|}}}|,|x|{{#set:|glycomotif:has_redend_alignment=x|glycomotif:has_alignment=x}}|}}{{#arraymap:{{{other_alignments|}}}|,|x|{{#set:|glycomotif:has_alignment=x}}|}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{DONOTEDIT}}
+{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{DONOTEDIT}}
 [[Category:Motif]]
 </includeonly>

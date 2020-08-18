@@ -15,6 +15,7 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  collectioncount|Type:Number
  instancecount|Type:Number
  aglycon|Type:Text
+ alignment|Type:Text
  reducingend|Type:Boolean
  glytoucan|Type:External identifier
  sameas|Type:Page
@@ -25,9 +26,6 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  topologycount|Type:Number
  topologyrepr|Type:Boolean
  displayhgv|Type:Boolean
- has_redend_alignment|Type:External identifier
- has_other_alignment|Type:External identifier
- has_alignment|Type:External identifier
  Publication|Category
  authors|Type:Text
  title|Type:Text
