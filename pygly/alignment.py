@@ -605,12 +605,21 @@ class SubstructureSearch(GlycanPartialOrder):
                         continue
 
                     if motif_nodes.index(c) == tg_nodes.index(ll.child()) and self._linkcmp.leq(l, ll):
+
+                        if not self.check_links_childlink_count(c, ll.child()):
+                            # No real usage in class SubstructureSearch
+                            # Special case for Non-reducing end matcher
+                            continue
+
                         found_matched_link = True
                         break
 
                 if not found_matched_link:
                     return False
 
+        return True
+
+    def check_links_childlink_count(self, m, tg):
         return True
 
     # For recursive algorithm
@@ -746,49 +755,31 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return False
 
+    def whole_glycan_match(self, m, tg):
+
+        if len(list(m.all_nodes())) != len(list(tg.all_nodes())):
+            return False
+
+        return self.leq(m, tg, rootOnly=True)
+
 
 class SubstructureSearchNonReducingEnd(SubstructureSearch):
 
+    def check_links_childlink_count(self, m, tg):
+
+        # Reject condition
+        if len(m.links()) == 0 and len(tg.links()) > 0:
+            return False
+
+        return True
+
     def subtree_leq(self, m, tg, root=True):
 
-        if len(m.links()) < len(tg.links()):
+        if not self.check_links_childlink_count(m, tg):
             return False
 
         return super(SubstructureSearchNonReducingEnd, self).subtree_leq(m, tg, root=root)
 
-    def check_links(self, motif, motif_node_set, tg_node_set):
-        motif_nodes = motif_node_set
-        tg_nodes = tg_node_set
-
-        discover = [motif.root()]
-        while len(discover) > 0:
-            this_mono = discover.pop()
-
-            for l in this_mono.links():
-                p = this_mono
-                c = l.child()
-                discover.append(c)
-
-                tgp = tg_nodes[motif_nodes.index(p)]
-                # tgc = tg_nodes[motif_nodes.index(c)]
-
-                found_matched_link = False
-                for ll in tgp.links(instantiated_only=False):
-                    if ll.child() not in tg_nodes:
-                        continue
-
-                    if motif_nodes.index(c) == tg_nodes.index(ll.child()) and self._linkcmp.leq(l, ll):
-
-                        if len(c.links()) < len(ll.child().links()):
-                            # Special case
-                            continue
-                        found_matched_link = True
-                        break
-
-                if not found_matched_link:
-                    return False
-
-        return True
 
 
 
@@ -1105,7 +1096,7 @@ class MonosaccharideMotifComparison(MonosaccharideComparitor):
 
 
 
-class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
+class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
 
     def leq(self, m, g):
         if m._anomer and m._anomer != g._anomer:
@@ -1122,29 +1113,16 @@ class MonosaccharideMotifComparisonOptionalSubst(MonosaccharideComparitor):
             return False
 
         gmod = copy.deepcopy(g._mods)
-        galdi = []
-        for mod in gmod:
-            if mod[1] == Mod.aldi:
+        for mod in m._mods:
+            if mod in gmod:
                 gmod.remove(mod)
-                galdi.append(mod)
+            else:
+                return False
 
-        mmod = copy.deepcopy(m._mods)
-        maldi = []
-        for mod in mmod:
-            if mod[1] == Mod.aldi:
-                mmod.remove(mod)
-                maldi.append(mod)
-
-        if mmod != gmod:
-            return False
-
-        for aldi in maldi:
-            if aldi in galdi:
-                galdi.remove(aldi)
-                maldi.remove(aldi)
-
-        if len(maldi) > 0:
-            return False
+        for mod in gmod:
+            # aldi tolerance
+            if mod[1] != Mod.aldi:
+                return False
 
         any = False
 
@@ -1418,15 +1396,26 @@ class GlyTouCanMotifNonReducingEnd(SubstructureSearchNonReducingEnd):
 
 
 
-class MotifAllowOptionalSub(SubstructureSearch):
+class GlyGenMotif(SubstructureSearch):
 
     def __init__(self, **kw):
-        kw["monocmp"] = MonosaccharideMotifComparisonOptionalSubst(
+        kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
             substcmp=SubstituentEqual(),
             sublinkcmp=LinkageEqual()
         )
         kw["linkcmp"] = LinkageMotifComparitor()
-        super(MotifAllowOptionalSub, self).__init__(**kw)
+        super(GlyGenMotif, self).__init__(**kw)
+
+
+class GlyGenMotifNonReducingEnd(SubstructureSearchNonReducingEnd):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(GlyGenMotifNonReducingEnd, self).__init__(**kw)
 
 
 

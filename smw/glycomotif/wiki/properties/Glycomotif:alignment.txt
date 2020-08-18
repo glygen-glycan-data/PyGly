@@ -1,0 +1,7 @@
+[[Imported from::glycomotif:matchtype]] 
+{{DISPLAYTITLE:glycomotif:matchtype}}
+[[Allows value::Substructure]]
+[[Allows value::Core]]
+[[Allows value::Whole]]
+[[Allows value::Non-Reducing]]
+[[Category:Imported vocabulary]]
