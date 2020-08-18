@@ -58,6 +58,7 @@ class TripleStoreResource(GlycanResource):
             self.opencache()
 
         if self._verbose:
+	    print >>sys.stderr, "TripleStoreResource:endpt = %s"%(self._endpt)
 	    print >>sys.stderr, "TripleStoreResource:prefetch = %s"%(self._prefetch)
 	    print >>sys.stderr, "TripleStoreResource:usecache = %s"%(self._usecache)
 	    print >>sys.stderr, "TripleStoreResource:cachemode = %s"%(self._cachemode)
