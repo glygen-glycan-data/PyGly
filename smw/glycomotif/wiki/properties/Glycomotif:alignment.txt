@@ -3,5 +3,5 @@
 [[Allows value::Substructure]]
 [[Allows value::Core]]
 [[Allows value::Whole]]
-[[Allows value::Non-Reducing]]
+[[Allows value::Nonreducing-End]]
 [[Category:Imported vocabulary]]
