@@ -2000,7 +2000,7 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
             "external_resources": [
                 {
                     "name": "GlyGen",
-                    "url_prefix": "https://www.glygen.org/glycan_detail.html?glytoucan_ac=",
+                    "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
                 }
@@ -2017,8 +2017,8 @@ class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
             "image_url_suffix": "",
             "external_resources": [
                 {
-                    "name": "GlyGen Dev",
-                    "url_prefix": "https://beta.glygen.org/glycan_detail.html?glytoucan_ac=",
+                    "name": "GlyGen Beta",
+                    "url_prefix": "https://beta.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
                 }
@@ -2041,7 +2041,7 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
                     "glycan_set": self.get_accessions("GlycanData")
                 },{
                     "name": "GlyGen",
-                    "url_prefix": "https://www.glygen.org/glycan_detail.html?glytoucan_ac=",
+                    "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
                 },{

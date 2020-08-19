@@ -24,7 +24,7 @@ This is the "Motif" form.
 | {{{field|redend|input type=dropdown}}}<br/>Motif should align to the reducing end of glycan structures only. 
 |-
 ! Alignment:
-| {{{field|alignment|input type=dropdown|values=Core,Substructure,Whole,Nonreducing-End}}}<br/>Motif match algorithm.
+| {{{field|alignment|input type=dropdown|values=Core,Substructure,Whole,Nonreducing-End}}}<br/>Motif alignment algorithm.
 |-
 ! Reference(s):
 | {{{field|reference|input type=token|existing values only|list|delimiter=;|values from category=Publication}}}<br/>References for the structure, name, aglycon, etc. for this motif.<br/>
