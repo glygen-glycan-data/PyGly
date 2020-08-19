@@ -1,5 +1,5 @@
-[[Imported from::glycomotif:matchtype]] 
-{{DISPLAYTITLE:glycomotif:matchtype}}
+[[Imported from::glycomotif:alignment]] 
+{{DISPLAYTITLE:glycomotif:alignment}}
 [[Allows value::Substructure]]
 [[Allows value::Core]]
 [[Allows value::Whole]]
