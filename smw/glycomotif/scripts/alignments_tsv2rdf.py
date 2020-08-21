@@ -1,88 +1,106 @@
-#!/bin/env python27
-
+import os
 import sys
 import csv
 import copy
+import hashlib
+import rdflib
+import rdflib.plugins.serializers.rdfxml
 
 
-motif_alignment_file_path_tsv = sys.argv[1]#"../data/motif_alignment.tsv"
+motif_tsv = sys.argv[1] # "../data/motif_alignment.tsv"
 prefix = sys.argv[2]
+rdf_file_path = sys.argv[3] # "../data/alignment.rdf"
+
+alignments = {}
+alignments_template = {
+    "core": [],
+    "substructure": [],
+    "whole": [],
+    "nred": []
+}
+for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
+    if i == 0:
+        continue
+
+    # Motif Structure Core Substructure Whole Nonreducing_end
+    macc = line[0]
+    gacc = line[1]
+    flags = map(lambda x:True if x=="Y" else False, line[2:])
+
+    if macc not in alignments:
+        alignments[macc] = copy.deepcopy(alignments_template)
+
+    if flags[0]:
+        alignments[macc]["core"].append(gacc)
+
+    if flags[1]:
+        alignments[macc]["substructure"].append(gacc)
+
+    if flags[2]:
+        alignments[macc]["whole"].append(gacc)
+
+    if flags[3]:
+        alignments[macc]["nred"].append(gacc)
+
+"""
+for macc, res0 in alignments.items():
+    print macc
+    for alignments_type, res00 in res0.items():
+        print alignments_type[:4], res00[:10]
+"""
+
+# TODO filter the result based on "alignment" property
 
 
-motif_alignment = {}
-alignment_keys = ["core", "substructure", "whole", "nred"]
-motif_alignment_single = {}
-for i in alignment_keys:
-    motif_alignment_single[i] = []
+rdfgraph = rdflib.Graph()
+
+rdfns = rdflib.RDF
+rdfsns = rdflib.RDFS
+skosns = rdflib.Namespace('http://www.w3.org/2004/02/skos/core#')
+swivtns = rdflib.Namespace('http://semantic-mediawiki.org/swivt/1.0#')
+glycomotifns = rdflib.Namespace('http://glycandata.glygen.org/glycomotif#')
+
+# TODO XML header is slightly different
+# TODO 2 namespaces are not used
+rdfgraph.bind("rdf", rdfns)
+rdfgraph.bind("rdfs", rdfsns)
+rdfgraph.bind("glycomotif", glycomotifns)
+rdfgraph.bind("swivt", swivtns)
+rdfgraph.bind("skos", skosns)
+
+abbr_extension = {
+    "core": "Core Alignment",
+    "substructure": "Substructure Alignment",
+    "whole": "Whole-Glycan Alignment",
+    "nred": "Nonreducing-End Alignment"
+}
 
 
-with open(motif_alignment_file_path_tsv) as f:
+for motifacc, alignments_per_motif in alignments.items():
 
-    for i, r in enumerate(csv.reader(f, delimiter="\t")):
-        if i == 0:
-            continue
+    motif_rdf_node = rdflib.URIRef("http://glycandata.glygen.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
+    rdfgraph.add((motif_rdf_node, rdfns.type, swivtns["Subject"]))
 
-        motif_acc, structure = r[0:2]
-        flags = map(lambda x: True if x == "Y" else False, r[2:])
-        core, substructure, whole, nred = flags
+    for alignment_type_abbr, structure_accs in alignments_per_motif.items():
+        alignment_type = abbr_extension[alignment_type_abbr]
 
-        if motif_acc not in motif_alignment:
-            motif_alignment[motif_acc] = copy.deepcopy(motif_alignment_single)
+        for acc in structure_accs:
+            tmp = "_".join((alignment_type_abbr, motifacc, acc))
+            alignment_id = hashlib.sha256(tmp).hexdigest()
 
-        if core:
-            motif_alignment[motif_acc]["core"].append(structure)
+            matched_rdf_node = glycomotifns["alignment_"+alignment_id]
+            rdfgraph.add((matched_rdf_node, glycomotifns["structure_accession"], rdflib.Literal(acc)))
+            rdfgraph.add((matched_rdf_node, glycomotifns["alignment_type"], rdflib.Literal(alignment_type)))
+            rdfgraph.add((motif_rdf_node, glycomotifns["has_alignment"], matched_rdf_node))
 
-        if substructure:
-            motif_alignment[motif_acc]["substructure"].append(structure)
 
-        if whole:
-            motif_alignment[motif_acc]["whole"].append(structure)
-
-        if nred:
-            motif_alignment[motif_acc]["nred"].append(structure)
+writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
+writer.serialize(open(rdf_file_path, "w"))
 
 
 
 
-rdf_template = """<?xml version="1.0" encoding="UTF-8"?>	
-<!DOCTYPE rdf:RDF[	
-    <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>	
-    <!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>	
-    <!ENTITY swivt 'http://semantic-mediawiki.org/swivt/1.0#'>	
-    <!ENTITY glycomotif 'http://glycandata.glygen.org/glycomotif#'>	
-]>	
-<rdf:RDF	
-    xmlns:rdf="&rdf;"	
-    xmlns:rdfs="&rdfs;"	
-    xmlns:swivt="&swivt;"	
-    xmlns:glycomotif="&glycomotif;"	
-    xmlns:skos="http://www.w3.org/2004/02/skos/core#">	
-%s	
-</rdf:RDF>"""
-rdf_s = ""
-
-for acc in sorted(motif_alignment.keys()):
-    print >>sys.stderr, acc
 
 
-    rdf_per_motif = '\t<swivt:Subject rdf:about="http://glycandata.glygen.org/%s/Special:URIResolver/GM.'%(prefix,) + acc + '">\n%s\n\t</swivt:Subject>\n'
-
-    rdf_alignment_template = {
-        "core": '\t\t<glycomotif:has_core_alignment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%s</glycomotif:has_core_alignment>',
-        "substructure": '\t\t<glycomotif:has_substructure_alignment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%s</glycomotif:has_substructure_alignment>',
-        "whole": '\t\t<glycomotif:has_whole_glycan_alignment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%s</glycomotif:has_whole_glycan_alignment>',
-        "nred": '\t\t<glycomotif:has_non-reducing_end_alignment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%s</glycomotif:has_non-reducing_end_alignment>',
-    }
-    rdf_alignments = []
-
-    for key in alignment_keys:
-        matched_structures = sorted(motif_alignment[acc][key])
-        for gacc in matched_structures:
-            rdf_alignments.append(rdf_alignment_template[key] % gacc)
-
-    rdf_s += rdf_per_motif % ("\n".join(sorted(rdf_alignments)))
-
-res = rdf_template%rdf_s
-sys.stdout.write(res)
 
 
