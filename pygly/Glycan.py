@@ -446,14 +446,27 @@ class Glycan:
                 yield m
 
     iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
+    iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
-    def iupac_composition(self,
-                          floating_substituents=True,
-                          aggregate_basecomposition=True):
+
+    def iupac_composition(self, floating_substituents=True, 
+                                aggregate_basecomposition=True, 
+                                redend_only=False):
+	validsyms = self.iupac_composition_syms + self.subst_composition_syms
+	if not floating_substituents:
+	    validsyms += self.iupac_aldi_composition_syms
+	
         c = Composition()
-        for sym in (self.iupac_composition_syms + self.subst_composition_syms + ['Xxx','X']):
+        for sym in (validsyms + ['Xxx','X']):
             c[sym] = 0
-        for m in self.all_nodes(undet_subst=True):           
+	if not redend_only:
+	    nodeiterable = self.all_nodes(undet_subst=True)
+	else:
+	    if self.has_root():
+	        nodeiterable = [ self.root() ]
+	    else:
+		nodeiterable = []
+        for m in nodeiterable:
 
             try:
                 sym = iupacSym.toStr(m)
@@ -469,7 +482,7 @@ class Glycan:
             else:
                 syms = [sym]
 
-            if syms[0] not in (self.iupac_composition_syms + self.subst_composition_syms):
+            if syms[0] not in validsyms:
                 if isinstance(m,Monosaccharide):
                     syms[0] = 'Xxx'
                 else:
@@ -493,14 +506,23 @@ class Glycan:
         c['Count'] = sum(map(c.__getitem__,self.iupac_composition_syms + ['Xxx']))
         if aggregate_basecomposition:
             c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc','Hex')))
+            c['Hex+aldi'] = sum(map(c.__getitem__,('Man+aldi','Gal+aldi','Glc+aldi','Hex+aldi')))
             c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
+            c['HexNAc+aldi'] = sum(map(c.__getitem__,('GalNAc+aldi','GlcNAc+aldi','ManNAc+aldi','HexNAc+aldi')))
             c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
+            c['dHex+aldi'] = sum(map(c.__getitem__,('Fuc+aldi','dHex+aldi')))
             c['Pent'] = sum(map(c.__getitem__,('Xyl','Pent')))
             c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
             c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
             c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
  
         return c
+
+    def iupac_redend(self, floating_substituents=True, aggregate_basecomposition=True):
+	comp = self.iupac_composition(floating_substituents=floating_substituents, 
+				      aggregate_basecomposition=aggregate_basecomposition,
+				      redend_only=True)
+	return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
 
     def glycoct(self):
         from GlycanFormatter import GlycoCTFormat

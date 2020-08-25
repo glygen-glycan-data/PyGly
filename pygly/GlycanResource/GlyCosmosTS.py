@@ -49,7 +49,8 @@ class GlyCosmosTS(TripleStoreResource):
 
     def getseq(self,accession,format='wurcs'):
 	for row in self.query_sequence(accession=accession,format=format):
-	    yield row['sequence']
+	    return row['sequence']
+	return None
 
     def allseq(self,format=None):
 	assert format == None or format in self.sequence_formats
@@ -59,3 +60,18 @@ class GlyCosmosTS(TripleStoreResource):
             if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
                 continue
             yield row['accession'], row['format'], row['sequence']
+
+    def getmass(self,accession):
+        for row in self.query_mass(accession=accession):
+            try:
+                return float(row['mass'])
+            except ValueError:
+                pass
+        return None
+
+    def allmass(self):
+        for row in self.query_mass():
+            try:
+                yield row['accession'],float(row['mass'])
+            except ValueError:
+                pass
