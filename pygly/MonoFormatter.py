@@ -208,8 +208,10 @@ class MonoSymLookup(dict):
             subst = (('Substituent',m.name()),)
         return supcls,stem,mods,subst
     def toStr(self,m):
-        k = self.key(m)
-        # print k
+	if m != None:
+            k = self.key(m)
+	else:
+	    raise RuntimeError("Monosaccharide is None.")
         try:
             return self[k]
         except KeyError:
