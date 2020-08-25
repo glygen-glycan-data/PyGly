@@ -7,15 +7,20 @@ import rdflib
 import rdflib.plugins.serializers.rdfxml
 
 
-motif_tsv = sys.argv[1] # "../data/motif_alignment.tsv"
+motif_tsv = sys.argv[1]
 prefix = sys.argv[2]
-rdf_file_path = sys.argv[3] # "../data/alignment.rdf"
+rdf_file_path = sys.argv[3]
+"""
+motif_tsv = "../data/motif_alignment.tsv"
+prefix = "sth"
+rdf_file_path = "../data/alignment.rdf"
+"""
 
 alignments = {}
 alignments_template = {
     "Core": [],
     "Substructure": [],
-    "Whole": [],
+    "Whole-Glycan": [],
     "Nonreducing-End": []
 }
 for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
@@ -25,7 +30,7 @@ for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
     # Motif Structure Core Substructure Whole Nonreducing_end
     macc = line[0]
     gacc = line[1]
-    flags = map(lambda x:True if x=="Y" else False, line[2:])
+    flags = map(lambda x: True if x == "Y" else False, line[2:])
 
     if macc not in alignments:
         alignments[macc] = copy.deepcopy(alignments_template)
@@ -37,17 +42,11 @@ for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
         alignments[macc]["Substructure"].append(gacc)
 
     if flags[2]:
-        alignments[macc]["Whole"].append(gacc)
+        alignments[macc]["Whole-Glycan"].append(gacc)
 
     if flags[3]:
         alignments[macc]["Nonreducing-End"].append(gacc)
 
-"""
-for macc, res0 in alignments.items():
-    print macc
-    for alignments_type, res00 in res0.items():
-        print alignments_type[:4], res00[:10]
-"""
 
 rdfgraph = rdflib.Graph()
 
@@ -64,49 +63,27 @@ rdfgraph.bind("glycomotif", glycomotifns)
 rdfgraph.bind("swivt", swivtns)
 rdfgraph.bind("skos", skosns)
 
-abbr_extension = {
-    "Core": "Core Alignment",
-    "Substructure": "Substructure Alignment",
-    "Whole": "Whole-Glycan Alignment",
-    "Nonreducing-End": "Nonreducing-End Alignment"
-}
 
-from getwiki import GlycoMotifWiki
-w = GlycoMotifWiki()
+for motifacc, alignments_per_motif in alignments.items():
+    print motifacc
 
-for m in w.itermotif():
-    pageid = m.get("id")
-    motifacc = m.get("glytoucan")
-    alignment_allowed_type = m.get("alignment")
-
-    print >> sys.stderr, pageid
-
-    if motifacc not in alignments:
-        print >> sys.stderr, "No alignments found for %s(%s)" % (pageid, motifacc)
-        continue
-
-    alignments_per_motif = alignments[motifacc]
-
-    motif_rdf_node = rdflib.URIRef("http://glycandata.glygen.org/%s/Special:URIResolver/%s" % (prefix, pageid))
+    motif_rdf_node = rdflib.URIRef("http://glycandata.glygen.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
     rdfgraph.add((motif_rdf_node, rdfns.type, swivtns["Subject"]))
 
-    for alignment_type_abbr, structure_accs in alignments_per_motif.items():
-        alignment_type = abbr_extension[alignment_type_abbr]
-
-        if alignment_type_abbr not in alignment_allowed_type:
-            print >> sys.stderr, "Skipping alignment for %s %s" % (pageid, alignment_type)
-            continue
-        print >> sys.stderr, "Loading alignment for %s %s" % (pageid, alignment_type)
+    for alignment_type, structure_accs in alignments_per_motif.items():
 
         for acc in structure_accs:
-            tmp = "_".join((alignment_type_abbr, motifacc, acc))
+            # tmp = "_".join((alignment_type_abbr, motifacc, acc))
             # alignment_id = hashlib.sha256(tmp).hexdigest()
-            alignment_id = "_".join((alignment_type_abbr, pageid, acc))
+            alignment_id = "-".join((motifacc, alignment_type, acc))
 
             matched_rdf_node = glycomotifns[alignment_id]
-            rdfgraph.add((matched_rdf_node, glycomotifns["structure_accession"], rdflib.Literal(acc)))
-            rdfgraph.add((matched_rdf_node, glycomotifns["alignment_type"], rdflib.Literal(alignment_type)))
+
             rdfgraph.add((motif_rdf_node, glycomotifns["has_alignment"], matched_rdf_node))
+
+            rdfgraph.add((matched_rdf_node, glycomotifns["motif_accession"], rdflib.Literal(motifacc)))
+            rdfgraph.add((matched_rdf_node, glycomotifns["alignment_type"], rdflib.Literal(alignment_type)))
+            rdfgraph.add((matched_rdf_node, glycomotifns["structure_accession"], rdflib.Literal(acc)))
 
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
