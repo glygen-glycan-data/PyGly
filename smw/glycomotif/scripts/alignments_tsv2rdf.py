@@ -65,10 +65,9 @@ rdfgraph.bind("skos", skosns)
 
 
 for motifacc, alignments_per_motif in alignments.items():
-    print motifacc
-
-    motif_rdf_node = rdflib.URIRef("http://glycandata.glygen.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
-    rdfgraph.add((motif_rdf_node, rdfns.type, swivtns["Subject"]))
+    # print motifacc
+    # motif_rdf_node = rdflib.URIRef("http://glycandata.glygen.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
+    # rdfgraph.add((motif_rdf_node, rdfns.type, swivtns["Subject"]))
 
     for alignment_type, structure_accs in alignments_per_motif.items():
 
@@ -79,7 +78,7 @@ for motifacc, alignments_per_motif in alignments.items():
 
             matched_rdf_node = glycomotifns[alignment_id]
 
-            rdfgraph.add((motif_rdf_node, glycomotifns["has_alignment"], matched_rdf_node))
+            # rdfgraph.add((motif_rdf_node, glycomotifns["has_alignment"], matched_rdf_node))
 
             rdfgraph.add((matched_rdf_node, glycomotifns["motif_accession"], rdflib.Literal(motifacc)))
             rdfgraph.add((matched_rdf_node, glycomotifns["alignment_type"], rdflib.Literal(alignment_type)))
