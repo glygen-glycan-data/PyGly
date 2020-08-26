@@ -41,7 +41,7 @@ class Motif(SMW.SMWClass):
     alignmentvalues = [
         "Substructure",
         "Core",
-        "Whole",
+        "Whole-Glycan",
         "Nonreducing-End"
     ]
 

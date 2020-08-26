@@ -31,7 +31,7 @@ for m in w.itermotif():
             idnum = pageid.split(".")[1]
             idnum = int(idnum)
             if idnum >= 60 and idnum <= 122:
-                alignment_type = ["Whole"]
+                alignment_type = ["Whole-Glycan"]
         except:
             pass
 
