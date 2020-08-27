@@ -2,6 +2,6 @@
 {{DISPLAYTITLE:glycomotif:alignment}}
 [[Allows value::Substructure]]
 [[Allows value::Core]]
-[[Allows value::Whole]]
+[[Allows value::Whole-Glycan]]
 [[Allows value::Nonreducing-End]]
 [[Category:Imported vocabulary]]
