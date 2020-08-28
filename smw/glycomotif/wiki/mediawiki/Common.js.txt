@@ -271,55 +271,31 @@ if (document.getElementById("motif_align_para") != null){
     var imageURLprefix = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/";
     var imageURLsuffix = ".png";
 
-    var motifacc = document.getElementById("motif_align_para").getAttribute("data-glytoucan");
-    var motifredonlyraw = document.getElementById("motif_align_para").getAttribute("data-redonly");
-    var motifredonly = motifredonlyraw == "true";
+    var motifpageid = document.getElementById("motif_align_para").getAttribute("data-page_id");
 
-    function alignmentQueryConstructorAll(motif) {
+    function alignmentQueryConstructor(motif_page_id) {
         var query =
-            'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n' +
-            'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n' +
             'PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>\n' +
             '\n' +
-            'SELECT DISTINCT ?accession\n' +
+            'SELECT ?alignment_type ?structure_gtc_acc\n' +
             'WHERE {\n' +
             '\n' +
-            '    ?motif glycomotif:glytoucan ?motifgtcacc . \n' +
-            '    ?motif rdf:type glycomotif:Motif .\n' +
-            '    ?motif glycomotif:incollection ?collection . \n' +
-            '    \n' +
-            '    ?collection rdf:type glycomotif:Collection .\n' +
-            '    ?collection glycomotif:id "GM" .\n' +
-            '    \n' +
-            '    ?motif glycomotif:has_alignment ?accession .\n' +
+            '   ?collection a glycomotif:Collection .\n' +
+            '   ?motif a glycomotif:Motif .\n' +
+            '   \n' +
+            '   ?motif glycomotif:id ?PageID .\n' +
+            '   ?motif glycomotif:incollection ?collection .\n' +
+            '   ?motif glycomotif:glytoucan ?motif_gtc_acc .\n' +
+            '   ?motif glycomotif:alignment ?alignment_type .\n' +
             '\n' +
-            '    FILTER(regex(STR(?motifgtcacc), "' + motif + '"))\n' +
-            '    \n' +
-            '}';
-        return query
-    }
-
-    function alignmentQueryConstructorReducing(motif) {
-        var query =
-            'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n' +
-            'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n' +
-            'PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>\n' +
+            '   ?alignment glycomotif:motif_accession ?motif_gtc_acc .\n' +
+            '   ?alignment glycomotif:alignment_type ?alignment_type .\n' +
+            '   ?alignment glycomotif:structure_accession ?structure_gtc_acc .\n' +
             '\n' +
-            'SELECT DISTINCT ?accession\n' +
-            'WHERE {\n' +
+            '   ?motif glycomotif:id "' + motif_page_id + '" .\n' +
             '\n' +
-            '    ?motif glycomotif:glytoucan ?motifgtcacc . \n' +
-            '    ?motif rdf:type glycomotif:Motif .\n' +
-            '    ?motif glycomotif:incollection ?collection . \n' +
-            '    \n' +
-            '    ?collection rdf:type glycomotif:Collection .\n' +
-            '    ?collection glycomotif:id "GM" .\n' +
-            '    \n' +
-            '    ?motif glycomotif:has_redend_alignment ?accession .\n' +
-            '\n' +
-            '    FILTER(regex(STR(?motifgtcacc), "' + motif + '"))\n' +
-            '    \n' +
-            '}';
+            '}\n' +
+            'ORDER BY ?PageID ?structure_gtc_acc ?alignment_type';
         return query
     }
 
@@ -353,36 +329,42 @@ if (document.getElementById("motif_align_para") != null){
         var endpt = "https://edwardslab.bmcb.georgetown.edu/sparql/glycomotifdev/query";
 
         var res = {
-            "red": [],
-            "all": []
+            "all":[]
         };
 
-        var query = alignmentQueryConstructorAll(motif);
+        var query = alignmentQueryConstructor(motif);
         var response = JSON.parse(sparqlQuery(endpt, query));
         var result = response.results.bindings;
         for (var i in result){
             var pair = result[i];
-            var structureAcc = pair.accession.value;
-            res.all.push(structureAcc);
+            var structure_gtc_acc = pair.structure_gtc_acc.value;
+            var alignment_type = pair.alignment_type.value;
+            if (!Object.keys(res).includes(alignment_type)){
+                res[alignment_type] = [];
+            }
+            res[alignment_type].push(structure_gtc_acc);
         }
 
-        query = alignmentQueryConstructorReducing(motif);
-        response = JSON.parse(sparqlQuery(endpt, query));
-        result = response.results.bindings;
-        for (var i in result){
-            var pair = result[i];
-            var structureAcc = pair.accession.value;
-            res.red.push(structureAcc);
-        }
-        res.all = res.all.sort();
 
-        if (motifredonly){
-            res.all = res.red.sort();
+        for (var i in Object.keys(res)){
+            var alignment_type = Object.keys(res)[i];
+            res[alignment_type] = res[alignment_type].sort();
         }
+
+        for (var i in Object.keys(res).sort()){
+            var alignment_type = Object.keys(res).sort()[i];
+            for (var j in res[alignment_type]){
+                var structure_gtc_acc = res[alignment_type][j];
+                if (!res.all.includes(structure_gtc_acc)){
+                    res.all.push(structure_gtc_acc);
+                }
+            }
+        }
+
         return res
     }
 
-    function CreateGlycanFigure(gtcid, f) {
+    function CreateGlycanFigure(gtcid, extra) {
 
         var figure = document.createElement("figure");
 
@@ -401,8 +383,8 @@ if (document.getElementById("motif_align_para") != null){
 
         var caption = document.createElement("figcaption");
         caption.innerHTML = gtcid;
-        if (f){
-            caption.innerHTML += "*";
+        if (extra.length > 0){
+            caption.innerHTML += " ("+extra+")";
         }
         caption.style.textAlign = "center";
 
@@ -438,7 +420,21 @@ if (document.getElementById("motif_align_para") != null){
                 tr = document.createElement("tr");
             }
             td = document.createElement("td");
-            var figure = CreateGlycanFigure(c, res.red.includes(c))
+
+            var alignment_types = [];
+            for (var i in Object.keys(res)){
+                var alignment_type = Object.keys(res)[i];
+                if (alignment_type == "all"){
+                    continue;
+                }
+                if (res[alignment_type].includes(c)){
+                    alignment_types.push(alignment_type)
+                }
+            }
+            alignment_types = alignment_types.sort()
+            alignment_types.join(", ")
+
+            var figure = CreateGlycanFigure(c, alignment_types)
             td.appendChild(figure);
             tr.appendChild(td);
         }
@@ -501,23 +497,13 @@ if (document.getElementById("motif_align_para") != null){
 
     }
 
-    var res = alignment(motifacc);
+    var res = alignment(motifpageid);
     if (res.all.length > 0){
         draw(0);
     }
+    else{
+        document.getElementById("glycomotif_alignment_result")
+            .innerText = "No alignment found for this motif";
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
