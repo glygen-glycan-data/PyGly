@@ -23,7 +23,7 @@ for m in w.itermotif():
         alignment_type.append("Substructure")
 
     if redend == None or len(redend) == 0:
-        alignment_type = ["Core", "Substructure"]
+        alignment_type = ["Substructure"]
 
     if collection in ["GGM"]:
 
