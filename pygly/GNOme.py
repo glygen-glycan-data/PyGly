@@ -1071,6 +1071,11 @@ class SubsumptionGraph(GNOmeAPI):
 
                 elif lineInfo == "tree":
                     gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
+                    """
+                    # hmmm
+                    gtcacc, g_type, asterik = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)?").findall(l))[0]
+                    missingrank = 100
+                    """
                     content["missing"][gtcacc] = missingrank
 
                 else:
@@ -1210,7 +1215,7 @@ class SubsumptionGraph(GNOmeAPI):
         temp = map(lambda x: len(x), warnings.values())
         return reduce(lambda x, y: x + y, temp)
 
-    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, version=None, exact_sym=None, specific_sym=None):
+    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, acc_file_path, version=None, exact_sym=None, specific_sym=None):
 
         if specific_sym is None:
             specific_sym = {}
@@ -1232,7 +1237,7 @@ class SubsumptionGraph(GNOmeAPI):
 
         self.loaddata(input_file_path)
 
-        r = OWLWriter(mass_LUT_file_path=mass_lut_file_path, version=version)
+        r = OWLWriter(mass_LUT_file_path=mass_lut_file_path, historical_accession_file_path=acc_file_path, version=version)
 
         for mass in self.nodes():
             if not self.ismolecularweight(mass):
@@ -1278,13 +1283,21 @@ from rdflib import URIRef, Namespace
 class OWLWriter():
     _nodes = {}
 
-    def __init__(self, mass_LUT_file_path=None, version=None):
+    def __init__(self, mass_LUT_file_path=None, historical_accession_file_path=None, version=None):
         self.version = version
+
         if mass_LUT_file_path:
             self.mass_LUT_file_path = mass_LUT_file_path
         else:
             self.mass_LUT_file_path = "./mass_lut.txt"
+
+        if historical_accession_file_path:
+            self.historical_accession_file_path = historical_accession_file_path
+        else:
+            self.historical_accession_file_path = "./all_accessions.txt"
+
         self.readmassidmap(mass_LUT_file_path)
+        self.readaccessionlist(historical_accession_file_path)
 
 
     def addNode(self, nodeID, nodetype=None):
@@ -1323,6 +1336,7 @@ class OWLWriter():
         else:
             d[1.01] = "10000001"
         self.massiddict = d
+        self.used_mass = set()
 
     newMass = False
 
@@ -1334,6 +1348,26 @@ class OWLWriter():
             id = self.massiddict[mass]
             mass_lut_file_handle.write("%s\t%.2f\n" % (id, mass))
         mass_lut_file_handle.close()
+
+
+    def readaccessionlist(self, fp):
+        d = set()
+
+        if fp:
+            d = set(open(fp).read().strip().split())
+
+        self.gtc_accession = d
+        self.used_gtcacc = set()
+
+    newGTCAcc = False
+
+    def overwriteaccessionlist(self):
+        print "new GlyTouCan accession was added"
+        file_handle = open(self.historical_accession_file_path, "w")
+        for acc in sorted(list(self.gtc_accession)):
+            file_handle.write(acc + '\n')
+        file_handle.close()
+
 
     gno = "http://purl.obolibrary.org/obo/"
     gtcs = "http://glytoucan.org/Structures/Glycans/"
@@ -1463,6 +1497,15 @@ class OWLWriter():
 
     def gnouri(self, id):
         return rdflib.URIRef(self.gno + self.gnoid(id))
+
+    def mass_decimal_to_mass_id(self, mass):
+        try:
+            res = self.massiddict[float(mass)]
+        except KeyError:
+            res = str(int(max(self.massiddict.values())) + 1)
+            self.massiddict[float(mass)] = res
+            self.newMass = True
+        return res
 
     def make_graph(self):
 
@@ -1655,14 +1698,8 @@ class OWLWriter():
             if not n.ismolecularweight():
                 rdfNode = self.gnouri(n.getID())
             else:
-                try:
-                    id = self.massiddict[float(n.getID())]
-                except KeyError:
-                    mass = n.getID()
-                    id = str(int(max(self.massiddict.values())) + 1)
-                    self.massiddict[float(mass)] = id
-                    self.newMass = True
-                rdfNode = self.gnouri(id)
+                rdfNode = self.gnouri(self.mass_decimal_to_mass_id(n.getID()))
+
             outputGraph.add((rdfNode, rdf.type, owl.Class))
 
             if n._nodeType:
@@ -1672,6 +1709,8 @@ class OWLWriter():
                 raise ValueError
 
             if not n.ismolecularweight():
+                self.used_gtcacc.add(n.getID())
+
                 outputGraph.add((rdfNode, has_glytoucan_id_node, Literal(n.getID())))
                 outputGraph.add((rdfNode, has_glytoucan_link_node, gtcs[n.getID()]))
                 outputGraph.add((rdfNode, definition,
@@ -1680,7 +1719,11 @@ class OWLWriter():
                                  Literal("%s" % n.getID())))
                 # TODO add missing rank to GNOme latter here
                 # print n.getID(), n.missing_rank()
+
+
             else:
+                self.used_mass.add(n.getID())
+
                 outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
                 outputGraph.add((rdfNode, rdfs.label,
                                  Literal("glycan of molecular weight %s Da" % n.getID())))
@@ -1723,8 +1766,47 @@ class OWLWriter():
                 n2 = self.gnouri(l._sideB.getID())
                 outputGraph.add((n2, rdfs.subClassOf, n1))
 
+
+        tmp1 = len(self.gtc_accession)
+        self.gtc_accession = self.gtc_accession.union(self.used_gtcacc)
+        tmp2 = len(self.gtc_accession)
+        if tmp2 > tmp1:
+            self.newGTCAcc = True
+
         if self.newMass:
             self.overwritemasslookuptable()
+
+        if self.newGTCAcc:
+            self.overwriteaccessionlist()
+
+
+
+        unused_mass = set(self.massiddict.keys()) - set(map(float, self.used_mass))
+        unused_gtc_acc = self.gtc_accession - self.used_gtcacc
+
+        rdfNodeXSDTrue = rdflib.Literal("true", datatype=rdflib.XSD.boolean)
+        for n in unused_mass:
+
+            rdfNode = self.gnouri(self.mass_decimal_to_mass_id(n))
+            outputGraph.add((rdfNode, rdf.type, owl.Class))
+            outputGraph.add((rdfNode, owl.deprecated, rdfNodeXSDTrue))
+
+            outputGraph.add((rdfNode, definition,
+                             Literal(
+                                 "OBSOLETE. A glycan characterized by underivitized molecular weight of %s Daltons." % n)))
+            outputGraph.add((rdfNode, rdfs.label,
+                             Literal("obsolete glycan of molecular weight %s Da" % n)))
+
+        for n in unused_gtc_acc:
+            rdfNode = self.gnouri(n)
+            outputGraph.add((rdfNode, rdf.type, owl.Class))
+            outputGraph.add((rdfNode, owl.deprecated, rdfNodeXSDTrue))
+
+            outputGraph.add((rdfNode, definition,
+                             Literal("OBSOLETE. A glycan described by the GlyTouCan entry with accession %s." % n)))
+            outputGraph.add((rdfNode, rdfs.label,
+                             Literal("obsolete %s" % n)))
+
 
         return outputGraph
 
@@ -2255,19 +2337,15 @@ if __name__ == "__main__":
         g.compute(*sys.argv[1:], verbose=verbose)
 
     elif cmd == "writeowl":
-        # python GNOme.py writeowl ../smw/glycandata/data/gnome_subsumption_raw.txt ./GNOme.owl mass_lookup_2decimal v1.1.5
-
-        # "../smw/glycandata/data/gnome_subsumption_raw.txt"
 
         kv_para = {
             "version": None
         }
-        if len(sys.argv) < 4:
+        if len(sys.argv) < 5:
             print "Please provide dumpfile, output file path(with file name), mass LUT path and version (optional)"
             sys.exit(1)
-        if len(sys.argv) > 4:
-            versionTag = sys.argv[4]
-            for k, v in zip(sys.argv[4::2], sys.argv[5::2]):#sys.argv[4::2]:
+        if len(sys.argv) > 5:
+            for k, v in zip(sys.argv[5::2], sys.argv[6::2]):
                 assert k.startswith("-")
                 k = k[1:]
                 kv_para[k] = v
@@ -2302,9 +2380,10 @@ if __name__ == "__main__":
         ifn = sys.argv[1]  # path to input file
         ofn = sys.argv[2]
         mass_lut = sys.argv[3]
+        accession_list_file = sys.argv[4]
 
         subsumption_instance = SubsumptionGraph()
-        subsumption_instance.generateOWL(ifn, ofn, mass_lut, version=kv_para["version"], exact_sym=exactSym, specific_sym=specificSym)
+        subsumption_instance.generateOWL(ifn, ofn, mass_lut, accession_list_file, version=kv_para["version"], exact_sym=exactSym, specific_sym=specificSym)
 
         if "allExactSymOutput" in kv_para:
             allexactsym = {}

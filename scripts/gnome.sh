@@ -6,11 +6,6 @@ restriction_set_names=(
   "GlycanData"
 )
 
-# Use rdflib on master branch
-#wget -c https://github.com/RDFLib/rdflib/archive/master.zip -O rdflib_master_branch.zip
-#unzip rdflib_master_branch.zip
-#mv ./rdflib-master/rdflib ./../pygly/
-
 
 if [[ ! ("$(pwd)" =~ "/PyGly/scripts") ]]; then
   # Check for executing folder
@@ -25,7 +20,7 @@ if [ -z "$1" ]
 fi
 
 git clone git@github.com:glygen-glycan-data/GNOme.git
-python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal -version $1 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -exact_sym2 ./GNOme/data/shortcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt -allExactSymOutput ./GNOme/data/exact_synonym.txt
+python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal ./GNOme/data/all_accession -version $1 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -exact_sym2 ./GNOme/data/shortcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt -allExactSymOutput ./GNOme/data/exact_synonym.txt
 python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json
 
 
