@@ -294,8 +294,7 @@ if (document.getElementById("motif_align_para") != null){
             '\n' +
             '   ?motif glycomotif:id "' + motif_page_id + '" .\n' +
             '\n' +
-            '}\n' +
-            'ORDER BY ?PageID ?structure_gtc_acc ?alignment_type';
+            '}';
         return query
     }
 
@@ -315,6 +314,8 @@ if (document.getElementById("motif_align_para") != null){
         }
         var queryURL = endpt + '?' + querypart;
 
+        return queryURL
+
         var xmlhttp = new XMLHttpRequest();
 
         xmlhttp.open("GET", queryURL, false);
@@ -325,15 +326,19 @@ if (document.getElementById("motif_align_para") != null){
     }
 
     function alignment(motif){
-
         var endpt = "https://edwardslab.bmcb.georgetown.edu/sparql/glycomotifdev/query";
-
-        var res = {
-            "all":[]
-        };
-
         var query = alignmentQueryConstructor(motif);
-        var response = JSON.parse(sparqlQuery(endpt, query));
+
+        var qurl = sparqlQuery(endpt, query);
+        // console.log(qurl);
+        jQuery.getJSON(qurl).then(function (a){
+            alignmentPart2(a)
+        });
+    }
+
+    function alignmentPart2(response){
+
+        // var response = JSON.parse(thing);
         var result = response.results.bindings;
         for (var i in result){
             var pair = result[i];
@@ -361,6 +366,13 @@ if (document.getElementById("motif_align_para") != null){
             }
         }
 
+        if (res.all.length > 0){
+            draw(0);
+        }
+        else{
+            document.getElementById("glycomotif_alignment_result")
+                .innerText = "No alignment found for this motif";
+        }
         return res
     }
 
@@ -497,13 +509,11 @@ if (document.getElementById("motif_align_para") != null){
 
     }
 
-    var res = alignment(motifpageid);
-    if (res.all.length > 0){
-        draw(0);
-    }
-    else{
-        document.getElementById("glycomotif_alignment_result")
-            .innerText = "No alignment found for this motif";
-    }
+    var res = {
+        "all":[]
+    };
+    alignment(motifpageid);
+
+
 
 }
