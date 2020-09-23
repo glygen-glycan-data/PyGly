@@ -1070,12 +1070,12 @@ class SubsumptionGraph(GNOmeAPI):
                         content["edges"][fromx] = to
 
                 elif lineInfo == "tree":
-                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
-                    """
-                    # hmmm
+                    # TODO parse missingrank section
+                    # gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
+
                     gtcacc, g_type, asterik = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)?").findall(l))[0]
-                    missingrank = 100
-                    """
+                    missingrank = None
+
                     content["missing"][gtcacc] = missingrank
 
                 else:
@@ -1215,12 +1215,16 @@ class SubsumptionGraph(GNOmeAPI):
         temp = map(lambda x: len(x), warnings.values())
         return reduce(lambda x, y: x + y, temp)
 
-    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, acc_file_path, version=None, exact_sym=None, specific_sym=None):
+    def generateOWL(self, input_file_path, output_file_path, mass_lut_file_path, acc_file_path, version=None, exact_sym=None, specific_sym=None, replacement=None):
 
         if specific_sym is None:
             specific_sym = {}
         if exact_sym is None:
             exact_sym = []
+
+        if replacement is None:
+            replacement = {}
+        assert isinstance(replacement, dict)
 
         all_syms = defaultdict(list)
         for e_sym in exact_sym:
@@ -1237,7 +1241,7 @@ class SubsumptionGraph(GNOmeAPI):
 
         self.loaddata(input_file_path)
 
-        r = OWLWriter(mass_LUT_file_path=mass_lut_file_path, historical_accession_file_path=acc_file_path, version=version)
+        r = OWLWriter(mass_LUT_file_path=mass_lut_file_path, historical_accession_file_path=acc_file_path, version=version, replacement=replacement)
 
         for mass in self.nodes():
             if not self.ismolecularweight(mass):
@@ -1283,7 +1287,7 @@ from rdflib import URIRef, Namespace
 class OWLWriter():
     _nodes = {}
 
-    def __init__(self, mass_LUT_file_path=None, historical_accession_file_path=None, version=None):
+    def __init__(self, mass_LUT_file_path=None, historical_accession_file_path=None, version=None, replacement=None):
         self.version = version
 
         if mass_LUT_file_path:
@@ -1295,6 +1299,12 @@ class OWLWriter():
             self.historical_accession_file_path = historical_accession_file_path
         else:
             self.historical_accession_file_path = "./all_accessions.txt"
+
+        if replacement is None:
+            self.replacement = {}
+        else:
+            assert isinstance(replacement, dict)
+            self.replacement = replacement
 
         self.readmassidmap(mass_LUT_file_path)
         self.readaccessionlist(historical_accession_file_path)
@@ -1670,6 +1680,13 @@ class OWLWriter():
         outputGraph.add((hasExactSynonym_node, rdfs.isDefinedBy, oboInOwl[""]))
         outputGraph.add((hasExactSynonym_node, rdfs.label, Literal("hasExactSynonym")))
 
+        # Add AnnotationProperty for consider
+        consider_node = oboInOwl["consider"]
+
+        outputGraph.add((consider_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((consider_node, rdfs.isDefinedBy, oboInOwl[""]))
+        outputGraph.add((consider_node, rdfs.label, Literal("consider")))
+
         # Add AnnotationProperty for has_Byonic_name
         has_Byonic_name_node = self.gnouri(self.has_Byonic_name_annotation_property)
 
@@ -1768,7 +1785,7 @@ class OWLWriter():
 
 
         tmp1 = len(self.gtc_accession)
-        self.gtc_accession = self.gtc_accession.union(self.used_gtcacc)
+        self.gtc_accession = self.gtc_accession.union(self.used_gtcacc).union(set(self.replacement.keys()))
         tmp2 = len(self.gtc_accession)
         if tmp2 > tmp1:
             self.newGTCAcc = True
@@ -1789,13 +1806,13 @@ class OWLWriter():
 
             rdfNode = self.gnouri(self.mass_decimal_to_mass_id(n))
             outputGraph.add((rdfNode, rdf.type, owl.Class))
-            outputGraph.add((rdfNode, owl.deprecated, rdfNodeXSDTrue))
+            # outputGraph.add((rdfNode, owl.deprecated, rdfNodeXSDTrue))
 
             outputGraph.add((rdfNode, definition,
                              Literal(
-                                 "OBSOLETE. A glycan characterized by underivitized molecular weight of %s Daltons." % n)))
+                                 "A glycan characterized by underivitized molecular weight of %s Daltons." % n)))
             outputGraph.add((rdfNode, rdfs.label,
-                             Literal("obsolete glycan of molecular weight %s Da" % n)))
+                             Literal("glycan of molecular weight %s Da" % n)))
 
         for n in unused_gtc_acc:
             rdfNode = self.gnouri(n)
@@ -1807,6 +1824,11 @@ class OWLWriter():
             outputGraph.add((rdfNode, rdfs.label,
                              Literal("obsolete %s" % n)))
 
+
+
+        for oldacc, newacc in self.replacement.items():
+            rdfNodeStringNewAcc = rdflib.Literal("obo:GNO_"+newacc, datatype=rdflib.XSD.string)
+            outputGraph.add((self.gnouri(oldacc), consider_node, rdfNodeStringNewAcc))
 
         return outputGraph
 
@@ -2339,7 +2361,8 @@ if __name__ == "__main__":
     elif cmd == "writeowl":
 
         kv_para = {
-            "version": None
+            "version": None,
+            "replace": None
         }
         if len(sys.argv) < 5:
             print "Please provide dumpfile, output file path(with file name), mass LUT path and version (optional)"
@@ -2371,6 +2394,20 @@ if __name__ == "__main__":
             else:
                 specificSym[k] = symFile2dict(v)
 
+        replace_mapping = {}
+        if kv_para["replace"] is not None:
+            replace_file_path = kv_para["replace"]
+
+            replace_file_handle = open(replace_file_path)
+            for i, l in enumerate(replace_file_handle):
+                linfo = l.strip().split()
+                if i == 0 and "accession" in linfo:
+                    continue
+
+                newacc, oldacc = linfo
+                replace_mapping[oldacc] = newacc
+
+
 
         #for syms in exactSym:
         #    print len(syms)
@@ -2383,7 +2420,7 @@ if __name__ == "__main__":
         accession_list_file = sys.argv[4]
 
         subsumption_instance = SubsumptionGraph()
-        subsumption_instance.generateOWL(ifn, ofn, mass_lut, accession_list_file, version=kv_para["version"], exact_sym=exactSym, specific_sym=specificSym)
+        subsumption_instance.generateOWL(ifn, ofn, mass_lut, accession_list_file, version=kv_para["version"], exact_sym=exactSym, specific_sym=specificSym, replacement=replace_mapping)
 
         if "allExactSymOutput" in kv_para:
             allexactsym = {}
