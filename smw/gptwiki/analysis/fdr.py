@@ -43,6 +43,22 @@ class FDRComputation(object):
                 self.fdr[sc] = fdri
                 lastfdri = fdri
 
+    def score(self,qv):
+	if self.fdr == None:
+	    self.compute_fdr()
+	for sc in sorted(self.fdr,reverse=(self.rankingdir>0)):
+	    if self.fdr[sc] < qv:
+		return sc
+	return max(self.fdr)
+
+    def targets(self,x):
+	if self.fdr == None:
+	    self.compute_fdr()
+	for sc in sorted(self.fdr,reverse=(self.rankingdir<0)):
+	    if self.rankingdir*x <= self.rankingdir*sc:
+		return self.cumulative_counts[sc][False]
+	return 0.0
+
     def qvalue(self,x):
 	if self.fdr == None:
 	    self.compute_fdr()
@@ -65,6 +81,7 @@ class SeparateAnalysisFDR(FDRComputation):
 	    group = row[self.groupingkey]
             if group == last_group:
                 continue
+	    last_group = group
             score = float(row[self.rankingkey])
             self.counts[score][decoy] += 1
 	    last_group = group
@@ -83,6 +100,7 @@ class CombinedAnalysisFDR(FDRComputation):
 	    group = row[self.groupingkey]
             if group == last_group:
                 continue
+	    last_group = group
             score = float(row[self.rankingkey])
 	    decoy = (int(row['decoy']) > 0)
             self.counts[score][decoy] += 1

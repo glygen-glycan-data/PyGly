@@ -17,7 +17,7 @@ w.addacquisition(name=spectra,method=method,sample=sample,type="DIA")
 for jsonfile in sys.argv[4:]:
   data = json.loads(open(jsonfile).read())
   rt = data['rt']
-  nrt = data['nrt']
+  nrt = data.get('nrt')
   trans = []
   for s in data['series']:
       trid = s['trlib_id'].split('.')[-1]

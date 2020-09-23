@@ -13,11 +13,18 @@ class LinearRegression(object):
     def normalize(self,points):
 	self.check(points)
 	apoints = np.array(points)
-        ind = np.argsort(apoints[:,0])
-        x = apoints[ind,0]
-        y = apoints[ind,1]
-        invind = np.argsort(ind)
-        return x,y,invind
+	assert len(apoints.shape) == 1 or (len(apoints.shape) == 2 and apoints.shape[1] == 2)
+	if len(apoints.shape) == 2 and apoints.shape[1] == 2:
+            ind = np.argsort(apoints[:,0])
+            x = apoints[ind,0]
+            y = apoints[ind,1]
+            invind = np.argsort(ind)
+            return x,y,invind
+	else:
+            ind = np.argsort(apoints)
+            x = apoints[ind,0]
+            invind = np.argsort(ind)
+            return x,invind
 
     def check(self,points):
 	if len(points) < self._minpoints:
@@ -25,8 +32,11 @@ class LinearRegression(object):
     
     def evaluate(self,params,points):
         x,y,ind = self.normalize(points)
-        yfit = params['slope']*x+params['intercept']
+        yfit = self.y(x)
         return dict(yfit=yfit[ind],residuals=yfit[ind]-y[ind])
+
+    def y(self,params,x):
+	return params['slope']*x+params['intercept']
 
 class SimpleLinearRegression(LinearRegression):
 
