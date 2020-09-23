@@ -33,13 +33,10 @@ if not opts.results:
 if not opts.outdir:
     parser.error("Output directory for JSON chromatograms missing.")
 
-tgkey = "transition_group_id"
 scorekey = "main_var_xx_swath_prelim_score"
 
 fdr = CombinedAnalysisFDR(rankingkey=scorekey,ndecoys=opts.ndecoys)
-fdr.add_ids(csv.DictReader(open(opts.results),dialect="excel-tab"))
-# for sc,qv,ta,de in fdr.allqvalues():
-#     print sc,qv,ta,de
+fdr.add_ids(opts.results)
 scorethreshold = fdr.score(opts.thresh/100.0)
 targets = fdr.targets(scorethreshold)
 print "Using",targets,"results for score threshold:",scorethreshold,"for",opts.thresh,"% FDR"
@@ -47,26 +44,15 @@ print "Using",targets,"results for score threshold:",scorethreshold,"for",opts.t
 alltr = dict()
 pepgrp = defaultdict(list)
 
-last_transition_group_id = None
-for row in sorted(csv.DictReader(open(opts.results),dialect="excel-tab"),
-                  key=lambda r: (r[tgkey],-float(r[scorekey]))):
-    transition_group_id = row[tgkey]
-    if transition_group_id == last_transition_group_id:
-        continue
-    last_transition_group_id = transition_group_id
-    decoy = int(row['decoy'])
-    if decoy == 1:
-	continue
-    score = float(row[scorekey])
-    if score < scorethreshold:
-        continue
+for row in fdr.filter_ids(opts.results,score=scorethreshold):
     apex = map(float,row['aggr_Peak_Apex'].split(';'))
     area = map(float,row['aggr_Peak_Area'].split(';'))
     trs = row['aggr_Fragment_Annotation'].split(';')
     rt = float(row['RT'])/60.0
     assay_rt = float(row['assay_rt'])/60.0
+    tg = row['transition_group_id']
     for tr,ap,ar in zip(trs,apex,area):
-        alltr[tr] = dict(area=ar,apex=ap,tg=transition_group_id,exprt=rt,transnrt=assay_rt)
+        alltr[tr] = dict(area=ar,apex=ap,tg=tg,exprt=rt,transnrt=assay_rt)
 
 for row in csv.DictReader(open(opts.transitions),dialect="excel-tab"):
     tr = row["transition_name"]

@@ -1,6 +1,7 @@
 #!/bin/env python27
 
 from collections import defaultdict
+import csv
 
 class FDRComputation(object):
     _groupingkey = "peptide_group_label"                                                                              
@@ -20,6 +21,29 @@ class FDRComputation(object):
 	self.scores = None
 	self.cumulative_counts = None
 	self.fdr = None
+
+    def get_ids(self,rows):
+	if isinstance(rows,str):
+	    rows = csv.DictReader(open(rows),dialect="excel-tab")
+	last_group = None
+	for row in sorted(rows,key=lambda r: (r[self.groupingkey],self.rankingdir*float(r[self.rankingkey]))):
+	    group = row[self.groupingkey]
+            if group == last_group:
+                continue
+	    yield row
+	    last_group = group
+	
+    def filter_ids(self,rows,qvalue=None,score=None):
+	if score:
+	    score_threshold = score
+	else:
+	    score_threshold = self.score(qvalue)
+	for row in self.get_ids(rows):
+            if int(row['decoy']) == 1:
+		continue
+	    if self.rankingdir*float(row[self.rankingkey]) > self.rankingdir*score_threshold:
+		continue
+	    yield row
 
     def compute_cumulative_counts(self):
         self.scores = sorted(self.counts.keys(),reverse=(self.rankingdir<0))
@@ -76,15 +100,9 @@ class FDRComputation(object):
 class SeparateAnalysisFDR(FDRComputation):
 
     def add_ids(self,rows,decoy=False):
-	last_group = None
-	for row in sorted(rows,key=lambda r: (r[self.groupingkey],self.rankingdir*float(r[self.rankingkey]))):
-	    group = row[self.groupingkey]
-            if group == last_group:
-                continue
-	    last_group = group
+	for row in self.get_ids(rows):
             score = float(row[self.rankingkey])
             self.counts[score][decoy] += 1
-	    last_group = group
 
     def add_target_ids(self,rows):
 	self.add_ids(rows,False)
@@ -95,21 +113,14 @@ class SeparateAnalysisFDR(FDRComputation):
 class CombinedAnalysisFDR(FDRComputation):
 
     def add_ids(self,rows):
-	last_group = None
-	for row in sorted(rows,key=lambda r: (r[self.groupingkey],self.rankingdir*float(r[self.rankingkey]))):
-	    group = row[self.groupingkey]
-            if group == last_group:
-                continue
-	    last_group = group
+	for row in self.get_ids(rows):
             score = float(row[self.rankingkey])
 	    decoy = (int(row['decoy']) > 0)
             self.counts[score][decoy] += 1
-	    last_group = group
 
 if __name__ == "__main__":
     
     import sys
-    import csv
 
     if len(sys.argv) < 2:
 	print >>sys.stderr, """
@@ -137,13 +148,13 @@ decoy identifications.
     if decoy_files == None:
 	# fdr = CombinedAnalysisFDR(ndecoys=ndecoys,rankingkey="xx_lda_prelim_score")
 	fdr = CombinedAnalysisFDR(ndecoys=ndecoys,rankingkey="main_var_xx_swath_prelim_score")
-        fdr.add_ids(csv.DictReader(open(target_file),dialect="excel-tab"))
+        fdr.add_ids(target_file)
     else:
         # fdr = SeparateAnalysisFDR(ndecoys=ndecoys,rankingkey="xx_lda_prelim_score")
         fdr = SeparateAnalysisFDR(ndecoys=ndecoys,rankingkey="main_var_xx_swath_prelim_score")
-        fdr.add_target_ids(csv.DictReader(open(target_file),dialect="excel-tab"))
+        fdr.add_target_ids(target_file)
         for df in decoy_files:
-	    fdr.add_decoy_ids(csv.DictReader(open(df),dialect="excel-tab"))
+	    fdr.add_decoy_ids(df)
 
     for sc,qv,ta,de in fdr.allqvalues():
 	print sc,qv,ta,de
