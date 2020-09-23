@@ -38,8 +38,8 @@ scorekey = "main_var_xx_swath_prelim_score"
 
 fdr = CombinedAnalysisFDR(rankingkey=scorekey,ndecoys=opts.ndecoys)
 fdr.add_ids(csv.DictReader(open(opts.results),dialect="excel-tab"))
-for sc,qv,ta,de in fdr.allqvalues():
-    print sc,qv,ta,de
+# for sc,qv,ta,de in fdr.allqvalues():
+#     print sc,qv,ta,de
 scorethreshold = fdr.score(opts.thresh/100.0)
 targets = fdr.targets(scorethreshold)
 print "Using",targets,"results for score threshold:",scorethreshold,"for",opts.thresh,"% FDR"
@@ -181,8 +181,9 @@ for i,(pepid,charge) in enumerate(pepgrp):
             data["trlib_mz1"] = tr["pmz"]
         trdata["name"] = trid
         data["series"].append(trdata)
-    print i,pepid,charge
+    # print i,pepid,charge
     wh = open(os.path.join(opts.outdir,fn),'w')
     wh.write(json.dumps(data))
     wh.close()
-    
+
+print "%d peptide groups extracted"%(len(pepgrp),)
