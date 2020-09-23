@@ -21,7 +21,8 @@ fi
 
 git clone git@github.com:glygen-glycan-data/GNOme.git
 python27 ../pygly/GNOme.py writeowl ./GNOme/data/gnome_subsumption_raw.txt ./GNOme.owl ./GNOme/data/mass_lookup_2decimal ./GNOme/data/all_accession -version $1 -exact_sym1 ./GNOme/data/shortuckbcomp2glytoucan.txt -exact_sym2 ./GNOme/data/shortcomp2glytoucan.txt -byonic_sym ./GNOme/data/byonic2glytoucan.txt -allExactSymOutput ./GNOme/data/exact_synonym.txt -replace ./GNOme/data/glytoucan_replaced.txt
-python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./GNOme.browser.json
+python27 ../pygly/GNOme.py viewerdata ./GNOme.owl ./BrowserData.json
+mv ./BrowserData.json ./GNOme/
 
 
 for Restriction_set in "${restriction_set_names[@]}"
@@ -37,15 +38,17 @@ python27 ../pygly/GNOme.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
 
 cp ./GNOme/convert.sh ./
 ./convert.sh
-mv ./BrowserData.json ./GNOme/
+
 
 for Restriction_set in "${restriction_set_names[@]}"
 do
-	for file_ext in "owl" "obo" "json" "BrowserData.json"
+	for file_ext in "owl" "obo" "json"
   do
     	mv ./GNOme_$Restriction_set.$file_ext ./GNOme/restrictions/
   done
 done
+
+mv *.BrowserData.json ./GNOme/restrictions/
 
 
 cd ./GNOme
