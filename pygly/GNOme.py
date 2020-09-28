@@ -439,14 +439,19 @@ class SubsumptionGraph(GNOmeAPI):
         self.verbose = kwargs.get('verbose', 0)
         self.score = IncompleteScore()
 
-	# invalid = set(self.gtc.allinvalid())
-	# invalid = set()
+	# We establish the following sets
+	# 1. GlyTouCan accessions (self.allacc)
+	# 2. Archived GlyTouCan accession (some with replacements) (self.replace)
+        # 3. GlyCosmos (validated) accessions (self.allgco)
+
 	self.allacc = set(self.gtc.allaccessions())
 	self.allgco = set(self.gco.allaccessions())
-        self.replace = dict()
-	for acc in self.allacc:
-	    if acc not in self.allgco:
-		self.replace[acc] = None
+        self.replace = self.gco.replace()
+	for acc in self.replace:
+	    try:
+	        self.allacc.remove(acc)
+	    except KeyError:
+	        pass
 
         masscluster = defaultdict(dict)
 	clustermap = defaultdict(set)
@@ -454,7 +459,7 @@ class SubsumptionGraph(GNOmeAPI):
 	    argmass = []
 	    for a in args:
 		if '-' in a:
-		    low,high = [ s.strip() for s in split('-') ]
+		    low,high = [ s.strip() for s in a.split('-') ]
 		    if not low:
 			low = 0.0
 		    if not high:
@@ -469,6 +474,8 @@ class SubsumptionGraph(GNOmeAPI):
 		mass = self.gco.getmass(glyacc)
 		if not mass:
 		    mass = self.gtc.getmass(glyacc)
+		if not mass:
+		    mass = self.gco.umw(glyacc,fetch='wurcs')
 		if not mass:
 		    mass = self.gtc.umw(glyacc,fetch='wurcs')
 	        if not mass:
@@ -548,11 +555,16 @@ class SubsumptionGraph(GNOmeAPI):
         total = len(cluster)
         allgly = dict()
         for acc in sorted(cluster):
-	    if acc not in self.allgco:
-		self.warning("glycan not validated by GlyCosmos: %s"%(acc,),2)
-		continue
+	    if acc in self.replace:
+		repl = self.replace[acc]
+		if repl == None:
+		    self.warning("Glycan accession archived: %s"%(acc,),2)
+	        else:
+		    self.warning("Glycan accession %s archived and replaced by %s"%(acc,repl,),2)
+	        continue
             gly = self.gco.getGlycan(acc,format='wurcs')
-            # gly = self.gtc.getGlycan(acc,format='glycoct')
+	    if not gly:
+                gly = self.gtc.getGlycan(acc,format='wurcs')
             if not gly:
                 badparse += 1
                 skels, substs, invalid, other = self.gtc.getUnsupportedCodes(acc)
@@ -572,12 +584,21 @@ class SubsumptionGraph(GNOmeAPI):
                     self.warning("unknown problem parsing glycan " + acc, 2)
                 continue
             cluster[acc]['glycan'] = gly
-	    mass = self.gtc.getmass(acc)
-	    mymass = self.gtc.umw(acc)
-	    if mass and abs(float(rmass)-mass) <= 0.01:
-                cluster[acc]['mass'] = mass
-	    elif mymass and abs(float(rmass)-mymass) <= 0.01:
-                cluster[acc]['mass'] = mymass
+	    if acc not in self.allgco:
+		self.warning("Glycan not validated by GlyCosmos: %s"%(acc,),3)
+		# continue
+	    gcomass = self.gco.getmass(acc)
+	    gtcmass = self.gtc.getmass(acc)
+	    mygcomass = self.gco.umw(acc,fetch='wurcs')
+	    mygtcmass = self.gtc.umw(acc,fetch='wurcs')
+	    if gcomass and abs(float(rmass)-gcomass) <= 0.01:
+                cluster[acc]['mass'] = gcomass
+	    elif gtcmass and abs(float(rmass)-gtcmass) <= 0.01:
+                cluster[acc]['mass'] = gtcmass
+	    elif mygcomass and abs(float(rmass)-mygcomass) <= 0.01:
+                cluster[acc]['mass'] = mygcomass
+	    elif mygtcmass and abs(float(rmass)-mygtcmass) <= 0.01:
+                cluster[acc]['mass'] = mygtcmass
 	    else:
 		cluster[acc]['mass'] = float(rmass)
 
@@ -804,7 +825,7 @@ class SubsumptionGraph(GNOmeAPI):
                 else:
 		    # Take the one subsumed by all the others...
 		    topo1=None
-		    for acc in topo:
+		    for acc in topo-set(self.replace):
 			if (topo-inedges[acc]) == set([acc]):
 			    topo1 = acc
 			    break
@@ -821,7 +842,7 @@ class SubsumptionGraph(GNOmeAPI):
                     comp = g.get('comp')
                 else:
 		    comp1=None
-		    for acc in comp:
+		    for acc in comp-set(self.replace):
 			if (comp-inedges[acc]) == set([acc]):
 			    comp1 = acc
 			    break
@@ -838,7 +859,7 @@ class SubsumptionGraph(GNOmeAPI):
                     bcomp = g.get('bcomp')
                 else:
 		    bcomp1=None
-		    for acc in bcomp:
+		    for acc in bcomp-set(self.replace):
 			if (bcomp-inedges[acc]) == set([acc]):
 			    bcomp1 = acc
 			    break
@@ -879,12 +900,11 @@ class SubsumptionGraph(GNOmeAPI):
 
 	self.warning("Checking topo, comp, bcomp relationships... done.",5)
 
-
-        for acc, content in cluster.items():
+	for acc in clusteracc:
+            cluster[acc]['missing'] = None
             try:
-                content['missing'] = self.score.score(content["glycan"])
-            except:
-                content['missing'] = None
+                cluster[acc]['missing'] = self.score.score(cluster[acc]["glycan"])
+            except LookupError:
                 self.warning("Unable to compute missing rank for %s" % (acc), 1)
 
         if len(clusteracc) < 1:
@@ -983,7 +1003,7 @@ class SubsumptionGraph(GNOmeAPI):
         return edges
 
     def print_tree(self, cluster, edges, root, indent=0):
-        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root]['missing']
+        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root].get('missing','-')
         for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
