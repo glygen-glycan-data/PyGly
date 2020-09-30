@@ -1090,12 +1090,7 @@ class SubsumptionGraph(GNOmeAPI):
                         content["edges"][fromx] = to
 
                 elif lineInfo == "tree":
-                    # TODO parse missingrank section
-                    # gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
-
-                    gtcacc, g_type, asterik = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)?").findall(l))[0]
-                    missingrank = None
-
+                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
                     content["missing"][gtcacc] = missingrank
 
                 else:
