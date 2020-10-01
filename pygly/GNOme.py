@@ -338,11 +338,23 @@ class GNOme(GNOmeAPI):
                 return o
 
     # ics2dp: IUPAC composition string to dictionary pattern(regex)
-    ics2dp = re.compile(r"(\D{1,8})(\d{1,3})")
+    ics2dp = re.compile(r"([\D\+]{1,13})(\d{1,3})")
     def iupac_composition_str_to_dict(self, s):
         res = {}
         for p in self.ics2dp.findall(s):
             res[p[0]] = int(p[1])
+
+        additional_xxx = 0
+        for mmm, count in res.items():
+            if "aldi" in mmm:
+                additional_xxx += count
+                del res[mmm]
+
+        if additional_xxx > 0:
+            if "Xxx" not in res:
+                res["Xxx"] = additional_xxx
+            else:
+                res["Xxx"] = res["Xxx"]+additional_xxx
         return res
 
     # cbbutton -> composition browser button
@@ -1014,7 +1026,7 @@ class SubsumptionGraph(GNOmeAPI):
     warnings = defaultdict(set)
     warningsbytype = None
     monosaccharide_count = {}
-    monosaccharide_count_pattern = re.compile(r"\w{1,8}:\d{1,3}")
+    monosaccharide_count_pattern = re.compile(r"[\w\+]{1,13}:\d{1,3}")
 
     def loaddata(self, dumpfilepath):
         self.readfile(dumpfilepath)
