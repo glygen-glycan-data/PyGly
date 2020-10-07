@@ -1795,9 +1795,9 @@ class OWLWriter():
             if not n.ismolecularweight():
                 if n.isbasecomposition() or n.iscomposition():
                     outputGraph.add((rdfNode, has_composition_browser_node, URIRef(
-                        "https://gnome.glyomics.org/GNOme.compositionselector.html?focus=%s" % n.getID())))
+                        "https://gnome.glyomics.org/CompositionBrowser.html?focus=%s" % n.getID())))
                 outputGraph.add((rdfNode, has_structure_browser_node, URIRef(
-                    "https://gnome.glyomics.org/GNOme.browser.html?focus=%s" % n.getID())))
+                    "https://gnome.glyomics.org/StructureBrowser.html?focus=%s" % n.getID())))
 
 
         for l in self.allRelationship():
@@ -1812,7 +1812,7 @@ class OWLWriter():
 
 
         tmp1 = len(self.gtc_accession)
-        self.gtc_accession = self.gtc_accession.union(self.used_gtcacc).union(set(self.replacement.keys()))
+        self.gtc_accession = self.gtc_accession.union(self.used_gtcacc)
         tmp2 = len(self.gtc_accession)
         if tmp2 > tmp1:
             self.newGTCAcc = True
@@ -1854,8 +1854,9 @@ class OWLWriter():
 
 
         for oldacc, newacc in self.replacement.items():
-            rdfNodeStringNewAcc = rdflib.Literal("obo:GNO_"+newacc, datatype=rdflib.XSD.string)
-            outputGraph.add((self.gnouri(oldacc), consider_node, rdfNodeStringNewAcc))
+            if oldacc in self.gtc_accession and newacc in self.used_gtcacc:
+                rdfNodeStringNewAcc = rdflib.Literal(newacc, datatype=rdflib.XSD.string)
+                outputGraph.add((self.gnouri(oldacc), consider_node, rdfNodeStringNewAcc))
 
         return outputGraph
 
