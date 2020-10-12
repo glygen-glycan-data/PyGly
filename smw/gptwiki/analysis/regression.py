@@ -92,7 +92,7 @@ class IteratedRobustLinearRegression(LinearRegression):
 	  
 	    index = np.argmax(abs(result['residuals']))
 
-	    print points1[index],' is removed!' 
+	    # print points1[index],' is removed!' 
 	    del points1[index]
 
 	    removed += 1
@@ -102,7 +102,7 @@ class IteratedRobustLinearRegression(LinearRegression):
                 raise RuntimeError('Too few points!')
 
 	# Once out of loop, result has values from final SLR fit
-	params['removed_points'] = list(points1)
+	params['retained_points'] = list(points1)
 	return params
 
 if __name__ == "__main__":
