@@ -102,8 +102,8 @@ class IteratedRobustLinearRegression(LinearRegression):
                 raise RuntimeError('Too few points!')
 
 	# Once out of loop, result has values from final SLR fit
-#	return params
-	return points1
+	params['removed_points'] = list(points1)
+	return params
 
 if __name__ == "__main__":
     import sys, os
