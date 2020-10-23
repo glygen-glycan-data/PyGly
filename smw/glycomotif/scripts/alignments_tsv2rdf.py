@@ -8,8 +8,8 @@ import rdflib.plugins.serializers.rdfxml
 
 
 motif_tsv = sys.argv[1]
-prefix = sys.argv[2]
-rdf_file_path = sys.argv[3]
+# prefix = sys.argv[2]
+# rdf_file_path = sys.argv[3]
 """
 motif_tsv = "../data/motif_alignment.tsv"
 prefix = "sth"
@@ -86,7 +86,8 @@ for motifacc, alignments_per_motif in alignments.items():
 
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
-writer.serialize(open(rdf_file_path, "w"))
+# writer.serialize(open(rdf_file_path, "w"))
+writer.serialize(sys.stdout)
 
 
 

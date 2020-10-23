@@ -10,7 +10,7 @@ res_file_path = sys.argv[1] # "../data/motif_alignments.tsv"
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
-gtc = GlyTouCan()
+gtc = GlyTouCan(usecache=False)
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
 normal_matcher = pygly.alignment.GlyGenMotif(connected_nodes_cache=nodes_cache)
@@ -91,6 +91,7 @@ result = sorted(result)
 result_file = open(res_file_path, "w")
 result_file.write("Motif\tStructure\tCore\tSubstructure\tWhole\tNon_Red\n")
 result_file.write("\n".join(result))
+result_file.close()
 
 
 
