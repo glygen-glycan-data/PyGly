@@ -1,10 +1,7 @@
 {{Motif
-|prefname=Blood group H (type 1)
-|name=Blood group H (type 1)
-|aglycon=R
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...
 |accession=000042
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -19,6 +16,10 @@ LIN
 3:2o(3+1)4d
 4:4o(2+1)5d
 |glytoucan=G00294TN
+|name=Blood group H (type 1)
+|prefname=Blood group H (type 1)
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...
 |sameas=GD.R000436,GDC.000042,GDV.000011,GM.G00294TN
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-1-3/a3-b1_b3-c1_c2-d1
 }}

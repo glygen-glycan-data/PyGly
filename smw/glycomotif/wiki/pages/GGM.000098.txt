@@ -1,10 +1,7 @@
 {{Motif
-|prefname=GM1
-|name=GM1
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kundu et al. (1980) Preparation and properties of antibodies to GD3 and GM1 gangliosides
 |accession=000098
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -23,6 +20,10 @@ LIN
 5:5d(2+1)6n
 6:5o(3+1)7d
 |glytoucan=G48558GR
+|name=GM1
+|prefname=GM1
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kundu et al. (1980) Preparation and properties of antibodies to GD3 and GM1 gangliosides
 |sameas=GD.R000471,GDB.002229,GDB.002296,GDC.000098,GDH.000058,GDSB.000013,GDV.000030,GE.EP0050,GM.G48558GR,UCM.000058
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4-2/a4-b1_b3-c2_b4-d1_d3-e1
 }}

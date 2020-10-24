@@ -1,6 +1,7 @@
 {{Motif
 |accession=002257
 |aglycon=Other
+|alignment=Core
 |collection=GDB
 |displayhgv=false
 |glycoct=RES

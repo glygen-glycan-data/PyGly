@@ -1,11 +1,7 @@
 {{Motif
-|prefname=Mono-fucosyl LN3
-|name=Mono-fucosyl LN3
-Mono-fucosyl LN_3
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kyogashima et al. (1989) Antibody 624H12, which detects lung cancer at early stages, recognizes ...
 |accession=000122
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -28,6 +24,11 @@ LIN
 7:7d(2+1)8n
 8:7o(4+1)9d
 |glytoucan=G65223RT
+|name=Mono-fucosyl LN3
+Mono-fucosyl LN_3
+|prefname=Mono-fucosyl LN3
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kyogashima et al. (1989) Antibody 624H12, which detects lung cancer at early stages, recognizes ...
 |sameas=GD.R000176,GDC.000122,GDV.000042,GM.G65223RT
 |wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4-2-3-2/a4-b1_b3-c1_c3-d1_c4-e1_e3-f1_f4-g1
 }}

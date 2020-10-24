@@ -1,6 +1,7 @@
 {{Motif
 |accession=000066
 |aglycon=Cer
+|alignment=Core
 |collection=GDV
 |displayhgv=false
 |glycoct=RES

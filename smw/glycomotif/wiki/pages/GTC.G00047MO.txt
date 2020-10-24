@@ -1,5 +1,6 @@
 {{Motif
 |accession=G00047MO
+|alignment=Substructure
 |collection=GTC
 |displayhgv=false
 |glycoct=RES

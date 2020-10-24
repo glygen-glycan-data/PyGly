@@ -6,6 +6,7 @@
 6-sulfo SLe^x
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Mitsuoka et al. (1998) Identification of a major carbohydrate capping group of the L-selectin ...
 |accession=000027
 |collection=GGM

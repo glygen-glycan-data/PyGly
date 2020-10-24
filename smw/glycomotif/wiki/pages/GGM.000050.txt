@@ -3,6 +3,7 @@
 |name=Sialylated LDN
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Park et al. (2005) The asialoglycoprotein receptor clears glycoconjugates terminating with sialic acid alpha ...
 |accession=000050
 |collection=GGM

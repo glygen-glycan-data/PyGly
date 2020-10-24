@@ -1,14 +1,7 @@
 {{Motif
-|prefname=Pk antigen
-|name=Pk antigen
-P^k antigen
-Gb3
-Gb_3
-globotriaosylceramide
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clarke et al. (1979) Preparation and characterization of antibody to galactosyl(alpha 1 leads to ...;Hamers et al. (1978) Characterization of antibodies against ceramidetrihexoside and ...;Stanley et al. (2017) Structures Common to Different Glycans
 |accession=000068
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -19,6 +12,14 @@ LIN
 1:1o(4+1)2d
 2:2o(4+1)3d
 |glytoucan=G00059MO
+|name=Pk antigen
+P^k antigen
+Gb3
+Gb_3
+globotriaosylceramide
+|prefname=Pk antigen
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clarke et al. (1979) Preparation and characterization of antibody to galactosyl(alpha 1 leads to ...;Hamers et al. (1978) Characterization of antibodies against ceramidetrihexoside and ...;Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=CCRC.000068,GD.R000045,GDB.002249,GDB.002750,GDC.000068,GDH.000078,GDH.000133,GDSB.000027,GDSB.000167,GDV.000023,GE.EP0071,GM.G00059MO,GTC.G00059MO,UCM.000078
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3/a4-b1_b4-c1
 }}

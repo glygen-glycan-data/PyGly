@@ -1,6 +1,7 @@
 {{Motif
 |accession=EP0024
 |aglycon=Ser/Thr
+|alignment=Core
 |collection=GE
 |displayhgv=false
 |glycoct=RES

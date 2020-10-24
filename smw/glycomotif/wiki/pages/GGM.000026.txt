@@ -1,9 +1,9 @@
 {{Motif
-|prefname=2,6-sialyl-Sulfo-LN
 |name=2,6-sialyl-Sulfo-LN
 6-sialyl-6-sulfo LN
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kimura et al. (2007) Human B-lymphocytes express alpha2-6-sialylated 6-sulfo-N-acetyllactosamine serving as a preferred ligand ...
 |accession=000026
 |collection=GGM

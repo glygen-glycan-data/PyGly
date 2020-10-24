@@ -1,11 +1,7 @@
 {{Motif
-|prefname=Mono-fucosyl LN5
-|name=Mono-fucosyl LN5
-Mono-fucosyl LN_5
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nudelman et al. (1988) A novel tumor-associated, developmentally regulated glycolipid antigen defined by monoclonal ...
 |accession=000121
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -40,6 +36,11 @@ LIN
 13:13d(2+1)14n
 14:13o(4+1)15d
 |glytoucan=G64227KZ
+|name=Mono-fucosyl LN5
+Mono-fucosyl LN_5
+|prefname=Mono-fucosyl LN5
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nudelman et al. (1988) A novel tumor-associated, developmentally regulated glycolipid antigen defined by monoclonal ...
 |sameas=GD.R000009,GDC.000121,GDH.000085,GDV.000041,GE.EP0212,GM.G64227KZ,UCM.000085
 |wurcs=WURCS{{=}}2.0/4,11,10/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-2-3-2-3-4-2-3-2/a4-b1_b3-c1_c4-d1_d3-e1_e4-f1_f3-g1_g3-h1_g4-i1_i3-j1_j4-k1
 }}

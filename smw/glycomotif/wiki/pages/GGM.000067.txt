@@ -1,12 +1,7 @@
 {{Motif
-|prefname=Lactotriaosylceramide
-|name=Lactotriaosylceramide
-Lc3
-Lc_3
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Symington et al. (1984) Fine specificity of a monoclonal anti-testicular cell antibody for glycolipids ...;Stanley et al. (2017) Structures Common to Different Glycans
 |accession=000067
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -19,6 +14,12 @@ LIN
 2:2o(3+1)3d
 3:3d(2+1)4n
 |glytoucan=G06239NA
+|name=Lactotriaosylceramide
+Lc3
+Lc_3
+|prefname=Lactotriaosylceramide
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Symington et al. (1984) Fine specificity of a monoclonal anti-testicular cell antibody for glycolipids ...;Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=GD.R000054,GDB.002149,GDC.000067,GDSB.000020,GDV.000083,GM.G06239NA
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3/a4-b1_b3-c1
 }}

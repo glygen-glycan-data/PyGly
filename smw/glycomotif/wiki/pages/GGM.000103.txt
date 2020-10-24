@@ -1,10 +1,7 @@
 {{Motif
-|prefname=2-Fucosyl-GD1b
-|name=2-Fucosyl-GD1b
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Ariga et al. (1987) Characterization of tumor-associated fucogangliosides from PC 12 pheochromocytoma cells
 |accession=000103
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -29,6 +26,10 @@ LIN
 8:7o(3+1)9d
 9:9o(2+1)10d
 |glytoucan=G93694YU
+|name=2-Fucosyl-GD1b
+|prefname=2-Fucosyl-GD1b
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Ariga et al. (1987) Characterization of tumor-associated fucogangliosides from PC 12 pheochromocytoma cells
 |sameas=GD.R000393,GDC.000103,GDV.000010,GM.G93694YU
 |wurcs=WURCS{{=}}2.0/5,7,6/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-3-4-2-5/a4-b1_b3-c2_b4-e1_c8-d2_e3-f1_f2-g1
 }}

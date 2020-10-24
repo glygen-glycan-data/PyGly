@@ -5,6 +5,7 @@
 6-Sialyl LN (type 2)
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Shibuya et al. (1987) The elderberry (Sambucus nigra L.) bark lectin recognizes the Neu5Ac(alpha ...
 |accession=000035
 |collection=GGM

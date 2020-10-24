@@ -1,10 +1,7 @@
 {{Motif
-|prefname=Blood group H (type 2)
-|name=Blood group H (type 2)
-|aglycon=R
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1981) Two monoclonal anticarbohydrate antibodies directed to glycosphingolipids with a lacto-N-glycosyl ...
 |accession=000036
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -19,6 +16,10 @@ LIN
 3:2o(4+1)4d
 4:4o(2+1)5d
 |glytoucan=G70519XK
+|name=Blood group H (type 2)
+|prefname=Blood group H (type 2)
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1981) Two monoclonal anticarbohydrate antibodies directed to glycosphingolipids with a lacto-N-glycosyl ...
 |sameas=GD.R000235,GDC.000036,GDV.000015,GM.G70519XK
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-1-3/a3-b1_b4-c1_c2-d1
 }}

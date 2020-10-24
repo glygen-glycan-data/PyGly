@@ -4,6 +4,7 @@
 SDLe^x
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Fukushi et al. (1984) Novel fucolipids accumulating in human adenocarcinoma. III. A hybridoma antibody ...
 |accession=000032
 |collection=GGM

@@ -3,6 +3,7 @@
 |name=Cyclic sialyl 6-sulfo Lewis x
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Mitsuoka et al. (1999) Regulation of selectin binding activity by cyclization of sialic acid ...
 |accession=000023
 |collection=GGM

@@ -1,6 +1,7 @@
 {{Motif
 |accession=000103
 |aglycon=Cer
+|alignment=Core
 |collection=UCM
 |displayhgv=false
 |glycoct=RES

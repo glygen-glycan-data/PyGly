@@ -1,15 +1,16 @@
 {{Motif
-|prefname=Galactosylceramide
-|name=Galactosylceramide
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Lisak et al. (1979) Antibodies to galactocerebroside bind to oligodendroglia in suspension ...;Dupouey et al. (1976) Comparative study of the immunological properties of galactosyldiglyceride and galactosylceramide ...
 |accession=000061
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
 1b:b-dgal-HEX-1:5
 |glytoucan=G65889KE
+|name=Galactosylceramide
+|prefname=Galactosylceramide
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Lisak et al. (1979) Antibodies to galactocerebroside bind to oligodendroglia in suspension ...;Dupouey et al. (1976) Comparative study of the immunological properties of galactosyldiglyceride and galactosylceramide ...
 |sameas=GD.R000114,GDC.000061,GDH.000020,GDSB.000001,GDSB.000088,GDSB.000165,GDSB.000166,GDSB.000187,GDV.000053,GE.EP0068,GE.EP0074,GM.G65889KE,UCM.000020
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1b_1-5{{!)}}/1/
 }}

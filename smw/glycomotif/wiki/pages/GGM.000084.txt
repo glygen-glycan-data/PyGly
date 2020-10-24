@@ -1,12 +1,7 @@
 {{Motif
-|prefname=Forssman glycolipid
-|name=Forssman glycolipid
-Globopentosylceramide
-Forssman antigen
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willison et al. (1982) Neutral glycolipid antigens as developmental markers of mouse teratocarcinoma and ...;Stanley et al. (2017) Structures Common to Different Glycans
 |accession=000084
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -25,6 +20,12 @@ LIN
 5:4o(3+1)6d
 6:6d(2+1)7n
 |glytoucan=G80062GG
+|name=Forssman glycolipid
+Globopentosylceramide
+Forssman antigen
+|prefname=Forssman glycolipid
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willison et al. (1982) Neutral glycolipid antigens as developmental markers of mouse teratocarcinoma and ...;Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=GD.R000210,GDC.000084,GDH.000050,GDSB.000092,GDV.000061,GE.EP0037,GM.G80062GG,UCM.000050
 |wurcs=WURCS{{=}}2.0/5,5,4/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4-5/a4-b1_b4-c1_c3-d1_d3-e1
 }}

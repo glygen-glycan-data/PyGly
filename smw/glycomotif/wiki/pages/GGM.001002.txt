@@ -1,6 +1,7 @@
 {{Motif
 |accession=001002
 |aglycon=Asn
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES

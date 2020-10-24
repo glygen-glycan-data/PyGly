@@ -1,6 +1,7 @@
 {{Motif
 |accession=000046
 |aglycon=R
+|alignment=Substructure
 |collection=GDV
 |displayhgv=false
 |glycoct=RES

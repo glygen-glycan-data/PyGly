@@ -3,6 +3,7 @@
 |name=Polysialic acid
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Finne et al. (1983) Antigenic similarities between brain components and bacteria causing meningitis. Implications ...;Finne et al. (1983) Occurrence of alpha 2-8 linked polysialosyl units in a neural ...
 |accession=000052
 |collection=GGM

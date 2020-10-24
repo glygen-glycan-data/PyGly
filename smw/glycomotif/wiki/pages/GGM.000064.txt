@@ -1,10 +1,7 @@
 {{Motif
-|prefname=Lactosylceramide
-|name=Lactosylceramide
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Symington et al. (1984) Monoclonal antibody specific for ...;Stanley et al. (2017) Structures Common to Different Glycans
 |accession=000064
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -13,6 +10,10 @@
 LIN
 1:1o(4+1)2d
 |glytoucan=G84224TW
+|name=Lactosylceramide
+|prefname=Lactosylceramide
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Symington et al. (1984) Monoclonal antibody specific for ...;Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=GD.R000255,GDC.000064,GDH.000094,GDSB.000003,GDV.000039,GE.EP0078,GM.G84224TW,UCM.000094
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a4-b1
 }}

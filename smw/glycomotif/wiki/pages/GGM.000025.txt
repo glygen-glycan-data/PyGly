@@ -6,6 +6,7 @@
 6'-sulfo SLe^x
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Tateno et al. (2005) Mouse Siglec-F and human Siglec-8 are functionally convergent paralogs that ...
 |accession=000025
 |collection=GGM

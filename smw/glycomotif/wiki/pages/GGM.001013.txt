@@ -1,6 +1,7 @@
 {{Motif
 |accession=001013
 |aglycon=Ser/Thr
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES

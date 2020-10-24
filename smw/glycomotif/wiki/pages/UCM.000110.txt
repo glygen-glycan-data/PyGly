@@ -1,6 +1,7 @@
 {{Motif
 |accession=000110
 |aglycon=R
+|alignment=Substructure
 |collection=UCM
 |displayhgv=false
 |glycoct=RES

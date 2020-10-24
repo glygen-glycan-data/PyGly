@@ -1,21 +1,19 @@
-{{#ask: [[Category:Motif]]
-[[Glycomotif:incollection::GGM]]
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
 [[Glycomotif:accession::~001*]]
- |?Glycomotif:accession=glycomotif:accession
- |?Glycomotif:name=glycomotif:name
- |?Glycomotif:aglycon=glycomotif:aglycon
- |?Glycomotif:reducingend=glycomotif:reducingend
- |?Glycomotif:collectioncount=glycomotif:collectioncount
- |?Glycomotif:instancecount=glycomotif:instancecount
- |?Glycomotif:glytoucan
- |format=template
- |link=none
- |sort=Glycomotif:accession
- |order=ascending
- |headers=show
- |searchlabel=... further results
- |valuesep=,
- |template=MotifTableRows
- |introtemplate=MotifTableIntro
- |outrotemplate=MotifTableOutro
+|?glycomotif:accession
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:alignment
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|limit=1000
 }}

@@ -12,9 +12,11 @@ These motifs have names, aglycon, and reducing end values that represent the uni
 |?glycomotif:accession
 |?glycomotif:name
 |?glycomotif:aglycon
+|?glycomotif:alignment
 |?glycomotif:reducingend
 |?glycomotif:collectioncount
 |?glycomotif:instancecount
+|?glycomotif:glytoucan
 |format=template
 |template=MotifTableRows
 |introtemplate=MotifTableIntro

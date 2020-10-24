@@ -1,10 +1,7 @@
-{{Motif 
-|prefname=Mono-sulfated globopentaosylceramide
-|name=Mono-sulfated globopentaosylceramide
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nagai et al. (1989) Mono-sulfated globopentaosylceramide from human kidney
+{{Motif
 |accession=000072
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -23,6 +20,10 @@ LIN
 5:4o(3+1)6d
 6:6o(3+1)7n
 |glytoucan=G80193TN
+|name=Mono-sulfated globopentaosylceramide
+|prefname=Mono-sulfated globopentaosylceramide
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nagai et al. (1989) Mono-sulfated globopentaosylceramide from human kidney
 |sameas=GM.G80193TN
 |wurcs=WURCS{{=}}2.0/5,5,4/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2-3-4-5/a4-b1_b4-c1_c3-d1_d3-e1
 }}

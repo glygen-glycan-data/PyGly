@@ -1,10 +1,7 @@
 {{Motif
-|prefname=Di-sialyl T antigen
-|name=Di-sialyl T antigen
-|aglycon=Ser/Thr
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Vyas et al. (2005) Potent glycan inhibitors of myelin-associated glycoprotein enhance axon outgrowth in ...
 |accession=000014
+|aglycon=Ser/Thr
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -23,6 +20,10 @@ LIN
 5:1o(6+2)6d
 6:6d(5+1)7n
 |glytoucan=G01614ZM
+|name=Di-sialyl T antigen
+|prefname=Di-sialyl T antigen
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Vyas et al. (2005) Potent glycan inhibitors of myelin-associated glycoprotein enhance axon outgrowth in ...
 |sameas=GD.R000282,GDB.002360,GDC.000014,GDV.000092,GE.EP0023,GM.G01614ZM,UCM.000048
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3-3/a3-b1_a6-d2_b3-c2
 }}

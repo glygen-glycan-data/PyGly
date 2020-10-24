@@ -1,11 +1,7 @@
 {{Motif
-|prefname=Sulfo-isogloboside
-|name=Sulfo-isogloboside
-Mono-sulfated isoglobotetraosylceramide
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Tadano-Aritomi et al. (1992) Isolation and structural characterization of a mono-sulfated isoglobotetraosylceramide, the first ...
 |accession=000074
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -22,6 +18,11 @@ LIN
 4:4d(2+1)5n
 5:4o(3+1)6n
 |glytoucan=G56133NW
+|name=Sulfo-isogloboside
+Mono-sulfated isoglobotetraosylceramide
+|prefname=Sulfo-isogloboside
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Tadano-Aritomi et al. (1992) Isolation and structural characterization of a mono-sulfated isoglobotetraosylceramide, the first ...
 |sameas=CCRC.000074,GM.G56133NW
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1x_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2-3-4/a4-b1_b3-c1_c3-d1
 }}

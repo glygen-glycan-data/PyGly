@@ -1,11 +1,7 @@
 {{Motif
-|prefname=GL-6 fucosylated
-|name=GL-6 fucosylated
-globoH
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kannagi et al. (1983) New globoseries glycosphingolipids in human teratocarcinoma reactive with the monoclonal ...
 |accession=000078
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -24,6 +20,11 @@ LIN
 5:4o(3+1)6d
 6:6o(2+1)7d
 |glytoucan=G98465JN
+|name=GL-6 fucosylated
+globoH
+|prefname=GL-6 fucosylated
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kannagi et al. (1983) New globoseries glycosphingolipids in human teratocarcinoma reactive with the monoclonal ...
 |sameas=GD.R000101,GDC.000078,GDC.000086,GDSB.000063,GDV.000007,GDV.000008,GGM.000086,GM.G98465JN
 |wurcs=WURCS{{=}}2.0/5,6,5/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4-2-5/a4-b1_b4-c1_c3-d1_d3-e1_e2-f1
 }}

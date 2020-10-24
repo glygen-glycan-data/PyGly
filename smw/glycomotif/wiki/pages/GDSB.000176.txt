@@ -1,5 +1,6 @@
 {{Motif
 |accession=000176
+|alignment=Substructure
 |collection=GDSB
 |displayhgv=false
 |glycoct=RES
@@ -11,5 +12,5 @@ LIN
 2:2o(4+1)3d
 |glytoucan=G39011KA
 |sameas=GD.R000543,GM.G39011KA
-|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3/a1-b1_b4-c1
+|wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1x_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3/a1-b1_a4-c1
 }}

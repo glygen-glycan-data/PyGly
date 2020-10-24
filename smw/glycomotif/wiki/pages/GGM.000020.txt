@@ -1,12 +1,7 @@
 {{Motif
-|prefname=Lewis a
-|name=Lewis a
-Lea
-Le^a
-|aglycon=R
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1983) Characterization of monoclonal antibodies specific for the Lewis a human ...
 |accession=000020
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -19,6 +14,12 @@ LIN
 2:1o(3+1)3d
 3:1o(4+1)4d
 |glytoucan=G00047MO
+|name=Lewis a
+Lea
+Le^a
+|prefname=Lewis a
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1983) Characterization of monoclonal antibodies specific for the Lewis a human ...
 |sameas=CCRC.000020,GD.R000229,GDC.000020,GDV.000026,GM.G00047MO,GTC.G00047MO
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a3-b1_a4-c1
 }}

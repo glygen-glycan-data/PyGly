@@ -1,10 +1,7 @@
 {{Motif
-|prefname=Type 1 LN3
-|name=Type 1 LN3
-|aglycon=R
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yamashita et al. (1989) Carbohydrate structures of nonspecific cross-reacting antigen-2, a glycoprotein purified from ...
 |accession=000007
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -27,6 +24,10 @@ LIN
 7:7d(2+1)8n
 8:7o(3+1)9d
 |glytoucan=G17961XM
+|name=Type 1 LN3
+|prefname=Type 1 LN3
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yamashita et al. (1989) Carbohydrate structures of nonspecific cross-reacting antigen-2, a glycoprotein purified from ...
 |sameas=GD.R000405,GDC.000007,GDV.000034,GM.G17961XM
 |wurcs=WURCS{{=}}2.0/2,6,5/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2-1-2/a3-b1_b3-c1_c3-d1_d3-e1_e3-f1
 }}

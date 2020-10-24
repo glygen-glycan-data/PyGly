@@ -1,11 +1,7 @@
 {{Motif
-|prefname=a-Gal antigen
-|name=a-Gal antigen
-alpha-Gal antigen
-|aglycon=R
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Galili et al. (1985) Human natural anti-alpha-galactosyl IgG. II. The specific recognition of alpha ...
 |accession=000015
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -14,6 +10,11 @@ alpha-Gal antigen
 LIN
 1:1o(3+1)2d
 |glytoucan=G24432YB
+|name=a-Gal antigen
+alpha-Gal antigen
+|prefname=a-Gal antigen
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Galili et al. (1985) Human natural anti-alpha-galactosyl IgG. II. The specific recognition of alpha ...
 |sameas=GD.R000079,GDC.000015,GDV.000022,GM.G24432YB
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
 }}

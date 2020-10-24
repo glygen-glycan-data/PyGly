@@ -1,5 +1,6 @@
 {{Motif
 |accession=EP0087
+|alignment=Substructure
 |collection=GE
 |displayhgv=false
 |glycoct=RES

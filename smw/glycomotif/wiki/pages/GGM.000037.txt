@@ -1,10 +1,7 @@
 {{Motif
-|prefname=Blood group B (type 2)
-|name=Blood group B (type 2)
-|aglycon=R
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
 |accession=000037
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -21,6 +18,10 @@ LIN
 4:4o(2+1)5d
 5:4o(3+1)6d
 |glytoucan=G34881WK
+|name=Blood group B (type 2)
+|prefname=Blood group B (type 2)
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
 |sameas=GD.R000400,GDC.000037,GDV.000021,GM.G34881WK
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-1-3-4/a3-b1_b4-c1_c2-d1_c3-e1
 }}

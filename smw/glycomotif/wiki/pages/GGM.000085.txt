@@ -1,10 +1,7 @@
 {{Motif
-|prefname=para-Forssman glycolipid
-|name=para-Forssman glycolipid
-|aglycon=Cer
-|redend=true
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Ando et al. (1982) A novel pentaglycosyl ceramide containing di-beta-N-acetylgalactos-aminyl residue (Para-Forssman glycolipid) isolated ...
 |accession=000085
+|aglycon=Cer
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -23,6 +20,10 @@ LIN
 5:4o(3+1)6d
 6:6d(2+1)7n
 |glytoucan=G51699SI
+|name=para-Forssman glycolipid
+|prefname=para-Forssman glycolipid
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Ando et al. (1982) A novel pentaglycosyl ceramide containing di-beta-N-acetylgalactos-aminyl residue (Para-Forssman glycolipid) isolated ...
 |sameas=GD.R000077,GDC.000085,GDSB.000019,GDV.000066,GM.G51699SI
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2122h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4-4/a4-b1_b4-c1_c3-d1_d3-e1
 }}

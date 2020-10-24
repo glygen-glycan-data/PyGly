@@ -1,6 +1,7 @@
 {{Motif
 |accession=EP0049
 |aglycon=Cer
+|alignment=Core
 |collection=GE
 |displayhgv=false
 |glycoct=RES

@@ -1,5 +1,6 @@
 {{Motif
 |accession=002192
+|alignment=Substructure
 |collection=GDB
 |displayhgv=false
 |glycoct=RES

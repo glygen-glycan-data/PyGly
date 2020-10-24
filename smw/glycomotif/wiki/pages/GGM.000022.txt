@@ -6,6 +6,7 @@ SLex
 SLe^x
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Fukushima et al. (1984) Characterization of sialosylated Lewisx as a new tumor-associated ...
 |accession=000022
 |collection=GGM

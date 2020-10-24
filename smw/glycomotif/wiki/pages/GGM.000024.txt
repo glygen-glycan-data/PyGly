@@ -7,6 +7,7 @@ SLea
 SLe^a
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Koprowski et al. (1979) Colorectal carcinoma antigens detected by hybridoma ...
 |accession=000024
 |collection=GGM

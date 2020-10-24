@@ -1,6 +1,7 @@
 {{Motif
 |accession=EP0308
 |aglycon=R
+|alignment=Substructure
 |collection=GE
 |displayhgv=false
 |glycoct=RES

@@ -3,6 +3,7 @@
 |name=VIM-2
 |aglycon=R
 |redend=false
+|alignment=Nonreducing-End
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Macher et al. (1988) A novel carbohydrate, differentiation antigen on fucogangliosides of human myeloid ...
 |accession=000033
 |collection=GGM
