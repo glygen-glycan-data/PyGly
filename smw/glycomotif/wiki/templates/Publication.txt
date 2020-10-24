@@ -32,6 +32,7 @@ Edit the page to see the template text.
 |?glycomotif:id
 |?glycomotif:name
 |?glycomotif:aglycon
+|?glycomotif:alignment
 |?glycomotif:reducingend
 |?glycomotif:collectioncount
 |?glycomotif:instancecount

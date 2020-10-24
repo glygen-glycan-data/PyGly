@@ -1,5 +1,5 @@
 <includeonly>
 {| class="wikitable sortable" style="width: 100%;"
-! Accession !! Name(s) !! Aglycon !! Alignment !! Reducing-End Only?
+! Accession !! Name(s) !! Aglycon !! Reducing-End? !! Alignment 
 |-
 </includeonly>

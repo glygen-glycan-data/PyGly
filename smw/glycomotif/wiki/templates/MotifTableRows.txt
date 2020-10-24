@@ -2,7 +2,7 @@
 | [[{{{1}}}|{{{2}}}]]
 | style="text-align:center;" | <img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{{9}}}.png"><br/>{{{3}}}
 | {{{4}}}
-| {{{5}}}
 | {{{6}}}
+| {{toalpage|{{{5}}}}}
 |-
 </includeonly>

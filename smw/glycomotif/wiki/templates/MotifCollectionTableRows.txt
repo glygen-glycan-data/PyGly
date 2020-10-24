@@ -1,4 +1,4 @@
 <includeonly>
-| style="text-align: left;" | {{CollectionName|{{{1}}}}} || style="text-align: right;" | {{{2}}}
+| style="text-align: left;" | [[{{{1}}}]] || {{CollectionName|{{{1}}}}} || style="text-align: right;" | {{{2}}}
 |-
 </includeonly>
