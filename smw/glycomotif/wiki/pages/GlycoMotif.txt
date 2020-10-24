@@ -1,0 +1,84 @@
+__NOTOC__
+__NOEDITSECTION__
+<div style="padding-left: 30px; float: right">{{#ask:
+[[Category:Collection]]
+[[glycomotif:id::!GM]]
+|?glycomotif:collectioncount
+|format=template
+|template=MotifCollectionTableRows
+|introtemplate=MotifCollectionTableIntro
+|outrotemplate=MotifCollectionTableOutro
+|link=none
+|sort=glycomotif:name
+}}</div>
+
+Collections of glycan determinants and motifs sourced from many different glycoinformatics resources. Links to original data resources and contact details provided on each motif collection page. 
+
+The [[GGM|GlyGen motif collection]] is under active development and curation and is integrated with the [http://glygen.org GlyGen: Computational and Informatics Resources for Glycoscience] site. 
+
+Many of the collections, including GlyGen's, were originally derived from Cummings (2009), "[[Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome|The repertoire of glycan determinants in the human glycome]]." The GlyGen motifs are annotated with citations extracted from Cummings (2009). 
+
+The [[GM|All Motifs collection]] represents the union of the collections, integrated on the basis of the GlyTouCan accession describing the motif structure. The All Motifs motif pages also include tools for exploring related motifs, with the same topology, or with the addition or removal of monosaccharides from the nonreducing or reducing end. 
+
+All motifs from all collections are aligned with the bulk of GlyTouCan structures on a regular basis, according to each motif's alignment annotation. Glycomotif supports [[Substructure Alignment|substructure]], [[Glycan Core Alignment|glycan core]], [[Nonreducing-End Alignment|nonreducing end]], and [[Whole-Glycan Alignment|whole-glycan]] motif alignments. All motif annotations and their alignments are available for download from the GlycoMotif triple-store. 
+
+See also:
+* [[GlyGen Classification Motifs|GlyGen glycan classification motifs]]
+* [[#All_Motif_Alignments_(Triple_Store_Only)|motif alignments to GlyTouCan structures]]
+* [[Multi-Instance Motifs|multi-instance motifs]]
+* [[Motif-Instance Frequency|frequency of motifs]] by instances or collections
+* [[Topology Clusters by Size|topology clusters by size]]
+
+== Triple Store ==
+
+SPARQL Endpoint: https://edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query
+
+=== GlyTouCan motifs ===
+<pre>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?accession ?name ?redend ?aglycon 
+WHERE {
+  ?motif rdf:type glycomotif:Motif .
+  ?motif glycomotif:accession ?accession .
+  ?motif glycomotif:incollection ?collection . 
+  ?collection rdf:type glycomotif:Collection .
+  ?collection glycomotif:id "GTC" 
+  OPTIONAL { ?motif glycomotif:name ?name }
+  OPTIONAL { ?motif glycomotif:aglycon ?aglycon }
+  OPTIONAL { ?motif glycomotif:reducingend ?redend }
+}
+</pre>
+[http://edwardslab.bmcb.georgetown.edu/yasgui#endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Faccession+%3Fname+%3Fredend+%3Faglycon+%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%3Faccession+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22GTC%22+%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Aaglycon+%3Faglycon+%7D%0A++OPTIONAL+%7B+%3Fmotif+glycomotif%3Areducingend+%3Fredend+%7D%0A%7D&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table Try Me!]
+
+=== All Motif Alignments (Triple Store Only) ===
+<pre>
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?PageID ?motif_gtc_acc ?alignment_type ?structure_gtc_acc
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?motif a glycomotif:Motif .
+
+    ?motif glycomotif:id ?PageID .
+    ?motif glycomotif:incollection ?collection .
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+
+    # Custom Filter
+    # ?collection glycomotif:id "GGM" .
+    # ?motif glycomotif:id "GGM.000001" .
+    # FILTER(REGEX(?motif_gtc_acc, "G68110IF"))
+    # FILTER(REGEX(?structure_gtc_acc, "G01361SX"))
+}
+ORDER BY ?PageID ?structure_gtc_acc ?alignment_type
+</pre>
+[https://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3FPageID+%3Fmotif_gtc_acc+%3Falignment_type+%3Fstructure_gtc_acc%0AWHERE+%7B%0A++%3Fcollection+a+glycomotif%3ACollection+.%0A++%3Fmotif+a+glycomotif%3AMotif+.%0A++%0A++%3Fmotif+glycomotif%3Aid+%3FPageID+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.%0A++%3Fmotif+glycomotif%3Aglytoucan+%3Fmotif_gtc_acc+.%0A++%3Fmotif+glycomotif%3Aalignment+%3Falignment_type+.%0A++%0A++%3Falignment+glycomotif%3Amotif_accession+%3Fmotif_gtc_acc+.%0A++%3Falignment+glycomotif%3Aalignment_type+%3Falignment_type+.%0A++%3Falignment+glycomotif%3Astructure_accession+%3Fstructure_gtc_acc+.%0A++++%0A++%23+Custom+Filter%0A++%23+%3Fcollection+glycomotif%3Aid+%22GGM%22+.%0A++%23+%3Fmotif+glycomotif%3Aid+%22GGM.000001%22+.%0A++%23+FILTER%28REGEX%28%3Fmotif_gtc_acc%2C+%22G68110IF%22%29%29%0A++%23+FILTER%28REGEX%28%3Fstructure_gtc_acc%2C+%22G01361SX%22%29%29%0A%7D%0AORDER+BY+%3FPageID+%3Fstructure_gtc_acc+%3Falignment_type+LIMIT+1000&requestMethod=POST&contentTypeConstruct=text%2Fturtle&outputFormat=table&contentTypeSelect=application%2Fsparql-results%2Bjson&headers=%7B%7D&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&tabTitle=All_Alignments Try Me!]
+== Python Modules and Loading Scripts ==
+
+[https://github.com/glygen-glycan-data/PyGly/tree/master/smw/glycomotif GitHub]

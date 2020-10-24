@@ -1,0 +1,66 @@
+== Glycosidic Bond Comparison ==
+
+Aligned motif and glycan glycosidic bonds attaching a child monosaccharide to a parent monosaccharide must:
+
+1. have the same child linkage type (n,d,...), if the motif glycosidic bond child linkage type is specified; and 
+
+2. have the same child linkage position (1,2,...), if the motif glycosidic bond child linkage position is specified; and 
+
+3. have the same parent linkage type (d,o,...), if the motif glycosidic bond parent linkage type is specified; and 
+
+4. have the same, or compatible, parent linkage position (2,3,4,5,6,...), if the motif glycosidic bond parent linkage position is specified.
+
+{| class="wikitable " style="width: 100%;"
+! style="width: 25%" | Motif&nbsp;Linkage
+! style="width: 25%" | Structure&nbsp;Linkage
+! Alignment?
+|-
+|
+o(3+1)d
+|
+o(3+1)d
+|
+Yes. Identical linkages.
+|-
+|
+o(-1+1)d
+|
+o(3+1)d
+|
+Yes. All linkage properties specified in the motif linkage are the same in the glycan linkage. 
+|-
+|
+o(3+1)d
+|
+o(3+-1)d
+|
+No. Glycan child linkage position does not match motif child linkage position. 
+|-
+|
+o(2+1)d
+|
+o(2{{!}}4+1)d
+|
+Yes. Glycan parent linkage position includes the specified motif parent linkage position. 
+|-
+|
+o(2+1)d
+|
+o(-1+1)d
+|
+Yes. Glycan parent linkage position includes the specified motif parent linkage position. 
+|-
+|
+o(4{{!}}6+1)d
+|
+o(2{{!}}4+1)d
+|
+Yes. Glycan parent linkage positions include one of the specified motif parent linkage positions. 
+|-
+|
+o(-1+1)d
+|
+o(2{{!}}4+1)d
+|
+Yes. All linkage properties specified in the motif linkage are the same in the glycan linkage. 
+|}

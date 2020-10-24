@@ -1,0 +1,43 @@
+__NOEDITSECTION__ <div class="noautonum" style="float: right">__TOC__</div> 
+== Introduction ==
+
+Glycan core alignment requires motif structures align with at least one connected substructure (subtree) at the reducing end of the glycan. Aligned motif and glycan monosaccharides and glycosidic linkages must respect the matching rules outlined below. Additional phosphate and sulfate substituents on glycan monosaccharides and alditol modifications at the reducing end of the glycan are permitted, even when the motif does not indicate them. When ambiguity in glycan topology permits at least one motif-to-substructure alignment, the motif and glycan are considered to align. 
+
+Glycan core alignment is often used to characterize glycans by the structure of their reducing end . In particular, core alignment is used for GlyGen N- and O- glycan subtype classification motifs.
+
+Glycan core alignment is the default alignment strategy for motifs that have a reducing-end annotation of true. 
+
+{{MonosaccharideComparisonText|Tolerant}}
+
+{{GlycosidicBondComparisonText}}
+
+== Examples ==
+
+{| class="wikitable" style="width: 100%; margin-left: auto; margin-right: auto;"
+! Motif !! Glycan !! Core Alignment?
+|-
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G03777BI">
+<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G03777BI GM.G03777BI]
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G50824HV">
+<br>[https://glytoucan.org/Structures/Glycans/G50824HV G50824HV]
+|
+Yes. At least one substructure at the reducing end of the glycan (upper arm) aligns with the motif. 
+|-
+! Motif !! Glycan !! Core Alignment?
+|-
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G03777BI">
+<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G03777BI GM.G03777BI]
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00459HM">
+<br>[https://glytoucan.org/Structures/Glycans/G00459HM G00459HM]
+|
+No. Motif does not align at the reducing end of the glycan. The motif does permit a substructure alignment at the nonreducing-end of the glycan. 
+|-
+|}
+
+== See Also ==
+
+[[Nonreducing-End Alignment]], [[Substructure Alignment]], [[Whole-Glycan Alignment]].

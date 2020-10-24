@@ -1,0 +1,6 @@
+{{#switch:{{{1}}}
+|Core=[[Glycan Core Alignment|{{{1}}}]]
+|Substructure=[[Substructure Alignment|{{{1}}}]]
+|Whole-Glycan=[[Whole-Glycan Alignment|{{{1}}}]]
+|Nonreducing-End=[[Nonreducing-End Alignment|{{{1}}}]]
+|{{{1}}}}}
