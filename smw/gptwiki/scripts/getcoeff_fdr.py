@@ -69,7 +69,7 @@ slope, intercept, r_value, p_value, std_err = stats.linregress(assayrt_x,rt_y)
 
 irlr = IRLR(minpoints=5,max_rvalue=0.99)
 
-points1 = irlr.fit(points)
+points1 = irlr.fit(points)['retained_points']
 
 final_x = []
 final_y = []
