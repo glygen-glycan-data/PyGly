@@ -380,13 +380,12 @@ if (document.getElementById("motif_align_para") != null){
 
         var figure = document.createElement("figure");
 
-        figure.style = "width: 100%; ";
-        figure.style.margin = 0;
+        figure.style = "width: 100%; text-align: center; margin: 0px;"
         figure.id = "img_" + gtcid;
 
         var img = document.createElement("img");
         img.src = imageURLprefix + gtcid + imageURLsuffix;
-        img.style = "max-width: 100%; height: auto";
+        img.style = "max-width: 100%; height: auto; vertical-align: middle; ";
         img.acc = gtcid;
         img.onclick = function (d) {
             var acc = this.acc;
