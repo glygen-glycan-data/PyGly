@@ -1,5 +1,5 @@
 <includeonly>
 |-
-! style="text-align: left;" | [[GM]] !! {{CollectionName|GM}} !! style="text-align: right;" | {{CollectionCountLookup|GM}}
+! style="text-align: left;" | [[GM]] !! style="text-align: left;" | {{CollectionName|GM}} !! style="text-align: right;" | {{CollectionCountLookup|GM}}
 |}
 </includeonly>

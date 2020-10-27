@@ -1,15 +1,7 @@
 {{Motif
-|prefname=Sialyl Lewis a
-|name=Sialyl Lewis a
-Slea
-CA19-9 antigen
-SLea
-SLe^a
-|aglycon=R
-|redend=false
-|alignment=Nonreducing-End
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Koprowski et al. (1979) Colorectal carcinoma antigens detected by hybridoma ...
 |accession=000024
+|aglycon=R
+|alignment=Nonreducing-End
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -26,6 +18,14 @@ LIN
 4:4d(5+1)5n
 5:1o(4+1)6d
 |glytoucan=G00053MO
+|name=Sialyl Lewis a
+Slea
+CA19-9 antigen
+SLea
+SLe^a
+|prefname=Sialyl Lewis a
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Koprowski et al. (1979) Colorectal carcinoma antigens detected by hybridoma ...
 |sameas=GD.R000070,GDB.002281,GDC.000024,GDH.000146,GDV.000090,GE.EP0008,GM.G00053MO,GTC.G00053MO,UCM.000146
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4/a3-b1_a4-d1_b3-c2
 }}

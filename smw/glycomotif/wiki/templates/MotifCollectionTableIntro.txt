@@ -1,5 +1,7 @@
 <includeonly>
-{| class="wikitable sortable"
-! ID !! Name !! Motifs 
+{| class="wikitable"
+! style="background-color: #92959bf0;" | ID !! style="background-color: #92959bf0;" | Name !! style="background-color: #92959bf0;" | Motifs 
+|-
+! style="text-align: left;" | [[GGM]] !! style="text-align: left;" | {{CollectionName|GGM}} !! style="text-align: right;" | {{CollectionCountLookup|GGM}}
 |-
 </includeonly>
