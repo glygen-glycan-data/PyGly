@@ -393,14 +393,21 @@ if (document.getElementById("motif_align_para") != null){
             window.open("https://glytoucan.org/Structures/Glycans/" + acc);
         }
 
+        var captionacc = document.createElement("a");
+        captionacc.innerText = gtcid;
+        captionacc.style.textAlign = "center";
+        captionacc.href = "https://glytoucan.org/Structures/Glycans/" + gtcid;
+
         var caption = document.createElement("figcaption");
-        caption.innerHTML = gtcid;
+        // caption.innerHTML = gtcid;
+
+
+        figure.appendChild(img);
+        caption.appendChild(captionacc);
         if (extra.length > 0){
             caption.innerHTML += " ("+extra+")";
         }
         caption.style.textAlign = "center";
-
-        figure.appendChild(img);
         figure.appendChild(caption);
 
         return figure
@@ -420,6 +427,18 @@ if (document.getElementById("motif_align_para") != null){
         table.style.width = "100%";
 
         var count = 0;
+
+        var tr = document.createElement("tr");
+
+        var i = 1;
+        while (i <= colNum){
+            var td = document.createElement("td");
+            td.style.width = (100/colNum).toString() + "%";
+            tr.appendChild(td);
+            i+=1;
+        }
+        table.appendChild(tr);
+
         var tr = document.createElement("tr");
         var td = document.createElement("td");
 
