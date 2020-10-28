@@ -1,0 +1,14 @@
+__NOTOC____NOEDITSECTION__
+[http://glycomotif.glyomics.org GlycoMotif] is a sub-project of the [http://glygen.org GlyGen: Computational and Informatics Resources for Glycoscience] project.
+
+== Comments, Questions? ==
+
+Please contact Nathan Edwards at <code>nje5@georgetown.edu</code>.
+
+== Funding ==
+
+GlycoMotif is supported by the NIH Glycoscience Common Fund as part of the GlyGen project. 
+
+== License ==
+
+Data is made available through GlycoMotif under the [https://creativecommons.org/licenses/by/4.0/ Creative Commons Attribution 4.0 International (CC BY 4.0)] license. Source glycan collections from GlyTouCan, GlycoEpitope, UniCarbKB, CCRC, and GlyDin may have other licensing terms.

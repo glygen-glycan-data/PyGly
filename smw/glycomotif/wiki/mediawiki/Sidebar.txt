@@ -1,0 +1,9 @@
+* navigation
+** mainpage|mainpage
+** recentchanges-url
+** randompage-url
+** About|About
+** helppage
+* SEARCH
+* TOOLBOX
+* LANGUAGES
