@@ -17,7 +17,7 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}{{PrevNextLinks|{{{collection|}}}|{{{accession|}}}}}{{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}<div style="position: relative;">
-	<img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{{glytoucan|}}}.png" style="display: block; margin-left: auto; margin-right: auto;">
+	<img src="https://image.glycosmos.org/snfg/png/{{{glytoucan|}}}" style="display: block; margin-left: auto; margin-right: auto;">
 </div><br>
 {| class="wikitable" style="width:100%"
 ! style="" | Collection

@@ -155,10 +155,10 @@ function locateViewer1(){
             var comp = topologyComponents[key];
             for (var node in comp.nodes){
                 if (node == "Topology"){
-                    comp.nodes["Topology"].alternativeImageURL = imageURLonCluster + "red-compact-checked/" + gtcacc + ".png";
+                    comp.nodes["Topology"].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/snfg/compact/" + gtcacc + ".png";
                 }
                 else {
-                    comp.nodes[node].alternativeImageURL = imageURLonCluster +  "red-extended-checked/" + node + ".png";
+                    comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
             }
 
@@ -190,10 +190,10 @@ function locateViewer2(){
             var comp = nonredonlyComponents[key];
             for (var node in comp.nodes){
                 if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = imageURLonCluster + "red-extended-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
                 else{
-                    comp.nodes[node].alternativeImageURL = imageURLonCluster +  "red-compact-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
             }
             option2.essentials.component = comp;
@@ -224,10 +224,10 @@ function locateViewer3(){
             var comp = redonlyComponents[key];
             for (var node in comp.nodes){
                 if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = imageURLonCluster + "red-extended-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
                 else{
-                    comp.nodes[node].alternativeImageURL = imageURLonCluster + "red-compact-checked/" + node + ".png"
+                    comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
             }
             option3.essentials.component = comp;
@@ -264,12 +264,12 @@ function locateViewer3(){
 
 if (document.getElementById("motif_align_para") != null){
     // SNFG
-    // var imageURLprefix = "https://image.glycosmos.org/snfg/png/";
-    // var imageURLsuffix = "";
+    var imageURLprefix = "https://image.glycosmos.org/snfg/png/";
+    var imageURLsuffix = "";
 
     // CFG
-    var imageURLprefix = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/";
-    var imageURLsuffix = ".png";
+    // var imageURLprefix = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/";
+    // var imageURLsuffix = ".png";
 
     var motifpageid = document.getElementById("motif_align_para").getAttribute("data-page_id");
 
