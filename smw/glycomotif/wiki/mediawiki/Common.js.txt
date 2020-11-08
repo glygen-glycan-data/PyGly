@@ -195,6 +195,8 @@ function locateViewer2(){
                 else{
                     comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
+                // Clobber
+                comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/snfg/compact/" + node + ".png";
             }
             option2.essentials.component = comp;
             var style = '<style>#'+ divid2 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
@@ -229,6 +231,8 @@ function locateViewer3(){
                 else{
                     comp.nodes[node].alternativeImageURL = "https://image.glycosmos.org/snfg/png/" + node;
                 }
+                // Clobber
+                comp.nodes[node].alternativeImageURL = "https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/snfg/compact/" + node + ".png";
             }
             option3.essentials.component = comp;
             var style = '<style>#'+ divid3 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
@@ -385,7 +389,7 @@ if (document.getElementById("motif_align_para") != null){
 
         var img = document.createElement("img");
         img.src = imageURLprefix + gtcid + imageURLsuffix;
-        img.style = "max-width: 100%; height: auto; vertical-align: middle; ";
+        img.style = "max-width: 100%; height: auto; vertical-align: middle; cursor: pointer;";
         img.acc = gtcid;
         img.onclick = function (d) {
             var acc = this.acc;
