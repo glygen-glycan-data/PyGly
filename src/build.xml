@@ -21,7 +21,9 @@
 
         <!-- compile the source -->
         <javac srcdir="${srcdir}" 
-               destdir="${builddir}">
+               destdir="${builddir}"
+               source="1.8"
+               target="1.8">
             <classpath refid="build.classpath" />
             <include name="**/*.java"/>
             <!-- <compilerarg value="-g"/> -->
