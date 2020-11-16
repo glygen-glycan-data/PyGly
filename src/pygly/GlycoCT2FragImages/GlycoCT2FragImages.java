@@ -7,21 +7,27 @@ import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.lang.RuntimeException;
 import java.lang.IllegalArgumentException;
 
+import org.glycoinfo.application.glycanbuilder.converterWURCS2.WURCS2Parser;
+
 import org.eurocarbdb.application.glycanbuilder.Glycan;
 import org.eurocarbdb.application.glycanbuilder.Residue;
-import org.eurocarbdb.application.glycanbuilder.GlycoCTCondensedParser;
-import org.eurocarbdb.application.glycanbuilder.GraphicOptions;
-import org.eurocarbdb.application.glycanbuilder.MassOptions;
-import org.eurocarbdb.application.glycanbuilder.SVGUtils;
-import org.eurocarbdb.application.glycanbuilder.Union;
+import org.eurocarbdb.application.glycanbuilder.converterGlycoCT.GlycoCTCondensedParser;
+import org.eurocarbdb.application.glycanbuilder.util.GraphicOptions;
+import org.eurocarbdb.application.glycanbuilder.massutil.MassOptions;
+import org.eurocarbdb.application.glycanbuilder.renderutil.SVGUtils;
+import org.eurocarbdb.application.glycanbuilder.renderutil.GlycanRendererAWT;
+import org.eurocarbdb.application.glycanbuilder.linkage.Union;
+import org.eurocarbdb.application.glycanbuilder.BuilderWorkspace;
 import org.eurocarbdb.application.glycanbuilder.Fragmenter;
 import org.eurocarbdb.application.glycanbuilder.FragmentCollection;
 import org.eurocarbdb.application.glycanbuilder.FragmentEntry;
-import org.eurocarbdb.application.glycanbuilder.LogUtils;
-import org.eurocarbdb.application.glycoworkbench.GlycanWorkspace;
+import org.eurocarbdb.application.glycanbuilder.logutility.LogUtils;
+
 
 import org.apache.log4j.BasicConfigurator;
 
@@ -89,7 +95,7 @@ public class GlycoCT2FragImages
 	return base + "." + newextn;
     }
 
-    private static void setOrientation(GlycanWorkspace t_gwb, String orientation) {
+    private static void setOrientation(BuilderWorkspace t_gwb, String orientation) {
 	if (orientation.equals("RL")) {
 	    t_gwb.getGraphicOptions().ORIENTATION = GraphicOptions.RL; 
 	} else if (orientation.equals("LR")) {
@@ -103,7 +109,7 @@ public class GlycoCT2FragImages
 	}
     }
 
-    private static void setDisplay(GlycanWorkspace t_gwb, String display) {
+    private static void setDisplay(BuilderWorkspace t_gwb, String display) {
 	if (display.equals("normalinfo")) {
 	    t_gwb.setDisplay(GraphicOptions.DISPLAY_NORMALINFO);
 	} else if (display.equals("normal")) {
@@ -139,10 +145,12 @@ public class GlycoCT2FragImages
 	}
     }
 
-    private static void setNotation(GlycanWorkspace t_gwb, String notation) {
+    private static void setNotation(BuilderWorkspace t_gwb, String notation) {
 	if (notation.equals("cfg")) {
 	    t_gwb.setNotation(GraphicOptions.NOTATION_CFG);
-	} else if (notation.equals("cfgbw")) {
+	} else if (notation.equals("snfg")) {
+        t_gwb.setNotation(GraphicOptions.NOTATION_SNFG);
+    } else if (notation.equals("cfgbw")) {
 	    t_gwb.setNotation(GraphicOptions.NOTATION_CFGBW);
 	} else if (notation.equals("cfglink")) {
 	    t_gwb.setNotation(GraphicOptions.NOTATION_CFGLINK);
@@ -161,7 +169,7 @@ public class GlycoCT2FragImages
     {
         BasicConfigurator.configure();
 	// LogUtils.setGraphicalReport(false);
-	GlycanWorkspace t_gwb = new GlycanWorkspace(null,false);
+	BuilderWorkspace t_gwb = new BuilderWorkspace(new GlycanRendererAWT());
 
 	// Single cleavage B/Y ions only
 	Fragmenter fragger = new Fragmenter();
@@ -176,6 +184,7 @@ public class GlycoCT2FragImages
 	fragger.setMaxNoCrossRings(0);
 	
 	GlycoCTCondensedParser parser = new GlycoCTCondensedParser(true);
+	WURCS2Parser wparser = new WURCS2Parser();
 	MassOptions mo = new MassOptions();
 	boolean mass_opts=false;
 	
@@ -186,6 +195,7 @@ public class GlycoCT2FragImages
 	String imagefmt = "png";
 	double scale=4.0;
 	boolean reducing_end=true;
+	boolean opaque=true;
 	String outFile = "";
 
 	for (int i=0; i<args.length; i+=1) {
@@ -220,6 +230,11 @@ public class GlycoCT2FragImages
 		i += 1;
 		continue;
 	    }
+	    if (args[i].equals("opaque") && args.length > (i+1)) {
+            opaque = Boolean.parseBoolean(args[i+1]);
+            i += 1;
+            continue;
+        }
 	    if (args[i].equals("ion") && args.length > (i+1)) {
 		setFragIon(fragger,args[i+1]);
 		i += 1;
@@ -236,7 +251,15 @@ public class GlycoCT2FragImages
 		outFile = changeExtn(args[i],null);
 	    }
 	    
-	    Glycan glycan = parser.readGlycan(glycanstr,mo);	
+	    Glycan glycan;
+			    if (glycanstr.startsWith("WURCS")) {
+			        glycan = wparser.readGlycan(glycanstr, mo);
+			    } else if (glycanstr.startsWith("RES")) {
+			        glycan = parser.readGlycan(glycanstr, mo);
+			    } else {
+			        throw new IllegalArgumentException("Bad glycan descriptor!");
+			        //glycan = gparser.readGlycan(glycanstr, mo);
+			    }
 
 	    FragmentCollection collection = fragger.computeAllFragments(glycan);
 	    int bindex=1;
@@ -251,11 +274,13 @@ public class GlycoCT2FragImages
 		    yindex ++;
 		} else {
 		    continue;
-                }
-	        SVGUtils.export(t_gwb.getGlycanRenderer(),
-			      	outFile+'-'+name+'.'+imagefmt,
-			        new Union<Glycan>(fe.getFragment()),
-			        mass_opts,reducing_end,scale,imagefmt);
+        }
+
+        // SVGUtils.export(t_gwb.getGlycanRenderer(), outFile+'-'+name+'.'+imagefmt, new Union<Glycan>(fe.getFragment()), mass_opts,reducing_end,scale,imagefmt);
+	    BufferedImage img = t_gwb.getGlycanRenderer().getImage(glycan, opaque, mass_opts, reducing_end, scale);
+        File outputfile = new File(outFile+'-'+name+'.'+imagefmt);
+        ImageIO.write(img, imagefmt, outputfile);
+
 		Glycan g = new Glycan(fe.getFragment().getRoot().firstChild(),true,mo);
 		String gct = fe.getFragment().toString();
 		OutputStream f = null;

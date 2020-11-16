@@ -10,6 +10,7 @@ class GlycanImage(object):
         self._notation = "cfg"
         self._redend = True
         self._format = "png"
+        self._opaque = True
         self.fmt = GlycoCTFormat()
         
     def scale(self,value=None):
@@ -42,6 +43,11 @@ class GlycanImage(object):
             return self._display
         self._display=value
 
+    def opaque(self, value=None):
+        if value == None:
+            return self._opaque
+        self._opaque=value
+
     def set(self,key,value):
 	if not hasattr(self,key):
 	    raise KeyError()
@@ -58,7 +64,8 @@ class GlycanImage(object):
                                     redend=self._redend,
                                     orient=self._orientation,
                                     display=self._display,
-                                    notation=self._notation)
+                                    notation=self._notation,
+                                    opaque=self._opaque)
         return imageWriter()
         
         
