@@ -46,16 +46,16 @@ def fitall(mmulist=[],exprtlist=[]):
                     ylist3.append(p['int'])
             xc, yc = Peak.centroid(xlist1,ylist1)
             xl, yl = Peak.get_startpoint(xc, yc)
-            print 'window=1.0:'
+            # print 'window=1.0:'
 
 	    if len(xl) < 8:
                 xc, yc = Peak.centroid(xlist2,ylist2)
                 xl, yl = Peak.get_startpoint(xc, yc)
-                print 'window=2.0:'
+                # print 'window=2.0:'
 	        if len(xl) < 8:
                     xc, yc = Peak.centroid(xlist3,ylist3)
                     xl, yl = Peak.get_startpoint(xc, yc)
-                    print 'window=4.0:'
+                    # print 'window=4.0:'
 
 	    if len(xl) >= 8:
 	        x = np.array(xl)
@@ -65,18 +65,18 @@ def fitall(mmulist=[],exprtlist=[]):
         	try:
             	    popt,pcov = curve_fit(gauss,x,y,p0=[max(y),mean,sigma])
         	except:
-            	    print 'fitting failed'
+            	    # print 'fitting failed'
             	    continue
         	y2 = gauss(x,*popt)
-	        print 'before fitting, exprt=',exprt
+	        # print 'before fitting, exprt=',exprt
 	        if popt.any():
-        	    height = popt[0]
-            	    adjrt = popt[1]
-            	    print 'after fitting, peakrt=',adjrt
-                    std_dev = popt[2]*6
-            	    FWHM = 2*np.sqrt(2*np.log(2))*popt[2]
+        	    height = float(popt[0])
+            	    adjrt = float(popt[1])
+            	    # print 'after fitting, peakrt=',adjrt
+                    std_dev = float(popt[2])*6
+            	    FWHM = 2*np.sqrt(2*np.log(2))*float(popt[2])
             	    area = FWHM*height
-#            	    print 'popt=',popt
+		    # print 'popt=',popt
         	if std_dev > 3.5:
             	    continue
 #Method 1
@@ -84,25 +84,28 @@ def fitall(mmulist=[],exprtlist=[]):
 	        slope, intercept, r_value, p_value, std_err = stats.linregress(y,y2)
 #       	print 'slope=',round(slope,4)
 #       	print 'intercept=',round(intercept,2)
-        	print 'r_value=',round(r_value,4)
+        	# print 'r_value=',round(r_value,4)
         	outfile.write('\t'.join(map(str,[tgid,spectra,pepid,z1,mmu,exprt,adjrt,r_value,std_dev,height,FWHM,area,'\n'])))
 	        if tgid not in updated:
 		    tg.set('prt',adjrt)
 		    updated.add(tgid)
 		    if w.put(tg):
-			print 'tg is updated:',tgid
+			# print tgid
+			pass
 	json_file.close()
 
 if len(sys.argv) < 2:  
     print 'please enter the spectra file name(s)'
     exit(1)
-spectrafiles = sys.argv[1:]
 
-outfile = open('../data/'+sys.argv[1][:5]+'.fitall.txt','w')
+spectrafiles = sys.argv[1:]
+w = GPTWiki()
+
+# outfile = open('../data/'+sys.argv[1][:5]+'.fitall.txt','w')
+outfile = sys.stdout
 
 outfile.write('\t'.join(map(str,['TransGroup','Spectra','PeptideID','PrecZ','mmu','ExpRT','AdjRT','R_Value','Std_Dev','Height','FWHM','Area','\n'])))
 
-w = GPTWiki()
 
 for tg in w.itertransgroups():
 
@@ -137,12 +140,12 @@ for tg in w.itertransgroups():
    
     updated = set() 
     if tg in HCDs:
-       	print 'fit all scans:',tgid
+       	# print 'fit all scans:',tgid
 	fitall(mmu,HCDs[tg])
 
     else:
-	print 'fit one scan:',tgid
+	# print 'fit one scan:',tgid
 	fitall(mmu,[exprt])
 
-outfile.close()
+# outfile.close()
 

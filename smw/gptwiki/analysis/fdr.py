@@ -48,6 +48,8 @@ class FDRComputation(object):
     def compute_cumulative_counts(self):
         self.scores = sorted(self.counts.keys(),reverse=(self.rankingdir<0))
         self.cumulative_counts = defaultdict(lambda : defaultdict(int))
+	if len(self.scores) == 0:
+	    return
 	for decoy in (True,False):
             self.cumulative_counts[self.scores[0]][decoy] = self.counts[self.scores[0]][decoy]
         for i in range(1,len(self.scores)):
@@ -62,6 +64,8 @@ class FDRComputation(object):
         self.fdr = dict()
         lastfdri = 1.0
         for sc in reversed(self.scores):
+            if self.cumulative_counts[sc][False] == 0:
+		continue
             fdri = (float(self.cumulative_counts[sc][True])/self.ndecoys)/float(self.cumulative_counts[sc][False])
             if fdri < lastfdri:
                 self.fdr[sc] = fdri
@@ -87,7 +91,7 @@ class FDRComputation(object):
 	if self.fdr == None:
 	    self.compute_fdr()
 	for sc in sorted(self.fdr,reverse=(self.rankingdir<0)):
-	    if self.rankingdir*x < self.rankingdir*sc:
+	    if self.rankingdir*x <= self.rankingdir*sc:
 		return self.fdr[sc]
 	return 1.0
 

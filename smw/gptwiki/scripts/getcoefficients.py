@@ -46,9 +46,9 @@ for tgpage in w.itertransgroups():
 	else:
 	    pepnrtpairs[spectra].append((float(peakrt),float(pepnrt)))
 
-f = open('../data/'+sys.argv[1][:5]+'.coefficients.txt','w')
-f.write('\t'.join(map(str,['filename','nrtobsgt0','slope','intercept','r_value'])))
-f.write('\n')
+# f = open('../data/'+sys.argv[1][:5]+'.coefficients.txt','w')
+f = sys.stdout
+# f.write('\n')
 
 for s in sorted(pepnrtpairs):
 
@@ -60,7 +60,8 @@ for s in sorted(pepnrtpairs):
 	    x.append(pepnrt)
 	    y.append(peakrt)
 	else:
-	    print 'pep nrt not exit:',s,' ',peakrt
+	    # print 'pep nrt not exit:',s,' ',peakrt
+	    pass
 	
     pepnrt_x = np.array(x)
     peakrt_y = np.array(y)
@@ -73,29 +74,26 @@ for s in sorted(pepnrtpairs):
     plt.title(s)
     plt.xlabel('Peptide NRT')
     plt.ylabel('Peak RT(min)')
-    plt.savefig('../data/'+s+'.coefficients.png')
+    plt.savefig(s+'.coefficients.png')
     plt.show()
     plt.close()
     
+    f.write('\t'.join(map(str,['filename','nrtobsgt0','slope','intercept','r_value']))+'\n')
     f.write(s+'\t'+str(nrtobsgt0[s])+'\t'+str(round(slope,4))+'\t'+str(round(intercept,2))+'\t'+str(round(r_value,4))+'\n')
 
-    spectrapage = w.get(s)
-    if nrtobsgt0[s] == 1 or slope < 0.37 or slope > 0.41:
-	spectrapage.set('nrtslope','')
-	spectrapage.set('nrtintercept','')
-	if w.put(spectrapage):
-	    print 'spectrapage is updated:',s
-        continue
-    spectrapage.set('nrtslope',float(slope))
-    spectrapage.set('nrtintercept',float(intercept))
-    if w.put(spectrapage):
-        print 'spectra is updated:',s
+    if raw_input('Write to wiki? ').lower()[0] == "y":
+        spectrapage = w.get(s)
+        #    # if nrtobsgt0[s] == 1 or slope < 0.37 or slope > 0.41:
+        # 	spectrapage.set('nrtslope','')
+        # 	spectrapage.set('nrtintercept','')
+        # 	if w.put(spectrapage):
+        ##  	    # print 'spectrapage is updated:',s
+        # 	    pass
+        #        continue
+        spectrapage.set('nrtslope',float(slope))
+        spectrapage.set('nrtintercept',float(intercept))
+        if w.put(spectrapage):
+            # print 'spectra is updated:',s
+	    pass
 
-f.close()
-
-
-
-
-
-
-
+# f.close()

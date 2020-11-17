@@ -1,6 +1,6 @@
 #!/bin/env apython
 
-import sys, os, os.path, json, csv, array
+import sys, os, os.path, json, csv, array, glob, re, shutil
 from collections import defaultdict
 import getwiki
 from analysis.fdr import CombinedAnalysisFDR
@@ -17,8 +17,10 @@ parser.add_option("--results",type='string',dest='results',default=None,
                   help="Glycopeptide results table output by OpenSWATH. Required.")
 parser.add_option("--ndecoys",type="int",dest='ndecoys',default=1,
                   help="Number of decoy transitions per target transition. Default: 1.")
-parser.add_option("--thresh",type="float",dest='thresh',default=1,
+parser.add_option("--fdr",type="float",dest='fdr',default=1,
                   help="FDR treshold (in %) for results filtering. Default: 1%.")
+parser.add_option("--score",type="float",dest='score',default=1.5,
+                  help="Score treshold for results filtering. Default: 1.5.")
 parser.add_option("--outdir",type='string',dest='outdir',default=None,
                   help="Output directory for JSON chromatograms. Required.")
 
@@ -35,24 +37,45 @@ if not opts.outdir:
 
 scorekey = "main_var_xx_swath_prelim_score"
 
-fdr = CombinedAnalysisFDR(rankingkey=scorekey,ndecoys=opts.ndecoys)
-fdr.add_ids(opts.results)
-scorethreshold = fdr.score(opts.thresh/100.0)
-targets = fdr.targets(scorethreshold)
-print "Using",targets,"results for score threshold:",scorethreshold,"for",opts.thresh,"% FDR"
+if  os.path.isdir(opts.outdir):
+    shutil.rmtree(opts.outdir)
+
+try:
+    fdr = CombinedAnalysisFDR(rankingkey=scorekey,ndecoys=opts.ndecoys)
+    fdr.add_ids(opts.results)
+    scorethreshold = max(opts.score,fdr.score(opts.fdr/100.0))
+except ValueError:
+    sys.exit(1)
 
 alltr = dict()
 pepgrp = defaultdict(list)
-
-for row in fdr.filter_ids(opts.results,score=scorethreshold):
+goodtr = set()
+ntgs = 0; ngoodtgs = 0;
+for row in fdr.get_ids(opts.results):
+    if int(row['decoy']) == 1:
+	continue
     apex = map(float,row['aggr_Peak_Apex'].split(';'))
     area = map(float,row['aggr_Peak_Area'].split(';'))
     trs = row['aggr_Fragment_Annotation'].split(';')
     rt = float(row['RT'])/60.0
     assay_rt = float(row['assay_rt'])/60.0
     tg = row['transition_group_id']
+    score = float(row[scorekey])
+    qv = fdr.qvalue(score)
+    absint = float(row['Intensity'])
+    # print tg,score,qv
     for tr,ap,ar in zip(trs,apex,area):
-        alltr[tr] = dict(area=ar,apex=ap,tg=tg,exprt=rt,transnrt=assay_rt)
+        alltr[tr] = dict(area=ar,apex=ap,tg=tg,exprt=rt,transnrt=assay_rt,score=score,fdr=qv,intensity=absint)
+        if score >= scorethreshold:
+	    goodtr.add(tr)
+    ntgs += 1
+    if score >= scorethreshold:
+	ngoodtgs += 1
+
+print "Good TGs:",ngoodtgs,"(Score threshold:",scorethreshold,")"
+
+if ngoodtgs == 0:
+    sys.exit(1)
 
 for row in csv.DictReader(open(opts.transitions),dialect="excel-tab"):
     tr = row["transition_name"]
@@ -65,21 +88,42 @@ for row in csv.DictReader(open(opts.transitions),dialect="excel-tab"):
     libint = int(row["LibraryIntensity"])
     if tr in alltr:
         alltr[tr].update(dict(pepid=pepid,pmz=pmz,pz=pz,prmz=prmz,prz=prz,nrt=nrt,libint=libint))
-        pepgrp[(pepid,pz)].append(tr)
+	if tr in goodtr:
+            pepgrp[(pepid,pz)].append(tr)
 
-nrtpairs = []
-exprt=[]
-for tr in alltr:
-    x = alltr[tr]['transnrt']
-    y = alltr[tr]['nrt']
-    x1 = alltr[tr]['exprt']
-    nrtpairs.append((x,y))
-    exprt.append(x1)
-regress = SLR()
-params = regress.fit(nrtpairs)
-print "Exp. RT = %f * NRT %+f"%(1/params['slope'],-params['intercept']/params['slope'])
-for tr in alltr:
-    alltr[tr]['expnrt'] = regress.y(params,alltr[tr]['exprt'])
+lccalfile = opts.results.replace('_table.tsv','_cal.trafoXML')
+if os.path.exists(lccalfile):
+    for l in open(lccalfile):
+	if "<Transformation " in l:
+	    m = re.search(r' nrtslope="([^"]*)"',l)
+	    nrtslope = float(m.group(1))
+	    m = re.search(r' nrtintercept="([^"]*)"',l)
+	    nrtintercept = float(m.group(1))
+	    break
+    print "Extracted from trafoXML file: rt = %s*nrt+%s"%(nrtslope,nrtintercept)
+    slope = float(1.0/nrtslope)
+    intercept = float(-nrtintercept/nrtslope)
+    for tr in goodtr:
+	alltr[tr]['expnrt'] = slope*alltr[tr]['exprt']+intercept
+
+elif ntgs >= 2:
+    nrtpairs = []
+    seen = set()
+    for tr in alltr:
+	if alltr[tr]['tg'] in seen:
+	    continue
+	seen.add(alltr[tr]['tg'])
+        x = alltr[tr]['transnrt']
+        y = alltr[tr]['nrt']
+        nrtpairs.append((x,y))
+    regress = SLR()
+    params = regress.fit(nrtpairs)
+    # print "OSWNRT = %f * NRT %+f"%(1/params['slope'],-params['intercept']/params['slope'])
+    nrtslope = float(1.0/params['slope'])
+    nrtintercept = float(-params['intercept']/params['slope'])
+    print "Estimated from results table: rt = %s*nrt+%s"%(nrtslope,nrtintercept)
+    for tr in goodtr:
+	alltr[tr]['expnrt'] = params['slope']*alltr[tr]['exprt']+params['intercept']
 
 try:
     import xml.etree.cElementTree as ET
@@ -107,7 +151,7 @@ for event,ele in ET.iterparse(open(opts.chromatograms),('start','end')):
         del context[-1]
 
     if event == "end" and ele.tag == maketag("chromatogram"):
-        if ele.attrib['id'] not in alltr:
+        if ele.attrib['id'] not in goodtr:
             continue
         rt = None; intensity = None
         bdal = ele.find(maketag('binaryDataArrayList'))
@@ -136,14 +180,15 @@ for event,ele in ET.iterparse(open(opts.chromatograms),('start','end')):
                 values = map(lambda x: x/60.0, values)
             alltr[ele.attrib['id']][axis] = values
 
-if not os.path.isdir(opts.outdir):
-    os.makedirs(opts.outdir)
+os.makedirs(opts.outdir)
 
 for i,(pepid,charge) in enumerate(pepgrp):
     fn = '%s.%s.50.json'%(pepid,charge)
     data = {}
     data["trlib_z1"] = charge
     data["trlib_pepid"] = pepid
+    data["extraction"] = "OpenSWATH"
+    data["lccalibration"] = "%s:%s"%(nrtslope,nrtintercept)
     # data["trlib_mz1"] = None
     # data["rt"] = None
     # data["nrt"] = None
@@ -159,12 +204,18 @@ for i,(pepid,charge) in enumerate(pepgrp):
         # trdata["name"] = None
         trdata["yaxis"] = {"label": "int"}
         trdata["pairs"] = zip(tr["rt"],tr["int"])
-        if "nrt" not in data:
+        if "nrt" not in data and "expnrt" in tr:
             data["nrt"] = tr["expnrt"]
         if "rt" not in data:
             data["rt"] = tr["exprt"]
         if "trlib_mz1" not in data:
             data["trlib_mz1"] = tr["pmz"]
+	if "score" not in data:
+	    data["score"] = tr["score"]
+	if "fdr" not in data:
+	    data["fdr"] = tr["fdr"]
+	if "intensity" not in data:
+	    data["intensity"] = tr["intensity"]
         trdata["name"] = trid
         data["series"].append(trdata)
     # print i,pepid,charge

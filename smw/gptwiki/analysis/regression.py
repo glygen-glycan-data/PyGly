@@ -8,7 +8,7 @@ np.seterr(all='raise')
 class LinearRegression(object):
 
     def __init__(self,**kw):
-	self._minpoints = kw.get('minpoints',2)
+	self._minpoints = kw.get('min_points',2)
     
     def normalize(self,points):
 	self.check(points)
@@ -22,7 +22,7 @@ class LinearRegression(object):
             return x,y,invind
 	else:
             ind = np.argsort(apoints)
-            x = apoints[ind,0]
+            x = apoints[ind]
             invind = np.argsort(ind)
             return x,invind
 
@@ -32,11 +32,14 @@ class LinearRegression(object):
     
     def evaluate(self,params,points):
         x,y,ind = self.normalize(points)
-        yfit = self.y(x)
+        yfit = self.y(params,x)
         return dict(yfit=yfit[ind],residuals=yfit[ind]-y[ind])
 
     def y(self,params,x):
-	return params['slope']*x+params['intercept']
+	if not isinstance(x,np.ndarray):
+            x,ind = self.normalize(x)
+	    return (params['slope']*x+params['intercept'])[ind]
+	return (params['slope']*x+params['intercept'])
 
 class SimpleLinearRegression(LinearRegression):
 
@@ -54,7 +57,7 @@ class SimpleLinearRegression(LinearRegression):
     def fit(self,points):
 	x,y,ind = self.normalize(points)
         a, b, r, p, e = spstat.linregress(x,y)
-	result = dict(slope=a, intercept=b, r=r)
+	result = dict(slope=a, intercept=b, r=r, npoints=len(points))
         return result
 
 class IteratedRobustLinearRegression(LinearRegression):
@@ -92,7 +95,7 @@ class IteratedRobustLinearRegression(LinearRegression):
 	  
 	    index = np.argmax(abs(result['residuals']))
 
-	    # print points1[index],' is removed!' 
+	    # print points1[index],'is removed!' 
 	    del points1[index]
 
 	    removed += 1
@@ -103,6 +106,8 @@ class IteratedRobustLinearRegression(LinearRegression):
 
 	# Once out of loop, result has values from final SLR fit
 	params['retained_points'] = list(points1)
+	params['removed'] = removed
+	params['retained'] = len(points1)
 	return params
 
 if __name__ == "__main__":

@@ -120,7 +120,7 @@ class TransitionGroup(SMW.SMWClass):
         if isinstance(data.get('scans'),basestring):
             data['scans'] = map(lambda t: self.asscans(t),data.get('scans').split(','))
 
-        for k in ('rt','prt','nrt','mz1'):
+        for k in ('rt','prt','nrt','mz1','score','intensity','fdr'):
             if isinstance(data.get(k),basestring):
                 data[k] = float(data.get(k))
                 
@@ -148,7 +148,7 @@ class TransitionGroup(SMW.SMWClass):
         if 'scans' in data:
             data['scans'] = ",".join(map(self.scan2str,data['scans']))
 
-        for k in ('rt','prt','nrt','mz1'):
+        for k in ('rt','prt','nrt','mz1','score','intensity','fdr'):
             if k in data:
                 data[k] = "%.3f"%(data[k])
 
@@ -230,7 +230,6 @@ class Peptide(SMW.SMWClass):
 
         if 'glycan' in data:
             data['glycan'] = ",".join(map(lambda t: "%s;%s"%t,sorted(data['glycan'],key=lambda t: int(t[1][1:]))))            
-
         if 'mod' in data:
             data['mod'] = ",".join(map(lambda t: "%+.3f;%s"%(t[0],";".join(t[1:])),
                                        sorted(data['mod'],key=lambda t: int(t[1][1:]))))
@@ -413,6 +412,17 @@ class GPTWiki(SMW.SMWSite):
     def itertransgroups(self):
 	for tg in self.iterregex(r'^TG\d{6}$'):
 	    yield tg
+
+    def iterspectgs(self,spectra):
+	query = """
+	[[Category:TransitionGroup]]
+        [[gptwiki:spectra::%(spectra)s]]
+        """%dict(spectra=spectra)
+	for it in self.site.ask(query):
+	    if isinstance(it,basestring):
+	        yield self.get(it)
+	    else:
+	        yield self.get(it['fulltext'])
 
     def iterpeptides(self):
 	for p in self.iterregex(r'^PE\d{6}$'):

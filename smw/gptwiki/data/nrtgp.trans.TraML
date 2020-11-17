@@ -1,0 +1,2511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TraML version="1.0.0" xmlns="http://psi.hupo.org/ms/traml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://psi.hupo.org/ms/traml TraML1.0.0.xsd">
+  <cvList>
+    <cv id="MS" fullName="Proteomics Standards Initiative Mass Spectrometry Ontology" version="unknown" URI="http://psidev.cvs.sourceforge.net/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo"/>
+    <cv id="UO" fullName="Unit Ontology" version="unknown" URI="http://obo.cvs.sourceforge.net/obo/obo/ontology/phenotype/unit.obo"/>
+  </cvList>
+  <ProteinList>
+    <Protein id="PE000228">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000050">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000053">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000830">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE001065">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000241">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000045">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000152">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000323">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000242">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE001074">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000799">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000798">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000264">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000387">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000235">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000589">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000315">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000258">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000479">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000036">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000790">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000131">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000237">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000697">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000694">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000476">
+      <Sequence></Sequence>
+    </Protein>
+    <Protein id="PE000200">
+      <Sequence></Sequence>
+    </Protein>
+  </ProteinList>
+  <CompoundList>
+    <Peptide id="PE000228/3" sequence="CGLVPVLAENYNK">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="CGLVPVLAENYNK"/>
+      <ProteinRef ref="PE000228"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="76.964"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000050/4" sequence="QQQHLFGSNVTDCSGNFCLFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="QQQHLFGSNVTDCSGNFCLFR"/>
+      <ProteinRef ref="PE000050"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="89.465"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000053/3" sequence="VVLHPNYSQVDIGLIK">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="VVLHPNYSQVDIGLIK"/>
+      <ProteinRef ref="PE000053"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="73.628"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000830/4" sequence="PALEDLLLGSEANLTCTLTGLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="PALEDLLLGSEANLTCTLTGLR"/>
+      <ProteinRef ref="PE000830"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="155.299"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000050/3" sequence="QQQHLFGSNVTDCSGNFCLFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="QQQHLFGSNVTDCSGNFCLFR"/>
+      <ProteinRef ref="PE000050"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="89.465"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE001065/3" sequence="PALEDLLLGSEANLTCTLTGLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="PALEDLLLGSEANLTCTLTGLR"/>
+      <ProteinRef ref="PE001065"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="135.793"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000241/4" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000241"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="175.654"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000045/3" sequence="YLGNATAIFFLPDEGK">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="YLGNATAIFFLPDEGK"/>
+      <ProteinRef ref="PE000045"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="129.515"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000152/3" sequence="SWPAVGNCSSALR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="SWPAVGNCSSALR"/>
+      <ProteinRef ref="PE000152"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="53.512"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000323/4" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000323"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="175.184"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000323/5" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="5"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000323"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="175.184"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000242/5" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="5"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000242"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="160.37"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE001074/2" sequence="EEQFNSTFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQFNSTFR"/>
+      <ProteinRef ref="PE001074"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="8.986"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000799/3" sequence="EEQFNSTFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQFNSTFR"/>
+      <ProteinRef ref="PE000799"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="7.965"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000798/2" sequence="EEQFNSTFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQFNSTFR"/>
+      <ProteinRef ref="PE000798"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="8.2"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000264/3" sequence="VYKPSAGNNSLYR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="VYKPSAGNNSLYR"/>
+      <ProteinRef ref="PE000264"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="8.471"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000387/3" sequence="EEQYNSTYR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQYNSTYR"/>
+      <ProteinRef ref="PE000387"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="4.511"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000235/3" sequence="EHEGAIYPDNTTDFQR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EHEGAIYPDNTTDFQR"/>
+      <ProteinRef ref="PE000235"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="26.331"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000589/3" sequence="ENLTAPGSDSAVFFEQGTTR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ENLTAPGSDSAVFFEQGTTR"/>
+      <ProteinRef ref="PE000589"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="81.858"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000315/3" sequence="YKNNSDISSTR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="YKNNSDISSTR"/>
+      <ProteinRef ref="PE000315"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="-1.681"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000258/4" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000258"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="160.623"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000479/3" sequence="EHEGAIYPDNTTDFQR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EHEGAIYPDNTTDFQR"/>
+      <ProteinRef ref="PE000479"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="25.31"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000036/3" sequence="ALPQPQNVTSLLGCTH">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ALPQPQNVTSLLGCTH"/>
+      <ProteinRef ref="PE000036"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="96.027"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000790/3" sequence="TVLTPATNHMGNVTFTIPANR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="TVLTPATNHMGNVTFTIPANR"/>
+      <ProteinRef ref="PE000790"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="42.647"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000241/5" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="5"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000241"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="175.654"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000131/4" sequence="PALEDLLLGSEANLTCTLTGLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="PALEDLLLGSEANLTCTLTGLR"/>
+      <ProteinRef ref="PE000131"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="155.493"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000237/4" sequence="VSNQTLSLFFTVLQDVPVR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="VSNQTLSLFFTVLQDVPVR"/>
+      <ProteinRef ref="PE000237"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="186.202"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000798/3" sequence="EEQFNSTFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQFNSTFR"/>
+      <ProteinRef ref="PE000798"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="8.2"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000697/3" sequence="EEQYNSTYR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQYNSTYR"/>
+      <ProteinRef ref="PE000697"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="5.398"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000697/2" sequence="EEQYNSTYR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQYNSTYR"/>
+      <ProteinRef ref="PE000697"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="5.398"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000242/4" sequence="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="4"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR"/>
+      <ProteinRef ref="PE000242"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="160.37"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000694/2" sequence="EEQYNSTYR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQYNSTYR"/>
+      <ProteinRef ref="PE000694"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="5.525"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000476/3" sequence="EEQFNSTFR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="EEQFNSTFR"/>
+      <ProteinRef ref="PE000476"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="14.198"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+    <Peptide id="PE000200/3" sequence="VCQDCPLLAPLNDTR">
+      <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3"/>
+      <userParam name="full_peptide_name" type="xsd:string" value="VCQDCPLLAPLNDTR"/>
+      <ProteinRef ref="PE000200"/>
+      <RetentionTimeList>
+        <RetentionTime>
+          <cvParam cvRef="MS" accession="MS:1000896" name="normalized retention time" value="81.253"/>
+          <cvParam cvRef="MS" accession="MS:1002005" name="iRT retention time normalization standard"/>
+        </RetentionTime>
+      </RetentionTimeList>
+    </Peptide>
+  </CompoundList>
+  <TransitionList>
+    <Transition id="PE000228_CGLVPVLAENYNK/3_TR008740" peptideRef="PE000228/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1227.851" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1513.159"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000228_CGLVPVLAENYNK/3_TR008741" peptideRef="PE000228/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1227.851" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1367.611"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="984"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000228_CGLVPVLAENYNK/3_TR008743" peptideRef="PE000228/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1227.851" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1286.585"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="589"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000228_CGLVPVLAENYNK/3_TR008744" peptideRef="PE000228/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1227.851" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1432.132"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="390"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/4_TR002076" peptideRef="PE000050/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.736" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1359.619"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/4_TR002078" peptideRef="PE000050/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.736" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1704.237"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="601"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/4_TR002077" peptideRef="PE000050/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.736" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1623.211"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="591"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/4_TR004849" peptideRef="PE000050/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.736" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1258.205"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="352"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000053_VVLHPNYSQVDIGLIK/3_TR002409" peptideRef="PE000053/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1333.933" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1526.735"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000053_VVLHPNYSQVDIGLIK/3_TR002410" peptideRef="PE000053/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1333.933" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1445.708"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="495"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000053_VVLHPNYSQVDIGLIK/3_TR002415" peptideRef="PE000053/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1333.933" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1672.282"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="429"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000053_VVLHPNYSQVDIGLIK/3_TR002421" peptideRef="PE000053/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1333.933" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1591.256"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="168"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000830_PALEDLLLGSEANLTCTLTGLR/4_TR012300" peptideRef="PE000830/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1119.258" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1280.669"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000830_PALEDLLLGSEANLTCTLTGLR/4_TR012301" peptideRef="PE000830/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1119.258" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1726.828"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="440"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000830_PALEDLLLGSEANLTCTLTGLR/4_TR012302" peptideRef="PE000830/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1119.258" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1645.801"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="379"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000830_PALEDLLLGSEANLTCTLTGLR/4_TR012522" peptideRef="PE000830/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1119.258" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1909.394"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="194"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/3_TR005728" peptideRef="PE000050/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1573.979" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1476.948"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/3_TR002070" peptideRef="PE000050/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1573.979" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1359.619"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="642"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/3_TR002071" peptideRef="PE000050/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1573.979" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1886.804"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="530"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000050_QQQHLFGSNVTDCSGNFCLFR/3_TR005729" peptideRef="PE000050/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1573.979" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1379.916"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="448"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001065_PALEDLLLGSEANLTCTLTGLR/3_TR015447" peptideRef="PE001065/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1394.976" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1280.669"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001065_PALEDLLLGSEANLTCTLTGLR/3_TR015449" peptideRef="PE001065/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1394.976" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1645.801"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="277"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001065_PALEDLLLGSEANLTCTLTGLR/3_TR015450" peptideRef="PE001065/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1394.976" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1726.828"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="272"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001065_PALEDLLLGSEANLTCTLTGLR/3_TR015452" peptideRef="PE001065/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1394.976" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1909.394"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="240"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004499" peptideRef="PE000241/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1638.962" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="547"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004502" peptideRef="PE000241/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1638.962" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1772.141"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="515"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004501" peptideRef="PE000241/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1638.962" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1869.172"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="443"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004500" peptideRef="PE000241/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1638.962" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1493.414"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="382"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000045_YLGNATAIFFLPDEGK/3_TR005066" peptideRef="PE000045/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1320.895" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1507.176"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000045_YLGNATAIFFLPDEGK/3_TR005067" peptideRef="PE000045/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1320.895" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1652.724"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="973"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000045_YLGNATAIFFLPDEGK/3_TR005068" peptideRef="PE000045/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1320.895" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1426.15"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="560"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000045_YLGNATAIFFLPDEGK/3_TR005070" peptideRef="PE000045/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1320.895" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1571.698"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="442"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000152_SWPAVGNCSSALR/3_TR009124" peptideRef="PE000152/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1203.823" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1477.117"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000152_SWPAVGNCSSALR/3_TR002182" peptideRef="PE000152/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1203.823" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1331.57"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="955"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000152_SWPAVGNCSSALR/3_TR002184" peptideRef="PE000152/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1203.823" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1250.543"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="531"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000152_SWPAVGNCSSALR/3_TR009125" peptideRef="PE000152/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1203.823" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1396.091"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="386"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001405" peptideRef="PE000323/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1675.476" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="882"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001409" peptideRef="PE000323/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1675.476" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1596.412"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="398"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004557" peptideRef="PE000323/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1675.476" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1869.172"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="381"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004559" peptideRef="PE000323/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1675.476" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1917.858"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="273"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001410" peptideRef="PE000323/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1340.583" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001412" peptideRef="PE000323/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1340.583" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1650.43"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="327"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001413" peptideRef="PE000323/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1340.583" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1596.412"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="300"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000323_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR004564" peptideRef="PE000323/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1340.583" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1772.141"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="182"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001341" peptideRef="PE000242/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.126" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001342" peptideRef="PE000242/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.126" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1474.701"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="379"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001344" peptideRef="PE000242/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.126" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1528.719"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="347"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001345" peptideRef="PE000242/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1180.126" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1650.43"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="302"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001074_EEQFNSTFR/2_TR015541" peptideRef="PE001074/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1403.072" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1360.602"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001074_EEQFNSTFR/2_TR015542" peptideRef="PE001074/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1403.072" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1506.66"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="715"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001074_EEQFNSTFR/2_TR015544" peptideRef="PE001074/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1403.072" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1709.739"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="254"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE001074_EEQFNSTFR/2_TR015546" peptideRef="PE001074/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1403.072" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1045.937"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="144"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000799_EEQFNSTFR/3_TR011925" peptideRef="PE000799/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="922.042" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1360.602"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000799_EEQFNSTFR/3_TR011926" peptideRef="PE000799/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="922.042" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1506.66"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="468"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000799_EEQFNSTFR/3_TR012691" peptideRef="PE000799/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="922.042" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1199.993"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="461"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000799_EEQFNSTFR/3_TR012695" peptideRef="PE000799/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="922.042" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1118.966"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="143"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/2_TR011917" peptideRef="PE000798/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1301.532" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1360.602"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/2_TR011918" peptideRef="PE000798/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1301.532" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1506.66"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="640"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/2_TR011920" peptideRef="PE000798/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1301.532" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="944.397"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="120"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/2_TR011921" peptideRef="PE000798/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1301.532" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1709.739"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="110"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000264_VYKPSAGNNSLYR/3_TR002443" peptideRef="PE000264/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1225.181" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1363.606"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000264_VYKPSAGNNSLYR/3_TR002444" peptideRef="PE000264/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1225.181" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1282.58"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="463"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000264_VYKPSAGNNSLYR/3_TR002450" peptideRef="PE000264/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1225.181" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1509.154"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="301"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000264_VYKPSAGNNSLYR/3_TR006205" peptideRef="PE000264/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1225.181" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1428.127"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="167"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000387_EEQYNSTYR/3_TR004147" peptideRef="PE000387/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="986.723" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1297.014"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000387_EEQYNSTYR/3_TR004152" peptideRef="PE000387/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="986.723" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1392.592"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="937"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000387_EEQYNSTYR/3_TR004150" peptideRef="PE000387/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="986.723" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1538.65"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="663"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000387_EEQYNSTYR/3_TR004148" peptideRef="PE000387/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="986.723" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1215.987"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="531"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000235_EHEGAIYPDNTTDFQR/3_TR001514" peptideRef="PE000235/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1366.543" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1575.649"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000235_EHEGAIYPDNTTDFQR/3_TR001515" peptideRef="PE000235/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1366.543" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1494.623"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="527"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000235_EHEGAIYPDNTTDFQR/3_TR001522" peptideRef="PE000235/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1366.543" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1721.197"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="508"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000235_EHEGAIYPDNTTDFQR/3_TR006865" peptideRef="PE000235/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1366.543" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1640.171"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="229"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000589_ENLTAPGSDSAVFFEQGTTR/3_TR008571" peptideRef="PE000589/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1444.596" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1838.276"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000589_ENLTAPGSDSAVFFEQGTTR/3_TR008573" peptideRef="PE000589/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1444.596" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1692.728"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="886"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000589_ENLTAPGSDSAVFFEQGTTR/3_TR008574" peptideRef="PE000589/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1444.596" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1611.702"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="584"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000589_ENLTAPGSDSAVFFEQGTTR/3_TR008575" peptideRef="PE000589/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1444.596" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1757.25"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="465"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000315_YKNNSDISSTR/3_TR004107" peptideRef="PE000315/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1115.456" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1344.567"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000315_YKNNSDISSTR/3_TR004108" peptideRef="PE000315/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1115.456" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1263.54"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="369"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000315_YKNNSDISSTR/3_TR004109" peptideRef="PE000315/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1115.456" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1271.538"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="169"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000315_YKNNSDISSTR/3_TR004111" peptideRef="PE000315/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1115.456" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1490.114"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="79"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000258_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001390" peptideRef="PE000258/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1511.42" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000258_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001396" peptideRef="PE000258/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1511.42" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1650.43"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="765"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000258_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR017149" peptideRef="PE000258/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1511.42" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1699.116"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="461"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000258_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR017153" peptideRef="PE000258/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1511.42" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1347.659"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="127"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000479_EHEGAIYPDNTTDFQR/3_TR006891" peptideRef="PE000479/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1415.229" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1648.678"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000479_EHEGAIYPDNTTDFQR/3_TR006893" peptideRef="PE000479/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1415.229" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1794.226"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="605"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000479_EHEGAIYPDNTTDFQR/3_TR006894" peptideRef="PE000479/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1415.229" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1567.652"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="543"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000479_EHEGAIYPDNTTDFQR/3_TR006898" peptideRef="PE000479/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1415.229" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1121.493"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="190"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000036_ALPQPQNVTSLLGCTH/3_TR001424" peptideRef="PE000036/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1314.227" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1497.175"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000036_ALPQPQNVTSLLGCTH/3_TR001425" peptideRef="PE000036/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1314.227" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1938.972"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="945"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000036_ALPQPQNVTSLLGCTH/3_TR001426" peptideRef="PE000036/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1314.227" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1416.149"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="655"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000036_ALPQPQNVTSLLGCTH/3_TR001427" peptideRef="PE000036/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1314.227" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="969.99"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="503"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000790_TVLTPATNHMGNVTFTIPANR/3_TR011862" peptideRef="PE000790/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1211.884" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1229.624"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000790_TVLTPATNHMGNVTFTIPANR/3_TR011863" peptideRef="PE000790/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1211.884" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1331.164"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="133"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000790_TVLTPATNHMGNVTFTIPANR/3_TR011866" peptideRef="PE000790/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1211.884" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1574.243"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="92"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000790_TVLTPATNHMGNVTFTIPANR/3_TR011916" peptideRef="PE000790/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1211.884" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1655.269"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="54"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001362" peptideRef="PE000241/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1311.371" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001364" peptideRef="PE000241/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1311.371" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1650.43"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="436"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001365" peptideRef="PE000241/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1311.371" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1596.412"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="357"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000241_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/5_TR001368" peptideRef="PE000241/5">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1311.371" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1772.141"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="225"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000131_PALEDLLLGSEANLTCTLTGLR/4_TR005685" peptideRef="PE000131/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1068.488" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1280.669"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000131_PALEDLLLGSEANLTCTLTGLR/4_TR005686" peptideRef="PE000131/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1068.488" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1544.262"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="475"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000131_PALEDLLLGSEANLTCTLTGLR/4_TR005687" peptideRef="PE000131/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1068.488" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1625.288"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="457"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000131_PALEDLLLGSEANLTCTLTGLR/4_TR006164" peptideRef="PE000131/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1068.488" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1807.854"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="183"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000237_VSNQTLSLFFTVLQDVPVR/4_TR006539" peptideRef="PE000237/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1092.744" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1183.634"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000237_VSNQTLSLFFTVLQDVPVR/4_TR006540" peptideRef="PE000237/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1092.744" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1447.227"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="933"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000237_VSNQTLSLFFTVLQDVPVR/4_TR006541" peptideRef="PE000237/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1092.744" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1528.253"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="779"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000237_VSNQTLSLFFTVLQDVPVR/4_TR006543" peptideRef="PE000237/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1092.744" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1366.2"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="409"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/3_TR012674" peptideRef="PE000798/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="868.024" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1360.602"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/3_TR012676" peptideRef="PE000798/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="868.024" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1506.66"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="627"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/3_TR012677" peptideRef="PE000798/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="868.024" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1098.453"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="364"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000798_EEQFNSTFR/3_TR012680" peptideRef="PE000798/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="868.024" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="944.397"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="297"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/3_TR010227" peptideRef="PE000697/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="932.705" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1392.592"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/3_TR010223" peptideRef="PE000697/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="932.705" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1215.987"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="758"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/3_TR010225" peptideRef="PE000697/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="932.705" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1538.65"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="634"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/3_TR010226" peptideRef="PE000697/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="932.705" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1142.958"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="332"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/2_TR010222" peptideRef="PE000697/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1398.554" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1392.592"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/2_TR010221" peptideRef="PE000697/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1398.554" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1538.65"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="916"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/2_TR010365" peptideRef="PE000697/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1398.554" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1142.958"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="139"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000697_EEQYNSTYR/2_TR010515" peptideRef="PE000697/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1398.554" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1741.729"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="128"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR004489" peptideRef="PE000242/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1474.905" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1402.131"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="913"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001333" peptideRef="PE000242/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1474.905" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1298.973"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="907"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001334" peptideRef="PE000242/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1474.905" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1650.43"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="868"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000242_ADTHDEILEGLNFNLTEIPEAQIHEGFQELLR/4_TR001336" peptideRef="PE000242/4">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1474.905" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1596.412"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="482"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000694_EEQYNSTYR/2_TR010180" peptideRef="PE000694/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1317.527" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1392.592"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000694_EEQYNSTYR/2_TR010177" peptideRef="PE000694/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1317.527" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1538.65"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="686"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000694_EEQYNSTYR/2_TR010178" peptideRef="PE000694/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1317.527" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1142.958"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="97"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000694_EEQYNSTYR/2_TR010333" peptideRef="PE000694/2">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1317.527" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1061.932"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="91"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000476_EEQFNSTFR/3_TR006849" peptideRef="PE000476/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1073.091" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1281.019"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000476_EEQFNSTFR/3_TR006851" peptideRef="PE000476/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1073.091" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1506.66"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="707"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000476_EEQFNSTFR/3_TR006852" peptideRef="PE000476/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1073.091" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1199.993"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="472"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000476_EEQFNSTFR/3_TR016864" peptideRef="PE000476/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1073.091" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1207.99"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="441"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000200_VCQDCPLLAPLNDTR/3_TR003600" peptideRef="PE000200/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1326.22" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1660.712"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="1000"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000200_VCQDCPLLAPLNDTR/3_TR002352" peptideRef="PE000200/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1326.22" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1515.165"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="516"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000200_VCQDCPLLAPLNDTR/3_TR002350" peptideRef="PE000200/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1326.22" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="987.98"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="439"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+    <Transition id="PE000200_VCQDCPLLAPLNDTR/3_TR003601" peptideRef="PE000200/3">
+      <Precursor>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1326.22" unitCvRef="MS" unitAccession="MS:1000040" unitName="m/z"/>
+      </Precursor>
+      <Product>
+        <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="1434.138"/>
+        <InterpretationList>
+          <Interpretation>
+            <cvParam cvRef="MS" accession="MS:1001240" name="non-identified ion"/>
+          </Interpretation>
+        </InterpretationList>
+      </Product>
+      <cvParam cvRef="MS" accession="MS:1001226" name="product ion intensity" value="430"/>
+      <cvParam cvRef="MS" accession="MS:1002007" name="target SRM transition"/>
+    </Transition>
+  </TransitionList>
+</TraML>
