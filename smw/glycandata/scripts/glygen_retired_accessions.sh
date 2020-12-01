@@ -3,6 +3,7 @@
 PYTHON=apython
 PYGLY=../../../pygly
 DATA=../data
+EXPORT=../export
 
 set -x
 
@@ -10,4 +11,4 @@ set -x
 # $PYTHON $PYGLY/GlycanResource/main.py GlyCosmos archived > $DATA/glytoucan_archived.txt
 # $PYTHON $PYGLY/GlycanResource/main.py GlyCosmos replaced > $DATA/glytoucan_replaced.txt
 
-$PYTHON ./glygen_retired_accessions.py > $DATA/glygen_retired_accessions.txt
+$PYTHON ./glygen_retired_accessions.py > $EXPORT/glygen_retired_accessions.txt
