@@ -9,7 +9,7 @@ glygen = GlyGen(usecache=False)
 glycosmos = GlyCosmos(usecache=False)
 
 allglygen = set()
-for acc in glygen.allglycans():
+for acc in glygen.alltimeglycans():
     allglygen.add(acc)
 
 archived = set()
