@@ -4,13 +4,13 @@ import time
 import findpygly
 import pygly.alignment
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
-from pygly.GlycanResource.GlyCosmos import GlyCosmosNoCache
+from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache
 
 res_file_path = sys.argv[1] # "../data/motif_alignments.tsv"
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
-gtc = GlyCosmosNoCache()
+gtc = GlyTouCanNoCache()
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
 normal_matcher = pygly.alignment.GlyGenMotif(connected_nodes_cache=nodes_cache)

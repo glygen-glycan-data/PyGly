@@ -1069,6 +1069,35 @@ class MonosaccharideTopoSubsumed(MonosaccharideSubsumed):
 class MonosaccharideMotifComparison(MonosaccharideComparitor):
 
     def leq(self, m, g):
+        if m._anomer and g._anomer and m._anomer != g._anomer:
+            return False
+        if m._config and m._config != g._config:
+            return False
+        if m._stem and m._stem != g._stem:
+            return False
+        if m._superclass != g._superclass:
+            return False
+        if m._ring_start and g._ring_start and m._ring_start != g._ring_start:
+            return False
+        if m._ring_end and g._ring_end and m._ring_end != g._ring_end:
+            return False
+        if m._mods != g._mods:
+            return False
+
+        any = False
+        for ii, jj in itermatchings(m.substituent_links(), g.substituent_links(),
+                                    lambda i, j: self.sublinkeq(i, j) and self.substeq(i.child(), j.child())):
+            any = True
+            break
+        if not any:
+            return False
+
+        return True
+
+
+class MonosaccharideMotifComparisonGlyTouCanOriginal(MonosaccharideComparitor):
+
+    def leq(self, m, g):
         if m._anomer and m._anomer != g._anomer:
             return False
         if m._config and m._config != g._config:
@@ -1095,11 +1124,10 @@ class MonosaccharideMotifComparison(MonosaccharideComparitor):
         return True
 
 
-
 class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
 
     def leq(self, m, g):
-        if m._anomer and m._anomer != g._anomer:
+        if m._anomer and g._anomer and m._anomer != g._anomer:
             return False
         if m._config and m._config != g._config:
             return False
@@ -1107,9 +1135,9 @@ class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
             return False
         if m._superclass != g._superclass:
             return False
-        if m._ring_start and m._ring_start != g._ring_start:
+        if m._ring_start and g._ring_start and m._ring_start != g._ring_start:
             return False
-        if m._ring_end and m._ring_end != g._ring_end:
+        if m._ring_end and g._ring_end and m._ring_end != g._ring_end:
             return False
 
         gmod = copy.deepcopy(g._mods)
@@ -1372,6 +1400,27 @@ class GlycanCompositionSubsumption(CompositionPartialOrder):
         # monotest needs a subst test and a sublink test
         kw['monocmp']=MonosaccharideTopoSubsumed(**kw)
         super(GlycanCompositionSubsumption,self).__init__(**kw)
+
+class GlyTouCanMotifOriginal(SubstructureSearch):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparisonGlyTouCanOriginal(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(GlyTouCanMotif, self).__init__(**kw)
+
+
+class GlyTouCanMotifNonReducingEndOriginal(SubstructureSearchNonReducingEnd):
+
+    def __init__(self, **kw):
+        kw["monocmp"] = MonosaccharideMotifComparisonGlyTouCanOriginal(
+            substcmp=SubstituentEqual(),
+            sublinkcmp=LinkageEqual()
+        )
+        kw["linkcmp"] = LinkageMotifComparitor()
+        super(GlyTouCanMotifNonReducingEnd, self).__init__(**kw)
 
 class GlyTouCanMotif(SubstructureSearch):
 
