@@ -23,20 +23,30 @@ function injectEssentialElementForTheViewer(){
 
     // Test URL: https://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@c01f426fe6147f9ce5c15495fc2dc0d5bd3b1eda/smw/glycomotif/data/glycoepitope.txt
     // Production URL: https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology.json
-
+    var params = document.getElementById("hgv_para")
+    var prefix;
+    if (params) {
+        prefix = params.getAttribute("data-prefix");
+    }
+    var fileending=".json";
+    if (prefix == "glycomotifdev") {
+        fileending="dev.json";
+    } else if (prefix == "glycomotiftest") {
+        fileending="test.json";
+    }
     jQuery.getScript("https://d3js.org/d3.v3.min.js", function () {
         syncStatus.s3 = true;
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology.json", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology"+fileending, function (data) {
             topologyComponents = data;
             syncStatus.c1 = true;
             syncAndContinue();
         });
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/redonly.json", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/redonly"+fileending, function (data) {
             redonlyComponents = data;
             syncStatus.c2 = true;
             syncAndContinue();
         });
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/nonredonly.json", function (data) {
+        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/nonredonly"+fileending, function (data) {
             nonredonlyComponents = data;
             syncStatus.c3 = true;
             syncAndContinue();
@@ -276,6 +286,7 @@ if (document.getElementById("motif_align_para") != null){
     // var imageURLsuffix = ".png";
 
     var motifpageid = document.getElementById("motif_align_para").getAttribute("data-page_id");
+    var prefix = document.getElementById("motif_align_para").getAttribute("data-prefix");
 
     function alignmentQueryConstructor(motif_page_id) {
         var query =
@@ -330,7 +341,7 @@ if (document.getElementById("motif_align_para") != null){
     }
 
     function alignment(motif){
-        var endpt = "https://edwardslab.bmcb.georgetown.edu/sparql/glycomotifdev/query";
+        var endpt = "https://edwardslab.bmcb.georgetown.edu/sparql/" + prefix + "/query";
         var query = alignmentQueryConstructor(motif);
 
         var qurl = sparqlQuery(endpt, query);

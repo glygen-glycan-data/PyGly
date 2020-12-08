@@ -73,7 +73,7 @@ Edit the page to see the template text.
 [https://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3FPageID+%3Fmotif_gtc_acc+%3Falignment_type+%3Fstructure_gtc_acc%0AWHERE+%7B%0A++%3Fcollection+a+glycomotif%3ACollection+.%0A++%3Fmotif+a+glycomotif%3AMotif+.%0A++%0A++%3Fmotif+glycomotif%3Aid+%3FPageID+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.%0A++%3Fmotif+glycomotif%3Aglytoucan+%3Fmotif_gtc_acc+.%0A++%3Fmotif+glycomotif%3Aalignment+%3Falignment_type+.%0A++%0A++%3Falignment+glycomotif%3Amotif_accession+%3Fmotif_gtc_acc+.%0A++%3Falignment+glycomotif%3Aalignment_type+%3Falignment_type+.%0A++%3Falignment+glycomotif%3Astructure_accession+%3Fstructure_gtc_acc+.%0A++++%0A++%23+Custom+Filter%0A++%23+%3Fcollection+glycomotif%3Aid+%22GGM%22+.%0A++%3Fmotif+glycomotif%3Aid+%22{{{collection|}}}.{{{accession|}}}%22+.%0A++%23+FILTER%28REGEX%28%3Fmotif_gtc_acc%2C+%22G68110IF%22%29%29%0A++%23+FILTER%28REGEX%28%3Fstructure_gtc_acc%2C+%22G01361SX%22%29%29%0A%7D%0AORDER+BY+%3FPageID+%3Fstructure_gtc_acc+%3Falignment_type&requestMethod=POST&contentTypeConstruct=text%2Fturtle&outputFormat=table&contentTypeSelect=application%2Fsparql-results%2Bjson&headers=%7B%7D&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&tabTitle=Alignments_for_{{{collection|}}}.{{{accession|}}} Glycan Alignments]
 
 {{#ifeq:{{{displayhgv|}}}|true|
-<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
+<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-prefix="{{PREFIX}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
 == Topology Cluster ==
 <div id="hgv_topology"></div>
 == Non-Reducing End Topology Navigator ==
@@ -83,7 +83,7 @@ Edit the page to see the template text.
 |
 }}
 == Alignments ==
-<div id="motif_align_para" data-page_id="{{{collection|}}}.{{{accession|}}}"></div>
+<div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}"></div>
 <div id="glycomotif_alignment_result"></div><br><br><br>
 
 {{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|glycomotif:alignment=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{DONOTEDIT}}

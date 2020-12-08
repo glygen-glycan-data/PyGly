@@ -12,7 +12,9 @@ import pygly.alignment as alignment
 from collections import defaultdict
 from pygly.GlycanFormatter import WURCS20Format, GlycoCTFormat
 
-
+# Has to come first to pick out the --smwenv PROD command-line argument.
+from getwiki import GlycoMotifWiki, AllMotif
+w = GlycoMotifWiki()
 
 topology_file_path = sys.argv[1]
 non_file_path = sys.argv[2]
@@ -77,15 +79,12 @@ gtsss = GlycanTopoSubstructureSearch()
 
 
 
-from getwiki import GlycoMotifWiki, AllMotif
-
 
 glycans = {}
 supported_acc = []
 
 glycan_length = {}
 
-w = GlycoMotifWiki()
 AllMotifpageid = AllMotif.id
 
 for m in w.itermotif():
