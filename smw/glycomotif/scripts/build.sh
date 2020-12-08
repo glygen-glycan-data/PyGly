@@ -20,7 +20,8 @@ set -x
 ./loadallmotif.py
 ./addsameas.py
 # ./loadmotifalign.py ../data/motif_alignment.tsv
-./widgetdata.py ../data/topology.json ../data/nonredonly.json ../data/redonly.json
+# ./widgetdata.py --smwenv PROD ../data/topology.json ../data/nonredonly.json ../data/redonly.json
+./widgetdata.py ../data/topologydev.json ../data/nonredonlydev.json ../data/redonlydev.json
 echo "please commit the new json files to GitHub"
 ./loadwidgetbool.py
 # ./addtopology.py
