@@ -1,3 +1,4 @@
+#!/bin/env python27
 import os
 import sys
 import time
@@ -6,7 +7,13 @@ import pygly.alignment
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache
 
-res_file_path = sys.argv[1] # "../data/motif_alignments.tsv"
+from getwiki import GlycoMotifWiki
+w = GlycoMotifWiki()
+
+if len(sys.argv) > 1:
+    res_file_path = sys.argv[1] # "../data/motif_alignments.tsv"
+else:
+    res_file_path = None
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
@@ -18,8 +25,6 @@ nred_matcher = pygly.alignment.GlyGenMotifNonReducingEnd(connected_nodes_cache=n
 gtcm_gen = pygly.alignment.GlyTouCanMotif(connected_nodes_cache=nodes_cache)
 
 
-from getwiki import GlycoMotifWiki
-w = GlycoMotifWiki()
 motif_gobjs = {}
 for m in w.itermotif():
 
@@ -88,10 +93,14 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         result.append(line)
 
 result = sorted(result)
-result_file = open(res_file_path, "w")
+if res_file_path:
+    result_file = open(res_file_path, "w")
+else:
+    result_file = sys.stdout
 result_file.write("Motif\tStructure\tCore\tSubstructure\tWhole\tNon_Red\n")
 result_file.write("\n".join(result))
-result_file.close()
+if res_file_path:
+    result_file.close()
 
 
 
