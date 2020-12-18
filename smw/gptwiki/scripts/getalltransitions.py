@@ -14,7 +14,7 @@ for tgpage in w.itertransgroups():
     pepid = tgpage.get('peptide')
     pepage = w.get(pepid)
     try:
-        glycan = re.search('\[H(.)*\]',pepage.get('name')).group(0)[1:-1]
+        glycan = re.search('\[H(.)*?\]',pepage.get('name')).group(0)[1:-1]
     except:
 	continue
     mw = pepage.get('mw')
