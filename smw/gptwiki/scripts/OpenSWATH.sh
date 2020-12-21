@@ -7,14 +7,15 @@ help() {
   fi
   cat <<EOF | fmt -w80 -s 1>&2
 
-OpenSWATH.sh [ options ] <params> <spectra>.mzML.gz ...
+OpenSWATH.sh [ options ] <spectra>.mzML.gz ...
 
 Options:
   -c <lc-calibration>   NRT Peptides (NRT), Endogenous
                         Peptides (END), Explicit Slope and
                         and Intercept (ESI), None (NONE).
                         Default: NRT.
-  -h	Help text.
+  -p <params-file>	Parameters file. Default: params.txt.
+  -h	                Help text.
 
 Parameter file sets the follwing variables:
 
@@ -35,10 +36,12 @@ DIR=`readlink -f $DIR`
 LCCAL="NRT"
 VERBOSE=0
 OUTDIR="."
+PARAMS="./params.txt"
 while getopts ":c:o:vh" o ; do
         case $o in
 	        c ) LCCAL="$OPTARG";;
 	        o ) OUTDIR="$OPTARG";;
+	        p ) PARAMS="$OPTARG";;
 	        v ) VERBOSE=1;;
                 h ) help "";;
                 * ) help "Invalid option: -$OPTARG"
@@ -56,15 +59,12 @@ esac
 
 shift $(($OPTIND - 1)) 
 
-if [ "$1" = "" ]; then
-  help "Parameter file not provided on the command-line"
+if [ ! -f "$PARAMS" ]; then
+  help "Parameter file \"$PARAMS\" could not be opened"
 fi
 
-PARAMS="$1"
 PARAMS=`readlink -f "$PARAMS"`
 . $PARAMS
-
-shift
 
 if [ $DONRT = 1 -a "$NRTTRANSITIONS" = "" ]; then
     help "NRT Peptide calibration: NRTTRANSITIONS missing from parameter file $1"
@@ -104,7 +104,6 @@ function openswath() {
     FILE="$1"
     shift
     BASE=`basename "$FILE" .mzML.gz`
-    TMP=`mktemp -d -p /scratch -t openswath.XXXXXX`
     echo $OSW \
 	-in "$FILE" \
 	-tr "$TRANSITIONS" \
@@ -133,7 +132,6 @@ function openswath() {
 	-out_chrom "${OUTDIR}/${BASE}_chrom.mzML" \
 	"$@" \
 	>> "${OUTDIR}/${BASE}.log" 2>&1
-    rm -rf $TMP*
 }
 
 function openswath_nort() {
@@ -141,7 +139,7 @@ function openswath_nort() {
 }
 
 function openswath_nrt() {
-    openswath "$@" -rt_extraction_window "$RTWINDOW" -tr_irt "$NRTTRANSITIONS" 
+    openswath "$@" -rt_extraction_window "$RTWINDOW" -tr_irt "$NRTTRANSITIONS"
 }
 
 function openswath_esi() {
@@ -173,6 +171,12 @@ function openswath_cal() {
 	( getcoeff "$TABLE" "$TRANSITIONS" "$NDECOYS" > "$TRAFOXML" ) 2>> "${OUTDIR}/${BASE}.log"
 	if [ -s "$TRAFOXML" ]; then
 	    openswath_esi "$@"
+	    echo -e "Score\tFDR\tTarget\tDecoy" >> "${OUTDIR}/${BASE}.log"
+            fdr "$TABLE" "$NDECOYS" | awk '$2 < 0.05' >> "${OUTDIR}/${BASE}.log" 2>&1
+            ( getcoeff "$TABLE" "$TRANSITIONS" "$NDECOYS" > "$TRAFOXML" ) 2>> "${OUTDIR}/${BASE}.log"
+	    if [ -s "$TRAFOXML" ]; then
+	        openswath_esi "$@"
+            fi
         fi
     elif [ $DONONE -eq 1 ]; then
 	openswath_nort "$@"
@@ -180,6 +184,7 @@ function openswath_cal() {
 }
 
 for f in "$@"; do
+    TMP=`mktemp -d -p /scratch -t openswath.XXXXXX`
     BASE=`basename "$f" .mzML.gz`
     LOG="${OUTDIR}/${BASE}.log"
     echo "" > "$LOG"
@@ -187,4 +192,5 @@ for f in "$@"; do
     TABLE="${OUTDIR}/${BASE}_table.tsv"
     echo -e "Score\tFDR\tTarget\tDecoy" >> "$LOG"
     fdr "$TABLE" "$NDECOYS" | awk '$2 < 0.01' >> "$LOG"
+    rm -rf $TMP*
 done    

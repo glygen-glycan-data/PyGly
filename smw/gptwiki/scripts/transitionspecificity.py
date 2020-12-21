@@ -128,7 +128,7 @@ for tr in alltrs:
         else:
             labelspec[label]['specificity'] +=1
     labelspec[label]['total'] = labelspec[label]['non-specificity'] + labelspec[label]['specificity']
-    labelspec[label]['percentage'] = round(labelspec[label]['non-specificity']*100.00/labelspec[label]['total'],2)
+    labelspec[label]['percentage'] = labelspec[label]['non-specificity']*100.00/labelspec[label]['total']
 
     if (glycan,label) not in glycanlabelspec:
         glycanlabelspec[(glycan,label)] = {}
@@ -145,27 +145,31 @@ for tr in alltrs:
             glycanlabelspec[(glycan,label)]['specificity'] +=1
 
     glycanlabelspec[(glycan,label)]['total'] = glycanlabelspec[(glycan,label)]['non-specificity'] + glycanlabelspec[(glycan,label)]['specificity']
-    glycanlabelspec[(glycan,label)]['percentage'] = round(glycanlabelspec[(glycan,label)]['non-specificity']*100.00/glycanlabelspec[(glycan,label)]['total'],2)
+    glycanlabelspec[(glycan,label)]['percentage'] = glycanlabelspec[(glycan,label)]['non-specificity']*100.00/glycanlabelspec[(glycan,label)]['total']
 
 for label in labelspec:
-    labelspec[label]['specscore'] = round(specscore(labelspec[label]['non-specificity'],labelspec[label]['total'],nonspeccount,len(alltrs)),2)
+    if labelspec[label]['total'] >= 10:
+        labelspec[label]['specscore'] = specscore(labelspec[label]['non-specificity'],labelspec[label]['total'],nonspeccount,len(alltrs))
 
-sortspecscore = sorted(labelspec.items(),key=lambda item:item[1]['specscore'])
+sortspecscore = sorted([item for item in labelspec.items() if item[1].has_key('specscore')],
+                       key=lambda item:item[1]['specscore'])
 
 labelspecfile = open('../data/labelspecificity.tsv','w')
-labelspecfile.write('\t'.join(map(str,['label','nonspec','spec','total','percent','fisherscore','\n'])))
+labelspecfile.write('\t'.join(map(str,['label','nonspec','spec','total','percent','fisherscore']))+'\n')
 
 for (label,dic) in sortspecscore:
-    labelspecfile.write('\t'.join(map(str,[label,dic['non-specificity'],dic['specificity'],dic['total'],dic['percentage'],dic['specscore'],'\n'])))
+    labelspecfile.write('\t'.join(map(str,[label,dic['non-specificity'],dic['specificity'],dic['total'],"%.2f"%dic['percentage'],"%+.2f"%dic['specscore']]))+'\n')
 
 for (glycan,label) in glycanlabelspec:
-    glycanlabelspec[(glycan,label)]['specscore'] = round(specscore(glycanlabelspec[(glycan,label)]['non-specificity'],glycanlabelspec[(glycan,label)]['total'],nonspeccount,len(alltrs)),2)
+    if glycanlabelspec[(glycan,label)]['total'] >= 10:
+        glycanlabelspec[(glycan,label)]['specscore'] = specscore(glycanlabelspec[(glycan,label)]['non-specificity'],glycanlabelspec[(glycan,label)]['total'],nonspeccount,len(alltrs))
 
-sortglyspecscore = sorted(glycanlabelspec.items(),key=lambda item:item[1]['specscore'])
+sortglyspecscore = sorted([item for item in glycanlabelspec.items() if item[1].has_key('specscore')],
+                          key=lambda item:(item[0][0],item[1]['specscore']))
 
 glylabelspecfile = open('../data/glycanlabelspecificity.tsv','w')
-glylabelspecfile.write('\t'.join(map(str,['label','nonspec','spec','total','percent','fisherscore','\n'])))
+glylabelspecfile.write('\t'.join(map(str,['glycan','label','nonspec','spec','total','percent','fisherscore']))+'\n')
 
 for ((glycan,label),dic) in sortglyspecscore:
-    glylabelspecfile.write('\t'.join(map(str,[glycan,label,dic['non-specificity'],dic['specificity'],dic['total'],dic['percentage'],dic['specscore'],'\n'])))
+    glylabelspecfile.write('\t'.join(map(str,[glycan,label,dic['non-specificity'],dic['specificity'],dic['total'],"%.2f"%dic['percentage'],"%+.2f"%dic['specscore']]))+'\n')
 

@@ -9,9 +9,10 @@ help() {
   fi
   cat <<EOF | fmt -w80 -s 1>&2
 
-OpenSWATH2JSON.sh [ options ] <params> <spectra>.mzML.gz ...
+OpenSWATH2JSON.sh [ options ] <spectra>.mzML.gz ...
 
 Options:
+  -p    Parameters file. Default: ./params.txt.
   -f    FDR threshold (in percent). Default: 1%.
   -s    Score threshold. Default: 1.5.
   -o    Output directory. Default: .
@@ -33,8 +34,10 @@ VERBOSE=0
 OUTDIR="."
 FDR="1"
 SCORE="1.5"
-while getopts "o:f:s:vh" o ; do
+PARAMS="./params.txt"
+while getopts "p:o:f:s:vh" o ; do
         case $o in
+	        p ) PARAMS="$OPTARG";;
 	        o ) OUTDIR="$OPTARG";;
 	        f ) FDR="$OPTARG";;
 	        s ) SCORE="$OPTARG";;
@@ -46,15 +49,12 @@ done
 
 shift $(($OPTIND - 1)) 
 
-if [ "$1" = "" ]; then
-  help "Parameter file not provided on the command-line"
+if [ ! -f "$PARAMS" ]; then
+  help "Parameter file \"$PARAMS\" could not be opened"
 fi
 
-PARAMS="$1"
 PARAMS=`readlink -f "$PARAMS"`
 . $PARAMS
-
-shift
 
 if [ "$TRANSITIONS" = "" ]; then
   help "TRANSITIONS missing from parameter file $1"

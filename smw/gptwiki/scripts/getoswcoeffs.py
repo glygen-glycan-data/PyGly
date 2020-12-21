@@ -22,21 +22,23 @@ fdr = CombinedAnalysisFDR(ndecoys=int(sys.argv[3]),
                           rankingkey="main_var_xx_swath_prelim_score")
 fdr.add_ids(sys.argv[1])
 tgs = None
-for qv in sorted(map(itemgetter(1),fdr.allqvalues())):
-    tgs = None
+for qv,sc,trg in sorted(map(itemgetter(1,0,2),fdr.allqvalues())):
     if qv > 0.05:
         break
+    # print >>sys.stderr, (len(tgs) if tgs != None else 0), sc, qv, trg
+    if tgs != None and len(tgs) >= 10 and qv > 0.01:
+	break
     tgs = dict()
-    for row in fdr.filter_ids(sys.argv[1],qvalue=qv):
+    for row in fdr.filter_ids(sys.argv[1],score=sc):
         tgid = row['peptide_group_label']
         rt = float(row['RT'])/60.0
         tgs[tgid] = rt
-    if len(tgs) >= 10:
-        break
 
 if not tgs or len(tgs) < 10:
     print >>sys.stderr, "Not enough good quality transition groups"
     sys.exit(1)
+
+# print >>sys.stderr, (len(tgs) if tgs != None else 0), sc, qv, trg
 
 points = []
 seentg = set()

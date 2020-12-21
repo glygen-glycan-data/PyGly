@@ -398,34 +398,77 @@ class GPTWiki(SMW.SMWSite):
 	for p in map(self.get,self.itercat('Protein')):
             yield p
 
-    def iterregex(self,regex):
+    def iterprefix(self,prefix):
+	for pagename in self.site.allpages(prefix=prefix,generator=False):
+	    yield self.get(pagename)
+
+    def iterregex(self,regex,prefix=None):
 	regex = re.compile(regex)
-        for pagename in sorted(self.site.allpages(generator=False)):
+        for pagename in self.site.allpages(prefix=prefix,generator=False):
             m = regex.search(pagename)
             if m:
                 yield self.get(m.group(0))
 
     def iterglycans(self):
-	for g in self.iterregex(r'^G\d{5}[A-Z]{2}$'):
+	for g in self.iterregex(r'^G\d{5}[A-Z]{2}$',prefix="G"):
 	    yield g
 
     def itertransgroups(self):
-	for tg in self.iterregex(r'^TG\d{6}$'):
+	for tg in self.iterregex(r'^TG\d{6}$',prefix="TG"):
 	    yield tg
 
-    def iterspectgs(self,spectra):
-	query = """
-	[[Category:TransitionGroup]]
-        [[gptwiki:spectra::%(spectra)s]]
-        """%dict(spectra=spectra)
+    def iterask(self,query):
 	for it in self.site.ask(query):
 	    if isinstance(it,basestring):
 	        yield self.get(it)
 	    else:
 	        yield self.get(it['fulltext'])
 
+    def iterspec(self,**kw):
+	query = """
+	[[Category:Acquisition]]
+        """.strip()
+	if kw.get('method'):
+	    query += "\n[[gptwiki:formethod::%(method)s]]"%kw
+	if kw.get('sample'):
+	    query += "\n[[gptwiki:forsample::%(sample)s]]"%kw
+	if kw.get('anfrac'):
+	    query += "\n[[gptwiki:analfraction::%(anfrac)s]]"%kw
+	if kw.get('acqtype'):
+	    query += "\n[[gptwiki:type::%(acqtype)s]]"%kw
+	if kw.get('inst'):
+	    query += "\n[[gptwiki:spectra.gptwiki:instrument::%(inst)s]]"%kw
+	for sp in self.iterask(query):
+	    yield sp
+
+    def itertgs(self,**kw):
+	query = """
+	[[Category:TransitionGroup]]
+        """
+	if kw.get('spectra'):
+	    query += "\n[[gptwiki:spectra::%(spectra)s]]"%kw
+	if kw.get('method'):
+	    query += "\n[[gptwiki:spectra.gptwiki:formethod::%(method)s]]"%kw
+	if kw.get('sample'):
+	    query += "\n[[gptwiki:spectra.gptwiki:forsample::%(sample)s]]"%kw
+	if kw.get('anfrac'):
+	    query += "\n[[gptwiki:spectra.gptwiki:analfraction::%(anfrac)s]]"%kw
+	if kw.get('acqtype'):
+	    query += "\n[[gptwiki:spectra.gptwiki:type::%(acqtype)s]]"%kw
+	if kw.get('inst'):
+	    query += "\n[[gptwiki:spectra.gptwiki:instrument::%(inst)s]]"%kw
+	for tg in self.iterask(query):
+	    yield tg
+
+    def iterpep(self,**kw):
+	query = """
+	[[Category:Peptide]]
+        """
+	for pep in self.iterask(query):
+	    yield pep
+
     def iterpeptides(self):
-	for p in self.iterregex(r'^PE\d{6}$'):
+	for p in self.iterregex(r'^PE\d{6}$',prefix="PE"):
 	    yield p
 
     def newpeptideid(self):
