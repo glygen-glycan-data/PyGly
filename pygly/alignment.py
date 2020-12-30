@@ -698,7 +698,7 @@ class SubstructureSearch(GlycanPartialOrder):
         return False
 
 
-    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False):
+    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False, strictMatch=False):
 
         assert (rootOnly and anywhereExceptRoot) is not True
 
@@ -732,6 +732,9 @@ class SubstructureSearch(GlycanPartialOrder):
             # return False when no match based on subtree algorithm and the glycan is not undetermined.
             if not tg.undetermined():
                 return False
+
+        if strictMatch:
+            return False
 
         if tg.undetermined() and self.connected_nodes_pre_computed:
             # pre compute the connected node set
@@ -1409,7 +1412,7 @@ class GlyTouCanMotifOriginal(SubstructureSearch):
             sublinkcmp=LinkageEqual()
         )
         kw["linkcmp"] = LinkageMotifComparitor()
-        super(GlyTouCanMotif, self).__init__(**kw)
+        super(GlyTouCanMotifOriginal, self).__init__(**kw)
 
 
 class GlyTouCanMotifNonReducingEndOriginal(SubstructureSearchNonReducingEnd):
@@ -1420,7 +1423,7 @@ class GlyTouCanMotifNonReducingEndOriginal(SubstructureSearchNonReducingEnd):
             sublinkcmp=LinkageEqual()
         )
         kw["linkcmp"] = LinkageMotifComparitor()
-        super(GlyTouCanMotifNonReducingEnd, self).__init__(**kw)
+        super(GlyTouCanMotifNonReducingEndOriginal, self).__init__(**kw)
 
 class GlyTouCanMotif(SubstructureSearch):
 
@@ -1444,7 +1447,7 @@ class GlyTouCanMotifNonReducingEnd(SubstructureSearchNonReducingEnd):
         super(GlyTouCanMotifNonReducingEnd, self).__init__(**kw)
 
 
-
+# Inclusive version...
 class GlyGenMotif(SubstructureSearch):
 
     def __init__(self, **kw):
