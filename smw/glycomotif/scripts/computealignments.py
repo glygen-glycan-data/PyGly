@@ -20,9 +20,9 @@ gp = GlycoCTFormat()
 gtc = GlyTouCanNoCache()
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
-loose_matcher = pygly.alignment.GlyGenMotif(connected_nodes_cache=nodes_cache)
-gtcm_gen = pygly.alignment.GlyTouCanMotifOriginal(connected_nodes_cache=nodes_cache)
-nred_matcher = pygly.alignment.GlyTouCanMotifNonReducingEndOriginal(connected_nodes_cache=nodes_cache)
+loose_matcher = pygly.alignment.MotifInclusive(connected_nodes_cache=nodes_cache)
+normal_matcher = pygly.alignment.MotifStrict(connected_nodes_cache=nodes_cache)
+nred_matcher = pygly.alignment.NonReducingEndMotifStrict(connected_nodes_cache=nodes_cache)
 
 
 motif_gobjs = {}
@@ -41,9 +41,6 @@ for m in w.itermotif():
         except:
             continue
 
-
-start_ts = time.time()
-motif_accs = motif_gobjs.keys()
 
 def secondtostr(i):
     i = int(i)
@@ -64,6 +61,11 @@ def secondtostr(i):
 # f1 = open("tmp.txt", "w")
 result = []
 i, l, lastper = 0.0, len(list(gtc.allseq(format="wurcs"))) / 100.0, 0
+
+
+start_ts = time.time()
+motif_accs = motif_gobjs.keys()
+
 for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     i += 1
     per = i / l
@@ -75,7 +77,8 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         continue
 
     if per > lastper:
-        lastper += 1
+        lastper += 0.1
+        lapsed = time.time() - start_ts
         print "%0.2f Percent finished after %s, estimate %s remaining" % (per, secondtostr(lapsed), secondtostr(lapsed/per*(100-per)))
 
 
@@ -85,13 +88,12 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         loose = loose_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=False, strictMatch=False)
 
         if not loose:
-            pass
-            # continue
+            continue
 
-        core = gtcm_gen.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False, strictMatch=True)
+        core = normal_matcher.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False, strictMatch=True)
         substructure_partial = None
         if not core:
-            substructure_partial = gtcm_gen.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, strictMatch=True)
+            substructure_partial = normal_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, strictMatch=True)
 
         whole = False
         if core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
@@ -120,7 +122,7 @@ if res_file_path:
     result_file = open(res_file_path, "w")
 else:
     result_file = sys.stdout
-result_file.write("Motif\tLoose\tStructure\tCore\tSubstructure\tWhole\tNon_Red\n")
+result_file.write("Motif\tStructure\tLoose\tCore\tSubstructure\tWhole\tNon_Red\n")
 result_file.write("\n".join(result))
 if res_file_path:
     result_file.close()
