@@ -698,7 +698,7 @@ class SubstructureSearch(GlycanPartialOrder):
         return False
 
 
-    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False, strictMatch=False):
+    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False, underterminedLinkage=True):
 
         assert (rootOnly and anywhereExceptRoot) is not True
 
@@ -733,7 +733,7 @@ class SubstructureSearch(GlycanPartialOrder):
             if not tg.undetermined():
                 return False
 
-        if strictMatch:
+        if not underterminedLinkage:
             return False
 
         if tg.undetermined() and self.connected_nodes_pre_computed:

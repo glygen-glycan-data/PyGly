@@ -20,9 +20,12 @@ gp = GlycoCTFormat()
 gtc = GlyTouCanNoCache()
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
+
 loose_matcher = pygly.alignment.MotifInclusive(connected_nodes_cache=nodes_cache)
-normal_matcher = pygly.alignment.MotifStrict(connected_nodes_cache=nodes_cache)
-nred_matcher = pygly.alignment.NonReducingEndMotifStrict(connected_nodes_cache=nodes_cache)
+loose_nred_matcher = pygly.alignment.NonReducingEndMotifInclusive(connected_nodes_cache=nodes_cache)
+
+strict_matcher = pygly.alignment.MotifStrict(connected_nodes_cache=nodes_cache)
+strict_nred_matcher = pygly.alignment.NonReducingEndMotifStrict(connected_nodes_cache=nodes_cache)
 
 
 motif_gobjs = {}
@@ -85,27 +88,46 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     for motif_acc in motif_accs:
         motif_gobj = motif_gobjs[motif_acc]
 
-        loose = loose_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=False, strictMatch=False)
+        # Loose match first
+        loose_core = loose_matcher.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=True)
+        loose_substructure_partial = False
+        if not loose_core:
+            loose_substructure_partial = loose_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=True)
 
-        if not loose:
-            continue
+        loose_substructure = loose_core or loose_substructure_partial
 
-        core = normal_matcher.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False, strictMatch=True)
-        substructure_partial = None
-        if not core:
-            substructure_partial = normal_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, strictMatch=True)
+        loose_whole = False
+        if loose_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
+            loose_whole = True
 
-        whole = False
-        if core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
-            whole = True
+        loose_nred = False
+        if loose_substructure:
+            loose_nred = loose_nred_matcher.leq(motif_gobj, glycan_obj, underterminedLinkage=True)
 
-        nred = False
-        if (core or substructure_partial):
-            nred = nred_matcher.leq(motif_gobj, glycan_obj, strictMatch=True)
 
-        substructure = core or substructure_partial
 
-        res0 = [loose, core, substructure, whole, nred]
+        # if inclusive, then try to match strict
+        strict_core, strict_substructure_partial, strict_whole, strict_nred = False, False, False, False
+        if loose_core:
+            strict_core = strict_matcher.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=False)
+
+        if loose_substructure_partial:
+            if not strict_core:
+                strict_substructure_partial = strict_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False)
+
+        if strict_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
+            strict_whole = True
+
+        strict_substructure = strict_core or strict_substructure_partial
+
+        if loose_nred:
+            if strict_substructure:
+                strict_nred = strict_nred_matcher.leq(motif_gobj, glycan_obj, underterminedLinkage=False)
+
+
+
+        res0 = [loose_core, loose_substructure, loose_whole, loose_nred,
+                strict_core, strict_substructure, strict_whole, strict_nred]
 
         if True not in res0:
             continue
@@ -122,7 +144,7 @@ if res_file_path:
     result_file = open(res_file_path, "w")
 else:
     result_file = sys.stdout
-result_file.write("Motif\tStructure\tLoose\tCore\tSubstructure\tWhole\tNon_Red\n")
+result_file.write("Motif\tStructure\tCore_Inclusive\tSubstructure_Inclusive\tWhole_Inclusive\tNon_Red_Inclusive\tCore_Strict\tSubstructure_Strict\tWhole_Strict\tNon_Red_Strict\n")
 result_file.write("\n".join(result))
 if res_file_path:
     result_file.close()
