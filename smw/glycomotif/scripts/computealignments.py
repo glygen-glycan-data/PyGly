@@ -82,7 +82,7 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     if per > lastper:
         lastper += 0.1
         lapsed = time.time() - start_ts
-        print "%0.2f Percent finished after %s, estimate %s remaining" % (per, secondtostr(lapsed), secondtostr(lapsed/per*(100-per)))
+        print >> sys.stderr, "%0.2f Percent finished after %s, estimate %s remaining" % (per, secondtostr(lapsed), secondtostr(lapsed/per*(100-per)))
 
 
     for motif_acc in motif_accs:

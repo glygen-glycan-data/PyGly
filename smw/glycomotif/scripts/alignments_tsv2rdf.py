@@ -36,16 +36,16 @@ for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
         alignments[macc] = copy.deepcopy(alignments_template)
 
     if flags[0]:
-        alignments[macc]["Core"].append(gacc)
+        alignments[macc]["Core"].append([gacc, flags[4]])
 
     if flags[1]:
-        alignments[macc]["Substructure"].append(gacc)
+        alignments[macc]["Substructure"].append([gacc, flags[5]])
 
     if flags[2]:
-        alignments[macc]["Whole-Glycan"].append(gacc)
+        alignments[macc]["Whole-Glycan"].append([gacc, flags[6]])
 
     if flags[3]:
-        alignments[macc]["Nonreducing-End"].append(gacc)
+        alignments[macc]["Nonreducing-End"].append([gacc, flags[7]])
 
 
 rdfgraph = rdflib.Graph()
@@ -71,19 +71,20 @@ for motifacc, alignments_per_motif in alignments.items():
 
     for alignment_type, structure_accs in alignments_per_motif.items():
 
-        for acc in structure_accs:
-            # tmp = "_".join((alignment_type_abbr, motifacc, acc))
-            # alignment_id = hashlib.sha256(tmp).hexdigest()
+        for pair in structure_accs:
+
+            acc, strict = pair
             alignment_id = "-".join((motifacc, alignment_type, acc))
 
             matched_rdf_node = glycomotifns[alignment_id]
 
-            # rdfgraph.add((motif_rdf_node, glycomotifns["has_alignment"], matched_rdf_node))
-
             rdfgraph.add((matched_rdf_node, glycomotifns["motif_accession"], rdflib.Literal(motifacc)))
             rdfgraph.add((matched_rdf_node, glycomotifns["alignment_type"], rdflib.Literal(alignment_type)))
             rdfgraph.add((matched_rdf_node, glycomotifns["structure_accession"], rdflib.Literal(acc)))
-
+            if strict:
+                rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal("true" , datatype=rdflib.XSD.boolean)))
+            else:
+                rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal("false", datatype=rdflib.XSD.boolean)))
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
 # writer.serialize(open(rdf_file_path, "w"))
