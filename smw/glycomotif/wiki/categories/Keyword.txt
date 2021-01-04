@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:Keyword]] 
+<span style="display:none">{{#default_form:Keyword}}</span>
+
+{{#formlink:form=Keyword|link text=Add new keyword.|reload|returnto=Category:Keyword}}

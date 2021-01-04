@@ -16,6 +16,7 @@ LIN
 3:1o(4+1)4d
 4:4o(2+1)5d
 |glytoucan=G49963IQ
+|keyword=Lewis y
 |name=Lewis y
 Ley
 Le^y

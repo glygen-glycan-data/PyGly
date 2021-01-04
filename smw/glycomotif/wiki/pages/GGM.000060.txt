@@ -7,6 +7,7 @@
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 |glytoucan=G71142DF
+|keyword=Glycolipid
 |name=Glucosylceramide
 |prefname=Glucosylceramide
 |redend=true

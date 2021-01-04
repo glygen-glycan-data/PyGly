@@ -1,0 +1,23 @@
+{{Motif
+|accession=001102
+|aglycon=Cer
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-x:x
+2b:b-dgal-HEX-1:5
+3b:b-dgal-HEX-1:5
+4b:b-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+2:2o(4+1)3d
+3:3o(3+1)4d
+|glytoucan=G00013MO
+|keyword=Glycosphingolipid classification
+|name=Glycosphingolipid Muco series
+|prefname=Glycosphingolipid Muco series
+|redend=true
+|sameas=GM.G00013MO,GTC.G00013MO
+|wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}u2122h{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-2-2/a4-b1_b4-c1_c3-d1
+}}

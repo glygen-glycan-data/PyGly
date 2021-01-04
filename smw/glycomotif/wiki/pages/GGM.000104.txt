@@ -28,6 +28,7 @@ LIN
 9:9o(2+1)10d
 10:9o(3+1)11d
 |glytoucan=G72557NR
+|keyword=Disialylated ganglioside;Glycolipid
 |name=B-GD1b
 |prefname=B-GD1b
 |redend=true

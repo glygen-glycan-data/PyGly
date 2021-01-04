@@ -1,0 +1,46 @@
+<noinclude>
+This is the "Keyword" template.
+It should be called in the following format:
+<pre>
+{{Keyword
+|keyword=
+|definition=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{keyword|}}}}}
+{| class="wikitable"
+! Definition
+| {{{definition|}}}
+|}
+
+== GlyGen Motifs ==
+
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[glycomotif:haskeyword::{{PAGENAME}}]]
+|?glycomotif:id
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:alignment
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|limit=1000
+}}
+
+{{#set:
+|glycomotif:instancecount={{#ask:[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[glycomotif:haskeyword::{{PAGENAME}}]]
+|format=count}}
+}}
+[[Category:Keyword]]
+</includeonly>

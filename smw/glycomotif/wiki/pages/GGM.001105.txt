@@ -1,0 +1,19 @@
+{{Motif
+|accession=001105
+|aglycon=Cer
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dgal-HEX-x:x
+2b:a-dgal-HEX-1:5
+LIN
+1:1o(4+1)2d
+|glytoucan=G00016MO
+|keyword=Glycosphingolipid classification
+|name=Glycosphingolipid Gala series
+|prefname=Glycosphingolipid Gala series
+|redend=true
+|sameas=GM.G00016MO,GTC.G00016MO
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2112h{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a4-b1
+}}

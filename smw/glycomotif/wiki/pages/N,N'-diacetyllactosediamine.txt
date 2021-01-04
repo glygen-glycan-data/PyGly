@@ -1,0 +1,4 @@
+{{Keyword
+|definition=N,N'-diacetyllactosediamine
+|keyword=N,N'-diacetyllactosediamine
+}}

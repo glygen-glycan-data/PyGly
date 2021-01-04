@@ -1,0 +1,4 @@
+{{Keyword
+|keyword=Glycosphingolipid classification
+|definition=Motifs used for glycosphingolipid type and subtype classification.
+}}

@@ -16,6 +16,7 @@ LIN
 3:3o(3+1)4n
 4:1o(4+1)5d
 |glytoucan=G78706CK
+|keyword=Lewis a
 |name=3'-Sulfo Lewis a
 3'-Sulfo Lea
 3'-Sulfo-Lewis a

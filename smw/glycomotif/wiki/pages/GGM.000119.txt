@@ -34,6 +34,7 @@ LIN
 12:8o(6+2)13d
 13:13d(5+1)14n
 |glytoucan=G00552RX
+|keyword=Glycolipid;Pentasialylated ganglioside
 |name=GP1ca
 GP1calpha
 |prefname=GP1ca

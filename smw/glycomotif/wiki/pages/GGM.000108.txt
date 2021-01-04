@@ -24,6 +24,7 @@ LIN
 7:7d(2+1)8n
 8:7o(3+1)9d
 |glytoucan=G37184KW
+|keyword=Glycolipid
 |name=GD1b
 |prefname=GD1b
 |redend=true

@@ -18,6 +18,7 @@ LIN
 4:3o(3+1)5d
 5:5d(2+1)6n
 |glytoucan=G74353FF
+|keyword=Blood group A;Blood group type 2
 |name=Blood group A (type 2)
 |prefname=Blood group A (type 2)
 |redend=false

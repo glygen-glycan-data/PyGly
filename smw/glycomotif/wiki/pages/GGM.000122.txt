@@ -24,6 +24,7 @@ LIN
 7:7d(2+1)8n
 8:7o(4+1)9d
 |glytoucan=G65223RT
+|keyword=Glycolipid;LacNAc;N-acetyllactosamine
 |name=Mono-fucosyl LN3
 Mono-fucosyl LN_3
 |prefname=Mono-fucosyl LN3

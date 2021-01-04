@@ -1,7 +1,11 @@
 {{Motif
-|accession=001001
+|prefname=N-Glycan core basic
+|name=N-Glycan core basic
+|keyword=N-glycan classification
 |aglycon=Asn
+|redend=true
 |alignment=Core
+|accession=001001
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -20,9 +24,6 @@ LIN
 5:5o(3+1)6d
 6:5o(6+1)7d
 |glytoucan=G00026MO
-|name=N-Glycan core basic
-|prefname=N-Glycan core basic
-|redend=true
 |sameas=GM.G00026MO,GTC.G00026MO
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-4/a4-b1_b4-c1_c3-d1_c6-e1
 }}

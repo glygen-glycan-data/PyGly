@@ -16,6 +16,7 @@ LIN
 3:3o(2+1)4d
 4:1o(4+1)5d
 |glytoucan=G39211DH
+|keyword=Lewis b
 |name=Lewis b
 Leb
 Le^b

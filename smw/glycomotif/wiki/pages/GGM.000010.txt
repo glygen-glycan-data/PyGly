@@ -1,6 +1,7 @@
 {{Motif
 |prefname=H antigen (type 3)
 |name=H antigen (type 3)
+|keyword=Blood group H;Blood group type 3
 |aglycon=Ser/Thr
 |redend=true
 |alignment=Whole-Glycan

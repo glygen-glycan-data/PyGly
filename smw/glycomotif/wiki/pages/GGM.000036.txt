@@ -16,6 +16,7 @@ LIN
 3:2o(4+1)4d
 4:4o(2+1)5d
 |glytoucan=G70519XK
+|keyword=Blood group H;Blood group type 2
 |name=Blood group H (type 2)
 |prefname=Blood group H (type 2)
 |redend=false

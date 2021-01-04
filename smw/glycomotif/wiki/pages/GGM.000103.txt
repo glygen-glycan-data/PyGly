@@ -26,6 +26,7 @@ LIN
 8:7o(3+1)9d
 9:9o(2+1)10d
 |glytoucan=G93694YU
+|keyword=Disialylated ganglioside;Glycolipid
 |name=2-Fucosyl-GD1b
 |prefname=2-Fucosyl-GD1b
 |redend=true

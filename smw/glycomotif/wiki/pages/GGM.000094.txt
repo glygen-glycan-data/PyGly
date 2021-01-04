@@ -22,6 +22,7 @@ LIN
 6:2o(4+1)7d
 7:7d(2+1)8n
 |glytoucan=G02657AK
+|keyword=Disialylated ganglioside;Glycolipid
 |name=GD2
 |prefname=GD2
 |redend=true

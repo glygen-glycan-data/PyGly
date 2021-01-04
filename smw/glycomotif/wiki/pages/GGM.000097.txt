@@ -24,6 +24,7 @@ LIN
 7:5o(4+1)8d
 8:8d(2+1)9n
 |glytoucan=G13224CR
+|keyword=Glycolipid
 |name=Sialopentaosylceramide
 |prefname=Sialopentaosylceramide
 |redend=true

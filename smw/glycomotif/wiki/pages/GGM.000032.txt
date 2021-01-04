@@ -26,6 +26,7 @@ LIN
 8:8o(3+2)9d
 9:9d(5+1)10n
 |glytoucan=G19619KS
+|keyword=Lewis x
 |name=SDLex
 SDLe^x
 |prefname=SDLex

@@ -20,6 +20,7 @@ LIN
 5:4o(3+1)6d
 6:6d(2+1)7n
 |glytoucan=G51699SI
+|keyword=Glycolipid
 |name=para-Forssman glycolipid
 |prefname=para-Forssman glycolipid
 |redend=true

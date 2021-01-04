@@ -18,6 +18,7 @@ LIN
 4:4d(2+1)5n
 5:4o(3+1)6n
 |glytoucan=G05297EK
+|keyword=Glycolipid
 |name=Mono-sulfated globotetraosylceramide
 |prefname=Mono-sulfated globotetraosylceramide
 |redend=true

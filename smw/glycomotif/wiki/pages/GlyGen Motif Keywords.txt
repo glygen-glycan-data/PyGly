@@ -1,0 +1,10 @@
+
+{{#ask:
+[[Category:Keyword]]
+|?=Keyword
+|?glycomotif:instancecount=Motifs
+|mainlabel=-
+|format=broadtable
+}}
+
+{{#formlink:form=Keyword|link text=New Keyword|reload|returnto=GlyGen Motif Keywords}}

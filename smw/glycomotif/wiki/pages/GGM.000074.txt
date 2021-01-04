@@ -18,6 +18,7 @@ LIN
 4:4d(2+1)5n
 5:4o(3+1)6n
 |glytoucan=G56133NW
+|keyword=Glycolipid
 |name=Sulfo-isogloboside
 Mono-sulfated isoglobotetraosylceramide
 |prefname=Sulfo-isogloboside

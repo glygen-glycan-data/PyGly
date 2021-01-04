@@ -1,0 +1,5 @@
+{{Keyword
+|definition=Blood group A
+|keyword=Blood group A
+|name=Blood group A
+}}

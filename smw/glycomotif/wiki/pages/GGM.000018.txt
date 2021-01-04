@@ -1,7 +1,15 @@
 {{Motif
-|accession=000018
+|prefname=Lewis x
+|name=Lewis x
+Lex
+SSEA-1
+Le^x
+|keyword=Lewis x
 |aglycon=R
+|redend=false
 |alignment=Substructure
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Gooi et al. (1981) Stage-specific embryonic antigen involves alpha 1 goes to 3 fucosylated ...;Solter et al. (1978) Monoclonal antibody defining a stage-specific mouse embryonic antigen ...
+|accession=000018
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -14,13 +22,6 @@ LIN
 2:1o(3+1)3d
 3:1o(4+1)4d
 |glytoucan=G01187XC
-|name=Lewis x
-Lex
-SSEA-1
-Le^x
-|prefname=Lewis x
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Gooi et al. (1981) Stage-specific embryonic antigen involves alpha 1 goes to 3 fucosylated ...;Solter et al. (1978) Monoclonal antibody defining a stage-specific mouse embryonic antigen ...
 |sameas=GD.R000480,GDC.000018,GDV.000038,GM.G01187XC
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3/a3-b1_a4-c1
 }}

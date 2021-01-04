@@ -12,6 +12,7 @@ LIN
 1:1o(4+1)2d
 2:2o(4+1)3d
 |glytoucan=G00059MO
+|keyword=Glycolipid
 |name=Pk antigen
 P^k antigen
 Gb3

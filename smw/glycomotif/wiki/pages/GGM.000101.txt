@@ -22,6 +22,7 @@ LIN
 6:5o(3+1)7d
 7:7o(2+1)8d
 |glytoucan=G91532KA
+|keyword=Glycolipid;Monosialylated ganglioside
 |name=2-Fucosyl-GM1
 |prefname=2-Fucosyl-GM1
 |redend=true

@@ -10,6 +10,7 @@
 LIN
 1:1o(3+1)2n
 |glytoucan=G72548RZ
+|keyword=Glycolipid
 |name=Sulfatide
 |prefname=Sulfatide
 |redend=true

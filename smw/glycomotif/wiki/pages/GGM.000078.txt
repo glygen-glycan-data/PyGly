@@ -20,6 +20,7 @@ LIN
 5:4o(3+1)6d
 6:6o(2+1)7d
 |glytoucan=G98465JN
+|keyword=Glycolipid
 |name=GL-6 fucosylated
 globoH
 |prefname=GL-6 fucosylated

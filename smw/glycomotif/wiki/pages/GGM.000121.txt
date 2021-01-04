@@ -36,6 +36,7 @@ LIN
 13:13d(2+1)14n
 14:13o(4+1)15d
 |glytoucan=G64227KZ
+|keyword=Glycolipid;LacNAc;N-acetyllactosamine
 |name=Mono-fucosyl LN5
 Mono-fucosyl LN_5
 |prefname=Mono-fucosyl LN5

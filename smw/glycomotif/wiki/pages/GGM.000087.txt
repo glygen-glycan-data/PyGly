@@ -22,6 +22,7 @@ LIN
 6:6o(2+1)7d
 7:6o(3+1)8d
 |glytoucan=G25216QA
+|keyword=Blood group B;Blood group type 4;Glycolipid
 |name=Blood group B (type 4)
 |prefname=Blood group B (type 4)
 |redend=true

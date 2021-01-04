@@ -1,0 +1,4 @@
+{{Keyword
+|keyword=O-glycan classification
+|definition=Motifs used for O-glycan type and subtype classification.
+}}

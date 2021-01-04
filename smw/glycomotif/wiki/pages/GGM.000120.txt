@@ -40,6 +40,7 @@ LIN
 15:9o(6+2)16d
 16:16d(5+1)17n
 |glytoucan=G14091MR
+|keyword=Glycolipid;Hexasialylated ganglioside
 |name=GH1ca
 GH1calpha
 |prefname=GH1ca

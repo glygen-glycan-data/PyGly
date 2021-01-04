@@ -20,6 +20,7 @@ LIN
 5:4o(3+1)6d
 6:6o(3+1)7n
 |glytoucan=G80193TN
+|keyword=Glycolipid
 |name=Mono-sulfated globopentaosylceramide
 |prefname=Mono-sulfated globopentaosylceramide
 |redend=true

@@ -1,7 +1,14 @@
 {{Motif
-|accession=000048
+|prefname=Lewis b
+|name=Lewis b
+Leb
+Le^b
+|keyword=Lewis b
 |aglycon=R
+|redend=false
 |alignment=Substructure
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Brockhaus et al. (1981) Monoclonal antibodies directed against the human Leb blood group ...
+|accession=000048
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -16,12 +23,6 @@ LIN
 3:1o(4+1)4d
 4:4o(2+1)5d
 |glytoucan=G00052MO
-|name=Lewis b
-Leb
-Le^b
-|prefname=Lewis b
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Brockhaus et al. (1981) Monoclonal antibodies directed against the human Leb blood group ...
 |sameas=CCRC.000019,GD.R000186,GDB.002280,GDC.000045,GDC.000048,GDH.000100,GDV.000012,GDV.000013,GE.EP0018,GGM.000045,GM.G00052MO,GTC.G00052MO,UCM.000100
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3-2/a3-b1_a4-c1_c2-d1
 }}
