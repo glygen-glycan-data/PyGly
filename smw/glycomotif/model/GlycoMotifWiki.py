@@ -1,5 +1,5 @@
 
-__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", 
+__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword",
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
@@ -102,6 +102,9 @@ class Motif(SMW.SMWClass):
             data['alignment'] = map(lambda s: s.strip(), data.get('alignment').split(','))
             data['alignment'] = sorted(filter(lambda x: x in self.alignmentvalues, data['alignment']))
 
+	if isinstance(data.get('keyword'),basestring):
+	    data['keyword'] = set(map(lambda s: s.strip(),data.get('keyword').split(';')))
+
         # Strip <pre> and </pre> if it is there
         # if 'wurcs' in data:
             #     data['wurcs'] = data.get('wurcs').lstrip('<pre>').rstrip('</pre>')
@@ -117,6 +120,9 @@ class Motif(SMW.SMWClass):
 
         if 'name' in data:
             data['name'] = "\n".join(filter(None,data['name']))
+
+        if 'keyword' in data:
+            data['keyword'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['keyword'])))))
 
         if 'sameas' in data:
             data['sameas'] = ",".join(sorted(data['sameas']))
@@ -250,6 +256,14 @@ class Publication(SMW.SMWClass):
 	    data['citedby'] = ';'.join(map(str,data.get('citedby')))
 
 	return data
+
+class Keyword(SMW.SMWClass):
+    template = 'Keyword'
+
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('keyword')
+	return kwargs.get('keyword')
 
 class GlycoMotifWiki(SMW.SMWSite):
     _name = 'glycomotif'

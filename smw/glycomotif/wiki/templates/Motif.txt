@@ -17,7 +17,7 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}{{PrevNextLinks|{{{collection|}}}|{{{accession|}}}}}{{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}<div style="position: relative;">
-	<img src="https://image.glycosmos.org/snfg/png/{{{glytoucan|}}}" style="display: block; margin-left: auto; margin-right: auto;">
+	<img src="{{ImageURL|{{{glytoucan|}}}}}" style="display: block; margin-left: auto; margin-right: auto;">
 </div><br>
 {| class="wikitable" style="width:100%"
 ! style="" | Collection
@@ -37,6 +37,9 @@ Edit the page to see the template text.
 |-
 ! style="" | Name(s)
 | style="" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
+|-
+! style="" | Keyword(s)
+| style="" | {{#arraymap:{{{keyword|}}}|;|x|[[glycomotif:haskeyword::x]]|<br/>}}
 |-
 ! style="" | Aglycon
 | style="" | {{#arraymap:{{{aglycon|}}}|,|x|[[glycomotif:aglycon::x]]}}
@@ -86,6 +89,6 @@ Edit the page to see the template text.
 <div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}"></div>
 <div id="glycomotif_alignment_result"></div><br><br><br>
 
-{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|glycomotif:alignment=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{DONOTEDIT}}
+{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|glycomotif:alignment=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{#set:|glycomotif:keywordcount={{KeywordCount|{{PAGENAME}}}}}}{{DONOTEDIT}}
 [[Category:Motif]]
 </includeonly>

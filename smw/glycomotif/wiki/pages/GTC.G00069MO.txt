@@ -17,6 +17,6 @@ LIN
 |glytoucan=G00069MO
 |name=Glycosphingolipid Lacto series
 |redend=true
-|sameas=GM.G00069MO
+|sameas=GGM.001106,GM.G00069MO
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}u2122h{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-2/a4-b1_b3-c1_c3-d1
 }}

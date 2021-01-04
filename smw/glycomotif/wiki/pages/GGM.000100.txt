@@ -20,6 +20,7 @@ LIN
 5:5o(3+2)6d
 6:6d(5+1)7n
 |glytoucan=G03277YI
+|keyword=Glycolipid;Monosialylated ganglioside
 |name=cisGM1
 GM1b
 |prefname=cisGM1

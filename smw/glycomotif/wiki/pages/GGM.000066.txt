@@ -18,6 +18,7 @@ LIN
 4:3o(3+1)5d
 5:5o(3+1)6n
 |glytoucan=G96596OC
+|keyword=Glycolipid
 |name=Monosulfated gangliotetraosylceramide
 |prefname=Monosulfated gangliotetraosylceramide
 |redend=true

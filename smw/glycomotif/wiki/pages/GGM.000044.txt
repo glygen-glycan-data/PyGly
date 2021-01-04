@@ -1,7 +1,12 @@
 {{Motif
-|accession=000044
+|prefname=Blood group A (type 1)
+|name=Blood group A (type 1)
+|keyword=Blood group A;Blood group type 1
 |aglycon=R
+|redend=false
 |alignment=Substructure
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...
+|accession=000044
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -18,10 +23,6 @@ LIN
 4:3o(3+1)5d
 5:5d(2+1)6n
 |glytoucan=G66163TI
-|name=Blood group A (type 1)
-|prefname=Blood group A (type 1)
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...
 |sameas=GD.R000092,GDB.002116,GDC.000044,GDH.000022,GDV.000058,GE.EP0256,GM.G66163TI,UCM.000022
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4/a3-b1_b2-c1_b3-d1
 }}

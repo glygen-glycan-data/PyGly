@@ -1,0 +1,10 @@
+{{Publication
+|authors=Macauley MS, Crocker PR, Paulson JC
+|doi=10.1038/nri3737
+|journal=Nat Rev Immunol
+|pages=653-66
+|pmid=25234143
+|title=Siglec-mediated regulation of immune cell function in disease
+|volume=14(10)
+|year=2014
+}}

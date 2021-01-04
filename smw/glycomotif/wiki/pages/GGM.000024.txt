@@ -18,6 +18,7 @@ LIN
 4:4d(5+1)5n
 5:1o(4+1)6d
 |glytoucan=G00053MO
+|keyword=Lewis a
 |name=Sialyl Lewis a
 Slea
 CA19-9 antigen

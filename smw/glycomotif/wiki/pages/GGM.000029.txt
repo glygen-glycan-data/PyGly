@@ -16,6 +16,7 @@ LIN
 3:1o(4+1)4d
 4:4o(3+1)5n
 |glytoucan=G12295TB
+|keyword=Lewis x
 |name=3'-Sulfo Lewis x
 3'-sulfo Lex
 3'-Sulfo-Lewis x

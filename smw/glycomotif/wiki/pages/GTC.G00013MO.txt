@@ -15,6 +15,6 @@ LIN
 |glytoucan=G00013MO
 |name=Glycosphingolipid Muco series
 |redend=true
-|sameas=GM.G00013MO
+|sameas=GGM.001102,GM.G00013MO
 |wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}u2122h{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-2-2/a4-b1_b4-c1_c3-d1
 }}

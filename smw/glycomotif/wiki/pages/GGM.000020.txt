@@ -14,6 +14,7 @@ LIN
 2:1o(3+1)3d
 3:1o(4+1)4d
 |glytoucan=G00047MO
+|keyword=Lewis a
 |name=Lewis a
 Lea
 Le^a

@@ -1,0 +1,4 @@
+{{Keyword
+|keyword=N-glycan classification
+|definition=Motifs used for N-glycan type and subtype classification.
+}}

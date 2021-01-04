@@ -18,6 +18,7 @@ LIN
 4:2o(4+1)5d
 5:5d(2+1)6n
 |glytoucan=G79389NT
+|keyword=Glycolipid;Monosialylated ganglioside
 |name=GM2
 |prefname=GM2
 |redend=true

@@ -2,7 +2,7 @@
 This is the "Motif" form.
 </noinclude><includeonly>
 {{{for template|Motif}}}
-<img src="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/red-extended-checked/{{#ask:[[{{PAGENAME}}]]|?glycomotif:glytoucan|link=none|mainlabel=-|headers=hide}}.png" style="display: block; margin-left: auto; margin-right: auto;">
+<img src="https://image.glycosmos.org/snfg/png/{{#ask:[[{{PAGENAME}}]]|?glycomotif:glytoucan|link=none|mainlabel=-|headers=hide}}" style="display: block; margin-left: auto; margin-right: auto;">
 <br/>
 {| class="formtable wikitable" style="width:100%"
 ! Collection:
@@ -16,6 +16,10 @@ This is the "Motif" form.
 |-
 ! Name(s): 
 | {{{field|name|rows=3|input type=textarea}}}<br/>Motif names, in no particular order, each on a separate line.
+|-
+! Keyword(s):
+| {{{field|keyword|property=glycomotif:haskeyword|input type=tokens|existing values only|list|delimiter=;|values from category=Keyword}}}<br/>
+{{#formlink:form=Keyword||autocomplete on category=Keyword|link text=Add new keyword.}}
 |-
 ! Aglycon: 
 | {{{field|aglycon|input type=dropdown|values=Asn,Cer,Other,R,Ser/Thr}}}<br/>Motif aglycon. Use R for motifs that are not intended to align only to the reducing end of glycan structures. 

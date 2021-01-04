@@ -18,6 +18,7 @@ LIN
 4:4o(2+1)5d
 5:4o(3+1)6d
 |glytoucan=G34881WK
+|keyword=Blood group B;Blood group type 2
 |name=Blood group B (type 2)
 |prefname=Blood group B (type 2)
 |redend=false

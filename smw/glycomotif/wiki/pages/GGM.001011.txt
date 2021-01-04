@@ -18,6 +18,7 @@ LIN
 4:1o(6+1)5d
 5:5d(2+1)6n
 |glytoucan=G00037MO
+|keyword=O-glycan classification
 |name=O-Glycan core 4
 |prefname=O-Glycan core 4
 |redend=true

@@ -24,6 +24,7 @@ LIN
 7:7o(2+1)8d
 8:7o(3+1)9d
 |glytoucan=G11485ID
+|keyword=Glycolipid;Monosialylated ganglioside
 |name=B-GM1
 |prefname=B-GM1
 |redend=true

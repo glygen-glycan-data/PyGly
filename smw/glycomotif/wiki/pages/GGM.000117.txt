@@ -32,6 +32,7 @@ LIN
 11:11o(3+2)12d
 12:12d(5+1)13n
 |glytoucan=G99524KA
+|keyword=Glycolipid;Tetrasialylated ganglioside
 |name=GQ1c
 |prefname=GQ1c
 |redend=true

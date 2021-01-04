@@ -16,6 +16,7 @@ LIN
 3:3d(2+1)4n
 4:3o(3+1)5d
 |glytoucan=G21856LC
+|keyword=Glycolipid
 |name=Asialo-GM1
 Gangliotetraosylceramide
 |prefname=Asialo-GM1

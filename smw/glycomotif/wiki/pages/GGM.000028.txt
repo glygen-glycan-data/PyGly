@@ -22,6 +22,7 @@ LIN
 6:4o(6+1)7n
 7:1o(6+1)8n
 |glytoucan=G00659GQ
+|keyword=Lewis x
 |name=6,6'-bisSulfo-Lewis x
 6,6'-bissulfo Lex
 6,6'-Disulfo Sialyl Lewis x

@@ -11,6 +11,8 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  refid|Type:Text
  name|Type:Text
  preferred_name|Type:Text
+ Keyword|Category
+ haskeyword|Type:Page
  incollection|Type:Page
  collectioncount|Type:Number
  instancecount|Type:Number
@@ -24,6 +26,7 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  primary|Type:Boolean
  topology|Type:Page
  topologycount|Type:Number
+ keywordcount|Type:Number
  topologyrepr|Type:Boolean
  displayhgv|Type:Boolean
  Publication|Category

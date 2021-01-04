@@ -24,6 +24,7 @@ LIN
 7:3o(6+2)8d
 8:8d(5+1)9n
 |glytoucan=G45714BQ
+|keyword=Glycolipid
 |name=GD1a
 GD1alpha
 |prefname=GD1a

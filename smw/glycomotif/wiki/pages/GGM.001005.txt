@@ -12,6 +12,7 @@ LIN
 1:1d(2+1)2n
 2:1o(3+1)3d
 |glytoucan=G00031MO
+|keyword=O-glycan classification
 |name=O-Glycan core 1
 |prefname=O-Glycan core 1
 |redend=true

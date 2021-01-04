@@ -7,6 +7,7 @@
 |glycoct=RES
 1b:b-dgal-HEX-1:5
 |glytoucan=G65889KE
+|keyword=Glycolipid
 |name=Galactosylceramide
 |prefname=Galactosylceramide
 |redend=true

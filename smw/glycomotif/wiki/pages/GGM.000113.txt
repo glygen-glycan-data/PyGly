@@ -28,6 +28,7 @@ LIN
 9:9d(2+1)10n
 10:9o(3+1)11d
 |glytoucan=G78818SP
+|keyword=Glycolipid;Trisialylated ganglioside
 |name=GT1c
 |prefname=GT1c
 |redend=true

@@ -1,7 +1,11 @@
 {{Motif
-|accession=000058
+|prefname=HNK-1 antigen
+|name=HNK-1 antigen
 |aglycon=R
-|alignment=Substructure
+|redend=false
+|alignment=Nonreducing-End
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willer et al. (2003) O-mannosyl glycans: from yeast to novel associations with human disease;Abo et al. (1981) A differentiation antigen of human NK and K cells identified ...
+|accession=000058
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -16,10 +20,6 @@ LIN
 3:3o(3+1)4d
 4:4o(3+1)5n
 |glytoucan=G53277CD
-|name=HNK-1 antigen
-|prefname=HNK-1 antigen
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willer et al. (2003) O-mannosyl glycans: from yeast to novel associations with human disease;Abo et al. (1981) A differentiation antigen of human NK and K cells identified ...
 |sameas=GD.R000414,GDV.000081,GM.G53277CD
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122A-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2-3/a4-b1_b3-c1
 }}

@@ -18,6 +18,7 @@ LIN
 4:4d(2+1)5n
 5:4o(3+1)6d
 |glytoucan=G99053DY
+|keyword=Glycolipid
 |name=Gb5
 Globopentaosylceramide
 |prefname=Gb5

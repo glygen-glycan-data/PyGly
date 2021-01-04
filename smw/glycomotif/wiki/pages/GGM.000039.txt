@@ -1,7 +1,14 @@
 {{Motif
-|accession=000039
+|prefname=Blood group A (type 2)
+|name=Blood group A (type 2)
+A-Ley
+A-Le^y
+|keyword=Blood group A;Blood group type 2;Lewis y
 |aglycon=R
+|redend=false
 |alignment=Substructure
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
+|accession=000039
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -20,12 +27,6 @@ LIN
 5:4o(3+1)6d
 6:6d(2+1)7n
 |glytoucan=G54826OZ
-|name=Blood group A (type 2)
-A-Ley
-A-Le^y
-|prefname=Blood group A (type 2)
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
 |sameas=GD.R000501,GDC.000039,GDH.000025,GDV.000059,GE.EP0261,GM.G54826OZ,UCM.000025
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-2-4/a3-b1_a4-c1_c2-d1_c3-e1
 }}

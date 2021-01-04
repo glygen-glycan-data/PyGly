@@ -1,7 +1,12 @@
 {{Motif
-|accession=000004
+|prefname=i antigen
+|name=i antigen
+|keyword=LacNAc;N-acetyllactosamine;N-acetyllactosamine type 2
 |aglycon=R
+|redend=false
 |alignment=Substructure
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Feizi (1981) The blood group Ii system: a carbohydrate antigen system defined ...
+|accession=000004
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -24,10 +29,6 @@ LIN
 7:7d(2+1)8n
 8:7o(4+1)9d
 |glytoucan=G46055MA
-|name=i antigen
-|prefname=i antigen
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Feizi (1981) The blood group Ii system: a carbohydrate antigen system defined ...
 |sameas=GD.R000214,GDB.002172,GDC.000004,GDV.000044,GM.G46055MA
 |wurcs=WURCS{{=}}2.0/2,6,5/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2-1-2/a4-b1_b3-c1_c4-d1_d3-e1_e4-f1
 }}

@@ -12,6 +12,7 @@ LIN
 1:1o(4+1)2d
 2:2o(3+1)3n
 |glytoucan=G50926NK
+|keyword=Glycolipid
 |name=Ceramide dihexosyl sulfate
 |prefname=Ceramide dihexosyl sulfate
 |redend=true

@@ -1,0 +1,5 @@
+<includeonly>{{#ask:
+[[Category:Keyword]]
+[[-glycomotif:haskeyword::{{{1}}}]]
+|format=count
+}}</includeonly>

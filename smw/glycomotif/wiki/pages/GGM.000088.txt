@@ -24,6 +24,7 @@ LIN
 7:6o(3+1)8d
 8:8d(2+1)9n
 |glytoucan=G37830TX
+|keyword=Blood group A;Blood group type 4;Glycolipid
 |name=Blood group A (type 4)
 |prefname=Blood group A (type 4)
 |redend=true

@@ -26,6 +26,7 @@ LIN
 8:2o(4+1)9d
 9:9d(2+1)10n
 |glytoucan=G36476BA
+|keyword=Glycolipid;Trisialylated ganglioside
 |name=GT2
 |prefname=GT2
 |redend=true

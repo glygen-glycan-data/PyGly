@@ -18,6 +18,7 @@ LIN
 4:3o(8+2)5d
 5:5d(5+1)6n
 |glytoucan=G98544DH
+|keyword=Disialylated ganglioside;Glycolipid
 |name=9-O-Acetyl GD3
 |prefname=9-O-Acetyl GD3
 |redend=true

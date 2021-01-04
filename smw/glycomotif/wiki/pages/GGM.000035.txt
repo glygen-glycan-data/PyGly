@@ -19,7 +19,7 @@ LIN
 6-Sialyl LN (type 2)
 |prefname=6-Sialyl-GalNAc
 |redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Shibuya et al. (1987) The elderberry (Sambucus nigra L.) bark lectin recognizes the Neu5Ac(alpha ...
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Shibuya et al. (1987) The elderberry (Sambucus nigra L.) bark lectin recognizes the Neu5Ac(alpha ...;Macauley et al. (2014) Siglec-mediated regulation of immune cell function in ...
 |sameas=GD.R000453,GDC.000035,GDV.000119,GM.G73708UL
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2/a6-b2
 }}

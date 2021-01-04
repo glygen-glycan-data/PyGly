@@ -1,7 +1,12 @@
 {{Motif
-|accession=000041
+|prefname=Blood group A2 (A-associated H type 3)
+|name=Blood group A2 (A-associated H type 3)
+|keyword=Blood group A;Blood group type 3
 |aglycon=R
+|redend=false
 |alignment=Substructure
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1986) Novel blood group H glycolipid antigens exclusively expressed in blood ...
+|accession=000041
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -22,10 +27,6 @@ LIN
 6:5o(3+1)7d
 7:7o(2+1)8d
 |glytoucan=G62735WZ
-|name=Blood group A2 (A-associated H type 3)
-|prefname=Blood group A2 (A-associated H type 3)
-|redend=false
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1986) Novel blood group H glycolipid antigens exclusively expressed in blood ...
 |sameas=GD.R000539,GDC.000041,GDH.000159,GDV.000005,GM.G62735WZ
 |wurcs=WURCS{{=}}2.0/4,6,5/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4-2-3/a4-b1_b2-c1_b3-d1_d3-e1_e2-f1
 }}

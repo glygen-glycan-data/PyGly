@@ -28,6 +28,7 @@ LIN
 9:8o(8+2)10d
 10:10d(5+1)11n
 |glytoucan=G68110IF
+|keyword=Glycolipid;Trisialylated ganglioside
 |name=GT1a
 |prefname=GT1a
 |redend=true
