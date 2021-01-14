@@ -1,9 +1,11 @@
 __NOEDITSECTION__ <div class="noautonum" style="float: right">__TOC__</div> 
 == Introduction ==
 
-Glycan core alignment requires motif structures align with at least one connected substructure (subtree) at the reducing end of the glycan. Aligned motif and glycan monosaccharides and glycosidic linkages must respect the matching rules outlined below. Additional phosphate and sulfate substituents on glycan monosaccharides and alditol modifications at the reducing end of the glycan are permitted, even when the motif does not indicate them. When ambiguity in glycan topology permits at least one motif-to-substructure alignment, the motif and glycan are considered to align. 
+Glycan core alignment requires motif structures align with at least one connected substructure (subtree) at the reducing end of the glycan. Aligned motif and glycan monosaccharides and glycosidic linkages must respect the matching rules outlined below. A core alignment may be strict, when ''all'' resolutions of missing and undetermined glycan details are consistent with the motif. Non-strict alignments require ''at least one'' resolution of missing and undetermined glycan details be consistent with the motif. All monosaccharide or glycosidic bond comparisons must be consistent with strict alignment for the alignment to be considered strict.
 
-Glycan core alignment is often used to characterize glycans by the structure of their reducing end . In particular, core alignment is used for GlyGen N- and O- glycan subtype classification motifs.
+In addition, non-strict alignments permit additional phosphate and sulfate substituents on glycan monosaccharides and alditol modifications at the reducing end of the glycan, even when the motif does not indicate them. When ambiguity in glycan topology permits at least one motif-to-core alignment, the motif and glycan are considered to have a non-strict alignment. Strict motif alignments in the determined topology portion of an undetermined topology glycan are considered strict. 
+
+Glycan core alignment is often used to characterize glycans by the structure of their reducing end. In particular, (non-strict) core alignment is used for GlyGen glycan classification motifs.
 
 Glycan core alignment is the default alignment strategy for motifs that have a reducing-end annotation of true. 
 
@@ -17,24 +19,33 @@ Glycan core alignment is the default alignment strategy for motifs that have a r
 ! Motif !! Glycan !! Core Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G03777BI">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G03777BI GM.G03777BI]
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56299XO">
+<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G56299XO GM.G56299XO]
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00728SN">
+<br>[https://glytoucan.org/Structures/Glycans/G00728SN G00728SN]
+|
+Yes, strict alignment. At least one substructure at the reducing end of the glycan (lower arm) aligns with the motif, with glycan anomeric configurations and parent glycosidic bond positions contained in the corresoponding motif values. 
+|-
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56299XO">
+<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G56299XO GM.G56299XO]
 | style="text-align: center;" | 
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G50824HV">
 <br>[https://glytoucan.org/Structures/Glycans/G50824HV G50824HV]
 |
-Yes. At least one substructure at the reducing end of the glycan (upper arm) aligns with the motif. 
+Yes, non-strict alignment. At least one substructure at the reducing end of the glycan (upper arm) aligns with the motif, with non-empty intersection between anomeric configurations and parent glycosidic bond positions. 
 |-
 ! Motif !! Glycan !! Core Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G03777BI">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G03777BI GM.G03777BI]
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56299XO ">
+<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G56299XO GM.G56299XO ]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00459HM">
-<br>[https://glytoucan.org/Structures/Glycans/G00459HM G00459HM]
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G14633CL">
+<br>[https://glytoucan.org/Structures/Glycans/G14633CL G14633CL]
 |
-No. Motif does not align at the reducing end of the glycan. The motif does permit a substructure alignment at the nonreducing-end of the glycan. 
+No. The motif does not align at the reducing end of the glycan. The motif does permit a strict substructure alignment at the nonreducing-end of the glycan. 
 |-
 |}
 

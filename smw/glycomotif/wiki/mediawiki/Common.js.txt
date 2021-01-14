@@ -292,7 +292,7 @@ if (document.getElementById("motif_align_para") != null){
         var query =
             'PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>\n' +
             '\n' +
-            'SELECT ?alignment_type ?structure_gtc_acc\n' +
+            'SELECT ?alignment_type ?structure_gtc_acc ?strict\n' +
             'WHERE {\n' +
             '\n' +
             '   ?collection a glycomotif:Collection .\n' +
@@ -306,9 +306,9 @@ if (document.getElementById("motif_align_para") != null){
             '   ?alignment glycomotif:motif_accession ?motif_gtc_acc .\n' +
             '   ?alignment glycomotif:alignment_type ?alignment_type .\n' +
             '   ?alignment glycomotif:structure_accession ?structure_gtc_acc .\n' +
+            '   ?alignment glycomotif:strict ?strict .\n' +
             '\n' +
             '   ?motif glycomotif:id "' + motif_page_id + '" .\n' +
-            '\n' +
             '}';
         return query
     }
@@ -359,20 +359,32 @@ if (document.getElementById("motif_align_para") != null){
             var pair = result[i];
             var structure_gtc_acc = pair.structure_gtc_acc.value;
             var alignment_type = pair.alignment_type.value;
+            var strictstr = pair.strict.value;
+            var strict = false;
+            if (strictstr == "true"){
+                strict = true;
+            } else if (strictstr == "false"){
+                strict = false;
+            }
+
+            if (strict){
+                alignment_type = alignment_type + ",&nbsp;strict";
+            }
+
             if (!Object.keys(res).includes(alignment_type)){
                 res[alignment_type] = [];
             }
+
             res[alignment_type].push(structure_gtc_acc);
         }
 
 
-        for (var i in Object.keys(res)){
-            var alignment_type = Object.keys(res)[i];
-            res[alignment_type] = res[alignment_type].sort();
-        }
 
         for (var i in Object.keys(res).sort()){
             var alignment_type = Object.keys(res).sort()[i];
+            if (alignment_type == "all"){
+                continue
+            }
             for (var j in res[alignment_type]){
                 var structure_gtc_acc = res[alignment_type][j];
                 if (!res.all.includes(structure_gtc_acc)){
@@ -380,6 +392,20 @@ if (document.getElementById("motif_align_para") != null){
                 }
             }
         }
+
+        for (var i in Object.keys(res)){
+            var alignment_type = Object.keys(res)[i];
+            res[alignment_type] = res[alignment_type].sort(
+                function (a, b){
+                    if (a < b){
+                        return -1
+                    } else {
+                        return 1
+                    }
+                }
+            );
+        }
+
 
         if (res.all.length > 0){
             draw(0);
@@ -419,7 +445,7 @@ if (document.getElementById("motif_align_para") != null){
         figure.appendChild(img);
         caption.appendChild(captionacc);
         if (extra.length > 0){
-            caption.innerHTML += " ("+extra+")";
+            caption.innerHTML += "<br/>("+extra+")";
         }
         caption.style.textAlign = "center";
         figure.appendChild(caption);
@@ -472,14 +498,17 @@ if (document.getElementById("motif_align_para") != null){
                 if (alignment_type == "all"){
                     continue;
                 }
+                
                 if (res[alignment_type].includes(c)){
-                    alignment_types.push(alignment_type)
+                    alignment_types.push(alignment_type);
                 }
-            }
-            alignment_types = alignment_types.sort()
-            alignment_types.join(", ")
 
-            var figure = CreateGlycanFigure(c, alignment_types)
+
+            }
+            alignment_types = alignment_types.sort();
+            alignment_types = alignment_types.join("; ");
+
+            var figure = CreateGlycanFigure(c, alignment_types);
             td.appendChild(figure);
             tr.appendChild(td);
         }
@@ -546,6 +575,276 @@ if (document.getElementById("motif_align_para") != null){
         "all":[]
     };
     alignment(motifpageid);
+
+
+
+}
+
+
+
+
+
+
+if (document.getElementById("motif_match_real_time_para")){
+
+    var motif_match_webservice_url = "https://edwardslab.bmcb.georgetown.edu/motifmatch/";
+    var image_url_prefix = "https://image.glycosmos.org/snfg/png/";
+    var image_url_suffix = "";
+    // TODO glycomotif URL dynamic
+    var glycomotifhome = "https://edwardslab.bmcb.georgetown.edu/glycomotifdev/";
+
+    var alignment_result = [];
+
+    var inputEle = document.getElementById("query_input");
+    inputEle.innerHTML = "<textarea id="query_sequence" style="width: 100%; max-width: 100%; height: 300px;">WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea>" +
+        "<a onclick="submit()">Try me!</a>";
+
+
+    function submit(){
+        var seq = document.getElementById("query_sequence").value;
+        seq = seq.trim();
+
+        var collection = document.getElementById("motif_match_real_time_para").getAttribute("data-collection");
+        if (collection == null){
+            collection = "GM";
+        }
+
+        var task = JSON.stringify({
+            "seq": seq,
+            "collection": collection
+        });
+        task = encodeURIComponent(task);
+
+        jQuery.getJSON(motif_match_webservice_url+ "submit?task=" + task, {}, function (d){
+            var jobid = d[0].id;
+            retrieve(jobid);
+        })
+
+    }
+
+
+    function retrieve(jobid){
+        jQuery.getJSON(motif_match_webservice_url+ "retrieve?list_ids=" + encodeURIComponent(JSON.stringify([jobid])), {}, function (d){
+            var result = d[0];
+            var jobid = result.id
+
+            if (result.finished){
+                update_result(result);
+            }
+            else {
+                setTimeout(retrieve, 200, jobid);
+            }
+
+        })
+    }
+
+    function update_result(r){
+        // console.log(r.result);
+
+        alignment_result = [];
+        var alignment_result_tmp = {};
+        for (var i in r.result){
+            var line = r.result[i];
+            // console.log(line);
+            // collection, page name, gtcacc, name, type, strict;
+            var key = [];
+
+            key.push(line[0]+"."+line[1]);
+            key.push(line[2]);
+            key.push(line[3]);
+
+            key = JSON.stringify(key);
+            if ( !Object.keys(alignment_result_tmp).includes(key) ){
+                alignment_result_tmp[key] = [];
+            }
+
+            alignment_result_tmp[key].push([line[4], line[5]]);
+        }
+
+        var keys = Object.keys(alignment_result_tmp);
+        for (var i in keys){
+            var key_list = JSON.parse(keys[i]);
+            key_list.push(alignment_result_tmp[keys[i]])
+
+            alignment_result.push(key_list)
+        }
+
+        // alignment_result.push(newline)
+
+
+        update_table(0, true);
+    }
+
+    // motif accession, img+name, alignment type, loose, strict
+
+
+
+
+
+
+
+
+
+
+    function rendering_table(n, asc){
+
+        var glycomotif_alignment_table_element = document.createElement("table");
+        glycomotif_alignment_table_element.className = "wikitable sortable jquery-tablesorter";
+        glycomotif_alignment_table_element.style.width = "100%";
+
+        var glycomotif_alignment_table_thead_element = document.createElement("thead");
+        var thread_tr_element = document.createElement("tr");
+
+        var glycomotif_alignment_table_header = ["GlycoMotif", "GlyTouCan", "Name", "Alignment Type"];
+        for (var i in glycomotif_alignment_table_header){
+
+            var th = document.createElement("th");
+            th.className = "headerSort";
+            th.tabIndex = 0;
+            th.setAttribute("role", "columnheader button")
+            th.title = "Sort ascending";
+
+            var arrow_direction = "none";
+            th.setAttribute("data-sort_index", i.toString());
+            th.setAttribute("data-sort_direction", "none");
+            if (n == i){
+                if (asc == true) {
+                    th.setAttribute("data-sort_direction", "asc");
+                    arrow_direction = "asc";
+                    th.className = "headerSort headerSortUp";
+                }
+                else if (asc == false){
+                    th.setAttribute("data-sort_direction", "desc");
+                    arrow_direction = "desc";
+                    th.className = "headerSort headerSortDown";
+                }
+            }
+
+            th.onclick = function (){
+                var nx = this.getAttribute("data-sort_index");
+                nx = parseInt(nx);
+
+                var ascx = true;
+                if (this.getAttribute("data-sort_direction") == "asc"){
+                    ascx = false;
+                } else if (this.getAttribute("data-sort_direction") == "desc"){
+                    ascx = true;
+                }
+
+                for (var j = 0; j < glycomotif_alignment_table_header.length; j++){
+                    var ele = thread_tr_element.childNodes[j]
+                    ele.setAttribute("data-sort_direction", "none");
+                }
+
+                if (ascx) {
+                    this.setAttribute("data-sort_direction", "asc");
+                }
+                else {
+                    this.setAttribute("data-sort_direction", "desc");
+                }
+
+
+                update_table(nx, ascx)
+            }
+
+            th.innerText = glycomotif_alignment_table_header[i];  // + " " + arrow_direction;
+            thread_tr_element.appendChild(th);
+        }
+
+        glycomotif_alignment_table_thead_element.appendChild(thread_tr_element)
+        glycomotif_alignment_table_element.appendChild(glycomotif_alignment_table_thead_element);
+
+
+        var glycomotif_alignment_table_tbody_element = document.createElement("tbody");
+
+        var alignment_result_sorted = [];
+        alignment_result_sorted = alignment_result.sort(function (a, b){
+            var f = a[n] > b[n];
+            if (asc){
+                f = a[n] < b[n];
+            }
+
+            if (a[n] == b[n]){
+                return 0
+            }
+
+            if (f){
+                return -1
+            }
+            else {
+                return 1
+            }
+
+        })
+
+
+        for (var i in alignment_result_sorted){
+            // page name, gtcacc, name, type+strict;
+
+            var row = alignment_result_sorted[i];
+            var alignment_result_row = document.createElement("tr");
+
+            var td1 = document.createElement("td");
+            td1.style.textAlign = "center";
+            // td1.innerHTML = "<a href='https://glytoucan.org/Structures/Glycans/" + row[0] + "'>" + row[0] + "</a>";
+            td1.innerHTML = "<a href='"+glycomotifhome + row[0] + "'>" + row[0] + "</a>";
+
+            var td2 = document.createElement("td");
+            td2.style.textAlign = "center";
+            td2.innerHTML = "<a href='https://glytoucan.org/Structures/Glycans/" + row[1] + "'>" + row[1] + "</a>";
+
+
+            var td3 = document.createElement("td");
+            td3.style.textAlign = "center";
+            td3.innerHTML = "<div style='display: none'>"+row[2]+"</div><img src='" + image_url_prefix + row[1] + image_url_suffix + "'><br><p style=''>" + row[2].replaceAll("//", "<br>") + "</p>";
+
+
+            var td4 = document.createElement("td");
+            td4.style.textAlign = "center";
+            var d = {
+                "Core": "Glycan_Core_Alignment",
+                "Substructure": "Substructure_Alignment",
+                "Non-Reducing": "Nonreducing-End_Alignment",
+                "Whole": "Whole-Glycan_Alignment"
+            }
+
+            for (var i in row[3]){
+                var at = row[3][i][0];
+                var strict = row[3][i][1];
+                var strictstr = "";
+                if (strict){
+                    strictstr = " (strict)";
+                }
+
+                td4.innerHTML += "<a href='"+glycomotifhome + d[at] + "'>" +at+strictstr+ "</a>";
+                if (i+1 != row[3].length){
+                    td4.innerHTML += "<br>";
+                }
+            }
+
+
+            alignment_result_row.appendChild(td1);
+            alignment_result_row.appendChild(td2);
+            alignment_result_row.appendChild(td3);
+            alignment_result_row.appendChild(td4);
+
+            glycomotif_alignment_table_tbody_element.appendChild(alignment_result_row);
+
+        }
+        glycomotif_alignment_table_element.appendChild(glycomotif_alignment_table_tbody_element);
+
+
+        return glycomotif_alignment_table_element
+    }
+
+
+    function update_table(n, asc){
+        var glycomotif_alignment_table_element = rendering_table(n, asc);
+
+        document.getElementById("motif_rt_result").innerHTML = "";
+        document.getElementById("motif_rt_result").appendChild(glycomotif_alignment_table_element);
+
+    }
 
 
 

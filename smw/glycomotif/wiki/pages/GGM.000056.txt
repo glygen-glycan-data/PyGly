@@ -1,4 +1,5 @@
 {{Motif
+|prefname=2,6-Branched O-mannose
 |name=2,6-Branched O-mannose
 |aglycon=Ser/Thr
 |redend=true

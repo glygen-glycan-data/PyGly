@@ -1,0 +1,149 @@
+__NOEDITSECTION__
+<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
+All [http://glycomotif.glyomics.org GlycoMotif] data is available from the SPARQL endpoint: 
+
+<code>https<span>:</span>//edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query</code>.
+
+== Single Motif ==
+
+{{SPARQL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?property ?value
+WHERE {
+  ?collection a glycomotif:Collection .
+  ?collection glycomotif:id ?collectionid .
+
+  ?motif a glycomotif:Motif .
+  ?motif glycomotif:accession ?accession .
+  ?motif glycomotif:incollection ?collection . 
+
+  ?motif ?property ?value .
+
+  ?collection glycomotif:id "GGM" .
+  ?motif glycomotif:accession "000001" .
+}
+}}
+
+== Motif Publications ==
+
+{{SPARQL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?pmid
+WHERE {
+  ?collection a glycomotif:Collection .
+  ?collection glycomotif:id ?collectionid .
+
+  ?motif a glycomotif:Motif .
+  ?motif glycomotif:accession ?accession .
+  ?motif glycomotif:incollection ?collection . 
+
+  ?motif glycomotif:reference ?publication .
+  ?publication glycomotif:pmid ?pmid .
+
+  ?collection glycomotif:id "GGM" .
+  ?motif glycomotif:accession "000001" .
+}
+}}
+
+== Motif Keywords ==
+
+{{SPARQL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?keyword
+WHERE {
+  ?collection a glycomotif:Collection .
+  ?collection glycomotif:id ?collectionid .
+
+  ?motif a glycomotif:Motif .
+  ?motif glycomotif:accession ?accession .
+  ?motif glycomotif:incollection ?collection . 
+
+  ?motif glycomotif:haskeyword ?keyworduri .
+  ?keyworduri glycomotif:name ?keyword .
+
+  ?collection glycomotif:id "GGM" .
+  ?motif glycomotif:accession "000001" .
+}
+}}
+
+
+== Motif Alignments ==
+
+{{SPARQL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?collection glycomotif:id ?collectionid .
+    
+    ?motif a glycomotif:Motif .
+    ?motif glycomotif:accession ?accession .
+    ?motif glycomotif:incollection ?collection .
+
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+    ?alignment glycomotif:strict ?alignment_isstrict .
+
+    ?collection glycomotif:id "GGM" .
+    ?motif glycomotif:accession "000001" .
+    ?alignment glycomotif:strict true .
+}
+}}
+
+== Motif Collection ==
+
+{{SPARQL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?name ?redend ?aglycon ?alignment
+WHERE {
+  ?collection a glycomotif:Collection .
+  ?collection glycomotif:id ?collectionid .
+
+  ?motif a glycomotif:Motif .
+  ?motif glycomotif:accession ?accession .
+  ?motif glycomotif:incollection ?collection . 
+
+  ?motif glycomotif:alignment ?alignment .
+  OPTIONAL { ?motif glycomotif:preferred_name ?name }
+  OPTIONAL { ?motif glycomotif:aglycon ?aglycon }
+  OPTIONAL { ?motif glycomotif:reducingend ?redend }
+
+  ?collection glycomotif:id "GGM" 
+}
+}}
+
+== Motif Collection Alignments ==
+
+{{SPARQL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?collection glycomotif:id ?collectionid .
+    
+    ?motif a glycomotif:Motif .
+    ?motif glycomotif:accession ?accession .
+    ?motif glycomotif:incollection ?collection .
+
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+    ?alignment glycomotif:strict ?alignment_isstrict .
+
+    ?collection glycomotif:id "GGM" .
+}
+LIMIT 1000
+}}

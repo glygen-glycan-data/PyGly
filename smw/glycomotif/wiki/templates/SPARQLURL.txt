@@ -1,0 +1,1 @@
+[http://edwardslab.bmcb.georgetown.edu/yasgui#endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&query={{urlencode:{{{1|}}}}}&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table {{{2|Try Me!}}}]

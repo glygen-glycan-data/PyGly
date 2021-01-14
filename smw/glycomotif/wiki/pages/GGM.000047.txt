@@ -1,6 +1,6 @@
 {{Motif
-|prefname=Blood group A (type 1)
-|name=Blood group A (type 1)
+|prefname=Blood group A (type 1) - Lewis b
+|name=Blood group A (type 1) - Lewis b
 A-Leb
 A-Le^b
 |keyword=Blood group A;Blood group type 1;Lewis b

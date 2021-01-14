@@ -1,6 +1,6 @@
 {{Motif
-|prefname=Blood group A (type 2)
-|name=Blood group A (type 2)
+|prefname=Blood group A (type 2) - Lewis y
+|name=Blood group A (type 2) - Lewis y
 A-Ley
 A-Le^y
 |keyword=Blood group A;Blood group type 2;Lewis y

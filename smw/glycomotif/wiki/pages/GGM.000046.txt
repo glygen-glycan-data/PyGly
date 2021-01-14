@@ -1,9 +1,9 @@
 {{Motif
-|prefname=Blood group B (type 1)
-|name=Blood group B (type 1)
-B-Ley
-B-Le^y
-|keyword=Blood group B;Blood group type 1;Lewis y
+|prefname=Blood group B (type 1) - Lewis b
+|name=Blood group B (type 1) - Lewis b
+B-Leb
+B-Le^b
+|keyword=Blood group B;Blood group type 1;Lewis b
 |aglycon=R
 |redend=false
 |alignment=Substructure

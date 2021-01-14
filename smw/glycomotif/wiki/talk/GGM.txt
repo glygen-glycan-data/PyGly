@@ -4,3 +4,15 @@ The [[GGM|GlyGen Motif]] collection is derived from the [[GDC|Glydin - Cummings]
 More (careful) effort has been made to normalize alternative names (typically shown in parentheses). Accessions correspond to the IDs from the so-called Cummings collection as shown in the Glydin spreadsheet. As we add more GlyGen motifs these IDs will diverge. There are also some accessions with repeated GlyTouCan accessions. We may collapse these at some point.
 
 -- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 12:02, 1 April 2020 (EDT)
+
+Note that motif 000048 has been removed - its description or its IUPAC sequence was wrong, and both resolutions of this row of the table (to Lewis b or Lewis y) were already represented.
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 15:55, 12 January 2021 (EST)
+
+Note that motif [[GGM.000046]] should also have a Lewis y counterpart (not present in Cummings paper), and it should be type 2 Lewis y - see Blood group A.
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 16:47, 12 January 2021 (EST)
+
+Note that motif 000023 has been removed - its description indicates that the sialic acid Neu5Ac is cyclic, but we have no way to correctly represent it using GlycoCT. See: PMID: 9990070. The same motif without the cyclic descriptor is already represented [[GGM.000027]].
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:05, 13 January 2021 (EST)

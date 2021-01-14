@@ -71,10 +71,6 @@ Edit the page to see the template text.
 | style="" | <div class="smwpre">{{{wurcs|}}}</div>
 |}
 
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3Fproperty+%3Fvalue%0AWHERE+%7B%0A++%3Fmotif+rdf%3Atype+glycomotif%3AMotif+.%0A++%3Fmotif+glycomotif%3Aaccession+%22{{{accession|}}}%22+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.+%0A++%3Fcollection+rdf%3Atype+glycomotif%3ACollection+.%0A++%3Fcollection+glycomotif%3Aid+%22{{{collection}}}%22+.%0A++%3Fmotif+%3Fproperty+%3Fvalue%0A%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table Try Me!]
-
-[https://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycomotif%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycomotif%23%3E%0A%0ASELECT+%3FPageID+%3Fmotif_gtc_acc+%3Falignment_type+%3Fstructure_gtc_acc%0AWHERE+%7B%0A++%3Fcollection+a+glycomotif%3ACollection+.%0A++%3Fmotif+a+glycomotif%3AMotif+.%0A++%0A++%3Fmotif+glycomotif%3Aid+%3FPageID+.%0A++%3Fmotif+glycomotif%3Aincollection+%3Fcollection+.%0A++%3Fmotif+glycomotif%3Aglytoucan+%3Fmotif_gtc_acc+.%0A++%3Fmotif+glycomotif%3Aalignment+%3Falignment_type+.%0A++%0A++%3Falignment+glycomotif%3Amotif_accession+%3Fmotif_gtc_acc+.%0A++%3Falignment+glycomotif%3Aalignment_type+%3Falignment_type+.%0A++%3Falignment+glycomotif%3Astructure_accession+%3Fstructure_gtc_acc+.%0A++++%0A++%23+Custom+Filter%0A++%23+%3Fcollection+glycomotif%3Aid+%22GGM%22+.%0A++%3Fmotif+glycomotif%3Aid+%22{{{collection|}}}.{{{accession|}}}%22+.%0A++%23+FILTER%28REGEX%28%3Fmotif_gtc_acc%2C+%22G68110IF%22%29%29%0A++%23+FILTER%28REGEX%28%3Fstructure_gtc_acc%2C+%22G01361SX%22%29%29%0A%7D%0AORDER+BY+%3FPageID+%3Fstructure_gtc_acc+%3Falignment_type&requestMethod=POST&contentTypeConstruct=text%2Fturtle&outputFormat=table&contentTypeSelect=application%2Fsparql-results%2Bjson&headers=%7B%7D&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&tabTitle=Alignments_for_{{{collection|}}}.{{{accession|}}} Glycan Alignments]
-
 {{#ifeq:{{{displayhgv|}}}|true|
 <div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-prefix="{{PREFIX}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
 == Topology Cluster ==
@@ -88,6 +84,56 @@ Edit the page to see the template text.
 == Alignments ==
 <div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}"></div>
 <div id="glycomotif_alignment_result"></div><br><br><br>
+
+== Downloads ==
+
+{{SPARQLURL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?collection glycomotif:id ?collectionid .
+    
+    ?motif a glycomotif:Motif .
+    ?motif glycomotif:accession ?accession .
+    ?motif glycomotif:incollection ?collection .
+
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+    ?alignment glycomotif:strict ?alignment_isstrict .
+
+    ?motif glycomotif:id "{{{collection|}}}.{{{accession|}}}" .
+    ?alignment glycomotif:strict true .
+}
+|Strict Motif Alignments}}, 
+{{SPARQLURL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?collection glycomotif:id ?collectionid .
+    
+    ?motif a glycomotif:Motif .
+    ?motif glycomotif:accession ?accession .
+    ?motif glycomotif:incollection ?collection .
+
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+    ?alignment glycomotif:strict ?alignment_isstrict .
+
+    ?motif glycomotif:id "{{{collection|}}}.{{{accession|}}}" .
+}
+|All Motif Alignments}}.
 
 {{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|glycomotif:alignment=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{#set:|glycomotif:keywordcount={{KeywordCount|{{PAGENAME}}}}}}{{DONOTEDIT}}
 [[Category:Motif]]

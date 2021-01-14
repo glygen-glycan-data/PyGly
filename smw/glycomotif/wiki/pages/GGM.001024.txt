@@ -1,4 +1,5 @@
 {{Motif
+|prefname=N-Glycan core, core-fucosylated
 |name=N-Glycan core, core-fucosylated
 |keyword=N-glycan classification
 |aglycon=Asn

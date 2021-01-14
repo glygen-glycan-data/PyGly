@@ -1,7 +1,9 @@
 __NOEDITSECTION__ <div class="noautonum" style="float: right">__TOC__</div> 
 == Introduction ==
 
-Whole-glycan alignment requires motif structures align with the entire glycan. Aligned motif and glycan monosaccharides and glycosidic linkages must respect the matching rules outlined below. Additional phosphate and sulfate substituents on glycan monosaccharides and alditol modifications at the reducing end of the glycan are NOT permitted, unlike the other alignment strategies. When ambiguity in glycan topology permits at least one motif-to-substructure alignment, the motif and glycan are considered to align. 
+Whole-glycan alignment requires motif structures align with the entire glycan. Aligned motif and glycan monosaccharides and glycosidic linkages must respect the matching rules outlined below. A whole-glycan alignment may be strict, when all resolutions of missing and undetermined glycan details are consistent with the motif. Non-strict alignments require at least one resolution of missing and undetermined glycan details be consistent with the motif. All monosaccharide or glycosidic bond comparisons must be consistent with strict alignment for the alignment to be considered strict. 
+
+Additional phosphate and sulfate substituents on glycan monosaccharides and alditol modifications at the reducing end of the glycan are NOT permitted, unlike non-strict alignments for other alignment strategies. When ambiguity in glycan topology permits at least one motif-to-whole-glycan alignment, the motif and glycan are considered to have a non-strict alignment. 
 
 Whole-glycan alignment is primarily used to assign semantic names to specific glycan structures. 
 
@@ -23,7 +25,7 @@ Currently, whole-glycan alignments are only used in the GlyGen motif collection.
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
 <br>[https://glytoucan.org/Structures/Glycans/G57710SU G57710SU]
 |
-Yes. Motif and glycan are identical.
+Yes, strict alignment. Motif and glycan are identical.
 |-
 | style="text-align: center;" | 
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56133NW">
@@ -32,7 +34,7 @@ Yes. Motif and glycan are identical.
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56133NW">
 <br>[https://glytoucan.org/Structures/Glycans/G56133NW G56133NW]
 |
-Yes. Motif and glycan are identical.
+Yes, strict alignment. Motif and glycan are identical.
 |-
 | style="text-align: center;" | 
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56133NW">
@@ -41,7 +43,16 @@ Yes. Motif and glycan are identical.
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G30925QW">
 <br>[https://glytoucan.org/Structures/Glycans/G30925QW G30925QW]
 |
-Yes. Motif does not specify reducing-end anomeric configuration, so any glycan reducing-end anomeric configuration is permitted. 
+Yes, strict alignment. Motif does not specify reducing-end anomeric configuration, so any glycan reducing-end anomeric configuration is permitted. 
+|-
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
+<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000071 GGM.000071]
+| style="text-align: center;" | 
+<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G19926LY">
+<br>[https://glytoucan.org/Structures/Glycans/G19926LY G19926LY]
+|
+Yes, non-strict alignment. Glycan reducing end anomeric configuration has non-empty intersection with motif reducing end anomeric configuration. 
 |-
 ! Motif !! Glycan !! Whole-Glycan Alignment?
 |-
@@ -52,7 +63,7 @@ Yes. Motif does not specify reducing-end anomeric configuration, so any glycan r
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G76657BK">
 <br>[https://glytoucan.org/Structures/Glycans/G76657BK G76657BK]
 |
-No. Glycan has additional monosaccharides. The motif does have a glycan core and a substructure alignment to the glycan. 
+No. Glycan has additional monosaccharides. The motif does have a strict glycan core and a strict substructure alignment to the glycan. 
 |-
 | style="text-align: center;" | 
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
@@ -61,7 +72,7 @@ No. Glycan has additional monosaccharides. The motif does have a glycan core and
 <img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G30925QW">
 <br>[https://glytoucan.org/Structures/Glycans/G30925QW G30925QW]
 |
-No. Glycan has an additional sulfate substituent. The motif does have a glycan core, a nonreducing-end, and a substructure alignment to the glycan. 
+No. Glycan has an additional sulfate substituent. The motif does have a non-strict glycan core, a non-strict nonreducing-end, and a non-strict substructure alignment to the glycan. 
 |-
 |}
 

@@ -1,14 +1,28 @@
 == Glycosidic Bond Comparison ==
 
-Aligned motif and glycan glycosidic bonds attaching a child monosaccharide to a parent monosaccharide must:
+Each specific characteristic of the aligned glycosidic bonds attaching a child monosaccharide to a parent monosaccharides are considered to be sets. Missing characteristics represent a set containing all possible values. For a strict alignment, glycan glycosidic bond characteristics must be contained in (or, a subset of) the corresponding glycosidic bond monosaccharide characteristics. For a non-strict alignment, glycan glycosidic bond characteristics must have an non-empty intersection with the corresponding motif glycosidic bond characteristics. 
 
-1. have the same child linkage type (n,d,...), if the motif glycosidic bond child linkage type is specified; and 
+Since linkage type and child linkage position typically are either specified with a single value or are missing, we can simplify the above statements as follows:
 
-2. have the same child linkage position (1,2,...), if the motif glycosidic bond child linkage position is specified; and 
+For a strict alignment, aligned motif and glycan glycosidic bonds attaching a child monosaccharide to a parent monosaccharide must: 
 
-3. have the same parent linkage type (d,o,...), if the motif glycosidic bond parent linkage type is specified; and 
+1a. have the same child linkage type (n,d,...), if the motif glycosidic bond child linkage type is specified; and 
 
-4. have the same, or compatible, parent linkage position (2,3,4,5,6,...), if the motif glycosidic bond parent linkage position is specified.
+2a. have the same child linkage position (1,2,...), if the motif glycosidic bond child linkage position is specified; and 
+
+3a. have the same parent linkage type (d,o,...), if the motif glycosidic bond parent linkage type is specified; and
+
+4a. have the glycan parent linkage positions (2,3,4,5,6,...) be a subset of the motif glycosidic bond parent linkage position.
+ 
+For a non-strict alignment, aligned motif and glycan glycosidic bonds attaching a child monosaccharide to a parent monosaccharide must: 
+
+1b. have the same child linkage type (n,d,...), if the motif and glycan glycosidic bond child linkage type are specified; and 
+
+2b. have the same child linkage position (1,2,...), if the motif glycosidic bond child linkage position are specified; and 
+
+3b. have the same parent linkage type (d,o,...), if the motif glycosidic bond parent linkage type are specified; and
+
+4b. have the glycan parent linkage positions (2,3,4,5,6,...) have non-empty intersection with the motif glycosidic bond parent linkage positions.
 
 {| class="wikitable " style="width: 100%;"
 ! style="width: 25%" | Motif&nbsp;Linkage
@@ -20,47 +34,47 @@ o(3+1)d
 |
 o(3+1)d
 |
-Yes. Identical linkages.
+Yes, strict alignment. Identical linkages.
 |-
 |
 o(-1+1)d
 |
 o(3+1)d
 |
-Yes. All linkage properties specified in the motif linkage are the same in the glycan linkage. 
+Yes, strict alignment. All linkage properties specified in the motif linkage contain the properties in the glycan linkage. 
 |-
 |
 o(3+1)d
 |
 o(3+-1)d
 |
-No. Glycan child linkage position does not match motif child linkage position. 
+Yes, non-strict alignment. Glycan child linkage positions have non-empty intersection with motif child linkage positions. 
 |-
 |
 o(2+1)d
 |
 o(2{{!}}4+1)d
 |
-Yes. Glycan parent linkage position includes the specified motif parent linkage position. 
+Yes, non-strict alignment. Glycan parent linkage positions have non-empty intersection with motif parent linkage positions. 
 |-
 |
 o(2+1)d
 |
 o(-1+1)d
 |
-Yes. Glycan parent linkage position includes the specified motif parent linkage position. 
+Yes, non-strict alignment. Glycan parent linkage positions have non-empty intersection with motif parent linkage positions. 
 |-
 |
 o(4{{!}}6+1)d
 |
 o(2{{!}}4+1)d
 |
-Yes. Glycan parent linkage positions include one of the specified motif parent linkage positions. 
+Yes, non-strict alignment. Glycan parent linkage positions have non-empty intersection with motif parent linkage positions. 
 |-
 |
 o(-1+1)d
 |
 o(2{{!}}4+1)d
 |
-Yes. All linkage properties specified in the motif linkage are the same in the glycan linkage. 
+Yes, strict alignment.  Glycan parent linkage positions are contained in the motif parent linkage positions. 
 |}

@@ -1,16 +1,32 @@
 == Monosaccharide Comparison ==
 
-Aligned motif and glycan monosaccharides must:
+Each specific characteristic (anomeric configuration, etc.) of the glycan and motif monosaccharides are considered to be sets. Missing characteristics represent a set containing all possible values. For a strict alignment, glycan monosaccharide characteristics must be contained in (or, a subset of) the corresponding motif monosaccharide characteristics. For a non-strict alignment, glycan monosaccharide characteristics must have an non-empty intersection with the corresponding motif monosaccharide characteristics.
 
-1. have the same number of carbon atoms (HEX, PENT, etc.); and 
+Since monosaccharide characteristics either have a single value or are missing, we can simplify the above rules as follows:
 
-2. have the same stem-type (Man, Glc, etc.), if the motif monosaccharide stem-type is specified; and 
+For a strict alignment, aligned motif and glycan monosaccharides must:
 
-3. have the same orientation (D-type, L-type), if the motif monosaccharide orientation is specified; and
+1a. have the same number of carbon atoms (HEX, PENT, etc.); and 
 
-4. have the same ring information (1:5, etc.), if the motif monosaccharide ring information is specified; and 
+2a. have the same stem-type (Man, Glc, etc.), if the motif monosaccharide stem-type is specified; and 
 
-5. have the same anomeric configuration (&alpha;, &beta;), if the motif monosaccharide anomeric configuration is specified.
+3a. have the same orientation (D-type, L-type), if the motif monosaccharide orientation is specified; and
+
+4a. have the same ring information (1:5, etc.), if the motif monosaccharide ring information is specified; and 
+
+5a. have the same anomeric configuration (&alpha;, &beta;), if the motif monosaccharide anomeric configuration is specified.
+
+For a non-strict alignment, aligned motif and glycan monosaccharides must:
+
+1b. have the same number of carbon atoms (HEX, PENT, etc.); and 
+
+2b. have the same stem-type (Man, Glc, etc.), if the glycan and motif monosaccharide stem-type are specified; and 
+
+3b. have the same orientation (D-type, L-type), if the glycan and motif monosaccharide orientation are specified; and
+
+4b. have the same ring information (1:5, etc.), if the glycan and motif monosaccharide ring information are specified; and 
+
+5b. have the same anomeric configuration (&alpha;, &beta;), if the glycan and motif monosaccharide anomeric configuration are specified.
 
 {| class="wikitable" style="width: 100%;"
 ! style="width: 25%" | Motif&nbsp;Monosaccharide 
@@ -23,23 +39,31 @@ Aligned motif and glycan monosaccharides must:
 |-
 | x-dglc-HEX-1:5
 | a-dglc-HEX-1:5
-| Yes. All monosaccharide properties are the same, except for anomeric configuration. The motif monosaccharide anomeric configuration is not specified. 
+| Yes, strict alignment. All monosaccharide properties are the same, except for anomeric configuration. The motif monosaccharide anomeric configuration contains the glycan monosaccharide's value. 
 |-
 | b-dglc-HEX-1:5
 | x-dglc-HEX-1:5
-| No. The motif monosaccharide anomeric configuration is specified and the glycan monosaccharide anomeric configuration does not match.
+| Yes, non-strict alignment. The motif monosaccharide anomeric configuration is specified and the glycan monosaccharide anomeric configuration includes this value. 
+|-
+| b-dglc-HEX-1:5
+| a-dglc-HEX-1:5
+| No. The both the motif and glycan monosaccharide anomeric configuration is specified and they are not the same. 
 |-
 | x-dglc-HEX-x:x
 | a-dglc-HEX-1:5
-| Yes. Most monosaccharide properties are the same, with the exception of anomeric configuration and the ring information. The motif monosaccharide anomeric configuration and ring information are not specified. 
+| Yes, strict alignment. Most monosaccharide properties are the same, with the exception of anomeric configuration and the ring information. The motif monosaccharide anomeric configuration and ring information are not specified, so the glycan monosaccharide characteristics are contained in the motif monosaccharide characteristics. 
 |}
 
-Aligned motif and glycan monosaccharides must:
+For a strict alignment, aligned motif and glycan monosaccharides must:
+
+6a. have the same modifications (deoxygenation, carbonyl, etc.) at the same position. 
+
+For a non-strict alignment, aligned motif and glycan monosaccharides must:
 
 {{#ifeq:{{{1}}}|Intolerant|
-6. have the same modifications (deoxygenation, carbonyl, etc.) at the same position. 
+6b. have the same modifications (deoxygenation, carbonyl, etc.) at the same position. 
 | 
-6. have the same modifications (deoxygenation, carbonyl, etc.) at the same position, except for glycan reducing-end alditol.
+6b. have the same modifications (deoxygenation, carbonyl, etc.) at the same position, except for glycan reducing-end alditol.
 }}
 
 {| class="wikitable" style="width: 100%;"
@@ -55,7 +79,7 @@ Aligned motif and glycan monosaccharides must:
 b-dglc-HEX-1:5{{!}}6:d
 | 
 b-dglc-HEX-1:5{{!}}6:d
-| Yes. The base monosaccharides are the same, with the same modification at the same position. 
+| Yes, strict alignment. The base monosaccharides are the same, with the same modification at the same position. 
 |-
 | 
 b-dglc-HEX-1:5{{!}}3:d
@@ -79,27 +103,31 @@ b-dglc-HEX-1:5{{!}}3:d{{!}}6:d
 b-dglc-HEX-1:5{{!}}1:aldi
 | 
 b-dglc-HEX-1:5{{!}}1:aldi
-| Yes. The base monosaccharides are the same, with the same modification at the same position. 
+| Yes, strict alignment. The base monosaccharides are the same, with the same modification at the same position. 
 |-
 | 
 b-dglc-HEX-1:5
 | 
 b-dglc-HEX-1:5{{!}}1:aldi
-| {{#ifeq:{{{1}}}|Intolerant|No. The base monosaccharides are the same, but the glycan monosaccharide has an additional modification.|Yes. The base monosaccharides are the same, and all modifications except for the alditol modification are the same in the same position. The additional alditol at the reducing end of an uncyclized glycan is permitted, even if not specified on the motif monosaccharide.}}
+| {{#ifeq:{{{1}}}|Intolerant|No. The base monosaccharides are the same, but the glycan monosaccharide has an additional modification.|Yes, non-strict alignment. The base monosaccharides are the same, and all modifications except for the alditol modification are the same in the same position. The additional alditol at the reducing end of an uncyclized glycan is permitted, even if not specified on the motif monosaccharide.}}
 |-
 | 
 b-dglc-HEX-1:5{{!}}1:aldi
 | 
 b-dglc-HEX-1:5
-| No. The base monosaccharides are the same, but the motif monosaccharide has an additional modification. 
+| No. The base monosaccharides are the same, but the motif monosaccharide has an additional modification missing from the glycan monosaccharide.
 |}
 
-Aligned motif and glycan monosaccharides must:
+For a strict alignment, aligned motif and glycan monosaccharides must:
+
+7a. have the same substituents (N-acetyl, phosphate, sulfate, etc.) with the same linkage.
+
+For a non-strict alignment, aligned motif and glycan monosaccharides must:
 
 {{#ifeq:{{{1}}}|Intolerant|
-7. have the same substituents (N-acetyl, phosphate, sulfate, etc.) with the same linkage.
+7b. have the same substituents (N-acetyl, phosphate, sulfate, etc.) with the same linkage.
 |
-7. have the same substituents (N-acetyl, phosphate, sulfate, etc.) with the same linkage, with additional glycan phosphate and sulfate substituents permitted. 
+7b. have the same substituents (N-acetyl, phosphate, sulfate, etc.) with the same linkage, with additional glycan phosphate and sulfate substituents permitted. 
 }}
 
 {| class="wikitable" style="width: 100%;"
@@ -111,19 +139,19 @@ Aligned motif and glycan monosaccharides must:
 b-dglc-HEX-1:5
 | 
 b-dglc-HEX-1:5
-| Yes. The monosaccharides are identical, neither has any substituents. 
+| Yes, strict alignment. The monosaccharides are identical, neither has any substituents. 
 |-
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
-| Yes. The base monosaccharides are the same, with the same substituent with the same linkage. 
+| Yes, strict alignment. The base monosaccharides are the same, with the same substituent with the same linkage. 
 |-
 |
 x-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
-| Yes. The base monosaccharides are the same, except for anomeric configuration, which is not specified by the motif monosaccharide. Each monosaccharide has the same substituent with the same linkage. 
+| Yes, strict alignment. The base monosaccharides are the same, except for anomeric configuration, which is missing for the motif monosaccharide. Each monosaccharide has the same substituent with the same linkage. 
 |-
 |
 a-dgal-HEX-1:5{{!}}{{!}}(4d:1)n-acetyl
@@ -135,19 +163,19 @@ a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl|(6o:1)phosphate
-| {{#ifeq:{{{1}}}|Intolerant|No. The base monosaccharides are the same, but the glycan monosaccharide has an additional substituent.|Yes. The base monosaccharides are the same, and all substituents except for the phosphate are the same with the same linkage. The additional glycan phosphate is permitted, even if not indicated on the motif monosaccharide.}}
+| {{#ifeq:{{{1}}}|Intolerant|No. The base monosaccharides are the same, but the glycan monosaccharide has an additional substituent.|Yes, non-strict alignment. The base monosaccharides are the same, and all substituents except for the phosphate are the same with the same linkage. The additional glycan phosphate is permitted, even if not indicated on the motif monosaccharide.}}
 |-
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl|(6o:1)sulfate
-| {{#ifeq:{{{1}}}|Intolerant|No. The base monosaccharides are the same, but the glycan monosaccharide has an additional substituent.|Yes. The base monosaccharides are the same, and all substituents except for the sulfate are the same with the same linkage. The additional glycan sulfate is permitted, even if not indicated on the motif monosaccharide.}}
+| {{#ifeq:{{{1}}}|Intolerant|No. The base monosaccharides are the same, but the glycan monosaccharide has an additional substituent.|Yes, non-strict alignment. The base monosaccharides are the same, and all substituents except for the sulfate are the same with the same linkage. The additional glycan sulfate is permitted, even if not indicated on the motif monosaccharide.}}
 |-
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl|(6o:1)sulfate
 |
 a-dgal-HEX-1:5{{!}}{{!}}(2d:1)n-acetyl
-| No. The base monosaccharides are the same, but the motif monosaccharide has an additional substituent.
+| No. The base monosaccharides are the same, but the motif monosaccharide has an additional substituent missing from the glycan monosaccharide.
 |-
 |
 a-dgal-HEX-1:5
