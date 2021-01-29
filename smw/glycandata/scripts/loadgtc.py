@@ -46,9 +46,13 @@ for gtcacc in accessions(sys.argv[1:]):
     g.set_annotation(value=gtc.getseq(gtcacc,'glycoct'),
                      property='GlycoCT',
                      source='GlyTouCan',type='Sequence')
-    g.set_annotation(value=gtc.getseq(gtcacc,'iupac_extended'),
-                     property='IUPAC',
-                     source='GlyTouCan',type='Sequence')
+    iupacseq = gtc.getseq(gtcacc,'iupac_extended')
+    if iupacseq != None and "," not in iupacseq:
+        g.set_annotation(value=gtc.getseq(gtcacc,'iupac_extended'),
+                         property='IUPAC',
+                         source='GlyTouCan',type='Sequence')
+    else:
+	g.delete_annotations(property='IUPAC',source='GlyTouCan',type='Sequence')
 
     g.delete_annotations(source='GlyTouCan',type='MolWt')
     g.set_annotation(value=gtc.getmass(gtcacc),

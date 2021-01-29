@@ -5,6 +5,7 @@ SELECT (?accession  as ?GlyTouCanAccession)
 WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann1 glycandata:property "IUPAC" .
+  ?ann1 glycandata:source "EdwardsLab" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
 }

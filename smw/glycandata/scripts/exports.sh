@@ -13,3 +13,5 @@ set -x
 ./motif.py "$@" allaligns > ../export/allmotifaligns.tsv
 ./byonic_database.py "$@" > ../export/byonic_glygen_human_nlinked.txt
 ./species.py "$@" > ../export/species_expanded.tsv
+./glycoTree_exports.sh ../glycoTree
+./glygen_retired_accessions.sh

@@ -39,8 +39,8 @@ def iterglycan():
 ecstr = """
 dir	        %s:%s TaxID %s
 dirns		%s TaxID %s
-noXyl		No N-linked Xyl
-noXylNeuGc	No N-linked Xyl and no NeuGc
+noXylAlt	No N-linked Xyl and no Alt
+noXylAltNeuGc	No N-linked Xyl and no NeuGc, Alt
 sub		Subsumption of %s
 compcl		Composition closure of %s via %s
 """
@@ -171,12 +171,12 @@ for m in iterglycan():
 		    evidence.add(ec('dirns',source,taxid))
         direct = False
 	if sp == 'human':
-            if len(evidence) > 0 and (glycantype != "N-linked" or comp['Xyl'] == 0) and comp['NeuGc'] == 0:
-	        evidence.add(ec('noXylNeuGc'))
+            if len(evidence) > 0 and (glycantype != "N-linked" or comp['Xyl'] == 0) and comp['NeuGc'] == 0 and comp['Alt'] == 0:
+	        evidence.add(ec('noXylAltNeuGc'))
 		direct = True
 	elif sp in ('mouse','rat'):
-    	    if len(evidence) > 0 and (glycantype != "N-linked" or comp['Xyl'] == 0):
-	        evidence.add(ec('noXyl'))
+    	    if len(evidence) > 0 and (glycantype != "N-linked" or comp['Xyl'] == 0) and comp['Alt'] == 0:
+	        evidence.add(ec('noXylAlt'))
                 direct = True
 	else:
             if len(evidence) > 0:

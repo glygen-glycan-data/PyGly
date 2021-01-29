@@ -5,7 +5,7 @@ from collections import defaultdict
 import findpygly
 from pygly.Glycan import Glycan
 from pygly.GlycanFormatter import GlycoCTFormat
-from pygly.GlycanResource import GlyTouCan
+from pygly.GlycanResource import GlyTouCan, GlyCosmos
 
 # w = GlycanData()
 glycoctformat = GlycoCTFormat()
@@ -54,6 +54,10 @@ badacc = set("""
 
 # Make sure we get the latest version of everything
 # gtc = GlyTouCan(usecache=False)
+gco = GlyCosmos(usecache=False)
+replace = gco.replace()
+allgco = gco.allaccessions()
+
 gtc = None
 
 def accessions():
@@ -64,7 +68,9 @@ def accessions():
 	    yield acc.strip()
     elif len(sys.argv) == 2 and sys.argv[1] == "*":
         gtc = GlyTouCan(usecache=False)
-	for acc in gtc.allvalid():
+	for acc in gtc.allaccessions():
+	    if acc in replace:
+		continue
 	    yield acc
     else:
         gtc = GlyTouCan(prefetch=False)
@@ -72,8 +78,7 @@ def accessions():
 	    yield acc
 
 allskel = set()
-
-seen = defaultdict(set)
+names = defaultdict(set)
 
 for acc in sorted(accessions()):
 
@@ -205,9 +210,7 @@ for acc in sorted(accessions()):
                         byonic_string += 'Sulpho' + '(' + str(comp[k]) + ')'
 		    else:
                         byonic_string += k + '(' + str(comp[k]) + ')'
-	    if ("BYONIC",byonic_string) not in seen:
-	        print "\t".join([acc,byonic_string,"BYONIC"])
-	    seen[("BYONIC",byonic_string)].add(acc)
+	    names[("BYONIC",byonic_string)].add(acc)
 
 	if short_good:
 
@@ -221,9 +224,7 @@ for acc in sorted(accessions()):
 		    short_string += k[0]
 		    if comp[k] > 1:
 		        short_string += str(comp[k])
-	    if ("SHORTCOMP",short_string) not in seen:
-	        print "\t".join([acc,short_string,"SHORTCOMP"])
-	    seen[("SHORTCOMP",short_string)].add(acc)
+	    names[("SHORTCOMP",short_string)].add(acc)
 
     else:
 
@@ -237,9 +238,7 @@ for acc in sorted(accessions()):
 		else:
                     byonic_string += k + '(' + str(comp[k]) + ')'
         if byonic_good:
-	    if ("BYONIC",byonic_string) not in seen:
-	        print "\t".join([acc,byonic_string,"BYONIC"])
-	    seen[("BYONIC",byonic_string)].add(acc)
+	    names[("BYONIC",byonic_string)].add(acc)
 
 	uckb_string = ''
 	shortuckb_string = ''
@@ -248,12 +247,8 @@ for acc in sorted(accessions()):
 	    if comp[k] > 0:
                 shortuckb_string += k + str(comp[k])
         if uckb_good:
-	    if ("UCKBCOMP",uckb_string) not in seen:
-	        print "\t".join([acc,uckb_string,"UCKBCOMP"])
-	    seen[("UCKBCOMP",uckb_string)].add(acc)
-	    if ("SHORTUCKB",shortuckb_string) not in seen:
-	        print "\t".join([acc,shortuckb_string,"SHORTUCKB"])
-	    seen[("SHORTUCKB",shortuckb_string)].add(acc)
+	    names[("UCKBCOMP",uckb_string)].add(acc)
+	    names[("SHORTUCKB",shortuckb_string)].add(acc)
 
         if short_good and comp['dHex'] == 0:
 
@@ -266,10 +261,18 @@ for acc in sorted(accessions()):
 	    	    short_string += k[0]
 		    if comp[k] > 1:
 		        short_string += str(comp[k])
-	    if ("SHORTCOMP",short_string) not in seen:
-                print "\t".join([acc,short_string,"SHORTCOMP"])
-	    seen[("SHORTCOMP",short_string)].add(acc)
+	    names[("SHORTCOMP",short_string)].add(acc)
 
-for thetype,thestr in seen:
-    if len(seen[(thetype,thestr)]) > 1:
-	print >>sys.stderr, "WARNING: Repeat %s:%s for %s."%(thetype,thestr,", ".join(sorted(seen[(thetype,thestr)])))
+for thetype,thestr in names:
+    if len(names[(thetype,thestr)]) == 1:
+	print names[(thetype,thestr)].pop(),thestr,thetype
+    else:
+	gcoaccs = filter(lambda acc: acc in allgco, names[(thetype,thestr)])
+	if len(gcoaccs) == 1:
+	    print gcoaccs[0],thestr,thetype
+	elif len(gcoaccs) > 1:
+	    print >>sys.stderr, "WARNING: Can't pick  correct accession for %s:%s, possibilities: %s."%(thetype,thestr,", ".join(sorted(names[(thetype,thestr)])))
+	    print sorted(gcoaccs)[0],thestr,thetype
+	else:
+	    print >>sys.stderr, "WARNING: Can't pick  correct accession for %s:%s, possibilities: %s."%(thetype,thestr,", ".join(sorted(names[(thetype,thestr)])))
+	    print sorted(names[(thetype,thestr)])[0],thestr,thetype

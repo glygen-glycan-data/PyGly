@@ -12,6 +12,10 @@ from pygly.GNOme import SubsumptionGraph
 gnome = SubsumptionGraph()
 gnome.loaddata(sys.argv[1])
 
+gnomeacc = set()
+for n in gnome.nodes():
+    gnomeacc.add(n)
+
 accs = set()
 for fn in sys.argv[2:]:
     accs.update(open(fn).read().split())
@@ -21,6 +25,11 @@ for m in w.iterglycan():
     acc = m.get('accession')
     m.delete_annotations(type="Subsumption")
 
+    if acc in gnomeacc:
+        m.set_annotation(value=acc,property="GNOme",source="GNOme",type="CrossReference")
+    else:
+        m.delete_annotations(property="GNOme",source="GNOme",type="CrossReference")
+ 
     if gnome.isbasecomposition(acc):
 	m.set_annotation(property="Level",value="BaseComposition",source="GNOme",type="Subsumption")
 	m.set_annotation(property="BaseComposition",value=acc,source="GNOme",type="Subsumption")
@@ -64,6 +73,8 @@ for m in w.iterglycan():
     m.set_annotation(property="SubsumedBy",value=filter(accs.__contains__,gnome.parents(acc)),source="GNOme",type="Subsumption")
     m.set_annotation(property="Descendant",value=filter(accs.__contains__,gnome.descendants(acc)),source="GNOme",type="Subsumption")
     m.set_annotation(property="Ancestor",value=filter(accs.__contains__,gnome.ancestors(acc)),source="GNOme",type="Subsumption")
+    m.set_annotation(property="MissingScore",value=gnome.get_missing_rank(acc),source="GNOme",type="Subsumption")
+    m.set_annotation(property="FullyDetermined",value=filter(lambda acc1: acc1 in accs and int(gnome.get_missing_rank(acc1)) == 0,gnome.descendants(acc)),source="GNOme",type="Subsumption")
     
     if w.put(m):
         print acc

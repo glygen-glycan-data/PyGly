@@ -40,6 +40,17 @@ class Glycan(SMW.SMWClass):
             self._annotations = dict()
         self._annotations[ann.key()] = ann
 
+    def add_annotation(self,**kwargs):
+	assert kwargs.get('value')
+	value = kwargs.get('value')
+	del kwargs['value']
+	if self.has_annotations(**kwargs):
+	    values = self.get_annotation_values(**kwargs)
+	    values.append(value)
+	else:
+	    values = [value]
+	self.set_annotation(value=values,**kwargs)
+
     def delete_annotations(self,**kwargs):
         if not hasattr(self,'_annotations'):
             return
@@ -70,12 +81,13 @@ class Glycan(SMW.SMWClass):
 	    return True
         return False
 
-    def annotations(self,type=None,property=None,source=None):
+    def annotations(self,type=None,property=None,source=None,sourceid=None):
         if hasattr(self,'_annotations'):
             for key,an in sorted(self._annotations.items()):
                 if (type == None or an.get('type') == type) and \
                        (property == None or an.get('property') == property) and \
-                       (source == None or an.get('source') == source):
+                       (source == None or an.get('source') == source) and \
+                       (sourceid == None or an.get('sourceid') == sourceid):
                     yield an
 
     def __str__(self):
@@ -137,7 +149,7 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toPython(data)
 
 	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
-           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence']:
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype']:
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -149,7 +161,7 @@ class Annotation(SMW.SMWClass):
         
 	if data.get('value'):
 	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
-             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence']:
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype']:
 	    if isinstance(data['value'],list) or isinstance(data['value'],set):
 		if len(data['value']) > 1:
                     data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))

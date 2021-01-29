@@ -2,6 +2,7 @@
 
 import sys, time, traceback
 from collections import defaultdict
+from operator import itemgetter
 
 from getwiki import GlycanData
 w = GlycanData()
@@ -26,7 +27,7 @@ if allmotifs:
     print "\t".join(["MotifAccession","Property","Value"])
 allmotifdata = dict()
 for coll in collections:
-    for acc,gtcacc,redend,aglycon,names in sorted(gm.allmotifs(coll)):
+    for acc,gtcacc,alignment,redend,aglycon,names,pmids,keywords in sorted(gm.allmotifs(coll)):
 	if coll == "GTC":
 	    continue
 	if coll == "GGM" and int(acc.split('.')[1]) >= 1000:
@@ -35,28 +36,34 @@ for coll in collections:
 	    print "\t".join([acc,"Collection",coll])
 	    print "\t".join([acc,"Accession",acc.split('.',1)[1]])
 	    for i,n in enumerate(names):
+		n = n.replace(u'\u2013','-')
 	        if i == 0:
 	            print "\t".join([acc,"PreferredName",n])
 	        else:
 	            print "\t".join([acc,"AlternativeName",n])
 	    if aglycon:
 	        print "\t".join([acc,"Aglycon",aglycon])
+	    print "\t".join([acc,"Alignment",alignment])
 	    print "\t".join([acc,"MotifGlyTouCan",gtcacc])
 	    print "\t".join([acc,"ReducingEnd",redend])
-	allmotifdata[acc] = dict(redend=redend,label=names[0])
+	    for i,pmid in enumerate(pmids):
+		print "\t".join([acc,"PMID",pmid])
+	    for i,kw in enumerate(keywords):
+		print "\t".join([acc,"Keyword",kw])
+	allmotifdata[acc] = dict(alignment=alignment,label=names[0])
 
 if allmotifs:
     sys.exit(0)
 
-print "\t".join(["GlyTouCanAccession","MotifAccession","Label","IsReducingEnd"])
+print "\t".join(["GlyTouCanAccession","MotifAccession","Label","Alignment"])
 for g in w.iterglycan():
 
     acc = g.get('accession')
 
     motifs = set()
     for coll in collections:
-        motifs.update(filter(lambda a: a in allmotifdata,gm.getmotif(coll,acc)))
+        motifs.update(map(itemgetter(0),filter(lambda t: t[0] in allmotifdata and t[1],gm.getmotif(coll,acc))))
 
     for motifacc in sorted(motifs):
-	print "\t".join([acc,motifacc,allmotifdata[motifacc]['label'],allmotifdata[motifacc]['redend']])
+	print "\t".join([acc,motifacc,allmotifdata[motifacc]['label'],allmotifdata[motifacc]['alignment']])
 

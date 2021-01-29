@@ -6,14 +6,15 @@ from optparse import OptionParser
 import csv
 
 datasets_data = """
-GLYDS000142	human_proteoform_glycosylation_sites_harvard.csv	9606	HarvardU
+GLYDS000142	human_proteoform_glycosylation_sites_harvard.csv	9606
 GLYDS000335	hcv1a_proteoform_glycosylation_sites_literature.csv	11108
-GLYDS000479	sarscov2_proteoform_glycosylation_sites_unicarbkb.csv	2697049
-GLYDS000480	human_proteoform_glycosylation_sites_gptwiki.csv	9606	GPTwiki	saccharide
 GLYDS000481	human_proteoform_glycosylation_sites_literature_mining.csv	9606
 GLYDS000492	mouse_proteoform_glycosylation_sites_literature_mining.csv	10090
 GLYDS000493	rat_proteoform_glycosylation_sites_literature_mining.csv	10116
 """
+
+# GLYDS000479	sarscov2_proteoform_glycosylation_sites_unicarbkb.csv	2697049
+# GLYDS000480	human_proteoform_glycosylation_sites_gptwiki.csv	9606	GPTwiki	saccharide
 
 datasets = dict()
 for l in datasets_data.splitlines():
@@ -57,3 +58,31 @@ for ds in sorted(datasets.values(),key=lambda d: d['dsid']):
         else:
 	    print "\t".join(map(str,[acc,taxid,source]))
 	break
+
+import findpygly
+from pygly.GlycanResource import GlyGenSourceFile
+
+ggsf = GlyGenSourceFile()
+
+source = "GlyConnect"
+acc2gtc = defaultdict(set)
+for acc,gtc in ggsf.glyconnect_allgtc():
+    acc2gtc[acc].add(gtc)
+for sourceid,taxid in ggsf.glyconnect_alltaxa():
+    for acc in acc2gtc[sourceid]:
+        if (acc,taxid,source,sourceid) in seen:
+            continue
+        seen.add((acc,taxid,source,sourceid))
+        print "\t".join(map(str,[acc,taxid,source,sourceid]))
+
+source = "GPTwiki"
+acc2gtc = defaultdict(set)
+for acc,gtc in ggsf.gptwiki_allgtc():
+    acc2gtc[acc].add(gtc)
+for sourceid,taxid in ggsf.gptwiki_alltaxa():
+    for acc in acc2gtc[sourceid]:
+        if (acc,taxid,source,sourceid) in seen:
+            continue
+        seen.add((acc,taxid,source,sourceid))
+        print "\t".join(map(str,[acc,taxid,source,sourceid]))
+
