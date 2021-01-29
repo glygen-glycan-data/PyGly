@@ -4,761 +4,1374 @@ GGM.000001	Accession	000001
 GGM.000001	PreferredName	Type 2 LN
 GGM.000001	AlternativeName	N-acetyllactosamine
 GGM.000001	Aglycon	R
+GGM.000001	Alignment	Substructure
 GGM.000001	MotifGlyTouCan	G00055MO
 GGM.000001	ReducingEnd	false
+GGM.000001	PMID	19756298
+GGM.000001	PMID	1567687
+GGM.000001	PMID	6653876
+GGM.000001	Keyword	LacNAc
+GGM.000001	Keyword	N-acetyllactosamine
+GGM.000001	Keyword	N-acetyllactosamine type 2
 GGM.000002	Collection	GGM
 GGM.000002	Accession	000002
-GGM.000002	PreferredName	i antigen
-GGM.000002	AlternativeName	Type 2 LN2
+GGM.000002	PreferredName	Type 2 LN2
+GGM.000002	AlternativeName	i antigen
 GGM.000002	Aglycon	R
+GGM.000002	Alignment	Substructure
 GGM.000002	MotifGlyTouCan	G00058MO
 GGM.000002	ReducingEnd	false
+GGM.000002	PMID	19756298
+GGM.000002	PMID	2551493
+GGM.000002	PMID	107170
+GGM.000002	Keyword	LacNAc
+GGM.000002	Keyword	N-acetyllactosamine
+GGM.000002	Keyword	N-acetyllactosamine type 2
 GGM.000003	Collection	GGM
 GGM.000003	Accession	000003
 GGM.000003	PreferredName	I antigen
 GGM.000003	Aglycon	R
+GGM.000003	Alignment	Substructure
 GGM.000003	MotifGlyTouCan	G56045WU
 GGM.000003	ReducingEnd	false
+GGM.000003	PMID	19756298
+GGM.000003	PMID	429966
 GGM.000004	Collection	GGM
 GGM.000004	Accession	000004
 GGM.000004	PreferredName	i antigen
 GGM.000004	Aglycon	R
+GGM.000004	Alignment	Substructure
 GGM.000004	MotifGlyTouCan	G46055MA
 GGM.000004	ReducingEnd	false
+GGM.000004	PMID	19756298
+GGM.000004	PMID	6169630
+GGM.000004	Keyword	LacNAc
+GGM.000004	Keyword	N-acetyllactosamine
+GGM.000004	Keyword	N-acetyllactosamine type 2
 GGM.000005	Collection	GGM
 GGM.000005	Accession	000005
 GGM.000005	PreferredName	Type 1 LN
 GGM.000005	Aglycon	R
+GGM.000005	Alignment	Substructure
 GGM.000005	MotifGlyTouCan	G00056MO
 GGM.000005	ReducingEnd	false
+GGM.000005	PMID	19756298
+GGM.000005	PMID	6182692
+GGM.000005	Keyword	LacNAc
+GGM.000005	Keyword	N-acetyllactosamine
+GGM.000005	Keyword	N-acetyllactosamine type 1
 GGM.000006	Collection	GGM
 GGM.000006	Accession	000006
 GGM.000006	PreferredName	Type 1 LN2
 GGM.000006	Aglycon	R
+GGM.000006	Alignment	Substructure
 GGM.000006	MotifGlyTouCan	G43784HS
 GGM.000006	ReducingEnd	false
+GGM.000006	PMID	19756298
+GGM.000006	PMID	2808357
+GGM.000006	Keyword	LacNAc
+GGM.000006	Keyword	N-acetyllactosamine
+GGM.000006	Keyword	N-acetyllactosamine type 1
 GGM.000007	Collection	GGM
 GGM.000007	Accession	000007
 GGM.000007	PreferredName	Type 1 LN3
 GGM.000007	Aglycon	R
+GGM.000007	Alignment	Substructure
 GGM.000007	MotifGlyTouCan	G17961XM
 GGM.000007	ReducingEnd	false
+GGM.000007	PMID	19756298
+GGM.000007	PMID	2808357
+GGM.000007	Keyword	LacNAc
+GGM.000007	Keyword	N-acetyllactosamine
+GGM.000007	Keyword	N-acetyllactosamine type 1
 GGM.000008	Collection	GGM
 GGM.000008	Accession	000008
 GGM.000008	PreferredName	Tn antigen
 GGM.000008	Aglycon	Ser/Thr
+GGM.000008	Alignment	Whole-Glycan
 GGM.000008	MotifGlyTouCan	G57321FI
 GGM.000008	ReducingEnd	true
+GGM.000008	PMID	19756298
+GGM.000008	PMID	2417112
+GGM.000008	PMID	13814231
 GGM.000009	Collection	GGM
 GGM.000009	Accession	000009
 GGM.000009	PreferredName	T antigen
 GGM.000009	AlternativeName	TF antigen
 GGM.000009	Aglycon	Ser/Thr
+GGM.000009	Alignment	Whole-Glycan
 GGM.000009	MotifGlyTouCan	G00031MO
 GGM.000009	ReducingEnd	true
+GGM.000009	PMID	19756298
+GGM.000009	PMID	163330
+GGM.000009	PMID	13756766
+GGM.000009	PMID	3469463
 GGM.000010	Collection	GGM
 GGM.000010	Accession	000010
 GGM.000010	PreferredName	H antigen (type 3)
 GGM.000010	Aglycon	Ser/Thr
+GGM.000010	Alignment	Whole-Glycan
 GGM.000010	MotifGlyTouCan	G94435QH
 GGM.000010	ReducingEnd	true
+GGM.000010	PMID	28876849
+GGM.000010	PMID	19756298
+GGM.000010	PMID	3944091
+GGM.000010	Keyword	Blood group H
+GGM.000010	Keyword	Blood group type 3
 GGM.000011	Collection	GGM
 GGM.000011	Accession	000011
 GGM.000011	PreferredName	A antigen (type 3)
 GGM.000011	Aglycon	Ser/Thr
+GGM.000011	Alignment	Whole-Glycan
 GGM.000011	MotifGlyTouCan	G99315PE
 GGM.000011	ReducingEnd	true
+GGM.000011	PMID	28876849
+GGM.000011	PMID	19756298
+GGM.000011	PMID	3191504
+GGM.000011	Keyword	Blood group type 3
+GGM.000011	Keyword	Blood group A
 GGM.000012	Collection	GGM
 GGM.000012	Accession	000012
 GGM.000012	PreferredName	Sialyl Tn antigen
 GGM.000012	Aglycon	Ser/Thr
+GGM.000012	Alignment	Whole-Glycan
 GGM.000012	MotifGlyTouCan	G36123IU
 GGM.000012	ReducingEnd	true
+GGM.000012	PMID	19756298
+GGM.000012	PMID	2450649
 GGM.000013	Collection	GGM
 GGM.000013	Accession	000013
 GGM.000013	PreferredName	Sialyl T antigen
 GGM.000013	Aglycon	Ser/Thr
+GGM.000013	Alignment	Whole-Glycan
 GGM.000013	MotifGlyTouCan	G65562ZE
 GGM.000013	ReducingEnd	true
+GGM.000013	PMID	19756298
+GGM.000013	PMID	15701648
+GGM.000013	PMID	25234143
 GGM.000014	Collection	GGM
 GGM.000014	Accession	000014
 GGM.000014	PreferredName	Di-sialyl T antigen
 GGM.000014	Aglycon	Ser/Thr
+GGM.000014	Alignment	Whole-Glycan
 GGM.000014	MotifGlyTouCan	G01614ZM
 GGM.000014	ReducingEnd	true
+GGM.000014	PMID	19756298
+GGM.000014	PMID	15701648
+GGM.000014	PMID	25234143
 GGM.000015	Collection	GGM
 GGM.000015	Accession	000015
 GGM.000015	PreferredName	a-Gal antigen
+GGM.000015	AlternativeName	alpha-Gal antigen
 GGM.000015	Aglycon	R
+GGM.000015	Alignment	Substructure
 GGM.000015	MotifGlyTouCan	G24432YB
 GGM.000015	ReducingEnd	false
+GGM.000015	PMID	19756298
+GGM.000015	PMID	2410529
 GGM.000016	Collection	GGM
 GGM.000016	Accession	000016
-GGM.000016	PreferredName	LDN
-GGM.000016	AlternativeName	LacdiNAc
+GGM.000016	PreferredName	LacdiNAc
+GGM.000016	AlternativeName	LDN
 GGM.000016	Aglycon	R
+GGM.000016	Alignment	Substructure
 GGM.000016	MotifGlyTouCan	G31736BK
 GGM.000016	ReducingEnd	false
+GGM.000016	PMID	19756298
+GGM.000016	PMID	10521539
+GGM.000016	Keyword	LacdiNAc
+GGM.000016	Keyword	N,N'-diacetyllactosediamine
 GGM.000017	Collection	GGM
 GGM.000017	Accession	000017
 GGM.000017	PreferredName	Fucosylated LDN
 GGM.000017	AlternativeName	LDNF
 GGM.000017	Aglycon	R
+GGM.000017	Alignment	Substructure
 GGM.000017	MotifGlyTouCan	G02240AO
 GGM.000017	ReducingEnd	false
+GGM.000017	PMID	19756298
+GGM.000017	PMID	11162373
+GGM.000017	Keyword	LacdiNAc
+GGM.000017	Keyword	N,N'-diacetyllactosediamine
 GGM.000018	Collection	GGM
 GGM.000018	Accession	000018
 GGM.000018	PreferredName	Lewis x
 GGM.000018	AlternativeName	SSEA-1
 GGM.000018	AlternativeName	Lex
+GGM.000018	AlternativeName	Le^x
 GGM.000018	Aglycon	R
+GGM.000018	Alignment	Substructure
 GGM.000018	MotifGlyTouCan	G01187XC
 GGM.000018	ReducingEnd	false
+GGM.000018	PMID	19756298
+GGM.000018	PMID	6165896
+GGM.000018	PMID	281705
+GGM.000018	Keyword	Lewis x
 GGM.000019	Collection	GGM
 GGM.000019	Accession	000019
 GGM.000019	PreferredName	Lewis y
 GGM.000019	AlternativeName	Ley
+GGM.000019	AlternativeName	Le^y
 GGM.000019	Aglycon	R
+GGM.000019	Alignment	Substructure
 GGM.000019	MotifGlyTouCan	G49963IQ
 GGM.000019	ReducingEnd	false
+GGM.000019	PMID	19756298
+GGM.000019	PMID	6188690
+GGM.000019	Keyword	Lewis y
 GGM.000020	Collection	GGM
 GGM.000020	Accession	000020
 GGM.000020	PreferredName	Lewis a
 GGM.000020	AlternativeName	Lea
+GGM.000020	AlternativeName	Le^a
 GGM.000020	Aglycon	R
+GGM.000020	Alignment	Substructure
 GGM.000020	MotifGlyTouCan	G00047MO
 GGM.000020	ReducingEnd	false
+GGM.000020	PMID	19756298
+GGM.000020	PMID	6833281
+GGM.000020	Keyword	Lewis a
 GGM.000021	Collection	GGM
 GGM.000021	Accession	000021
 GGM.000021	PreferredName	Lewis b
 GGM.000021	AlternativeName	Leb
+GGM.000021	AlternativeName	Le^b
 GGM.000021	Aglycon	R
+GGM.000021	Alignment	Substructure
 GGM.000021	MotifGlyTouCan	G39211DH
 GGM.000021	ReducingEnd	false
+GGM.000021	PMID	19756298
+GGM.000021	PMID	7309759
+GGM.000021	Keyword	Lewis b
 GGM.000022	Collection	GGM
 GGM.000022	Accession	000022
 GGM.000022	PreferredName	Sialyl Lewis x
 GGM.000022	AlternativeName	Slex
+GGM.000022	AlternativeName	SLex
+GGM.000022	AlternativeName	SLe^x
 GGM.000022	Aglycon	R
+GGM.000022	Alignment	Nonreducing-End
 GGM.000022	MotifGlyTouCan	G00054MO
 GGM.000022	ReducingEnd	false
-GGM.000023	Collection	GGM
-GGM.000023	Accession	000023
-GGM.000023	PreferredName	Cyclic sialyl 6-sulfo Lewis x
-GGM.000023	Aglycon	R
-GGM.000023	MotifGlyTouCan	G80722US
-GGM.000023	ReducingEnd	false
+GGM.000022	PMID	19756298
+GGM.000022	PMID	6386148
+GGM.000022	Keyword	Lewis x
 GGM.000024	Collection	GGM
 GGM.000024	Accession	000024
 GGM.000024	PreferredName	Sialyl Lewis a
 GGM.000024	AlternativeName	Slea
 GGM.000024	AlternativeName	CA19-9 antigen
+GGM.000024	AlternativeName	SLea
+GGM.000024	AlternativeName	SLe^a
 GGM.000024	Aglycon	R
+GGM.000024	Alignment	Nonreducing-End
 GGM.000024	MotifGlyTouCan	G00053MO
 GGM.000024	ReducingEnd	false
+GGM.000024	PMID	19756298
+GGM.000024	PMID	94699
+GGM.000024	Keyword	Lewis a
 GGM.000025	Collection	GGM
 GGM.000025	Accession	000025
-GGM.000025	PreferredName	6'-Sulfo Sialyl Lewis x
+GGM.000025	PreferredName	6'-Sulfo-sialyl Lewis x
+GGM.000025	AlternativeName	6'-Sulfo Sialyl Lewis x
 GGM.000025	AlternativeName	6'-sulfo SLex
+GGM.000025	AlternativeName	6'-sulfo SLe^x
 GGM.000025	Aglycon	R
+GGM.000025	Alignment	Nonreducing-End
 GGM.000025	MotifGlyTouCan	G00672PE
 GGM.000025	ReducingEnd	false
+GGM.000025	PMID	19756298
+GGM.000025	PMID	15972893
+GGM.000025	Keyword	Lewis x
 GGM.000026	Collection	GGM
 GGM.000026	Accession	000026
 GGM.000026	PreferredName	2,6-sialyl-Sulfo-LN
 GGM.000026	AlternativeName	6-sialyl-6-sulfo LN
 GGM.000026	Aglycon	R
+GGM.000026	Alignment	Nonreducing-End
 GGM.000026	MotifGlyTouCan	G43191LZ
 GGM.000026	ReducingEnd	false
+GGM.000026	PMID	19756298
+GGM.000026	PMID	25234143
+GGM.000026	PMID	17728258
+GGM.000026	Keyword	LacNAc
+GGM.000026	Keyword	N-acetyllactosamine
 GGM.000027	Collection	GGM
 GGM.000027	Accession	000027
-GGM.000027	PreferredName	6-Sulfo Sialyl Lewis x
+GGM.000027	PreferredName	6-Sulfo-sialyl Lewis x
+GGM.000027	AlternativeName	6-Sulfo Sialyl Lewis x
 GGM.000027	AlternativeName	6-sulfo SLex
+GGM.000027	AlternativeName	6-sulfo SLe^x
 GGM.000027	Aglycon	R
+GGM.000027	Alignment	Nonreducing-End
 GGM.000027	MotifGlyTouCan	G80722US
 GGM.000027	ReducingEnd	false
+GGM.000027	PMID	19756298
+GGM.000027	PMID	25234143
+GGM.000027	PMID	9556613
+GGM.000027	Keyword	Lewis x
 GGM.000028	Collection	GGM
 GGM.000028	Accession	000028
 GGM.000028	PreferredName	6,6'-bisSulfo-Lewis x
 GGM.000028	AlternativeName	6,6'-bissulfo Lex
 GGM.000028	AlternativeName	6,6'-Disulfo Sialyl Lewis x
+GGM.000028	AlternativeName	6,6'-bissulfo Le^x
 GGM.000028	Aglycon	R
+GGM.000028	Alignment	Nonreducing-End
 GGM.000028	MotifGlyTouCan	G00659GQ
 GGM.000028	ReducingEnd	false
+GGM.000028	PMID	19756298
+GGM.000028	PMID	9556613
+GGM.000028	Keyword	Lewis x
 GGM.000029	Collection	GGM
 GGM.000029	Accession	000029
-GGM.000029	PreferredName	3'-Sulfo Lewis x
+GGM.000029	PreferredName	3'-Sulfo-Lewis x
+GGM.000029	AlternativeName	3'-Sulfo Lewis x
 GGM.000029	AlternativeName	3'-sulfo Lex
+GGM.000029	AlternativeName	3'-sulfo Le^x
 GGM.000029	Aglycon	R
+GGM.000029	Alignment	Substructure
 GGM.000029	MotifGlyTouCan	G12295TB
 GGM.000029	ReducingEnd	false
+GGM.000029	PMID	19756298
+GGM.000029	PMID	9556613
+GGM.000029	Keyword	Lewis x
 GGM.000030	Collection	GGM
 GGM.000030	Accession	000030
-GGM.000030	PreferredName	3'-Sulfo Lewis a
+GGM.000030	PreferredName	3'-Sulfo-Lewis a
+GGM.000030	AlternativeName	3'-Sulfo Lewis a
 GGM.000030	AlternativeName	3'-Sulfo Lea
+GGM.000030	AlternativeName	3'-Sulfo Le^a
 GGM.000030	Aglycon	R
+GGM.000030	Alignment	Substructure
 GGM.000030	MotifGlyTouCan	G78706CK
 GGM.000030	ReducingEnd	false
+GGM.000030	PMID	19756298
+GGM.000030	PMID	7507478
+GGM.000030	Keyword	Lewis a
 GGM.000031	Collection	GGM
 GGM.000031	Accession	000031
 GGM.000031	PreferredName	Lex-Lex
+GGM.000031	AlternativeName	Le^x-Le^x
 GGM.000031	Aglycon	R
+GGM.000031	Alignment	Substructure
 GGM.000031	MotifGlyTouCan	G79535HZ
 GGM.000031	ReducingEnd	false
+GGM.000031	PMID	19756298
+GGM.000031	PMID	7925469
+GGM.000031	Keyword	Lewis x
 GGM.000032	Collection	GGM
 GGM.000032	Accession	000032
 GGM.000032	PreferredName	SDLex
+GGM.000032	AlternativeName	SDLe^x
 GGM.000032	Aglycon	R
+GGM.000032	Alignment	Nonreducing-End
 GGM.000032	MotifGlyTouCan	G19619KS
 GGM.000032	ReducingEnd	false
+GGM.000032	PMID	19756298
+GGM.000032	PMID	6469974
+GGM.000032	Keyword	Lewis x
 GGM.000033	Collection	GGM
 GGM.000033	Accession	000033
 GGM.000033	PreferredName	VIM-2
 GGM.000033	Aglycon	R
+GGM.000033	Alignment	Nonreducing-End
 GGM.000033	MotifGlyTouCan	G22418PV
 GGM.000033	ReducingEnd	false
+GGM.000033	PMID	19756298
+GGM.000033	PMID	3164721
 GGM.000034	Collection	GGM
 GGM.000034	Accession	000034
 GGM.000034	PreferredName	3-Sialyl-LN (type 2)
 GGM.000034	Aglycon	R
+GGM.000034	Alignment	Nonreducing-End
 GGM.000034	MotifGlyTouCan	G10203DW
 GGM.000034	ReducingEnd	false
+GGM.000034	PMID	19756298
+GGM.000034	PMID	25234143
+GGM.000034	PMID	3350806
+GGM.000034	PMID	1985926
+GGM.000034	Keyword	LacNAc
+GGM.000034	Keyword	N-acetyllactosamine
+GGM.000034	Keyword	N-acetyllactosamine type 2
 GGM.000035	Collection	GGM
 GGM.000035	Accession	000035
 GGM.000035	PreferredName	6-Sialyl-GalNAc
 GGM.000035	AlternativeName	6-Sialyl LN (type 1)
 GGM.000035	AlternativeName	6-Sialyl LN (type 2)
 GGM.000035	Aglycon	R
+GGM.000035	Alignment	Nonreducing-End
 GGM.000035	MotifGlyTouCan	G73708UL
 GGM.000035	ReducingEnd	false
+GGM.000035	PMID	19756298
+GGM.000035	PMID	25234143
+GGM.000035	PMID	3805045
 GGM.000036	Collection	GGM
 GGM.000036	Accession	000036
 GGM.000036	PreferredName	Blood group H (type 2)
 GGM.000036	Aglycon	R
+GGM.000036	Alignment	Substructure
 GGM.000036	MotifGlyTouCan	G70519XK
 GGM.000036	ReducingEnd	false
+GGM.000036	PMID	19756298
+GGM.000036	PMID	7287743
+GGM.000036	Keyword	Blood group H
+GGM.000036	Keyword	Blood group type 2
 GGM.000037	Collection	GGM
 GGM.000037	Accession	000037
 GGM.000037	PreferredName	Blood group B (type 2)
 GGM.000037	Aglycon	R
+GGM.000037	Alignment	Substructure
 GGM.000037	MotifGlyTouCan	G34881WK
 GGM.000037	ReducingEnd	false
+GGM.000037	PMID	19756298
+GGM.000037	Keyword	Blood group type 2
+GGM.000037	Keyword	Blood group B
 GGM.000038	Collection	GGM
 GGM.000038	Accession	000038
 GGM.000038	PreferredName	Blood group A (type 2)
 GGM.000038	Aglycon	R
+GGM.000038	Alignment	Substructure
 GGM.000038	MotifGlyTouCan	G74353FF
 GGM.000038	ReducingEnd	false
+GGM.000038	PMID	19756298
+GGM.000038	Keyword	Blood group A
+GGM.000038	Keyword	Blood group type 2
 GGM.000039	Collection	GGM
 GGM.000039	Accession	000039
-GGM.000039	PreferredName	Blood group A (type 2)
+GGM.000039	PreferredName	Blood group A (type 2) - Lewis y
 GGM.000039	AlternativeName	A-Ley
+GGM.000039	AlternativeName	A-Le^y
 GGM.000039	Aglycon	R
+GGM.000039	Alignment	Substructure
 GGM.000039	MotifGlyTouCan	G54826OZ
 GGM.000039	ReducingEnd	false
+GGM.000039	PMID	19756298
+GGM.000039	Keyword	Blood group A
+GGM.000039	Keyword	Lewis y
+GGM.000039	Keyword	Blood group type 2
 GGM.000040	Collection	GGM
 GGM.000040	Accession	000040
 GGM.000040	PreferredName	Blood group A1 (type 3)
 GGM.000040	Aglycon	R
+GGM.000040	Alignment	Substructure
 GGM.000040	MotifGlyTouCan	G44060QH
 GGM.000040	ReducingEnd	false
+GGM.000040	PMID	19756298
+GGM.000040	PMID	2579390
+GGM.000040	Keyword	Blood group type 3
+GGM.000040	Keyword	Blood group A
 GGM.000041	Collection	GGM
 GGM.000041	Accession	000041
 GGM.000041	PreferredName	Blood group A2 (A-associated H type 3)
 GGM.000041	Aglycon	R
+GGM.000041	Alignment	Substructure
 GGM.000041	MotifGlyTouCan	G62735WZ
 GGM.000041	ReducingEnd	false
+GGM.000041	PMID	19756298
+GGM.000041	PMID	3944091
+GGM.000041	Keyword	Blood group type 3
+GGM.000041	Keyword	Blood group A
 GGM.000042	Collection	GGM
 GGM.000042	Accession	000042
 GGM.000042	PreferredName	Blood group H (type 1)
 GGM.000042	Aglycon	R
+GGM.000042	Alignment	Substructure
 GGM.000042	MotifGlyTouCan	G00294TN
 GGM.000042	ReducingEnd	false
+GGM.000042	PMID	19756298
+GGM.000042	PMID	4041428
+GGM.000042	Keyword	Blood group H
+GGM.000042	Keyword	Blood group type 1
 GGM.000043	Collection	GGM
 GGM.000043	Accession	000043
 GGM.000043	PreferredName	Blood group B (type 1)
 GGM.000043	Aglycon	R
+GGM.000043	Alignment	Substructure
 GGM.000043	MotifGlyTouCan	G31734OS
 GGM.000043	ReducingEnd	false
+GGM.000043	PMID	19756298
+GGM.000043	PMID	4041428
+GGM.000043	Keyword	Blood group B
+GGM.000043	Keyword	Blood group type 1
 GGM.000044	Collection	GGM
 GGM.000044	Accession	000044
 GGM.000044	PreferredName	Blood group A (type 1)
 GGM.000044	Aglycon	R
+GGM.000044	Alignment	Substructure
 GGM.000044	MotifGlyTouCan	G66163TI
 GGM.000044	ReducingEnd	false
+GGM.000044	PMID	19756298
+GGM.000044	PMID	4041428
+GGM.000044	Keyword	Blood group A
+GGM.000044	Keyword	Blood group type 1
 GGM.000045	Collection	GGM
 GGM.000045	Accession	000045
-GGM.000045	PreferredName	Blood group H (type 2)
-GGM.000045	AlternativeName	Ley
+GGM.000045	PreferredName	Blood group H (type 2) - Lewis y
+GGM.000045	AlternativeName	H-Ley
+GGM.000045	AlternativeName	H-Le^y
 GGM.000045	Aglycon	R
+GGM.000045	Alignment	Substructure
 GGM.000045	MotifGlyTouCan	G00052MO
 GGM.000045	ReducingEnd	false
+GGM.000045	PMID	19756298
+GGM.000045	PMID	6189529
+GGM.000045	Keyword	Blood group H
+GGM.000045	Keyword	Lewis y
+GGM.000045	Keyword	Blood group type 2
 GGM.000046	Collection	GGM
 GGM.000046	Accession	000046
-GGM.000046	PreferredName	Blood group B (type 1)
-GGM.000046	AlternativeName	B-Ley
+GGM.000046	PreferredName	Blood group B (type 1) - Lewis b
+GGM.000046	AlternativeName	B-Leb
+GGM.000046	AlternativeName	B-Le^b
 GGM.000046	Aglycon	R
+GGM.000046	Alignment	Substructure
 GGM.000046	MotifGlyTouCan	G89208KM
 GGM.000046	ReducingEnd	false
+GGM.000046	PMID	19756298
+GGM.000046	Keyword	Lewis b
+GGM.000046	Keyword	Blood group B
+GGM.000046	Keyword	Blood group type 1
 GGM.000047	Collection	GGM
 GGM.000047	Accession	000047
-GGM.000047	PreferredName	Blood group A (type 1)
+GGM.000047	PreferredName	Blood group A (type 1) - Lewis b
 GGM.000047	AlternativeName	A-Leb
+GGM.000047	AlternativeName	A-Le^b
 GGM.000047	Aglycon	R
+GGM.000047	Alignment	Substructure
 GGM.000047	MotifGlyTouCan	G97501MA
 GGM.000047	ReducingEnd	false
-GGM.000048	Collection	GGM
-GGM.000048	Accession	000048
-GGM.000048	PreferredName	Lewis b
-GGM.000048	AlternativeName	Leb
-GGM.000048	Aglycon	R
-GGM.000048	MotifGlyTouCan	G00052MO
-GGM.000048	ReducingEnd	false
+GGM.000047	PMID	19756298
+GGM.000047	PMID	4041428
+GGM.000047	PMID	5686860
+GGM.000047	Keyword	Blood group A
+GGM.000047	Keyword	Lewis b
+GGM.000047	Keyword	Blood group type 1
 GGM.000049	Collection	GGM
 GGM.000049	Accession	000049
 GGM.000049	PreferredName	4'-sulfated LDN
 GGM.000049	Aglycon	R
+GGM.000049	Alignment	Substructure
 GGM.000049	MotifGlyTouCan	G18464VS
 GGM.000049	ReducingEnd	false
+GGM.000049	PMID	19756298
+GGM.000049	PMID	11279168
+GGM.000049	Keyword	LacdiNAc
+GGM.000049	Keyword	N,N'-diacetyllactosediamine
 GGM.000050	Collection	GGM
 GGM.000050	Accession	000050
 GGM.000050	PreferredName	Sialylated LDN
 GGM.000050	Aglycon	R
+GGM.000050	Alignment	Nonreducing-End
 GGM.000050	MotifGlyTouCan	G55583HW
 GGM.000050	ReducingEnd	false
+GGM.000050	PMID	19756298
+GGM.000050	PMID	16286643
+GGM.000050	Keyword	LacdiNAc
+GGM.000050	Keyword	N,N'-diacetyllactosediamine
 GGM.000051	Collection	GGM
 GGM.000051	Accession	000051
 GGM.000051	PreferredName	Sda/CT antigen
+GGM.000051	AlternativeName	Sd^a/CT antigen
 GGM.000051	Aglycon	R
+GGM.000051	Alignment	Substructure
 GGM.000051	MotifGlyTouCan	G41052GC
 GGM.000051	ReducingEnd	false
+GGM.000051	PMID	19756298
+GGM.000051	PMID	6156677
+GGM.000051	PMID	6190803
 GGM.000052	Collection	GGM
 GGM.000052	Accession	000052
 GGM.000052	PreferredName	Polysialic acid
 GGM.000052	Aglycon	R
+GGM.000052	Alignment	Nonreducing-End
 GGM.000052	MotifGlyTouCan	G00065MO
 GGM.000052	ReducingEnd	false
+GGM.000052	PMID	19756298
+GGM.000052	PMID	6135869
+GGM.000052	PMID	6847662
 GGM.000053	Collection	GGM
 GGM.000053	Accession	000053
 GGM.000053	PreferredName	SLex Core 2 O-glycan
+GGM.000053	AlternativeName	SLe^x Core 2 O-glycan
 GGM.000053	Aglycon	Ser/Thr
+GGM.000053	Alignment	Core
 GGM.000053	MotifGlyTouCan	G97345NY
 GGM.000053	ReducingEnd	true
+GGM.000053	PMID	19756298
+GGM.000053	PMID	12010808
+GGM.000053	PMID	10455156
+GGM.000053	Keyword	Lewis x
+GGM.000054	Collection	GGM
+GGM.000054	Accession	000054
+GGM.000054	PreferredName	Diphosphorylated Man6
+GGM.000054	AlternativeName	Diphosphorylated Man_6
+GGM.000054	Aglycon	R
+GGM.000054	Alignment	Substructure
+GGM.000054	MotifGlyTouCan	G54792LL
+GGM.000054	ReducingEnd	false
+GGM.000054	PMID	19756298
+GGM.000054	PMID	18621992
 GGM.000055	Collection	GGM
 GGM.000055	Accession	000055
 GGM.000055	PreferredName	O-Linked mannose
 GGM.000055	Aglycon	Ser/Thr
+GGM.000055	Alignment	Whole-Glycan
 GGM.000055	MotifGlyTouCan	G59126YU
 GGM.000055	ReducingEnd	true
+GGM.000055	PMID	8999917
+GGM.000055	PMID	19756298
 GGM.000056	Collection	GGM
 GGM.000056	Accession	000056
 GGM.000056	PreferredName	2,6-Branched O-mannose
 GGM.000056	Aglycon	Ser/Thr
+GGM.000056	Alignment	Whole-Glycan
 GGM.000056	MotifGlyTouCan	G06953DR
 GGM.000056	ReducingEnd	true
+GGM.000056	PMID	19756298
+GGM.000056	PMID	10469154
 GGM.000057	Collection	GGM
 GGM.000057	Accession	000057
 GGM.000057	PreferredName	O-Mannose Lex
+GGM.000057	AlternativeName	O-Mannose Le^x
 GGM.000057	Aglycon	Ser/Thr
+GGM.000057	Alignment	Core
 GGM.000057	MotifGlyTouCan	G81516LH
 GGM.000057	ReducingEnd	true
+GGM.000057	PMID	19756298
+GGM.000057	PMID	14568618
+GGM.000057	Keyword	Lewis x
 GGM.000058	Collection	GGM
 GGM.000058	Accession	000058
 GGM.000058	PreferredName	HNK-1 antigen
 GGM.000058	Aglycon	R
+GGM.000058	Alignment	Nonreducing-End
 GGM.000058	MotifGlyTouCan	G53277CD
 GGM.000058	ReducingEnd	false
+GGM.000058	PMID	6790607
+GGM.000058	PMID	19756298
+GGM.000058	PMID	14568618
 GGM.000059	Collection	GGM
 GGM.000059	Accession	000059
 GGM.000059	PreferredName	HNK-1 on O-mannose
 GGM.000059	Aglycon	Ser/Thr
+GGM.000059	Alignment	Whole-Glycan
 GGM.000059	MotifGlyTouCan	G06898ZN
 GGM.000059	ReducingEnd	true
+GGM.000059	PMID	19756298
+GGM.000059	PMID	9083013
 GGM.000060	Collection	GGM
 GGM.000060	Accession	000060
 GGM.000060	PreferredName	Glucosylceramide
 GGM.000060	Aglycon	Cer
+GGM.000060	Alignment	Whole-Glycan
 GGM.000060	MotifGlyTouCan	G71142DF
 GGM.000060	ReducingEnd	true
+GGM.000060	PMID	19756298
+GGM.000060	PMID	1530650
+GGM.000060	Keyword	Glycolipid
 GGM.000061	Collection	GGM
 GGM.000061	Accession	000061
 GGM.000061	PreferredName	Galactosylceramide
 GGM.000061	Aglycon	Cer
+GGM.000061	Alignment	Whole-Glycan
 GGM.000061	MotifGlyTouCan	G65889KE
 GGM.000061	ReducingEnd	true
+GGM.000061	PMID	19756298
+GGM.000061	PMID	84053
+GGM.000061	PMID	780262
+GGM.000061	Keyword	Glycolipid
 GGM.000062	Collection	GGM
 GGM.000062	Accession	000062
 GGM.000062	PreferredName	Seminolipid
 GGM.000062	Aglycon	Other
+GGM.000062	Alignment	Whole-Glycan
 GGM.000062	MotifGlyTouCan	G72548RZ
 GGM.000062	ReducingEnd	true
+GGM.000062	PMID	19756298
+GGM.000062	PMID	2373957
+GGM.000062	Keyword	Glycolipid
 GGM.000063	Collection	GGM
 GGM.000063	Accession	000063
 GGM.000063	PreferredName	Sulfatide
 GGM.000063	Aglycon	Cer
+GGM.000063	Alignment	Whole-Glycan
 GGM.000063	MotifGlyTouCan	G72548RZ
 GGM.000063	ReducingEnd	true
+GGM.000063	PMID	19756298
+GGM.000063	PMID	4855831
+GGM.000063	Keyword	Glycolipid
 GGM.000064	Collection	GGM
 GGM.000064	Accession	000064
 GGM.000064	PreferredName	Lactosylceramide
 GGM.000064	Aglycon	Cer
+GGM.000064	Alignment	Whole-Glycan
 GGM.000064	MotifGlyTouCan	G84224TW
 GGM.000064	ReducingEnd	true
+GGM.000064	PMID	28876849
+GGM.000064	PMID	19756298
+GGM.000064	PMID	6585365
+GGM.000064	Keyword	Glycolipid
 GGM.000065	Collection	GGM
 GGM.000065	Accession	000065
 GGM.000065	PreferredName	Ceramide dihexosyl sulfate
 GGM.000065	Aglycon	Cer
+GGM.000065	Alignment	Whole-Glycan
 GGM.000065	MotifGlyTouCan	G50926NK
 GGM.000065	ReducingEnd	true
+GGM.000065	PMID	19756298
+GGM.000065	PMID	18470608
+GGM.000065	Keyword	Glycolipid
 GGM.000066	Collection	GGM
 GGM.000066	Accession	000066
 GGM.000066	PreferredName	Monosulfated gangliotetraosylceramide
 GGM.000066	Aglycon	Cer
+GGM.000066	Alignment	Whole-Glycan
 GGM.000066	MotifGlyTouCan	G96596OC
 GGM.000066	ReducingEnd	true
+GGM.000066	PMID	19756298
+GGM.000066	PMID	3944094
+GGM.000066	Keyword	Glycolipid
 GGM.000067	Collection	GGM
 GGM.000067	Accession	000067
 GGM.000067	PreferredName	Lactotriaosylceramide
 GGM.000067	AlternativeName	Lc3
+GGM.000067	AlternativeName	Lc_3
 GGM.000067	Aglycon	Cer
+GGM.000067	Alignment	Whole-Glycan
 GGM.000067	MotifGlyTouCan	G06239NA
 GGM.000067	ReducingEnd	true
+GGM.000067	PMID	28876849
+GGM.000067	PMID	19756298
+GGM.000067	PMID	6209560
+GGM.000067	Keyword	Glycolipid
 GGM.000068	Collection	GGM
 GGM.000068	Accession	000068
 GGM.000068	PreferredName	Pk antigen
 GGM.000068	AlternativeName	Gb3
 GGM.000068	AlternativeName	globotriaosylceramide
+GGM.000068	AlternativeName	P^k antigen
+GGM.000068	AlternativeName	Gb_3
 GGM.000068	Aglycon	Cer
+GGM.000068	Alignment	Whole-Glycan
 GGM.000068	MotifGlyTouCan	G00059MO
 GGM.000068	ReducingEnd	true
+GGM.000068	PMID	28876849
+GGM.000068	PMID	19756298
+GGM.000068	PMID	760826
+GGM.000068	PMID	700772
+GGM.000068	Keyword	Glycolipid
 GGM.000069	Collection	GGM
 GGM.000069	Accession	000069
 GGM.000069	PreferredName	P1 antigen
 GGM.000069	Aglycon	Cer
+GGM.000069	Alignment	Whole-Glycan
 GGM.000069	MotifGlyTouCan	G12460DL
 GGM.000069	ReducingEnd	true
+GGM.000069	PMID	28876849
+GGM.000069	PMID	19756298
+GGM.000069	PMID	4477014
+GGM.000069	Keyword	Glycolipid
 GGM.000070	Collection	GGM
 GGM.000070	Accession	000070
-GGM.000070	PreferredName	P antigen
-GGM.000070	AlternativeName	Globoside
+GGM.000070	PreferredName	Globoside
+GGM.000070	AlternativeName	P antigen
+GGM.000070	AlternativeName	Globotetraosylceramide
 GGM.000070	AlternativeName	Gb4
+GGM.000070	AlternativeName	Cytolipin K
+GGM.000070	AlternativeName	Globoside I
 GGM.000070	Aglycon	Cer
+GGM.000070	Alignment	Whole-Glycan
 GGM.000070	MotifGlyTouCan	G00061MO
 GGM.000070	ReducingEnd	true
+GGM.000070	PMID	28876849
+GGM.000070	PMID	19756298
+GGM.000070	PMID	700772
+GGM.000070	PMID	5068000
+GGM.000070	Keyword	Glycolipid
 GGM.000071	Collection	GGM
 GGM.000071	Accession	000071
 GGM.000071	PreferredName	Isoglobotetraosylceramide
 GGM.000071	Aglycon	Cer
-GGM.000071	MotifGlyTouCan	G32862WC
+GGM.000071	Alignment	Whole-Glycan
+GGM.000071	MotifGlyTouCan	G57710SU
 GGM.000071	ReducingEnd	true
+GGM.000071	PMID	19756298
+GGM.000071	PMID	2713378
+GGM.000071	PMID	3379797
+GGM.000071	PMID	2465279
+GGM.000071	Keyword	Glycolipid
 GGM.000072	Collection	GGM
 GGM.000072	Accession	000072
 GGM.000072	PreferredName	Mono-sulfated globopentaosylceramide
 GGM.000072	Aglycon	Cer
-GGM.000072	MotifGlyTouCan	G57710SU
+GGM.000072	Alignment	Whole-Glycan
+GGM.000072	MotifGlyTouCan	G80193TN
 GGM.000072	ReducingEnd	true
+GGM.000072	PMID	19756298
+GGM.000072	PMID	2777788
+GGM.000072	Keyword	Glycolipid
 GGM.000073	Collection	GGM
 GGM.000073	Accession	000073
 GGM.000073	PreferredName	Mono-sulfated globotetraosylceramide
 GGM.000073	Aglycon	Cer
-GGM.000073	MotifGlyTouCan	G87212TR
+GGM.000073	Alignment	Whole-Glycan
+GGM.000073	MotifGlyTouCan	G05297EK
 GGM.000073	ReducingEnd	true
+GGM.000073	PMID	19756298
+GGM.000073	PMID	2559078
+GGM.000073	Keyword	Glycolipid
 GGM.000074	Collection	GGM
 GGM.000074	Accession	000074
 GGM.000074	PreferredName	Sulfo-isogloboside
+GGM.000074	AlternativeName	Mono-sulfated isoglobotetraosylceramide
 GGM.000074	Aglycon	Cer
-GGM.000074	MotifGlyTouCan	G10057XH
+GGM.000074	Alignment	Whole-Glycan
+GGM.000074	MotifGlyTouCan	G56133NW
 GGM.000074	ReducingEnd	true
+GGM.000074	PMID	19756298
+GGM.000074	PMID	1396705
+GGM.000074	Keyword	Glycolipid
 GGM.000075	Collection	GGM
 GGM.000075	Accession	000075
 GGM.000075	PreferredName	LcGg4
 GGM.000075	Aglycon	Cer
+GGM.000075	Alignment	Whole-Glycan
 GGM.000075	MotifGlyTouCan	G62554JH
 GGM.000075	ReducingEnd	true
+GGM.000075	PMID	19756298
+GGM.000075	PMID	3805024
+GGM.000075	Keyword	Glycolipid
 GGM.000076	Collection	GGM
 GGM.000076	Accession	000076
 GGM.000076	PreferredName	Gb5
+GGM.000076	AlternativeName	Globopentaosylceramide
 GGM.000076	Aglycon	Cer
+GGM.000076	Alignment	Whole-Glycan
 GGM.000076	MotifGlyTouCan	G99053DY
 GGM.000076	ReducingEnd	true
+GGM.000076	PMID	19756298
+GGM.000076	PMID	3297853
+GGM.000076	Keyword	Glycolipid
 GGM.000077	Collection	GGM
 GGM.000077	Accession	000077
 GGM.000077	PreferredName	Paragloboside
 GGM.000077	Aglycon	Cer
+GGM.000077	Alignment	Whole-Glycan
 GGM.000077	MotifGlyTouCan	G58896AZ
 GGM.000077	ReducingEnd	true
+GGM.000077	PMID	28876849
+GGM.000077	PMID	19756298
+GGM.000077	PMID	7287743
+GGM.000077	PMID	850070
+GGM.000077	Keyword	Glycolipid
 GGM.000078	Collection	GGM
 GGM.000078	Accession	000078
 GGM.000078	PreferredName	GL-6 fucosylated
 GGM.000078	AlternativeName	globoH
 GGM.000078	Aglycon	Cer
+GGM.000078	Alignment	Whole-Glycan
 GGM.000078	MotifGlyTouCan	G98465JN
 GGM.000078	ReducingEnd	true
+GGM.000078	PMID	19756298
+GGM.000078	PMID	6863318
+GGM.000078	Keyword	Glycolipid
 GGM.000079	Collection	GGM
 GGM.000079	Accession	000079
 GGM.000079	PreferredName	SSEA-3
 GGM.000079	Aglycon	Cer
+GGM.000079	Alignment	Whole-Glycan
 GGM.000079	MotifGlyTouCan	G99053DY
 GGM.000079	ReducingEnd	true
+GGM.000079	PMID	19756298
+GGM.000079	PMID	6183004
+GGM.000079	Keyword	Glycolipid
 GGM.000080	Collection	GGM
 GGM.000080	Accession	000080
 GGM.000080	PreferredName	GL-7 globoseries ganglioside
 GGM.000080	AlternativeName	SSEA-4
 GGM.000080	Aglycon	Cer
+GGM.000080	Alignment	Whole-Glycan
 GGM.000080	MotifGlyTouCan	G32254QI
 GGM.000080	ReducingEnd	true
+GGM.000080	PMID	19756298
+GGM.000080	PMID	6863318
+GGM.000080	Keyword	Glycolipid
 GGM.000081	Collection	GGM
 GGM.000081	Accession	000081
 GGM.000081	PreferredName	Sialosyl paragloboside
 GGM.000081	Aglycon	Cer
+GGM.000081	Alignment	Whole-Glycan
 GGM.000081	MotifGlyTouCan	G50123ZO
 GGM.000081	ReducingEnd	true
+GGM.000081	PMID	19756298
+GGM.000081	PMID	518853
+GGM.000081	Keyword	Glycolipid
 GGM.000082	Collection	GGM
 GGM.000082	Accession	000082
 GGM.000082	PreferredName	Disialosyl globopentaosylceramide
 GGM.000082	Aglycon	Cer
+GGM.000082	Alignment	Whole-Glycan
 GGM.000082	MotifGlyTouCan	G97932OH
 GGM.000082	ReducingEnd	true
+GGM.000082	PMID	19756298
+GGM.000082	PMID	12084983
+GGM.000082	Keyword	Glycolipid
 GGM.000083	Collection	GGM
 GGM.000083	Accession	000083
 GGM.000083	PreferredName	Cytolipin R
 GGM.000083	Aglycon	Cer
+GGM.000083	Alignment	Whole-Glycan
 GGM.000083	MotifGlyTouCan	G57710SU
 GGM.000083	ReducingEnd	true
+GGM.000083	PMID	19756298
+GGM.000083	PMID	5068000
+GGM.000083	PMID	6072378
+GGM.000083	Keyword	Glycolipid
 GGM.000084	Collection	GGM
 GGM.000084	Accession	000084
 GGM.000084	PreferredName	Forssman glycolipid
 GGM.000084	AlternativeName	Globopentosylceramide
+GGM.000084	AlternativeName	Forssman antigen
 GGM.000084	Aglycon	Cer
+GGM.000084	Alignment	Whole-Glycan
 GGM.000084	MotifGlyTouCan	G80062GG
 GGM.000084	ReducingEnd	true
+GGM.000084	PMID	28876849
+GGM.000084	PMID	19756298
+GGM.000084	PMID	7045228
+GGM.000084	Keyword	Glycolipid
 GGM.000085	Collection	GGM
 GGM.000085	Accession	000085
 GGM.000085	PreferredName	para-Forssman glycolipid
 GGM.000085	Aglycon	Cer
+GGM.000085	Alignment	Whole-Glycan
 GGM.000085	MotifGlyTouCan	G51699SI
 GGM.000085	ReducingEnd	true
+GGM.000085	PMID	19756298
+GGM.000085	PMID	6814203
+GGM.000085	Keyword	Glycolipid
 GGM.000086	Collection	GGM
 GGM.000086	Accession	000086
 GGM.000086	PreferredName	Blood group H (type 4)
 GGM.000086	Aglycon	Cer
+GGM.000086	Alignment	Whole-Glycan
 GGM.000086	MotifGlyTouCan	G98465JN
 GGM.000086	ReducingEnd	true
+GGM.000086	PMID	19756298
+GGM.000086	PMID	6497890
+GGM.000086	PMID	2464874
+GGM.000086	Keyword	Blood group H
+GGM.000086	Keyword	Glycolipid
+GGM.000086	Keyword	Blood group type 4
 GGM.000087	Collection	GGM
 GGM.000087	Accession	000087
 GGM.000087	PreferredName	Blood group B (type 4)
 GGM.000087	Aglycon	Cer
+GGM.000087	Alignment	Whole-Glycan
 GGM.000087	MotifGlyTouCan	G25216QA
 GGM.000087	ReducingEnd	true
+GGM.000087	PMID	19756298
+GGM.000087	PMID	6497890
+GGM.000087	PMID	2464874
+GGM.000087	Keyword	Blood group B
+GGM.000087	Keyword	Glycolipid
+GGM.000087	Keyword	Blood group type 4
 GGM.000088	Collection	GGM
 GGM.000088	Accession	000088
 GGM.000088	PreferredName	Blood group A (type 4)
 GGM.000088	Aglycon	Cer
+GGM.000088	Alignment	Whole-Glycan
 GGM.000088	MotifGlyTouCan	G37830TX
 GGM.000088	ReducingEnd	true
+GGM.000088	PMID	19756298
+GGM.000088	PMID	6497890
+GGM.000088	PMID	2464874
+GGM.000088	Keyword	Blood group A
+GGM.000088	Keyword	Glycolipid
+GGM.000088	Keyword	Blood group type 4
 GGM.000089	Collection	GGM
 GGM.000089	Accession	000089
 GGM.000089	PreferredName	GM4
 GGM.000089	Aglycon	Cer
+GGM.000089	Alignment	Whole-Glycan
 GGM.000089	MotifGlyTouCan	G30207PZ
 GGM.000089	ReducingEnd	true
+GGM.000089	PMID	19756298
+GGM.000089	PMID	7142381
+GGM.000089	Keyword	Glycolipid
+GGM.000089	Keyword	Monosialylated ganglioside
 GGM.000090	Collection	GGM
 GGM.000090	Accession	000090
 GGM.000090	PreferredName	GM3
 GGM.000090	Aglycon	Cer
+GGM.000090	Alignment	Whole-Glycan
 GGM.000090	MotifGlyTouCan	G91237TK
 GGM.000090	ReducingEnd	true
+GGM.000090	PMID	19756298
+GGM.000090	PMID	2414279
+GGM.000090	Keyword	Glycolipid
 GGM.000091	Collection	GGM
 GGM.000091	Accession	000091
 GGM.000091	PreferredName	GD3
 GGM.000091	Aglycon	Cer
+GGM.000091	Alignment	Whole-Glycan
 GGM.000091	MotifGlyTouCan	G98544DH
 GGM.000091	ReducingEnd	true
+GGM.000091	PMID	19756298
+GGM.000091	PMID	6778957
+GGM.000091	PMID	7130176
+GGM.000091	PMID	7061953
+GGM.000091	Keyword	Glycolipid
+GGM.000091	Keyword	Disialylated ganglioside
 GGM.000092	Collection	GGM
 GGM.000092	Accession	000092
 GGM.000092	PreferredName	GT3
 GGM.000092	Aglycon	Cer
+GGM.000092	Alignment	Whole-Glycan
 GGM.000092	MotifGlyTouCan	G93899SO
 GGM.000092	ReducingEnd	true
+GGM.000092	PMID	19756298
+GGM.000092	PMID	3949793
+GGM.000092	Keyword	Glycolipid
+GGM.000092	Keyword	Trisialylated ganglioside
 GGM.000093	Collection	GGM
 GGM.000093	Accession	000093
 GGM.000093	PreferredName	9-O-Acetyl GD3
 GGM.000093	Aglycon	Cer
+GGM.000093	Alignment	Whole-Glycan
 GGM.000093	MotifGlyTouCan	G98544DH
 GGM.000093	ReducingEnd	true
+GGM.000093	PMID	19756298
+GGM.000093	PMID	18253060
+GGM.000093	Keyword	Glycolipid
+GGM.000093	Keyword	Disialylated ganglioside
 GGM.000094	Collection	GGM
 GGM.000094	Accession	000094
 GGM.000094	PreferredName	GD2
 GGM.000094	Aglycon	Cer
+GGM.000094	Alignment	Whole-Glycan
 GGM.000094	MotifGlyTouCan	G02657AK
 GGM.000094	ReducingEnd	true
+GGM.000094	PMID	19756298
+GGM.000094	PMID	6296843
+GGM.000094	PMID	6542067
+GGM.000094	Keyword	Glycolipid
+GGM.000094	Keyword	Disialylated ganglioside
 GGM.000095	Collection	GGM
 GGM.000095	Accession	000095
 GGM.000095	PreferredName	GM2
 GGM.000095	Aglycon	Cer
+GGM.000095	Alignment	Whole-Glycan
 GGM.000095	MotifGlyTouCan	G79389NT
 GGM.000095	ReducingEnd	true
+GGM.000095	PMID	19756298
+GGM.000095	PMID	6214725
+GGM.000095	Keyword	Glycolipid
+GGM.000095	Keyword	Monosialylated ganglioside
 GGM.000096	Collection	GGM
 GGM.000096	Accession	000096
 GGM.000096	PreferredName	N-Glycolyl-GM2
 GGM.000096	Aglycon	Cer
+GGM.000096	Alignment	Whole-Glycan
 GGM.000096	MotifGlyTouCan	G56478LD
 GGM.000096	ReducingEnd	true
+GGM.000096	PMID	19756298
+GGM.000096	PMID	6863318
+GGM.000096	Keyword	Glycolipid
 GGM.000097	Collection	GGM
 GGM.000097	Accession	000097
 GGM.000097	PreferredName	Sialopentaosylceramide
 GGM.000097	Aglycon	Cer
+GGM.000097	Alignment	Whole-Glycan
 GGM.000097	MotifGlyTouCan	G13224CR
 GGM.000097	ReducingEnd	true
+GGM.000097	PMID	19756298
+GGM.000097	PMID	2139874
+GGM.000097	Keyword	Glycolipid
 GGM.000098	Collection	GGM
 GGM.000098	Accession	000098
 GGM.000098	PreferredName	GM1
 GGM.000098	Aglycon	Cer
+GGM.000098	Alignment	Whole-Glycan
 GGM.000098	MotifGlyTouCan	G48558GR
 GGM.000098	ReducingEnd	true
+GGM.000098	PMID	19756298
+GGM.000098	PMID	6778957
+GGM.000098	Keyword	Glycolipid
+GGM.000098	Keyword	Monosialylated ganglioside
 GGM.000099	Collection	GGM
 GGM.000099	Accession	000099
 GGM.000099	PreferredName	Asialo-GM1
+GGM.000099	AlternativeName	Gangliotetraosylceramide
 GGM.000099	Aglycon	Cer
+GGM.000099	Alignment	Whole-Glycan
 GGM.000099	MotifGlyTouCan	G21856LC
 GGM.000099	ReducingEnd	true
+GGM.000099	PMID	19756298
+GGM.000099	PMID	6175621
+GGM.000099	Keyword	Glycolipid
 GGM.000100	Collection	GGM
 GGM.000100	Accession	000100
 GGM.000100	PreferredName	cisGM1
 GGM.000100	AlternativeName	GM1b
 GGM.000100	Aglycon	Cer
+GGM.000100	Alignment	Whole-Glycan
 GGM.000100	MotifGlyTouCan	G03277YI
 GGM.000100	ReducingEnd	true
+GGM.000100	PMID	19756298
+GGM.000100	PMID	4060848
+GGM.000100	Keyword	Glycolipid
+GGM.000100	Keyword	Monosialylated ganglioside
 GGM.000101	Collection	GGM
 GGM.000101	Accession	000101
 GGM.000101	PreferredName	2-Fucosyl-GM1
 GGM.000101	Aglycon	Cer
+GGM.000101	Alignment	Whole-Glycan
 GGM.000101	MotifGlyTouCan	G91532KA
 GGM.000101	ReducingEnd	true
+GGM.000101	PMID	19756298
+GGM.000101	PMID	3654655
+GGM.000101	Keyword	Glycolipid
+GGM.000101	Keyword	Monosialylated ganglioside
 GGM.000102	Collection	GGM
 GGM.000102	Accession	000102
 GGM.000102	PreferredName	B-GM1
 GGM.000102	Aglycon	Cer
+GGM.000102	Alignment	Whole-Glycan
 GGM.000102	MotifGlyTouCan	G11485ID
 GGM.000102	ReducingEnd	true
+GGM.000102	PMID	19756298
+GGM.000102	PMID	3654655
+GGM.000102	Keyword	Glycolipid
+GGM.000102	Keyword	Monosialylated ganglioside
 GGM.000103	Collection	GGM
 GGM.000103	Accession	000103
 GGM.000103	PreferredName	2-Fucosyl-GD1b
 GGM.000103	Aglycon	Cer
+GGM.000103	Alignment	Whole-Glycan
 GGM.000103	MotifGlyTouCan	G93694YU
 GGM.000103	ReducingEnd	true
+GGM.000103	PMID	19756298
+GGM.000103	PMID	3654655
+GGM.000103	Keyword	Glycolipid
+GGM.000103	Keyword	Disialylated ganglioside
 GGM.000104	Collection	GGM
 GGM.000104	Accession	000104
 GGM.000104	PreferredName	B-GD1b
 GGM.000104	Aglycon	Cer
+GGM.000104	Alignment	Whole-Glycan
 GGM.000104	MotifGlyTouCan	G72557NR
 GGM.000104	ReducingEnd	true
+GGM.000104	PMID	19756298
+GGM.000104	PMID	3654655
+GGM.000104	Keyword	Glycolipid
+GGM.000104	Keyword	Disialylated ganglioside
 GGM.000105	Collection	GGM
 GGM.000105	Accession	000105
 GGM.000105	PreferredName	GD1
 GGM.000105	AlternativeName	GD1c
 GGM.000105	Aglycon	Cer
+GGM.000105	Alignment	Whole-Glycan
 GGM.000105	MotifGlyTouCan	G81983KG
 GGM.000105	ReducingEnd	true
+GGM.000105	PMID	19756298
+GGM.000105	PMID	7533156
+GGM.000105	Keyword	Glycolipid
 GGM.000106	Collection	GGM
 GGM.000106	Accession	000106
 GGM.000106	PreferredName	GD1a
+GGM.000106	AlternativeName	GD1alpha
 GGM.000106	Aglycon	Cer
+GGM.000106	Alignment	Whole-Glycan
 GGM.000106	MotifGlyTouCan	G45714BQ
 GGM.000106	ReducingEnd	true
+GGM.000106	PMID	19756298
+GGM.000106	PMID	7528216
+GGM.000106	Keyword	Glycolipid
 GGM.000107	Collection	GGM
 GGM.000107	Accession	000107
 GGM.000107	PreferredName	GD1a
 GGM.000107	Aglycon	Cer
+GGM.000107	Alignment	Whole-Glycan
 GGM.000107	MotifGlyTouCan	G46677TE
 GGM.000107	ReducingEnd	true
+GGM.000107	PMID	19756298
+GGM.000107	PMID	2795103
+GGM.000107	PMID	6376545
+GGM.000107	Keyword	Glycolipid
 GGM.000108	Collection	GGM
 GGM.000108	Accession	000108
 GGM.000108	PreferredName	GD1b
 GGM.000108	Aglycon	Cer
+GGM.000108	Alignment	Whole-Glycan
 GGM.000108	MotifGlyTouCan	G37184KW
 GGM.000108	ReducingEnd	true
+GGM.000108	PMID	19756298
+GGM.000108	PMID	4029397
+GGM.000108	Keyword	Glycolipid
 GGM.000109	Collection	GGM
 GGM.000109	Accession	000109
 GGM.000109	PreferredName	GT2
 GGM.000109	Aglycon	Cer
+GGM.000109	Alignment	Whole-Glycan
 GGM.000109	MotifGlyTouCan	G36476BA
 GGM.000109	ReducingEnd	true
+GGM.000109	PMID	19756298
+GGM.000109	PMID	2468656
+GGM.000109	Keyword	Glycolipid
+GGM.000109	Keyword	Trisialylated ganglioside
 GGM.000110	Collection	GGM
 GGM.000110	Accession	000110
 GGM.000110	PreferredName	GT1a
 GGM.000110	Aglycon	Cer
+GGM.000110	Alignment	Whole-Glycan
 GGM.000110	MotifGlyTouCan	G68110IF
 GGM.000110	ReducingEnd	true
+GGM.000110	PMID	19756298
+GGM.000110	PMID	1584231
+GGM.000110	Keyword	Glycolipid
+GGM.000110	Keyword	Trisialylated ganglioside
 GGM.000111	Collection	GGM
 GGM.000111	Accession	000111
 GGM.000111	PreferredName	GT1aa
+GGM.000111	AlternativeName	GT1aalpha
 GGM.000111	Aglycon	Cer
+GGM.000111	Alignment	Whole-Glycan
 GGM.000111	MotifGlyTouCan	G02149VR
 GGM.000111	ReducingEnd	true
+GGM.000111	PMID	19756298
+GGM.000111	PMID	8221098
+GGM.000111	Keyword	Glycolipid
+GGM.000111	Keyword	Trisialylated ganglioside
 GGM.000112	Collection	GGM
 GGM.000112	Accession	000112
 GGM.000112	PreferredName	GT1b
 GGM.000112	Aglycon	Cer
+GGM.000112	Alignment	Whole-Glycan
 GGM.000112	MotifGlyTouCan	G40183QN
 GGM.000112	ReducingEnd	true
+GGM.000112	PMID	19756298
+GGM.000112	PMID	2581939
+GGM.000112	Keyword	Glycolipid
+GGM.000112	Keyword	Trisialylated ganglioside
 GGM.000113	Collection	GGM
 GGM.000113	Accession	000113
 GGM.000113	PreferredName	GT1c
 GGM.000113	Aglycon	Cer
+GGM.000113	Alignment	Whole-Glycan
 GGM.000113	MotifGlyTouCan	G78818SP
 GGM.000113	ReducingEnd	true
+GGM.000113	PMID	19756298
+GGM.000113	PMID	2468656
+GGM.000113	Keyword	Glycolipid
+GGM.000113	Keyword	Trisialylated ganglioside
 GGM.000114	Collection	GGM
 GGM.000114	Accession	000114
 GGM.000114	PreferredName	GQ1aa
+GGM.000114	AlternativeName	GQ1aalpha
 GGM.000114	Aglycon	Cer
+GGM.000114	Alignment	Whole-Glycan
 GGM.000114	MotifGlyTouCan	G90598GO
 GGM.000114	ReducingEnd	true
+GGM.000114	PMID	19756298
+GGM.000114	PMID	10931205
+GGM.000114	Keyword	Glycolipid
+GGM.000114	Keyword	Tetrasialylated ganglioside
 GGM.000115	Collection	GGM
 GGM.000115	Accession	000115
 GGM.000115	PreferredName	GQ1b
 GGM.000115	Aglycon	Cer
+GGM.000115	Alignment	Whole-Glycan
 GGM.000115	MotifGlyTouCan	G18625KA
 GGM.000115	ReducingEnd	true
+GGM.000115	PMID	19756298
+GGM.000115	PMID	2299350
+GGM.000115	PMID	11266684
+GGM.000115	Keyword	Glycolipid
+GGM.000115	Keyword	Tetrasialylated ganglioside
 GGM.000116	Collection	GGM
 GGM.000116	Accession	000116
 GGM.000116	PreferredName	GQ1ba
+GGM.000116	AlternativeName	GQ1balpha
 GGM.000116	Aglycon	Cer
+GGM.000116	Alignment	Whole-Glycan
 GGM.000116	MotifGlyTouCan	G54733XO
 GGM.000116	ReducingEnd	true
+GGM.000116	PMID	19756298
+GGM.000116	PMID	8221098
+GGM.000116	PMID	10931205
+GGM.000116	Keyword	Glycolipid
+GGM.000116	Keyword	Tetrasialylated ganglioside
 GGM.000117	Collection	GGM
 GGM.000117	Accession	000117
 GGM.000117	PreferredName	GQ1c
 GGM.000117	Aglycon	Cer
+GGM.000117	Alignment	Whole-Glycan
 GGM.000117	MotifGlyTouCan	G99524KA
 GGM.000117	ReducingEnd	true
+GGM.000117	PMID	19756298
+GGM.000117	PMID	6640289
+GGM.000117	Keyword	Glycolipid
+GGM.000117	Keyword	Tetrasialylated ganglioside
 GGM.000118	Collection	GGM
 GGM.000118	Accession	000118
 GGM.000118	PreferredName	GP1c
 GGM.000118	Aglycon	Cer
+GGM.000118	Alignment	Whole-Glycan
 GGM.000118	MotifGlyTouCan	G93805MV
 GGM.000118	ReducingEnd	true
+GGM.000118	PMID	19756298
+GGM.000118	PMID	2468656
+GGM.000118	Keyword	Glycolipid
+GGM.000118	Keyword	Pentasialylated ganglioside
 GGM.000119	Collection	GGM
 GGM.000119	Accession	000119
 GGM.000119	PreferredName	GP1ca
+GGM.000119	AlternativeName	GP1calpha
 GGM.000119	Aglycon	Cer
+GGM.000119	Alignment	Whole-Glycan
 GGM.000119	MotifGlyTouCan	G00552RX
 GGM.000119	ReducingEnd	true
+GGM.000119	PMID	19756298
+GGM.000119	PMID	10931205
+GGM.000119	Keyword	Glycolipid
+GGM.000119	Keyword	Pentasialylated ganglioside
 GGM.000120	Collection	GGM
 GGM.000120	Accession	000120
-GGM.000120	PreferredName	GH1cav
+GGM.000120	PreferredName	GH1ca
+GGM.000120	AlternativeName	GH1calpha
 GGM.000120	Aglycon	Cer
+GGM.000120	Alignment	Whole-Glycan
 GGM.000120	MotifGlyTouCan	G14091MR
 GGM.000120	ReducingEnd	true
+GGM.000120	PMID	19756298
+GGM.000120	PMID	10931205
+GGM.000120	Keyword	Glycolipid
+GGM.000120	Keyword	Hexasialylated ganglioside
 GGM.000121	Collection	GGM
 GGM.000121	Accession	000121
 GGM.000121	PreferredName	Mono-fucosyl LN5
+GGM.000121	AlternativeName	Mono-fucosyl LN_5
 GGM.000121	Aglycon	Cer
+GGM.000121	Alignment	Whole-Glycan
 GGM.000121	MotifGlyTouCan	G64227KZ
 GGM.000121	ReducingEnd	true
+GGM.000121	PMID	19756298
+GGM.000121	PMID	3417685
+GGM.000121	Keyword	LacNAc
+GGM.000121	Keyword	N-acetyllactosamine
+GGM.000121	Keyword	Glycolipid
 GGM.000122	Collection	GGM
 GGM.000122	Accession	000122
 GGM.000122	PreferredName	Mono-fucosyl LN3
+GGM.000122	AlternativeName	Mono-fucosyl LN_3
 GGM.000122	Aglycon	Cer
+GGM.000122	Alignment	Whole-Glycan
 GGM.000122	MotifGlyTouCan	G65223RT
 GGM.000122	ReducingEnd	true
+GGM.000122	PMID	19756298
+GGM.000122	PMID	2554809
+GGM.000122	Keyword	LacNAc
+GGM.000122	Keyword	N-acetyllactosamine
+GGM.000122	Keyword	Glycolipid
