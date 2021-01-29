@@ -1,0 +1,10 @@
+PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann1 glycandata:property "GlycoTree" .
+  ?ann1 glycandata:type "CrossReference" .
+  ?ann1 glycandata:hasglycan ?glycan
+}
+ORDER BY ?accession
