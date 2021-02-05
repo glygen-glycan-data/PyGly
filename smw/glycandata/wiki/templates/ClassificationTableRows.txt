@@ -1,0 +1,9 @@
+<includeonly>
+|- style="vertical-align: top;"
+! style="width: 200px;" | {{{1}}}
+| {{#arraymap:{{{2}}}|;|xxx|xxx|,&thinsp;}} 
+| style="width: 150px;" | {{#if:{{{4}}}|{{#switch:{{{3}}}
+|GlycoMotif={{{3}}}:<span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/{{{4}}} {{{4}}}]</span>
+|Subsumption={{{3}}}:<span class="plainlinks">[[{{{4}}}]]</span>
+|{{{3}}}:{{{4}}}}}|{{{3}}}}}
+</includeonly>

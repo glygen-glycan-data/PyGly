@@ -1,0 +1,1 @@
+<includeonly><span class="plainlinks">{{#ask:{{{1}}}|?glycandata:accession|mainlabel=-|format=template|template=ImageTableRows|introtemplate=ImageTableIntro|outrotemplate=ImageTableOutro|limit=0|searchlabel={{#ask: {{{1}}} |format=count}}}}</span></includeonly>

@@ -1,0 +1,19 @@
+<includeonly>{{#ask:
+[[Category:Annotation]]
+[[glycandata:hasglycan::{{PAGENAME}}]]
+[[glycandata:type::{{{2}}}]]
+[[glycandata:property::GlycanType||GlycanSubtype]]
+|?glycandata:property=Property
+|?glycandata:value=Value
+|?glycandata:source=Source
+|?glycandata:sourceid=SourceID
+|mainlabel=-
+|sort=glycandata:source, glycandata:property
+|intro= <h2>{{{1}}}</h2>
+|format=template
+|template=ClassificationTableRows
+|introtemplate=AnnotationTableIntro
+|outrotemplate=AnnotationTableOutro
+|valuesep=;
+|sep=
+}}</includeonly>

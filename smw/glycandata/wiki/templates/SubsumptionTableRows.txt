@@ -1,6 +1,10 @@
 <includeonly>
 |- style="vertical-align: top;"
 ! style="width: 200px;" | {{{1}}}
-| {{#ifeq:{{{1}}}|Level|{{{2}}}|{{#arraymap:{{{2}}}|;|xxx|[[xxx]]|,&thinsp;}}}}
+| {{#switch:{{{1}}}
+|Level={{{2}}}
+|MissingScore={{{2}}}
+|{{#arraymap:{{{2}}}|;|xxx|[[xxx]]|,&thinsp;}}
+}}
 | style="width: 150px;" | {{{3}}}
 </includeonly>

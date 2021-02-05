@@ -10,7 +10,9 @@
 |UniCarbKB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.unicarbkb.org/structure/xxx xxx]</span>|,&thinsp;}}
 |GLYCOSCIENCES.de={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=xxx xxx]</span>|,&thinsp;}}
 |Carbbank(CCSB)={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.genome.jp/dbget-bin/www_bget?carbbank+xxx xxx]</span>|,&thinsp;}}
-|GlyGen={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://glygen.org/glycan_detail.html?glytoucan_ac=xxx xxx]</span>|,&thinsp;}}
+|GlyGen={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.glygen.org/glycan/xxx xxx]</span>|,&thinsp;}}
+|GNOme={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://purl.obolibrary.org/obo/GNO_xxx xxx]</span>|,&thinsp;}}
+|GlycoTree={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glygen.ccrc.uga.edu/sandbox/explore.html?xxx xxx]</span>|,&thinsp;}}
 |MonosaccharideDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.monosaccharidedb.org/display_monosaccharide.action?id=xxx xxx]</span>|,&thinsp;}}
 |PDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://www.rcsb.org/structure/xxx xxx]</span>|,&thinsp;}}
 |CFG={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.functionalglycomics.org/glycomics/CarbohydrateServlet?pageType=view&view=view&operationType=view&carbId=xxx&sideMenu=no xxx]</span>|,&thinsp;}}

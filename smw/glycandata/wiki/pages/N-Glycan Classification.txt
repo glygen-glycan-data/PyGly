@@ -1,0 +1,34 @@
+
+N-glycan classification based on: <span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/N-glycan_classification GlycoMotif N-Glycan Classification motifs]</span>.
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | N-linked complex
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked complex}} 
+|-
+! style="text-align: left;" | N-linked hybrid
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked hybrid}} 
+|-
+! style="text-align: left;" | N-linked high mannose
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked high mannose}} 
+|-
+! style="text-align: left;" | N-linked paucimannose
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked paucimannose}} 
+|-
+! style="text-align: left;" | N-linked truncated
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked truncated}} 
+|-
+! style="text-align: left;" | N-linked bisected
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked bisected}} 
+|-
+! style="text-align: left;" | N-linked core-fucosylated
+| {{CountPropertyValueImageLink|GlycanSubtype|N-linked core-fucosylated}} 
+|-
+! style="text-align: left;" | N-linked, no subtype
+| {{CountPropertyValueImageLink4|GlycanType|N-linked|GlycanNLinkedSubtypeCount|0}} 
+|-
+! style="text-align: left;" | N-linked, multiple subtypes
+| {{CountPropertyValueImageLink5|GlycanType|N-linked|GlycanNLinkedSubtypeCount|2}} 
+|-
+! style="text-align: left;" | All N-linked
+| {{CountPropertyValueImageLink|GlycanType|N-linked}} 
+|}

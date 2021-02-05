@@ -17,6 +17,38 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 |}
 
+== Motifs == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Strict Motif Alignment
+| {{CountPropertyValueLink|StrictMotif|+}} 
+|-
+! style="width: 200px;" | Non-Strict Motif Alignment
+| {{CountPropertyValueLink|Motif|+}} 
+|-
+! style="width: 200px;" | Strict Classif. Alignment
+| {{CountPropertyValueLink|StrictClassMotif|+}} 
+|-
+! style="width: 200px;" | Non-Strict Classif. Alignment
+| {{CountPropertyValueLink|ClassMotif|+}} 
+|-
+|}
+
+== Classification ==
+{| class="wikitable" style="text-align: right;"
+|-
+! style="width: 200px;" | [[N-Glycan Classification|N-linked]] 
+| {{CountPropertyValueImageLink|GlycanType|N-linked}} 
+|-
+! style="width: 200px;" | [[O-Glycan Classification|O-linked]] 
+| {{CountPropertyValueImageLink|GlycanType|O-linked}} 
+|-
+! style="width: 200px;" | [[Glycosphingolipid Classification|Glycosphingolipid]] 
+| {{CountPropertyValueImageLink|GlycanType|Glycosphingolipid}} 
+|-
+! style="width: 200px;" | [[Other Classification|Other]] 
+| {{CountPropertyValueImageLink|GlycanTypeCount|0}} 
+|}
+
 == Molecular Weight == 
 {| class="wikitable" style="text-align: right;"
 ! style="width: 200px;" | Underivitized
@@ -46,6 +78,12 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 ! style="width: 200px;" | GlyGen
 | {{CountPropertyValueLink|GlyGen|+}} 
 |-
+! style="width: 200px;" | GNOme
+| {{CountPropertyValueLink|GNOme|+}} 
+|-
+! style="width: 200px;" | GlycoTree
+| {{CountPropertyValueLink|GlycoTree|+}} 
+|-
 ! style="width: 200px;" | KEGG
 | {{CountPropertyValueLink|KEGG|+}} 
 |-
@@ -68,6 +106,9 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 ! style="width: 200px;" | Saccharide 
 | {{CountPropertyValueLink|Level|Saccharide}} 
 |-
+! style="width: 200px;" | Fully Determined
+| {{CountPropertyValueLink|MissingScore|0}} 
+|-
 |}
 
 == Glycan Structure ==
@@ -78,7 +119,7 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 ! style="width: 200px;" | Undetermined Topology
 | {{CountPropertyValueLink|UndeterminedTopology|true}} 
 |-
-! style="width: 200px;" | Fully Determined
+! style="width: 200px;" | Fully Determined*
 | {{CountPropertyValueLink|FullyDetermined|true}} 
 |-
 |}

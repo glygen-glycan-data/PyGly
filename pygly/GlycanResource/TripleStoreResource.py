@@ -143,6 +143,15 @@ class TripleStoreResource(GlycanResource):
             seen.add((subj,pred,obj))
             yield tuple(map(str,(subj,pred,obj)))
 
+    def attach_methods(self,obj):
+        for methname in obj.export:
+	    def _wrapper(methname):
+	        meth = getattr(obj,methname)
+	        def _objmethod(self,*args,**kwargs):
+	            return meth(*args,**kwargs)
+	        return _objmethod
+	    self.set_method(methname,_wrapper(methname))
+
     def set_method(self,name,func):
         setattr(self.__class__, name, func)
         func.__name__ = str(name)

@@ -1,0 +1,63 @@
+__NOEDITSECTION__
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px; text-text-align: center;" | Any type 	
+| {{CountPropertyValueImageLink|GlycanType|+}}
+|-
+! style="width: 200px; text-align: center;" | Multiple types 	
+| {{CountPropertyValueImageLink5|GlycanType|+|GlycanTypeCount|2}}
+|-
+! style="width: 200px; text-align: center;" | No type
+| {{CountPropertyValueImageLink|GlycanTypeCount|0}}
+|}
+
+== Reducing End ==
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px; text-align: center;" | GlcNAc 	
+| {{CountPropertyValueImageLink|ReducingEnd|GlcNAc}}
+|-
+! style="width: 200px; text-align: center;" | Glc
+| {{CountPropertyValueImageLink|ReducingEnd|Glc}}
+|-
+! style="width: 200px; text-align: center;" | GlcA
+| {{CountPropertyValueImageLink|ReducingEnd|GlcA}}
+|-
+! style="width: 200px; text-align: center;" | GlcN
+| {{CountPropertyValueImageLink|ReducingEnd|GlcN}}
+|-
+! style="width: 200px; text-align: center;" | GalNAc 	
+| {{CountPropertyValueImageLink|ReducingEnd|GalNAc}}
+|-
+! style="width: 200px; text-align: center;" | Gal 	
+| {{CountPropertyValueImageLink|ReducingEnd|Gal}}
+|-
+! style="width: 200px; text-align: center;" | GalA
+| {{CountPropertyValueImageLink|ReducingEnd|GalA}}
+|-
+! style="width: 200px; text-align: center;" | GalN
+| {{CountPropertyValueImageLink|ReducingEnd|GalN}}
+|-
+! style="width: 200px; text-align: center;" | ManNAc
+| {{CountPropertyValueImageLink|ReducingEnd|ManNAc}}
+|-
+! style="width: 200px; text-align: center;" | Man
+| {{CountPropertyValueImageLink|ReducingEnd|Man}}
+|-
+! style="width: 200px; text-align: center;" | ManA
+| {{CountPropertyValueImageLink|ReducingEnd|ManA}}
+|-
+! style="width: 200px; text-align: center;" | ManN
+| {{CountPropertyValueImageLink|ReducingEnd|ManN}}
+|-
+! style="width: 200px; text-align: center;" | Fuc
+| {{CountPropertyValueImageLink|ReducingEnd|Fuc}}
+|-
+! style="width: 200px; text-align: center;" | NeuAc
+| {{CountPropertyValueImageLink|ReducingEnd|NeuAc}}
+|-
+! style="width: 200px; text-align: center;" | NeuGc
+| {{CountPropertyValueImageLink|ReducingEnd|NeuGc}}
+|-
+! style="width: 200px; text-align: center;" | Xyl
+| {{CountPropertyValueImageLink|ReducingEnd|Xyl}}
+|-
+|}

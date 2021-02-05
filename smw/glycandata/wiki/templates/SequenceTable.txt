@@ -1,10 +1,11 @@
 <includeonly>{{#ask:
 [[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
+[[glycandata:property::!SequenceHash]]
 [[glycandata:type::{{{2}}}]]
 |?glycandata:property=Property
 |?glycandata:source=Source
-|sort=glycandata:source, glycandata:property
+|sort=glycandata:property, glycandata:source
 |intro= <h2>{{{1}}}</h2>
 |format=template
 |template=SequenceTableRows

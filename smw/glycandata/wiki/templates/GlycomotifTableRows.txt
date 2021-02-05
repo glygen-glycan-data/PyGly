@@ -1,6 +1,6 @@
 <includeonly>
 |- style="vertical-align: top;"
 ! style="width: 200px;" | {{{1}}}
-| {{#ifeq:{{{1}}}|NamedMotif|{{#arraymap:{{{2}}}|;|xxx|xxx|<br/>}}|{{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/glycomotif/GM.xxx xxx]</span>|,&thinsp;}}}}
+| {{#ifeq:{{{1}}}|NamedMotif|{{#arraymap:{{{2}}}|;|xxx|xxx|<br/>}}|{{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/xxx xxx]</span>|,&thinsp;}}}}
 | style="width: 150px;" | {{{3}}}
 </includeonly>

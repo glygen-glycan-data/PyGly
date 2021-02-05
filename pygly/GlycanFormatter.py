@@ -1369,7 +1369,7 @@ class WURCS20Format(GlycanFormatter):
                     parentpos  = pos1
                     childmono  = mono[ind2]
                     childpos   = pos2
-                elif pos1 in (1,) and pos2 not in (1,2,None):
+                elif pos1 in (1,None) and pos2 not in (1,2,None):
                     # "Reversed" link?
                     parentmono = mono[ind2]
                     parentpos  = pos2

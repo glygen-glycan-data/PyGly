@@ -1197,7 +1197,7 @@ class SubsumptionGraph(GNOmeAPI):
         return s
 
     def get_missing_rank(self, accession):
-        return self.allmissingrank[accession]
+        return self.allmissingrank.get(accession)
 
     def regexget(self, p, s):
         searchres = list(p.finditer(s))

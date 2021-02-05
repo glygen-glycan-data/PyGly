@@ -1,9 +1,11 @@
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 from pkg_resources import resource_stream
 try:
-    from configparser import SafeConfigParser
+    from configparser import ConfigParser, SafeConfigParser
 except ImportError:
-    from ConfigParser import SafeConfigParser
+    from ConfigParser import ConfigParser, SafeConfigParser
 import os.path, sys
 
 try:

@@ -7,6 +7,8 @@ sys.path.append(os.path.dirname(os.path.realpath(os.path.join(os.path.dirname(__
 from pygly.GlycanResource import *
 
 def tostr(s):
+    if isinstance(s,basestring):
+	s = s.replace(u'\u2013','-')
     try:
 	return str(s)
     except ValueError:

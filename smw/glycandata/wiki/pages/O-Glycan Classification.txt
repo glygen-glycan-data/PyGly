@@ -1,0 +1,40 @@
+
+O-glycan classification based on: <span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/O-glycan_classification GlycoMotif O-Glycan Classification motifs]</span>.
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | O-linked core 1
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 1}} 
+|-
+! style="text-align: left;" | O-linked core 2
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 2}} 
+|-
+! style="text-align: left;" | O-linked core 3
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 3}} 
+|-
+! style="text-align: left;" | O-linked core 4
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 4}} 
+|-
+! style="text-align: left;" | O-linked core 5
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 5}} 
+|-
+! style="text-align: left;" | O-linked core 6
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 6}} 
+|-
+! style="text-align: left;" | O-linked core 7
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 7}} 
+|-
+! style="text-align: left;" | O-linked O-mannose
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked O-mannose}} 
+|-
+! style="text-align: left;" | O-linked O-fucose
+| {{CountPropertyValueImageLink|GlycanSubtype|O-linked O-fucose}} 
+|-
+! style="text-align: left;" | O-linked, no subtype
+| {{CountPropertyValueImageLink4|GlycanType|O-linked|GlycanOLinkedSubtypeCount|0}} 
+|-
+! style="text-align: left;" | O-linked, multiple subtypes
+| {{CountPropertyValueImageLink5|GlycanType|O-linked|GlycanOLinkedSubtypeCount|2}} 
+|-
+! style="text-align: left;" | All O-linked
+| {{CountPropertyValueImageLink|GlycanType|O-linked}} 
+|}

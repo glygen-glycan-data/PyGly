@@ -1,5 +1,5 @@
 
-import os, os.path, sys, re, inspect, copy
+import os, os.path, sys, re, inspect, copy, traceback
 import ConfigParser
 import mwclient 
 
@@ -390,7 +390,7 @@ class SMWSite(object):
 	    page = self.site.pages[page]
 	if page.exists:
 	    page.purge()
-        dummy = page.text(expandtemplates=True, cache=False)
+            dummy = self.site.get('parse',page=page.name,prop="text")
 
 class SMWClass(object):
 

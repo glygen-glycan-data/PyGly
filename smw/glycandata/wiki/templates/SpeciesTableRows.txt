@@ -6,6 +6,7 @@
 |Mouse Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
 |Rat Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
 |HCV Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
+|SARS Evidence={{#arraymap:{{{2}}}|;|xxx|{{substoflink|xxx}}|<br/>}}
 |{{{2}}}}}
 | style="width: 150px;" | {{{3}}}
 </includeonly>

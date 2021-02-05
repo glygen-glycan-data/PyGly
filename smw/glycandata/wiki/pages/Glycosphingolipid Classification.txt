@@ -1,0 +1,40 @@
+
+Glycosphingolipid classification based on: <span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/Glycosphingolipid_classification GlycoMotif Glycosphingolipid Classification motifs]</span>.
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Glycosphingolipid isoglobo series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid isoglobo series}} 
+|-
+! style="text-align: left;" | Glycosphingolipid muco series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid muco series}}
+|-
+! style="text-align: left;" | Glycosphingolipid arthro series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid arthro series}}
+|-
+! style="text-align: left;" | Glycosphingolipid mollu series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid mollu series}}
+|-
+! style="text-align: left;" | Glycosphingolipid gala series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid gala series}}
+|-
+! style="text-align: left;" | Glycosphingolipid lacto series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid lacto series}}
+|-
+! style="text-align: left;" | Glycosphingolipid neo-lacto series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid neo-lacto series}}
+|-
+! style="text-align: left;" | Glycosphingolipid ganglio series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid ganglio series}}
+|-
+! style="text-align: left;" | Glycosphingolipid globo series
+| {{CountPropertyValueImageLink|GlycanSubtype|Glycosphingolipid globo series}}
+|-
+! style="text-align: left;" | Glycosphingolipid, no subtype
+| {{CountPropertyValueImageLink4|GlycanType|Glycosphingolipid|GlycanGlycosphingolipidSubtypeCount|0}} 
+|-
+! style="text-align: left;" | Glycosphingolipid, multiple subtypes
+| {{CountPropertyValueImageLink5|GlycanType|Glycosphingolipid|GlycanGlycosphingolipidSubtypeCount|2}} 
+|-
+! style="text-align: left;" | All Glycosphingolipid
+| {{CountPropertyValueImageLink|GlycanType|Glycosphingolipid}} 
+|}

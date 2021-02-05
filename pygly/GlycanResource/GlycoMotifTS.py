@@ -24,17 +24,25 @@ class GlycoMotifTS(TripleStoreResource):
                 self.modify_method(k,prefetcher(usecache=False))
 
     def getmotif(self,collection,accession):
-        return [ "%s.%s"%(row['MotifCollection'],row['MotifAccession']) for row in self.query_motifs(collection=collection,accession=accession) ]
+        return [ ("%s.%s"%(collection,row['MotifAccession']),row['StrictAlignment']=='true') for row in self.query_motifs(collection=collection,accession=accession) ]
 
     def allmotifaligns(self,collection):
         for row in self.query_motifs(collection=collection):
-            yield row['accession'],"%s.%s"%(row['MotifCollection'],row['MotifAccession'])
+            yield row['accession'],"%s.%s"%(collection,row['MotifAccession']),row['StrictAlignment']=='true'
 
     def allmotifs(self,collection):
         for row in self.query_allmotif(collection=collection):
 	    names = []
-	    if row.get('preferred_name'):
-		names.append(row.get('preferred_name'))
+	    if row.get('prefname'):
+		names.append(row.get('prefname'))
 	    if row.get('name'):
-		names.extend(row.get('name').split('//'))
-            yield "%s.%s"%(collection,row['accession']),row['gtcacc'],row['redend'],row['aglycon'],names
+		for name in row.get('name').split('//'):
+		    if name not in names:
+			names.append(name)
+	    pmids = []
+	    if row.get('pmid'):
+		pmids = row.get('pmid').split('//')
+            keywords = []
+	    if row.get('keyword'):
+		keywords = row.get('keyword').split('//')
+            yield "%s.%s"%(collection,row['accession']),row['gtcacc'],row['alignment'],row['redend'],row['aglycon'],names,pmids,keywords

@@ -19,4 +19,5 @@ class GlycanImage(object):
 	    glycoct = self.gtc.glycoct(acc)
 	    if not glycoct:
 	        continue
+	    print glycoct
             self.imageWriter.writeImage(glycoct,acc+".png")

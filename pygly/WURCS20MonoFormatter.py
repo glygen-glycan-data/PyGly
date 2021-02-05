@@ -50,11 +50,11 @@ class WURCS20MonoFormat:
 
     def load(self):
         skelconfigfile = resource_stream(__name__, 'wurcs20_skeleton.ini')
-        self.skelconfig = ConfigParser.SafeConfigParser()
+        self.skelconfig = ConfigParser.ConfigParser()
         self.skelconfig.readfp(skelconfigfile)
 
         subsconfigfile = resource_stream(__name__, 'wurcs20_substituent.ini')
-        self.subsconfig = ConfigParser.SafeConfigParser()
+        self.subsconfig = ConfigParser.ConfigParser()
         self.subsconfig.readfp(subsconfigfile)
 
     def getsubst(self,sub_name):
