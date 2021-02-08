@@ -38,22 +38,15 @@ for acc in w.iterglycanid():
     if cat not in ("Direct","Subsumption"):
 	continue
 
-    # is itself, or has a descendant annotated as N-linked
-    descs = set([acc])
+    # Is N-linked by subsumption or glycomotif
     try:
-        descs.update(set(g.get_annotation_values(property="Descendant",type="Subsumption",source="GNOme")))
+        nlinked = True
+        for cls in g.get_annotation_values(property='GlycanType',type='Classification'):
+            if cls == 'N-linked':
+                nlinked = True
+                break
     except LookupError:
-	pass
-    nlinked = False
-    for desc in descs:
-	dg = w.get(desc)
-	try:
-	    type = dg.get_annotation_value(property="GlycanType",type="Classification",source="EdwardsLab")
-	    if type == 'N-linked':
-		nlinked = True
-	        break
-	except LookupError:
-	    continue
+        pass
 
     if not nlinked:
 	continue
@@ -65,6 +58,8 @@ for acc in w.iterglycanid():
 	continue
 
     mw -= h2o # account for attachment to the peptide...
+
+    # print dict(accession=acc,mw=mw,byonic=byonic)
 
     output.append(dict(accession=acc,mw=mw,byonic=byonic))
 
