@@ -578,7 +578,14 @@ if (document.getElementById("motif_align_para") != null){
 
 
 
+
 }
+
+
+
+
+
+
 
 
 
@@ -588,21 +595,30 @@ if (document.getElementById("motif_align_para") != null){
 if (document.getElementById("motif_match_real_time_para")){
 
     var motif_match_webservice_url = "https://edwardslab.bmcb.georgetown.edu/motifmatch/";
+    var glylookup_webservice_url = "https://edwardslab.bmcb.georgetown.edu/glylookup/";
     var image_url_prefix = "https://image.glycosmos.org/snfg/png/";
     var image_url_suffix = "";
-    // TODO glycomotif URL dynamic
-    var glycomotifhome = "https://edwardslab.bmcb.georgetown.edu/glycomotifdev/";
 
     var alignment_result = [];
 
-    var inputEle = document.getElementById("query_input");
-    inputEle.innerHTML = "<textarea id="query_sequence" style="width: 100%; max-width: 100%; height: 300px;">WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea>" +
-        "<a onclick="submit()">Try me!</a>";
+    var inputSectionEle = document.getElementById("motif_match_real_time_input");
+    var inputEle = document.getElementById("motif_match_real_time_para");
+
+    var resultSectionEle = document.getElementById("motif_rt_result");
+    var queryGlycanEle = document.getElementById("query_glycan");
+    var resultTableEle = document.getElementById("alignment_table");
+
+    var original_seq = "";
+
+
+    inputEle.innerHTML = "<textarea id=\"query_sequence\" style=\"width: 100%; max-width: 100%; height: 300px;\">WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea>" +
+        "<a onclick=\"submit()\">Try me!</a>";
 
 
     function submit(){
         var seq = document.getElementById("query_sequence").value;
         seq = seq.trim();
+        original_seq = seq;
 
         var collection = document.getElementById("motif_match_real_time_para").getAttribute("data-collection");
         if (collection == null){
@@ -619,6 +635,13 @@ if (document.getElementById("motif_match_real_time_para")){
             var jobid = d[0].id;
             retrieve(jobid);
         })
+
+        task = encodeURIComponent(JSON.stringify({"seq": seq}))
+        jQuery.getJSON(glylookup_webservice_url+ "submit?task=" + task, {}, function (d){
+            var jobid = d[0].id;
+            retrieve_image(jobid);
+        })
+
 
     }
 
@@ -638,6 +661,22 @@ if (document.getElementById("motif_match_real_time_para")){
         })
     }
 
+
+    function retrieve_image(jobid){
+        jQuery.getJSON(glylookup_webservice_url+ "retrieve?list_ids=" + encodeURIComponent(JSON.stringify([jobid])), {}, function (d){
+            var result = d[0];
+            var jobid = result.id
+
+            if (result.finished){
+                image_update(result.result)
+            }
+            else {
+                setTimeout(retrieve, 200, jobid);
+            }
+
+        })
+    }
+
     function update_result(r){
         // console.log(r.result);
 
@@ -649,7 +688,8 @@ if (document.getElementById("motif_match_real_time_para")){
             // collection, page name, gtcacc, name, type, strict;
             var key = [];
 
-            key.push(line[0]+"."+line[1]);
+            key.push(line[0]);
+            key.push(line[1]);
             key.push(line[2]);
             key.push(line[3]);
 
@@ -670,181 +710,99 @@ if (document.getElementById("motif_match_real_time_para")){
         }
 
         // alignment_result.push(newline)
+        console.log(alignment_result)
 
-
-        update_table(0, true);
+        update_table()
     }
 
     // motif accession, img+name, alignment type, loose, strict
 
+    function update_table(){
+        inputSectionEle.style.display = "none";
+        resultSectionEle.style.display = "inline";
 
 
+        var tableBodyEle = resultTableEle.getElementsByTagName("tbody")[0];
 
+        for (var i in tableBodyEle.childNodes){
+            var tr = tableBodyEle.childNodes[i];
+            var glycomotifacc, alignmentEle;
+            var deleteTr = true;
 
-
-
-
-
-
-    function rendering_table(n, asc){
-
-        var glycomotif_alignment_table_element = document.createElement("table");
-        glycomotif_alignment_table_element.className = "wikitable sortable jquery-tablesorter";
-        glycomotif_alignment_table_element.style.width = "100%";
-
-        var glycomotif_alignment_table_thead_element = document.createElement("thead");
-        var thread_tr_element = document.createElement("tr");
-
-        var glycomotif_alignment_table_header = ["GlycoMotif", "GlyTouCan", "Name", "Alignment Type"];
-        for (var i in glycomotif_alignment_table_header){
-
-            var th = document.createElement("th");
-            th.className = "headerSort";
-            th.tabIndex = 0;
-            th.setAttribute("role", "columnheader button")
-            th.title = "Sort ascending";
-
-            var arrow_direction = "none";
-            th.setAttribute("data-sort_index", i.toString());
-            th.setAttribute("data-sort_direction", "none");
-            if (n == i){
-                if (asc == true) {
-                    th.setAttribute("data-sort_direction", "asc");
-                    arrow_direction = "asc";
-                    th.className = "headerSort headerSortUp";
-                }
-                else if (asc == false){
-                    th.setAttribute("data-sort_direction", "desc");
-                    arrow_direction = "desc";
-                    th.className = "headerSort headerSortDown";
-                }
+            if (tr.tagName != "TR"){
+                continue
             }
 
-            th.onclick = function (){
-                var nx = this.getAttribute("data-sort_index");
-                nx = parseInt(nx);
+            var k = 0;
+            for (var j in tr.childNodes) {
+                var td = tr.childNodes[j];
 
-                var ascx = true;
-                if (this.getAttribute("data-sort_direction") == "asc"){
-                    ascx = false;
-                } else if (this.getAttribute("data-sort_direction") == "desc"){
-                    ascx = true;
+                if (td.tagName != "TD"){
+                    continue
+                }
+                k += 1;
+                if (k == 1){
+                    glycomotifacc = td.getElementsByTagName("a")[0].innerText;
                 }
 
-                for (var j = 0; j < glycomotif_alignment_table_header.length; j++){
-                    var ele = thread_tr_element.childNodes[j]
-                    ele.setAttribute("data-sort_direction", "none");
+                if (k == 5){
+                    alignmentEle = td.getElementsByTagName("a")[0];
                 }
 
-                if (ascx) {
-                    this.setAttribute("data-sort_direction", "asc");
-                }
-                else {
-                    this.setAttribute("data-sort_direction", "desc");
-                }
-
-
-                update_table(nx, ascx)
             }
 
-            th.innerText = glycomotif_alignment_table_header[i];  // + " " + arrow_direction;
-            thread_tr_element.appendChild(th);
+
+
+            // console.log(glycomotifacc);
+            // console.log(alignmentEle);
+
+            for (var l in alignment_result){
+                var alignment_result_row = alignment_result[l];
+
+                if (glycomotifacc != alignment_result_row[1]){
+                    continue
+                }
+
+                for (var m in alignment_result_row[4]){
+                    var at = alignment_result_row[4][m][0];
+                    var at_strict = alignment_result_row[4][m][1];
+
+                    if (at == alignmentEle.innerText){
+                        deleteTr = false;
+
+                        if (at_strict){
+                            alignmentEle.innerText += " (strict)";
+                        }
+                    }
+                }
+
+                // console.log(glycomotifacc, alignmentEle.innerText, alignment_result_row[4])
+            }
+
+            if (deleteTr){
+                tableBodyEle.removeChild(tr)
+            }
+
         }
 
-        glycomotif_alignment_table_thead_element.appendChild(thread_tr_element)
-        glycomotif_alignment_table_element.appendChild(glycomotif_alignment_table_thead_element);
+    }
 
-
-        var glycomotif_alignment_table_tbody_element = document.createElement("tbody");
-
-        var alignment_result_sorted = [];
-        alignment_result_sorted = alignment_result.sort(function (a, b){
-            var f = a[n] > b[n];
-            if (asc){
-                f = a[n] < b[n];
-            }
-
-            if (a[n] == b[n]){
-                return 0
-            }
-
-            if (f){
-                return -1
-            }
-            else {
-                return 1
-            }
-
-        })
-
-
-        for (var i in alignment_result_sorted){
-            // page name, gtcacc, name, type+strict;
-
-            var row = alignment_result_sorted[i];
-            var alignment_result_row = document.createElement("tr");
-
-            var td1 = document.createElement("td");
-            td1.style.textAlign = "center";
-            // td1.innerHTML = "<a href='https://glytoucan.org/Structures/Glycans/" + row[0] + "'>" + row[0] + "</a>";
-            td1.innerHTML = "<a href='"+glycomotifhome + row[0] + "'>" + row[0] + "</a>";
-
-            var td2 = document.createElement("td");
-            td2.style.textAlign = "center";
-            td2.innerHTML = "<a href='https://glytoucan.org/Structures/Glycans/" + row[1] + "'>" + row[1] + "</a>";
-
-
-            var td3 = document.createElement("td");
-            td3.style.textAlign = "center";
-            td3.innerHTML = "<div style='display: none'>"+row[2]+"</div><img src='" + image_url_prefix + row[1] + image_url_suffix + "'><br><p style=''>" + row[2].replaceAll("//", "<br>") + "</p>";
-
-
-            var td4 = document.createElement("td");
-            td4.style.textAlign = "center";
-            var d = {
-                "Core": "Glycan_Core_Alignment",
-                "Substructure": "Substructure_Alignment",
-                "Non-Reducing": "Nonreducing-End_Alignment",
-                "Whole": "Whole-Glycan_Alignment"
-            }
-
-            for (var i in row[3]){
-                var at = row[3][i][0];
-                var strict = row[3][i][1];
-                var strictstr = "";
-                if (strict){
-                    strictstr = " (strict)";
-                }
-
-                td4.innerHTML += "<a href='"+glycomotifhome + d[at] + "'>" +at+strictstr+ "</a>";
-                if (i+1 != row[3].length){
-                    td4.innerHTML += "<br>";
-                }
-            }
-
-
-            alignment_result_row.appendChild(td1);
-            alignment_result_row.appendChild(td2);
-            alignment_result_row.appendChild(td3);
-            alignment_result_row.appendChild(td4);
-
-            glycomotif_alignment_table_tbody_element.appendChild(alignment_result_row);
+    function image_update(accs){
+        var image_ele_str = "";
+        if (accs.length == 1){
+            image_ele_str = "<img src='"+image_url_prefix+accs[0]+image_url_suffix+"' style='display: block; margin-left: auto; margin-right: auto; '>";
+            image_ele_str += "<a href='https://glytoucan.org/Structures/Glycans/"+accs[0]+"' style='text-align: center; display: block;' target='_blank'>"+accs[0]+"</a>"
 
         }
-        glycomotif_alignment_table_element.appendChild(glycomotif_alignment_table_tbody_element);
 
+        var seq = "<p style=''>"+original_seq.replaceAll("\n", "<br>")+"</p>"
 
-        return glycomotif_alignment_table_element
+        queryGlycanEle.innerHTML = image_ele_str + seq;
     }
 
 
-    function update_table(n, asc){
-        var glycomotif_alignment_table_element = rendering_table(n, asc);
 
-        document.getElementById("motif_rt_result").innerHTML = "";
-        document.getElementById("motif_rt_result").appendChild(glycomotif_alignment_table_element);
 
-    }
 
 
 
