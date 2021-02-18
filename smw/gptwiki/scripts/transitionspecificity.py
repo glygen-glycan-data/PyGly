@@ -63,12 +63,14 @@ def gettemplist(i,tr):
     return l
 
 def specscore(x,N,n,M):
-    if lod(x,N,n,M) < 0:
-       # more specific than expected
-       sc = -10*math.log(fisher_exact_low(x,N,n,M),10)
+    # print(x,N,n,M,lod(x,N,n,M),fisher_exact_low(x,N,n,M),fisher_exact_high(x,N,n,M))
+    pvalue_floor = 1e-100
+    if n > 0 and lod(x,N,n,M) < 0:
+        # more specific than expected
+        sc = -10*math.log(max(pvalue_floor,fisher_exact_low(x,N,n,M)),10)
     else:
-       # less specific than expected
-       sc = 10*math.log(fisher_exact_high(x,N,n,M),10)
+        # less specific than expected
+        sc = 10*math.log(max(pvalue_floor,fisher_exact_high(x,N,n,M)),10)
     return sc
 
 trsfile = csv.DictReader(open('../data/alltransitions.tsv'),delimiter='\t')
@@ -146,6 +148,9 @@ for tr in alltrs:
 
     glycanlabelspec[(glycan,label)]['total'] = glycanlabelspec[(glycan,label)]['non-specificity'] + glycanlabelspec[(glycan,label)]['specificity']
     glycanlabelspec[(glycan,label)]['percentage'] = glycanlabelspec[(glycan,label)]['non-specificity']*100.00/glycanlabelspec[(glycan,label)]['total']
+
+# Set 13% as the standard for non-specificity
+nonspeccount = int(round(0.13*len(alltrs)))
 
 for label in labelspec:
     if labelspec[label]['total'] >= 10:
