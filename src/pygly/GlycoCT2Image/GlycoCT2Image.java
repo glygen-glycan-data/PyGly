@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.OutputStream;
@@ -138,7 +139,8 @@ public class GlycoCT2Image
 	public static void main(String[] args) throws Exception
 	{
 		// GlycanWorkspace -> BuilderWorkspace: different constructor
-		BuilderWorkspace t_gwb = new BuilderWorkspace(new GlycanRendererAWT());
+		GlycanRendererAWT t_grawt = new GlycanRendererAWT();
+		BuilderWorkspace t_gwb = new BuilderWorkspace(t_grawt);
 
 		GlycoCTCondensedParser parser = new GlycoCTCondensedParser(true);
 		WURCS2Parser wparser = new WURCS2Parser();
@@ -214,11 +216,25 @@ public class GlycoCT2Image
 			        //glycan = gparser.readGlycan(glycanstr, mo);
 			    }
 
-			    BufferedImage img = t_gwb.getGlycanRenderer().getImage(glycan, opaque, mass_opts, reducing_end, scale);
-                File outputfile = new File(outFile);
-                // TODO checking with svg
-                ImageIO.write(img, imagefmt, outputfile);
-				// SVGUtils.export(t_gwb.getGlycanRenderer(), outFile, new Union<Glycan>(glycan), mass_opts,reducing_end,scale,imagefmt);
+
+			    if (imagefmt.equalsIgnoreCase("png") || imagefmt.equalsIgnoreCase("jpg") || imagefmt.equalsIgnoreCase("jpeg")) {
+			        BufferedImage img = t_gwb.getGlycanRenderer().getImage(glycan, opaque, mass_opts, reducing_end, scale);
+                    File outputfile = new File(outFile);
+                    ImageIO.write(img, imagefmt, outputfile);
+			    }
+			    else if (imagefmt.equalsIgnoreCase("svg")) {
+
+                    String t_svg = SVGUtils.getVectorGraphics(t_grawt, new Union<Glycan>(glycan), mass_opts, reducing_end);
+                    // System.out.print(t_svg);
+
+                    FileWriter outputfilewriter = new FileWriter(outFile);
+                    outputfilewriter.write(t_svg);
+                    outputfilewriter.close();
+			    }
+			    else {
+			        throw new IllegalArgumentException("Image format " + imagefmt + " is not supported");
+			    }
+
 			}
 			catch (GlycoVisitorException ex) {
 				// pass...

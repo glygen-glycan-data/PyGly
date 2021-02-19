@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.FileInputStream;
@@ -169,7 +170,8 @@ public class GlycoCT2FragImages
     {
         BasicConfigurator.configure();
 	// LogUtils.setGraphicalReport(false);
-	BuilderWorkspace t_gwb = new BuilderWorkspace(new GlycanRendererAWT());
+	GlycanRendererAWT t_grawt = new GlycanRendererAWT();
+	BuilderWorkspace t_gwb = new BuilderWorkspace(t_grawt);
 
 	// Single cleavage B/Y ions only
 	Fragmenter fragger = new Fragmenter();
@@ -276,10 +278,23 @@ public class GlycoCT2FragImages
 		    continue;
         }
 
-        // SVGUtils.export(t_gwb.getGlycanRenderer(), outFile+'-'+name+'.'+imagefmt, new Union<Glycan>(fe.getFragment()), mass_opts,reducing_end,scale,imagefmt);
-	    BufferedImage img = t_gwb.getGlycanRenderer().getImage(glycan, opaque, mass_opts, reducing_end, scale);
-        File outputfile = new File(outFile+'-'+name+'.'+imagefmt);
-        ImageIO.write(img, imagefmt, outputfile);
+        if (imagefmt.equalsIgnoreCase("png") || imagefmt.equalsIgnoreCase("jpg") || imagefmt.equalsIgnoreCase("jpeg")) {
+            BufferedImage img = t_gwb.getGlycanRenderer().getImage(glycan, opaque, mass_opts, reducing_end, scale);
+            File outputfile = new File(outFile);
+            ImageIO.write(img, imagefmt, outputfile);
+        }
+        else if (imagefmt.equalsIgnoreCase("svg")) {
+
+            String t_svg = SVGUtils.getVectorGraphics(t_grawt, new Union<Glycan>(glycan), mass_opts, reducing_end);
+            // System.out.print(t_svg);
+
+            FileWriter outputfilewriter = new FileWriter(outFile);
+            outputfilewriter.write(t_svg);
+            outputfilewriter.close();
+        }
+        else {
+            throw new IllegalArgumentException("Image format " + imagefmt + " is not supported");
+        }
 
 		Glycan g = new Glycan(fe.getFragment().getRoot().firstChild(),true,mo);
 		String gct = fe.getFragment().toString();
