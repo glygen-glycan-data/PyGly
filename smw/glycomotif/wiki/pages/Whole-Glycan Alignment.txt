@@ -19,58 +19,58 @@ Currently, whole-glycan alignments are only used in the GlyGen motif collection.
 ! Motif !! Glycan !! Whole-Glycan Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000071 GGM.000071]
+{{Image|G57710SU}}
+<br>[[GGM.000071]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
-<br>[https://glytoucan.org/Structures/Glycans/G57710SU G57710SU]
+{{Image|G57710SU}}
+<br>{{GlyTouCanLink|G57710SU}}
 |
 Yes, strict alignment. Motif and glycan are identical.
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56133NW">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000074 GGM.000074]
+{{Image|G56133NW}}
+<br>[[GGM.000074]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56133NW">
-<br>[https://glytoucan.org/Structures/Glycans/G56133NW G56133NW]
+{{Image|G56133NW}}
+<br>{{GlyTouCanLink|G56133NW}}
 |
 Yes, strict alignment. Motif and glycan are identical.
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56133NW">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000074 GGM.000074]
+{{Image|G56133NW}}
+<br>[[GGM.000074]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G30925QW">
-<br>[https://glytoucan.org/Structures/Glycans/G30925QW G30925QW]
+{{Image|G30925QW}}
+<br>{{GlyTouCanLink|G30925QW}}
 |
 Yes, strict alignment. Motif does not specify reducing-end anomeric configuration, so any glycan reducing-end anomeric configuration is permitted. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000071 GGM.000071]
+{{Image|G57710SU}}
+<br>[[GGM.000071]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G19926LY">
-<br>[https://glytoucan.org/Structures/Glycans/G19926LY G19926LY]
+{{Image|G19926LY}}
+<br>{{GlyTouCanLink|G19926LY}}
 |
 Yes, non-strict alignment. Glycan reducing end anomeric configuration has non-empty intersection with motif reducing end anomeric configuration. 
 |-
 ! Motif !! Glycan !! Whole-Glycan Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000071 GGM.000071]
+{{Image|G57710SU}}
+<br>[[GGM.000071]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G76657BK">
-<br>[https://glytoucan.org/Structures/Glycans/G76657BK G76657BK]
+{{Image|G76657BK}}
+<br>{{GlyTouCanLink|G76657BK}}
 |
 No. Glycan has additional monosaccharides. The motif does have a strict glycan core and a strict substructure alignment to the glycan. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G57710SU">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000071 GGM.000071]
+{{Image|G57710SU}}
+<br>[[GGM.000071]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G30925QW">
-<br>[https://glytoucan.org/Structures/Glycans/G30925QW G30925QW]
+{{Image|G30925QW}}
+<br>{{GlyTouCanLink|G30925QW}}
 |
 No. Glycan has an additional sulfate substituent. The motif does have a non-strict glycan core, a non-strict nonreducing-end, and a non-strict substructure alignment to the glycan. 
 |-

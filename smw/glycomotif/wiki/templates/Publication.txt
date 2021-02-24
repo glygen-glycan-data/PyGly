@@ -55,6 +55,10 @@ Edit the page to see the template text.
 |glycomotif:pages={{{pages|}}}
 |glycomotif:doi={{{doi|}}}
 |glycomotif:pmid={{{pmid|}}}
+|glycomotif:instancecount={{#ask:[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[glycomotif:reference::{{PAGENAME}}]]
+|format=count}}
 }}{{#arraymap:{{{citedby|}}}|,|x|{{#set:|glycomotif:citedby=x}}}}
 [[Category:Publication]]
 </includeonly>

@@ -2,7 +2,7 @@ __NOEDITSECTION__
 <div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 All [http://glycomotif.glyomics.org GlycoMotif] data is available from the SPARQL endpoint: 
 
-<code>https<span>:</span>//edwardslab.bmcb.georgetown.edu/sparql/{{PREFIX}}/query</code>.
+&nbsp;&nbsp;<code>https<span>:</span>//sparql.glyomics.org/{{PREFIX}}/query</code>
 
 == Single Motif ==
 

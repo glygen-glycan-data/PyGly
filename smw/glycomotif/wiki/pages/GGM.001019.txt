@@ -1,12 +1,9 @@
 {{Motif
-|prefname=O-Mannose
-|name=O-Mannose
-|keyword=O-glycan classification
-|aglycon=Ser/Thr
-|redend=true
-|alignment=Core
 |accession=001019
+|aglycon=Ser/Thr
+|alignment=Core
 |collection=GGM
+|displayhgv=false
 |glycoct=RES
 1b:x-dman-HEX-x:x
 2b:b-dglc-HEX-1:5
@@ -17,6 +14,10 @@ LIN
 2:2d(2+1)3n
 3:2o(4+1)4d
 |glytoucan=G23707SD
+|keyword=O-glycan classification
+|name=O-Mannose
+|prefname=O-Mannose
+|redend=true
 |sameas=GM.G23707SD
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}u1122h{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3/a2-b1_b4-c1
 }}

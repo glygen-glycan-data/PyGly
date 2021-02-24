@@ -19,40 +19,40 @@ Currently, nonreducing-end alignments are only used in the GlyGen motif collecti
 ! Motif !! Glycan !! Nonreducing-End Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G10203DW">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000034 GGM.000034]
+{{Image|G10203DW}}
+<br>[[GGM.000034]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00231WL">
-<br>[https://glytoucan.org/Structures/Glycans/G00231WL G00231WL]
+{{Image|G00231WL}}
+<br>{{GlyTouCanLink|G00231WL}}
 |
 Yes, strict alignment. Motif aligns to three of the glycan arms, motif nonreducing-end monosaccharide NeuAc aligns to glycan nonreducing-end monosaccharide. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G10203DW">
+{{Image|G10203DW}}
 <br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000034 GGM.000034]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00155YT">
-<br>[https://glytoucan.org/Structures/Glycans/G00155YT G00155YT]
+{{Image|G00155YT}}
+<br>{{GlyTouCanLink|G00155YT}}
 |
 Yes, non-strict alignment. At least one of the attachment sites for the undetermined NeuAc results in a nonreducing-end alignment of the motif. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G10203DW">
+{{Image|G10203DW}}
 <br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000034 GGM.000034]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00012RZ">
-<br>[https://glytoucan.org/Structures/Glycans/G00012RZ G00012RZ]
+{{Image|G00012RZ}}
+<br>{{GlyTouCanLink|G00012RZ}}
 |
 Yes, non-strict alignment. Motif has a complete nonreducing-end alignment in undertermined substructure. Additional glycan Fucose is permitted because the GlcNAc is not a nonreducing monosaccharide for the motif or glycan. 
 |-
 ! Motif !! Glycan !! Nonreducing-End Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G10203DW">
+{{Image|G10203DW}}
 <br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GGM.000034 GGM.000034]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G19539RD">
-<br>[https://glytoucan.org/Structures/Glycans/G19539RD G19539RD]
+{{Image|G19539RD}}
+<br>{{GlyTouCanLink|G19539RD}}
 |
 No. Motif nonreducing-end NeuAc is aligned with internal glycan NeuAc. The motif does have a non-strict substructure alignment. 
 |-

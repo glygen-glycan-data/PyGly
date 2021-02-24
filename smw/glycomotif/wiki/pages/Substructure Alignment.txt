@@ -17,85 +17,85 @@ Substructure alignment is the default alignment strategy for motifs that do not 
 ! Motif !! Glycan !! Substructure Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00047MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00047MO GM.G00047MO]
+{{Image|G00047MO}}
+<br>[[GM.G00047MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00047MO">
-<br>[https://glytoucan.org/Structures/Glycans/G00047MO G00047MO]
+<img src="{{ImageURL|G00047MO}}">
+<br>{{GlyTouCanLink|G00047MO}}
 |
 Yes, strict alignment. A motif always aligns to itself.
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00047MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00047MO GM.G00047MO]
+{{Image|G00047MO}}
+<br>[[GM.G00047MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00048MO">
-<br>[https://glytoucan.org/Structures/Glycans/G00048MO G00048MO]
+{{Image|G00048MO}}
+<br>{{GlyTouCanLink|G00048MO}}
 |
 Yes, strict alignment. Motif substructure alignment at the reducing-end of the glycan. Motif reducing-end anomeric configuration contains the  glycan reducing-end anomeric configuration.
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00047MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00047MO GM.G00047MO]
+{{Image|G00047MO}}
+<br>[[GM.G00047MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G68835PZ">
-<br>[https://glytoucan.org/Structures/Glycans/G68835PZ G68835PZ]
+{{Image|G68835PZ}}
+<br>{{GlyTouCanLink|G68835PZ}}
 |
 Yes, non-strict alignment. Motif substructure alignment at the reducing-end of the glycan. All missing or undetermined details have at least one resolution consistent with the motif.
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00047MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00047MO GM.G00047MO]
+{{Image|G00047MO}}
+<br>[[GM.G00047MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G12614SU">
-<br>[https://glytoucan.org/Structures/Glycans/G12614SU G12614SU]
+{{Image|G12614SU}}
+<br>{{GlyTouCanLink|G12614SU}}
 |
 Yes, non-strict alignment. Motif substructure alignment at the reducing end of either arm. The undetermined attachment sites of the Fucose includes the arm GlcNAc residues, and all other monosaccharide and linkage details of the corresponding glycan substructure match. Motif aligns outside of the determined topology core. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00047MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00047MO GM.G00047MO]
+{{Image|G00047MO}}
+<br>[[GM.G00047MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G37497LY">
-<br>[https://glytoucan.org/Structures/Glycans/G37497LY G37497LY]
+{{Image|G37497LY}}
+<br>{{GlyTouCanLink|G37497LY}}
 |
 Yes, non-strict alignment. Non-strict substructure alignment tolerates additional sulfate substituents not specified by the motif. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00046MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00046MO GM.G00046MO]
+{{Image|G00046MO}}
+<br>[[GM.G00046MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G18740DM">
-<br>[https://glytoucan.org/Structures/Glycans/G18740DM G18740DM]
+{{Image|G18740DM}}
+<br>{{GlyTouCanLink|G18740DM}}
 |
 Yes, non-strict alignment. Non-strict substructure alignment tolerates an additional alditol motification not specified by the motif at the reducing end of the glycan. Note that the motif also does not specify its reducing-end ring information (x:x), which permits it to match the uncyclized ring information (0:0) of the glycan. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00046MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00046MO GM.G00046MO]
+{{Image|G00046MO}}
+<br>[[GM.G00046MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G61666PA">
-<br>[https://glytoucan.org/Structures/Glycans/G61666PA G61666PA]
+{{Image|G61666PA}}
+<br>{{GlyTouCanLink|G61666PA}}
 |
 Yes, non-strict alignment. All missing or undetermined details have at least one resolution consistent with the motif.
 |-
 ! Motif !! Glycan !! Substructure Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00046MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00046MO GM.G00046MO]
+{{Image|G00046MO}}
+<br>[[GM.G00046MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G78694IK">
-<br>[https://glytoucan.org/Structures/Glycans/G78694IK G78694IK]
+{{Image|G78694IK}}
+<br>{{GlyTouCanLink|G78694IK}}
 |
 No. Motif parent linkage position (3) does not match glycan parent linkage position (6). 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00046MO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G00046MO GM.G00046MO]
+{{Image|G00046MO}}
+<br>[[GM.G00046MO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G04801PW">
-<br>[https://glytoucan.org/Structures/Glycans/G04801PW G04801PW]
+{{Image|G04801PW}}
+<br>{{GlyTouCanLink|G04801PW}}
 |
 No. Motif monosaccharide anomeric configuration (&alpha;) does not match glycan monosaccharide anomeric configuration (&beta;).
 |-

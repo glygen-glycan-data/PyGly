@@ -28,7 +28,6 @@ http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomoti
  topologycount|Type:Number
  keywordcount|Type:Number
  topologyrepr|Type:Boolean
- displayhgv|Type:Boolean
  Publication|Category
  authors|Type:Text
  title|Type:Text

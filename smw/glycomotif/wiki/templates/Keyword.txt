@@ -20,7 +20,7 @@ Edit the page to see the template text.
 [[Category:Motif]]
 [[glycomotif:incollection::GGM]]
 [[glycomotif:haskeyword::{{PAGENAME}}]]
-|?glycomotif:id
+|?glycomotif:accession
 |?glycomotif:name
 |?glycomotif:aglycon
 |?glycomotif:alignment

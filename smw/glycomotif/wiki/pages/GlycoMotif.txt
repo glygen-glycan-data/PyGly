@@ -26,6 +26,7 @@ All motifs from all collections are aligned with the bulk of GlyTouCan structure
 See also:
 * [[GlyGen Classification Motifs|GlyGen glycan classification motifs]]
 * [[GlyGen Motif Keywords|GlyGen motif keywords]]
+* [[GlyGen Motif Publications|GlyGen motif publications]]
 * [[Download|GlycoMotif downloads (triple-store)]]
 * [[Multi-Instance Motifs|multi-instance motifs]]
 * [[Motif-Instance Frequency|frequency of motifs]] by instances or collections

@@ -10,7 +10,7 @@ It should be called in the following format:
 }}
 </pre>
 Edit the page to see the template text.
-</noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{name|}}}}}
+</noinclude><includeonly> {{#ifeq:{{PAGENAME}}|GGM|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|__NOTOC__}} __NOEDITSECTION__ {{DISPLAYTITLE:{{{name|}}}}}
 {| class="wikitable"
 ! ID
 | [[glycomotif:id::{{PAGENAME}}]]
@@ -59,8 +59,63 @@ Edit the page to see the template text.
 |link=none
 |limit=1000
 }}
+
+== Alignments == 
+{{SPARQLURL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?collection glycomotif:id ?collectionid .
+    
+    ?motif a glycomotif:Motif .
+    ?motif glycomotif:accession ?accession .
+    ?motif glycomotif:incollection ?collection .
+
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+    ?alignment glycomotif:strict ?alignment_isstrict .
+
+    ?collection glycomotif:id "{{PAGENAME}}" .
+    ?alignment glycomotif:strict true .
+}
+LIMIT 100
+|Strict Motif Alignments}}, 
+{{SPARQLURL|
+PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+WHERE {
+    ?collection a glycomotif:Collection .
+    ?collection glycomotif:id ?collectionid .
+    
+    ?motif a glycomotif:Motif .
+    ?motif glycomotif:accession ?accession .
+    ?motif glycomotif:incollection ?collection .
+
+    ?motif glycomotif:glytoucan ?motif_gtc_acc .
+    ?motif glycomotif:alignment ?alignment_type .
+
+    ?alignment glycomotif:motif_accession ?motif_gtc_acc .
+    ?alignment glycomotif:alignment_type ?alignment_type .
+    ?alignment glycomotif:structure_accession ?structure_gtc_acc .
+    ?alignment glycomotif:strict ?alignment_isstrict .
+
+    ?collection glycomotif:id "{{PAGENAME}}"
+}
+LIMIT 100
+|All Motif Alignments}}{{#ifeq:{{PAGENAME}}|GGM|
+, [[On-Demand Alignment (GlyGen Motifs)|On-Demand Alignments]].|.
+}}
+
 {{#set:glycomotif:name={{{name|}}}
 |glycomotif:primary={{{primary|}}}}}
 [[Category:Collection]]
+
 {{DONOTEDIT}}
 </includeonly>

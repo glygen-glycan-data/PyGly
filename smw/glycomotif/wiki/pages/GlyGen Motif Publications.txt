@@ -1,0 +1,14 @@
+
+{{#ask:
+[[Category:Publication]]
+|?=Publication
+|?glycomotif:instancecount=Motifs
+|mainlabel=-
+|format=template
+|template=PublicationTableRow
+|introtemplate=PublicationTableIntro
+|outrotemplate=PublicationTableOutro
+|limit=200
+}}
+
+{{#formlink:form=Publication|link text=New Publication|relaoad|returnto=GlyGen Motif Publications}}

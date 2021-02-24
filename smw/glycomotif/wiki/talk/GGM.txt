@@ -16,3 +16,7 @@ Note that motif [[GGM.000046]] should also have a Lewis y counterpart (not prese
 Note that motif 000023 has been removed - its description indicates that the sialic acid Neu5Ac is cyclic, but we have no way to correctly represent it using GlycoCT. See: PMID: 9990070. The same motif without the cyclic descriptor is already represented [[GGM.000027]].
 
 -- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:05, 13 January 2021 (EST)
+
+The motif 000052 has been removed. The IUPAC sequence in the original Cumming paper indicates a repeating unit (at least two sialalic acids) that has been lost in the IUPAC sequence transliteration to GlycoCT, WURCS, and a GlyTouCan accession (See the source entry here [[GDC.000052]]). We may add this back later if we can correctly handle this type of repeating structure. 
+
+-- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 13:18, 28 January 2021 (EST)

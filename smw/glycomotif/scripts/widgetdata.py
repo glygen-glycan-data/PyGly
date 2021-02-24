@@ -72,7 +72,7 @@ class GlycanTopoSubstructureSearch(alignment.SubstructureSearch):
 
 
 topology_comparison = GlycanTopoEqualWithRootTweak()
-gtcm = alignment.GlyTouCanMotif()
+gtcm = alignment.GlyTouCanMotifOriginal()
 gtsss = GlycanTopoSubstructureSearch()
 
 

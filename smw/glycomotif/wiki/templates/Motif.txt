@@ -72,7 +72,7 @@ Edit the page to see the template text.
 |}
 
 {{#ifeq:{{{displayhgv|}}}|true|
-<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-prefix="{{PREFIX}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/q4dRFkWJuM/image/"></div>
+<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-prefix="{{PREFIX}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://glymage.glyomics.org/image/"></div>
 == Topology Cluster ==
 <div id="hgv_topology"></div>
 == Non-Reducing End Topology Navigator ==
@@ -83,10 +83,9 @@ Edit the page to see the template text.
 }}
 == Alignments ==
 <div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}"></div>
-<div id="glycomotif_alignment_result"></div><br><br><br>
+<div id="glycomotif_alignment_result"></div>
 
-== Downloads ==
-
+'''Download:'''
 {{SPARQLURL|
 PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
 

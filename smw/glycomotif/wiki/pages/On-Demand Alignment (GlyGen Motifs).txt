@@ -1,0 +1,29 @@
+__NOEDITSECTION__
+== Input ==
+<div id="motif_match_real_time_input">
+<div id="motif_match_real_time_para" data-collection="GGM"></div>
+</div>
+<div id="motif_rt_result" style="display: none">
+<div id="query_glycan"></div>
+== Alignments ==
+<div id="alignment_table">
+{{#ask:
+[[glycomotif:incollection::GGM]]
+|?glycomotif:accession
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:alignment
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|limit=2000
+|link=none
+}}
+</div>
+
+</div>

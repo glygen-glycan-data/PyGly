@@ -1,0 +1,4 @@
+<includeonly>
+{| class="wikitable sortable" style="width:100%"
+! Publication !! Motifs
+</includeonly>

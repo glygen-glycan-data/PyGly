@@ -4,25 +4,19 @@ Each specific characteristic (anomeric configuration, etc.) of the glycan and mo
 
 Since monosaccharide characteristics either have a single value or are missing, we can simplify the above rules as follows:
 
-For a strict alignment, aligned motif and glycan monosaccharides must:
+1. have the same number of carbon atoms (HEX, PENT, etc.); and 
 
-1a. have the same number of carbon atoms (HEX, PENT, etc.); and 
+2. have the same stem-type (Man, Glc, etc.), if the motif monosaccharide stem-type is specified; and
 
-2a. have the same stem-type (Man, Glc, etc.), if the motif monosaccharide stem-type is specified; and 
+3. have the same orientation (D-type, L-type), if the motif monosaccharide orientation is specified.
 
-3a. have the same orientation (D-type, L-type), if the motif monosaccharide orientation is specified; and
+For a strict alignment, aligned motif and glycan monosaccharides must also:
 
 4a. have the same ring information (1:5, etc.), if the motif monosaccharide ring information is specified; and 
 
 5a. have the same anomeric configuration (&alpha;, &beta;), if the motif monosaccharide anomeric configuration is specified.
 
-For a non-strict alignment, aligned motif and glycan monosaccharides must:
-
-1b. have the same number of carbon atoms (HEX, PENT, etc.); and 
-
-2b. have the same stem-type (Man, Glc, etc.), if the glycan and motif monosaccharide stem-type are specified; and 
-
-3b. have the same orientation (D-type, L-type), if the glycan and motif monosaccharide orientation are specified; and
+For a non-strict alignment, aligned motif and glycan monosaccharides must also:
 
 4b. have the same ring information (1:5, etc.), if the glycan and motif monosaccharide ring information are specified; and 
 

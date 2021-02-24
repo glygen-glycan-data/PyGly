@@ -19,31 +19,31 @@ Glycan core alignment is the default alignment strategy for motifs that have a r
 ! Motif !! Glycan !! Core Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56299XO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G56299XO GM.G56299XO]
+{{Image|G56299XO}}
+<br>[[GM.G56299XO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G00728SN">
-<br>[https://glytoucan.org/Structures/Glycans/G00728SN G00728SN]
+{{Image|G00728SN}}
+<br>{{GlyTouCanLink|G00728SN}}
 |
 Yes, strict alignment. At least one substructure at the reducing end of the glycan (lower arm) aligns with the motif, with glycan anomeric configurations and parent glycosidic bond positions contained in the corresoponding motif values. 
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56299XO">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G56299XO GM.G56299XO]
+{{Image|G56299XO}}
+<br>[[GM.G56299XO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G50824HV">
-<br>[https://glytoucan.org/Structures/Glycans/G50824HV G50824HV]
+{{Image|G50824HV}}
+<br>{{GlyTouCanLink|G50824HV}}
 |
 Yes, non-strict alignment. At least one substructure at the reducing end of the glycan (upper arm) aligns with the motif, with non-empty intersection between anomeric configurations and parent glycosidic bond positions. 
 |-
 ! Motif !! Glycan !! Core Alignment?
 |-
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G56299XO ">
-<br>[https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM.G56299XO GM.G56299XO ]
+{{Image|G56299XO}}
+<br>[[GM.G56299XO]]
 | style="text-align: center;" | 
-<img src="https://edwardslab.bmcb.georgetown.edu/~wzhang/web/glycan_images/cfg/extended/G14633CL">
-<br>[https://glytoucan.org/Structures/Glycans/G14633CL G14633CL]
+{{Image|G14633CL}}
+<br>{{GlyTouCanLink|G14633CL}}
 |
 No. The motif does not align at the reducing end of the glycan. The motif does permit a strict substructure alignment at the nonreducing-end of the glycan. 
 |-

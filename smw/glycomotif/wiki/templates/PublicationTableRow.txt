@@ -1,0 +1,5 @@
+<includeonly>
+|- style="vertical-align: top;"
+| {{{1}}}
+| {{{2}}}
+</includeonly>
