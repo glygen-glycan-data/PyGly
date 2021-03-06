@@ -1707,6 +1707,15 @@ class OWLWriter():
         outputGraph.add((hasExactSynonym_node, rdfs.isDefinedBy, oboInOwl[""]))
         outputGraph.add((hasExactSynonym_node, rdfs.label, Literal("hasExactSynonym")))
 
+        # Add AnnotationProperty for has_structure_characterization_score
+        has_structure_characterization_score_node = oboInOwl["has_structure_characterization_score"]
+
+        outputGraph.add((has_structure_characterization_score_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_structure_characterization_score_node, rdfs.isDefinedBy, Literal(
+            "A score for the extent of characterization provided by the glycan's description. Glycan descriptions that completely characterize a glycan have score 0. Scores increase monotonically with subsumption. Scores should only be compared between glycan descriptions with the same monosaccharide (base-)composition. Score may change in future releases.")))
+        outputGraph.add((has_structure_characterization_score_node, rdfs.label, Literal("has_structure_characterization_score")))
+
+
         # Add AnnotationProperty for consider
         consider_node = oboInOwl["consider"]
 
@@ -1761,8 +1770,10 @@ class OWLWriter():
                                  Literal("A glycan described by the GlyTouCan entry with accession %s." % n.getID())))
                 outputGraph.add((rdfNode, rdfs.label,
                                  Literal("%s" % n.getID())))
-                # TODO add missing rank to GNOme latter here
-                # print n.getID(), n.missing_rank()
+
+                has_structure_characterization_score_node
+                outputGraph.add((rdfNode, has_structure_characterization_score_node, Literal(n.missing_rank())))
+
 
 
             else:
