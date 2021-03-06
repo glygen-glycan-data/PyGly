@@ -2133,8 +2133,8 @@ class GNOme_Theme_GlyTouCan(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_source_prefix": "https://image.glycosmos.org/snfg/png/",
-            "image_source_suffix": "",
+            "image_source_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_source_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlyTouCan",
@@ -2151,8 +2151,8 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_url_prefix": "https://api.glygen.org/glycan/image/",
-            "image_url_suffix": "",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlyGen",
@@ -2169,8 +2169,8 @@ class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_url_prefix": "https://api.glygen.org/glycan/image/",
-            "image_url_suffix": "",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlyGen Beta",
@@ -2187,8 +2187,8 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_url_prefix": "https://image.glycosmos.org/snfg/png/",
-            "image_url_suffix": "",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlycanData",
