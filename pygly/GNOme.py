@@ -368,11 +368,24 @@ class GNOme(GNOmeAPI):
             res[acc] = self.iupac_composition_str_to_dict(o)
         return res
 
+    def get_structure_characterization_score(self, acc):
+        for s, p, o in self.triples(None, "gno:00000102", None):
+            if acc == self.accession(s):
+                return o
+
+    def all_structure_characterization_score(self):
+        res = {}
+        for s, p, o in self.triples(None, "gno:00000102", None):
+            acc = self.accession(s)
+            res[acc] = o
+        return res
+
     def toViewerData(self, output_file_path):
         res = {}
         cbbutton = self.all_cbbutton()
         # byonic = self.all_Byonic()
         syms = self.all_synonym()
+        scores = self.all_structure_characterization_score()
 
         for n in self.nodes():
             t = ""
@@ -392,7 +405,7 @@ class GNOme(GNOmeAPI):
 
             children = list(self.children(n))
             res[n] = {
-                "level": t, "children": children, "count": cbbutton[n]
+                "level": t, "children": children, "count": cbbutton[n], "score": scores[n]
             }
             if len(children) == 0:
                 del res[n]['children']
@@ -1424,6 +1437,7 @@ class OWLWriter():
     composition_browser_link = 42
 
     cbbutton_annotation_property = 101
+    has_structure_characterization_score = 102
 
     has_Byonic_name_annotation_property = 202
 
@@ -1708,7 +1722,7 @@ class OWLWriter():
         outputGraph.add((hasExactSynonym_node, rdfs.label, Literal("hasExactSynonym")))
 
         # Add AnnotationProperty for has_structure_characterization_score
-        has_structure_characterization_score_node = oboInOwl["has_structure_characterization_score"]
+        has_structure_characterization_score_node = self.gnouri(self.has_structure_characterization_score)
 
         outputGraph.add((has_structure_characterization_score_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((has_structure_characterization_score_node, rdfs.isDefinedBy, Literal(
@@ -2556,7 +2570,7 @@ if __name__ == "__main__":
         td.write(theme_path + "default.json")
         tgtc.write(theme_path + "GlyTouCan.json")
         tgg.write(theme_path + "GlyGen.json")
-        tggd.write(theme_path + "GlyGenDev.json")
+        tggd.write(theme_path + "GlyGenBeta.json")
 
 
     else:
