@@ -596,7 +596,8 @@ class GPTWiki(SMW.SMWSite):
 	if kw.get('inst'):
 	    query += "\n[[gptwiki:spectra.gptwiki:instrument::%(inst)s]]"%kw
 	for tg in self.iterask(query):
-	    yield tg
+	    if kw.get('all',False) or len(tg.get('scans',[])) > 0:
+	        yield tg
 
     def iterpep(self,**kw):
 	query = """
