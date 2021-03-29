@@ -368,11 +368,24 @@ class GNOme(GNOmeAPI):
             res[acc] = self.iupac_composition_str_to_dict(o)
         return res
 
+    def get_structure_characterization_score(self, acc):
+        for s, p, o in self.triples(None, "gno:00000102", None):
+            if acc == self.accession(s):
+                return o
+
+    def all_structure_characterization_score(self):
+        res = {}
+        for s, p, o in self.triples(None, "gno:00000102", None):
+            acc = self.accession(s)
+            res[acc] = o
+        return res
+
     def toViewerData(self, output_file_path):
         res = {}
         cbbutton = self.all_cbbutton()
         # byonic = self.all_Byonic()
         syms = self.all_synonym()
+        scores = self.all_structure_characterization_score()
 
         for n in self.nodes():
             t = ""
@@ -392,7 +405,7 @@ class GNOme(GNOmeAPI):
 
             children = list(self.children(n))
             res[n] = {
-                "level": t, "children": children, "count": cbbutton[n]
+                "level": t, "children": children, "count": cbbutton[n], "score": scores[n]
             }
             if len(children) == 0:
                 del res[n]['children']
@@ -1424,6 +1437,7 @@ class OWLWriter():
     composition_browser_link = 42
 
     cbbutton_annotation_property = 101
+    has_structure_characterization_score = 102
 
     has_Byonic_name_annotation_property = 202
 
@@ -1707,6 +1721,15 @@ class OWLWriter():
         outputGraph.add((hasExactSynonym_node, rdfs.isDefinedBy, oboInOwl[""]))
         outputGraph.add((hasExactSynonym_node, rdfs.label, Literal("hasExactSynonym")))
 
+        # Add AnnotationProperty for has_structure_characterization_score
+        has_structure_characterization_score_node = self.gnouri(self.has_structure_characterization_score)
+
+        outputGraph.add((has_structure_characterization_score_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((has_structure_characterization_score_node, rdfs.isDefinedBy, Literal(
+            "A score for the extent of characterization provided by the glycan's description. Glycan descriptions that completely characterize a glycan have score 0. Scores increase monotonically with subsumption. Scores should only be compared between glycan descriptions with the same monosaccharide (base-)composition. Score may change in future releases.")))
+        outputGraph.add((has_structure_characterization_score_node, rdfs.label, Literal("has_structure_characterization_score")))
+
+
         # Add AnnotationProperty for consider
         consider_node = oboInOwl["consider"]
 
@@ -1761,8 +1784,10 @@ class OWLWriter():
                                  Literal("A glycan described by the GlyTouCan entry with accession %s." % n.getID())))
                 outputGraph.add((rdfNode, rdfs.label,
                                  Literal("%s" % n.getID())))
-                # TODO add missing rank to GNOme latter here
-                # print n.getID(), n.missing_rank()
+
+                has_structure_characterization_score_node
+                outputGraph.add((rdfNode, has_structure_characterization_score_node, Literal(n.missing_rank())))
+
 
 
             else:
@@ -2122,8 +2147,8 @@ class GNOme_Theme_GlyTouCan(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_source_prefix": "https://image.glycosmos.org/snfg/png/",
-            "image_source_suffix": "",
+            "image_source_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_source_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlyTouCan",
@@ -2140,8 +2165,8 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_url_prefix": "https://api.glygen.org/glycan/image/",
-            "image_url_suffix": "",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlyGen",
@@ -2158,8 +2183,8 @@ class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_url_prefix": "https://api.glygen.org/glycan/image/",
-            "image_url_suffix": "",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlyGen Beta",
@@ -2176,12 +2201,12 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
     def getdata(self):
         return {
             "icon_style": "snfg",
-            "image_url_prefix": "https://image.glycosmos.org/snfg/png/",
-            "image_url_suffix": "",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
             "external_resources": [
                 {
                     "name": "GlycanData",
-                    "url_prefix": "https://edwardslab.bmcb.georgetown.edu/glycandata/",
+                    "url_prefix": "https://glycans.glyomics.org/glycandata/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlycanData")
                 },{
@@ -2545,7 +2570,7 @@ if __name__ == "__main__":
         td.write(theme_path + "default.json")
         tgtc.write(theme_path + "GlyTouCan.json")
         tgg.write(theme_path + "GlyGen.json")
-        tggd.write(theme_path + "GlyGenDev.json")
+        tggd.write(theme_path + "GlyGenBeta.json")
 
 
     else:
