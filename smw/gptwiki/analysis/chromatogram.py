@@ -2,6 +2,9 @@
 import numpy as np
 import scipy.optimize as spopt
 import scipy.stats as spstat
+import warnings
+
+warnings.simplefilter("error", spopt.OptimizeWarning)
 
 from operator import itemgetter
 import math
@@ -226,6 +229,8 @@ class PeakFitterBase(object):
 	except RuntimeError:
 	    raise
 	except spopt.minpack.error, e:
+	    raise FloatingPointError()
+	except spopt.OptimizeWarning, e:
 	    raise FloatingPointError()
 	p1 = tuple(p1)
 	xs = self._shape.start(*p1)

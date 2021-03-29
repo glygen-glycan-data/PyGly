@@ -1,21 +1,21 @@
+#!/bin/env python27
 from getwiki import GPTWiki
-import sys
+import sys, re
 
 w = GPTWiki()
 
 if len(sys.argv) < 2:  
-    print 'please enter the spectra file name(s)'
+    print 'please enter the spectra file name regex'
     exit(1)
-spectrafiles = sys.argv[1:]
 
-for tgpage in w.itertransgroups():
-
-    spectra = tgpage.get('spectra')
-    if spectra not in spectrafiles:
-	continue 
-    spectrapage = w.get(spectra)
-    nrtslope = spectrapage.get('nrtslope')
-    nrtintercept = spectrapage.get('nrtintercept')
+for spectrapage in w.iterspec():
+  if not re.search(sys.argv[1],spectrapage.get('name')):
+    continue
+  nrtslope = spectrapage.get('nrtslope')
+  nrtintercept = spectrapage.get('nrtintercept')
+  if not nrtslope or not nrtintercept:
+    continue
+  for tgpage in w.itertgs(spectra=spectrapage.get('name')):
     tgid = tgpage.get('id')
     peakrt = tgpage.get('prt')
     nrt = 0.0
@@ -24,16 +24,8 @@ for tgpage in w.itertransgroups():
 	nrt = (peakrt - nrtintercept)/nrtslope
 	tgpage.set('nrt',nrt)
 	if w.put(tgpage):
-	    print 'tgpage is updated:',tgid
+	    print tgid
     else:  
         tgpage.set('nrt','')
         if w.put(tgpage):
-            print 'tg is updated:',tgid
-
-
-
-
-
-
-
-
+            print tgid

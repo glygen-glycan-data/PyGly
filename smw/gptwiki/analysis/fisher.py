@@ -99,6 +99,9 @@ if __name__ == '__main__':
         1 9 0 10
         7 1 0 5
         2000 1500 6711 5323
+        270 752 80 10101
+        270 752 0 18101
+        20 752 0 18101
     """
     for l in tests.splitlines():
         sl = list(map(int, l.split()))
