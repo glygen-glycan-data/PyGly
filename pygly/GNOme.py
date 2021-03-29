@@ -2206,7 +2206,7 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
             "external_resources": [
                 {
                     "name": "GlycanData",
-                    "url_prefix": "https://edwardslab.bmcb.georgetown.edu/glycandata/",
+                    "url_prefix": "https://glycans.glyomics.org/glycandata/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlycanData")
                 },{
