@@ -68,4 +68,7 @@ for spectra in allspec:
   for tg in w.iterspectgs(spectra):
     if tg.get('id') not in tgs[spectra]:
       print "Removing",tg.get("id")
-      w.delete(tg.get('id'))
+      # w.delete(tg.get('id'))
+      tg.delete('scans')
+      tg.delete('transitions')
+      w.put(tg)

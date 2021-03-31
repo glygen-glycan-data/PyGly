@@ -9,7 +9,7 @@ import csv, sys, os, os.path
 from collections import defaultdict
 from pylab import *
 
-w = getwiki.GPTWiki()
+# w = getwiki.GPTWiki()
 
 irtpeps = dict()
 for r in csv.DictReader(open(sys.argv[1]),dialect='excel-tab'):
@@ -21,19 +21,14 @@ slr = SLR()
 irtreg = IRLR(max_rvalue=0.99)
 tgreg = IRLR(max_rvalue=0.99,max_removed=50)
 
-templates = ["%(spec)s/%(spec)s.irt.5.txt","%(spec)s/%(spec)s.irt.5.txt","irt/%(spec)s.irt.txt"]
-
 xics = defaultdict(list)
-for t in templates:
-    fn = "/home/nedwards/www/dropbox/pBYmLSkGeq/"+t%dict(spec=sys.argv[2])
-    if os.path.exists(fn):
-	for r in csv.DictReader(open(fn),dialect='excel-tab'):
-            for k in r:
-	        if k == "rt":
-	            continue
-	        name = k.split('(')[1][:-1]
-	        xics[name].append((float(r["rt"]),float(r[k])))
-	break
+for r in csv.DictReader(open(sys.argv[2]),dialect='excel-tab'):
+    for k in r:
+        if k == "rt":
+            continue
+        name = k.split('(')[1][:-1]
+        xics[name].append((float(r["rt"]),float(r[k])))
+
 if len(xics) == 0:
     sys.exit(1)
 
@@ -43,21 +38,33 @@ for k in xics:
 	continue
     try:
         xs,xe,pa = pf.fit(xics[k])
-    except (RuntimeError,FloatingPointError):
+    except (RuntimeError,FloatingPointError,ValueError):
 	continue
     irtpoints.append((irtpeps[k],pa[0]))
 
-irtparams0 = slr.fit(irtpoints)
-irtparams = irtreg.fit(irtpoints)
+spec = os.path.split(sys.argv[2])[1].split('.')[0]
+try:
+    irtparams0 = slr.fit(irtpoints)
+    irtparams = irtreg.fit(irtpoints)
+except RuntimeError:
+    # print "Can't fit regression lines"
+    sys.exit(1)
+
+print "XICS:",os.path.split(sys.argv[2])[1]
+print "iRT Peaks",len(irtpoints)
 print "iRT SLR:",round(irtparams0['slope'],3),round(irtparams0['intercept'],3),
 print round(1.0/irtparams0['slope'],3),round(-irtparams0['intercept']/irtparams0['slope'],3)
 print "iRT RLR:",round(irtparams['slope'],3),round(irtparams['intercept'],3),
 print round(1.0/irtparams['slope'],3),round(-irtparams['intercept']/irtparams['slope'],3),
 print irtparams['removed'],round(irtparams['r'],3)
+print "|nrtintercept=%(intercept)f\n|nrtslope=%(slope)f"%irtparams
+print
+
+sys.exit(0)
 
 tgpoints = []
 
-for tg in w.iterspectgs(sys.argv[2]):
+for tg in w.itertgs(spectra=spec):
     tgprt = tg.get('prt')
     if not tgprt:
 	continue
@@ -69,6 +76,9 @@ for tg in w.iterspectgs(sys.argv[2]):
     tgprt = float(tgprt)
     pepnrt = float(pepnrt)
     tgpoints.append((pepnrt,tgprt))
+
+if len(tgpoints) == 0:
+    sys.exit(0)
 
 tgparams0 = slr.fit(tgpoints)
 tgparams = tgreg.fit(tgpoints)

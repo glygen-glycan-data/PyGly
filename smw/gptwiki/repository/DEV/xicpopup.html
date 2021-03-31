@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <title>XICs</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./spectrum-viewer.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/MSV.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/spectrum-parsers.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/MS_Viewer/util.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+    "use strict";
+
+    // var para_example = "?spectra=MS_24_UO1_CFH_UO1&gphash=PE000165&charge=3&title=XIC%3A%20m%2Fz%201207.805&tg=TG000426&originPage=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fgptwikidev%2FTG000426%0A";
+
+
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+
+    var spectra_folder = url.searchParams.get("spectra"); 
+    var gphash = url.searchParams.get("gphash");
+    var thisTitle = url.searchParams.get("title") + "&nbsp";
+    var originPage = url.searchParams.get("originPage");
+    var charge = url.searchParams.get("charge");
+    var splitOriginPage = originPage.split("/");
+    var transitionGroup = splitOriginPage[splitOriginPage.length-1];
+    var prefix = splitOriginPage[splitOriginPage.length-2];
+    var originPageEle = "[<a target='_blank' href='" + originPage + "'>" + transitionGroup + "</a>]&nbsp";
+    thisTitle = originPageEle + thisTitle;
+
+    document.title = "XICs for " + transitionGroup;
+
+    var x = "/" + prefix + "/static_" + prefix + "/" + spectra_folder + "/xic-" + gphash + "." + charge + ".";
+    var tmp = "";
+
+    var msv_instance = msv();
+
+    /*
+    tmp = x + 'json';
+    msv_instance.addLabelledSpectrum("container", 4199, {
+        "spectra": tmp,
+        "titleTag": "h3",
+        "title": "Chromatogram default",
+        "graphtype": "chromatogram",
+        "zoomgroup": "11",
+        "width": window.innerWidth
+    });
+
+     */
+
+
+    tmp = x + "5" +  '.json';
+    msv_instance.addLabelledSpectrum("container", 4200, {
+        "spectra": tmp,
+        "titleTag": "h3",
+        "title": thisTitle + "(5 mmu)",
+        "graphtype": "chromatogram",
+        "zoomgroup": "11",
+        "width": window.innerWidth
+    });
+
+    tmp = x + "10" +  '.json';
+    msv_instance.addLabelledSpectrum("container", 4201, {
+        "spectra": tmp,
+        "titleTag": "h3",
+        "title": thisTitle + "(10 mmu)",
+        "graphtype": "chromatogram",
+        "zoomgroup": "11",
+        "width": window.innerWidth
+    });
+
+    tmp = x + "100" +  '.json';
+    msv_instance.addLabelledSpectrum("container", 4202, {
+        "spectra": tmp,
+        "titleTag": "h3",
+        "title": thisTitle + "(100 mmu)",
+        "graphtype": "chromatogram",
+        "zoomgroup": "11",
+        "width": window.innerWidth
+    });
+
+    msv_instance.done();
+
+</script>
+</body>
+</html>
