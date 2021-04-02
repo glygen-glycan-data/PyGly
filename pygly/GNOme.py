@@ -2149,6 +2149,7 @@ class GNOme_Theme_GlyTouCan(GNOme_Theme_Base):
             "icon_style": "snfg",
             "image_source_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
             "image_source_suffix": ".png",
+            "brand": None,
             "external_resources": [
                 {
                     "name": "GlyTouCan",
@@ -2167,6 +2168,7 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
             "icon_style": "snfg",
             "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
             "image_url_suffix": ".png",
+            "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
             "external_resources": [
                 {
                     "name": "GlyGen",
@@ -2185,6 +2187,7 @@ class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
             "icon_style": "snfg",
             "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
             "image_url_suffix": ".png",
+            "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
             "external_resources": [
                 {
                     "name": "GlyGen Beta",
@@ -2203,6 +2206,7 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
             "icon_style": "snfg",
             "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
             "image_url_suffix": ".png",
+            "brand": None,
             "external_resources": [
                 {
                     "name": "GlycanData",
