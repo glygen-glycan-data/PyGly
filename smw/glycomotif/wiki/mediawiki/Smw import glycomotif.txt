@@ -1,4 +1,4 @@
-http://glycandata.glygen.org/glycomotif#|[http://glycandata.glygen.org/glycomotif GlyGen Glycomotif Ontology]
+http://glyomics.org/glycomotif#|[http://glyomics.org/glycomotif Glyomics Glycomotif Ontology]
  id|Type:Text
  Collection|Category
  contact|Type:Text

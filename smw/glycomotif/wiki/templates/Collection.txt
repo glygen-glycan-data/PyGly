@@ -62,7 +62,7 @@ Edit the page to see the template text.
 
 == Alignments == 
 {{SPARQLURL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
 WHERE {
@@ -87,7 +87,7 @@ WHERE {
 LIMIT 100
 |Strict Motif Alignments}}, 
 {{SPARQLURL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
 WHERE {

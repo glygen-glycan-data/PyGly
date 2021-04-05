@@ -286,7 +286,7 @@ if (document.getElementById("motif_align_para") != null){
 
     function alignmentQueryConstructor(motif_page_id) {
         var query =
-            'PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>\n' +
+            'PREFIX glycomotif: <http://glyomics.org/glycomotif#>\n' +
             '\n' +
             'SELECT ?alignment_type ?structure_gtc_acc ?strict\n' +
             'WHERE {\n' +
@@ -337,7 +337,7 @@ if (document.getElementById("motif_align_para") != null){
     }
 
     function alignment(motif){
-        var endpt = "https://sparql.glyomics.org/" + prefix + "/query";
+        var endpt = "https://glycomotif.glyomics.org/" + prefix + "/sparql/query";
         var query = alignmentQueryConstructor(motif);
 
         var qurl = sparqlQuery(endpt, query);

@@ -2,12 +2,12 @@ __NOEDITSECTION__
 <div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 All [http://glycomotif.glyomics.org GlycoMotif] data is available from the SPARQL endpoint: 
 
-&nbsp;&nbsp;<code>https<span>:</span>//sparql.glyomics.org/{{PREFIX}}/query</code>
+&nbsp;&nbsp;<code>https<span>:</span>//glycomotif.glyomics.org/{{PREFIX}}/sparql/query</code>
 
 == Single Motif ==
 
 {{SPARQL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?property ?value
 WHERE {
@@ -28,7 +28,7 @@ WHERE {
 == Motif Publications ==
 
 {{SPARQL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?pmid
 WHERE {
@@ -50,7 +50,7 @@ WHERE {
 == Motif Keywords ==
 
 {{SPARQL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?keyword
 WHERE {
@@ -73,7 +73,7 @@ WHERE {
 == Motif Alignments ==
 
 {{SPARQL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
 WHERE {
@@ -101,7 +101,7 @@ WHERE {
 == Motif Collection ==
 
 {{SPARQL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?name ?redend ?aglycon ?alignment
 WHERE {
@@ -124,7 +124,7 @@ WHERE {
 == Motif Collection Alignments ==
 
 {{SPARQL|
-PREFIX glycomotif: <http://glycandata.glygen.org/glycomotif#>
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
 SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
 WHERE {

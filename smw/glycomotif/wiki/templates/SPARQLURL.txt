@@ -1,1 +1,1 @@
-[https://glyomics.org/yasgui/#endpoint=https%3A%2F%2Fsparql.glyomics.org%2F{{PREFIX}}%2Fquery&query={{urlencode:{{{1|}}}}}&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table {{{2|Try Me!}}}]
+[https://glyomics.org/yasgui/#endpoint=https%3A%2F%2Fglycomotif.glyomics.org%2F{{PREFIX}}%2Fsparql%2Fquery&query={{urlencode:{{{1|}}}}}&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table {{{2|Try Me!}}}]
