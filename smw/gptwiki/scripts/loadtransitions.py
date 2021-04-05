@@ -28,10 +28,13 @@ for transfile in sys.argv[1:]:
   w.addacquisition(name=spectra,method=method,sample=sample)
   tgroup = defaultdict(dict)
   for l in csv.DictReader(open(transfile),dialect='excel-tab'):
+    gphash = l.get('GlycopeptideHash')
     seq = l['PeptideSequence']
     glyspec = l['Glycans']
     modspec = l['Mods']
     glycan = []
+    if '?' in glyspec:
+	continue
     if glyspec != "-":
         glycan = map(lambda t: (t[1],seq[int(t[0])-1]+str(t[0])),map(lambda s: s.split(':'),glyspec.split(',')))
     mods = []
@@ -48,6 +51,9 @@ for transfile in sys.argv[1:]:
     nrt = l['NormalizedRetentionTime']
     if nrt:
 	nrt = float(nrt)
+    prt = l.get('PeakRT')
+    if prt:
+	prt = float(prt)
     mz1 = float(l['PrecursorMz'])
     z1 = int(l['PrecursorCharge'])
     mz2 = float(l['ProductMz'])
@@ -62,7 +68,7 @@ for transfile in sys.argv[1:]:
         print t.get('id')
 
     if (pid,z1,spectra) not in tgroup:
-        tgroup[(pid,z1,spectra)] = dict(transitions=[],nrt=nrt,rt=rt,mz1=mz1,scans=scans)
+        tgroup[(pid,z1,spectra)] = dict(transitions=[],nrt=nrt,rt=rt,prt=prt,mz1=mz1,scans=scans,gphash=gphash)
     tgroup[(pid,z1,spectra)]['transitions'].append((t.get('id'),relint))
     
   for pid,z1,spectra in tgroup:
@@ -76,4 +82,9 @@ for transfile in sys.argv[1:]:
 for spectra in allspectra:
   for tgid in spectra2tg[spectra]:
     print "Deleting transition group",tgid
-    w.delete(tgid)
+    # w.delete(tgid)
+    tg = w.get(tgid)
+    tg.delete('scans')
+    tg.delete('transitions')
+    w.put(tg)
+    

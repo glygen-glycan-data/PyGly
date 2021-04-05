@@ -24,6 +24,9 @@ for peptidefile in sys.argv[1:]:
     if (seq,glyspec,modspec) in seen:
 	continue
 
+    if '?' in glyspec:
+	continue
+
     seen.add((seq,glyspec,modspec))
     # print >>sys.stderr, seq,glyspec,modspec
 
