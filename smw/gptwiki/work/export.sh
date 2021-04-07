@@ -12,6 +12,7 @@ if [ ! -d "$OUTPUT" ]; then
 fi
 for SPEC in "$@"; do
   case "$SPEC" in                                                                                                            
+    *.centroid.mzML.gz) BASE=`basename $SPEC .centroid.mzML.gz`;;                                                                              
     *.mzML.gz) BASE=`basename $SPEC .mzML.gz`;;                                                                              
     *.msp) BASE=`basename $SPEC .msp`;;                                                                                      
   esac

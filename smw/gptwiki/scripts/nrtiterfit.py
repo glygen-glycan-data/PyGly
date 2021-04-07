@@ -42,6 +42,8 @@ else:
     pepseen = set()
     w = GPTWiki(quiet=True)
     for tg in w.itertransgroups():
+	if len(tg.get('scans',[])) == 0:
+	    continue
         specname = tg.get('spectra')
         spec = w.get(specname)
 	if spec.get('type',"DDA") != "DDA":

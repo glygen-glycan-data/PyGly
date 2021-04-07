@@ -3,7 +3,7 @@
 from getwiki import GPTWiki, Protein
 import getwiki
 
-import sys, urllib, string, csv, os.path, json
+import sys, urllib, string, csv, os.path, json, glob
 from collections import defaultdict
 import Bio.SeqIO
 from util import peptide_mw, mod_mw
@@ -20,21 +20,21 @@ else:
 tgs = defaultdict(set)
 allspec = set()
 lccal = defaultdict(dict)
-current_spec = None
-for jsonfile in sys.argv[3:]:
-
-  spectra = os.path.split(os.path.split(jsonfile)[0])[1]
-  if spectra != current_spec:
-    w.addacquisition(name=spectra,method=method,anfrac=anfrac,sample=sample,xicmmu=50,type="DIA")
-    allspec.add(spectra)
-    current_spec = spectra
-
+for specfile in sys.argv[3:]:
+ dirname = specfile.rsplit('.',2)[0]
+ if dirname.endswith('.centroid'):
+  dirname = dirname.rsplit('.',1)[0]
+ spectra = os.path.split(dirname)[1] 
+ allspec.add(spectra)
+ w.addacquisition(name=spectra,method=method,anfrac=anfrac,sample=sample,xicmmu=50,type="DIA")
+ for jsonfile in glob.glob(dirname+'/*.json'):
+  # spectra = os.path.split(os.path.split(jsonfile)[0])[1]
   data = json.loads(open(jsonfile).read())
   rt = data['rt']
   nrt = data.get('nrt')
   trans = []
   for s in data['series']:
-      trid = s['trlib_id'].split('.')[-1]
+      trid = s['name'].split('/')[-2]
       it = float(s['obs_relint'])/10.0
       if it <= 0:
 	continue
@@ -65,10 +65,7 @@ for spectra in allspec:
     spec.delete("nrtintercept")
   w.put(spec)
 
-  for tg in w.iterspectgs(spectra):
+  for tg in w.itertgs(spectra=spectra,all=True):
     if tg.get('id') not in tgs[spectra]:
-      print "Removing",tg.get("id")
-      # w.delete(tg.get('id'))
-      tg.delete('scans')
-      tg.delete('transitions')
-      w.put(tg)
+      if w.cleartransgroup(tg):
+        print "Clear",tg.get("id")

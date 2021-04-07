@@ -154,10 +154,11 @@ class TransitionGroup(SMW.SMWClass):
 
     @staticmethod
     def scan2str(scan):
+	scan=list(scan)
         if scan[3] in (None,"None",""):
 	    scan[3] = ""
 	if len(scan) < 6:
-	    scan = (list(scan) + [""])
+	    scan = (scan + [""])
         return "%d;%s;%.3f;%s;%.3f;%s"%(int(scan[0]),scan[1],float(scan[2]),scan[3],float(scan[4]),scan[5])
 
     def toTemplate(self,data):
@@ -333,7 +334,7 @@ class GPTWiki(SMW.SMWSite):
 	    if self.has_lock(clsname):
 		if self._cache.get(clsname) is not None:
                     self.write_cache(clsname)
-		self.release_lock(clsname)
+		self.release_cache(clsname)
 
     def cache_file(self,clsname):
 	return ".%s.%s.cache"%(self.prefix,clsname,)
@@ -511,6 +512,12 @@ class GPTWiki(SMW.SMWSite):
 	    self.add_to_cache("tgs",key,id)
         return tg,self.put(tg)
 
+    def cleartransgroup(self,tg):
+	for key in tg.keys():
+	    if tg.get(key) and key not in ("id","peptide","z1","spectra"):
+		tg.delete(key)
+	return self.put(tg)
+
     # def iterpeptides(self):
     #	for p in map(self.get,self.itercat('Peptide')):
     #        yield p
@@ -575,7 +582,7 @@ class GPTWiki(SMW.SMWSite):
 	if kw.get('acqtype'):
 	    query += "\n[[gptwiki:type::%(acqtype)s]]"%kw
 	if kw.get('inst'):
-	    query += "\n[[gptwiki:spectra.gptwiki:instrument::%(inst)s]]"%kw
+	    query += "\n[[gptwiki:instrument::%(inst)s]]"%kw
 	for sp in self.iterask(query):
 	    yield sp
 
@@ -596,7 +603,7 @@ class GPTWiki(SMW.SMWSite):
 	if kw.get('inst'):
 	    query += "\n[[gptwiki:spectra.gptwiki:instrument::%(inst)s]]"%kw
 	for tg in self.iterask(query):
-	    if kw.get('all',False) or len(tg.get('scans',[])) > 0:
+	    if kw.get('all',False) or len(tg.get('transitions',[])) > 0:
 	        yield tg
 
     def iterpep(self,**kw):

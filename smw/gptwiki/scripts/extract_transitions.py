@@ -12,8 +12,8 @@ parser.add_option("--sample",type='string',dest='sample',default=None,help="Samp
 parser.add_option("--method",type='string',dest='method',default=None,help="Method identifier")                          
 parser.add_option("--acqtype",type='choice',choices=["DDA","DIA"],dest='acqtype',default=None,help="Acquisition type")
 parser.add_option("--inst",type='choice',choices=["Orbitrap","TripleTOF"],dest='inst',default=None,help="Instrument")
-parser.add_option("--maxtgs",type="int",dest="maxtgs",default=None,help="Max. transition groups")
-parser.add_option("--maxtrans",type="int",dest="maxtrans",default=6,help="Max. transitions per transition group")
+parser.add_option("--mintrans",type="int",dest="mintrans",default=4,help="Min. transitions per transition group")
+parser.add_option("--maxtrans",type="int",dest="maxtrans",default=None,help="Max. transitions per transition group")
 parser.add_option("--decoys",type="string",dest="decoys",default="37,41,47,53,59",help="Decoy offset(s), comma separated. Default: 37,41,47,53,59.")
 
 opts,args = parser.parse_args()
@@ -61,7 +61,9 @@ w = GPTWiki()
 
 peps = defaultdict(lambda: defaultdict(dict))
 
-for i,tg in enumerate(w.itertgs(sample=opts.sample,acqtype=opts.acqtype,method=opts.method,inst=opts.inst)):
+for sp in w.iterspec(sample=opts.sample,acqtype=opts.acqtype,method=opts.method,inst=opts.inst):
+  print >>sys.stderr, sp.get('name')
+  for i,tg in enumerate(w.itertgs(spectra=sp.get('name'))):
     pep = w.get(tg.get('peptide'))
     pepid = pep.get('id')
     if pep.get('nrt') == None:
@@ -85,8 +87,6 @@ for i,tg in enumerate(w.itertgs(sample=opts.sample,acqtype=opts.acqtype,method=o
             peps[(pepid,z1)][trid]['z1'] = tr.get('z1')
             peps[(pepid,z1)][trid]['int'] = []
         peps[(pepid,z1)][trid]['int'].append(trint)
-    if opts.maxtgs != None and i >= (opts.maxtgs-1):
-	break
 
 for chpep in peps:
     for trid in peps[chpep]:
@@ -96,10 +96,10 @@ print "\t".join(headers)
 for chpep in peps:
     bpi = None
     sint = sorted(map(lambda trid: peps[chpep][trid]['int'],peps[chpep]),reverse=True)
-    if (len(sint) < opts.maxtrans) or (sint[opts.maxtrans-1]/sint[0] < 0.1):
+    if (len(sint) < opts.mintrans) or (sint[opts.mintrans-1]/sint[0] < 0.1):
 	continue
     for i,trid in enumerate(sorted(peps[chpep],key=lambda trid: peps[chpep][trid]['int'], reverse=True)):
-	if i >= opts.maxtrans:
+	if opts.maxtrans != None and i >= opts.maxtrans:
 	    break
 	tr = peps[chpep][trid]
 	if bpi == None:

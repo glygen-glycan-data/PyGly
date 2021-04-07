@@ -71,9 +71,12 @@ fi
 function openswath2json() {
     BASE0=`basename "$1" .mzML.gz`
     BASE1=`basename "$1" .centroid.mzML.gz`
+    rm -rf "$OUTDIR/$BASE1"
     apython $DIR/openswath2json.py --transitions "$TRANSITIONS" --ndecoys $NDECOYS --outdir "$OUTDIR/$BASE1" \
 	                           --chromatograms="${BASE0}_chrom.mzML" --results "${BASE0}_table.tsv" \
                                    --fdr $FDR --score $SCORE
+    mkdir -p "$OUTDIR/$BASE1"
+    cp "$1" "$OUTDIR/$BASE1/$BASE1.mzML.gz"
 }
 
 for f in "$@"; do

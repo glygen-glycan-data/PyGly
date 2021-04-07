@@ -81,10 +81,5 @@ for transfile in sys.argv[1:]:
 
 for spectra in allspectra:
   for tgid in spectra2tg[spectra]:
-    print "Deleting transition group",tgid
-    # w.delete(tgid)
-    tg = w.get(tgid)
-    tg.delete('scans')
-    tg.delete('transitions')
-    w.put(tg)
-    
+    if w.cleartransgroup(tg):                                                                                              
+      print "Clear",tg.get("id")                                                                                           
