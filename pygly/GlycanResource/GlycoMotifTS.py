@@ -5,7 +5,7 @@ from GlycanResourceWrappers import partitioner, prefetcher
 
 class GlycoMotifTS(TripleStoreResource):
    
-    endpt = "https://edwardslab.bmcb.georgetown.edu/sparql/glycomotif/query"
+    endpt = "http://glycomotif.glyomics.org/glycomotif/sparql/query"
     defns = "http://glycandata.glygen.org/glycomotif/Special:URIResolver/"
     # verbose = True
     # cachefile = ".gm.cache"
