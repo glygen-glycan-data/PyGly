@@ -6,7 +6,6 @@ import mwclient
 from rdflib import Dataset, ConjunctiveGraph, Namespace, Literal, BNode, URIRef
 
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning, InsecurePlatformWarning
 
 class SMWUndefinedSiteParameter(RuntimeError):
     def __init__(self,prefix,key):
@@ -21,10 +20,9 @@ class SMWSite(object):
 	thesmwhost = kwargs['host']
 	if kwargs.get('port') != None:
             thesmwhost += (":" + kwargs['port'])
-	thepath = '/' + self.prefix + '/'
-        requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
+	thepath = '/'
         try:
-	    self.site = mwclient.Site(scheme=theprotocol,host=thesmwhost,path=thepath)
+	    self.site = mwclient.Site(scheme=theprotocol,host=thesmwhost,path=thepath,reqs=dict(timeout=300))
 	except TypeError:
 	    #mwclient, pre 0.10.0
             self.site = mwclient.Site(host=(theprotocol,thesmwhost),path=thepath)
@@ -257,8 +255,8 @@ class SMWSite(object):
               page = self.site.pages[pagename]
 	      
               if page.text() != pagetext:
-                  page.save(pagetext)
                   print >>sys.stderr, pagename
+                  page.save(pagetext)
         
     def deletemany(self,category=None,regex=None,allpages=None,verbose=False):
 	if category:

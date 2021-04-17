@@ -1,9 +1,8 @@
-#!/bin/env python27
+#!/bin/env python2
 
 from getwiki import GPTWiki, Peptide
 
 import sys, urllib, string
-import Bio.SeqIO
 from collections import defaultdict
 
 nrtonly = False
@@ -18,7 +17,8 @@ samples = set()
 glycans = set()
 glysites = set()
 site2gly = defaultdict(set)
-for tg in w.itertransgroups():
+for sp in w.iterspec(type='DDA'):
+  for tg in w.itertgs(spectra=sp.get('name')):
     tgid = tg.get('id')
     if tg.get('peptide') in seenpeps:
 	continue
