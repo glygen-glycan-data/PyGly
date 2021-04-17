@@ -3,18 +3,11 @@ http://glycandata.glygen.org/glycandata#|[http://glycandata.glygen.org/glycandat
  Glycan|Category
  Annotation|Category
  accession|Type:Text
- wurcs|Type:Code
- glycoct|Type:Code
- iupac|Type:Code
- mw|Type:Number
- monocount|Type:Number
  type|Type:Text
  property|Type:Text
  value|Type:Text
  source|Type:Text
  sourceid|Type:Text
- reference|Type:URL
- method|Type:Page
  hasglycan|Type:Page
 
 [[Category:Imported vocabulary]]

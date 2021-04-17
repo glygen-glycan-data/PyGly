@@ -1,0 +1,5 @@
+<includeonly>
+{| class="wikitable sortable" style="width: 100%;"
+! Accession !! Image || Motifs || Classification
+|-
+</includeonly>
