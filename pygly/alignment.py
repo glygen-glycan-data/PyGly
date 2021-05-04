@@ -142,6 +142,7 @@ class GlycanEquivalence(Comparitor):
         self._linkcmp = linkcmp
 	self.adist = None
 	self.bdist = None
+        self._repeat_max_depth = 10
         super(GlycanEquivalence,self).__init__(**kw)
 
     def rootmonoeq(self,a,b):
@@ -153,7 +154,28 @@ class GlycanEquivalence(Comparitor):
     def linkeq(self,a,b):
         return self._linkcmp.eq(a,b)
 
-    def subtree_eq(self,a,b,root=True,mapids=False):
+    def repeat_max_depth(self):
+        return self._repeat_max_depth
+
+    def set_repeat_max_depth(self, d):
+        assert isinstance(d, int)
+        assert d > 0
+        self._repeat_max_depth = d
+
+    def subtree_eq(self,a,b,root=True,mapids=False,repeat_depth_a=0,repeat_depth_b=0):
+        return self.subtree_eq_at_least_one(a,b,root=root,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)
+
+    def subtree_eq_at_least_one(self,a,b,root=True,mapids=False,repeat_depth_a=0,repeat_depth_b=0):
+
+        # Loose equality match
+        # Return True as long as there is one chance a glycan is same as the other
+        # Example:
+        # -[-a-b-]- vs a-b / a-b-a-b yes
+        #
+        #    b
+        #    |
+        # -[-a-]- vs a-b yes
+
 
         if root:
             if not self.rootmonoeq(a,b):
@@ -165,14 +187,80 @@ class GlycanEquivalence(Comparitor):
         if mapids:
             b.set_id(a.id())
 
-        for ii,jj in itermatchings(a.links(),b.links(),
-                                   lambda i,j: self.linkeq(i,j) and self.subtree_eq(i.child(),j.child(),root=False,mapids=mapids)):
+        alinks = a.links()
+
+        alinks_type_1 = []
+        alinks_type_2 = []
+        alinks_type_3 = []
+
+        for l in alinks:
+
+            if l.basic_link():
+                alinks_type_1.append(l)
+
+            elif l.repeat_bridge_link():
+                alinks_type_2.append(l)
+
+            elif l.repeat_unit_out_link():
+                alinks_type_3.append(l)
+
+        assert len(alinks_type_2) in [0, 1]
+
+        alinks_no_repeat_path = alinks_type_1 + alinks_type_3
+        alinks_repeat_path = alinks_type_1 + alinks_type_2
+
+        blinks = b.links()
+        blinks_type_1 = []
+        blinks_type_2 = []
+        blinks_type_3 = []
+
+        for l in blinks:
+
+            if l.basic_link():
+                blinks_type_1.append(l)
+
+            elif l.repeat_bridge_link():
+                blinks_type_2.append(l)
+
+            elif l.repeat_unit_out_link():
+                blinks_type_3.append(l)
+
+        assert len(blinks_type_2) in [0, 1]
+        blinks_no_repeat_path = blinks_type_1 + blinks_type_3
+        blinks_repeat_path = blinks_type_1 + blinks_type_2
+
+
+        for ii,jj in itermatchings(alinks_no_repeat_path, blinks_no_repeat_path, lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)):
             return True
+
+        limit = self.repeat_max_depth()
+        if repeat_depth_a > limit or repeat_depth_b > limit:
+            return False
+
+        repeat_match_a, repeat_match_b = False, False
+
+        for ii, jj in itermatchings(alinks_no_repeat_path, blinks_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b+1)):
+            #print "Matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+            repeat_match_b = True
+            return True
+        #print "No matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+
+        for ii,jj in itermatchings(alinks_repeat_path, blinks_no_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a+1,repeat_depth_b=repeat_depth_b)):
+            #print "Matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+            repeat_match_a = True
+            return True
+        #print "No matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+
+
 
         if mapids:
             b.unset_id()
         
         return False
+
+    def subtree_eq_strict(self, a, b, root=True, mapids=False, repeat_depth_a=0, repeat_depth_b=0):
+        # TODO
+        return
 
     def monosaccharide_match(self,a,b):
 
@@ -215,6 +303,11 @@ class GlycanEquivalence(Comparitor):
             if not self.subtree_eq(a.root(),b.root(),mapids=False):
                 # non-composition, but might be undetermined toplogy. Determined part should match.
                 return False
+
+        if (a.repeated() and a.undetermined()) or (b.repeated() and b.undetermined()):
+            # TODO Cannot solve now
+            # Raise an error instead?
+            return False
 
 	lineno()
 
@@ -581,7 +674,16 @@ class SubstructureSearch(GlycanPartialOrder):
         self.connected_nodes_pre_computed = kw.get("connected_nodes_pre_computed", True)
         if self.connected_nodes_pre_computed:
             self.nodes_cache = kw.get("connected_nodes_cache", ConnectedNodesCache())
+        self._repeat_max_depth = 10
         super(SubstructureSearch, self).__init__(**kw)
+
+    def repeat_max_depth(self):
+        return self._repeat_max_depth
+
+    def set_repeat_max_depth(self, d):
+        assert isinstance(d, int)
+        assert d > 0
+        self._repeat_max_depth = d
 
     def check_links(self, motif, motif_node_set, tg_node_set):
         motif_nodes = motif_node_set
@@ -681,7 +783,7 @@ class SubstructureSearch(GlycanPartialOrder):
         else:
             return self.allConnectedNodesByRootRecursive(r, size)
 
-    def subtree_leq(self,m, tg,root=True):
+    def subtree_leq(self,m, tg,root=True, repeat_depth_m=0, repeat_depth_tg=0):
 
         if root:
             if not self.rootmonoleq(m, tg):
@@ -690,10 +792,78 @@ class SubstructureSearch(GlycanPartialOrder):
             if not self.monoleq(m, tg):
                 return False
 
-        for tg_linkset in choose(tg.links(), len(m.links())):
-            for ii,jj in itermatchings(m.links(), tg_linkset,
-                                       lambda i, j: self.linkleq(i, j) and self.subtree_leq(i.child(), j.child(), root=False)):
+
+        mlinks = m.links()
+
+        mlinks_type_1 = []
+        mlinks_type_2 = []
+        mlinks_type_3 = []
+
+        for l in mlinks:
+
+            if l.basic_link():
+                mlinks_type_1.append(l)
+
+            elif l.repeat_bridge_link():
+                mlinks_type_2.append(l)
+
+            elif l.repeat_unit_out_link():
+                mlinks_type_3.append(l)
+
+        assert len(mlinks_type_2) in [0, 1]
+
+        mlinks_no_repeat_path = mlinks_type_1 + mlinks_type_3
+        mlinks_repeat_path = mlinks_type_1 + mlinks_type_2
+
+        tglinks = tg.links()
+        tglinks_type_1 = []
+        tglinks_type_2 = []
+        tglinks_type_3 = []
+
+        for l in tglinks:
+
+            if l.basic_link():
+                tglinks_type_1.append(l)
+
+            elif l.repeat_bridge_link():
+                tglinks_type_2.append(l)
+
+            elif l.repeat_unit_out_link():
+                tglinks_type_3.append(l)
+
+        assert len(tglinks_type_2) in [0, 1]
+        tglinks_no_repeat_path = tglinks_type_1 + tglinks_type_3
+        tglinks_repeat_path = tglinks_type_1 + tglinks_type_2
+
+
+
+        for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
+            for ii,jj in itermatchings(mlinks_no_repeat_path, tglinks_no_repeat_path_partial, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg)):
                 return True
+
+        limit = self.repeat_max_depth()
+        if repeat_depth_m > limit or repeat_depth_tg > limit:
+            return False
+
+        repeat_match_a, repeat_match_b = False, False
+
+        if len(mlinks_no_repeat_path) > 0 and len(tglinks_type_2) > 0:
+            for tglinks_repeat_path_partial in choose(tglinks_type_1, len(mlinks_no_repeat_path)-1):
+                tglinks_repeat_path_partial += tglinks_type_2
+
+                for ii, jj in itermatchings(mlinks_no_repeat_path, tglinks_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1)):
+                    #print "Matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+                    repeat_match_b = True
+                    return True
+                #print "No matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+
+        for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
+            for ii,jj in itermatchings(mlinks_repeat_path, tglinks_no_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg)):
+                #print "Matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+                repeat_match_a = True
+                return True
+        #print "No matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+
 
         return False
 
@@ -944,10 +1114,18 @@ class MonosaccharideEqual(MonosaccharideComparitor):
             return False
         if a._superclass != b._superclass:
             return False
-        if a._ring_start != b._ring_start:
-            return False
+
+
+        #if a._ring_start != b._ring_start:
+        #    return False
         if a._ring_end != b._ring_end:
             return False
+
+        # TODO ???? 1-? vs ?-?
+        if a._ring_start != b._ring_start and a._ring_end and b._ring_end:
+            return False
+
+
         if a._mods != b._mods:
             return False
         any = False

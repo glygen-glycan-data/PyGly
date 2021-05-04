@@ -45,13 +45,17 @@ class GlycoCTMonoFormat:
             s += "s:"
             s += self.fromSym[('Substituent',m.name())]
         return s
-    def linkToStr(self,l,noids=False):
+
+    def linkToStr(self, l, noids=False, replace_parent_id=None, replace_child_id=None):
         # 1:1d(2+1)2n
         s = ""
         if l.id() != None and not noids:
             s += str(l.id())+":"
         if l.parent().id() != None and not noids:
-            s += str(l.parent().id())
+            if replace_parent_id != None:
+                s += str(replace_parent_id)
+            else:
+                s += str(l.parent().id())
         if l.parent_type():
             s += "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.parent_type())))
         else:
@@ -59,12 +63,16 @@ class GlycoCTMonoFormat:
         s += '(%s'%(l.posstr(l.parent_pos()),)
         s += '+%s)'%(l.posstr(l.child_pos()),)
         if l.child().id() != None and not noids:
-            s += str(l.child().id())
+            if replace_child_id != None:
+                s += str(replace_child_id)
+            else:
+                s += str(l.child().id())
         if l.child_type():
             s += "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.child_type())))
         else:
             s += self.fromSym[('Linkage',Linkage.missing)]
         return s
+
     fromStrRE = re.compile(r'^(\d+)([bs]):(.*)$')
     def fromStr(self,mstr):
         m = self.fromStrRE.search(mstr.strip())
@@ -128,45 +136,56 @@ class GlycoCTMonoFormat:
             m.add_mod(num,modi)
         return m
 
-    linkFromStrRE = re.compile(r'^(\d+):(\d+)([dnohx])[(](.+)\+(.+)[)](\d+)([dnohx])$')
-    def linkFromStr(self,s,res):
+    linkFromStrRE = re.compile(r'^(REP)?(\d+):(\d+)([dnohx])[(](.+)\+(.+)[)](\d+)([dnohx])(=(-?\d+)-(-?\d+))?$')
+    def linkParseBase(self, s):
         m = self.linkFromStrRE.search(s)
         if not m:
-            raise RuntimeError("Bad GlycoCT link line:"+s)
-        id = int(m.group(1))
-        parentid = int(m.group(2))
-        parenttype = self.toSym[('Linkage',m.group(3))]
+            raise RuntimeError("Bad GlycoCT link line:" + s)
+
+        repeatbridge = m.group(1) == "REP"
+
+        id = int(m.group(2))
+        parentid = int(m.group(3))
+        parenttype = self.toSym[('Linkage', m.group(4))]
         parentpos2 = None
         try:
-            parentpos = map(int,m.group(4).split('|'))
+            parentpos = map(int, m.group(5).split('|'))
             if -1 in parentpos:
                 parentpos = None
         except ValueError:
             parentpos = None
         try:
-            childpos = int(m.group(5))
+            childpos = int(m.group(6))
             if childpos < 1:
                 childpos = None
         except ValueError:
             childpos = None
-        childid = int(m.group(6))
-        childtype = self.toSym[('Linkage',m.group(7))]
-        if parentid not in res:
-            raise RuntimeError("Bad GlycoCT link line, parent missing:"+s)
-        if childid not in res:
-            raise RuntimeError("Bad GlycoCT link line, child missing:"+s)
-        if parentid >= childid:
-            raise RuntimeError("Bad GlycoCT link line, backwards link:"+s)
-        parent = res[parentid]
-        #if isinstance(parent, Substituent):
-        #    raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
-        child = res[childid]
+        childid = int(m.group(7))
+        childtype = self.toSym[('Linkage', m.group(8))]
+
+        repeattimemin, repeattimemax = None, None
+        if repeatbridge:
+            repeattimemin = int(m.group(10))
+            repeattimemax = int(m.group(11))
+
+            if repeattimemin == -1:
+                repeattimemin = None
+            if repeattimemax == -1:
+                repeattimemax = None
+
+        return id, parentid, parentpos, parenttype, childid, childpos, childtype, repeatbridge, repeattimemin, repeattimemax
+
+    def linkFromPara(self, parent, child, parenttype, parentpos, childtype, childpos, repeat_exit=False, repeat_bridge=False):
+        assert not (repeat_exit and repeat_bridge)
         if isinstance(child,Monosaccharide):
-            l = parent.add_child(child,
-                                 parent_type=parenttype,
-                                 parent_pos=parentpos,
-                                 child_type=childtype,
-                                 child_pos=childpos)
+            if repeat_exit:
+                l = parent.add_child_exit_repeat(child, parent_type=parenttype, parent_pos=parentpos, child_type=childtype,
+                                     child_pos=childpos)
+            elif repeat_bridge:
+                l = parent.add_child_repeat_bridge(child, parent_type=parenttype, parent_pos=parentpos, child_type=childtype,
+                                     child_pos=childpos)
+            else:
+                l = parent.add_child(child, parent_type=parenttype, parent_pos=parentpos, child_type=childtype, child_pos=childpos)
         else:
             if child.name() == Substituent.amino and parenttype == Linkage.oxygenPreserved:
                 child._sub = Substituent.amino_oxygen_preserved
@@ -187,6 +206,25 @@ class GlycoCTMonoFormat:
                                        parent_pos=parentpos,
                                        child_type=childtype,
                                        child_pos=childpos)
+        return l
+
+    def linkFromStr(self, s, res):
+
+        id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.linkParseBase(s)
+
+        if parentid not in res:
+            raise RuntimeError("Bad GlycoCT link line, parent missing:"+s)
+        if childid not in res:
+            raise RuntimeError("Bad GlycoCT link line, child missing:"+s)
+        if parentid >= childid:
+            raise RuntimeError("Bad GlycoCT link line, backwards link:"+s)
+        parent = res[parentid]
+        #if isinstance(parent, Substituent):
+        #    raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
+        child = res[childid]
+
+        l = self.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos)
+
         return [l]
 
 class MonoSymLookup(dict):

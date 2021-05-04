@@ -58,6 +58,19 @@ class Glycan:
         for m in self.all_nodes(subst=True):
             m.unset_id()
 
+    def repeated(self):
+        for l in self.all_links():
+            if l.repeat_bridge_link():
+                return True
+        return False
+
+    def repeat_unit_count(self):
+        i = 0
+        for l in self.all_links():
+            if l.repeat_bridge_link():
+                i += 1
+        return i
+
     def set_undetermined(self, und):
         if und == None or len(und) == 0:
             self._undetermined = None
@@ -703,8 +716,17 @@ class Glycan:
         if node == None:
             node = self.root()
         code = monofmt.toStr(node)
+
+        # TODO this will produce wrong structure for complicated repeats
+        repeat_start = len(filter(lambda l: l.repeat_bridge_link(), node.parent_links()))>0
+        repeat_end   = len(filter(lambda l: l.repeat_bridge_link(), node.links())) > 0
+        if repeat_start:
+            code = "[" + code
+        if repeat_end:
+            code = code + "]"
+
         s = codeprefix + code
-        kidlinks = sorted(filter(lambda l: l.instantiated(),node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
+        kidlinks = sorted(filter(lambda l: l.instantiated() and not l.repeat_bridge_link(),node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
         kids = list(map(Linkage.child,kidlinks))
         n = len(kids)
         assert n in (0,1,2,3)
