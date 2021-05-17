@@ -674,6 +674,43 @@ class Glycan:
 
         return False
 
+    def is_repeat_in_repeat(self):
+
+        repeat_starts = []
+        for node in self.all_nodes(subst=True):
+            if node.is_repeat_start():
+                repeat_starts.append(node)
+
+
+        for rs in repeat_starts:
+
+            for pl in rs.parent_links():
+                if pl.repeat_bridge_link():
+
+                    re = pl.parent()
+
+                    todo = [rs]
+
+                    while len(todo) > 0:
+                        n = todo.pop()
+
+                        if n != rs and n.is_repeat_start():
+                            return True
+
+                        substs = n.substituents()
+                        todo += substs
+
+                        if n == re:
+                            inside_repeat_unit_child = []
+                            for l in re.links():
+                                if l.basic_link():
+                                    inside_repeat_unit_child.append(l.child())
+                            todo += inside_repeat_unit_child
+                        else:
+                            todo += n.children()
+
+        return False
+
     @staticmethod
     def monosaccharide_match(a,b):
         # print a

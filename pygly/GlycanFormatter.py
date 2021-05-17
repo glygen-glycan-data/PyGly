@@ -81,6 +81,10 @@ class GlycoCTRepeatTimesError(GlycoCTParseError):
     def __init__(self):
         self.message = "GlycoCT parser, repeat times range max is smaller than min"
 
+class GlycoCTRepeatInRepeatError(GlycoCTParseError):
+    def __init__(self):
+        self.message = "GlycoCT parser, found repeat in repeat"
+
 class GlycoCTUnconnectedCountError(GlycoCTParseError):
     def __init__(self):
         self.message = "GlycoCT parser, unconnected node count error"
@@ -168,8 +172,95 @@ class GlycoCTFormat(GlycanFormatter):
     
     def toStr(self, g):
 
-        g.set_ids()
-        
+        g.unset_ids()
+
+
+        all_nodes = list(g.all_nodes(subst=True))
+
+        repeat_info = {}
+        glycoct_node_id_to_rep_id = {}
+        rep_id_to_glycoct_node_id = {}
+
+
+
+        # Temporary stuff
+        repeat_starts = []
+        repeat_starts_d = {}
+        nodes_in_repeat = []
+        for node in all_nodes:
+            if node.is_repeat_start():
+                repeat_starts.append(node)
+
+
+        for i, rs in enumerate(repeat_starts):
+            rep_index = i+1
+
+            repeat_starts_d[rs] = rep_index
+            for pl in rs.parent_links():
+                if pl.repeat_bridge_link():
+                    # repeat_start, repeat_end, nodeset, linkset
+                    repeat_info[rep_index] = [None, None, [], []]
+
+                    re = pl.parent()
+                    repeat_info[rep_index][0] = rs
+                    repeat_info[rep_index][1] = re
+
+
+                    todo = [rs]
+
+                    while len(todo) > 0:
+                        n = todo.pop()
+
+                        if n not in repeat_info[rep_index][2]:
+                            repeat_info[rep_index][2].append(n)
+
+
+                        substs = n.substituents()
+                        todo += substs
+
+                        if n == re:
+                            inside_repeat_unit_child = []
+                            for l in re.links():
+                                if l.basic_link():
+                                    inside_repeat_unit_child.append(l.child())
+                            todo += inside_repeat_unit_child
+                        else:
+                            todo += n.children()
+
+                        #repeat_info[rep_index][2]
+
+                    nodes_in_repeat += repeat_info[rep_index][2]
+                    # print(len(repeat_info[rep_index][2]))
+
+
+            assert None not in repeat_info[rep_index]
+
+
+
+        i = 1
+        for n in all_nodes:
+
+            if n in nodes_in_repeat:
+
+                if n in repeat_starts_d:
+                    glycoct_node_id_to_rep_id[i] = repeat_starts_d[n]
+                    rep_id_to_glycoct_node_id[repeat_starts_d[n]] = i
+                    i += 1
+                continue
+
+            n.set_id(i)
+            i += 1
+
+        for n in all_nodes:
+
+            if n.id() == None:
+                n.set_id(i)
+                i += 1
+
+        #for n in all_nodes:
+        #    print(n.id())
+
+
         roots = []
         if g.root():
             roots.append(g.root())
@@ -177,23 +268,129 @@ class GlycoCTFormat(GlycanFormatter):
             if not ur.connected():
                 roots.append(ur)
 
+
+
         s = "RES\n"
+
+
         for r in roots:
             if len(r.parent_links()) == 0 or r == g.root():
-                for m in g.subtree_nodes(r,subst=True):
+                for m in g.subtree_nodes(r, subst=True):
+
+                    if m in repeat_starts_d:
+                        rep_id = repeat_starts_d[m]
+                        glycoct_node_id = rep_id_to_glycoct_node_id[rep_id]
+                        s += "%sr:r%s\n" % (glycoct_node_id, rep_id)
+                        pass
+
+                    if m in nodes_in_repeat:
+                        continue
+
                     s += self.monofmt.toStr(m).strip('!')+"\n"
-        
+
+
         first = True
         linkid = 1
         for r in roots:
             if len(r.parent_links()) == 0 or r == g.root():
-                for l in sorted(g.subtree_links(r,subst=True),key=lambda l: l.child().id()):
+
+                sortkey = {}
+                for rep_id, rinfo in repeat_info.items():
+                    glycoct_node_id = rep_id_to_glycoct_node_id[rep_id]
+                    rs = rinfo[0]
+                    sortkey[rs.id()] = glycoct_node_id
+
+                for l in sorted(g.subtree_links(r,subst=True),key=lambda l: l.child().id() if l.child().id() not in sortkey else sortkey[l.child().id()] ):
+
+                    if l.parent() in nodes_in_repeat or l.child() in nodes_in_repeat:
+
+                        lstr = None
+                        if l.parent() not in nodes_in_repeat and l.child() in nodes_in_repeat:
+                            # Entry to repeat unit
+                            l.set_id(linkid)
+                            linkid += 1
+
+                            rep_id_found = None
+                            for rep_id, rinfo in repeat_info.items():
+                                if l.child() == rinfo[0]:
+                                    rep_id_found = rep_id
+                            assert rep_id_found != None
+                            replace_child_id = rep_id_to_glycoct_node_id[rep_id_found]
+
+                            lstr = self.monofmt.linkToStr(l, replace_child_id=replace_child_id)
+
+
+                        if l.parent() in nodes_in_repeat and l.child() not in nodes_in_repeat:
+                            # Exit repeat unit
+                            l.set_id(linkid)
+                            linkid += 1
+
+                            rep_id_found = None
+                            for rep_id, rinfo in repeat_info.items():
+                                if l.parent() == rinfo[1]:
+                                    rep_id_found = rep_id
+                            assert rep_id_found != None
+                            replace_parent_id = rep_id_to_glycoct_node_id[rep_id_found]
+
+                            lstr = self.monofmt.linkToStr(l, replace_parent_id=replace_parent_id)
+
+
+                        if lstr != None:
+                            if first:
+                                s += "LIN\n"
+                                first = False
+                            s += lstr + "\n"
+                        else:
+                            if l.repeat_bridge_link():
+                                continue
+
+                            found = False
+                            for rep_id, rinfo in repeat_info.items():
+
+                                if l.child() in rinfo[2] and l.parent() in rinfo[2]:
+                                    rinfo[3].append(l)
+                                    found = True
+                            assert found
+
+                        continue
+
                     if first:
                         s += "LIN\n"
                         first = False
                     l.set_id(linkid)
                     linkid += 1
                     s += self.monofmt.linkToStr(l)+"\n"
+
+
+        if len(repeat_info) > 0:
+            s += "REP\n"
+
+            for rep_id in sorted(repeat_info.keys()):
+                rinfo = repeat_info[rep_id]
+                rs = rinfo[0]
+
+                repeat_bridge_link = filter(lambda pl: pl.repeat_bridge_link(), rs.parent_links())[0]
+                rmin = repeat_bridge_link.repeat_times_min()
+                if rmin == None:
+                    rmin = -1
+                rmax = repeat_bridge_link.repeat_times_max()
+                if rmax == None:
+                    rmax = -1
+
+                s += "REP%s:%s=%s-%s\n" % (rep_id, self.monofmt.linkToStr(repeat_bridge_link), rmin, rmax)
+
+                s += "RES\n"
+                for n in rinfo[2]:
+                    s += self.monofmt.toStr(n).strip('!') + "\n"
+
+                if len(rinfo[3]) > 0:
+                    s += "LIN\n"
+
+                    for l in rinfo[3]:
+                        l.set_id(linkid)
+                        linkid += 1
+                        s += self.monofmt.linkToStr(l) + "\n"
+
 
         first = True
         undind = 0
@@ -227,6 +424,7 @@ class GlycoCTFormat(GlycanFormatter):
                 l.set_id(linkid)
                 linkid += 1
                 s += self.monofmt.linkToStr(l)+"\n"
+
         return s
 
     def toGlycan(self,s):
@@ -403,7 +601,6 @@ class GlycoCTFormat(GlycanFormatter):
 
         for glycoctid in rep:
 
-            # TODO how about subst-in-link, start-sub ???
             assert isinstance(res[rep[glycoctid]["start"]] ,Monosaccharide)
             assert isinstance(res[rep[glycoctid]["end"]], Monosaccharide)
 
@@ -448,9 +645,6 @@ class GlycoCTFormat(GlycanFormatter):
             r.set_connected(False)
             unconnected.add(r)
 
-        # TODO
-        # assert len(rep) < 2
-
         if len(unconnected) not in (1,monocnt):
             raise GlycoCTUnconnectedCountError()
         # single monosacharides are considered a structure, not a composition...
@@ -461,6 +655,10 @@ class GlycoCTFormat(GlycanFormatter):
             assert len(undets) == 0
             g = Glycan()
             g.set_undetermined(unconnected)
+
+        if g.is_repeat_in_repeat():
+            raise GlycoCTRepeatInRepeatError()
+
         return g
 
 
@@ -1427,6 +1625,10 @@ class UnexpectedFloatingSubstError(WURCS20ParseError):
   def __init__(self,instr):
    self.message = "WURCS2.0 parser: Unexpected floating substituent:\n     %s"%(instr,)
 
+class UnexpectedRepeatInRepeatError(WURCS20ParseError):
+  def __init__(self):
+   self.message = "WURCS2.0 parser: Unexpected found (repeat in repeat)"
+
 import WURCS20MonoFormatter
 
 class WURCS20Format(GlycanFormatter):
@@ -1777,6 +1979,10 @@ class WURCS20Format(GlycanFormatter):
             assert len(undets) == 0
             g = Glycan()
             g.set_undetermined(set(list(unconnected)+floating_substs))
+
+        if g.is_repeat_in_repeat():
+            raise UnexpectedRepeatInRepeatError()
+
         return g
 
     def add_child(self, parent, child, parent_pos, child_pos, repeat_info):

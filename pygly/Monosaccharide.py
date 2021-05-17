@@ -223,42 +223,6 @@ class Node(object):
                 return True
         return False
 
-    def inside_repeat(self):
-
-        if self.is_repeat_start() or self.is_repeat_end():
-            return True
-
-        up_start, up_end, down_start, down_end = 0, 0, 0, 0
-
-        todiscover = self.parents()
-        while len(todiscover) > 0:
-            p = todiscover.pop()
-            if p.is_repeat_start():
-                up_start+=1
-            if p.is_repeat_end():
-                up_end+=1
-
-            todiscover += p.parents()
-
-        todiscover = self.children()
-        while len(todiscover) > 0:
-            c = todiscover.pop()
-            if c.is_repeat_start():
-                down_start += 1
-            if c.is_repeat_end():
-                down_end += 1
-
-            todiscover += c.children() + list(c.substituents())
-
-        print up_start, up_end, down_start, down_end
-        if up_start == up_end and down_start == down_end:
-            return False
-        elif up_start == 1 and down_end == 1:
-            return True
-
-        return False
-
-
     def find_repeat_start_and_end(self):
 
         start = None
