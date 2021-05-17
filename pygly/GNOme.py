@@ -2461,8 +2461,11 @@ if __name__ == "__main__":
                 if i == 0 and "accession" in linfo:
                     continue
 
-                newacc, oldacc = linfo
-                replace_mapping[oldacc] = newacc
+                retire, replace_acc = linfo
+                if replace_acc in ["", "-"]:
+                    replace_acc = None
+
+                replace_mapping[retire] = replace_acc
 
 
 
