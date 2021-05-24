@@ -371,10 +371,12 @@ class Glycan:
         return self.elemental_composition(pctable)
 
     def underivitized_molecular_weight(self,adduct='H2O'):
+        assert not self.repeated()
         return self.native_elemental_composition().mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
 
     def permethylated_molecular_weight(self,adduct='C2H6O'):
+        assert not self.repeated()
         return self.permethylated_elemental_composition().mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
     

@@ -2305,6 +2305,8 @@ class IncompleteScore:
 
     def score(self, g):
 
+        assert not g.repeated()
+
         monos = list(g.all_nodes())
         total_mono = len(monos)
 

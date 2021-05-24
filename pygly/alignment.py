@@ -143,6 +143,10 @@ class GlycanEquivalence(Comparitor):
 	self.adist = None
 	self.bdist = None
         self._repeat_max_depth = 10
+        self._exactmatch = True
+        if "exactmatch" in kw:
+            assert kw["exactmatch"] in [True, False]
+            self._strict = kw["exactmatch"]
         super(GlycanEquivalence,self).__init__(**kw)
 
     def rootmonoeq(self,a,b):
@@ -163,7 +167,10 @@ class GlycanEquivalence(Comparitor):
         self._repeat_max_depth = d
 
     def subtree_eq(self,a,b,root=True,mapids=False,repeat_depth_a=0,repeat_depth_b=0):
-        return self.subtree_eq_at_least_one(a,b,root=root,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)
+        if self._exactmatch:
+            return self.subtree_eq_strict(a,b,root=root,mapids=mapids)
+        else:
+            return self.subtree_eq_at_least_one(a,b,root=root,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)
 
     def subtree_eq_at_least_one(self,a,b,root=True,mapids=False,repeat_depth_a=0,repeat_depth_b=0):
 
@@ -239,18 +246,16 @@ class GlycanEquivalence(Comparitor):
 
         repeat_match_a, repeat_match_b = False, False
 
-        for ii, jj in itermatchings(alinks_no_repeat_path, blinks_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b+1)):
-            #print "Matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
-            repeat_match_b = True
-            return True
-        #print "No matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
 
-        for ii,jj in itermatchings(alinks_repeat_path, blinks_no_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a+1,repeat_depth_b=repeat_depth_b)):
-            #print "Matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
-            repeat_match_a = True
-            return True
-        #print "No matching at: %s-%s" % (repeat_depth_a, repeat_depth_b)
+        if len(blinks_type_2) > 0:
+            for ii, jj in itermatchings(alinks_no_repeat_path, blinks_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b+1)):
+                repeat_match_b = True
+                return True
 
+        if len(alinks_type_2) > 0:
+            for ii,jj in itermatchings(alinks_repeat_path, blinks_no_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a+1,repeat_depth_b=repeat_depth_b)):
+                repeat_match_a = True
+                return True
 
 
         if mapids:
@@ -258,9 +263,38 @@ class GlycanEquivalence(Comparitor):
         
         return False
 
-    def subtree_eq_strict(self, a, b, root=True, mapids=False, repeat_depth_a=0, repeat_depth_b=0):
-        # TODO
-        return
+    def subtree_eq_strict(self, a, b, root=True, mapids=False):
+
+        if root:
+            if not self.rootmonoeq(a, b):
+                return False
+        else:
+            if not self.monoeq(a, b):
+                return False
+
+        if mapids:
+            b.set_id(a.id())
+
+        alinks = filter(lambda x: not x.repeat_bridge_link(), a.links())
+        blinks = filter(lambda x: not x.repeat_bridge_link(), b.links())
+
+        alinks_r = filter(lambda x: x.repeat_bridge_link(), a.links())
+        blinks_r = filter(lambda x: x.repeat_bridge_link(), b.links())
+
+        tmp = len(alinks_r) == len(blinks_r) and len(alinks_r) == 0
+        for ii, jj in itermatchings(alinks_r, blinks_r, lambda i, j: self.linkeq(i, j)):
+            tmp = True
+        if not tmp:
+            return False
+
+
+        for ii, jj in itermatchings(alinks, blinks, lambda i, j: self.linkeq(i, j) and self.subtree_eq_strict(i.child(), j.child(), root=False, mapids=mapids)):
+            return True
+
+        if mapids:
+            b.unset_id()
+
+        return False
 
     def monosaccharide_match(self,a,b):
 
@@ -286,7 +320,7 @@ class GlycanEquivalence(Comparitor):
             break
         return child_links_match
 
-    def eq(self,a,b):
+    def eq(self, a, b):
 	
 	self.adist = None
 	self.bdist = None
@@ -299,14 +333,37 @@ class GlycanEquivalence(Comparitor):
         if a.has_root() and b.has_root():
             if not a.undetermined() and not b.undetermined():
                 # Simple topologically determined glycan
-                return self.subtree_eq(a.root(),b.root(),mapids=True)
+                subtree_result = self.subtree_eq(a.root(), b.root(), mapids=True)
+
+                if not subtree_result:
+                    return False
+
+                if not self._exactmatch:
+                    # Well, at least one match is found
+                    return True
+
+                # Exact match
+                if a.repeated() and b.repeated():
+                    a_rpbl = filter(lambda x: x.repeat_bridge_link(), a.all_links())
+                    b_rpbl = filter(lambda x: x.repeat_bridge_link(), b.all_links())
+                    for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkeq(i, j) and i.parent().id() == j.parent().id() and i.child().id() == j.child().id()):
+                        return True
+                    return False
+
+                elif a.repeated() != b.repeated():
+                    return False
+
+                else:
+                    return True
+
+
+
             if not self.subtree_eq(a.root(),b.root(),mapids=False):
                 # non-composition, but might be undetermined toplogy. Determined part should match.
                 return False
 
         if (a.repeated() and a.undetermined()) or (b.repeated() and b.undetermined()):
-            # TODO Cannot solve now
-            # Raise an error instead?
+            # TODO Cannot handle cases like this...
             return False
 
 	lineno()
@@ -476,18 +533,35 @@ class GlycanPartialOrder(Comparitor):
             return False
         return True
 
-    def subtree_leq(self,a,b,root=True):
 
+    def subtree_leq(self, a, b, root=True, mapids=False):
         if root:
-            if not self.rootmonoleq(a,b):
+            if not self.rootmonoleq(a, b):
                 return False
         else:
-            if not self.monoleq(a,b):
+            if not self.monoleq(a, b):
                 return False
 
-        for ii,jj in itermatchings(a.links(),b.links(),
-                                   lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False)):
+        if mapids:
+            b.set_id(a.id())
+
+        alinks = filter(lambda x: not x.repeat_bridge_link(), a.links())
+        blinks = filter(lambda x: not x.repeat_bridge_link(), b.links())
+
+        alinks_r = filter(lambda x: x.repeat_bridge_link(), a.links())
+        blinks_r = filter(lambda x: x.repeat_bridge_link(), b.links())
+
+        tmp = len(alinks_r) == len(blinks_r) and len(alinks_r) == 0
+        for ii, jj in itermatchings(alinks_r, blinks_r, lambda i, j: self.linkleq(i, j)):
+            tmp = True
+        if not tmp:
+            return False
+
+        for ii, jj in itermatchings(alinks, blinks, lambda i, j: self.linkleq(i, j) and self.subtree_leq(i.child(), j.child(), root=False, mapids=mapids)):
             return True
+
+        if mapids:
+            b.unset_id()
 
         return False
 
@@ -518,11 +592,36 @@ class GlycanPartialOrder(Comparitor):
         
         lineno()
 
+
+        if a.repeated() != b.repeated():
+            return False
+
         if not a.undetermined() and not b.undetermined():
             # Simple topologically determined glycan
-            return self.subtree_leq(a.root(),b.root())
+            subtree_result = self.subtree_leq(a.root(),b.root(), mapids=True)
 
-        # at this point at both are rooted and least one is undetermined
+            if not subtree_result:
+                return False
+
+            if a.repeated() and b.repeated():
+                a_rpbl = filter(lambda x: x.repeat_bridge_link(), a.all_links())
+                b_rpbl = filter(lambda x: x.repeat_bridge_link(), b.all_links())
+                for m in itermatchings(a_rpbl, b_rpbl,
+                                       lambda i, j: self.linkleq(i,j)
+                                                    and i.parent().id() == j.parent().id()
+                                                    and i.child().id() == j.child().id()):
+                    return True
+                return False
+
+            elif a.repeated() != b.repeated():
+                return False
+
+            else:
+                return True
+
+        if (a.repeated() and a.undetermined()) or (b.repeated() and b.undetermined()):
+            # TODO Cannot handle cases like this...
+            return False
 
         a.set_ids()
         b.set_ids()
@@ -946,7 +1045,7 @@ class SubstructureSearchNonReducingEnd(SubstructureSearch):
 
         return True
 
-    def subtree_leq(self, m, tg, root=True):
+    def subtree_leq(self, m, tg, root=True, **karg):
 
         if not self.check_links_childlink_count(m, tg):
             return False
@@ -1114,18 +1213,10 @@ class MonosaccharideEqual(MonosaccharideComparitor):
             return False
         if a._superclass != b._superclass:
             return False
-
-
-        #if a._ring_start != b._ring_start:
-        #    return False
+        if a._ring_start != b._ring_start:
+            return False
         if a._ring_end != b._ring_end:
             return False
-
-        # TODO ???? 1-? vs ?-?
-        if a._ring_start != b._ring_start and a._ring_end and b._ring_end:
-            return False
-
-
         if a._mods != b._mods:
             return False
         any = False
