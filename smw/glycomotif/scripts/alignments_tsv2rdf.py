@@ -1,3 +1,4 @@
+#!/bin/env python2
 import os
 import sys
 import csv
@@ -54,7 +55,7 @@ rdfns = rdflib.RDF
 rdfsns = rdflib.RDFS
 skosns = rdflib.Namespace('http://www.w3.org/2004/02/skos/core#')
 swivtns = rdflib.Namespace('http://semantic-mediawiki.org/swivt/1.0#')
-glycomotifns = rdflib.Namespace('http://glycandata.glygen.org/glycomotif#')
+glycomotifns = rdflib.Namespace('http://glyomics.org/glycomotif#')
 
 
 rdfgraph.bind("rdf", rdfns)
@@ -66,7 +67,7 @@ rdfgraph.bind("skos", skosns)
 
 for motifacc, alignments_per_motif in alignments.items():
     # print motifacc
-    # motif_rdf_node = rdflib.URIRef("http://glycandata.glygen.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
+    # motif_rdf_node = rdflib.URIRef("http://glyomics.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
     # rdfgraph.add((motif_rdf_node, rdfns.type, swivtns["Subject"]))
 
     for alignment_type, structure_accs in alignments_per_motif.items():
