@@ -97,13 +97,13 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         loose_substructure = loose_core or loose_substructure_partial
 
         loose_whole = False
-        if loose_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
-            loose_whole = True
+        if not motif_gobj.repeated() and not glycan_obj.repeated() :
+            if loose_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
+                loose_whole = True
 
         loose_nred = False
-        if loose_substructure:
+        if not motif_gobj.repeated() and not glycan_obj.repeated() and loose_substructure:
             loose_nred = loose_nred_matcher.leq(motif_gobj, glycan_obj, underterminedLinkage=True)
-
 
 
         # if inclusive, then try to match strict
@@ -115,8 +115,9 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
             if not strict_core:
                 strict_substructure_partial = strict_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False)
 
-        if strict_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
-            strict_whole = True
+        if not motif_gobj.repeated() and not glycan_obj.repeated():
+            if strict_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
+                strict_whole = True
 
         strict_substructure = strict_core or strict_substructure_partial
 
