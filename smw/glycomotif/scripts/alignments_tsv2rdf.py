@@ -42,7 +42,7 @@ for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
     if flags[1]:
         alignments[macc]["Substructure"].append([gacc, flags[5]])
 
-    if flags[2] and flags[6]:
+    if flags[2]:
         alignments[macc]["Whole-Glycan"].append([gacc, flags[6]])
 
     if flags[3]:
