@@ -1027,10 +1027,24 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return False
 
-    def whole_glycan_match(self, m, tg):
+    def whole_glycan_match_check(self, m, tg):
+
+        if m.repeated() or tg.repeated():
+            return False
 
         if len(list(m.all_nodes())) != len(list(tg.all_nodes())):
             return False
+
+        if len(list(m.all_nodes(subst=True))) != len(list(tg.all_nodes(subst=True))):
+            return False
+
+        return True
+
+
+    def whole_glycan_match(self, m, tg):
+
+        if not self.whole_glycan_match_check(m, tg):
+            return True
 
         return self.leq(m, tg, rootOnly=True)
 
