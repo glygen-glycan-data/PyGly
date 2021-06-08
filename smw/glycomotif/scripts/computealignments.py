@@ -6,7 +6,7 @@ import findpygly
 import pygly.alignment
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache
-
+from pygly.GlycanResource.GlyCosmos import GlyCosmosNoCache
 from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
@@ -44,6 +44,13 @@ for m in w.itermotif():
         except:
             continue
 
+archived = set()
+gco = GlyCosmosNoCache()
+for acc in gco.archived():
+    acc = acc["accession"]
+    archived.add(acc)
+
+
 
 def secondtostr(i):
     i = int(i)
@@ -72,6 +79,9 @@ motif_accs = motif_gobjs.keys()
 for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     i += 1
     per = i / l
+
+    if glycan_acc in archived:
+        continue
 
     nodes_cache.clear()
     try:
