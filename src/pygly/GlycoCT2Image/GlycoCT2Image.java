@@ -12,10 +12,13 @@ import java.awt.image.BufferedImage;
 import java.lang.RuntimeException;
 import java.lang.IllegalArgumentException;
 import java.lang.StringIndexOutOfBoundsException;
-
+import java.lang.NullPointerException;
+import java.lang.StackOverflowError;
 
 import org.glycoinfo.application.glycanbuilder.converterWURCS2.WURCS2Parser;
 import org.glycoinfo.GlycanFormatconverter.Glycan.GlycanException;
+import org.glycoinfo.WURCSFramework.util.oldUtil.ConverterExchangeException;
+import org.glycoinfo.WURCSFramework.util.array.WURCSFormatException;
 
 import org.eurocarbdb.application.glycanbuilder.Glycan;
 import org.eurocarbdb.application.glycanbuilder.Residue;
@@ -157,6 +160,8 @@ public class GlycoCT2Image
 		double scale=4.0;
 		boolean reducing_end=true;
 		boolean opaque=true;
+		boolean force=false;
+		String outDir = "";
 		String outFile = "";
 
 		for (int i=0; i<args.length; i+=1) {
@@ -196,6 +201,16 @@ public class GlycoCT2Image
 				i += 1;
 				continue;
 			}
+			if (args[i].equals("force") && args.length > (i+1)) {
+				force = Boolean.parseBoolean(args[i+1]);
+				i += 1;
+				continue;
+			}
+			if (args[i].equals("outdir") && args.length > (i+1)) {
+				outDir = args[i+1];
+				i += 1;
+				continue;
+			}
 			if (args[i].equals("out") && args.length > (i+1)) {
 				outFile = args[i+1];
 				i += 1;
@@ -204,10 +219,20 @@ public class GlycoCT2Image
 
 			String glycanstr = readFileAsString(args[i]);
 			if (outFile.equals("")) {
+			    if (outDir.equals("")) {
 				outFile = changeExtn(args[i],imagefmt);
+			    } else {
+                                File f = new File(args[i]);
+			        String name = f.getName();
+			        String newname = changeExtn(name,imagefmt);
+				outFile = outDir + File.separator + newname;
+			    }
 			}
 
 			try {
+                            File outputfile = new File(outFile);
+			    if (force || !outputfile.exists()) {
+
 			    Glycan glycan;
 			    if (glycanstr.startsWith("WURCS")) {
 			        glycan = wparser.readGlycan(glycanstr, mo);
@@ -215,40 +240,35 @@ public class GlycoCT2Image
 			        glycan = parser.readGlycan(glycanstr, mo);
 			    } else {
 			        throw new IllegalArgumentException("Bad glycan descriptor!");
-			        //glycan = gparser.readGlycan(glycanstr, mo);
 			    }
-
 
 			    if (imagefmt.equalsIgnoreCase("png") || imagefmt.equalsIgnoreCase("jpg") || imagefmt.equalsIgnoreCase("jpeg")) {
 			        BufferedImage img = t_gwb.getGlycanRenderer().getImage(glycan, opaque, mass_opts, reducing_end, scale);
-                    File outputfile = new File(outFile);
-                    ImageIO.write(img, imagefmt, outputfile);
+                                ImageIO.write(img, imagefmt, outputfile);
+				System.out.println(args[i]);
 			    }
 			    else if (imagefmt.equalsIgnoreCase("svg")) {
 
                     String t_svg = SVGUtils.getVectorGraphics(t_grawt, new Union<Glycan>(glycan), mass_opts, reducing_end);
-                    // System.out.print(t_svg);
 
                     FileWriter outputfilewriter = new FileWriter(outFile);
                     outputfilewriter.write(t_svg);
                     outputfilewriter.close();
+				System.out.println(args[i]);
 			    }
 			    else {
 			        throw new IllegalArgumentException("Image format " + imagefmt + " is not supported");
 			    }
+			    }
 
 			}
-			catch (GlycanException ex) {
-				// pass...
-			}
-			catch (GlycoVisitorException ex) {
-				// pass...
-			}
-			catch (MonosaccharideException ex) {
-				// pass...
-			}
-			catch (RuntimeException ex) {
-				// pass...
+			catch (StackOverflowError | 
+                               WURCSFormatException | 
+                               GlycoVisitorException | 
+                               MonosaccharideException | 
+			       ConverterExchangeException | 
+                               GlycanException ex) {
+				System.out.println(args[i] + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
 			}
 
 			outFile = "";
