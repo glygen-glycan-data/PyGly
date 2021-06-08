@@ -15,6 +15,7 @@ import java.lang.StringIndexOutOfBoundsException;
 
 
 import org.glycoinfo.application.glycanbuilder.converterWURCS2.WURCS2Parser;
+import org.glycoinfo.GlycanFormatconverter.Glycan.GlycanException;
 
 import org.eurocarbdb.application.glycanbuilder.Glycan;
 import org.eurocarbdb.application.glycanbuilder.Residue;
@@ -27,6 +28,7 @@ import org.eurocarbdb.application.glycanbuilder.linkage.Union;
 import org.eurocarbdb.application.glycanbuilder.BuilderWorkspace;
 import org.eurocarbdb.resourcesdb.monosaccharide.MonosaccharideException;
 import org.eurocarbdb.MolecularFramework.util.visitor.GlycoVisitorException;
+
 
 public class GlycoCT2Image
 {
@@ -235,6 +237,9 @@ public class GlycoCT2Image
 			        throw new IllegalArgumentException("Image format " + imagefmt + " is not supported");
 			    }
 
+			}
+			catch (GlycanException ex) {
+				// pass...
 			}
 			catch (GlycoVisitorException ex) {
 				// pass...
