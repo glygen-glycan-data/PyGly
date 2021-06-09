@@ -235,9 +235,17 @@ public class GlycoCT2Image
 
 			    Glycan glycan;
 			    if (glycanstr.startsWith("WURCS")) {
-			        glycan = wparser.readGlycan(glycanstr, mo);
+				try {
+			            glycan = wparser.readGlycan(glycanstr, mo);
+				} catch (Exception ex) {
+				    throw new GlycanException(ex.getMessage());
+				}
 			    } else if (glycanstr.startsWith("RES")) {
-			        glycan = parser.readGlycan(glycanstr, mo);
+				try {
+			            glycan = parser.readGlycan(glycanstr, mo);
+				} catch (Exception ex) {
+				    throw new GlycanException(ex.getMessage());
+				}
 			    } else {
 			        throw new IllegalArgumentException("Bad glycan descriptor!");
 			    }
@@ -262,13 +270,8 @@ public class GlycoCT2Image
 			    }
 
 			}
-			catch (StackOverflowError | 
-                               WURCSFormatException | 
-                               GlycoVisitorException | 
-                               MonosaccharideException | 
-			       ConverterExchangeException | 
-                               GlycanException ex) {
-				System.out.println(args[i] + ": " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
+			catch (GlycanException ex) {
+				System.out.println(args[i] + ": " + ex.getMessage());
 			}
 
 			outFile = "";
