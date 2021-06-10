@@ -34,7 +34,7 @@ Options:
   -w    White-background (opaque). Default: $OPAQUE.
   -f    Format. One of png, svg. Default: $FORMAT.
   -F    Force (overwrite). Default: $FORCE.
-  -o    Ouput directory. Default: $OUTDIR.
+  -o    Ouput directory. Default: $OUTDIR
   -v    Verbose.
   -h    Help text.
 EOF
