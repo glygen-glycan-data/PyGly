@@ -1141,6 +1141,15 @@ class IUPACGlycamWriter:
             newtree.append(s)
         return "".join(newtree)
 
+    def has1v1children(self, m):
+
+        for cl in m.links():
+            cp = cl._child_pos
+            pp = cl._parent_pos
+            if cp == {1} and pp == {1}:
+                return True
+        return False
+
     def mono2str(self, m, l, root=False):
         m, subsstr = self.subs2str(m)
         sym = self.sym.toStr(m)
@@ -1172,7 +1181,10 @@ class IUPACGlycamWriter:
         modi = sym[3:]  # modifications, including mods and substituent
 
         if root:
-            link = "1-"
+            link = "1-OH"
+
+            # Glycam has more strict layout for 1v1 case
+            assert not self.has1v1children(m)
         else:
             pp = l[0]
             cp = l[1]
