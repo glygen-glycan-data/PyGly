@@ -73,4 +73,4 @@ if [ "$1" = "" ]; then
 else
   FILES="$1"
 fi
-find "$FILES" -name "$PATTERN" | sort | xargs -n "$BATCH" -P "$PROCS" $DIR/bulkimg.sh -n "$NOTATION" -d "$DISP" -s "$SCALE" -O "$ORIENT" -r "$REDEND" -w "$OPAQUE" -f "$FORMAT" -F "$FORCE" -o "$OUTDIR" $VERBOSE
+find "$FILES" -name "$PATTERN" -type f | sort | xargs -n "$BATCH" -P "$PROCS" $DIR/bulkimg.sh -n "$NOTATION" -d "$DISP" -s "$SCALE" -O "$ORIENT" -r "$REDEND" -w "$OPAQUE" -f "$FORMAT" -F "$FORCE" -o "$OUTDIR" $VERBOSE
