@@ -35,7 +35,7 @@ Options:
   -w    White-background (opaque). Default: $OPAQUE.
   -f    Format. One of png, svg. Default: $FORMAT.
   -F    Force (overwrite). Default: $FORCE.
-  -o    Ouput directory. Default: $OUTDIR.
+  -o    Ouput directory. Default: $OUTDIR
   -P    Processors. Default: $PROCS.
   -p    Filename pattern. Default: $PATTERN.
   -N    Batch size. Default: $BATCH.
