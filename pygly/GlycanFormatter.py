@@ -2003,19 +2003,18 @@ class WURCS20Format(GlycanFormatter):
             parent.add_child_exit_repeat(child,
                              parent_pos=parent_pos,
                              child_pos=child_pos,
-                             parent_type=Linkage.nitrogenAdded,
+                             parent_type=Linkage.oxygenPreserved,
                              child_type=Linkage.oxygenLost
                              )
         else:
-            childtype = Linkage.oxygenLost
-            if entry_link:
-                childtype = Linkage.nitrogenAdded
-
+            #childtype = Linkage.oxygenLost
+            #if entry_link:
+            #    childtype = Linkage.nitrogenAdded
             parent.add_child(child,
                              parent_pos  = parent_pos,
                              child_pos   = child_pos,
                              parent_type = Linkage.oxygenPreserved,
-                             child_type  = childtype
+                             child_type  = Linkage.oxygenLost
                              )
         return
 
