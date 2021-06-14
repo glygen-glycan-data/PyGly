@@ -6,7 +6,7 @@ import findpygly
 import pygly.alignment
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
 from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache
-
+from pygly.GlycanResource.GlyCosmos import GlyCosmosNoCache
 from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
@@ -44,6 +44,13 @@ for m in w.itermotif():
         except:
             continue
 
+archived = set()
+gco = GlyCosmosNoCache()
+for acc in gco.archived():
+    acc = acc["accession"]
+    archived.add(acc)
+
+
 
 def secondtostr(i):
     i = int(i)
@@ -73,6 +80,9 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     i += 1
     per = i / l
 
+    if glycan_acc in archived:
+        continue
+
     nodes_cache.clear()
     try:
         glycan_obj = wp.toGlycan(s)
@@ -97,9 +107,8 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         loose_substructure = loose_core or loose_substructure_partial
 
         loose_whole = False
-        if not motif_gobj.repeated() and not glycan_obj.repeated() :
-            if loose_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
-                loose_whole = True
+        if loose_core and loose_matcher.whole_glycan_match_check(motif_gobj, glycan_obj):
+            loose_whole = True
 
         loose_nred = False
         if not motif_gobj.repeated() and not glycan_obj.repeated() and loose_substructure:
@@ -115,15 +124,13 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
             if not strict_core:
                 strict_substructure_partial = strict_matcher.leq(motif_gobj, glycan_obj, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False)
 
-        if not motif_gobj.repeated() and not glycan_obj.repeated():
-            if strict_core and (len(list(motif_gobj.all_nodes())) == len(list(glycan_obj.all_nodes()))):
-                strict_whole = True
+        if strict_core and strict_matcher.whole_glycan_match_check(motif_gobj, glycan_obj):
+            strict_whole = True
 
         strict_substructure = strict_core or strict_substructure_partial
 
-        if loose_nred:
-            if strict_substructure:
-                strict_nred = strict_nred_matcher.leq(motif_gobj, glycan_obj, underterminedLinkage=False)
+        if loose_nred and strict_substructure:
+            strict_nred = strict_nred_matcher.leq(motif_gobj, glycan_obj, underterminedLinkage=False)
 
 
 
