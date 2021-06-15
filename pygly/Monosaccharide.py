@@ -278,6 +278,8 @@ class Monosaccharide(Node):
         m._substituent_links = copy.deepcopy(self._substituent_links)
         for l in m._substituent_links:
             l.set_parent(m)
+            subst = l.child()
+            subst._links = []
         # m._links = copy.deepcopy(self._links)
         m._id = self._id
         m._connected = self._connected
@@ -315,7 +317,11 @@ class Monosaccharide(Node):
 
             cl = copy.deepcopy(l)
             cl.set_child(c)
-            cl.set_parent(m)
+            # TODO
+            if isinstance(l.parent(), Monosaccharide):
+                cl.set_parent(m)
+            else:
+                raise RuntimeError
             m.add_link(cl)
             c.add_parent_link(cl)
             if l == identified_link:

@@ -181,15 +181,15 @@ class GlycoCTFormat(GlycanFormatter):
         # Modify the entry and exit link before output the string
         for node in all_nodes:
 
-            for l in node.links(include_repeat=True):
+            for l in node.links():
 
                 # Entry link
                 if l.child().is_repeat_start():
-                    l.set_child_pos(Linkage.nitrogenAdded)
+                    l.set_child_type(Linkage.nitrogenAdded)
 
                 # Exit link
                 if l.repeat_unit_out_link():
-                    l.set_parent_pos(Linkage.nitrogenAdded)
+                    l.set_parent_type(Linkage.nitrogenAdded)
 
 
         repeat_info = {}
@@ -629,8 +629,8 @@ class GlycoCTFormat(GlycanFormatter):
                 parent = res[parentid]
                 child = res[childid]
 
-                entry_link_child_type = parenttype
-                exit_link_parent_type = childtype
+                entry_link_child_type = childtype
+                exit_link_parent_type = parenttype
 
                 l = self.monofmt.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos, repeat_bridge=True)
 
