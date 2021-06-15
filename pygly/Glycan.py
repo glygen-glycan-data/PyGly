@@ -31,6 +31,15 @@ elmt = MonoisotopicElementMass()
 mfactory = MonoFactory()
 msym = MassSym()
 
+
+class RepeatGlycanError(ValueError):
+
+    def __init__(self, msg):
+        self._msg = msg
+
+    def __str__(self):
+        return self._msg
+
 class Glycan:
 
     iupacSym = IUPACSym()
@@ -59,14 +68,14 @@ class Glycan:
             m.unset_id()
 
     def repeated(self):
-        for l in self.all_links():
+        for l in self.all_links(include_repeat=True):
             if l.repeat_bridge_link():
                 return True
         return False
 
     def repeat_unit_count(self):
         i = 0
-        for l in self.all_links():
+        for l in self.all_links(include_repeat=True):
             if l.repeat_bridge_link():
                 i += 1
         return i
@@ -371,12 +380,14 @@ class Glycan:
         return self.elemental_composition(pctable)
 
     def underivitized_molecular_weight(self,adduct='H2O'):
-        assert not self.repeated()
+        if self.repeated():
+            raise RepeatGlycanError("Repeated Glycan is not supported yet")
         return self.native_elemental_composition().mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
 
     def permethylated_molecular_weight(self,adduct='C2H6O'):
-        assert not self.repeated()
+        if self.repeated():
+            raise RepeatGlycanError("Repeated Glycan is not supported yet")
         return self.permethylated_elemental_composition().mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
     
@@ -559,12 +570,12 @@ class Glycan:
             for l in m.links(instantiated_only=(not uninstantiated)):
                 yield l
 
-    def all_links(self,subst=False,uninstantiated=False):
+    def all_links(self, subst=False, uninstantiated=False, include_repeat=False):
         for m in self.all_nodes():
             if subst:
                 for sl in m.substituent_links():
                     yield sl
-            for l in m.links(instantiated_only=(not uninstantiated)):
+            for l in m.links(instantiated_only=(not uninstantiated), include_repeat=include_repeat):
                 yield l
 
     def clone(self):
@@ -686,7 +697,7 @@ class Glycan:
 
         for rs in repeat_starts:
 
-            for pl in rs.parent_links():
+            for pl in rs.parent_links(include_repeat=True):
                 if pl.repeat_bridge_link():
 
                     re = pl.parent()
@@ -757,15 +768,13 @@ class Glycan:
         code = monofmt.toStr(node)
 
         # TODO this will produce wrong structure for complicated repeats
-        repeat_start = len(filter(lambda l: l.repeat_bridge_link(), node.parent_links()))>0
-        repeat_end   = len(filter(lambda l: l.repeat_bridge_link(), node.links())) > 0
-        if repeat_start:
+        if node.is_repeat_start():
             code = "[" + code
-        if repeat_end:
+        if node.is_repeat_end():
             code = code + "]"
 
         s = codeprefix + code
-        kidlinks = sorted(filter(lambda l: l.instantiated() and not l.repeat_bridge_link(),node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
+        kidlinks = sorted(filter(lambda l: l, node.links(instantiated_only=True)),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
         kids = list(map(Linkage.child,kidlinks))
         n = len(kids)
         assert n in (0,1,2,3)

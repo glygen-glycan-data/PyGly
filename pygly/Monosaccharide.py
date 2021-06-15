@@ -84,13 +84,31 @@ class Node(object):
 
         return 
 
-    def links(self,instantiated_only=True):
+    def links(self, instantiated_only=True, include_repeat=False):
+        res = self._links
         if instantiated_only:
-            return list(filter(lambda l: l.instantiated(),self._links))
-        return self._links
+            res = list(filter(lambda l: l.instantiated(), res))
+        if not include_repeat:
+            res = list(filter(lambda l: not l.repeat_bridge_link(), res))
+        return res
 
-    def parent_links(self):
-        return self._parent_links
+    def links_without_repeat(self):
+        return self.links(include_repeat=False)
+
+    def links_with_repeat(self):
+        res = self.links(include_repeat=True)
+        if True in filter(lambda l: l.repeat_bridge_link(), res):
+            return res
+        else:
+            # No repeat-bridge link
+            # So no linkset with repeat, return empty instead
+            return []
+
+    def parent_links(self, include_repeat=False):
+        res = self._parent_links
+        if not include_repeat:
+            res = list(filter(lambda l: not l.repeat_bridge_link(), res))
+        return res
 
     def add_link(self, l):
         self._links.append(l)
@@ -110,32 +128,11 @@ class Node(object):
     def clear_parent_links(self):
         self._parent_links = []
 
-    def parents(self, include_repeat_link=False):
-        res = []
-        for l in self.parent_links():
-            if l.repeat_bridge_link() and include_repeat_link:
-                res.append(l.parent())
-                continue
+    def parents(self, include_repeat=False):
+        return list(map(lambda l:l.child(), self.parent_links(include_repeat=include_repeat)))
 
-            if not l.repeat_bridge_link():
-                res.append(l.parent())
-                continue
-
-        return res
-
-
-    def children(self, include_repeat_link=False):
-        res = []
-        for l in self.links():
-            if l.repeat_bridge_link() and include_repeat_link:
-                res.append(l.child())
-                continue
-
-            if not l.repeat_bridge_link():
-                res.append(l.child())
-                continue
-
-        return res
+    def children(self, include_repeat=False):
+        return list(map(lambda l:l.child(), self.links(include_repeat=include_repeat)))
 
     def first_child(self):
         for l in self.links():
@@ -212,57 +209,16 @@ class Node(object):
         self._external_descriptor = s
 
     def is_repeat_start(self):
-        for l in self.parent_links():
+        for l in self.parent_links(include_repeat=True):
             if l.repeat_bridge_link():
                 return True
         return False
 
     def is_repeat_end(self):
-        for l in self.links():
+        for l in self.links(include_repeat=True):
             if l.repeat_bridge_link():
                 return True
         return False
-
-    def find_repeat_start_and_end(self):
-
-        start = None
-        end = None
-
-        if self.is_repeat_start():
-            start = self
-
-        if self.is_repeat_end():
-            end = self
-
-        # Find upstream repeat_start
-        todiscover = self.parents()
-        while len(todiscover) > 0:
-            p = todiscover.pop()
-            if p.is_repeat_start():
-                assert start == None
-                start = p
-                break
-            if p.is_repeat_end():
-                continue
-
-            todiscover += p.parents()
-
-        # Find downstream repeat_end
-        todiscover = self.children()
-        while len(todiscover) > 0:
-            c = todiscover.pop()
-            if c.is_repeat_start():
-                continue
-            if c.is_repeat_end():
-                assert end == None
-                end = c
-                break
-
-            todiscover += c.children() + list(c.substituents())
-
-        assert start != None
-        assert end != None
-        return (start, end)
 
 
 
@@ -331,10 +287,12 @@ class Monosaccharide(Node):
     def noring(self):
         return (self.ring() == (0,0))
 
-    def deepclone(self,identified_link=None,cache=None,rep_bridge_undone=[]):
+    def deepclone(self,identified_link=None, cache=None, rep_bridge_undone=[]):
+
+        m = self.clone()
         if cache == None:
             cache = dict()
-        m = self.clone()
+            cache[m.id()] = m
         identified_link_copy = None
 
         for l in self._links:
@@ -365,11 +323,12 @@ class Monosaccharide(Node):
             elif idlc != None:
                 identified_link_copy = idlc
 
-        # print lvl+1, cache
+
         for l in rep_bridge_undone:
 
             if not l.repeat_bridge_link():
                 continue
+
             if l.child().id() in cache.keys() and l.parent().id() in cache.keys():
                 rep_bridge_undone.remove(l)
 
@@ -662,15 +621,15 @@ class Monosaccharide(Node):
                 return True
         return False
 
-    def links(self,instantiated_only=True):
-        l1 = self._links
-        l2 = []
+    def links(self, instantiated_only=True, include_repeat=False):
+        res = self._links
         for sub in self.substituents():
-            l2 += sub.links()
-        lall = l1 + l2
+            res += sub.links()
         if instantiated_only:
-            return list(filter(lambda l: l.instantiated(), lall))
-        return lall
+            res = list(filter(lambda l: l.instantiated(), res))
+        if not include_repeat:
+            res = list(filter(lambda l: not l.repeat_bridge_link(), res))
+        return res
 
     def __str__(self):
 
@@ -696,7 +655,7 @@ class Monosaccharide(Node):
         if self.has_children():
             s += "        Children = "
             ch = []
-            for l in self.links(False):
+            for l in self.links(instantiated_only=False, include_repeat=True):
                 l_linked_by_sub = not l.parent().is_monosaccharide()
                 l_linkage_symbol = "~"
                 if l.instantiated():
@@ -862,7 +821,7 @@ class Substituent(Node):
     def fully_determined(self):
         return True
 
-class Linkage:
+class Linkage(object):
 
     # Atom Replacement constants (link types)
     oxygenPreserved     = 1
@@ -870,6 +829,11 @@ class Linkage:
     hydrogenLost        = 3
     nitrogenAdded       = 4
     missing             = None
+
+    # General Linkage type
+    basic_type  = "BASIC"
+    bridge_type = "REPEAT_BRIDGE"
+    exit_type   = "REPEAT_EXIT"
 
     # Note that we use None to indicate unset values throughout. To
     # unset a value, assign None to it.
@@ -880,6 +844,8 @@ class Linkage:
                  parent_type2=None, parent_pos2=None,
                  child_type2=None, child_pos2=None,
                  undetermined=False):
+
+        self._linkage_type = self.basic_type
 
         # the monosaccharide child in the linkage
         self.set_child(child)
@@ -1148,15 +1114,18 @@ class Linkage:
                                 self.posstr(self._child_pos),
                                 self.typestr(self._child_type))
 
+
+    def linkage_type(self):
+        return self._linkage_type
+
     def basic_link(self):
-        return True
+        return self.linkage_type() == self.basic_type
 
     def repeat_bridge_link(self):
-        return False
+        return self.linkage_type() == self.bridge_type
 
     def repeat_unit_out_link(self):
-        return False
-
+        return self.linkage_type() == self.exit_type
 
     def repeat_times(self):
         raise NotImplementedError
@@ -1188,18 +1157,12 @@ class SubLinkage(Linkage):
 
 class RepeatBridgeLinkage(Linkage):
 
-    def basic_link(self):
-        return False
-
-    def repeat_bridge_link(self):
-        return True
-
-    def repeat_unit_out_link(self):
-        return False
+    def __init__(self, child, **kw):
+        super(RepeatBridgeLinkage, self).__init__(child, **kw)
+        self._linkage_type = self.bridge_type
 
     def repeat_times(self):
         raise NotImplementedError
-
 
     # TODO perhaps provide methods for validation the repating times?
     def set_repeat_times_min(self, m):
@@ -1219,14 +1182,9 @@ class RepeatBridgeLinkage(Linkage):
 
 class RepeatUnitOutLinkage(Linkage):
 
-    def basic_link(self):
-        return False
-
-    def repeat_bridge_link(self):
-        return False
-
-    def repeat_unit_out_link(self):
-        return True
+    def __init__(self, child, **kw):
+        super(RepeatUnitOutLinkage, self).__init__(child, **kw)
+        self._linkage_type = self.exit_type
 
 
 class AminoAcid:

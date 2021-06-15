@@ -1,7 +1,6 @@
 
 from __future__ import print_function
 
-import pygly.Monosaccharide
 from MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym, GlycamSym
 from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
 from Glycan import Glycan
@@ -172,10 +171,26 @@ class GlycoCTFormat(GlycanFormatter):
     
     def toStr(self, g):
 
+        g = g.clone()
+
         g.unset_ids()
 
 
         all_nodes = list(g.all_nodes(subst=True))
+
+        # Modify the entry and exit link before output the string
+        for node in all_nodes:
+
+            for l in node.links(include_repeat=True):
+
+                # Entry link
+                if l.child().is_repeat_start():
+                    l.set_child_pos(Linkage.nitrogenAdded)
+
+                # Exit link
+                if l.repeat_unit_out_link():
+                    l.set_parent_pos(Linkage.nitrogenAdded)
+
 
         repeat_info = {}
         glycoct_node_id_to_rep_id = {}
@@ -196,7 +211,7 @@ class GlycoCTFormat(GlycanFormatter):
             rep_index = i+1
 
             repeat_starts_d[rs] = rep_index
-            for pl in rs.parent_links():
+            for pl in rs.parent_links(include_repeat=True):
                 if pl.repeat_bridge_link():
                     # repeat_start, repeat_end, nodeset, linkset
                     repeat_info[rep_index] = [None, None, [], []]
@@ -220,7 +235,7 @@ class GlycoCTFormat(GlycanFormatter):
 
                         if n == re:
                             inside_repeat_unit_child = []
-                            for l in re.links():
+                            for l in re.links(include_repeat=True):
                                 if l.basic_link():
                                     inside_repeat_unit_child.append(l.child())
                             todo += inside_repeat_unit_child
@@ -369,7 +384,7 @@ class GlycoCTFormat(GlycanFormatter):
                 rinfo = repeat_info[rep_id]
                 rs = rinfo[0]
 
-                repeat_bridge_link = filter(lambda pl: pl.repeat_bridge_link(), rs.parent_links())[0]
+                repeat_bridge_link = filter(lambda pl: pl.repeat_bridge_link(), rs.parent_links(include_repeat=True))[0]
                 rmin = repeat_bridge_link.repeat_times_min()
                 if rmin == None:
                     rmin = -1
@@ -604,12 +619,30 @@ class GlycoCTFormat(GlycanFormatter):
             assert isinstance(res[rep[glycoctid]["start"]] ,Monosaccharide)
             assert isinstance(res[rep[glycoctid]["end"]], Monosaccharide)
 
+            entry_link_child_type = None
+            exit_link_parent_type = None
+            assert "repeat_bridge" in rep[glycoctid]
+            if "repeat_bridge" in rep[glycoctid]:
+                id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.monofmt.linkParseBase(rep[glycoctid]["repeat_bridge"])
+                parentid = rep[glycoctid]["end"]
+                childid = rep[glycoctid]["start"]
+                parent = res[parentid]
+                child = res[childid]
+
+                entry_link_child_type = parenttype
+                exit_link_parent_type = childtype
+
+                l = self.monofmt.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos, repeat_bridge=True)
+
+                l.set_repeat_times_min(rep[glycoctid]["repeat_times"][0])
+                l.set_repeat_times_max(rep[glycoctid]["repeat_times"][1])
+
             if "link_in" in rep[glycoctid]:
                 id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.monofmt.linkParseBase(rep[glycoctid]["link_in"])
                 childid = rep[glycoctid]["start"]
                 parent = res[parentid]
                 child = res[childid]
-                self.monofmt.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos)
+                self.monofmt.linkFromPara(parent, child, parenttype, parentpos, entry_link_child_type, childpos)
             else:
                 r = res[rep[glycoctid]["start"]]
                 unconnected.add(r)
@@ -619,21 +652,8 @@ class GlycoCTFormat(GlycanFormatter):
                 parentid = rep[glycoctid]["end"]
                 parent = res[parentid]
                 child = res[childid]
-                self.monofmt.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos, repeat_exit=True)
+                self.monofmt.linkFromPara(parent, child, exit_link_parent_type, parentpos, childtype, childpos, repeat_exit=True)
 
-            assert "repeat_bridge" in rep[glycoctid]
-            if "repeat_bridge" in rep[glycoctid]:
-                id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.monofmt.linkParseBase(rep[glycoctid]["repeat_bridge"])
-                parentid = rep[glycoctid]["end"]
-                childid = rep[glycoctid]["start"]
-                parent = res[parentid]
-                child = res[childid]
-
-                l = self.monofmt.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos, repeat_bridge=True)
-                # print(parentid, childid)
-                # print(l, isinstance(l, pygly.Monosaccharide.SubLinkage))
-                l.set_repeat_times_min(rep[glycoctid]["repeat_times"][0])
-                l.set_repeat_times_max(rep[glycoctid]["repeat_times"][1])
 
         monocnt = 0
         for id,r in res.items():
@@ -1654,6 +1674,7 @@ class WURCS20Format(GlycanFormatter):
         self.compsubstlinkre = re.compile(r'^([a-zA-Z]{1,2}[0-9?](\|[a-zA-Z]{1,2}[0-9?])*)\}\*(.*)$')
         self.substbridgelinkre = re.compile(r"^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])\*(.*?)$")
         self.substbridgecompre = re.compile(r"^([a-zA-Z]{1,2}[?](\|[a-zA-Z]{1,2}[?])*)\}-\{([a-zA-Z]{1,2}[?](\|[a-zA-Z]{1,2}[?])*)\*(.*?)$")
+        self.repeatbridgelinkre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])(\*.*)?~(n|\d+:(\d+|n))$')
 
         self.char2int = {}
         self.int2char = {}
@@ -1736,11 +1757,6 @@ class WURCS20Format(GlycanFormatter):
                 #     raise BadParentPositionLinkError(li)
 
                 self.add_child(parentmono, childmono, parentpos, childpos, rep)
-                """parentmono.add_child(childmono,
-                                     child_pos=childpos,
-                                     parent_pos=parentpos,
-                                     parent_type=Linkage.oxygenPreserved,
-                                     child_type=Linkage.oxygenLost)"""
                 continue
 
             mi = self.multilinkre.search(li)
@@ -1766,12 +1782,6 @@ class WURCS20Format(GlycanFormatter):
                 #     raise BadParentPositionLinkError(li)
 
                 self.add_child(parentmono, childmono, parentpos, childpos, rep)
-                """parentmono.add_child(childmono,
-                                     child_pos=childpos,
-                                     parent_pos=parentpos,
-                                     parent_type=Linkage.oxygenPreserved,
-                                     child_type=Linkage.oxygenLost)"""
-
                 continue
 
             mi = self.substbridgecompre.search(li)
@@ -1839,8 +1849,7 @@ class WURCS20Format(GlycanFormatter):
                 continue
 
 
-            tmpre = re.compile(r'^([a-zA-Z]{1,2})([0-9?])-([a-zA-Z]{1,2})([0-9?])(\*.*)?~(n|\d+:(\d+|n))$')
-            mi = tmpre.search(li)
+            mi = self.repeatbridgelinkre.search(li)
             if mi:
                 start_ind = self.char2int[mi.group(1)]
                 start_pos = (int(mi.group(2)) if mi.group(2) != "?" else None)
@@ -1998,7 +2007,6 @@ class WURCS20Format(GlycanFormatter):
         return g
 
     def add_child(self, parent, child, parent_pos, child_pos, repeat_info):
-        entry_link = False
         exit_link = False
 
         for rinfo in repeat_info:
@@ -2008,8 +2016,6 @@ class WURCS20Format(GlycanFormatter):
                 # TODO perhaps also check the monosaccharide ?
                 exit_link = True
 
-            if child == rinfo[0]:
-                entry_link = True
 
         if exit_link:
             parent.add_child_exit_repeat(child,
@@ -2019,15 +2025,7 @@ class WURCS20Format(GlycanFormatter):
                              child_type=Linkage.oxygenLost
                              )
         else:
-            #childtype = Linkage.oxygenLost
-            #if entry_link:
-            #    childtype = Linkage.nitrogenAdded
-            parent.add_child(child,
-                             parent_pos  = parent_pos,
-                             child_pos   = child_pos,
-                             parent_type = Linkage.oxygenPreserved,
-                             child_type  = Linkage.oxygenLost
-                             )
+            parent.add_child(child, parent_pos = parent_pos, child_pos = child_pos, parent_type = Linkage.oxygenPreserved, child_type = Linkage.oxygenLost)
         return
 
 if __name__ == '__main__':
