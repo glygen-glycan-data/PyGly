@@ -1720,7 +1720,15 @@ class WURCS20Format(GlycanFormatter):
 
         # Note, repeat linkage is always at the end of link_list
         # Need some info from repeat bridge first
-        for li in reversed([ s.strip() for s in m.group(6).split('_') ]):
+        wurcs_linkage_list = [ s.strip() for s in m.group(6).split('_') ]
+        wurcs_repeat_linkage_list = []
+        for l in wurcs_linkage_list:
+            if "~" in l:
+                wurcs_linkage_list.remove(l)
+                wurcs_repeat_linkage_list.append(l)
+
+
+        for li in wurcs_repeat_linkage_list + wurcs_linkage_list:
 
             if not li:
                 continue
