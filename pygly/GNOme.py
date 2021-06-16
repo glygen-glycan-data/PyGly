@@ -1696,6 +1696,7 @@ class OWLWriter():
 
         outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((cbbutton_node, rdfs.label, Literal("_widget_button_state")))
+        outputGraph.add((cbbutton_node, definition, Literal("Internal raw data for both GNOme browser.")))
 
         # Add AnnotationProperty quick access to the GNOme browser
         has_structure_browser_node = self.gnouri(self.structure_browser_link)
@@ -1725,7 +1726,7 @@ class OWLWriter():
         has_structure_characterization_score_node = self.gnouri(self.has_structure_characterization_score)
 
         outputGraph.add((has_structure_characterization_score_node, rdf.type, owl.AnnotationProperty))
-        outputGraph.add((has_structure_characterization_score_node, rdfs.isDefinedBy, Literal(
+        outputGraph.add((has_structure_characterization_score_node, definition, Literal(
             "A score for the extent of characterization provided by the glycan's description. Glycan descriptions that completely characterize a glycan have score 0. Scores increase monotonically with subsumption. Scores should only be compared between glycan descriptions with the same monosaccharide (base-)composition. Score may change in future releases.")))
         outputGraph.add((has_structure_characterization_score_node, rdfs.label, Literal("has_structure_characterization_score")))
 
