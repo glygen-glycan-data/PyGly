@@ -2420,6 +2420,7 @@ if __name__ == "__main__":
 
         kv_para = {
             "version": None,
+            "archive": None,
             "replace": None
         }
         if len(sys.argv) < 5:
@@ -2453,6 +2454,16 @@ if __name__ == "__main__":
                 specificSym[k] = symFile2dict(v)
 
         replace_mapping = {}
+
+        if kv_para["archive"] is not None:
+            archive_file_handle = open(kv_para["archive"])
+            for i, l in enumerate(archive_file_handle):
+                acc = l.strip()
+                if i == 0 and "accession" in acc:
+                    continue
+                replace_mapping[acc] = None
+
+
         if kv_para["replace"] is not None:
             replace_file_path = kv_para["replace"]
 
@@ -2462,11 +2473,8 @@ if __name__ == "__main__":
                 if i == 0 and "accession" in linfo:
                     continue
 
-                retire, replace_acc = linfo
-                if replace_acc in ["", "-"]:
-                    replace_acc = None
-
-                replace_mapping[retire] = replace_acc
+                newacc, retire = linfo
+                replace_mapping[retire] = newacc
 
 
 
