@@ -171,24 +171,26 @@ class GlycoCTFormat(GlycanFormatter):
     
     def toStr(self, g):
 
-        g = g.clone()
-
         g.unset_ids()
 
 
         all_nodes = list(g.all_nodes(subst=True))
 
         # Modify the entry and exit link before output the string
+        entry_link_child_type_backup = "Default value"
+        exit_link_parent_type_backup = "Default value"
         for node in all_nodes:
 
             for l in node.links():
 
                 # Entry link
                 if l.child().is_repeat_start():
+                    entry_link_child_type_backup = l._child_type
                     l.set_child_type(Linkage.nitrogenAdded)
 
                 # Exit link
                 if l.repeat_unit_out_link():
+                    exit_link_parent_type_backup = l._parent_type
                     l.set_parent_type(Linkage.nitrogenAdded)
 
 
@@ -235,7 +237,7 @@ class GlycoCTFormat(GlycanFormatter):
 
                         if n == re:
                             inside_repeat_unit_child = []
-                            for l in re.links(include_repeat=True):
+                            for l in re.links():
                                 if l.basic_link():
                                     inside_repeat_unit_child.append(l.child())
                             todo += inside_repeat_unit_child
@@ -272,9 +274,6 @@ class GlycoCTFormat(GlycanFormatter):
                 n.set_id(i)
                 i += 1
 
-        #for n in all_nodes:
-        #    print(n.id())
-
 
         roots = []
         if g.root():
@@ -296,7 +295,6 @@ class GlycoCTFormat(GlycanFormatter):
                         rep_id = repeat_starts_d[m]
                         glycoct_node_id = rep_id_to_glycoct_node_id[rep_id]
                         s += "%sr:r%s\n" % (glycoct_node_id, rep_id)
-                        pass
 
                     if m in nodes_in_repeat:
                         continue
@@ -395,7 +393,7 @@ class GlycoCTFormat(GlycanFormatter):
                 s += "REP%s:%s=%s-%s\n" % (rep_id, self.monofmt.linkToStr(repeat_bridge_link), rmin, rmax)
 
                 s += "RES\n"
-                for n in rinfo[2]:
+                for n in sorted(rinfo[2], key=lambda n: n.id()):
                     s += self.monofmt.toStr(n).strip('!') + "\n"
 
                 if len(rinfo[3]) > 0:
@@ -439,6 +437,21 @@ class GlycoCTFormat(GlycanFormatter):
                 l.set_id(linkid)
                 linkid += 1
                 s += self.monofmt.linkToStr(l)+"\n"
+
+
+        for node in all_nodes:
+
+            for l in node.links():
+
+                # Entry link
+                if l.child().is_repeat_start():
+                    assert entry_link_child_type_backup != "Default value"
+                    l.set_child_type(entry_link_child_type_backup)
+
+                # Exit link
+                if l.repeat_unit_out_link():
+                    assert exit_link_parent_type_backup != "Default value"
+                    l.set_parent_type(exit_link_parent_type_backup)
 
         return s
 

@@ -278,8 +278,8 @@ class Monosaccharide(Node):
         m._substituent_links = copy.deepcopy(self._substituent_links)
         for l in m._substituent_links:
             l.set_parent(m)
-            subst = l.child()
-            subst._links = []
+            # Clear subst links - AKA subst_in_link case
+            l.child()._links = []
         # m._links = copy.deepcopy(self._links)
         m._id = self._id
         m._connected = self._connected
@@ -628,7 +628,7 @@ class Monosaccharide(Node):
         return False
 
     def links(self, instantiated_only=True, include_repeat=False):
-        res = self._links
+        res = self._links[:]
         for sub in self.substituents():
             res += sub.links()
         if instantiated_only:
@@ -772,6 +772,7 @@ class Substituent(Node):
         return s
 
     def deepclone(self,identified_link=None,cache=None):
+        raise RuntimeError
         if cache == None:
             cache = dict()
         m = self.clone()

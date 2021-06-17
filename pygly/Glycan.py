@@ -562,12 +562,12 @@ class Glycan:
             self.glycamformat = IUPACGlycamFormat()
         return self.glycamformat.toStr(self)
 
-    def subtree_links(self,root,subst=False,uninstantiated=False):
+    def subtree_links(self,root,subst=False,uninstantiated=False, include_repeat=False):
         for m in self.subtree_nodes(root):
             if subst:
                 for sl in m.substituent_links():
                     yield sl
-            for l in m.links(instantiated_only=(not uninstantiated)):
+            for l in m.links(instantiated_only=(not uninstantiated), include_repeat=include_repeat):
                 yield l
 
     def all_links(self, subst=False, uninstantiated=False, include_repeat=False):
