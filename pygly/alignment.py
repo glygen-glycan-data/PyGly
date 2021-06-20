@@ -39,6 +39,30 @@ class Comparitor(object):
     def eq(self,a,b):
         raise NotImplemented()
 
+
+    def parent_and_child_id_check(self, i, j):
+
+        if i.parent().is_monosaccharide() != j.parent().is_monosaccharide():
+            return False
+
+        if i.child().is_monosaccharide() != j.child().is_monosaccharide():
+            return False
+
+        if i.parent().is_monosaccharide():
+            if i.parent().id() != j.parent().id():
+                return False
+        else:
+            # The monosaccharide subst attaches to.
+            assert len(i.parent().parent_links()) == 1
+            assert len(j.parent().parent_links()) == 1
+            if i.parent().parent_links()[0].parent().id() != j.parent().parent_links()[0].parent().id():
+                return False
+
+        if i.child().id() != j.child().id():
+            return False
+
+        return True
+
     # returns True if a should be considered less than or equal to b
     # in the subset/subsumption/etc. sense.  should be like a partial
     # order, but permit equivalent items. If leq(a,b) and leq(b,a),
@@ -310,7 +334,8 @@ class GlycanEquivalence(Comparitor):
                 if a.repeated() and b.repeated():
                     a_rpbl = filter(lambda x: x.repeat_bridge_link(), a.all_links(include_repeat=True))
                     b_rpbl = filter(lambda x: x.repeat_bridge_link(), b.all_links(include_repeat=True))
-                    for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkeq(i, j) and i.parent().id() == j.parent().id() and i.child().id() == j.child().id()):
+
+                    for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkeq(i, j) and self.parent_and_child_id_check(i, j)):
                         return True
                     return False
 
@@ -570,10 +595,8 @@ class GlycanPartialOrder(Comparitor):
             if a.repeated() and b.repeated():
                 a_rpbl = filter(lambda x: x.repeat_bridge_link(), a.all_links(include_repeat=True))
                 b_rpbl = filter(lambda x: x.repeat_bridge_link(), b.all_links(include_repeat=True))
-                for m in itermatchings(a_rpbl, b_rpbl,
-                                       lambda i, j: self.linkleq(i,j)
-                                                    and i.parent().id() == j.parent().id()
-                                                    and i.child().id() == j.child().id()):
+
+                for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkleq(i,j) and self.parent_and_child_id_check(i, j)):
                     return True
                 return False
 

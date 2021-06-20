@@ -343,9 +343,14 @@ class Glycan:
         scv = Glycan.SubtreeCompositionVisit(sym=sym_table,comp=comp_table)
         self.dfsvisit_post(scv.visit,m)
 
-    def elemental_composition(self,comp_table):
+    def elemental_composition(self, comp_table, repeat_time=1):
         eltcomp = Composition()
-        for m in self.all_nodes(undet_subst=True):
+
+        nodes_in_repeat = []
+        if repeat_time > 1:
+            nodes_in_repeat = self.repeat_nodes() * (repeat_time-1)
+
+        for m in list(self.all_nodes(undet_subst=True)) + nodes_in_repeat:
             ec = m.composition(comp_table)
             eltcomp.add(ec)
         return eltcomp
@@ -373,22 +378,22 @@ class Glycan:
             self.subtree_composition(r,sym_table=iupacSym,comp_table=ctable)
         return r._symbol_composition,r._elemental_composition
 
-    def native_elemental_composition(self):
-        return self.elemental_composition(ctable)
+    def native_elemental_composition(self, repeat_time=1):
+        return self.elemental_composition(ctable, repeat_time=repeat_time)
     
-    def permethylated_elemental_composition(self):
-        return self.elemental_composition(pctable)
+    def permethylated_elemental_composition(self, repeat_time=1):
+        return self.elemental_composition(pctable, repeat_time=repeat_time)
 
-    def underivitized_molecular_weight(self,adduct='H2O'):
-        if self.repeated():
-            raise RepeatGlycanError("Repeated Glycan is not supported yet")
-        return self.native_elemental_composition().mass(elmt) + \
+    def underivitized_molecular_weight(self, adduct='H2O', repeat_time=1):
+        assert type(repeat_time) == int
+        assert repeat_time >= 1
+        return self.native_elemental_composition(repeat_time=repeat_time).mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
 
-    def permethylated_molecular_weight(self,adduct='C2H6O'):
-        if self.repeated():
-            raise RepeatGlycanError("Repeated Glycan is not supported yet")
-        return self.permethylated_elemental_composition().mass(elmt) + \
+    def permethylated_molecular_weight(self,adduct='C2H6O', repeat_time=1):
+        assert type(repeat_time) == int
+        assert repeat_time >= 1
+        return self.permethylated_elemental_composition(repeat_time=repeat_time).mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
     
     def fragments(self,r=None,force=False):
@@ -471,13 +476,59 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
+
+    def repeat_nodes(self):
+        res = []
+
+        all_nodes = list(self.all_nodes(subst=True))
+        for node in all_nodes:
+
+            rs = None
+            re = None
+
+            if node.is_repeat_start():
+                rs = node
+            else:
+                continue
+
+            for pl in rs.parent_links(include_repeat=True):
+                if pl.repeat_bridge_link():
+                    re = pl.parent()
+
+            assert rs != None
+            assert re != None
+
+            todo = [rs]
+            while len(todo) > 0:
+                n = todo.pop()
+
+                if n not in res:
+                    res.append(n)
+
+                substs = n.substituents()
+                todo += substs
+
+                if n == re:
+                    inside_repeat_unit_child = []
+                    for l in re.links():
+                        if l.basic_link():
+                            inside_repeat_unit_child.append(l.child())
+                    todo += inside_repeat_unit_child
+                else:
+                    todo += n.children()
+
+        # Subst cannot be the root of the repeating unit           - WURCS restriction
+        # Subst cannot be the first node connect to repeating unit - WURCS restriction
+        return filter(lambda x:x.is_monosaccharide(), res)
+
     iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
 
     def iupac_composition(self, floating_substituents=True, 
                                 aggregate_basecomposition=True, 
-                                redend_only=False):
+                                redend_only=False,
+                                repeat_time=1):
 	validsyms = self.iupac_composition_syms + self.subst_composition_syms
 	if not floating_substituents:
 	    validsyms += self.iupac_aldi_composition_syms
@@ -492,6 +543,11 @@ class Glycan:
 	        nodeiterable = [ self.root() ]
 	    else:
 		nodeiterable = []
+
+        if repeat_time > 1:
+            nodeiterable = list(nodeiterable)
+            nodeiterable += self.repeat_nodes() * (repeat_time-1)
+
         for m in nodeiterable:
 
             try:

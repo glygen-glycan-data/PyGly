@@ -291,13 +291,25 @@ class Monosaccharide(Node):
 
     def deepclone(self,identified_link=None, cache=None, rep_bridge_undone=[]):
 
-        m = self.clone()
         if cache == None:
             cache = dict()
-            cache[m.id()] = m
+
+        m = self.clone()
+
+        cache[m.id()] = m
+        for subst in m.substituents():
+            cache[subst.id()] = subst
+
         identified_link_copy = None
 
+        link_set = []
         for l in self._links:
+            link_set.append((m, l))
+        for subst in self.substituents():
+            for l in subst._links:
+                link_set.append((subst, l))
+
+        for node_original, l in link_set:
             assert l.child().id() != None
 
             if l.repeat_bridge_link():
@@ -310,19 +322,18 @@ class Monosaccharide(Node):
                 else:
                     c = l.child().deepclone(cache=cache,rep_bridge_undone=rep_bridge_undone)
                     idlc = None
-                cache[l.child().id()] = c
+                # cache[l.child().id()] = c
             else:
                 c = cache[l.child().id()]
                 idlc = None
 
+
+            node_clone = cache[node_original.id()]
+
             cl = copy.deepcopy(l)
             cl.set_child(c)
-            # TODO
-            if isinstance(l.parent(), Monosaccharide):
-                cl.set_parent(m)
-            else:
-                raise RuntimeError
-            m.add_link(cl)
+            cl.set_parent(node_clone)
+            node_clone.add_link(cl)
             c.add_parent_link(cl)
             if l == identified_link:
                 identified_link_copy = cl
@@ -628,13 +639,19 @@ class Monosaccharide(Node):
         return False
 
     def links(self, instantiated_only=True, include_repeat=False):
-        res = self._links[:]
+        res = []
         for sub in self.substituents():
-            res += sub.links()
+            res += sub.links(include_repeat=include_repeat)
+
+        if len(res) == 0:
+            res = self._links
+        else:
+            res += self._links
+
         if instantiated_only:
-            res = list(filter(lambda l: l.instantiated(), res))
+            res = filter(lambda l: l.instantiated(), res)
         if not include_repeat:
-            res = list(filter(lambda l: not l.repeat_bridge_link(), res))
+            res = filter(lambda l: not l.repeat_bridge_link(), res)
         return res
 
     def __str__(self):
@@ -770,39 +787,6 @@ class Substituent(Node):
         s = Substituent(self.name())
         s.set_id(self.id())
         return s
-
-    def deepclone(self,identified_link=None,cache=None):
-        raise RuntimeError
-        if cache == None:
-            cache = dict()
-        m = self.clone()
-        identified_link_copy = None
-        for l in self._links:
-            assert l.child().id() != None
-            if l.child().id() not in cache:
-                if identified_link:
-                    c,idlc = l.child().deepclone(identified_link=identified_link,cache=cache)
-                else:
-                    c = l.child().deepclone(cache=cache)
-                    idlc = None
-                cache[l.child().id()] = c
-            else:
-                c = cache[l.child().id()]
-                idlc = None
-            cl = copy.deepcopy(l)
-            cl.set_child(c)
-            cl.set_parent(m)
-            m.add_link(cl)
-            c.add_parent_link(cl)
-            if l == identified_link:
-                identified_link_copy = cl
-            elif idlc != None:
-                identified_link_copy = idlc
-        if identified_link:
-            return m,identified_link_copy
-        return m
-
-        
 
     def name(self):
         return self._sub

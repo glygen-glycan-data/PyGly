@@ -1735,7 +1735,7 @@ class WURCS20Format(GlycanFormatter):
         # Need some info from repeat bridge first
         wurcs_linkage_list = [ s.strip() for s in m.group(6).split('_') ]
         wurcs_repeat_linkage_list = []
-        for l in wurcs_linkage_list:
+        for l in reversed(wurcs_linkage_list):
             if "~" in l:
                 wurcs_linkage_list.remove(l)
                 wurcs_repeat_linkage_list.append(l)
