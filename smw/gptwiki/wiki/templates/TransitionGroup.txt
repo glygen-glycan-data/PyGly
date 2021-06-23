@@ -2,6 +2,7 @@
 This is the "TransitionGroup" template.
 It should be called in the following format:
 <pre>
+
 {{TransitionGroup
 |id=
 |mz1=
@@ -14,6 +15,7 @@ It should be called in the following format:
 |spectra=
 |z1=
 }}
+
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{id|}}}}}
@@ -32,6 +34,9 @@ Edit the page to see the template text.
 |-
 ! Molecular Weight
 | {{#show:{{{peptide|}}}|?gptwiki:mw}}
+|-
+! Charge
+| {{{z1|}}}+
 |-
 ! Protein
 | {{#ask:
@@ -57,15 +62,35 @@ Edit the page to see the template text.
 |-
 ! Sample
 | {{LinkedAttrName|{{{spectra|}}}|gptwiki:forsample}}
+|-
+{{#if: {{{extraction|}}}
+| 
+! Extraction
+{{!}} {{{extraction|}}} 
+{{!}}-
+! Intensity
+{{!}} {{{intensity|}}} 
+{{!}}-
+! Score
+{{!}} {{{score|}}} 
+{{!}}-
+! FDR
+{{!}}  {{#expr: 100.0*{{{fdr|}}}}}%
+{{!}}-
+|}}
 |}
 
+{{#if:{{{transitions|}}}|
 == Transitions ==
 
 {{TransitionGroupTable|{{{rt|}}}|{{{prt|}}}|{{{nrt|}}}|{{{transitions|}}}|{{#show:{{{spectra|}}}|?gptwiki:type}}}}
+}}
+{{#if:{{{scans|}}}|
 == Spectra ==
 <div id="viewer-data">
 {{#arraymap:{{{scans|}}}|,|x|x|<br/>}}
 </div>
+}}
 {{#set:
 |gptwiki:spectra={{{spectra|}}}
 |gptwiki:nrt={{{nrt|}}}
@@ -77,7 +102,7 @@ Edit the page to see the template text.
 |gptwiki:id={{PAGENAME}}
 |gptwiki:pepnrt={{{pepnrt|}}}
 |gptwiki:transitioncount={{#ask:[[Category:Transition]][[-gptwiki:transition::{{PAGENAME}}]]|format=count}}
-}}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}
+}}{{#arraymap:{{{transitions|}}}|,|x|{{#set:|gptwiki:hastransition=x}}}}{{#arraymap:{{{transitions|}}}|,|xxx|{{#set:|gptwiki:transition={{#explode:xxx|;|0}}}}}}{{#arraymap:{{{scans|}}}|,|x|{{#set:|gptwiki:scan=x}}}}{{#set:|gptwiki:fdr={{{fdr|}}}|gptwiki:score={{{score|}}}|gptwiki:extraction={{{extraction|}}}|gptwiki:intensity={{{intensity|}}}}}
 [[Category:TransitionGroup]]
-<div id="msv_para" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-rt="{{{prt|{{{rt|}}}}}}" data-rtrange="5" data-spectra="{{{spectra|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}" data-xicmmu="{{#show:{{{spectra|}}}|?gptwiki:xicmmu}}" data-showcycle="{{#show:{{{spectra|}}}|?gptwiki:showcycle}}" data-method_type="{{#show:{{{spectra|}}}|?gptwiki:type}}"></div>
+{{#if:{{{transitions|}}}|<div id="msv_para" data-prefix="{{PREFIX}}" data-peptide="{{{peptide|}}}" data-z1="{{{z1|}}}" data-mz1="{{{mz1|}}}" data-rt="{{{prt|{{{rt|}}}}}}" data-rtrange="5" data-spectra="{{{spectra|}}}" data-gphash="{{{gphash|}}}" data-showxic="{{#show:{{{spectra|}}}|?gptwiki:hasxics}}" data-xicmmu="{{#show:{{{spectra|}}}|?gptwiki:xicmmu}}" data-showcycle="{{#show:{{{spectra|}}}|?gptwiki:showcycle}}" data-method_type="{{#show:{{{spectra|}}}|?gptwiki:type}}"></div>}}
 </includeonly>

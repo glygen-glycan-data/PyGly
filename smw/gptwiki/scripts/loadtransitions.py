@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 from getwiki import GPTWiki, Protein
 
@@ -13,19 +13,19 @@ def asscan(s):
 
 w = GPTWiki()
 
-spectra2tg = defaultdict(set)
-for tgpage in w.iterpages(include_categories=['TransitionGroup']):
-    tg = w.get(tgpage.name)
-    spectra = tg.get('spectra')
-    spectra2tg[spectra].add(tg.get('id'))
-
 allspectra = set()
+spectra2tg = defaultdict(set)
+for transfile in sys.argv[1:]:
+  spectra,sample,method,index,extn = transfile.rsplit('.',4)
+  spectra = os.path.split(spectra)[1]
+  w.addacquisition(name=spectra,method=method,sample=sample)
+  allspectra.add(spectra)
+  for tg in w.itertgs(spectra=spectra,all=True):
+    spectra2tg[spectra].add(tg.get('id'))
 
 for transfile in sys.argv[1:]:
   spectra,sample,method,index,extn = transfile.rsplit('.',4)
   spectra = os.path.split(spectra)[1]
-  allspectra.add(spectra)
-  w.addacquisition(name=spectra,method=method,sample=sample)
   tgroup = defaultdict(dict)
   for l in csv.DictReader(open(transfile),dialect='excel-tab'):
     gphash = l.get('GlycopeptideHash')
@@ -81,5 +81,6 @@ for transfile in sys.argv[1:]:
 
 for spectra in allspectra:
   for tgid in spectra2tg[spectra]:
+    tg = w.get(tgid)
     if w.cleartransgroup(tg):                                                                                              
       print "Clear",tg.get("id")                                                                                           

@@ -1,0 +1,13 @@
+<includeonly>
+|-
+| [[{{{1}}}]]
+| {{{2}}}
+| {{{3}}}
+| {{{4}}}
+| {{CountLink|
+[[Category:Peptide]]
+[[-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{{#userparam}}}]]
+[[gptwiki:hastransition::+]]</q>]]
+[[-gptwiki:haspeptide.gptwiki:hasprotein::{{{1}}}]]
+}} / {{{5}}}
+</includeonly>

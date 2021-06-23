@@ -1,0 +1,9 @@
+<includeonly>
+{| class="wikitable sortable" style="width:100%"
+!
+! Name
+! Mol. Wt. 
+! Classification
+! Peptides
+|-
+</includeonly>

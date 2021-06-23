@@ -1,0 +1,10 @@
+{{Acquisition
+|anfrac=ME000012
+|inst=Orbitrap
+|method=ME000013
+|name=MS_50_ACE2_Trypsin_2
+|nrtintercept=14.100244
+|nrtslope=0.394035
+|sample=SA000005
+|type=DDA
+}}

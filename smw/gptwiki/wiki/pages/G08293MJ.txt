@@ -9,5 +9,5 @@ HexNAc(4)Hex(5)Fuc(1)NeuAc(1)
 HexNAc(4)Hex(5)dHex(1)NeuAc(1)
 |nneuac=1
 |sym=H5N4FS
-|topo=G11630WW,G23753FY,G28742GV
+|topo=G74051GG,G53156IG,G28742GV
 }}

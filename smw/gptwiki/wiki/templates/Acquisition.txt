@@ -25,26 +25,53 @@ Edit the page to see the template text.
 ! Method
 | {{LinkedName|{{{method|}}}}}
 |-
+! Type
+| [[gptwiki:type::{{{type|}}}]]
+|-
+! Instrument
+| [[gptwiki:instrument::{{{inst|}}}]]
+|-
 {{#if:{{{nrtslope|}}}|
 ! LC Calibration
 {{!}} Norm. R.T. = {{#expr: 1/{{{nrtslope}}} round 2}} Peak R.T. - {{#expr: {{{nrtintercept}}}/{{{nrtslope}}} round 2}} 
 |}}
+|-
+! Download
+| [//{{SERVERNAME}}/{{PREFIX}}/static/{{urlencode:{{{name|}}}}}/{{urlencode:{{{name|}}}}}.mzML.gz {{{name|}}}.mzML.gz]
 |}
 
 == Transition Groups ==
+{{#ifeq:{{{type|DDA}}}|DIA|
 {{#ask:
 [[Category:TransitionGroup]]
+[[gptwiki:hastransition::+]]
 [[gptwiki:spectra::{{{name|}}}]]
 |?gptwiki:rt #-p3 = Exp. R.T. |+align=right 
 |?gptwiki:prt #-p3 =Peak R.T. |+align=right 
 |?gptwiki:nrt #-p3 =Norm. R.T. |+align=right 
 |?gptwiki:mz1 #-p3 =Prec. m/z |+align=right 
-|?gptwiki:z1=Prec. z |+align=right 
-|?gptwiki:forpeptide.gptwiki:name=Peptide
+|?gptwiki:z1=Prec. z |+align=right
+|?gptwiki:forpeptide.gptwiki:name=Peptide 
+|?gptwiki:intensity =Intensity |+align=right
+|?gptwiki:score =Score |+align=right
+|?gptwiki:fdr =FDR |+align=right
 |?gptwiki:transitioncount=Transitions |+align=right
 |headers=plain
 |sort=gptwiki:rt
-}}
+}}|{{#ask:
+[[Category:TransitionGroup]]
+[[gptwiki:hastransition::+]]
+[[gptwiki:spectra::{{{name|}}}]]
+|?gptwiki:rt #-p3 = Exp. R.T. |+align=right 
+|?gptwiki:prt #-p3 =Peak R.T. |+align=right 
+|?gptwiki:nrt #-p3 =Norm. R.T. |+align=right 
+|?gptwiki:mz1 #-p3 =Prec. m/z |+align=right 
+|?gptwiki:z1=Prec. z |+align=right
+|?gptwiki:forpeptide.gptwiki:name=Peptide 
+|?gptwiki:transitioncount=Transitions |+align=right
+|headers=plain
+|sort=gptwiki:rt
+}}}}
 
-{{#set:|gptwiki:name={{{name|}}}|gptwiki:analfraction={{{anfrac|}}}|gptwiki:type={{{type|DDA}}}|gptwiki:xicmmu={{{xicmmu|10}}}|gptwiki:hasxics={{{hasxics|}}}|gptwiki:showcycle={{{showcycle|}}}}}{{#set:|gptwiki:formethod={{{method|}}}}}{{#set:|gptwiki:forsample={{{sample|}}}}}
+{{#set:|gptwiki:name={{{name|}}}|gptwiki:analfraction={{{anfrac|}}}|gptwiki:type={{{type|DDA}}}|gptwiki:xicmmu={{{xicmmu|10}}}|gptwiki:hasxics={{{hasxics|}}}|gptwiki:showcycle={{{showcycle|}}}}}{{#set:|gptwiki:formethod={{{method|}}}}}{{#set:|gptwiki:forsample={{{sample|}}}}}{{#set:|gptwiki:transgroupcount={{#ask:[[Category:TransitionGroup]][[gptwiki:hastransition::+]][[gptwiki:spectra::{{{name|}}}]]|format=count}}}}{{#set:|gptwiki:nrtslope={{{nrtslope|}}}|gptwiki:nrtintercept={{{nrtintercept|}}}}}{{#if:{{{nrtslope|}}}|{{#set:|gptwiki:rtslope={{#expr: 1/{{{nrtslope|}}}}}|gptwiki:rtintercept={{#expr: -{{{nrtintercept|}}}/{{{nrtslope|}}}}}}}}}
 [[Category:Acquisition]]

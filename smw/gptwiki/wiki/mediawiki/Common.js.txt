@@ -99,16 +99,22 @@ function loadSVG() {
     msContainer.setAttribute("id", "specpanel");
     pot.appendChild(msContainer);
 
-    var peptideAcc = document.getElementById("msv_para").getAttribute("data-peptide");
-    var charger = document.getElementById("msv_para").getAttribute("data-z1");
+    var prefix = document.getElementById("msv_para").getAttribute("data-prefix");
+    var gphash = document.getElementById("msv_para").getAttribute("data-gphash");
+    var peptide = document.getElementById("msv_para").getAttribute("data-peptide");
+    var charge = document.getElementById("msv_para").getAttribute("data-z1");
     var pmz = document.getElementById("msv_para").getAttribute("data-mz1");
-    var spectra_folder = document.getElementById("msv_para").getAttribute("data-spectra");
+    var spectra = document.getElementById("msv_para").getAttribute("data-spectra");
     var showxic = document.getElementById("msv_para").getAttribute("data-showxic") || "true";
     var xicmmu = document.getElementById("msv_para").getAttribute("data-xicmmu") || "";
     var method_type = document.getElementById("msv_para").getAttribute("data-method_type");
 
     var rt = document.getElementById("msv_para").getAttribute("data-rt");
     var rt_range = document.getElementById("msv_para").getAttribute("data-rtrange");
+
+    var urlbase = "/"+prefix+"/static/";
+    var popupurl = urlbase + "xicpopup.html?";
+    urlbase = urlbase + spectra + "/";
 
     // convert to boolean...
     showxic = (showxic.trim().toLowerCase() != "false");
@@ -151,7 +157,7 @@ function loadSVG() {
     }
 
     if (showxic) {
-        var moreXICref = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/popups/xicpopup.html?spectra_folder=" + spectra_folder + "&peptideAcc=" + peptideAcc + "&charger=" + charger +  "&title=XIC%3A%20m%2Fz%20"+pmz + "&originPage=" + encodeURIComponent(window.location.href);
+        var moreXICref = popupurl + "spectra=" + spectra + "&gphash=" + gphash + "&charge=" + charge +  "&title=XIC%3A%20m%2Fz%20"+pmz + "&originPage=" + encodeURIComponent(window.location.href);
         var tmpx;
         if (xicmmu != "") {
             tmpx = xicmmu
@@ -167,11 +173,13 @@ function loadSVG() {
         }
         if (method_type == "DIA"){
             param0["title"] = "XIC: m/z " + pmz + " ("+tmpx+" mmu)";
+            param0["spectra"] = urlbase + peptide + "." + charge + xicmmu + '.json';
         } else {
             param0["title"] = "XIC: m/z " + pmz + " (<a target='_blank' href='" + moreXICref  + "'>"+tmpx+" mmu</a>)";
-        }
-        param0["spectra"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + peptideAcc + "." + charger + xicmmu + '.json';
+            param0["spectra"] = urlbase + "xic-" + gphash + "." + charge + xicmmu + '.json';
 
+        }
+        
         msmsv.addLabelledSpectrum('specpanel','chrom', param0);
     }
 
@@ -181,7 +189,7 @@ function loadSVG() {
         var params = {
             scan: sc,
             format: "json",
-            spectra: "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/" + spectra_folder + "/" + sc + '.json',
+            spectra: urlbase + "scan-" + sc + '.json',
             width: pot.clientWidth * 0.995,
             title: title,
             titleTag: "h3",
@@ -189,7 +197,7 @@ function loadSVG() {
         };
 
         if (paraFromPage[i]["annotations"]) {
-            params["annotations"] = "https://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/pBYmLSkGeq/annotations/" + peptideAcc + "." + charger + ".json";
+            params["annotations"] = urlbase + "frag-" + gphash + "." + charge + ".json";
         }
         if (paraFromPage[i]["zoomHeight"]) {
             params["zoomHeight"] = true;

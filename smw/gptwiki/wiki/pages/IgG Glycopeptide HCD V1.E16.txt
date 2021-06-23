@@ -1,8 +1,9 @@
 {{Acquisition
 |hasxics=false
+|inst=QExactive
 |method=ME000003
 |name=IgG_Glycopeptide_HCD_V1.E16
 |sample=SA000003
 |showcycle=true,true
-|type=LIB
+|type=DDA
 }}

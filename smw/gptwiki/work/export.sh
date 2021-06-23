@@ -1,23 +1,14 @@
 #!/bin/sh
 
-if [ "$1" = "" ]; then
-  echo "Usage: export.sh [PROD|DEV] *.mzML.gz"
-  exit 1
-fi
-OUTPUT="$HOME/projects/GlyGen/PyGly/smw/gptwiki/repository/$1"
-shift;
-if [ ! -d "$OUTPUT" ]; then
-  echo "Usage: export.sh [PROD|DEV] *.mzML.gz"
-  exit 1
-fi
+OUTDIR="/data/projects/CTGRC/GPTWiki/repository/DEV"
 for SPEC in "$@"; do
   case "$SPEC" in                                                                                                            
-    *.centroid.mzML.gz) BASE=`basename $SPEC .centroid.mzML.gz`;;                                                                              
+    *.centroid.mzML.gz) BASE=`basename $SPEC .centroid.mzML.gz`;; 
     *.mzML.gz) BASE=`basename $SPEC .mzML.gz`;;                                                                              
     *.msp) BASE=`basename $SPEC .msp`;;                                                                                      
   esac
-  if [ -d $OUTPUT/$BASE ]; then
-    rm -rf $OUTPUT/$BASE
+  if [ "$BASE" != "" ]; then
+    echo "$BASE..."
+    rsync --progress -a --delete $BASE/ trypsin:$OUTDIR/$BASE
   fi
-  cp -r $BASE $OUTPUT
 done

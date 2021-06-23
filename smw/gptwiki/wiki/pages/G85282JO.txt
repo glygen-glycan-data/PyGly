@@ -7,5 +7,5 @@ HexNAc(6)Hex(6)NeuAc(1)
 |nneuac=1
 |sym=H6N6S
 |topo=G72559TO,G66313YW,G97628LQ
-|topo2=G70091CH,G73390OW
+|topo2=G70091CH,G73390OW,
 }}

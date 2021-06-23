@@ -1,0 +1,5 @@
+{{CountLink|
+[[Category:Peptide]]
+[[gptwiki:transgroupcount::>1]]
+[[-gptwiki:haspeptide.gptwiki:hasproteinsite::{{{1}}}]]
+}}

@@ -1,0 +1,9 @@
+<includeonly>
+{| class="wikitable sortable smwtable"
+!
+! Proteins
+! Glycosites
+! Glycans
+! Peptides
+|-
+</includeonly>

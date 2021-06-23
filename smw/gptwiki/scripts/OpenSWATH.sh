@@ -19,6 +19,7 @@ Options:
 
 Parameter file sets the follwing variables:
 
+  LCCALIBRATION=<lc-calibration>
   TRANSITIONS=<Transition-Library-File-With-Decoys>
   NDECOYS=<Number-of-Decoy-Replicates>
   WINDOWS=<SWATH-Precursor-Windows-File>
@@ -33,7 +34,6 @@ EOF
 DIR=`dirname $0`
 DIR=`readlink -f $DIR`
 
-LCCAL="NRT"
 VERBOSE=0
 OUTDIR="."
 PARAMS="./params.txt"
@@ -48,6 +48,19 @@ while getopts ":c:o:vh" o ; do
         esac
 done
 
+shift $(($OPTIND - 1)) 
+
+if [ ! -f "$PARAMS" ]; then
+  help "Parameter file \"$PARAMS\" could not be opened"
+fi
+
+PARAMS=`readlink -f "$PARAMS"`
+
+export GPTDATA=/data2/projects/GlyGen/PyGly/smw/gptwiki/data
+. $PARAMS
+
+LCCAL=${LCCAL:-${LCCALIBRATION:-NRT}}
+
 DONRT=0; DOEND=0; DOESI=0;
 case $LCCAL in 
   NRT) DONRT=1;;
@@ -56,15 +69,6 @@ case $LCCAL in
   NONE) DONONE=1;;
   *) help "Bad calibration (-c) parameter: $LCCAL";;
 esac
-
-shift $(($OPTIND - 1)) 
-
-if [ ! -f "$PARAMS" ]; then
-  help "Parameter file \"$PARAMS\" could not be opened"
-fi
-
-PARAMS=`readlink -f "$PARAMS"`
-. $PARAMS
 
 if [ $DONRT = 1 -a "$NRTTRANSITIONS" = "" ]; then
     help "NRT Peptide calibration: NRTTRANSITIONS missing from parameter file $1"
@@ -98,10 +102,11 @@ if [ "$NDECOYS" = "" ]; then
   NDECOYS=5
 fi
 
-OSW="/tools/openswath/bin/OpenSwathWorkflow.sh"
+OSW="$DIR/OpenSwathWorkflow.sh"
 
 function openswath() {
     FILE="$1"
+    # FILE=`readlink -f "$1"`
     shift
     BASE=`basename "$FILE" .mzML.gz`
     echo $OSW \
@@ -147,11 +152,11 @@ function openswath_esi() {
 }
 
 function getcoeff() {
-    apython $DIR/getoswcoeffs.py "$@"
+    python2 $DIR/getoswcoeffs.py "$@"
 }
 
 function fdr() {
-    apython $DIR/../analysis/fdr.py "$@"
+    python2 $DIR/../analysis/fdr.py "$@"
 }
 
 function openswath_cal() {
@@ -184,7 +189,7 @@ function openswath_cal() {
 }
 
 for f in "$@"; do
-    TMP=`mktemp -d -p /scratch -t openswath.XXXXXX`
+    TMP=`mktemp -d -p . -t .openswath.XXXXXX`
     BASE=`basename "$f" .mzML.gz`
     LOG="${OUTDIR}/${BASE}.log"
     echo "" > "$LOG"

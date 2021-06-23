@@ -1,6 +1,10 @@
 {{Acquisition
 |anfrac=ME000004
+|inst=Orbitrap
 |method=ME000001
 |name=MS_47_UO1_HEK_2_2n
+|nrtintercept=12.636225
+|nrtslope=0.426194
 |sample=SA000002
+|type=DDA
 }}

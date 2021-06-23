@@ -1,0 +1,6 @@
+! style="text-align: left;" | All Samples
+! style="text-align: left;" | {{Count|[[Category:Protein]][[gptwiki:peptidecount::>1]]}}
+! style="text-align: left;" | {{Count|[[Category:ProteinSite]][[gptwiki:peptidecount::>1]]}}
+! style="text-align: left;" | {{Count|[[Category:Glycan]][[gptwiki:peptidecount::>1]]}}
+! style="text-align: left;" | {{Count|[[Category:Peptide]][[gptwiki:transgroupcount::>1]]}}
+|}

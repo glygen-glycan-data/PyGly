@@ -1,9 +1,11 @@
 {{Acquisition
-|ansamp=HSPOOL.01
 |anfrac=ME000012
+|ansamp=HSPOOL.01
+|inst=Orbitrap
 |method=ME000001
 |name=MS_31_UO1_MS2_new_measurement_01
 |nrtintercept=9.02852695
 |nrtslope=0.38817511
 |sample=SA000001
+|type=DDA
 }}

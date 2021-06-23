@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import getwiki
 from analysis.regression import SimpleLinearRegression as SLR
@@ -7,7 +7,7 @@ from analysis.chromatogram import GaussianPeakFit as GPF
 from operator import itemgetter
 import csv, sys, os, os.path
 from collections import defaultdict
-from pylab import *
+# from pylab import *
 
 # w = getwiki.GPTWiki()
 

@@ -1,9 +1,11 @@
 {{Acquisition
 |anfrac=ME000009
 |ansamp=IGM.01
+|inst=Orbitrap
 |method=ME000002
 |name=MS_24_UO1_IGM_UO1
-|nrtintercept=16.77405080
+|nrtintercept=16.7740508
 |nrtslope=0.42029713
 |sample=SA000001
+|type=DDA
 }}

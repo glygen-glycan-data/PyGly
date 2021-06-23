@@ -1,0 +1,11 @@
+{{Acquisition
+|anfrac=ME000004
+|inst=TripleTOF
+|method=ME000014
+|name=DataMS_UO1_SWATH_11202019_Erlich3
+|nrtintercept=16.3790533543
+|nrtslope=0.18658444576
+|sample=SA000001
+|type=DIA
+|xicmmu=50
+}}

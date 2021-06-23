@@ -3,8 +3,8 @@
 set -x
 
 DIR=$HOME/projects/PyGly
-DIR1=$HOME/projects/GlyGen/PyGly/smw/gptwiki/scripts
-DATADIR=$HOME/projects/GlyGen/PyGly/smw/gptwiki/data
+DIR1=/data/projects/GlyGen/PyGly/smw/gptwiki/scripts
+DATADIR=/data/projects/GlyGen/PyGly/smw/gptwiki/data
 
 . ./params.txt
 
@@ -78,13 +78,13 @@ for SPEC in $@; do
       awk 'NR > 1 {print $2,$7,$8}' $TRANS | sort -u | $DIR/JSONXIC.py -s "$SPEC" -e 0.01;
       awk 'NR > 1 {print $2,$7,$8}' $TRANS | sort -u | $DIR/JSONXIC.py -s "$SPEC" -e 0.05;
       awk 'NR > 1 {print $2,$7,$8}' $TRANS | sort -u | $DIR/JSONXIC.py -s "$SPEC" -e 0.1;
-      apython $DIR1/fitlcpeakdda.py $BASE.$SAMPLE.$METHOD.merge.txt
+      $DIR1/fitlcpeakdda.py $BASE.$SAMPLE.$METHOD.merge.txt
       $DIR/XIC-iRT.py --spectrum "$SPEC" --irt $DATADIR/irtpeptides.txt -e 0.005 --matchedpeaks 2 > ${BASE}/${BASE}.irt.5.txt;
-      apython $DIR1/irtregress.py $DATADIR/irtpeptides.txt ${BASE}/${BASE}.irt.5.txt > ${BASE}/${BASE}.irt.5.fit;
+      $DIR1/irtregress.py $DATADIR/irtpeptides.txt ${BASE}/${BASE}.irt.5.txt > ${BASE}/${BASE}.irt.5.fit;
       $DIR/XIC-iRT.py --spectrum "$SPEC" --irt $DATADIR/irtpeptides.txt -e 0.01 --matchedpeaks 2 > ${BASE}/${BASE}.irt.10.txt;
-      apython $DIR1/irtregress.py $DATADIR/irtpeptides.txt ${BASE}/${BASE}.irt.10.txt > ${BASE}/${BASE}.irt.10.fit;
+      $DIR1/irtregress.py $DATADIR/irtpeptides.txt ${BASE}/${BASE}.irt.10.txt > ${BASE}/${BASE}.irt.10.fit;
       $DIR/XIC-iRT.py --spectrum "$SPEC" --irt $DATADIR/irtpeptides.txt -e 0.05 --matchedpeaks 2 > ${BASE}/${BASE}.irt.50.txt;
-      apython $DIR1/irtregress.py $DATADIR/irtpeptides.txt ${BASE}/${BASE}.irt.50.txt > ${BASE}/${BASE}.irt.50.fit;
+      $DIR1/irtregress.py $DATADIR/irtpeptides.txt ${BASE}/${BASE}.irt.50.txt > ${BASE}/${BASE}.irt.50.fit;
        ;;
     *.msp) 
        ;;                                                                                                                   

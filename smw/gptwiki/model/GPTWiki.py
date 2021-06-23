@@ -1,5 +1,5 @@
 
-__all__ = [ "GPTWiki", "Glycan", "Protein", "Peptide", "TransitionGroup", "Transition", "Acquisition", "Alignment" ]
+__all__ = [ "GPTWiki", "Glycan", "Protein", "Peptide", "TransitionGroup", "Transition", "Acquisition", "Alignment", "ProteinSite" ]
 
 import sys, re, os, os.path, json
 from operator import itemgetter
@@ -277,23 +277,66 @@ class Peptide(SMW.SMWClass):
 
 class Alignment(SMW.SMWClass):
     template = 'Alignment'
+
     def toPython(self,data):
 	data = super(Alignment,self).toPython(data)
 
         for k in ('start','end'):
             if isinstance(data.get(k),basestring):
                 data[k] = int(data.get(k))
+
+        if isinstance(data.get('site'),basestring):
+            data['site'] = list(map(ProteinSite.asProteinSite,set(data.get('site').split(','))))
+            data['site'].sort(ProteinSite.sortkey)
 	
 	return data
 
     def toTemplate(self,data):
 	data = super(Alignment,self).toTemplate(data)
+
+        if 'site' in data:
+            sites = dict()
+            for ps in data['site']:
+		sites[ProteinSite.pagename(**dict(ps.items()))] = ps
+            data['site'] = ",".join(map(lambda t: t[0],sorted(sites.items(),key=lambda t: ProteinSite.sortkey(t[1]))))
+
 	return data
 
     @staticmethod
     def sortkey(al):
 	return al.get('protein'),al.get('start')
+
+class ProteinSite(SMW.SMWClass):
+    template = 'ProteinSite'
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('protein')
+        assert kwargs.get('aa')
+        assert kwargs.get('position')
+        return "%(protein)s@%(aa)s%(position)s"%kwargs
+
+    @staticmethod
+    def asProteinSite(s):
+	pr,rest = s.split('@')
+	position = int(rest[1:])
+	aa = rest[0]
+        return ProteinSite(protein=pr,position=position,aa=aa)
+
+    def toPython(self,data):
+	data = super(ProteinSite,self).toPython(data)
+        for k in ('position',):
+            if isinstance(data.get(k),basestring):
+                data[k] = int(data.get(k))
+	return data
+
+    def toTemplate(self,data):
+	data = super(ProteinSite,self).toTemplate(data)
+	return data
 	
+    @staticmethod
+    def sortkey(ps):
+	return ps.get('protein'),ps.get('position')
+
 class Acquisition(SMW.SMWClass):
     template = 'Acquisition'
 
@@ -348,12 +391,10 @@ class GPTWiki(SMW.SMWSite):
 	if self.has_lock(clsname):
 	    return
 	filename = self.cache_file(clsname)
-	lock = FileLock(filename)
+	lock = FileLock(filename,threaded=False)
 	try:
 	    lock.acquire(10)
 	except LockTimeout:
-	    if self._cache_locks.get(clsname):
-		self._cache_locks[clsname].release()
 	    raise RuntimeError("Can't obtain lock for %s cache file"%(clsname,))
 	self._cache_locks[clsname] = lock
 
@@ -386,6 +427,9 @@ class GPTWiki(SMW.SMWSite):
     def verify_ids(self,clsname,iterids):
 	return set(self.cache_ids(clsname)) == set(iterids)
 
+    def missing_ids(self,clsname,iterids):
+	return (set(iterids)-set(self.cache_ids(clsname)))
+
     def add_to_cache(self,clsname,key,value):
 	self.lock_cache(clsname)
 	if self._cache.get(clsname) is None:
@@ -400,49 +444,64 @@ class GPTWiki(SMW.SMWSite):
 	return (self.get_from_cache(clsname,key) is not None)
 
     def peptideindex(self):
-	self.lock_cache("peptides")
-        self.read_cache("peptides")
-	if self.has_cache("peptides"):
-	    if self.verify_ids("peptides",self.iterpeptideids()):
-		self.release_cache("peptides")
-		return
-	print >>sys.stderr, "(Re-)computing peptide index from site..."
-        for p in self.iterpeptides():
-            key = Peptide.key(p.get('sequence'),p.get('glycan',[]),p.get('mod',[]))
-	    self.add_to_cache("peptides",key,p.get('id'))
-	self.write_cache("peptides")
-	self.release_cache("peptides")
-	print >>sys.stderr, "(Re-)computing peptide index from site... done."
+        try:
+	    self.lock_cache("peptides")
+            self.read_cache("peptides")
+	    if self.has_cache("peptides"):
+	        absent = self.missing_ids("peptides",self.iterpeptideids())
+	        if len(absent) == 0:
+		    return
+            else:
+	        absent = set(self.iterpeptideids())
+	    print >>sys.stderr, "Computing %d peptide keys from site..."%(len(absent))
+            for pid in absent:
+                p = self.get(pid)
+                key = Peptide.key(p.get('sequence'),p.get('glycan',[]),p.get('mod',[]))
+	        self.add_to_cache("peptides",key,p.get('id'))
+	    self.write_cache("peptides")
+	    print >>sys.stderr, "Computing %d peptide keys from site... done."%(len(absent))
+	finally:
+	    self.release_cache("peptides")
 
     def tgindex(self):
-	self.lock_cache("tgs")
-	self.read_cache("tgs")
-	if self.has_cache("tgs"):
-	    if self.verify_ids("tgs",self.itertransgroupids()):
-		self.release_cache("tgs")
-		return
-	print >>sys.stderr, "(Re-)computing transition group index..."
-        for tg in self.itertransgroups():
-            key = TransitionGroup.key(tg.get('peptide'),tg.get('z1'),tg.get('spectra'))
-	    self.add_to_cache("tgs",key,tg.get('id'))
-	self.write_cache("tgs")
-	self.release_cache("tgs")
-	print >>sys.stderr, "(Re-)computing transition group index... done."
+        try:
+	    self.lock_cache("tgs")
+	    self.read_cache("tgs")
+	    if self.has_cache("tgs"):
+	        absent = self.missing_ids("tgs",self.itertransgroupids())
+	        if len(absent) == 0:
+		    return
+            else:
+	        absent = set(self.itertransgroupids())
+	    print >>sys.stderr, "Computing %d transition group keys from site..."%(len(absent))
+            for tgid in absent:
+                tg = self.get(tgid)
+                key = TransitionGroup.key(tg.get('peptide'),tg.get('z1'),tg.get('spectra'))
+	        self.add_to_cache("tgs",key,tg.get('id'))
+	    self.write_cache("tgs")
+	    print >>sys.stderr, "Computing %d transition group keys from site... done."%(len(absent))
+        finally:
+	    self.release_cache("tgs")
 
     def transindex(self):
-	self.lock_cache("trans")
-	self.read_cache("trans")
-	if self.has_cache("trans"):
-	    if self.verify_ids("trans",self.itertransitionids()):
-		self.release_cache("trans")
-		return
-	print >>sys.stderr, "(Re-)computing transition index..."
-        for t in self.itertransitions():
-            key = Transition.key(t.get('peptide'),t.get('z1'),t.get('label'),t.get('z2'))
-	    self.add_to_cache("trans",key,t.get('id'))
-	self.write_cache("trans")
-	self.release_cache("trans")
-	print >>sys.stderr, "(Re-)computing transition index... done."
+        try:
+	    self.lock_cache("trans")
+	    self.read_cache("trans")
+	    if self.has_cache("trans"):
+	        absent = self.missing_ids("trans",self.itertransitionids())
+	        if len(absent) == 0:
+		    return
+            else:
+	        absent = set(self.itertransitionids())
+	    print >>sys.stderr, "Computing %d transition keys from site..."%(len(absent))
+            for tid in absent:
+		t = self.get(tid)
+                key = Transition.key(t.get('peptide'),t.get('z1'),t.get('label'),t.get('z2'))
+	        self.add_to_cache("trans",key,t.get('id'))
+	    self.write_cache("trans")
+	    print >>sys.stderr, "Computing %d transition keys from site... done."%(len(absent))
+        finally:
+	    self.release_cache("trans")
 
     def addprotein(self,accession,**kw):
         p = self.get(accession)
@@ -538,9 +597,10 @@ class GPTWiki(SMW.SMWSite):
 
     def iterregex(self,regex,prefix=None):
 	regex = re.compile(regex)
-        for page in self.site.allpages(prefix=prefix,generator=True):
-            if regex.search(page.name):
-                yield self.parse_pagetext(page.name,page.text())
+        for pagename in self.site.allpages(prefix=prefix,generator=False):
+            if regex.search(pagename):
+                yield self.get(pagename)
+                # yield self.parse_template_text(page.name,page.text())
 
     def iterglycans(self):
 	for g in self.iterregex(r'^G\d{5}[A-Z]{2}$',prefix="G"):

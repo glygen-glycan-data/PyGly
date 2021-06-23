@@ -1,0 +1,9 @@
+{{Acquisition
+|inst=Orbitrap
+|method=ME000001
+|name=MS_51_HEK_acetone
+|nrtintercept=16.568719
+|nrtslope=0.416942
+|sample=SA000002
+|type=DDA
+}}

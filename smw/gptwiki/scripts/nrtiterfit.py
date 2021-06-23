@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 from getwiki import GPTWiki
 
@@ -41,13 +41,9 @@ else:
     peprows = []
     pepseen = set()
     w = GPTWiki(quiet=True)
-    for tg in w.itertransgroups():
-	if len(tg.get('scans',[])) == 0:
-	    continue
-        specname = tg.get('spectra')
-        spec = w.get(specname)
-	if spec.get('type',"DDA") != "DDA":
-	    continue
+    for spec in w.iterspec(acqtype="DDA"):
+      print spec.get("name")
+      for tg in w.itertgs(spectra=spec.get("name")):
         pepid = tg.get('peptide')
         p = w.get(pepid)
         pepacc = p.get('id')
@@ -58,6 +54,8 @@ else:
 	if pepnrtobs == 0:
 	    pepnrt = None
         nrt = tg.get('nrt')
+	if nrt is None and pepnrt is None:
+            continue
         glyacc = p.get('glycan')[0][0]
         g = w.get(glyacc)
         gsym = g.get('sym')
@@ -258,7 +256,7 @@ def tgregress(badtg,beta=None):
     else:
         return goodresid,badresid
 
-def pepregress(pepids,beta,nrts=None):
+def pepregress(pepids,beta=None,nrts=None):
     A = zeros(shape=(len(pepids),totalcols))
     nrtvec = zeros(shape=(len(pepids),))
     thepepids = []
@@ -275,6 +273,8 @@ def pepregress(pepids,beta,nrts=None):
 	thepepids.append(pepid)
 	rowindex += 1
     
+    if beta is None:
+        return linalg.lstsq(A,nrtvec,rcond=1e-15)[0]
     nrtfit = A.dot(beta)
     fits = dict(zip(thepepids,nrtfit))
     if nrts != None:
@@ -285,15 +285,19 @@ def pepregress(pepids,beta,nrts=None):
 from numpy import zeros, linalg, random
 import numpy as np
 
+origbeta = pepregress(set(origpepnrt),nrts=origpepnrt)
+alltg = set(map(itemgetter(0),tgrows))
+goodresid,badresid = tgregress(set(),origbeta)
+origbadtg = set(map(lambda t: t[0],filter(lambda t: abs(t[1]) > opts.thresh, goodresid.items())))
+
 random.seed()
 
-alltg = set(map(itemgetter(0),tgrows))
 badtgstats = []
 
 for iters in range(opts.iterations):
 
     iteration = 1
-    badtg = set()
+    badtg = set(origbadtg)
     while True:
 
 	beta,goodresid,badresid = tgregress(badtg)
@@ -375,7 +379,9 @@ if raw_input("Upload? ") not in ("Y","y"):
     sys.exit(0)
 
 w = GPTWiki(quiet=True)
-for tg in w.itertransgroups():
+for spec in w.iterspec(acqtype="DDA"):
+  print spec.get("name")
+  for tg in w.itertgs(spectra=spec.get("name")):
     tgid = tg.get('id')
     if tgid in badtg:
         tg.set('pepnrt','drop (%+.3f)'%(badresid[tgid]))

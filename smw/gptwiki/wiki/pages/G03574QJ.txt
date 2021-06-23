@@ -1,0 +1,11 @@
+{{Glycan
+|accession=G03574QJ
+|class=N-Glycan
+|mw=1745.62353238
+|name=H6N3F
+HexNAc(3)Hex(6)dHex(1)
+HexNAc(3)Hex(6)Fuc(1)
+|nneuac=0
+|sym=H6N3F
+|topo=G25100UZ,G04779SN
+}}

@@ -1,0 +1,9 @@
+<includeonly>
+{| class="wikitable sortable smwtable" style="width:100%"
+!
+! Gene
+! Description
+! Species
+! Peptides
+|-
+</includeonly>

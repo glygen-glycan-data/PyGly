@@ -29,12 +29,30 @@ Edit the page to see the template text.
 | style="width=100%" | [https://glygen.org/protein/{{{accession}}} {{{accession}}}]
 |}
 
-== Samples == 
+== Samples (Peptides)== 
 {{#ask:
 [[Category:Sample]]
-[[-gptwiki:forsample.-gptwiki:spectra.gptwiki:forpeptide.-gptwiki:haspeptide.gptwiki:hasprotein::{{PAGENAME}}]]
+[[-gptwiki:forsample.-gptwiki:spectra::<q>[[Category:TransitionGroup]][[gptwiki:forpeptide.-gptwiki:haspeptide.gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]
 |headers=plain
+|format=template
+|template=ProteinSamplePeptides
+|userparam={{PAGENAME}}
+|link=none
+|sep=,&#32;
 }} 
+
+== Sites ==
+{{#ask:
+[[Category:ProteinSite]]
+[[gptwiki:hasprotein::{{PAGENAME}}]]
+[[gptwiki:peptidecount::>1]]
+|format=template
+|template=ProteinSitePeptides
+|link=none
+|sep=,&#32;
+|userparam={{PAGENAME}}
+|sort=gptwiki:sitepos
+}}
 
 == Peptides ==
 {{#ifeq:{{PREFIX}}|gptwikidev|{{#ask:
@@ -77,5 +95,6 @@ Edit the page to see the template text.
 }}}}
 
 {{#set:|gptwiki:description={{{description|}}}}}{{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]|format=count}}}}
+{{#set:|gptwiki:nrtpeptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasprotein::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]][[gptwiki:haspeptide.gptwiki:nrt::+]]|format=count}}}}
 [[Category:Protein]]
 </includeonly>

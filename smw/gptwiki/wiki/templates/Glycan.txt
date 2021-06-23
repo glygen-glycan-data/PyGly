@@ -1,5 +1,5 @@
 <noinclude>
-This is the "Glycan" template.
+This is the "Glycan" template. 
 It should be called in the following format:
 <pre>
 {{Glycan
@@ -11,7 +11,7 @@ It should be called in the following format:
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly>__NOTOC__ __NOEDITSECTION__{{DISPLAYTITLE:{{{accession}}}}}
-<span class="plainlinks" style="float: right;">[https://glytoucan.org/Structures/Glycans/{{{accession}}} <img style="padding-right: 300px" src="http://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/LV9HnLIDjc/images/cfg/compact/png/{{{accession}}}.png">]</span>
+<span class="plainlinks" style="float: right;">[https://glytoucan.org/Structures/Glycans/{{{accession}}} <img style="padding-right: 300px" src="https://glymage.glyomics.org/image/snfg/compact/{{{accession}}}.png">]</span>
 {| class="wikitable" style="width=100%" 
 ! style="width=200px" | Name(s)
 | style="width=100%" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
@@ -28,14 +28,25 @@ Edit the page to see the template text.
 |-
 ! style="width=200px" | GNOme
 | style="width=100%" |
-[https://gnome.glyomics.org/GNOme.browser.html?focus={{{accession}}} {{{accession}}}]
+[https://gnome.glyomics.org/StructureBrowser.html?focus={{{accession}}} {{{accession}}}]
 |}
 
 == Topologies ==
-<p>{{#arraymap:{{{topo|}}}|,|xxxxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxxxx <img src="http://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/LV9HnLIDjc/images/cfg/compact/png/xxxxx.png">]</span>| }}</p>
+<p>{{#arraymap:{{{topo|}}}|,|xxxxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxxxx <img src="https://glymage.glyomics.org/image/snfg/compact/xxxxx.png">]</span>| }}</p>
+
+== Samples (Peptides) == 
+{{#ask:
+[[Category:Sample]]
+[[-gptwiki:forsample.-gptwiki:spectra::<q>[[Category:TransitionGroup]][[gptwiki:forpeptide.gptwiki:glycan::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]
+|headers=plain
+|format=template
+|template=GlycanSamplePeptides
+|userparam={{PAGENAME}}
+|link=none
+|sep=,&#32;
+}} 
 
 == Peptides ==
-
 {{#ifeq:{{PREFIX}}|gptwikidev|{{#ask:
 [[Category:Alignment]]
 [[gptwiki:haspeptide.gptwiki:hasglycan::{{PAGENAME}};?]]
@@ -73,6 +84,11 @@ Edit the page to see the template text.
 [[Category:Peptide]]
 [[gptwiki:hasglycan::{{PAGENAME}};?]]
 [[gptwiki:transgroupcount::>1]]
+|format=count}}}}{{#set:|gptwiki:nrtpeptidecount={{#ask:
+[[Category:Peptide]]
+[[gptwiki:hasglycan::{{PAGENAME}};?]]
+[[gptwiki:transgroupcount::>1]]
+[[gptwiki:nrt::+]]
 |format=count}}}}{{#set:
 |gptwiki:nneuac={{{nneuac|}}}
 }}

@@ -9,7 +9,7 @@ if len(sys.argv) > 1:
 
   if sys.argv[1] == "-":
 
-    for p in w.iterpages(exclude_categories=['Transition','Peptide','Protein','TransitionGroup','Glycan']):
+    for p in w.iterpages(exclude_categories=['Transition','Peptide','Protein','ProteinSite','TransitionGroup','Glycan']):
       print >>sys.stderr, p.name
       w.refresh(p)
 
@@ -28,7 +28,7 @@ if len(sys.argv) > 1:
       print >>sys.stderr, p
       w.refresh(p)
 
-  elif sys.argv[1] in ('Protein','Glycan'):
+  elif sys.argv[1] in ('Protein','Glycan','ProteinSite'):
 
     for p in w.iterpages(include_categories=sys.argv[1:]):
       print >>sys.stderr, p.name
@@ -42,7 +42,7 @@ if len(sys.argv) > 1:
 
 else:
 
-  for p in w.iterpages(include_categories=('Transition','Peptide','Protein','TransitionGroup','Glycan')):
+  for p in w.iterpages(include_categories=('Transition','Peptide','Protein','ProteinSite','TransitionGroup','Glycan')):
       print >>sys.stderr, p.name
       w.refresh(p)
 
