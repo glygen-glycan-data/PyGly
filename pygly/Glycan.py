@@ -80,6 +80,14 @@ class Glycan:
                 i += 1
         return i
 
+    def repeat_time_verification(self, repeat_time):
+        assert repeat_time == None or (type(repeat_time) == int and repeat_time >= 1)
+        repeated = self.repeated()
+        if repeated and repeat_time == None:
+            raise RepeatGlycanError("Unexpected repeated glycan")
+        if (not repeated) and type(repeat_time) == int:
+            raise RepeatGlycanError("Incorrect parameter repeat_time for non-repeated glycan")
+
     def set_undetermined(self, und):
         if und == None or len(und) == 0:
             self._undetermined = None
@@ -343,7 +351,9 @@ class Glycan:
         scv = Glycan.SubtreeCompositionVisit(sym=sym_table,comp=comp_table)
         self.dfsvisit_post(scv.visit,m)
 
-    def elemental_composition(self, comp_table, repeat_time=1):
+    def elemental_composition(self, comp_table, repeat_time=None):
+        self.repeat_time_verification(repeat_time)
+
         eltcomp = Composition()
 
         nodes_in_repeat = []
@@ -378,21 +388,19 @@ class Glycan:
             self.subtree_composition(r,sym_table=iupacSym,comp_table=ctable)
         return r._symbol_composition,r._elemental_composition
 
-    def native_elemental_composition(self, repeat_time=1):
+    def native_elemental_composition(self, repeat_time=None):
         return self.elemental_composition(ctable, repeat_time=repeat_time)
     
-    def permethylated_elemental_composition(self, repeat_time=1):
+    def permethylated_elemental_composition(self, repeat_time=None):
         return self.elemental_composition(pctable, repeat_time=repeat_time)
 
-    def underivitized_molecular_weight(self, adduct='H2O', repeat_time=1):
-        assert type(repeat_time) == int
-        assert repeat_time >= 1
+    def underivitized_molecular_weight(self, adduct='H2O', repeat_time=None):
+        self.repeat_time_verification(repeat_time)
         return self.native_elemental_composition(repeat_time=repeat_time).mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
 
-    def permethylated_molecular_weight(self,adduct='C2H6O', repeat_time=1):
-        assert type(repeat_time) == int
-        assert repeat_time >= 1
+    def permethylated_molecular_weight(self,adduct='C2H6O', repeat_time=None):
+        self.repeat_time_verification(repeat_time)
         return self.permethylated_elemental_composition(repeat_time=repeat_time).mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
     
@@ -528,7 +536,9 @@ class Glycan:
     def iupac_composition(self, floating_substituents=True, 
                                 aggregate_basecomposition=True, 
                                 redend_only=False,
-                                repeat_time=1):
+                                repeat_time=None):
+        self.repeat_time_verification(repeat_time)
+
 	validsyms = self.iupac_composition_syms + self.subst_composition_syms
 	if not floating_substituents:
 	    validsyms += self.iupac_aldi_composition_syms

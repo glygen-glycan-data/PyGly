@@ -885,7 +885,7 @@ class SubstructureSearch(GlycanPartialOrder):
 
 
 
-        tglinks = tg.links()
+        tglinks = tg.links(include_repeat=True)
         tglinks_type_1 = []
         tglinks_type_2 = []
         tglinks_type_3 = []
