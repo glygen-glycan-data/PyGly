@@ -1,0 +1,20 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Taxonomy (HCV - 11103)
+| {{CountPropertyValueLink|Taxonomy|11103}} 
+|-
+! style="text-align: left;" | Taxonomy (HCV-H - 11108)
+| {{CountPropertyValueLink|Taxonomy|11108}} 
+|-
+! style="text-align: left;" | Direct
+| {{CountPropertyValueLink|HCV Category|Direct}} 
+|-
+! style="text-align: left;" | Subsumption
+| {{CountPropertyValueLink|HCV Category|Subsumption}} 
+|-
+! style="text-align: left;" | Direct+Subsumption
+| {{CountPropertyValueLink|HCV|true}} 
+|-
+! style="text-align: left;" | Composition
+| {{CountPropertyValueLink|HCV Category|Composition}} 
+|}

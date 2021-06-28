@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-PYTHON=apython
+PYTHON=python2
 PYGLY=../../../pygly
 DATA=../data
 

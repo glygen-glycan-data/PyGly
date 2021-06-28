@@ -1,5 +1,5 @@
 
-from ReferenceTable import ReferenceTable
+from . ReferenceTable import ReferenceTable
 
 class Element:
     def __init__(self,name,symbol,mono,ave,isotopes):

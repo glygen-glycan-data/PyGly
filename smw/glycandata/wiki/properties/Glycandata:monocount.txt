@@ -1,3 +1,0 @@
-[[Imported from::glycandata:monocount]] 
-{{DISPLAYTITLE:glycandata:monocount}}
-[[Category:Imported vocabulary]]

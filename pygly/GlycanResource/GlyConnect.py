@@ -1,5 +1,5 @@
 
-from GlyConnectWS import GlyConnectWS
+from .GlyConnectWS import GlyConnectWS
 
 class GlyConnect(GlyConnectWS):
     pass

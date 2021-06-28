@@ -9,32 +9,16 @@ It should be called in the following format:
 |value=
 |source=
 |sourceid=
-|comment=
-|reference=
-|method=
-|preferred=
 |multivaluesep=
 }}
 </pre>
 Edit the page to see the template text.
-</noinclude><includeonly>{{DISPLAYTITLE:{{{glycan|}}}.{{{property|}}}}}[[Category:Annotation]]
-{| class="wikitable" style="width:100%" 
-! style="width:200px" | Glycan
-| style="" | [[glycandata:hasglycan::{{{glycan|}}}]]
-|-
-! style="width:200px" | Type
-| style="" | [[glycandata:type::{{{type|}}}]]
-|-
-! style="width:200px" | Property
-| style="" | [[glycandata:property::{{{property|}}}]]
-|-
-! style="width:200px" | Value
-| style="" | {{#if:{{{multivaluesep|}}}|{{#arraymap:{{{value|}}}|{{{multivaluesep|}}}|xxxx|xxxx|,&thinsp;}}|{{{value|}}}}}
-|-
-! style="width:200px" | Source
-| style="" | [[glycandata:source::{{{source|}}}]]
-|-
-! style="width:200px" | Source ID
-| style="" | [[glycandata:sourceid::{{{sourceid|}}}]]
-|}{{#if:{{{multivaluesep|}}}|{{#arraymap:{{{value|}}}|{{{multivaluesep|}}}|xxxx|{{#set:|glycandata:value=xxxx}}}}|{{#set:|glycandata:value={{{value|}}}}}}}
-</includeonly>
+</noinclude><includeonly>{{#subobject:ANN_{{{type|}}}.{{{property|}}}.{{{source|}}}.{{{sourceid|}}}
+|glycandata:hasglycan={{{glycan|}}}
+|glycandata:type={{{type|}}}
+|glycandata:property={{{property|}}}
+|glycandata:source={{{source|}}}
+|glycandata:sourceid={{{sourceid|}}}
+|glycandata:value={{{value|}}}|+sep={{{multivaluesep|XXXXXXXXXXXX}}}
+|@category=Annotation
+}}</includeonly>

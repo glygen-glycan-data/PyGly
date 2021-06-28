@@ -80,8 +80,8 @@ WHERE {
 
 == KEGG Cross References ==
 
-<pre>
-PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+{{SPARQL|
+PREFIX glycandata: <http://glyomics.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?KEGGAccession)
@@ -92,9 +92,8 @@ WHERE {
   ?ann1 glycandata:property "KEGG" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
-}</pre>
-
-[http://edwardslab.bmcb.georgetown.edu/yasgui/#query=PREFIX+glycandata%3A+%3Chttp%3A%2F%2Fglycandata.glygen.org%2Fglycandata%23%3E%0A%0ASELECT+(%3Faccession++as+%3FGlyTouCanAccession)%0A+++++++(%3Fvalue+as+%3FKEGGAccession)%0AWHERE+%7B%0A++%3Fglycan+glycandata%3Aaccession+%3Faccession+.%0A++%3Fann0+glycandata%3Aproperty+%22GlyGen%22+.%0A++%3Fann0+glycandata%3Ahasglycan+%3Fglycan+.%0A++%3Fann1+glycandata%3Aproperty+%22KEGG%22+.%0A++%3Fann1+glycandata%3Avalue+%3Fvalue+.%0A++%3Fann1+glycandata%3Ahasglycan+%3Fglycan%0A%7D+LIMIT+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fedwardslab.bmcb.georgetown.edu%2Fsparql%2F{{PREFIX}}%2Fquery&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=table Try Me!]
+}
+}}
 
 == UniCarbKB Cross References ==
 

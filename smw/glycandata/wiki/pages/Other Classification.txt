@@ -48,6 +48,9 @@ __NOEDITSECTION__
 ! style="width: 200px; text-align: center;" | ManN
 | {{CountPropertyValueImageLink|ReducingEnd|ManN}}
 |-
+! style="width: 200px; text-align: center;" | IdoA
+| {{CountPropertyValueImageLink|ReducingEnd|ManA}}
+|-
 ! style="width: 200px; text-align: center;" | Fuc
 | {{CountPropertyValueImageLink|ReducingEnd|Fuc}}
 |-
@@ -59,5 +62,60 @@ __NOEDITSECTION__
 |-
 ! style="width: 200px; text-align: center;" | Xyl
 | {{CountPropertyValueImageLink|ReducingEnd|Xyl}}
+|-
+|}
+
+== Has Monosaccharide ==
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px; text-align: center;" | GlcNAc 	
+| {{CountPropertyValueImageLink|HasMonosaccharide|GlcNAc}}
+|-
+! style="width: 200px; text-align: center;" | Glc
+| {{CountPropertyValueImageLink|HasMonosaccharide|Glc}}
+|-
+! style="width: 200px; text-align: center;" | GlcA
+| {{CountPropertyValueImageLink|HasMonosaccharide|GlcA}}
+|-
+! style="width: 200px; text-align: center;" | GlcN
+| {{CountPropertyValueImageLink|HasMonosaccharide|GlcN}}
+|-
+! style="width: 200px; text-align: center;" | GalNAc 	
+| {{CountPropertyValueImageLink|HasMonosaccharide|GalNAc}}
+|-
+! style="width: 200px; text-align: center;" | Gal 	
+| {{CountPropertyValueImageLink|HasMonosaccharide|Gal}}
+|-
+! style="width: 200px; text-align: center;" | GalA
+| {{CountPropertyValueImageLink|HasMonosaccharide|GalA}}
+|-
+! style="width: 200px; text-align: center;" | GalN
+| {{CountPropertyValueImageLink|HasMonosaccharide|GalN}}
+|-
+! style="width: 200px; text-align: center;" | ManNAc
+| {{CountPropertyValueImageLink|HasMonosaccharide|ManNAc}}
+|-
+! style="width: 200px; text-align: center;" | Man
+| {{CountPropertyValueImageLink|HasMonosaccharide|Man}}
+|-
+! style="width: 200px; text-align: center;" | ManA
+| {{CountPropertyValueImageLink|HasMonosaccharide|ManA}}
+|-
+! style="width: 200px; text-align: center;" | ManN
+| {{CountPropertyValueImageLink|HasMonosaccharide|ManN}}
+|-
+! style="width: 200px; text-align: center;" | IdoA
+| {{CountPropertyValueImageLink|HasMonosaccharide|ManA}}
+|-
+! style="width: 200px; text-align: center;" | Fuc
+| {{CountPropertyValueImageLink|HasMonosaccharide|Fuc}}
+|-
+! style="width: 200px; text-align: center;" | NeuAc
+| {{CountPropertyValueImageLink|HasMonosaccharide|NeuAc}}
+|-
+! style="width: 200px; text-align: center;" | NeuGc
+| {{CountPropertyValueImageLink|HasMonosaccharide|NeuGc}}
+|-
+! style="width: 200px; text-align: center;" | Xyl
+| {{CountPropertyValueImageLink|HasMonosaccharide|Xyl}}
 |-
 |}

@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys, urllib, json
 from collections import defaultdict

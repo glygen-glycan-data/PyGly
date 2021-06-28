@@ -10,20 +10,20 @@ from collections import defaultdict
 try:
     from itertools import permutations, product
 except ImportError:
-    from combinatorics import permutations, product
+    from . combinatorics import permutations, product
 
-from combinatorics import itermatchings, iterecmatchings
+from . combinatorics import itermatchings, iterecmatchings
 
-from Monosaccharide import Monosaccharide, Linkage, Mod
-from MonoFormatter import IUPACSym, LinCodeSym
+from . Monosaccharide import Monosaccharide, Linkage, Mod
+from . MonoFormatter import IUPACSym, LinCodeSym
 
 iupacSym = IUPACSym()
 lcSym = LinCodeSym()
 
-from CompositionTable import Composition,ResidueCompositionTable,PermethylCompositionTable
-from ElementMass import MonoisotopicElementMass
-from MonoFactory import MonoFactory
-from MonoFormatter import MassSym
+from . CompositionTable import Composition,ResidueCompositionTable,PermethylCompositionTable
+from . ElementMass import MonoisotopicElementMass
+from . MonoFactory import MonoFactory
+from . MonoFormatter import MassSym
 
 ctable = ResidueCompositionTable()
 pctable = PermethylCompositionTable()
@@ -87,7 +87,7 @@ class Glycan:
             for ec in self._undetermined:
                 for r in ec:
                     yield r
-    
+
     def undetermined_root_reprs(self):
         if self._undetermined != None:
             for ec in self._undetermined:
@@ -195,14 +195,14 @@ class Glycan:
 ##                     bad = True
 ##                     break
 ##             if bad:
-##                 continue                
+##                 continue
 ##             bad = False
 ##             for m,c in counts.items():
 ##                 if c > 1:
 ##                     bad = True
 ##                     break
 ##             if bad:
-##                 continue                
+##                 continue
 ##             # print counts,counts1
 ##             self.add_instantiation(inst)
 
@@ -248,7 +248,7 @@ class Glycan:
             return self
         self.set_instantiation(set())
         return self
-        
+
     def instantiation_count(self):
         total = 1
         for ur in self.undetermined_roots():
@@ -283,10 +283,10 @@ class Glycan:
 
     class SubtreeCompositionVisit:
         def __init__(self,sym=None,comp=None):
-            
+
             self.sym = sym
             self.comp = comp
-            
+
         def visit(self,m):
 
             if self.comp:
@@ -307,10 +307,10 @@ class Glycan:
 
     class ElementalCompositionVisit:
         def __init__(self,comp):
-            
+
             self.table = comp
             self.eltcomp = Composition()
-            
+
         def visit(self,m):
             self.eltcomp.add(m.composition(self.table))
 
@@ -353,7 +353,7 @@ class Glycan:
 
     def native_elemental_composition(self):
         return self.elemental_composition(ctable)
-    
+
     def permethylated_elemental_composition(self):
         return self.elemental_composition(pctable)
 
@@ -364,7 +364,7 @@ class Glycan:
     def permethylated_molecular_weight(self,adduct='C2H6O'):
         return self.permethylated_elemental_composition().mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
-    
+
     def fragments(self,r=None,force=False):
         atroot = False
         if r == None:
@@ -381,7 +381,7 @@ class Glycan:
                   copy.copy(r._elemental_composition),True,0)
             yield fr
             return
-        
+
         fragstore0 = []
         fragstore1 = []
         for l in links:
@@ -449,29 +449,29 @@ class Glycan:
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
 
-    def iupac_composition(self, floating_substituents=True, 
-                                aggregate_basecomposition=True, 
+    def iupac_composition(self, floating_substituents=True,
+                                aggregate_basecomposition=True,
                                 redend_only=False):
-	validsyms = self.iupac_composition_syms + self.subst_composition_syms
-	if not floating_substituents:
-	    validsyms += self.iupac_aldi_composition_syms
-	
+        validsyms = self.iupac_composition_syms + self.subst_composition_syms
+        if not floating_substituents:
+            validsyms += self.iupac_aldi_composition_syms
+
         c = Composition()
         for sym in (validsyms + ['Xxx','X']):
             c[sym] = 0
-	if not redend_only:
-	    nodeiterable = self.all_nodes(undet_subst=True)
-	else:
-	    if self.has_root():
-	        nodeiterable = [ self.root() ]
-	    else:
-		nodeiterable = []
+        if not redend_only:
+            nodeiterable = self.all_nodes(undet_subst=True)
+        else:
+            if self.has_root():
+                nodeiterable = [ self.root() ]
+            else:
+                nodeiterable = []
         for m in nodeiterable:
 
             try:
                 sym = iupacSym.toStr(m)
             except KeyError:
-                if isinstance(m,Monosaccharide):        
+                if isinstance(m,Monosaccharide):
                     c['Xxx'] += 1
                 else:
                     c['X'] += 1
@@ -487,7 +487,7 @@ class Glycan:
                     syms[0] = 'Xxx'
                 else:
                     syms[0] = 'X'
-            
+
             for i in range(1,len(syms)):
                 if syms[i] not in self.subst_composition_syms:
                     syms[i] = 'X'
@@ -515,23 +515,23 @@ class Glycan:
             c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
             c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
             c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
- 
+
         return c
 
     def iupac_redend(self, floating_substituents=True, aggregate_basecomposition=True):
-	comp = self.iupac_composition(floating_substituents=floating_substituents, 
-				      aggregate_basecomposition=aggregate_basecomposition,
-				      redend_only=True)
-	return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
+        comp = self.iupac_composition(floating_substituents=floating_substituents,
+                                      aggregate_basecomposition=aggregate_basecomposition,
+                                      redend_only=True)
+        return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
 
     def glycoct(self):
-        from GlycanFormatter import GlycoCTFormat
+        from . GlycanFormatter import GlycoCTFormat
         if not self.glycoctformat:
             self.glycoctformat = GlycoCTFormat()
         return self.glycoctformat.toStr(self)
 
     def glycam(self):
-        from GlycanFormatter import IUPACGlycamFormat
+        from . GlycanFormatter import IUPACGlycamFormat
         if not self.glycamformat:
             self.glycamformat = IUPACGlycamFormat()
         return self.glycamformat.toStr(self)
@@ -598,7 +598,7 @@ class Glycan:
         # then the ids of each monosaccharide in each glycan will match
         # their counterpart.
 
-        self.set_ids()        
+        self.set_ids()
         g.unset_ids()
 
         if self.has_root() and g.has_root():
@@ -727,7 +727,7 @@ class Glycan:
     def dump(self, m=None, level=0, branch='', monofmt=iupacSym):
         if m == None:
             m = self.root()
-            
+
         br = branch + " " + monofmt.toStr(m)
         child_list = []
 
@@ -746,8 +746,8 @@ class Glycan:
 
 if __name__ == '__main__':
 
-    from MonoFactory import MonoFactory
-    from Monosaccharide import Linkage
+    from . MonoFactory import MonoFactory
+    from . Monosaccharide import Linkage
     mf = MonoFactory()
 
     gc1 = mf.new("GlcNAc")
@@ -760,7 +760,7 @@ if __name__ == '__main__':
     m1 = mf.new('bdMan')
     m2 = mf.new('adMan')
     m3 = mf.new('adMan')
-    
+
     gc2.add_child(m1,parent_pos=4,
                   parent_type=Linkage.oxygenPreserved,
                   child_type=Linkage.oxygenLost)
@@ -779,7 +779,7 @@ if __name__ == '__main__':
     m3.add_child(gc4,parent_pos=2,
                  parent_type=Linkage.oxygenPreserved,
                  child_type=Linkage.oxygenLost)
-    
+
     g1 = mf.new('bdGal')
     gc3.add_child(g1,parent_pos=4,
                   parent_type=Linkage.oxygenPreserved,
@@ -801,11 +801,11 @@ if __name__ == '__main__':
     gc4.add_child(f1,parent_pos=4,child_pos=1,
                   parent_type=Linkage.oxygenPreserved,
                   child_type=Linkage.oxygenLost)
-    
+
     g = Glycan(gc1)
 
     print(g.glycoct())
-    
+
     g.dump()
 
     print(g.str()+'\n')
@@ -826,5 +826,3 @@ if __name__ == '__main__':
 
     # for fr in sorted(set(map(lambda fr: str(fr[0]),g.fragments()))):
     #     print fr
-                  
-                

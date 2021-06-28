@@ -1,8 +1,7 @@
-http://glycandata.glygen.org/glycandata#|[http://glycandata.glygen.org/glycandata GlyGen Glycan Data Ontology]
- id|Type:Text
+http://glyomics.org/glycandata#|[http://glycandata.glyomics.org/ GlyGen Glycan Data Ontology]
  Glycan|Category
- Annotation|Category
  accession|Type:Text
+ Annotation|Category
  type|Type:Text
  property|Type:Text
  value|Type:Text

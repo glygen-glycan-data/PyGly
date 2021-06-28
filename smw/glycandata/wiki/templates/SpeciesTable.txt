@@ -1,8 +1,7 @@
 <includeonly>{{#ask:
-[[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:type::{{{2}}}]]
-[[glycandata:property::Human Evidence||Mouse Evidence||Rat Evidence||HCV Evidence||SARS Evidence]]
+[[glycandata:property::Human Evidence||Mouse Evidence||Rat Evidence||HCV Evidence||SARS Evidence||FruitFly Evidence]]
 |?glycandata:property=Property
 |?glycandata:value=Value
 |?glycandata:source=Source

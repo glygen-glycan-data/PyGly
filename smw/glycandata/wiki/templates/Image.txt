@@ -1,0 +1,1 @@
+<includeonly><img src="{{ImageURL|{{{1}}}}}"></includeonly>

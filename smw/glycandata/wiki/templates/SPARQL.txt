@@ -1,0 +1,4 @@
+<includeonly>
+{{pre|{{#replace:{{{1|}}}|http:|http<span>:</span>}}}}
+{{SPARQLURL|{{{1|}}}}}
+</includeonly>

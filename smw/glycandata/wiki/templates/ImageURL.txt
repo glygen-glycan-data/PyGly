@@ -1,0 +1,1 @@
+<includeonly>{{GlycanImage|accession={{{1}}}}}</includeonly>

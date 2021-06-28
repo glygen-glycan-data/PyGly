@@ -1,10 +1,10 @@
 
 from __future__ import print_function
 
-from MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym, GlycamSym
-from Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
-from Glycan import Glycan
-from MonoFactory import MonoFactory
+from . MonoFormatter import GlycoCTMonoFormat, LinCodeSym, LinCodeRank, IUPACSym, GlycamSym
+from . Monosaccharide import Monosaccharide, Linkage, Anomer, Substituent, Mod
+from . Glycan import Glycan
+from . MonoFactory import MonoFactory
 
 import re, sys, traceback
 import copy
@@ -1310,7 +1310,7 @@ class UnexpectedFloatingSubstError(WURCS20ParseError):
   def __init__(self,instr):
    self.message = "WURCS2.0 parser: Unexpected floating substituent:\n     %s"%(instr,)
 
-import WURCS20MonoFormatter
+from . import WURCS20MonoFormatter
 
 class WURCS20Format(GlycanFormatter):
     def __init__(self):
@@ -1349,7 +1349,7 @@ class WURCS20Format(GlycanFormatter):
                 raise ZeroPlusLinkCountError()
             else:
                 raise UndeterminedLinkCountError()
-        counts = map(int,m.group(1).split(','))
+        counts = list(map(int,m.group(1).split(',')))
         distinctmono = {}; mono = {};
         for i,ms in enumerate(m.group(2)[1:-1].split('][')):
             distinctmono[i+1] = ms

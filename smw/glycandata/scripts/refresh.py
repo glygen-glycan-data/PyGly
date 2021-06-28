@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys
 from getwiki import GlycanData
@@ -18,7 +18,7 @@ if len(sys.argv) > 1:
     for p in map(str.strip,sys.stdin):
       print >>sys.stderr, p
       w.refresh(p)
-	
+
   else:
 
     for p in w.iterpages(regex=sys.argv[1]):

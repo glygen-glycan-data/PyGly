@@ -1,5 +1,4 @@
 <includeonly>{{#ask:
-[[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:type::{{{2}}}]]
 |?glycandata:property=Property
@@ -8,7 +7,6 @@
 |mainlabel=-
 |sort=glycandata:source, glycandata:property
 |intro= {{#switch:{{#ask:
-[[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:type::Subsumption]]
 [[glycandata:property::Level]]

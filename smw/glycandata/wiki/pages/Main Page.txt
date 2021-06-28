@@ -6,8 +6,15 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 
 == Sequence == 
 {| class="wikitable" style="text-align: right;"
+|-
+! style="width: 200px;" | GLYCAM-IUPAC
+| {{CountPropertyValueLink|GLYCAM-IUPAC|+}} 
+|-
 ! style="width: 200px;" | GlycoCT
 | {{CountPropertyValueLink|GlycoCT|+}} 
+|-
+! style="width: 200px;" | GlycoWorkBench
+| {{CountPropertyValueLink|GlycoWorkBench|+}} 
 |-
 ! style="width: 200px;" | IUPAC
 | {{CountPropertyValueLink|IUPAC|+}} 
@@ -59,17 +66,26 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 |}
 
-== Species by Taxonomy ID ==
+== Species ==
 
 {| class="wikitable" style="text-align: right;"
-! style="width: 200px;" | Human (9606)
-| {{CountPropertyValueLink|Taxonomy|9606}} 
+! style="width: 200px;" | [[Human Species Annotations|Human]]
+| {{CountPropertyValueLink|Human|true}} 
 |-
-! style="width: 200px;" | Mouse (10090)
-| {{CountPropertyValueLink|Taxonomy|10090}} 
+! style="width: 200px;" | [[Mouse Species Annotations|Mouse]]
+| {{CountPropertyValueLink|Mouse|true}} 
 |-
-! style="width: 200px;" | Rat (10116)
-| {{CountPropertyValueLink|Taxonomy|10116}} 
+! style="width: 200px;" | [[Rat Species Annotations|Rat]]
+| {{CountPropertyValueLink|Rat|true}} 
+|-
+! style="width: 200px;" | [[FruitFly Species Annotations|Fruit Fly]]
+| {{CountPropertyValueLink|FruitFly|true}} 
+|-
+! style="width: 200px;" | [[HCV Species Annotations|HCV]]
+| {{CountPropertyValueLink|HCV|true}} 
+|-
+! style="width: 200px;" | [[SARS Species Annotations|SARS]]
+| {{CountPropertyValueLink|SARS|true}} 
 |-
 |}
 
@@ -121,5 +137,8 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 ! style="width: 200px;" | Fully Determined*
 | {{CountPropertyValueLink|FullyDetermined|true}} 
+|-
+! style="width: 200px;" | HasRepeat
+| {{CountPropertyValueLink|HasRepeat|true}} 
 |-
 |}

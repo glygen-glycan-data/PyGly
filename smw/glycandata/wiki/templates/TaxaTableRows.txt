@@ -5,7 +5,8 @@
 | style="width: 150px;" | {{#if:{{{4}}}|{{#switch:{{{3}}}
 |UniCarbKB={{{3}}}:<span class="plainlinks">[http://unicarbkb.org/structure/{{{4}}} {{{4}}}]</span>
 |GlyTouCan={{{3}}}:<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/{{{4}}} {{{4}}}]</span>
-|GlyConnect={{{3}}}:<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/{{{4}}} {{{4}}}]</span>
+|GlyConnectStructure={{{3}}}:<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/{{{4}}} {{{4}}}]</span>
+|GlyConnectComposition={{{3}}}:<span class="plainlinks">[https://glyconnect.expasy.org/browser/compositions/{{{4}}} {{{4}}}]</span>
 |GPTwiki={{{3}}}:<span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/gptwiki/{{{4}}} {{{4}}}]</span>
 |{{{3}}}:{{{4}}}}}|{{{3}}}}}
 </includeonly>

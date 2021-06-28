@@ -3,9 +3,11 @@
 ! style="width: 200px;" | {{{1}}}
 | {{#switch:{{{1}}}
 |GlyTouCan={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glytoucan.org/Structures/Glycans/xxx xxx]</span>|,&thinsp;}}
+|GlyCosmos={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glycosmos.org/glycans/show?gtc_id=xxx xxx]</span>|,&thinsp;}}
 |GlycomeDB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.glycome-db.org/database/showStructure.action?glycomeId=xxx xxx]</span>|,&thinsp;}}
 |KEGG={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.genome.jp/dbget-bin/www_bget?gl:xxx xxx]</span>|,&thinsp;}}
-|GlyConnect={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/xxx xxx]</span>|,&thinsp;}}
+|GlyConnectStructure={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/xxx xxx]</span>|,&thinsp;}}
+|GlyConnectComposition={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://glyconnect.expasy.org/browser/compositions/xxx xxx]</span>|,&thinsp;}}
 |PubChem={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[https://pubchem.ncbi.nlm.nih.gov/xxx xxx]</span>|,&thinsp;}}
 |UniCarbKB={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.unicarbkb.org/structure/xxx xxx]</span>|,&thinsp;}}
 |GLYCOSCIENCES.de={{#arraymap:{{{2}}}|;|xxx|<span class="plainlinks">[http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=xxx xxx]</span>|,&thinsp;}}

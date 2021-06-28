@@ -442,10 +442,10 @@ class GNOme(GNOmeAPI):
 
 
 
-from alignment import GlycanSubsumption, GlycanEqual, GlycanEqualWithWURCSCheck
-from Monosaccharide import Anomer
-from GlycanResource import GlyTouCan, GlyCosmos
-from manipulation import Topology, Composition, BaseComposition
+from . alignment import GlycanSubsumption, GlycanEqual, GlycanEqualWithWURCSCheck
+from . Monosaccharide import Anomer
+from . GlycanResource import GlyTouCan, GlyCosmos
+from . manipulation import Topology, Composition, BaseComposition
 
 
 class SubsumptionGraph(GNOmeAPI):
@@ -2387,8 +2387,8 @@ class IncompleteScore:
         res = int(res * 10000)
         return res
 
+def main():
 
-if __name__ == "__main__":
     cmd = sys.argv[1]
     sys.argv.pop(1)
 
@@ -2594,3 +2594,6 @@ if __name__ == "__main__":
 	else:
             print >> sys.stderr, "Bad command: %s" % (cmd,)
             sys.exit(1)
+
+if __name__ == "__main__":
+    main()

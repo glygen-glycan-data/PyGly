@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys
 from operator import itemgetter
@@ -79,7 +79,7 @@ for m in iterglycan():
     typecnt = 0
     seenst = set()
     seent = set()
-    for st in sorted(subtypes0):
+    for st in sorted(subtypes0,key=lambda st: min(subtypes0[st])):
 	for sid in sorted(subtypes0[st]):
 	    if st[0] not in seent:
 	        m.add_annotation(value=st[0], property='GlycanType', 
@@ -95,7 +95,7 @@ for m in iterglycan():
 	        stbytcnt[st[0]] += 1
 	    seenst.add(st)
 	    break
-    for st in sorted(subtypes1):
+    for st in sorted(subtypes1,key=lambda st: min(subtypes1[st])):
 	if st in seenst:
 	    continue
 	for sid in sorted(subtypes1[st]):

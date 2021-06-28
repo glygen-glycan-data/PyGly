@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys, time, traceback
 from collections import defaultdict
@@ -8,6 +8,7 @@ w = GlycanData()
 
 import findpygly
 from pygly.GlycanResource import GlyTouCan
+from pygly.GlycanResource import GlyCosmos
 
 def accessions(args):
     if len(args) == 0:
@@ -19,10 +20,18 @@ def accessions(args):
 		yield it.strip()
 
 gtc = GlyTouCan(usecache=False)
+gco = GlyCosmos(usecache=False)
+
+allgco = set(gco.allaccessions())
 
 # allmotifs = dict()
 # for acc,label,redend in gtc.allmotifs():
 #     allmotifs[acc] = dict(label=label,redend=redend)
+
+
+archived = set(map(lambda d: d['accession'],gco.archived()))
+print "%d accessions archived."%(len(archived),)
+
 
 current = set()
 for gtcacc in accessions(sys.argv[1:]):
@@ -30,6 +39,12 @@ for gtcacc in accessions(sys.argv[1:]):
 
     g = w.get(gtcacc)
     newgly = False
+
+    if gtcacc in archived:
+	if g:
+	    w.delete(gtcacc)
+	    print >>sys.stderr, "%s deleted in %.2f sec"%(g.get('accession'),time.time()-start,)
+	continue
 
     if not g:
 	newgly = True
@@ -46,13 +61,14 @@ for gtcacc in accessions(sys.argv[1:]):
     g.set_annotation(value=gtc.getseq(gtcacc,'glycoct'),
                      property='GlycoCT',
                      source='GlyTouCan',type='Sequence')
-    iupacseq = gtc.getseq(gtcacc,'iupac_extended')
+    g.delete_annotations(property='IUPAC',source='GlyTouCan',type='Sequence')
+    iupacseq = gco.getseq(gtcacc,'iupac_extended')
     if iupacseq != None and "," not in iupacseq:
-        g.set_annotation(value=gtc.getseq(gtcacc,'iupac_extended'),
+        g.set_annotation(value=iupacseq,
                          property='IUPAC',
-                         source='GlyTouCan',type='Sequence')
+                         source='GlyCosmos',type='Sequence')
     else:
-	g.delete_annotations(property='IUPAC',source='GlyTouCan',type='Sequence')
+	g.delete_annotations(property='IUPAC',source='GlyCosmos',type='Sequence')
 
     g.delete_annotations(source='GlyTouCan',type='MolWt')
     g.set_annotation(value=gtc.getmass(gtcacc),
@@ -64,19 +80,21 @@ for gtcacc in accessions(sys.argv[1:]):
 		             property='MonosaccharideCount',
 		             source='GlyTouCan',type='MonosaccharideCount')
 
-    xref_dic = {'glycosciences_de':'GLYCOSCIENCES.de',
+    xref_dic = {# 'glycosciences_de':'GLYCOSCIENCES.de',
                 # 'pubchem':'PubChem',
-                'kegg':'KEGG',
+                # 'kegg':'KEGG',
+                'kegg_glycan':'KEGG',
                 # 'unicarbkb':'UniCarbKB',
                 'unicarb-db':'UniCarb-DB',
-                'glyconnect':'GlyConnect',
-                'glycome-db':'GlycomeDB',
-                'cfg':'CFG',
-                'pdb':'PDB',
+                'glyconnect':'GlyConnectStructure',
+                'glyconnect-comp':'GlyConnectComposition',
+                # 'glycome-db':'GlycomeDB',
+                # 'cfg':'CFG',
+                # 'pdb':'PDB',
 		'bcsdb':'BCSDB',
 		'matrixdb':'MatrixDB',
 		'glycoepitope':'GlycoEpitope',
-                'carbbank':'Carbbank(CCSB)',
+                # 'carbbank':'Carbbank(CCSB)',
 	       }    
     for prop in xref_dic.values():
 	g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
@@ -92,6 +110,9 @@ for gtcacc in accessions(sys.argv[1:]):
                          source='GlyTouCan',type='CrossReference')
     g.set_annotation(value=gtcacc,property='GlyTouCan',
                      source='GlyTouCan',type='CrossReference')
+    if gtcacc in allgco:
+        g.set_annotation(value=gtcacc,property='GlyCosmos',
+                         source='GlyCosmos',type='CrossReference')
 
     # g.delete_annotations(source='GlyTouCan',type='Motif')
     # g.set_annotation(value=gtc.getmotif(gtcacc),

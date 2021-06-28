@@ -1,5 +1,4 @@
 <includeonly>{{#ask:
-[[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:type::{{{2}}}]]
 [[glycandata:property::!NamedMotif]]

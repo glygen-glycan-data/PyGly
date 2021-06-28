@@ -1,12 +1,12 @@
 
 import os.path
-from TripleStoreResource import TripleStoreResource
-from GlycanResourceWrappers import partitioner, prefetcher
+from .TripleStoreResource import TripleStoreResource
+from .GlycanResourceWrappers import partitioner, prefetcher
 
 class GlycoMotifTS(TripleStoreResource):
    
-    endpt = "http://glycomotif.glyomics.org/glycomotif/sparql/query"
-    defns = "http://glycandata.glygen.org/glycomotif/Special:URIResolver/"
+    endpt = "https://glycomotif.glyomics.org/glycomotif/sparql/query"
+    defns = "http://glyomics.org/glycomotif/Special:URIResolver/"
     # verbose = True
     # cachefile = ".gm.cache"
     # usecache = False
@@ -14,11 +14,11 @@ class GlycoMotifTS(TripleStoreResource):
     def __init__(self,**kw):
         if 'prefetch' not in kw:
             kw['prefetch'] = True
-	kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glycomotif.ini")
-	super(GlycoMotifTS,self).__init__(**kw)
-        for k in self.keys():
-	    if k != 'query_motifs':
-		continue
+        kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glycomotif.ini")
+        super(GlycoMotifTS,self).__init__(**kw)
+        for k in list(self.keys()):
+            if k != 'query_motifs':
+                continue
             self.modify_method(k,partitioner())
             if self._prefetch:
                 self.modify_method(k,prefetcher(usecache=False))
@@ -32,17 +32,17 @@ class GlycoMotifTS(TripleStoreResource):
 
     def allmotifs(self,collection):
         for row in self.query_allmotif(collection=collection):
-	    names = []
-	    if row.get('prefname'):
-		names.append(row.get('prefname'))
-	    if row.get('name'):
-		for name in row.get('name').split('//'):
-		    if name not in names:
-			names.append(name)
-	    pmids = []
-	    if row.get('pmid'):
-		pmids = row.get('pmid').split('//')
+            names = []
+            if row.get('prefname'):
+                names.append(row.get('prefname'))
+            if row.get('name'):
+                for name in row.get('name').split('//'):
+                    if name not in names:
+                        names.append(name)
+            pmids = []
+            if row.get('pmid'):
+                pmids = row.get('pmid').split('//')
             keywords = []
-	    if row.get('keyword'):
-		keywords = row.get('keyword').split('//')
+            if row.get('keyword'):
+                keywords = row.get('keyword').split('//')
             yield "%s.%s"%(collection,row['accession']),row['gtcacc'],row['alignment'],row['redend'],row['aglycon'],names,pmids,keywords

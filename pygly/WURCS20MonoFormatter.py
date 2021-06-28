@@ -8,10 +8,16 @@ try:
     import configparser as ConfigParser
 except ImportError:
     import ConfigParser
-from Monosaccharide import *
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    pass
+
+from . Monosaccharide import *
 
 # This line import the package mutually, be careful
-from GlycanFormatter import WURCS20ParseError
+from . GlycanFormatter import WURCS20ParseError
 
 
 class InvalidMonoError(WURCS20ParseError):
@@ -39,6 +45,14 @@ class UnsupportedSubstituentError(UnsupportedMonoError):
     def __init__(self, sub):
         self.message = "WURCS2.0 parser: Unsupported substituent: %s" % (sub,)
 
+def readconfig(inifilename):
+    iniFile = [ s.decode('utf8') for s in resource_stream(__name__, inifilename).read().splitlines() ]
+    cfg = ConfigParser.ConfigParser()
+    if hasattr(cfg,'read_file'):
+        cfg.read_file(iniFile,inifilename)
+    else:                                                                                                                
+        cfg.readfp(StringIO(u'\n'.join(iniFile)),inifilename)
+    return cfg
 
 class WURCS20MonoFormat:
     mono_pattern = re.compile(
@@ -49,13 +63,8 @@ class WURCS20MonoFormat:
         self.load()
 
     def load(self):
-        skelconfigfile = resource_stream(__name__, 'wurcs20_skeleton.ini')
-        self.skelconfig = ConfigParser.ConfigParser()
-        self.skelconfig.readfp(skelconfigfile)
-
-        subsconfigfile = resource_stream(__name__, 'wurcs20_substituent.ini')
-        self.subsconfig = ConfigParser.ConfigParser()
-        self.subsconfig.readfp(subsconfigfile)
+        self.skelconfig = readconfig('wurcs20_skeleton.ini')
+        self.subsconfig = readconfig('wurcs20_substituent.ini')
 
     def getsubst(self,sub_name):
         try:

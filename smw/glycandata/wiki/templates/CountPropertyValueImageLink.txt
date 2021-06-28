@@ -1,1 +1,1 @@
-<includeonly>{{CountLinkImageTable|[[Category:Glycan]][[-glycandata:hasglycan::<q>[[Category:Annotation]][[glycandata:property::{{{1}}}]][[glycandata:value::{{{2}}}]]</q>]]}}</includeonly>
+<includeonly>{{CountLinkImageTable|[[Category:Glycan]][[-glycandata:hasglycan::<q>[[glycandata:property::{{{1}}}]][[glycandata:value::{{{2}}}]]</q>]]}}</includeonly>

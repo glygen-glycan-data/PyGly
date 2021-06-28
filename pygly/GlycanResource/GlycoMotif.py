@@ -1,5 +1,5 @@
 
-from GlycoMotifTS import GlycoMotifTS
+from .GlycoMotifTS import GlycoMotifTS
 
 class GlycoMotif(GlycoMotifTS):
     pass

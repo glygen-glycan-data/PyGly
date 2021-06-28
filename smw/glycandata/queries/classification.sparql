@@ -1,4 +1,4 @@
-PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+PREFIX glycandata: <http://glyomics.org/glycandata#>
 
 SELECT ?GlyTouCanAccession ?Level ?Classification ?Source ?SourceID
 WHERE {
@@ -11,6 +11,6 @@ WHERE {
     ?ann1 glycandata:source ?Source .
     ?ann1 glycandata:sourceid ?SourceID .
   }
-  FILTER(regex(?Level,"^Glycan(Type|Subtype)$"))
+  FILTER(?Level = "GlycanType" || ?Level = "GlycanSubtype")
 }
 ORDER BY ?GlyTouCanAccession ?Level ?Classification ?Source ?SourceID

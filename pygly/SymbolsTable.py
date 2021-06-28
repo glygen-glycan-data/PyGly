@@ -1,6 +1,6 @@
 
-from ReferenceTable import ReferenceTable
-from Monosaccharide import constantLookup
+from . ReferenceTable import ReferenceTable
+from . Monosaccharide import constantLookup
 
 class SymbolsTable(ReferenceTable):
     def parseSection(self,name,kv):

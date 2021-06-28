@@ -6,6 +6,12 @@ try:
     from configparser import ConfigParser, SafeConfigParser
 except ImportError:
     from ConfigParser import ConfigParser, SafeConfigParser
+
+try:
+    from past.builtins import basestring
+except ImportError:
+    pass
+
 import os.path, sys
 
 try:
@@ -23,9 +29,9 @@ class ReferenceTable(dict):
             self.iniFile = iniFile
         cfg = SafeConfigParser()
         cfg.optionxform = str
-	if hasattr(cfg,'read_file'):
+        if hasattr(cfg,'read_file'):
             cfg.read_file(iniFile,self.iniFile)
-	else:
+        else:
             cfg.readfp(StringIO(u'\n'.join(iniFile)),self.iniFile)
         self.parseConfig(cfg)
     def parseConfig(self,cfg):
@@ -34,4 +40,3 @@ class ReferenceTable(dict):
                 type = ("section" if i == 0 else "alias")
                 assert k not in self, "Repeated %s \"%s\" in %s"%(type,k,self.iniFile)
                 self[k] = v
-

@@ -1,0 +1,17 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Taxonomy (7227)
+| {{CountPropertyValueLink|Taxonomy|7227}} 
+|-
+! style="text-align: left;" | Direct
+| {{CountPropertyValueLink|FruitFly Category|Direct}} 
+|-
+! style="text-align: left;" | Subsumption
+| {{CountPropertyValueLink|FruitFly Category|Subsumption}} 
+|-
+! style="text-align: left;" | Direct+Subsumption
+| {{CountPropertyValueLink|FruitFly|true}} 
+|-
+! style="text-align: left;" | Composition
+| {{CountPropertyValueLink|FruitFly Category|Composition}} 
+|}

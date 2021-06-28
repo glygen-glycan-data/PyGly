@@ -1,12 +1,24 @@
 
-from GlycanResource import GlycanResource
+from .GlycanResource import GlycanResource
 
 
 import os, ssl
+
 if (not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None)):
     ssl._create_default_https_context = ssl._create_unverified_context
-import sys, urllib, json, csv
-from StringIO import StringIO
+
+import sys, json, csv
+
+try:
+    from urllib.parse import urlparse, urlencode
+    from urllib.request import urlopen, Request, build_opener, HTTPSHandler, HTTPHandler
+    from urllib.error import HTTPError
+except ImportError:
+    from urlparse import urlparse
+    from urllib import urlencode
+    from urllib2 import urlopen, Request, HTTPError, build_opener, HTTPSHandler, HTTPHandler
+
+from io import StringIO
 
 class WebServiceResource(GlycanResource):
 
@@ -18,19 +30,23 @@ class WebServiceResource(GlycanResource):
     """
 
     def __init__(self,*args,**kw):
-        super(WebServiceResource,self).__init__(*args,**kw)
         self.attr(kw,'apiurl',required=True)
         self.attr(kw,'verbose',default=False)
+        super(WebServiceResource,self).__init__(*args,**kw)
 
-    def queryws(req,url,method,kwargs):
+    def queryws(self,url,method,kwargs):
+        self.wait()
         assert method == "GET"
-	if len(kwargs) > 0:
+        if len(kwargs) > 0:
             if '?' in url or '%(' in url:        
                 url = url%kwargs
             else:
-                url += "?" + urllib.urlencode(kwargs)
-        # print >>sys.stderr, url
-        h = urllib.urlopen(url)
+                url += "?" + urlencode(kwargs)
+        if self._verbose:
+            print >>sys.stderr, url
+        # req = Request(url)
+        # req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0')
+        h = urlopen(url)
         return h.read()
 
     def parseSection(self,name,keyvaluepairs):
@@ -38,8 +54,8 @@ class WebServiceResource(GlycanResource):
         url = keyvaluepairs.get("url")
         if not url:
             req = keyvaluepairs.get("request",name)
-            url = self.apiurl + "/" + req
-        params = filter(None,map(lambda s: s.strip(),keyvaluepairs.get('params',"").split(',')))
+            url = self._apiurl + "/" + req
+        params = [_f for _f in [s.strip() for s in keyvaluepairs.get('params',"").split(',')] if _f]
         thetype = keyvaluepairs.get("type","JSON").upper()
 
         def _query(self,*args,**kw):
@@ -55,8 +71,8 @@ class WebServiceResource(GlycanResource):
             response = self.queryws(url,method,kwargs)
             if thetype == "JSON":
                 response = json.loads(response)
-	    elif thetype == "CSV":
-		response = csv.DictReader(StringIO(response))
+            elif thetype == "CSV":
+                response = csv.DictReader(StringIO(unicode(response)))
             return response
 
         self.set_method("query_"+str(name), _query)

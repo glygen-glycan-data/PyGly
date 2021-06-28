@@ -1,4 +1,4 @@
-__all__ = [ "GlycanDataWiki", "GlycanDataDiskCache", "GlycanData", "Glycan", "Annotation" ]
+__all__ = [ "GlycanDataWiki", "GlycanDataWikiNew", "GlycanDataDiskCache", "GlycanData", "Glycan", "Annotation" ]
 
 import sys, re
 from operator import itemgetter
@@ -19,8 +19,8 @@ class Glycan(SMW.SMWClass):
     def toPython(self,data):
 	data = super(Glycan,self).toPython(data)
 
-	if '_subobjs' in data:
-	    del data['_subobjs']
+	# if '_subobjs' in data:
+	#     del data['_subobjs']
 
 	return data
 
@@ -149,7 +149,7 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toPython(data)
 
 	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
-           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype']:
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence','FruitFly Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide']:
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -161,10 +161,10 @@ class Annotation(SMW.SMWClass):
         
 	if data.get('value'):
 	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
-             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype']:
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Human Evidence','Mouse Evidence','Rat Evidence','HCV Evidence','SARS Evidence','FruitFly Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide']:
 	    if isinstance(data['value'],list) or isinstance(data['value'],set):
-		if len(data['value']) > 1:
-                    data['value'] = ";".join(map(str,sorted(data['value'],key=self.intstrvalue)))
+		if len(set(data['value'])) > 1:
+                    data['value'] = ";".join(map(str,sorted(set(data['value']),key=self.intstrvalue)))
 	            data['multivaluesep'] = ";"
 	        else:
 	            data['value'] = str(iter(data['value']).next())
@@ -172,6 +172,33 @@ class Annotation(SMW.SMWClass):
 		data['value'] = str(data['value'])
 
         return data
+
+class GlycanDataWikiNew(SMW.SMWSite):
+    _name = 'glycandata'
+
+    def get(self,accession):
+	g = super(GlycanDataWiki,self).get(accession)
+	if g:
+	    for so in g.get('_subobjs'):
+                g.set_annotation(annotation=so)
+	return g
+
+    def put(self,g):
+        accession = g.get('accession')
+        # annotationpages = []
+        # for anpage in self.site.allpages(prefix='%s.'%(accession)):
+        #     annotationpages.append(anpage)
+	g.set('_subobjs',[])
+        for an in g.annotations():
+            an.set('glycan',accession)
+            g.append('_subobjs',an)
+	g.sort('_subobjs',Annotation.key)
+        # for anpage in annotationpages:
+        #     if anpage.exists:
+        #         anpage.delete()
+        if super(GlycanDataWikiNew,self).put(g):
+            return True
+        return False
 
 class GlycanDataWiki(SMW.SMWSite):
     _name = 'glycandata'
@@ -351,4 +378,4 @@ def GlycanData():
 	sys.argv.pop(1)
 	return GlycanDataDiskCache(dir)
     else:
-	return GlycanDataWiki()
+	return GlycanDataWikiNew()

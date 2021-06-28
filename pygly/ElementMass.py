@@ -1,8 +1,8 @@
 
 from __future__ import print_function
 
-from ElementTable import ElementTable
-from IsoShape import IsoShape
+from . ElementTable import ElementTable
+from . IsoShape import IsoShape
 
 class MonoisotopicElementMass(dict):
     def __init__(self):

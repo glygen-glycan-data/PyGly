@@ -1,4 +1,4 @@
-PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+PREFIX glycandata: <http://glyomics.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?PubMedID)

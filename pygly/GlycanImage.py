@@ -7,10 +7,12 @@ class GlycanImage(object):
         self._scale = 1.0
         self._orientation = "RL"
         self._display = "normalinfo"
-        self._notation = "cfg"
+        self._notation = "snfg"
         self._redend = True
         self._format = "png"
         self._opaque = True
+        self._force = False
+	self._verbose = False
         self.fmt = GlycoCTFormat()
         
     def scale(self,value=None):
@@ -48,9 +50,19 @@ class GlycanImage(object):
             return self._opaque
         self._opaque=value
 
+    def force(self, value=None):
+	if value == None:
+	    return self._force
+	self._force=value
+
+    def verbose(self, value=None):
+	if value == None:
+	    return self._verbose
+	self._verbose = value
+
     def set(self,key,value):
 	if not hasattr(self,key):
-	    raise KeyError()
+	    raise KeyError(key)
 	getattr(self,key)(value)	
 
     def writeImage(self,glycan,filename):
@@ -60,17 +72,13 @@ class GlycanImage(object):
         imageWriter = GlycoCT2Image(glystr,
                                     filename,
                                     format=self._format,
+                                    force=str(self._force).lower(),
                                     scale=self._scale,
-                                    redend=self._redend,
+                                    redend=str(self._redend).lower(),
                                     orient=self._orientation,
                                     display=self._display,
                                     notation=self._notation,
-                                    opaque=self._opaque)
+                                    opaque=str(self._opaque).lower(),
+                                    verbose=self._verbose,
+				    stdout=(not self._verbose))
         return imageWriter()
-        
-        
-                          
-        
-        
-
-    

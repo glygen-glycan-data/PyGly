@@ -1,7 +1,7 @@
 
-from SymbolsTable import SymbolsTable
-from ConstantsTable import ConstantsTable
-from Monosaccharide import Monosaccharide, Substituent, Linkage, Config
+from . SymbolsTable import SymbolsTable
+from . ConstantsTable import ConstantsTable
+from . Monosaccharide import Monosaccharide, Substituent, Linkage, Config
 import re
 import sys
 
@@ -23,14 +23,14 @@ class GlycoCTMonoFormat:
             s += "b:"
             s += self.fromSym[('Anomer',m.anomer())]
             if m.stem() != None:
-              if m.config() == None:
-                cfg = [Config.missing]*len(m.stem())
-              else:
-                cfg = list(m.config())
-              stm = list(m.stem())
-              assert len(cfg) == len(stm)
-              for cf,st in zip(cfg,stm):
-                  s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
+                if m.config() == None:
+                    cfg = [Config.missing]*len(m.stem())
+                else:
+                    cfg = list(m.config())
+                stm = list(m.stem())
+                assert len(cfg) == len(stm)
+                for cf,st in zip(cfg,stm):
+                    s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
             s += "-%s"%self.fromSym[('SuperClass',m.superclass())]
             rs = m.ring_start()
             if rs == None:
@@ -85,7 +85,7 @@ class GlycoCTMonoFormat:
         m.set_external_descriptor_id(id)
         MODS = desc.split('|')
         MONO = MODS.pop(0).split('-')
-        
+
         #set ring
         ring =  MONO.pop()
         ringStart,ringEnd = ring.split(':')
@@ -115,7 +115,7 @@ class GlycoCTMonoFormat:
         for st in MONO:
             configs.append(self.toSym[('Config',st[0])])
             stems.append(self.toSym[('Stem',st[1:])])
-        
+
         if len(stems) > 0:
             if zip(configs,stems) != [(None,None)]:
                 m.set_config(*configs)
@@ -208,10 +208,10 @@ class MonoSymLookup(dict):
             subst = (('Substituent',m.name()),)
         return supcls,stem,mods,subst
     def toStr(self,m):
-	if m != None:
+        if m != None:
             k = self.key(m)
-	else:
-	    raise RuntimeError("Monosaccharide is None.")
+        else:
+            raise RuntimeError("Monosaccharide is None.")
         try:
             return self[k]
         except KeyError:

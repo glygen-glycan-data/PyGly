@@ -1,10 +1,10 @@
-#!/bin/env python27
+#!/bin/env python2
 
-from getwiki import GlycanDataWiki, GlycanDataDiskCache
+from getwiki import GlycanDataWiki, GlycanDataWikiNew, GlycanDataDiskCache
 
 import sys
 
-w = GlycanDataWiki()
+w = GlycanDataWikiNew()
 
 d = GlycanDataDiskCache(sys.argv[1])
 sys.argv.pop(1)
