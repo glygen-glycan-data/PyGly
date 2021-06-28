@@ -1,0 +1,1 @@
+{{Method|Applied Biosystems TripleTOF 6600, DIA (HCD), nano LC-MS/MS}}

@@ -1,6 +1,6 @@
 <noinclude>
-This is the "Peptide" template.
-It should be called in the following format:
+This is the "Peptide" template. 
+It should be called in the following format: 
 <pre>
 {{Peptide
 |id=
@@ -20,7 +20,7 @@ Edit the page to see the template text.
 | {{{name|}}}
 |-
 ! Sequence
-| [[gptwiki:sequence::{{{sequence|}}}]] {{#ifeq:{{PREFIX}}|gptwikidev|([https://edwardslab.bmcb.georgetown.edu/gptwikidev/index.php?title=Special:Ask&x=-5B-5BCategory%3APeptide-5D-5D-20-5B-5BGptwiki%3Asequence%3A%3A{{{sequence|}}}-5D-5D-20-5B-5BGptwiki%3Atransgroupcount%3A%3A%E2%89%A51-5D-5D%2F-3FGptwiki%3Asequence%3Dgptwiki%3Asequence%2F-3FGptwiki%3Aglycan.gptwiki%3Asym%3Dgptwiki%3Asym%2F-3FGptwiki%3Aglycan.gptwiki%3Anneuac%3Dgptwiki%3Anneuac%2F-3FGptwiki%3Anox%3Dgptwiki%3Anox%2F-3FGptwiki%3Anrt%3Dgptwiki%3Anrt%2F-3FGptwiki%3Anrtobs%3Dgptwiki%3Anrtobs%2F-3FGptwiki%3Atransgroupcount%3Dgptwiki%3Atransgroupcount&format=broadtable&limit=100&link=all&sort=Gptwiki%3Aglycan.gptwiki%3Anneuac%2CGptwiki%3Aglycan.gptwiki%3Asym%2CGptwiki%3Anox&headers=show&searchlabel=Peptide%20Norm.%20RT&class=sortable%20wikitable%20smwtable&offset=&mainlabel=&order=ASC%2CASC%2CASC NRT Modeling])|}}
+| [[gptwiki:sequence::{{{sequence|}}}]] {{#ifeq:{{PREFIX}}|gptwikidev|([https://gptwiki.glyomics.org/gptwikidev/index.php?title=Special:Ask&x=-5B-5BCategory%3APeptide-5D-5D-20-5B-5BGptwiki%3Asequence%3A%3A{{{sequence|}}}-5D-5D-20-5B-5BGptwiki%3Atransgroupcount%3A%3A%E2%89%A51-5D-5D%2F-3FGptwiki%3Asequence%3Dgptwiki%3Asequence%2F-3FGptwiki%3Aglycan.gptwiki%3Asym%3Dgptwiki%3Asym%2F-3FGptwiki%3Aglycan.gptwiki%3Anneuac%3Dgptwiki%3Anneuac%2F-3FGptwiki%3Anox%3Dgptwiki%3Anox%2F-3FGptwiki%3Anrt%3Dgptwiki%3Anrt%2F-3FGptwiki%3Anrtobs%3Dgptwiki%3Anrtobs%2F-3FGptwiki%3Atransgroupcount%3Dgptwiki%3Atransgroupcount&format=broadtable&limit=100&link=all&sort=Gptwiki%3Aglycan.gptwiki%3Anneuac%2CGptwiki%3Aglycan.gptwiki%3Asym%2CGptwiki%3Anox&headers=show&searchlabel=Peptide%20Norm.%20RT&class=sortable%20wikitable%20smwtable&offset=&mainlabel=&order=ASC%2CASC%2CASC NRT Modeling])|}}
 |-
 ! Glycans(s)
 | {{#arraymap:{{{glycan|}}}|,|x|{{ShowGlycan|x}}}}
@@ -51,13 +51,14 @@ Edit the page to see the template text.
 == Samples ==
 {{#ask:
 [[Category:Sample]]
-[[-gptwiki:forsample.-gptwiki:spectra.gptwiki:forpeptide::{{PAGENAME}}]]
+[[-gptwiki:forsample.-gptwiki:spectra::<q>[[Category:TransitionGroup]][[gptwiki:forpeptide::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]
 |headers=plain
 }}
 
 == Transition Groups ==
 {{#ifeq:{{PREFIX}}|gptwikidev|{{#ask:
 [[Category:TransitionGroup]]
+[[gptwiki:hastransition::+]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
 |?gptwiki:rt #-p3 =Exp. R.T. |+align=right 
 |?gptwiki:prt #-p3 =Peak R.T. |+align=right 
@@ -71,6 +72,7 @@ Edit the page to see the template text.
 |headers=plain
 }}|{{#ask:
 [[Category:TransitionGroup]]
+[[gptwiki:hastransition::+]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
 |?gptwiki:rt #-p3 =Exp. R.T. |+align=right 
 |?gptwiki:prt #-p3 =Peak R.T. |+align=right 
@@ -85,6 +87,7 @@ Edit the page to see the template text.
 
 {{#set:|gptwiki:name={{{name|}}}}}{{#set:|gptwiki:id={{PAGENAME}}}}{{#arraymap:{{{sample|}}}|,|x|{{#set:|gptwiki:forsample=x}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycan={{#explode:xxxx|;|0}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:glycansym={{#show:{{#explode:xxxx|;|0}}|?gptwiki:sym}}}}}}{{#arraymap:{{{glycan|}}}|,|xxxx|{{#set:|gptwiki:hasglycan=xxxx}}}}{{#set:|gptwiki:transgroupcount={{#ask:
 [[Category:TransitionGroup]]
+[[gptwiki:hastransition::+]]
 [[gptwiki:forpeptide::{{PAGENAME}}]]
 |format=count}}}}{{#set:|gptwiki:transitioncount={{#ask:
 [[Category:Transition]]

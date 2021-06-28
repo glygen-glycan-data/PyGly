@@ -13,6 +13,14 @@ fi
 
 # Load/Modify Disk cache...
 ./loadgtc.py $CACHE ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt ../data/extra_accessions.txt
+./loadoldtaxagtc.py $CACHE ../export/taxa.tsv
+./loadoldxrefgtc.py $CACHE PDB ../export/pdb.tsv
+./loadoldxrefgtc.py $CACHE 'Carbbank(CCSB)' ../export/carbbank.tsv
+./loadoldxrefgtc.py $CACHE CFG ../export/cfg.tsv
+./loadoldxrefgtc.py $CACHE GlycomeDB ../export/gdb.tsv
+./loadgdb2gog.py $CACHE ../data/gdb2gog.txt
+./loadoldxrefgtc.py $CACHE "GLYCOSCIENCES.de" ../export/glycosciencesde.tsv
+./loadgtc2glyconnectcomp.py $CACHE 
 ./loadunicarb.py $CACHE ../data/uc2gtc.txt ../data/uc2pubmed.txt ../data/uckbcomp2glytoucan.txt
 ./unicarbkb_taxid.py ../data/uc2gtc.txt ../data/uc2taxa.txt ../data/uckbcomp2glytoucan.txt > ../data/unicarbkb_taxid.txt
 # ./glyconnect_taxid.py > ../data/glyconnect_taxid.txt
@@ -24,10 +32,11 @@ fi
 ./loadgtc2psimod.py $CACHE ../data/psimod2glytoucan.txt
 ./loadglygen.py $CACHE ../data/glygen_accessions.txt
 ./loadedlab.py $CACHE 
+./loadgwb.py $CACHE
 ./loadmotif.py $CACHE 
-./loadmonosDB.py $CACHE ../data/allmonosaccharideDB.tsv
-./glycoTree.sh cache ../glycoTree
-./loadcanonres.py $CACHE ../glycoTree/model/annotated_glycans.csv
+# ./loadmonosDB.py $CACHE ../data/allmonosaccharideDB.tsv
+# ./glycoTree.sh cache ../glycoTree
+# ./loadcanonres.py $CACHE ../glycoTree/model/annotated_glycans.csv
 ./loadsubsump.py $CACHE ../data/gnome_subsumption_raw.txt ../data/glygen_accessions.txt ../data/glygen_new_accessions.txt ../data/extra_accessions.txt
 ./loadspecies.py $CACHE ../data/gnome_subsumption_raw.txt
 ./loadclassification.py $CACHE ../data/gnome_subsumption_raw.txt

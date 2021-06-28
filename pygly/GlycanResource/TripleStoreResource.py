@@ -1,9 +1,11 @@
 
+from __future__ import print_function
+
 import sys
 import re
 import traceback
 
-import warnings                                                                                                              
+import warnings
 warnings.filterwarnings('ignore')
 
 import rdflib
@@ -13,9 +15,9 @@ import shelve
 try:
     from pygly.lockfile import FileLock
 except ImportError:
-    from lockfile import FileLock
+    from .. lockfile import FileLock
 
-from GlycanResource import GlycanResource
+from .GlycanResource import GlycanResource
 
 class TripleStoreResource(GlycanResource):
 
@@ -34,20 +36,27 @@ class TripleStoreResource(GlycanResource):
         super(TripleStoreResource,self).__init__(*args,**kw)
         self.attr(kw,'defns',default=None)
         self.attr(kw,'endpt',required=True)
-	self.attr(kw,'verbose',default=False)
+        self.attr(kw,'verbose',default=False)
 
         self.attr(kw,'cachefile',default=False)
-	self.attr(kw,'usecache',default=False)
+        self.attr(kw,'usecache',default=False)
         self.attr(kw,'cachemode',default='r')
-	self.attr(kw,'prefetch',default=False)
+        self.attr(kw,'prefetch',default=False)
         if not self._prefetch:
             self._usecache = False
 
         if self._defns:
             self._ns = rdflib.Namespace(self._defns)
-        self._ts = rdflib.ConjunctiveGraph(store='SPARQLStore')
-	self._ts.store.method = 'POST'
-        self._ts.open(self._endpt)
+
+        # from rdflib.query import ResultParser
+        # from rdflib.plugin import register
+        # register( 'text/plain', ResultParser, 'rdflib.plugins.sparql.results.xmlresults', 'XMLResultParser')
+        # register( 'application/sparql-results+xml', ResultParser, 'rdflib.plugins.sparql.results.xmlresults', 'XMLResultParser')
+
+        from rdflib.plugins.stores.sparqlstore import SPARQLStore
+        store = SPARQLStore(self._endpt)
+        store.method = 'POST'
+        self._ts = rdflib.ConjunctiveGraph(store=store)
 
         self._cache = None
 
@@ -58,52 +67,52 @@ class TripleStoreResource(GlycanResource):
             self.opencache()
 
         if self._verbose:
-	    print >>sys.stderr, "TripleStoreResource:endpt = %s"%(self._endpt)
-	    print >>sys.stderr, "TripleStoreResource:prefetch = %s"%(self._prefetch)
-	    print >>sys.stderr, "TripleStoreResource:usecache = %s"%(self._usecache)
-	    print >>sys.stderr, "TripleStoreResource:cachemode = %s"%(self._cachemode)
+            print("TripleStoreResource:endpt = %s"%(self._endpt), file=sys.stderr)
+            print("TripleStoreResource:prefetch = %s"%(self._prefetch), file=sys.stderr)
+            print("TripleStoreResource:usecache = %s"%(self._usecache), file=sys.stderr)
+            print("TripleStoreResource:cachemode = %s"%(self._cachemode), file=sys.stderr)
 
     def __del__(self):
         if hasattr(self,'_usecache') and self._usecache:
             self.closecache()
 
     def opencache(self):
-	if self._cachefile:
+        if self._cachefile:
             if self._verbose:
-                print >>sys.stderr, "Opening cachefile:",self._cachefile
-	    self._cacheondisk = shelve.open(self._cachefile,flag=self._cachemode)
-	    self._cachedirty = {}
-        
+                print("Opening cachefile:",self._cachefile, file=sys.stderr)
+            self._cacheondisk = shelve.open(self._cachefile,flag=self._cachemode)
+            self._cachedirty = {}
+
     def writecache(self):
-	if not self._cachefile:
-	    return
+        if not self._cachefile:
+            return
         filelock = FileLock(self._cachefile)
         try:
             filelock.acquire()
-	    for key in self._cache:
-		if self._cachedirty.get(key,False):
+            for key in self._cache:
+                if self._cachedirty.get(key,False):
                     if self._verbose:
-                        print >>sys.stderr, "Write key",key,"to cachefile:",self._cachefile
-		    # write out "query" for key
-		    self._cacheondisk[key] = self._cache[key]
-		    self._cachedirty[key] = False
-	    self._cacheondisk.sync()
+                        print("Write key",key,"to cachefile:",self._cachefile, file=sys.stderr)
+                    # write out "query" for key
+                    self._cacheondisk[key] = self._cache[key]
+                    self._cachedirty[key] = False
+            self._cacheondisk.sync()
         finally:
             filelock.release()
 
     def closecache(self):
         if hasattr(self,'_verbose') and hasattr(self,'_cachefile') and self._verbose:
-            print >>sys.stderr, "Closing cachefile:",self._cachefile
+            print("Closing cachefile:",self._cachefile, file=sys.stderr)
         if hasattr(self,'_cacheondisk'):
             self._cacheondisk.close()
 
     def queryts(self,sparql):
         self.wait()
 
-	if self._verbose:
-	    print >>sys.stderr, "SPARQL Query:\n"
-	    print >>sys.stderr, sparql
-	    print >>sys.stderr, ""
+        if self._verbose:
+            print("SPARQL Query:\n", file=sys.stderr)
+            print(sparql, file=sys.stderr)
+            print("", file=sys.stderr)
 
         attempt = 0
         response = None
@@ -124,7 +133,7 @@ class TripleStoreResource(GlycanResource):
 
     def triples(self,acc):
         self.wait()
-        
+
         if not acc.startswith('http'):
             assert self._ns != None
             uri = self._ns[acc]
@@ -145,26 +154,26 @@ class TripleStoreResource(GlycanResource):
 
     def attach_methods(self,obj):
         for methname in obj.export:
-	    def _wrapper(methname):
-	        meth = getattr(obj,methname)
-	        def _objmethod(self,*args,**kwargs):
-	            return meth(*args,**kwargs)
-	        return _objmethod
-	    self.set_method(methname,_wrapper(methname))
+            def _wrapper(methname):
+                meth = getattr(obj,methname)
+                def _objmethod(self,*args,**kwargs):
+                    return meth(*args,**kwargs)
+                return _objmethod
+            self.set_method(methname,_wrapper(methname))
 
     def set_method(self,name,func):
         setattr(self.__class__, name, func)
         func.__name__ = str(name)
-    
+
     def modify_method(self,name,func):
         newfunc = func(getattr(self.__class__,name))
         setattr(self.__class__, name, newfunc)
         newfunc.__name__ = str(name)
-    
+
     def parseSection(self,name,keyvaluepairs):
         sparql = keyvaluepairs['sparql']
-        params = filter(None,map(lambda s: s.strip(),keyvaluepairs.get('params',"").split(',')))
-  	escape = filter(None,map(lambda s: s.strip(),keyvaluepairs.get('escape',"").split(',')))
+        params = [_f for _f in [s.strip() for s in keyvaluepairs.get('params',"").split(',')] if _f]
+        escape = [_f for _f in [s.strip() for s in keyvaluepairs.get('escape',"").split(',')] if _f]
 
         def _query(self,*args,**kw):
             # print >>sys.stderr, "query_%s: %s, %s"%(name,args,kw)
@@ -174,19 +183,19 @@ class TripleStoreResource(GlycanResource):
                     kwargs[param] = keyvaluepairs[param]
                 if i < len(args):
                     kwargs[param] = args[i]
-		    if param in escape:
-			kwargs[param] = re.escape(kwargs[param]).replace("\\","\\\\")
+                    if param in escape:
+                        kwargs[param] = re.escape(kwargs[param]).replace("\\","\\\\")
                 elif kw.get(param) != None:
                     kwargs[param] = kw[param]
-		    if param in escape:
-			kwargs[param] = re.escape(kwargs[param]).replace("\\","\\\\")
+                    if param in escape:
+                        kwargs[param] = re.escape(kwargs[param]).replace("\\","\\\\")
                 assert param in kwargs, " ".join(map(repr,[param, kwargs]))
             sparqlstr = sparql%kwargs
             response = self.queryts(sparqlstr)
-            vars = map(str,response.vars)
+            vars = list(map(str,response.vars))
             for row in response.bindings:
                 row = tuple(map(row.get,response.vars))
-                yield dict(zip(vars,map(self.tostr,row)))
+                yield dict(list(zip(vars,list(map(self.tostr,row)))))
 
         self.set_method("query_"+name, _query)
         return [("query_"+name,params)]
@@ -195,8 +204,8 @@ class TripleStoreResource(GlycanResource):
     def tostr(value):
         if value == None:
             return None
-	try:
+        try:
             return str(value)
-	except ValueError:
-	    pass
+        except ValueError:
+            pass
         return value

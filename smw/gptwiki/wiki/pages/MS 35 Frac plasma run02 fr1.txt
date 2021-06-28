@@ -1,7 +1,11 @@
 {{Acquisition
 |anfrac=ME000004
 |ansamp=HSPOOL.01
+|inst=Orbitrap
 |method=ME000001
 |name=MS_35_Frac_plasma_run02_fr1
+|nrtintercept=12.09
+|nrtslope=0.4044
 |sample=SA000001
+|type=DDA
 }}

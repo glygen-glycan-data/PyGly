@@ -2,11 +2,16 @@
 {{#ask:
 [[Category:Acquisition]]
 [[gptwiki:formethod::{{PAGENAME}}]]
+[[gptwiki:transgroupcount::>1]]
 OR
 [[Category:Acquisition]]
 [[gptwiki:analfraction::{{PAGENAME}}]]
+[[gptwiki:transgroupcount::>1]]
 |?gptwiki:forsample=Sample
 |?=Spectrum File
+|?gptwiki:rtslope=LC Cal. Slope
+|?gptwiki:rtintercept=LC Cal. Int.
+|?gptwiki:transgroupcount=Trans. Groups
 |mainlabel=-
 |headers=plain
 |sort=gptwiki:forsample,gptwiki:name

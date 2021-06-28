@@ -1,6 +1,6 @@
 
-from TripleStoreResource import TripleStoreResource
-from GlycanResourceWrappers import partitioner, prefetcher
+from .TripleStoreResource import TripleStoreResource
+from .GlycanResourceWrappers import partitioner, prefetcher
 
 import hashlib
 import base64
@@ -21,16 +21,16 @@ class GlyCosmosTS(TripleStoreResource):
     
     def __init__(self,**kw):
         if 'usecache' not in kw:
-	    kw['usecache'] = True
-	if 'prefetch' not in kw:
-	    kw['prefetch'] = True
-	if 'cachemode' not in kw:
-	    kw['cachemode'] = 'c'
+            kw['usecache'] = True
+        if 'prefetch' not in kw:
+            kw['prefetch'] = True
+        if 'cachemode' not in kw:
+            kw['cachemode'] = 'c'
         super(GlyCosmosTS,self).__init__(**kw)
-	for k in self.keys():
-	    if 'hash' in self[k]:
+        for k in list(self.keys()):
+            if 'hash' in self[k]:
                 self.modify_method(k,partitioner(kwarg="hash",fmt="%%0%dx.*",values='hexidecimal'))
-	    elif 'accession' in self[k]:
+            elif 'accession' in self[k]:
                 self.modify_method(k,partitioner())
             if self._prefetch:
                 if 'hash' in self[k]:
@@ -44,22 +44,31 @@ class GlyCosmosTS(TripleStoreResource):
         return False
 
     def allaccessions(self):
-	for row in self.query_exists():
-	    yield row['accession']
+        for row in self.query_exists():
+            yield row['accession']
 
     def getseq(self,accession,format='wurcs'):
-	for row in self.query_sequence(accession=accession,format=format):
-	    return row['sequence']
-	return None
+        assert format in self.sequence_formats
+        for row in self.query_sequence(accession=accession,format=format):
+            if row['format'] == 'wurcs' and not row['sequence'].startswith('WURCS'):
+                continue
+            if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
+                continue
+            return row['sequence']
+        return None
 
     def allseq(self,format=None):
-	assert format == None or format in self.sequence_formats
+        assert format == None or format in self.sequence_formats
+        curkey = None
         for row in self.query_sequence(format=format):
             if row['format'] == 'wurcs' and not row['sequence'].startswith('WURCS'):
                 continue
             if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
                 continue
-            yield row['accession'], row['format'], row['sequence']
+            key = (row['accession'],row['format'])
+	    if key != curkey:
+                yield row['accession'], row['format'], row['sequence']
+		curkey = key
 
     def getmass(self,accession):
         for row in self.query_mass(accession=accession):

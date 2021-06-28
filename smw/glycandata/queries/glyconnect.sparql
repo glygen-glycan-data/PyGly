@@ -1,11 +1,13 @@
-PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+PREFIX glycandata: <http://glyomics.org/glycandata#>
 
 SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?GlyConnectAccession)
+       (?prop as ?GlyConnectAccessionType)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann1 glycandata:property "GlyConnect" .
+  ?ann1 glycandata:property ?prop .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
+  FILTER(?prop = "GlyConnectStructure" || ?prop = "GlyConnectComposition")
 }
-ORDER BY ?accession ?value
+ORDER BY ?accession ?value ?prop

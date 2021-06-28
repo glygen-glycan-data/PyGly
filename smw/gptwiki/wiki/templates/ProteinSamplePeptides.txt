@@ -1,0 +1,1 @@
+{{LinkedName|{{{1}}}}} ({{PeptidesPerSampleAndProtein|{{{1}}}|{{{#userparam}}}}} / {{#show:{{{#userparam}}}|?gptwiki:peptidecount}})

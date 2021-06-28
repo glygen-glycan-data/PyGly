@@ -6,6 +6,10 @@
 
 # ./exports.sh cache 
 set -x 
+rm -rf glycandatadev.tdb
+./tordf.py "$@" glycandata | gzip -9 -c > ../export/glycandata.rdf.gz
+./loadts.sh ../export/glycandata.rdf.gz
+./queryall.sh glycandata.tdb
 ./glycanprop.py "$@" > ../export/glycan_properties.tsv
 ./monocomp.py "$@" > ../export/monocomp.tsv
 ./subsumption.py "$@" > ../export/subsumption.tsv
@@ -13,5 +17,5 @@ set -x
 ./motif.py "$@" allaligns > ../export/allmotifaligns.tsv
 ./byonic_database.py "$@" > ../export/byonic_glygen_human_nlinked.txt
 ./species.py "$@" > ../export/species_expanded.tsv
-./glycoTree_exports.sh ../glycoTree
+./glycoTree_exports.sh "$@" ../glycoTree
 ./glygen_retired_accessions.sh

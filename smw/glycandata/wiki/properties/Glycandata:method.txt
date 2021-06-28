@@ -1,3 +1,0 @@
-[[Imported from::glycandata:method]] 
-{{DISPLAYTITLE:glycandata:method}}
-[[Category:Imported vocabulary]]

@@ -1,6 +1,6 @@
 
-from Monosaccharide import Linkage, Substituent, Monosaccharide, Mod, Anomer, Stem
-from combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings, choose
+from . Monosaccharide import Linkage, Substituent, Monosaccharide, Mod, Anomer, Stem
+from . combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings, choose
 
 import inspect
 import sys, os.path

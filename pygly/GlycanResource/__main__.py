@@ -1,5 +1,6 @@
-#!/bin/env python27
+#!/bin/env python2
 
+from past.builtins import basestring
 import sys, re, os.path
 
 sys.path.append(os.path.dirname(os.path.realpath(os.path.join(os.path.dirname(__file__),".."))))
@@ -7,20 +8,24 @@ sys.path.append(os.path.dirname(os.path.realpath(os.path.join(os.path.dirname(__
 from pygly.GlycanResource import *
 
 def tostr(s):
-    if isinstance(s,basestring):
-	s = s.replace(u'\u2013','-')
+    if isinstance(s,str):
+        s = s.replace('\u2013','-')
     try:
-	return str(s)
+        return str(s)
     except ValueError:
-	pass
+        pass
     try:
-	return s.value
+        return s.value
     except ValueError:
-	pass
+        pass
     return s
 
 cls = sys.argv[1]
-resource = eval(cls+"()")
+if sys.argv[2] == "-v":
+    sys.argv.pop(2)
+    resource = eval(cls+"(verbose=True)")
+else:
+    resource = eval(cls+"()")
 query = sys.argv[2]
 method = getattr(resource,query)
 headers = None
@@ -32,24 +37,24 @@ for i in range(len(args)-1,-1,-1):
         kwargs[k] = v
         del args[i]
 result = method(*args,**kwargs)
-if isinstance(result,basestring) or not hasattr(result,'next'):
+if isinstance(result,str) or not hasattr(result,'__iter__'):
     if not isinstance(result,list) and not isinstance(result,tuple):
-	result = [ result ]
-    print "\t".join(map(tostr,result))
+        result = [ result ]
+    print(("\t".join(map(tostr,result))))
 else:
     for r in result:
-        if isinstance(r,basestring):
-            print r
+        if isinstance(r,str) or isinstance(r,basestring):
+            print(r)
         elif isinstance(r,dict):
             if headers == None:
                 headers = sorted(r.keys())
                 if 'accession' in headers:
                     headers.remove('accession')
                     headers = ['accession'] + headers
-                print "\t".join(headers)
-            print "\t".join(map(tostr,map(r.get,headers)))
+                print(("\t".join(headers)))
+            print(("\t".join(map(tostr,list(map(r.get,headers))))))
         else:
-	    # print r
+            # print r
             # print map(tostr,r)
-            print "\t".join(map(tostr,r))
+            print(("\t".join(map(tostr,r))))
 

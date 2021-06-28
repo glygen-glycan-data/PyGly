@@ -1,4 +1,4 @@
-http://glycandata.glygen.org/gptwiki#|[http://glycandata.glygen.org/gptwiki Glycopeptide Transition Wiki Ontology]
+http://gptwiki.georgetown.edu/gptwiki#|[http://gptwiki.georgetown.edu/gptwiki Glycopeptide Transition Wiki Ontology]
  id|Type:Text
  mw|Type:Number
  name|Type:Text
@@ -13,6 +13,7 @@ http://glycandata.glygen.org/gptwiki#|[http://glycandata.glygen.org/gptwiki Glyc
  nox|Type:Number
  site|Type:Text
  sitepos|Type:Number
+ siteaa|Type:Text
  glycan|Type:Page
  glycansym|Type:Text
  hasglycan|Type:Record
@@ -26,6 +27,7 @@ http://glycandata.glygen.org/gptwiki#|[http://glycandata.glygen.org/gptwiki Glyc
  haspeptide|Type:Page
  hasprotein|Type:Page
  hasalignment|Type:Record
+ hasproteinsite|Type:Page
  transgroupcount|Type:Number
  transitioncount|Type:Number
  hastransgroup|Type:Page
@@ -36,6 +38,12 @@ http://glycandata.glygen.org/gptwiki#|[http://glycandata.glygen.org/gptwiki Glyc
  species|Type:Text
  organism|Type:Text
  peptidecount|Type:Number
+ nrtpeptidecount|Type:Number
+ glycancount|Type:Number
+ proteincount|Type:Number
+ ProteinSite|Category
+ proteinsitecount|Type:Number
+ siteaa|Type:Text
  Transition|Category
  rt|type:Number
  prt|Type:Number
@@ -66,5 +74,14 @@ http://glycandata.glygen.org/gptwiki#|[http://glycandata.glygen.org/gptwiki Glyc
  hasxics|Type:Text
  showcycle|Type:Text
  xicmmu|Type:Number
+ instrument|Type:Text
+ extraction|Type:Text
+ fdr|Type:Number
+ score|Type:Number
+ intensity|Type:Number
+ nrtslope|Type:Number
+ nrtintercept|Type:Number
+ rtslope|Type:Number
+ rtintercept|Type:Number
 
 [[Category:Imported vocabulary]]

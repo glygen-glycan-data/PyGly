@@ -1,8 +1,10 @@
 {{Acquisition
 |anfrac=ME000004
+|inst=Orbitrap
 |method=ME000001
 |name=MS_48_UO1_Erlic_E10
-|nrtintercept=15.35709650
+|nrtintercept=15.3570965
 |nrtslope=0.38652625
 |sample=SA000001
+|type=DDA
 }}

@@ -1,5 +1,6 @@
 
-import odometer, math, copy
+import math, copy
+from . import odometer
 from operator import itemgetter
 from collections import defaultdict
 

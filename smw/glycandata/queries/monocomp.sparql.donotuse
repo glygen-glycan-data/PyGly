@@ -1,4 +1,4 @@
-PREFIX glycandata: <http://glycandata.glygen.org/glycandata#>
+PREFIX glycandata: <http://glyomics.org/glycandata#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?accession ?Hex ?HexNAc ?dHex ?NeuAc ?NeuGc ?HexA ?HexN ?S ?P ?aldi ((?Count - ?Hex - ?HexNAc - ?dHex - ?NeuAc - ?NeuGc - ?HexA - ?HexN) as ?Xxx) ?Count

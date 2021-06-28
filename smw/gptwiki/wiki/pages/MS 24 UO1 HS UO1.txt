@@ -1,9 +1,11 @@
 {{Acquisition
 |anfrac=ME000010
 |ansamp=AHSG.01
+|inst=Orbitrap
 |method=ME000002
 |name=MS_24_UO1_HS_UO1
 |nrtintercept=17.44369711
 |nrtslope=0.39066924
 |sample=SA000001
+|type=DDA
 }}

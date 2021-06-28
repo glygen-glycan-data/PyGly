@@ -1,0 +1,10 @@
+{{Acquisition
+|anfrac=ME000017
+|inst=Orbitrap
+|method=ME000001
+|name=MS_51_plasma_ihilic_B2
+|nrtintercept=28.5144498526
+|nrtslope=0.421219662471
+|sample=SA000001
+|type=DDA
+}}

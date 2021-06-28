@@ -1,0 +1,6 @@
+{{CountLink|
+[[Category:Peptide]]
+[[-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{{1}}}]]
+[[gptwiki:hastransition::+]]</q>]]
+[[-gptwiki:haspeptide.gptwiki:hasproteinsite::{{{2}}}]]
+}}

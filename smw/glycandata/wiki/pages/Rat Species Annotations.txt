@@ -1,0 +1,20 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Taxonomy (Rattus - 10114)
+| {{CountPropertyValueLink|Taxonomy|10114}} 
+|-
+! style="text-align: left;" | Taxonomy (Rattus norvegicus - 10116)
+| {{CountPropertyValueLink|Taxonomy|10116}} 
+|-
+! style="text-align: left;" | Direct
+| {{CountPropertyValueLink|Rat Category|Direct}} 
+|-
+! style="text-align: left;" | Subsumption
+| {{CountPropertyValueLink|Rat Category|Subsumption}} 
+|-
+! style="text-align: left;" | Direct+Subsumption
+| {{CountPropertyValueLink|Rat|true}} 
+|-
+! style="text-align: left;" | Composition
+| {{CountPropertyValueLink|Rat Category|Composition}} 
+|}

@@ -2,7 +2,7 @@
 
 import copy
 
-from combinatorics import select, itermatchings
+from . combinatorics import select, itermatchings
 try:
     from past.builtins import basestring    
 except ImportError:

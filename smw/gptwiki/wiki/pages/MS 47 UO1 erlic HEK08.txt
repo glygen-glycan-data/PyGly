@@ -1,6 +1,8 @@
 {{Acquisition
 |anfrac=ME000004
+|inst=Orbitrap
 |method=ME000001
 |name=MS_47_UO1_erlic_HEK08
 |sample=SA000002
+|type=DDA
 }}

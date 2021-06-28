@@ -1,5 +1,4 @@
 <includeonly>{{#ask:
-[[Category:Annotation]]
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:property::!EnzymeDetails]]
 [[glycandata:type::{{{2}}}]]

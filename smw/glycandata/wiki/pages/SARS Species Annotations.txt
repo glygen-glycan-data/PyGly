@@ -1,0 +1,20 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Taxonomy (SARS - 694009)
+| {{CountPropertyValueLink|Taxonomy|694009}} 
+|-
+! style="text-align: left;" | Taxonomy (SARS-CoV-2 - 2697049)
+| {{CountPropertyValueLink|Taxonomy|2697049}} 
+|-
+! style="text-align: left;" | Direct
+| {{CountPropertyValueLink|SARS Category|Direct}} 
+|-
+! style="text-align: left;" | Subsumption
+| {{CountPropertyValueLink|SARS Category|Subsumption}} 
+|-
+! style="text-align: left;" | Direct+Subsumption
+| {{CountPropertyValueLink|SARS|true}} 
+|-
+! style="text-align: left;" | Composition
+| {{CountPropertyValueLink|SARS Category|Composition}} 
+|}

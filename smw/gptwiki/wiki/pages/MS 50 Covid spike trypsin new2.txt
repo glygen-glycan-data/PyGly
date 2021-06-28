@@ -1,8 +1,10 @@
 {{Acquisition
 |anfrac=ME000012
+|inst=Orbitrap
 |method=ME000013
 |name=MS_50_Covid_spike_trypsin_new2
 |nrtintercept=13.982618622
 |nrtslope=0.3975681464
 |sample=SA000004
+|type=DDA
 }}

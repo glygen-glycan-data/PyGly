@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys, time, traceback, hashlib
 from collections import defaultdict
@@ -10,11 +10,11 @@ gtc = GlyTouCanNoCache();
 
 acc2hash = defaultdict(set)
 
-for acc,inhsh,vwhsh,hgshsh in gtc.query_validacc1():
-    if hgshsh != vwhsh:
-	continue
-    acc2hash[acc].add(vwhsh)
-    acc2hash[acc].add(inhsh)
+# for acc,inhsh,vwhsh,hgshsh in gtc.query_validacc1():
+# if hgshsh != vwhsh:
+# 	continue
+# acc2hash[acc].add(vwhsh)
+# acc2hash[acc].add(inhsh)
 
 from getwiki import GlycanData
 w = GlycanData()
@@ -34,11 +34,8 @@ for g in accessions():
 
     glycan = g.getGlycan()
 
-    if not glycan:
-	continue
-
     if not g.has_annotations(property='GlycoCT',type='Sequence',source='GlyTouCan'):
-	if not g.has_annotations(property='GlycoCT',type='Sequence',source='EdwardsLab'):
+	if glycan and not g.has_annotations(property='GlycoCT',type='Sequence',source='EdwardsLab'):
 	    value = glycan.glycoct()
 	    g.set_annotation(property='GlycoCT',type='Sequence',value=value,source='EdwardsLab')
     else:
@@ -46,10 +43,10 @@ for g in accessions():
 
     hashes = acc2hash[g.get('accession')]
     for ann in g.annotations(type='Sequence'):
-	if ann.get('property') in ('SequenceHash','IUPAC'):
-	    continue
-	# if ann.get('property') not in ('GlycoCT','WURCS'):
+	# if ann.get('property') in ('SequenceHash','IUPAC','GlycoWorkBench','GLYCAM-IUPAC'):
 	#     continue
+	if ann.get('property') not in ('GlycoCT','WURCS'):
+	    continue
 	value = ann.get('value')
 	if not value:
 	    continue
@@ -58,7 +55,7 @@ for g in accessions():
 	g.set_annotation(property='SequenceHash',type='Sequence',value=sorted(hashes),source='EdwardsLab')
 
     try:
-	if glycan.fully_determined():
+	if glycan and glycan.fully_determined():
             glycam = glycan.glycam()
 	    if glycam and '?' not in glycam:
                 g.set_annotation(value=glycam,property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
@@ -66,17 +63,17 @@ for g in accessions():
                 g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
 	else:
             g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
-    except KeyError:
+    except (KeyError,AssertionError):
         g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
     except:
         g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
         traceback.print_exc()
 
-    if not glycan.has_root():
+    if glycan and not glycan.has_root():
 	g.delete_annotations(property="IUPAC",type="Sequence")
 
-    if g.has_annotations(property='IUPAC',type='Sequence',source='GlyTouCan'):
-	seq = g.get_annotation_value(property='IUPAC',type='Sequence',source='GlyTouCan')
+    if g.has_annotations(property='IUPAC',type='Sequence',source='GlyCosmos'):
+	seq = g.get_annotation_value(property='IUPAC',type='Sequence',source='GlyCosmos')
 	if ',' not in seq:
 	    # These rules supplied by Sriram Neelamegham <neel@buffalo.edu>
             seq=seq.replace('(','-(')           # sometimes '-' is missing before '('
@@ -115,6 +112,7 @@ for g in accessions():
         traceback.print_exc()
 
     g.delete_annotations(source='EdwardsLab',type='MonosaccharideCount')
+    hasmonosaccharides = set()
     try: 
 	if glycan:
             comp = glycan.iupac_composition()
@@ -132,12 +130,14 @@ for g in accessions():
 	            g.set_annotation(value=count,
 		        property=ckey+'Count',
 		        source='EdwardsLab',type='MonosaccharideCount')
+		    hasmonosaccharides.add(ckey)
 	for ckey,count in comp1.items():
 	    if count > 0 and not ckey.startswith('_') and ckey != "Count":
 		if ckey.endswith('+aldi'):
 		    g.set_annotation(value=count,
 			property=ckey+"Count",
 			source='EdwardsLab',type='MonosaccharideCount')
+		    hasmonosaccharides.add(ckey)
 
     except KeyError:
         pass
@@ -158,8 +158,23 @@ for g in accessions():
                              source='EdwardsLab',type='Structure')
 	    g.set_annotation(value=glycan.iupac_redend(),property='ReducingEnd',
                              source='EdwardsLab',type='Structure')
+	    g.set_annotation(value=hasmonosaccharides,property='HasMonosaccharide',
+                             source='EdwardsLab',type='Structure')
     except:
         traceback.print_exc()
+
+    try:
+        glycoctseq = g.get_annotation_value(property='GlycoCT',type='Sequence')
+    except LookupError:
+        glycoctseq = None
+    try:
+        wurcsseq = g.get_annotation_value(property='WURCS',type='Sequence')
+    except LookupError:
+        wurcsseq = None
+    repstr = False
+    if (wurcsseq and '~' in wurcsseq) or (glycoctseq and 'REP' in glycoctseq):
+        repstr = True
+    g.set_annotation(value=str(repstr).lower(),property='HasRepeat',source='EdwardsLab',type='Structure')
 
     if w.put(g):
         print >>sys.stderr, "%s updated in %.2f sec"%(g.get('accession'),time.time()-start,)

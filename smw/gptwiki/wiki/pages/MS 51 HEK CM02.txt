@@ -1,0 +1,9 @@
+{{Acquisition
+|inst=Orbitrap
+|method=ME000001
+|name=MS_51_HEK_CM02
+|nrtintercept=13.615906
+|nrtslope=0.388637
+|sample=SA000002
+|type=DDA
+}}

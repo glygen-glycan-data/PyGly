@@ -1,7 +1,9 @@
 
+from __future__ import print_function
+
 import sys
-from ReferenceTable import ReferenceTable
-from Monosaccharide import *
+from . ReferenceTable import ReferenceTable
+from . Monosaccharide import *
 
 
 class MonoFactory(ReferenceTable):
@@ -58,7 +60,7 @@ class MonoFactory(ReferenceTable):
             aliases.extend(map(lambda s: s.strip(),kv.get('aliases','').split(';')))
             aliases = filter(None,aliases)
         except:
-            print >>sys.stderr, "Problem with section", name
+            print("Problem with section", name, file=sys.stderr)
             raise
         return [(a,m) for a in aliases]
 

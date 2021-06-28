@@ -1,0 +1,10 @@
+{{Acquisition
+|anfrac=ME000012
+|inst=Orbitrap
+|method=ME000001
+|name=MS_51_CM_20210210173056
+|nrtintercept=9.881147
+|nrtslope=0.432374
+|sample=SA000002
+|type=DDA
+}}

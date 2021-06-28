@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys
 from operator import itemgetter
@@ -66,6 +66,9 @@ species2taxid['mouse'] = set(map(int,"""
     10090 1385377 35531 179238 947985 1266728 10091 10092 80274 57486
     477816 39442 1879032 477815 46456 116058 1643390
     """.split()))
+species2taxid['dros'] = set(map(int,"""
+    7227
+""".split()))
 species2taxid['rat'] = set(map(int,"""
     10116 10114 2651915 2651916 323373 1258734 1258735 397343 10017 10018
     10019 10020 94247 94248 108146 323374 323375 323376 323377 323378
@@ -288,6 +291,20 @@ for acc in sorted(species):
     if species[acc]['sars'][0] != 'False':
         m.set_annotation(property="SARS Category",
                          value=species[acc]['sars'][0],
+                         type="Species",
+                         source="EdwardsLab")
+
+    m.set_annotation(property="FruitFly Evidence",
+                     value=species[acc]['dros'][1],
+                     type="Species",
+                     source="EdwardsLab")
+    m.set_annotation(property="FruitFly",
+                     value='true' if species[acc]['dros'][0] in ('Direct','Subsumption') else 'false',
+                     type="Species",
+                     source="EdwardsLab")
+    if species[acc]['dros'][0] != 'False':
+        m.set_annotation(property="FruitFly Category",
+                         value=species[acc]['dros'][0],
                          type="Species",
                          source="EdwardsLab")
 

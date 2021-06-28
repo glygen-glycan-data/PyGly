@@ -1,9 +1,11 @@
 {{Acquisition
 |anfrac=ME000007
 |ansamp=SERPINA3.01
+|inst=Orbitrap
 |method=ME000002
 |name=MS_24_UO1_ACA_UO1
 |nrtintercept=18.61275495
-|nrtslope=0.38516270
+|nrtslope=0.3851627
 |sample=SA000001
+|type=DDA
 }}

@@ -1,19 +1,20 @@
 <div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>
 __NOEDITSECTION__
-{| class="wikitable"  style="text-align: right;"
-|-
-! Samples
-| {{CountLink|[[Category:Sample]]}} 
-|-
-! Proteins 
-| {{CountLink|[[Category:Protein]][[gptwiki:peptidecount::>1]]}}
-|-
-! Glycans
-| {{CountLink|[[Category:Glycan]][[gptwiki:peptidecount::>1]]}}
-|- 
-! Glycopeptides
-| {{CountLink|[[Category:Peptide]][[gptwiki:transgroupcount::>1]]}} 
-|}
+== Samples ==
+{{#ask:
+[[Category:Sample]]
+|?gptwiki:proteincount=Proteins
+|?gptwiki:proteinsitecount=Glycosites
+|?gptwiki:glycancount=Glycans
+|?gptwiki:peptidecount=Peptides
+|format=template
+|template=SampleTableRows
+|introtemplate=SampleTableIntro
+|outrotemplate=SampleTableOutro
+|headers=plain
+|order=desc,desc
+|sort=gptwiki:proteincount,gptwiki:peptidecount
+}}
 
 == Proteins by Glycopeptide Count ==
 {{#ask:

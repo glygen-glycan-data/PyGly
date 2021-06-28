@@ -1,11 +1,11 @@
 {{Glycan
 |accession=G15486FH
 |class=N-Glycan
-|mw=1583.57070888 
+|mw=1583.57070888
 |name=H5N3F
 HexNAc(3)Hex(5)dHex(1)
 HexNAc(3)Hex(5)Fuc(1)
 |nneuac=0
 |sym=H5N3F
-|topo=G75392IO,G68767KY
+|topo=G45992CP,G68767KY
 }}

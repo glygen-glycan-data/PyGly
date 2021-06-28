@@ -1,3 +1,0 @@
-[[Imported from::glycandata:iupac]] 
-{{DISPLAYTITLE:glycandata:iupac}}
-[[Category:Imported vocabulary]]

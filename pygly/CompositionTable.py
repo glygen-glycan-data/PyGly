@@ -1,7 +1,7 @@
 
 import re
 from collections import defaultdict
-from ConstantsTable import ConstantsTable
+from . ConstantsTable import ConstantsTable
 
 class Composition(defaultdict):
     def __init__(self,*args,**kw):

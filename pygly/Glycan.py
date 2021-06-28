@@ -10,20 +10,20 @@ from collections import defaultdict
 try:
     from itertools import permutations, product
 except ImportError:
-    from combinatorics import permutations, product
+    from . combinatorics import permutations, product
 
-from combinatorics import itermatchings, iterecmatchings
+from . combinatorics import itermatchings, iterecmatchings
 
-from Monosaccharide import Monosaccharide, Linkage, Mod
-from MonoFormatter import IUPACSym, LinCodeSym
+from . Monosaccharide import Monosaccharide, Linkage, Mod
+from . MonoFormatter import IUPACSym, LinCodeSym
 
 iupacSym = IUPACSym()
 lcSym = LinCodeSym()
 
-from CompositionTable import Composition,ResidueCompositionTable,PermethylCompositionTable
-from ElementMass import MonoisotopicElementMass
-from MonoFactory import MonoFactory
-from MonoFormatter import MassSym
+from . CompositionTable import Composition,ResidueCompositionTable,PermethylCompositionTable
+from . ElementMass import MonoisotopicElementMass
+from . MonoFactory import MonoFactory
+from . MonoFormatter import MassSym
 
 ctable = ResidueCompositionTable()
 pctable = PermethylCompositionTable()
@@ -617,13 +617,13 @@ class Glycan:
 	return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
 
     def glycoct(self):
-        from GlycanFormatter import GlycoCTFormat
+        from . GlycanFormatter import GlycoCTFormat
         if not self.glycoctformat:
             self.glycoctformat = GlycoCTFormat()
         return self.glycoctformat.toStr(self)
 
     def glycam(self):
-        from GlycanFormatter import IUPACGlycamFormat
+        from . GlycanFormatter import IUPACGlycamFormat
         if not self.glycamformat:
             self.glycamformat = IUPACGlycamFormat()
         return self.glycamformat.toStr(self)
@@ -882,8 +882,8 @@ class Glycan:
 
 if __name__ == '__main__':
 
-    from MonoFactory import MonoFactory
-    from Monosaccharide import Linkage
+    from . MonoFactory import MonoFactory
+    from . Monosaccharide import Linkage
     mf = MonoFactory()
 
     gc1 = mf.new("GlcNAc")
@@ -962,5 +962,3 @@ if __name__ == '__main__':
 
     # for fr in sorted(set(map(lambda fr: str(fr[0]),g.fragments()))):
     #     print fr
-                  
-                

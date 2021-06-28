@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys, re, copy
 from getwiki import GPTWiki
@@ -13,7 +13,7 @@ parser.add_option("--method",type='string',dest='method',default=None,help="Meth
 parser.add_option("--acqtype",type='choice',choices=["DDA","DIA"],dest='acqtype',default=None,help="Acquisition type")
 parser.add_option("--inst",type='choice',choices=["Orbitrap","TripleTOF"],dest='inst',default=None,help="Instrument")
 parser.add_option("--mintrans",type="int",dest="mintrans",default=4,help="Min. transitions per transition group")
-parser.add_option("--maxtrans",type="int",dest="maxtrans",default=None,help="Max. transitions per transition group")
+parser.add_option("--maxtrans",type="int",dest="maxtrans",default=10,help="Max. transitions per transition group")
 parser.add_option("--decoys",type="string",dest="decoys",default="37,41,47,53,59",help="Decoy offset(s), comma separated. Default: 37,41,47,53,59.")
 
 opts,args = parser.parse_args()
@@ -72,10 +72,14 @@ for sp in w.iterspec(sample=opts.sample,acqtype=opts.acqtype,method=opts.method,
     ntrans = len(tg.get('transitions',[]))
     if ntrans == 0:
 	continue
+    proteins = set()
+    for al in pep.get("alignments",[]):
+	proteins.add(al.get("protein")) 
     for trid,trint in tg.get('transitions',[]):
 	tr = w.get(trid)
 	if trid not in peps[(pepid,z1)]:
             peps[(pepid,z1)][trid]['pepname'] = pep.get('name')
+            peps[(pepid,z1)][trid]['prot'] = ";".join(sorted(proteins))
             peps[(pepid,z1)][trid]['nrt'] = pep.get('nrt')
             peps[(pepid,z1)][trid]['seq'] = pep.get('sequence')
             peps[(pepid,z1)][trid]['label'] = tr.get('label')
@@ -93,7 +97,7 @@ for chpep in peps:
 	peps[chpep][trid]['int'] = np.median(peps[chpep][trid]['int'])
 
 print "\t".join(headers)
-for chpep in peps:
+for chpep in sorted(peps):
     bpi = None
     sint = sorted(map(lambda trid: peps[chpep][trid]['int'],peps[chpep]),reverse=True)
     if (len(sint) < opts.mintrans) or (sint[opts.mintrans-1]/sint[0] < 0.1):
@@ -119,7 +123,7 @@ for chpep in peps:
 	row['Tr_recalibrated'] = tr['nrt']
 	row['LibraryIntensity'] = relint
 	row['FullUniModPeptideName'] = tr['seq']
-	row['ProteinName'] = chpep[0]
+	row['ProteinName'] = tr['prot']
 	row['PeptideSequence'] = tr['seq']
 	row['FragmentType'] = tr['series']
 	row['FragmentSeriesNumber'] = tr['nmono']

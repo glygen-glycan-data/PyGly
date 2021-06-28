@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys, time, traceback
 from collections import defaultdict
@@ -35,20 +35,18 @@ for coll in collections:
 	if allmotifs:
 	    print "\t".join([acc,"Collection",coll])
 	    print "\t".join([acc,"Accession",acc.split('.',1)[1]])
-	    for i,n in enumerate(names):
-		n = n.replace(u'\u2013','-')
-	        if i == 0:
-	            print "\t".join([acc,"PreferredName",n])
-	        else:
-	            print "\t".join([acc,"AlternativeName",n])
+	    names = [  n.replace(u'\u2013','-') for n in names ]
+            print "\t".join([acc,"PreferredName",names[0]])
+	    for n in sorted(names[1:]):
+	        print "\t".join([acc,"AlternativeName",n])
 	    if aglycon:
 	        print "\t".join([acc,"Aglycon",aglycon])
 	    print "\t".join([acc,"Alignment",alignment])
 	    print "\t".join([acc,"MotifGlyTouCan",gtcacc])
 	    print "\t".join([acc,"ReducingEnd",redend])
-	    for i,pmid in enumerate(pmids):
+	    for i,pmid in enumerate(sorted(pmids,key=int)):
 		print "\t".join([acc,"PMID",pmid])
-	    for i,kw in enumerate(keywords):
+	    for i,kw in enumerate(sorted(keywords)):
 		print "\t".join([acc,"Keyword",kw])
 	allmotifdata[acc] = dict(alignment=alignment,label=names[0])
 

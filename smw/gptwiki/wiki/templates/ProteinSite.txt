@@ -1,0 +1,84 @@
+<noinclude>
+This is the "ProteinSite" template.
+It should be called in the following format:
+<pre>
+{{ProteinSite
+|protein=
+|aa=
+|position=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly>__NOTOC__ __NOEDITSECTION__
+{| class="wikitable" style="width=100%" 
+! style="width=200px" | Protein
+| style="width=100%" | {{NameWithLink|{{{protein|}}}}}
+|-
+! style="width=200px" | Site
+| style="width=100%" | {{{aa|}}}{{{position|}}}
+|-
+! style="width=200px" | GlyGen
+| style="width=100%" | [https://glygen.org/Siteview/{{{protein|}}}/{{{position|}}} {{{protein|}}}@{{{aa|}}}{{{position|}}}]
+|}
+
+== Samples (Peptides)== 
+{{#ask:
+[[Category:Sample]]
+[[-gptwiki:forsample.-gptwiki:spectra::<q>[[Category:TransitionGroup]][[gptwiki:forpeptide.-gptwiki:haspeptide.gptwiki:hasproteinsite::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]
+|headers=plain
+|format=template
+|template=ProteinSiteSamplePeptides
+|userparam={{PAGENAME}}
+|link=none
+|sep=,&#32;
+}} 
+
+== Peptides ==
+{{#ifeq:{{PREFIX}}|gptwikidev|{{#ask:
+[[Category:Alignment]]
+[[gptwiki:hasproteinsite::{{PAGENAME}}]]
+[[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
+|?gptwiki:haspeptide=
+|?gptwiki:alignstart=Start
+|?gptwiki:haspeptide.gptwiki:name=Peptide
+|?gptwiki:alignend=End
+|?gptwiki:haspeptide.gptwiki:glycan.gptwiki:sym=Glycan
+|?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt. 
+|?gptwiki:haspeptide.gptwiki:nrt #-p3 = Norm. R.T.
+|?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
+|sep=,&thinsp;
+|headers=plain
+|format=broadtable
+|mainlabel=-
+|sort=gptwiki:haspeptide.gptwiki:glycansym
+}}|{{#ask:
+[[Category:Alignment]]
+[[gptwiki:hasproteinsite::{{PAGENAME}}]]
+[[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]
+|?gptwiki:haspeptide=
+|?gptwiki:alignstart=Start
+|?gptwiki:haspeptide.gptwiki:name=Peptide
+|?gptwiki:alignend=End
+|?gptwiki:haspeptide.gptwiki:glycan.gptwiki:sym=Glycan
+|?gptwiki:haspeptide.gptwiki:mw #-p3 =Mol. Wt. 
+|?gptwiki:haspeptide.gptwiki:transgroupcount=Trans. Groups
+|?gptwiki:haspeptide.gptwiki:transitioncount=Transitions
+|sep=,&thinsp;
+|headers=plain
+|format=broadtable
+|mainlabel=-
+|sort=gptwiki:haspeptide.gptwiki:glycansym
+}}}}
+
+
+{{#set:|gptwiki:id={{PAGENAME}}
+|gptwiki:site={{{aa|}}}{{{position|}}}
+|gptwiki:name={{{aa|}}}{{{position|}}}
+|gptwiki:siteaa={{{aa|}}}
+|gptwiki:sitepos={{{position|}}}
+|gptwiki:hasprotein={{{protein|}}}
+}}{{#set:|gptwiki:peptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasproteinsite::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]]|format=count}}}}
+{{#set:|gptwiki:nrtpeptidecount={{#ask:[[Category:Alignment]][[gptwiki:hasproteinsite::{{PAGENAME}}]][[gptwiki:haspeptide.gptwiki:transgroupcount::>1]][[gptwiki:haspeptide.gptwiki:nrt::+]]|format=count}}}}
+[[Category:ProteinSite]]
+</includeonly>

@@ -12,6 +12,7 @@ DDA_DIRS=" \
   MS_50_ACE2 \
   MS_50_SPIKE \
   MS_51_plasma \
+  MS_52_HEK_secretome \
 "
 
 for workdir in $DDA_DIRS; do 

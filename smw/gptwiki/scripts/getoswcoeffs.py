@@ -7,6 +7,7 @@ matplotlib.use('Agg')
 import getwiki
 
 import csv,sys
+from operator import itemgetter
 import matplotlib.pyplot as plt
 from analysis.regression import IteratedRobustLinearRegression as IRLR
 from analysis.regression import SimpleLinearRegression as SLR
@@ -25,7 +26,7 @@ tgs = None
 for qv,sc,trg in sorted(map(itemgetter(1,0,2),fdr.allqvalues())):
     if qv > 0.05:
         break
-    # print >>sys.stderr, (len(tgs) if tgs != None else 0), sc, qv, trg
+    print >>sys.stderr, (len(tgs) if tgs != None else 0), sc, qv, trg
     if tgs != None and len(tgs) >= 10 and qv > 0.01:
 	break
     tgs = dict()
@@ -34,11 +35,11 @@ for qv,sc,trg in sorted(map(itemgetter(1,0,2),fdr.allqvalues())):
         rt = float(row['RT'])/60.0
         tgs[tgid] = rt
 
-if not tgs or len(tgs) < 10:
+if not tgs or len(tgs) < 7:
     print >>sys.stderr, "Not enough good quality transition groups"
     sys.exit(1)
 
-# print >>sys.stderr, (len(tgs) if tgs != None else 0), sc, qv, trg
+print >>sys.stderr, (len(tgs) if tgs != None else 0), sc, qv, trg
 
 points = []
 seentg = set()
@@ -50,6 +51,16 @@ for row in csv.DictReader(open(sys.argv[2]), dialect='excel-tab'):
     if tgid in tgs:
         assay_rt = float(row['Tr_recalibrated'])
         points.append((assay_rt,tgs[tgid]))
+
+print >>sys.stderr, points
+
+x = list(map(itemgetter(0),points))
+y = list(map(itemgetter(1),points))
+
+plt.plot(x,y,'.')
+x1 = [ min(x)-10,max(x)+10 ]
+y1 = [ 0.198108838067*xi+17.7219045114 for xi in x1 ]
+plt.plot(x1,y1,'r-')
 
 def print_params(params,msg=None):
     if msg:
@@ -79,6 +90,11 @@ except RuntimeError:
 
 params1["y0"] = -params1['intercept']/params1['slope']
 params1["y1"] = 1.0/(params1['slope']*60.0)-params1['intercept']/params1['slope']
+
+
+y2 = [ params1['slope']*xi+params1['intercept'] for xi in x1 ]
+plt.plot(x1,y2,'g--')
+plt.savefig('points.png')
 
 # pairs = sorted([(60*p[1],p[0]) for p in params1['retained_points']])
 pairs = [(0,params1["y0"]),(1,params1["y1"])]

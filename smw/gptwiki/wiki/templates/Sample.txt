@@ -9,24 +9,50 @@
 == Proteins == 
 {{#ask:
 [[Category:Protein]]
-[[-gptwiki:hasprotein.gptwiki:haspeptide.-gptwiki:forpeptide.gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]]
-|?gptwiki:gene=Gene
-|?gptwiki:description=Description
-|?gptwiki:species=Species
-|?gptwiki:peptidecount=Peptides
-|format=broadtable
+[[-gptwiki:hasprotein.gptwiki:haspeptide.-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]
+|?gptwiki:gene
+|?gptwiki:description
+|?gptwiki:species
+|?gptwiki:peptidecount
+|format=template
+|template=SampleProteinTableRows
+|introtemplate=SampleProteinTableIntro
+|outrotemplate=SampleProteinTableOutro
 |headers=plain
+|userparam={{PAGENAME}}
+|link=none
+|limit=20
 |sort=gptwiki:peptidecount
 |order=desc
+}}
+== Glycans == 
+{{#ask:
+[[Category:Glycan]]
+[[-gptwiki:glycan.-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]
+|?gptwiki:sym
+|?gptwiki:mw
+|?gptwiki:class
+|?gptwiki:peptidecount
+|format=template
+|template=SampleGlycanTableRows
+|introtemplate=SampleGlycanTableIntro
+|outrotemplate=SampleGlycanTableOutro
+|headers=plain
+|userparam={{PAGENAME}}
+|link=none
 |limit=20
+|sort=gptwiki:peptidecount
+|order=desc
 }}
 == Acquisitions == 
 {{#ask:
 [[Category:Acquisition]]
 [[gptwiki:forsample::{{PAGENAME}}]]
+[[gptwiki:transgroupcount::>1]]
 |mainlabel=Spectrum File
 |?gptwiki:analfraction=Anal. Fraction
 |?gptwiki:formethod=Method
+|?gptwiki:transgroupcount=Trans. Groups
 |headers=plain
 |format=broadtable
 |limit=20
@@ -34,4 +60,8 @@
 {{#set:
 |gptwiki:name={{{1}}}
 |gptwiki:id={{PAGENAME}}
+|gptwiki:proteincount={{#ask:[[Category:Protein]][[-gptwiki:hasprotein.gptwiki:haspeptide.-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]|format=count}}
+|gptwiki:proteinsitecount={{#ask:[[Category:ProteinSite]][[-gptwiki:hasproteinsite.gptwiki:haspeptide.-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]|format=count}}
+|gptwiki:glycancount={{#ask:[[Category:Glycan]][[-gptwiki:glycan.-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]|format=count}}
+|gptwiki:peptidecount={{#ask:[[Category:Peptide]][[-gptwiki:forpeptide::<q>[[Category:TransitionGroup]][[gptwiki:spectra.gptwiki:forsample::{{PAGENAME}}]][[gptwiki:hastransition::+]]</q>]]|format=count}}
 }}[[Category:Sample]]</includeonly>

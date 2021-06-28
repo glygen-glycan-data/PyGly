@@ -1,8 +1,8 @@
 
 import os
 
-from TripleStoreResource import TripleStoreResource
-from GlycanResourceWrappers import partitioner
+from .TripleStoreResource import TripleStoreResource
+from .GlycanResourceWrappers import partitioner
 
 class GlyGenTS(TripleStoreResource):
     endpt = "http://sparql.glygen.org:8880/sparql/query"
@@ -11,11 +11,11 @@ class GlyGenTS(TripleStoreResource):
     def __init__(self,**kw):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygen.ini")
         super(GlyGenTS,self).__init__(**kw)
-        for k in self.keys():
+        for k in list(self.keys()):
             self.modify_method(k,partitioner())
 
     def allglycans(self):
-	for row in self.query_glycans():
+        for row in self.query_glycans():
             yield row['accession']
 
 class GlyGenBetaTS(GlyGenTS):

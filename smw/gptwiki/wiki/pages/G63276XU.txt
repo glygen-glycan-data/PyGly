@@ -1,0 +1,10 @@
+{{Glycan
+|accession=G63276XU
+|class=N-Glycan
+|mw=2490.27
+|name=H3N6S
+HexNAc(6)Hex(3)NeuAc(1)
+|nneuac=1
+|sym=H3N6S
+|topo=G62449YM
+}}

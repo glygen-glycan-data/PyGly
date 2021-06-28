@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PYTHON=apython
+PYTHON=python2
 PYGLY=../../../pygly
 DATA=../data
 EXPORT=../export

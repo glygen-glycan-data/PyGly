@@ -1,7 +1,7 @@
 
-from SymbolsTable import SymbolsTable
-from ConstantsTable import ConstantsTable
-from Monosaccharide import Monosaccharide, Substituent, Linkage, Config
+from . SymbolsTable import SymbolsTable
+from . ConstantsTable import ConstantsTable
+from . Monosaccharide import Monosaccharide, Substituent, Linkage, Config
 import re
 import sys
 

@@ -41,6 +41,6 @@ Edit the page to see the template text.
 |gptwiki:label={{{label|}}}
 |gptwiki:id={{PAGENAME}}
 |gptwiki:forpeptide={{{peptide|}}}
-|gptwiki:transgroupcount={{#ask:[[Category:TransitionGroup]][[gptwiki:hastransition::{{PAGENAME}};?]]|format=count}}
+|gptwiki:transgroupcount={{#ask:[[Category:TransitionGroup]][[gptwiki:scan::+]][[gptwiki:hastransition::{{PAGENAME}};?]]|format=count}}
 }}[[Category:Transition]]
 </includeonly>

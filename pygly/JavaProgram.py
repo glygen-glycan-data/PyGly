@@ -1,14 +1,15 @@
 
 from tempfile import mkstemp
 import os,sys,re,os.path,time
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, STDOUT
 
 class JavaProgram(object):
 
-    def __init__(self,verbose=False,wait=True,javaw=(sys.platform=="win32")):
+    def __init__(self,verbose=False,wait=True,stdout=False,javaw=(sys.platform=="win32")):
         self.verbose = verbose
         self.wait = wait
 	self.java = 'javaw' if javaw else 'java'
+	self.stdout = stdout
     
     def __call__(self):
 	if 'JAVA_HOME' in os.environ:
@@ -19,16 +20,24 @@ class JavaProgram(object):
         cmd = '"%s" -cp "%s" %s %s'%(java,self.classpath(),self.main,self.args())
         if self.verbose:
             print >>sys.stderr, "Executing:", cmd
-        proc = Popen(cmd,
-                     stdin=PIPE,
-                     shell=(sys.platform!="win32"))
+        if self.stdout:
+            proc = Popen(cmd,
+                         stdin=PIPE,stdout=PIPE,stderr=STDOUT,
+                         shell=(sys.platform!="win32"))
+        else:
+            proc = Popen(cmd,
+                         stdin=PIPE,
+                         shell=(sys.platform!="win32"))
         proc.stdin.write(self.stdin())
         if self.wait == False:
             return
         if type(self.wait) in (int,float):
             time.sleep(self.wait)
             return
-        return proc.wait()
+        retval = proc.wait()
+	if self.stdout:
+            return proc.stdout.read()
+	return (retval!=0)
 
     def stdin(self):
         return ""
@@ -72,9 +81,8 @@ class GlycoCT2Image(JavaProgram):
            """
     main = "GlycoCT2Image"
 
-    def __init__(self,glycoctstr,outfile,verbose=False,wait=True,**kw):
-
-        super(GlycoCT2Image,self).__init__(verbose=verbose,wait=wait)
+    def __init__(self,glycoctstr,outfile,verbose=False,wait=True,stdout=False,**kw):
+        super(GlycoCT2Image,self).__init__(verbose=verbose,wait=wait,stdout=stdout)
         self.kwargs = kw
         self.glycoctstr = glycoctstr
         self.outfile = outfile
@@ -91,3 +99,20 @@ class GlycoCT2Image(JavaProgram):
 
     def stdin(self):
         return self.glycoctstr
+
+class GWBFormatter(JavaProgram):
+    libs = """
+              GlycoCT2ImageBundle
+           """
+    main = "GlycoCT2GWB"
+
+    def __init__(self,glycoctstr,verbose=False,wait=True,**kw):
+        super(GWBFormatter,self).__init__(verbose=verbose,wait=wait,stdout=True)
+        self.glycoctstr = glycoctstr
+
+    def args(self):
+        return "-"
+
+    def stdin(self):
+        return self.glycoctstr
+

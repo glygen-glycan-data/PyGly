@@ -1,1 +1,2 @@
-[[Imported from::gptwiki:Protein]]
+[[Imported from::gptwiki:Protein]] 
+{{#default_form:Protein}}

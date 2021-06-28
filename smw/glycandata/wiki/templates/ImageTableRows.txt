@@ -1,7 +1,7 @@
 <includeonly>
 | [[{{{1}}}]]
-| style="text-align:center;" | <img src="http://edwardslab.bmcb.georgetown.edu/~nedwards/dropbox/LV9HnLIDjc/images/cfg/extended/png/{{{1}}}.png">
-| {{#ask:[[Category:Annotation]][[glycandata:property::ClassMotif]][[glycandata:hasglycan::{{{1}}}]]|?glycandata:value|template=MotifLink|sep=;|headers=hide|mainlabel=-}}
-| {{#ifeq:{{#show:{{{1}}}|?glycandata:hassubtype}}|false|{{#ask:[[Category:Annotation]][[glycandata:property::GlycanType]][[glycandata:hasglycan::{{{1}}}]]|?glycandata:value|headers=hide|mainlabel=-}}|{{#ask:[[Category:Annotation]][[glycandata:property::GlycanSubtype]][[glycandata:hasglycan::{{{1}}}]]|?glycandata:value|headers=hide|mainlabel=-}}}}
+| style="text-align:center;" | {{Image|{{{1}}}}}
+| {{#ask:[[glycandata:property::ClassMotif]][[glycandata:hasglycan::{{{1}}}]]|?glycandata:value|template=MotifLink|sep=;|headers=hide|mainlabel=-}}
+| {{#ifeq:{{#show:{{{1}}}|?glycandata:hassubtype}}|false|{{#ask:[[glycandata:property::GlycanType]][[glycandata:hasglycan::{{{1}}}]]|?glycandata:value|headers=hide|mainlabel=-}}|{{#ask:[[glycandata:property::GlycanSubtype]][[glycandata:hasglycan::{{{1}}}]]|?glycandata:value|headers=hide|mainlabel=-}}}}
 |-
 </includeonly>

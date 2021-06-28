@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 help() {
   if [ "$1" != "" ]; then
     echo "" 1>&2
@@ -29,6 +27,8 @@ EOF
 
 DIR=`dirname $0`
 DIR=`readlink -f $DIR`
+
+export GPTDATA=/data2/projects/GlyGen/PyGly/smw/gptwiki/data
 
 VERBOSE=0
 OUTDIR="."
@@ -71,8 +71,12 @@ fi
 function openswath2json() {
     BASE0=`basename "$1" .mzML.gz`
     BASE1=`basename "$1" .centroid.mzML.gz`
+    if [ "$BASE1" = "$1" ]; then
+      # .centroid is missing...
+      BASE1=`basename "$1" .mzML.gz`
+    fi
     rm -rf "$OUTDIR/$BASE1"
-    apython $DIR/openswath2json.py --transitions "$TRANSITIONS" --ndecoys $NDECOYS --outdir "$OUTDIR/$BASE1" \
+    python2 $DIR/openswath2json.py --transitions "$TRANSITIONS" --ndecoys $NDECOYS --outdir "$OUTDIR/$BASE1" \
 	                           --chromatograms="${BASE0}_chrom.mzML" --results "${BASE0}_table.tsv" \
                                    --fdr $FDR --score $SCORE
     mkdir -p "$OUTDIR/$BASE1"

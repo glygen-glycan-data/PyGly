@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys,inspect
 from operator import itemgetter
@@ -19,6 +19,7 @@ class ClassifierEngine(object):
 	self._glycan = glycan
         self._motifs = None
         self._monocnt = None
+        self._hasmono = None
         self._structure = None
 	self._tests = dict()
 
@@ -27,6 +28,11 @@ class ClassifierEngine(object):
 	for ann in self._glycan.annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
 	    for value in ann.get('value',[]):
 		self._motifs.add(value)
+
+    def gethasmono(self):
+	self._hasmono = set()
+	for m in self._glycan.get_annotation_values(type="HasMonosaccharide",source="EdwardsLab"):
+	    self._hasmono.add(m)
 
     def getmonocnt(self):
 	self._monocnt = defaultdict(int)
@@ -44,6 +50,8 @@ class ClassifierEngine(object):
 
     def assign(self,glycan):
 	self.init(glycan)
+	if not self._glycan:
+	    return set()
         cls = set()
 	for c in self._classifiers:
 	    if c.match(self):
@@ -66,7 +74,12 @@ class ClassifierEngine(object):
 	    self.getmotifs()
 	return m in self._motifs
 
-    def monocount(self,*args): 
+    def has_mono(self,m):
+	if self._hasmono == None:
+	    self.gethasmono()
+	return m in self._hasmono
+
+    def mono_count(self,*args): 
 	if len(args) == 0:
 	    args = ["Monosaccharide"]
 	if self._monocnt == None:
@@ -98,9 +111,30 @@ class ClassifierEngine(object):
     class MonoMethods:
 
         @staticmethod
+        def hex(m):
+            if m.superclass() == SuperClass.HEX and m.stem() == Stem.missing:
+                if not m.has_mods() and not m.has_substituents():
+                    return True
+            return False
+    
+        @staticmethod
         def gal(m):
             if m.superclass() == SuperClass.HEX and m.stem() == (Stem.gal,):
                 if not m.has_mods() and not m.has_substituents():
+                    return True
+            return False
+    
+        @staticmethod
+        def man(m):
+            if m.superclass() == SuperClass.HEX and m.stem() == (Stem.man,):
+                if not m.has_mods() and not m.has_substituents():
+                    return True
+            return False
+    
+        @staticmethod
+        def hexnac(m):
+            if m.superclass() == SuperClass.HEX and m.stem() == Stem.missing:
+                if not m.has_mods() and m.is_nacetylated():
                     return True
             return False
     
@@ -158,6 +192,46 @@ class ClassifierEngine(object):
     acceptcore36 = Decorators.maketest('acceptcore36',acceptcore,MonoMethods.glcnac)
     acceptcore57 = Decorators.maketest('acceptcore57',acceptcore,MonoMethods.galnac)
 
+    def testncore(self):
+	if self._structure == None:
+	    self.getStructure()
+	if not self._structure:
+	    return False
+        r = self._structure.root()
+	if not self.MonoMethods.glcnac(r) and not self.MonoMethods.hexnac(r):
+	    return False
+	ncores = []
+	for l in r.links():
+            c = l.child()
+	    if c.anomer() != Anomer.alpha and (l.parent_pos() == None or 4 in l.parent_pos()) and (self.MonoMethods.glcnac(c) or self.MonoMethods.hexnac(c)):
+		ncores.append((r,c))
+        if len(ncores) == 0:
+	    return False
+	for i in range(len(ncores)):
+            nc = ncores.pop(0)
+	    for l in nc[-1].links():
+		c = l.child()
+		if c.anomer() != Anomer.alpha and (l.parent_pos() == None or 4 in l.parent_pos()) and (self.MonoMethods.man(c) or self.MonoMethods.hex(c)):
+		    ncores.append(tuple(list(nc)+[c]))
+	if len(ncores) == 0:
+	    return False
+	for i in range(len(ncores)):
+	    nc = ncores.pop(0)
+            n3man = 0; n6man = 0; n36man = 0;
+	    for l in nc[-1].links():
+		c = l.child()
+		if c.anomer() != Anomer.beta and (l.parent_pos() == None or 3 in l.parent_pos()) and (self.MonoMethods.man(c) or self.MonoMethods.hex(c)):
+		    n3man += 1
+		if c.anomer() != Anomer.beta and (l.parent_pos() == None or 6 in l.parent_pos()) and (self.MonoMethods.man(c) or self.MonoMethods.hex(c)):
+		    n6man += 1
+		if c.anomer() != Anomer.beta and (l.parent_pos() == None or 3 in l.parent_pos() or 6 in l.parent_pos()) and (self.MonoMethods.man(c) or self.MonoMethods.hex(c)):
+		    n36man += 1
+            if n36man >= 2 and n3man >= 1 and n6man >= 1:
+		ncores.append(nc)
+	if len(ncores) == 0:
+	    return False
+	return True
+
 class Classifier(object):
 
     def match(self,data):
@@ -196,6 +270,14 @@ class NGlycanBase(MotifClassifier):
     _class = ("N-linked","")
     _motifs = ["GGM.001001"]
 
+class NGlycanSuper(MotifClassifier):
+    _class = ("N-linked","")
+    _motifs = ["GGM.001027"]
+    _exceptions = ["GGM.001001"]
+
+    def refine(self,data):
+	return data.testncore()
+
 class NGlycanHybrid(MotifClassifier):
     _class = ("N-linked","hybrid")
     _motifs = ["GGM.001003"]
@@ -209,7 +291,7 @@ class NGlycanHighMannose(MotifClassifier):
     _motifs = ["GGM.001002","GGM.001001"]
 
     def refine(self,data):
-	if data.monocount("Man") + 2 != data.monocount():
+	if data.mono_count("Man") + 2 != data.mono_count():
 	    return False
 	return True
 
@@ -218,13 +300,13 @@ class NGlycanPaucimannose(MotifClassifier):
     _motifs = ["GGM.001001"]
 
     def refine(self,data):
-	if data.monocount() not in (5,6):
+	if data.mono_count() not in (5,6):
 	    return False
-	if data.monocount() != data.monocount("Man","GlcNAc","Fuc"):
+	if data.mono_count() != data.mono_count("Man","GlcNAc","Fuc"):
 	    return False
-	if data.monocount('GlcNAc') != 2:
+	if data.mono_count('GlcNAc') != 2:
 	    return False
-	if data.monocount('Fuc') != (data.monocount() - 5):
+	if data.mono_count('Fuc') != (data.mono_count() - 5):
 	    return False
 	return True
 
@@ -243,6 +325,10 @@ class NGlycanCoreFucosylated(MotifClassifier):
 class NGlycanArmFucosylated(MotifClassifier):
     _class = ("N-linked","arm-fucosylated")
     _motifs = ["GGM.001025"]
+
+class NGlycanAlditolReduced(MotifClassifier):
+    _class = ("N-linked","alditol-reduced")
+    _motifs = ["GGM.001026"]
 
 class OGlycanOMannose(MotifClassifier):
     _class = ("O-linked","O-mannose")

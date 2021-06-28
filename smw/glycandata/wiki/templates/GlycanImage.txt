@@ -1,0 +1,1 @@
+<includeonly>https://glymage.glyomics.org/image/{{{notation|snfg}}}/{{{display|extended}}}/{{{accession}}}.{{{format|png}}}</includeonly>

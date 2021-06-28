@@ -31,7 +31,7 @@ class GlycanResource(ReferenceTable):
             if elapsed < delay:
                 time.sleep(delay-elapsed)
         elif (self._requestcount % self._delaybatch) == 0 and self._requestcount > 0:
-            if elapsed < delay:
+            if elapsed < self._delaytime:
                 time.sleep(self._delaytime-elapsed)
         self._lastrequesttime = time.time()
         self._requestcount += 1

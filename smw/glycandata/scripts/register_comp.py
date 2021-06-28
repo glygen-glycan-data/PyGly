@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import findpygly
 # from pygly.GlyTouCan import GlyTouCan
@@ -85,8 +85,11 @@ for lineno,l in enumerate(sys.stdin):
     thehash = hashlib.sha256(wurcsseq).hexdigest().lower()
     hash,acc = gtc.gethashedseq(seq=wurcsseq)
     if not hash:
-	gtc.register(wurcsseq)
-        print lineno+1,l0,None,wurcsseq,thehash
+	hash = gtc.register(wurcsseq)
+	if hash:
+           print lineno+1,l0,hash
+	else:
+           print lineno+1,l0,None,wurcsseq,thehash
 	time.sleep(60)
     elif not acc:
 	print lineno+1,l0,hash

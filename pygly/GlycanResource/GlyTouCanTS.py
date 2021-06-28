@@ -4,6 +4,7 @@ from .GlycanResourceWrappers import partitioner, prefetcher
 
 import hashlib
 import base64
+import re
 from collections import defaultdict
 
 class GlyTouCanTS(TripleStoreResource):
@@ -19,7 +20,7 @@ class GlyTouCanTS(TripleStoreResource):
     sequence_formats = set(["wurcs", "glycoct", "iupac_extended", "iupac_condensed"])
 
     crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg', 'kegg_glycan',
-                              'unicarbkb', 'glyconnect', 'glycome-db',
+                              'unicarbkb', 'glyconnect', 'glycome-db', 'glyconnect-comp',
                               'unicarb-db', 'carbbank', 'pdb', 'cfg',
                               'bcsdb','matrixdb','glycoepitope'])
 
@@ -111,16 +112,29 @@ class GlyTouCanTS(TripleStoreResource):
             except ValueError:
                 continue
 
+    def goodcrossref(self,resource,entry):
+	if resource in ('glyconnect','glyconnect-comp','unicarb-db'):
+	    try:
+		dummy = int(entry)
+		if dummy < 1:
+		    return False
+	    except ValueError:
+		return False
+            return True
+        if resource in ('matrixdb',):
+	    return (re.search(r'^GAG_\d+$',entry) is not None)
+	return True
+
     def getcrossrefs(self,accession,resource=None):
         assert resource == None or resource in self.crossref_resources
         for row in self.query_crossrefs(accession=accession,resource=resource):
-            if row['resource'] in self.crossref_resources:
+            if row['resource'] in self.crossref_resources and self.goodcrossref(row['resource'],row['entry']):
                 yield row['resource'],row['entry']
 
     def allcrossrefs(self,resource=None):
         assert resource == None or resource in self.crossref_resources
         for row in self.query_crossrefs(resource=resource):
-            if row['resource'] in self.crossref_resources:
+            if row['resource'] in self.crossref_resources and self.goodcrossref(row['resource'],row['entry']):
                 yield row['accession'],row['resource'],row['entry']
 
     # Named for consistency with GlyTouCan class...

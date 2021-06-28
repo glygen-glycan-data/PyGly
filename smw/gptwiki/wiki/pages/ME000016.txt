@@ -1,0 +1,1 @@
+{{Method|Orbitrap Fusion-Lumos, DDA (EThcD pd HCD), nano LC-MS/MS no trap}}

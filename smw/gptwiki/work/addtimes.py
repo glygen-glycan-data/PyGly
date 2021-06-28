@@ -1,4 +1,4 @@
-#!/bin/env apython3
+#!/bin/env python3
 import sys
 times = dict()
 for l in sys.stdin:
