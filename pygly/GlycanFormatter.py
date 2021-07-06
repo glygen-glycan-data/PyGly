@@ -1670,15 +1670,12 @@ class UnexpectedFloatingSubstError(WURCS20ParseError):
   def __init__(self,instr):
    self.message = "WURCS2.0 parser: Unexpected floating substituent:\n     %s"%(instr,)
 
-<<<<<<< HEAD
+
 class UnexpectedRepeatInRepeatError(WURCS20ParseError):
   def __init__(self):
    self.message = "WURCS2.0 parser: Unexpected found (repeat in repeat)"
 
-import WURCS20MonoFormatter
-=======
 from . import WURCS20MonoFormatter
->>>>>>> master
 
 class WURCS20Format(GlycanFormatter):
     def __init__(self):

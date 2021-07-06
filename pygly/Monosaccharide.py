@@ -274,13 +274,17 @@ class Monosaccharide(Node):
         m._ring_end = self._ring_end
         m._mods = copy.deepcopy(self._mods)
         # m._composition = copy.copy(self._composition)
-        # Will this do it?
-        m._substituent_links = copy.deepcopy(self._substituent_links)
-        for l in m._substituent_links:
-            l.set_parent(m)
-            # Clear subst links - AKA subst_in_link case
-            l.child()._links = []
-        # m._links = copy.deepcopy(self._links)
+        for l in self._substituent_links:
+            newl = l.clone()
+            newsubst = l.child().clone()
+
+            m._substituent_links.append(newl)
+
+            newl.set_parent(m)
+            newl.set_child(newsubst)
+
+            newsubst.add_parent_link(newl)
+
         m._id = self._id
         m._connected = self._connected
         m._external_descriptor = self._external_descriptor
@@ -322,7 +326,6 @@ class Monosaccharide(Node):
                 else:
                     c = l.child().deepclone(cache=cache,rep_bridge_undone=rep_bridge_undone)
                     idlc = None
-                # cache[l.child().id()] = c
             else:
                 c = cache[l.child().id()]
                 idlc = None
@@ -330,9 +333,9 @@ class Monosaccharide(Node):
 
             node_clone = cache[node_original.id()]
 
-            cl = copy.deepcopy(l)
-            cl.set_child(c)
+            cl = l.clone()
             cl.set_parent(node_clone)
+            cl.set_child(c)
             node_clone.add_link(cl)
             c.add_parent_link(cl)
             if l == identified_link:
@@ -352,7 +355,7 @@ class Monosaccharide(Node):
                 p = cache[l.parent().id()]
                 c = cache[l.child().id()]
 
-                cl = copy.deepcopy(l)
+                cl = l.clone()
                 cl.set_child(c)
                 cl.set_parent(p)
 
@@ -899,7 +902,7 @@ class Linkage(object):
         return l
 
     def clone(self):
-        l = Linkage(child=self.child(),
+        l = self.__class__(child=self.child(),
                     parent_pos=self.parent_pos(),
                     parent_type=self.parent_type(),
                     child_pos=self.child_pos(),
