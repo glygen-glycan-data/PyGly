@@ -2192,20 +2192,15 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
             "brand": None,
             "external_resources": [
                 {
-                    "name": "GlycanData",
-                    "url_prefix": "https://glycans.glyomics.org/glycandata/",
-                    "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlycanData")
-                },{
                     "name": "GlyGen",
                     "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
                 },{
-                    "name": "Glycosmos",
+                    "name": "GlyCosmos",
                     "url_prefix": "https://glycosmos.org/glycans/show?gtc_id=",
                     "url_suffix": "",
-                    "glycan_set": self.get_accessions("Glycosmos")
+                    "glycan_set": self.get_accessions("GlyCosmos")
                 },{
                     "name": "GlyTouCan",
                     "url_prefix": "https://glytoucan.org/Structures/Glycans/",
@@ -2542,7 +2537,7 @@ if __name__ == "__main__":
         #    fp = os.path.dirname(os.path.abspath(__file__)) + "/../smw/glycandata/data/glygen_accessions.txt"
         #    restriction_set = open(fp).read().strip().split()
 
-        elif restriction_set_name in ["GlycanData", "GlyGen"]:
+        elif restriction_set_name in ["GlyGen"]:
             glycandata_tsv_fp = "../smw/glycandata/export/allglycan.tsv"
 
             restriction_set = open(glycandata_tsv_fp).read().strip().split()

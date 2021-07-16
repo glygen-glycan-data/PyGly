@@ -3,8 +3,7 @@
 restriction_set_names=(
   "BCSDB"
   "GlyGen"
-  "GlycanData"
-  "Glycosmos"
+  "GlyCosmos"
 )
 
 
@@ -53,13 +52,6 @@ cp ./GNOme/convert.sh ./
 ./convert.sh
 
 
-for Restriction_set in "${restriction_set_names[@]}"
-do
-	for file_ext in "owl" "obo" "json"
-  do
-    	mv ./GNOme_$Restriction_set.$file_ext ./GNOme/restrictions/
-  done
-done
 
 mv *.BrowserData.json ./GNOme/restrictions/
 
