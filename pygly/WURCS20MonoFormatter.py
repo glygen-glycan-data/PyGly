@@ -16,9 +16,7 @@ except ImportError:
 
 from . Monosaccharide import *
 
-# This line import the package mutually, be careful
-from . GlycanFormatter import WURCS20ParseError
-
+from . GlycanFormatterExceptions import WURCS20ParseError
 
 class InvalidMonoError(WURCS20ParseError):
     def __init__(self, monostr):

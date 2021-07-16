@@ -989,7 +989,7 @@ class SubsumptionGraph(GNOmeAPI):
                 pass
             else:
                 continue
-                l = l.parent().parent_links()[0]
+                l = l.parent().any_parent_link()
             if l.parent_pos() != None and l.parent_pos() != set([l.parent().ring_start()]):
                 return True
         return False

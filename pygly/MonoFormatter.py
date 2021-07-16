@@ -1,7 +1,7 @@
 
 from . SymbolsTable import SymbolsTable
 from . ConstantsTable import ConstantsTable
-from . Monosaccharide import Monosaccharide, Substituent, Linkage, Config
+from . Monosaccharide import *
 import re
 import sys
 
@@ -175,17 +175,28 @@ class GlycoCTMonoFormat:
 
         return id, parentid, parentpos, parenttype, childid, childpos, childtype, repeatbridge, repeattimemin, repeattimemax
 
-    def linkFromPara(self, parent, child, parenttype, parentpos, childtype, childpos, repeat_exit=False, repeat_bridge=False):
+    def linkFromPara(self, parent, child, parenttype, parentpos, childtype, childpos, repeat_exit=False, repeat_bridge=False, undet=False):
         assert not (repeat_exit and repeat_bridge)
-        if isinstance(child,Monosaccharide):
+        link_characteristics = dict(parent_type=parenttype, parent_pos=parentpos, 
+                                    child_type=childtype, child_pos=childpos)
+        if child.is_monosaccharide():
             if repeat_exit:
-                l = parent.add_child_exit_repeat(child, parent_type=parenttype, parent_pos=parentpos, child_type=childtype,
-                                     child_pos=childpos)
+                linkage = RepeatExitLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
             elif repeat_bridge:
-                l = parent.add_child_repeat_bridge(child, parent_type=parenttype, parent_pos=parentpos, child_type=childtype,
-                                     child_pos=childpos)
+                if parent.is_substituent():
+                    linkage = RepeatBridgeSubstOutLinkage(**link_characteristics)
+                else:
+                    linkage = RepeatBridgeLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
+            elif undet:
+                linkage = UninstantiatedLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
+            elif parent.is_substituent():
+                linkage = SubstOutLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
             else:
-                l = parent.add_child(child, parent_type=parenttype, parent_pos=parentpos, child_type=childtype, child_pos=childpos)
+                l = parent.add_child(child, **link_characteristics)
         else:
             if child.name() == Substituent.amino and parenttype == Linkage.oxygenPreserved:
                 child._sub = Substituent.amino_oxygen_preserved
@@ -194,21 +205,17 @@ class GlycoCTMonoFormat:
             elif child.name() == Substituent.phosphate:
                 if parenttype == Linkage.oxygenLost:
                     child._sub = Substituent.phosphate_oxygen_lost
-                elif len(child.parent_links()) > 0:
+                elif child.has_parent_links():
                     # already an edge to this substituent...
                     child._sub = Substituent.phosphate_bridged
             elif child.name() == Substituent.sulfate and parenttype == Linkage.oxygenLost:
                 child._sub = Substituent.sulfate_oxygen_lost
             elif child.name() == Substituent.acetyl and parenttype == Linkage.oxygenLost:
                 child._sub = Substituent.acetyl_oxygen_lost
-            l = parent.add_substituent(child,
-                                       parent_type=parenttype,
-                                       parent_pos=parentpos,
-                                       child_type=childtype,
-                                       child_pos=childpos)
+            l = parent.add_substituent(child,**link_characteristics)
         return l
 
-    def linkFromStr(self, s, res):
+    def linkFromStr(self, s, res, undet=False):
 
         id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.linkParseBase(s)
 
@@ -223,7 +230,7 @@ class GlycoCTMonoFormat:
         #    raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
         child = res[childid]
 
-        l = self.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos)
+        l = self.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos, undet=undet)
 
         return [l]
 

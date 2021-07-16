@@ -23,8 +23,7 @@ class GlycanFactory(ReferenceTable):
         aliases.extend([ s.strip() for s in kv.get('Aliases','').split(';') ])
         return [(a,g) for a in aliases]
     
-    def add_mono(self, parent, name, parent_pos,
-                 child_pos=1, anomer=Anomer.beta,
+    def add_mono(self, parent, name, parent_pos, child_pos=1,
                  parent_type=Linkage.oxygenPreserved,
                  child_type=Linkage.oxygenLost):
         m = self.mf.new(name)
