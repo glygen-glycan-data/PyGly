@@ -4,6 +4,7 @@ restriction_set_names=(
   "BCSDB"
   "GlyGen"
   "GlycanData"
+  "Glycosmos"
 )
 
 

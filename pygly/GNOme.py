@@ -2143,24 +2143,6 @@ class GNOme_Theme_Base:
         d = self.getdata()
         json.dump(d, open(output_path, "w"))
 
-class GNOme_Theme_GlyTouCan(GNOme_Theme_Base):
-
-    def getdata(self):
-        return {
-            "icon_style": "snfg",
-            "image_source_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_source_suffix": ".png",
-            "brand": None,
-            "external_resources": [
-                {
-                    "name": "GlyTouCan",
-                    "url_prefix": "https://glytoucan.org/Structures/Glycans/",
-                    "url_suffix": "",
-                    "glycan_set": None
-                }
-            ]
-
-        }
 
 class GNOme_Theme_GlyGen(GNOme_Theme_Base):
 
@@ -2219,6 +2201,11 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
                     "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
+                },{
+                    "name": "Glycosmos",
+                    "url_prefix": "https://glycosmos.org/glycans/show?gtc_id=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("Glycosmos")
                 },{
                     "name": "GlyTouCan",
                     "url_prefix": "https://glytoucan.org/Structures/Glycans/",
@@ -2579,12 +2566,10 @@ if __name__ == "__main__":
         theme_path = sys.argv[2]
 
         td = GNOme_Theme_Default(restriction_url)
-        tgtc = GNOme_Theme_GlyTouCan(restriction_url)
         tgg = GNOme_Theme_GlyGen(restriction_url)
         tggd = GNOme_Theme_GlyGenDev(restriction_url)
 
         td.write(theme_path + "default.json")
-        tgtc.write(theme_path + "GlyTouCan.json")
         tgg.write(theme_path + "GlyGen.json")
         tggd.write(theme_path + "GlyGenBeta.json")
 
