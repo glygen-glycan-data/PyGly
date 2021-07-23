@@ -110,7 +110,7 @@ class Composition(Manipulation):
             else:
                 m.set_ring_start(None)
                 m.set_ring_end(None)
-            for sublink in list(ZZm.substituent_links()):
+            for sublink in list(m.substituent_links()):
 		assert sublink.child().name() in self.floating_substs or sublink.child().name() in self.non_floating_substs, str(sublink.child())
                 if sublink.child().name() in self.floating_substs:
                     m.remove_substituent_link(sublink)

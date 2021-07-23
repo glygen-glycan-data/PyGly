@@ -1183,11 +1183,14 @@ class CompositionPartialOrder(Comparitor):
             newnodeset1 = []
             for m in nodeset1:
                 m1 = m.clone()
-                for sl in m1.substituent_links():
+                for sl in list(m1.substituent_links()):
                     if sl.child().name() in subst2move:
                         m1.remove_substituent_link(sl)
                         sl.child().del_parent_link(sl)
                 newnodeset1.append(m1)
+
+            # print newnodeset1
+            # print nodeset2
 
             # Now the monosaccharides should match....
             for ii,jj in itergenmatchings(newnodeset1,nodeset2,self.nodeleq):
@@ -1855,10 +1858,10 @@ if __name__ == "__main__":
     acc2 = sys.argv[2]
     g1 = gtc.getGlycan(acc1)
     g2 = gtc.getGlycan(acc2)
-    tg2 = topology(g2)
+    # tg2 = topology(g2)
 
     verbose = True
-    subshow(acc1,acc2,"<=",subsumption.leq(g1,tg2))
-    subshow(acc1,acc2,"==",geq.eq(g1,tg2))
+    subshow(acc1,acc2,"<=",subsumption.leq(g1,g2))
+    # subshow(acc1,acc2,"==",geq.eq(g1,tg2))
 
     

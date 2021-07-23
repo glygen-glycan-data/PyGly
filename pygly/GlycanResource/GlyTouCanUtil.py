@@ -91,7 +91,7 @@ class GlyTouCanUtil(object):
             return None
         try:
             return g.underivitized_molecular_weight()
-        except LookupError:
+        except (LookupError,ValueError):
             pass
         return None
 

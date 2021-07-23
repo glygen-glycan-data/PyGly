@@ -534,20 +534,20 @@ class Glycan:
                                 repeat_times=None):
         self.repeat_time_verification(repeat_times)
 
-	validsyms = self.iupac_composition_syms + self.subst_composition_syms
-	if not floating_substituents:
-	    validsyms += self.iupac_aldi_composition_syms
-	
+        validsyms = self.iupac_composition_syms + self.subst_composition_syms
+        if not floating_substituents:
+            validsyms += self.iupac_aldi_composition_syms
+        
         c = Composition()
         for sym in (validsyms + ['Xxx','X']):
             c[sym] = 0
-	if not redend_only:
-	    nodeiterable = self.all_nodes(undet_subst=True)
-	else:
-	    if self.has_root():
-	        nodeiterable = [ self.root() ]
-	    else:
-		nodeiterable = []
+        if not redend_only:
+            nodeiterable = self.all_nodes(undet_subst=True)
+        else:
+            if self.has_root():
+                nodeiterable = [ self.root() ]
+            else:
+                nodeiterable = []
 
         if repeat_times > 1:
             nodeiterable = list(nodeiterable)
@@ -606,10 +606,10 @@ class Glycan:
         return c
 
     def iupac_redend(self, floating_substituents=True, aggregate_basecomposition=True):
-	comp = self.iupac_composition(floating_substituents=floating_substituents, 
-				      aggregate_basecomposition=aggregate_basecomposition,
-				      redend_only=True)
-	return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
+        comp = self.iupac_composition(floating_substituents=floating_substituents, 
+                                      aggregate_basecomposition=aggregate_basecomposition,
+                                      redend_only=True)
+        return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
 
     def glycoct(self):
         from . GlycanFormatter import GlycoCTFormat
@@ -663,7 +663,11 @@ class Glycan:
                 newurs.add(l.child())
         for ur in self.undetermined_roots():
             if not ur.has_parent_links():
-                newurs.add(ur.deepclone())
+                if ur.is_monosaccharide():
+                    newurs.add(ur.deepclone())
+                else:
+                    # Must be floating substituent
+                    newurs.add(ur.clone())
         g.set_undetermined(newurs)
         return g
 
