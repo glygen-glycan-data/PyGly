@@ -640,8 +640,11 @@ class Monosaccharide(Node):
 ##         return self._composition.mass(mass_table)
 
     def substituents(self):
+	seen_subst = set()
         for l in self.substituent_links():
-            yield l.child()
+            if l.child() not in seen_subst:
+                yield l.child()
+		seen_subst.add(l.child())
 
     def add_substituent(self,sub,**kw):
         if isinstance(sub,Substituent):
