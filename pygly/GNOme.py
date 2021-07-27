@@ -989,7 +989,7 @@ class SubsumptionGraph(GNOmeAPI):
                 pass
             else:
                 continue
-                l = l.parent().parent_links()[0]
+                l = l.parent().any_parent_link()
             if l.parent_pos() != None and l.parent_pos() != set([l.parent().ring_start()]):
                 return True
         return False
@@ -2273,7 +2273,7 @@ class IncompleteScore:
         cp = l.child_pos()
         pt = l.parent_type()
         ct = l.child_type()
-        und = l.undetermined()
+        und = (not l.instantiated())
 
         if pp != None:
             if len(pp) > 1:
@@ -2305,13 +2305,14 @@ class IncompleteScore:
 
     def score(self, g):
 
+        assert not g.repeated()
+
         monos = list(g.all_nodes())
         total_mono = len(monos)
-
-        unconnected_mono_root = list(g.unconnected_roots())
+	unconnected_mono_root = list(g.unconnected_roots())
         unconnected_mono_root = filter(lambda m: m.is_monosaccharide(), unconnected_mono_root)
-        det_parent_links = [m.parent_links() for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
-        und_parent_links = [m.parent_links() for m in unconnected_mono_root]
+        det_parent_links = [list(m.parent_links()) for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
+        und_parent_links = [list(m.parent_links()) for m in unconnected_mono_root]
 
         allsubst = filter(lambda n: not n.is_monosaccharide(), g.all_nodes(subst=True, undet_subst=False))
 
@@ -2355,7 +2356,7 @@ class IncompleteScore:
             if str(subst) == "anhydro":
                 continue
 
-            pl = subst.parent_links()
+            pl = list(subst.parent_links())
             link_score_total += 5
 
             if len(pl) == 1:

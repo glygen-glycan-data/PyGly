@@ -31,6 +31,15 @@ elmt = MonoisotopicElementMass()
 mfactory = MonoFactory()
 msym = MassSym()
 
+
+class RepeatGlycanError(ValueError):
+
+    def __init__(self, msg):
+        self._msg = msg
+
+    def __str__(self):
+        return self._msg
+
 class Glycan:
 
     iupacSym = IUPACSym()
@@ -57,6 +66,27 @@ class Glycan:
     def unset_ids(self):
         for m in self.all_nodes(subst=True):
             m.unset_id()
+
+    def repeated(self):
+        for l in self.all_links(include_repeat=True):
+            if l.is_repeat_bridge():
+                return True
+        return False
+
+    def repeat_unit_count(self):
+        i = 0
+        for l in self.all_links(include_repeat=True):
+            if l.is_repeat_bridge():
+                i += 1
+        return i
+
+    def repeat_time_verification(self, repeat_time):
+        assert repeat_time == None or (type(repeat_time) == int and repeat_time >= 1)
+        repeated = self.repeated()
+        if repeated and repeat_time == None:
+            raise RepeatGlycanError("Unexpected repeated glycan")
+        if (not repeated) and type(repeat_time) == int:
+            raise RepeatGlycanError("Incorrect parameter repeat_time for non-repeated glycan")
 
     def set_undetermined(self, und):
         if und == None or len(und) == 0:
@@ -87,7 +117,7 @@ class Glycan:
             for ec in self._undetermined:
                 for r in ec:
                     yield r
-
+    
     def undetermined_root_reprs(self):
         if self._undetermined != None:
             for ec in self._undetermined:
@@ -102,7 +132,7 @@ class Glycan:
 
     def isolated_nodes(self):
         for r in self.unconnected_roots():
-            if len(r.parent_links()) == 0:
+            if not r.has_parent_links():
                 yield r
 
     def isolated_node_reprs(self):
@@ -111,7 +141,7 @@ class Glycan:
                 count = 0
                 repr = None
                 for r in ec:
-                    if not r.connected() and len(r.parent_links()) == 0:
+                    if not r.connected() and not r.has_parent_links():
                         count += 1
                         if not repr:
                             repr = r
@@ -195,65 +225,65 @@ class Glycan:
 ##                     bad = True
 ##                     break
 ##             if bad:
-##                 continue
+##                 continue                
 ##             bad = False
 ##             for m,c in counts.items():
 ##                 if c > 1:
 ##                     bad = True
 ##                     break
 ##             if bad:
-##                 continue
+##                 continue                
 ##             # print counts,counts1
 ##             self.add_instantiation(inst)
-
-    def set_instantiation(self,inst):
-        conn = set()
-        todo = []
-        if self.root():
-            todo.append(self.root())
-        while len(todo) > 0:
-            m = todo.pop(0)
-            for l in m.links(False):
-                if l.undetermined():
-                    if l in inst:
-                        l.set_instantiated(True)
-                        conn.add(l.child())
-                todo.insert(0,l.child())
-        for ur in self.undetermined_roots():
-            ur.set_connected(ur in conn)
-        return
-
-    def instantiations(self):
-        if not self._undetermined:
-            yield self
-            return
-        plsets = []
-        for ur in self.undetermined_roots():
-            if not ur.connected():
-                plsets.append(ur.parent_links())
-        for inst in combinatorics.product(*plsets,accumulator=combinatorics.set_accumulator):
-            self.set_instantiation(inst)
-            yield self
-        return
-
-    def instantiate(self):
-        if not self._undetermined:
-            return self
-        for g in self.instantiations():
-            break
-        return self
-
-    def uninstantiate(self):
-        if not self._undetermined:
-            return self
-        self.set_instantiation(set())
-        return self
-
-    def instantiation_count(self):
-        total = 1
-        for ur in self.undetermined_roots():
-            total *= len(ur.parent_links())
-        return total
+## 
+##     def set_instantiation(self,inst):
+##         conn = set()
+##         todo = []
+##         if self.root():
+##             todo.append(self.root())
+##         while len(todo) > 0:
+##             m = todo.pop(0)
+##             for l in m.links(uninstantiated=True):
+##             if l.undetermined():
+##                      if l in inst:
+##                          l.set_instantiated(True)
+##                          conn.add(l.child())
+##                  todo.insert(0,l.child())
+##          for ur in self.undetermined_roots():
+##              ur.set_connected(ur in conn)
+##          return
+##  
+##     def instantiations(self):
+##         if not self._undetermined:
+##             yield self
+##             return
+##         plsets = []
+##         for ur in self.undetermined_roots():
+##             if not ur.connected():
+##                 plsets.append(ur.parent_links())
+##         for inst in combinatorics.product(*plsets,accumulator=combinatorics.set_accumulator):
+##             self.set_instantiation(inst)
+##             yield self
+##         return
+## 
+##     def instantiate(self):
+##         if not self._undetermined:
+##             return self
+##         for g in self.instantiations():
+##             break
+##         return self
+## 
+##     def uninstantiate(self):
+##         if not self._undetermined:
+##             return self
+##         self.set_instantiation(set())
+##         return self
+##         
+##     def instantiation_count(self):
+##         total = 1
+##         for ur in self.undetermined_roots():
+##             total *= len(ur.parent_links())
+##         return total
 
     def dfsvisit(self,f,m=None,subst=False):
         if m == None:
@@ -283,10 +313,10 @@ class Glycan:
 
     class SubtreeCompositionVisit:
         def __init__(self,sym=None,comp=None):
-
+            
             self.sym = sym
             self.comp = comp
-
+            
         def visit(self,m):
 
             if self.comp:
@@ -307,10 +337,10 @@ class Glycan:
 
     class ElementalCompositionVisit:
         def __init__(self,comp):
-
+            
             self.table = comp
             self.eltcomp = Composition()
-
+            
         def visit(self,m):
             self.eltcomp.add(m.composition(self.table))
 
@@ -321,9 +351,16 @@ class Glycan:
         scv = Glycan.SubtreeCompositionVisit(sym=sym_table,comp=comp_table)
         self.dfsvisit_post(scv.visit,m)
 
-    def elemental_composition(self,comp_table):
+    def elemental_composition(self, comp_table, repeat_times=None):
+        self.repeat_time_verification(repeat_times)
+
         eltcomp = Composition()
-        for m in self.all_nodes(undet_subst=True):
+
+        nodes_in_repeat = []
+        if repeat_times > 1:
+            nodes_in_repeat = self.repeat_nodes() * (repeat_times-1)
+
+        for m in list(self.all_nodes(undet_subst=True)) + nodes_in_repeat:
             ec = m.composition(comp_table)
             eltcomp.add(ec)
         return eltcomp
@@ -351,20 +388,22 @@ class Glycan:
             self.subtree_composition(r,sym_table=iupacSym,comp_table=ctable)
         return r._symbol_composition,r._elemental_composition
 
-    def native_elemental_composition(self):
-        return self.elemental_composition(ctable)
+    def native_elemental_composition(self, repeat_times=None):
+        return self.elemental_composition(ctable, repeat_times=repeat_times)
+    
+    def permethylated_elemental_composition(self, repeat_times=None):
+        return self.elemental_composition(pctable, repeat_times=repeat_times)
 
-    def permethylated_elemental_composition(self):
-        return self.elemental_composition(pctable)
-
-    def underivitized_molecular_weight(self,adduct='H2O'):
-        return self.native_elemental_composition().mass(elmt) + \
+    def underivitized_molecular_weight(self, adduct='H2O', repeat_times=None):
+        self.repeat_time_verification(repeat_times)
+        return self.native_elemental_composition(repeat_times=repeat_times).mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
 
-    def permethylated_molecular_weight(self,adduct='C2H6O'):
-        return self.permethylated_elemental_composition().mass(elmt) + \
+    def permethylated_molecular_weight(self,adduct='C2H6O', repeat_times=None):
+        self.repeat_time_verification(repeat_times)
+        return self.permethylated_elemental_composition(repeat_times=repeat_times).mass(elmt) + \
                Composition.fromstr(adduct).mass(elmt)
-
+    
     def fragments(self,r=None,force=False):
         atroot = False
         if r == None:
@@ -372,7 +411,7 @@ class Glycan:
             atroot = True
             if force or (not hasattr(r,'_symbol_composition') or not hasattr(r,'_elemental_composition')):
                 self.subtree_composition(r,sym_table=iupacSym,comp_table=ctable)
-        links = r.links()
+        links = list(r.links())
         nlink = len(links)
 
         if nlink == 0:
@@ -381,7 +420,7 @@ class Glycan:
                   copy.copy(r._elemental_composition),True,0)
             yield fr
             return
-
+        
         fragstore0 = []
         fragstore1 = []
         for l in links:
@@ -445,17 +484,60 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
+
+    def repeat_nodes(self):
+        res = []
+
+        for node in self.all_nodes(subst=True):
+
+            if not node.is_repeat_start():
+                continue
+
+            rs = node
+            re = None
+            for pl in node.parent_links(default=False,repeat=Linkage.REPEAT_BRIDGE):
+                re = pl.parent()
+
+            assert rs != None
+            assert re != None
+
+            todo = [rs]
+            while len(todo) > 0:
+                n = todo.pop()
+
+                if n not in res:
+                    res.append(n)
+
+                substs = n.substituents()
+                todo += substs
+
+                if n == re:
+                    inside_repeat_unit_child = []
+                    for l in re.links():
+                        if l.is_non_repeat():
+                            inside_repeat_unit_child.append(l.child())
+                    todo += inside_repeat_unit_child
+                else:
+                    todo += n.children()
+
+        # Subst cannot be the root of the repeating unit           - WURCS restriction
+        # Subst cannot be the first node connect to repeating unit - WURCS restriction
+        return filter(lambda x:x.is_monosaccharide(), res)
+
     iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
 
-    def iupac_composition(self, floating_substituents=True,
-                                aggregate_basecomposition=True,
-                                redend_only=False):
+    def iupac_composition(self, floating_substituents=True, 
+                                aggregate_basecomposition=True, 
+                                redend_only=False,
+                                repeat_times=None):
+        self.repeat_time_verification(repeat_times)
+
         validsyms = self.iupac_composition_syms + self.subst_composition_syms
         if not floating_substituents:
             validsyms += self.iupac_aldi_composition_syms
-
+        
         c = Composition()
         for sym in (validsyms + ['Xxx','X']):
             c[sym] = 0
@@ -466,12 +548,17 @@ class Glycan:
                 nodeiterable = [ self.root() ]
             else:
                 nodeiterable = []
+
+        if repeat_times > 1:
+            nodeiterable = list(nodeiterable)
+            nodeiterable += self.repeat_nodes() * (repeat_times-1)
+
         for m in nodeiterable:
 
             try:
                 sym = iupacSym.toStr(m)
             except KeyError:
-                if isinstance(m,Monosaccharide):
+                if isinstance(m,Monosaccharide):        
                     c['Xxx'] += 1
                 else:
                     c['X'] += 1
@@ -487,7 +574,7 @@ class Glycan:
                     syms[0] = 'Xxx'
                 else:
                     syms[0] = 'X'
-
+            
             for i in range(1,len(syms)):
                 if syms[i] not in self.subst_composition_syms:
                     syms[i] = 'X'
@@ -515,11 +602,11 @@ class Glycan:
             c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
             c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
             c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
-
+ 
         return c
 
     def iupac_redend(self, floating_substituents=True, aggregate_basecomposition=True):
-        comp = self.iupac_composition(floating_substituents=floating_substituents,
+        comp = self.iupac_composition(floating_substituents=floating_substituents, 
                                       aggregate_basecomposition=aggregate_basecomposition,
                                       redend_only=True)
         return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
@@ -536,21 +623,33 @@ class Glycan:
             self.glycamformat = IUPACGlycamFormat()
         return self.glycamformat.toStr(self)
 
-    def subtree_links(self,root,subst=False,uninstantiated=False):
+    def subtree_links(self,root, subst=False, uninstantiated=False, include_repeat=False):
         for m in self.subtree_nodes(root):
             if subst:
                 for sl in m.substituent_links():
                     yield sl
-            for l in m.links(instantiated_only=(not uninstantiated)):
-                yield l
+            if uninstantiated or include_repeat:
+                for l in m.links(default=False,
+                                 inst=(None if uninstantiated else Linkage.INSTANTIATED),
+                                 repeat=(None if include_repeat else -Linkage.REPEAT_BRIDGE)):
+                    yield l
+            else:
+                for l in m.links():
+                    yield l
 
-    def all_links(self,subst=False,uninstantiated=False):
+    def all_links(self, subst=False, uninstantiated=False, include_repeat=False):
         for m in self.all_nodes():
             if subst:
                 for sl in m.substituent_links():
                     yield sl
-            for l in m.links(instantiated_only=(not uninstantiated)):
-                yield l
+            if uninstantiated or include_repeat:
+                for l in m.links(default=False,
+                                 inst=(None if uninstantiated else Linkage.INSTANTIATED),
+                                 repeat=(None if include_repeat else -Linkage.REPEAT_BRIDGE)):
+                    yield l
+            else:
+                for l in m.links():
+                    yield l
 
     def clone(self):
         self.set_ids()
@@ -560,11 +659,15 @@ class Glycan:
             g = Glycan()
         newurs = set()
         for l in g.all_links(uninstantiated=True):
-            if l.undetermined():
+            if not l.instantiated():
                 newurs.add(l.child())
         for ur in self.undetermined_roots():
-            if len(ur.parent_links()) == 0:
-                newurs.add(ur.deepclone())
+            if not ur.has_parent_links():
+                if ur.is_monosaccharide():
+                    newurs.add(ur.deepclone())
+                else:
+                    # Must be floating substituent
+                    newurs.add(ur.clone())
         g.set_undetermined(newurs)
         return g
 
@@ -598,7 +701,7 @@ class Glycan:
         # then the ids of each monosaccharide in each glycan will match
         # their counterpart.
 
-        self.set_ids()
+        self.set_ids()        
         g.unset_ids()
 
         if self.has_root() and g.has_root():
@@ -661,6 +764,43 @@ class Glycan:
 
         return False
 
+    def is_repeat_in_repeat(self):
+
+        repeat_starts = []
+        for node in self.all_nodes(subst=True):
+            if node.is_repeat_start():
+                repeat_starts.append(node)
+
+
+        for rs in repeat_starts:
+
+            for pl in rs.parent_links(default=False):
+                if pl.is_repeat_bridge():
+
+                    re = pl.parent()
+
+                    todo = [rs]
+
+                    while len(todo) > 0:
+                        n = todo.pop()
+
+                        if n != rs and n.is_repeat_start():
+                            return True
+
+                        substs = n.substituents()
+                        todo += substs
+
+                        if n == re:
+                            inside_repeat_unit_child = []
+                            for l in re.links():
+                                if l.is_non_repeat():
+                                    inside_repeat_unit_child.append(l.child())
+                            todo += inside_repeat_unit_child
+                        else:
+                            todo += n.children()
+
+        return False
+
     @staticmethod
     def monosaccharide_match(a,b):
         # print a
@@ -674,14 +814,14 @@ class Glycan:
         #     break
         # if not parent_links_match:
         #     return False
-        if len(a.parent_links()) != len(b.parent_links()):
+        if a.parent_link_count() != b.parent_link_count():
             return False
-        if len(a.links(instantiated_only=True)) != len(b.links(instantiated_only=True)):
+        if a.link_count() != b.link_count():
             return False
-        if len(a.links(instantiated_only=False)) != len(b.links(instantiated_only=False)):
+        if a.link_count(default=False) != b.link_count(default=False):
             return False
         child_links_match = False
-        for ii,jj in itermatchings(a.links(instantiated_only=False),b.links(instantiated_only=False),
+        for ii,jj in itermatchings(a.links_with_uninstantiated(),b.links_with_uninstantiated(),
                                    lambda i,j: i.equals(j) and i.child().equals(j.child())):
             child_links_match = True
             break
@@ -703,8 +843,15 @@ class Glycan:
         if node == None:
             node = self.root()
         code = monofmt.toStr(node)
+
+        # TODO this will produce wrong structure for complicated repeats
+        if node.is_repeat_start():
+            code = "[" + code
+        if node.is_repeat_end():
+            code = code + "]"
+
         s = codeprefix + code
-        kidlinks = sorted(filter(lambda l: l.instantiated(),node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
+        kidlinks = sorted(filter(lambda l: l, node.links()),key=lambda l: Linkage.posstr(l.parent_pos()),reverse=True)
         kids = list(map(Linkage.child,kidlinks))
         n = len(kids)
         assert n in (0,1,2,3)
@@ -727,7 +874,7 @@ class Glycan:
     def dump(self, m=None, level=0, branch='', monofmt=iupacSym):
         if m == None:
             m = self.root()
-
+            
         br = branch + " " + monofmt.toStr(m)
         child_list = []
 
@@ -760,7 +907,7 @@ if __name__ == '__main__':
     m1 = mf.new('bdMan')
     m2 = mf.new('adMan')
     m3 = mf.new('adMan')
-
+    
     gc2.add_child(m1,parent_pos=4,
                   parent_type=Linkage.oxygenPreserved,
                   child_type=Linkage.oxygenLost)
@@ -779,7 +926,7 @@ if __name__ == '__main__':
     m3.add_child(gc4,parent_pos=2,
                  parent_type=Linkage.oxygenPreserved,
                  child_type=Linkage.oxygenLost)
-
+    
     g1 = mf.new('bdGal')
     gc3.add_child(g1,parent_pos=4,
                   parent_type=Linkage.oxygenPreserved,
@@ -801,11 +948,11 @@ if __name__ == '__main__':
     gc4.add_child(f1,parent_pos=4,child_pos=1,
                   parent_type=Linkage.oxygenPreserved,
                   child_type=Linkage.oxygenLost)
-
+    
     g = Glycan(gc1)
 
     print(g.glycoct())
-
+    
     g.dump()
 
     print(g.str()+'\n')

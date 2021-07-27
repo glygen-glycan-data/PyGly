@@ -15,7 +15,7 @@ class Topology(Manipulation):
 
     def manip(self,g):
         for m in g.all_nodes():
-            for l in m.links(instantiated_only=False):
+            for l in m.links_with_uninstantiated():
 
                 lparent = l.parent()  # might be monosaccharide or substituent
 
@@ -24,7 +24,7 @@ class Topology(Manipulation):
                         l.set_parent_pos(None)
                 else:
                     # Substituent in link
-                    upper_link = l.parent().parent_links()[0]
+                    upper_link = l.parent().any_parent_link()
                     #if upper_link.parent_pos() != set([m.ring_start()]):
                     upper_link.set_parent_pos(None)
 
@@ -38,7 +38,7 @@ class Topology(Manipulation):
                 #     l.set_parent_pos(None)
                 # if l.child_pos() != set([1]) and l.child().superclass() in (SuperClass.HEX,):
                 #     l.set_child_pos(None)
-                if l.undetermined() and l.child_pos() == set([1]) and l.child().superclass() in (SuperClass.NON,SuperClass.OCT):
+                if not l.instantiated() and l.child_pos() == set([1]) and l.child().superclass() in (SuperClass.NON,SuperClass.OCT):
                     l.set_child_pos(None)
             if m.anomer() != Anomer.uncyclized:
                 m.set_anomer(Anomer.missing)
@@ -105,16 +105,16 @@ class Composition(Manipulation):
             m.set_connected(False)
             m.clear_links()
             m.clear_parent_links()
-            if "%s:%s"%(m.ring_start(),m.ring_end()) == "0:0":
-                continue
-            if m.anomer() == Anomer.uncyclized:
-                continue
-            m.set_ring_start(None)
-            m.set_ring_end(None)
-            for sublink in m.substituent_links():
+            if "%s:%s"%(m.ring_start(),m.ring_end()) == "0:0" and m.anomer() == Anomer.uncyclized:
+                pass
+            else:
+                m.set_ring_start(None)
+                m.set_ring_end(None)
+            for sublink in list(m.substituent_links()):
 		assert sublink.child().name() in self.floating_substs or sublink.child().name() in self.non_floating_substs, str(sublink.child())
                 if sublink.child().name() in self.floating_substs:
                     m.remove_substituent_link(sublink)
+                    sublink.child().del_parent_link(sublink)
 		    sublink.child().set_connected(False)
                     floating.append(sublink.child())
         undets.extend(floating)
@@ -163,12 +163,28 @@ class LevelSniffer(object):
                 return "Composition"
         raise ValueError
 
+def showdiff(g,g2):
+    gctstr = glycoct_parser.toStr(g)
+    gctstr2 = glycoct_parser.toStr(g2)
+
+    for l1,l2 in zip(gctstr.split('\n'),gctstr2.split('\n')):
+        char = " "
+        if l1 != l2:
+            char = "!"
+        print >>sys.stderr, "%-40s"%(l1[:40],),char,"%-40s"%(l2[:40],)
+
+    print(sum(1 for _ in g.all_nodes(subst=True)))
+    print(sum(1 for _ in g2.all_nodes(subst=True)))
+    for m1,m2 in zip(g.all_nodes(subst=True),g2.all_nodes(subst=True)):
+        print(str(m1))
+        print(str(m2))
+
 if __name__ == "__main__":
 
     import sys, csv, zipfile, traceback
 
     from GlycanFormatter import WURCS20Format, GlycoCTFormat, WURCS20ParseError, UnsupportedLinkError,  \
-				CircularError, GlycoCTParseError, MonoOrderLinkError
+				CircularError, GlycoCTParseError, MonoOrderLinkError, GlycanParseError
     from WURCS20MonoFormatter import UnsupportedMonoError
 
     # to run this testing framework, use the following command(s) for
@@ -237,6 +253,10 @@ if __name__ == "__main__":
         except UnsupportedMonoError, e:
             print >>sys.stderr, "Skip:",e.message
             continue
+        except GlycanParseError, e:
+            print >>sys.stderr, "Skip:",e.message
+            continue
+
 
         if not gtopo or not gcomp:
 	    continue
@@ -271,11 +291,20 @@ if __name__ == "__main__":
 
         g1 = g.clone()
 
+        print >>sys.stderr, glycoct_parser.toStr(g1)
+
         assert g.equals(g1)
+        assert g1.equals(g)
 
 	gctstr = glycoct_parser.toStr(g)
 
 	g2 = glycoct_parser.toGlycan(gctstr)
+
+        print >>sys.stderr, glycoct_parser.toStr(g2)
+
+        # assert g.equals(g2)
+
+        # assert g1.equals(g2)
 
 	if acc not in ('G00727XI','G08545ST','G09485LV','G11795CV','G13902SG','G14164XT','G17876LI',
                        'G18923CQ','G23487NW','G26527XD','G31649CJ','G34368WA','G34723AD','G38409FH',
@@ -290,6 +319,12 @@ if __name__ == "__main__":
                 if l1 != l2:
                     char = "!"
                 print >>sys.stderr, "%-40s"%(l1[:40],),char,"%-40s"%(l2[:40],)
+
+            print(sum(1 for _ in g.all_nodes(subst=True)))
+            print(sum(1 for _ in g2.all_nodes(subst=True)))
+            for m1,m2 in zip(g.all_nodes(subst=True),g2.all_nodes(subst=True)):
+                print(str(m1))
+                print(str(m2))
 
 	    assert g.equals(g2)
 
@@ -316,11 +351,13 @@ if __name__ == "__main__":
             print >>sys.stderr, glycoct_parser.toStr(gtopo)
             print >>sys.stderr, glycoct_parser.toStr(topology(g))
 
+            showdiff(gtopo,topology(g))
+            
             assert g.equals(g1)
             assert not g.equals(gtopo)
             assert gtopo.equals(topology(g))
 
-            # print "---------- sacc:comp ----------"
+            print "---------- sacc:comp ----------"
 
             print >>sys.stderr, glycoct_parser.toStr(gcomp)
             print >>sys.stderr, glycoct_parser.toStr(composition(g))

@@ -66,9 +66,12 @@ class Node(object):
 
     def __init__(self):
 
-        # Contains a list of links specifying residues that the monosaccharide is linked to
+        # Contains a list of "normal" links specifying residues that the monosaccharide is linked to
         # Linkage objects in no particular order...
         self._links = []
+
+        # Special links (uninstantiated or repeat links), split out for efficiency
+        self._special_links = []
         
         # Useful primarily for undetermined roots
         self._parent_links = []
@@ -84,22 +87,90 @@ class Node(object):
 
         return 
 
-    def links(self,instantiated_only=True):
-        if instantiated_only:
-            return list(filter(lambda l: l.instantiated(),self._links))
-        return self._links
+    def is_default_link_type(self,l):
+        # NON_REPEAT + REPEAT_EXIT, INSTANTIATED
+        return l.matching_link_type(None,-Linkage.REPEAT_BRIDGE, Linkage.INSTANTIATED)
 
-    def parent_links(self):
-        return self._parent_links
+    def links(self, default=True, **kw):
+        if default:
+            for l in self._links:
+                yield l
+        else:
+            for l in self._links + self._special_links:
+                if l.matching_link_type(**kw):
+                    yield l
+
+    def links_with_repeat_exit(self):
+        # NON_REPEAT + REPEAT_EXIT, INSTANTIATED; same as default
+        return self.links(default=False,repeat=-Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED)
+
+    def links_has_repeat_bridge(self):
+        # REPEAT_BRIDGE, INSTANTIATED only
+        return any(self.links(default=False,repeat=Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED))
+
+    def links_repeat_bridge_only(self):
+        # REPEAT_BRIDGE, INSTANTIATED only
+        return self.links(default=False,repeat=Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED)
+
+    def links_with_repeat_bridge(self):
+        # NON_REPEAT + REPEAT_BRIDGE, INSTANTIATED, similar to default
+        return self.links(default=False,repeat=-Linkage.REPEAT_EXIT,inst=Linkage.INSTANTIATED)
+
+    def links_with_uninstantiated(self):
+        # NON_REPEAT + REPEAT_EXIT
+        return self.links(default=False,repeat=-Linkage.REPEAT_BRIDGE)
+
+    def link_count(self, **kw):
+        return sum(1 for _ in self.links(**kw))
+
+    def has_links(self, **kw):
+        for l in self.links(**kw):
+            return True
+        return False
+
+    def any_link(self, **kw):
+        for l in self.links(**kw):
+            return l
+        return None
 
     def add_link(self, l):
-        self._links.append(l)
+        if self.is_default_link_type(l):
+            self._links.append(l)
+        else:
+            self._special_links.append(l)
 
     def del_link(self, l):
-        self._links.remove(l)
+        if self.is_default_link_type(l):
+            self._links.remove(l)
+        else:
+            self._special_links.remove(l)
 
     def clear_links(self):
         self._links = []
+        self._special_links = []
+
+    def parent_links(self, default=True, **kw):
+        if default:
+            for l in self._parent_links:
+                if l.matching_link_type(None,-Linkage.REPEAT_BRIDGE,None):
+                    yield l
+        else:
+            for l in self._parent_links:
+                if l.matching_link_type(**kw):
+                    yield l
+
+    def parent_link_count(self,**kw):
+        return sum(1 for _ in self.parent_links(**kw))
+
+    def has_parent_links(self,**kw):
+        for l in self.parent_links(**kw):
+            return True
+        return False
+
+    def any_parent_link(self,**kw):
+        for l in self.parent_links(**kw):
+            return l
+        return None
 
     def add_parent_link(self, l):
         self._parent_links.append(l)
@@ -110,23 +181,33 @@ class Node(object):
     def clear_parent_links(self):
         self._parent_links = []
 
-    def children(self):
-        return [l.child() for l in self.links()]
+    def parents(self):
+        return [ l.parent() for l in self.parent_links() ]
 
-    def first_child(self):
+    def children(self):
+        return [ l.child() for l in self.links() ]
+
+    def any_child(self):
         for l in self.links():
             return l.child()
         return None
 
     def add_child(self,m,**kw):
-        l = Linkage(child=m,**kw)
-        self.add_link(l)
+        l = Linkage(child=m,parent=self,**kw)
+        return self.add_linkage(l)
+
+    def add_child_with_special_linkage(self, m, l):
+        l.set_child(m)
         l.set_parent(self)
-        m.add_parent_link(l)
+        return self.add_linkage(l)
+
+    def add_linkage(self, l):
+        self.add_link(l)
+        l.child().add_parent_link(l)
         return l
 
     def has_children(self):
-        return (self.first_child() != None)
+        return (self.any_link() != None)
 
     def set_connected(self,conn):
         self._connected = conn
@@ -172,12 +253,22 @@ class Node(object):
     def is_monosaccharide(self):
         return False
 
+    def is_substituent(self):
+        return False
+
     def external_descriptor(self):
         return self._external_descriptor
 
     def set_external_descriptor(self, s):
         self._external_descriptor = s
 
+    def is_repeat_start(self):
+        for l in self.parent_links(default=False,repeat=Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED):
+            return True
+        return False
+
+    def is_repeat_end(self):
+        return self.links_has_repeat_bridge()
 
 class Monosaccharide(Node):
 
@@ -218,10 +309,16 @@ class Monosaccharide(Node):
         # Could be used for keeping track of monosaccharide from descriptor assigned ID
         self._eid = None
 
+        # If any substituent has a link to a monosaccharide, it must be indicated by this boolean.
+        # Updated by Substituent.add_link
+        self._has_subst_out_link = False
+
     def is_monosaccharide(self):
         return True
 
     def clone(self):
+        # Clones the monosaccharide (and its substituents and substituent links, if necessary)
+        # Note that _links etc. are *not* instantiated here (left empty). 
         m = Monosaccharide()
         m._anomer = self._anomer
         m._config = copy.deepcopy(self._config)
@@ -230,12 +327,20 @@ class Monosaccharide(Node):
         m._ring_start = self._ring_start
         m._ring_end = self._ring_end
         m._mods = copy.deepcopy(self._mods)
+        # Note! This is only valid because substituents have only one parent. 
+        seen_subst = dict()
+        for sl in self.substituent_links():
+            slc = sl.clone()
+            if sl.child() in seen_subst:
+                ch = seen_subst[sl.child()]
+            else:
+                ch = sl.child().clone()
+                seen_subst[sl.child()] = ch
+            slc.set_parent(m)
+            slc.set_child(ch)
+            m.add_substituent_link(slc)
+            ch.add_parent_link(slc)
         # m._composition = copy.copy(self._composition)
-        # Will this do it?
-        m._substituent_links = copy.deepcopy(self._substituent_links)
-        for l in m._substituent_links:
-            l.set_parent(m)
-        # m._links = copy.deepcopy(self._links)
         m._id = self._id
         m._connected = self._connected
         m._external_descriptor = self._external_descriptor
@@ -244,34 +349,53 @@ class Monosaccharide(Node):
     def noring(self):
         return (self.ring() == (0,0))
 
-    def deepclone(self,identified_link=None,cache=None):
+    def deepclone(self, identified_link=None, cache=None):
+
         if cache == None:
             cache = dict()
+
         m = self.clone()
         identified_link_copy = None
-        for l in self._links:
+        for l in self.links(default=False):
             assert l.child().id() != None
+            assert l.child().is_monosaccharide()
             if l.child().id() not in cache:
+                # child of repeat bridge link should have already been made
+                # all others may be new
+                assert not l.is_repeat_bridge()
                 if identified_link:
                     c,idlc = l.child().deepclone(identified_link=identified_link,cache=cache)
                 else:
                     c = l.child().deepclone(cache=cache)
-                    idlc = None
-                cache[l.child().id()] = c
+                    idlc=None
+                cache[l.child().id()] = (c,idlc)
             else:
-                c = cache[l.child().id()]
-                idlc = None
-            cl = copy.deepcopy(l)
+                c,idlc = cache[l.child().id()]
+
+            cl = l.clone()
             cl.set_child(c)
-            cl.set_parent(m)
-            m.add_link(cl)
-            c.add_parent_link(cl)
+            if not cl.is_subst_out_link():
+                cl.set_parent(m)
+                m.add_linkage(cl)
+            else:
+                assert(l.parent().id())
+                subst_parent_id = l.parent().id()
+                for subst in m.substituents():
+                    assert(subst.id())
+                    if subst.id() == subst_parent_id:
+                        cloned_subst_parent = subst
+                        break
+                cl.set_parent(cloned_subst_parent)
+                cloned_subst_parent.add_linkage(cl)
+                
             if l == identified_link:
                 identified_link_copy = cl
             elif idlc != None:
                 identified_link_copy = idlc
+
         if identified_link:
-            return m,identified_link_copy
+            return m, identified_link_copy
+
         return m
 
     def anysubstmatching(self,m):
@@ -494,16 +618,14 @@ class Monosaccharide(Node):
 ##     def set_composition(self,**kw):
 ##         self._composition.update(kw)
 
-    def substituent_links(self,instantiated_only=True):
-        if instantiated_only:
-            return filter(lambda l: l.instantiated(),self._substituent_links)
-        return self._substituent_links
+    def substituent_links(self):
+        for l in self._substituent_links:
+            yield l
 
     def add_substituent_link(self, l):
         self._substituent_links.append(l)
 
     def remove_substituent_link(self, l):
-        l.child().del_parent_link(l)
         self._substituent_links.remove(l)
 
     def set_external_descriptor_id(self, eid):
@@ -518,15 +640,18 @@ class Monosaccharide(Node):
 ##         return self._composition.mass(mass_table)
 
     def substituents(self):
-        return set([l.child() for l in self.substituent_links()])
+	seen_subst = set()
+        for l in self.substituent_links():
+            if l.child() not in seen_subst:
+                yield l.child()
+		seen_subst.add(l.child())
 
     def add_substituent(self,sub,**kw):
         if isinstance(sub,Substituent):
-            l = SubLinkage(child=sub,**kw)
+            l = SubLinkage(child=sub,parent=self,**kw)
         else:
-            l = SubLinkage(child=Substituent(sub),**kw)
+            l = SubLinkage(child=Substituent(sub),parent=self,**kw)
         self.add_substituent_link(l)
-        l.set_parent(self)
         l.child().add_parent_link(l)
         return l
 
@@ -546,19 +671,19 @@ class Monosaccharide(Node):
                 return True
         return False
 
-    def links(self,instantiated_only=True):
-        l1 = self._links
-        l2 = []
-        for sub in self.substituents():
-            l2 += sub.links()
-        lall = l1 + l2
-        if instantiated_only:
-            return list(filter(lambda l: l.instantiated(), lall))
-        return lall
+    # Monosaccharide links can be: basic, uninstantiated, repeat_exit, repeat_bridge, subst_out
+    # By default: basic and subst_out are generated...
+    def links(self, **kw):
+        for l in super(Monosaccharide,self).links(**kw):
+            yield l
+        if self._has_subst_out_link:
+            for subst in self.substituents():
+                for l in subst.links(**kw):
+                    yield l
 
     def __str__(self):
 
-        s  = "Monosaccharide:%s\n"%self.id()
+        s  = "Monosaccharide:%s (%r)\n"%(self.id(),self)
         s += "          Anomer = %s\n"%constantString(Anomer,self.anomer())
         s += "          Config = %s\n"%constantStrings(Config,self.config())
         s += "            Stem = %s\n"%constantStrings(Stem,self.stem())
@@ -580,33 +705,45 @@ class Monosaccharide(Node):
         if self.has_children():
             s += "        Children = "
             ch = []
-            for l in self.links(False):
+            for l in self.links(default=False): #implies all links
                 l_linked_by_sub = not l.parent().is_monosaccharide()
                 l_linkage_symbol = "~"
                 if l.instantiated():
                     l_linkage_symbol = "-"
-                if l_linked_by_sub:
-                    l_linkage_symbol += "Sub(%s)"%l.parent().id()
-                l_linkage_symbol += ">"
+                if l.is_repeat_bridge():
+                    l_linkage_symbol = "-[R]-"
 
-                ch.append("%s %s Monosaccharide:%s" % (l, l_linkage_symbol, l.child().id()))
+                if l_linked_by_sub:
+                    l_upper = l.parent().any_parent_link()
+                    l_lower = l
+                    tmp_s = ""
+                    if l.is_repeat_bridge():
+                        tmp_s = "[R]"
+                    ch.append("%s -( %s )%s-> %s Monosaccharide:%s" % (l_upper, l.parent(), tmp_s, l, l.child().id()))
+                else:
+                    l_linkage_symbol += ">"
+                    ch.append("%s %s Monosaccharide:%s" % (l, l_linkage_symbol, l.child().id()))
 
                 #if l.instantiated():
                 #    ch.append("%s -> Monosaccharide:%s"%(l,l.child().id()))
                 #else:
                 #    ch.append("%s ~> Monosaccharide:%s"%(l,l.child().id()))
             s += "\n                   ".join(ch) + "\n"
-        if len(self.parent_links()) > 0:
+        if self.has_parent_links():
             s += "         Parents = "
             ch = []
             for l in self.parent_links():
-                # TODO maybe the real parent mono should be printed
                 l_parent_type = "Substituent"
                 if l.parent().is_monosaccharide():
                     l_parent_type = "Monosaccharide"
+                else:
+                    l_parent_type = "Monosaccharide:%s - *%s(sub)*" % (l.parent().any_parent_link().parent().id(), str(l.parent()) )
+
                 l_linkage_symbol = "~>"
                 if l.instantiated():
                     l_linkage_symbol = "->"
+                if l.is_repeat_bridge():
+                    l_linkage_symbol = "-[R]->"
                 ch.append("%s:%s %s %s" % (l_parent_type, l.parent().id(), l_linkage_symbol, l))
 
 
@@ -670,7 +807,7 @@ class Substituent(Node):
     def __init__(self,sub):
 
         super(Substituent,self).__init__()
-
+        self._id = None
         self._sub = sub
 
     def clone(self):
@@ -678,40 +815,11 @@ class Substituent(Node):
         s.set_id(self.id())
         return s
 
-    def deepclone(self,identified_link=None,cache=None):
-        if cache == None:
-            cache = dict()
-        m = self.clone()
-        identified_link_copy = None
-        for l in self._links:
-            assert l.child().id() != None
-            if l.child().id() not in cache:
-                if identified_link:
-                    c,idlc = l.child().deepclone(identified_link=identified_link,cache=cache)
-                else:
-                    c = l.child().deepclone(cache=cache)
-                    idlc = None
-                cache[l.child().id()] = c
-            else:
-                c = cache[l.child().id()]
-                idlc = None
-            cl = copy.deepcopy(l)
-            cl.set_child(c)
-            cl.set_parent(m)
-            m.add_link(cl)
-            c.add_parent_link(cl)
-            if l == identified_link:
-                identified_link_copy = cl
-            elif idlc != None:
-                identified_link_copy = idlc
-        if identified_link:
-            return m,identified_link_copy
-        return m
-
-        
-
     def name(self):
         return self._sub
+
+    def is_substituent(self):
+        return True
 
     def isNAc(self):
         return (self._sub == Substituent.nAcetyl)
@@ -721,10 +829,19 @@ class Substituent(Node):
         c.add(comp_table[('Substituent',self.name())])
         return c
 
+    def add_link(self, l):
+        # if we ever add a link, we need to update the monosaccharide too
+        super(Substituent,self).add_link(l)
+        assert(l.matching_link_type(fromto=Linkage.SUBST_TO_MONO))
+        for p in self.parents():
+            # should be exactly one parent, the monosaccharide this
+            # substituent is considered part of
+            p._has_subst_out_link = True
+
     def __str__(self):
         if self._id:
-            return "%s:%s"%(self._id,constantString(Substituent,self._sub))
-        return constantString(Substituent,self._sub)
+            return "%s:%s (%r)"%(self._id,constantString(Substituent,self._sub),self)
+        return "%s (%r)"%(constantString(Substituent,self._sub),self)
 
     def equals(self,s):
         if not isinstance(s,Substituent):
@@ -734,7 +851,7 @@ class Substituent(Node):
     def fully_determined(self):
         return True
 
-class Linkage:
+class Linkage(object):
 
     # Atom Replacement constants (link types)
     oxygenPreserved     = 1
@@ -746,15 +863,34 @@ class Linkage:
     # Note that we use None to indicate unset values throughout. To
     # unset a value, assign None to it.
 
-    def __init__(self, child,
+    # Link types - 3/4 values 
+    MONO_TO_MONO = 101
+    MONO_TO_SUBST = 102
+    SUBST_TO_MONO = 103
+    # SUBST_TO_SUBST = 4
+
+    # Repeat status - 3 values
+    NON_REPEAT = 201
+    REPEAT_BRIDGE = 202
+    REPEAT_EXIT = 203
+
+    # Instantiated - 2 values
+    INSTANTIATED = 301
+    UNINSTANTIATED = 302
+    
+    # Most links are of this type # Static data-member
+    _link_type = (MONO_TO_MONO,NON_REPEAT,INSTANTIATED)
+
+    def __init__(self, child=None, parent=None,
                  parent_type=None, parent_pos=None,
                  child_type=None, child_pos=None,
                  parent_type2=None, parent_pos2=None,
-                 child_type2=None, child_pos2=None,
-                 undetermined=False):
+                 child_type2=None, child_pos2=None):
 
         # the monosaccharide child in the linkage
         self.set_child(child)
+
+        self.set_parent(parent)
         
         # parent linkage type
         self.set_parent_type(parent_type)
@@ -780,29 +916,47 @@ class Linkage:
         # position of 2nd linkage attachment to child
         self.set_child_pos2(child_pos2)
 
-        # Undetermined status of the link 
-        self.set_undetermined(undetermined)
-        if undetermined:
-            self.set_instantiated(False)
-        else:
-            self.set_instantiated(True)
-
         # These are not primary data associated with linkages, but are
         # useful for a variety of general processing tasks...
         self.unset_id()
-        self.set_parent(None)
 
     def id(self):
         return self._id
 
+    def link_type(self):
+        return self._link_type
+
+    def is_link_type(self,link_type):
+        return self._link_type == link_type
+
+    def matching_link_type(self,fromto=None,repeat=None,inst=None):
+        if fromto != None:
+            if fromto > 0:
+                if self._link_type[0] != fromto:
+                    return False
+            else:
+                if self._link_type[0] == -fromto:
+                    return False
+        if repeat != None:
+            if repeat > 0:
+                if self._link_type[1] != repeat:
+                    return False
+            else:
+                if self._link_type[1] == -repeat:
+                    return False
+        if inst != None:
+            if inst > 0:
+                if self._link_type[2] != inst:
+                    return False
+            else:
+                if self._link_type[2] == -inst:
+                    return False
+        return True
+
     def reverse(self):
         assert self.parent()
-        l = Linkage(child=self.parent(),
-                    parent_pos=self.child_pos(),
-                    parent_type=self.child_type(),
-                    child_pos=self.parent_pos(),
-                    child_type=self.parent_type(),
-                    undetermined=self.undetermined())
+        l = self.clone()
+        l.set_child(self.parent())
         l.set_parent(self.child())
         self.child().del_parent_link(self)
         self.child().add_link(l)
@@ -810,17 +964,18 @@ class Linkage:
         self.parent().add_parent_link(l)
         return l
 
-    def clone(self):
-        l = Linkage(child=self.child(),
-                    parent_pos=self.parent_pos(),
-                    parent_type=self.parent_type(),
-                    child_pos=self.child_pos(),
-                    child_type=self.child_type(),
-                    undetermined=self.undetermined())
-        l.set_id(self.id())
+    def copy_data_members_to(self,l):
         l.set_parent(self.parent())
-        l.set_instantiated(self.instantiated())
+        l.set_parent_pos(self.parent_pos())
+        l.set_parent_type(self.parent_type())
+        l.set_child(self.child())
+        l.set_child_pos(self.child_pos())
+        l.set_child_type(self.child_type())
+        l.set_id(self.id())
         return l
+
+    def clone(self):
+        return self.copy_data_members_to(self.__class__())
 
     def set_id(self,id):
         self._id = id
@@ -922,17 +1077,23 @@ class Linkage:
         assert self._parent_pos
         self._parent_pos.add(parent_pos)
 
-    def set_undetermined(self,und):
-        self._undetermined = und
-
-    def undetermined(self):
-        return self._undetermined
-
-    def set_instantiated(self,inst):
-        self._instantiated = inst
-
     def instantiated(self):
-        return self._instantiated
+        return self._link_type[2] == Linkage.INSTANTIATED
+
+    def is_subst_link(self):
+        return self._link_type[0] == Linkage.MONO_TO_SUBST
+
+    def is_subst_out_link(self):
+        return self._link_type[0] == Linkage.SUBST_TO_MONO
+        
+    def is_non_repeat(self):
+        return self._link_type[1] == Linkage.NON_REPEAT
+
+    def is_repeat_bridge(self):
+        return self._link_type[1] == Linkage.REPEAT_BRIDGE
+
+    def is_repeat_exit(self):
+        return self._link_type[1] == Linkage.REPEAT_EXIT
 
 ##     def compatible(self,a):
 ##      if self._parent_type and a._parent_type and self._parent_type != a._parent_type:
@@ -967,7 +1128,7 @@ class Linkage:
         # print "---"
         # if self._undetermined != a._undetermined:
         #     return False
-        if self._instantiated != a._instantiated:
+        if self._link_type != a._link_type:
             return False
         if self._parent_type != a._parent_type:
             return False
@@ -980,7 +1141,7 @@ class Linkage:
         return True
 
     def fully_determined(self):
-        if not self._instantiated:
+        if not self.instantiated():
             return False
         if self._parent_type == None or len(self._parent_type) != 1:
             return False
@@ -1005,7 +1166,9 @@ class Linkage:
         return (delim.join(map(str,Linkage.valtuple(val))) if val else -1)
                             
     def astuple(self):
-        return (self._instantiated,
+        return (constantString(Linkage,self._link_type[0]),
+                constantString(Linkage,self._link_type[1]),
+                constantString(Linkage,self._link_type[2]),
                 self.valtuple(self._parent_type),
                 self.valtuple(self._parent_pos),
                 self.valtuple(self._child_pos),
@@ -1019,7 +1182,48 @@ class Linkage:
 
 # Should we specialize substituent linkages?
 class SubLinkage(Linkage):
-    pass
+    _link_type = (Linkage.MONO_TO_SUBST,Linkage.NON_REPEAT,Linkage.INSTANTIATED)
+
+class UninstantiatedLinkage(Linkage):
+    _link_type = (Linkage.MONO_TO_MONO,Linkage.NON_REPEAT,Linkage.UNINSTANTIATED)
+
+class SubstOutLinkage(Linkage):
+    _link_type = (Linkage.SUBST_TO_MONO,Linkage.NON_REPEAT,Linkage.INSTANTIATED)
+
+class RepeatBridgeLinkage(Linkage):
+    _link_type = (Linkage.MONO_TO_MONO,Linkage.REPEAT_BRIDGE,Linkage.INSTANTIATED)
+
+    def __init__(self,**kw):
+        super(RepeatBridgeLinkage,self).__init__(self,**kw)
+        self._repeat_times_min = 1
+        self._repeat_times_max = 1
+
+    def copy_data_members_to(self,l):
+        super(RepeatBridgeLink,self).copy_data_members_to(l)
+        l.set_repeat_times_min(self.repeat_times_min())
+        l.set_repeat_times_max(self.repeat_times_max())
+        return l
+
+    # TODO perhaps provide methods for validation the repating times?
+    def set_repeat_times_min(self, m):
+        assert m is None or isinstance(m, int)
+        self._repeat_times_min = m
+
+    def set_repeat_times_max(self, m):
+        assert m is None or isinstance(m, int)
+        self._repeat_times_max = m
+
+    def repeat_times_min(self):
+        return self._repeat_times_min
+
+    def repeat_times_max(self):
+        return self._repeat_times_max
+
+class RepeatExitLinkage(Linkage):
+    _link_type = (Linkage.MONO_TO_MONO,Linkage.REPEAT_EXIT,Linkage.INSTANTIATED)
+
+class RepeatBridgeSubstOutLinkage(RepeatBridgeLinkage):
+    _link_type = (Linkage.SUBST_TO_MONO,Linkage.REPEAT_BRIDGE,Linkage.INSTANTIATED)
 
 # This is here to put peptide mass and elemental composition on the same
 # footing as glycans....

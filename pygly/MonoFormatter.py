@@ -1,7 +1,7 @@
 
 from . SymbolsTable import SymbolsTable
 from . ConstantsTable import ConstantsTable
-from . Monosaccharide import Monosaccharide, Substituent, Linkage, Config
+from . Monosaccharide import *
 import re
 import sys
 
@@ -23,14 +23,14 @@ class GlycoCTMonoFormat:
             s += "b:"
             s += self.fromSym[('Anomer',m.anomer())]
             if m.stem() != None:
-                if m.config() == None:
-                    cfg = [Config.missing]*len(m.stem())
-                else:
-                    cfg = list(m.config())
-                stm = list(m.stem())
-                assert len(cfg) == len(stm)
-                for cf,st in zip(cfg,stm):
-                    s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
+              if m.config() == None:
+                cfg = [Config.missing]*len(m.stem())
+              else:
+                cfg = list(m.config())
+              stm = list(m.stem())
+              assert len(cfg) == len(stm)
+              for cf,st in zip(cfg,stm):
+                  s += "-%s%s"%(self.fromSym[('Config',cf)],self.fromSym[('Stem',st)])
             s += "-%s"%self.fromSym[('SuperClass',m.superclass())]
             rs = m.ring_start()
             if rs == None:
@@ -45,13 +45,17 @@ class GlycoCTMonoFormat:
             s += "s:"
             s += self.fromSym[('Substituent',m.name())]
         return s
-    def linkToStr(self,l,noids=False):
+
+    def linkToStr(self, l, noids=False, replace_parent_id=None, replace_child_id=None):
         # 1:1d(2+1)2n
         s = ""
         if l.id() != None and not noids:
             s += str(l.id())+":"
         if l.parent().id() != None and not noids:
-            s += str(l.parent().id())
+            if replace_parent_id != None:
+                s += str(replace_parent_id)
+            else:
+                s += str(l.parent().id())
         if l.parent_type():
             s += "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.parent_type())))
         else:
@@ -59,12 +63,16 @@ class GlycoCTMonoFormat:
         s += '(%s'%(l.posstr(l.parent_pos()),)
         s += '+%s)'%(l.posstr(l.child_pos()),)
         if l.child().id() != None and not noids:
-            s += str(l.child().id())
+            if replace_child_id != None:
+                s += str(replace_child_id)
+            else:
+                s += str(l.child().id())
         if l.child_type():
             s += "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.child_type())))
         else:
             s += self.fromSym[('Linkage',Linkage.missing)]
         return s
+
     fromStrRE = re.compile(r'^(\d+)([bs]):(.*)$')
     def fromStr(self,mstr):
         m = self.fromStrRE.search(mstr.strip())
@@ -85,7 +93,7 @@ class GlycoCTMonoFormat:
         m.set_external_descriptor_id(id)
         MODS = desc.split('|')
         MONO = MODS.pop(0).split('-')
-
+        
         #set ring
         ring =  MONO.pop()
         ringStart,ringEnd = ring.split(':')
@@ -115,7 +123,7 @@ class GlycoCTMonoFormat:
         for st in MONO:
             configs.append(self.toSym[('Config',st[0])])
             stems.append(self.toSym[('Stem',st[1:])])
-
+        
         if len(stems) > 0:
             if zip(configs,stems) != [(None,None)]:
                 m.set_config(*configs)
@@ -128,29 +136,89 @@ class GlycoCTMonoFormat:
             m.add_mod(num,modi)
         return m
 
-    linkFromStrRE = re.compile(r'^(\d+):(\d+)([dnohx])[(](.+)\+(.+)[)](\d+)([dnohx])$')
-    def linkFromStr(self,s,res):
+    linkFromStrRE = re.compile(r'^(REP)?(\d+):(\d+)([dnohx])[(](.+)\+(.+)[)](\d+)([dnohx])(=(-?\d+)-(-?\d+))?$')
+    def linkParseBase(self, s):
         m = self.linkFromStrRE.search(s)
         if not m:
-            raise RuntimeError("Bad GlycoCT link line:"+s)
-        id = int(m.group(1))
-        parentid = int(m.group(2))
-        parenttype = self.toSym[('Linkage',m.group(3))]
+            raise RuntimeError("Bad GlycoCT link line:" + s)
+
+        repeatbridge = m.group(1) == "REP"
+
+        id = int(m.group(2))
+        parentid = int(m.group(3))
+        parenttype = self.toSym[('Linkage', m.group(4))]
         parentpos2 = None
         try:
-            parentpos = map(int,m.group(4).split('|'))
+            parentpos = map(int, m.group(5).split('|'))
             if -1 in parentpos:
                 parentpos = None
         except ValueError:
             parentpos = None
         try:
-            childpos = int(m.group(5))
+            childpos = int(m.group(6))
             if childpos < 1:
                 childpos = None
         except ValueError:
             childpos = None
-        childid = int(m.group(6))
-        childtype = self.toSym[('Linkage',m.group(7))]
+        childid = int(m.group(7))
+        childtype = self.toSym[('Linkage', m.group(8))]
+
+        repeattimemin, repeattimemax = None, None
+        if repeatbridge:
+            repeattimemin = int(m.group(10))
+            repeattimemax = int(m.group(11))
+
+            if repeattimemin == -1:
+                repeattimemin = None
+            if repeattimemax == -1:
+                repeattimemax = None
+
+        return id, parentid, parentpos, parenttype, childid, childpos, childtype, repeatbridge, repeattimemin, repeattimemax
+
+    def linkFromPara(self, parent, child, parenttype, parentpos, childtype, childpos, repeat_exit=False, repeat_bridge=False, undet=False):
+        assert not (repeat_exit and repeat_bridge)
+        link_characteristics = dict(parent_type=parenttype, parent_pos=parentpos, 
+                                    child_type=childtype, child_pos=childpos)
+        if child.is_monosaccharide():
+            if repeat_exit:
+                linkage = RepeatExitLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
+            elif repeat_bridge:
+                if parent.is_substituent():
+                    linkage = RepeatBridgeSubstOutLinkage(**link_characteristics)
+                else:
+                    linkage = RepeatBridgeLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
+            elif undet:
+                linkage = UninstantiatedLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
+            elif parent.is_substituent():
+                linkage = SubstOutLinkage(**link_characteristics)
+                l = parent.add_child_with_special_linkage(child, linkage)
+            else:
+                l = parent.add_child(child, **link_characteristics)
+        else:
+            if child.name() == Substituent.amino and parenttype == Linkage.oxygenPreserved:
+                child._sub = Substituent.amino_oxygen_preserved
+            elif child.name() == Substituent.methyl and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.methyl_oxygen_lost
+            elif child.name() == Substituent.phosphate:
+                if parenttype == Linkage.oxygenLost:
+                    child._sub = Substituent.phosphate_oxygen_lost
+                elif child.has_parent_links():
+                    # already an edge to this substituent...
+                    child._sub = Substituent.phosphate_bridged
+            elif child.name() == Substituent.sulfate and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.sulfate_oxygen_lost
+            elif child.name() == Substituent.acetyl and parenttype == Linkage.oxygenLost:
+                child._sub = Substituent.acetyl_oxygen_lost
+            l = parent.add_substituent(child,**link_characteristics)
+        return l
+
+    def linkFromStr(self, s, res, undet=False):
+
+        id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.linkParseBase(s)
+
         if parentid not in res:
             raise RuntimeError("Bad GlycoCT link line, parent missing:"+s)
         if childid not in res:
@@ -161,32 +229,9 @@ class GlycoCTMonoFormat:
         #if isinstance(parent, Substituent):
         #    raise RuntimeError("Bad GlycoCT link line, substituent as parent:"+s)
         child = res[childid]
-        if isinstance(child,Monosaccharide):
-            l = parent.add_child(child,
-                                 parent_type=parenttype,
-                                 parent_pos=parentpos,
-                                 child_type=childtype,
-                                 child_pos=childpos)
-        else:
-            if child.name() == Substituent.amino and parenttype == Linkage.oxygenPreserved:
-                child._sub = Substituent.amino_oxygen_preserved
-            elif child.name() == Substituent.methyl and parenttype == Linkage.oxygenLost:
-                child._sub = Substituent.methyl_oxygen_lost
-            elif child.name() == Substituent.phosphate:
-                if parenttype == Linkage.oxygenLost:
-                    child._sub = Substituent.phosphate_oxygen_lost
-                elif len(child.parent_links()) > 0:
-                    # already an edge to this substituent...
-                    child._sub = Substituent.phosphate_bridged
-            elif child.name() == Substituent.sulfate and parenttype == Linkage.oxygenLost:
-                child._sub = Substituent.sulfate_oxygen_lost
-            elif child.name() == Substituent.acetyl and parenttype == Linkage.oxygenLost:
-                child._sub = Substituent.acetyl_oxygen_lost
-            l = parent.add_substituent(child,
-                                       parent_type=parenttype,
-                                       parent_pos=parentpos,
-                                       child_type=childtype,
-                                       child_pos=childpos)
+
+        l = self.linkFromPara(parent, child, parenttype, parentpos, childtype, childpos, undet=undet)
+
         return [l]
 
 class MonoSymLookup(dict):
@@ -208,10 +253,10 @@ class MonoSymLookup(dict):
             subst = (('Substituent',m.name()),)
         return supcls,stem,mods,subst
     def toStr(self,m):
-        if m != None:
+	if m != None:
             k = self.key(m)
-        else:
-            raise RuntimeError("Monosaccharide is None.")
+	else:
+	    raise RuntimeError("Monosaccharide is None.")
         try:
             return self[k]
         except KeyError:
