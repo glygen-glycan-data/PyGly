@@ -899,10 +899,10 @@ class SubstructureSearch(GlycanPartialOrder):
 
         # assert len(filter(lambda l:l.repeat_bridge_link(), m.links())) in [0, 1]
         if not m.links_has_repeat_bridge():
-            mlinks_no_repeat_path = m.links()
+            mlinks_no_repeat_path = list(m.links())
             mlinks_repeat_path = []
         else:
-            mlinks_no_repeat_path = m.links_with_repeat_exit()
+            mlinks_no_repeat_path = list(m.links_with_repeat_exit())
             mlinks_repeat_path = m.links_with_repeat_bridge()
 
         # Why this logic? Shouldn't it be like the above?
@@ -1425,8 +1425,8 @@ class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
 
         any = False
 
-        msl = m.substituent_links()
-        gsl = g.substituent_links()
+        msl = list(m.substituent_links())
+        gsl = list(g.substituent_links())
         if len(msl) > len(gsl):
             return False
 

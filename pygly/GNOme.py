@@ -1696,6 +1696,7 @@ class OWLWriter():
 
         outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((cbbutton_node, rdfs.label, Literal("_widget_button_state")))
+        outputGraph.add((cbbutton_node, definition, Literal("Internal raw data for both GNOme browser.")))
 
         # Add AnnotationProperty quick access to the GNOme browser
         has_structure_browser_node = self.gnouri(self.structure_browser_link)
@@ -1725,7 +1726,7 @@ class OWLWriter():
         has_structure_characterization_score_node = self.gnouri(self.has_structure_characterization_score)
 
         outputGraph.add((has_structure_characterization_score_node, rdf.type, owl.AnnotationProperty))
-        outputGraph.add((has_structure_characterization_score_node, rdfs.isDefinedBy, Literal(
+        outputGraph.add((has_structure_characterization_score_node, definition, Literal(
             "A score for the extent of characterization provided by the glycan's description. Glycan descriptions that completely characterize a glycan have score 0. Scores increase monotonically with subsumption. Scores should only be compared between glycan descriptions with the same monosaccharide (base-)composition. Score may change in future releases.")))
         outputGraph.add((has_structure_characterization_score_node, rdfs.label, Literal("has_structure_characterization_score")))
 
@@ -2142,24 +2143,6 @@ class GNOme_Theme_Base:
         d = self.getdata()
         json.dump(d, open(output_path, "w"))
 
-class GNOme_Theme_GlyTouCan(GNOme_Theme_Base):
-
-    def getdata(self):
-        return {
-            "icon_style": "snfg",
-            "image_source_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_source_suffix": ".png",
-            "brand": None,
-            "external_resources": [
-                {
-                    "name": "GlyTouCan",
-                    "url_prefix": "https://glytoucan.org/Structures/Glycans/",
-                    "url_suffix": "",
-                    "glycan_set": None
-                }
-            ]
-
-        }
 
 class GNOme_Theme_GlyGen(GNOme_Theme_Base):
 
@@ -2209,15 +2192,15 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
             "brand": None,
             "external_resources": [
                 {
-                    "name": "GlycanData",
-                    "url_prefix": "https://glycans.glyomics.org/glycandata/",
-                    "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlycanData")
-                },{
                     "name": "GlyGen",
                     "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
+                },{
+                    "name": "GlyCosmos",
+                    "url_prefix": "https://glycosmos.org/glycans/show?gtc_id=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyCosmos")
                 },{
                     "name": "GlyTouCan",
                     "url_prefix": "https://glytoucan.org/Structures/Glycans/",
@@ -2420,6 +2403,7 @@ def main():
 
         kv_para = {
             "version": None,
+            "archive": None,
             "replace": None
         }
         if len(sys.argv) < 5:
@@ -2453,6 +2437,16 @@ def main():
                 specificSym[k] = symFile2dict(v)
 
         replace_mapping = {}
+
+        if kv_para["archive"] is not None:
+            archive_file_handle = open(kv_para["archive"])
+            for i, l in enumerate(archive_file_handle):
+                acc = l.strip()
+                if i == 0 and "accession" in acc:
+                    continue
+                replace_mapping[acc] = None
+
+
         if kv_para["replace"] is not None:
             replace_file_path = kv_para["replace"]
 
@@ -2462,11 +2456,8 @@ def main():
                 if i == 0 and "accession" in linfo:
                     continue
 
-                retire, replace_acc = linfo
-                if replace_acc in ["", "-"]:
-                    replace_acc = None
-
-                replace_mapping[retire] = replace_acc
+                newacc, retire = linfo
+                replace_mapping[retire] = newacc
 
 
 
@@ -2547,7 +2538,7 @@ def main():
         #    fp = os.path.dirname(os.path.abspath(__file__)) + "/../smw/glycandata/data/glygen_accessions.txt"
         #    restriction_set = open(fp).read().strip().split()
 
-        elif restriction_set_name in ["GlycanData", "GlyGen"]:
+        elif restriction_set_name in ["GlyGen"]:
             glycandata_tsv_fp = "../smw/glycandata/export/allglycan.tsv"
 
             restriction_set = open(glycandata_tsv_fp).read().strip().split()
@@ -2571,12 +2562,10 @@ def main():
         theme_path = sys.argv[2]
 
         td = GNOme_Theme_Default(restriction_url)
-        tgtc = GNOme_Theme_GlyTouCan(restriction_url)
         tgg = GNOme_Theme_GlyGen(restriction_url)
         tggd = GNOme_Theme_GlyGenDev(restriction_url)
 
         td.write(theme_path + "default.json")
-        tgtc.write(theme_path + "GlyTouCan.json")
         tgg.write(theme_path + "GlyGen.json")
         tggd.write(theme_path + "GlyGenBeta.json")
 
