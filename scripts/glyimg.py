@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 import sys, os
 import findpygly
 from pygly.GlycanImage import GlycanImage
