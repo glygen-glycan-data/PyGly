@@ -1034,7 +1034,7 @@ class SubstructureSearchNonReducingEnd(SubstructureSearch):
     def check_links_childlink_count(self, m, tg):
 
         # Reject condition
-        if not m.has_links() == 0 and tg.has_links():
+        if not m.has_links() and tg.has_links():
             return False
 
         return True
