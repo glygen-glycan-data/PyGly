@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 restriction_set_names=(
   "BCSDB"
   "GlyGen"
@@ -8,19 +10,25 @@ restriction_set_names=(
 
 
 if [[ ! ("$(pwd)" =~ "/PyGly/scripts") ]]; then
-  # Check for executing folder
-  exit
+    # Check for executing folder
+    echo "Please execute from PyGly/scripts"
+    exit 1
 fi
 
-if [ -z "$1" ]
-  then
+if [ -z "$1" ]; then
     # Check for tag
     echo "Please provide the release tag number, eg V1.2.3"
-    exit
+    exit 1
+fi
+
+if [ -d ./GNOme ]; then
+    echo "Please remove the GNOme directory"
+    exit 1
 fi
 
 git clone git@github.com:glygen-glycan-data/GNOme.git
-python ../pygly/GNOme.py writeowl \
+./gnome_prereq.sh
+./gnome_compute.py writeowl \
   ./GNOme/data/gnome_subsumption_raw.txt \
   ./GNOme.owl \
   ./GNOme/data/mass_lookup_2decimal \
@@ -33,7 +41,7 @@ python ../pygly/GNOme.py writeowl \
   -archive ./GNOme/data/glytoucan_archived.txt \
   -replace ./GNOme/data/glytoucan_replaced.txt \
 
-python ../pygly/GNOme.py viewerdata ./GNOme.owl ./BrowserData.json
+./gnome_compute.py viewerdata ./GNOme.owl ./BrowserData.json
 mv ./BrowserData.json ./GNOme/
 
 
@@ -42,11 +50,11 @@ do
   lowersetname=$(echo "$Restriction_set" | awk '{print tolower($0)}')
   echo $Restriction_set
   # python ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
-  python ../pygly/GNOme.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
-  python ../pygly/GNOme.py viewerdata ./GNOme_$Restriction_set.owl ./$Restriction_set.BrowserData.json
+  ./gnome_compute.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
+  ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./$Restriction_set.BrowserData.json
 done
 
-python ../pygly/GNOme.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
+./gnome_compute.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
 
 cp ./GNOme/convert.sh ./
 ./convert.sh

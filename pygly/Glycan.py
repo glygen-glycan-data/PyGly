@@ -151,7 +151,7 @@ class Glycan:
         return (self._root != None)
 
     def fully_determined(self):
-        if self.undetermined():
+        if self.undetermined() or self.repeated():
             return False
         for m in self.all_nodes(subst=True):
             if m == self.root():
@@ -606,9 +606,14 @@ class Glycan:
         return c
 
     def iupac_redend(self, floating_substituents=True, aggregate_basecomposition=True):
-        comp = self.iupac_composition(floating_substituents=floating_substituents, 
-                                      aggregate_basecomposition=aggregate_basecomposition,
-                                      redend_only=True)
+	if not self.repeated():
+            comp = self.iupac_composition(floating_substituents=floating_substituents, 
+                                          aggregate_basecomposition=aggregate_basecomposition,
+                                          redend_only=True)
+	else:
+            comp = self.iupac_composition(floating_substituents=floating_substituents, 
+                                          aggregate_basecomposition=aggregate_basecomposition,
+                                          redend_only=True, repeat_times=1)
         return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
 
     def glycoct(self):
