@@ -1,0 +1,21 @@
+{{Motif
+|prefname=GAG Core 1a
+|name=GAG Core 1a
+|keyword=GAG classification
+|aglycon=Other
+|redend=true
+|alignment=Core
+|accession=001201
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-x:x
+2s:n-acetyl
+3b:x-dglc-HEX-1:5{{!}}6:a
+LIN
+1:1d(2+1)2n
+2:1o(-1+1)3d
+|glytoucan=G24334HE
+|sameas=GM.G24334HE
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122A-1x_1-5{{!)}}/1-2/a?-b1
+}}

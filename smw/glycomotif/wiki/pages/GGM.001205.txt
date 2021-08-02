@@ -1,0 +1,21 @@
+{{Motif
+|accession=001205
+|aglycon=Other
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-x:x
+2s:n-acetyl
+3b:x-lido-HEX-1:5{{!}}6:a
+LIN
+1:1d(2+1)2n
+2:1o(-1+1)3d
+|glytoucan=G71799OV
+|keyword=GAG classification
+|name=GAG Core 3a
+|prefname=GAG Core 3a
+|redend=true
+|sameas=GM.G71799OV
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2121A-1x_1-5{{!)}}/1-2/a?-b1
+}}

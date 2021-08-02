@@ -1,11 +1,7 @@
 {{Motif
-|prefname=HNK-1 on O-mannose
-|name=HNK-1 on O-mannose
-|aglycon=Ser/Thr
-|redend=true
-|alignment=Whole-Glycan
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yuen et al. (1997) Brain contains HNK-1 immunoreactive O-glycans of the sulfoglucuronyl lactosamine series ...
 |accession=000059
+|aglycon=Ser/Thr
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -22,6 +18,10 @@ LIN
 4:4o(3+1)5d
 5:5o(3+1)6n
 |glytoucan=G06898ZN
+|name=HNK-1 on O-mannose
+|prefname=HNK-1 on O-mannose
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yuen et al. (1997) Brain contains HNK-1 immunoreactive O-glycans of the sulfoglucuronyl lactosamine series ...
 |sameas=GD.R000154,GDV.000079,GM.G06898ZN
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122A-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2-3-4/a2-b1_b4-c1_c3-d1
 }}

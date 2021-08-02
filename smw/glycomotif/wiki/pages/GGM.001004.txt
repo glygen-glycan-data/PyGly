@@ -1,11 +1,7 @@
 {{Motif
-|prefname=N-Glycan complex
-|name=N-Glycan complex
-|keyword=N-glycan classification
-|aglycon=Asn
-|redend=true
-|alignment=Core
 |accession=001004
+|aglycon=Asn
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -32,6 +28,10 @@ LIN
 9:9o(2{{!}}4+1)10d
 10:10d(2+1)11n
 |glytoucan=G00030MO
+|keyword=N-glycan classification
+|name=N-Glycan complex
+|prefname=N-Glycan complex
+|redend=true
 |sameas=GM.G00030MO,GTC.G00030MO
 |wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-2-4-2/a4-b1_b4-c1_c3-d1_c6-f1_e1-d2{{!}}d4_g1-f2{{!}}f4
 }}

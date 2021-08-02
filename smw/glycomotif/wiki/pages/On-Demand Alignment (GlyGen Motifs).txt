@@ -1,7 +1,7 @@
 __NOEDITSECTION__
 == Input ==
 <div id="motif_match_real_time_input">
-<div id="motif_match_real_time_para" data-collection="GGM"></div>
+<div id="motif_match_real_time_para" data-collection="GGM" data-prefix="{{PREFIX}}"></div>
 </div>
 <div id="motif_rt_result" style="display: none">
 <div id="query_glycan"></div>

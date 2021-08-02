@@ -1,14 +1,7 @@
 {{Motif
-|prefname=Blood group A (type 1) - Lewis b
-|name=Blood group A (type 1) - Lewis b
-A-Leb
-A-Le^b
-|keyword=Blood group A;Blood group type 1;Lewis b
-|aglycon=R
-|redend=false
-|alignment=Substructure
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...;Seaman et al. (1968) Siedler: an antibody which reacts with A1Le(a negative b positive) ...
 |accession=000047
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -27,6 +20,13 @@ LIN
 5:5d(2+1)6n
 6:1o(4+1)7d
 |glytoucan=G97501MA
+|keyword=Blood group A;Blood group type 1;Lewis b
+|name=Blood group A (type 1) - Lewis b
+A-Leb
+A-Le^b
+|prefname=Blood group A (type 1) - Lewis b
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...;Seaman et al. (1968) Siedler: an antibody which reacts with A1Le(a negative b positive) ...
 |sameas=GD.R000207,GDC.000047,GDH.000023,GDV.000054,GE.EP0260,GM.G97501MA,UCM.000023
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4-3/a3-b1_a4-e1_b2-c1_b3-d1
 }}
