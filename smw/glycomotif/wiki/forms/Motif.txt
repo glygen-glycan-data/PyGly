@@ -12,7 +12,7 @@ This is the "Motif" form.
 | {{#show:{{PAGENAME}}|?glycomotif:accession}}
 |-
 ! Preferred Name:
-| {{{field|prefname|input type=dropdown|values={{#show:{{PAGENAME}}|?glycomotif:name|sep=;}}|delimiter=;}}}<br/>Must be a previously added name (see next field).
+| {{{field|prefname|input type=dropdown|values={{#show:{{PAGENAME}}|?glycomotif:name|valuesep=;}}|delimiter=;}}}<br/>Must be a previously added name (see next field).
 |-
 ! Name(s): 
 | {{{field|name|rows=3|input type=textarea}}}<br/>Motif names, in no particular order, each on a separate line.

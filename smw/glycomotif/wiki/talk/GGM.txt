@@ -20,3 +20,7 @@ Note that motif 000023 has been removed - its description indicates that the sia
 The motif 000052 has been removed. The IUPAC sequence in the original Cumming paper indicates a repeating unit (at least two sialalic acids) that has been lost in the IUPAC sequence transliteration to GlycoCT, WURCS, and a GlyTouCan accession (See the source entry here [[GDC.000052]]). We may add this back later if we can correctly handle this type of repeating structure. 
 
 -- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 13:18, 28 January 2021 (EST)
+
+Replacement for original motif 000052 with [[GGM.000252]]. The Cummings specified IUPAC sequence, NeuAca2-8(NeuAca2-8)n NeuAca2-3Galb1-4GlcNAcb1-R, indicates three or more sialic acid residues, and given our current algorithm for motif matching of structures or motifs with repeats, the same structures will be matched.
+
+[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 16:34, 27 May 2021 (EDT)
