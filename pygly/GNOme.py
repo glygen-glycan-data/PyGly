@@ -1558,6 +1558,12 @@ class OWLWriter():
             self.newMass = True
         return res
 
+    def add_massnode_to_graph(self, graph, node, mass, definition, rdfs, Literal, has_subsumption_level_node, subsumption_level_node):
+        graph.add((node, rdfs.subClassOf, self.gnouri(self.glycan_class)))
+        graph.add((node, has_subsumption_level_node, subsumption_level_node))
+        graph.add((node, definition, Literal("A glycan characterized by underivitized molecular weight of %s Daltons." % mass)))
+        graph.add((node, rdfs.label, Literal("glycan of molecular weight %s Da" % mass)))
+
     def make_graph(self):
 
         outputGraph = rdflib.Graph()
@@ -1770,12 +1776,6 @@ class OWLWriter():
 
             outputGraph.add((rdfNode, rdf.type, owl.Class))
 
-            if n._nodeType:
-                # outputGraph.add((rdfNode, rdfs.label, ns2[n._nodeType]))
-                outputGraph.add((rdfNode, has_subsumption_level_node, subsumptionLevel[n._nodeType.lower()]))
-            else:
-                raise ValueError
-
             if not n.ismolecularweight():
                 self.used_gtcacc.add(n.getID())
 
@@ -1789,17 +1789,12 @@ class OWLWriter():
                 has_structure_characterization_score_node
                 outputGraph.add((rdfNode, has_structure_characterization_score_node, Literal(n.missing_rank())))
 
-
+                assert n._nodeType
+                outputGraph.add((rdfNode, has_subsumption_level_node, subsumptionLevel[n._nodeType.lower()]))
 
             else:
                 self.used_mass.add(n.getID())
-
-                outputGraph.add((rdfNode, rdfs.subClassOf, self.gnouri(self.glycan_class)))
-                outputGraph.add((rdfNode, rdfs.label,
-                                 Literal("glycan of molecular weight %s Da" % n.getID())))
-                outputGraph.add((rdfNode, definition,
-                                 Literal(
-                                     "A glycan characterized by underivitized molecular weight of %s Daltons." % n.getID())))
+                self.add_massnode_to_graph(outputGraph, rdfNode, n.getID(), definition, rdfs, Literal, has_subsumption_level_node, subsumptionLevel["molecularweight"])
 
             for sym, sym_type in n.synonym():
                 outputGraph.add((rdfNode, sym_types[sym_type], Literal(sym)))
@@ -1856,16 +1851,9 @@ class OWLWriter():
 
         rdfNodeXSDTrue = rdflib.Literal("true", datatype=rdflib.XSD.boolean)
         for n in unused_mass:
-
             rdfNode = self.gnouri(self.mass_decimal_to_mass_id(n))
             outputGraph.add((rdfNode, rdf.type, owl.Class))
-            # outputGraph.add((rdfNode, owl.deprecated, rdfNodeXSDTrue))
-
-            outputGraph.add((rdfNode, definition,
-                             Literal(
-                                 "A glycan characterized by underivitized molecular weight of %s Daltons." % n)))
-            outputGraph.add((rdfNode, rdfs.label,
-                             Literal("glycan of molecular weight %s Da" % n)))
+            self.add_massnode_to_graph(outputGraph, rdfNode, n, definition, rdfs, Literal, has_subsumption_level_node, subsumptionLevel["molecularweight"])
 
         for n in unused_gtc_acc:
             rdfNode = self.gnouri(n)
