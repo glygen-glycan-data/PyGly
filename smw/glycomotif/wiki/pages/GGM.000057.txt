@@ -1,13 +1,7 @@
 {{Motif
-|prefname=O-Mannose Lex
-|name=O-Mannose Lex
-O-Mannose Le^x
-|keyword=Lewis x
-|aglycon=Ser/Thr
-|redend=true
-|alignment=Core
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willer et al. (2003) O-mannosyl glycans: from yeast to novel associations with human disease
 |accession=000057
+|aglycon=Ser/Thr
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -22,6 +16,12 @@ LIN
 3:2o(3+1)4d
 4:2o(4+1)5d
 |glytoucan=G81516LH
+|keyword=Lewis x
+|name=O-Mannose Lex
+O-Mannose Le^x
+|prefname=O-Mannose Lex
+|redend=true
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Willer et al. (2003) O-mannosyl glycans: from yeast to novel associations with human disease
 |sameas=GD.R000500,GDC.000057,GDV.000036,GM.G81516LH
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3-4/a2-b1_b3-c1_b4-d1
 }}

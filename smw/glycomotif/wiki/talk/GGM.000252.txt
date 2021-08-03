@@ -1,0 +1,3 @@
+Replacement for original motif 000052. The Cummings specified IUPAC sequence, NeuAca2-8(NeuAca2-8)n NeuAca2-3Galb1-4GlcNAcb1-R, indicates three or more sialic acid residues, and given our current algorithm for motif matching of structures or motifs with repeats, the same structures will be matched. Original source entry was GDC.000052. 
+
+[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 16:51, 25 May 2021 (EDT)

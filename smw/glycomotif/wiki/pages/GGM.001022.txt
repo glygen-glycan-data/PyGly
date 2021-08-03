@@ -1,11 +1,7 @@
 {{Motif
-|prefname=N-glycan core, truncated
-|name=N-glycan core, truncated
-|keyword=N-glycan classification
-|aglycon=Asn
-|redend=true
-|alignment=Core
 |accession=001022
+|aglycon=Asn
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -20,6 +16,10 @@ LIN
 3:3o(3+1)4d
 4:3o(6+1)5d
 |glytoucan=G63560NE
+|keyword=N-glycan classification
+|name=N-glycan core, truncated
+|prefname=N-glycan core, truncated
+|redend=true
 |sameas=GM.G63560NE
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-3/a4-b1_b3-c1_b6-d1
 }}

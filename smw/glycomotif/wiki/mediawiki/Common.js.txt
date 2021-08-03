@@ -591,10 +591,10 @@ if (document.getElementById("motif_align_para") != null){
 if (document.getElementById("motif_match_real_time_para")){
 
     var motif_match_webservice_url = "https://motifmatch.glyomics.org/";
-    var glylookup_webservice_url = "https://glylookup.glyomics.org/";
-    var glymage_webservice_url = "https://glymage.glyomics.org/getimage?notation=snfg&display=extended&format=png&seq=";
+    var glymage_webservice_url = "https://glymage.glyomics.org/";
     var image_url_prefix = "https://glymage.glyomics.org/image/snfg/extended/";
     var image_url_suffix = ".png";
+
 
     var alignment_result = [];
 
@@ -606,7 +606,7 @@ if (document.getElementById("motif_match_real_time_para")){
     var resultTableEle = document.getElementById("alignment_table");
 
     var original_seq = "";
-
+    var prefix = "";
 
     inputEle.innerHTML = "<table style="width: 80%; max-width: 80%; height: 300px; margin: 0 auto;"><tr><td>Glycan (GlycoCT or WURCS format):</td></tr><tr><td><textarea style="width: 100%; max-width: 100%; height: 300px; margin: 0 auto;" id="query_sequence" >WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea></td></tr>" +
         "<tr><td align="right"><button onclick="submit()">Align</button></td></tr></table>";
@@ -615,32 +615,28 @@ if (document.getElementById("motif_match_real_time_para")){
     function submit(){
         var seq = document.getElementById("query_sequence").value;
         seq = seq.trim();
-        original_seq = seq;
 
-        var collection = document.getElementById("motif_match_real_time_para").getAttribute("data-collection");
+        original_seq = seq;
+           
+        var mmrtpara = document.getElementById("motif_match_real_time_para")
+        prefix = mmrtpara.getAttribute("data-prefix");
+        var collection = mmrtpara.getAttribute("data-collection");
         if (collection == null){
             collection = "GM";
         }
 
         var task = JSON.stringify({
             "seq": seq,
-            "collection": collection
+            "collection": collection,
+            "developer_email": prefix+"@glyomics.org"
         });
-        task = encodeURIComponent(task);
 
         image_update();
 
-        jQuery.getJSON(motif_match_webservice_url+ "submit?task=" + task, {}, function (d){
+        jQuery.post(motif_match_webservice_url+ "submit", {"task": task}, function (d){
             var jobid = d[0].id;
             retrieve(jobid);
-        })
-
-        // task = encodeURIComponent(JSON.stringify({"seq": encodeURIComponent}))
-        // jQuery.getJSON(glylookup_webservice_url+ "submit?task=" + task, {}, function (d){
-        //    var jobid = d[0].id;
-        //    retrieve_image(jobid);
-        // })
-
+        },'json');
 
     }
 
@@ -652,22 +648,6 @@ if (document.getElementById("motif_match_real_time_para")){
 
             if (result.finished){
                 update_result(result);
-            }
-            else {
-                setTimeout(retrieve, 200, jobid);
-            }
-
-        })
-    }
-
-
-    function retrieve_image(jobid){
-        jQuery.getJSON(glylookup_webservice_url+ "retrieve?list_ids=" + encodeURIComponent(JSON.stringify([jobid])), {}, function (d){
-            var result = d[0];
-            var jobid = result.id
-
-            if (result.finished){
-                image_update(result.result)
             }
             else {
                 setTimeout(retrieve, 200, jobid);
@@ -787,18 +767,17 @@ if (document.getElementById("motif_match_real_time_para")){
     }
 
     function image_update(){
-        var image_ele_str = "<button style="float: right;" onclick="window.location.reload();">Clear</button>";
-        var encseq = encodeURIComponent(original_seq)
-        image_ele_str += "<img src='"+ (glymage_webservice_url + encseq) +"' style='display: block; margin-left: auto; margin-right: auto; '>";
-        var seq = "<div><div style="width: 80%; margin: 0 auto;" class="smwpre">"+original_seq+"</div></div>";
+        
+        var imgtask = JSON.stringify({"developer_email": prefix+"@glyomics.org", "seq": original_seq,
+                                     "notation": "snfg", "display": "extended", "image_format": "png"});
+        jQuery.post(glymage_webservice_url+ "submit", {"task": imgtask}, function (d){
+            var jobid = d[0].id;
+            var image_ele_str = "<button style="float: right;" onclick="window.location.reload();">Clear</button>";
+            image_ele_str += "<img src='"+ glymage_webservice_url + "getimage?list_id=" + jobid + "' style='display: block; margin-left: auto; margin-right: auto; '>";
+            var seq = "<div><div style="width: 80%; margin: 0 auto;" class="smwpre">"+original_seq+"</div></div>";
+            queryGlycanEle.innerHTML = image_ele_str + seq;
+        },"json");
 
-        queryGlycanEle.innerHTML = image_ele_str + seq;
     }
-
-
-
-
-
-
 
 }

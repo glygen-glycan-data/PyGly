@@ -1,13 +1,7 @@
 {{Motif
-|prefname=O-Fucose
-|name=O-Fucose
-O-Fucose Core 2
-O-Fucose Core EGF Type
-|keyword=O-glycan classification
-|aglycon=Ser/Thr
-|redend=true
-|alignment=Core
 |accession=001021
+|aglycon=Ser/Thr
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -18,6 +12,12 @@ LIN
 1:1o(3+1)2d
 2:2d(2+1)3n
 |glytoucan=G85661BQ
+|keyword=O-glycan classification
+|name=O-Fucose
+O-Fucose Core 2
+O-Fucose Core EGF Type
+|prefname=O-Fucose
+|redend=true
 |sameas=GM.G85661BQ
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1221m-1x_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2/a3-b1
 }}

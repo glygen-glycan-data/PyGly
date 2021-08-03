@@ -1,0 +1,25 @@
+{{Motif
+|prefname=GAG Core 5a
+|name=GAG Core 5a
+|keyword=GAG classification
+|aglycon=Other
+|redend=true
+|alignment=Core
+|accession=001209
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-x:x
+2s:sulfate
+3s:n-acetyl
+4b:x-dgal-HEX-1:5
+5s:sulfate
+LIN
+1:1o(-1+1)2n
+2:1d(2+1)3n
+3:1o(-1+1)4d
+4:4o(-1+1)5n
+|glytoucan=G83003HU
+|sameas=GM.G83003HU
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2122h_2*NCC/3{{=}}O_?*OSO/3{{=}}O/3{{=}}O{{!)}}{{!(}}a2112h-1x_1-5_?*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a?-b1
+}}

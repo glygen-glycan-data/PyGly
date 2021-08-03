@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import os
 import sys
@@ -419,7 +419,6 @@ json.dump(relationship_red_end_topology_navigator, open(non_file_path, "w"), sor
 
 
 # Load topology cluster attribute
-w = GlycoMotifWiki()
 AllMotifpageid = AllMotif.id
 for m in w.itermotif():
 

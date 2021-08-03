@@ -1,10 +1,7 @@
 {{Motif
-|prefname=N-glycan core, bisected
-|name=N-glycan core, bisected
-|aglycon=Asn
-|redend=true
-|alignment=Core
 |accession=001023
+|aglycon=Asn
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -27,6 +24,9 @@ LIN
 7:7d(2+1)8n
 8:5o(6+1)9d
 |glytoucan=G68395LV
+|name=N-glycan core, bisected
+|prefname=N-glycan core, bisected
+|redend=true
 |sameas=GM.G68395LV
 |wurcs=WURCS{{=}}2.0/4,6,5/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-2-4/a4-b1_b4-c1_c3-d1_c4-e1_c6-f1
 }}

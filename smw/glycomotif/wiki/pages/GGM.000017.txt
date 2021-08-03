@@ -1,13 +1,7 @@
 {{Motif
-|prefname=Fucosylated LDN
-|name=Fucosylated LDN
-LDNF
-|keyword=LacdiNAc;N,N'-diacetyllactosediamine
-|aglycon=R
-|redend=false
-|alignment=Substructure
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nyame et al. (2000) Antibody responses to the fucosylated LacdiNAc glycan antigen in Schistosoma ...
 |accession=000017
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -22,6 +16,12 @@ LIN
 3:1o(4+1)4d
 4:4d(2+1)5n
 |glytoucan=G02240AO
+|keyword=LacdiNAc;N,N'-diacetyllactosediamine
+|name=Fucosylated LDN
+LDNF
+|prefname=Fucosylated LDN
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nyame et al. (2000) Antibody responses to the fucosylated LacdiNAc glycan antigen in Schistosoma ...
 |sameas=CCRC.000017,GD.R000209,GDC.000017,GDH.000089,GDV.000067,GE.EP0151,GM.G02240AO,UCM.000089
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3/a3-b1_a4-c1
 }}

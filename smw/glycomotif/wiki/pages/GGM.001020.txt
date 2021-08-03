@@ -1,13 +1,7 @@
 {{Motif
-|prefname=O-Fucose
-|name=O-Fucose
-O-Fucose Core 1
-O-Fucose Core Thrombospondin Type 1
-|keyword=O-glycan classification
-|aglycon=Ser/Thr
-|redend=true
-|alignment=Core
 |accession=001020
+|aglycon=Ser/Thr
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -16,6 +10,12 @@ O-Fucose Core Thrombospondin Type 1
 LIN
 1:1o(3+1)2d
 |glytoucan=G08324ZK
+|keyword=O-glycan classification
+|name=O-Fucose
+O-Fucose Core 1
+O-Fucose Core Thrombospondin Type 1
+|prefname=O-Fucose
+|redend=true
 |sameas=GM.G08324ZK
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1221m-1x_1-5{{!)}}{{!(}}a2122h-1b_1-5{{!)}}/1-2/a3-b1
 }}

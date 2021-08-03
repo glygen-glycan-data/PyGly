@@ -1,13 +1,7 @@
 {{Motif
-|prefname=Type 2 LN2
-|name=Type 2 LN2
-i antigen
-|keyword=LacNAc;N-acetyllactosamine;N-acetyllactosamine type 2
-|aglycon=R
-|redend=false
-|alignment=Substructure
-|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Miyake et al. (1989) Human IgG3 monoclonal antibody directed to an unbranched repeating type ...;Watanabe et al. (1979) Characterization of a blood group I-active ganglioside. Structural requirements for ...
 |accession=000002
+|aglycon=R
+|alignment=Substructure
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -24,6 +18,12 @@ LIN
 4:4d(2+1)5n
 5:4o(4+1)6d
 |glytoucan=G00058MO
+|keyword=LacNAc;N-acetyllactosamine;N-acetyllactosamine type 2
+|name=Type 2 LN2
+i antigen
+|prefname=Type 2 LN2
+|redend=false
+|reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Miyake et al. (1989) Human IgG3 monoclonal antibody directed to an unbranched repeating type ...;Watanabe et al. (1979) Characterization of a blood group I-active ganglioside. Structural requirements for ...
 |sameas=GD.R000225,GDB.002171,GDC.000002,GDH.000156,GDV.000045,GE.EP0139,GM.G00058MO,GTC.G00058MO,UCM.000156
 |wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2/a4-b1_b3-c1_c4-d1
 }}
