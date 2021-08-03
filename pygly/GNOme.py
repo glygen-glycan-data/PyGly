@@ -443,7 +443,7 @@ class GNOme(GNOmeAPI):
 
 
 from . alignment import GlycanSubsumption, GlycanEqual, GlycanEqualWithWURCSCheck
-from . Monosaccharide import Anomer
+from . Monosaccharide import Anomer, Substituent
 from . GlycanResource import GlyTouCan, GlyCosmos
 from . manipulation import Topology, Composition, BaseComposition
 
@@ -2211,12 +2211,15 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
 
         }
 
+
+
+
 class IncompleteScore:
 
     def __init__(self):
         pass
 
-    def monoscore(self, m):
+    def monoscore(self, m, subst_list):
         res = 0.0
         anomer = m.anomer()
         config = m.config()
@@ -2244,10 +2247,28 @@ class IncompleteScore:
         if stem == None or None in stem:
             res += 2
 
-        if superclass == None:
-            res += 2
+        #if superclass == None:
+        #    res += 2
 
-        res = res # max 10
+        subst_score_total = 0.
+        for sl in m.substituent_links():
+            subst = sl.child()
+
+            if subst.name() == Substituent.nAcetyl or\
+                    (subst.name() == Substituent.nglycolyl and sl.parent().superclass() == 9):
+
+                subst_score_total += 2
+                if sl.parent_pos() == None:
+                    res += 2
+                else:
+                    l = len(sl.parent_pos())
+                    if l > 1:
+                        res += 1
+
+                subst_list.remove(subst)
+
+
+        res = res / 8 * 10
         return res
 
     def linksimplescore(self, l):
@@ -2256,7 +2277,6 @@ class IncompleteScore:
         cp = l.child_pos()
         pt = l.parent_type()
         ct = l.child_type()
-        und = (not l.instantiated())
 
         if pp != None:
             if len(pp) > 1:
@@ -2277,7 +2297,7 @@ class IncompleteScore:
             res += 2
         # print pp, cp, pt, ct, und
 
-        res = res / 8 * 10 # scale from 8 to 10
+        res = res / 8. * 10 # scale from 8 to 10
         return res
 
 
@@ -2287,8 +2307,6 @@ class IncompleteScore:
         return 0
 
     def score(self, g):
-
-        assert not g.repeated()
 
         monos = list(g.all_nodes())
         total_mono = len(monos)
@@ -2306,8 +2324,10 @@ class IncompleteScore:
         link_score_total  = 10.0 * (total_mono - 1)
 
         for m in monos:
-            mono_score_result += self.monoscore(m)
+            mono_score_result += self.monoscore(m, allsubst)
 
+        linkage_simple_parameter_weight = 0.65
+        linkage_undetermined_weight = 1 - linkage_simple_parameter_weight
         if len(und_parent_links) == total_mono:
             # Basecomp...
             link_score_result = 10.0 * (total_mono - 1)
@@ -2315,17 +2335,17 @@ class IncompleteScore:
             for ls in und_parent_links + det_parent_links:
 
                 if len(ls) == 1:
-                    link_score_result += self.linksimplescore(ls[0]) * 0.25
+                    link_score_result += self.linksimplescore(ls[0]) * linkage_simple_parameter_weight
 
                 elif len(ls) > 1:
                     parent_link_scores = []
                     for pl in ls:
-                        s = self.linksimplescore(pl) * 0.25
+                        s = self.linksimplescore(pl) * linkage_simple_parameter_weight
                         parent_link_scores.append(s)
 
                     ave = sum(parent_link_scores) / len(parent_link_scores)
                     und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
-                    s = ave + 7.5 * und_ratio
+                    s = ave + 10*linkage_undetermined_weight * und_ratio
                     link_score_result += s
 
                 else:
@@ -2343,30 +2363,40 @@ class IncompleteScore:
             link_score_total += 5
 
             if len(pl) == 1:
-                link_score_result += self.linksimplescore(pl[0]) * 0.125
+                link_score_result += self.linksimplescore(pl[0]) * linkage_simple_parameter_weight/2
 
             elif len(pl) > 1:
 
                 parent_link_scores = []
                 for pl0 in pl:
-                    s = self.linksimplescore(pl0) * 0.125
+                    s = self.linksimplescore(pl0) * linkage_simple_parameter_weight/2
                     parent_link_scores.append(s)
 
                 ave = sum(parent_link_scores) / len(parent_link_scores)
                 und_ratio = (float(len(parent_link_scores)-1) / (total_mono))
-                s = ave + 3.75 * und_ratio
+                s = ave + 5*linkage_undetermined_weight * und_ratio
                 link_score_result += s
 
             else:
                 link_score_result += 5.0
 
 
-        if link_score_total ==0:
-            if link_score_result != 0:
+        if link_score_total == 0:
+            if link_score_result !=  0:
                 raise RuntimeError
             link_score_total = 1
 
-        res = mono_score_result/mono_score_total * 0.35 + link_score_result/link_score_total * 0.65
+
+        monosaccharide_weight = 1 / (1 + 4. / (5 * linkage_simple_parameter_weight))
+        monosaccharide_weight = linkage_simple_parameter_weight / (1 + linkage_simple_parameter_weight)
+        linkage_weight = 1 - monosaccharide_weight
+
+        #
+        #v1 = 2./8 * monosaccharide_weight
+        #v2 = 2./8 * linkage_simple_parameter_weight * linkage_weight
+        #print monosaccharide_weight, linkage_weight, v1, v2
+
+        res = mono_score_result/mono_score_total * monosaccharide_weight + link_score_result/link_score_total * linkage_weight
         #print mono_score_result / mono_score_total, link_score_result / link_score_total
         res = int(res * 10000)
         return res
