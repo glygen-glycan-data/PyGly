@@ -72,7 +72,7 @@ class WebServiceResource(GlycanResource):
             if thetype == "JSON":
                 response = json.loads(response)
             elif thetype == "CSV":
-                response = csv.DictReader(StringIO(unicode(response)))
+                response = csv.DictReader(StringIO(response.decode(encoding='ascii',errors='ignore')))
             return response
 
         self.set_method("query_"+str(name), _query)

@@ -11,7 +11,7 @@ class GlyTouCanTS(TripleStoreResource):
 
     endpt = "http://ts.glytoucan.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
-    verbose = True
+    # verbose = True
     cachefile = ".gtc.cache"
     # usecache = True
     # prefetch = True
