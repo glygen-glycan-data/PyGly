@@ -11,7 +11,7 @@ class GlyTouCanTS(TripleStoreResource):
 
     endpt = "http://ts.glytoucan.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
-    # verbose = True
+    verbose = True
     cachefile = ".gtc.cache"
     # usecache = True
     # prefetch = True
@@ -216,7 +216,7 @@ class GlyTouCanTS(TripleStoreResource):
 
     def allhashedseq(self):
         for row in self.query_hashedseq():
-            yield row['hash'],row['seq'],row['accession']
+            yield row['hash'],row['seq'],row['accession'],row['error']
 
     def gethashedseq(self,hash=None,seq=None):
         # we can lookup with hash or seq
@@ -225,11 +225,8 @@ class GlyTouCanTS(TripleStoreResource):
         if hash != None:
             thehash=hash
         for row in self.query_hashedseq(hash=thehash):
-            if hash == None:
-                return row['hash'],row['accession']
-            if seq == None:
-                return row['hash'],row['accession']
-        return None,None
+            return row['hash'],row['accession'],row['error']
+        return None,None,None
 
     def gettaxa(self,accession):
         for row in self.query_taxonomy(accession=accession):

@@ -37,7 +37,7 @@ for i in range(len(args)-1,-1,-1):
         kwargs[k] = v
         del args[i]
 result = method(*args,**kwargs)
-if isinstance(result,str) or not hasattr(result,'__iter__'):
+if isinstance(result,str) or not hasattr(result,'__iter__') or isinstance(result,tuple):
     if not isinstance(result,list) and not isinstance(result,tuple):
         result = [ result ]
     print(("\t".join(map(tostr,result))))
