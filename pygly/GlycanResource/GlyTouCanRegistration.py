@@ -24,9 +24,9 @@ class GlyTouCanRegistration(GlycanResource):
     apikey = None
     opener = None
 
-    def __init__(self,**kw):
+    def __init__(self,user=None,apikey=None,**kw):
         super(GlyTouCanRegistration,self).__init__(**kw)
-        self.setup()
+        self.setup(user,apikey)
     
     def getcredentials(self):
 
@@ -59,9 +59,9 @@ class GlyTouCanRegistration(GlycanResource):
         if user == None:
             user, apikey = self.getcredentials()
         self.opener = build_opener(HTTPSHandler(),HTTPHandler())
-	# print(('%s:%s'%(user, apikey)).encode('utf8'))
+	print(('%s:%s'%(user, apikey)).encode('utf8'))
         self.basicauthhdr =  "Basic %s"%(base64.b64encode(('%s:%s'%(user, apikey)).encode('utf8')),) 
-	# print(self.basicauthhdr)
+	print(self.basicauthhdr)
 
     def register(self, sequence):
         params = json.dumps(dict(sequence=sequence))
