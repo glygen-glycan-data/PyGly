@@ -74,12 +74,15 @@ class GlyTouCanRegistration(GlycanResource):
         try:
             self.wait()
             response = json.loads(self.opener.open(req).read())
+            print(response, file=sys.stderr)
             if response['status'].split()[0] == '202':
                 return str(response['message'])
-            print(response, file=sys.stderr)
+            return response
         except HTTPError as e:
             print(str(e), file=sys.stderr)
+            return str(e)
         except (ValueError, IOError) as e:
             traceback.print_exc()
+            return traceback.format_exc()
         return None
 
