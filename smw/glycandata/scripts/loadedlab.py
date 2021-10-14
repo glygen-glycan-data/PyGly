@@ -95,7 +95,7 @@ for g in accessions():
             g.set_annotation(value=mw,
                              property='UnderivitizedMW',
                              source='EdwardsLab', type='MolWt')
-    except KeyError:
+    except (KeyError,ValueError):
 	pass
     except:
         traceback.print_exc()
@@ -106,7 +106,7 @@ for g in accessions():
             g.set_annotation(value=pmw,
                              property='PermethylatedMW',
                              source='EdwardsLab', type='MolWt')
-    except KeyError:
+    except (KeyError,ValueError):
         pass
     except:
         traceback.print_exc()
@@ -115,26 +115,40 @@ for g in accessions():
     hasmonosaccharides = set()
     try: 
 	if glycan:
-            comp = glycan.iupac_composition()
-            comp1 = glycan.iupac_composition(floating_substituents=False)
+	    if not glycan.repeated():
+                comp = glycan.iupac_composition()
+                comp1 = glycan.iupac_composition(floating_substituents=False)
+		comp2 = defaultdict(int)
+		comp3 = defaultdict(int)
+            else:
+                comp = glycan.iupac_composition(repeat_times=1)
+                comp1 = glycan.iupac_composition(repeat_times=1,floating_substituents=False)
+                comp2 = glycan.iupac_composition(repeat_times=2)
+                comp3 = glycan.iupac_composition(repeat_times=2,floating_substituents=False)
+		for key in comp2:
+		    comp2[key] -= comp[key]
+		for key in comp3:
+		    comp3[key] -= comp1[key]
 	else:
 	    comp = {}
 	    comp1 = {}
+	    comp2 = defaultdict(int)
+	    comp3 = defaultdict(int)
 	for ckey,count in comp.items():
             if count > 0 and not ckey.startswith('_'):
 		if ckey=='Count':
-		    g.set_annotation(value=count,
+		    g.set_annotation(value=(count if comp2[ckey] == 0 else str(count)+"+"),
 		         property='MonosaccharideCount',
 		         source='EdwardsLab',type='MonosaccharideCount')
 		else:
-	            g.set_annotation(value=count,
+	            g.set_annotation(value=(count if comp2[ckey] == 0 else str(count)+"+"),
 		        property=ckey+'Count',
 		        source='EdwardsLab',type='MonosaccharideCount')
 		    hasmonosaccharides.add(ckey)
 	for ckey,count in comp1.items():
 	    if count > 0 and not ckey.startswith('_') and ckey != "Count":
 		if ckey.endswith('+aldi'):
-		    g.set_annotation(value=count,
+		    g.set_annotation(value=(count if comp3[ckey] == 0 else str(count)+"+"),
 			property=ckey+"Count",
 			source='EdwardsLab',type='MonosaccharideCount')
 		    hasmonosaccharides.add(ckey)

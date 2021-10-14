@@ -11,8 +11,8 @@ class GWBFormat(object):
 	if not isinstance(glystr,basestring):
 	    glystr = self.fmt.toStr(glycan)
         writer = GWBFormatter(glystr)
-	seq = writer().strip()
-	if seq.startswith("Exception"):
+	seq = writer().splitlines()[-1].strip()
+	if "Exception" in seq or "org.glycoinfo" in seq:
 	    return None
         return seq
         

@@ -146,14 +146,10 @@ for m in iterglycan():
 	for taxid in map(int,an.get('value')):
 	    taxidanns[taxid].add((source,sid))
 
-    comp = defaultdict(int)
-    for an in m.annotations(type="MonosaccharideCount"):
-	prop = an.get('property')
-	if prop.endswith('Count'):
-	    prop = prop[:-5]
-	if prop == "Monosaccharide":
-	    prop = "Count"
-	comp[prop] = int(an.get('value'))
+    hasmono = defaultdict(lambda: False)
+    if m.has_annotations(property="HasMonosaccharide"):
+        for mono in m.get_annotation_values(property="HasMonosaccharide"):
+	    hasmono[mono] = True
 
     try:
         glycantype = m.get_annotation_value(property="GlycanType",source='EdwardsLab', type='Classification')
@@ -174,11 +170,11 @@ for m in iterglycan():
 		    evidence.add(ec('dirns',source,taxid))
         direct = False
 	if sp == 'human':
-            if len(evidence) > 0 and (glycantype != "N-linked" or comp['Xyl'] == 0) and comp['NeuGc'] == 0 and comp['Alt'] == 0:
+            if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['NeuGc'] and not hasmono['Alt']:
 	        evidence.add(ec('noXylAltNeuGc'))
 		direct = True
 	elif sp in ('mouse','rat'):
-    	    if len(evidence) > 0 and (glycantype != "N-linked" or comp['Xyl'] == 0) and comp['Alt'] == 0:
+    	    if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
 	        evidence.add(ec('noXylAlt'))
                 direct = True
 	else:

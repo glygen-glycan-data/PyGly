@@ -1,0 +1,13 @@
+PREFIX glycandata: <http://glyomics.org/glycandata#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?accession ?monosaccharide
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann glycandata:hasglycan ?glycan .
+  ?ann glycandata:type "Structure" . 
+  ?ann glycandata:source "EdwardsLab" . 
+  ?ann glycandata:value ?monosaccharide .
+  ?ann glycandata:property "HasMonosaccharide"
+}
+ORDER BY ?accession ?monosaccharide

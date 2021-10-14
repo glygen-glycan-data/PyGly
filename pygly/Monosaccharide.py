@@ -646,6 +646,9 @@ class Monosaccharide(Node):
                 yield l.child()
 		seen_subst.add(l.child())
 
+    def substituent_count(self):
+	return sum(1 for _ in self.substituents())
+
     def add_substituent(self,sub,**kw):
         if isinstance(sub,Substituent):
             l = SubLinkage(child=sub,parent=self,**kw)
@@ -659,11 +662,12 @@ class Monosaccharide(Node):
         return len(self._substituent_links) > 0
 
     def is_nacetylated(self):
-        sl = self.substituents()
-        if len(sl) != 1:
-            return False
-        s = iter(sl).next()
-        return s.isNAc()
+	firstsub = None
+	for i,s in enumerate(self.substituents()):
+	    if i > 0:
+		return False
+            firstsub = s
+        return firstsub != None and firstsub.isNAc()
 
     def has_non_nacetyl_substituents(self):
         for s in self.substituents():

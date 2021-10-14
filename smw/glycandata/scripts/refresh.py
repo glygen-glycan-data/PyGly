@@ -9,7 +9,7 @@ if len(sys.argv) > 1:
 
   if sys.argv[1] == "-":
 
-    for p in w.iterpages(exclude_categories=['Glycan','Annotation']):
+    for p in w.iterpages(exclude_categories=['Glycan']):
       print >>sys.stderr, p.name
       w.refresh(p)
 
@@ -27,9 +27,6 @@ if len(sys.argv) > 1:
 
 else:
 
-  for p in w.iterpages(include_categories=['Annotation']):
-    print >>sys.stderr, p.name
-    w.refresh(p)
   for p in w.iterpages(include_categories=['Glycan']):
     print >>sys.stderr, p.name
     w.refresh(p)

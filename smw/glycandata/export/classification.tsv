@@ -147,6 +147,8 @@ G00219VH	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
 G00219VH	GlycanType	O-linked	GlycoMotif	GGM.001009
 G00221CZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G00221CZ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G00222MO	GlycanSubtype	O-linked core 2	Subsumption	G21385AQ
+G00222MO	GlycanType	O-linked	Subsumption	G21385AQ
 G00227RN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G00227RN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G00227RN	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -445,8 +447,8 @@ G00670OT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G00670OT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G00673KJ	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
 G00673KJ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
-G00682IE	GlycanSubtype	O-linked core 1	Subsumption	G00031MO
-G00682IE	GlycanType	O-linked	Subsumption	G00031MO
+G00682IE	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
+G00682IE	GlycanType	O-linked	GlycoMotif	GGM.001005
 G00688XN	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G00688XN	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G00691NS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -1010,9 +1012,9 @@ G01505GJ	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G32417JV
 G01505GJ	GlycanType	Glycosphingolipid	Subsumption	G19017MP
 G01506GC	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G01506GC	GlycanType	N-linked	GlycoMotif	GGM.001022
-G01510MQ	GlycanSubtype	N-linked complex	Subsumption	G04743RS
-G01510MQ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G04743RS
-G01510MQ	GlycanType	N-linked	Subsumption	G04743RS
+G01510MQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G01510MQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G01510MQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G01514YB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G01514YB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G01514YB	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -1023,6 +1025,8 @@ G01521YU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G01521YU	GlycanType	N-linked	GlycoMotif	GGM.001004
 G01525UQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G01525UQ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G01532FF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G01532FF	GlycanType	O-linked	GlycoMotif	GGM.001007
 G01534TU	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
 G01534TU	GlycanType	O-linked	GlycoMotif	GGM.001006
 G01535VC	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -1128,6 +1132,8 @@ G01682GA	GlycanType	N-linked	GlycoMotif	GGM.001004
 G01685IB	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G01685IB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G01685IB	GlycanType	N-linked	GlycoMotif	GGM.001004
+G01698AR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G01698AR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G01698QO	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G01698QO	GlycanType	N-linked	GlycoMotif	GGM.001022
 G01699OT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -1263,6 +1269,8 @@ G01875VS	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G01875VS	GlycanType	O-linked	GlycoMotif	GGM.001005
 G01877XT	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G01877XT	GlycanType	O-linked	GlycoMotif	GGM.001005
+G01879YS	GlycanSubtype	O-linked O-mannose	Subsumption	G50166FV
+G01879YS	GlycanType	O-linked	Subsumption	G50166FV
 G01883MR	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G14636AG
 G01883MR	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G14636AG
 G01883MR	GlycanSubtype	N-linked complex	Subsumption	G11129ZK
@@ -1647,6 +1655,9 @@ G02460JI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G02460JI	GlycanType	O-linked	GlycoMotif	GGM.001007
 G02463PA	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G02463PA	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
+G02469EJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G02469EJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G02469EJ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G02470WS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G02470WS	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G02470WS	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -1956,6 +1967,8 @@ G02972KK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G02972KK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G02985MG	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G02985MG	GlycanType	O-linked	GlycoMotif	GGM.001005
+G02990AF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G02990AF	GlycanType	O-linked	GlycoMotif	GGM.001007
 G03003KR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G03003KR	GlycanType	O-linked	GlycoMotif	GGM.001008
 G03004PD	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -1987,6 +2000,8 @@ G03027LH	GlycanType	N-linked	Subsumption	G04719BG
 G03031PQ	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G00601UG
 G03031PQ	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G08662MT
 G03031PQ	GlycanType	Glycosphingolipid	Subsumption	G00601UG
+G03036FD	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
+G03036FD	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G03042EN	GlycanSubtype	O-linked core 2	Subsumption	G47486YB
 G03042EN	GlycanSubtype	O-linked core 3	Subsumption	G72736BF
 G03042EN	GlycanSubtype	O-linked core 6	Subsumption	G72736BF
@@ -2102,6 +2117,8 @@ G03195HW	GlycanType	N-linked	GlycoMotif	GGM.001001
 G03196WF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G03196WF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G03196WF	GlycanType	N-linked	GlycoMotif	GGM.001004
+G03200OR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G03200OR	GlycanType	O-linked	GlycoMotif	GGM.001007
 G03203II	GlycanType	N-linked	GlycoMotif	GGM.001001
 G03207XQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G03207XQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -2124,6 +2141,10 @@ G03231HO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G03231HO	GlycanType	N-linked	GlycoMotif	GGM.001004
 G03246MY	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G03246MY	GlycanType	N-linked	GlycoMotif	GGM.001022
+G03246MZ	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G03246MZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G03246MZ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G03246MZ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G03249KD	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G03249KD	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G03249KD	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -2213,6 +2234,10 @@ G03412UM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G03412UM	GlycanType	O-linked	GlycoMotif	GGM.001007
 G03414KZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G03414KZ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G03416EW	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G03416EW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G03416EW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G03416EW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G03425VF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G03425VF	GlycanType	O-linked	GlycoMotif	GGM.001007
 G03430DD	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -2635,6 +2660,10 @@ G03937RS	GlycanType	O-linked	Subsumption	G07068RQ
 G03941LE	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G03941LE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G03941LE	GlycanType	N-linked	GlycoMotif	GGM.001004
+G03944IG	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G03944IG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G03944IG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G03944IG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G03948RW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G77310FC
 G03948RW	GlycanSubtype	N-linked bisected	Subsumption	G74966SW
 G03948RW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G74966SW
@@ -3016,6 +3045,8 @@ G04501IZ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G04501IZ	GlycanType	N-linked	GlycoMotif	GGM.001025
 G04503IF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G04503IF	GlycanType	O-linked	GlycoMotif	GGM.001008
+G04505IS	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G04505IS	GlycanType	O-linked	GlycoMotif	GGM.001007
 G04508HC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G04508HC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G04508HC	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -3265,6 +3296,10 @@ G04811EI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G04811EI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G04812DZ	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
 G04812DZ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
+G04813ME	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G04813ME	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G04813ME	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G04813ME	GlycanType	N-linked	GlycoMotif	GGM.001004
 G04816EV	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
 G04816EV	GlycanType	N-linked	GlycoMotif	GGM.001001
 G04820IN	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -3546,6 +3581,8 @@ G05247AF	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G05247AF	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G05247AF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G05247AF	GlycanType	N-linked	GlycoMotif	GGM.001004
+G05252QE	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G05252QE	GlycanType	O-linked	GlycoMotif	GGM.001007
 G05253EZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G05253EZ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G05253EZ	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -4259,6 +4296,17 @@ G06335JR	GlycanSubtype	N-linked bisected	Subsumption	G30644AZ
 G06335JR	GlycanSubtype	N-linked complex	Subsumption	G13976WV
 G06335JR	GlycanSubtype	N-linked core-fucosylated	Subsumption	G13976WV
 G06335JR	GlycanType	N-linked	Subsumption	G13976WV
+G06337UR	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G03819SO
+G06337UR	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G15528IU
+G06337UR	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02559YM
+G06337UR	GlycanSubtype	N-linked bisected	Subsumption	G02559YM
+G06337UR	GlycanSubtype	N-linked complex	Subsumption	G16536EO
+G06337UR	GlycanSubtype	N-linked core-fucosylated	Subsumption	G02559YM
+G06337UR	GlycanSubtype	O-linked core 1	Subsumption	G03989SP
+G06337UR	GlycanSubtype	O-linked core 2	Subsumption	G31858VW
+G06337UR	GlycanType	Glycosphingolipid	Subsumption	G03819SO
+G06337UR	GlycanType	N-linked	Subsumption	G02559YM
+G06337UR	GlycanType	O-linked	Subsumption	G03989SP
 G06339MJ	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001010
 G06339MJ	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001016
 G06339MJ	GlycanType	O-linked	GlycoMotif	GGM.001010
@@ -5956,6 +6004,9 @@ G08959VO	GlycanSubtype	N-linked complex	Subsumption	G02198VW
 G08959VO	GlycanType	N-linked	Subsumption	G02198VW
 G08961BG	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
 G08961BG	GlycanType	O-linked	GlycoMotif	GGM.001019
+G08979EC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G08979EC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G08979EC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G08981WF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G08981WF	GlycanType	N-linked	GlycoMotif	GGM.001004
 G08986LI	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -6365,9 +6416,9 @@ G09568CS	GlycanType	O-linked	Subsumption	G10816YX
 G09568JT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G09568JT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G09571HJ	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
-G09571HJ	GlycanSubtype	N-linked complex	Subsumption	G87505EW
+G09571HJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G09571HJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
-G09571HJ	GlycanType	N-linked	GlycoMotif	GGM.001023
+G09571HJ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G09575SG	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001015
 G09575SG	GlycanType	O-linked	GlycoMotif	GGM.001015
 G09576QH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -6534,9 +6585,9 @@ G09781FH	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G09781FH	GlycanType	O-linked	GlycoMotif	GGM.001007
 G09782JM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G09782JM	GlycanType	N-linked	GlycoMotif	GGM.001004
-G09782NR	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G09782NR	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G09782NR	GlycanType	N-linked	Subsumption	G01730TA
+G09782NR	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G09782NR	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G09782NR	GlycanType	N-linked	Subsumption	G01510MQ
 G09786SL	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G09786SL	GlycanType	O-linked	GlycoMotif	GGM.001007
 G09793SQ	GlycanSubtype	N-linked bisected	Subsumption	G65022XW
@@ -6723,6 +6774,9 @@ G10034LM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G10034LM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G10038UY	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G10038UY	GlycanType	N-linked	GlycoMotif	GGM.001002
+G10039CR	GlycanSubtype	N-linked bisected	Subsumption	G65284HT
+G10039CR	GlycanSubtype	N-linked complex	Subsumption	G11165BC
+G10039CR	GlycanType	N-linked	Subsumption	G11165BC
 G10040DS	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G10040DS	GlycanType	N-linked	GlycoMotif	GGM.001002
 G10048AP	GlycanSubtype	N-linked complex	Subsumption	G07842DQ
@@ -6874,11 +6928,11 @@ G10256JP	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G14510SZ
 G10256JP	GlycanSubtype	N-linked bisected	Subsumption	G00695JO
 G10256JP	GlycanSubtype	N-linked complex	Subsumption	G01010HW
 G10256JP	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00695JO
-G10256JP	GlycanSubtype	O-linked core 2	Subsumption	G23280NH
+G10256JP	GlycanSubtype	O-linked core 2	Subsumption	G05252QE
 G10256JP	GlycanSubtype	O-linked core 3	Subsumption	G33364OS
 G10256JP	GlycanSubtype	O-linked core 6	Subsumption	G54971WD
 G10256JP	GlycanType	N-linked	Subsumption	G00695JO
-G10256JP	GlycanType	O-linked	Subsumption	G23280NH
+G10256JP	GlycanType	O-linked	Subsumption	G05252QE
 G10258MC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G10258MC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G10259IA	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
@@ -7571,6 +7625,8 @@ G11249YX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G11249YX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G11253PI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G11253PI	GlycanType	O-linked	GlycoMotif	GGM.001007
+G11253UV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G11253UV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G11254FL	GlycanType	N-linked	GlycoMotif	GGM.001001
 G11254WI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G11254WI	GlycanType	O-linked	GlycoMotif	GGM.001008
@@ -7736,8 +7792,8 @@ G11504VM	GlycanType	O-linked	Subsumption	G57130XG
 G11509RN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G11509RN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G11509RN	GlycanType	N-linked	GlycoMotif	GGM.001004
-G11519KU	GlycanSubtype	O-linked core 2	Subsumption	G11198HA
-G11519KU	GlycanType	O-linked	Subsumption	G11198HA
+G11519KU	GlycanSubtype	O-linked core 2	Subsumption	G03200OR
+G11519KU	GlycanType	O-linked	Subsumption	G03200OR
 G11524CG	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G11524CG	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G11528MV	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -7783,9 +7839,9 @@ G11562WQ	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G11562WQ	GlycanType	N-linked	GlycoMotif	GGM.001022
 G11568WU	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02519WY
 G11568WU	GlycanSubtype	N-linked bisected	Subsumption	G04528DU
-G11568WU	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G11568WU	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G11568WU	GlycanType	N-linked	Subsumption	G01730TA
+G11568WU	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G11568WU	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G11568WU	GlycanType	N-linked	Subsumption	G01510MQ
 G11571JL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G11571JL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G11571JL	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -8795,10 +8851,10 @@ G13074BX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G13074BX	GlycanType	N-linked	GlycoMotif	GGM.001024
 G13074YF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G13074YF	GlycanType	N-linked	GlycoMotif	GGM.001004
-G13075LE	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03605AV
-G13075LE	GlycanSubtype	N-linked complex	Subsumption	G03605AV
-G13075LE	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03605AV
-G13075LE	GlycanType	N-linked	Subsumption	G03605AV
+G13075LE	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03416EW
+G13075LE	GlycanSubtype	N-linked complex	Subsumption	G03416EW
+G13075LE	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03416EW
+G13075LE	GlycanType	N-linked	Subsumption	G03416EW
 G13083WY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G13083WY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G13089IH	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -9487,10 +9543,10 @@ G14053SI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G14053SI	GlycanType	O-linked	GlycoMotif	GGM.001007
 G14057PK	GlycanSubtype	O-linked O-mannose	Subsumption	G44528IE
 G14057PK	GlycanType	O-linked	Subsumption	G44528IE
-G14066AX	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G10716SX
-G14066AX	GlycanSubtype	N-linked complex	Subsumption	G10716SX
-G14066AX	GlycanSubtype	N-linked core-fucosylated	Subsumption	G10716SX
-G14066AX	GlycanType	N-linked	Subsumption	G10716SX
+G14066AX	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G14066AX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G14066AX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G14066AX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G14068WV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G14068WV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G14068WV	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -9539,10 +9595,10 @@ G14138XB	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G14138XB	GlycanType	O-linked	GlycoMotif	GGM.001008
 G14140AC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G09397UV
 G14140AC	GlycanType	N-linked	Subsumption	G09397UV
-G14148KI	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G76478FT
-G14148KI	GlycanSubtype	N-linked complex	Subsumption	G18219CJ
-G14148KI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18219CJ
-G14148KI	GlycanType	N-linked	Subsumption	G18219CJ
+G14148KI	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G14148KI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G14148KI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G14148KI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G14156JX	GlycanSubtype	N-linked complex	Subsumption	G33322SU
 G14156JX	GlycanType	N-linked	Subsumption	G33322SU
 G14159WA	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
@@ -9692,7 +9748,7 @@ G14360WF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G27067YD
 G14360WF	GlycanType	N-linked	Subsumption	G27067YD
 G14366OZ	GlycanSubtype	N-linked complex	Subsumption	G07696SY
 G14366OZ	GlycanType	N-linked	Subsumption	G07696SY
-G14367JE	GlycanSubtype	N-linked complex	Subsumption	G04743RS
+G14367JE	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
 G14367JE	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G14367JE	GlycanType	N-linked	GlycoMotif	GGM.001024
 G14368ET	GlycanSubtype	N-linked bisected	Subsumption	G11641YE
@@ -9883,6 +9939,9 @@ G14634AH	GlycanType	N-linked	GlycoMotif	GGM.001022
 G14636AG	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G14636AG	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G14636AG	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
+G14641ER	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G14641ER	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G14641ER	GlycanType	N-linked	GlycoMotif	GGM.001023
 G14645TH	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001012
 G14645TH	GlycanType	O-linked	GlycoMotif	GGM.001012
 G14646AF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -10726,6 +10785,8 @@ G15843XU	GlycanSubtype	N-linked bisected	Subsumption	G00565QJ
 G15843XU	GlycanSubtype	N-linked complex	Subsumption	G00030MO
 G15843XU	GlycanSubtype	N-linked truncated	Subsumption	G05254OQ
 G15843XU	GlycanType	N-linked	Subsumption	G00030MO
+G15849KC	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G15849KC	GlycanType	O-linked	GlycoMotif	GGM.001007
 G15859AU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G15859AU	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G15859AU	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -10792,6 +10853,7 @@ G15971GJ	GlycanType	N-linked	Subsumption	G00221CZ
 G15972DM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G15972DM	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G15972DM	GlycanType	N-linked	GlycoMotif	GGM.001004
+G15977KS	GlycanType	N-linked	GlycoMotif	GGM.001001
 G15985WB	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G15985WB	GlycanType	O-linked	GlycoMotif	GGM.001005
 G15987FM	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -10830,6 +10892,8 @@ G16063EF	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G16063EF	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G16078YI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G16078YI	GlycanType	O-linked	GlycoMotif	GGM.001008
+G16079QO	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G16079QO	GlycanType	O-linked	GlycoMotif	GGM.001007
 G16080BW	GlycanSubtype	O-linked O-fucose	GlycoMotif	GGM.001021
 G16080BW	GlycanType	O-linked	GlycoMotif	GGM.001021
 G16080RN	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
@@ -11065,10 +11129,10 @@ G16415EL	GlycanType	O-linked	GlycoMotif	GGM.001007
 G16426GN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G16426GN	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16428WL	GlycanType	N-linked	Subsumption	G85088SK
-G16433RL	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G10716SX
-G16433RL	GlycanSubtype	N-linked complex	Subsumption	G10716SX
-G16433RL	GlycanSubtype	N-linked core-fucosylated	Subsumption	G10716SX
-G16433RL	GlycanType	N-linked	Subsumption	G10716SX
+G16433RL	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G16433RL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G16433RL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G16433RL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16437LH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G16437LH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16440EL	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
@@ -11117,10 +11181,10 @@ G16473NN	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G16473NN	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G16475AJ	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G16475AJ	GlycanType	N-linked	GlycoMotif	GGM.001022
-G16479OO	GlycanSubtype	O-linked core 2	Subsumption	G02442MH
+G16479OO	GlycanSubtype	O-linked core 2	Subsumption	G01532FF
 G16479OO	GlycanSubtype	O-linked core 3	Subsumption	G48092WH
 G16479OO	GlycanSubtype	O-linked core 6	Subsumption	G48092WH
-G16479OO	GlycanType	O-linked	Subsumption	G02442MH
+G16479OO	GlycanType	O-linked	Subsumption	G01532FF
 G16481GK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G16481GK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G16481GK	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -11203,10 +11267,10 @@ G16600BL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16603TV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G16603TV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G16603TV	GlycanType	N-linked	GlycoMotif	GGM.001004
-G16606QC	GlycanSubtype	N-linked bisected	Subsumption	G71013KY
-G16606QC	GlycanSubtype	N-linked complex	Subsumption	G71013KY
-G16606QC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G71013KY
-G16606QC	GlycanType	N-linked	Subsumption	G71013KY
+G16606QC	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G16606QC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G16606QC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G16606QC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16607BW	GlycanSubtype	O-linked core 2	Subsumption	G30774XC
 G16607BW	GlycanType	O-linked	Subsumption	G30774XC
 G16609LV	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
@@ -11368,6 +11432,10 @@ G16864TR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16867BL	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G02910KB
 G16867BL	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G02910KB
 G16867BL	GlycanType	Glycosphingolipid	Subsumption	G02910KB
+G16869MJ	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G16869MJ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G16869MJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G16869MJ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G16871EW	GlycanType	N-linked	GlycoMotif	GGM.001027
 G16873EF	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G16873EF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -11470,6 +11538,9 @@ G17023GV	GlycanSubtype	N-linked complex	Subsumption	G04291AF
 G17023GV	GlycanSubtype	N-linked hybrid	Subsumption	G24000JV
 G17023GV	GlycanSubtype	N-linked truncated	Subsumption	G01506GC
 G17023GV	GlycanType	N-linked	Subsumption	G01506GC
+G17028OG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G17028OG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G17028OG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G17029BL	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G17029BL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G17029BL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -12196,6 +12267,7 @@ G18132YR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G18132YR	GlycanType	O-linked	GlycoMotif	GGM.001008
 G18140CR	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G18140CR	GlycanType	N-linked	GlycoMotif	GGM.001022
+G18140UF	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G50709EY
 G18140UF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01181WH
 G18140UF	GlycanSubtype	N-linked hybrid	Subsumption	G01181WH
 G18140UF	GlycanType	N-linked	Subsumption	G01181WH
@@ -12322,6 +12394,9 @@ G18356CD	GlycanSubtype	N-linked bisected	Subsumption	G03021PP
 G18356CD	GlycanSubtype	N-linked complex	Subsumption	G06477TD
 G18356CD	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03021PP
 G18356CD	GlycanType	N-linked	Subsumption	G03021PP
+G18359FA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G18359FA	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G18359FA	GlycanType	N-linked	GlycoMotif	GGM.001003
 G18360DA	GlycanType	N-linked	GlycoMotif	GGM.001001
 G18361EE	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G18361EE	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
@@ -12353,6 +12428,8 @@ G18415LI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G05562XX
 G18415LI	GlycanType	N-linked	Subsumption	G05562XX
 G18420EN	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G18420EN	GlycanType	N-linked	GlycoMotif	GGM.001023
+G18434DQ	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G18434DQ	GlycanType	O-linked	GlycoMotif	GGM.001019
 G18442LT	GlycanSubtype	O-linked core 2	Subsumption	G08131WI
 G18442LT	GlycanSubtype	O-linked core 3	Subsumption	G17077YF
 G18442LT	GlycanSubtype	O-linked core 6	Subsumption	G91151HA
@@ -12510,6 +12587,10 @@ G18640IS	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G18640IS	GlycanType	N-linked	GlycoMotif	GGM.001003
 G18641IV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G18641IV	GlycanType	N-linked	GlycoMotif	GGM.001004
+G18641OW	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G18641OW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G18641OW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G18641OW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G18643HE	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G18643HE	GlycanType	O-linked	GlycoMotif	GGM.001007
 G18647KC	GlycanSubtype	N-linked complex	Subsumption	G10034LM
@@ -12746,6 +12827,10 @@ G18963DQ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G18963DQ	GlycanType	O-linked	GlycoMotif	GGM.001007
 G18980FQ	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G18980FQ	GlycanType	N-linked	GlycoMotif	GGM.001022
+G18981TN	GlycanSubtype	O-linked core 2	Subsumption	G04505IS
+G18981TN	GlycanType	O-linked	Subsumption	G04505IS
+G18982QA	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G18982QA	GlycanType	O-linked	GlycoMotif	GGM.001007
 G18993ZZ	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G18993ZZ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G18994KL	GlycanSubtype	O-linked core 3	Subsumption	G11647UD
@@ -12906,6 +12991,10 @@ G19289JN	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G19289JN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G19289JN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G19289JN	GlycanType	N-linked	GlycoMotif	GGM.001004
+G19292KY	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G19292KY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G19292KY	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G19292KY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G19294RF	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G19294RF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G19294RF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -12959,6 +13048,8 @@ G19379ID	GlycanSubtype	O-linked core 2	Subsumption	G06404BM
 G19379ID	GlycanType	Glycosphingolipid	Subsumption	G57733ZF
 G19379ID	GlycanType	N-linked	Subsumption	G02280UH
 G19379ID	GlycanType	O-linked	Subsumption	G02985MG
+G19382GM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G19382GM	GlycanType	O-linked	GlycoMotif	GGM.001007
 G19382JE	GlycanType	N-linked	GlycoMotif	GGM.001001
 G19382QM	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G19382QM	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
@@ -12993,6 +13084,8 @@ G19429IT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G19430NR	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G19430NR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G19430NR	GlycanType	N-linked	GlycoMotif	GGM.001004
+G19430QH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G19430QH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G19434QF	GlycanSubtype	N-linked bisected	Subsumption	G09748TP
 G19434QF	GlycanSubtype	N-linked complex	Subsumption	G06191GU
 G19434QF	GlycanType	N-linked	Subsumption	G06191GU
@@ -13575,6 +13668,8 @@ G20309KB	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G12729CF
 G20309KB	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G26663JT
 G20309KB	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G26663JT
 G20309KB	GlycanType	Glycosphingolipid	Subsumption	G12729CF
+G20310DM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G20310DM	GlycanType	O-linked	GlycoMotif	GGM.001007
 G20312EM	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G00012RZ
 G20312EM	GlycanSubtype	N-linked bisected	Subsumption	G00012RZ
 G20312EM	GlycanSubtype	N-linked complex	Subsumption	G00012RZ
@@ -13689,10 +13784,10 @@ G20549ZT	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G41441JX
 G20549ZT	GlycanType	Glycosphingolipid	Subsumption	G41441JX
 G20551LK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G20551LK	GlycanType	N-linked	GlycoMotif	GGM.001004
-G20552DX	GlycanSubtype	N-linked bisected	Subsumption	G32808NL
-G20552DX	GlycanSubtype	N-linked complex	Subsumption	G32808NL
-G20552DX	GlycanSubtype	N-linked core-fucosylated	Subsumption	G32808NL
-G20552DX	GlycanType	N-linked	Subsumption	G32808NL
+G20552DX	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G20552DX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G20552DX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G20552DX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G20559VV	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G20559VV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G20559VV	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
@@ -13729,6 +13824,8 @@ G20593DD	GlycanType	Glycosphingolipid	Subsumption	G10818SM
 G20595AV	GlycanSubtype	O-linked core 5	Subsumption	G15144TI
 G20595AV	GlycanSubtype	O-linked core 7	Subsumption	G01753LJ
 G20595AV	GlycanType	O-linked	Subsumption	G01753LJ
+G20614HF	GlycanSubtype	N-linked complex	Subsumption	G01698AR
+G20614HF	GlycanType	N-linked	Subsumption	G01698AR
 G20621ZX	GlycanType	N-linked	GlycoMotif	GGM.001001
 G20624LQ	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
 G20624LQ	GlycanSubtype	N-linked paucimannose	GlycoMotif	GGM.001001
@@ -13847,6 +13944,10 @@ G20818VS	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G20818VS	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G20828MB	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G20828MB	GlycanType	O-linked	GlycoMotif	GGM.001008
+G20830HU	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G20830HU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G20830HU	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G20830HU	GlycanType	N-linked	GlycoMotif	GGM.001004
 G20841PR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G20841PR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G20841PR	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -14025,7 +14126,7 @@ G21118MX	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G21118MX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G21118MX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G21122WA	GlycanType	N-linked	Subsumption	G01174QS
-G21124ZI	GlycanSubtype	N-linked complex	Subsumption	G01730TA
+G21124ZI	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
 G21124ZI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G21124ZI	GlycanType	N-linked	GlycoMotif	GGM.001024
 G21130MT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -14170,10 +14271,10 @@ G21335DW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G21335DW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G21342EB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G21342EB	GlycanType	N-linked	GlycoMotif	GGM.001024
-G21349JZ	GlycanSubtype	O-linked core 2	Subsumption	G02442MH
+G21349JZ	GlycanSubtype	O-linked core 2	Subsumption	G01532FF
 G21349JZ	GlycanSubtype	O-linked core 3	Subsumption	G48092WH
 G21349JZ	GlycanSubtype	O-linked core 6	Subsumption	G48092WH
-G21349JZ	GlycanType	O-linked	Subsumption	G02442MH
+G21349JZ	GlycanType	O-linked	Subsumption	G01532FF
 G21354HK	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G21354HK	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G21359LU	GlycanType	N-linked	GlycoMotif	GGM.001001
@@ -14512,6 +14613,8 @@ G21898KP	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G21898KP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G21900DW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G21900DW	GlycanType	O-linked	GlycoMotif	GGM.001007
+G21901DC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G21901DC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G21905ZO	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G21905ZO	GlycanType	O-linked	GlycoMotif	GGM.001007
 G21916IS	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -14706,6 +14809,14 @@ G22256RY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G22256RY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G22261TH	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G22261TH	GlycanType	O-linked	GlycoMotif	GGM.001007
+G22267GY	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03962UN
+G22267GY	GlycanSubtype	N-linked bisected	Subsumption	G01367ZS
+G22267GY	GlycanSubtype	N-linked complex	Subsumption	G01300OI
+G22267GY	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01300OI
+G22267GY	GlycanSubtype	N-linked hybrid	Subsumption	G01367ZS
+G22267GY	GlycanSubtype	O-linked core 2	Subsumption	G26700PN
+G22267GY	GlycanType	N-linked	Subsumption	G01300OI
+G22267GY	GlycanType	O-linked	Subsumption	G26700PN
 G22267WV	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G22267WV	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G22267WV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -15073,6 +15184,8 @@ G22787WJ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G22787WJ	GlycanType	O-linked	GlycoMotif	GGM.001007
 G22793FR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G22793FR	GlycanType	O-linked	GlycoMotif	GGM.001007
+G22793TW	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
+G22793TW	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G22795QB	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G22795QB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G22795QB	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -15213,6 +15326,8 @@ G23028IO	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00553AN
 G23028IO	GlycanType	N-linked	Subsumption	G00553AN
 G23032DB	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G23032DB	GlycanType	O-linked	GlycoMotif	GGM.001008
+G23048PE	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G23048PE	GlycanType	O-linked	GlycoMotif	GGM.001007
 G23052ZQ	GlycanSubtype	O-linked core 1	Subsumption	G00031MO
 G23052ZQ	GlycanType	O-linked	Subsumption	G00031MO
 G23060KN	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -15280,6 +15395,8 @@ G23132GK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G23132GK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G23134MD	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G23134MD	GlycanType	N-linked	GlycoMotif	GGM.001004
+G23142MQ	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G23142MQ	GlycanType	O-linked	GlycoMotif	GGM.001019
 G23142YD	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G23142YD	GlycanType	N-linked	GlycoMotif	GGM.001024
 G23143NO	GlycanType	N-linked	Subsumption	G03510DR
@@ -15364,6 +15481,8 @@ G23261ZT	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G23261ZT	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G23262BU	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G23262BU	GlycanType	O-linked	GlycoMotif	GGM.001008
+G23262LC	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G23262LC	GlycanType	O-linked	GlycoMotif	GGM.001007
 G23265QJ	GlycanType	N-linked	GlycoMotif	GGM.001001
 G23280NH	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G23280NH	GlycanType	O-linked	GlycoMotif	GGM.001007
@@ -15375,6 +15494,7 @@ G23285KY	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G23285KY	GlycanType	O-linked	GlycoMotif	GGM.001007
 G23290TL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G23290TL	GlycanType	N-linked	GlycoMotif	GGM.001004
+G23293FT	GlycanSubtype	O-linked core 2	Subsumption	G61119KT
 G23293FT	GlycanSubtype	O-linked core 3	Subsumption	G17810KS
 G23293FT	GlycanSubtype	O-linked core 4	Subsumption	G01282UD
 G23293FT	GlycanSubtype	O-linked core 6	Subsumption	G46014PJ
@@ -15603,10 +15723,10 @@ G23626NI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G23626NI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G23633EE	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G23633EE	GlycanType	O-linked	GlycoMotif	GGM.001008
-G23634MW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G75903TQ
-G23634MW	GlycanSubtype	N-linked complex	Subsumption	G75903TQ
-G23634MW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G75903TQ
-G23634MW	GlycanType	N-linked	Subsumption	G75903TQ
+G23634MW	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G23634MW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G23634MW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G23634MW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G23647FB	GlycanSubtype	O-linked core 4	Subsumption	G49390AT
 G23647FB	GlycanType	O-linked	Subsumption	G49390AT
 G23647WB	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -15663,10 +15783,10 @@ G23719VF	GlycanSubtype	N-linked bisected	Subsumption	G08537LY
 G23719VF	GlycanSubtype	N-linked complex	Subsumption	G00900AZ
 G23719VF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00900AZ
 G23719VF	GlycanSubtype	N-linked truncated	Subsumption	G49172QD
-G23719VF	GlycanSubtype	O-linked core 2	Subsumption	G13292XY
+G23719VF	GlycanSubtype	O-linked core 2	Subsumption	G02990AF
 G23719VF	GlycanSubtype	O-linked core 4	Subsumption	G14555ST
 G23719VF	GlycanType	N-linked	Subsumption	G00900AZ
-G23719VF	GlycanType	O-linked	Subsumption	G13292XY
+G23719VF	GlycanType	O-linked	Subsumption	G02990AF
 G23721CA	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G23721CA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G23721CA	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -15905,6 +16025,13 @@ G24095BS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G24103KC	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G24103KC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G24103KC	GlycanType	N-linked	GlycoMotif	GGM.001004
+G24103VF	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G11134WS
+G24103VF	GlycanSubtype	N-linked bisected	Subsumption	G14047MI
+G24103VF	GlycanSubtype	N-linked complex	Subsumption	G01680CB
+G24103VF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01680CB
+G24103VF	GlycanSubtype	O-linked core 2	Subsumption	G05278GV
+G24103VF	GlycanType	N-linked	Subsumption	G01680CB
+G24103VF	GlycanType	O-linked	Subsumption	G05278GV
 G24107UL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G24107UL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G24111IY	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
@@ -16685,6 +16812,8 @@ G25194SR	GlycanSubtype	O-linked core 6	Subsumption	G79308EQ
 G25194SR	GlycanType	O-linked	Subsumption	G04557PM
 G25210JB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G25210JB	GlycanType	N-linked	GlycoMotif	GGM.001004
+G25213RP	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
+G25213RP	GlycanType	O-linked	GlycoMotif	GGM.001005
 G25216KM	GlycanSubtype	N-linked core-fucosylated	Subsumption	G33774XC
 G25216KM	GlycanType	N-linked	Subsumption	G33774XC
 G25216QA	GlycanSubtype	Glycosphingolipid globo series	GlycoMotif	GGM.001109
@@ -16846,6 +16975,8 @@ G25436EB	GlycanType	O-linked	GlycoMotif	GGM.001006
 G25443CX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G25443CX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G25443CX	GlycanType	N-linked	GlycoMotif	GGM.001004
+G25446AM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G25446AM	GlycanType	O-linked	GlycoMotif	GGM.001007
 G25451PN	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G04561MG
 G25451PN	GlycanSubtype	N-linked bisected	Subsumption	G07226DF
 G25451PN	GlycanSubtype	N-linked complex	Subsumption	G03136UJ
@@ -17018,6 +17149,8 @@ G25609YM	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G21170XT
 G25609YM	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18085UM
 G25609YM	GlycanSubtype	N-linked hybrid	Subsumption	G18085UM
 G25609YM	GlycanType	N-linked	Subsumption	G18085UM
+G25612EW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G25612EW	GlycanType	O-linked	GlycoMotif	GGM.001007
 G25612NR	GlycanType	N-linked	GlycoMotif	GGM.001001
 G25626YS	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G25626YS	GlycanType	O-linked	GlycoMotif	GGM.001005
@@ -17117,6 +17250,9 @@ G25764FB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G25764FB	GlycanType	N-linked	GlycoMotif	GGM.001004
 G25766ID	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001012
 G25766ID	GlycanType	O-linked	GlycoMotif	GGM.001012
+G25770CL	GlycanSubtype	N-linked bisected	Subsumption	G15191JE
+G25770CL	GlycanSubtype	N-linked core-fucosylated	Subsumption	G15191JE
+G25770CL	GlycanType	N-linked	Subsumption	G15191JE
 G25776KR	GlycanSubtype	Glycosphingolipid muco series	Subsumption	G29213NK
 G25776KR	GlycanType	Glycosphingolipid	Subsumption	G29213NK
 G25780HH	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
@@ -17133,6 +17269,8 @@ G25796EC	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
 G25802HB	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G25802HB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G25802HB	GlycanType	N-linked	GlycoMotif	GGM.001004
+G25807NR	GlycanSubtype	O-linked O-mannose	Subsumption	G50166FV
+G25807NR	GlycanType	O-linked	Subsumption	G50166FV
 G25810YB	GlycanSubtype	Glycosphingolipid gala series	Subsumption	G73401YE
 G25810YB	GlycanSubtype	O-linked O-mannose	Subsumption	G52805ZP
 G25810YB	GlycanSubtype	O-linked core 1	Subsumption	G03847RK
@@ -17255,10 +17393,10 @@ G25987BV	GlycanSubtype	N-linked bisected	Subsumption	G08537LY
 G25987BV	GlycanSubtype	N-linked complex	Subsumption	G00900AZ
 G25987BV	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00900AZ
 G25987BV	GlycanSubtype	N-linked truncated	Subsumption	G49172QD
-G25987BV	GlycanSubtype	O-linked core 2	Subsumption	G13292XY
+G25987BV	GlycanSubtype	O-linked core 2	Subsumption	G02990AF
 G25987BV	GlycanSubtype	O-linked core 4	Subsumption	G14555ST
 G25987BV	GlycanType	N-linked	Subsumption	G00900AZ
-G25987BV	GlycanType	O-linked	Subsumption	G13292XY
+G25987BV	GlycanType	O-linked	Subsumption	G02990AF
 G25993OX	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G02149VR
 G25993OX	GlycanType	Glycosphingolipid	Subsumption	G02149VR
 G26006IS	GlycanSubtype	N-linked complex	Subsumption	G47058MH
@@ -17452,6 +17590,8 @@ G26255AN	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G26255AN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G26255AN	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G26255AN	GlycanType	N-linked	GlycoMotif	GGM.001003
+G26262OW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G26262OW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G26264HC	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G26264HC	GlycanType	N-linked	GlycoMotif	GGM.001002
 G26264SQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -17576,6 +17716,9 @@ G26403SG	GlycanSubtype	N-linked complex	Subsumption	G00598SQ
 G26403SG	GlycanSubtype	O-linked core 2	Subsumption	G19811YA
 G26403SG	GlycanType	N-linked	Subsumption	G00598SQ
 G26403SG	GlycanType	O-linked	Subsumption	G19811YA
+G26407DP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G26407DP	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G26407DP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G26414FF	GlycanSubtype	O-linked core 3	Subsumption	G19656TZ
 G26414FF	GlycanSubtype	O-linked core 6	Subsumption	G19656TZ
 G26414FF	GlycanType	O-linked	Subsumption	G19656TZ
@@ -17617,9 +17760,9 @@ G26452XA	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001015
 G26452XA	GlycanType	O-linked	GlycoMotif	GGM.001015
 G26469QK	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02519WY
 G26469QK	GlycanSubtype	N-linked bisected	Subsumption	G02086EJ
-G26469QK	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G26469QK	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G26469QK	GlycanType	N-linked	Subsumption	G01730TA
+G26469QK	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G26469QK	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G26469QK	GlycanType	N-linked	Subsumption	G01510MQ
 G26471XA	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G26471XA	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G26472EX	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
@@ -17769,6 +17912,10 @@ G26667EO	GlycanType	O-linked	GlycoMotif	GGM.001007
 G26684GN	GlycanType	N-linked	GlycoMotif	GGM.001001
 G26690QG	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G26690QG	GlycanType	O-linked	GlycoMotif	GGM.001007
+G26693IX	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G26693IX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G26693IX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G26693IX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G26695FN	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G26695FN	GlycanType	N-linked	GlycoMotif	GGM.001022
 G26696QO	GlycanSubtype	O-linked core 2	Subsumption	G10199RS
@@ -18217,6 +18364,15 @@ G27320YK	GlycanType	N-linked	GlycoMotif	GGM.001022
 G27327EI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G27327EI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G27327EI	GlycanType	N-linked	GlycoMotif	GGM.001004
+G27336AY	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G14510SZ
+G27336AY	GlycanSubtype	N-linked bisected	Subsumption	G00695JO
+G27336AY	GlycanSubtype	N-linked complex	Subsumption	G02250EI
+G27336AY	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00695JO
+G27336AY	GlycanSubtype	O-linked core 2	Subsumption	G05252QE
+G27336AY	GlycanSubtype	O-linked core 3	Subsumption	G33364OS
+G27336AY	GlycanSubtype	O-linked core 6	Subsumption	G54971WD
+G27336AY	GlycanType	N-linked	Subsumption	G00695JO
+G27336AY	GlycanType	O-linked	Subsumption	G05252QE
 G27342PV	GlycanSubtype	N-linked core-fucosylated	Subsumption	G09397UV
 G27342PV	GlycanType	N-linked	Subsumption	G09397UV
 G27345TX	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
@@ -18642,15 +18798,23 @@ G28062BI	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G28062BI	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G28062BI	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G28082CI	GlycanSubtype	N-linked bisected	Subsumption	G09446VC
-G28082CI	GlycanSubtype	N-linked complex	Subsumption	G00176HZ
-G28082CI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00176HZ
-G28082CI	GlycanType	N-linked	Subsumption	G00176HZ
+G28082CI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G28082CI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G28082CI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G28083XW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G28083XW	GlycanType	O-linked	GlycoMotif	GGM.001008
 G28090UW	GlycanType	N-linked	GlycoMotif	GGM.001001
+G28094LG	GlycanSubtype	N-linked complex	Subsumption	G41223DK
+G28094LG	GlycanSubtype	N-linked core-fucosylated	Subsumption	G41223DK
+G28094LG	GlycanSubtype	O-linked core 3	Subsumption	G23870PO
+G28094LG	GlycanSubtype	O-linked core 6	Subsumption	G98279FP
+G28094LG	GlycanType	N-linked	Subsumption	G41223DK
+G28094LG	GlycanType	O-linked	Subsumption	G23870PO
 G28096RS	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G22732RT
 G28096RS	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G07517TD
 G28096RS	GlycanType	Glycosphingolipid	Subsumption	G07517TD
+G28099RQ	GlycanSubtype	N-linked complex	Subsumption	G01698AR
+G28099RQ	GlycanType	N-linked	Subsumption	G01698AR
 G28101LR	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G28101LR	GlycanType	N-linked	GlycoMotif	GGM.001022
 G28103WK	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -18971,9 +19135,10 @@ G28541PG	GlycanSubtype	N-linked bisected	Subsumption	G07218NO
 G28541PG	GlycanSubtype	N-linked hybrid	Subsumption	G00281HB
 G28541PG	GlycanType	Glycosphingolipid	Subsumption	G09603GS
 G28541PG	GlycanType	N-linked	Subsumption	G00281HB
+G28543TT	GlycanSubtype	O-linked core 2	Subsumption	G23048PE
 G28543TT	GlycanSubtype	O-linked core 3	Subsumption	G30304IT
 G28543TT	GlycanSubtype	O-linked core 6	Subsumption	G42603IF
-G28543TT	GlycanType	O-linked	Subsumption	G30304IT
+G28543TT	GlycanType	O-linked	Subsumption	G23048PE
 G28550OD	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G28550OD	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G28550OD	GlycanType	N-linked	GlycoMotif	GGM.001024
@@ -19021,6 +19186,7 @@ G28635EM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G28637HB	GlycanSubtype	O-linked core 1	Subsumption	G62621XS
 G28637HB	GlycanSubtype	O-linked core 2	Subsumption	G01923FT
 G28637HB	GlycanType	O-linked	Subsumption	G01923FT
+G28640WB	GlycanSubtype	O-linked core 2	Subsumption	G61119KT
 G28640WB	GlycanSubtype	O-linked core 3	Subsumption	G17810KS
 G28640WB	GlycanSubtype	O-linked core 4	Subsumption	G01282UD
 G28640WB	GlycanSubtype	O-linked core 6	Subsumption	G46014PJ
@@ -19036,6 +19202,9 @@ G28659UB	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G28659UB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G28659UB	GlycanType	N-linked	GlycoMotif	GGM.001004
 G28663KH	GlycanType	N-linked	GlycoMotif	GGM.001001
+G28663QF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G28663QF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G28663QF	GlycanType	N-linked	GlycoMotif	GGM.001004
 G28665FP	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G28665FP	GlycanType	O-linked	GlycoMotif	GGM.001007
 G28677QR	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
@@ -19269,6 +19438,10 @@ G28960YA	GlycanType	O-linked	GlycoMotif	GGM.001013
 G28962GO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G28962GO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G28962GO	GlycanType	N-linked	GlycoMotif	GGM.001004
+G28974LC	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G28974LC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G28974LC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G28974LC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G28975MI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G28975MI	GlycanType	O-linked	GlycoMotif	GGM.001007
 G28975ZZ	GlycanSubtype	N-linked complex	Subsumption	G05151WT
@@ -19283,6 +19456,8 @@ G28989NC	GlycanSubtype	N-linked bisected	Subsumption	G00012RZ
 G28989NC	GlycanSubtype	N-linked complex	Subsumption	G00012RZ
 G28989NC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00012RZ
 G28989NC	GlycanType	N-linked	Subsumption	G00012RZ
+G28989XR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G28989XR	GlycanType	O-linked	GlycoMotif	GGM.001007
 G28997HJ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G28997HJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G28997HJ	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -19428,6 +19603,8 @@ G29185AG	GlycanSubtype	N-linked core-fucosylated	Subsumption	G05837QA
 G29185AG	GlycanType	N-linked	Subsumption	G05837QA
 G29188SG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G29188SG	GlycanType	N-linked	GlycoMotif	GGM.001004
+G29191MN	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G29191MN	GlycanType	O-linked	GlycoMotif	GGM.001019
 G29197GH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G29197GH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G29208SD	GlycanSubtype	O-linked core 1	Subsumption	G28616IZ
@@ -19701,11 +19878,11 @@ G29658JP	GlycanSubtype	Glycosphingolipid isoglobo series	GlycoMotif	GGM.001101
 G29658JP	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001101
 G29659GF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G29659GF	GlycanType	N-linked	GlycoMotif	GGM.001004
-G29666DI	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G41387DW
+G29666DI	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03944IG
 G29666DI	GlycanSubtype	N-linked bisected	Subsumption	G16546ZZ
-G29666DI	GlycanSubtype	N-linked complex	Subsumption	G08608DR
-G29666DI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G08608DR
-G29666DI	GlycanType	N-linked	Subsumption	G08608DR
+G29666DI	GlycanSubtype	N-linked complex	Subsumption	G03944IG
+G29666DI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03944IG
+G29666DI	GlycanType	N-linked	Subsumption	G03944IG
 G29676WX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G29676WX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G29676WX	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -19743,6 +19920,10 @@ G29728RE	GlycanType	N-linked	GlycoMotif	GGM.001004
 G29729BX	GlycanType	N-linked	GlycoMotif	GGM.001001
 G29729DB	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001010
 G29729DB	GlycanType	O-linked	GlycoMotif	GGM.001010
+G29731EF	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G29731EF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G29731EF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G29731EF	GlycanType	N-linked	GlycoMotif	GGM.001004
 G29734KE	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G29734KE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G29734KE	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -19865,8 +20046,8 @@ G29900GO	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G29900YC	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G29900YC	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G29905OR	GlycanType	N-linked	GlycoMotif	GGM.001001
-G29905YP	GlycanSubtype	O-linked core 2	Subsumption	G11198HA
-G29905YP	GlycanType	O-linked	Subsumption	G11198HA
+G29905YP	GlycanSubtype	O-linked core 2	Subsumption	G03200OR
+G29905YP	GlycanType	O-linked	Subsumption	G03200OR
 G29906QS	GlycanSubtype	O-linked core 2	Subsumption	G16904OH
 G29906QS	GlycanType	O-linked	Subsumption	G16904OH
 G29908ZA	GlycanSubtype	O-linked core 5	GlycoMotif	GGM.001014
@@ -19891,9 +20072,11 @@ G29948BS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G29948BS	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G29948BS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G29955AF	GlycanType	N-linked	GlycoMotif	GGM.001001
-G29964CE	GlycanSubtype	Glycosphingolipid globo series	Subsumption	G00061MO
-G29964CE	GlycanSubtype	Glycosphingolipid isoglobo series	Subsumption	G00012MO
-G29964CE	GlycanType	Glycosphingolipid	Subsumption	G00012MO
+G29956GF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G29956GF	GlycanType	O-linked	GlycoMotif	GGM.001007
+G29964CE	GlycanSubtype	Glycosphingolipid globo series	GlycoMotif	GGM.001109
+G29964CE	GlycanSubtype	Glycosphingolipid isoglobo series	GlycoMotif	GGM.001101
+G29964CE	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001101
 G29966WK	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
 G29966WK	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
 G29969FK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -20032,6 +20215,8 @@ G30190VQ	GlycanType	N-linked	GlycoMotif	GGM.001027
 G30202PY	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G30202PY	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G30202PY	GlycanType	N-linked	GlycoMotif	GGM.001003
+G30208WJ	GlycanSubtype	N-linked complex	Subsumption	G01698AR
+G30208WJ	GlycanType	N-linked	Subsumption	G01698AR
 G30209GK	GlycanSubtype	Glycosphingolipid globo series	GlycoMotif	GGM.001109
 G30209GK	GlycanSubtype	Glycosphingolipid isoglobo series	GlycoMotif	GGM.001101
 G30209GK	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001101
@@ -20597,6 +20782,15 @@ G31037WG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G31039KM	GlycanSubtype	Glycosphingolipid globo series	GlycoMotif	GGM.001109
 G31039KM	GlycanSubtype	Glycosphingolipid isoglobo series	GlycoMotif	GGM.001101
 G31039KM	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001101
+G31040BO	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G37476QB
+G31040BO	GlycanSubtype	N-linked bisected	Subsumption	G14809NR
+G31040BO	GlycanSubtype	N-linked complex	Subsumption	G03913NS
+G31040BO	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03913NS
+G31040BO	GlycanSubtype	N-linked truncated	Subsumption	G49172QD
+G31040BO	GlycanSubtype	O-linked core 2	Subsumption	G02990AF
+G31040BO	GlycanSubtype	O-linked core 4	Subsumption	G14555ST
+G31040BO	GlycanType	N-linked	Subsumption	G03913NS
+G31040BO	GlycanType	O-linked	Subsumption	G02990AF
 G31040SL	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G31040SL	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G31040SL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -20973,6 +21167,7 @@ G31679YU	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G31679YU	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G31679YU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G31679YU	GlycanType	N-linked	GlycoMotif	GGM.001004
+G31685JQ	GlycanSubtype	O-linked O-mannose	Subsumption	G61216ZY
 G31685JQ	GlycanSubtype	O-linked core 1	Subsumption	G01450RG
 G31685JQ	GlycanSubtype	O-linked core 2	Subsumption	G01453BU
 G31685JQ	GlycanSubtype	O-linked core 3	Subsumption	G00924FH
@@ -21265,6 +21460,9 @@ G32156DB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G32156DB	GlycanType	N-linked	GlycoMotif	GGM.001004
 G32156ZV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G32156ZV	GlycanType	N-linked	GlycoMotif	GGM.001024
+G32158XQ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G32158XQ	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G32158XQ	GlycanType	N-linked	GlycoMotif	GGM.001023
 G32165MO	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G32165MO	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G32167RW	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
@@ -21995,6 +22193,8 @@ G33271XM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G33271XM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G33275DG	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G33275DG	GlycanType	N-linked	GlycoMotif	GGM.001002
+G33278UL	GlycanSubtype	N-linked complex	Subsumption	G01698AR
+G33278UL	GlycanType	N-linked	Subsumption	G01698AR
 G33279YE	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G33279YE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G33279YE	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -22340,6 +22540,10 @@ G33792IQ	GlycanSubtype	N-linked bisected	Subsumption	G23470JO
 G33792IQ	GlycanSubtype	N-linked complex	Subsumption	G23470JO
 G33792IQ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G23470JO
 G33792IQ	GlycanType	N-linked	Subsumption	G23470JO
+G33797QF	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G33797QF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G33797QF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G33797QF	GlycanType	N-linked	GlycoMotif	GGM.001004
 G33802UM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G33802UM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G33803XN	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
@@ -22742,6 +22946,13 @@ G34495UB	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G34495UB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G34495UB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G34495UB	GlycanType	N-linked	GlycoMotif	GGM.001004
+G34495VW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02913ED
+G34495VW	GlycanSubtype	N-linked bisected	Subsumption	G49201II
+G34495VW	GlycanSubtype	N-linked complex	Subsumption	G02913ED
+G34495VW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G02913ED
+G34495VW	GlycanSubtype	O-linked core 2	Subsumption	G02150AC
+G34495VW	GlycanType	N-linked	Subsumption	G02913ED
+G34495VW	GlycanType	O-linked	Subsumption	G02150AC
 G34499SX	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G34499SX	GlycanType	N-linked	GlycoMotif	GGM.001002
 G34508UC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -23692,6 +23903,8 @@ G35941VN	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G35941VN	GlycanType	O-linked	GlycoMotif	GGM.001008
 G35946GZ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G35946GZ	GlycanType	O-linked	GlycoMotif	GGM.001007
+G35949CT	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G35949CT	GlycanType	O-linked	GlycoMotif	GGM.001007
 G35949WQ	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G35949WQ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G35949WQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -24162,6 +24375,9 @@ G36699PG	GlycanType	N-linked	GlycoMotif	GGM.001002
 G36701GV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G36701GV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G36701GV	GlycanType	N-linked	GlycoMotif	GGM.001004
+G36707KT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G36707KT	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G36707KT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G36712XC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G36712XC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G36721VM	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
@@ -24692,6 +24908,9 @@ G37562WX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G37562WX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G37563FN	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G37563FN	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
+G37565XR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G37565XR	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G37565XR	GlycanType	N-linked	GlycoMotif	GGM.001003
 G37570AP	GlycanSubtype	N-linked complex	Subsumption	G17964DY
 G37570AP	GlycanSubtype	N-linked core-fucosylated	Subsumption	G17964DY
 G37570AP	GlycanType	N-linked	Subsumption	G17964DY
@@ -25203,6 +25422,8 @@ G38508YT	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G38508YT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G38523ML	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G38523ML	GlycanType	N-linked	GlycoMotif	GGM.001022
+G38529AQ	GlycanSubtype	O-linked O-mannose	Subsumption	G23142MQ
+G38529AQ	GlycanType	O-linked	Subsumption	G23142MQ
 G38539SC	GlycanSubtype	O-linked core 1	Subsumption	G01203BZ
 G38539SC	GlycanType	O-linked	Subsumption	G01203BZ
 G38540XA	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
@@ -25773,6 +25994,8 @@ G39401OQ	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G39401OQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G39401OQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G39401OQ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G39407NE	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G39407NE	GlycanType	O-linked	GlycoMotif	GGM.001019
 G39407UA	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G39407UA	GlycanType	O-linked	GlycoMotif	GGM.001008
 G39407WQ	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -25993,6 +26216,10 @@ G39655AK	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G39655AK	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G39662GV	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G39662GV	GlycanType	N-linked	GlycoMotif	GGM.001002
+G39666ZK	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G39666ZK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G39666ZK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G39666ZK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G39668NE	GlycanSubtype	N-linked bisected	Subsumption	G44816NL
 G39668NE	GlycanSubtype	N-linked complex	Subsumption	G10563SE
 G39668NE	GlycanSubtype	N-linked core-fucosylated	Subsumption	G10563SE
@@ -26050,6 +26277,9 @@ G39809FW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G39810GC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G39810GC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G39810GC	GlycanType	N-linked	GlycoMotif	GGM.001004
+G39812HV	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G39812HV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G39812HV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G39813YP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G39813YP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G39818NQ	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
@@ -26176,7 +26406,7 @@ G39979VO	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G39979VO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G39979VO	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G39979VO	GlycanType	N-linked	GlycoMotif	GGM.001003
-G39988UV	GlycanSubtype	N-linked complex	Subsumption	G01730TA
+G39988UV	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
 G39988UV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G39988UV	GlycanType	N-linked	GlycoMotif	GGM.001024
 G39992DR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -26493,8 +26723,11 @@ G40461OS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G40472ES	GlycanSubtype	N-linked complex	Subsumption	G04699RP
 G40472ES	GlycanType	N-linked	Subsumption	G04699RP
 G40479PK	GlycanType	N-linked	GlycoMotif	GGM.001027
-G40480SU	GlycanSubtype	O-linked core 2	Subsumption	G11198HA
-G40480SU	GlycanType	O-linked	Subsumption	G11198HA
+G40480SU	GlycanSubtype	O-linked core 2	Subsumption	G03200OR
+G40480SU	GlycanType	O-linked	Subsumption	G03200OR
+G40480ZI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G40480ZI	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G40480ZI	GlycanType	N-linked	GlycoMotif	GGM.001003
 G40482NA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G40482NA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G40482NA	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -26518,6 +26751,8 @@ G40510IW	GlycanType	N-linked	GlycoMotif	GGM.001002
 G40513EI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G40513EI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G40513EI	GlycanType	N-linked	GlycoMotif	GGM.001004
+G40523QS	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
+G40523QS	GlycanType	O-linked	GlycoMotif	GGM.001005
 G40534LY	GlycanSubtype	N-linked bisected	Subsumption	G11010YY
 G40534LY	GlycanSubtype	N-linked complex	Subsumption	G11010YY
 G40534LY	GlycanType	N-linked	Subsumption	G11010YY
@@ -26823,6 +27058,8 @@ G40971VM	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G40971VM	GlycanType	N-linked	GlycoMotif	GGM.001022
 G40976PU	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G40976PU	GlycanType	O-linked	GlycoMotif	GGM.001007
+G40977CS	GlycanSubtype	N-linked complex	Subsumption	G01698AR
+G40977CS	GlycanType	N-linked	Subsumption	G01698AR
 G40980VP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G40980VP	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G40980VP	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -27131,6 +27368,8 @@ G41477DH	GlycanType	N-linked	GlycoMotif	GGM.001003
 G41485LK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G41485LK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G41485LK	GlycanType	N-linked	GlycoMotif	GGM.001004
+G41486OC	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G41486OC	GlycanType	O-linked	GlycoMotif	GGM.001019
 G41486SZ	GlycanType	N-linked	GlycoMotif	GGM.001001
 G41498BE	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G41498BE	GlycanType	O-linked	GlycoMotif	GGM.001005
@@ -27633,6 +27872,8 @@ G42239OO	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G42239OO	GlycanType	O-linked	GlycoMotif	GGM.001007
 G42240DE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G42240DE	GlycanType	N-linked	GlycoMotif	GGM.001004
+G42245KI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G42245KI	GlycanType	O-linked	GlycoMotif	GGM.001007
 G42247WE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G42247WE	GlycanType	N-linked	GlycoMotif	GGM.001004
 G42256QJ	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
@@ -28178,8 +28419,6 @@ G43040ZY	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G43040ZY	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G43048HN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G43048HN	GlycanType	N-linked	GlycoMotif	GGM.001024
-G43050FO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
-G43050FO	GlycanType	N-linked	GlycoMotif	GGM.001004
 G43053GW	GlycanSubtype	N-linked complex	Subsumption	G00995HW
 G43053GW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00995HW
 G43053GW	GlycanType	N-linked	Subsumption	G00995HW
@@ -28650,6 +28889,11 @@ G43709WM	GlycanSubtype	O-linked core 2	Subsumption	G09207SI
 G43709WM	GlycanType	Glycosphingolipid	Subsumption	G05022UB
 G43709WM	GlycanType	O-linked	Subsumption	G01877XT
 G43723RI	GlycanType	N-linked	Subsumption	G02244MC
+G43726KG	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G43726KG	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G43726KG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G43726KG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G43726KG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G43728NL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G43728NL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G43728SB	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
@@ -28840,6 +29084,9 @@ G44031UD	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G44031UD	GlycanType	N-linked	GlycoMotif	GGM.001004
 G44037MU	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G44037MU	GlycanType	O-linked	GlycoMotif	GGM.001008
+G44042BI	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G02946WF
+G44042BI	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G02946WF
+G44042BI	GlycanType	Glycosphingolipid	Subsumption	G02946WF
 G44043ZX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G44043ZX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G44043ZX	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -29106,6 +29353,8 @@ G44414DH	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G44414DH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G44414DH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G44414DH	GlycanType	N-linked	GlycoMotif	GGM.001004
+G44414IQ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G44414IQ	GlycanType	O-linked	GlycoMotif	GGM.001007
 G44440WV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G44440WV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G44444MB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -29265,6 +29514,8 @@ G44743WH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G44743WH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G44744UN	GlycanSubtype	O-linked core 2	Subsumption	G64450GG
 G44744UN	GlycanType	O-linked	Subsumption	G64450GG
+G44745DH	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G14876IZ
+G44745DH	GlycanType	Glycosphingolipid	Subsumption	G14876IZ
 G44746YX	GlycanSubtype	N-linked complex	Subsumption	G01010HW
 G44746YX	GlycanSubtype	N-linked core-fucosylated	Subsumption	G17804IQ
 G44746YX	GlycanType	N-linked	Subsumption	G01010HW
@@ -29411,9 +29662,9 @@ G44946WH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G44946WH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G44953PJ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02519WY
 G44953PJ	GlycanSubtype	N-linked bisected	Subsumption	G02086EJ
-G44953PJ	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G44953PJ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G44953PJ	GlycanType	N-linked	Subsumption	G01730TA
+G44953PJ	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G44953PJ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G44953PJ	GlycanType	N-linked	Subsumption	G01510MQ
 G44962ZM	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G44962ZM	GlycanType	N-linked	GlycoMotif	GGM.001003
 G44967LM	GlycanSubtype	O-linked core 1	Subsumption	G27967WE
@@ -29870,10 +30121,16 @@ G45631ZN	GlycanSubtype	N-linked core-fucosylated	Subsumption	G09877AJ
 G45631ZN	GlycanType	N-linked	Subsumption	G06930GL
 G45637XA	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G45637XA	GlycanType	O-linked	GlycoMotif	GGM.001005
+G45640DX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G45640DX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G45640DX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G45640VZ	GlycanSubtype	N-linked complex	Subsumption	G08062CY
 G45640VZ	GlycanType	N-linked	Subsumption	G08062CY
 G45643JS	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G45643JS	GlycanType	N-linked	GlycoMotif	GGM.001022
+G45656VV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G45656VV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G45656VV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G45660WC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G45660WC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G45661NA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -30096,6 +30353,8 @@ G45953IA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G45953IA	GlycanType	N-linked	GlycoMotif	GGM.001024
 G45957IW	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G45957IW	GlycanType	N-linked	GlycoMotif	GGM.001003
+G45957UA	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
+G45957UA	GlycanType	O-linked	GlycoMotif	GGM.001008
 G45972OV	GlycanSubtype	O-linked core 1	Subsumption	G10818TP
 G45972OV	GlycanSubtype	O-linked core 2	Subsumption	G05994BK
 G45972OV	GlycanSubtype	O-linked core 3	Subsumption	G15642UW
@@ -30521,6 +30780,8 @@ G46582AF	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G46582AF	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G46584GY	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G46584GY	GlycanType	N-linked	GlycoMotif	GGM.001002
+G46603AR	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
+G46603AR	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G46609ZR	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G46609ZR	GlycanType	O-linked	GlycoMotif	GGM.001005
 G46613JI	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
@@ -30617,6 +30878,8 @@ G46691LC	GlycanType	Glycosphingolipid	Subsumption	G02374CE
 G46691LC	GlycanType	N-linked	Subsumption	G00650AC
 G46691RV	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G46691RV	GlycanType	N-linked	GlycoMotif	GGM.001022
+G46700WH	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
+G46700WH	GlycanType	N-linked	GlycoMotif	GGM.001002
 G46703EI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G46703EI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G46703EI	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -31197,6 +31460,9 @@ G47554EG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G47554EG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G47557KS	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
 G47557KS	GlycanType	O-linked	GlycoMotif	GGM.001009
+G47562LV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G47562LV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G47562LV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G47565BL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G47565BL	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G47565BL	GlycanType	N-linked	GlycoMotif	GGM.001003
@@ -31505,6 +31771,15 @@ G48082DW	GlycanType	O-linked	GlycoMotif	GGM.001009
 G48092WH	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
 G48092WH	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001015
 G48092WH	GlycanType	O-linked	GlycoMotif	GGM.001009
+G48096LD	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G00706QN
+G48096LD	GlycanSubtype	N-linked bisected	Subsumption	G97570UX
+G48096LD	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00706QN
+G48096LD	GlycanSubtype	O-linked core 1	Subsumption	G10705PR
+G48096LD	GlycanSubtype	O-linked core 2	Subsumption	G06415PN
+G48096LD	GlycanSubtype	O-linked core 3	Subsumption	G81702BT
+G48096LD	GlycanSubtype	O-linked core 6	Subsumption	G81702BT
+G48096LD	GlycanType	N-linked	Subsumption	G00706QN
+G48096LD	GlycanType	O-linked	Subsumption	G06415PN
 G48109OV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G48109OV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G48109OV	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -31749,6 +32024,8 @@ G48527QM	GlycanType	N-linked	GlycoMotif	GGM.001022
 G48527XN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G48527XN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G48527XN	GlycanType	N-linked	GlycoMotif	GGM.001004
+G48533PM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G48533PM	GlycanType	O-linked	GlycoMotif	GGM.001007
 G48537BY	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G48537BY	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G48537BY	GlycanType	N-linked	GlycoMotif	GGM.001002
@@ -31897,9 +32174,9 @@ G48782NF	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G48782NF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G48782NF	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G48782NF	GlycanType	N-linked	GlycoMotif	GGM.001003
-G48789OQ	GlycanSubtype	N-linked complex	Subsumption	G01354KL
-G48789OQ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01354KL
-G48789OQ	GlycanType	N-linked	Subsumption	G01354KL
+G48789OQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G48789OQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G48789OQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G48791AO	GlycanSubtype	O-linked core 2	Subsumption	G05344UC
 G48791AO	GlycanType	O-linked	Subsumption	G05344UC
 G48793MR	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -32593,10 +32870,10 @@ G49874UX	GlycanSubtype	N-linked bisected	Subsumption	G14809NR
 G49874UX	GlycanSubtype	N-linked complex	Subsumption	G03913NS
 G49874UX	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03913NS
 G49874UX	GlycanSubtype	N-linked truncated	Subsumption	G49172QD
-G49874UX	GlycanSubtype	O-linked core 2	Subsumption	G13292XY
+G49874UX	GlycanSubtype	O-linked core 2	Subsumption	G02990AF
 G49874UX	GlycanSubtype	O-linked core 4	Subsumption	G14555ST
 G49874UX	GlycanType	N-linked	Subsumption	G03913NS
-G49874UX	GlycanType	O-linked	Subsumption	G13292XY
+G49874UX	GlycanType	O-linked	Subsumption	G02990AF
 G49878HW	GlycanSubtype	N-linked complex	Subsumption	G01304ZB
 G49878HW	GlycanType	N-linked	Subsumption	G01304ZB
 G49888UY	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -32669,6 +32946,10 @@ G49961MS	GlycanType	N-linked	GlycoMotif	GGM.001002
 G49961XO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G49961XO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G49961XO	GlycanType	N-linked	GlycoMotif	GGM.001004
+G49963FN	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G49963FN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G49963FN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G49963FN	GlycanType	N-linked	GlycoMotif	GGM.001004
 G49980RY	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G49980RY	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G49980RY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -32810,6 +33091,8 @@ G50165QT	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G50165QT	GlycanType	N-linked	GlycoMotif	GGM.001002
 G50166FA	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G50166FA	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
+G50166FV	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G50166FV	GlycanType	O-linked	GlycoMotif	GGM.001019
 G50178BS	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
 G50178BS	GlycanType	O-linked	GlycoMotif	GGM.001006
 G50181DP	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -33005,10 +33288,10 @@ G50425IY	GlycanType	O-linked	GlycoMotif	GGM.001008
 G50427EN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G50427EN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G50427EN	GlycanType	N-linked	GlycoMotif	GGM.001004
-G50427EO	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03605AV
-G50427EO	GlycanSubtype	N-linked complex	Subsumption	G03605AV
-G50427EO	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03605AV
-G50427EO	GlycanType	N-linked	Subsumption	G03605AV
+G50427EO	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03416EW
+G50427EO	GlycanSubtype	N-linked complex	Subsumption	G03416EW
+G50427EO	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03416EW
+G50427EO	GlycanType	N-linked	Subsumption	G03416EW
 G50430PB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G50430PB	GlycanType	N-linked	GlycoMotif	GGM.001004
 G50431EZ	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
@@ -33034,6 +33317,10 @@ G50462VS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G50474FI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G50474FI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G50474FI	GlycanType	N-linked	GlycoMotif	GGM.001004
+G50474QL	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G53232TN
+G50474QL	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18359FA
+G50474QL	GlycanSubtype	N-linked hybrid	Subsumption	G18359FA
+G50474QL	GlycanType	N-linked	Subsumption	G18359FA
 G50478SO	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G50478SO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G50478SO	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -33198,6 +33485,9 @@ G50707YR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G50707YR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G50708YO	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G50708YO	GlycanType	O-linked	GlycoMotif	GGM.001008
+G50709EY	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G50709EY	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G50709EY	GlycanType	N-linked	GlycoMotif	GGM.001003
 G50709IS	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
 G50709IS	GlycanType	O-linked	GlycoMotif	GGM.001006
 G50710KI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -33306,10 +33596,10 @@ G50849OF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G50849OF	GlycanType	O-linked	GlycoMotif	GGM.001008
 G50849VH	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G50849VH	GlycanType	O-linked	GlycoMotif	GGM.001005
-G50856PC	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03605AV
-G50856PC	GlycanSubtype	N-linked complex	Subsumption	G03605AV
-G50856PC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03605AV
-G50856PC	GlycanType	N-linked	Subsumption	G03605AV
+G50856PC	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03416EW
+G50856PC	GlycanSubtype	N-linked complex	Subsumption	G03416EW
+G50856PC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03416EW
+G50856PC	GlycanType	N-linked	Subsumption	G03416EW
 G50866KI	GlycanSubtype	Glycosphingolipid globo series	GlycoMotif	GGM.001109
 G50866KI	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001109
 G50869YE	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -33407,6 +33697,9 @@ G51024RU	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G51024RU	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G51024RU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G51024RU	GlycanType	N-linked	GlycoMotif	GGM.001004
+G51028ME	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G51028ME	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G51028ME	GlycanType	N-linked	GlycoMotif	GGM.001004
 G51034LA	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G51034LA	GlycanType	N-linked	GlycoMotif	GGM.001022
 G51045DL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -33903,7 +34196,7 @@ G51712ZZ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G51715FH	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G51715FH	GlycanType	N-linked	GlycoMotif	GGM.001003
 G51721SN	GlycanType	N-linked	GlycoMotif	GGM.001027
-G51722UJ	GlycanSubtype	N-linked complex	Subsumption	G01730TA
+G51722UJ	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
 G51722UJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G51722UJ	GlycanType	N-linked	GlycoMotif	GGM.001024
 G51727VL	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
@@ -33998,6 +34291,12 @@ G51883EC	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G51883EC	GlycanType	O-linked	GlycoMotif	GGM.001007
 G51890HE	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G51890HE	GlycanType	O-linked	GlycoMotif	GGM.001005
+G51890WS	GlycanSubtype	O-linked O-mannose	Subsumption	G61216ZY
+G51890WS	GlycanSubtype	O-linked core 1	Subsumption	G01450RG
+G51890WS	GlycanSubtype	O-linked core 2	Subsumption	G01453BU
+G51890WS	GlycanSubtype	O-linked core 3	Subsumption	G00924FH
+G51890WS	GlycanSubtype	O-linked core 6	Subsumption	G03877AD
+G51890WS	GlycanType	O-linked	Subsumption	G00924FH
 G51891DI	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G51891DI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G51891DI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -34213,6 +34512,11 @@ G52179YJ	GlycanType	O-linked	GlycoMotif	GGM.001007
 G52187WF	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G52187WF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G52187WF	GlycanType	N-linked	GlycoMotif	GGM.001004
+G52195TS	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02025MF
+G52195TS	GlycanSubtype	N-linked bisected	Subsumption	G02025MF
+G52195TS	GlycanSubtype	N-linked complex	Subsumption	G02025MF
+G52195TS	GlycanSubtype	N-linked core-fucosylated	Subsumption	G02025MF
+G52195TS	GlycanType	N-linked	Subsumption	G02025MF
 G52216BO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G52216BO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G52216BO	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -34420,6 +34724,11 @@ G52478HI	GlycanType	O-linked	Subsumption	G05002AF
 G52478RN	GlycanSubtype	N-linked bisected	Subsumption	G03627JT
 G52478RN	GlycanSubtype	N-linked complex	Subsumption	G00955WX
 G52478RN	GlycanType	N-linked	Subsumption	G00955WX
+G52481UT	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G32158XQ
+G52481UT	GlycanSubtype	N-linked bisected	Subsumption	G14641ER
+G52481UT	GlycanSubtype	N-linked complex	Subsumption	G39812HV
+G52481UT	GlycanSubtype	N-linked core-fucosylated	Subsumption	G14641ER
+G52481UT	GlycanType	N-linked	Subsumption	G14641ER
 G52483OL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G52483OL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G52483OL	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -34756,6 +35065,10 @@ G52972TJ	GlycanType	O-linked	GlycoMotif	GGM.001005
 G52984PW	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G52984PW	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G52984PW	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
+G52986VZ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G53232TN
+G52986VZ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18359FA
+G52986VZ	GlycanSubtype	N-linked hybrid	Subsumption	G18359FA
+G52986VZ	GlycanType	N-linked	Subsumption	G18359FA
 G53000BS	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G53000BS	GlycanType	O-linked	GlycoMotif	GGM.001008
 G53000RQ	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -34844,6 +35157,8 @@ G53144GY	GlycanSubtype	O-linked core 6	Subsumption	G34229EO
 G53144GY	GlycanType	O-linked	Subsumption	G34229EO
 G53151DR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G53151DR	GlycanType	N-linked	GlycoMotif	GGM.001004
+G53151WW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G53151WW	GlycanType	O-linked	GlycoMotif	GGM.001007
 G53156IG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G53156IG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G53156IG	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -34904,6 +35219,9 @@ G53230JC	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G53230JC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G53230PK	GlycanSubtype	Glycosphingolipid gala series	GlycoMotif	GGM.001105
 G53230PK	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001105
+G53232TN	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G53232TN	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G53232TN	GlycanType	N-linked	GlycoMotif	GGM.001003
 G53234IR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G53234IR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G53234IR	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -34988,6 +35306,8 @@ G53407VB	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G53407VB	GlycanType	O-linked	GlycoMotif	GGM.001008
 G53426PR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G53426PR	GlycanType	O-linked	GlycoMotif	GGM.001007
+G53428BS	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
+G53428BS	GlycanType	O-linked	GlycoMotif	GGM.001008
 G53428EC	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
 G53428EC	GlycanType	N-linked	GlycoMotif	GGM.001001
 G53434XO	GlycanSubtype	Glycosphingolipid arthro series	Subsumption	G00014MO
@@ -35625,6 +35945,9 @@ G54312KL	GlycanSubtype	N-linked hybrid	Subsumption	G08174NQ
 G54312KL	GlycanType	N-linked	Subsumption	G00186OS
 G54312KX	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G54312KX	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
+G54323TO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G54323TO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G54323TO	GlycanType	N-linked	GlycoMotif	GGM.001004
 G54324NP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G54324NP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G54327SO	GlycanSubtype	O-linked core 3	Subsumption	G00520NI
@@ -35863,6 +36186,10 @@ G54616ZM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G54619MD	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G54619MD	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G54619MD	GlycanType	N-linked	GlycoMotif	GGM.001003
+G54620LW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G53232TN
+G54620LW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18359FA
+G54620LW	GlycanSubtype	N-linked hybrid	Subsumption	G18359FA
+G54620LW	GlycanType	N-linked	Subsumption	G18359FA
 G54626GN	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G54626GN	GlycanType	N-linked	GlycoMotif	GGM.001002
 G54628UA	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
@@ -35965,6 +36292,8 @@ G54793ND	GlycanSubtype	O-linked core 1	Subsumption	G02684WR
 G54793ND	GlycanType	O-linked	Subsumption	G02684WR
 G54795DL	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G54795DL	GlycanType	N-linked	GlycoMotif	GGM.001022
+G54795GY	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G54795GY	GlycanType	O-linked	GlycoMotif	GGM.001007
 G54800IU	GlycanSubtype	N-linked bisected	Subsumption	G00463XD
 G54800IU	GlycanSubtype	N-linked complex	Subsumption	G00463XD
 G54800IU	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00463XD
@@ -36074,6 +36403,8 @@ G54992TS	GlycanSubtype	N-linked core-fucosylated	Subsumption	G58753AP
 G54992TS	GlycanType	N-linked	Subsumption	G58753AP
 G55005SM	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
 G55005SM	GlycanType	O-linked	GlycoMotif	GGM.001019
+G55013TE	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G55013TE	GlycanType	N-linked	GlycoMotif	GGM.001024
 G55015QS	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G55015QS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G55015QS	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -36213,6 +36544,8 @@ G55192VG	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
 G55192VG	GlycanType	N-linked	GlycoMotif	GGM.001001
 G55192YV	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G55192YV	GlycanType	O-linked	GlycoMotif	GGM.001005
+G55200IX	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
+G55200IX	GlycanType	N-linked	GlycoMotif	GGM.001001
 G55216FT	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G14567OB
 G55216FT	GlycanSubtype	N-linked bisected	Subsumption	G04248AK
 G55216FT	GlycanSubtype	N-linked complex	Subsumption	G00691NS
@@ -36744,6 +37077,10 @@ G56067ON	GlycanType	O-linked	GlycoMotif	GGM.001006
 G56069TX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G56069TX	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G56069TX	GlycanType	N-linked	GlycoMotif	GGM.001004
+G56070SP	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G56070SP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G56070SP	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G56070SP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G56076DZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G56076DZ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G56076WY	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -36765,6 +37102,8 @@ G56102UT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G56102UT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G56111FM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G56111FM	GlycanType	O-linked	GlycoMotif	GGM.001008
+G56124CR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G56124CR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G56129ZY	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G56129ZY	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G56129ZY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -36839,6 +37178,8 @@ G56259BH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G56259BH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G56265BA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G56265BA	GlycanType	N-linked	GlycoMotif	GGM.001004
+G56265FS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G56265FS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G56267PD	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G56267PD	GlycanType	O-linked	GlycoMotif	GGM.001007
 G56268BR	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
@@ -37634,6 +37975,8 @@ G57504NB	GlycanSubtype	N-linked complex	Subsumption	G04409WS
 G57504NB	GlycanType	N-linked	Subsumption	G04409WS
 G57504TA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G57504TA	GlycanType	N-linked	GlycoMotif	GGM.001004
+G57505PZ	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
+G57505PZ	GlycanType	O-linked	GlycoMotif	GGM.001005
 G57511DS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G57511DS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G57513LU	GlycanSubtype	N-linked complex	Subsumption	G24413UY
@@ -37746,11 +38089,15 @@ G57627KK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G57627KK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G57627PC	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G57627PC	GlycanType	N-linked	GlycoMotif	GGM.001022
+G57650VC	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G57650VC	GlycanType	O-linked	GlycoMotif	GGM.001007
 G57671LP	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G57671LP	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G57671LP	GlycanType	N-linked	GlycoMotif	GGM.001003
 G57671SP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G57671SP	GlycanType	N-linked	GlycoMotif	GGM.001004
+G57672ST	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
+G57672ST	GlycanType	O-linked	GlycoMotif	GGM.001005
 G57675TR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G57675TR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G57675TR	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -37914,6 +38261,8 @@ G57949BE	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02420CD
 G57949BE	GlycanSubtype	N-linked complex	Subsumption	G02420CD
 G57949BE	GlycanSubtype	N-linked core-fucosylated	Subsumption	G02420CD
 G57949BE	GlycanType	N-linked	Subsumption	G02420CD
+G57949TL	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G57949TL	GlycanType	O-linked	GlycoMotif	GGM.001007
 G57951WQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G57951WQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G57951WQ	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -38402,6 +38751,9 @@ G58701XD	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
 G58701XD	GlycanType	O-linked	GlycoMotif	GGM.001006
 G58706FM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G58706FM	GlycanType	N-linked	GlycoMotif	GGM.001004
+G58736XQ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G58736XQ	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G58736XQ	GlycanType	N-linked	GlycoMotif	GGM.001003
 G58742HD	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G58742HD	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G58742HD	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -39332,6 +39684,8 @@ G60191CN	GlycanSubtype	N-linked core-fucosylated	Subsumption	G16873EF
 G60191CN	GlycanType	N-linked	Subsumption	G16873EF
 G60199VU	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G60199VU	GlycanType	O-linked	GlycoMotif	GGM.001007
+G60208AL	GlycanSubtype	O-linked O-mannose	Subsumption	G39407NE
+G60208AL	GlycanType	O-linked	Subsumption	G39407NE
 G60215UL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G60215UL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G60215UL	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -39639,6 +39993,9 @@ G60673PW	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
 G60676HA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G60676HA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G60676HA	GlycanType	N-linked	GlycoMotif	GGM.001004
+G60679DR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G60679DR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G60679DR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G60682GY	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G60682GY	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G60682GY	GlycanType	N-linked	GlycoMotif	GGM.001003
@@ -39961,6 +40318,8 @@ G61102WW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G61102WW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G61108WE	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001012
 G61108WE	GlycanType	O-linked	GlycoMotif	GGM.001012
+G61119KT	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G61119KT	GlycanType	O-linked	GlycoMotif	GGM.001007
 G61128UV	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G61128UV	GlycanType	N-linked	GlycoMotif	GGM.001022
 G61136BX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -40014,6 +40373,8 @@ G61212LN	GlycanSubtype	N-linked hybrid	Subsumption	G00741NZ
 G61212LN	GlycanSubtype	N-linked truncated	Subsumption	G02882XF
 G61212LN	GlycanType	Glycosphingolipid	Subsumption	G22185QM
 G61212LN	GlycanType	N-linked	Subsumption	G00741NZ
+G61216ZY	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G61216ZY	GlycanType	O-linked	GlycoMotif	GGM.001019
 G61219IG	GlycanSubtype	N-linked alditol-reduced	Subsumption	G05552HC
 G61219IG	GlycanSubtype	N-linked high mannose	Subsumption	G05552HC
 G61219IG	GlycanSubtype	N-linked truncated	Subsumption	G06901BU
@@ -40113,6 +40474,9 @@ G61386ZX	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
 G61386ZX	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
 G61390GE	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G61390GE	GlycanType	N-linked	GlycoMotif	GGM.001022
+G61395FI	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G61395FI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G61395FI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G61397AQ	GlycanSubtype	Glycosphingolipid gala series	Subsumption	G02890GX
 G61397AQ	GlycanType	Glycosphingolipid	Subsumption	G02890GX
 G61397KG	GlycanSubtype	N-linked alditol-reduced	Subsumption	G46394FV
@@ -40901,10 +41265,10 @@ G62638HI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G62638HI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G62644QV	GlycanSubtype	O-linked core 2	Subsumption	G68636XD
 G62644QV	GlycanType	O-linked	Subsumption	G68636XD
-G62654HS	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G17437BX
-G62654HS	GlycanSubtype	N-linked complex	Subsumption	G17437BX
-G62654HS	GlycanSubtype	N-linked core-fucosylated	Subsumption	G17437BX
-G62654HS	GlycanType	N-linked	Subsumption	G17437BX
+G62654HS	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G62654HS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G62654HS	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G62654HS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G62655NK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G62655NK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G62663SV	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G64871AT
@@ -41167,6 +41531,10 @@ G63041LO	GlycanSubtype	N-linked core-fucosylated	Subsumption	G08380AT
 G63041LO	GlycanSubtype	N-linked hybrid	Subsumption	G04852LJ
 G63041LO	GlycanType	Glycosphingolipid	Subsumption	G04462ZS
 G63041LO	GlycanType	N-linked	Subsumption	G04852LJ
+G63043YQ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G63043YQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G63043YQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G63043YQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G63046OH	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G63046OH	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G63046OH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -41253,6 +41621,10 @@ G63179CS	GlycanType	N-linked	GlycoMotif	GGM.001001
 G63181KQ	GlycanSubtype	N-linked bisected	Subsumption	G15191JE
 G63181KQ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G15191JE
 G63181KQ	GlycanType	N-linked	Subsumption	G15191JE
+G63185SB	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G63185SB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G63185SB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G63185SB	GlycanType	N-linked	GlycoMotif	GGM.001004
 G63188OY	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G63188OY	GlycanType	O-linked	GlycoMotif	GGM.001007
 G63192RT	GlycanSubtype	N-linked complex	Subsumption	G26068PU
@@ -42135,6 +42507,8 @@ G64601QM	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G64601QM	GlycanType	N-linked	GlycoMotif	GGM.001022
 G64604UL	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G64604UL	GlycanType	O-linked	GlycoMotif	GGM.001005
+G64613CO	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
+G64613CO	GlycanType	O-linked	GlycoMotif	GGM.001009
 G64614TM	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G64614TM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G64614TM	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -42255,6 +42629,7 @@ G64780OA	GlycanType	N-linked	GlycoMotif	GGM.001002
 G64789SR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G64789SR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G64789SR	GlycanType	N-linked	GlycoMotif	GGM.001004
+G64793CD	GlycanType	N-linked	GlycoMotif	GGM.001001
 G64799ZA	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G64799ZA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G64799ZA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -42446,9 +42821,9 @@ G65009JH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G65009JH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G65012HL	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02519WY
 G65012HL	GlycanSubtype	N-linked bisected	Subsumption	G02086EJ
-G65012HL	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G65012HL	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G65012HL	GlycanType	N-linked	Subsumption	G01730TA
+G65012HL	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G65012HL	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G65012HL	GlycanType	N-linked	Subsumption	G01510MQ
 G65015ZK	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G65015ZK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G65015ZK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -42615,6 +42990,8 @@ G65256PU	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G65256PU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G65256PU	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G65256PU	GlycanType	N-linked	GlycoMotif	GGM.001004
+G65262KR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G65262KR	GlycanType	O-linked	GlycoMotif	GGM.001007
 G65263TV	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001012
 G65263TV	GlycanType	O-linked	GlycoMotif	GGM.001012
 G65268SY	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -42858,6 +43235,8 @@ G65668CK	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G65668CK	GlycanType	N-linked	GlycoMotif	GGM.001003
 G65669BM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G65669BM	GlycanType	O-linked	GlycoMotif	GGM.001008
+G65670OQ	GlycanSubtype	O-linked core 2	Subsumption	G04505IS
+G65670OQ	GlycanType	O-linked	Subsumption	G04505IS
 G65680SX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G65680SX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G65681OO	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -43190,6 +43569,7 @@ G66211LT	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G66211LT	GlycanType	N-linked	GlycoMotif	GGM.001002
 G66215MG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G66215MG	GlycanType	N-linked	GlycoMotif	GGM.001004
+G66227UG	GlycanType	N-linked	GlycoMotif	GGM.001001
 G66228GC	GlycanSubtype	N-linked bisected	Subsumption	G05128VV
 G66228GC	GlycanSubtype	N-linked complex	Subsumption	G05128VV
 G66228GC	GlycanType	N-linked	Subsumption	G05128VV
@@ -43357,6 +43737,8 @@ G66439FH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G66441ML	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G66441ML	GlycanType	N-linked	GlycoMotif	GGM.001004
 G66457WL	GlycanType	N-linked	GlycoMotif	GGM.001001
+G66460OO	GlycanSubtype	O-linked O-mannose	Subsumption	G61216ZY
+G66460OO	GlycanType	O-linked	Subsumption	G61216ZY
 G66470BN	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G66470BN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G66470BN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -43541,6 +43923,8 @@ G66689PB	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G66689PB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G66689PB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G66689PB	GlycanType	N-linked	GlycoMotif	GGM.001004
+G66689VP	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
+G66689VP	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G66692CW	GlycanType	N-linked	GlycoMotif	GGM.001001
 G66700AL	GlycanSubtype	N-linked complex	Subsumption	G12222NC
 G66700AL	GlycanType	N-linked	Subsumption	G12222NC
@@ -43570,6 +43954,11 @@ G66723VB	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G66723VB	GlycanType	N-linked	GlycoMotif	GGM.001002
 G66724VW	GlycanType	N-linked	GlycoMotif	GGM.001001
 G66728LX	GlycanType	N-linked	GlycoMotif	GGM.001001
+G66729SW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G06477TD
+G66729SW	GlycanSubtype	N-linked bisected	Subsumption	G03021PP
+G66729SW	GlycanSubtype	N-linked complex	Subsumption	G06477TD
+G66729SW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03021PP
+G66729SW	GlycanType	N-linked	Subsumption	G03021PP
 G66731MU	GlycanSubtype	Glycosphingolipid globo series	Subsumption	G47254LJ
 G66731MU	GlycanSubtype	Glycosphingolipid isoglobo series	Subsumption	G47254LJ
 G66731MU	GlycanType	Glycosphingolipid	Subsumption	G47254LJ
@@ -43585,6 +43974,8 @@ G66737DV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G66740MB	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G66740MB	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G66740MB	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
+G66741QE	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G66741QE	GlycanType	O-linked	GlycoMotif	GGM.001007
 G66741YQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G66741YQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G66751BK	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -43889,6 +44280,8 @@ G67265VZ	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001016
 G67265VZ	GlycanType	O-linked	GlycoMotif	GGM.001016
 G67269NB	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G67269NB	GlycanType	N-linked	GlycoMotif	GGM.001003
+G67270IV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G67270IV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G67272DI	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G67272DI	GlycanType	N-linked	GlycoMotif	GGM.001002
 G67274NW	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
@@ -44054,10 +44447,10 @@ G67515ZL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G67517BF	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G67517BF	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G67517BF	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
-G67531TM	GlycanSubtype	O-linked core 2	Subsumption	G02442MH
+G67531TM	GlycanSubtype	O-linked core 2	Subsumption	G01532FF
 G67531TM	GlycanSubtype	O-linked core 3	Subsumption	G48092WH
 G67531TM	GlycanSubtype	O-linked core 6	Subsumption	G48092WH
-G67531TM	GlycanType	O-linked	Subsumption	G02442MH
+G67531TM	GlycanType	O-linked	Subsumption	G01532FF
 G67534CW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G67534CW	GlycanType	O-linked	GlycoMotif	GGM.001007
 G67534LV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -44477,6 +44870,8 @@ G68307EX	GlycanSubtype	N-linked core-fucosylated	Subsumption	G11024UW
 G68307EX	GlycanType	N-linked	Subsumption	G11024UW
 G68308SZ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G68308SZ	GlycanType	O-linked	GlycoMotif	GGM.001007
+G68310DT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G68310DT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G68313WI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G68313WI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G68318SH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -44509,6 +44904,8 @@ G68380FW	GlycanType	Glycosphingolipid	Subsumption	G51285RQ
 G68381LV	GlycanType	N-linked	Subsumption	G22914HB
 G68382TW	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G29966WK
 G68382TW	GlycanType	Glycosphingolipid	Subsumption	G29966WK
+G68384KC	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G68384KC	GlycanType	O-linked	GlycoMotif	GGM.001007
 G68389XK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G68389XK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G68391RZ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -44681,6 +45078,8 @@ G68667ZV	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G68667ZV	GlycanType	O-linked	GlycoMotif	GGM.001007
 G68668TB	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G68668TB	GlycanType	N-linked	GlycoMotif	GGM.001002
+G68672OT	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
+G68672OT	GlycanType	O-linked	GlycoMotif	GGM.001005
 G68679LW	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G68679LW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G68679LW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -45500,6 +45899,10 @@ G69960SA	GlycanType	N-linked	GlycoMotif	GGM.001003
 G69962LT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G69962LT	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G69962LT	GlycanType	N-linked	GlycoMotif	GGM.001004
+G69963GQ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G69963GQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G69963GQ	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G69963GQ	GlycanType	N-linked	GlycoMotif	GGM.001003
 G69964CA	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G69964CA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G69964CA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -45810,10 +46213,10 @@ G70418MS	GlycanSubtype	O-linked core 2	Subsumption	G06404BM
 G70418MS	GlycanType	Glycosphingolipid	Subsumption	G57733ZF
 G70418MS	GlycanType	N-linked	Subsumption	G02280UH
 G70418MS	GlycanType	O-linked	Subsumption	G02985MG
-G70421YZ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03605AV
-G70421YZ	GlycanSubtype	N-linked complex	Subsumption	G03605AV
-G70421YZ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03605AV
-G70421YZ	GlycanType	N-linked	Subsumption	G03605AV
+G70421YZ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03416EW
+G70421YZ	GlycanSubtype	N-linked complex	Subsumption	G03416EW
+G70421YZ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03416EW
+G70421YZ	GlycanType	N-linked	Subsumption	G03416EW
 G70422GF	GlycanSubtype	O-linked core 3	Subsumption	G39100MY
 G70422GF	GlycanSubtype	O-linked core 6	Subsumption	G82463EY
 G70422GF	GlycanType	O-linked	Subsumption	G39100MY
@@ -46223,6 +46626,8 @@ G71076CH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G71076CH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G71077LD	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G71077LD	GlycanType	O-linked	GlycoMotif	GGM.001007
+G71085SF	GlycanSubtype	O-linked O-mannose	Subsumption	G50166FV
+G71085SF	GlycanType	O-linked	Subsumption	G50166FV
 G71089RL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G71089RL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G71089RL	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -46230,6 +46635,8 @@ G71089RQ	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
 G71089RQ	GlycanType	O-linked	GlycoMotif	GGM.001019
 G71092VL	GlycanSubtype	Glycosphingolipid gala series	Subsumption	G80082XW
 G71092VL	GlycanType	Glycosphingolipid	Subsumption	G80082XW
+G71094KR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G71094KR	GlycanType	O-linked	GlycoMotif	GGM.001007
 G71094TJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G71094TJ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G71102UV	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -46671,6 +47078,8 @@ G71751YA	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G01200BW
 G71751YA	GlycanType	Glycosphingolipid	Subsumption	G01200BW
 G71765ZO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G71765ZO	GlycanType	N-linked	GlycoMotif	GGM.001024
+G71766ZW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G71766ZW	GlycanType	O-linked	GlycoMotif	GGM.001007
 G71768PM	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G71768PM	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G71768PM	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -46688,6 +47097,7 @@ G71775LO	GlycanType	N-linked	Subsumption	G12061IK
 G71782CJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G71782CJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G71782CJ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G71784JC	GlycanSubtype	O-linked O-mannose	Subsumption	G61216ZY
 G71784JC	GlycanSubtype	O-linked core 1	Subsumption	G01450RG
 G71784JC	GlycanSubtype	O-linked core 2	Subsumption	G01453BU
 G71784JC	GlycanSubtype	O-linked core 3	Subsumption	G00924FH
@@ -47279,9 +47689,9 @@ G72662IG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G72662IG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G72667IM	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02519WY
 G72667IM	GlycanSubtype	N-linked bisected	Subsumption	G02086EJ
-G72667IM	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G72667IM	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G72667IM	GlycanType	N-linked	Subsumption	G01730TA
+G72667IM	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G72667IM	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G72667IM	GlycanType	N-linked	Subsumption	G01510MQ
 G72673RJ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G72673RJ	GlycanType	O-linked	GlycoMotif	GGM.001007
 G72687GQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -47645,6 +48055,9 @@ G73184QR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G73184QR	GlycanType	O-linked	GlycoMotif	GGM.001008
 G73192GF	GlycanSubtype	N-linked complex	Subsumption	G07696SY
 G73192GF	GlycanType	N-linked	Subsumption	G07696SY
+G73196AS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G73196AS	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G73196AS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G73209JX	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G73209JX	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G73209JX	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
@@ -48336,6 +48749,8 @@ G74368SI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74368SI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G74369SL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74369SL	GlycanType	N-linked	GlycoMotif	GGM.001004
+G74371CZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G74371CZ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G74372YP	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G74372YP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74372YP	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -48412,6 +48827,8 @@ G74497TS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74497TS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G74498IP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74498IP	GlycanType	N-linked	GlycoMotif	GGM.001004
+G74503BE	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G74503BE	GlycanType	O-linked	GlycoMotif	GGM.001007
 G74508NJ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G74508NJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74508NJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -48427,7 +48844,7 @@ G74514LS	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G74514LS	GlycanType	N-linked	GlycoMotif	GGM.001004
 G74518AV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74518AV	GlycanType	N-linked	GlycoMotif	GGM.001004
-G74522QO	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G54144YI
+G74522QO	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G29731EF
 G74522QO	GlycanSubtype	N-linked complex	Subsumption	G09018LZ
 G74522QO	GlycanSubtype	N-linked core-fucosylated	Subsumption	G09018LZ
 G74522QO	GlycanType	N-linked	Subsumption	G09018LZ
@@ -48447,8 +48864,8 @@ G74554CO	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G74554CO	GlycanType	O-linked	GlycoMotif	GGM.001007
 G74562EE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74562EE	GlycanType	N-linked	GlycoMotif	GGM.001004
-G74563LV	GlycanSubtype	O-linked core 2	Subsumption	G11198HA
-G74563LV	GlycanType	O-linked	Subsumption	G11198HA
+G74563LV	GlycanSubtype	O-linked core 2	Subsumption	G03200OR
+G74563LV	GlycanType	O-linked	Subsumption	G03200OR
 G74571ZF	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G74571ZF	GlycanType	N-linked	GlycoMotif	GGM.001002
 G74574VX	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -48469,6 +48886,8 @@ G74603QS	GlycanSubtype	Glycosphingolipid ganglio series	GlycoMotif	GGM.001108
 G74603QS	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001108
 G74605HK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74605HK	GlycanType	N-linked	GlycoMotif	GGM.001004
+G74607VK	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G74607VK	GlycanType	O-linked	GlycoMotif	GGM.001007
 G74608QW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74608QW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G74609HP	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
@@ -48558,7 +48977,7 @@ G74724QE	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G11858KN
 G74724QE	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G06031DD
 G74724QE	GlycanSubtype	N-linked core-fucosylated	Subsumption	G12345BK
 G74724QE	GlycanSubtype	N-linked paucimannose	Subsumption	G12345BK
-G74724QE	GlycanSubtype	O-linked O-mannose	Subsumption	G41918DZ
+G74724QE	GlycanSubtype	O-linked O-mannose	Subsumption	G41486OC
 G74724QE	GlycanSubtype	O-linked core 1	Subsumption	G07988QE
 G74724QE	GlycanSubtype	O-linked core 2	Subsumption	G10706IL
 G74724QE	GlycanSubtype	O-linked core 6	Subsumption	G05675LB
@@ -48737,6 +49156,9 @@ G74957AY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G74957AY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G74960IM	GlycanSubtype	O-linked core 5	GlycoMotif	GGM.001013
 G74960IM	GlycanType	O-linked	GlycoMotif	GGM.001013
+G74961IU	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G74961IU	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G74961IU	GlycanType	N-linked	GlycoMotif	GGM.001023
 G74962OJ	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G03457IA
 G74962OJ	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G30657NA
 G74962OJ	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G11356UZ
@@ -49442,6 +49864,7 @@ G75959TE	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G27386EE
 G75959TE	GlycanSubtype	Glycosphingolipid globo series	Subsumption	G05297EK
 G75959TE	GlycanSubtype	Glycosphingolipid isoglobo series	Subsumption	G30925QW
 G75959TE	GlycanType	Glycosphingolipid	Subsumption	G05297EK
+G75960US	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G93857UP
 G75960US	GlycanSubtype	N-linked bisected	Subsumption	G32525MO
 G75960US	GlycanSubtype	N-linked core-fucosylated	Subsumption	G32250QD
 G75960US	GlycanSubtype	N-linked hybrid	Subsumption	G32250QD
@@ -49641,8 +50064,8 @@ G76242WH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G76242WH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G76243MI	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
 G76243MI	GlycanType	O-linked	GlycoMotif	GGM.001006
-G76243VM	GlycanSubtype	N-linked complex	Subsumption	G36411SK
-G76243VM	GlycanType	N-linked	Subsumption	G36411SK
+G76243VM	GlycanSubtype	N-linked complex	Subsumption	G11253UV
+G76243VM	GlycanType	N-linked	Subsumption	G11253UV
 G76252RZ	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G76252RZ	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G76252RZ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
@@ -49676,9 +50099,9 @@ G76294TY	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G76294TY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G76295SF	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02519WY
 G76295SF	GlycanSubtype	N-linked bisected	Subsumption	G04528DU
-G76295SF	GlycanSubtype	N-linked complex	Subsumption	G01730TA
-G76295SF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01730TA
-G76295SF	GlycanType	N-linked	Subsumption	G01730TA
+G76295SF	GlycanSubtype	N-linked complex	Subsumption	G01510MQ
+G76295SF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01510MQ
+G76295SF	GlycanType	N-linked	Subsumption	G01510MQ
 G76297WR	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G76297WR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G76297WR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -49748,6 +50171,8 @@ G76431SN	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
 G76431SN	GlycanType	O-linked	GlycoMotif	GGM.001009
 G76439VL	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G76439VL	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
+G76448VA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G76448VA	GlycanType	N-linked	GlycoMotif	GGM.001004
 G76456II	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
 G76456II	GlycanType	O-linked	GlycoMotif	GGM.001019
 G76459TW	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
@@ -50382,6 +50807,9 @@ G77415NC	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G77415NC	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G77426UJ	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G77426UJ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
+G77442QN	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G77442QN	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G77442QN	GlycanType	N-linked	GlycoMotif	GGM.001023
 G77443ZI	GlycanSubtype	N-linked complex	Subsumption	G27067YD
 G77443ZI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G27067YD
 G77443ZI	GlycanType	N-linked	Subsumption	G27067YD
@@ -50587,6 +51015,10 @@ G77735OH	GlycanSubtype	N-linked complex	Subsumption	G01803DO
 G77735OH	GlycanType	N-linked	Subsumption	G01803DO
 G77740PR	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G77740PR	GlycanType	O-linked	GlycoMotif	GGM.001007
+G77743UL	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G77743UL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G77743UL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G77743UL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G77746UP	GlycanSubtype	N-linked complex	Subsumption	G55600PH
 G77746UP	GlycanType	N-linked	Subsumption	G55600PH
 G77748PL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -50859,6 +51291,8 @@ G78225YM	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G78225YM	GlycanType	N-linked	GlycoMotif	GGM.001022
 G78230VU	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G78230VU	GlycanType	N-linked	GlycoMotif	GGM.001022
+G78231ZN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G78231ZN	GlycanType	N-linked	GlycoMotif	GGM.001024
 G78233FA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G78233FA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G78233FA	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -51083,6 +51517,11 @@ G78607HP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G78608GK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G78608GK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G78608GK	GlycanType	N-linked	GlycoMotif	GGM.001004
+G78615VF	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G78615VF	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G78615VF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G78615VF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G78615VF	GlycanType	N-linked	GlycoMotif	GGM.001004
 G78616NO	GlycanSubtype	N-linked hybrid	Subsumption	G04146DI
 G78616NO	GlycanType	N-linked	Subsumption	G04146DI
 G78617GO	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -51287,6 +51726,16 @@ G78961ZT	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G78961ZT	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G78961ZT	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G78961ZT	GlycanType	N-linked	GlycoMotif	GGM.001023
+G78977TF	GlycanSubtype	N-linked bisected	Subsumption	G00565QJ
+G78977TF	GlycanSubtype	N-linked complex	Subsumption	G11453BM
+G78977TF	GlycanSubtype	N-linked truncated	Subsumption	G05254OQ
+G78977TF	GlycanSubtype	O-linked core 1	Subsumption	G35419IZ
+G78977TF	GlycanSubtype	O-linked core 2	Subsumption	G06810ZN
+G78977TF	GlycanSubtype	O-linked core 3	Subsumption	G03494YC
+G78977TF	GlycanSubtype	O-linked core 4	Subsumption	G06810ZN
+G78977TF	GlycanSubtype	O-linked core 6	Subsumption	G17766YF
+G78977TF	GlycanType	N-linked	Subsumption	G00565QJ
+G78977TF	GlycanType	O-linked	Subsumption	G03494YC
 G78980OK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G78980OK	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G78980OK	GlycanType	N-linked	GlycoMotif	GGM.001003
@@ -52132,6 +52581,10 @@ G80294ZS	GlycanSubtype	N-linked bisected	Subsumption	G04595ZA
 G80294ZS	GlycanSubtype	N-linked complex	Subsumption	G03081ER
 G80294ZS	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03081ER
 G80294ZS	GlycanType	N-linked	Subsumption	G03081ER
+G80295DJ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G80295DJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G80295DJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G80295DJ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G80296WD	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G80296WD	GlycanType	N-linked	GlycoMotif	GGM.001022
 G80298HR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -52425,10 +52878,10 @@ G80723WE	GlycanSubtype	N-linked bisected	Subsumption	G06078SG
 G80723WE	GlycanSubtype	N-linked complex	Subsumption	G06078SG
 G80723WE	GlycanSubtype	N-linked core-fucosylated	Subsumption	G06078SG
 G80723WE	GlycanType	N-linked	Subsumption	G06078SG
-G80729WA	GlycanSubtype	N-linked bisected	Subsumption	G01923XE
-G80729WA	GlycanSubtype	N-linked complex	Subsumption	G01923XE
-G80729WA	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01923XE
-G80729WA	GlycanType	N-linked	Subsumption	G01923XE
+G80729WA	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G80729WA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G80729WA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G80729WA	GlycanType	N-linked	GlycoMotif	GGM.001004
 G80733LA	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G80733LA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G80733LA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -52492,6 +52945,8 @@ G80857KS	GlycanType	N-linked	GlycoMotif	GGM.001024
 G80858MF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G80858MF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G80858MF	GlycanType	N-linked	GlycoMotif	GGM.001004
+G80861DM	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G80861DM	GlycanType	N-linked	GlycoMotif	GGM.001003
 G80874KA	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G04703AJ
 G80874KA	GlycanSubtype	N-linked complex	Subsumption	G04703AJ
 G80874KA	GlycanSubtype	N-linked core-fucosylated	Subsumption	G06162IF
@@ -52637,10 +53092,10 @@ G81128IY	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G81128IY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G81128IY	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G81128IY	GlycanType	N-linked	GlycoMotif	GGM.001004
-G81128KB	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03605AV
-G81128KB	GlycanSubtype	N-linked complex	Subsumption	G03605AV
-G81128KB	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03605AV
-G81128KB	GlycanType	N-linked	Subsumption	G03605AV
+G81128KB	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G03416EW
+G81128KB	GlycanSubtype	N-linked complex	Subsumption	G03416EW
+G81128KB	GlycanSubtype	N-linked core-fucosylated	Subsumption	G03416EW
+G81128KB	GlycanType	N-linked	Subsumption	G03416EW
 G81147VU	GlycanType	N-linked	GlycoMotif	GGM.001001
 G81148KA	GlycanSubtype	O-linked core 1	Subsumption	G71918PA
 G81148KA	GlycanSubtype	O-linked core 2	Subsumption	G14920PG
@@ -52903,6 +53358,9 @@ G81452FP	GlycanSubtype	N-linked bisected	Subsumption	G04248AK
 G81452FP	GlycanSubtype	N-linked complex	Subsumption	G00691NS
 G81452FP	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00691NS
 G81452FP	GlycanType	N-linked	Subsumption	G00691NS
+G81456UA	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G81456UA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G81456UA	GlycanType	N-linked	GlycoMotif	GGM.001023
 G81459MV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G81459MV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G81459MV	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -52965,6 +53423,11 @@ G81567GJ	GlycanSubtype	O-linked core 1	Subsumption	G10630CU
 G81567GJ	GlycanType	O-linked	Subsumption	G10630CU
 G81568VW	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G81568VW	GlycanType	O-linked	GlycoMotif	GGM.001007
+G81572SC	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G32158XQ
+G81572SC	GlycanSubtype	N-linked bisected	Subsumption	G14641ER
+G81572SC	GlycanSubtype	N-linked complex	Subsumption	G39812HV
+G81572SC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G14641ER
+G81572SC	GlycanType	N-linked	Subsumption	G14641ER
 G81575FZ	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G81575FZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G81575FZ	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -52974,6 +53437,9 @@ G81581UV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G81581UV	GlycanType	N-linked	GlycoMotif	GGM.001024
 G81586UQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G81586UQ	GlycanType	N-linked	GlycoMotif	GGM.001024
+G81599LG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G81599LG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G81599LG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G81601EB	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G81601EB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G81601EB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -53020,6 +53486,10 @@ G81663ZI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G81670RK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G81670RK	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G81670RK	GlycanType	N-linked	GlycoMotif	GGM.001004
+G81677FM	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G81677FM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G81677FM	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G81677FM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G81680BU	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G81680BU	GlycanType	O-linked	GlycoMotif	GGM.001007
 G81690ER	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G18244ZK
@@ -53183,6 +53653,8 @@ G81933FO	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G81933FO	GlycanType	N-linked	GlycoMotif	GGM.001002
 G81947NN	GlycanSubtype	O-linked core 1	Subsumption	G16827DR
 G81947NN	GlycanType	O-linked	Subsumption	G16827DR
+G81952MV	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G81952MV	GlycanType	O-linked	GlycoMotif	GGM.001019
 G81954US	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G81954US	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G81954US	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -53380,6 +53852,8 @@ G82251XS	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G82251XS	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G82251XS	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G82251XS	GlycanType	N-linked	GlycoMotif	GGM.001004
+G82251ZP	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G82251ZP	GlycanType	O-linked	GlycoMotif	GGM.001007
 G82252QI	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G82252QI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G82252QI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -53546,6 +54020,8 @@ G82514MH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G82514MH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G82515BU	GlycanSubtype	N-linked truncated	Subsumption	G03949EQ
 G82515BU	GlycanType	N-linked	Subsumption	G03949EQ
+G82528MC	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G82528MC	GlycanType	N-linked	GlycoMotif	GGM.001004
 G82529OA	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001001
 G82529OA	GlycanType	N-linked	GlycoMotif	GGM.001001
 G82531JQ	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -53875,8 +54351,8 @@ G83002CK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G83002CK	GlycanType	N-linked	GlycoMotif	GGM.001004
 G83006TR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G83006TR	GlycanType	N-linked	GlycoMotif	GGM.001004
-G83009HN	GlycanSubtype	O-linked core 4	Subsumption	G00037MO
-G83009HN	GlycanType	O-linked	Subsumption	G00037MO
+G83009HN	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001011
+G83009HN	GlycanType	O-linked	GlycoMotif	GGM.001011
 G83009TH	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G83009TH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G83009TH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -54418,6 +54894,10 @@ G83815EV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G83815EV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G83827QM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G83827QM	GlycanType	O-linked	GlycoMotif	GGM.001007
+G83828KF	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G83828KF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G83828KF	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G83828KF	GlycanType	N-linked	GlycoMotif	GGM.001004
 G83829JQ	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G83829JQ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
 G83833IM	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001006
@@ -54603,11 +55083,11 @@ G84116AK	GlycanSubtype	O-linked core 2	Subsumption	G10199RS
 G84116AK	GlycanType	O-linked	Subsumption	G10199RS
 G84122DM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001008
 G84122DM	GlycanType	O-linked	GlycoMotif	GGM.001008
-G84122EI	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G75554MB
-G84122EI	GlycanSubtype	N-linked bisected	Subsumption	G75554MB
-G84122EI	GlycanSubtype	N-linked complex	Subsumption	G75554MB
-G84122EI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G75554MB
-G84122EI	GlycanType	N-linked	Subsumption	G75554MB
+G84122EI	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G84122EI	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G84122EI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G84122EI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G84122EI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84147VQ	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001009
 G84147VQ	GlycanType	O-linked	GlycoMotif	GGM.001009
 G84153KU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -54631,9 +55111,9 @@ G84163ZT	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84164DF	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G52115YC
 G84164DF	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01473WV
 G84164DF	GlycanType	N-linked	Subsumption	G01473WV
-G84165BQ	GlycanSubtype	N-linked complex	Subsumption	G43346PX
-G84165BQ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G43346PX
-G84165BQ	GlycanType	N-linked	Subsumption	G43346PX
+G84165BQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G84165BQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G84165BQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84167AV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G84167AV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84170WO	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
@@ -55030,6 +55510,10 @@ G84753IL	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G84753IL	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84753OK	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G84753OK	GlycanType	N-linked	GlycoMotif	GGM.001004
+G84754BQ	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G84754BQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G84754BQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G84754BQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84756CG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G84756CG	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84756VW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -55052,6 +55536,9 @@ G84783XD	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84784TX	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G84784TX	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G84784TX	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
+G84791TM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G84791TM	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G84791TM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G84800EW	GlycanSubtype	N-linked alditol-reduced	Subsumption	G07014AW
 G84800EW	GlycanSubtype	N-linked high mannose	Subsumption	G07014AW
 G84800EW	GlycanType	N-linked	Subsumption	G07014AW
@@ -55149,6 +55636,11 @@ G84942UA	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G84942UA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G84942UA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G84942UA	GlycanType	N-linked	GlycoMotif	GGM.001004
+G84957WC	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G32158XQ
+G84957WC	GlycanSubtype	N-linked bisected	Subsumption	G14641ER
+G84957WC	GlycanSubtype	N-linked complex	Subsumption	G39812HV
+G84957WC	GlycanSubtype	N-linked core-fucosylated	Subsumption	G14641ER
+G84957WC	GlycanType	N-linked	Subsumption	G14641ER
 G84957XP	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G84957XP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G84957XP	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -55259,6 +55751,8 @@ G85139RC	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G85139RC	GlycanType	N-linked	GlycoMotif	GGM.001002
 G85141ZP	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G85141ZP	GlycanType	N-linked	GlycoMotif	GGM.001002
+G85143CH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G85143CH	GlycanType	N-linked	GlycoMotif	GGM.001024
 G85144OK	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G05247AF
 G85144OK	GlycanSubtype	N-linked bisected	Subsumption	G00553AN
 G85144OK	GlycanSubtype	N-linked complex	Subsumption	G00553AN
@@ -55439,9 +55933,9 @@ G85393KI	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001011
 G85393KI	GlycanType	O-linked	GlycoMotif	GGM.001011
 G85394YL	GlycanSubtype	O-linked core 2	Subsumption	G32989SG
 G85394YL	GlycanType	O-linked	Subsumption	G32989SG
-G85401TI	GlycanSubtype	N-linked complex	Subsumption	G30723RE
-G85401TI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G30723RE
-G85401TI	GlycanType	N-linked	Subsumption	G30723RE
+G85401TI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G85401TI	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G85401TI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G85405GD	GlycanType	N-linked	Subsumption	G01863LM
 G85417GJ	GlycanSubtype	N-linked complex	Subsumption	G01670UQ
 G85417GJ	GlycanType	N-linked	Subsumption	G01670UQ
@@ -56256,6 +56750,9 @@ G86712VW	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G86712VW	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G86712VW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G86712VW	GlycanType	N-linked	GlycoMotif	GGM.001004
+G86713OE	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G86713OE	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
+G86713OE	GlycanType	N-linked	GlycoMotif	GGM.001023
 G86718PI	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G86718PI	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G86718PI	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -56373,6 +56870,9 @@ G86834TL	GlycanSubtype	N-linked complex	Subsumption	G23377WN
 G86834TL	GlycanSubtype	N-linked core-fucosylated	Subsumption	G23377WN
 G86834TL	GlycanType	N-linked	Subsumption	G23377WN
 G86835RY	GlycanType	N-linked	GlycoMotif	GGM.001027
+G86837CD	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G86837CD	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G86837CD	GlycanType	N-linked	GlycoMotif	GGM.001004
 G86838ZQ	GlycanSubtype	N-linked bisected	Subsumption	G05270EP
 G86838ZQ	GlycanSubtype	N-linked complex	Subsumption	G05270EP
 G86838ZQ	GlycanType	N-linked	Subsumption	G05270EP
@@ -57286,6 +57786,10 @@ G88325OQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G88329BN	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G88329BN	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G88329BN	GlycanType	N-linked	GlycoMotif	GGM.001003
+G88329MH	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G88329MH	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G88329MH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G88329MH	GlycanType	N-linked	GlycoMotif	GGM.001004
 G88333KU	GlycanSubtype	O-linked core 1	Subsumption	G25024JR
 G88333KU	GlycanSubtype	O-linked core 2	Subsumption	G05690OR
 G88333KU	GlycanType	O-linked	Subsumption	G05690OR
@@ -57400,8 +57904,8 @@ G88455FN	GlycanType	N-linked	GlycoMotif	GGM.001001
 G88459JI	GlycanSubtype	O-linked core 3	Subsumption	G01665LU
 G88459JI	GlycanSubtype	O-linked core 6	Subsumption	G10104VB
 G88459JI	GlycanType	O-linked	Subsumption	G01665LU
-G88459ZR	GlycanSubtype	N-linked bisected	Subsumption	G29539MT
-G88459ZR	GlycanSubtype	N-linked complex	Subsumption	G29539MT
+G88459ZR	GlycanSubtype	N-linked bisected	Subsumption	G20552DX
+G88459ZR	GlycanSubtype	N-linked complex	Subsumption	G20552DX
 G88459ZR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G88459ZR	GlycanType	N-linked	GlycoMotif	GGM.001024
 G88460TP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -57475,9 +57979,9 @@ G88563PL	GlycanType	O-linked	Subsumption	G16827DR
 G88567PL	GlycanType	N-linked	GlycoMotif	GGM.001027
 G88569LV	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G88569LV	GlycanType	N-linked	GlycoMotif	GGM.001002
-G88571CI	GlycanSubtype	O-linked core 2	Subsumption	G13292XY
+G88571CI	GlycanSubtype	O-linked core 2	Subsumption	G02990AF
 G88571CI	GlycanSubtype	O-linked core 4	Subsumption	G14555ST
-G88571CI	GlycanType	O-linked	Subsumption	G13292XY
+G88571CI	GlycanType	O-linked	Subsumption	G02990AF
 G88572NY	GlycanSubtype	Glycosphingolipid ganglio series	Subsumption	G24384AP
 G88572NY	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G00050MO
 G88572NY	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G13630UH
@@ -57565,11 +58069,11 @@ G88725PI	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G14510SZ
 G88725PI	GlycanSubtype	N-linked bisected	Subsumption	G00695JO
 G88725PI	GlycanSubtype	N-linked complex	Subsumption	G01010HW
 G88725PI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00695JO
-G88725PI	GlycanSubtype	O-linked core 2	Subsumption	G23280NH
+G88725PI	GlycanSubtype	O-linked core 2	Subsumption	G05252QE
 G88725PI	GlycanSubtype	O-linked core 3	Subsumption	G33364OS
 G88725PI	GlycanSubtype	O-linked core 6	Subsumption	G54971WD
 G88725PI	GlycanType	N-linked	Subsumption	G00695JO
-G88725PI	GlycanType	O-linked	Subsumption	G23280NH
+G88725PI	GlycanType	O-linked	Subsumption	G05252QE
 G88727SH	GlycanType	N-linked	GlycoMotif	GGM.001001
 G88734GE	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G88734GE	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -57674,6 +58178,8 @@ G88864RV	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G88864RV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G88864RV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G88865JK	GlycanType	N-linked	GlycoMotif	GGM.001001
+G88869IJ	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
+G88869IJ	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001107
 G88872ON	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G88872ON	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G88872ON	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -58210,7 +58716,7 @@ G89718HW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G89718HW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G89720WL	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001011
 G89720WL	GlycanType	O-linked	GlycoMotif	GGM.001011
-G89721BJ	GlycanSubtype	O-linked core 1	Subsumption	G35900GR
+G89721BJ	GlycanSubtype	O-linked core 1	Subsumption	G25213RP
 G89721BJ	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G89721BJ	GlycanType	O-linked	GlycoMotif	GGM.001007
 G89721KZ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G02611WU
@@ -58861,10 +59367,10 @@ G90755YG	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G90755YG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G90755YG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G90755YG	GlycanType	N-linked	GlycoMotif	GGM.001004
-G90764JW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G96931TH
-G90764JW	GlycanSubtype	N-linked complex	Subsumption	G96931TH
-G90764JW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G96931TH
-G90764JW	GlycanType	N-linked	Subsumption	G96931TH
+G90764JW	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G90764JW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G90764JW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G90764JW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G90766ZI	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G90766ZI	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G90766ZI	GlycanType	N-linked	GlycoMotif	GGM.001003
@@ -59321,6 +59827,8 @@ G91499ZS	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G54628UA
 G91499ZS	GlycanType	Glycosphingolipid	Subsumption	G54628UA
 G91503PY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G91503PY	GlycanType	N-linked	GlycoMotif	GGM.001004
+G91508RU	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G91508RU	GlycanType	N-linked	GlycoMotif	GGM.001004
 G91511MZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G91511MZ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G91511MZ	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -59846,10 +60354,10 @@ G92337QR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G92343YQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G92343YQ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G92343YQ	GlycanType	N-linked	GlycoMotif	GGM.001004
-G92348LW	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G05511KY
-G92348LW	GlycanSubtype	N-linked complex	Subsumption	G05511KY
-G92348LW	GlycanSubtype	N-linked core-fucosylated	Subsumption	G05511KY
-G92348LW	GlycanType	N-linked	Subsumption	G05511KY
+G92348LW	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G92348LW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G92348LW	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G92348LW	GlycanType	N-linked	GlycoMotif	GGM.001004
 G92357TM	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G05892MC
 G92357TM	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G05892MC
 G92357TM	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G00211WY
@@ -59956,6 +60464,9 @@ G92517EF	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G09242UL
 G92517EF	GlycanType	Glycosphingolipid	Subsumption	G09242UL
 G92527BY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G92527BY	GlycanType	N-linked	GlycoMotif	GGM.001004
+G92527PR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G92527PR	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G92527PR	GlycanType	N-linked	GlycoMotif	GGM.001003
 G92534LG	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G92534LG	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G92534LG	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -59983,6 +60494,10 @@ G92575UZ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G92576IN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G92576IN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G92576IN	GlycanType	N-linked	GlycoMotif	GGM.001004
+G92582TM	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
+G92582TM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G92582TM	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G92582TM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G92589MK	GlycanSubtype	O-linked core 1	Subsumption	G05785JJ
 G92589MK	GlycanSubtype	O-linked core 2	Subsumption	G17527HL
 G92589MK	GlycanType	O-linked	Subsumption	G05785JJ
@@ -60381,6 +60896,8 @@ G93320VA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G93320VA	GlycanType	N-linked	GlycoMotif	GGM.001004
 G93324RN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93324RN	GlycanType	N-linked	GlycoMotif	GGM.001004
+G93333OF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G93333OF	GlycanType	O-linked	GlycoMotif	GGM.001007
 G93337VO	GlycanSubtype	O-linked core 3	GlycoMotif	GGM.001010
 G93337VO	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001016
 G93337VO	GlycanType	O-linked	GlycoMotif	GGM.001010
@@ -60436,6 +60953,8 @@ G93429VJ	GlycanType	N-linked	Subsumption	G00056HH
 G93436ND	GlycanSubtype	N-linked complex	Subsumption	G01650CJ
 G93436ND	GlycanSubtype	N-linked core-fucosylated	Subsumption	G01650CJ
 G93436ND	GlycanType	N-linked	Subsumption	G01650CJ
+G93438EY	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G93438EY	GlycanType	N-linked	GlycoMotif	GGM.001003
 G93446UA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93446UA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G93446UA	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -60504,6 +61023,8 @@ G93519WM	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G93519WM	GlycanType	N-linked	GlycoMotif	GGM.001004
 G93520MA	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G93520MA	GlycanType	O-linked	GlycoMotif	GGM.001005
+G93520OM	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G93520OM	GlycanType	O-linked	GlycoMotif	GGM.001007
 G93523MF	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G93523MF	GlycanType	O-linked	GlycoMotif	GGM.001005
 G93526NJ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G04410LH
@@ -60527,6 +61048,7 @@ G93553MJ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G93563JK	GlycanSubtype	N-linked complex	Subsumption	G05005SO
 G93563JK	GlycanType	N-linked	Subsumption	G05005SO
 G93575MM	GlycanType	N-linked	GlycoMotif	GGM.001001
+G93579XB	GlycanSubtype	O-linked O-mannose	Subsumption	G61216ZY
 G93579XB	GlycanSubtype	O-linked core 1	Subsumption	G01450RG
 G93579XB	GlycanSubtype	O-linked core 2	Subsumption	G01453BU
 G93579XB	GlycanSubtype	O-linked core 3	Subsumption	G00924FH
@@ -60641,6 +61163,11 @@ G93746CY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93746CY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G93755GW	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93755GW	GlycanType	N-linked	GlycoMotif	GGM.001004
+G93756KN	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G10240SH
+G93756KN	GlycanSubtype	N-linked bisected	Subsumption	G10240SH
+G93756KN	GlycanSubtype	N-linked complex	Subsumption	G10240SH
+G93756KN	GlycanSubtype	N-linked core-fucosylated	Subsumption	G33342UZ
+G93756KN	GlycanType	N-linked	Subsumption	G10240SH
 G93758YP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93758YP	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G93758YP	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -60716,6 +61243,9 @@ G93856AJ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G93856AJ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93856AJ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G93856AJ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G93857UP	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G93857UP	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
+G93857UP	GlycanType	N-linked	GlycoMotif	GGM.001003
 G93860XO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G93860XO	GlycanType	N-linked	GlycoMotif	GGM.001004
 G93861MS	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -61149,6 +61679,8 @@ G94510EL	GlycanSubtype	O-linked core 6	GlycoMotif	GGM.001015
 G94510EL	GlycanType	O-linked	GlycoMotif	GGM.001009
 G94514IB	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G94514IB	GlycanType	O-linked	GlycoMotif	GGM.001007
+G94517VF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G94517VF	GlycanType	O-linked	GlycoMotif	GGM.001007
 G94531EZ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G94531EZ	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G94531EZ	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -61328,6 +61860,8 @@ G94763UL	GlycanType	N-linked	Subsumption	G01300OI
 G94763YB	GlycanSubtype	N-linked complex	Subsumption	G12287XW
 G94763YB	GlycanSubtype	N-linked core-fucosylated	Subsumption	G12287XW
 G94763YB	GlycanType	N-linked	Subsumption	G12287XW
+G94768NG	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G94768NG	GlycanType	O-linked	GlycoMotif	GGM.001007
 G94770AN	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G94770AN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G94770AN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -61438,10 +61972,10 @@ G94926TV	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G94926TV	GlycanType	N-linked	GlycoMotif	GGM.001004
 G94935XB	GlycanSubtype	N-linked hybrid	GlycoMotif	GGM.001003
 G94935XB	GlycanType	N-linked	GlycoMotif	GGM.001003
-G94937SR	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G99411XJ
-G94937SR	GlycanSubtype	N-linked complex	Subsumption	G99411XJ
-G94937SR	GlycanSubtype	N-linked core-fucosylated	Subsumption	G99411XJ
-G94937SR	GlycanType	N-linked	Subsumption	G99411XJ
+G94937SR	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
+G94937SR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G94937SR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G94937SR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G94938LU	GlycanSubtype	O-linked core 4	GlycoMotif	GGM.001011
 G94938LU	GlycanType	O-linked	GlycoMotif	GGM.001011
 G94941PK	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -61474,6 +62008,9 @@ G94982RX	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001102
 G94989HM	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G94989HM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G94989HM	GlycanType	N-linked	GlycoMotif	GGM.001004
+G95000MR	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G95000MR	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G95000MR	GlycanType	N-linked	GlycoMotif	GGM.001004
 G95001AQ	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G95001AQ	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G95001AQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -61522,6 +62059,11 @@ G95061TN	GlycanType	N-linked	GlycoMotif	GGM.001004
 G95063JB	GlycanSubtype	Glycosphingolipid lacto series	GlycoMotif	GGM.001106
 G95063JB	GlycanSubtype	Glycosphingolipid neo-lacto series	GlycoMotif	GGM.001107
 G95063JB	GlycanType	Glycosphingolipid	GlycoMotif	GGM.001106
+G95064WS	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G32158XQ
+G95064WS	GlycanSubtype	N-linked bisected	Subsumption	G14641ER
+G95064WS	GlycanSubtype	N-linked complex	Subsumption	G39812HV
+G95064WS	GlycanSubtype	N-linked core-fucosylated	Subsumption	G14641ER
+G95064WS	GlycanType	N-linked	Subsumption	G14641ER
 G95073VE	GlycanSubtype	N-linked alditol-reduced	Subsumption	G29803MG
 G95073VE	GlycanType	N-linked	Subsumption	G29803MG
 G95081VM	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -61567,11 +62109,11 @@ G95177YH	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G14510SZ
 G95177YH	GlycanSubtype	N-linked bisected	Subsumption	G00695JO
 G95177YH	GlycanSubtype	N-linked complex	Subsumption	G02250EI
 G95177YH	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00695JO
-G95177YH	GlycanSubtype	O-linked core 2	Subsumption	G23280NH
+G95177YH	GlycanSubtype	O-linked core 2	Subsumption	G05252QE
 G95177YH	GlycanSubtype	O-linked core 3	Subsumption	G33364OS
 G95177YH	GlycanSubtype	O-linked core 6	Subsumption	G54971WD
 G95177YH	GlycanType	N-linked	Subsumption	G00695JO
-G95177YH	GlycanType	O-linked	Subsumption	G23280NH
+G95177YH	GlycanType	O-linked	Subsumption	G05252QE
 G95184RD	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G95184RD	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G95184RD	GlycanType	N-linked	GlycoMotif	GGM.001023
@@ -61637,6 +62179,10 @@ G95251MI	GlycanType	N-linked	GlycoMotif	GGM.001004
 G95253ST	GlycanSubtype	N-linked alditol-reduced	GlycoMotif	GGM.001026
 G95253ST	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G95253ST	GlycanType	N-linked	GlycoMotif	GGM.001002
+G95256AJ	GlycanSubtype	N-linked arm-fucosylated	Subsumption	G53232TN
+G95256AJ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18359FA
+G95256AJ	GlycanSubtype	N-linked hybrid	Subsumption	G18359FA
+G95256AJ	GlycanType	N-linked	Subsumption	G18359FA
 G95259QI	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
 G95259QI	GlycanType	O-linked	GlycoMotif	GGM.001007
 G95260HV	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
@@ -62260,8 +62806,8 @@ G96129XT	GlycanType	N-linked	Subsumption	G09437GG
 G96137MF	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G96137MF	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G96137MF	GlycanType	N-linked	GlycoMotif	GGM.001004
-G96140ZQ	GlycanSubtype	O-linked core 2	Subsumption	G23280NH
-G96140ZQ	GlycanType	O-linked	Subsumption	G23280NH
+G96140ZQ	GlycanSubtype	O-linked core 2	Subsumption	G05252QE
+G96140ZQ	GlycanType	O-linked	Subsumption	G05252QE
 G96143IM	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G96143IM	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G96143IM	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -62706,6 +63252,9 @@ G96888OD	GlycanSubtype	O-linked core 6	Subsumption	G34229EO
 G96888OD	GlycanType	O-linked	Subsumption	G34229EO
 G96890VV	GlycanSubtype	O-linked core 1	GlycoMotif	GGM.001005
 G96890VV	GlycanType	O-linked	GlycoMotif	GGM.001005
+G96891VY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G96891VY	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G96891VY	GlycanType	N-linked	GlycoMotif	GGM.001004
 G96893GC	GlycanSubtype	N-linked complex	Subsumption	G34603JX
 G96893GC	GlycanType	N-linked	Subsumption	G34603JX
 G96894DL	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -63034,6 +63583,9 @@ G97357RI	GlycanSubtype	N-linked core-fucosylated	Subsumption	G18244ZK
 G97357RI	GlycanSubtype	N-linked hybrid	Subsumption	G18244ZK
 G97357RI	GlycanType	Glycosphingolipid	Subsumption	G00157WT
 G97357RI	GlycanType	N-linked	Subsumption	G18244ZK
+G97363HP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G97363HP	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G97363HP	GlycanType	N-linked	GlycoMotif	GGM.001004
 G97365YS	GlycanSubtype	N-linked truncated	GlycoMotif	GGM.001022
 G97365YS	GlycanType	N-linked	GlycoMotif	GGM.001022
 G97367IY	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
@@ -63290,6 +63842,9 @@ G97760FF	GlycanType	N-linked	GlycoMotif	GGM.001022
 G97763ON	GlycanSubtype	N-linked bisected	Subsumption	G01208GZ
 G97763ON	GlycanSubtype	N-linked complex	Subsumption	G01208GZ
 G97763ON	GlycanType	N-linked	Subsumption	G01208GZ
+G97764XA	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
+G97764XA	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
+G97764XA	GlycanType	N-linked	GlycoMotif	GGM.001004
 G97765TT	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G97765TT	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G97765TT	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -63568,6 +64123,8 @@ G98144DQ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G98148QF	GlycanSubtype	Glycosphingolipid lacto series	Subsumption	G09216IK
 G98148QF	GlycanSubtype	Glycosphingolipid neo-lacto series	Subsumption	G04100NF
 G98148QF	GlycanType	Glycosphingolipid	Subsumption	G04100NF
+G98157CW	GlycanSubtype	O-linked O-mannose	GlycoMotif	GGM.001019
+G98157CW	GlycanType	O-linked	GlycoMotif	GGM.001019
 G98159BN	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G98159BN	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G98159BN	GlycanType	N-linked	GlycoMotif	GGM.001004
@@ -63776,6 +64333,8 @@ G98516BG	GlycanSubtype	N-linked high mannose	GlycoMotif	GGM.001002
 G98516BG	GlycanType	N-linked	GlycoMotif	GGM.001002
 G98516TP	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G98516TP	GlycanType	N-linked	GlycoMotif	GGM.001004
+G98518WL	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G98518WL	GlycanType	O-linked	GlycoMotif	GGM.001007
 G98533XR	GlycanSubtype	O-linked core 1	Subsumption	G09071DK
 G98533XR	GlycanSubtype	O-linked core 2	Subsumption	G13616KY
 G98533XR	GlycanSubtype	O-linked core 3	Subsumption	G11276SJ
@@ -64163,6 +64722,8 @@ G99129GB	GlycanType	N-linked	GlycoMotif	GGM.001004
 G99129XB	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G99129XB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G99129XB	GlycanType	N-linked	GlycoMotif	GGM.001004
+G99137GH	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
+G99137GH	GlycanType	O-linked	GlycoMotif	GGM.001007
 G99141XX	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G99141XX	GlycanType	N-linked	GlycoMotif	GGM.001004
 G99146BF	GlycanSubtype	O-linked core 2	GlycoMotif	GGM.001007
@@ -64192,6 +64753,7 @@ G99174ZQ	GlycanSubtype	N-linked core-fucosylated	Subsumption	G00692HC
 G99174ZQ	GlycanType	N-linked	Subsumption	G00692HC
 G99182WQ	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G99182WQ	GlycanType	N-linked	GlycoMotif	GGM.001004
+G99196VL	GlycanSubtype	O-linked core 2	Subsumption	G61119KT
 G99196VL	GlycanSubtype	O-linked core 3	Subsumption	G17810KS
 G99196VL	GlycanSubtype	O-linked core 4	Subsumption	G01282UD
 G99196VL	GlycanSubtype	O-linked core 6	Subsumption	G46014PJ
@@ -64463,8 +65025,8 @@ G99595YZ	GlycanType	N-linked	GlycoMotif	GGM.001004
 G99603GB	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G99603GB	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
 G99603GB	GlycanType	N-linked	GlycoMotif	GGM.001004
-G99603YI	GlycanSubtype	O-linked core 2	Subsumption	G11198HA
-G99603YI	GlycanType	O-linked	Subsumption	G11198HA
+G99603YI	GlycanSubtype	O-linked core 2	Subsumption	G03200OR
+G99603YI	GlycanType	O-linked	Subsumption	G03200OR
 G99608OH	GlycanSubtype	N-linked arm-fucosylated	GlycoMotif	GGM.001025
 G99608OH	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G99608OH	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024
@@ -64581,9 +65143,10 @@ G99747RT	GlycanSubtype	O-linked core 7	Subsumption	G82947LB
 G99747RT	GlycanType	O-linked	Subsumption	G05235KE
 G99754ZB	GlycanSubtype	O-linked core 4	Subsumption	G41286JH
 G99754ZB	GlycanType	O-linked	Subsumption	G41286JH
+G99758GD	GlycanSubtype	O-linked core 2	Subsumption	G23048PE
 G99758GD	GlycanSubtype	O-linked core 3	Subsumption	G30304IT
 G99758GD	GlycanSubtype	O-linked core 6	Subsumption	G42603IF
-G99758GD	GlycanType	O-linked	Subsumption	G30304IT
+G99758GD	GlycanType	O-linked	Subsumption	G23048PE
 G99770NO	GlycanSubtype	N-linked bisected	GlycoMotif	GGM.001023
 G99770NO	GlycanSubtype	N-linked complex	GlycoMotif	GGM.001004
 G99770NO	GlycanSubtype	N-linked core-fucosylated	GlycoMotif	GGM.001024

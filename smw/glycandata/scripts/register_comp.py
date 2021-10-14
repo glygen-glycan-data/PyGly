@@ -83,7 +83,7 @@ for lineno,l in enumerate(sys.stdin):
     wurcsseq += "/"
     wurcsseq = gtc.fixcompwurcs(wurcsseq,subst)
     thehash = hashlib.sha256(wurcsseq).hexdigest().lower()
-    hash,acc = gtc.gethashedseq(seq=wurcsseq)
+    hash,acc,error = gtc.gethashedseq(seq=wurcsseq)
     if not hash:
 	hash = gtc.register(wurcsseq)
 	if hash:
@@ -92,6 +92,9 @@ for lineno,l in enumerate(sys.stdin):
            print lineno+1,l0,None,wurcsseq,thehash
 	time.sleep(60)
     elif not acc:
-	print lineno+1,l0,hash
+	if error:
+            print lineno+1,l0,repr(error)
+	else:
+            print lineno+1,l0,hash
     else:
 	print lineno+1,l0,acc

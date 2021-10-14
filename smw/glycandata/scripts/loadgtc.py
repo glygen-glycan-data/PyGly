@@ -19,8 +19,8 @@ def accessions(args):
 	    for it in open(fn):
 		yield it.strip()
 
-gtc = GlyTouCan(usecache=False)
-gco = GlyCosmos(usecache=False)
+gtc = GlyTouCan(verbose=False,usecache=False)
+gco = GlyCosmos(verbose=False,usecache=False)
 
 allgco = set(gco.allaccessions())
 
@@ -123,15 +123,15 @@ for gtcacc in accessions(sys.argv[1:]):
     #                  property='NamedMotif',
     #                  source='GlyTouCan', type='Motif')
 
-    g.delete_annotations(source='GlyTouCan',type='Taxonomy')
-    g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),
-                     property='Taxonomy', sourceid=gtcacc, 
-                     source='GlyTouCan', type='Taxonomy')
+    # g.delete_annotations(source='GlyTouCan',type='Taxonomy')
+    # g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),
+    #                  property='Taxonomy', sourceid=gtcacc, 
+    #                  source='GlyTouCan', type='Taxonomy')
 
-    g.delete_annotations(source='GlyTouCan',type='Publication')
-    g.set_annotation(value=list(set(gtc.getrefs(gtcacc))),
-                     property='Publication', sourceid=gtcacc, 
-                     source='GlyTouCan', type='Publication')
+    # g.delete_annotations(source='GlyTouCan',type='Publication')
+    # g.set_annotation(value=list(set(gtc.getrefs(gtcacc))),
+    #                  property='Publication', sourceid=gtcacc, 
+    #                  source='GlyTouCan', type='Publication')
 
     # get this stuff from GNOme, now...
     g.delete_annotations(source='GlyTouCan',type='Subsumption')

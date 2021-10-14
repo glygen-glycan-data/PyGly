@@ -86,6 +86,13 @@ class ClassifierEngine(object):
 	    self.getmonocnt()
 	return sum(map(lambda m: self._monocnt[m],args))
 
+    def has_repeat_units(self):
+	if self._structure == None:
+	    self.getStructure()
+	if not self._structure:
+	    return False
+        return self._structure.repeated()
+
     class Decorators:
 	@staticmethod
         def maketest(key,fn,*args,**kw):
@@ -168,7 +175,7 @@ class ClassifierEngine(object):
 	                if s.name() in (Substituent.nAcetyl,Substituent.nglycolyl):
 		            found = True
 		            break
-	            if len(m.substituents()) == 1 and found:
+	            if len(list(m.substituents())) == 1 and found:
 		        return True
             return False
     
@@ -291,6 +298,8 @@ class NGlycanHighMannose(MotifClassifier):
     _motifs = ["GGM.001002","GGM.001001"]
 
     def refine(self,data):
+	if data.has_repeat_units():
+            return False
 	if data.mono_count("Man") + 2 != data.mono_count():
 	    return False
 	return True
@@ -300,6 +309,8 @@ class NGlycanPaucimannose(MotifClassifier):
     _motifs = ["GGM.001001"]
 
     def refine(self,data):
+	if data.has_repeat_units():
+            return False
 	if data.mono_count() not in (5,6):
 	    return False
 	if data.mono_count() != data.mono_count("Man","GlcNAc","Fuc"):

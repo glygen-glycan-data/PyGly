@@ -27,16 +27,21 @@ for g in accessions():
     glycan = g.getGlycan()
 
     if not glycan:
+    	continue
+
+    try:
+        wurcs = g.get_annotation_value(property="WURCS",type='Sequence',source='GlyTouCan')
+    except LookupError:
 	continue
 
-    if glycan.has_root() and not g.has_annotations(property="GlycoWorkBench",type='Sequence',source='EdwardsLab'):
+    if glycan.has_root() and not glycan.repeated() and not g.has_annotations(property="GlycoWorkBench",type='Sequence',source='EdwardsLab'):
         try:
-            gwb = f.toStr(glycan)
+            gwb = f.toStr(wurcs)
             if gwb:
                 g.set_annotation(property="GlycoWorkBench",value=gwb,type='Sequence',source='EdwardsLab')
         except:
             traceback.print_exc()
-    
+
     if w.put(g):
         print >>sys.stderr, "%s updated in %.2f sec"%(g.get('accession'),time.time()-start,)
     else:

@@ -63,4 +63,4 @@ shift $(($OPTIND - 1))
 if [ $VERBOSE -eq 1 ]; then
   echo $JAVA -cp "$JAR" GlycoCT2Image notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 1>&2
 fi
-exec $JAVA -cp "$JAR" GlycoCT2Image notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ | fgrep -v -w DEBUG | fgrep -v -w "org.glycoinfo"
+exec $JAVA -cp "$JAR" GlycoCT2Image notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 2>/dev/null | fgrep -v -w DEBUG | fgrep -v -w "org.glycoinfo"

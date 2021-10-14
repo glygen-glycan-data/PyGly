@@ -90,20 +90,30 @@ class GlyGenSourceFile(WebServiceResource):
             taxid = '2697049'
         elif loadtaxid and self._taxidlookup == None:
             self._taxidlookup = dict(self.glygen_protein_taxa())
+            self._taxidlookup['Homo sapiens'] = '9606'
+            self._taxidlookup['Rattus norvegicus'] = '10116'
         for row in self.query_csvsourcefile(source="unicarbkb",filename="unicarbkb_"+name):
             if taxid:
                 row['taxid'] = taxid
-            elif self._taxidlookup and self._taxidlookup.get(row['Protein']):
-                row['taxid'] = self._taxidlookup[row['Protein']]
-            # Permit integers or comp_ strings in the Id column
+            elif self._taxidlookup:
+		for key in ('protein','species'):
+		    if row.get(key) and self._taxidlookup.get(row[key].strip()):
+                        row['taxid'] = self._taxidlookup[row[key].strip()]
+			break
+            uckbid = None
 	    try:
 		uckbid = int(row['Id'])
-		if uckbid < 1 or uckbid > 100000:
-		    continue
 	    except ValueError:
+                pass
+            if not uckbid:
 		# comp_HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0
-		if not re.search(r'^comp_HexNAc\d+Hex\d+dHex\d+NeuAc\d+NeuGc\d+Pent\d+S\d+P\d+KDN\d+HexA\d+$',row['Id'].strip()):
+		if re.search(r'^comp_HexNAc\d+Hex\d+dHex\d+NeuAc\d+NeuGc\d+Pent\d+S\d+P\d+KDN\d+HexA\d+$',row['Id'].strip()):
+		    uckbid = row['Id'].strip()
+                elif re.search(r'^G\d{5}[A-Z]{2}$',row['Id'].strip()):
+                    uckbid = row['Id'].strip()
+                else:
 		    continue
+            row['Id'] = uckbid
             yield row
 
     def unicarbkb_human_mouse_rat(self):
@@ -114,33 +124,35 @@ class GlyGenSourceFile(WebServiceResource):
         for row in self.unicarbkb("sarscov2"):
             yield row
 
+    def unicarbkb_glycomics_study(self):
+        for row in self.unicarbkb("glycomics_study"):
+            yield row
+
     def unicarbkb_all(self,**kw):
-        for sp in ("human_mouse_rat","sarscov2"):
+        for sp in ("human_mouse_rat","sarscov2","glycomics_study"):
             for row in self.unicarbkb(sp,**kw):
                 yield row
 
     @uniqueify
     def unicarbkb_allgtc(self):
         for row in self.unicarbkb_all():
-            if row.get('Toucan') and row.get('Id'):
-		if re.search('^G\d{5}[A-Z]{2}$',row.get('Toucan').strip()):
-                    try:
-			dummy = int(row['Id'])
-		    except:
-			continue
-                    yield (row['Id'],row.get('Toucan').strip())
+            if row.get('toucan') and row.get('Id'):
+		if re.search('^G\d{5}[A-Z]{2}$',row.get('toucan').strip()):
+                    yield (row['Id'],row.get('toucan').strip())
 
     @uniqueify
     def unicarbkb_alltaxa(self):
         for row in self.unicarbkb_all(loadtaxid=True):
             if row.get('taxid') and row.get('Id'):
-                yield (row['Id'],row['taxid'])
+		if int(row['taxid']) > 0:
+                    yield (row['Id'],row['taxid'].strip())
 
     @uniqueify
     def unicarbkb_allpubs(self):
         for row in self.unicarbkb_all():
-            if row.get('Id') and row.get('Pmid') and int(row['Pmid']) > 0:
-                yield (row['Id'],row['Pmid'])
+            if row.get('Id') and row.get('pmid'):
+		if int(row['pmid']) > 0:
+                    yield (row['Id'],row['pmid'].strip())
 
     def ncfg(self,name):
         for row in self.query_csvsourcefile(source="ncfg",filename=name+"_ncfg"):

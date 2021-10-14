@@ -9,4 +9,4 @@ EXPORT="../export"
 ./glycoTree.sh "$SMW" "$GLYCOTREE"
 rm -f $EXPORT/glycotree_gct.zip $EXPORT/glycotree_svg.zip
 zip -j $EXPORT/glycotree_gct.zip $GLYCOTREE/data/glygengct/G*.txt
-zip -j $EXPORT/glycotree_svg.zip $GLYCOTREE/data/glygensvg/G*.svg
+# zip -j $EXPORT/glycotree_svg.zip $GLYCOTREE/data/glygensvg/G*.svg

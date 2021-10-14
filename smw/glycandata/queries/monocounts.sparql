@@ -1,0 +1,14 @@
+PREFIX glycandata: <http://glyomics.org/glycandata#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?accession ?monosaccharide ?count
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann glycandata:hasglycan ?glycan .
+  ?ann glycandata:type "MonosaccharideCount" . 
+  ?ann glycandata:source "EdwardsLab" . 
+  ?ann glycandata:value ?count .
+  ?ann glycandata:property ?property
+  BIND(IF(?property="MonosaccharideCount","Monosaccharides",STRBEFORE(?property,"Count")) as ?monosaccharide)
+}
+ORDER BY ?accession ?monosaccharide

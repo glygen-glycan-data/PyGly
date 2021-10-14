@@ -5,5 +5,6 @@ if [ "$1" = "" ]; then
 fi
 CURTAG="GlyGen-GlycanData-Export-Current"
 set -x
+git pull
 git tag -a -m "Pointer to release $1" -f "$CURTAG" "$1"
 git push -f --tags 

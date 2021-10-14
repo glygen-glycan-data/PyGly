@@ -1546,10 +1546,13 @@ class LinkageComparitorMotifGlyTouCanOriginalSimple(LinkageComparitorBase):
             return False
         if m._child_type != g._child_type:
             return False
-        if m._child_pos and g._child_pos and len(set(m._child_pos).intersection(set(g._child_pos))) == 0:
+
+        if m._child_pos and g._child_pos and m._child_pos.isdisjoint(g._child_pos):
             return False
-        if m._parent_pos and g._parent_pos and len(set(m._parent_pos).intersection(set(g._parent_pos))) == 0:
+
+        if m._parent_pos and g._parent_pos and m._parent_pos.isdisjoint(g._parent_pos):
             return False
+
         return True
 
 class LinkageComparitorMotifStrictSimple(LinkageComparitorBase):
@@ -1562,16 +1565,13 @@ class LinkageComparitorMotifStrictSimple(LinkageComparitorBase):
 
         if m._child_pos and not g._child_pos:
             return False
-        elif m._child_pos and g._child_pos:
-            if not set(m._child_pos).issuperset(set(g._child_pos)):
-                return False
+        elif m._child_pos and g._child_pos and not (m._child_pos >= g._child_pos):
+            return False
 
         if m._parent_pos and not g._parent_pos:
             return False
-        elif m._parent_pos and g._parent_pos:
-            if not set(m._parent_pos).issuperset(set(g._parent_pos)):
-                return False
-
+        elif m._parent_pos and g._parent_pos and not (m._parent_pos >= g._parent_pos):
+            return False
 
         return True
 
@@ -1580,6 +1580,15 @@ class SubstLinkageComparitorMotifSimple(LinkageEqualSimple):
     def leq(self,a,b):
         return self.eq(a,b)
 
+class SubstLinkageComparitorMotifStrictSimple(LinkageComparitorMotifStrictSimple):
+
+    def eq(self,a,b):
+        return self.leq(a,b)
+
+class SubstLinkageComparitorMotifLooseSimple(LinkageComparitorMotifGlyTouCanOriginalSimple):
+
+    def eq(self,a,b):
+        return self.leq(a,b)
 
 class LinkageEqual(LinkageComparitor):
 
@@ -1639,7 +1648,7 @@ class LinkageComparitorMotifStrict(LinkageComparitor):
     def __init__(self, **kw):
         kw['substcmp'] = SubstituentEqual(**kw)
         kw['linkcmp'] = LinkageComparitorMotifStrictSimple(**kw)
-        kw['sublinkcmp'] = SubstLinkageComparitorMotifSimple(**kw)
+        kw['sublinkcmp'] = SubstLinkageComparitorMotifStrictSimple(**kw)
         super(LinkageComparitorMotifStrict, self).__init__(**kw)
 
 
@@ -1730,7 +1739,7 @@ class MotifStrict(SubstructureSearch):
     def __init__(self, **kw):
         kw["monocmp"] = MonosaccharideMotifComparison(
             substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
+            sublinkcmp=SubstLinkageComparitorMotifStrictSimple()
         )
         kw["linkcmp"] = LinkageComparitorMotifStrict()
         super(MotifStrict, self).__init__(**kw)
@@ -1741,7 +1750,7 @@ class NonReducingEndMotifStrict(SubstructureSearchNonReducingEnd):
     def __init__(self, **kw):
         kw["monocmp"] = MonosaccharideMotifComparison(
             substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
+            sublinkcmp=SubstLinkageComparitorMotifStrictSimple()
         )
         kw["linkcmp"] = LinkageComparitorMotifStrict()
         super(NonReducingEndMotifStrict, self).__init__(**kw)
@@ -1752,7 +1761,7 @@ class MotifInclusive(SubstructureSearch):
     def __init__(self, **kw):
         kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
             substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
+            sublinkcmp=SubstLinkageComparitorMotifLooseSimple()
         )
         kw["linkcmp"] = LinkageComparitorMotifGlyTouCanOriginal()
         super(MotifInclusive, self).__init__(**kw)
@@ -1763,7 +1772,7 @@ class NonReducingEndMotifInclusive(SubstructureSearchNonReducingEnd):
     def __init__(self, **kw):
         kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
             substcmp=SubstituentEqual(),
-            sublinkcmp=LinkageEqual()
+            sublinkcmp=SubstLinkageComparitorMotifLooseSimple()
         )
         kw["linkcmp"] = LinkageComparitorMotifGlyTouCanOriginal()
         super(NonReducingEndMotifInclusive, self).__init__(**kw)
