@@ -75,6 +75,7 @@ for m in w.iterglycan():
     m.set_annotation(property="Ancestor",value=filter(accs.__contains__,gnome.ancestors(acc)),source="GNOme",type="Subsumption")
     m.set_annotation(property="MissingScore",value=gnome.get_missing_rank(acc),source="GNOme",type="Subsumption")
     m.set_annotation(property="FullyDetermined",value=filter(lambda acc1: acc1 in accs and int(gnome.get_missing_rank(acc1)) == 0,gnome.descendants(acc)),source="GNOme",type="Subsumption")
+    m.set_annotation(property="Leaf",value=filter(lambda acc1: acc1 in accs and gnome.isleaf(acc1),gnome.descendants(acc)),source="GNOme",type="Subsumption")
     
     if w.put(m):
         print acc

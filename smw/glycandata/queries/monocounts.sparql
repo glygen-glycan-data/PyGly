@@ -9,6 +9,6 @@ WHERE {
   ?ann glycandata:source "EdwardsLab" . 
   ?ann glycandata:value ?count .
   ?ann glycandata:property ?property
-  BIND(IF(?property="MonosaccharideCount","Monosaccharides",STRBEFORE(?property,"Count")) as ?monosaccharide)
+  BIND(IF(?property="MonosaccharideCount","*",STRBEFORE(?property,"Count")) as ?monosaccharide)
 }
 ORDER BY ?accession ?monosaccharide
