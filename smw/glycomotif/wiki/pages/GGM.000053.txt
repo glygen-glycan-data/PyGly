@@ -3,6 +3,7 @@
 |aglycon=Ser/Thr
 |alignment=Core
 |collection=GGM
+|dbxref=GlycanDictionary:C2-O-sLex;GlycanDictionary:SLex Core 2 O-glycan
 |displayhgv=false
 |glycoct=RES
 1b:a-dgal-HEX-1:5

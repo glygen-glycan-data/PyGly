@@ -608,8 +608,8 @@ if (document.getElementById("motif_match_real_time_para")){
     var original_seq = "";
     var prefix = "";
 
-    inputEle.innerHTML = "<table style="width: 80%; max-width: 80%; height: 300px; margin: 0 auto;"><tr><td>Glycan (GlycoCT or WURCS format):</td></tr><tr><td><textarea style="width: 100%; max-width: 100%; height: 300px; margin: 0 auto;" id="query_sequence" >WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea></td></tr>" +
-        "<tr><td align="right"><button onclick="submit()">Align</button></td></tr></table>";
+    inputEle.innerHTML = "<table style=\"width: 80%; max-width: 80%; height: 300px; margin: 0 auto;\"><tr><td>Glycan (GlycoCT or WURCS format):</td></tr><tr><td><textarea style=\"width: 100%; max-width: 100%; height: 300px; margin: 0 auto;\" id=\"query_sequence\" >WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea></td></tr>" +
+        "<tr><td align=\"right\"><button onclick=\"submit()\">Align</button></td></tr></table>";
 
 
     function submit(){
@@ -627,24 +627,23 @@ if (document.getElementById("motif_match_real_time_para")){
 
         var task = JSON.stringify({
             "seq": seq,
-            "collection": collection,
-            "developer_email": prefix+"@glyomics.org"
+            "collection": collection
         });
 
         image_update();
 
-        jQuery.post(motif_match_webservice_url+ "submit", {"task": task}, function (d){
+        jQuery.post(motif_match_webservice_url+"submit", 
+                   {"developer_email": prefix+"@glyomics.org", "task": task}, function (d){
             var jobid = d[0].id;
             retrieve(jobid);
         },'json');
 
-    }
-
+    };
 
     function retrieve(jobid){
-        jQuery.getJSON(motif_match_webservice_url+ "retrieve?list_ids=" + encodeURIComponent(JSON.stringify([jobid])), {}, function (d){
+        jQuery.getJSON(motif_match_webservice_url+ "retrieve?task_id=" + jobid, {}, function (d){
             var result = d[0];
-            var jobid = result.id
+            var jobid = result.id;
 
             if (result.finished){
                 update_result(result);
@@ -708,7 +707,7 @@ if (document.getElementById("motif_match_real_time_para")){
             var glycomotifacc, alignmentEle;
             var deleteTr = true;
 
-            if (tr.tagName != "TR"){
+            if (!tr || tr.tagName != "TR"){
                 continue
             }
 
@@ -716,7 +715,7 @@ if (document.getElementById("motif_match_real_time_para")){
             for (var j in tr.childNodes) {
                 var td = tr.childNodes[j];
 
-                if (td.tagName != "TD"){
+                if (!td || td.tagName != "TD"){
                     continue
                 }
                 k += 1;
@@ -768,13 +767,14 @@ if (document.getElementById("motif_match_real_time_para")){
 
     function image_update(){
         
-        var imgtask = JSON.stringify({"developer_email": prefix+"@glyomics.org", "seq": original_seq,
+        var imgtask = JSON.stringify({"seq": original_seq,
                                      "notation": "snfg", "display": "extended", "image_format": "png"});
-        jQuery.post(glymage_webservice_url+ "submit", {"task": imgtask}, function (d){
+        jQuery.post(glymage_webservice_url+ "submit", 
+                    {"developer_email": prefix+"@glyomics.org", "task": imgtask}, function (d){
             var jobid = d[0].id;
-            var image_ele_str = "<button style="float: right;" onclick="window.location.reload();">Clear</button>";
-            image_ele_str += "<img src='"+ glymage_webservice_url + "getimage?list_id=" + jobid + "' style='display: block; margin-left: auto; margin-right: auto; '>";
-            var seq = "<div><div style="width: 80%; margin: 0 auto;" class="smwpre">"+original_seq+"</div></div>";
+            var image_ele_str = "<button style=\"float: right;\" onclick=\"window.location.reload();\">Clear</button>";
+            image_ele_str += "<img src='"+ glymage_webservice_url + "getimage?task_id=" + jobid + "' style='display: block; margin-left: auto; margin-right: auto; '>";
+            var seq = "<div><div style=\"width: 80%; margin: 0 auto;\" class=\"smwpre\">"+original_seq+"</div></div>";
             queryGlycanEle.innerHTML = image_ele_str + seq;
         },"json");
 

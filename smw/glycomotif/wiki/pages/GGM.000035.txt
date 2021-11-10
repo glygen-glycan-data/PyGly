@@ -3,6 +3,7 @@
 |aglycon=R
 |alignment=Nonreducing-End
 |collection=GGM
+|dbxref=GlycanDictionary:6-Sialyl-GalNAc
 |displayhgv=false
 |glycoct=RES
 1b:b-dgal-HEX-1:5

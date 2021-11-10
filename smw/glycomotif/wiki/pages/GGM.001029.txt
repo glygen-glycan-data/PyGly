@@ -1,11 +1,7 @@
 {{Motif
-|prefname=Human milk oligosaccharide
-|name=Milk Sugar Core
-Human milk oligosaccharide
-|aglycon=Other
-|redend=true
-|alignment=Core
 |accession=001029
+|aglycon=Other
+|alignment=Core
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
@@ -14,6 +10,10 @@ Human milk oligosaccharide
 LIN
 1:1o(4+1)2d
 |glytoucan=G15541SE
+|name=Milk Sugar Core
+Human milk oligosaccharide
+|prefname=Human milk oligosaccharide
+|redend=true
 |sameas=GM.G15541SE
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2122h{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a4-b1
 }}

@@ -105,6 +105,9 @@ class Motif(SMW.SMWClass):
 	if isinstance(data.get('keyword'),basestring):
 	    data['keyword'] = set(map(lambda s: s.strip(),data.get('keyword').split(';')))
 
+	if isinstance(data.get('dbxref'),basestring):
+	    data['dbxref'] = set(map(lambda s: tuple(s.strip().split(':')),data.get('dbxref').split(';')))
+
         # Strip <pre> and </pre> if it is there
         # if 'wurcs' in data:
             #     data['wurcs'] = data.get('wurcs').lstrip('<pre>').rstrip('</pre>')
@@ -123,6 +126,9 @@ class Motif(SMW.SMWClass):
 
         if 'keyword' in data:
             data['keyword'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['keyword'])))))
+
+        if 'dbxref' in data:
+            data['dbxref'] = ";".join(map(lambda t: "%s:%s"%t,sorted(data['dbxref'])))
 
         if 'sameas' in data:
             data['sameas'] = ",".join(sorted(data['sameas']))

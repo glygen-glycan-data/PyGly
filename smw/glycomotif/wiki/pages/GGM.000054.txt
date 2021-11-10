@@ -3,6 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
+|dbxref=GlycanDictionary:Diphosphorylated Man6
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

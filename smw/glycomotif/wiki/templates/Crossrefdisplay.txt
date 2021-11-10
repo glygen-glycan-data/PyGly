@@ -1,0 +1,4 @@
+{{#switch:{{#explode:{{{1}}}|:|0|2}}
+|GlycanDictionary=<span class="plainlinks">[https://wiki.glygen.org/index.php/Glycan_structure_dictionary#{{anchorencode:{{#explode:{{{1}}}|:|1|2}}}} {{{1}}}]</span>
+|{{{1}}}
+}}

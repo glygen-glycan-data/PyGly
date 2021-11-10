@@ -23,6 +23,8 @@ The [[GM|All Motifs collection]] represents the union of the collections, integr
 
 All motifs from all collections are aligned with the bulk of GlyTouCan structures on a regular basis, according to each motif's alignment annotation. GlycoMotif supports [[Substructure Alignment|substructure]], [[Glycan Core Alignment|glycan core]], [[Nonreducing-End Alignment|nonreducing end]], and [[Whole-Glycan Alignment|whole-glycan]] motif alignments. All motif annotations and their alignments are available for [[Download|download]] from the GlycoMotif triple-store. 
 
+'''NEW!''' GlycoMotif, and the on-demand motif alignment web-service, now support motifs and structures with repeating elements. We hope to use this to help identify and classify GAGs for GlyGen. Note that only substructure and glycan core motif alignments are supported for glycans with repeating elements. Examples: [[GGM.000004|i antigen]] and [[GGM.001206|a putative GAG core]].
+
 See also:
 * [[GlyGen Classification Motifs|GlyGen glycan classification motifs]]
 * [[GlyGen Motif Keywords|GlyGen motif keywords]]

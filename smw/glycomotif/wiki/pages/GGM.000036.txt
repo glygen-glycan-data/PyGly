@@ -3,6 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
+|dbxref=GlycanDictionary:Blood group H (type 2)
 |displayhgv=false
 |glycoct=RES
 1b:b-dgal-HEX-1:5

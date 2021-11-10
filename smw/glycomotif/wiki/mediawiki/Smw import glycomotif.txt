@@ -9,6 +9,7 @@ http://glyomics.org/glycomotif#|[http://glyomics.org/glycomotif Glyomics Glycomo
  reference|Type:Page
  citedby|Type:Record
  refid|Type:Text
+ dbxref|Type:Text
  name|Type:Text
  preferred_name|Type:Text
  Keyword|Category

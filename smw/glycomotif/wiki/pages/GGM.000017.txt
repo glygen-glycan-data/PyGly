@@ -3,6 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
+|dbxref=GlycanDictionary:Fucosylated LDN
 |displayhgv=false
 |glycoct=RES
 1b:x-dglc-HEX-1:5
