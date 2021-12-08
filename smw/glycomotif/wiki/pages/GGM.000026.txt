@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Nonreducing-End
 |collection=GGM
-|dbxref=GlycanDictionary:2,6-sialyl-Sulfo-LN
+|dbxref=GlycanDictionary:GD000002
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

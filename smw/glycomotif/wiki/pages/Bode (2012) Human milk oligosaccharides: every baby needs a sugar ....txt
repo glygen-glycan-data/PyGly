@@ -1,0 +1,10 @@
+{{Publication
+|authors=Bode L
+|doi=10.1093/glycob/cws074
+|journal=Glycobiology
+|pages=1147-62
+|pmid=22513036
+|title=Human milk oligosaccharides: every baby needs a sugar mama
+|volume=22(9)
+|year=2012
+}}

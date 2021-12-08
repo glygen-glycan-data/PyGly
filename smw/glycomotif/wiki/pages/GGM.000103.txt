@@ -3,7 +3,7 @@
 |aglycon=Cer
 |alignment=Whole-Glycan
 |collection=GGM
-|dbxref=GlycanDictionary:2-Fucosyl-GD1b
+|dbxref=GlycanDictionary:GD000003
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

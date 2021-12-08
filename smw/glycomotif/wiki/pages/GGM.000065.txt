@@ -3,7 +3,7 @@
 |aglycon=Cer
 |alignment=Whole-Glycan
 |collection=GGM
-|dbxref=GlycanDictionary:Ceramide dihexosyl sulfate
+|dbxref=GlycanDictionary:GD000041
 |displayhgv=false
 |glycoct=RES
 1b:b-dgal-HEX-1:5

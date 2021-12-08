@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Nonreducing-End
 |collection=GGM
-|dbxref=GlycanDictionary:VIM-2
+|dbxref=GlycanDictionary:GD000180
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
-|dbxref=GlycanDictionary:Alpha-gal antigen
+|dbxref=GlycanDictionary:GD000016
 |displayhgv=false
 |glycoct=RES
 1b:b-dgal-HEX-1:5

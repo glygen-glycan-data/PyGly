@@ -3,7 +3,7 @@
 |aglycon=Cer
 |alignment=Whole-Glycan
 |collection=GGM
-|dbxref=GlycanDictionary:Blood group H (Type 4)
+|dbxref=GlycanDictionary:GD000039
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

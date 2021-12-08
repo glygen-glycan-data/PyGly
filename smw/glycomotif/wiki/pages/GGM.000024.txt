@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Nonreducing-End
 |collection=GGM
-|dbxref=GlycanDictionary:Sialyl Lewis a
+|dbxref=GlycanDictionary:GD000150
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

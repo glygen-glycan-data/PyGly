@@ -3,7 +3,7 @@
 |aglycon=Cer
 |alignment=Whole-Glycan
 |collection=GGM
-|dbxref=GlycanDictionary:Globotetraosylceramide
+|dbxref=GlycanDictionary:GD000087;GlycanDictionary:GD000088
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

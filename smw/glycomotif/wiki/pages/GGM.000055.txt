@@ -3,7 +3,7 @@
 |aglycon=Ser/Thr
 |alignment=Whole-Glycan
 |collection=GGM
-|dbxref=GlycanDictionary:O-linked mannose
+|dbxref=GlycanDictionary:GD000140
 |displayhgv=false
 |glycoct=RES
 1b:a-dman-HEX-1:5

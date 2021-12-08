@@ -3,7 +3,7 @@
 |aglycon=Other
 |alignment=Whole-Glycan
 |collection=GGM
-|dbxref=GlycanDictionary:Seminolipid
+|dbxref=GlycanDictionary:GD000147
 |displayhgv=false
 |glycoct=RES
 1b:b-dgal-HEX-1:5

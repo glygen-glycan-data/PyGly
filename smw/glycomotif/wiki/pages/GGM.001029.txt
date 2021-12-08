@@ -14,6 +14,7 @@ LIN
 Human milk oligosaccharide
 |prefname=Human milk oligosaccharide
 |redend=true
+|reference=Bode (2012) Human milk oligosaccharides: every baby needs a sugar ...
 |sameas=GM.G15541SE
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2122h{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a4-b1
 }}

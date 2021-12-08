@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
-|dbxref=GlycanDictionary:Blood group H (type 2) - Lewis y
+|dbxref=GlycanDictionary:GD000038
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

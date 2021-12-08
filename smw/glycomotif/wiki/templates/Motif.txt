@@ -54,7 +54,7 @@ Edit the page to see the template text.
 | style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
 |-
 ! style="" | Cross Reference(s)
-| style="" | {{#arraymap:{{{dbxref|}}}|;|x|{{crossrefdisplay|x}}|, }}
+| style="" | {{#arraymap:{{{dbxref|}}}|;|x|{{crossrefdisplay|x}}|,&thinsp;}}
 |-
 ! style="" | Reference(s)
 | style="" | {{#arraymap:{{{reference|}}}|;|x|[[glycomotif:reference::x]]|<br/>}}

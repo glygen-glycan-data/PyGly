@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
-|dbxref=GlycanDictionary:3'-Sulfo-Lewis a
+|dbxref=GlycanDictionary:GD000006
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5
