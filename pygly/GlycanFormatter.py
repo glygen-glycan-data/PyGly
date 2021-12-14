@@ -27,9 +27,12 @@ class GlycanFormatter:
         pass
 
 class GlycoCTRepeatedSectionError(GlycoCTParseError):
-    def __init__(self,section,lineno):
+    def __init__(self,section,lineno=None,msg=None):
         self.section = section
-        self.message = "GlycoCT parser, line %d: Repeated section %s"%(lineno, section)
+	if lineno:
+            self.message = "GlycoCT parser, line %d: Repeated section %s%s"%(lineno, section, ": "+msg if msg else "")
+        else:
+            self.message = "GlycoCT parser, Repeated section %s%s"%(section, ": "+msg if msg else "")
 
 class GlycoCTLINBeforeRESError(GlycoCTParseError):
     def __init__(self,lineno):
@@ -357,7 +360,9 @@ class GlycoCTFormat(GlycanFormatter):
                                 if l.child() in rinfo[2] and l.parent() in rinfo[2]:
                                     rinfo[3].append(l)
                                     found = True
-                            assert found
+
+                            if not found:
+                                raise RuntimeError("Glycan repeat section issue")
 
                         continue
 
@@ -497,7 +502,7 @@ class GlycoCTFormat(GlycanFormatter):
                 if l in seen:
                     raise GlycoCTRepeatedSectionError(lineno=lineno+1,section=l)
                 if "RES" not in seen or "LIN" not in seen:
-                    raise GlycoCTUNDBeforeRESLINError()
+                    raise GlycoCTUNDBeforeRESLINError(lineno=lineno+1)
                 state = "UND"
                 seen.add(state)
                 continue
@@ -621,8 +626,9 @@ class GlycoCTFormat(GlycanFormatter):
 
         for glycoctid in rep:
 
-            assert isinstance(res[rep[glycoctid]["start"]] ,Monosaccharide)
-            assert isinstance(res[rep[glycoctid]["end"]], Monosaccharide)
+            if not isinstance(res[rep[glycoctid]["start"]] ,Monosaccharide) or \
+               not isinstance(res[rep[glycoctid]["end"]], Monosaccharide):
+                raise GlycoCTRepeatedSectionError(section=glycoctid,msg="Repeat section start or end is not a Monosaccharide.")
 
             entry_link_child_type = None
             exit_link_parent_type = None
