@@ -45,4 +45,7 @@ class GlycoMotifTS(TripleStoreResource):
             keywords = []
             if row.get('keyword'):
                 keywords = row.get('keyword').split('//')
-            yield "%s.%s"%(collection,row['accession']),row['gtcacc'],row['alignment'],row['redend'],row['aglycon'],names,pmids,keywords
+            dbxrefs = []
+            if row.get('dbxref'):
+                dbxrefs = row.get('dbxref').split('//')
+            yield "%s.%s"%(collection,row['accession']),row['gtcacc'],row['alignment'],row['redend'],row['aglycon'],names,pmids,keywords,dbxrefs
