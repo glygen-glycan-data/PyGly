@@ -515,6 +515,15 @@ class SMWClass(object):
             self.data[key] = []
         self.data[key].append(value)
 
+    def add(self,key,value):
+        if key not in self.data:
+            self.data[key] = set()
+        self.data[key].add(value)
+
+    def sort(self,key,keyfn):
+	if key in self.data:
+	    self.data[key].sort(key=keyfn)
+
     def update(self,**kwargs):
         self.data.update(self.toPython(kwargs))
 
@@ -524,3 +533,6 @@ class SMWClass(object):
 
     def keys(self):
         return self.data.keys()
+
+    def items(self):
+        return self.data.items()
