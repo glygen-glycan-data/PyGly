@@ -27,7 +27,7 @@ if allmotifs:
     print "\t".join(["MotifAccession","Property","Value"])
 allmotifdata = dict()
 for coll in collections:
-    for acc,gtcacc,alignment,redend,aglycon,names,pmids,keywords in sorted(gm.allmotifs(coll)):
+    for acc,gtcacc,alignment,redend,aglycon,names,pmids,keywords,dbxrefs in sorted(gm.allmotifs(coll)):
 	if coll == "GTC":
 	    continue
 	if coll == "GGM" and int(acc.split('.')[1]) >= 1000:
@@ -48,6 +48,8 @@ for coll in collections:
 		print "\t".join([acc,"PMID",pmid])
 	    for i,kw in enumerate(sorted(keywords)):
 		print "\t".join([acc,"Keyword",kw])
+	    for i,xr in enumerate(sorted(dbxrefs)):
+		print "\t".join([acc,"CrossRef",xr])
 	allmotifdata[acc] = dict(alignment=alignment,label=names[0])
 
 if allmotifs:

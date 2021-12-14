@@ -26,16 +26,16 @@ for acc in w.iterglycanid():
         row[prop] = value    
     # print row
     row['Count'] = row['Monosaccharide']
-    row['Xxx'] = [0,False]
+    if 'Xxx' not in row:
+        row['Xxx'] = [0,False]
     for k in row:
 	if k.startswith('Man') or k.startswith('Gal') or k.startswith('Glc') or k.startswith('Fuc'):
 	    continue
-	if k in ('accession','Sia','S','P','Me','Count','Monosaccharide','aldi','IdoA','X','Xxx'):
+	if k in ('accession','Sia','S','P','Me','Count','Monosaccharide','aldi','IdoA','X','Xxx','Xyl'):
 	    continue
-	if k in ['Hex','HexNAc','dHex','NeuAc','NeuGc','HexA','HexN']:
+	if k in ['Hex','HexNAc','dHex','NeuAc','NeuGc','HexA','HexN','Hex+aldi','dHex+aldi','HexNAc+aldi']:
 	    continue
-        assert k in ['dHex+aldi','Hex+aldi','HexNAc+aldi','Pent','Xyl'], "Unexpected Xxx monosaccharide: "+k
-        # print(k)
+        assert k in ['Pent','Xyl'], "Unexpected Xxx monosaccharide: "+k
 	row['Xxx'][0] += row[k][0]
 	row['Xxx'][1] |= row[k][1]
     # S and P are accounted for

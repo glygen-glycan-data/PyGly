@@ -341,6 +341,10 @@ class NGlycanAlditolReduced(MotifClassifier):
     _class = ("N-linked","alditol-reduced")
     _motifs = ["GGM.001026"]
 
+class OGlycanOGlcNAc(MotifClassifier):
+    _class = ("O-linked","O-GlcNAc")
+    _motifs = ["GGM.001028"]
+
 class OGlycanOMannose(MotifClassifier):
     _class = ("O-linked","O-mannose")
     _motifs = ["GGM.001019"]
@@ -448,6 +452,10 @@ class GlycosphingolipidGanglio(MotifClassifier):
 class GlycosphingolipidGlobo(MotifClassifier):
     _class = ("Glycosphingolipid","globo series")
     _motifs = ["GGM.001109"]
+
+class GPIAnchor(MotifClassifier):
+    _class = ("GPI anchor","")
+    _motifs = ["GGM.001030"]
 
 if __name__ == "__main__":
 

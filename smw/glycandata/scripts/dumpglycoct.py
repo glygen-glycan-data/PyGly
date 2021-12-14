@@ -9,6 +9,9 @@ w = GlycanData()
 
 allfn = set(glob.glob(sys.argv[1]+"/G*.txt"))
 
+glycanclass = sys.argv[2]
+assert glycanclass in ("N-linked","O-linked")
+
 for g in w.iterglycan():
     acc = g.get('accession')
 
@@ -16,14 +19,24 @@ for g in w.iterglycan():
     if g.has_annotations(property='GlycoCT',type='Sequence'):
 	gct = g.get_annotation_value(property='GlycoCT',type='Sequence')
 
-    nmotif = False
-    if g.has_annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
-	for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
-            if value == "GGM.001001":
-		nmotif = True
-		break
+    inclass = False
+    if glycanclass == "N-linked":
+        if g.has_annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
+	    for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
+                if value == "GGM.001001":
+		    inclass = True
+		    break
 
-    if gct == None or not nmotif:
+    elif glycanclass == "O-linked":
+        if g.has_annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
+	    for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
+                if value in ("GGM.001006","GGM.001010","GGM.001014","GGM.001016","GGM.001018"):
+		    inclass = True
+		    break
+    else:
+	raise RuntimeError("Bad glycan-class...")
+
+    if gct == None or not inclass:
 	continue
 
     filename = sys.argv[1] + "/" + acc + ".txt"

@@ -15,14 +15,14 @@ collections = ('GGM',)
 
 allmotifs = dict()
 for coll in collections:
-    for acc,gtcacc,alignment,redend,aglycon,names,pmids,keywords in gm.allmotifs(coll):
+    for acc,gtcacc,alignment,redend,aglycon,names,pmids,keywords,dbxrefs in gm.allmotifs(coll):
 	if aglycon == None:
 	    aglycon = ""
 	if coll == "GGM" and int(acc.split('.',1)[1]) > 1000:
 	    classification = True
 	else:
 	    classification = False
-        allmotifs[acc] = dict(names=names,alignment=alignment,aglycon=aglycon,redend=redend,gtcacc=gtcacc,pmids=pmids,keywords=keywords,classification=classification)
+        allmotifs[acc] = dict(names=names,alignment=alignment,aglycon=aglycon,redend=redend,gtcacc=gtcacc,pmids=pmids,keywords=keywords,classification=classification,dbxrefs=dbxrefs)
 
 for g in w.iterglycan():
 
