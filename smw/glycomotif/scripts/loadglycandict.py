@@ -12,6 +12,7 @@ from dataset import CSVFileTable
 for r in CSVFileTable(sys.argv[1]):
     entry = r['term (main_entry)'].strip()
     xrefs = r['term_xref']
+    gdacc = r['glycan_dictionary_accession']
     allmid = set()
     for xr in filter(None,xrefs.split('|')):
 	try:
@@ -22,7 +23,7 @@ for r in CSVFileTable(sys.argv[1]):
             if not re.search(r'^GGM\.\d{6}$',mid):
 		print "Bad motif id: %s (%s)"%(mid,entry)
 		continue
-            motif2gd[mid].add(entry)
+            motif2gd[mid].add((gdacc,entry))
 
 for mid in w.site.allpages(prefix='GGM.',generator=False):
     # print mid
@@ -32,7 +33,7 @@ for mid in w.site.allpages(prefix='GGM.',generator=False):
     dbxrefs = m.get('dbxref',set())
     # print dbxrefs
     newdbxrefs = set()
-    for acc in entries:
+    for acc,term in entries:
         newdbxrefs.add(('GlycanDictionary',acc))
     for db,acc in dbxrefs:
         if db != 'GlycanDictionary':

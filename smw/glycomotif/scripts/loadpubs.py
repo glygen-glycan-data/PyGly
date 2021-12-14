@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python2
 
 import sys,traceback,time
 
@@ -6,7 +6,11 @@ from getwiki import GlycoMotifWiki, Publication
 w = GlycoMotifWiki()
 
 refs = []
-for l in open(sys.argv[1]):
+if len(sys.argv) > 1:
+  h = open(sys.argv[1])
+else:
+  h = sys.stdin
+for l in h:
     sl = l.split()
     try:
         refid = int(sl[0])

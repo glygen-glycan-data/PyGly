@@ -4,7 +4,7 @@ __all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
             "GlydinSugarbindMotif", "GlydinBioligoMotif",
-            "UniCarbMotif", "GlyGenMotif"]
+            "UniCarbMotif", "GlyGenMotif", "GlyGenGlycanDict"]
 
 import sys
 
@@ -200,6 +200,13 @@ class CCRCMotif(GlyTouCanMotif):
 
 class GlyGenMotif(GlyTouCanMotif):
     id = 'GGM'
+    def __init__(self,**kwargs):
+        assert kwargs.get('accession') != None
+        assert kwargs.get('glytoucan') != None
+        super(GlyGenMotif,self).__init__(**kwargs)
+
+class GlyGenGlycanDict(GlyTouCanMotif):
+    id = 'GGD'
     def __init__(self,**kwargs):
         assert kwargs.get('accession') != None
         assert kwargs.get('glytoucan') != None
