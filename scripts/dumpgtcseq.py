@@ -32,7 +32,7 @@ for acc in gtc.allaccessions():
         seq = gtc.getseq(acc,'glycoct')
                                                                                                                              
     if seqtype == 'genglycoct':
-        seq = gtc.glycoct()
+        seq = gtc.glycoct(acc)
 
     if not seq:                                                                                                              
         continue                                                                                                             
