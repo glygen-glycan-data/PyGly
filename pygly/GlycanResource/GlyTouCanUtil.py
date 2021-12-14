@@ -83,7 +83,11 @@ class GlyTouCanUtil(object):
         g = self.getGlycan(acc,fetch)
         if not g:
             return None
-        return g.glycoct()
+	try:
+            return g.glycoct()
+	except RuntimeError:
+            pass
+	return None
 
     def umw(self, acc, fetch=None):
         g = self.getGlycan(acc,fetch)                                                                             
