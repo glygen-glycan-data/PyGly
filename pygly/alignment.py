@@ -347,8 +347,8 @@ class GlycanEquivalence(Comparitor):
 
                 # Exact match
                 if a.repeated() and b.repeated():
-                    a_rpbl = filter(lambda x: x.repeat_bridge_link(), a.all_links(include_repeat=True))
-                    b_rpbl = filter(lambda x: x.repeat_bridge_link(), b.all_links(include_repeat=True))
+                    a_rpbl = filter(lambda x: x.is_repeat_bridge(), a.all_links(include_repeat=True))
+                    b_rpbl = filter(lambda x: x.is_repeat_bridge(), b.all_links(include_repeat=True))
 
                     for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkeq(i, j) and self.parent_and_child_id_check(i, j)):
                         return True
@@ -611,8 +611,8 @@ class GlycanPartialOrder(Comparitor):
                 return False
 
             if a.repeated() and b.repeated():
-                a_rpbl = filter(lambda x: x.repeat_bridge_link(), a.all_links(include_repeat=True))
-                b_rpbl = filter(lambda x: x.repeat_bridge_link(), b.all_links(include_repeat=True))
+                a_rpbl = filter(lambda x: x.is_repeat_bridge(), a.all_links(include_repeat=True))
+                b_rpbl = filter(lambda x: x.is_repeat_bridge(), b.all_links(include_repeat=True))
 
                 for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkleq(i,j) and self.parent_and_child_id_check(i, j)):
                     return True
