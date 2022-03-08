@@ -27,5 +27,5 @@ IUPAC symbols with sterochemistry (e.g. Glc, Gal, Man) have their counts aggrega
 ### Fields
 - accession	- GlyTouCan accession
 - monosaccharide - IUPAC symbol for monosaccharide (also Xxx, X, \*)
-- count - integer count for monosaccharide symbol
+- count - integer count for monosaccharide symbol. Counts for monosaccharides contained in repeated units are marked with a "+"
 
