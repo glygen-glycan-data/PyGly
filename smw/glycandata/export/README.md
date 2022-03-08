@@ -19,8 +19,8 @@ Fields
 - monosaccharide - IUPAC symbol for monosaccharide (also Xxx, X, \*)
 - count - integer count for monosaccharide symbol. Counts for monosaccharides contained in repeated units are marked with a "+"
 
-IUPAC symbols with sterochemistry (e.g. Glc, Gal, Man) have their counts aggregated to their subsuming IUPAC symbol (e.g. Hex).
-  
+Notes
+ - IUPAC symbols with sterochemistry (e.g. Glc, Gal, Man) have their counts aggregated to their subsuming IUPAC symbol (e.g. Hex). 
 - Xxx represents any monosaccharide not otherwise captured by an IUPAC symbol. 
 - X represents any (floating) substituent not otherwise captured by an IUPAC symbol. 
 - \* represents the total number of monosaccharides
