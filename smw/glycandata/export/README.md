@@ -19,6 +19,10 @@ IUPAC symbols with sterochemistry (e.g. Glc, Gal, Man) have their counts aggrega
 - Xxx represents any monosaccharide not otherwise captured by an IUPAC symbol. 
 - X represents any (floating) substituent not otherwise captured by an IUPAC symbol. 
 - \* represents the total number of monosaccharides
+- \+aldi monosaccharides (e.g. Glc+aldi) are reported, but also as their components.
+- Substituents S, P, Me are split from their residues and counted separately.
+- Other floating substituents are counted as X
+- Non-floating substituents are left attached to their residue, resulting in Xxx (except for GlcNAc, etc.)
 
 ### Fields
 - accession	- GlyTouCan accession
