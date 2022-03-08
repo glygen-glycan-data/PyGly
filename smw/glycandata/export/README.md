@@ -14,6 +14,11 @@ Header field GlyTouCanAccession consistently refers to GlyTouCan accession
 
 Triples representing monosaccharide counts, computed by the Glycan.iupac_composition method in PyGly. 
 
+Fields
+- accession	- GlyTouCan accession
+- monosaccharide - IUPAC symbol for monosaccharide (also Xxx, X, \*)
+- count - integer count for monosaccharide symbol. Counts for monosaccharides contained in repeated units are marked with a "+"
+
 IUPAC symbols with sterochemistry (e.g. Glc, Gal, Man) have their counts aggregated to their subsuming IUPAC symbol (e.g. Hex).
   
 - Xxx represents any monosaccharide not otherwise captured by an IUPAC symbol. 
@@ -23,9 +28,4 @@ IUPAC symbols with sterochemistry (e.g. Glc, Gal, Man) have their counts aggrega
 - Substituents S, P, Me are split from their residues and counted separately.
 - Other floating substituents are counted as X
 - Non-floating substituents are left attached to their residue, resulting in Xxx (except for GlcNAc, etc.)
-
-### Fields
-- accession	- GlyTouCan accession
-- monosaccharide - IUPAC symbol for monosaccharide (also Xxx, X, \*)
-- count - integer count for monosaccharide symbol. Counts for monosaccharides contained in repeated units are marked with a "+"
 
