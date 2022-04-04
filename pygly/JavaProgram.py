@@ -2,14 +2,43 @@
 from tempfile import mkstemp
 import os,sys,re,os.path,time
 from subprocess import Popen, PIPE, STDOUT
+import threading
+
+class PopenTimeout(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        threading.Thread.__init__(self)
+        self.timeout = None
+        if kwargs.get('timeout') != None:
+            self.timeout = kwargs['timeout']
+	    del kwargs['timeout']
+	self.args = args
+	self.kwargs = kwargs
+        self.p = None
+	self.retval = None
+        self.start()
+        while self.p == None:
+            time.sleep(.1)
+
+    def run(self):
+        self.p = Popen(*self.args,**self.kwargs)
+        self.retval = self.p.wait()
+
+    def wait(self):
+        self.join(self.timeout)
+        if self.is_alive():
+            self.p.kill()
+            self.join()
+            return -9
+        return self.retval
 
 class JavaProgram(object):
 
-    def __init__(self,verbose=False,wait=True,stdout=False,javaw=(sys.platform=="win32")):
+    def __init__(self,verbose=False,wait=True,stdout=False,javaw=(sys.platform=="win32"),timeout=None):
         self.verbose = verbose
         self.wait = wait
 	self.java = 'javaw' if javaw else 'java'
 	self.stdout = stdout
+        self.timeout = timeout
     
     def __call__(self):
 	if 'JAVA_HOME' in os.environ:
@@ -20,24 +49,33 @@ class JavaProgram(object):
         cmd = '"%s" -cp "%s" %s %s'%(java,self.classpath(),self.main,self.args())
         if self.verbose:
             print >>sys.stderr, "Executing:", cmd
+        starttime = time.time()
         if self.stdout:
-            proc = Popen(cmd,
-                         stdin=PIPE,stdout=PIPE,stderr=STDOUT,
-                         shell=(sys.platform!="win32"))
+            proc = PopenTimeout(cmd,
+                                stdin=PIPE,stdout=PIPE,stderr=STDOUT,
+                                shell=(sys.platform!="win32"),
+                                timeout=self.timeout)
         else:
-            proc = Popen(cmd,
-                         stdin=PIPE,
-                         shell=(sys.platform!="win32"))
-        proc.stdin.write(self.stdin())
+            proc = PopenTimeout(cmd,
+                                stdin=PIPE,
+                                shell=(sys.platform!="win32"),
+                                timeout=self.timeout)
+        proc.p.stdin.write(self.stdin())
         if self.wait == False:
             return
         if type(self.wait) in (int,float):
             time.sleep(self.wait)
             return
         retval = proc.wait()
+        if retval == -9:
+            if self.verbose:
+                print >>sys.stderr, "Process killed after %s seconds"%(self.timeout,)
+        else:
+            if self.verbose:
+                print >>sys.stderr, "Process completed after %s seconds"%(round(time.time()-starttime,1),)
 	if self.stdout:
-            return proc.stdout.read()
-	return (retval!=0)
+            return proc.p.stdout.read()
+	return (retval==0)
 
     def stdin(self):
         return ""
@@ -81,8 +119,8 @@ class GlycoCT2Image(JavaProgram):
            """
     main = "GlycoCT2Image"
 
-    def __init__(self,glycoctstr,outfile,verbose=False,wait=True,stdout=False,**kw):
-        super(GlycoCT2Image,self).__init__(verbose=verbose,wait=wait,stdout=stdout)
+    def __init__(self,glycoctstr,outfile,verbose=False,timeout=15,**kw):
+        super(GlycoCT2Image,self).__init__(verbose=verbose,wait=True,stdout=(not verbose),timeout=timeout)
         self.kwargs = kw
         self.glycoctstr = glycoctstr
         self.outfile = outfile
@@ -106,8 +144,8 @@ class GWBFormatter(JavaProgram):
            """
     main = "GlycoCT2GWB"
 
-    def __init__(self,glycoctstr,verbose=False,wait=True,**kw):
-        super(GWBFormatter,self).__init__(verbose=verbose,wait=wait,stdout=True)
+    def __init__(self,glycoctstr,verbose=False,**kw):
+        super(GWBFormatter,self).__init__(verbose=verbose,wait=True,stdout=True,timeout=10)
         self.glycoctstr = glycoctstr
 
     def args(self):

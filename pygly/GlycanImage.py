@@ -79,6 +79,5 @@ class GlycanImage(object):
                                     display=self._display,
                                     notation=self._notation,
                                     opaque=str(self._opaque).lower(),
-                                    verbose=self._verbose,
-				    stdout=(not self._verbose))
+                                    verbose=self._verbose)
         return imageWriter()
