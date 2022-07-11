@@ -15,9 +15,9 @@ class GlycanImage(object):
     def write(self,*args,**kw):
         kw['format'] = kw.get('format','png')
         kw['force'] = kw.get('force',True)
-	out = None
-	if 'out' in kw:
-	    out = kw.get('out')
+        out = None
+        if 'out' in kw:
+            out = kw.get('out')
             del kw['out']
         for k,v in list(kw.items()):
             self.imageWriter.set(k,v)
@@ -25,7 +25,7 @@ class GlycanImage(object):
         for acc in args:
             if not out:
                outfile = "%s.%s"%(acc,kw['format'])
-	    else:
+            else:
                outfile = out
 
             seq = self.gtc.getseq(acc,'wurcs')
@@ -57,12 +57,12 @@ class GlycanImage(object):
         dummy,tmpoutfile = tempfile.mkstemp(suffix=".%s"%(kw['format'],))
         kw['out'] = tmpoutfile
         kw['force'] = True
-	args = [ accession ]
+        args = [ accession ]
         self.write(*args,**kw)
 
         if not os.path.exists(tmpoutfile) or os.path.getsize(tmpoutfile) == 0:
             os.unlink(tmpoutfile)
-	    return ""
+            return ""
 
         def button_click_exit_mainloop (event):
             event.widget.quit() # this will cause mainloop to unblock.
@@ -81,7 +81,7 @@ class GlycanImage(object):
             label_image.place(x=0,y=0,width=image1.size[0],height=image1.size[1])
             root.title(accession)
             root.mainloop() # wait until user clicks the window
-	finally:
+        finally:
             os.unlink(tmpoutfile)
 
-	return ""
+        return ""

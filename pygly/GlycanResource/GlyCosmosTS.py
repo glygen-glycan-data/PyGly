@@ -66,9 +66,9 @@ class GlyCosmosTS(TripleStoreResource):
             if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
                 continue
             key = (row['accession'],row['format'])
-	    if key != curkey:
+            if key != curkey:
                 yield row['accession'], row['format'], row['sequence']
-		curkey = key
+                curkey = key
 
     def getmass(self,accession):
         for row in self.query_mass(accession=accession):
@@ -84,3 +84,16 @@ class GlyCosmosTS(TripleStoreResource):
                 yield row['accession'],float(row['mass'])
             except ValueError:
                 pass
+
+    def gettaxa(self,accession):
+        for row in self.query_taxonomy(accession=accession):
+            yield row['taxon']
+
+    def bytaxa(self,taxon):
+        for row in self.query_taxonomy(taxon=taxon):
+            yield row['accession']
+
+    def alltaxa(self):
+        for row in self.query_taxonomy():
+            yield row['accession'],row['taxon']
+

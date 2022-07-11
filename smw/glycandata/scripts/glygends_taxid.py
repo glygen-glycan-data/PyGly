@@ -11,11 +11,11 @@ from optparse import OptionParser
 import csv
 
 datasets_data = """
-GLYDS000142	human_proteoform_glycosylation_sites_harvard.csv	9606
-GLYDS000335	hcv1a_proteoform_glycosylation_sites_literature.csv	63746
-GLYDS000481	human_proteoform_glycosylation_sites_literature_mining.csv	9606
+GLY_000142	human_proteoform_glycosylation_sites_harvard.csv	9606
+GLY_000335	hcv1a_proteoform_glycosylation_sites_literature.csv	11108
 """
 
+# GLY_000481	human_proteoform_glycosylation_sites_literature_mining.csv	9606
 # GLYDS000492	mouse_proteoform_glycosylation_sites_literature_mining.csv	10090
 # GLYDS000493	rat_proteoform_glycosylation_sites_literature_mining.csv	10116
 # GLYDS000479	sarscov2_proteoform_glycosylation_sites_unicarbkb.csv	2697049
@@ -35,7 +35,7 @@ for l in datasets_data.splitlines():
 
 seen = set()
 for ds in sorted(datasets.values(),key=lambda d: d['dsid']):
-  url = "https://data.glygen.org/ln2wwwdata/reviewed/%s"%(ds['filename'],)
+  url = "https://data.glygen.org/ln2data/releases/data/current/reviewed/%s"%(ds['filename'],)
   # print >>sys.stderr, url
   for row in csv.DictReader(urllib.urlopen(url)):
     accs = []

@@ -4,7 +4,8 @@ import sys, time, traceback, hashlib
 from collections import defaultdict
 
 import findpygly
-from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCan
+from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCan, GlyTouCanNoPrefetch
+from pygly.Monosaccharide import Linkage
 
 gtc = GlyTouCanNoCache();
 
@@ -21,6 +22,7 @@ w = GlycanData()
 
 def accessions():
     if len(sys.argv) > 1:
+        gtc = GlyTouCanNoPrefetch();
 	for arg in sys.argv[1:]:
 	    g = w.get(arg.strip())
 	    if g:
@@ -55,15 +57,20 @@ for g in accessions():
 	g.set_annotation(property='SequenceHash',type='Sequence',value=sorted(hashes),source='EdwardsLab')
 
     try:
-	if glycan and glycan.fully_determined():
+        any_subst_to_mono = any([m.has_links(default=False,fromto=Linkage.SUBST_TO_MONO) for m in glycan.all_nodes()])
+	if glycan and glycan.fully_determined() and not any_subst_to_mono:
+            # print(glycan)
+            # for n in glycan.all_nodes():
+                # print(n)
             glycam = glycan.glycam()
+            # print(glycam)
 	    if glycam and '?' not in glycam:
                 g.set_annotation(value=glycam,property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
 	    else:
                 g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
 	else:
             g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
-    except (KeyError,AssertionError):
+    except (KeyError,AssertionError,AttributeError):
         g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
     except:
         g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')

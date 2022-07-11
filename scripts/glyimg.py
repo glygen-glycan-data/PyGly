@@ -2,7 +2,7 @@
 import sys, os
 import findpygly
 from pygly.GlycanImage import GlycanImage
-from pygly.GlyTouCan import GlyTouCan
+from pygly.GlycanResource.GlyTouCan import GlyTouCanNoPrefetch
 
 if len(sys.argv) <= 1:
     print >>sys.stderr, "glyimg.py [ image options ] <gtc-accession> [ <gtc-accession> ... ]"
@@ -16,9 +16,11 @@ if len(sys.argv) <= 1:
     """.strip()
     sys.exit(1)
 
-gtc = GlyTouCan(usecache=True)
+gtc = GlyTouCanNoPrefetch()
 
 imageWriter = GlycanImage()
+imageWriter.verbose(True)
+imageWriter.force(True)
 lastopt = 0
 for i in range(1,len(sys.argv),2):
     if sys.argv[i].startswith('G'):

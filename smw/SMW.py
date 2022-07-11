@@ -214,7 +214,7 @@ class SMWSite(object):
                 continue
             try:
                 h = open(dir+'/'+name+'.txt','w')
-                h.write((p.text().rstrip('\n')+'\n').encode('utf8').replace(r'\n',r'\\n').decode('string_escape'))
+                h.write((p.text().rstrip('\n')+'\n').encode('utf8').replace(r'\n',r'\\n').replace(r'\"',r'\\"').decode('string_escape'))
             except:
                 raise
             finally:

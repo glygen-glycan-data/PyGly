@@ -1,6 +1,6 @@
 
-from JavaProgram import GlycoCT2Image
-from GlycanFormatter import GlycoCTFormat
+from . JavaProgram import GlycoCT2Image
+from . GlycanFormatter import GlycoCTFormat
 
 class GlycanImage(object):
     def __init__(self):
@@ -12,7 +12,7 @@ class GlycanImage(object):
         self._format = "png"
         self._opaque = True
         self._force = False
-	self._verbose = False
+        self._verbose = False
         self.fmt = GlycoCTFormat()
         
     def scale(self,value=None):
@@ -51,24 +51,29 @@ class GlycanImage(object):
         self._opaque=value
 
     def force(self, value=None):
-	if value == None:
-	    return self._force
-	self._force=value
+        if value == None:
+            return self._force
+        self._force=value
 
     def verbose(self, value=None):
-	if value == None:
-	    return self._verbose
-	self._verbose = value
+        if value == None:
+           return self._verbose
+        self._verbose = value
 
     def set(self,key,value):
-	if not hasattr(self,key):
-	    raise KeyError(key)
-	getattr(self,key)(value)	
+        if not hasattr(self,key):
+            raise KeyError(key)
+        getattr(self,key)(value)
+
+    def get(self,key):
+        if not hasattr(self,key):
+            raise KeyError(key)
+        return getattr(self,key)()
 
     def writeImage(self,glycan,filename):
-	glystr = glycan
-	if not isinstance(glystr,basestring):
-	    glystr = self.fmt.toStr(glycan)
+        glystr = glycan
+        if not isinstance(glystr,basestring):
+            glystr = self.fmt.toStr(glycan)
         imageWriter = GlycoCT2Image(glystr,
                                     filename,
                                     format=self._format,

@@ -10,7 +10,7 @@ w = GlycanData()
 import findpygly
 from pygly.GlycanResource import GlycoMotif
 
-gm = GlycoMotif(prefetch=True,verbose=False)
+gm = GlycoMotif(prefetch=True,verbose=False,usecache=False)
 
 if sys.argv[1] == "allmotifs":
     allmotifs = True

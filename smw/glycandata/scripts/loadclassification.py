@@ -26,14 +26,14 @@ def iterglycan():
 	    yield m
 
 from clseng import ClassifierEngine
-classifier = ClassifierEngine()
+classifier = ClassifierEngine(glycandata=w)
 
 acc2type = defaultdict(set)
 for m in iterglycan():
     acc = m.get('accession')
     print >>sys.stderr, "1:",acc
 
-    for asn in classifier.assign(m):
+    for asn in classifier.assign(acc):
         acc2type[acc].add((asn[0],asn[1],"Direct",asn[2]))
 	# print >>sys.stderr, " ",acc,(" ".join(asn[:2])).strip()
 
@@ -88,7 +88,7 @@ for m in iterglycan():
 		typecnt += 1
 		seent.add(st[0])
 	    if st[1]:
-	        m.add_annotation(value=" ".join(st), property='GlycanSubtype', 
+	        m.add_annotation(value=st[1], property='GlycanSubtype', 
 				 source='GlycoMotif', type='Classification', 
 				 sourceid=sid)
                 subtypecnt += 1
@@ -106,7 +106,7 @@ for m in iterglycan():
 		typecnt += 1
 		seent.add(st[0])
 	    if st[1]:
-	        m.add_annotation(value=" ".join(st), property='GlycanSubtype', 
+	        m.add_annotation(value=st[1], property='GlycanSubtype', 
 				 source='Subsumption', type='Classification', 
 				 sourceid=sid)
                 subtypecnt += 1
@@ -117,6 +117,7 @@ for m in iterglycan():
     m.set_annotation(value=subtypecnt, property='GlycanSubtypeCount', source='GlycanData', type='Classification')
     m.set_annotation(value=stbytcnt['N-linked'], property='GlycanNLinkedSubtypeCount', source='GlycanData', type='Classification')
     m.set_annotation(value=stbytcnt['O-linked'], property='GlycanOLinkedSubtypeCount', source='GlycanData', type='Classification')
+    m.set_annotation(value=stbytcnt['GAG'], property='GlycanGAGSubtypeCount', source='GlycanData', type='Classification')
     m.set_annotation(value=stbytcnt['Glycosphingolipid'], property='GlycanGlycosphingolipidSubtypeCount', source='GlycanData', type='Classification')
 
     if not debug:

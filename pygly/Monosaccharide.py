@@ -640,14 +640,14 @@ class Monosaccharide(Node):
 ##         return self._composition.mass(mass_table)
 
     def substituents(self):
-	seen_subst = set()
+        seen_subst = set()
         for l in self.substituent_links():
             if l.child() not in seen_subst:
                 yield l.child()
-		seen_subst.add(l.child())
+                seen_subst.add(l.child())
 
     def substituent_count(self):
-	return sum(1 for _ in self.substituents())
+        return sum(1 for _ in self.substituents())
 
     def add_substituent(self,sub,**kw):
         if isinstance(sub,Substituent):
@@ -662,10 +662,10 @@ class Monosaccharide(Node):
         return len(self._substituent_links) > 0
 
     def is_nacetylated(self):
-	firstsub = None
-	for i,s in enumerate(self.substituents()):
-	    if i > 0:
-		return False
+        firstsub = None
+        for i,s in enumerate(self.substituents()):
+            if i > 0:
+                return False
             firstsub = s
         return firstsub != None and firstsub.isNAc()
 

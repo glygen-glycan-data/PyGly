@@ -10,11 +10,11 @@ class PopenTimeout(threading.Thread):
         self.timeout = None
         if kwargs.get('timeout') != None:
             self.timeout = kwargs['timeout']
-	    del kwargs['timeout']
-	self.args = args
-	self.kwargs = kwargs
+            del kwargs['timeout']
+        self.args = args
+        self.kwargs = kwargs
         self.p = None
-	self.retval = None
+        self.retval = None
         self.start()
         while self.p == None:
             time.sleep(.1)
@@ -36,16 +36,16 @@ class JavaProgram(object):
     def __init__(self,verbose=False,wait=True,stdout=False,javaw=(sys.platform=="win32"),timeout=None):
         self.verbose = verbose
         self.wait = wait
-	self.java = 'javaw' if javaw else 'java'
-	self.stdout = stdout
+        self.java = 'javaw' if javaw else 'java'
+        self.stdout = stdout
         self.timeout = timeout
     
     def __call__(self):
-	if 'JAVA_HOME' in os.environ:
-	    prefix = os.environ['JAVA_HOME']
-	    java = os.path.join(prefix,'bin',self.java)
-	else:
-	    java = self.java
+        if 'JAVA_HOME' in os.environ:
+            prefix = os.environ['JAVA_HOME']
+            java = os.path.join(prefix,'bin',self.java)
+        else:
+            java = self.java
         cmd = '"%s" -cp "%s" %s %s'%(java,self.classpath(),self.main,self.args())
         if self.verbose:
             print >>sys.stderr, "Executing:", cmd
@@ -73,9 +73,9 @@ class JavaProgram(object):
         else:
             if self.verbose:
                 print >>sys.stderr, "Process completed after %s seconds"%(round(time.time()-starttime,1),)
-	if self.stdout:
+        if self.stdout:
             return proc.p.stdout.read()
-	return (retval==0)
+        return (retval==0)
 
     def stdin(self):
         return ""

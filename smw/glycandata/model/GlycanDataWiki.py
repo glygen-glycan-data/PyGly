@@ -177,7 +177,7 @@ class GlycanDataWikiNew(SMW.SMWSite):
     _name = 'glycandata'
 
     def get(self,accession):
-	g = super(GlycanDataWiki,self).get(accession)
+	g = super(GlycanDataWikiNew,self).get(accession)
 	if g:
 	    for so in g.get('_subobjs'):
                 g.set_annotation(annotation=so)
@@ -199,6 +199,12 @@ class GlycanDataWikiNew(SMW.SMWSite):
         if super(GlycanDataWikiNew,self).put(g):
             return True
         return False
+
+    def iterglycan(self):
+        for pagename in self.itercat('Glycan'):
+            m = self.get(pagename)
+            yield m
+
 
 class GlycanDataWiki(SMW.SMWSite):
     _name = 'glycandata'

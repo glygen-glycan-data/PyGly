@@ -62,9 +62,9 @@ class GlyTouCanTS(TripleStoreResource):
             if row['format'] == 'glycoct' and not row['sequence'].startswith('RES'):
                 continue
             key = (row['accession'],row['format'])
-	    if key != curkey:
+            if key != curkey:
                 yield row['accession'], row['format'], row['sequence']
-		curkey = key
+                curkey = key
 
     def getmass(self,accession):
         for row in self.query_mass(accession=accession):
@@ -113,17 +113,17 @@ class GlyTouCanTS(TripleStoreResource):
                 continue
 
     def goodcrossref(self,resource,entry):
-	if resource in ('glyconnect','glyconnect-comp','unicarb-db'):
-	    try:
-		dummy = int(entry)
-		if dummy < 1:
-		    return False
-	    except ValueError:
-		return False
+        if resource in ('glyconnect','glyconnect-comp','unicarb-db'):
+            try:
+                dummy = int(entry)
+                if dummy < 1:
+                    return False
+            except ValueError:
+                return False
             return True
         if resource in ('matrixdb',):
-	    return (re.search(r'^GAG_\d+$',entry) is not None)
-	return True
+            return (re.search(r'^GAG_\d+$',entry) is not None)
+        return True
 
     def getcrossrefs(self,accession,resource=None):
         assert resource == None or resource in self.crossref_resources

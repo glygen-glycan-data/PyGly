@@ -100,11 +100,13 @@ class GlycoCTMonoFormat:
         try:
             m.set_ring_start(int(ringStart))
         except ValueError:
-            pass
+            if ringStart != "x":
+                raise RuntimeError('Bad GlycoCT monosaccharide line - bad ring start value: '+mstr)
         try:
             m.set_ring_end(int(ringEnd))
         except ValueError:
-            pass
+            if ringEnd != "x":
+                raise RuntimeError('Bad GlycoCT monosaccharide line - bad ring end value: '+mstr)
 
         #set class
         superclass = MONO.pop()
@@ -253,10 +255,10 @@ class MonoSymLookup(dict):
             subst = (('Substituent',m.name()),)
         return supcls,stem,mods,subst
     def toStr(self,m):
-	if m != None:
+        if m != None:
             k = self.key(m)
-	else:
-	    raise RuntimeError("Monosaccharide is None.")
+        else:
+            raise RuntimeError("Monosaccharide is None.")
         try:
             return self[k]
         except KeyError:

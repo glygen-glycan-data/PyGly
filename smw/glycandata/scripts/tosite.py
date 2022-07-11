@@ -17,5 +17,9 @@ while len(sys.argv) > 1:
     elif sys.argv[1] == "--to":
 	to = sys.argv[2]
 	sys.argv.pop(1); sys.argv.pop(1)
+    elif sys.argv[1].startswith('G'):
+        fr = sys.argv[1]
+        to = sys.argv[1]
+        sys.argv.pop(1)
 
 d.towiki(w,fr=fr,to=to)

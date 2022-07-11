@@ -81,12 +81,17 @@ class Glycan:
         return i
 
     def repeat_time_verification(self, repeat_time):
-        assert repeat_time == None or (type(repeat_time) == int and repeat_time >= 1)
         repeated = self.repeated()
-        if repeated and repeat_time == None:
-            raise RepeatGlycanError("Unexpected repeated glycan")
-        if (not repeated) and type(repeat_time) == int:
-            raise RepeatGlycanError("Incorrect parameter repeat_time for non-repeated glycan")
+        if repeat_time != None:
+            if not repeated:
+                raise RepeatGlycanError("Incorrect parameter repeat_time for non-repeated glycan")
+	    if type(repeat_time) == int:
+                assert repeat_time >= 1, "Repeat time must be >= 1"
+            else:
+                assert len(repeat_time) == self.repeat_unit_count() and min(repeat_time) == 1
+        else:
+            if repeated and repeat_time == None:
+                raise RepeatGlycanError("Unexpected repeated glycan")
 
     def set_undetermined(self, und):
         if und == None or len(und) == 0:
@@ -357,8 +362,11 @@ class Glycan:
         eltcomp = Composition()
 
         nodes_in_repeat = []
-        if repeat_times > 1:
-            nodes_in_repeat = self.repeat_nodes() * (repeat_times-1)
+        if type(repeat_times) == int:
+	    repeat_times = [repeat_times]*self.repeat_unit_count()
+        if repeat_times != None and max(repeat_times) > 1:
+            for t,nds in zip(repeat_times,self.repeat_nodes()):
+                nodes_in_repeat += nds*(t-1)
 
         for m in list(self.all_nodes(undet_subst=True)) + nodes_in_repeat:
             ec = m.composition(comp_table)
@@ -486,13 +494,14 @@ class Glycan:
 
 
     def repeat_nodes(self):
-        res = []
+        allrepnodes = []
 
         for node in self.all_nodes(subst=True):
 
             if not node.is_repeat_start():
                 continue
 
+            res = []
             rs = node
             re = None
             for pl in node.parent_links(default=False,repeat=Linkage.REPEAT_BRIDGE):
@@ -520,9 +529,13 @@ class Glycan:
                 else:
                     todo += n.children()
 
-        # Subst cannot be the root of the repeating unit           - WURCS restriction
-        # Subst cannot be the first node connect to repeating unit - WURCS restriction
-        return filter(lambda x:x.is_monosaccharide(), res)
+            # Subst cannot be the root of the repeating unit           - WURCS restriction
+            # Subst cannot be the first node connect to repeating unit - WURCS restriction
+            res =  filter(lambda x:x.is_monosaccharide(), res)
+            allrepnodes.append(res)
+
+        assert len(allrepnodes) == self.repeat_unit_count()
+        return allrepnodes
 
     iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
@@ -549,9 +562,12 @@ class Glycan:
             else:
                 nodeiterable = []
 
-        if repeat_times > 1:
+        if type(repeat_times) == int:
+	    repeat_times = [repeat_times]*self.repeat_unit_count()
+        if repeat_times != None and max(repeat_times) > 1:
             nodeiterable = list(nodeiterable)
-            nodeiterable += self.repeat_nodes() * (repeat_times-1)
+            for t,nds in zip(repeat_times,self.repeat_nodes()):
+                nodeiterable += nds*(t-1)
 
         for m in nodeiterable:
 
@@ -606,11 +622,11 @@ class Glycan:
         return c
 
     def iupac_redend(self, floating_substituents=True, aggregate_basecomposition=True):
-	if not self.repeated():
+        if not self.repeated():
             comp = self.iupac_composition(floating_substituents=floating_substituents, 
                                           aggregate_basecomposition=aggregate_basecomposition,
                                           redend_only=True)
-	else:
+        else:
             comp = self.iupac_composition(floating_substituents=floating_substituents, 
                                           aggregate_basecomposition=aggregate_basecomposition,
                                           redend_only=True, repeat_times=1)

@@ -7,8 +7,6 @@ import csv
 from getwiki import GlycanData, Glycan
 w = GlycanData()
 
-allsources = set()
-
 gtc2taxid = defaultdict(lambda: defaultdict(set))
 for f in sys.argv[1:]:
   for l in open(f):
@@ -21,13 +19,16 @@ for f in sys.argv[1:]:
     else:
 	sourceid = None
     gtc2taxid[gtc][(source,sourceid)].add(taxid)
-    allsources.add(source)
 
 for m in w.iterglycan():
     start = time.time()
     acc = m.get('accession')
 
-    for source in allsources:
+    sources = set()
+    for ann in list(m.annotations(property="Taxonomy", type="Taxonomy")):
+	if ann.get('source') not in ('GlyTouCan', 'GlyCosmos'):
+            sources.add(ann.get('source'))
+    for source in sources:
         m.delete_annotations(source=source, property="Taxonomy", type="Taxonomy")
 	
     for source,sourceid in gtc2taxid[acc]:

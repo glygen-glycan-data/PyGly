@@ -28,7 +28,7 @@ class GlyTouCanRegistration(GlycanResource):
     def __init__(self,user=None,apikey=None,verbose=False,**kw):
         super(GlyTouCanRegistration,self).__init__(**kw)
         self.setup(user,apikey)
-	self.verbose=verbose
+        self.verbose=verbose
     
     def getcredentials(self):
 
@@ -61,11 +61,11 @@ class GlyTouCanRegistration(GlycanResource):
         if user == None:
             user, apikey = self.getcredentials()
         self.opener = build_opener(HTTPSHandler(),HTTPHandler())
-	if self.verbose:
-	    print(('%s:%s'%(user, apikey)).encode('utf8'),file=sys.stderr)
+        if self.verbose:
+            print(('%s:%s'%(user, apikey)).encode('utf8'),file=sys.stderr)
         self.basicauthhdr =  "Basic %s"%(base64.b64encode(('%s:%s'%(user, apikey)).encode('utf8')),) 
-	if self.verbose:
-	    print(self.basicauthhdr,file=sys.stderr)
+        if self.verbose:
+            print(self.basicauthhdr,file=sys.stderr)
 
     def register(self, sequence):
         params = json.dumps(dict(sequence=sequence))
@@ -77,7 +77,7 @@ class GlyTouCanRegistration(GlycanResource):
         try:
             self.wait()
             response = json.loads(self.opener.open(req).read())
-	    if self.verbose:
+            if self.verbose:
                 print(response, file=sys.stderr)
             if response['status'].split()[0] == '202':
                 return str(response['message'])
@@ -85,7 +85,7 @@ class GlyTouCanRegistration(GlycanResource):
             if self.verbose:
                 print(str(e), file=sys.stderr)
         except (ValueError, IOError) as e:
-	    if self.verbose:
+            if self.verbose:
                 traceback.print_exc()
         return None
 

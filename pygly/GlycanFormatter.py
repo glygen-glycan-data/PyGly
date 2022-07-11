@@ -12,7 +12,7 @@ import copy
 import string
 from collections import defaultdict
 
-from GlycanFormatterExceptions import *
+from . GlycanFormatterExceptions import *
 
 class GlycanFormatter:
     def writeToFile(self,thefile,glycan):
@@ -29,7 +29,7 @@ class GlycanFormatter:
 class GlycoCTRepeatedSectionError(GlycoCTParseError):
     def __init__(self,section,lineno=None,msg=None):
         self.section = section
-	if lineno:
+        if lineno:
             self.message = "GlycoCT parser, line %d: Repeated section %s%s"%(lineno, section, ": "+msg if msg else "")
         else:
             self.message = "GlycoCT parser, Repeated section %s%s"%(section, ": "+msg if msg else "")
@@ -857,7 +857,7 @@ class IUPACLinearFormat(GlycanFormatter):
         pos = l.parent_pos()
         if not pos:
             pos = -100
-        return -pos
+        return -(iter(pos).next())
     def linearstr(self,pl,m):
         aglycon = None
         if not pl:
@@ -888,9 +888,13 @@ class IUPACLinearFormat(GlycanFormatter):
             pos=pl.parent_pos()
             if not pos:
                 pos = '?'
+            else:
+                pos = pl.posstr(pos)
             cpos = pl.child_pos()
             if not pos:
                 cpos = '?'
+            else:
+                cpos = pl.posstr(cpos)
             if m.anomer() == Anomer.alpha:
                 an = 'a'
             elif m.anomer() == Anomer.beta:
@@ -912,10 +916,14 @@ class IUPACLinearFormat(GlycanFormatter):
 
     def toGlycan(self, s):
         orig = s
-        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Glc|Gal|Man|Fuc|Xyl)[a-zA-Z5926,]+)$',s)
+        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Hex|Glc|Gal|Man|Fuc|Xyl)[a-zA-Z5926,]*)$',s)
         if not m:
             raise IUPACLinearBadFormat(code=orig,pos=len(s))
         sym = m.group('sym')
+        subst1 = ""
+        while re.search(r'\d[SP]$',sym):
+            subst1 = sym[-2:] + subst1
+            sym = sym[:-2]
         if sym in self.mf:
             anomer = None
             root = self.mf.new(sym)
@@ -931,7 +939,9 @@ class IUPACLinearFormat(GlycanFormatter):
                   anomer = Anomer.beta
              root.set_anomer(anomer)
         if m.group('subst'):
-            for subst in re.findall(r'\d[SP]',m.group('subst')):
+            subst1 += m.group('subst')
+        if len(subst1) > 0:
+            for subst in re.findall(r'\d[SP]',subst1):
                 if subst[1] == 'S':
                     root.add_substituent(Substituent.sulfate,
                                          parent_pos=int(subst[0]),
@@ -955,6 +965,10 @@ class IUPACLinearFormat(GlycanFormatter):
                 if not m:
                     raise IUPACLinearBadFormat(code=orig,pos=len(s))
                 sym = m.group('sym')
+                subst1 = ""
+                while re.search(r'\d[SP]$',sym):
+                    subst1 = sym[-2:] + subst1
+                    sym = sym[:-2]
                 anomer = m.group('anomer')
                 cpos = m.group('cpos')
                 ppos = m.group('ppos')
@@ -988,7 +1002,9 @@ class IUPACLinearFormat(GlycanFormatter):
                                    parent_type=Linkage.oxygenPreserved,
                                    child_type=Linkage.oxygenLost)
                 if subst:
-                    for si in re.findall(r'\d[SP]',subst):
+                    subst1 += subst
+                if subst1:
+                    for si in re.findall(r'\d[SP]',subst1):
                         if si[1] == 'S':
                             m.add_substituent(Substituent.sulfate,
                                               parent_pos=int(si[0]),
@@ -1523,7 +1539,10 @@ class IUPACGlycamWriter:
         modi = sym[3:]  # modifications, including mods and substituent
 
         if root:
-            link = "1-OH"
+            if ringstart != 2:
+                link = "1-OH"
+            else:
+                link = "2-OH"
 
             # Glycam has more strict layout for 1v1 case
             assert not self.has1v1children(m)
@@ -1550,9 +1569,10 @@ class IUPACGlycamWriter:
     def subs2str(self, m):
         m = copy.deepcopy(m)
         subs = []
+        # Not sure if we should support acetyl or methyl...
         sub2str = {
             Substituent.sulfate: "S",
-            Substituent.phosphate: "P",
+            # Substituent.phosphate: "P",
             Substituent.acetyl: "A",
             Substituent.methyl: "Me"
         }

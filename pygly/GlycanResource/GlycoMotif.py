@@ -9,3 +9,8 @@ class GlycoMotifNoPrefetch(GlycoMotif):
         kw['prefetch'] = False
         super(GlycoMotifNoPrefetch,self).__init__(**kw);
 
+class GlycoMotifNoCache(GlycoMotif):
+    def __init__(self,**kw):
+        kw['usecache'] = False
+        super(GlycoMotifNoCache,self).__init__(**kw);
+
