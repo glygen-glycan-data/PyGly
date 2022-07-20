@@ -9,7 +9,7 @@ from collections import defaultdict
 
 class GlyTouCanTS(TripleStoreResource):
 
-    endpt = "http://ts.glytoucan.org/sparql"
+    endpt = "https://ts.glytoucan.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
     # verbose = True
     cachefile = ".gtc.cache"

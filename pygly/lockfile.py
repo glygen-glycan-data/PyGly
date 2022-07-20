@@ -167,7 +167,7 @@ class LockBase:
           self.path = path
           self.lock_file = os.path.abspath(path) + ".lock"
           self.hostname = socket.gethostname()
-          self.hostname = "."+ hashlib.md5(self.hostname + ":" + self.lock_file).hexdigest().lower()
+          self.hostname = "."+ hashlib.md5((self.hostname + ":" + self.lock_file).encode()).hexdigest().lower()
           self.pid = os.getpid()
           if threaded:
                 tname = "%x-" % _thread.get_ident()

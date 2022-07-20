@@ -85,7 +85,7 @@ class Glycan:
         if repeat_time != None:
             if not repeated:
                 raise RepeatGlycanError("Incorrect parameter repeat_time for non-repeated glycan")
-	    if type(repeat_time) == int:
+            if type(repeat_time) == int:
                 assert repeat_time >= 1, "Repeat time must be >= 1"
             else:
                 assert len(repeat_time) == self.repeat_unit_count() and min(repeat_time) == 1
@@ -112,7 +112,7 @@ class Glycan:
                     continue
                 ueq[i].add(u[j])
                 placed.add(j)
-        self._undetermined = sorted(ueq.values(),key=lambda ec: 1*(iter(ec).next()).is_monosaccharide(),reverse=True)
+        self._undetermined = sorted(ueq.values(),key=lambda ec: 1*(next(iter(ec))).is_monosaccharide(),reverse=True)
 
     def undetermined(self):
         return self._undetermined != None
@@ -363,7 +363,7 @@ class Glycan:
 
         nodes_in_repeat = []
         if type(repeat_times) == int:
-	    repeat_times = [repeat_times]*self.repeat_unit_count()
+            repeat_times = [repeat_times]*self.repeat_unit_count()
         if repeat_times != None and max(repeat_times) > 1:
             for t,nds in zip(repeat_times,self.repeat_nodes()):
                 nodes_in_repeat += nds*(t-1)
@@ -563,7 +563,7 @@ class Glycan:
                 nodeiterable = []
 
         if type(repeat_times) == int:
-	    repeat_times = [repeat_times]*self.repeat_unit_count()
+            repeat_times = [repeat_times]*self.repeat_unit_count()
         if repeat_times != None and max(repeat_times) > 1:
             nodeiterable = list(nodeiterable)
             for t,nds in zip(repeat_times,self.repeat_nodes()):
