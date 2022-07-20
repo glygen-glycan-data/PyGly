@@ -2,6 +2,11 @@
 from . JavaProgram import GlycoCT2Image
 from . GlycanFormatter import GlycoCTFormat
 
+try:
+  basestring
+except NameError:
+  basestring = str
+
 class GlycanImage(object):
     def __init__(self):
         self._scale = 1.0

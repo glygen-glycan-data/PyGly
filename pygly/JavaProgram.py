@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 from tempfile import mkstemp
 import os,sys,re,os.path,time
 from subprocess import Popen, PIPE, STDOUT
@@ -48,7 +50,7 @@ class JavaProgram(object):
             java = self.java
         cmd = '"%s" -cp "%s" %s %s'%(java,self.classpath(),self.main,self.args())
         if self.verbose:
-            print >>sys.stderr, "Executing:", cmd
+            print("Executing: "+cmd, file=sys.stderr)
         starttime = time.time()
         if self.stdout:
             proc = PopenTimeout(cmd,
@@ -60,7 +62,8 @@ class JavaProgram(object):
                                 stdin=PIPE,
                                 shell=(sys.platform!="win32"),
                                 timeout=self.timeout)
-        proc.p.stdin.write(self.stdin())
+        proc.p.stdin.write(self.stdin().encode())
+        proc.p.stdin.close()
         if self.wait == False:
             return
         if type(self.wait) in (int,float):
@@ -69,10 +72,10 @@ class JavaProgram(object):
         retval = proc.wait()
         if retval == -9:
             if self.verbose:
-                print >>sys.stderr, "Process killed after %s seconds"%(self.timeout,)
+                print("Process killed after %s seconds"%(self.timeout,),file=sys.stderr)
         else:
             if self.verbose:
-                print >>sys.stderr, "Process completed after %s seconds"%(round(time.time()-starttime,1),)
+                print("Process completed after %s seconds"%(round(time.time()-starttime,1),),file=sys.stderr)
         if self.stdout:
             return proc.p.stdout.read()
         return (retval==0)
