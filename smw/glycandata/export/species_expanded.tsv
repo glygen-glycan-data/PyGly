@@ -12568,6 +12568,7 @@ G14839YM	Human	Subsumption	GNOme	G10258MC
 G14839YM	Human	Subsumption	GNOme	G84329MX	
 G14839YM	Mouse	Subsumption	GNOme	G10258MC	
 G14839YM	Mouse	Subsumption	GNOme	G42440OJ	
+G14843DJ	FruitFly	Subsumption	GNOme	G49108TO	
 G14843DJ	Human	Subsumption	GNOme	G49108TO	
 G14843DJ	Human	Subsumption	GNOme	G64581RP	
 G14843DJ	Mouse	Subsumption	GNOme	G49108TO	
@@ -24883,6 +24884,7 @@ G29063QY	Human	Subsumption	GNOme	G78930SC
 G29063QY	Mouse	Direct	UniCarbKB	comp_HexNAc4Hex2dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	10090
 G29063QY	Rat	Subsumption	GNOme	G05724WC	
 G29063QY	Rat	Subsumption	GNOme	G34764BK	
+G29068FM	FruitFly	Subsumption	GNOme	G49108TO	
 G29068FM	FruitFly	Subsumption	GNOme	G57321FI	
 G29068FM	Human	Subsumption	GNOme	G27025MB	
 G29068FM	Human	Subsumption	GNOme	G49108TO	
@@ -40200,16 +40202,19 @@ G49104WF	Human	Direct	GlyCosmos	G49104WF	9606
 G49105NA	Human	Direct	GlyConnectStructure	110	9606
 G49105NA	Mouse	Subsumption	GNOme	G86357DX	
 G49105NA	Rat	Subsumption	GNOme	G86357DX	
+G49108TO	FruitFly	Direct	GlyGen	GLY_000631	7227
 G49108TO	Human	Direct	GlyConnectStructure	8849	9606
 G49108TO	Human	Direct	GlyCosmos	G49108TO	9606
 G49108TO	Human	Direct	GlyTouCan	G49108TO	9606
 G49108TO	Mouse	Direct	GlyConnectStructure	8849	10090
 G49108TO	Mouse	Direct	GlyCosmos	G49108TO	10090
+G49108TO	Mouse	Direct	GlyGen	GLY_000632	10090
 G49108TO	Mouse	Direct	GlyTouCan	G49108TO	10090
 G49108TO	Mouse	Direct	UniCarbKB	1219	10090
 G49108TO	Mouse	Direct	UniCarbKB	7841	10090
 G49108TO	Rat	Direct	GlyConnectStructure	8849	10116
 G49108TO	Rat	Direct	GlyCosmos	G49108TO	10116
+G49108TO	Rat	Direct	GlyGen	GLY_000633	10116
 G49108TO	Rat	Direct	GlyTouCan	G49108TO	10116
 G49112ZN	Human	Subsumption	GNOme	G96881BQ	
 G49112ZN	Mouse	Subsumption	GNOme	G82576YO	
@@ -52558,6 +52563,7 @@ G64574RC	FruitFly	Subsumption	GNOme	G09088BU
 G64574RC	Human	Subsumption	GNOme	G84448IT	
 G64574RC	Rat	Subsumption	GNOme	G84448IT	
 G64577HA	Human	Subsumption	GNOme	G82700SN	
+G64581RP	FruitFly	Subsumption	GNOme	G49108TO	
 G64581RP	Human	Direct	GlyConnectStructure	8848	9606
 G64581RP	Human	Direct	GlyCosmos	G64581RP	9606
 G64581RP	Mouse	Direct	GlyConnectStructure	8848	10090
@@ -57866,6 +57872,7 @@ G70991JO	Human	Subsumption	GNOme	G93284HQ
 G70991JO	Mouse	Subsumption	GNOme	G07995VK	
 G70991JO	Mouse	Subsumption	GNOme	G45560HM	
 G70991JO	Mouse	Subsumption	GNOme	G93284HQ	
+G70994MS	FruitFly	Subsumption	GNOme	G49108TO	
 G70994MS	FruitFly	Subsumption	GNOme	G57321FI	
 G70994MS	Human	Direct	GlyGen	GLY_000142	9606
 G70994MS	Mouse	Subsumption	GNOme	G49108TO	
@@ -66301,6 +66308,7 @@ G82236PZ	Mouse	Direct	GlyCosmos	G82236PZ	10090
 G82239PP	Human	Subsumption	GNOme	G05180BW	
 G82252QI	Human	Direct	GlyConnectStructure	2415	9606
 G82252QI	Human	Direct	GlyCosmos	G82252QI	9606
+G82252SA	FruitFly	Subsumption	GNOme	G49108TO	
 G82252SA	Human	Subsumption	GNOme	G49108TO	
 G82252SA	Mouse	Subsumption	GNOme	G49108TO	
 G82252SA	Rat	Subsumption	GNOme	G49108TO	
@@ -69435,6 +69443,7 @@ G86082YL	Human	Subsumption	GNOme	G78306GH
 G86083AM	Human	Direct	GlyCosmos	G86083AM	9606
 G86085BW	Human	Direct	GlyCosmos	G86085BW	9606
 G86085WS	Mouse	Subsumption	GNOme	G78205EV	
+G86089ZC	FruitFly	Subsumption	GNOme	G49108TO	
 G86089ZC	Human	Subsumption	GNOme	G49108TO	
 G86089ZC	Human	Subsumption	GNOme	G64581RP	
 G86089ZC	Mouse	Subsumption	GNOme	G49108TO	

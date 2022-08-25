@@ -13,8 +13,12 @@ import csv
 datasets_data = """
 GLY_000142	human_proteoform_glycosylation_sites_harvard.csv	9606
 GLY_000335	hcv1a_proteoform_glycosylation_sites_literature.csv	11108
+-	rat_proteoform_glycosylation_sites_o_glcnac_mcw.csv	10116	GlyGen	GLY_000633
+-	fruitfly_proteoform_glycosylation_sites_o_glcnac_mcw.csv	7227	GlyGen	GLY_000631
+-	mouse_proteoform_glycosylation_sites_o_glcnac_mcw.csv	10090	GlyGen	GLY_000632
 """
 
+# -	fruitfly_proteoform_glycosylation_sites_glyconnect.csv	7227	GlyConnect
 # GLY_000481	human_proteoform_glycosylation_sites_literature_mining.csv	9606
 # GLYDS000492	mouse_proteoform_glycosylation_sites_literature_mining.csv	10090
 # GLYDS000493	rat_proteoform_glycosylation_sites_literature_mining.csv	10116
@@ -22,22 +26,26 @@ GLY_000335	hcv1a_proteoform_glycosylation_sites_literature.csv	11108
 # GLYDS000480	human_proteoform_glycosylation_sites_gptwiki.csv	9606	GPTwiki	saccharide
 
 datasets = dict()
-for l in datasets_data.splitlines():
+for i,l in enumerate(datasets_data.splitlines()):
     if not l.strip():
 	continue
     sl = l.split('\t')
     sl[2] = int(sl[2])
-    datasets[sl[0]] = dict(dsid=sl[0],filename=sl[1],taxid=sl[2])
+    datasets[i] = dict(dsid=sl[0],filename=sl[1],taxid=sl[2])
     if len(sl) >= 4:
-	datasets[sl[0]]['source'] = sl[3]
+	datasets[i]['source'] = sl[3]
     if len(sl) >= 5:
-	datasets[sl[0]]['sourceid'] = sl[4]
+	datasets[i]['sourceid'] = sl[4]
 
 seen = set()
 for ds in sorted(datasets.values(),key=lambda d: d['dsid']):
-  url = "https://data.glygen.org/ln2data/releases/data/current/reviewed/%s"%(ds['filename'],)
-  # print >>sys.stderr, url
-  for row in csv.DictReader(urllib.urlopen(url)):
+  if ds['dsid'].startswith('GLY_'):
+    url = "https://data.glygen.org/ln2data/releases/data/current/reviewed/%s"%(ds['filename'],)
+    # print >>sys.stderr, url
+    rows = csv.DictReader(urllib.urlopen(url))
+  else:
+    rows = csv.DictReader(open("../data/"+ds['filename']))
+  for row in rows:
     accs = []
     for acckey in ("saccharide",):
 	if row.get(acckey) != None:
@@ -56,8 +64,10 @@ for ds in sorted(datasets.values(),key=lambda d: d['dsid']):
         sourceid = None
 	if 'sourceid' in ds:
 	    sourceid = row.get(ds['sourceid'])
-	if sourceid == None and source == 'GlyGen':
+	if sourceid == None and source == 'GlyGen' and ds.get('dsid') and ds.get('dsid') != "-":
 	    sourceid = ds['dsid']
+	if sourceid == None and source == 'GlyGen' and ds.get('sourceid'):
+	    sourceid = ds['sourceid']
         if (acc,taxid,source,sourceid) in seen:
 	    continue
         seen.add((acc,taxid,source,sourceid))

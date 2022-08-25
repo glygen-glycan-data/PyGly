@@ -39,7 +39,7 @@ class GlyGenSourceFile(WebServiceResource):
             yield row
 
     def glyconnect_dros(self):
-        for row in self.glyconnect("drosophila"):
+        for row in self.glyconnect("fruitfly"):
             yield row
 
     def glyconnect_covid(self):
@@ -47,7 +47,7 @@ class GlyGenSourceFile(WebServiceResource):
             yield row
 
     def glyconnect_all(self):
-        for sp in ("human","mouse","rat","drosophila","sarscov2"):
+        for sp in ("human","mouse","rat","fruitfly","sarscov2"):
             for row in self.glyconnect(sp):
                 yield row
 
