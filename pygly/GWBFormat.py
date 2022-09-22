@@ -12,7 +12,7 @@ class GWBFormat(object):
 	    glystr = self.fmt.toStr(glycan)
         writer = GWBFormatter(glystr)
 	seq = writer().splitlines()[-1].strip()
-	if "Exception" in seq or "org.glycoinfo" in seq:
+	if "Exception" in seq or "org.glycoinfo" in seq or "GlycoCT2GWB.main" in seq:
 	    return None
         return seq
         

@@ -35,7 +35,7 @@ for acc in w.iterglycanid():
 	    continue
 	if k in ['Hex','HexNAc','dHex','NeuAc','NeuGc','HexA','HexN','Hex+aldi','dHex+aldi','HexNAc+aldi']:
 	    continue
-        assert k in ['Pent','Xyl'], "Unexpected Xxx monosaccharide: "+k
+        assert k in ['Pent','Xyl','Kdn'], "Unexpected Xxx monosaccharide: "+k
 	row['Xxx'][0] += row[k][0]
 	row['Xxx'][1] |= row[k][1]
     # S and P are accounted for

@@ -537,7 +537,7 @@ class Glycan:
         assert len(allrepnodes) == self.repeat_unit_count()
         return allrepnodes
 
-    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
+    iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Kdn','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
 
@@ -574,6 +574,18 @@ class Glycan:
             try:
                 sym = iupacSym.toStr(m)
             except KeyError:
+                sym = None
+
+            sym1 = None
+            if isinstance(m,Monosaccharide) and aggregate_basecomposition:
+                try:
+                    m1 = m.clone()
+		    m1.set_stem(None)
+                    sym1 = iupacSym.toStr(m1)
+                except KeyError:
+                    pass
+
+            if sym == None and sym1 == None:
                 if isinstance(m,Monosaccharide):        
                     c['Xxx'] += 1
                 else:
@@ -581,15 +593,28 @@ class Glycan:
                 continue
 
             if floating_substituents:
-                syms = [ s.strip() for s in sym.split('+') ]
+                if sym != None:
+                    syms = [ s.strip() for s in sym.split('+') ]
+                else:
+                    syms = [ None ]
+                if sym1 != None:
+                    syms1 = [ s.strip() for s in sym1.split('+') ]
+                else:
+                    syms1 = [ None ]
             else:
                 syms = [sym]
+                syms1 = [sym1]
+
+            # print(syms,syms1)
 
             if syms[0] not in validsyms:
-                if isinstance(m,Monosaccharide):
-                    syms[0] = 'Xxx'
+                if syms1[0] in validsyms:
+                    syms = syms1
                 else:
-                    syms[0] = 'X'
+                    if isinstance(m,Monosaccharide):
+                        syms[0] = 'Xxx'
+                    else:
+                        syms[0] = 'X'
             
             for i in range(1,len(syms)):
                 if syms[i] not in self.subst_composition_syms:
@@ -613,9 +638,10 @@ class Glycan:
             c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
             c['HexNAc+aldi'] = sum(map(c.__getitem__,('GalNAc+aldi','GlcNAc+aldi','ManNAc+aldi','HexNAc+aldi')))
             c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
+            # c['dHexNAc'] = sum(map(c.__getitem__,('QuiNAc','dHexNAc')))
             c['dHex+aldi'] = sum(map(c.__getitem__,('Fuc+aldi','dHex+aldi')))
             c['Pent'] = sum(map(c.__getitem__,('Xyl','Pent')))
-            c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Sia')))
+            c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Kdn','Sia')))
             c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
             c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
  
