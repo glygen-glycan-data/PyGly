@@ -887,7 +887,7 @@ class SubstructureSearch(GlycanPartialOrder):
         else:
             return self.allConnectedNodesByRootRecursive(r, size)
 
-    def subtree_leq(self,m, tg,root=True, repeat_depth_m=0, repeat_depth_tg=0):
+    def subtree_leq(self, m, tg,root=True, repeat_depth_m=0, repeat_depth_tg=0, idmap=None):
 
         if root:
             if not self.rootmonoleq(m, tg):
@@ -896,6 +896,8 @@ class SubstructureSearch(GlycanPartialOrder):
             if not self.monoleq(m, tg):
                 return False
 
+        if idmap is not None:
+            idmap.append((m,tg))
 
         # assert len(filter(lambda l:l.repeat_bridge_link(), m.links())) in [0, 1]
         if not m.links_has_repeat_bridge():
@@ -930,7 +932,7 @@ class SubstructureSearch(GlycanPartialOrder):
 
 
         for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
-            for ii,jj in itermatchings(mlinks_no_repeat_path, tglinks_no_repeat_path_partial, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg)):
+            for ii,jj in itermatchings(mlinks_no_repeat_path, tglinks_no_repeat_path_partial, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg,idmap=idmap)):
                 return True
 
         limit = self.repeat_max_depth()
@@ -941,18 +943,18 @@ class SubstructureSearch(GlycanPartialOrder):
             for tglinks_repeat_path_partial in choose(tglinks_type_1, len(mlinks_no_repeat_path)-1):
                 tglinks_repeat_path_partial += tglinks_type_2
 
-                for ii, jj in itermatchings(mlinks_no_repeat_path, tglinks_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1)):
+                for ii, jj in itermatchings(mlinks_no_repeat_path, tglinks_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1,idmap=idmap)):
                     return True
 
         for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
-            for ii,jj in itermatchings(mlinks_repeat_path, tglinks_no_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg)):
+            for ii,jj in itermatchings(mlinks_repeat_path, tglinks_no_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg,idmap=idmap)):
                 return True
 
 
         return False
 
 
-    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False, underterminedLinkage=True):
+    def leq(self, m, tg, rootOnly=False, anywhereExceptRoot=False, underterminedLinkage=True, idmaps=None):
 
         assert (rootOnly and anywhereExceptRoot) is not True
 
@@ -977,15 +979,26 @@ class SubstructureSearch(GlycanPartialOrder):
             if self.rootmonoleq(m.root(), tg_root):
                 potential_TG_root.append(tg_root)
 
+        if idmaps is not None:
+            seenidmaps = set()
+
         # Use subtree algorithm to save runtime
         if not m.undetermined():
             for n in potential_TG_root:
-                if self.subtree_leq(m.root(), n):
-                    return True
-
+                curidmap = []
+                if self.subtree_leq(m.root(), n, idmap=curidmap):
+                    if idmaps is None:
+                        return True
+                    idmapkey = tuple(sorted(set(map(lambda t: (t[0].id(),t[1].id()),curidmap))))
+                    if idmapkey not in seenidmaps:
+                        idmaps.append(curidmap)
+                        seenidmaps.add(idmapkey)
+            
             # return False when no match based on subtree algorithm and the glycan is not undetermined.
             if not tg.undetermined():
-                return False
+                if idmaps is None:
+                    return False
+                return len(idmaps)>0
 
         if not underterminedLinkage:
             return False
@@ -1003,7 +1016,16 @@ class SubstructureSearch(GlycanPartialOrder):
                 for monoset_m, monoset_tg in itergenmatchings(list(m.all_nodes()), tg_nodes, self.monoleq):
 
                     if self.check_links(m, monoset_m, monoset_tg):
-                        return True
+                        if idmaps is None:
+                            return True
+                        idmap = list(zip(monoset_m, monoset_tg))
+                        idmapkey = tuple(sorted(set(map(lambda t: (t[0].id(),t[1].id()),idmap))))
+                        if idmapkey not in seenidmaps:
+                            idmaps.append(idmap)
+                            seenidmaps.add(idmapkey)
+
+        if idmaps is not None:
+            return len(idmaps)>0
 
         return False
 
@@ -1044,7 +1066,7 @@ class SubstructureSearchNonReducingEnd(SubstructureSearch):
         if not self.check_links_childlink_count(m, tg):
             return False
 
-        return super(SubstructureSearchNonReducingEnd, self).subtree_leq(m, tg, root=root)
+        return super(SubstructureSearchNonReducingEnd, self).subtree_leq(m, tg, root=root, **karg)
 
 
 
