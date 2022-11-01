@@ -40,25 +40,27 @@ class Comparitor(object):
         raise NotImplemented()
 
 
-    def parent_and_child_id_check(self, i, j):
+    def parent_and_child_id_check(self, i, j, idmap=[]):
 
         if i.parent().is_monosaccharide() != j.parent().is_monosaccharide():
             return False
 
         if i.child().is_monosaccharide() != j.child().is_monosaccharide():
             return False
+            
+        idmapdict = dict((t[0].id(),t[1].id()) for t in idmap)
 
         if i.parent().is_monosaccharide():
-            if i.parent().id() != j.parent().id():
+            if idmapdict.get(i.parent().id()) != j.parent().id():
                 return False
         else:
             # The monosaccharide subst attaches to.
             assert len(i.parent().parent_links()) == 1
             assert len(j.parent().parent_links()) == 1
-            if i.parent().any_parent_link().parent().id() != j.parent().any_parent_link().parent().id():
+            if idmapdict.get(i.parent().any_parent_link().parent().id()) != j.parent().any_parent_link().parent().id():
                 return False
 
-        if i.child().id() != j.child().id():
+        if idmapdict.get(i.child().id()) != j.child().id():
             return False
 
         return True
@@ -194,13 +196,13 @@ class GlycanEquivalence(Comparitor):
         assert d > 0
         self._repeat_max_depth = d
 
-    def subtree_eq(self,a,b,root=True,mapids=False,repeat_depth_a=0,repeat_depth_b=0):
+    def subtree_eq(self,a,b,root=True,idmap=None,repeat_depth_a=0,repeat_depth_b=0):
         if self._exactmatch:
-            return self.subtree_eq_strict(a,b,root=root,mapids=mapids)
+            return self.subtree_eq_strict(a,b,root=root,idmap=idmap)
         else:
-            return self.subtree_eq_at_least_one(a,b,root=root,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)
+            return self.subtree_eq_at_least_one(a,b,root=root,idmap=idmap,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)
 
-    def subtree_eq_at_least_one(self,a,b,root=True,mapids=False,repeat_depth_a=0,repeat_depth_b=0):
+    def subtree_eq_at_least_one(self,a,b,root=True,idmap=None,repeat_depth_a=0,repeat_depth_b=0):
 
         # Loose equality match
         # Return True as long as there is one chance a glycan is same as the other
@@ -218,10 +220,6 @@ class GlycanEquivalence(Comparitor):
         else:
             if not self.monoeq(a,b):
                 return False
-
-        if mapids:
-            b.set_id(a.id())
-
 
         # This assert is (and was) always trivially true, the expression evaluates to zero always 
         # - default links method did not return any repeat_bridge links
@@ -241,31 +239,40 @@ class GlycanEquivalence(Comparitor):
             blinks_no_repeat_path = b.links_with_repeat_exit()
             blinks_repeat_path = b.links_with_repeat_bridge()
 
-
-        for ii,jj in itermatchings(alinks_no_repeat_path, blinks_no_repeat_path, lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)):
+        idmaps = defaultdict(list)
+        for ii,jj in itermatchings(alinks_no_repeat_path, blinks_no_repeat_path, lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,idmap=idmaps[i,j],repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b)):
+            if idmap is not None:
+                idmap.append((a,b))
+                for i,j in zip(ii,jj):
+                    idmap.extend(idmaps[i,j])
             return True
 
         limit = self.repeat_max_depth()
         if repeat_depth_a > limit or repeat_depth_b > limit:
-            return False
+           return False
 
         repeat_match_a, repeat_match_b = False, False
 
-
-        for ii, jj in itermatchings(alinks_no_repeat_path, blinks_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b+1)):
+        idmaps = defaultdict(list)
+        for ii, jj in itermatchings(alinks_no_repeat_path, blinks_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,idmap=idmap,repeat_depth_a=repeat_depth_a,repeat_depth_b=repeat_depth_b+1)):
             repeat_match_b = True
+            if idmap is not None:
+                idmap.append((a,b))
+                for i,j in zip(ii,jj):
+                    idmap.extend(idmaps[i,j])
             return True
 
-        for ii,jj in itermatchings(alinks_repeat_path, blinks_no_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,mapids=mapids,repeat_depth_a=repeat_depth_a+1,repeat_depth_b=repeat_depth_b)):
+        for ii,jj in itermatchings(alinks_repeat_path, blinks_no_repeat_path,lambda i,j: self.linkeq(i,j) and self.subtree_eq_at_least_one(i.child(),j.child(),root=False,idmap=idmap,repeat_depth_a=repeat_depth_a+1,repeat_depth_b=repeat_depth_b)):
             repeat_match_a = True
+            if idmap is not None:
+                idmap.append((a,b))
+                for i,j in zip(ii,jj):
+                    idmap.extend(idmaps[i,j])
             return True
 
-        if mapids:
-            b.unset_id()
-        
         return False
 
-    def subtree_eq_strict(self, a, b, root=True, mapids=False):
+    def subtree_eq_strict(self, a, b, root=True, idmap=None):
 
         if root:
             if not self.rootmonoeq(a, b):
@@ -273,9 +280,6 @@ class GlycanEquivalence(Comparitor):
         else:
             if not self.monoeq(a, b):
                 return False
-
-        if mapids:
-            b.set_id(a.id())
 
         alinks = a.links()
         blinks = b.links()
@@ -288,14 +292,17 @@ class GlycanEquivalence(Comparitor):
             tmp = False
             for ii, jj in itermatchings(alinks_r, blinks_r, lambda i, j: self.linkeq(i, j)):
                 tmp = True
+                break
             if not tmp:
                 return False
 
-        for ii, jj in itermatchings(alinks, blinks, lambda i, j: self.linkeq(i, j) and self.subtree_eq_strict(i.child(), j.child(), root=False, mapids=mapids)):
+        idmaps = defaultdict(list)
+        for ii, jj in itermatchings(alinks, blinks, lambda i, j: self.linkeq(i, j) and self.subtree_eq_strict(i.child(), j.child(), root=False, idmap=idmaps[i,j])):
+            if idmap is not None:
+                idmap.append((a,b))
+                for i,j in zip(ii,jj):
+                    idmap.extend(idmaps[i,j])
             return True
-
-        if mapids:
-            b.unset_id()
 
         return False
 
@@ -323,26 +330,26 @@ class GlycanEquivalence(Comparitor):
             break
         return child_links_match
 
-    def eq(self, a, b):
+    def eq(self, a, b, idmap=None):
+
+        assert idmap in (None,[])
 	
 	self.adist = None
 	self.bdist = None
-      
-        a.set_ids()        
-        b.unset_ids()
-
-	lineno()
 
         if a.has_root() and b.has_root():
             if not a.undetermined() and not b.undetermined():
                 # Simple topologically determined glycan
-                subtree_result = self.subtree_eq(a.root(), b.root(), mapids=True)
+                curidmap = []
+                subtree_result = self.subtree_eq(a.root(), b.root(), idmap=curidmap)
 
                 if not subtree_result:
                     return False
 
                 if not self._exactmatch:
                     # Well, at least one match is found
+                    if idmap is not None:
+                        idmap.extend(curidmap)
                     return True
 
                 # Exact match
@@ -350,7 +357,9 @@ class GlycanEquivalence(Comparitor):
                     a_rpbl = filter(lambda x: x.is_repeat_bridge(), a.all_links(include_repeat=True))
                     b_rpbl = filter(lambda x: x.is_repeat_bridge(), b.all_links(include_repeat=True))
 
-                    for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkeq(i, j) and self.parent_and_child_id_check(i, j)):
+                    for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkeq(i, j) and self.parent_and_child_id_check(i, j, curidmap)):
+                        if idmap is not None:
+                            idmap.extend(curidmap)
                         return True
                     return False
 
@@ -358,11 +367,11 @@ class GlycanEquivalence(Comparitor):
                     return False
 
                 else:
+                    if idmap is not None:
+                        idmap.extend(curidmap)
                     return True
 
-
-
-            if not self.subtree_eq(a.root(),b.root(),mapids=False):
+            if not self.subtree_eq(a.root(),b.root()):
                 # non-composition, but might be undetermined toplogy. Determined part should match.
                 return False
 
@@ -370,26 +379,11 @@ class GlycanEquivalence(Comparitor):
             # TODO Cannot handle cases like this...
             return False
 
-	lineno()
-
-        b.set_ids()
-
         nodeset1 = list(a.all_nodes(subst=False))
         nodeset2 = list(b.all_nodes(subst=False))
 
-	lineno()
-
         if len(nodeset1) != len(nodeset2):
             return False
-
-	lineno()
-
-        # if len(nodeset1) == 1:
-	#     if a.has_root() and b.has_root():
-	#         return self.rootmonoeq(nodeset1[0],nodeset2[0])
-	#     return self.monoeq(nodeset1[0],nodeset2[0])
-
-	lineno()
 
         if a.has_root() != b.has_root():
             return False
@@ -399,9 +393,7 @@ class GlycanEquivalence(Comparitor):
             nodeset1.remove(a.root())
             nodeset2.remove(b.root())
 
-	lineno()
-
-        # we assume each node pairs has a single link between it
+        # we assume each node pair has a single link between it
         linkset1 = dict()
         for l in a.all_links(uninstantiated=True):
             key = (l.parent().id(),l.child().id())
@@ -414,12 +406,8 @@ class GlycanEquivalence(Comparitor):
             assert (key not in linkset2)
             linkset2[key] = l
 
-	lineno()
-
         if len(linkset1) != len(linkset2):
             return False
-
-	lineno()
 
 	# compute distances 
 	self.adist = _mindistsfromroot(a.root())
@@ -443,12 +431,14 @@ class GlycanEquivalence(Comparitor):
                     break
             if good:
                 # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                if idmap is not None:
+                    if a.has_root() and b.has_root():
+                        idmap.append((a.root(),b.root()))
+                    idmap.extend(zip(ii,jj))
 		self.adist = None
 		self.bdist = None
                 return True
 
-        lineno()
-                
 	self.adist = None
 	self.bdist = None
         return False
@@ -469,10 +459,9 @@ class CompositionEquivalence(Comparitor):
 	    return self._substcmp.eq(a,b)
 	return False
 
-    def eq(self,a,b):
+    def eq(self,a,b,idmap=None):
       
-        a.set_ids()        
-        b.set_ids()
+        assert idmap in (None,[])
 
         nodeset1 = list(a.all_nodes(subst=False,undet_subst=True))
         nodeset2 = list(b.all_nodes(subst=False,undet_subst=True))
@@ -482,6 +471,8 @@ class CompositionEquivalence(Comparitor):
 
         for ii,jj in iterecmatchings(nodeset1, nodeset2, self.nodeeq):
             # matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
+            if idmap is not None:
+                idmap.extend(zip(ii,jj))
             return True
 
         return False
@@ -497,15 +488,15 @@ class GlycanPartialOrder(Comparitor):
         self._linkcmp = linkcmp
 
         self._glycompcmp = CompositionPartialOrder(monocmp=self._monocmp,substcmp=substcmp)
-        self._topocmp = GlycanTopoEqual()
+        # self._topocmp = GlycanTopoEqual()
 
         super(GlycanPartialOrder,self).__init__(**kw)
 
-    def compleq(self,a,b):
-        return self._glycompcmp.leq(a,b)
+    def compleq(self,a,b,idmap=None):
+        return self._glycompcmp.leq(a,b,idmap=idmap)
 
-    def topoeq(self,a,b):
-        return self._topocmp.eq(a,b)
+    # def topoeq(self,a,b):
+    #     return self._topocmp.eq(a,b)
 
     def rootmonoleq(self,a,b):
         return self._rootmonocmp.leq(a,b)
@@ -539,7 +530,7 @@ class GlycanPartialOrder(Comparitor):
         return True
 
 
-    def subtree_leq(self, a, b, root=True, mapids=False):
+    def subtree_leq(self, a, b, root=True, idmap=None):
         if root:
             if not self.rootmonoleq(a, b):
                 return False
@@ -547,8 +538,8 @@ class GlycanPartialOrder(Comparitor):
             if not self.monoleq(a, b):
                 return False
 
-        if mapids:
-            b.set_id(a.id())
+        if idmap is not None:
+            idmap.append((a,b))
 
         alinks = a.links()
         blinks = b.links()
@@ -564,29 +555,30 @@ class GlycanPartialOrder(Comparitor):
             if not tmp:
                 return False
 
-        for ii, jj in itermatchings(alinks, blinks, lambda i, j: self.linkleq(i, j) and self.subtree_leq(i.child(), j.child(), root=False, mapids=mapids)):
+        for ii, jj in itermatchings(alinks, blinks, lambda i, j: self.linkleq(i, j) and self.subtree_leq(i.child(), j.child(), root=False, idmap=idmap)):
             return True
-
-        if mapids:
-            b.unset_id()
 
         return False
 
-    def leq(self,a,b):
+    def leq(self,a,b,idmap=None):
 
 	self.adist = None
 	self.bdist = None
 
+        assert idmap in (None,[])
+
         lineno("Start of Subsumption leq")
 
         # a's composition must be subsumed by b's composition
-        if not self.compleq(a,b):
+        curidmap = []
+        if not self.compleq(a,b,idmap=curidmap):
             return False
 
         lineno("Composition is subsumed")
 
         # if b is a composition, it doesn't matter what a's topology is
         if not b.has_root():
+            idmap.extend(curidmap)
             return True
 
         lineno("b is not a composition")
@@ -599,13 +591,13 @@ class GlycanPartialOrder(Comparitor):
         
         lineno()
 
-
         if a.repeated() != b.repeated():
             return False
 
         if not a.undetermined() and not b.undetermined():
             # Simple topologically determined glycan
-            subtree_result = self.subtree_leq(a.root(),b.root(), mapids=True)
+            curidmap = []
+            subtree_result = self.subtree_leq(a.root(),b.root(), idmap=curidmap)
 
             if not subtree_result:
                 return False
@@ -614,7 +606,9 @@ class GlycanPartialOrder(Comparitor):
                 a_rpbl = filter(lambda x: x.is_repeat_bridge(), a.all_links(include_repeat=True))
                 b_rpbl = filter(lambda x: x.is_repeat_bridge(), b.all_links(include_repeat=True))
 
-                for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkleq(i,j) and self.parent_and_child_id_check(i, j)):
+                for m in itermatchings(a_rpbl, b_rpbl, lambda i, j: self.linkleq(i,j) and self.parent_and_child_id_check(i, j, curidmap)):
+                    if idmap is not None:
+                        idmap.extend(curidmap)
                     return True
                 return False
 
@@ -622,14 +616,13 @@ class GlycanPartialOrder(Comparitor):
                 return False
 
             else:
+                if idmap is not None:
+                    idmap.extend(curidmap)
                 return True
 
         if (a.repeated() and a.undetermined()) or (b.repeated() and b.undetermined()):
             # TODO Cannot handle cases like this...
             return False
-
-        a.set_ids()
-        b.set_ids()
 
 	self.adist = _mindistsfromroot(a.root())
 	self.bdist = _mindistsfromroot(b.root())
@@ -710,6 +703,9 @@ class GlycanPartialOrder(Comparitor):
                 
             if good:
                 # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                if idmap is not None:
+                    idmap.append((a.root(),b.root()))
+                    idmap.extend(zip(ii,jj))
                 return True
                 
         lineno()
@@ -896,9 +892,6 @@ class SubstructureSearch(GlycanPartialOrder):
             if not self.monoleq(m, tg):
                 return False
 
-        if idmap is not None:
-            idmap.append((m,tg))
-
         # assert len(filter(lambda l:l.repeat_bridge_link(), m.links())) in [0, 1]
         if not m.links_has_repeat_bridge():
             mlinks_no_repeat_path = list(m.links())
@@ -929,10 +922,13 @@ class SubstructureSearch(GlycanPartialOrder):
         tglinks_no_repeat_path = tglinks_type_1 + tglinks_type_3
         tglinks_repeat_path = tglinks_type_1 + tglinks_type_2
 
-
-
         for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
-            for ii,jj in itermatchings(mlinks_no_repeat_path, tglinks_no_repeat_path_partial, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg,idmap=idmap)):
+            idmaps = defaultdict(list)
+            for ii,jj in itermatchings(mlinks_no_repeat_path, tglinks_no_repeat_path_partial, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg,idmap=idmaps[i,j])):
+                if idmap is not None:
+                    idmap.append((m,tg))
+                    for i,j in zip(ii,jj):
+                        idmap.extend(idmaps[i,j])
                 return True
 
         limit = self.repeat_max_depth()
@@ -943,13 +939,22 @@ class SubstructureSearch(GlycanPartialOrder):
             for tglinks_repeat_path_partial in choose(tglinks_type_1, len(mlinks_no_repeat_path)-1):
                 tglinks_repeat_path_partial += tglinks_type_2
 
-                for ii, jj in itermatchings(mlinks_no_repeat_path, tglinks_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1,idmap=idmap)):
+                idmaps = defaultdict(list)
+                for ii, jj in itermatchings(mlinks_no_repeat_path, tglinks_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1,idmap=idmaps[i,j])):
+                    if idmap is not None:
+                        idmap.append((m,tg))
+                        for i,j in zip(ii,jj):
+                            idmap.extend(idmaps[i,j])
                     return True
 
         for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
-            for ii,jj in itermatchings(mlinks_repeat_path, tglinks_no_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg,idmap=idmap)):
+            idmaps = defaultdict(list)
+            for ii,jj in itermatchings(mlinks_repeat_path, tglinks_no_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg,idmap=idmaps[i,j])):
+                if idmap is not None:
+                    idmap.append((m,tg))
+                    for i,j in zip(ii,jj):
+                        idmap.extend(idmaps[i,j])
                 return True
-
 
         return False
 
@@ -1088,10 +1093,9 @@ class CompositionPartialOrder(Comparitor):
 	    return self._substcmp.leq(a,b)
 	return False
 
-    def leq(self,a,b):
+    def leq(self,a,b,idmap=None):
       
-        a.set_ids()        
-        b.set_ids()
+        assert idmap in (None,[])
 
         lineno()
 
@@ -1138,6 +1142,8 @@ class CompositionPartialOrder(Comparitor):
 	
 	if fs2 == fs1:
             for ii,jj in itergenmatchings(nodeset1all,nodeset2all,self.nodeleq):
+                if idmap is not None:
+                    idmap.extend(zip(ii,jj))
 		return True
 
 	else:
@@ -1216,6 +1222,8 @@ class CompositionPartialOrder(Comparitor):
 
             # Now the monosaccharides should match....
             for ii,jj in itergenmatchings(newnodeset1,nodeset2,self.nodeleq):
+                if idmap is not None:
+                    idmap.extend(zip(ii,jj))
 		return True
 
         lineno()
