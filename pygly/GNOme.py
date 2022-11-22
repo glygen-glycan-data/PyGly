@@ -153,7 +153,7 @@ class GNOmeAPI(object):
 	    if self.get_topology(desc) == accession:
 		yield desc
 
-    def restrict(self, restriction):
+    def restrict(self, restriction, **kw):
 
         # Update the restriction set to include "landmark" topology, composition, etc nodes
         keep = set(restriction)
@@ -163,6 +163,11 @@ class GNOmeAPI(object):
             keep.add(self.get_composition(acc))
             keep.add(self.get_basecomposition(acc))
             keep.add(self.get_molecularweight(acc))
+            if kw.get('allstructanc',False) or kw.get('alltopoanc',False):
+                for anc in self.ancestors(acc):
+                    if (kw.get('allstructanc',False) and self.issaccharide(anc)) or \
+                       (kw.get('alltopoanc',False) and self.istopology(anc)):
+                        keep.add(anc)
         if None in keep:
             keep.remove(None)
 
@@ -345,9 +350,12 @@ class GNOme(GNOmeAPI):
             res[p[0]] = int(p[1])
 
         additional_xxx = 0
+        additional_xxx += res.get('HexNAc+aldi',0)
+        additional_xxx += res.get('Hex+aldi',0)
+        additional_xxx += res.get('dHex+aldi',0)
+ 
         for mmm, count in res.items():
-            if "aldi" in mmm:
-                additional_xxx += count
+            if "+aldi" in mmm:
                 del res[mmm]
 
         if additional_xxx > 0:
@@ -403,7 +411,7 @@ class GNOme(GNOmeAPI):
             if n not in cbbutton:
                 continue
 
-            children = list(self.children(n))
+            children = sorted(self.children(n))
             res[n] = {
                 "level": t, "children": children, "count": cbbutton[n], "score": scores[n]
             }
@@ -411,9 +419,9 @@ class GNOme(GNOmeAPI):
                 del res[n]['children']
 
             if n in syms:
-                res[n]['syms'] = syms[n]
+                res[n]['syms'] = sorted(syms[n])
 
-        json.dump(res, open(output_file_path, 'w'))
+        json.dump(res, open(output_file_path, 'w'), indent=2, separators=(',',': '), sort_keys=True)
         return
 
     def get_Byonic(self, acc):
@@ -2129,7 +2137,7 @@ class GNOme_Theme_Base:
 
     def write(self, output_path):
         d = self.getdata()
-        json.dump(d, open(output_path, "w"))
+        json.dump(d, open(output_path, "w"), indent=2, separators=(',',': '), sort_keys=True)
 
 
 class GNOme_Theme_GlyGen(GNOme_Theme_Base):
@@ -2146,6 +2154,56 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
                     "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
+                }
+            ]
+
+        }
+
+class GNOme_Theme_GlyGen_NSandbox(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "snfg",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
+            "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
+            "external_resources": [
+                {
+                    "name": "GlyGen",
+                    "url_prefix": "https://www.glygen.org/glycan/",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyGen")
+                },
+                {
+                    "name": "Sandbox",
+                    "url_prefix": "https://glygen.ccrc.uga.edu/sandbox/explore.html?focus=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlycoTree_Nglycans")
+                }
+            ]
+
+        }
+
+class GNOme_Theme_GlyGen_OSandbox(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "snfg",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".png",
+            "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
+            "external_resources": [
+                {
+                    "name": "GlyGen",
+                    "url_prefix": "https://www.glygen.org/glycan/",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyGen")
+                },
+                {
+                    "name": "Sandbox",
+                    "url_prefix": "https://glygen.ccrc.uga.edu/sandbox/explore.html?focus=",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlycoTree_Oglycans")
                 }
             ]
 
@@ -2507,7 +2565,7 @@ def main():
             allExactSymOutputF.close()
 
 
-    elif cmd == "writeresowl":
+    elif cmd in ("writeresowl","writeresowl_with_ancestor_structures"):
 
         if len(sys.argv) < 4:
             print "Please provide GNOme.owl, restriction set name, output file path"
@@ -2517,10 +2575,13 @@ def main():
         ofn = sys.argv[3]
         restriction_accs_file = sys.argv[2]
 
-        accs = open(restriction_accs_file).read().strip().split()
+        accs = open(restriction_accs_file).read().split()
 
         GNOme_res = GNOme(resource=ifn)
-        GNOme_res.restrict(accs)
+        if cmd == "writeresowl":
+            GNOme_res.restrict(accs)
+        elif cmd == "writeresowl_with_ancestor_structures":
+            GNOme_res.restrict(accs,allstructanc=True,alltopoanc=True)
 
         f = open(ofn, "w")
         GNOme_res.write(f)
@@ -2561,6 +2622,7 @@ def main():
 
             restriction_set = open(glycandata_tsv_fp).read().strip().split()
             restriction_set.pop(0)
+            restriction_set = sorted(restriction_set)
         else:
             print "Restriction set: %s is not supported"
             sys.exit(1)
@@ -2568,7 +2630,7 @@ def main():
         open(fp, "w").write("\n".join(restriction_set))
 
         json_fp = open(sys.argv[3], "w")
-        json.dump(restriction_set, json_fp, sort_keys=True, indent=2)
+        json.dump(restriction_set, json_fp, indent=2, separators=(',',': '), sort_keys=True)
 
     elif cmd == "UpdateTheme":
 
@@ -2582,11 +2644,14 @@ def main():
         td = GNOme_Theme_Default(restriction_url)
         tgg = GNOme_Theme_GlyGen(restriction_url)
         tggd = GNOme_Theme_GlyGenDev(restriction_url)
+        tggns = GNOme_Theme_GlyGen_NSandbox(restriction_url)
+        tggos = GNOme_Theme_GlyGen_OSandbox(restriction_url)
 
         td.write(theme_path + "default.json")
         tgg.write(theme_path + "GlyGen.json")
         tggd.write(theme_path + "GlyGenBeta.json")
-
+        tggns.write(theme_path + "NSandbox.json")
+        tggos.write(theme_path + "OSandbox.json")
 
     else:
 
