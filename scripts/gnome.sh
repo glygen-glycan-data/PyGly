@@ -2,10 +2,18 @@
 
 set -x
 
-restriction_set_names=(
+restriction_set_names_standard=(
   "BCSDB"
   "GlyGen"
   "GlyCosmos"
+  "GlyGen_NGlycans"
+  "GlyGen_OGlycans"
+  "NGlycans"
+)
+
+restriction_set_names_ancestor=(
+  "GlycoTree_NGlycans"
+  "GlycoTree_OGlycans"
 )
 
 
@@ -45,13 +53,24 @@ git clone git@github.com:glygen-glycan-data/GNOme.git
 mv ./BrowserData.json ./GNOme/
 
 
-for Restriction_set in "${restriction_set_names[@]}"
+for Restriction_set in "${restriction_set_names_standard[@]}"
 do
   lowersetname=$(echo "$Restriction_set" | awk '{print tolower($0)}')
   echo $Restriction_set
   # python ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
   ./gnome_compute.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./$Restriction_set.BrowserData.json
+  jq . ./$Restriction_set.BrowserData.json | grep '^  "G' | tr -d '":{ ' | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
+done
+
+for Restriction_set in "${restriction_set_names_ancestor[@]}"
+do
+  lowersetname=$(echo "$Restriction_set" | awk '{print tolower($0)}')
+  echo $Restriction_set
+  # python ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
+  ./gnome_compute.py writeresowl_with_ancestor_structures ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
+  ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./$Restriction_set.BrowserData.json
+  jq . ./$Restriction_set.BrowserData.json | grep '^  "G' | tr -d '":{ ' | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
 done
 
 ./gnome_compute.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
