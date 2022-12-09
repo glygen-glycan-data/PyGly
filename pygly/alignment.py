@@ -578,7 +578,8 @@ class GlycanPartialOrder(Comparitor):
 
         # if b is a composition, it doesn't matter what a's topology is
         if not b.has_root():
-            idmap.extend(curidmap)
+            if idmap is not None:
+                idmap.extend(curidmap)
             return True
 
         lineno("b is not a composition")

@@ -72,6 +72,7 @@ class Composition(Manipulation):
 	nmethyl
 	sulfate_oxygen_lost
 	spyruvate
+        phosphate_oxygen_lost
     """.split())
     floating_substs = map(lambda k: getattr(Substituent,k),"""
 	methyl
