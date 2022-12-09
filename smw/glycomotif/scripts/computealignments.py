@@ -5,8 +5,8 @@ import time
 import findpygly
 import pygly.alignment
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format
-from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache
-from pygly.GlycanResource.GlyCosmos import GlyCosmosNoCache
+from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache, GlyTouCan
+from pygly.GlycanResource.GlyCosmos import GlyCosmosNoCache, GlyCosmos
 from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
@@ -15,9 +15,12 @@ if len(sys.argv) > 1:
 else:
     res_file_path = None
 
+if res_file_path == "-":
+    res_file_path = None
+
 wp = WURCS20Format()
 gp = GlycoCTFormat()
-gtc = GlyTouCanNoCache()
+gtc = GlyTouCan()
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
 
@@ -27,30 +30,39 @@ loose_nred_matcher = pygly.alignment.NonReducingEndMotifInclusive(connected_node
 strict_matcher = pygly.alignment.MotifStrict(connected_nodes_cache=nodes_cache)
 strict_nred_matcher = pygly.alignment.NonReducingEndMotifStrict(connected_nodes_cache=nodes_cache)
 
-
 motif_gobjs = {}
-for m in w.itermotif():
-
+if len(sys.argv) > 2:
+  for acc in sys.argv[2:]:
+    print "Motif:",acc
+    gly = gtc.getGlycan(acc)
+    if gly:
+        motif_gobjs[acc] = gly
+else:
+  for m in w.itermotif():
     acc = m.get("glytoucan")
+
     if acc in motif_gobjs:
         continue
 
-    try:
-        motif_gobjs[acc] = wp.toGlycan(str(m.get("wurcs")))
-    except:
+    print "Motif:",acc
 
+    gly = None
+    if not gly:
+        try:
+            motif_gobjs[acc] = wp.toGlycan(str(m.get("wurcs")))
+        except:
+            pass
+    if not gly:
         try:
             motif_gobjs[acc] = gp.toGlycan(m.get("glycoct"))
         except:
-            continue
+            pass
 
 archived = set()
-gco = GlyCosmosNoCache()
+gco = GlyCosmos()
 for acc in gco.archived():
     acc = acc["accession"]
     archived.add(acc)
-
-
 
 def secondtostr(i):
     i = int(i)
@@ -89,6 +101,8 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     except:
         continue
 
+    print "Structure:",glycan_acc
+
     if per > lastper:
         lastper += 0.1
         lapsed = time.time() - start_ts
@@ -97,6 +111,8 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
 
     for motif_acc in motif_accs:
         motif_gobj = motif_gobjs[motif_acc]
+
+        print "Motif:",motif_acc,"vs Structure:",glycan_acc
 
         # Loose match first
         loose_core = loose_matcher.leq(motif_gobj, glycan_obj, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=True)

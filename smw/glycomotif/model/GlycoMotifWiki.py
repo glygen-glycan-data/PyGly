@@ -1,5 +1,5 @@
 
-__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword",
+__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword", "Enzyme",
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
@@ -105,6 +105,9 @@ class Motif(SMW.SMWClass):
 	if isinstance(data.get('keyword'),basestring):
 	    data['keyword'] = set(map(lambda s: s.strip(),data.get('keyword').split(';')))
 
+	if isinstance(data.get('enzyme'),basestring):
+	    data['enzyme'] = set(map(lambda s: s.strip(),data.get('enzyme').split(';')))
+
 	if isinstance(data.get('dbxref'),basestring):
 	    data['dbxref'] = set(map(lambda s: tuple(s.strip().split(':')),data.get('dbxref').split(';')))
 
@@ -126,6 +129,9 @@ class Motif(SMW.SMWClass):
 
         if 'keyword' in data:
             data['keyword'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['keyword'])))))
+
+        if 'enzyme' in data:
+            data['enzyme'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['enzyme'])))))
 
         if 'dbxref' in data:
             data['dbxref'] = ";".join(map(lambda t: "%s:%s"%t,sorted(data['dbxref'])))
@@ -278,6 +284,14 @@ class Keyword(SMW.SMWClass):
         assert kwargs.get('keyword')
 	return kwargs.get('keyword')
 
+class Enzyme(SMW.SMWClass):
+    template = 'Enzyme'
+
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('genename')
+	return kwargs.get('genename')
+
 class GlycoMotifWiki(SMW.SMWSite):
     _name = 'glycomotif'
 
@@ -289,8 +303,12 @@ class GlycoMotifWiki(SMW.SMWSite):
     def itermotif(self,collection=None):
         if collection != None and not isinstance(collection,basestring):
             collection = collection.id
-	for pagename in self.itercat('Motif'):
-	    m  = self.get(pagename)
+        if collection:
+            regex = r'^%s\.'%(collection,)
+        else:
+            regex = r'^[A-Z]{2,4}\.'
+        for page in self.iterpages(regex=regex,include_categories=['Motif']):
+            m = self.get(page.name)
             if not collection or m.get('collection') == collection:
                 yield m
 
