@@ -12,8 +12,8 @@ class GlyCosmos(GlyCosmosTS,GlyTouCanUtil):
         super(GlyCosmos,self).__init__(**kw)
         self.sparqlist = GlyCosmosSparqList(**kw)
         self.attach_methods(self.sparqlist)
-	self.ws = GlyCosmosWS(**kw)
-	self.attach_methods(self.ws)
+	# self.ws = GlyCosmosWS(**kw)
+	# self.attach_methods(self.ws)
 
 class GlyCosmosNoCache(GlyCosmos):
     def __init__(self,**kw):
