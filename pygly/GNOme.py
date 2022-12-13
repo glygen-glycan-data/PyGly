@@ -504,7 +504,7 @@ class SubsumptionGraph(GNOmeAPI):
 		    high = low
 		argmass.append((low,high))
 	    for glyacc in self.allacc:
-		mass = self.gco.getmass(glyacc)
+		mass = self.gco.getmass(glyacc) 
 		if not mass:
 		    mass = self.gtc.getmass(glyacc)
 		if not mass:
@@ -2125,12 +2125,14 @@ class GNOme_Theme_Base:
         #   Set
         raise NotImplemented()
 
-    def get_accessions(self, restriction_set_name):
+    def get_accessions(self, *restriction_set_names):
         # url = self.restriction_url%restriction_set_name
         # accs = urllib2.urlopen(url).read().strip().split()
-        url = self.restriction_url % restriction_set_name
-        accs = list(sorted(open(url).read().strip().split()))
-        return accs
+        accs = set()
+        for n in restriction_set_names:
+            url = self.restriction_url % n
+            accs.update(list(sorted(open(url).read().strip().split())))
+        return sorted(accs)
 
     def getoutputpath(self):
         raise NotImplemented()
@@ -2159,7 +2161,7 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
 
         }
 
-class GNOme_Theme_GlyGen_NSandbox(GNOme_Theme_Base):
+class GNOme_Theme_GlyGen_Sandbox(GNOme_Theme_Base):
 
     def getdata(self):
         return {
@@ -2178,51 +2180,7 @@ class GNOme_Theme_GlyGen_NSandbox(GNOme_Theme_Base):
                     "name": "Sandbox",
                     "url_prefix": "https://glygen.ccrc.uga.edu/sandbox/explore.html?focus=",
                     "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlycoTree_Nglycans")
-                }
-            ]
-
-        }
-
-class GNOme_Theme_GlyGen_OSandbox(GNOme_Theme_Base):
-
-    def getdata(self):
-        return {
-            "icon_style": "snfg",
-            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_url_suffix": ".png",
-            "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
-            "external_resources": [
-                {
-                    "name": "GlyGen",
-                    "url_prefix": "https://www.glygen.org/glycan/",
-                    "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlyGen")
-                },
-                {
-                    "name": "Sandbox",
-                    "url_prefix": "https://glygen.ccrc.uga.edu/sandbox/explore.html?focus=",
-                    "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlycoTree_Oglycans")
-                }
-            ]
-
-        }
-
-class GNOme_Theme_GlyGenDev(GNOme_Theme_Base):
-
-    def getdata(self):
-        return {
-            "icon_style": "snfg",
-            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_url_suffix": ".png",
-            "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
-            "external_resources": [
-                {
-                    "name": "GlyGen Beta",
-                    "url_prefix": "https://beta.glygen.org/glycan/",
-                    "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlyGen")
+                    "glycan_set": self.get_accessions("GlycoTree_Nglycans","GlycoTree_Oglycans")
                 }
             ]
 
@@ -2642,16 +2600,13 @@ def main():
         theme_path = sys.argv[2]
 
         td = GNOme_Theme_Default(restriction_url)
-        tgg = GNOme_Theme_GlyGen(restriction_url)
-        tggd = GNOme_Theme_GlyGenDev(restriction_url)
-        tggns = GNOme_Theme_GlyGen_NSandbox(restriction_url)
-        tggos = GNOme_Theme_GlyGen_OSandbox(restriction_url)
-
         td.write(theme_path + "default.json")
+
+        tgg = GNOme_Theme_GlyGen(restriction_url)
         tgg.write(theme_path + "GlyGen.json")
-        tggd.write(theme_path + "GlyGenBeta.json")
-        tggns.write(theme_path + "NSandbox.json")
-        tggos.write(theme_path + "OSandbox.json")
+
+        tggs = GNOme_Theme_GlyGen_Sandbox(restriction_url)
+        tggs.write(theme_path + "Sandbox.json")
 
     else:
 
