@@ -11,8 +11,6 @@ def uniqueify(iterable):
                 seen.add(it)
     return wrapper
 
-# https://docs.google.com/document/d/1GbfX3JLWPP56cAcBFSGvwAgn4PpG3pc4qnvkXsMbwes
-
 class GlyGenSourceFile(WebServiceResource):
     apiurl = "https://data.glygen.org/ln2data/downloads"
     # verbose = True
@@ -80,7 +78,8 @@ class GlyGenSourceFile(WebServiceResource):
         "hcv1a": ('Hepatitis C virus (genotype 1a, isolate H)','11108'),
         "hcv1b": ('Hepatitis C virus (genotype 1b, isolate Japanese)','11116'),
         "sarscov1": ('SARS coronavirus (SARS-CoV-1)','694009'),
-        "sarscov2": ('SARS coronavirus (SARS-CoV-2 or 2019-nCoV)','2697049')
+        "sarscov2": ('SARS coronavirus (SARS-CoV-2 or 2019-nCoV)','2697049'),
+        "fruitfly": ('Drosophila melanogaster','7227')
     }
 
     @uniqueify
@@ -233,11 +232,64 @@ class GlyGenSourceFile(WebServiceResource):
     @uniqueify
     def sandbox_allgtc(self):
         for row in self.sandbox_all():
-            yield None,row['glytoucan_ac']
+            yield row['glytoucan_ac'],row['glytoucan_ac']
+
+    def mcw_oglcnac(self,name):
+        for row in self.query_csvsourcefile(source="mcw_oglcnac",filename=name+"_o-glcnacome_mcw"):
+            yield row
+
+    def mcw_oglcnac_human(self):
+        for row in self.mcw_oglcnac("human"):
+            yield row
+
+    def mcw_oglcnac_mouse(self):
+        for row in self.mcw_oglcnac("mouse"):
+            yield row
+
+    def mcw_oglcnac_rat(self):
+        for row in self.mcw_oglcnac("rat"):
+            yield row
+
+    def mcw_oglcnac_fruitfly(self):
+        for row in self.mcw_oglcnac("fruitfly"):
+            yield row
+
+    def mcw_oglcnac_all(self):
+        for sp in ("human","mouse","rat","fruitfly"):
+            for row in self.mcw_oglcnac(sp):
+                yield row
+
+    @uniqueify
+    def mcw_oglcnac_allgtc(self):
+        for row in self.mcw_oglcnac_all():
+            yield "G49108TO","G49108TO"
+
+    @uniqueify
+    def mcw_oglcnac_alltaxa(self):
+        taxa_lookup = dict()
+        for k,v in self.glygen_species.values():
+            taxa_lookup[k] = v
+        for row in self.mcw_oglcnac_all():
+            if 'organism' in row:
+                org = row['organism'].strip()
+                if org in taxa_lookup:
+                    yield "G49108TO",taxa_lookup[org]
+
+    @uniqueify
+    def mcw_oglcnac_allpubs(self):
+        for row in self.mcw_oglcnac_all():
+            if row.get('PMIDS'):
+                for pmid in row.get('PMIDS').split(';'):
+                    try:
+                        pmid = int(pmid)
+                        if pmid > 0:
+                            yield "G49108TO",pmid
+                    except ValueError:
+                        pass
 
     @uniqueify
     def allgtc(self):
-        for source in ("unicarbkb","glyconnect","ncfg","gptwiki","sandbox"):
+        for source in ("unicarbkb","glyconnect","ncfg","gptwiki","sandbox","mcw_oglcnac"):
             for row in getattr(self,source+"_allgtc")():
                 yield row[1]
 
