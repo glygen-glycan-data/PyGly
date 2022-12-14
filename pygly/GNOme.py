@@ -2180,7 +2180,7 @@ class GNOme_Theme_GlyGen_Sandbox(GNOme_Theme_Base):
                     "name": "Sandbox",
                     "url_prefix": "https://glygen.ccrc.uga.edu/sandbox/explore.html?focus=",
                     "url_suffix": "",
-                    "glycan_set": self.get_accessions("GlycoTree_Nglycans","GlycoTree_Oglycans")
+                    "glycan_set": self.get_accessions("GlycoTree_NGlycans","GlycoTree_OGlycans")
                 }
             ]
 
