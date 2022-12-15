@@ -9,4 +9,5 @@ from .GlycoMotif import GlycoMotif, GlycoMotifNoPrefetch, GlycoMotifNoCache
 from .GlycanImage import GlycanImage
 from .GlyConnect import GlyConnect
 from .GlyCosmosSparqList import GlyCosmosSparqList
+from .Sandbox import GlycoTreeSandbox
 
