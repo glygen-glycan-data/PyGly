@@ -16,6 +16,7 @@ GLY_000335	hcv1a_proteoform_glycosylation_sites_literature.csv	11108
 -	rat_proteoform_glycosylation_sites_o_glcnac_mcw.csv	10116	GlyGen	GLY_000633
 -	fruitfly_proteoform_glycosylation_sites_o_glcnac_mcw.csv	7227	GlyGen	GLY_000631
 -	mouse_proteoform_glycosylation_sites_o_glcnac_mcw.csv	10090	GlyGen	GLY_000632
+-	human_proteoform_glycosylation_sites_o_glcnac_mcw.csv	9606	GlyGen	GLY_000517
 """
 
 # -	fruitfly_proteoform_glycosylation_sites_glyconnect.csv	7227	GlyConnect
