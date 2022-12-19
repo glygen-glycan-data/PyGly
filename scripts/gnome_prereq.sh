@@ -19,15 +19,15 @@ function restriction () {
 }
 
 function glygentyperes () {
-  $GLYRES GlyGen glycans_bytype $1 > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
+  $GLYRES GlyGen glycans_bytype $1 | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
 }
 
 function sandboxres () {
-  $GLYRES GlycoTreeSandbox list $1 > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
+  $GLYRES GlycoTreeSandbox list $1 | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
 }
 
 function glycomotifres () {
-  $GLYRES GlycoMotifNoCache getstruct GGM $1 > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
+  $GLYRES GlycoMotifNoCache getstruct GGM $1 | awk '{print $1}' | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
 }
 
 function getdata () {
