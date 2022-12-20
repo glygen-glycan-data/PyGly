@@ -58,7 +58,7 @@ do
   echo $Restriction_set
   ./gnome_compute.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme/restrictions/$Restriction_set.BrowserData.json
-  jq . ./GNOme/restrictions/$Restriction_set.BrowserData.json | grep '^  "G' | tr -d '":{ ' | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
+  jq -r 'keys|@tsv' ./GNOme/restrictions/$Restriction_set.BrowserData.json | fmt -w 8 | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
 done
 
 for Restriction_set in "${restriction_set_names_ancestor[@]}"
@@ -66,7 +66,7 @@ do
   echo $Restriction_set
   ./gnome_compute.py writeresowl_with_ancestor_structures ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme/restrictions/$Restriction_set.BrowserData.json
-  jq . ./GNOme/restrictions/$Restriction_set.BrowserData.json | grep '^  "G' | tr -d '":{ ' | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
+  jq -r 'keys|@tsv' ./GNOme/restrictions/$Restriction_set.BrowserData.json | fmt -w 8 | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
 done
 
 ./gnome_compute.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
