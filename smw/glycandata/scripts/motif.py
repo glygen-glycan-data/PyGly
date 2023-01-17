@@ -10,7 +10,7 @@ w = GlycanData()
 import findpygly
 from pygly.GlycanResource import GlycoMotif
 
-gm = GlycoMotif(prefetch=True,verbose=False,usecache=False)
+gm = GlycoMotif(prefetch=True,verbose=True,usecache=False)
 
 if sys.argv[1] == "allmotifs":
     allmotifs = True
@@ -49,6 +49,8 @@ for coll in collections:
 	    for i,kw in enumerate(sorted(keywords)):
 		print "\t".join([acc,"Keyword",kw])
 	    for i,xr in enumerate(sorted(dbxrefs)):
+		if 'GlycanDictionary:' in xr:
+                    xr = xr.replace("GlycanDictionary:GD0","GlycanDictionary:GSD0")
 		print "\t".join([acc,"CrossRef",xr])
 	allmotifdata[acc] = dict(alignment=alignment,label=names[0])
 

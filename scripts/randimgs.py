@@ -1,4 +1,6 @@
 #!/bin/env python2
+from __future__ import print_function
+
 import sys, os, random
 import findpygly
 from pygly.GlycanImage import GlycanImage
@@ -37,9 +39,9 @@ for j in range(iterations):
             continue
         outfile = acc + ".png"
         if os.path.exists(outfile):
-	    continue
+            continue
         gly = gtc.getGlycan(acc,format='wurcs')
-	if not gly:
+        if not gly:
             continue
         seq = gtc.getseq(acc,format='wurcs')
         if not seq:
@@ -59,6 +61,6 @@ for j in range(iterations):
         imageWriter.writeImage(seq,outfile)
         wh = open(acc + ".log",'w')
         for k in ('scale','reducing_end','orientation','notation','display','opaque'):
-            print >>wh, k+":",imageWriter.get(k)
-        print >>wh, "composition:",comp
+            print(k+":",imageWriter.get(k),file=wh)
+        print("composition:",comp,file=wh)
         wh.close()
