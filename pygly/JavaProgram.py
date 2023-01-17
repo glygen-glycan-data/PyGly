@@ -157,3 +157,28 @@ class GWBFormatter(JavaProgram):
     def stdin(self):
         return self.glycoctstr
 
+class GlycanBuilderImage(JavaProgram):
+    libs = """
+              GlycanBuilder2
+           """
+    main = "GlycanImageCmdline"
+
+    def __init__(self,glycoctstr,outfile,verbose=False,timeout=15,**kw):
+        super(GlycanBuilderImage,self).__init__(verbose=verbose,wait=True,stdout=(not verbose),timeout=timeout)
+        self.kwargs = kw
+        self.glycoctstr = glycoctstr
+        self.outfile = outfile
+
+    def args(self):
+        theargs = []
+        for k,v in self.kwargs.items():
+            theargs.append(k)
+            theargs.append(v)
+        theargs.append("out")
+        theargs.append(self.outfile)
+        theargs.append("-")
+        return " ".join(map(str,theargs))
+
+    def stdin(self):
+        return self.glycoctstr
+
