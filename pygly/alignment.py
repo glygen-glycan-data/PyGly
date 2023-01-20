@@ -1007,7 +1007,9 @@ class SubstructureSearch(GlycanPartialOrder):
                 return len(idmaps)>0
 
         if not underterminedLinkage:
-            return False
+            if idmaps is None:
+                return False
+            return len(idmaps)>0
 
         if tg.undetermined() and self.connected_nodes_pre_computed:
             # pre compute the connected node set
