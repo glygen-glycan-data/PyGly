@@ -100,6 +100,10 @@ class Node(object):
                 if l.matching_link_type(**kw):
                     yield l
 
+    def links_without_repeat(self):
+        # NON_REPEAT, INSTANTIATED
+        return self.links(default=False,repeat=Linkage.NON_REPEAT,inst=Linkage.INSTANTIATED)
+
     def links_with_repeat_exit(self):
         # NON_REPEAT + REPEAT_EXIT, INSTANTIATED; same as default
         return self.links(default=False,repeat=-Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED)
