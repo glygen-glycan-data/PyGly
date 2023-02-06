@@ -884,7 +884,7 @@ class SubstructureSearch(GlycanPartialOrder):
         else:
             return self.allConnectedNodesByRootRecursive(r, size)
 
-    def subtree_leq(self, m, tg,root=True, repeat_depth_m=0, repeat_depth_tg=0, idmap=None):
+    def subtree_leq(self, m, tg, root=True, repeat_depth_m=0, repeat_depth_tg=0, idmaps=None):
 
         if root:
             if not self.rootmonoleq(m, tg):
@@ -893,70 +893,113 @@ class SubstructureSearch(GlycanPartialOrder):
             if not self.monoleq(m, tg):
                 return False
 
-        # assert len(filter(lambda l:l.repeat_bridge_link(), m.links())) in [0, 1]
+        # print m.id(),tg.id()
+
+        ######
+        # *_no_repeat_edges includes NON_REPEAT and REPEAT_EXIT
+        # *_repeat_edges includes NON_REPEAT AND REPEAT_BRIDGE
+        # *_nonrepeat_edges includes NON_REPEAT only
+        # *_repeat_bridge_only_edges includes REPEAT_BRIDGE only
+        #
+        # NOTE: Assumes at most one repeat bridge edge for each
+        # monosaccharide and never aligns repeat bridge to repeat
+        # bridge (should it?)  Having a repeat bridge for motif and
+        # glycan monosaccharide *should* be rare!!!!
+        # 
+        # Asymmetry in motif and glycan edge combinatorics is because
+        # we dont have to use all fo the glycan monosaccharide's
+        # edges, but we must use all the motif monosaccharide's edges
+        ######
+
+        assert len(list(m.links_repeat_bridge_only())) <= 1
         if not m.links_has_repeat_bridge():
-            mlinks_no_repeat_path = list(m.links())
-            mlinks_repeat_path = []
+            mlinks_no_repeat_edges = list(m.links()) # same as links_with_repeat_exit()
+            mlinks_repeat_edges = []
         else:
-            mlinks_no_repeat_path = list(m.links_with_repeat_exit())
-            mlinks_repeat_path = m.links_with_repeat_bridge()
+            mlinks_no_repeat_edges = list(m.links_with_repeat_exit())
+            mlinks_repeat_edges = list(m.links_with_repeat_bridge())
 
-        # Why this logic? Shouldn't it be like the above?
-        # Instantiated w/ all types of repeat status
-        tglinks = tg.links(default=False,inst=Linkage.INSTANTIATED)
-        tglinks_type_1 = []
-        tglinks_type_2 = []
-        tglinks_type_3 = []
+        assert len(list(tg.links_repeat_bridge_only())) <= 1
+        if not tg.links_has_repeat_bridge():
+            tglinks_no_repeat_edges = list(tg.links()) # same as links_with_repeat_exit()
+            tglinks_repeat_bridge_only_edges = []
+        else:
+            tglinks_nonrepeat_edges = list(tg.links_without_repeat())
+            tglinks_no_repeat_edges = list(tg.links_with_repeat_exit())
+            tglinks_repeat_bridge_only_edges = list(tg.links_repeat_bridge_only())
 
-        for l in tglinks:
-
-            if not l.is_repeat_bridge() and not l.is_repeat_exit():
-                tglinks_type_1.append(l)
-
-            elif l.is_repeat_bridge():
-                tglinks_type_2.append(l)
-
-            elif l.is_repeat_exit():
-                tglinks_type_3.append(l)
-
-        assert len(tglinks_type_2) in [0, 1]
-        tglinks_no_repeat_path = tglinks_type_1 + tglinks_type_3
-        tglinks_repeat_path = tglinks_type_1 + tglinks_type_2
-
-        for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
-            idmaps = defaultdict(list)
-            for ii,jj in itermatchings(mlinks_no_repeat_path, tglinks_no_repeat_path_partial, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg,idmap=idmaps[i,j])):
-                if idmap is not None:
-                    idmap.append((m,tg))
+        for tglinks in choose(tglinks_no_repeat_edges, len(mlinks_no_repeat_edges)):
+            recidmaps = defaultdict(list)
+            for ii,jj in itermatchings(mlinks_no_repeat_edges, tglinks, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg,idmaps=recidmaps[i,j])):
+                if idmaps is not None:
+                    thisidmaps = [[(m,tg)]]
                     for i,j in zip(ii,jj):
-                        idmap.extend(idmaps[i,j])
-                return True
-
-        limit = self.repeat_max_depth()
-        if repeat_depth_m > limit or repeat_depth_tg > limit:
-            return False
-
-        if len(mlinks_no_repeat_path) > 0 and len(tglinks_type_2) > 0:
-            for tglinks_repeat_path_partial in choose(tglinks_type_1, len(mlinks_no_repeat_path)-1):
-                tglinks_repeat_path_partial += tglinks_type_2
-
-                idmaps = defaultdict(list)
-                for ii, jj in itermatchings(mlinks_no_repeat_path, tglinks_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1,idmap=idmaps[i,j])):
-                    if idmap is not None:
-                        idmap.append((m,tg))
-                        for i,j in zip(ii,jj):
-                            idmap.extend(idmaps[i,j])
+                        idmaps1 = []
+                        for idmap0 in thisidmaps:
+                            for idmap1 in recidmaps[i,j]:
+                                idmaps1.append(idmap0 + idmap1)
+                        thisidmaps = idmaps1
+                    idmaps.extend(thisidmaps)
+                else:
                     return True
 
-        for tglinks_no_repeat_path_partial in choose(tglinks_no_repeat_path, len(mlinks_no_repeat_path)):
-            idmaps = defaultdict(list)
-            for ii,jj in itermatchings(mlinks_repeat_path, tglinks_no_repeat_path_partial,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg,idmap=idmaps[i,j])):
-                if idmap is not None:
-                    idmap.append((m,tg))
-                    for i,j in zip(ii,jj):
-                        idmap.extend(idmaps[i,j])
-                return True
+        # print "HERE!0"
+        # print m.id(),tg.id()
+        # print [",".join(map(lambda t: str(t[0].id())+":"+str(t[1].id()),idmap)) for idmap in idmaps]
 
+        limit = self.repeat_max_depth()
+        if repeat_depth_m >= limit or repeat_depth_tg >= limit:
+            if len(idmaps) > 0:
+                return True
+            return False
+
+        # print "HERE!1"
+        # print m.id(),tg.id()
+        # print [",".join(map(lambda t: str(t[0].id())+":"+str(t[1].id()),idmap)) for idmap in idmaps]
+
+        if len(mlinks_no_repeat_edges) > 0 and len(tglinks_repeat_bridge_only_edges) > 0:
+            for tglinks in choose(tglinks_nonrepeat_edges, len(mlinks_no_repeat_edges)-1):
+                tglinks += tglinks_repeat_bridge_only_edges
+                recidmaps = defaultdict(list)
+                for ii, jj in itermatchings(mlinks_no_repeat_edges, tglinks, lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m,repeat_depth_tg=repeat_depth_tg+1,idmaps=recidmaps[i,j])):
+                    if idmaps is not None:
+                        thisidmaps = [[(m,tg)]]
+                        for i,j in zip(ii,jj):
+                            idmaps1 = []
+                            for idmap0 in thisidmaps:
+                                for idmap1 in recidmaps[i,j]:
+                                    idmaps1.append(idmap0 + idmap1)
+                            thisidmaps = idmaps1
+                        idmaps.extend(thisidmaps)
+                    else:
+                        return True
+
+        # print "HERE!2"
+        # print m.id(),tg.id()
+        # print [",".join(map(lambda t: str(t[0].id())+":"+str(t[1].id()),idmap)) for idmap in idmaps]
+
+        if len(mlinks_repeat_edges) > 0 and len(tglinks_no_repeat_edges) > 0:
+          for tglinks in choose(tglinks_no_repeat_edges, len(mlinks_repeat_edges)):
+            recidmaps = defaultdict(list)
+            for ii,jj in itermatchings(mlinks_repeat_edges, tglinks,lambda i,j: self.linkleq(i,j) and self.subtree_leq(i.child(),j.child(),root=False,repeat_depth_m=repeat_depth_m+1,repeat_depth_tg=repeat_depth_tg,idmaps=recidmaps[i,j])):
+                if idmaps is not None:
+                    thisidmaps = [[(m,tg)]]
+                    for i,j in zip(ii,jj):
+                        idmaps1 = []
+                        for idmap0 in thisidmaps:
+                            for idmap1 in recidmaps[i,j]:
+                                idmaps1.append(idmap0 + idmap1)
+                        thisidmaps = idmaps1
+                    idmaps.extend(thisidmaps)
+                else:
+                    return True
+
+
+        # print m.id(),tg.id()
+        # print [",".join(map(lambda t: str(t[0].id())+":"+str(t[1].id()),idmap)) for idmap in idmaps]
+
+        if len(idmaps) > 0:
+            return True
         return False
 
 
@@ -991,14 +1034,15 @@ class SubstructureSearch(GlycanPartialOrder):
         # Use subtree algorithm to save runtime
         if not m.undetermined():
             for n in potential_TG_root:
-                curidmap = []
-                if self.subtree_leq(m.root(), n, idmap=curidmap):
+                curidmaps = []
+                if self.subtree_leq(m.root(), n, idmaps=curidmaps):
                     if idmaps is None:
                         return True
-                    idmapkey = tuple(sorted(set(map(lambda t: (t[0].id(),t[1].id()),curidmap))))
-                    if idmapkey not in seenidmaps:
-                        idmaps.append(curidmap)
-                        seenidmaps.add(idmapkey)
+                    for idmap in curidmaps:
+                        idmapkey = tuple(sorted(set(map(lambda t: (t[0].id(),t[1].id()),idmap))))
+                        if idmapkey not in seenidmaps:
+                            idmaps.append(idmap)
+                            seenidmaps.add(idmapkey)
             
             # return False when no match based on subtree algorithm and the glycan is not undetermined.
             if not tg.undetermined():
