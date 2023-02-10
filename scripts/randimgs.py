@@ -1,7 +1,7 @@
 #!/bin/env python2
 from __future__ import print_function
 
-import sys, os, random
+import sys, os, random, time
 import findpygly
 from pygly.GlycanImage import GlycanImage
 from pygly.GlycanResource import GlyTouCan, GlyCosmos
@@ -16,13 +16,23 @@ notation_options = [ "snfg", "cfg" ]
 display_options = [ "normal", "normalinfo", "compact" ]
 opaque_options = [ True, False ]
 
+print("GlyCosmos archived...",file=sys.stderr)
+start = time.time()
 gco = GlyCosmos(usecache=False)
 archived = set(map(lambda d: d['accession'],gco.archived()))
-gtc = GlyTouCan(verbose=False,usecache=False)
+print("GlyCosmos archived complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
 
+print("GlyTouCan accessions...",file=sys.stderr)
+start = time.time()
+gtc = GlyTouCan(verbose=False,usecache=False,prefetch=True)
 accs = list(filter(lambda acc: acc not in archived,gtc.allaccessions()))
+dummy = gtc.getseq('G00912UN','wurcs')
+print("GlyTouCan accessions complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
 
+print("GNOme setup...",file=sys.stderr)
+start = time.time()
 gnome = GNOme()
+print("GNOme setup complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
 
 seen = set()
 for j in range(iterations):
@@ -34,7 +44,7 @@ for j in range(iterations):
     imageWriter.set('display',random.choice(display_options))
     imageWriter.set('opaque',random.choice(opaque_options))
     imageWriter.force(True)
-    # imageWriter.verbose(True)
+    imageWriter.verbose(True)
 
     count = 0
     while count < batch:
@@ -53,7 +63,7 @@ for j in range(iterations):
             continue
         if gly.undetermined():
             continue
-        if gly.has_root():
+        if not gly.has_root():
             continue
         if gly.repeated():
             continue
@@ -64,7 +74,7 @@ for j in range(iterations):
                                      aggregate_basecomposition=False)
         bad = False
         for k,v in comp.items():
-            if k in ('Glc','Gal','Man','NeuAc','NeuGc','Fuc','GlcNAc','GalNAc','GlcNAc+aldi','Count'):
+            if k in ('Glc','Gal','Man','NeuAc','NeuGc','Fuc','GlcNAc','GalNAc','Count'):
                 continue
             if v <= 0:
                 continue
@@ -72,6 +82,7 @@ for j in range(iterations):
             break
         if bad:
             continue
+        print(acc,file=sys.stderr)
         imageWriter.writeImage(seq,outfile)
         wh = open(acc + ".log",'w')
         for k in ('scale','reducing_end','orientation','notation','display','opaque'):
