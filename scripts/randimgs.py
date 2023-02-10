@@ -4,10 +4,8 @@ from __future__ import print_function
 import sys, os, random
 import findpygly
 from pygly.GlycanImage import GlycanImage
-from pygly.GlycanResource.GlyTouCan import GlyTouCanNoCache, GlyTouCan
-
-
-accs = list(open(sys.argv[1]).read().split())
+from pygly.GlycanResource import GlyTouCan, GlyCosmos
+from pygly.GNOme import GNOme
 
 batch = 10
 iterations = 100
@@ -18,11 +16,15 @@ notation_options = [ "snfg", "cfg" ]
 display_options = [ "normal", "normalinfo", "compact" ]
 opaque_options = [ True, False ]
 
-gtc = GlyTouCan()
-# gtc = GlyTouCanNoCache()
+gco = GlyCosmos(usecache=False)
+archived = set(map(lambda d: d['accession'],gco.archived()))
+gtc = GlyTouCan(verbose=False,usecache=False)
+
+accs = list(filter(lambda acc: acc not in archived,gtc.allaccessions()))
+
+gnome = GNOme()
 
 seen = set()
-
 for j in range(iterations):
     imageWriter = GlycanImage()
     imageWriter.set('scale',random.choice(scale_options))
@@ -34,9 +36,12 @@ for j in range(iterations):
     imageWriter.force(True)
     # imageWriter.verbose(True)
 
-    for acc in random.sample(accs,k=batch):
+    count = 0
+    while count < batch:
+        acc = random.choice(accs)
         if acc in seen:
             continue
+        seen.add(acc)
         outfile = acc + ".png"
         if os.path.exists(outfile):
             continue
@@ -46,11 +51,20 @@ for j in range(iterations):
         seq = gtc.getseq(acc,format='wurcs')
         if not seq:
             continue
+        if gly.undetermined():
+            continue
+        if gly.has_root():
+            continue
+        if gly.repeated():
+            continue
+        topoacc = gnome.get_topology(acc)
+        if not topoacc:
+            continue
         comp = gly.iupac_composition(floating_substituents=False,
                                      aggregate_basecomposition=False)
         bad = False
         for k,v in comp.items():
-            if k in ('Glc','Gal','Man','NeuAc','NeuGc','Fuc','GlcNAc','GalNAc','Count'):
+            if k in ('Glc','Gal','Man','NeuAc','NeuGc','Fuc','GlcNAc','GalNAc','GlcNAc+aldi','Count'):
                 continue
             if v <= 0:
                 continue
@@ -63,4 +77,6 @@ for j in range(iterations):
         for k in ('scale','reducing_end','orientation','notation','display','opaque'):
             print(k+":",imageWriter.get(k),file=wh)
         print("composition:",comp,file=wh)
+        print("topology:",topoacc,file=wh)
         wh.close()
+        count += 1
