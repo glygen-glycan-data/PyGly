@@ -1,7 +1,7 @@
 #!/bin/env python2
 from __future__ import print_function
 
-import sys, os, random, time
+import sys, os, random, time, atexit
 import findpygly
 from pygly.GlycanImage import GlycanImage
 from pygly.GlycanResource import GlyTouCan, GlyCosmos
@@ -34,6 +34,16 @@ start = time.time()
 gnome = GNOme()
 print("GNOme setup complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
 
+import subprocess, atexit
+xvfbproc = subprocess.Popen(["Xvfb",":1"])
+os.environ["DISPLAY"] = "localhost:1.0"
+def killxvfb(proc):
+    try:
+        proc.terminate()
+    except OSError:
+        pass
+atexit.register(killxvfb,xvfbproc)
+
 seen = set()
 for j in range(iterations):
     imageWriter = GlycanImage()
@@ -44,7 +54,7 @@ for j in range(iterations):
     imageWriter.set('display',random.choice(display_options))
     imageWriter.set('opaque',random.choice(opaque_options))
     imageWriter.force(True)
-    imageWriter.verbose(True)
+    # imageWriter.verbose(True)
 
     count = 0
     while count < batch:
@@ -72,6 +82,8 @@ for j in range(iterations):
             continue
         comp = gly.iupac_composition(floating_substituents=False,
                                      aggregate_basecomposition=False)
+        if comp['Count'] < 3:
+            continue
         bad = False
         for k,v in comp.items():
             if k in ('Glc','Gal','Man','NeuAc','NeuGc','Fuc','GlcNAc','GalNAc','Count'):
