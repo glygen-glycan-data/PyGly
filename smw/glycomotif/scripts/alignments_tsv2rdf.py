@@ -17,8 +17,8 @@ def get_indices(col):
 
 
 motif_tsv = sys.argv[1]
-prefix = sys.argv[2] #commented out
-rdf_file_path = sys.argv[3] #commented out 
+# prefix = sys.argv[2] #commented out
+# rdf_file_path = sys.argv[3] #commented out 
 """
 motif_tsv = "../data/motif_alignment.tsv"
 prefix = "sth"
@@ -81,7 +81,7 @@ skosns = rdflib.Namespace('http://www.w3.org/2004/02/skos/core#')
 swivtns = rdflib.Namespace('http://semantic-mediawiki.org/swivt/1.0#')
 glycomotifns = rdflib.Namespace('http://glyomics.org/glycomotif#')
 
-print(type(glycomotifns))
+# print(type(glycomotifns))
 
 
 rdfgraph.bind("rdf", rdfns)
@@ -125,7 +125,7 @@ for motifacc, alignments_per_motif in alignments.items():
             
 
             acc, strict, indices = pair_with_indices
-            print(pair_with_indices)
+            # print(pair_with_indices)
             indices = ",".join(str(i) for i in sorted(indices))
             
             #alignment_id = "-".join((motifacc, alignment_type, acc,indices))
@@ -136,7 +136,7 @@ for motifacc, alignments_per_motif in alignments.items():
             
 
             matched_rdf_node = glycomotifns[alignment_id]
-            print(glycomotifns[alignment_id])
+            # print(glycomotifns[alignment_id])
             
 
             rdfgraph.add((matched_rdf_node, glycomotifns["motif_accession"], rdflib.Literal(motifacc)))
@@ -150,7 +150,7 @@ for motifacc, alignments_per_motif in alignments.items():
                 rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal("false", datatype=rdflib.XSD.boolean)))
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
-writer.serialize(open(rdf_file_path, "w")) #commeneted out 
+# writer.serialize(open(rdf_file_path, "w")) #commeneted out 
 writer.serialize(sys.stdout)
 
 
