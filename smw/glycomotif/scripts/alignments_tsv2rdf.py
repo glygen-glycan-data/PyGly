@@ -11,7 +11,7 @@ import rdflib.plugins.serializers.rdfxml
 def get_indices(col):
     indices = False
     if col != 'N':
-        indices = set(col[2:].split(','))
+        indices = set(map(int,col[2:].split(',')))
     return(indices) 
         
 
