@@ -664,6 +664,12 @@ class Glycan:
             self.glycoctformat = GlycoCTFormat()
         return self.glycoctformat.toStr(self)
 
+    def glycoctxml(self):
+        from . GlycanFormatter import GlycoCTFormat
+        if not self.glycoctformat:
+            self.glycoctformat = GlycoCTFormat()
+        return self.glycoctformat.toXML(self)
+
     def glycam(self):
         from . GlycanFormatter import IUPACGlycamFormat
         if not self.glycamformat:

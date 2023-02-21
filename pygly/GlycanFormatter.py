@@ -11,6 +11,8 @@ import re, sys, traceback
 import copy
 import string
 from collections import defaultdict
+from xml.etree import ElementTree
+from xml.etree.ElementTree import Element, SubElement
 
 from . GlycanFormatterExceptions import *
 
@@ -454,6 +456,72 @@ class GlycoCTFormat(GlycanFormatter):
                     l.set_parent_type(exit_link_parent_type_backup)
 
         return s
+
+    def xmlindent(self,elem,space='  ',level=0):
+        if level == 0:
+            self.indentations = ["\n" + level * space]
+
+        # Start a new indentation level for the first child.
+        child_level = level + 1
+        try:
+            child_indentation = self.indentations[child_level]
+        except IndexError:
+            child_indentation = self.indentations[level] + space
+            self.indentations.append(child_indentation)
+
+        if not elem.text or not elem.text.strip():
+            elem.text = child_indentation
+
+        for child in elem:
+            if len(child):
+                self.xmlindent(child, level=child_level)
+            if not child.tail or not child.tail.strip():
+                child.tail = child_indentation
+
+        # Dedent after the last child by overwriting the previous indentation.
+        if not child.tail.strip():
+            child.tail = self.indentations[level]
+
+    def toXML(self,g):
+
+        assert(not (g.undetermined() and g.has_root()))
+        assert(not g.repeated())
+
+        xmlroot = Element('sugar',version='1.0')
+        residues = SubElement(xmlroot,'residues')
+
+        g.unset_ids()
+        all_nodes = list(g.all_nodes(subst=True))
+
+        i = 1
+        for n in all_nodes:
+            if n.id() == None:
+                n.set_id(i)
+                i += 1
+
+        roots = []
+        if g.root():
+            roots.append(g.root())
+        for ur in g.undetermined_roots():
+            if not ur.connected():
+                roots.append(ur)
+
+        for r in roots:
+            if not r.has_parent_links() or r == g.root():
+                for m in g.subtree_nodes(r, subst=True):
+                    residues.append(self.monofmt.toXML(m))
+        
+        linkages = SubElement(xmlroot,'linkages')
+
+        linkid = 1
+        for r in roots:
+            if not r.has_parent_links() or r == g.root():
+                for l in sorted(g.subtree_links(r,subst=True),key=lambda l: l.child().id()):
+                    l.set_id(linkid)
+                    linkid += 1
+                    linkages.append(self.monofmt.linkToXML(l))
+        self.xmlindent(xmlroot)
+        return ElementTree.tostring(xmlroot,encoding='UTF-8')
 
     def toGlycan(self,s):
         res = {}
@@ -2062,7 +2130,7 @@ if __name__ == '__main__':
         try:
             g = clsinst.toGlycan(seq)
             print("+++", os.path.split(f)[1])
-            print(GlycoCTFormat().toStr(g))
+            print(GlycoCTFormat().toXML(g))
             for m in g.all_nodes(undet_subst=True):
                 print(m)
             # for t in g.undetermined_root_reprs():
