@@ -85,7 +85,7 @@ class GlycanBuilderSVG(GlycanFormatter):
                  elif anomer == '?':
                      m.set_anomer(Anomer.missing)
                  ringstr = g.attrib['data.residueRingSize']
-                 if ringstr != "?" and m.ring_start() == None:
+                 if ringstr != "?":
                      if ringstr in self.ringmap:
                          m.set_ring_start(self.ringmap[ringstr]['ring_start'])
                          m.set_ring_end(self.ringmap[ringstr]['ring_end'])
@@ -96,8 +96,8 @@ class GlycanBuilderSVG(GlycanFormatter):
                  resid = int(g.attrib['data.residueIndex'])
                  if g.attrib.get('data.residueIsReducingEnd') == "true":
                      rootmonoindex = resid
-                     if g.attrib.get('data.residueIsAlditol') == "true":
-                         m.add_mod(1,Mod.aldi)
+                 if g.attrib.get('data.residueIsAlditol') == "true":
+                     m.add_mod(1,Mod.aldi)
                  m.set_id(resid)
                  m.set_external_descriptor_id(g.attrib['ID'])
                  monos[resid] = m
