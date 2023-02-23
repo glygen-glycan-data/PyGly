@@ -1,1 +1,1 @@
-from model.GlycoMotifWiki import *
+from .model.GlycoMotifWiki import *

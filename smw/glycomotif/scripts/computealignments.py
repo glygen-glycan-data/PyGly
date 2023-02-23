@@ -1,3 +1,4 @@
+#!/bin/env python
 
 import os
 import sys
@@ -27,22 +28,6 @@ else:
 if res_file_path == "-":
     res_file_path = None
     
-print(res_file_path)
-
-def support(idmap):
-    s = set()
-    for mm,gm in idmap:
-        while True:
-            pl = gm.any_parent_link()
-            if not pl:
-                break
-            gm = pl.parent()
-            s.add(gm)
-    for mm,gm in idmap:
-        if gm in s:
-            s.remove(gm)
-    return s
-
 def check_idmaps(motifids,glycanids,idmaps): ###ID MAPS
     bad = 0
     for idmap in idmaps:
@@ -69,16 +54,20 @@ def check_idmaps(motifids,glycanids,idmaps): ###ID MAPS
     return bad == 0
 
 
-def get_match_index (idmaps):
-    
+def get_match_index (idmaps,glycan=None):
     allstructids = set()
+    allstructlinkids = set()
     for idmap in idmaps: 
-        
-        strucids = [t[1].id() for t in idmap]
-  
-        allstructids.update(strucids)
+        structids = set(t[1].id() for t in idmap)
+        allstructids.update(structids)
+        if glycan:
+            for l in glycan.all_links():
+                if l.parent().id() in structids and \
+                   l.child().id() in structids:
+                    allstructlinkids.add((l.parent().id(),l.child().id()))
     x = "Y:"+",".join(str(i) for i in sorted(allstructids))
-    
+    if glycan:
+        x += ":"+",".join("%s-%s"%p for p in sorted(allstructlinkids))
     return(x)
 
 
@@ -94,7 +83,7 @@ if res_file_path == "-":
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
-gtc = GlyTouCan()
+gtc = GlyTouCanNoCache()
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
 
@@ -110,7 +99,7 @@ motifids = {}
 
 if len(sys.argv) > 2:
   for acc in sys.argv[2:]:
-    print(acc)
+    # print(acc)
     gly = gtc.getGlycan(acc)
     if acc in motif_gobjs:
         continue
@@ -199,7 +188,13 @@ motif_accs = motif_gobjs.keys()
 
 final_results = []
 
-for glycan_acc, f, s in gtc.allseq(format="wurcs"):
+if res_file_path:
+    result_file = open(res_file_path, "w")
+else:
+    result_file = sys.stdout
+result_file.write("Motif\tStructure\tCore_Inclusive\tSubstructure_Inclusive\tWhole_Inclusive\tNon_Red_Inclusive\tCore_Strict\tSubstructure_Strict\tWhole_Strict\tNon_Red_Strict\n")
+
+for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
     #print(glycan_acc)
     
         
@@ -212,10 +207,8 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
     nodes_cache.clear()
     
     try:
-        glycan_obj = wp.toGlycan(s)
         glycan = wp.toGlycan(s)
-        #print(glycan_obj)
-        glycanids = [ m.id() for m in glycan_obj.all_nodes() ]
+        glycanids = [ m.id() for m in glycan.all_nodes() ]
         assert len(glycanids) == len(set(glycanids))
         glycanids = set(glycanids)
     except:
@@ -227,89 +220,54 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         print >> sys.stderr, "%0.2f Percent finished after %s, estimate %s remaining" % (per, secondtostr(lapsed), secondtostr(lapsed/per*(100-per)))
 
 
-    for macc,motif in motif_gobjs.items():
-        
-        
-        idmaps_loose_core = []
-        idmaps_loose_substructure = []
-        idmaps_loose_noncore = []
-        idmaps_loose_whole = [] 
-        idmaps_loose_nred = [] 
-        idmaps_strict_core = []
-        idmaps_strict_noncore =[]
-        idmaps_strict_substructure = []
-        idmaps_strict_substructure_partial=[]
-        idmaps_strict_whole = []
-        idmaps_strict_nred = []
+    for macc,motif in sorted(motif_gobjs.items()):
         
        
+        idmaps_loose_core = []
         loose_core = loose_matcher.leq(motif, glycan, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=True, idmaps=idmaps_loose_core)
         
-        loose_substructure_noncore = False
+        idmaps_loose_noncore = []
+        loose_noncore = loose_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=True, idmaps=idmaps_loose_noncore)
 
-        
-    
-
-      
-
-       
-        loose_substructure_noncore = loose_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=True, idmaps=idmaps_loose_noncore)
-
-        
-         
-        
-        loose_substructure = loose_core or loose_substructure_noncore
-        
-        
+        loose_substructure = loose_core or loose_noncore
         idmaps_loose_substructure = list(idmaps_loose_core) + list(idmaps_loose_noncore)
 
         loose_whole = False
-        
+        idmaps_loose_whole = [] 
         if loose_core and loose_matcher.whole_glycan_match_check(motif, glycan):
-
             loose_whole=True
             idmaps_loose_whole = list(idmaps_loose_core)
             
-            
-        
         loose_nred=False
-       
+        idmaps_loose_nred = [] 
         if not motif.repeated() and not glycan.repeated() and loose_substructure:
             loose_nred = loose_nred_matcher.leq(motif, glycan, underterminedLinkage=True, idmaps=idmaps_loose_nred)
 
-    
-        strict_core, strict_substructure_partial, strict_whole, strict_nred = False, False, False, False
-        
-       
+        strict_core, strict_noncore, strict_whole, strict_nred = False, False, False, False
+        idmaps_strict_core = []
+        idmaps_strict_noncore =[]
+        idmaps_strict_whole = []
+        idmaps_strict_nred = []
         
         if loose_core:
-            
             strict_core = strict_matcher.leq(motif, glycan, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=False, idmaps=idmaps_strict_core)
             
       
-                
-        strict_noncore = strict_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False, idmaps=idmaps_strict_noncore) #partial changed here
+        if loose_noncore:
+            strict_noncore = strict_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False, idmaps=idmaps_strict_noncore) #partial changed here
      
+        strict_substructure = strict_core or strict_noncore
+        idmaps_strict_substructure = list(idmaps_strict_core) + list(idmaps_strict_noncore) #partial changed here
 
         if strict_core and strict_matcher.whole_glycan_match_check(motif, glycan):
             strict_whole = True
             idmaps_strict_whole = list(idmaps_strict_core)
-        
-        strict_substructure = strict_core or strict_noncore
-        idmaps_strict_substructure = list(idmaps_strict_core) + list(idmaps_strict_noncore) #partial changed here
-
        
         if loose_nred and strict_substructure:
             strict_nred = strict_nred_matcher.leq(motif, glycan, underterminedLinkage=False, idmaps=idmaps_strict_nred)
             
-        
-        
         res0 = [loose_core, loose_substructure, loose_whole, loose_nred, 
                 strict_core, strict_substructure,strict_whole, strict_nred]
-        
-        
-            
-
         
         if True not in res0: 
             continue
@@ -318,52 +276,30 @@ for glycan_acc, f, s in gtc.allseq(format="wurcs"):
         
         res1 = []
         
-        
-        
-        
-        x=0
         for mt,idmaps in zip(res0,index_numbers):
-        
             if mt:
-              
-                indices=get_match_index(idmaps)
-                
+                indices=get_match_index(idmaps,glycan)
                 res1.append(indices)
             else:
                 res1.append("N")
-            
         
         #print >>sys.stderr,"Glycan:",glycan_acc, "Motif:", macc , " ".join(str(n) for n in res1)
-
-        line = "\t".join([macc, glycan_acc] + res1)
         
+        line = [macc, glycan_acc] + res1
         
         #uncomment here for line by line check 
         
        
-        # values = line.split("\t")
-        # my_indices=values[2:]
-        # my_check = alignmentindexchecker.set_checker(my_indices)
+        # my_check = alignmentindexchecker.set_checker(res1)
         # if my_check == 0:
         #     print("good")
         # else:
         #     print("invalid:", line)
         #     #sys.exit()
 
-         
-        
+        print >>result_file, "\t".join(line)
 
-        # f1.write(line + "\n")
-        result.append(line)
 
-result = sorted(result)
-
-if res_file_path:
-    result_file = open(res_file_path, "w")
-else:
-    result_file = sys.stdout
-result_file.write("Motif\tStructure\tCore_Inclusive\tSubstructure_Inclusive\tWhole_Inclusive\tNon_Red_Inclusive\tCore_Strict\tSubstructure_Strict\tWhole_Strict\tNon_Red_Strict\n")
-result_file.write("\n".join(result))
 if res_file_path:
     result_file.close()
 

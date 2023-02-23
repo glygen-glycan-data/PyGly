@@ -2,31 +2,29 @@
 
 from getwiki import GlycoMotifWiki, Enzyme
 import sys, re, glob, json
+from collections import defaultdict
 
 w = GlycoMotifWiki()
 
 mgi = dict()
-ortho = dict()
+ortho = defaultdict(set)
 for l in open(sys.argv[1]):
     sl = l.split()
-    if sl[0].upper() == sl[1].upper():
-        ortho[sl[0]] = sl[1]
-        ortho[sl[1]] = sl[0]
-    else:
-        if sl[0] not in ortho:
-            ortho[sl[0]] = sl[1]
-        if sl[1] not in ortho:
-            ortho[sl[1]] = sl[0]
+    ortho[sl[0]].add(sl[1])
+    ortho[sl[1]].add(sl[0])
     mgi[sl[1]] = sl[2]
 
 for e in w.iterenzyme():
     gn = e.get('genename')
-    ogn = ortho.get(gn)
-    if not ogn:
-        continue
-    o = w.get(ogn)
-    if o:
-        e.set("ortholog",ogn)
+    goodogn = set()
+    for ogn in ortho.get(gn,[]):
+      o = w.get(ogn)
+      if o:
+          goodogn.add(ogn)
+    if len(goodogn) > 0:
+        e.set("ortholog",goodogn)
+    else:
+        e.delete("ortholog")
     if gn in mgi:
         e.set("mgiacc",mgi[gn])
     if w.put(e):

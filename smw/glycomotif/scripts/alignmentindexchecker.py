@@ -2,78 +2,60 @@
 import csv
 import sys
 
-
-def get_indices(row):
-    if row == 'N':
-        indices = set()
-    else:
-        indices = set(row[2:].split(','))   
+def get_indices(value):
+    indices = set()
+    if value == 'Y':
+        for ind in value.split(':')[1:]:
+            indices.update(ind.split(','))
     return(indices)  
 
+keys = filter(None,"""
+loose_core
+loose_substructure
+loose_whole
+loose_nred
+strict_core
+strict_substructure
+strict_nred
+""".split())
     
 def row_to_dictionary(row):
-
-    
     alignments_indices={}
+    for i,k in enumerate(keys):
+        alignments_indices[k] = get_indices(row[i])
+    return alignments_indices
 
-    alignments_indices.update( {'loose_core' : get_indices(row[0])} )
-
-    alignments_indices.update( {'loose_substructure' : get_indices(row[1])} )
-
-    alignments_indices.update( {'loose_whole' : get_indices(row[2])} )
-
-    alignments_indices.update( {'loose_nred' : get_indices(row[3])} )
-
-    alignments_indices.update( {'strict_core' : get_indices(row[4])} )
-
-    alignments_indices.update( {'strict_substructure' : get_indices(row[5])} )
-
-    alignments_indices.update( {'strict_whole' : get_indices(row[6])} )
-
-    alignments_indices.update( {'strict_nred' : get_indices(row[7])} )
-
-    return(alignments_indices)
-
+comparisons = filter(None,"""
+loose_whole <= loose_core
+loose_whole <= loose_nred
+loose_whole <= loose_substructure
+loose_core <= loose_substructure
+loose_nred <= loose_substructure
+strict_whole <= strict_core
+strict_whole <= strict_nred
+strict_whole <= strict_substructure
+strict_core <= strict_substructure
+strict_nred <= strict_substructure
+strict_core <= loose_core
+strict_nred <= loose_nred
+strict_substructure <= loose_substructure
+""".split())
 
 def set_checker(input_list):
     match_indices =  row_to_dictionary(input_list)
-  
-    error = False
-    if not (match_indices["loose_core"].issubset(match_indices["loose_substructure"])):
-    #print("error:", row)
-        print(1)
-        error = True
-    if not (match_indices["loose_nred"].issubset(match_indices["loose_substructure"])):
-    #print("error:", row)
-        print(2)
-        error = True
-        
-    if not (match_indices["strict_core"].issubset(match_indices["loose_core"])):
-    #print("error:", row)
-       print(3)
-       error = True
 
-    if not (match_indices["strict_core"].issubset(match_indices["strict_substructure"])):
-    #print("error:", row)
-        print(4) 
-        error = True  
-
-    if not (match_indices["strict_nred"].issubset(match_indices["strict_substructure"])):
-    #print("error:", row)
-        print(5)
-        error = True
-
-    if not (match_indices["strict_nred"].issubset(match_indices["loose_nred"])):
-    #print("error:", row)
-        print(6) 
-        error = True 
-    if not (match_indices["strict_substructure"].issubset(match_indices["loose_substructure"])):
-    #print("error:", row)
-        print(7)
-        error = True
-        
-    return(error)
-       
+    for comp in comparisons:
+        splcomp = comp.split()
+        if len(splcomp) != 3:
+            continue
+        if splcomp[1] == "<=":
+            if not match_indices[splcomp[0]] <= match_indices[splcomp[2]]:
+                print >>sys.stderr, "Error: %s:%s NOT <= %s:%s"%(splcomp[0],",".join(sorted(match_indices[splcomp[0]])),
+                                                                 splcomp[2],",".join(sorted(match_indices[splcomp[2]])))
+                return False
+        else:
+            return False
+    return True
  
 if __name__ == "__main__":
     input_file = sys.argv[1]

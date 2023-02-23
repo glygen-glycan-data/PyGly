@@ -30,9 +30,7 @@ for r in csv.DictReader(gzip.open(sys.argv[1]),dialect='excel-tab'):
 for m in w.itermotif(collection="GGM"):
     mgtc = m.get('glytoucan')
     align = m.get('alignment')[0]
-    enzymes = m.get("enzyme",set())
-    if '-' in enzymes:
-        enzymes.remove('-')
+    enzymes = set()
     enzymes.update(enzdata[mgtc,align])
     if len(enzymes) > 0:
         m.set("enzyme",enzymes)
