@@ -1,6 +1,7 @@
 
 import csv
 import sys
+import gzip
 
 def get_indices(value):
     indices = set()
@@ -56,10 +57,15 @@ def set_checker(input_list):
         else:
             return False
     return True
+
+def myopen(filename):
+    if filename.endswith('.gz'):
+        return gzip.open(filename)
+    return open(filename)
  
 if __name__ == "__main__":
     input_file = sys.argv[1]
-    with open(input_file) as file:
+    with myopen(input_file) as file:
         tsv_file = csv.reader(file, delimiter="\t")
         next(tsv_file, None)
         for line in tsv_file:

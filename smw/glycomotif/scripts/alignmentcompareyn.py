@@ -11,12 +11,16 @@ def compare(first, second):
             print('Key: {}, Value 1: {}, Value 2: {}'.format(key, first[key], second[key]))
             diff = [i for i, (x, y) in enumerate(zip(first[key], second[key])) if x != y]
             print(diff)
-  
       
+import gzip
+def myopen(filename):
+    if filename.endswith('.gz'):
+        return gzip.open(filename)
+    return open(filename)
 
 def match_tsv_to_dictionary(input_file,with_indices):
     alignments = {}
-    with open(input_file) as csv_f:
+    with myopen(input_file) as csv_f:
         for row in csv.DictReader(csv_f, delimiter='\t'):
             Motif = row['Motif']
             Motif_Structure = row['Motif'] + '_' + row['Structure']
@@ -30,7 +34,7 @@ def match_tsv_to_dictionary(input_file,with_indices):
     
 def get_glycan_acc(input_file):
     glycan_acc_set = set()
-    with open(input_file) as csv_f:
+    with myopen(input_file) as csv_f:
         for row in csv.DictReader(csv_f, delimiter='\t'):
             structure = row['Structure']
             if structure not in glycan_acc_set:
