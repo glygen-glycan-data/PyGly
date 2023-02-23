@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 2 Man to Man.
+|genename=Alg9
+|mgiacc=MGI:1924753
+|ortholog=ALG9
+|phenotype=abnormal cholesterol homeostasis;embryonic lethality prior to tooth bud stage;increased circulating phosphate level;increased total body fat amount;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q8VDI9
+}}

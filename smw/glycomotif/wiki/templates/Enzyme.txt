@@ -1,0 +1,89 @@
+<noinclude>
+This is the "Enzyme" template.
+It should be called in the following format:
+<pre>
+{{Enzyme
+|description
+|genename=
+|species=
+|uniprot=
+|mgiacc=
+|otholog=
+|iscdg=
+|phenotype=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{genename|}}}}}
+{| class="wikitable"
+! Gene
+| {{{genename|}}} {{#ifeq:{{{species|}}}|Human|([https://www.genecards.org/cgi-bin/carddisp.pl?gene={{{genename|}}} GeneCards])|}}
+|-
+! Species
+| {{{species|}}}
+|-
+! UniProt
+| {{{uniprot|}}} ([https://www.glygen.org/protein/{{{uniprot|}}} GlyGen],[https://www.uniprot.org/uniprotkb/{{{uniprot|}}}/entry UniProt])
+{{#if:{{{mgiacc|}}}|
+{{!}}-
+! MGI Accession
+{{!}} {{{mgiacc|}}} ([https://www.mousephenotype.org/data/genes/{{{mgiacc|}}} IMPC], [http://www.informatics.jax.org/marker/{{{mgiacc|}}} MGI])
+}}
+|-
+! Description
+| {{{description|}}}
+|-
+{{#if:{{{ortholog|}}}|
+! Ortholog
+{{!}} {{#arraymap:{{{ortholog|}}}|,|x|[[glycomotif:ortholog::x]]}}
+{{!}}-
+}}
+{{#if:{{{iscdg|}}}|
+! CDG
+{{!}} {{{iscdg|}}}
+{{!}}-
+}}
+{{#if:{{{phenotype|}}}|
+! IMPC KO Phenotype
+{{!}} {{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|<br/>}}
+{{!}}-
+}}
+|}
+
+== GlyGen Motifs ==
+
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[glycomotif:hasenzyme::{{PAGENAME}}]]
+|?glycomotif:accession
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:alignment
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|limit=1000
+}}
+
+{{#set:
+|glycomotif:instancecount={{#ask:[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[glycomotif:hasenzyme::{{PAGENAME}}]]
+|format=count}}
+|glycomotif:genename={{{genename|}}}
+|glycomotif:species={{{species|}}}
+|glycomotif:uniprot={{{uniprot|}}}
+|glycomotif:mgiacc={{{mgiacc|}}}
+|glycomotif:description={{{description|}}}
+|glycomotif:iscdg={{{iscdg|}}}
+|glycomotif:phenocount={{ArrayCount|{{{phenotype|}}}|;}} 
+}}
+[[Category:Enzyme]]
+</includeonly>

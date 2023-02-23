@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 6 Fuc to GlcNAc.
+|genename=Fut8
+|mgiacc=MGI:1858901
+|ortholog=FUT8
+|species=Mouse
+|uniprot=Q9WTS2
+}}

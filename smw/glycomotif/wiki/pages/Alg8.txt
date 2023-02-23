@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 3 Glc to Glc.
+|genename=Alg8
+|mgiacc=MGI:2141959
+|ortholog=ALG8
+|phenotype=abnormal chorioallantoic fusion;abnormal coat/hair pigmentation;abnormal embryo size;abnormal embryo turning;abnormal vibrissa morphology;decreased bone mineral content;decreased lean body mass;embryonic growth retardation;embryonic lethality prior to tooth bud stage;hyperactivity;increased total body fat amount;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q6P8H8
+}}

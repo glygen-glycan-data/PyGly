@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=Fut4
+|mgiacc=MGI:95594
+|ortholog=FUT4
+|phenotype=abnormal freezing behavior;abnormal kidney morphology;decreased circulating creatinine level;decreased lean body mass;increased bone mineral content;increased total body fat amount
+|species=Mouse
+|uniprot=Q11127
+}}

@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to Man.
+|genename=MGAT4A
+|ortholog=Mgat4a
+|species=Human
+|uniprot=Q9UM21
+}}

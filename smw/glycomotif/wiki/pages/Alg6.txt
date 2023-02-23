@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 3 Glc to Man.
+|genename=Alg6
+|mgiacc=MGI:2444031
+|ortholog=ALG6
+|phenotype=abnormal allantois morphology;abnormal embryo development;abnormal embryo size;abnormal skin morphology;decreased exploration in new environment;embryonic growth retardation;enlarged lymph nodes;enlarged urinary bladder;prenatal lethality prior to heart atrial septation;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q3TAE8
+}}

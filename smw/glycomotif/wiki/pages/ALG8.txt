@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 Glc to Glc.
+|genename=ALG8
+|iscdg=true
+|ortholog=Alg8
+|species=Human
+|uniprot=Q9BVK2
+}}

@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:uniprot]] 
+{{DISPLAYTITLE:glycomotif:uniprot}}
+[[External formatter uri::https://www.uniprot.org/uniprotkb/$1/entry]]
+[[Category:Imported vocabulary]]

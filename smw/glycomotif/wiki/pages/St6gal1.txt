@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 6 NeuNAc to Gal; attach alpha 6 NeuNAc to GalNAc; attach alpha 6 NeuNGc to Gal.
+|genename=St6gal1
+|mgiacc=MGI:108470
+|ortholog=ST6GAL1
+|species=Mouse
+|uniprot=Q64685
+}}

@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 6 Fuc to GlcNAc.
+|genename=FUT8
+|ortholog=Fut8
+|species=Human
+|uniprot=Q9BYC5
+}}

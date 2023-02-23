@@ -53,6 +53,9 @@ Edit the page to see the template text.
 ! style="" | GlyTouCan Accession
 | style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
 |-
+! style="" | Enzyme(s)
+| style="" | {{#arraymap:{{{enzyme|}}}|;|x|[[glycomotif:hasenzyme::x]]}}
+|-
 ! style="" | Cross Reference(s)
 | style="" | {{#arraymap:{{{dbxref|}}}|;|x|{{crossrefdisplay|x}}|, }}
 |-
@@ -92,7 +95,7 @@ Edit the page to see the template text.
 {{SPARQLURL|
 PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
-SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict ?structure_residue_ids ?structure_link_ids
 WHERE {
     ?collection a glycomotif:Collection .
     ?collection glycomotif:id ?collectionid .
@@ -108,6 +111,8 @@ WHERE {
     ?alignment glycomotif:alignment_type ?alignment_type .
     ?alignment glycomotif:structure_accession ?structure_gtc_acc .
     ?alignment glycomotif:strict ?alignment_isstrict .
+    ?alignment glycomotif:structure_residue_ids ?structure_residue_ids .
+    ?alignment glycomotif:structure_link_ids ?structure_link_ids .
 
     ?motif glycomotif:id "{{{collection|}}}.{{{accession|}}}" .
     ?alignment glycomotif:strict true .
@@ -116,7 +121,7 @@ WHERE {
 {{SPARQLURL|
 PREFIX glycomotif: <http://glyomics.org/glycomotif#>
 
-SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict
+SELECT ?collectionid ?accession ?motif_gtc_acc ?alignment_type ?structure_gtc_acc ?alignment_isstrict ?structure_residue_ids ?structure_link_ids 
 WHERE {
     ?collection a glycomotif:Collection .
     ?collection glycomotif:id ?collectionid .
@@ -132,6 +137,8 @@ WHERE {
     ?alignment glycomotif:alignment_type ?alignment_type .
     ?alignment glycomotif:structure_accession ?structure_gtc_acc .
     ?alignment glycomotif:strict ?alignment_isstrict .
+    ?alignment glycomotif:structure_residue_ids ?structure_residue_ids .
+    ?alignment glycomotif:structure_link_ids ?structure_link_ids .
 
     ?motif glycomotif:id "{{{collection|}}}.{{{accession|}}}" .
 }

@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 4 Gal to GlcNAc.
+|genename=B4galt1
+|mgiacc=MGI:95705
+|ortholog=B4GALT1
+|species=Mouse
+|uniprot=P15535
+}}

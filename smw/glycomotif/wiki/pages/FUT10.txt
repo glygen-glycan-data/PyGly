@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=FUT10
+|ortholog=Fut10
+|species=Human
+|uniprot=Q6P4F1
+}}

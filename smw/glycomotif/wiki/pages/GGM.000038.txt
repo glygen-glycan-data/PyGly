@@ -5,6 +5,7 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GD000014
 |displayhgv=false
+|enzyme=B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;FUT1;FUT2;Fut1;Fut2;MGAT1;MGAT2;Mgat1;Mgat2;Sec1
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl

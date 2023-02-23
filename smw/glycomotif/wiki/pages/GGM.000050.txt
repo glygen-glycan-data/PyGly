@@ -4,6 +4,7 @@
 |alignment=Nonreducing-End
 |collection=GGM
 |displayhgv=false
+|enzyme=B4GALNT3;B4GALNT4;B4galnt3;B4galnt4;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b;ST6GAL1;ST6GAL2;St6gal1;St6gal2
 |glycoct=RES
 1b:x-dglc-HEX-1:5
 2s:n-acetyl

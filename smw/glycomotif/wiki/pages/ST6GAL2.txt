@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 6 NeuNAc to Gal; attach alpha 6 NeuNAc to GalNAc; attach alpha 6 NeuNGc to Gal.
+|genename=ST6GAL2
+|ortholog=St6gal2
+|species=Human
+|uniprot=Q96JF0
+}}

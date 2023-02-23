@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:Enzyme]] 
+<span style="display:none">{{#default_form:Enzyme}}</span>
+
+{{#formlink:form=Enzyme|link text=Add new enzyme.|reload|returnto=Category:Enzyme}}

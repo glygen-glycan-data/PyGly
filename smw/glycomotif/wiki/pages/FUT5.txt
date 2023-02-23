@@ -1,0 +1,6 @@
+{{Enzyme
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=FUT5
+|species=Human
+|uniprot=Q11128
+}}

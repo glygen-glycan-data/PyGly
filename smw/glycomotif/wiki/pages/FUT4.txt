@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=FUT4
+|ortholog=Fut4
+|species=Human
+|uniprot=P22083
+}}

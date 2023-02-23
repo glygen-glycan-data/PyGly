@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach beta 3 Gal to GlcNAc.
+|genename=B3galt2
+|species=Mouse
+|ortholog=B3GALT2
+|uniprot=O54905
+}}

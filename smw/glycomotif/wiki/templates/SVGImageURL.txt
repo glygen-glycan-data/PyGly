@@ -1,0 +1,1 @@
+<includeonly>{{GetGlycanImage|accession={{{1}}}|format=svg}}</includeonly>

@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 NeuNAc to Gal; attach alpha 3 NeuNGc to Gal.
+|genename=ST3GAL3
+|ortholog=St3gal3
+|species=Human
+|uniprot=Q11203
+}}

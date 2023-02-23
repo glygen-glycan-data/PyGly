@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach beta 2 GlcNAc to Man.
+|genename=Mgat1
+|mgiacc=MGI:96973
+|ortholog=MGAT1
+|phenotype=decreased cardiac stroke volume;decreased exploration in new environment;decreased red blood cell distribution width;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=P27808
+}}

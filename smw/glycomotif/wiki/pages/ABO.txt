@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 Gal to Gal.
+|genename=ABO
+|ortholog=Abo
+|species=Human
+|uniprot=P16442
+}}

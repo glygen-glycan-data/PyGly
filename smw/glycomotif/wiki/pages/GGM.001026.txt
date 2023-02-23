@@ -4,6 +4,7 @@
 |alignment=Core
 |collection=GGM
 |displayhgv=false
+|enzyme=ALG1;ALG13;ALG14;ALG2;Alg1;Alg13;Alg14;Alg2;DPAGT1;Dpagt1;Glt28d2
 |glycoct=RES
 1b:o-dglc-HEX-0:0{{!}}1:aldi
 2s:n-acetyl

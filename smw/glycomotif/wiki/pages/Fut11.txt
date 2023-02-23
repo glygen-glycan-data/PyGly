@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=Fut11
+|mgiacc=MGI:1920318
+|ortholog=FUT11
+|species=Mouse
+|uniprot=Q8BHC9
+}}

@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 Man to Man; attach alpha 6 Man to Man.
+|genename=ALG3
+|iscdg=true
+|ortholog=Alg3
+|species=Human
+|uniprot=Q92685
+}}

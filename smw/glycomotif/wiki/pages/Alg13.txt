@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to GlcNAc.
+|genename=Alg13
+|mgiacc=MGI:1914824
+|ortholog=ALG13
+|phenotype=decreased bone mineral content;decreased bone mineral density;decreased lean body mass;hypoplasia/Ovary - MPATH process term;hypoplasia/Uterus - MPATH process term;increased leukocyte cell number;increased total body fat amount;process of degenerative change/Testes - MPATH process term
+|species=Mouse
+|uniprot=Q9D8C3
+}}
