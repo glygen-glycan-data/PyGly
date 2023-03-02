@@ -1,0 +1,12 @@
+PREFIX glycandata: <http://glyomics.org/glycandata#>
+
+SELECT (?accession  as ?GlyTouCanAccession)
+       (?value as ?Sequence)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann1 glycandata:property "GlycoCT-XML" .
+  ?ann1 glycandata:type "Sequence" .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:hasglycan ?glycan
+}
+ORDER BY ?accession ?value

@@ -6,7 +6,7 @@
 
 # ./exports.sh cache 
 set -x 
-rm -rf glycandatadev.tdb
+rm -rf glycandata*.tdb
 ./tordf.py "$@" glycandata | gzip -9 -c > ../export/glycandata.rdf.gz
 ./loadts.sh ../export/glycandata.rdf.gz
 ./queryall.sh glycandata.tdb
