@@ -83,17 +83,23 @@ class WURCS20MonoFormat:
     def parsing(self, mono_string):
         parsed = re.search(self.mono_pattern, mono_string)
 
+        # print(mono_string)
         if not parsed:
             # Bad formatted WURCS mono
-            raise UnsupportedMonoError(mono_string)
+            if mono_string != "<Q>":
+                raise UnsupportedMonoError(mono_string)
+            skel = mono_string
+            anomer = ""
+            ring = ""
+            substs = ""
+        else: 
+            skel = parsed.group(1)
+            anomer = parsed.group(3)
+            ring = parsed.group(4)
+            substs = parsed.group(5)
 
-        skel = parsed.group(1)
-        anomer = parsed.group(3)
-        ring = parsed.group(4)
-        substs = parsed.group(5)
-
-        # print mono_string
-        # print skel, anomer, ring, substs
+        # print(mono_string)
+        # print(skel, anomer, ring, substs)
         m = Monosaccharide()
         m.set_external_descriptor(skel)
 

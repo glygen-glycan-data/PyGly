@@ -24,5 +24,8 @@ for f in files:
             print(g.underivitized_molecular_weight(repeat_times=1))
     except GlycanParseError as e:
         print("!!!", os.path.split(f)[1], e)
+        print(e)
         bad += 1
+    except KeyError:
+        pass
 print("Failed: %d/%d"%(bad,len(files)))

@@ -17,6 +17,7 @@ class SuperClass:
     OCT   = 8
     NON   = 9
     DEC   = 10
+    SUG   = 20
     missing = None
 
 class Stem:

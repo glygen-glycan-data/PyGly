@@ -580,7 +580,7 @@ class Glycan:
             if isinstance(m,Monosaccharide) and aggregate_basecomposition:
                 try:
                     m1 = m.clone()
-		    m1.set_stem(None)
+                    m1.set_stem(None)
                     sym1 = iupacSym.toStr(m1)
                 except KeyError:
                     pass
