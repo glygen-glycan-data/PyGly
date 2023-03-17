@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 3 GlcNAc to Gal.
+|genename=B3gnt4
+|mgiacc=MGI:2680208
+|ortholog=B3GNT4
+|species=Mouse
+|uniprot=Q1RLK6
+}}

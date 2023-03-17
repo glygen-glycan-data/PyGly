@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 6 GlcNAc to Man.
+|genename=Mgat5
+|mgiacc=MGI:894701
+|ortholog=MGAT5
+|species=Mouse
+|uniprot=Q8R4G6
+}}

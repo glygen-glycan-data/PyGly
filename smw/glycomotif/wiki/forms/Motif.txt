@@ -30,6 +30,10 @@ This is the "Motif" form.
 ! Alignment:
 | {{{field|alignment|input type=dropdown|values=Core,Substructure,Whole-Glycan,Nonreducing-End}}}<br/>Motif alignment algorithm.
 |-
+! Enzymes(s):
+| {{{field|enzyme|property=glycomotif:hasenzyme|input type=tokens|existing values only|list|delimiter=;|values from category=Enzyme}}}<br/>
+{{#formlink:form=Enzyme||autocomplete on category=Enzyme|link text=Add new enzyme.}}
+|-
 ! Reference(s):
 | {{{field|reference|input type=token|existing values only|list|delimiter=;|values from category=Publication}}}<br/>References for the structure, name, aglycon, etc. for this motif.<br/>
 {{#formlink:form=Publication|autocomplete on category=Publication|link text=Add new publication.}}

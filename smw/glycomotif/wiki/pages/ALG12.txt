@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 2 Man to Man.
+|genename=ALG12
+|iscdg=true
+|ortholog=Alg12
+|species=Human
+|uniprot=Q9BV10
+}}

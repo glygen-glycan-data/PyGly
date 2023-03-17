@@ -112,7 +112,7 @@ for gsfn in sorted(glob.glob(sys.argv[2]+"/*.txt")):
 
     for macc,motif in motifs.items():
         # print >>sys.stderr, " ",macc
-        strict_core, strict_substructure_partial, strict_whole, strict_nred = False, False, False, False
+        strict_core, strict_substructure, strict_substructure_partial, strict_whole, strict_nred = False, False, False, False, False
         idmaps_core = []
         strict_core = strict_matcher.leq(motif, glycan, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=False, idmaps=idmaps_core)
         if not check_idmaps(motifids[macc],glycanids,idmaps_core):
@@ -121,6 +121,7 @@ for gsfn in sorted(glob.glob(sys.argv[2]+"/*.txt")):
 
         idmaps_noncore = []
         strict_substructure_partial = strict_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False, idmaps=idmaps_noncore)
+
         if not check_idmaps(motifids[macc],glycanids,idmaps_noncore):
             print >>sys.stderr, "Glycan:",gacc, "Motif:", macc
             sys.exit(1)
@@ -130,7 +131,11 @@ for gsfn in sorted(glob.glob(sys.argv[2]+"/*.txt")):
             idmaps_whole = list(idmaps_core)
 
         strict_substructure = (strict_core or strict_substructure_partial)
-        idmaps_substructure = list(idmaps_core) + list(idmaps_noncore)
+        idmaps_substructure = (idmaps_core + idmaps_noncore)
+
+        if not check_idmaps(motifids[macc],glycanids,idmaps_substructure):
+            print >>sys.stderr, "Glycan:",gacc, "Motif:", macc
+            sys.exit(1)
 
         idmaps_nonred = []
         if strict_substructure:

@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to GlcNAc.
+|genename=ALG14
+|iscdg=true
+|ortholog=Alg14
+|species=Human
+|uniprot=Q96F25
+}}

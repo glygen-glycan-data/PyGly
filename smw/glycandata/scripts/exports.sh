@@ -6,10 +6,12 @@
 
 # ./exports.sh cache 
 set -x 
-rm -rf glycandatadev.tdb
+rm -rf glycandata*.tdb
 ./tordf.py "$@" glycandata | gzip -9 -c > ../export/glycandata.rdf.gz
+split -b 40m -d ../export/glycandata.rdf.gz ../export/glycandata.rdf.gz.
 ./loadts.sh ../export/glycandata.rdf.gz
 ./queryall.sh glycandata.tdb
+split -b 40m -d ../export/glycoctxml.zip ../export/glycoctxml.zip.
 ./glycanprop.py "$@" > ../export/glycan_properties.tsv
 ./monocomp.py "$@" > ../export/monocomp.tsv
 ./subsumption.py "$@" > ../export/subsumption.tsv

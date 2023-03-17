@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=FUT9
+|ortholog=Fut9
+|species=Human
+|uniprot=Q9Y231
+}}

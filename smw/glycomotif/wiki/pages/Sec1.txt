@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 2 Fuc to Gal.
+|genename=Sec1
+|mgiacc=MGI:1928893
+|ortholog=FUT2
+|phenotype=increased heart weight
+|species=Mouse
+|uniprot=P97353
+}}

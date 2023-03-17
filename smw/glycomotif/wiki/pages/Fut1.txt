@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 2 Fuc to Gal.
+|genename=Fut1
+|mgiacc=MGI:109375
+|ortholog=FUT1
+|phenotype=abnormal seminal vesicle morphology;small stomach
+|species=Mouse
+|uniprot=O09160
+}}

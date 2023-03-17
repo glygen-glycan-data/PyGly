@@ -1,0 +1,18 @@
+PREFIX glycandata: <http://glyomics.org/glycandata#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT (?accession as ?GlyTouCanAccession) ?NativeFormula ?PermethylatedFormula
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann glycandata:hasglycan ?glycan .
+  ?ann glycandata:type "MolecularFormula" . 
+  ?ann glycandata:source "EdwardsLab" . 
+  ?ann glycandata:value ?NativeFormula .
+  ?ann glycandata:property "NativeMolecularFormula" .
+  ?ann1 glycandata:hasglycan ?glycan .
+  ?ann1 glycandata:type "MolecularFormula" . 
+  ?ann1 glycandata:source "EdwardsLab" . 
+  ?ann1 glycandata:value ?PermethylatedFormula .
+  ?ann1 glycandata:property "PermethylatedMolecularFormula" .
+}
+ORDER BY ?GlyTouCanAccession

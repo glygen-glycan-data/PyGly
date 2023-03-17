@@ -1,0 +1,4 @@
+[[Imported from::glycomotif:mgiacc]] 
+{{DISPLAYTITLE:glycomotif:mgiacc}}
+[[External formatter uri::http://www.informatics.jax.org/marker/$1]]
+[[Category:Imported vocabulary]]

@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 2 Glc to Glc.
+|genename=Alg10b
+|mgiacc=MGI:2146159
+|ortholog=ALG10
+|phenotype=abnormal allantois morphology;abnormal embryo development;abnormal embryo size;abnormal forebrain development;abnormal heart morphology;abnormal hindbrain development;abnormal limb bud morphology;abnormal midbrain development;abnormal neural tube closure;abnormal neural tube morphology;abnormal optic vesicle formation;abnormal otic vesicle morphology;abnormal pericardium morphology;abnormal pharyngeal arch morphology;abnormal somite shape;abnormal visceral yolk sac morphology;abnormal vitelline vasculature morphology;bleb;edema;embryonic growth retardation;embryonic lethality prior to tooth bud stage;increased body temperature;pale yolk sac;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q3UGP8
+}}

@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 6 NeuNAc to Gal; attach alpha 6 NeuNAc to GalNAc; attach alpha 6 NeuNGc to Gal.
+|genename=St6gal2
+|mgiacc=MGI:2445190
+|ortholog=ST6GAL2
+|phenotype=long tibia
+|species=Mouse
+|uniprot=Q76K27
+}}

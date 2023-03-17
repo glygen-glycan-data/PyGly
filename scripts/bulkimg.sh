@@ -1,7 +1,10 @@
 #!/bin/sh
 
 DIR=`dirname $0`                                                                                                             
-JAR="$DIR/../pygly/GlycoCT2ImageBundle.jar"
+# MAIN="GlycoCT2Image"
+# JAR="$DIR/../pygly/GlycoCT2ImageBundle.jar"
+MAIN="GlycanImageCmdline"
+JAR="$DIR/../pygly/GlycanBuilder2.jar"
 JAR=`readlink -f $JAR`
 JAVA=${JAVA:-java}
 
@@ -61,6 +64,6 @@ done
 shift $(($OPTIND - 1))                                                                                                       
 
 if [ $VERBOSE -eq 1 ]; then
-  echo $JAVA -cp "$JAR" GlycoCT2Image notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 1>&2
+  echo $JAVA -cp "$JAR" $MAIN notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 1>&2
 fi
-exec $JAVA -cp "$JAR" GlycoCT2Image notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 2>/dev/null | fgrep -v -w DEBUG | fgrep -v -w "org.glycoinfo"
+exec $JAVA -cp "$JAR" $MAIN notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 2>/dev/null | egrep -w -v '(org.glycoinfo|DEBUG|GlycanImageCmdline.main|org.eurocarbdb.application.glycanbuilder)'

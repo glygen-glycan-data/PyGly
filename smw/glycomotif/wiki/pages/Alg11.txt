@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 2 Man to Man.
+|genename=Alg11
+|mgiacc=MGI:2142632
+|ortholog=ALG11
+|phenotype=decreased grip strength;embryonic lethality prior to organogenesis;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q3TZM9
+}}

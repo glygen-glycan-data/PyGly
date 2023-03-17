@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 2 Glc to Glc.
+|genename=ALG10
+|ortholog=Alg10b
+|species=Human
+|uniprot=Q5BKT4
+}}

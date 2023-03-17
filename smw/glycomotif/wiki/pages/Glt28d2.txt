@@ -1,0 +1,6 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to GlcNAc.
+|genename=Glt28d2
+|species=Mouse
+|uniprot=Q8BML3
+}}

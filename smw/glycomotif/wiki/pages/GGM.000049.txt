@@ -4,6 +4,7 @@
 |alignment=Substructure
 |collection=GGM
 |displayhgv=false
+|enzyme=B4GALNT3;B4GALNT4;B4galnt3;B4galnt4;MGAT1;MGAT2;Mgat1;Mgat2
 |glycoct=RES
 1b:x-dglc-HEX-1:5
 2s:n-acetyl

@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach beta 4 Man to GlcNAc.
+|genename=Alg1
+|mgiacc=MGI:2384774
+|ortholog=ALG1
+|phenotype=abnormal cholesterol homeostasis;abnormal coat/hair pigmentation;increased basophil cell number;increased eosinophil cell number;increased leukocyte cell number;increased lymphocyte cell number;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q921Q3
+}}

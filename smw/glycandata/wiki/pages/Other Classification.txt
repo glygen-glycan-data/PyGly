@@ -63,6 +63,9 @@ __NOEDITSECTION__
 ! style="width: 200px; text-align: center;" | Xyl
 | {{CountPropertyValueImageLink|ReducingEnd|Xyl}}
 |-
+! style="width: 200px; text-align: center;" | Xxx
+| {{CountPropertyValueImageLink|ReducingEnd|Xxx}}
+|-
 |}
 
 == Has Monosaccharide ==
@@ -117,5 +120,8 @@ __NOEDITSECTION__
 |-
 ! style="width: 200px; text-align: center;" | Xyl
 | {{CountPropertyValueImageLink|HasMonosaccharide|Xyl}}
+|-
+! style="width: 200px; text-align: center;" | Xxx
+| {{CountPropertyValueImageLink|HasMonosaccharide|Xxx}}
 |-
 |}

@@ -580,7 +580,7 @@ class Glycan:
             if isinstance(m,Monosaccharide) and aggregate_basecomposition:
                 try:
                     m1 = m.clone()
-		    m1.set_stem(None)
+                    m1.set_stem(None)
                     sym1 = iupacSym.toStr(m1)
                 except KeyError:
                     pass
@@ -663,6 +663,12 @@ class Glycan:
         if not self.glycoctformat:
             self.glycoctformat = GlycoCTFormat()
         return self.glycoctformat.toStr(self)
+
+    def glycoctxml(self):
+        from . GlycanFormatter import GlycoCTFormat
+        if not self.glycoctformat:
+            self.glycoctformat = GlycoCTFormat()
+        return self.glycoctformat.toXML(self)
 
     def glycam(self):
         from . GlycanFormatter import IUPACGlycamFormat

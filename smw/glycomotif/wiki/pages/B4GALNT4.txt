@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach beta 4 GalNAc to GlcNAc.
+|genename=B4GALNT4
+|ortholog=B4galnt4
+|species=Human
+|uniprot=Q76KP1
+}}

@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach GlcNAc to Asn.
+|genename=DPAGT1
+|iscdg=true
+|ortholog=Dpagt1
+|species=Human
+|uniprot=Q9H3H5
+}}

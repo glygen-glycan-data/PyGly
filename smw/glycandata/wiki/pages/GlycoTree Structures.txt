@@ -1,0 +1,14 @@
+{{#ask: [[Category:Glycan]] [[-Glycandata:hasglycan:: <q>[[Glycandata:property::ClassMotif]] [[Glycandata:value::GGM.001001]]</q> ]]
+ |?Glycandata:accession=glycandata:accession
+ |format=template
+ |limit=50
+ |offset=0
+ |link=all
+ |headers=show
+ |mainlabel=-
+ |propsep=, 
+ |valuesep=, 
+ |template=ImageTableRows
+ |introtemplate=ImageTableIntro
+ |outrotemplate=ImageTableOutro
+}}

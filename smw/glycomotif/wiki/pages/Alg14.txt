@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to GlcNAc.
+|genename=Alg14
+|mgiacc=MGI:1914039
+|ortholog=ALG14
+|phenotype=embryonic lethality prior to organogenesis;preweaning lethality, complete penetrance
+|species=Mouse
+|uniprot=Q9D081
+}}

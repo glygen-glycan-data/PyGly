@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 4 Man to GlcNAc.
+|genename=ALG1
+|iscdg=true
+|ortholog=Alg1
+|species=Human
+|uniprot=Q9BT22
+}}

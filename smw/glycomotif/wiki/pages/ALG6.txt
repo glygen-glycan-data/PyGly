@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 Glc to Man.
+|genename=ALG6
+|iscdg=true
+|ortholog=Alg6
+|species=Human
+|uniprot=Q9Y672
+}}

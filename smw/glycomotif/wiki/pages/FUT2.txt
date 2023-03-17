@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 2 Fuc to Gal.
+|genename=FUT2
+|ortholog=Fut2,Sec1
+|species=Human
+|uniprot=Q10981
+}}

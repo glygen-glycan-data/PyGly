@@ -43,11 +43,21 @@ for g in accessions():
     else:
 	g.delete_annotations(source='EdwardsLab',type='Sequence',property='GlycoCT')
 
+    if glycan and not glycan.repeated() and not (glycan.undetermined() and glycan.has_root()) :
+        if not g.has_annotations(property='GlycoCT-XML',type='Sequence',source='EdwardsLab'):
+            try:
+                value = glycan.glycoctxml()
+                g.set_annotation(property='GlycoCT-XML',type='Sequence',value=value,source='EdwardsLab')
+            except (RuntimeError,AssertionError):
+	        g.delete_annotations(source='EdwardsLab',type='Sequence',property='GlycoCT-XML')
+    else:
+	g.delete_annotations(source='EdwardsLab',type='Sequence',property='GlycoCT-XML')
+
     hashes = acc2hash[g.get('accession')]
     for ann in g.annotations(type='Sequence'):
 	# if ann.get('property') in ('SequenceHash','IUPAC','GlycoWorkBench','GLYCAM-IUPAC'):
 	#     continue
-	if ann.get('property') not in ('GlycoCT','WURCS'):
+	if ann.get('property') not in ('GlycoCT','WURCS','GlycoCT-XML'):
 	    continue
 	value = ann.get('value')
 	if not value:
@@ -118,6 +128,30 @@ for g in accessions():
     except:
         traceback.print_exc()
 
+    g.delete_annotations(source='EdwardsLab',type='MolecularFormula')
+    try:
+        if glycan:
+            eltcomp = glycan.native_elemental_composition()
+            g.set_annotation(value=eltcomp.compactstr(),
+                             property='NativeMolecularFormula',
+                             source='EdwardsLab', type='MolecularFormula')
+    except (KeyError,ValueError):
+        pass
+    except:
+        traceback.print_exc()
+    try:
+        if glycan:
+            eltcomp = glycan.permethylated_elemental_composition()
+            g.set_annotation(value=eltcomp.compactstr(),
+                             property='PermethylatedMolecularFormula',
+                             source='EdwardsLab', type='MolecularFormula')
+    except (KeyError,ValueError):
+        pass
+    except:
+        traceback.print_exc()
+
+
+
     g.delete_annotations(source='EdwardsLab',type='MonosaccharideCount')
     hasmonosaccharides = set()
     try: 
@@ -125,6 +159,7 @@ for g in accessions():
 	    if not glycan.repeated():
                 comp = glycan.iupac_composition()
                 comp1 = glycan.iupac_composition(floating_substituents=False)
+                # print(comp1)
 		comp2 = defaultdict(int)
 		comp3 = defaultdict(int)
             else:

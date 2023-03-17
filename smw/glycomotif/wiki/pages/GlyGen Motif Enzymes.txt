@@ -1,0 +1,34 @@
+
+== Human Enzymes ==
+
+{{#ask:
+[[Category:Enzyme]]
+[[glycomotif:species::Human]]
+[[glycomotif:instancecount::>1]]
+|?=Enzyme
+|?glycomotif:description=Description
+|?glycomotif:instancecount=Motifs
+|?glycomotif:iscdg=CDG?
+|?glycomotif:ortholog=Ortholog
+|mainlabel=-
+|sep=,&nbsp;
+|format=broadtable
+}}
+
+== Mouse Enzymes ==
+
+{{#ask:
+[[Category:Enzyme]]
+[[glycomotif:instancecount::>1]]
+[[glycomotif:species::Mouse]]
+|?=Enzyme
+|?glycomotif:description=Description
+|?glycomotif:instancecount=Motifs
+|?glycomotif:phenocount=IMPC KO Phenotypes
+|?glycomotif:ortholog=Ortholog
+|mainlabel=-
+|sep=,&nbsp;
+|format=broadtable
+}}
+
+{{#formlink:form=Enzyme|link text=New Eznyme|reload|returnto=GlyGen Motif Eznymes}}

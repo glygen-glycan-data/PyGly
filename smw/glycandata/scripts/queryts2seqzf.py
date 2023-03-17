@@ -4,14 +4,14 @@ import sys,urllib,os,os.path,subprocess
 import csv
 import zipfile
 
-reader = csv.DictReader(sys.stdin,dialect='excel-tab')
 zf = zipfile.ZipFile(sys.argv[1],'w')
 header = None
-for r in reader:
+for r in sys.stdin:
+    r=list(map(lambda s: s.strip('"'),r.strip('\n').split('\t')))
     if not header:
-        header = list(reader.fieldnames)
+        header = list(r)
         sys.stdout.write(header[0].lstrip('?')+"\n")
-    if r.get(header[1]) != "":
-	zf.writestr("%s.txt"%(r[header[0]],),eval('"'+r[header[1]]+'"').strip()+"\n")
-    sys.stdout.write(r[header[0]]+"\n")
+        continue
+    zf.writestr("%s.txt"%(r[0],),eval('"' + r[1] + '"').strip()+"\n")
+    sys.stdout.write(r[0]+"\n")
 zf.close()

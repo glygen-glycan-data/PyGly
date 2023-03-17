@@ -5,6 +5,8 @@ from . Monosaccharide import *
 import re
 import sys
 
+from xml.etree.ElementTree import Element, SubElement
+
 class GlycoCTMonoFormat:
     def __init__(self):
         consts = ConstantsTable()
@@ -15,6 +17,7 @@ class GlycoCTMonoFormat:
                 type,const = sym
                 self.toSym[(type,kv['GlycoCTSymbol'])] = const
                 self.fromSym[sym] = kv['GlycoCTSymbol']
+
     def toStr(self,m):
         s = ""
         if m.id() != None:
@@ -45,6 +48,60 @@ class GlycoCTMonoFormat:
             s += "s:"
             s += self.fromSym[('Substituent',m.name())]
         return s
+
+    def toXML(self, m):
+
+        if isinstance(m,Monosaccharide):
+            ele = Element('monosaccharide',id=str(m.id()),type="b")
+            ele.set('anomer',self.fromSym[('Anomer',m.anomer())])
+            ele.set('superclass',self.fromSym[('SuperClass',m.superclass())].lower())
+            ele.set('ringStart',str(m.ring_start()) if m.ring_start() != None else "x")
+            ele.set('ringEnd',str(m.ring_end()) if m.ring_end() != None else "x")
+            ele.set('name',self.toStr(m).split(':',1)[1])
+            if m.stem() != None:
+                if m.config() == None:
+                    cfg = [Config.missing]*len(m.stem())
+                else:
+                    cfg = list(m.config())
+                stm = list(m.stem())
+                assert len(cfg) == len(stm)
+                for i,(cf,st) in enumerate(zip(cfg,stm)):
+                    btele = Element('basetype',id=str(i+1))
+                    btele.set('type',self.fromSym[('Config',cf)] + self.fromSym[('Stem',st)])
+                    ele.append(btele)
+            for pi,mi in m.mods():
+                modele = Element('modification',type=self.fromSym[('Mod',mi)])
+                modele.set('pos_one',str(pi[0]))
+                if len(pi) == 2:
+                    modele.set('pos_two',str(pi[1]))
+                elif len(pi) > 2:
+                    raise RuntimeError("Too many mod positions!")
+                ele.append(modele)
+
+        elif isinstance(m,Substituent):
+            ele = Element('substituent',id=str(m.id()),type="s",name=self.fromSym[('Substituent',m.name())])
+
+        return ele
+
+    def linkToXML(self, l):
+        ele = Element('connection',id=str(l.id()),
+                                   parent=str(l.parent().id()),
+                                   child=str(l.child().id()))
+        linkele = Element('linkage',id=str(l.id()))
+        if l.parent_type():
+            pt = "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.parent_type())))
+        else:
+            pt = self.fromSym[('Linkage',Linkage.missing)]
+        linkele.set('parentType',pt)
+        if l.child_type():
+            ct = "|".join(map(lambda t: self.fromSym[('Linkage',t)], sorted(l.child_type())))
+        else:
+            ct = self.fromSym[('Linkage',Linkage.missing)]
+        linkele.set('childType',ct)
+        ele.append(linkele)
+        SubElement(linkele,'parent',pos=str(l.posstr(l.parent_pos())))
+        SubElement(linkele,'child',pos=str(l.posstr(l.child_pos())))
+        return ele
 
     def linkToStr(self, l, noids=False, replace_parent_id=None, replace_child_id=None):
         # 1:1d(2+1)2n

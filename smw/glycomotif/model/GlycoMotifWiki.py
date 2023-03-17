@@ -287,6 +287,28 @@ class Keyword(SMW.SMWClass):
 class Enzyme(SMW.SMWClass):
     template = 'Enzyme'
 
+    def toPython(self,data):
+        data = super(Enzyme,self).toPython(data)
+
+	if isinstance(data.get('phenotype'),basestring):
+	    data['phenotype'] = data.get('phenotype','').split(';')
+
+	if isinstance(data.get('ortholog'),basestring):
+	    data['ortholog'] = data.get('ortholog','').split(',')
+
+	return data
+
+    def toTemplate(self,data):
+        data = super(Enzyme,self).toTemplate(data)
+
+	if 'phenotype' in data:
+	    data['phenotype'] = ';'.join(map(str,data.get('phenotype')))
+
+        if 'ortholog' in data:
+            data['ortholog'] = ",".join(sorted(data['ortholog']))
+
+	return data
+
     @staticmethod
     def pagename(**kwargs):
         assert kwargs.get('genename')
@@ -315,6 +337,12 @@ class GlycoMotifWiki(SMW.SMWSite):
     def itercollection(self):
 	for pagename in self.itercat('Collection'):
 	    yield self.get(pagename)
+
+    def iterenzyme(self,species=None):
+	for pagename in self.itercat('Enzyme'):
+	    e = self.get(pagename)
+            if not species or e.get('species') == species:
+                yield e
 
 if __name__ == "__main__":
     import sys, os

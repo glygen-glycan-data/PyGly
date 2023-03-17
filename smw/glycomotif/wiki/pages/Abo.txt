@@ -1,0 +1,9 @@
+{{Enzyme
+|description=Attach alpha 3 Gal to Gal.
+|genename=Abo
+|mgiacc=MGI:2135738
+|ortholog=ABO
+|phenotype=abnormal skin morphology;abnormal testis morphology;small testis
+|species=Mouse
+|uniprot=P38649
+}}

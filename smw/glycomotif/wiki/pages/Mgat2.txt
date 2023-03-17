@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 2 GlcNAc to Man.
+|genename=Mgat2
+|mgiacc=MGI:2384966
+|ortholog=MGAT2
+|species=Mouse
+|uniprot=Q921V5
+}}

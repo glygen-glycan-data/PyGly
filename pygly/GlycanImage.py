@@ -1,5 +1,5 @@
 
-from . JavaProgram import GlycoCT2Image
+from . JavaProgram import GlycoCT2Image, GlycanBuilderImage
 from . GlycanFormatter import GlycoCTFormat
 
 try:
@@ -79,15 +79,15 @@ class GlycanImage(object):
         glystr = glycan
         if not isinstance(glystr,basestring):
             glystr = self.fmt.toStr(glycan)
-        imageWriter = GlycoCT2Image(glystr,
-                                    filename,
-                                    format=self._format,
-                                    force=str(self._force).lower(),
-                                    scale=self._scale,
-                                    redend=str(self._redend).lower(),
-                                    orient=self._orientation,
-                                    display=self._display,
-                                    notation=self._notation,
-                                    opaque=str(self._opaque).lower(),
-                                    verbose=self._verbose)
+        imageWriter = GlycanBuilderImage(glystr,
+                                         filename,
+                                         format=self._format,
+                                         force=str(self._force).lower(),
+                                         scale=self._scale,
+                                         redend=str(self._redend).lower(),
+                                         orient=self._orientation,
+                                         display=self._display,
+                                         notation=self._notation,
+                                         opaque=str(self._opaque).lower(),
+                                         verbose=self._verbose)
         return imageWriter()

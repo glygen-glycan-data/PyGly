@@ -4,6 +4,7 @@
 |alignment=Core
 |collection=GGM
 |displayhgv=false
+|enzyme=ALG1;ALG13;ALG14;ALG2;Alg1;Alg13;Alg14;Alg2;DPAGT1;Dpagt1;FUT10;FUT11;FUT3;FUT4;FUT5;FUT6;FUT9;Fut10;Fut11;Fut4;Fut9;Glt28d2;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b
 |glycoct=RES
 1b:x-dglc-HEX-x:x
 2s:n-acetyl

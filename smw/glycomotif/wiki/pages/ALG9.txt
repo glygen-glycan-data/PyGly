@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 2 Man to Man.
+|genename=ALG9
+|iscdg=true
+|ortholog=Alg9
+|species=Human
+|uniprot=Q9H6U8
+}}

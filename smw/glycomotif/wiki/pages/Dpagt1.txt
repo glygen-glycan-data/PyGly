@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach GlcNAc to Asn.
+|genename=Dpagt1
+|mgiacc=MGI:1196396
+|ortholog=DPAGT1
+|species=Mouse
+|uniprot=P42867
+}}

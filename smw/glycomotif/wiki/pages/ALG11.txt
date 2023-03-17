@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 2 Man to Man.
+|genename=ALG11
+|iscdg=true
+|ortholog=Alg11
+|species=Human
+|uniprot=Q2TAA5
+}}

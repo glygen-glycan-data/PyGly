@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 2 Fuc to Gal.
+|genename=Fut2
+|mgiacc=MGI:109374
+|ortholog=FUT2
+|species=Mouse
+|uniprot=Q9JL27
+}}

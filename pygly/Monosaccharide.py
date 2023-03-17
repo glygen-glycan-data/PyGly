@@ -17,6 +17,7 @@ class SuperClass:
     OCT   = 8
     NON   = 9
     DEC   = 10
+    SUG   = 20
     missing = None
 
 class Stem:
@@ -99,6 +100,10 @@ class Node(object):
             for l in self._links + self._special_links:
                 if l.matching_link_type(**kw):
                     yield l
+
+    def links_without_repeat(self):
+        # NON_REPEAT, INSTANTIATED
+        return self.links(default=False,repeat=Linkage.NON_REPEAT,inst=Linkage.INSTANTIATED)
 
     def links_with_repeat_exit(self):
         # NON_REPEAT + REPEAT_EXIT, INSTANTIATED; same as default

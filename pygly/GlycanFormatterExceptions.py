@@ -17,3 +17,7 @@ class IUPACParseError(GlycanParseError):
 
 class WURCS20ParseError(GlycanParseError):
     pass
+
+class GlycanBuilderSVGParseError(GlycanParseError):
+    pass
+

@@ -15,6 +15,17 @@ http://glyomics.org/glycomotif#|[http://glyomics.org/glycomotif Glyomics Glycomo
  Keyword|Category
  haskeyword|Type:Page
  incollection|Type:Page
+ Enzyme|Category
+ genename|Type:Text
+ species|Type:Text
+ uniprot|Type:External Identifier
+ mgiacc|Type:External Identifier
+ ortholog|Type:Page
+ description|Type:Text
+ iscdg|Type:Boolean
+ phenotype|Type:Text
+ phenocount|Type:Number
+ hasenzyme|Type:Page
  collectioncount|Type:Number
  instancecount|Type:Number
  aglycon|Type:Text

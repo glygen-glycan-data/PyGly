@@ -8,46 +8,15 @@ import rdflib
 import rdflib.plugins.serializers.rdfxml
 
 
+def get_indices(col):
+    indices = False
+    if col != 'N':
+        indices = set(map(int,col[2:].split(',')))
+    return(indices) 
+        
+
+
 motif_tsv = sys.argv[1]
-# prefix = sys.argv[2]
-# rdf_file_path = sys.argv[3]
-"""
-motif_tsv = "../data/motif_alignment.tsv"
-prefix = "sth"
-rdf_file_path = "../data/alignment.rdf"
-"""
-
-alignments = {}
-alignments_template = {
-    "Core": [],
-    "Substructure": [],
-    "Whole-Glycan": [],
-    "Nonreducing-End": []
-}
-for i, line in enumerate(csv.reader(open(motif_tsv), dialect="excel-tab")):
-    if i == 0:
-        continue
-
-    # Motif Structure Core Substructure Whole Nonreducing_end
-    macc = line[0]
-    gacc = line[1]
-    flags = map(lambda x: True if x == "Y" else False, line[2:])
-
-    if macc not in alignments:
-        alignments[macc] = copy.deepcopy(alignments_template)
-
-    if flags[0]:
-        alignments[macc]["Core"].append([gacc, flags[4]])
-
-    if flags[1]:
-        alignments[macc]["Substructure"].append([gacc, flags[5]])
-
-    if flags[2]:
-        alignments[macc]["Whole-Glycan"].append([gacc, flags[6]])
-
-    if flags[3]:
-        alignments[macc]["Nonreducing-End"].append([gacc, flags[7]])
-
 
 rdfgraph = rdflib.Graph()
 
@@ -57,44 +26,44 @@ skosns = rdflib.Namespace('http://www.w3.org/2004/02/skos/core#')
 swivtns = rdflib.Namespace('http://semantic-mediawiki.org/swivt/1.0#')
 glycomotifns = rdflib.Namespace('http://glyomics.org/glycomotif#')
 
-
 rdfgraph.bind("rdf", rdfns)
 rdfgraph.bind("rdfs", rdfsns)
 rdfgraph.bind("glycomotif", glycomotifns)
 rdfgraph.bind("swivt", swivtns)
 rdfgraph.bind("skos", skosns)
 
+ColumnMap = {
+    "Core": ('Core_Inclusive','Core_Strict'),
+    "Substructure": ('Substructure_Inclusive','Substructure_Strict'),
+    "Whole-Glycan": ('Whole_Inclusive','Whole_Strict'),
+    "Nonreducing-End": ('Non_Red_Inclusive','Non_Red_Strict')
+}
 
-for motifacc, alignments_per_motif in alignments.items():
-    # print motifacc
-    # motif_rdf_node = rdflib.URIRef("http://glyomics.org/%s/Special:URIResolver/GM.%s" % (prefix, motifacc))
-    # rdfgraph.add((motif_rdf_node, rdfns.type, swivtns["Subject"]))
+for line in csv.DictReader(open(motif_tsv), dialect="excel-tab"):
+    motifacc = line['Motif']
+    acc = line['Structure']
+    for alignment_type in ColumnMap:
+        loosevals = line[ColumnMap[alignment_type][0]].split(":")
+        strictvals = line[ColumnMap[alignment_type][1]].split(":")
+        if loosevals[0] == "Y":
+            if strictvals[0] == "Y":
+                strict = True
+                indices = strictvals[1]
+                linkindices = strictvals[2]
+            else:
+                strict = False
+                indices = loosevals[1]
+                linkindices = loosevals[2]
 
-    for alignment_type, structure_accs in alignments_per_motif.items():
-
-        for pair in structure_accs:
-
-            acc, strict = pair
             alignment_id = "-".join((motifacc, alignment_type, acc))
-
             matched_rdf_node = glycomotifns[alignment_id]
 
             rdfgraph.add((matched_rdf_node, glycomotifns["motif_accession"], rdflib.Literal(motifacc)))
             rdfgraph.add((matched_rdf_node, glycomotifns["alignment_type"], rdflib.Literal(alignment_type)))
             rdfgraph.add((matched_rdf_node, glycomotifns["structure_accession"], rdflib.Literal(acc)))
-            if strict:
-                rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal("true" , datatype=rdflib.XSD.boolean)))
-            else:
-                rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal("false", datatype=rdflib.XSD.boolean)))
+            rdfgraph.add((matched_rdf_node, glycomotifns["structure_residue_ids"], rdflib.Literal(indices)))
+            rdfgraph.add((matched_rdf_node, glycomotifns["structure_link_ids"], rdflib.Literal(linkindices)))
+            rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal(str(strict).lower(), datatype=rdflib.XSD.boolean)))
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
-# writer.serialize(open(rdf_file_path, "w"))
 writer.serialize(sys.stdout)
-
-
-
-
-
-
-
-

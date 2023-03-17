@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach beta 3 GlcNAc to Gal.
+|genename=B3GNT2
+|ortholog=B3gnt2
+|species=Human
+|uniprot=Q9NY97
+}}

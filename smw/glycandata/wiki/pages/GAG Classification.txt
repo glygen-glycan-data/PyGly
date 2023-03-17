@@ -1,0 +1,16 @@
+
+GAG classification based on: <span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/GAG_classification GlycoMotif GAG Classification motifs]</span>.
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Keratan sulfate
+| {{CountPropertyValueImageLink|GlycanSubtype|Keratan sulfate}} 
+|-
+! style="text-align: left;" |GAG, no subtype
+| {{CountPropertyValueImageLink4|GlycanType|GAG|GlycanGAGSubtypeCount|0}} 
+|-
+! style="text-align: left;" | GAG, multiple subtypes
+| {{CountPropertyValueImageLink5|GlycanType|GAG|GlycanGAGSubtypeCount|2}} 
+|-
+! style="text-align: left;" | All GAG
+| {{CountPropertyValueImageLink|GlycanType|GAG}} 
+|}

@@ -1,0 +1,35 @@
+<noinclude>
+This is the "Enzyme" form.
+To create a page with this form, enter the page name below;
+if a page with that name already exists, you will be sent to a form to edit that page.
+
+
+{{#forminput:form=Enzyme}}
+
+</noinclude><includeonly>
+<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
+{{{info|page name=<Enzyme[genename]>}}}
+{{{for template|Enzyme}}}
+{| class="formtable"
+! Gene: 
+| {{{field|genename}}}
+|-
+! Species: 
+| {{{field|species|input type=dropdown|values=Human,Mouse|default=Human}}}
+|-
+! UniProt Accession: 
+| {{{field|uniprot}}}
+|-
+! MGI Accession
+| {{{field|mgiacc}}}
+|-
+! Description: 
+| {{{field|description|input type=textarea}}}
+|-
+! Ortholog: 
+| {{{field|ortholog}}}
+|}
+{{{end template}}}
+
+{{{standard input|save}}} {{{standard input|cancel}}}
+</includeonly>

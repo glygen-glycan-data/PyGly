@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to Man.
+|genename=Mgat4a
+|mgiacc=MGI:2662992
+|ortholog=MGAT4A
+|species=Mouse
+|uniprot=Q812G0
+}}

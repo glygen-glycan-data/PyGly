@@ -1,0 +1,3 @@
+[[Imported from::glycomotif:ortholog]] 
+{{DISPLAYTITLE:glycomotif:ortholog}}
+[[Category:Imported vocabulary]]
