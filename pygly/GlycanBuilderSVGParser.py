@@ -32,6 +32,14 @@ class GlycanBuilderSVGMissingRootError(GlycanBuilderSVGParseError):
     def __init__(self):
         self.message = "GlycanBuilderSVG parser: Can't determine the root monosaccharide."
 
+class GlycanBuilderSVGUnsupportedStructureError(GlycanBuilderSVGParseError):
+    def __init__(self):
+        self.message = "GlycanBuilderSVG parser: Unsupported structure."
+
+class GlycanBuilderSVGUnexpectedLinkConnectionError(GlycanBuilderSVGParseError):
+    def __init__(self):
+        self.message = "GlycanBuilderSVG parser: Unexpected link connection."
+
 class GlycanBuilderSVG(GlycanFormatter):
     substmap = {'S': {'type': Substituent.sulfate, 
                       'parent_type': Linkage.oxygenPreserved, 
@@ -127,12 +135,18 @@ class GlycanBuilderSVG(GlycanFormatter):
             if g.attrib.get('data.type') == 'Linkage':
                 if not g.attrib.get('data.parentResidueIndex') or not g.attrib.get('data.childResidueIndex'):
                     continue
-                parent = monos[int(g.attrib['data.parentResidueIndex'])]
+                try:
+                    parent = monos[int(g.attrib['data.parentResidueIndex'])]
+                except:
+                    raise GlycanBuilderSVGUnexpectedLinkConnectionError()
                 if g.attrib['data.parentPositions'] == "?":
                     parentpos = None
                 else:
                     parentpos = set(map(int,g.attrib['data.parentPositions'].split('/')))
-                child = monos[int(g.attrib['data.childResidueIndex'])]
+                try:
+                    child = monos[int(g.attrib['data.childResidueIndex'])]
+                except:
+                    raise GlycanBuilderSVGUnexpectedLinkConnectionError()
                 if g.attrib['data.childPositions'] == "?":
                     childpos = None
                 else:
