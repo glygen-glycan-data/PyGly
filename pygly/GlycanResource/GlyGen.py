@@ -11,5 +11,9 @@ class GlyGen(GlyGenTS):
         for acc in self.ws.query_alltime():
             yield acc
 
+    def glycans_bytype(self,type):
+         for d in self.ws.glycan_search(glycan_type=type):
+             yield d['glytoucan_ac']
+
 class GlyGenBeta(GlyGenBetaTS):
     pass
