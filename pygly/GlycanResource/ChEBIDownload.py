@@ -44,4 +44,4 @@ class ChEBIDownload(WebServiceResource):
             if len(gtcacc) == 0:
                 continue
             for acc in gtcacc:
-                yield dict(chebiterm=r['id'],gtcacc=acc)
+                yield dict(chebiterm=r['id'],gtcacc=acc,name=r['name'])
