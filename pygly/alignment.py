@@ -1821,7 +1821,6 @@ class MotifStrict(SubstructureSearch):
         kw["linkcmp"] = LinkageComparitorMotifStrict()
         super(MotifStrict, self).__init__(**kw)
 
-
 class NonReducingEndMotifStrict(SubstructureSearchNonReducingEnd):
 
     def __init__(self, **kw):
@@ -1832,6 +1831,15 @@ class NonReducingEndMotifStrict(SubstructureSearchNonReducingEnd):
         kw["linkcmp"] = LinkageComparitorMotifStrict()
         super(NonReducingEndMotifStrict, self).__init__(**kw)
 
+class WholeGlycanEqualMotifStrict(GlycanPartialOrder):
+
+    def __init__(self,**kw):
+        kw['substcmp']=SubstituentEqual(**kw)
+        kw['linkcmp']=LinkageComparitorMotifStrict(**kw)
+        kw['sublinkcmp']=SubstLinkageComparitorMotifStrictSimple(**kw)
+        # monotest needs a subst test and a sublink test
+        kw['monocmp']=MonosaccharideMotifComparison(**kw)
+        super(WholeGlycanEqualMotifStrict,self).__init__(**kw)
 
 class MotifInclusive(SubstructureSearch):
 
@@ -1843,9 +1851,7 @@ class MotifInclusive(SubstructureSearch):
         kw["linkcmp"] = LinkageComparitorMotifGlyTouCanOriginal()
         super(MotifInclusive, self).__init__(**kw)
 
-
 class NonReducingEndMotifInclusive(SubstructureSearchNonReducingEnd):
-
     def __init__(self, **kw):
         kw["monocmp"] = MonosaccharideMotifComparisonSubstTolerance(
             substcmp=SubstituentEqual(),
@@ -1854,9 +1860,15 @@ class NonReducingEndMotifInclusive(SubstructureSearchNonReducingEnd):
         kw["linkcmp"] = LinkageComparitorMotifGlyTouCanOriginal()
         super(NonReducingEndMotifInclusive, self).__init__(**kw)
 
+class WholeGlycanEqualMotifInclusive(GlycanPartialOrder):
 
-
-
+    def __init__(self,**kw):
+        kw['substcmp']=SubstituentEqual(**kw)
+        kw['linkcmp']=LinkageComparitorMotifGlyTouCanOriginal(**kw)
+        kw['sublinkcmp']=SubstLinkageComparitorMotifLooseSimple(**kw)
+        # monotest needs a subst test and a sublink test
+        kw['monocmp']=MonosaccharideMotifComparisonSubstTolerance(**kw)
+        super(WholeGlycanEqualMotifInclusive,self).__init__(**kw)
 
 def items():
     any = False
