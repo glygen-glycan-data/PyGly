@@ -1092,8 +1092,10 @@ class SubstructureSearch(GlycanPartialOrder):
         if len(list(m.all_nodes(subst=True))) != len(list(tg.all_nodes(subst=True))):
             return False
 
-        return True
+        if m.underivitized_molecular_weight() != tg.underivitized_molecular_weight():
+            return False
 
+        return True
 
     def whole_glycan_match(self, m, tg):
 
