@@ -62,6 +62,12 @@ class GlycanBuilderSVG(GlycanFormatter):
                 'NAc': {'type': Substituent.nAcetyl,
                         'parent_type': Linkage.oxygenLost, 
                         'child_type': Linkage.nitrogenAdded},
+                'F': {'type': Substituent.fluoro,
+                      'parent_type': Linkage.oxygenLost, 
+                      'child_type': Linkage.nitrogenAdded},
+                'I': {'type': Substituent.iodo,
+                      'parent_type': Linkage.oxygenLost, 
+                      'child_type': Linkage.nitrogenAdded},
                }
     ringmap = {'p': {'ring_start': 1, 'ring_end': 5},
                'f': {'ring_start': 1, 'ring_end': 4},
