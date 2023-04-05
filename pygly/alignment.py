@@ -719,42 +719,40 @@ class GlycanPartialOrder(Comparitor):
 class ConnectedNodesCache:
 
     def __init__(self):
-        self.data = {}
+        self.clear()
 
     def put(self, g):
+        self.clear()
         for m in g.all_nodes():
-            self.data[m] = {
-                1: [{m}]
-            }
+            self.data[m] = defaultdict(list)
+            self.data[m][1].append({m})
+            for c in set(l.child() for l in m.links_with_uninstantiated()):
+                self.data[m][2].append({m,c})
 
     def update_cache(self, m, size):
 
         if size in self.data[m]:
             return
+
         i = max(self.data[m].keys())
 
         while i < size:
             i += 1
-
-            res = []
+            res = dict()
             for currentSet in self.data[m][i-1]:
                 for res0 in self.connectedNodesPlusOneSimple(currentSet):
-                    if res0 not in res:
-                        res.append(res0)
-            self.data[m][i] = res
+                    res0sig = frozenset(res0)
+                    if res0sig not in res:
+                        res[res0sig] = res0
+            self.data[m][i] = list(res.values())
 
     def connectedNodesPlusOneSimple(self, currentSet):
-        res = []
-        for n in currentSet:
-            res += [x.child() for x in n.links_with_uninstantiated()]
-        children = filter(lambda x:x not in currentSet, res)
-        children = set(children)
+        res = set(x.child() for n in currentSet for x in n.links_with_uninstantiated())
+        children = res - currentSet
 
         res = []
         for n in children:
-            res0 = currentSet.copy()
-            res0.add(n)
-            res.append(res0)
+            res.append(currentSet|{n})
         return res
 
     def get(self, m, size):
@@ -764,10 +762,6 @@ class ConnectedNodesCache:
 
     def clear(self):
         self.data = {}
-
-
-
-
 
 class SubstructureSearch(GlycanPartialOrder):
 
