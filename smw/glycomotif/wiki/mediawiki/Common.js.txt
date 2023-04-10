@@ -4,7 +4,6 @@
 window.$ = jQuery;
 window.mw = window.mediaWiki = mw;
 console.log("Common.js is running");
-
 var topologyComponents, redonlyComponents, nonredonlyComponents;
 
 // s stands for the scripts, while p stand for the loading status for the page
@@ -264,27 +263,20 @@ function locateViewer3(){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 if (document.getElementById("motif_align_para") != null){
     // SNFG
+
     var imageURLprefix = "https://glymage.glyomics.org/image/snfg/extended/";
     var imageURLsuffix = ".png";
 
     var motifpageid = document.getElementById("motif_align_para").getAttribute("data-page_id");
     var prefix = document.getElementById("motif_align_para").getAttribute("data-prefix");
 
-    function alignmentQueryConstructor(motif_page_id) {
+    function alignmentQueryConstructor(motif_page_id, first) {
+        var set_query = " LIMIT 61";
+	if (!first) {
+	    set_query = " OFFSET 61";
+	}
         var query =
             'PREFIX glycomotif: <http://glyomics.org/glycomotif#>\n' +
             '\n' +
@@ -307,7 +299,7 @@ if (document.getElementById("motif_align_para") != null){
             '   ?alignment glycomotif:strict ?strict .\n' +
             '\n' +
             '   ?motif glycomotif:id "' + motif_page_id + '" .\n' +
-            '}';
+            '}' + ' ORDER BY ?structure_gtc_acc ?alignment_type' + set_query;
         return query
     }
 
@@ -327,38 +319,26 @@ if (document.getElementById("motif_align_para") != null){
         }
         var queryURL = endpt + '?' + querypart;
 
-        return queryURL
-
-        var xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.open("GET", queryURL, false);
-        xmlhttp.send();
-
-        return xmlhttp.responseText
-
+        return queryURL;
     }
 
-    function alignment(motif){
+    function alignment(motif, first){
         var endpt = "https://glycomotif.glyomics.org/" + prefix + "/sparql/query";
-        var query = alignmentQueryConstructor(motif);
-
+        
+	var query = alignmentQueryConstructor(motif, first);
         var qurl = sparqlQuery(endpt, query);
-        // console.log(qurl);
         jQuery.getJSON(qurl).then(function (a){
-            alignmentPart2(a)
+            alignmentPart2(a, first)
         });
     }
 
-    function alignmentPart2(response){
+    function alignmentPart2(response, first){
 
-        // var response = JSON.parse(thing);
         var result = response.results.bindings;
         
         for (var i in result){
             var pair = result[i];
-            //console.log(result);
-
-            console.log(pair);
+            
             var structure_gtc_acc = pair.structure_gtc_acc.value;
             var alignment_type = pair.alignment_type.value;
             var structure_residue_ids = pair.structure_residue_ids.value;
@@ -376,69 +356,37 @@ if (document.getElementById("motif_align_para") != null){
                 alignment_type = alignment_type + ",&nbsp;strict";
             }
 
-            
-
-
-             if (!Object.keys(res).includes(alignment_type)){
-                res[alignment_type] = [];
-            }
-
-
-           if (structure_gtc_acc) {     align_info = {};
-           align_info["Alignment_Type"] = alignment_type;
-           align_info["IDs"] = structure_residue_ids;
-           align_info["LinkIDs"] = structure_link_ids;
-           //console.log(align_info);
-           alignment_info[structure_gtc_acc]=align_info;
-           }
-
- //if (structure_gtc_acc in alignment_info) {
-      //alignment_info[structure_gtc_acc].push(species[i].species)
-
-
-
-            res[alignment_type].push(structure_gtc_acc);
-        }
-
-
-
-        for (var i in Object.keys(res).sort()){
-            var alignment_type = Object.keys(res).sort()[i];
-            if (alignment_type == "all"){
-                continue
-            }
-            for (var j in res[alignment_type]){
-                var structure_gtc_acc = res[alignment_type][j];
-                if (!res.all.includes(structure_gtc_acc)){
-                    res.all.push(structure_gtc_acc);
+            if (structure_gtc_acc) { 
+                if (alignment_info.hasOwnProperty(structure_gtc_acc)) {
+                    align_info = alignment_info[structure_gtc_acc];
+                    align_info["Alignment_Type"].push(alignment_type);
+                    align_info["IDs"].push(structure_residue_ids);
+                    align_info["LinkIDs"].push(structure_link_ids);
+                } else {
+                    align_info = {};
+                    align_info["Accesssion"] = structure_gtc_acc;
+                    align_info["Alignment_Type"] = [alignment_type];
+                    align_info["IDs"] = [structure_residue_ids];
+                    align_info["LinkIDs"] = [structure_link_ids];
+                    alignment_info[structure_gtc_acc]=align_info;
                 }
             }
         }
 
-        for (var i in Object.keys(res)){
-            var alignment_type = Object.keys(res)[i];
-            res[alignment_type] = res[alignment_type].sort(
-                function (a, b){
-                    if (a < b){
-                        return -1
-                    } else {
-                        return 1
-                    }
-                }
-            );
-        }
-
-
-        if (res.all.length > 0){
-            draw(0);
-        }
-        else{
+        if (Object.keys(alignment_info).length > 0){
+             if (first) {
+	         draw(0); 
+	         alignment(motifpageid,false);
+	     }
+        } else {
             document.getElementById("glycomotif_alignment_result")
                 .innerText = "No alignment found for this motif";
         }
-        return res
+         
+        return alignment_info;
     }
 
+    
     function CreateGlycanFigure(gtcid, extra, alignment_ids, alignment_link_ids) {
 
         var figure = document.createElement("figure");
@@ -446,30 +394,18 @@ if (document.getElementById("motif_align_para") != null){
         figure.style = "width: 100%; text-align: center; margin: 0px;"
         figure.id = "img_" + gtcid;
 
-        // var img = document.createElement("img");
-        // img.src = imageURLprefix + gtcid + imageURLsuffix;
-        // img.src = "http://glymage.glyomics.org/getimage?notation=snfg&display=extended&image_format=svg&acc=" + gtcid 
-        // img.style = "max-width: 100%; height: auto; vertical-align: middle; cursor: pointer;";
-        // img.acc = gtcid;
-        // img.onclick = function (d) {
-        //     var acc = this.acc;
-        //     window.open("https://glytoucan.org/Structures/Glycans/" + acc);
-        // }
-
         var img = document.createElement("object");
-        img.data = "https://glymage.glyomics.org/getimage?notation=snfg&display=extended&image_format=svg&acc=" + gtcid + "&highlight=" + alignment_ids; 
+        img.data = "https://glymage.glyomics.org/getimage?notation=snfg&display=extended&image_format=svg&acc=" + gtcid + "&highlight=" + alignment_ids;
+
         if (alignment_link_ids.length > 0) {
-           img.data  += "," + alignment_link_ids;
+           img.data += ','+alignment_link_ids;
         }
         img.style = "max-width: 100%; height: auto; vertical-align: middle; cursor: pointer;";
         img.acc = gtcid;
-        console.log(img.data);
         img.onclick = function (d) {
             var acc = this.acc;
             window.open("https://glytoucan.org/Structures/Glycans/" + acc);
         }
-
-
 
         var captionacc = document.createElement("a");
         captionacc.innerText = gtcid;
@@ -477,9 +413,7 @@ if (document.getElementById("motif_align_para") != null){
         captionacc.href = "https://glytoucan.org/Structures/Glycans/" + gtcid;
 
         var caption = document.createElement("figcaption");
-        // caption.innerHTML = gtcid;
-
-
+       
         figure.appendChild(img);
         caption.appendChild(captionacc);
         if (extra.length > 0){
@@ -491,14 +425,12 @@ if (document.getElementById("motif_align_para") != null){
         return figure
     }
 
-
-
     var colNum = 3;
     var rowNum = 5;
     function draw(pageNum){
+  
         var container = document.getElementById("glycomotif_alignment_result");
-
-        var pageTotalNum = Math.ceil(res.all.length / (rowNum * colNum));
+        var pageTotalNum = Math.ceil(Object.keys(alignment_info).length/ (rowNum * colNum));
 
         container.innerHTML = "";
         var table = document.createElement("table");
@@ -520,27 +452,14 @@ if (document.getElementById("motif_align_para") != null){
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         
-        
-         
-        
-        //console.log(alignment_info);
-        //console.log(Object.keys(alignment_info));
-        
-        
-        //for (var i in Object.keys(alignment_info)){ 
-             //var alignment_ids = Object.keys(alignment_info).IDs; 
-             //console.log(alignment_ids);}
-
-        //for (var i in alignment_info){ 
-             //var alignment_ids = alignment_info[i].IDs; 
-             //console.log(alignment_ids);}
-
-
-
-        for (var i in res.all.slice((rowNum * colNum)*pageNum, (rowNum * colNum)*pageNum+(rowNum * colNum))){
-            var c = res.all.slice((rowNum * colNum)*pageNum, (rowNum * colNum)*pageNum+(rowNum * colNum))[i];
+        var allacc = Object.keys(alignment_info);
+        var len = allacc.length;
+        var pageSize = rowNum*colNum;
+        for (var i = pageSize*pageNum; i < Math.min(len,pageSize*(pageNum+1)); i++) {
+            var c = allacc[i];
             var alignment_ids = alignment_info[c].IDs;
             var alignment_link_ids = alignment_info[c].LinkIDs;
+            var alignment_types_new = alignment_info[c].Alignment_Type;
             count += 1;
             if (count == colNum+1){
                 table.appendChild(tr);
@@ -549,31 +468,20 @@ if (document.getElementById("motif_align_para") != null){
             }
             td = document.createElement("td");
 
-            var alignment_types = [];
-            for (var i in Object.keys(res)){
-                var alignment_type = Object.keys(res)[i];
-                if (alignment_type == "all"){
-                    continue;
-                }
-                
-                if (res[alignment_type].includes(c)){
-                    alignment_types.push(alignment_type);
-                }
+          
+            alignment_types_new = alignment_types_new.sort();
+            alignment_types_new = alignment_types_new.join("; ");
+            alignment_ids = new Set(alignment_ids.join(",").split(","));
+            alignment_ids = Array.from(alignment_ids).join(",");
+            alignment_link_ids = new Set(alignment_link_ids.join(",").split(","));
+            alignment_link_ids = Array.from(alignment_link_ids).join(",");
 
-
-            }
-            alignment_types = alignment_types.sort();
-            alignment_types = alignment_types.join("; ");
-            //console.log(alignment_info[structure_gtc_acc].IDs.value);
-
-            var figure = CreateGlycanFigure(c, alignment_types, alignment_ids, alignment_link_ids);
+            var figure = CreateGlycanFigure(c, alignment_types_new, alignment_ids, alignment_link_ids);
 
             td.appendChild(figure);
             tr.appendChild(td);
         }
         table.appendChild(tr);
-
-
         container.appendChild(table);
 
         var containerButton = document.createElement("div");
@@ -590,7 +498,7 @@ if (document.getElementById("motif_align_para") != null){
         }
 
         var button, valid;
-        valid = pageNum != 0;
+        valid = (pageNum != 0);
         button = document.createElement("a");
         containerButton.appendChild(button);
         button.innerText = "Prev";
@@ -608,7 +516,7 @@ if (document.getElementById("motif_align_para") != null){
         containerButton.appendChild(space);
 
         var button, valid;
-        valid = pageNum != pageTotalNum-1;
+        valid = (pageNum != pageTotalNum-1);
         button = document.createElement("a");
         containerButton.appendChild(button);
         button.innerText = "Next";
@@ -621,7 +529,6 @@ if (document.getElementById("motif_align_para") != null){
             button.pageNum = pageNum;
         }
 
-
         container.appendChild(document.createElement("br"));
         container.appendChild(document.createElement("br"));
         container.appendChild(document.createElement("br"));
@@ -630,32 +537,10 @@ if (document.getElementById("motif_align_para") != null){
 
     }
 
-    var res = {
-        "all":[]
-    };
-    alignment(motifpageid);
-
-
     var alignment_info = {};
+    alignment(motifpageid,true);
     
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 if (document.getElementById("motif_match_real_time_para")){
 

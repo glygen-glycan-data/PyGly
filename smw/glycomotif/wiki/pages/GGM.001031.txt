@@ -11,5 +11,6 @@
 |name=O-Glucosylation
 |prefname=O-Glucosylation
 |redend=true
+|sameas=GD.R000532,GDC.000060,GDSB.000005,GDV.000082,GGM.000060,GM.G71142DF
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2122h-1b_1-5{{!)}}/1/
 }}

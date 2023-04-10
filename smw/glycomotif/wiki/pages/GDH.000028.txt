@@ -16,6 +16,6 @@ LIN
 4:3o(3+1)5d
 |glytoucan=G94956AW
 |name=Blood Group B Type 2
-|sameas=GD.R000192,GDB.002191,GE.EP0262,GM.G94956AW,UCM.000028
+|sameas=GD.R000192,GDB.002191,GE.EP0262,GGM.000037,GM.G94956AW,UCM.000028
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4/a4-b1_b2-c1_b3-d1
 }}

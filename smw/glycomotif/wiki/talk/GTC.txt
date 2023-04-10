@@ -22,4 +22,4 @@ GlyTouCan motif accessions are the GlyTouCan accessions of the structures.
 
 GlyTouCan motifs provide a reducing end boolean for each motif, but no aglycon value(s). 
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:27, 31 October 2018 (EDT)
+-- [[User:Edwardsnj|Nathan Edwards]] 31 October 2018

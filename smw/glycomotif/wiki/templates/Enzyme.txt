@@ -24,11 +24,6 @@ Edit the page to see the template text.
 |-
 ! UniProt
 | {{{uniprot|}}} ([https://www.glygen.org/protein/{{{uniprot|}}} GlyGen],[https://www.uniprot.org/uniprotkb/{{{uniprot|}}}/entry UniProt])
-{{#if:{{{mgiacc|}}}|
-{{!}}-
-! MGI Accession
-{{!}} {{{mgiacc|}}} ([https://www.mousephenotype.org/data/genes/{{{mgiacc|}}} IMPC], [http://www.informatics.jax.org/marker/{{{mgiacc|}}} MGI])
-}}
 |-
 ! Description
 | {{{description|}}}
@@ -43,8 +38,8 @@ Edit the page to see the template text.
 {{!}} {{{iscdg|}}}
 {{!}}-
 }}
-{{#if:{{{phenotype|}}}|
-! IMPC KO Phenotype
+{{#if:{{{phenotype|}}}| 
+!style="vertical-align:top;" {{!}} <span class="plainlinks">[https://www.mousephenotype.org/data/genes/{{{mgiacc|}}} IMPC KO Phenotype]</span>
 {{!}} {{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|<br/>}}
 {{!}}-
 }}

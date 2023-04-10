@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
-|dbxref=GlycanDictionary:GD000145
+|dbxref=GlycanDictionary:GSD000145
 |displayhgv=false
 |enzyme=B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b;ST3GAL3;ST3GAL4;ST3GAL6;St3gal3;St3gal4;St3gal6
 |glycoct=RES

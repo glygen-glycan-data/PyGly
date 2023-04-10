@@ -1,0 +1,3 @@
+Motif modified to remove the initial Gal which is not required for N-linked structures to have this determinant. New GlyTouCan accession is [[GM.G61459JW|G61459JW]], old one was [[GM.G70519XK|G70519XK]]. This also brings this motif into line with other Type 2 blood group motifs (which can be found on N-linked structures). 
+
+-- [[User:Edwardsnj|Nathan Edwards]] 5 April 2023

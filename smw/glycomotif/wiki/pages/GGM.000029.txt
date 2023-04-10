@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
-|dbxref=GlycanDictionary:GD000007
+|dbxref=GlycanDictionary:GSD000007
 |displayhgv=false
 |glycoct=RES
 1b:b-dglc-HEX-1:5

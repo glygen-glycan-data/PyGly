@@ -4,7 +4,7 @@
 |alignment=Substructure
 |collection=GGM
 |displayhgv=false
-|enzyme=B3GALT2;B3GALT5;B3GNT2;B3GNT4;B3GNT8;B3galt2;B3galt5;B3gnt2;B3gnt4;B3gnt8;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b
+|enzyme=B3GALT2;B3GALT5;B3galt2;B3galt5;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl

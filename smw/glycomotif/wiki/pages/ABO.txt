@@ -1,5 +1,5 @@
 {{Enzyme
-|description=Attach alpha 3 Gal to Gal.
+|description=Attach alpha 3 Gal to Gal; attach alpha 3 GalNAc to Gal.
 |genename=ABO
 |ortholog=Abo
 |species=Human

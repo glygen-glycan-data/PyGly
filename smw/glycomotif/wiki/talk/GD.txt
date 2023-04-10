@@ -1,4 +1,4 @@
 
 The Glydin aggregate collection is to provide the Glydin ID number (indicated as RNNNNNN) for the row id of the Glydin spreadsheet - each row may capture one or more motifs from the Glydin collections' source collections. 
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 15:00, 30 October 2018 (EDT)
+-- [[User:Edwardsnj|Nathan Edwards]] 30 October 2018
