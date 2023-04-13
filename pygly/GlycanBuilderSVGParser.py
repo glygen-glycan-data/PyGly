@@ -11,7 +11,10 @@ import copy
 import string
 from collections import defaultdict
 
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 from . GlycanFormatter import GlycanFormatter
 from . GlycanFormatterExceptions import *
@@ -78,11 +81,12 @@ class GlycanBuilderSVG(GlycanFormatter):
 
     def toGlycan(self,s):
         s = s.replace('data:','data.')
-        doc = ET.parse(StringIO.StringIO(s))
+        doc = ET.parse(StringIO(s))
+        undetroot = dict()
         monos = dict()
         rootmonoindex = 1
         root = doc.getroot()
-	ns = root.tag.split('}')[0]+'}'
+        ns = root.tag.split('}')[0]+'}'
         for g in root.getiterator(ns+'g'):
             if g.attrib.get('data.type') in ('Residue','Monosaccharide'):
                  # handle monosaccharide
@@ -115,6 +119,9 @@ class GlycanBuilderSVG(GlycanFormatter):
                  m.set_id(resid)
                  m.set_external_descriptor_id(g.attrib['ID'])
                  monos[resid] = m
+                 if g.attrib.get('data.residueMultiplicity') != None:
+                     undetroot[resid] = int(g.attrib.get('data.residueMultiplicity'))
+                  
             elif g.attrib.get('data.type') == 'Substituent':
                 # handle substituent
                 subres = g.attrib['data.residueName']
@@ -161,8 +168,35 @@ class GlycanBuilderSVG(GlycanFormatter):
                                         parent_type=Linkage.oxygenPreserved,
                                         child_type=Linkage.oxygenLost)
 
+        undetroots = set()
+        if len(undetroot) > 0:
+            coremonos = set(monos)
+            toexplore = set(undetroot)
+            while len(toexplore) > 0:
+                resid = toexplore.pop()
+                if resid in coremonos:
+                    coremonos.remove(resid)
+                for c in monos[resid].children():
+                    toexplore.add(c.id())
+            for resid in undetroot:
+                for i in range(undetroot[resid]):
+                    if i > 0:
+                        m = monos[resid].deepclone()
+                    else:
+                        m = monos[resid]
+                    for coreresid in coremonos:
+                        linkage = UninstantiatedLinkage(child_pos=None,
+                                                        parent_pos=None,
+                                                        parent_type=Linkage.oxygenPreserved,
+                                                        child_type=Linkage.oxygenLost)
+                        monos[coreresid].add_child_with_special_linkage(m,linkage)
+                    m.set_connected(False)
+                    undetroots.add(m)
+
         if rootmonoindex not in monos:
             raise GlycanBuilderSVGMissingRootError()
         rootmono = monos[rootmonoindex]
         gly = Glycan(rootmono)
+        gly.set_undetermined(undetroots)
+        gly.set_ids()
         return gly

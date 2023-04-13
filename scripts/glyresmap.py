@@ -53,10 +53,10 @@ for fn in sys.argv[1:]:
         if len(glyids) != len(idmap) or len(cannonglyids) != len(idmap):
             print("Sequence %s:%s has an incorrect number of nodes in idmap: %d, %d, %d"%(acc,seqhash,len(glyids),len(idmap),len(cannonglyids)))
             bad = True
-        if len(glyids) != len(set(glyids)) or len(cannonglyids) != len(set(cannonglyids)):
+        if (not gly.undetermined() and len(glyids) != len(set(glyids))) or len(cannonglyids) != len(set(cannonglyids)):
             print("Sequence %s:%s has non-unique monosaccharide ids: %s,%s"%(acc,seqhash,glyids,cannonglyids))
             bad = True
-        if len(idmapglyids) != len(set(idmapglyids)) or len(cannonidmapglyids) != len(set(cannonidmapglyids)):
+        if (not gly.undetermined() and len(idmapglyids) != len(set(idmapglyids))) or len(cannonidmapglyids) != len(set(cannonidmapglyids)):
             print("Sequence %s:%s idmap has non-unique monosaccharide ids: %s"%(acc,seqhash,idmapids))
             bad = True
         if len(idmapids) != len(set(idmapids)):
