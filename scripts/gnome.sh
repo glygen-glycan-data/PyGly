@@ -2,10 +2,18 @@
 
 set -x
 
-restriction_set_names=(
+restriction_set_names_standard=(
   "BCSDB"
   "GlyGen"
   "GlyCosmos"
+  "GlyGen_NGlycans"
+  "GlyGen_OGlycans"
+  "NGlycans"
+)
+
+restriction_set_names_ancestor=(
+  "GlycoTree_NGlycans"
+  "GlycoTree_OGlycans"
 )
 
 
@@ -45,24 +53,25 @@ git clone git@github.com:glygen-glycan-data/GNOme.git
 mv ./BrowserData.json ./GNOme/
 
 
-for Restriction_set in "${restriction_set_names[@]}"
+for Restriction_set in "${restriction_set_names_standard[@]}"
 do
-  lowersetname=$(echo "$Restriction_set" | awk '{print tolower($0)}')
   echo $Restriction_set
-  # python ../pygly/GNOme.py UpdateAcc $Restriction_set ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme/JS/"$lowersetname"_accession.json
   ./gnome_compute.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
-  ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./$Restriction_set.BrowserData.json
+  ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme/restrictions/$Restriction_set.BrowserData.json
+  jq -r 'keys|@tsv' ./GNOme/restrictions/$Restriction_set.BrowserData.json | fmt -w 8 | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
+done
+
+for Restriction_set in "${restriction_set_names_ancestor[@]}"
+do
+  echo $Restriction_set
+  ./gnome_compute.py writeresowl_with_ancestor_structures ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
+  ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme/restrictions/$Restriction_set.BrowserData.json
+  jq -r 'keys|@tsv' ./GNOme/restrictions/$Restriction_set.BrowserData.json | fmt -w 8 | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
 done
 
 ./gnome_compute.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
 
-cp ./GNOme/convert.sh ./
-./convert.sh
-
-
-
-mv *.BrowserData.json ./GNOme/restrictions/
-
+./GNOme/convert.sh
 
 cd ./GNOme
 echo "Ready to commit & push"
@@ -73,5 +82,6 @@ git add -A
 git commit -m "Version $1"
 git push origin "Branch_$1"
 
+cd ..
+
 rm -rf GNOme
-rm convert.sh

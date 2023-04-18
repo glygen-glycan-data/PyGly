@@ -428,6 +428,7 @@ class SMWClass(object):
         value = value.replace('[','{{!(}}')
         value = value.replace(']','{{!)}}')
         value = value.replace('<','{{lessthan}}')
+        value = value.replace(' ','&nbsp;')
         return value.strip()
 
     @staticmethod
@@ -441,6 +442,7 @@ class SMWClass(object):
         value = value.replace('{{!(}}','[')
         value = value.replace('{{!)}}',']')
         value = value.replace('{{lessthan}}','<')
+        value = value.replace('&nbsp;',' ')
         return value.strip()
 
     def toPython(self,data):

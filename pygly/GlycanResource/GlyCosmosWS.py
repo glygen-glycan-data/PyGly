@@ -21,7 +21,7 @@ class GlyCosmosWS(WebServiceResource):
                 acc = r['Accession Number']
                 try:
                     mass = float(r['Monoisotopic mass'])
-	        except:
+                except:
                     mass = None
                 self._cache[acc] = dict(acc=acc,mass=mass,wurcs=r['WURCS'],**r)
 

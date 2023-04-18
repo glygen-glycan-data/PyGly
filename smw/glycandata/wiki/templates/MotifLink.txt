@@ -1,1 +1,1 @@
-{{#arraymap:{{{1}}}|;|xxx|<span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/glycomotif/xxx xxx]</span>}}
+{{#arraymap:{{{1}}}|;|xxx|<span class="plainlinks">[https://glycomotif.glyomics.org/glycomotif/xxx xxx]</span>}}

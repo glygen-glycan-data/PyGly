@@ -3,24 +3,28 @@ The [[GGM|GlyGen Motif]] collection is derived from the [[GDC|Glydin - Cummings]
 
 More (careful) effort has been made to normalize alternative names (typically shown in parentheses). Accessions correspond to the IDs from the so-called Cummings collection as shown in the Glydin spreadsheet. As we add more GlyGen motifs these IDs will diverge. There are also some accessions with repeated GlyTouCan accessions. We may collapse these at some point.
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 12:02, 1 April 2020 (EDT)
+-- [[User:Edwardsnj|Nathan Edwards]] 1 April 2020
 
 Note that motif 000048 has been removed - its description or its IUPAC sequence was wrong, and both resolutions of this row of the table (to Lewis b or Lewis y) were already represented.
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 15:55, 12 January 2021 (EST)
+-- [[User:Edwardsnj|Nathan Edwards]] 12 January 2021
 
 Note that motif [[GGM.000046]] should also have a Lewis y counterpart (not present in Cummings paper), and it should be type 2 Lewis y - see Blood group A.
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 16:47, 12 January 2021 (EST)
+-- [[User:Edwardsnj|Nathan Edwards]] 12 January 2021
 
 Note that motif 000023 has been removed - its description indicates that the sialic acid Neu5Ac is cyclic, but we have no way to correctly represent it using GlycoCT. See: PMID: 9990070. The same motif without the cyclic descriptor is already represented [[GGM.000027]].
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:05, 13 January 2021 (EST)
+-- [[User:Edwardsnj|Nathan Edwards]] 13 January 2021
 
 The motif 000052 has been removed. The IUPAC sequence in the original Cumming paper indicates a repeating unit (at least two sialalic acids) that has been lost in the IUPAC sequence transliteration to GlycoCT, WURCS, and a GlyTouCan accession (See the source entry here [[GDC.000052]]). We may add this back later if we can correctly handle this type of repeating structure. 
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 13:18, 28 January 2021 (EST)
+-- [[User:Edwardsnj|Nathan Edwards]] 28 January 2021
 
 Replacement for original motif 000052 with [[GGM.000252]]. The Cummings specified IUPAC sequence, NeuAca2-8(NeuAca2-8)n NeuAca2-3Galb1-4GlcNAcb1-R, indicates three or more sialic acid residues, and given our current algorithm for motif matching of structures or motifs with repeats, the same structures will be matched.
 
-[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 16:34, 27 May 2021 (EDT)
+-- [[User:Edwardsnj|Nathan Edwards]] 27 May 2021
+
+Various type 1/2 blood type motifs corrected for consistency, some specified a "reducing-end" Gal when this is not absolutely necessary. See [[GGM.000036]], [[GGM.000037]], and [[GGM.000042]].
+
+-- [[User:Edwardsnj|Nathan Edwards]] 5 April 2023

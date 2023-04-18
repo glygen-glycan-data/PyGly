@@ -1,4 +1,5 @@
 
+from __future__ import print_function
 from .GlycanResource import GlycanResource
 
 
@@ -18,7 +19,14 @@ except ImportError:
     from urllib import urlencode
     from urllib2 import urlopen, Request, HTTPError, build_opener, HTTPSHandler, HTTPHandler
 
-from io import StringIO
+from io import StringIO, TextIOWrapper, BytesIO
+
+try:
+    from gzip import decompress as gzipdecompress
+except ImportError:
+    import zlib
+    def gzipdecompress(b):
+        return zlib.decompress(b,16+zlib.MAX_WBITS)
 
 class WebServiceResource(GlycanResource):
 
@@ -43,7 +51,7 @@ class WebServiceResource(GlycanResource):
             else:
                 url += "?" + urlencode(kwargs)
         if self._verbose:
-            print >>sys.stderr, url
+            print(url,file=sys.stderr)
         # req = Request(url)
         # req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0')
         h = urlopen(url)
@@ -73,6 +81,10 @@ class WebServiceResource(GlycanResource):
                 response = json.loads(response)
             elif thetype == "CSV":
                 response = csv.DictReader(StringIO(response.decode(encoding='ascii',errors='ignore')))
+            elif thetype == "TEXTGZ":
+                response = TextIOWrapper(BytesIO(gzipdecompress(response)),encoding='utf8')
+            elif thetype == "TEXT":
+                response = TextIOWrapper(response,encoding='utf8')
             return response
 
         self.set_method("query_"+str(name), _query)

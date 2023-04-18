@@ -4,6 +4,8 @@ This wiki contains information about {{CountLink|[[Category:Glycan]][[glycandata
 
 The [[Data Export|data export]] page demonstrates a variety of different sparql queries for extracting data from the triple-store. 
 
+Release: {{GlycanDataRelease|1.13.0|3/16/2023}}.
+
 == Sequence == 
 {| class="wikitable" style="text-align: right;"
 |-
@@ -12,6 +14,9 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 ! style="width: 200px;" | GlycoCT
 | {{CountPropertyValueLink|GlycoCT|+}} 
+|-
+! style="width: 200px;" | GlycoCT-XML
+| {{CountPropertyValueLink|GlycoCT-XML|+}} 
 |-
 ! style="width: 200px;" | GlycoWorkBench
 | {{CountPropertyValueLink|GlycoWorkBench|+}} 
@@ -52,6 +57,12 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 ! style="width: 200px;" | [[Glycosphingolipid Classification|Glycosphingolipid]] 
 | {{CountPropertyValueImageLink|GlycanType|Glycosphingolipid}} 
 |-
+! style="width: 200px;" | [[GAG Classification|GAG]]
+| {{CountPropertyValueImageLink|GlycanType|GAG}} 
+|-
+! style="width: 200px;" | GPI Anchor
+| {{CountPropertyValueImageLink|GlycanType|GPI anchor}} 
+|-
 ! style="width: 200px;" | [[Other Classification|Other]] 
 | {{CountPropertyValueImageLink|GlycanTypeCount|0}} 
 |}
@@ -63,6 +74,16 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 ! style="width: 200px;" | Permethylated
 | {{CountPropertyValueLink|PermethylatedMW|+}} 
+|-
+|}
+
+== Molecular Formula == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Underivitized
+| {{CountPropertyValueLink|NativeMolecularFormula|+}} 
+|-
+! style="width: 200px;" | Permethylated
+| {{CountPropertyValueLink|PermethylatedMolecularFormula|+}} 
 |-
 |}
 
@@ -96,9 +117,6 @@ The [[Data Export|data export]] page demonstrates a variety of different sparql 
 |-
 ! style="width: 200px;" | GNOme
 | {{CountPropertyValueLink|GNOme|+}} 
-|-
-! style="width: 200px;" | GlycoTree
-| {{CountPropertyValueLink|GlycoTree|+}} 
 |-
 ! style="width: 200px;" | KEGG
 | {{CountPropertyValueLink|KEGG|+}} 

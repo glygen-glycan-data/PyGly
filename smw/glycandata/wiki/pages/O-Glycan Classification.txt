@@ -23,11 +23,14 @@ O-glycan classification based on: <span class="plainlinks">[https://glycomotif.g
 ! style="text-align: left;" | O-linked core 7
 | {{CountPropertyValueImageLink|GlycanSubtype|O-linked core 7}} 
 |-
-! style="text-align: left;" | O-linked O-mannose
-| {{CountPropertyValueImageLink|GlycanSubtype|O-linked O-mannose}} 
+! style="text-align: left;" | O-GlcNAc
+| {{CountPropertyValueImageLink|GlycanSubtype|O-GlcNAc}} 
 |-
-! style="text-align: left;" | O-linked O-fucose
-| {{CountPropertyValueImageLink|GlycanSubtype|O-linked O-fucose}} 
+! style="text-align: left;" | O-mannose
+| {{CountPropertyValueImageLink|GlycanSubtype|O-mannose}} 
+|-
+! style="text-align: left;" | O-fucose
+| {{CountPropertyValueImageLink|GlycanSubtype|O-fucose}} 
 |-
 ! style="text-align: left;" | O-linked, no subtype
 | {{CountPropertyValueImageLink4|GlycanType|O-linked|GlycanOLinkedSubtypeCount|0}} 

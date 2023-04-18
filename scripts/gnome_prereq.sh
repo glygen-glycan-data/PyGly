@@ -15,7 +15,19 @@ set -x
 GLYRES="python2 ../pygly/GlycanResource/main.py"
 
 function restriction () {
-  $GLYRES $1 $2 | sort -u > ./GNOme/restrictions/GNOme_${1}.accessions.txt 
+  $GLYRES $1 $2 | sort -u > ./GNOme/restrictions/GNOme_${3}.accessions.txt 
+}
+
+function glygentyperes () {
+  $GLYRES GlyGen glycans_bytype $1 | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
+}
+
+function sandboxres () {
+  $GLYRES GlycoTreeSandbox list $1 | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
+}
+
+function glycomotifres () {
+  $GLYRES GlycoMotifNoCache getstruct GGM $1 | awk '{print $1}' | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
 }
 
 function getdata () {
@@ -23,12 +35,20 @@ function getdata () {
 }
 
 # Restrictions
-restriction GlyGen allglycans
-restriction GlyCosmosNoCache allaccessions
+restriction GlyGen allglycans GlyGen
+restriction GlyCosmosNoCache allaccessions GlyCosmos
+
+glygentyperes N-linked GlyGen_NGlycans
+glygentyperes O-linked GlyGen_OGlycans
+
+sandboxres mapped_N GlycoTree_NGlycans
+sandboxres mapped_O GlycoTree_OGlycans
+
+glycomotifres 001001 NGlycans
 
 # GlyTouCan retired etc.
 getdata GlyCosmosNoCache archived glytoucan_archived.txt
-getdata GlyCosmosNoCache replaced glytoucan_archived.txt
+getdata GlyCosmosNoCache replaced glytoucan_replaced.txt
 
 # Synonyms
 python2 ../smw/glycandata/scripts/getbasecomplist.py \* > ./GNOme/data/basecomplist.txt

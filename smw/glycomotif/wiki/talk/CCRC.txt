@@ -40,4 +40,4 @@ The following motif # provide no GlycoCT sequence:
 
   8, 52, 54, 55, 61, 62, 72, 86.
 
--- [[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:33, 31 October 2018 (EDT)
+-- [[User:Edwardsnj|Nathan Edwards]] 31 October 2018

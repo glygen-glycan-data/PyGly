@@ -17,6 +17,7 @@ class SuperClass:
     OCT   = 8
     NON   = 9
     DEC   = 10
+    SUG   = 20
     missing = None
 
 class Stem:
@@ -348,6 +349,7 @@ class Monosaccharide(Node):
         m._id = self._id
         m._connected = self._connected
         m._external_descriptor = self._external_descriptor
+        m._eid = self._eid
         return m
 
     def noring(self):

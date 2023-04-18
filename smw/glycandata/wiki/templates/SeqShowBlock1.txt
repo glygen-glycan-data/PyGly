@@ -1,0 +1,3 @@
+<includeonly><div class="smwpre" style="word-break: break-all;">
+{{#replace:{{#show: {{{1}}} |?glycandata:value }}|{{lessthan}}|&lt;}}
+</div></includeonly>

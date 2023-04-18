@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Nonreducing-End
 |collection=GGM
-|dbxref=GlycanDictionary:GD000009
+|dbxref=GlycanDictionary:GSD000009
 |displayhgv=false
 |enzyme=B4GALNT3;B4GALNT4;B4galnt3;B4galnt4;ST6GAL1;ST6GAL2;St6gal1;St6gal2
 |glycoct=RES

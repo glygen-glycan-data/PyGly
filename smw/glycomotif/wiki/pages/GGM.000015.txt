@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Substructure
 |collection=GGM
-|dbxref=GlycanDictionary:GD000016
+|dbxref=GlycanDictionary:GSD000016
 |displayhgv=false
 |enzyme=ABO;Abo;B3GALT2;B3GALT5;B3galt2;B3galt5;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3
 |glycoct=RES

@@ -3,7 +3,7 @@
 |aglycon=R
 |alignment=Nonreducing-End
 |collection=GGM
-|dbxref=GlycanDictionary:GD000180
+|dbxref=GlycanDictionary:GSD000180
 |displayhgv=false
 |enzyme=B3GNT2;B3GNT4;B3GNT8;B3gnt2;B3gnt4;B3gnt8;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;FUT3;FUT4;FUT5;FUT6;FUT9;Fut4;Fut9;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b;ST3GAL3;ST3GAL4;ST3GAL6;St3gal3;St3gal4;St3gal6
 |glycoct=RES

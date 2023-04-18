@@ -3,7 +3,7 @@
 |aglycon=Ser/Thr
 |alignment=Core
 |collection=GGM
-|dbxref=GlycanDictionary:GD000040;GlycanDictionary:GD000158
+|dbxref=GlycanDictionary:GSD000040;GlycanDictionary:GSD000158
 |displayhgv=false
 |glycoct=RES
 1b:a-dgal-HEX-1:5

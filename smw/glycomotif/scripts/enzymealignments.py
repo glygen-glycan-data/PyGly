@@ -24,6 +24,9 @@ for mfn in sorted(glob.glob(sys.argv[1]+"/*.txt")):
     macc = mfn.rsplit('/',1)[-1][:-4]
     try:
         motifs[macc] = wp.toGlycan(open(mfn).read())
+        if motifs[macc].repeated():
+            del motifs[macc]
+            continue
         motifids[macc] = [ m.id() for m in motifs[macc].all_nodes() ]
         assert len(motifids[macc]) == len(set(motifids[macc]))
         motifids[macc] = set(motifids[macc])
@@ -90,6 +93,8 @@ def printres(macc,gacc,idmaps,typ):
 for gsfn in sorted(glob.glob(sys.argv[2]+"/*.txt")):
     gacc = gsfn.rsplit('/',1)[-1][:-4]
     glycan = gp.toGlycan(open(gsfn).read())
+    if glycan.repeated():
+        continue
     glycanids = [ m.id() for m in glycan.all_nodes() ]
     assert len(glycanids) == len(set(glycanids))
     glycanids = set(glycanids)
@@ -98,6 +103,8 @@ for gsfn in sorted(glob.glob(sys.argv[2]+"/*.txt")):
     sandbox = dict()
     if os.path.exists(gsjfn):
         enzdata = json.loads(open(gsjfn).read())
+        if len(enzdata.get('rule_violations',[])) > 0:
+            continue
         for r in enzdata["residues"]:
             if r.get('glycotree',"none") == "none":
                 continue
