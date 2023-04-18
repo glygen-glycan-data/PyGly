@@ -1,0 +1,5 @@
+#shell command for getting list of trained accessions
+
+zipinfo -1 1000trainingimgs.zip | awk -F"/" '{print $2}' | awk -F"." '{print $1}' | sort | uniq > 1000trainingglycanslist
+
+#may need to edit this some depending on the format of your zip file - if the list is empty, try again.

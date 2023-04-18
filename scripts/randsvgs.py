@@ -7,9 +7,9 @@ from pygly.GlycanImage import GlycanImage
 from pygly.GlycanResource import GlyTouCan, GlyCosmos
 from pygly.GNOme import GNOme
 
-#this is set for 4000
+#This is set for 2000
 batch = 10
-iterations = 400
+iterations = 200
 scale_options = [ 0.5, 1.0, 2.0, 4.0, ]
 redend_options = [ True, False ]
 orient_options = [ "RL", "LR", "TB", "BT" ]
@@ -53,7 +53,8 @@ for j in range(iterations):
     imageWriter.set('orientation',random.choice(orient_options))
     imageWriter.set('notation',random.choice(notation_options))
     imageWriter.set('display',random.choice(display_options))
-    imageWriter.set('opaque',random.choice(opaque_options))
+    # imageWriter.set('opaque',random.choice(opaque_options))
+    imageWriter.set('format','svg')
     imageWriter.force(True)
     # imageWriter.verbose(True)
 
@@ -63,7 +64,7 @@ for j in range(iterations):
         if acc in seen:
             continue
         seen.add(acc)
-        outfile = acc + ".png"
+        outfile = acc + ".svg"
         if os.path.exists(outfile):
             continue
         gly = gtc.getGlycan(acc,format='wurcs')

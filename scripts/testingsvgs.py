@@ -7,9 +7,9 @@ from pygly.GlycanImage import GlycanImage
 from pygly.GlycanResource import GlyTouCan, GlyCosmos
 from pygly.GNOme import GNOme
 
-#this is set for 4000
+#this is set to make 1000
 batch = 10
-iterations = 400
+iterations = 100
 scale_options = [ 0.5, 1.0, 2.0, 4.0, ]
 redend_options = [ True, False ]
 orient_options = [ "RL", "LR", "TB", "BT" ]
@@ -45,6 +45,13 @@ def killxvfb(proc):
         pass
 atexit.register(killxvfb,xvfbproc)
 
+#uses the file of accessions your model was trained on, to avoid testing on them
+trained_accessions_file = sys.argv[1]
+trained_accessions = set()
+with open(trained_accessions_file) as f:
+    for l in f:
+        trained_accessions.add(l.rstrip())
+
 seen = set()
 for j in range(iterations):
     imageWriter = GlycanImage()
@@ -53,7 +60,8 @@ for j in range(iterations):
     imageWriter.set('orientation',random.choice(orient_options))
     imageWriter.set('notation',random.choice(notation_options))
     imageWriter.set('display',random.choice(display_options))
-    imageWriter.set('opaque',random.choice(opaque_options))
+    # imageWriter.set('opaque',random.choice(opaque_options))
+    imageWriter.set('format','svg')
     imageWriter.force(True)
     # imageWriter.verbose(True)
 
@@ -62,8 +70,10 @@ for j in range(iterations):
         acc = random.choice(accs)
         if acc in seen:
             continue
+        if acc in trained_accessions:
+            continue
         seen.add(acc)
-        outfile = acc + ".png"
+        outfile = acc + ".svg"
         if os.path.exists(outfile):
             continue
         gly = gtc.getGlycan(acc,format='wurcs')
