@@ -59,7 +59,7 @@ imageWriter.force(True)
 # imageWriter.verbose(True)
 
 #here is where I hardcoded the specific svg
-acc = "G68250EY"
+acc = "G26091BM"
 
 outfile = acc + ".svg"
 if os.path.exists(outfile):
