@@ -39,8 +39,8 @@ for acc in w.iterglycanid():
 	continue
 
     # Is N-linked by subsumption or glycomotif
+    nlinked = False
     try:
-        nlinked = True
         for cls in g.get_annotation_values(property='GlycanType',type='Classification'):
             if cls == 'N-linked':
                 nlinked = True
