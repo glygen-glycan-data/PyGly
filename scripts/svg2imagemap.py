@@ -93,11 +93,9 @@ for e in elements:
                         svgpaths = clipPath.childNodes
                         paths = []
                         for path in svgpaths:
-                            #print path
                             if path.nodeName == 'path':
-                                #print "path" 
+                                # print("path")
                                 points = parse_path.get_points(path.getAttribute('d'))
-                                #print points
                                 for pointset in points:
                                     paths.append([clipPathID, pointset])
                                     #print paths, pointset_count
@@ -109,7 +107,7 @@ for e in elements:
         for pointset in points:
             paths.append([e.getAttribute('ID'), pointset])
     if e.hasAttribute('transform'):
-        print e.getAttribute('ID'), e.getAttribute('transform')
+        print(e.getAttribute('ID'), e.getAttribute('transform'))
         for transform in re.findall(r'(\w+)\((-?\d+.?\d*),(-?\d+.?\d*)\)', e.getAttribute('transform')):
             if transform[0] == 'translate':
                 x_shift = float(transform[1])

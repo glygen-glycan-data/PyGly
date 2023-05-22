@@ -7,8 +7,14 @@ from pygly.GlycanImage import GlycanImage
 from pygly.GlycanResource import GlyTouCan, GlyCosmos
 from pygly.GNOme import GNOme
 
+dotopo = False
+if sys.argv[1] == '--topo':
+    dotopo = True
+    sys.argv.pop(1)
+
 imagenum = int(sys.argv[1]) if len(sys.argv) > 1 else 100
 mode = sys.argv[2] if len(sys.argv) > 2 else 'png'
+assert mode in ('svg','png')
 badaccfile = sys.argv[3] if len(sys.argv) > 3 else None
 
 batch = 10
@@ -33,10 +39,11 @@ accs = list(filter(lambda acc: acc not in archived,gtc.allaccessions()))
 dummy = gtc.getseq('G00912UN','wurcs')
 print("GlyTouCan accessions complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
 
-print("GNOme setup...",file=sys.stderr)
-start = time.time()
-gnome = GNOme()
-print("GNOme setup complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
+if dotopo:
+    print("GNOme setup...",file=sys.stderr)
+    start = time.time()
+    gnome = GNOme()
+    print("GNOme setup complete. (%s secs.)"%(time.time()-start,),file=sys.stderr)
 
 import subprocess, atexit
 xvfbproc = subprocess.Popen(["Xvfb",":1"])
@@ -89,9 +96,10 @@ for j in range(iterations):
             continue
         if gly.repeated():
             continue
-        topoacc = gnome.get_topology(acc)
-        if not topoacc:
-            continue
+        if dotopo:
+            topoacc = gnome.get_topology(acc)
+            if not topoacc:
+                continue
         comp = gly.iupac_composition(floating_substituents=False,
                                      aggregate_basecomposition=False)
         if comp['Count'] < 3:
@@ -112,6 +120,7 @@ for j in range(iterations):
         for k in ('scale','reducing_end','orientation','notation','display','opaque'):
             print(k+":",imageWriter.get(k),file=wh)
         print("composition:",comp,file=wh)
-        print("topology:",topoacc,file=wh)
+        if dotopo:
+            print("topology:",topoacc,file=wh)
         wh.close()
         count += 1
