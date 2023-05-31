@@ -17,9 +17,9 @@ def lineno(msg=None):
   frame = callerframerecord[0]
   info = inspect.getframeinfo(frame)
   if msg:
-      print "[%s, %s] %s:%s: %s"%(time.asctime(),info.function,os.path.split(info.filename)[1],info.lineno,msg)
+      print("[%s, %s] %s:%s: %s"%(time.asctime(),info.function,os.path.split(info.filename)[1],info.lineno,msg))
   else:
-      print "[%s, %s] %s:%s"%(time.asctime(),info.function,os.path.split(info.filename)[1],info.lineno)
+      print("[%s, %s] %s:%s"%(time.asctime(),info.function,os.path.split(info.filename)[1],info.lineno))
 
 class Comparitor(object):
 
@@ -147,16 +147,16 @@ def _mindistsfromroot(r):
 
 def _mindistfromroot(r,d=0,dist=None,instonly=True):
     if not dist:
-	dist = dict()
+        dist = dict()
     if dist.get(r.id(),1e+20) > d:
-	dist[r.id()] = d
+        dist[r.id()] = d
         if instonly:
             iterlinks = r.links()
         else:
             iterlinks = r.links_with_uninstantiated()
         for l in iterlinks:
-	    ch = l.child()
-	    dist.update(_mindistfromroot(ch,d+1,dist,instonly))
+            ch = l.child()
+            dist.update(_mindistfromroot(ch,d+1,dist,instonly))
     return dist
 
 class GlycanEquivalence(Comparitor):
@@ -165,13 +165,13 @@ class GlycanEquivalence(Comparitor):
 
     def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,**kw):
         self._monocmp = monocmp
-	if rootmonocmp:
-	    self._rootmonocmp = rootmonocmp
-	else:
-	    self._rootmonocmp = monocmp
+        if rootmonocmp:
+            self._rootmonocmp = rootmonocmp
+        else:
+            self._rootmonocmp = monocmp
         self._linkcmp = linkcmp
-	self.adist = None
-	self.bdist = None
+        self.adist = None
+        self.bdist = None
         self._repeat_max_depth = 10
         self._exactmatch = True
         if "exactmatch" in kw:
@@ -310,17 +310,17 @@ class GlycanEquivalence(Comparitor):
 
         if not self.monoeq(a,b):
             return False
-	if a.parent_link_count() != b.parent_link_count():
-	    return False
-	if a.link_count() != b.link_count():
-	    return False
-	if a.link_count(default=False) != b.link_count(default=False):
-	    return False
-
-	assert self.adist and self.bdist
-	if self.adist[0].get(a.id()) != self.bdist[0].get(b.id()):
+        if a.parent_link_count() != b.parent_link_count():
             return False
-	if self.adist[1].get(a.id()) != self.bdist[1].get(b.id()):
+        if a.link_count() != b.link_count():
+            return False
+        if a.link_count(default=False) != b.link_count(default=False):
+            return False
+
+        assert self.adist and self.bdist
+        if self.adist[0].get(a.id()) != self.bdist[0].get(b.id()):
+            return False
+        if self.adist[1].get(a.id()) != self.bdist[1].get(b.id()):
             return False
 
         child_links_match = False
@@ -333,9 +333,9 @@ class GlycanEquivalence(Comparitor):
     def eq(self, a, b, idmap=None):
 
         assert idmap in (None,[])
-	
-	self.adist = None
-	self.bdist = None
+        
+        self.adist = None
+        self.bdist = None
 
         if a.has_root() and b.has_root():
             if not a.undetermined() and not b.undetermined():
@@ -409,9 +409,9 @@ class GlycanEquivalence(Comparitor):
         if len(linkset1) != len(linkset2):
             return False
 
-	# compute distances 
-	self.adist = _mindistsfromroot(a.root())
-	self.bdist = _mindistsfromroot(b.root())
+        # compute distances 
+        self.adist = _mindistsfromroot(a.root())
+        self.bdist = _mindistsfromroot(b.root())
 
         iters = 0
         for ii,jj in itergenmatchings(nodeset1, nodeset2, self.monosaccharide_match):
@@ -435,12 +435,12 @@ class GlycanEquivalence(Comparitor):
                     if a.has_root() and b.has_root():
                         idmap.append((a.root(),b.root()))
                     idmap.extend(zip(ii,jj))
-		self.adist = None
-		self.bdist = None
+                self.adist = None
+                self.bdist = None
                 return True
 
-	self.adist = None
-	self.bdist = None
+        self.adist = None
+        self.bdist = None
         return False
         
 class CompositionEquivalence(Comparitor):
@@ -453,11 +453,11 @@ class CompositionEquivalence(Comparitor):
         super(CompositionEquivalence,self).__init__(**kw)
 
     def nodeeq(self,a,b):
-	if a.is_monosaccharide() and b.is_monosaccharide():
+        if a.is_monosaccharide() and b.is_monosaccharide():
             return self._monocmp.eq(a,b)
-	elif not a.is_monosaccharide() and not b.is_monosaccharide():
-	    return self._substcmp.eq(a,b)
-	return False
+        elif not a.is_monosaccharide() and not b.is_monosaccharide():
+            return self._substcmp.eq(a,b)
+        return False
 
     def eq(self,a,b,idmap=None):
       
@@ -481,10 +481,10 @@ class GlycanPartialOrder(Comparitor):
 
     def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,substcmp=None,**kw):
         self._monocmp = monocmp
-	if rootmonocmp:
-	    self._rootmonocmp = rootmonocmp
-	else:
-	    self._rootmonocmp = monocmp
+        if rootmonocmp:
+            self._rootmonocmp = rootmonocmp
+        else:
+            self._rootmonocmp = monocmp
         self._linkcmp = linkcmp
 
         self._glycompcmp = CompositionPartialOrder(monocmp=self._monocmp,substcmp=substcmp)
@@ -511,21 +511,21 @@ class GlycanPartialOrder(Comparitor):
 
         if not self.monoleq(a,b):
             return False
-	if a.parent_link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED) < \
+        if a.parent_link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED) < \
              b.parent_link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED):
-	    return False
-	if a.parent_link_count() > b.parent_link_count():
-	    return False
-	if a.link_count() < b.link_count():
             return False
-	if a.link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE) > b.link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE):
-	    return False
-	assert self.adist and self.bdist
-	# Using uninstantiated edges, a cannot be closer to the root
-	if self.adist[0].get(a.id(),1e+20) < self.bdist[0].get(b.id(),1e+20):
+        if a.parent_link_count() > b.parent_link_count():
             return False
-	# Using instantiated edges only, b cannot be closer to the root
-	if self.adist[1].get(a.id(),1e+20) > self.bdist[1].get(b.id(),1e+20):
+        if a.link_count() < b.link_count():
+            return False
+        if a.link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE) > b.link_count(default=False,repeat=-Linkage.REPEAT_BRIDGE):
+            return False
+        assert self.adist and self.bdist
+        # Using uninstantiated edges, a cannot be closer to the root
+        if self.adist[0].get(a.id(),1e+20) < self.bdist[0].get(b.id(),1e+20):
+            return False
+        # Using instantiated edges only, b cannot be closer to the root
+        if self.adist[1].get(a.id(),1e+20) > self.bdist[1].get(b.id(),1e+20):
             return False
         return True
 
@@ -562,8 +562,8 @@ class GlycanPartialOrder(Comparitor):
 
     def leq(self,a,b,idmap=None):
 
-	self.adist = None
-	self.bdist = None
+        self.adist = None
+        self.bdist = None
 
         assert idmap in (None,[])
 
@@ -625,8 +625,8 @@ class GlycanPartialOrder(Comparitor):
             # TODO Cannot handle cases like this...
             return False
 
-	self.adist = _mindistsfromroot(a.root())
-	self.bdist = _mindistsfromroot(b.root())
+        self.adist = _mindistsfromroot(a.root())
+        self.bdist = _mindistsfromroot(b.root())
 
         lineno()
 
@@ -1130,11 +1130,11 @@ class CompositionPartialOrder(Comparitor):
         super(CompositionPartialOrder,self).__init__(**kw)
 
     def nodeleq(self,a,b):
-	if a.is_monosaccharide() and b.is_monosaccharide():
+        if a.is_monosaccharide() and b.is_monosaccharide():
             return self._monocmp.leq(a,b)
-	elif not a.is_monosaccharide() and not b.is_monosaccharide():
-	    return self._substcmp.leq(a,b)
-	return False
+        elif not a.is_monosaccharide() and not b.is_monosaccharide():
+            return self._substcmp.leq(a,b)
+        return False
 
     def leq(self,a,b,idmap=None):
       
@@ -1168,12 +1168,12 @@ class CompositionPartialOrder(Comparitor):
 
         # sys.stdout.flush()
 
-	# allow for # floating substituent monosaccharides not to match, then deal with these in loop
-	fs1 = len(nodeset1uds)
-	fs2 = len(nodeset2uds)
+        # allow for # floating substituent monosaccharides not to match, then deal with these in loop
+        fs1 = len(nodeset1uds)
+        fs2 = len(nodeset2uds)
 
-	if fs1 > fs2:
-	    return False
+        if fs1 > fs2:
+            return False
 
         # we deal with three cases, for now...
         # 1. No floating substituents at all (fs1 == fs2 == 0)
@@ -1182,14 +1182,14 @@ class CompositionPartialOrder(Comparitor):
         #    either all floating or all linked. If all floating on one
         #    and all linked on the other, must be floating for b and
         #    linked for a.
-	
-	if fs2 == fs1:
+        
+        if fs2 == fs1:
             for ii,jj in itergenmatchings(nodeset1all,nodeset2all,self.nodeleq):
                 if idmap is not None:
                     idmap.extend(zip(ii,jj))
-		return True
+                return True
 
-	else:
+        else:
 
             allsubst = set()
             subst1link = defaultdict(int)
@@ -1236,11 +1236,11 @@ class CompositionPartialOrder(Comparitor):
                          subst2float[s] == subst1float[s]:
                     # Do nothing, but not a problem
                     pass
-		elif subst2float[s] == 0 and \
-			 subst1float[s] == 0 and \
-			 subst1link[s] == subst2link[s]:
-		    # Do nothing, but not a problem
-		    pass
+                elif subst2float[s] == 0 and \
+                         subst1float[s] == 0 and \
+                         subst1link[s] == subst2link[s]:
+                    # Do nothing, but not a problem
+                    pass
                 else:
                     bad = True
                     break
@@ -1267,7 +1267,7 @@ class CompositionPartialOrder(Comparitor):
             for ii,jj in itergenmatchings(newnodeset1,nodeset2,self.nodeleq):
                 if idmap is not None:
                     idmap.extend(zip(ii,jj))
-		return True
+                return True
 
         lineno()
 
@@ -1529,11 +1529,11 @@ class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
       
 class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
-	if a._sub != b._sub:
+        if a._sub != b._sub:
             return False
         return True
     def leq(self,a,b):
-	if a._sub != b._sub:
+        if a._sub != b._sub:
             return False
         return True
 
@@ -1548,34 +1548,34 @@ class SubstituentEqualWithWURCSCheck(SubstituentEqual):
             
 class LinkageEqualSimple(LinkageComparitorBase):
     def eq(self, a, b):
-	if a._parent_type != b._parent_type:
-	    return False
-	if a._child_type != b._child_type:
-	    return False
-	if a._child_pos != b._child_pos:
-	    return False
+        if a._parent_type != b._parent_type:
+            return False
+        if a._child_type != b._child_type:
+            return False
+        if a._child_pos != b._child_pos:
+            return False
         if a._parent_pos != b._parent_pos:
-	    return False
+            return False
         if a._link_type != b._link_type:
             return False
-	return True
+        return True
 
 class LinkageTopoEqualSimple(LinkageComparitorBase):
     def eq(self,a,b):
-	if a._parent_type != b._parent_type:
-	    return False
-	if a._child_type != b._child_type:
-	    return False
+        if a._parent_type != b._parent_type:
+            return False
+        if a._child_type != b._child_type:
+            return False
         # do not check parent_pos or child_pos
         if a._link_type != b._link_type:
             return False
-	return True
+        return True
 
 class LinkageImageEqualSimple(LinkageComparitorBase):
     def eq(self,a,b):
         if a._link_type != b._link_type:
             return False
-	return True
+        return True
 
 class LinkageSubsumedSimple(LinkageComparitorBase):
 
@@ -1590,27 +1590,27 @@ class LinkageSubsumedSimple(LinkageComparitorBase):
 
     def leq(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
-	    return False
+            return False
         if not self._leq_(a._child_type,b._child_type):
-	    return False
+            return False
         if not self._leq_(a._parent_pos,b._parent_pos):
-	    return False
+            return False
         if not self._leq_(a._child_pos,b._child_pos):
-	    return False
+            return False
         if not a.instantiated() and b.instantiated():
             return False
-	return True
+        return True
 
 class LinkageTopoSubsumedSimple(LinkageSubsumedSimple):
 
     def leq(self,a,b):
         if not self._leq_(a._parent_type,b._parent_type):
-	    return False
+            return False
         if not self._leq_(a._child_type,b._child_type):
-	    return False
+            return False
         if not a.instantiated() and b.instantiated():
             return False
-	return True
+        return True
 
 class LinkageComparitorMotifGlyTouCanOriginalSimple(LinkageComparitorBase):
 
@@ -1878,17 +1878,17 @@ def items():
 def verify(acc1,acc2,test,result,expected):
 
     if result != expected:
-        print "g1(%s), g2(%s): %s = %s (%s expected): Failed!"%(acc1,acc2,test,result,expected)
+        print("g1(%s), g2(%s): %s = %s (%s expected): Failed!"%(acc1,acc2,test,result,expected))
         # sys.exit(1)
     else:
-        print "g1(%s), g2(%s): %s = %s (%s expected)"%(acc1,acc2,test,result,expected)
+        print("g1(%s), g2(%s): %s = %s (%s expected)"%(acc1,acc2,test,result,expected))
 
 def subshow(acc1,acc2,test,result):
 
     if result:
-        print "%s %s %s"%(acc1,test,acc2)
+        print("%s %s %s"%(acc1,test,acc2))
     else:
-        print "%s %s/%s %s"%(acc1,test[0],test[-1],acc2)
+        print("%s %s/%s %s"%(acc1,test[0],test[-1],acc2))
 
 def compare(gd1,gd2):
 
