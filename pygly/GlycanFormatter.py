@@ -751,7 +751,8 @@ class GlycoCTFormat(GlycanFormatter):
             g = Glycan(unconnected.pop())
             g.set_undetermined(undets)
         else:
-            assert len(undets) == 0
+            if len(undets) != 0:
+                raise GlycoCTUndeterminedLinkageError()
             g = Glycan()
             g.set_undetermined(unconnected)
 
@@ -2087,7 +2088,8 @@ class WURCS20Format(GlycanFormatter):
                 raise UnexpectedFloatingSubstError(s)
             g.set_undetermined(undets)
         else:
-            assert len(undets) == 0
+            if len(undets) != 0:
+                raise UnexpectedConnectivityError(s)
             g = Glycan()
             g.set_undetermined(set(list(unconnected)+floating_substs))
 
