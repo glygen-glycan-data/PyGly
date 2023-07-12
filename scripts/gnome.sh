@@ -34,7 +34,8 @@ if [ -d ./GNOme ]; then
     exit 1
 fi
 
-git clone git@github.com:glygen-glycan-data/GNOme.git
+gh repo clone glygen-glycan-data/GNOme
+# git clone git@github.com:glygen-glycan-data/GNOme.git
 ./gnome_prereq.sh
 ./gnome_compute.py writeowl \
   ./GNOme/data/gnome_subsumption_raw.txt \
