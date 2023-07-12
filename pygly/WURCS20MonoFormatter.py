@@ -101,7 +101,7 @@ class WURCS20MonoFormat:
         # print(mono_string)
         # print(skel, anomer, ring, substs)
         m = Monosaccharide()
-        m.set_external_descriptor(skel)
+        m.set_external_descriptor(mono_string)
 
         if skel in self.skelconfig.sections():
             self.skel_config_get_default_section = skel

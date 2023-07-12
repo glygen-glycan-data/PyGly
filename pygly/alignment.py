@@ -174,6 +174,7 @@ class GlycanEquivalence(Comparitor):
         self.bdist = None
         self._repeat_max_depth = 10
         self._exactmatch = True
+        self._check_uninstantiated_links = True
         if "exactmatch" in kw:
             assert kw["exactmatch"] in [True, False]
             self._strict = kw["exactmatch"]
@@ -310,24 +311,35 @@ class GlycanEquivalence(Comparitor):
 
         if not self.monoeq(a,b):
             return False
-        if a.parent_link_count() != b.parent_link_count():
+        if self._check_uninstantiated_links:
+          if a.parent_link_count() != b.parent_link_count():
+            return False
+        else:
+          if a.parent_link_count(default=False,repeat=Linkage.NON_REPEAT,inst=Linkage.INSTANTIATED) != \
+               b.parent_link_count(default=False,repeat=Linkage.NON_REPEAT,inst=Linkage.INSTANTIATED):
             return False
         if a.link_count() != b.link_count():
             return False
-        if a.link_count(default=False) != b.link_count(default=False):
+        if self._check_uninstantiated_links and a.link_count(default=False) != b.link_count(default=False):
             return False
 
         assert self.adist and self.bdist
-        if self.adist[0].get(a.id()) != self.bdist[0].get(b.id()):
+        if self._check_uninstantiated_links and self.adist[0].get(a.id()) != self.bdist[0].get(b.id()):
             return False
         if self.adist[1].get(a.id()) != self.bdist[1].get(b.id()):
             return False
 
         child_links_match = False
-        for ii,jj in itermatchings(a.links_with_uninstantiated(),b.links_with_uninstantiated(),
-                                   lambda i,j: self.linkeq(i,j) and self.monoeq(i.child(),j.child())):
-            child_links_match = True
-            break
+        if self._check_uninstantiated_links:
+            for ii,jj in itermatchings(a.links_with_uninstantiated(),b.links_with_uninstantiated(),
+                                       lambda i,j: self.linkeq(i,j) and self.monoeq(i.child(),j.child())):
+                child_links_match = True
+                break
+        else:
+            for ii,jj in itermatchings(a.links(),b.links(),
+                                       lambda i,j: self.linkeq(i,j) and self.monoeq(i.child(),j.child())):
+                child_links_match = True
+                break
         return child_links_match
 
     def eq(self, a, b, idmap=None):
@@ -406,7 +418,7 @@ class GlycanEquivalence(Comparitor):
             assert (key not in linkset2)
             linkset2[key] = l
 
-        if len(linkset1) != len(linkset2):
+        if self._check_uninstantiated_links and len(linkset1) != len(linkset2):
             return False
 
         # compute distances 
@@ -425,10 +437,13 @@ class GlycanEquivalence(Comparitor):
 
             good = True
             for (f,t),l1 in linkset1.items():
+                if self._check_uninstantiated_links or not l1.instantiated():
+                    continue
                 l2 = linkset2.get((matching[f],matching[t]))
-                if not l2 or not self.linkeq(l1,l2):
+                if not l2 or not self.linkeq(l1,l2) or not l2.instantiated():
                     good = False
                     break
+            
             if good:
                 # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
                 if idmap is not None:
@@ -1148,8 +1163,8 @@ class CompositionPartialOrder(Comparitor):
         nodeset1all = list(a.all_nodes(subst=False,undet_subst=True))
         nodeset2all = list(b.all_nodes(subst=False,undet_subst=True))
 
-        nodeset1uds = filter(lambda n: not n.is_monosaccharide(),nodeset1all)
-        nodeset2uds = filter(lambda n: not n.is_monosaccharide(),nodeset2all)
+        nodeset1uds = list(filter(lambda n: not n.is_monosaccharide(),nodeset1all))
+        nodeset2uds = list(filter(lambda n: not n.is_monosaccharide(),nodeset2all))
 
         lineno()
 
@@ -1760,6 +1775,15 @@ class GlycanImageEqual(GlycanEquivalence):
         # monotest needs a subst test and a sublink test
         kw['monocmp']=MonosaccharideImageEqual(**kw)
         super(GlycanImageEqual,self).__init__(**kw)
+        self._check_uninstantiated_links = False
+
+class GlycanCompImageEqual(CompositionEquivalence):
+    def __init__(self,**kw):
+        kw['substcmp']=SubstituentEqual(**kw)
+        kw['sublinkcmp']=LinkageImageEqual(**kw)
+        # monotest needs a subst test and a sublink test
+        kw['monocmp']=MonosaccharideImageEqual(**kw)
+        super(GlycanCompImageEqual,self).__init__(**kw)
 
 class GlycanCompEqual(CompositionEquivalence):
     def __init__(self,**kw):

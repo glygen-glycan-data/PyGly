@@ -541,34 +541,13 @@ class Glycan:
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
 
-    def iupac_composition(self, floating_substituents=True, 
-                                aggregate_basecomposition=True, 
-                                redend_only=False,
-                                repeat_times=None):
-        self.repeat_time_verification(repeat_times)
+    def iupac_items(self, nodeiterable, floating_substituents=True, aggregate_basecomposition=True):
 
         validsyms = self.iupac_composition_syms + self.subst_composition_syms
         if not floating_substituents:
             validsyms += self.iupac_aldi_composition_syms
-        
-        c = Composition()
-        for sym in (validsyms + ['Xxx','X']):
-            c[sym] = 0
-        if not redend_only:
-            nodeiterable = self.all_nodes(undet_subst=True)
-        else:
-            if self.has_root():
-                nodeiterable = [ self.root() ]
-            else:
-                nodeiterable = []
 
-        if type(repeat_times) == int:
-            repeat_times = [repeat_times]*self.repeat_unit_count()
-        if repeat_times != None and max(repeat_times) > 1:
-            nodeiterable = list(nodeiterable)
-            for t,nds in zip(repeat_times,self.repeat_nodes()):
-                nodeiterable += nds*(t-1)
-
+        items = []
         for m in nodeiterable:
 
             try:
@@ -587,9 +566,9 @@ class Glycan:
 
             if sym == None and sym1 == None:
                 if isinstance(m,Monosaccharide):        
-                    c['Xxx'] += 1
+                    items.append((m.id(),'Xxx',False))
                 else:
-                    c['X'] += 1
+                    items.append((m.id(),'X',False))
                 continue
 
             if floating_substituents:
@@ -605,8 +584,6 @@ class Glycan:
                 syms = [sym]
                 syms1 = [sym1]
 
-            # print(syms,syms1)
-
             if syms[0] not in validsyms:
                 if syms1[0] in validsyms:
                     syms = syms1
@@ -621,29 +598,77 @@ class Glycan:
                     syms[i] = 'X'
 
             if syms[0] == 'Xxx' or 'X' in syms:
-                c['Xxx'] += 1
+                items.append((m.id(),'Xxx',False))
                 continue
 
             if syms[0] == 'X':
-                c['X'] += 1
+                items.append((m.id(),'X',False))
                 continue
 
             for sym in syms:
-                c[sym] += 1
+                items.append((m.id(),sym,False))
 
-        c['Count'] = sum(map(c.__getitem__,self.iupac_composition_syms + ['Xxx']))
         if aggregate_basecomposition:
-            c['Hex'] = sum(map(c.__getitem__,('Man','Gal','Glc','Hex')))
-            c['Hex+aldi'] = sum(map(c.__getitem__,('Man+aldi','Gal+aldi','Glc+aldi','Hex+aldi')))
-            c['HexNAc'] = sum(map(c.__getitem__,('GalNAc','GlcNAc','ManNAc','HexNAc')))
-            c['HexNAc+aldi'] = sum(map(c.__getitem__,('GalNAc+aldi','GlcNAc+aldi','ManNAc+aldi','HexNAc+aldi')))
-            c['dHex'] = sum(map(c.__getitem__,('Fuc','dHex')))
-            # c['dHexNAc'] = sum(map(c.__getitem__,('QuiNAc','dHexNAc')))
-            c['dHex+aldi'] = sum(map(c.__getitem__,('Fuc+aldi','dHex+aldi')))
-            c['Pent'] = sum(map(c.__getitem__,('Xyl','Pent')))
-            c['Sia'] = sum(map(c.__getitem__,('NeuAc','NeuGc','Kdn','Sia')))
-            c['HexA'] = sum(map(c.__getitem__,('GlcA','GalA','IdoA','ManA','HexA')))
-            c['HexN'] = sum(map(c.__getitem__,('GlcN','GalN','ManN','HexN')))
+            for mid,sym,isaggr in list(items):
+                if sym in ('Man','Gal','Glc'):
+                    items.append((mid,'Hex',True))
+                elif sym in ('GalNAc','GlcNAc','ManNAc'):
+                    items.append((mid,'HexNAc',True))
+                elif sym in ('Man+aldi','Gal+aldi','Glc+aldi'):
+                    items.append((mid,'Hex+aldi',True))
+                elif sym in ('Fuc',):
+                    items.append((mid,'dHex',True))
+                elif sym in ('Fuc+aldi',):
+                    items.append((mid,'dHex+aldi',True))
+                elif sym in ('Xyl',):
+                    items.append((mid,'Pent',True))
+                elif sym in ('NeuAc','NeuGc','Kdn'):
+                    items.append((mid,'Sia',True))
+                elif sym in ('GlcA','GalA','IdoA','ManA'):
+                    items.append((mid,'HexA',True))
+                elif sym in ('GlcN','GalN','ManN'):
+                    items.append((mid,'HexN',True))
+
+        return items
+
+    def iupac_composition(self, floating_substituents=True, 
+                                aggregate_basecomposition=True, 
+                                redend_only=False,
+                                repeat_times=None):
+        self.repeat_time_verification(repeat_times)
+
+        validsyms = self.iupac_composition_syms + self.subst_composition_syms
+        validmonosyms = self.iupac_composition_syms
+        if not floating_substituents:
+            validsyms += self.iupac_aldi_composition_syms
+            validmonosyms += self.iupac_composition_syms
+        
+        c = Composition()
+        for sym in (validsyms + ['Xxx','X','Count']):
+            c[sym] = 0
+
+        if not redend_only:
+            nodeiterable = self.all_nodes(undet_subst=True)
+        else:
+            if self.has_root():
+                nodeiterable = [ self.root() ]
+            else:
+                nodeiterable = []
+
+        if type(repeat_times) == int:
+            repeat_times = [repeat_times]*self.repeat_unit_count()
+        if repeat_times != None and max(repeat_times) > 1:
+            nodeiterable = list(nodeiterable)
+            for t,nds in zip(repeat_times,self.repeat_nodes()):
+                nodeiterable += nds*(t-1)
+
+        for mid,sym,isaggr in self.iupac_items(nodeiterable,
+                                               floating_substituents=floating_substituents,
+                                               aggregate_basecomposition=aggregate_basecomposition):
+
+            c[sym] += 1
+            if not isaggr and sym in validmonosyms:
+                c[Count] += 1
  
         return c
 
@@ -703,6 +728,12 @@ class Glycan:
             else:
                 for l in m.links():
                     yield l
+
+    def any_subst_link(self):
+        for m in self.all_nodes(subst=True):
+            if m.is_substituent() and m.has_links(default=False,fromto=-Linkage.MONO_TO_SUBST):
+                return True
+        return False
 
     def clone(self):
         self.set_ids()

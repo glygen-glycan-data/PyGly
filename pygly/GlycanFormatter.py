@@ -1571,9 +1571,11 @@ class IUPACGlycamWriter:
     def has1v1children(self, m):
 
         for cl in m.links():
-            cp = cl._child_pos
-            pp = cl._parent_pos
-            if cp == {1} and pp == {1}:
+            crs = cl.child().ring_start()
+            cp = cl.child_pos()
+            prs = cl.parent().ring_start()
+            pp = cl.parent_pos()
+            if cp == {crs} and pp == {prs}:
                 return True
         return False
 
@@ -1881,6 +1883,7 @@ class WURCS20Format(GlycanFormatter):
                 subst = self.mf.getsubst(mi.group(5))
                 subst.set_connected(False)
                 floating_substs.append(subst)
+                subst.set_id(-len(floating_substs))
                 continue
 
 
@@ -1934,6 +1937,7 @@ class WURCS20Format(GlycanFormatter):
                 subst = self.mf.getsubst(mi.group(3))
                 subst.set_connected(False)
                 floating_substs.append(subst)
+                subst.set_id(-len(floating_substs))
                 continue
 
 

@@ -85,6 +85,7 @@ class Node(object):
         self._id = None
 
         self._external_descriptor = None
+        self._eid = None
 
         return 
 
@@ -266,6 +267,12 @@ class Node(object):
 
     def set_external_descriptor(self, s):
         self._external_descriptor = s
+
+    def set_external_descriptor_id(self, eid):
+        self._eid = eid
+
+    def external_descriptor_id(self):
+        return self._eid
 
     def is_repeat_start(self):
         for l in self.parent_links(default=False,repeat=Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED):
@@ -634,12 +641,6 @@ class Monosaccharide(Node):
     def remove_substituent_link(self, l):
         self._substituent_links.remove(l)
 
-    def set_external_descriptor_id(self, eid):
-        self._eid = eid
-
-    def external_descriptor_id(self):
-        return self._eid
-
 ##     def mass(self,mass_table=None):
 ##         if not mass_table:
 ##             mass_table = Monosaccharide.elementMassTable
@@ -823,6 +824,9 @@ class Substituent(Node):
     def clone(self):
         s = Substituent(self.name())
         s.set_id(self.id())
+        s.set_connected(self.connected())
+        s.set_external_descriptor(self.external_descriptor())
+        s.set_external_descriptor_id(self.external_descriptor_id())
         return s
 
     def name(self):

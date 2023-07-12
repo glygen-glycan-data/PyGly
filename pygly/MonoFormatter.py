@@ -4,6 +4,7 @@ from . ConstantsTable import ConstantsTable
 from . Monosaccharide import *
 import re
 import sys
+import json
 
 from xml.etree.ElementTree import Element, SubElement
 
@@ -293,6 +294,21 @@ class GlycoCTMonoFormat:
 
         return [l]
 
+class MonosaccharideDB(GlycoCTMonoFormat):
+   def toStr(self,m):
+        s = [ GlycoCTMonoFormat.toStr(self,m).split(':',1)[1] ]
+        for l in m.substituent_links():
+            sub = l.child()
+            ls0 = self.linkToStr(l,noids=True)
+            f,t = ls0.split('+')
+            ls = ''.join(f.split('(')[::-1]) + ":" + ''.join(t.split(')'))
+            # print(ls)
+            # ls = "%s%s:%s%s"%(list(l.parent_pos())[0],self.fromSym[('Linkage',list(l.parent_type())[0])],list(l.child_pos())[0],self.fromSym[('Linkage',list(l.child_type())[0])])
+            # print(ls)
+            ss = GlycoCTMonoFormat.toStr(self,sub).split(':',1)[1]
+            s.append('(%s)%s'%(ls,ss))
+        return "||".join(s)
+
 class MonoSymLookup(dict):
     def __init__(self):
         st = SymbolsTable()
@@ -343,3 +359,68 @@ class MassSym(MonoSymLookup):
 
 class GlycamSym(MonoSymLookup):
     pass
+
+class JSONCanonResidue(object):
+    iupac = IUPACSym()
+    mdb = MonosaccharideDB()
+    gctmf = GlycoCTMonoFormat()
+    ringToChar = {(1,5): "p", (2,6): "p", (0,0): "ol", (1,4): "f"}
+    configToChar = {"d": "D", "l": "L", ("d","d"): "D"}
+    def toStr(self,m):
+        data = dict()
+        if isinstance(m,Monosaccharide):
+            data['residueid'] = str(m.id())
+            data['residuetype'] = 'monosaccharide'
+            data['monodb'] = self.mdb.toStr(m)
+            try:
+                data['name'] = self.iupac.toStr(m)
+            except KeyError:
+                pass #data['iupac'] = 'Xxx'
+            if m.anomer() != Anomer.missing:
+                data['anomer'] = self.gctmf.fromSym[('Anomer',m.anomer())]
+            else:
+                pass #data['anomer'] = 'x'
+            # if m.superclass() != SuperClass.missing:
+            #     data['superclass'] = self.gctmf.fromSym[('SuperClass',m.superclass())].lower()
+            # else:
+            #     pass #data['superclass'] = 'xxx'
+            rs = m.ring_start()
+            re = m.ring_end()
+            ringkey = (rs,re)
+            if ringkey in self.ringToChar:
+                data['ring'] = self.ringToChar[ringkey]
+            cfst = []
+            if m.stem() != None:
+                if m.config() == None:
+                    cfg = [Config.missing]*len(m.stem())
+                else:
+                    cfg = list(m.config())
+                stm = list(m.stem())
+                assert len(cfg) == len(stm)
+                
+                for i,(cf,st) in enumerate(zip(cfg,stm)):
+                    cfst.append((self.gctmf.fromSym[('Config',cf)],self.gctmf.fromSym[('Stem',st)]))
+                
+            if len(cfst) == 1 and cfst[0][0] in self.configToChar:
+                data['absolute'] = self.configToChar[cfst[0][0]]
+            if len(cfst) == 2 and (cfst[0][0],cfst[1][0]) in self.configToChar and data.get('iupac') in ("NeuAc","NeuGc"):
+                data['absolute'] = self.configToChar[(cfst[0][0],cfst[1][0])]
+
+            if m.parent_link_count() == 1:
+                pl = m.any_parent_link()
+                if pl.parent_pos() != None:
+                    data['site'] = str(pl.posstr(pl.parent_pos()))
+                data['parentid'] = str(pl.parent().id())
+      
+        elif isinstance(m,Substituent):
+
+            data['residueid'] = str(m.id())
+            data['residuetype'] = 'substituent'
+            data['monodb'] = self.mdb.toStr(m)
+            data['name'] = self.gctmf.toStr(m).split(':',1)[1]
+
+        else:
+            raise NotImplemented()
+
+        return json.dumps(data,indent=2,sort_keys=True);
+

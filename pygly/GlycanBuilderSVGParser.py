@@ -83,6 +83,7 @@ class GlycanBuilderSVG(GlycanFormatter):
         s = s.replace('data:','data.')
         doc = ET.parse(StringIO(s))
         undetroot = dict()
+        undetrootlinkpos = dict()
         monos = dict()
         rootmonoindex = 1
         root = doc.getroot()
@@ -121,6 +122,21 @@ class GlycanBuilderSVG(GlycanFormatter):
                  monos[resid] = m
                  if g.attrib.get('data.residueMultiplicity') != None:
                      undetroot[resid] = int(g.attrib.get('data.residueMultiplicity'))
+                 if g.attrib.get('data.residueUndeterminedMultiplicity') != None:
+                     undetroot[resid] = int(g.attrib.get('data.residueUndeterminedMultiplicity'))
+                     linkpos = [g.attrib.get('data.residueUndeterminedChildPos'),
+                                g.attrib.get('data.residueUndeterminedParentPos')]
+                     try:
+                         linkpos[0] = int(linkpos[0])
+                     except (ValueError,TypeError):
+                         if linkpos[0] == '?':
+                             linkpos[0] = -1
+                     try:
+                         linkpos[1] = int(linkpos[1])
+                     except (ValueError,TypeError):
+                         if linkpos[1] == '?':
+                             linkpos[1] = -1
+                     undetrootlinkpos[resid] = tuple(linkpos)
                   
             elif g.attrib.get('data.type') == 'Substituent':
                 # handle substituent
@@ -128,21 +144,54 @@ class GlycanBuilderSVG(GlycanFormatter):
                 if subres not in self.substmap:
                     raise GlycanBuilderSVGSubstituentLookupError(subres)
                 sub = Substituent(self.substmap[subres]['type'])
-                if g.attrib['data.parentPositions'] == "?":
-                    parent_pos = None
+                if 'data.residueIndex' in g.attrib:
+                    # floating substituent
+                    resid = int(g.attrib['data.residueIndex'])
+                    sub.set_id(resid)
+                    sub.set_external_descriptor_id(g.attrib['ID'])
+                    monos[resid] = sub
+                    
+                    assert g.attrib.get('data.residueUndeterminedMultiplicity') != None
+                    undetroot[resid] = int(g.attrib.get('data.residueUndeterminedMultiplicity'))
+                    linkpos = [g.attrib.get('data.residueUndeterminedChildPos'),
+                               g.attrib.get('data.residueUndeterminedParentPos')]
+                    try:
+                        linkpos[0] = int(linkpos[0])
+                    except (ValueError,TypeError):
+                        if linkpos[0] == '?':
+                            linkpos[0] = -1
+                    try:
+                        linkpos[1] = int(linkpos[1])
+                    except (ValueError,TypeError):
+                        if linkpos[1] == '?':
+                            linkpos[1] = -1
+                    undetrootlinkpos[resid] = tuple(linkpos)
+
                 else:
-                    parent_pos = set(map(int,g.attrib['data.parentPositions'].split('/')))
-                if g.attrib['data.childPositions'] == "?":
-                    child_pos = None
-                else:
-                    child_pos = set(map(int,g.attrib['data.childPositions'].split('/')))
-                parent = monos[int(g.attrib['data.parentResidueIndex'])]
-                parent.add_substituent(sub, 
-                                       parent_pos=parent_pos, parent_type=self.substmap[subres]['parent_type'], 
-                                       child_pos=child_pos, child_type=self.substmap[subres]['child_type'])
-                parent_eid = parent.external_descriptor_id()
-                parent_eid += ';'+g.attrib['ID']
-                parent.set_external_descriptor_id(parent_eid)
+                    if g.attrib['data.parentPositions'] == "?":
+                        parent_pos = None
+                    else:
+                        try:
+                            parent_pos = set(map(int,g.attrib['data.parentPositions'].split('/')))
+                        except (KeyError,ValueError):
+                            raise GlycanBuilderSVGUnexpectedLinkConnectionError()
+                    if g.attrib['data.childPositions'] == "?":
+                        child_pos = None
+                    else:
+                        try:
+                            child_pos = set(map(int,g.attrib['data.childPositions'].split('/')))
+                        except (KeyError,ValueError):
+                            raise GlycanBuilderSVGUnexpectedLinkConnectionError()
+                    try:
+                        parent = monos[int(g.attrib['data.parentResidueIndex'])]
+                    except (KeyError,ValueError):
+                        raise GlycanBuilderSVGUnexpectedLinkConnectionError()
+                    parent.add_substituent(sub, 
+                                           parent_pos=parent_pos, parent_type=self.substmap[subres]['parent_type'], 
+                                           child_pos=child_pos, child_type=self.substmap[subres]['child_type'])
+                    parent_eid = parent.external_descriptor_id()
+                    parent_eid += ';'+g.attrib['ID']
+                    parent.set_external_descriptor_id(parent_eid)
 
         for g in root.getiterator(ns+'g'):
             if g.attrib.get('data.type') == 'Linkage':
@@ -150,15 +199,18 @@ class GlycanBuilderSVG(GlycanFormatter):
                     continue
                 try:
                     parent = monos[int(g.attrib['data.parentResidueIndex'])]
-                except:
+                except KeyError:
                     raise GlycanBuilderSVGUnexpectedLinkConnectionError()
                 if g.attrib['data.parentPositions'] == "?":
                     parentpos = None
                 else:
-                    parentpos = set(map(int,g.attrib['data.parentPositions'].split('/')))
+                    try:
+                        parentpos = set(map(int,g.attrib['data.parentPositions'].split('/')))
+                    except ValueError:
+                        raise GlycanBuilderSVGUnexpectedLinkConnectionError()
                 try:
                     child = monos[int(g.attrib['data.childResidueIndex'])]
-                except:
+                except KeyError:
                     raise GlycanBuilderSVGUnexpectedLinkConnectionError()
                 if g.attrib['data.childPositions'] == "?":
                     childpos = None
@@ -168,9 +220,9 @@ class GlycanBuilderSVG(GlycanFormatter):
                                         parent_type=Linkage.oxygenPreserved,
                                         child_type=Linkage.oxygenLost)
 
+        coremonos = set(monos)
         undetroots = set()
         if len(undetroot) > 0:
-            coremonos = set(monos)
             toexplore = set(undetroot)
             while len(toexplore) > 0:
                 resid = toexplore.pop()
@@ -184,19 +236,23 @@ class GlycanBuilderSVG(GlycanFormatter):
                         m = monos[resid].deepclone()
                     else:
                         m = monos[resid]
+                    childpos,parentpos = undetrootlinkpos[resid]
                     for coreresid in coremonos:
-                        linkage = UninstantiatedLinkage(child_pos=None,
-                                                        parent_pos=None,
+                        linkage = UninstantiatedLinkage(child_pos=childpos,
+                                                        parent_pos=parentpos,
                                                         parent_type=Linkage.oxygenPreserved,
                                                         child_type=Linkage.oxygenLost)
                         monos[coreresid].add_child_with_special_linkage(m,linkage)
                     m.set_connected(False)
                     undetroots.add(m)
 
-        if rootmonoindex not in monos:
-            raise GlycanBuilderSVGMissingRootError()
-        rootmono = monos[rootmonoindex]
-        gly = Glycan(rootmono)
+        if len(coremonos) == 0:
+            gly = Glycan()
+        else:
+            if rootmonoindex not in coremonos:
+                raise GlycanBuilderSVGMissingRootError()
+            rootmono = monos[rootmonoindex]
+            gly = Glycan(rootmono)
         gly.set_undetermined(undetroots)
         gly.set_ids()
         return gly
