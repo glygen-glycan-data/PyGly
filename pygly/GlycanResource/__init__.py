@@ -11,4 +11,5 @@ from .GlyConnect import GlyConnect
 from .GlyCosmosSparqList import GlyCosmosSparqList
 from .Sandbox import GlycoTreeSandbox
 from .ChEBIDownload import ChEBIDownload
+from .Glycam import Glycam
 
