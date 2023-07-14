@@ -88,7 +88,7 @@ class WebServiceResource(GlycanResource):
                     kwargs[param] = args[i]
                 elif kw.get(param) != None:                                                                                 
                     kwargs[param] = kw[param]                                                                               
-                assert param in kwargs, " ".join(map(repr,[param, kwargs]))                                                 
+                assert param in kwargs or param == "payload", " ".join(map(repr,[param, kwargs])) 
             response = self.queryws(url,method,kwargs)
             if thetype == "JSON":
                 response = json.loads(response)
