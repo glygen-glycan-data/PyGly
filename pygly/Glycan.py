@@ -543,9 +543,10 @@ class Glycan:
 
     def iupac_items(self, nodeiterable, floating_substituents=True, aggregate_basecomposition=True):
 
-        validsyms = self.iupac_composition_syms + self.subst_composition_syms
-        if not floating_substituents:
-            validsyms += self.iupac_aldi_composition_syms
+        if floating_substituents:
+            validsyms = set(self.iupac_composition_syms + self.subst_composition_syms)
+        else:
+            validsyms = set(self.iupac_composition_syms + self.subst_composition_syms + self.iupac_aldi_composition_syms)
 
         items = []
         for m in nodeiterable:
@@ -637,14 +638,17 @@ class Glycan:
                                 repeat_times=None):
         self.repeat_time_verification(repeat_times)
 
-        validsyms = self.iupac_composition_syms + self.subst_composition_syms
-        validmonosyms = self.iupac_composition_syms
-        if not floating_substituents:
-            validsyms += self.iupac_aldi_composition_syms
-            validmonosyms += self.iupac_composition_syms
+        if floating_substituents:
+            validsyms = set(self.iupac_composition_syms + self.subst_composition_syms)
+            validmonosyms = set(self.iupac_composition_syms)
+        else:
+            validsyms = set(self.iupac_composition_syms + self.subst_composition_syms + self.iupac_aldi_composition_syms)
+            validmonosyms = set(self.iupac_composition_syms + self.iupac_composition_syms)
         
         c = Composition()
-        for sym in (validsyms + ['Xxx','X','Count']):
+        for sym in validsyms:
+            c[sym] = 0
+        for sym in ['Xxx','X','Count']:
             c[sym] = 0
 
         if not redend_only:
@@ -668,7 +672,7 @@ class Glycan:
 
             c[sym] += 1
             if not isaggr and sym in validmonosyms:
-                c[Count] += 1
+                c['Count'] += 1
  
         return c
 

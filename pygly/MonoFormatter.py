@@ -369,7 +369,7 @@ class JSONCanonResidue(object):
     def toStr(self,m):
         data = dict()
         if isinstance(m,Monosaccharide):
-            data['residueid'] = str(m.id())
+            data['residueid'] = m.id()
             data['residuetype'] = 'monosaccharide'
             data['monodb'] = self.mdb.toStr(m)
             try:
@@ -410,11 +410,11 @@ class JSONCanonResidue(object):
                 pl = m.any_parent_link()
                 if pl.parent_pos() != None:
                     data['site'] = str(pl.posstr(pl.parent_pos()))
-                data['parentid'] = str(pl.parent().id())
+                data['parentid'] = pl.parent().id()
       
         elif isinstance(m,Substituent):
 
-            data['residueid'] = str(m.id())
+            data['residueid'] = m.id()
             data['residuetype'] = 'substituent'
             data['monodb'] = self.mdb.toStr(m)
             data['name'] = self.gctmf.toStr(m).split(':',1)[1]

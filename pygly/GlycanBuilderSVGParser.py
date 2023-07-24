@@ -233,7 +233,10 @@ class GlycanBuilderSVG(GlycanFormatter):
             for resid in undetroot:
                 for i in range(undetroot[resid]):
                     if i > 0:
-                        m = monos[resid].deepclone()
+                        if monos[resid].is_monosaccharide():
+                            m = monos[resid].deepclone()
+                        else:
+                            m = monos[resid].clone()
                     else:
                         m = monos[resid]
                     childpos,parentpos = undetrootlinkpos[resid]

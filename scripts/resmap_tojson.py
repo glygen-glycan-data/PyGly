@@ -69,10 +69,12 @@ for path in sorted(os.listdir(wurcs_dir)):
     iupac_annotations = defaultdict(list)
     for m in canon_gly.all_nodes(undet_subst=True):
         data = json.loads(jcr.toStr(m))
-        canonres_data[str(m.id())] = data
+        canonres_data[m.id()] = data
 
     for mid,iupacsym,isaggr in canon_gly.iupac_items(canon_gly.all_nodes(undet_subst=True)):
-        iupac_annotations[iupacsym].append(str(mid))
+        iupac_annotations[iupacsym].append(mid)
+    for iupacsym in iupac_annotations:
+        iupac_annotations[iupacsym] = sorted(iupac_annotations[iupacsym],key=int)
 
     canonres_data = sorted(canonres_data.values(),key=lambda item: int(item['residueid']))
 
@@ -90,11 +92,11 @@ for path in sorted(os.listdir(wurcs_dir)):
 
     svg_idmap_dict = defaultdict(list)
     for svg_id,canon_id in svg_idmapids:
-        svg_idmap_dict[str(canon_id)].append(svg_id)
+        svg_idmap_dict[canon_id].append(svg_id)
         
     for l in canon_gly.all_links():
-        for parent_svgid in svg_idmap_dict[str(l.parent().id())]:
-            for child_svgid in svg_idmap_dict[str(l.child().id())]:
+        for parent_svgid in svg_idmap_dict[l.parent().id()]:
+            for child_svgid in svg_idmap_dict[l.child().id()]:
                 svgidbase,parent_svgid1 = parent_svgid.rsplit(':',1)
                 svgidbase = svgidbase.split('-',1)[1]
                 child_svgid1 = child_svgid.rsplit(':',1)[1]
