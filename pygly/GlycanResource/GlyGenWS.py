@@ -5,7 +5,7 @@ import os, os.path, re, time, json
 import hashlib 
 
 class GlyGenWS(WebServiceResource):
-    apiurl = 'https://api.glygen.org/'
+    apiurl = 'https://api.glygen.org'
                 
     def __init__(self,**kw):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygenws.ini")
@@ -15,8 +15,7 @@ class GlyGenWS(WebServiceResource):
         query=json.dumps(kw)
         result = self.query_glycan_search(query=query)
         list_id = result['list_id']
-        query=json.dumps(dict(id=list_id,type='glycan_list',format='csv',compressed=False))
-        for r in self.query_download_list(query=query):
+        for r in self.query_download_list(list_id=list_id):
             yield r
 
     def glycan_directsearch(self,**kw):

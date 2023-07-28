@@ -5,7 +5,7 @@ from .GlyGenWS import GlyGenWS
 class GlyGen(GlyGenTS):
     def __init__(self,**kw):
         super(GlyGen,self).__init__(**kw)
-        self.ws = GlyGenWS()
+        self.ws = GlyGenWS(**kw)
 
     def alltimeglycans(self):
         for acc in self.ws.query_alltime():
