@@ -32,15 +32,15 @@ class GlycoMotifTS(TripleStoreResource):
                     self.modify_method(k,prefetcher("motifacc",usecache=self._usecache))
 
     def getmotif(self,collection,accession):
-        return [ ("%s.%s"%(collection,row['MotifAccession']),row['StrictAlignment']=='true') for row in self.query_motifs(collection=collection,accession=accession) ]
+        return [ ("%s.%s"%(collection,row['MotifAccession']),row['MotifAlignment'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_motifs(collection=collection,accession=accession) ]
 
     def getstruct(self,collection,motifacc):
-        return sorted(set((row['accession'],row['StrictAlignment']=='true') for row in self.query_struct(collection=collection,motifacc=motifacc)))
+        return sorted(set((row['accession'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_struct(collection=collection,motifacc=motifacc)))
 
 
     def allmotifaligns(self,collection):
         for row in self.query_motifs(collection=collection):
-            yield row['accession'],"%s.%s"%(collection,row['MotifAccession']),row['StrictAlignment']=='true'
+            yield row['accession'],"%s.%s"%(collection,row['MotifAccession']),row['MotifAlignment'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']
 
     def allmotifs(self,collection):
         for row in self.query_allmotif(collection=collection):
