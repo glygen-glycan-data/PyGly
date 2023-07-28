@@ -6,7 +6,8 @@ import os, os.path, re, time
 import hashlib 
 
 class GlycoTreeSandbox(WebServiceResource):
-    apiurl = 'https://glygen.ccrc.uga.edu/sandbox/api/'
+    # apiurl = 'https://glygen.ccrc.uga.edu/sandbox/api/'
+    apiurl = 'https://sandbox.glyomics.org/api/'
 
     def __init__(self,**kw):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glycotreews.ini")
