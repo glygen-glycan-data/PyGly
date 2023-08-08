@@ -617,6 +617,8 @@ class Glycan:
                     items.append((mid,'HexNAc',True))
                 elif sym in ('Man+aldi','Gal+aldi','Glc+aldi'):
                     items.append((mid,'Hex+aldi',True))
+                elif sym in ('GalNAc+aldi','GlcNAc+aldi','ManNAc+aldi'):
+                    items.append((mid,'Hex+aldi',True))
                 elif sym in ('Fuc',):
                     items.append((mid,'dHex',True))
                 elif sym in ('Fuc+aldi',):
