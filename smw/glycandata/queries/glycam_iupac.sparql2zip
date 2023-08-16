@@ -6,6 +6,9 @@ WHERE {
   ?glycan glycandata:accession ?accession .
   ?ann1 glycandata:property "GLYCAM-IUPAC" .
   ?ann1 glycandata:value ?value .
-  ?ann1 glycandata:hasglycan ?glycan
+  ?ann1 glycandata:hasglycan ?glycan .
+  ?ann2 glycandata:property "GLYCAM-IUPAC-Valid" .
+  ?ann2 glycandata:value "true" .
+  ?ann2 glycandata:hasglycan ?glycan
 }
 ORDER BY ?accession ?value
