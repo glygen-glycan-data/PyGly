@@ -438,7 +438,7 @@ GGM.000036	Accession	000036
 GGM.000036	PreferredName	Blood group H (type 2)
 GGM.000036	Aglycon	R
 GGM.000036	Alignment	Substructure
-GGM.000036	MotifGlyTouCan	G70519XK
+GGM.000036	MotifGlyTouCan	G61459JW
 GGM.000036	ReducingEnd	false
 GGM.000036	PMID	7287743
 GGM.000036	PMID	19756298
@@ -450,7 +450,7 @@ GGM.000037	Accession	000037
 GGM.000037	PreferredName	Blood group B (type 2)
 GGM.000037	Aglycon	R
 GGM.000037	Alignment	Substructure
-GGM.000037	MotifGlyTouCan	G34881WK
+GGM.000037	MotifGlyTouCan	G94956AW
 GGM.000037	ReducingEnd	false
 GGM.000037	PMID	19756298
 GGM.000037	Keyword	Blood group B
@@ -511,7 +511,7 @@ GGM.000042	Accession	000042
 GGM.000042	PreferredName	Blood group H (type 1)
 GGM.000042	Aglycon	R
 GGM.000042	Alignment	Substructure
-GGM.000042	MotifGlyTouCan	G00294TN
+GGM.000042	MotifGlyTouCan	G40696TO
 GGM.000042	ReducingEnd	false
 GGM.000042	PMID	4041428
 GGM.000042	PMID	19756298
@@ -1463,6 +1463,18 @@ GGM.000122	PMID	19756298
 GGM.000122	Keyword	Glycolipid
 GGM.000122	Keyword	LacNAc
 GGM.000122	Keyword	N-acetyllactosamine
+GGM.000201	Collection	GGM
+GGM.000201	Accession	000201
+GGM.000201	PreferredName	B antigen (type 3)
+GGM.000201	Aglycon	Ser/Thr
+GGM.000201	Alignment	Whole-Glycan
+GGM.000201	MotifGlyTouCan	G88313DY
+GGM.000201	ReducingEnd	true
+GGM.000201	PMID	3191504
+GGM.000201	PMID	19756298
+GGM.000201	PMID	28876849
+GGM.000201	Keyword	Blood group B
+GGM.000201	Keyword	Blood group type 3
 GGM.000252	Collection	GGM
 GGM.000252	Accession	000252
 GGM.000252	PreferredName	Polysialic acid

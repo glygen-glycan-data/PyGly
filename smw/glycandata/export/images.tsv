@@ -6661,6 +6661,8 @@ G06583FZ	1090	snfg	extended	png
 G06583FZ	4444	snfg	extended	svg
 G06583IY	2247	snfg	extended	png
 G06583IY	9332	snfg	extended	svg
+G06585BR	2852	snfg	extended	png
+G06585BR	14212	snfg	extended	svg
 G06586DL	5176	snfg	extended	png
 G06586DL	22789	snfg	extended	svg
 G06594DV	4359	snfg	extended	png
@@ -17406,11 +17408,9 @@ G17259DV	7715	snfg	extended	svg
 G17264LS	3945	snfg	extended	png
 G17264LS	17817	snfg	extended	svg
 G17266ED	1561	snfg	extended	png
-G17266ED	8180	snfg	extended	svg
 G17266HP	6357	snfg	extended	png
 G17266HP	27885	snfg	extended	svg
 G17266KS	1721	snfg	extended	png
-G17266KS	5862	snfg	extended	svg
 G17268FT	3705	snfg	extended	png
 G17268FT	17752	snfg	extended	svg
 G17269LY	2265	snfg	extended	png
@@ -18243,6 +18243,8 @@ G18117IQ	2057	snfg	extended	png
 G18117IQ	7608	snfg	extended	svg
 G18117YG	3166	snfg	extended	png
 G18117YG	14189	snfg	extended	svg
+G18119VX	2613	snfg	extended	png
+G18119VX	12576	snfg	extended	svg
 G18120TS	1943	snfg	extended	png
 G18120TS	9241	snfg	extended	svg
 G18123SG	1486	snfg	extended	png
@@ -28707,8 +28709,6 @@ G28654HE	4821	snfg	extended	png
 G28654HE	21534	snfg	extended	svg
 G28654UV	3122	snfg	extended	png
 G28654UV	14259	snfg	extended	svg
-G28654YV	2261	snfg	extended	png
-G28654YV	13112	snfg	extended	svg
 G28658RT	3354	snfg	extended	png
 G28658RT	9813	snfg	extended	svg
 G28659UB	4670	snfg	extended	png
@@ -34256,7 +34256,7 @@ G34508UC	21065	snfg	extended	svg
 G34511DI	1763	snfg	extended	png
 G34511DI	5944	snfg	extended	svg
 G34516JZ	1429	snfg	extended	png
-G34516JZ	11103	snfg	extended	svg
+G34516JZ	5974	snfg	extended	svg
 G34516MK	1329	snfg	extended	png
 G34516MK	4483	snfg	extended	svg
 G34520RB	4434	snfg	extended	png
@@ -46473,6 +46473,8 @@ G47252EW	6969	snfg	extended	png
 G47252EW	31214	snfg	extended	svg
 G47253CO	4207	snfg	extended	png
 G47253CO	19422	snfg	extended	svg
+G47253EY	3270	snfg	extended	png
+G47253EY	15897	snfg	extended	svg
 G47253OG	4782	snfg	extended	png
 G47253OG	22704	snfg	extended	svg
 G47253VG	6951	snfg	extended	png
@@ -47923,6 +47925,8 @@ G48822BJ	5152	snfg	extended	png
 G48822BJ	24420	snfg	extended	svg
 G48822HK	1595	snfg	extended	png
 G48822HK	5883	snfg	extended	svg
+G48823SZ	2671	snfg	extended	png
+G48823SZ	12653	snfg	extended	svg
 G48823WJ	2666	snfg	extended	png
 G48823WJ	9670	snfg	extended	svg
 G48825UP	3676	snfg	extended	png
@@ -58655,6 +58659,8 @@ G59862RW	2644	snfg	extended	png
 G59862RW	9679	snfg	extended	svg
 G59863EK	1480	snfg	extended	png
 G59863EK	6364	snfg	extended	svg
+G59866SG	4171	snfg	extended	png
+G59866SG	17565	snfg	extended	svg
 G59867EM	1191	snfg	extended	png
 G59867EM	4266	snfg	extended	svg
 G59867SU	4244	snfg	extended	png
@@ -62471,6 +62477,8 @@ G63768EQ	1949	snfg	extended	png
 G63768EQ	9311	snfg	extended	svg
 G63768PO	1932	snfg	extended	png
 G63768PO	5580	snfg	extended	svg
+G63770IR	2894	snfg	extended	png
+G63770IR	14252	snfg	extended	svg
 G63774AQ	1374	snfg	extended	png
 G63774AQ	7590	snfg	extended	svg
 G63776KU	1041	snfg	extended	png
@@ -69512,7 +69520,6 @@ G71089RQ	10973	snfg	extended	svg
 G71091AL	3592	snfg	extended	png
 G71091AL	14267	snfg	extended	svg
 G71092VL	1180	snfg	extended	png
-G71092VL	7921	snfg	extended	svg
 G71093FQ	1801	snfg	extended	png
 G71093FQ	7545	snfg	extended	svg
 G71094KR	3166	snfg	extended	png
@@ -69520,7 +69527,7 @@ G71094KR	14222	snfg	extended	svg
 G71094TJ	4052	snfg	extended	png
 G71094TJ	29451	snfg	extended	svg
 G71098ZR	3626	snfg	extended	png
-G71098ZR	26641	snfg	extended	svg
+G71098ZR	17621	snfg	extended	svg
 G71102UV	4196	snfg	extended	png
 G71102UV	19345	snfg	extended	svg
 G71105IW	6631	snfg	extended	png
@@ -76378,7 +76385,6 @@ G78151IM	11114	snfg	extended	svg
 G78152IS	2288	snfg	extended	png
 G78152IS	14542	snfg	extended	svg
 G78153TS	2117	snfg	extended	png
-G78153TS	18429	snfg	extended	svg
 G78155FK	3938	snfg	extended	png
 G78155FK	17652	snfg	extended	svg
 G78156NN	3728	snfg	extended	png
@@ -78777,6 +78783,8 @@ G80618TG	3358	snfg	extended	png
 G80618TG	15874	snfg	extended	svg
 G80626KQ	2450	snfg	extended	png
 G80626KQ	12691	snfg	extended	svg
+G80630NF	3577	snfg	extended	png
+G80630NF	15873	snfg	extended	svg
 G80630TZ	3280	snfg	extended	png
 G80630TZ	17643	snfg	extended	svg
 G80632EF	2963	snfg	extended	png
@@ -87035,6 +87043,8 @@ G89090WX	1478	snfg	extended	png
 G89090WX	5945	snfg	extended	svg
 G89091LQ	4870	snfg	extended	png
 G89091LQ	20971	snfg	extended	svg
+G89096IL	2451	snfg	extended	png
+G89096IL	12577	snfg	extended	svg
 G89097OO	3555	snfg	extended	png
 G89097OO	16221	snfg	extended	svg
 G89097YO	2468	snfg	extended	png
@@ -90421,6 +90431,8 @@ G92567CF	2451	snfg	extended	png
 G92567CF	12594	snfg	extended	svg
 G92570PJ	4178	snfg	extended	png
 G92570PJ	17853	snfg	extended	svg
+G92571WK	2905	snfg	extended	png
+G92571WK	14219	snfg	extended	svg
 G92572VJ	3694	snfg	extended	png
 G92572VJ	11148	snfg	extended	svg
 G92574YO	6586	snfg	extended	png

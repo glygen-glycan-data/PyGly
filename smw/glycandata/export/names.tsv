@@ -1,19 +1,28 @@
 GlyTouCanAccession	Name	Domain
+G00012MO	Cytolipin R	SemanticName
+G00012MO	Isoglobotetraosylceramide	SemanticName
 G00031MO	T antigen	SemanticName
+G00032MO	T antigen	SemanticName
 G00059MO	Pk antigen	SemanticName
 G00061MO	Globoside	SemanticName
+G00070MO	Paragloboside	SemanticName
+G00071MO	Asialo-GM1	SemanticName
 G00194GV	HexNAc(1)dHex(1)	Byonic
 G00194GV	HexNAc1Hex0dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G00194GV	HexNAc1dHex1	ShortUniCarbKB
 G00273SJ	H5N4F4	ShortComp
 G00273SJ	HexNAc(4)Hex(5)Fuc(4)	Byonic
+G00407UJ	Asialo-GM1	SemanticName
 G00552RX	GP1ca	SemanticName
 G00665JQ	H5N5F3S	ShortComp
 G00665JQ	HexNAc(5)Hex(5)Fuc(3)NeuAc(1)	Byonic
+G00682IE	T antigen	SemanticName
+G00802AJ	P1 antigen	SemanticName
 G00841YH	H4N2S3	ShortComp
 G00841YH	HexNAc(2)Hex(4)NeuAc(3)	Byonic
 G00841YH	HexNAc2Hex4NeuAc3	ShortUniCarbKB
 G00841YH	HexNAc2Hex4dHex0NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G00866EV	LcGg4	SemanticName
 G00912UN	H5N4S2	ShortComp
 G00912UN	HexNAc(4)Hex(5)NeuAc(2)	Byonic
 G00912UN	HexNAc4Hex5NeuAc2	ShortUniCarbKB
@@ -22,8 +31,12 @@ G01160VV	H7N7F4	ShortComp
 G01160VV	HexNAc(7)Hex(7)Fuc(4)	Byonic
 G01194JA	H4N2F2	ShortComp
 G01194JA	HexNAc(2)Hex(4)Fuc(2)	Byonic
+G01203BZ	Di-sialyl T antigen	SemanticName
 G01268PO	H5N5F4	ShortComp
 G01268PO	HexNAc(5)Hex(5)Fuc(4)	Byonic
+G01269WV	cisGM1	SemanticName
+G01356MD	T antigen	SemanticName
+G01416HI	T antigen	SemanticName
 G01485JJ	H3N6F	ShortComp
 G01485JJ	HexNAc(6)Hex(3)Fuc(1)	Byonic
 G01500QH	H15N14F6S2	ShortComp
@@ -43,6 +56,8 @@ G01664MY	HexNAc1Hex1S1HexA1	ShortUniCarbKB
 G01664MY	HexNAc1Hex1dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
 G01678ZX	H7N7F2	ShortComp
 G01678ZX	HexNAc(7)Hex(7)Fuc(2)	Byonic
+G01712EB	GM2	SemanticName
+G01768OD	GL-7 globoseries ganglioside	SemanticName
 G01769OH	H3S2	ShortComp
 G01769OH	Hex(3)NeuAc(2)	Byonic
 G01769OH	Hex3NeuAc2	ShortUniCarbKB
@@ -57,6 +72,8 @@ G02057QV	HexNAc(5)Hex(6)NeuAc(2)NeuGc(1)	Byonic
 G02057QV	HexNAc5Hex6NeuAc2NeuGc1	ShortUniCarbKB
 G02057QV	HexNAc5Hex6dHex0NeuAc2NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G02149VR	GT1aa	SemanticName
+G02151GJ	A antigen (type 3)	SemanticName
+G02162RZ	Mono-fucosyl LN3	SemanticName
 G02287BL	HexNAc(6)Hex(7)dHex(2)	Byonic
 G02287BL	HexNAc6Hex7dHex2	ShortUniCarbKB
 G02287BL	HexNAc6Hex7dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -69,6 +86,9 @@ G02447BS	HexNAc6Hex7dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G02528FI	H5N4F5	ShortComp
 G02528FI	HexNAc(4)Hex(5)Fuc(5)	Byonic
 G02657AK	GD2	SemanticName
+G02657CQ	O-Linked mannose	SemanticName
+G02727GF	Monosulfated gangliotetraosylceramide	SemanticName
+G02729OV	B antigen (type 3)	SemanticName
 G02804WX	HexNAc(1)Hex(4)Fuc(1)NeuGc(1)	Byonic
 G02809YH	HexNAc(3)Hex(2)dHex(1)	Byonic
 G02809YH	HexNAc3Hex2dHex1	ShortUniCarbKB
@@ -85,9 +105,12 @@ G02886BB	H6N4	ShortComp
 G02886BB	HexNAc(4)Hex(6)	Byonic
 G02886BB	HexNAc4Hex6	ShortUniCarbKB
 G02886BB	HexNAc4Hex6dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G02986VV	9-O-Acetyl GD3	SemanticName
+G02986VV	GD3	SemanticName
 G03238UC	HexNAc(2)Hex(6)Phospho(1)	Byonic
 G03238UC	HexNAc2Hex6P1	ShortUniCarbKB
 G03238UC	HexNAc2Hex6dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
+G03263DS	Sialyl T antigen	SemanticName
 G03277YI	cisGM1	SemanticName
 G03343NG	HexNAc(6)Hex(6)dHex(1)NeuAc(2)NeuGc(1)	Byonic
 G03343NG	HexNAc6Hex6dHex1NeuAc2NeuGc1	ShortUniCarbKB
@@ -104,6 +127,11 @@ G03599PQ	HexNAc2Hex3NeuAc2S1	ShortUniCarbKB
 G03599PQ	HexNAc2Hex3dHex0NeuAc2NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G03644CB	H8N7F	ShortComp
 G03644CB	HexNAc(7)Hex(8)Fuc(1)	Byonic
+G03706BZ	GL-7 globoseries ganglioside	SemanticName
+G03756ZH	GT1aa	SemanticName
+G03766GQ	Di-sialyl T antigen	SemanticName
+G03828AM	GT1aa	SemanticName
+G03829ED	GP1c	SemanticName
 G03856AM	HexNAc(4)Hex(3)Fuc(1)Sulpho(1)	Byonic
 G03930BU	HexNAc(3)Hex(4)dHex(3)	Byonic
 G03930BU	HexNAc3Hex4dHex3	ShortUniCarbKB
@@ -117,12 +145,19 @@ G03964PW	HexNAc4Hex6dHex1NeuGc1	ShortUniCarbKB
 G04055MU	HexNAc(9)Hex(7)dHex(1)NeuAc(1)	Byonic
 G04055MU	HexNAc9Hex7dHex1NeuAc1	ShortUniCarbKB
 G04055MU	HexNAc9Hex7dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G04093XE	Lactosylceramide	SemanticName
 G04203ZT	HexNAc(3)Sulpho(1)	Byonic
 G04203ZT	HexNAc3Hex0dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G04203ZT	HexNAc3S1	ShortUniCarbKB
+G04281RT	Blood group A (type 4)	SemanticName
+G04402ZV	Di-sialyl T antigen	SemanticName
+G04416BG	Ceramide dihexosyl sulfate	SemanticName
 G04433GV	GP1ca	SemanticName
+G04531ET	Sialyl T antigen	SemanticName
+G04540PY	Sialyl T antigen	SemanticName
 G04599VH	H4NFS	ShortComp
 G04599VH	HexNAc(1)Hex(4)Fuc(1)NeuAc(1)	Byonic
+G04610NG	GM3	SemanticName
 G04612UW	HexNAc(5)Hex(6)NeuAc(2)Sulpho(1)	Byonic
 G04612UW	HexNAc5Hex6NeuAc2S1	ShortUniCarbKB
 G04612UW	HexNAc5Hex6dHex0NeuAc2NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
@@ -137,6 +172,7 @@ G04784US	HexNAc5Hex6dHex3NeuAc1	ShortUniCarbKB
 G04784US	HexNAc5Hex6dHex3NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G04797TI	H6N4F3S	ShortComp
 G04797TI	HexNAc(4)Hex(6)Fuc(3)NeuAc(1)	Byonic
+G04812DZ	GQ1ba	SemanticName
 G04840WZ	HexNAc(4)Hex(5)Fuc(1)NeuAc(1)Sulpho(1)	Byonic
 G04854VP	H5N8	ShortComp
 G04854VP	HexNAc(8)Hex(5)	Byonic
@@ -153,6 +189,7 @@ G05051WF	HexNAc6Hex7dHex0NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G05243OF	HexNAc(3)Hex(4)NeuGc(1)	Byonic
 G05243OF	HexNAc3Hex4NeuGc1	ShortUniCarbKB
 G05243OF	HexNAc3Hex4dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G05270TA	GQ1b	SemanticName
 G05289OX	H2N4S3	ShortComp
 G05289OX	HexNAc(4)Hex(2)NeuAc(3)	Byonic
 G05289OX	HexNAc4Hex2NeuAc3	ShortUniCarbKB
@@ -175,6 +212,7 @@ G05609XV	H7N5S2	ShortComp
 G05609XV	HexNAc(5)Hex(7)NeuAc(2)	Byonic
 G05609XV	HexNAc5Hex7NeuAc2	ShortUniCarbKB
 G05609XV	HexNAc5Hex7dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G05620VJ	H antigen (type 3)	SemanticName
 G05645NK	H6N	ShortComp
 G05645NK	HexNAc(1)Hex(6)	Byonic
 G05645NK	HexNAc1Hex6	ShortUniCarbKB
@@ -185,6 +223,7 @@ G05664AS	HexNAc6Hex8dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G05761AI	HexNAc(1)Hex(1)dHex(1)NeuAc(1)Sulpho(1)	Byonic
 G05761AI	HexNAc1Hex1dHex1NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G05761AI	HexNAc1Hex1dHex1NeuAc1S1	ShortUniCarbKB
+G05882RK	Sialyl T antigen	SemanticName
 G05926FW	HexNAc(9)Hex(3)dHex(1)	Byonic
 G05926FW	HexNAc9Hex3dHex1	ShortUniCarbKB
 G05926FW	HexNAc9Hex3dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -193,8 +232,10 @@ G05931YV	HexNAc1HexA1	ShortUniCarbKB
 G05933EN	HexNAc(4)Hex(5)dHex(4)	Byonic
 G05933EN	HexNAc4Hex5dHex4	ShortUniCarbKB
 G05933EN	HexNAc4Hex5dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G05952XV	GT1b	SemanticName
 G05962QB	H7N6FS2	ShortComp
 G05962QB	HexNAc(6)Hex(7)Fuc(1)NeuAc(2)	Byonic
+G06000DZ	Pk antigen	SemanticName
 G06042JP	HexNAc(2)dHex(1)	Byonic
 G06042JP	HexNAc2Hex0dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G06042JP	HexNAc2dHex1	ShortUniCarbKB
@@ -207,6 +248,10 @@ G06046KU	HexNAc2Hex4dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G06048QL	HexNAc(2)Hex(2)NeuGc(1)	Byonic
 G06048QL	HexNAc2Hex2NeuGc1	ShortUniCarbKB
 G06048QL	HexNAc2Hex2dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G06156DS	H14N2	ShortComp
+G06156DS	HexNAc(2)Hex(14)	Byonic
+G06156DS	HexNAc2Hex14	ShortUniCarbKB
+G06156DS	HexNAc2Hex14dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G06231AO	HexNAc(3)Hex(5)dHex(3)	Byonic
 G06231AO	HexNAc3Hex5dHex3	ShortUniCarbKB
 G06231AO	HexNAc3Hex5dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -218,9 +263,17 @@ G06247RL	HexNAc5Hex6dHex0NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G06461TM	HexNAc(1)Hex(1)Sulpho(1)	Byonic
 G06461TM	HexNAc1Hex1S1	ShortUniCarbKB
 G06461TM	HexNAc1Hex1dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G06480RP	HexNAc(3)Hex(2)dHex(2)NeuAc(1)	Byonic
+G06480RP	HexNAc3Hex2dHex2NeuAc1	ShortUniCarbKB
+G06480RP	HexNAc3Hex2dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G06583FZ	H15N2	ShortComp
+G06583FZ	HexNAc(2)Hex(15)	Byonic
+G06583FZ	HexNAc2Hex15	ShortUniCarbKB
+G06583FZ	HexNAc2Hex15dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G06704MH	HexNAc(5)Hex(6)dHex(2)NeuAc(3)	Byonic
 G06704MH	HexNAc5Hex6dHex2NeuAc3	ShortUniCarbKB
 G06704MH	HexNAc5Hex6dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G06795LS	O-Linked mannose	SemanticName
 G06818RT	HexNAc(7)Hex(8)dHex(1)NeuAc(3)NeuGc(1)	Byonic
 G06818RT	HexNAc7Hex8dHex1NeuAc3NeuGc1	ShortUniCarbKB
 G06818RT	HexNAc7Hex8dHex1NeuAc3NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -235,13 +288,20 @@ G06932DR	HexNAc(1)Hex(2)Sulpho(1)	Byonic
 G06932DR	HexNAc1Hex2S1	ShortUniCarbKB
 G06932DR	HexNAc1Hex2dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G06953DR	2,6-Branched O-mannose	SemanticName
+G07169WN	Seminolipid	SemanticName
+G07169WN	Sulfatide	SemanticName
+G07227QC	Asialo-GM1	SemanticName
 G07238JI	HexNAc(7)Hex(7)dHex(1)NeuAc(2)Sulpho(2)	Byonic
 G07238JI	HexNAc7Hex7dHex1NeuAc2NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G07238JI	HexNAc7Hex7dHex1NeuAc2S2	ShortUniCarbKB
 G07246CJ	H6N6F	ShortComp
 G07246CJ	HexNAc(6)Hex(6)Fuc(1)	Byonic
+G07360YN	GQ1b	SemanticName
 G07584HV	H3NF3	ShortComp
 G07584HV	HexNAc(1)Hex(3)Fuc(3)	Byonic
+G07611FT	T antigen	SemanticName
+G07622PC	2-Fucosyl-GM1	SemanticName
+G07641WS	H antigen (type 3)	SemanticName
 G07717JX	H8N8FS	ShortComp
 G07717JX	HexNAc(8)Hex(8)Fuc(1)NeuAc(1)	Byonic
 G07755XJ	H4N5F2	ShortComp
@@ -264,21 +324,29 @@ G07888KH	HexNAc0Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G07937JG	HexNAc(4)Hex(5)NeuGc(3)	Byonic
 G07937JG	HexNAc4Hex5NeuGc3	ShortUniCarbKB
 G07937JG	HexNAc4Hex5dHex0NeuAc0NeuGc3Pent0S0P0KDN0HexA0	UniCarbKB
+G07981IJ	Di-sialyl T antigen	SemanticName
+G07992YV	Pk antigen	SemanticName
+G08178PQ	Sialyl Tn antigen	SemanticName
+G08182YX	GM4	SemanticName
 G08188WC	Hex(1)NeuAc(1)Sulpho(1)	Byonic
 G08188WC	Hex1NeuAc1S1	ShortUniCarbKB
 G08188WC	HexNAc0Hex1dHex0NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G08246VJ	H3NFS	ShortComp
 G08246VJ	HexNAc(1)Hex(3)Fuc(1)NeuAc(1)	Byonic
+G08275ZY	Monosulfated gangliotetraosylceramide	SemanticName
 G08290VR	H4N4FS	ShortComp
 G08290VR	HexNAc(4)Hex(4)Fuc(1)NeuAc(1)	Byonic
 G08293MJ	HexNAc(4)Hex(5)dHex(1)NeuAc(1)	Byonic
 G08293MJ	HexNAc4Hex5dHex1NeuAc1	ShortUniCarbKB
 G08293MJ	HexNAc4Hex5dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G08362FW	GM4	SemanticName
+G08371CD	Sialyl Tn antigen	SemanticName
 G08453HV	Hex(1)dHex(1)	Byonic
 G08453HV	Hex1dHex1	ShortUniCarbKB
 G08453HV	HexNAc0Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G08539HC	H6N7FS	ShortComp
 G08539HC	HexNAc(7)Hex(6)Fuc(1)NeuAc(1)	Byonic
+G08551GM	Blood group A (type 4)	SemanticName
 G08578KJ	HexNAc(9)Hex(9)dHex(1)	Byonic
 G08578KJ	HexNAc9Hex9dHex1	ShortUniCarbKB
 G08578KJ	HexNAc9Hex9dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -288,6 +356,7 @@ G08590QR	HexNAc1Hex3	ShortUniCarbKB
 G08590QR	HexNAc1Hex3dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G08609CW	H6N7FS4	ShortComp
 G08609CW	HexNAc(7)Hex(6)Fuc(1)NeuAc(4)	Byonic
+G08648UJ	GT1b	SemanticName
 G08671QK	HexNAc(1)Hex(1)Fuc(1)Sulpho(1)	Byonic
 G08678VD	H2N4F2	ShortComp
 G08678VD	HexNAc(4)Hex(2)Fuc(2)	Byonic
@@ -297,19 +366,27 @@ G08691QG	HexNAc1Hex4dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G08805HB	HexNAc(3)Hex(3)dHex(2)NeuAc(1)	Byonic
 G08805HB	HexNAc3Hex3dHex2NeuAc1	ShortUniCarbKB
 G08805HB	HexNAc3Hex3dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G08885DJ	Forssman glycolipid	SemanticName
+G08885DJ	para-Forssman glycolipid	SemanticName
 G08898WI	HexNAc(9)Hex(10)dHex(1)NeuAc(4)	Byonic
 G08898WI	HexNAc9Hex10dHex1NeuAc4	ShortUniCarbKB
 G08898WI	HexNAc9Hex10dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G08918WF	H5N4F2S	ShortComp
 G08918WF	HexNAc(4)Hex(5)Fuc(2)NeuAc(1)	Byonic
+G08961BG	O-Linked mannose	SemanticName
 G09084RP	HexNAc(7)Hex(6)dHex(2)	Byonic
 G09084RP	HexNAc7Hex6dHex2	ShortUniCarbKB
 G09084RP	HexNAc7Hex6dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G09086VB	HexNAc(13)Hex(14)dHex(1)	Byonic
+G09086VB	HexNAc13Hex14dHex1	ShortUniCarbKB
+G09086VB	HexNAc13Hex14dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G09197ZW	HexNAc(4)Hex(6)dHex(1)	Byonic
 G09197ZW	HexNAc4Hex6dHex1	ShortUniCarbKB
 G09197ZW	HexNAc4Hex6dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G09221QI	2,6-Branched O-mannose	SemanticName
 G09321GU	HN3F	ShortComp
 G09321GU	HexNAc(3)Hex(1)Fuc(1)	Byonic
+G09336GJ	Lactotriaosylceramide	SemanticName
 G09406IK	H5N6S2	ShortComp
 G09406IK	HexNAc(6)Hex(5)NeuAc(2)	Byonic
 G09406IK	HexNAc6Hex5NeuAc2	ShortUniCarbKB
@@ -342,15 +419,24 @@ G10136GN	H3NS5	ShortComp
 G10136GN	HexNAc(1)Hex(3)NeuAc(5)	Byonic
 G10136GN	HexNAc1Hex3NeuAc5	ShortUniCarbKB
 G10136GN	HexNAc1Hex3dHex0NeuAc5NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G10158SF	9-O-Acetyl GD3	SemanticName
+G10158SF	GD3	SemanticName
+G10225UW	Sialyl T antigen	SemanticName
 G10339FR	HexNAc(3)Hex(4)dHex(1)	Byonic
 G10339FR	HexNAc3Hex4dHex1	ShortUniCarbKB
 G10339FR	HexNAc3Hex4dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G10403PE	Seminolipid	SemanticName
+G10403PE	Sulfatide	SemanticName
+G10479NG	GM3	SemanticName
 G10486CT	H5N4	ShortComp
 G10486CT	HexNAc(4)Hex(5)	Byonic
 G10486CT	HexNAc4Hex5	ShortUniCarbKB
 G10486CT	HexNAc4Hex5dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G10488MI	H3N6F2	ShortComp
 G10488MI	HexNAc(6)Hex(3)Fuc(2)	Byonic
+G10746HE	Sialyl T antigen	SemanticName
+G10783VN	GT1b	SemanticName
+G10794OA	Lactosylceramide	SemanticName
 G10819WX	H6N5F2	ShortComp
 G10819WX	HexNAc(5)Hex(6)Fuc(2)	Byonic
 G10846ZT	H6N4F3	ShortComp
@@ -390,6 +476,8 @@ G11357FA	H2N2S2	ShortComp
 G11357FA	HexNAc(2)Hex(2)NeuAc(2)	Byonic
 G11357FA	HexNAc2Hex2NeuAc2	ShortUniCarbKB
 G11357FA	HexNAc2Hex2dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G11461WJ	2,6-Branched O-mannose	SemanticName
+G11475AO	GT1a	SemanticName
 G11485ID	B-GM1	SemanticName
 G11541NC	H11N10	ShortComp
 G11541NC	HexNAc(10)Hex(11)	Byonic
@@ -402,6 +490,7 @@ G11719TC	HexNAc6Hex11dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G11738SE	H8N7FS3	ShortComp
 G11738SE	HexNAc(7)Hex(8)Fuc(1)NeuAc(3)	Byonic
 G11805YU	HexNAc(4)Hex(5)Fuc(1)NeuGc(2)	Byonic
+G11863HW	Sialyl T antigen	SemanticName
 G11942GC	H7N6S5	ShortComp
 G11942GC	HexNAc(6)Hex(7)NeuAc(5)	Byonic
 G11942GC	HexNAc6Hex7NeuAc5	ShortUniCarbKB
@@ -412,6 +501,10 @@ G12047XR	HexNAc4Hex1dHex1	ShortUniCarbKB
 G12047XR	HexNAc4Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G12131LM	H6N7FS3	ShortComp
 G12131LM	HexNAc(7)Hex(6)Fuc(1)NeuAc(3)	Byonic
+G12132AZ	GL-7 globoseries ganglioside	SemanticName
+G12138DK	GM2	SemanticName
+G12272NS	H6N9F	ShortComp
+G12272NS	HexNAc(9)Hex(6)Fuc(1)	Byonic
 G12340GZ	H6N7S4	ShortComp
 G12340GZ	HexNAc(7)Hex(6)NeuAc(4)	Byonic
 G12340GZ	HexNAc7Hex6NeuAc4	ShortUniCarbKB
@@ -420,7 +513,9 @@ G12341GU	H8N7S	ShortComp
 G12341GU	HexNAc(7)Hex(8)NeuAc(1)	Byonic
 G12341GU	HexNAc7Hex8NeuAc1	ShortUniCarbKB
 G12341GU	HexNAc7Hex8dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G12456QN	Mono-fucosyl LN3	SemanticName
 G12460DL	P1 antigen	SemanticName
+G12507OZ	GQ1b	SemanticName
 G12520SZ	HN2S2	ShortComp
 G12520SZ	HexNAc(2)Hex(1)NeuAc(2)	Byonic
 G12520SZ	HexNAc2Hex1NeuAc2	ShortUniCarbKB
@@ -428,8 +523,10 @@ G12520SZ	HexNAc2Hex1dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G12580WI	HexNAc(5)Hex(5)dHex(1)NeuAc(1)	Byonic
 G12580WI	HexNAc5Hex5dHex1NeuAc1	ShortUniCarbKB
 G12580WI	HexNAc5Hex5dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G12687MD	GM4	SemanticName
 G12713BB	H3NF2	ShortComp
 G12713BB	HexNAc(1)Hex(3)Fuc(2)	Byonic
+G12724ES	cisGM1	SemanticName
 G12745LE	H10N9F	ShortComp
 G12745LE	HexNAc(9)Hex(10)Fuc(1)	Byonic
 G12772RI	HexNAc(9)Hex(6)dHex(1)	Byonic
@@ -444,6 +541,7 @@ G12959FT	HexNAc2Hex13	ShortUniCarbKB
 G12959FT	HexNAc2Hex13dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G13024PC	HN2F2S	ShortComp
 G13024PC	HexNAc(2)Hex(1)Fuc(2)NeuAc(1)	Byonic
+G13025HR	B-GM1	SemanticName
 G13037JM	H7N6F2S	ShortComp
 G13037JM	HexNAc(6)Hex(7)Fuc(2)NeuAc(1)	Byonic
 G13047GL	H10N10F	ShortComp
@@ -461,6 +559,7 @@ G13193DT	HexNAc(8)Hex(7)	Byonic
 G13193DT	HexNAc8Hex7	ShortUniCarbKB
 G13193DT	HexNAc8Hex7dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G13224CR	Sialopentaosylceramide	SemanticName
+G13258LA	GD1a	SemanticName
 G13381VV	H6N2S	ShortComp
 G13381VV	HexNAc(2)Hex(6)NeuAc(1)	Byonic
 G13381VV	HexNAc2Hex6NeuAc1	ShortUniCarbKB
@@ -470,25 +569,32 @@ G13436HZ	HexNAc3HexA2	ShortUniCarbKB
 G13492FY	HexNAc(4)Hex(7)dHex(1)NeuAc(3)	Byonic
 G13492FY	HexNAc4Hex7dHex1NeuAc3	ShortUniCarbKB
 G13492FY	HexNAc4Hex7dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G13523IF	H antigen (type 3)	SemanticName
 G13620OS	HexNAc(6)Hex(6)dHex(7)	Byonic
 G13620OS	HexNAc6Hex6dHex7	ShortUniCarbKB
 G13620OS	HexNAc6Hex6dHex7NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G13635UJ	HexNAc(6)Hex(6)dHex(5)	Byonic
 G13635UJ	HexNAc6Hex6dHex5	ShortUniCarbKB
 G13635UJ	HexNAc6Hex6dHex5NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G13648AV	H6N6F3S2	ShortComp
+G13648AV	HexNAc(6)Hex(6)Fuc(3)NeuAc(2)	Byonic
+G13691FL	2,6-Branched O-mannose	SemanticName
 G13716SG	HexNAc(9)Hex(10)dHex(1)	Byonic
 G13716SG	HexNAc9Hex10dHex1	ShortUniCarbKB
 G13716SG	HexNAc9Hex10dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G13813GW	H antigen (type 3)	SemanticName
 G13910DJ	H7N6F2S4	ShortComp
 G13910DJ	HexNAc(6)Hex(7)Fuc(2)NeuAc(4)	Byonic
 G13973YO	HexNAc(4)Hex(9)dHex(1)	Byonic
 G13973YO	HexNAc4Hex9dHex1	ShortUniCarbKB
 G13973YO	HexNAc4Hex9dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G14070SB	GH1ca	SemanticName
 G14091MR	GH1ca	SemanticName
 G14140AC	HexNAc(4)Hex(4)Fuc(1)Phospho(1)	Byonic
 G14191MJ	HexNAc(2)Hex(7)dHex(1)	Byonic
 G14191MJ	HexNAc2Hex7dHex1	ShortUniCarbKB
 G14191MJ	HexNAc2Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G14227RA	Sialyl T antigen	SemanticName
 G14305YT	H8N6	ShortComp
 G14305YT	HexNAc(6)Hex(8)	Byonic
 G14305YT	HexNAc6Hex8	ShortUniCarbKB
@@ -507,14 +613,22 @@ G14440NQ	HexNAc7Hex5dHex1	ShortUniCarbKB
 G14440NQ	HexNAc7Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G14547CB	H8N5F4	ShortComp
 G14547CB	HexNAc(5)Hex(8)Fuc(4)	Byonic
+G14633CL	cisGM1	SemanticName
+G14660IB	T antigen	SemanticName
+G14775OL	GP1ca	SemanticName
+G14849PR	GP1c	SemanticName
 G14926RK	HexNAc(7)Hex(6)dHex(1)NeuAc(4)	Byonic
 G14926RK	HexNAc7Hex6dHex1NeuAc4	ShortUniCarbKB
 G14926RK	HexNAc7Hex6dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G14972EH	H5N5F3	ShortComp
 G14972EH	HexNAc(5)Hex(5)Fuc(3)	Byonic
+G15003XX	B antigen (type 3)	SemanticName
+G15021LG	Glucosylceramide	SemanticName
 G15038BD	HexNAc(4)Hex(6)dHex(1)NeuAc(1)	Byonic
 G15038BD	HexNAc4Hex6dHex1NeuAc1	ShortUniCarbKB
 G15038BD	HexNAc4Hex6dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G15052LK	H6N3FS2	ShortComp
+G15052LK	HexNAc(3)Hex(6)Fuc(1)NeuAc(2)	Byonic
 G15064OQ	HexNAc(6)Hex(1)dHex(1)	Byonic
 G15064OQ	HexNAc6Hex1dHex1	ShortUniCarbKB
 G15064OQ	HexNAc6Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -525,37 +639,51 @@ G15127JD	HexNAc9Hex10dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G15145JC	HexNAc(5)Hex(8)dHex(3)	Byonic
 G15145JC	HexNAc5Hex8dHex3	ShortUniCarbKB
 G15145JC	HexNAc5Hex8dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G15178AV	Sialyl T antigen	SemanticName
 G15205QB	HexNAc(3)Hex(6)Phospho(1)	Byonic
 G15205QB	HexNAc3Hex6P1	ShortUniCarbKB
 G15205QB	HexNAc3Hex6dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
+G15216HY	Cytolipin R	SemanticName
+G15216HY	Globoside	SemanticName
+G15216HY	Isoglobotetraosylceramide	SemanticName
+G15328EL	HexNAc(5)Hex(7)dHex(3)	Byonic
+G15328EL	HexNAc5Hex7dHex3	ShortUniCarbKB
+G15328EL	HexNAc5Hex7dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G15344SG	H5N7FS2	ShortComp
 G15344SG	HexNAc(7)Hex(5)Fuc(1)NeuAc(2)	Byonic
 G15486FH	HexNAc(3)Hex(5)dHex(1)	Byonic
 G15486FH	HexNAc3Hex5dHex1	ShortUniCarbKB
 G15486FH	HexNAc3Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G15541SE	Lactosylceramide	SemanticName
 G15602PX	HNFS	ShortComp
 G15602PX	HexNAc(1)Hex(1)Fuc(1)NeuAc(1)	Byonic
+G15626ED	A antigen (type 3)	SemanticName
 G15664MX	H7N4F	ShortComp
 G15664MX	HexNAc(4)Hex(7)Fuc(1)	Byonic
 G15666IG	H4N	ShortComp
 G15666IG	HexNAc(1)Hex(4)	Byonic
 G15666IG	HexNAc1Hex4	ShortUniCarbKB
 G15666IG	HexNAc1Hex4dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G15736PY	GM3	SemanticName
 G15750OF	HexNAc(6)Hex(5)dHex(2)NeuAc(2)	Byonic
 G15750OF	HexNAc6Hex5dHex2NeuAc2	ShortUniCarbKB
 G15750OF	HexNAc6Hex5dHex2NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G15765EV	HexNAc(3)Hex(1)dHex(1)Sulpho(1)	Byonic
 G15765EV	HexNAc3Hex1dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G15765EV	HexNAc3Hex1dHex1S1	ShortUniCarbKB
+G15807NZ	Sialyl Tn antigen	SemanticName
 G15881BW	HexNAc(8)Hex(8)dHex(2)	Byonic
 G15881BW	HexNAc8Hex8dHex2	ShortUniCarbKB
 G15881BW	HexNAc8Hex8dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G15897DD	HNK-1 on O-mannose	SemanticName
 G15919RU	Hex(2)NeuGc(1)	Byonic
 G15919RU	Hex2NeuGc1	ShortUniCarbKB
 G15919RU	HexNAc0Hex2dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G15949YP	H antigen (type 3)	SemanticName
 G15968KS	HexNAc(8)Hex(7)NeuAc(2)Sulpho(2)	Byonic
 G15968KS	HexNAc8Hex7NeuAc2S2	ShortUniCarbKB
 G15968KS	HexNAc8Hex7dHex0NeuAc2NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
+G16036RF	O-Linked mannose	SemanticName
 G16125XL	H7N7F	ShortComp
 G16125XL	HexNAc(7)Hex(7)Fuc(1)	Byonic
 G16136AD	HN2F	ShortComp
@@ -567,9 +695,11 @@ G16222XJ	H6N7F3	ShortComp
 G16222XJ	HexNAc(7)Hex(6)Fuc(3)	Byonic
 G16260WC	H4F2	ShortComp
 G16260WC	Hex(4)Fuc(2)	Byonic
+G16274GJ	HNK-1 on O-mannose	SemanticName
 G16407EV	HexNAc(2)Hex(5)dHex(1)	Byonic
 G16407EV	HexNAc2Hex5dHex1	ShortUniCarbKB
 G16407EV	HexNAc2Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G16409VA	LcGg4	SemanticName
 G16455YH	HexNAc(8)Hex(7)dHex(1)NeuAc(2)Sulpho(2)	Byonic
 G16455YH	HexNAc8Hex7dHex1NeuAc2NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G16455YH	HexNAc8Hex7dHex1NeuAc2S2	ShortUniCarbKB
@@ -584,15 +714,18 @@ G16691WC	HexNAc(1)Hex(4)dHex(1)NeuGc(1)	Byonic
 G16691WC	HexNAc1Hex4dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G16691WC	HexNAc1Hex4dHex1NeuGc1	ShortUniCarbKB
 G16745AV	HexNAc(6)Hex(7)Fuc(1)NeuGc(1)	Byonic
+G16818JN	GD1a	SemanticName
 G16824XE	HexNAc(4)Hex(7)dHex(1)NeuAc(2)	Byonic
 G16824XE	HexNAc4Hex7dHex1NeuAc2	ShortUniCarbKB
 G16824XE	HexNAc4Hex7dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G16915GU	HexNAc(3)Hex(2)dHex(3)	Byonic
 G16915GU	HexNAc3Hex2dHex3	ShortUniCarbKB
 G16915GU	HexNAc3Hex2dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G16938NB	2-Fucosyl-GD1b	SemanticName
 G16993HQ	HexNAc(3)Hex(1)dHex(1)NeuAc(1)	Byonic
 G16993HQ	HexNAc3Hex1dHex1NeuAc1	ShortUniCarbKB
 G16993HQ	HexNAc3Hex1dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G16999RL	GP1ca	SemanticName
 G17015OC	HNS	ShortComp
 G17015OC	HexNAc(1)Hex(1)NeuAc(1)	Byonic
 G17015OC	HexNAc1Hex1NeuAc1	ShortUniCarbKB
@@ -601,14 +734,29 @@ G17023GV	H7N5S	ShortComp
 G17023GV	HexNAc(5)Hex(7)NeuAc(1)	Byonic
 G17023GV	HexNAc5Hex7NeuAc1	ShortUniCarbKB
 G17023GV	HexNAc5Hex7dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G17067EZ	9-O-Acetyl GD3	SemanticName
+G17067EZ	GD3	SemanticName
+G17077FL	GQ1b	SemanticName
+G17100OM	GL-7 globoseries ganglioside	SemanticName
 G17182UH	H8N9F	ShortComp
 G17182UH	HexNAc(9)Hex(8)Fuc(1)	Byonic
 G17208MA	H4N5F3	ShortComp
 G17208MA	HexNAc(5)Hex(4)Fuc(3)	Byonic
+G17468PU	Lactotriaosylceramide	SemanticName
+G17486WU	GT1aa	SemanticName
+G17497PZ	A antigen (type 3)	SemanticName
 G17497UW	HexNAc(6)Hex(3)Fuc(1)Sulpho(1)	Byonic
+G17539DZ	Sialopentaosylceramide	SemanticName
 G17650MH	HexNAc(7)Hex(7)dHex(1)	Byonic
 G17650MH	HexNAc7Hex7dHex1	ShortUniCarbKB
 G17650MH	HexNAc7Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G17716HE	Blood group H (type 4)	SemanticName
+G17716HE	GL-6 fucosylated	SemanticName
+G17782JG	GQ1c	SemanticName
+G17818RC	H13N	ShortComp
+G17818RC	HexNAc(1)Hex(13)	Byonic
+G17818RC	HexNAc1Hex13	ShortUniCarbKB
+G17818RC	HexNAc1Hex13dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G17899TT	HexNAc(6)Hex(7)dHex(2)NeuAc(2)	Byonic
 G17899TT	HexNAc6Hex7dHex2NeuAc2	ShortUniCarbKB
 G17899TT	HexNAc6Hex7dHex2NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -621,27 +769,33 @@ G18096WT	HexNAc(4)Hex(5)Fuc(1)Sulpho(2)	Byonic
 G18123SG	HexNAc(6)Hex(5)dHex(4)	Byonic
 G18123SG	HexNAc6Hex5dHex4	ShortUniCarbKB
 G18123SG	HexNAc6Hex5dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G18221CF	N-Glycolyl-GM2	SemanticName
 G18227ZU	H12N12F	ShortComp
 G18227ZU	HexNAc(12)Hex(12)Fuc(1)	Byonic
 G18307ZZ	HexNAc(4)Hex(6)dHex(1)NeuAc(2)	Byonic
 G18307ZZ	HexNAc4Hex6dHex1NeuAc2	ShortUniCarbKB
 G18307ZZ	HexNAc4Hex6dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G18434DQ	HNK-1 on O-mannose	SemanticName
 G18442LT	H2N4S	ShortComp
 G18442LT	HexNAc(4)Hex(2)NeuAc(1)	Byonic
 G18442LT	HexNAc4Hex2NeuAc1	ShortUniCarbKB
 G18442LT	HexNAc4Hex2dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G18574CV	Di-sialyl T antigen	SemanticName
 G18625KA	GQ1b	SemanticName
 G18629WM	HexNAc(4)Hex(5)Fuc(1)Sulpho(1)	Byonic
 G18632GW	H4NF	ShortComp
 G18632GW	HexNAc(1)Hex(4)Fuc(1)	Byonic
 G18647XP	H5N3F	ShortComp
 G18647XP	HexNAc(3)Hex(5)Fuc(1)	Byonic
+G18717LR	Sialyl T antigen	SemanticName
 G18760WR	HexNAc(7)Hex(7)dHex(1)NeuAc(1)	Byonic
 G18760WR	HexNAc7Hex7dHex1NeuAc1	ShortUniCarbKB
 G18760WR	HexNAc7Hex7dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G18777XD	Sialopentaosylceramide	SemanticName
 G18883TH	HexNAc(6)Hex(7)dHex(4)NeuGc(1)	Byonic
 G18883TH	HexNAc6Hex7dHex4NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G18883TH	HexNAc6Hex7dHex4NeuGc1	ShortUniCarbKB
+G18921VT	GT1b	SemanticName
 G18950SY	HexNAc(6)Hex(5)dHex(1)NeuAc(2)NeuGc(1)	Byonic
 G18950SY	HexNAc6Hex5dHex1NeuAc2NeuGc1	ShortUniCarbKB
 G18950SY	HexNAc6Hex5dHex1NeuAc2NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -657,9 +811,19 @@ G18999EB	HexNAc2Hex2dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
 G18999ZC	HexNAc(4)Hex(5)NeuAc(1)NeuGc(1)	Byonic
 G18999ZC	HexNAc4Hex5NeuAc1NeuGc1	ShortUniCarbKB
 G18999ZC	HexNAc4Hex5dHex0NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G19024QK	GM3	SemanticName
+G19252ER	H11N4	ShortComp
+G19252ER	HexNAc(4)Hex(11)	Byonic
+G19252ER	HexNAc4Hex11	ShortUniCarbKB
+G19252ER	HexNAc4Hex11dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G19298OA	Gb5	SemanticName
+G19298OA	SSEA-3	SemanticName
 G19379ID	HexNAc(5)Hex(4)dHex(2)	Byonic
 G19379ID	HexNAc5Hex4dHex2	ShortUniCarbKB
 G19379ID	HexNAc5Hex4dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G19379QS	HexNAc(11)Hex(6)dHex(2)	Byonic
+G19379QS	HexNAc11Hex6dHex2	ShortUniCarbKB
+G19379QS	HexNAc11Hex6dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G19512II	HexNAc(6)Hex(11)dHex(1)	Byonic
 G19512II	HexNAc6Hex11dHex1	ShortUniCarbKB
 G19512II	HexNAc6Hex11dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -675,10 +839,17 @@ G19784PR	HexNAc6Hex3dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G19865KY	Hex(4)dHex(1)	Byonic
 G19865KY	Hex4dHex1	ShortUniCarbKB
 G19865KY	HexNAc0Hex4dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G19926LY	Cytolipin R	SemanticName
+G19926LY	Isoglobotetraosylceramide	SemanticName
+G19933EP	Paragloboside	SemanticName
 G19973ZD	H4N6FS	ShortComp
 G19973ZD	HexNAc(6)Hex(4)Fuc(1)NeuAc(1)	Byonic
 G20159XY	H2FS	ShortComp
 G20159XY	Hex(2)Fuc(1)NeuAc(1)	Byonic
+G20208VO	GM2	SemanticName
+G20253QO	2,6-Branched O-mannose	SemanticName
+G20393XK	O-Linked mannose	SemanticName
+G20516BM	Di-sialyl T antigen	SemanticName
 G20528HD	H5N6FS	ShortComp
 G20528HD	HexNAc(6)Hex(5)Fuc(1)NeuAc(1)	Byonic
 G20606AK	HexNAc(6)Hex(6)dHex(1)NeuAc(4)	Byonic
@@ -695,17 +866,21 @@ G20899EQ	HexNAc3Hex5dHex2NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G20956ZV	HexNAc(2)Hex(3)dHex(1)	Byonic
 G20956ZV	HexNAc2Hex3dHex1	ShortUniCarbKB
 G20956ZV	HexNAc2Hex3dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G20967CU	Di-sialyl T antigen	SemanticName
 G20980JF	HexNAc1Hex2Pent1HexA1	ShortUniCarbKB
 G20980JF	HexNAc1Hex2dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA1	UniCarbKB
+G21028RE	GD1	SemanticName
 G21100WO	HN2FS	ShortComp
 G21100WO	HexNAc(2)Hex(1)Fuc(1)NeuAc(1)	Byonic
 G21169OD	H10N9FS	ShortComp
 G21169OD	HexNAc(9)Hex(10)Fuc(1)NeuAc(1)	Byonic
+G21217SF	Di-sialyl T antigen	SemanticName
 G21259PI	HexNAc(3)Hex(1)dHex(1)	Byonic
 G21259PI	HexNAc3Hex1dHex1	ShortUniCarbKB
 G21259PI	HexNAc3Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G21349JZ	H2N2F3	ShortComp
 G21349JZ	HexNAc(2)Hex(2)Fuc(3)	Byonic
+G21518JT	GD1a	SemanticName
 G21586TD	HexNAc(4)Hex(5)dHex(1)NeuAc(2)Sulpho(1)	Byonic
 G21586TD	HexNAc4Hex5dHex1NeuAc2NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G21586TD	HexNAc4Hex5dHex1NeuAc2S1	ShortUniCarbKB
@@ -715,9 +890,11 @@ G21658QF	HexNAc4Hex7dHex0NeuAc1NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
 G21670TV	HexNAc(6)Hex(5)NeuAc(2)NeuGc(1)	Byonic
 G21670TV	HexNAc6Hex5NeuAc2NeuGc1	ShortUniCarbKB
 G21670TV	HexNAc6Hex5dHex0NeuAc2NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G21700KV	P1 antigen	SemanticName
 G21726WW	HexNAc(2)Hex(3)dHex(2)	Byonic
 G21726WW	HexNAc2Hex3dHex2	ShortUniCarbKB
 G21726WW	HexNAc2Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G21755QG	A antigen (type 3)	SemanticName
 G21856LC	Asialo-GM1	SemanticName
 G21976AG	HexNAc(6)Hex(5)dHex(1)NeuAc(3)	Byonic
 G21976AG	HexNAc6Hex5dHex1NeuAc3	ShortUniCarbKB
@@ -735,6 +912,7 @@ G22314RO	HexNAc0Hex2dHex0NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G22452XH	HexNAc(7)Hex(5)dHex(2)NeuAc(2)	Byonic
 G22452XH	HexNAc7Hex5dHex2NeuAc2	ShortUniCarbKB
 G22452XH	HexNAc7Hex5dHex2NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G22536RS	Di-sialyl T antigen	SemanticName
 G22572EH	H3N3F2	ShortComp
 G22572EH	HexNAc(3)Hex(3)Fuc(2)	Byonic
 G22589VJ	HexNAc(6)Hex(7)dHex(4)	Byonic
@@ -750,11 +928,13 @@ G22859FS	HexNAc(8)Hex(9)Fuc(1)NeuAc(2)	Byonic
 G22862WY	HexNAc(4)Hex(6)dHex(2)NeuAc(3)	Byonic
 G22862WY	HexNAc4Hex6dHex2NeuAc3	ShortUniCarbKB
 G22862WY	HexNAc4Hex6dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G22875VT	cisGM1	SemanticName
 G22913YS	HexNAc(5)Hex(6)dHex(1)Sulpho(2)	Byonic
 G22913YS	HexNAc5Hex6dHex1NeuAc0NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G22913YS	HexNAc5Hex6dHex1S2	ShortUniCarbKB
 G22917YC	HexNAc0Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN1HexA0	UniCarbKB
 G22917YC	KDN1	ShortUniCarbKB
+G22945AN	O-Linked mannose	SemanticName
 G22955WV	HexNAc(1)Hex(3)dHex(2)	Byonic
 G22955WV	HexNAc1Hex3dHex2	ShortUniCarbKB
 G22955WV	HexNAc1Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -763,8 +943,10 @@ G22974QT	HexNAc(7)Hex(4)Fuc(2)	Byonic
 G23007DR	HexNAc(4)Hex(7)dHex(1)NeuAc(1)	Byonic
 G23007DR	HexNAc4Hex7dHex1NeuAc1	ShortUniCarbKB
 G23007DR	HexNAc4Hex7dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G23061NF	Sialyl Tn antigen	SemanticName
 G23193VZ	HexNAc4Hex5dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
 G23193VZ	HexNAc4Hex5dHex1S1HexA1	ShortUniCarbKB
+G23202WP	T antigen	SemanticName
 G23461QN	HN3FS	ShortComp
 G23461QN	HexNAc(3)Hex(1)Fuc(1)NeuAc(1)	Byonic
 G23505EP	H4N6S	ShortComp
@@ -773,6 +955,7 @@ G23505EP	HexNAc6Hex4NeuAc1	ShortUniCarbKB
 G23505EP	HexNAc6Hex4dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G23505FB	H3N2F2S	ShortComp
 G23505FB	HexNAc(2)Hex(3)Fuc(2)NeuAc(1)	Byonic
+G23596JQ	B-GD1b	SemanticName
 G23666EW	HexNAc(2)Hex(3)dHex(2)NeuAc(1)	Byonic
 G23666EW	HexNAc2Hex3dHex2NeuAc1	ShortUniCarbKB
 G23666EW	HexNAc2Hex3dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -784,9 +967,12 @@ G23729WG	HNS2	ShortComp
 G23729WG	HexNAc(1)Hex(1)NeuAc(2)	Byonic
 G23729WG	HexNAc1Hex1NeuAc2	ShortUniCarbKB
 G23729WG	HexNAc1Hex1dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G23841ON	GM3	SemanticName
+G24038BC	Disialosyl globopentaosylceramide	SemanticName
 G24202RA	HexNAc(7)Hex(5)dHex(3)	Byonic
 G24202RA	HexNAc7Hex5dHex3	ShortUniCarbKB
 G24202RA	HexNAc7Hex5dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G24242FT	GD1b	SemanticName
 G24255JV	HexNAc(3)Hex(6)dHex(3)	Byonic
 G24255JV	HexNAc3Hex6dHex3	ShortUniCarbKB
 G24255JV	HexNAc3Hex6dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -798,11 +984,14 @@ G24357WI	HexNAc(2)Hex(4)Fuc(3)	Byonic
 G24369TK	HexNAc(8)Hex(9)dHex(1)NeuAc(2)	Byonic
 G24369TK	HexNAc8Hex9dHex1NeuAc2	ShortUniCarbKB
 G24369TK	HexNAc8Hex9dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G24428CW	2,6-Branched O-mannose	SemanticName
 G24481HY	HexNAc(8)Hex(8)dHex(1)	Byonic
 G24481HY	HexNAc8Hex8dHex1	ShortUniCarbKB
 G24481HY	HexNAc8Hex8dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G24499XE	Globoside	SemanticName
 G24528MX	H3N7F	ShortComp
 G24528MX	HexNAc(7)Hex(3)Fuc(1)	Byonic
+G24638PB	GD1	SemanticName
 G24701BA	HexNAc(2)Hex(4)NeuGc(1)	Byonic
 G24701BA	HexNAc2Hex4NeuGc1	ShortUniCarbKB
 G24701BA	HexNAc2Hex4dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -813,6 +1002,8 @@ G24768UX	HexNAc(3)Hex(3)NeuAc(2)Sulpho(1)	Byonic
 G24768UX	HexNAc3Hex3NeuAc2S1	ShortUniCarbKB
 G24768UX	HexNAc3Hex3dHex0NeuAc2NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G24803MV	HexNAc(2)Hex(2)Fuc(1)Sulpho(1)	Byonic
+G24978QU	GM4	SemanticName
+G25045TC	GQ1c	SemanticName
 G25079LO	H4N6	ShortComp
 G25079LO	HexNAc(6)Hex(4)	Byonic
 G25079LO	HexNAc6Hex4	ShortUniCarbKB
@@ -827,6 +1018,8 @@ G25216QA	Blood group B (type 4)	SemanticName
 G25216ZI	HexNAc(5)Hex(4)Fuc(1)Sulpho(1)	Byonic
 G25275QJ	H6N7F4	ShortComp
 G25275QJ	HexNAc(7)Hex(6)Fuc(4)	Byonic
+G25315HI	9-O-Acetyl GD3	SemanticName
+G25315HI	GD3	SemanticName
 G25325JY	Hex(1)Pent(1)	Byonic
 G25325JY	Hex1Pent1	ShortUniCarbKB
 G25325JY	HexNAc0Hex1dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
@@ -839,6 +1032,7 @@ G25566QA	HexNAc6Hex6dHex3NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G25707QU	HexNAc(6)Hex(6)NeuAc(1)NeuGc(1)	Byonic
 G25707QU	HexNAc6Hex6NeuAc1NeuGc1	ShortUniCarbKB
 G25707QU	HexNAc6Hex6dHex0NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G25738BH	H antigen (type 3)	SemanticName
 G25810YB	H2NF2	ShortComp
 G25810YB	HexNAc(1)Hex(2)Fuc(2)	Byonic
 G25817RY	H3N3F4	ShortComp
@@ -851,14 +1045,19 @@ G25928EE	HexNAc1Hex4dHex1	ShortUniCarbKB
 G25928EE	HexNAc1Hex4dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G25952OG	H7N7FS	ShortComp
 G25952OG	HexNAc(7)Hex(7)Fuc(1)NeuAc(1)	Byonic
+G25984EB	GM3	SemanticName
 G25987BV	HexNAc(4)Hex(3)dHex(1)	Byonic
 G25987BV	HexNAc4Hex3dHex1	ShortUniCarbKB
 G25987BV	HexNAc4Hex3dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G25989JW	HexNAc(5)Hex(7)dHex(2)	Byonic
+G25989JW	HexNAc5Hex7dHex2	ShortUniCarbKB
+G25989JW	HexNAc5Hex7dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G26006IS	HexNAc(7)Hex(6)dHex(1)NeuAc(3)	Byonic
 G26006IS	HexNAc7Hex6dHex1NeuAc3	ShortUniCarbKB
 G26006IS	HexNAc7Hex6dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G26105XA	H2N2F2	ShortComp
 G26105XA	HexNAc(2)Hex(2)Fuc(2)	Byonic
+G26199BG	GQ1aa	SemanticName
 G26271XI	HexNAc(5)Hex(6)dHex(4)	Byonic
 G26271XI	HexNAc5Hex6dHex4	ShortUniCarbKB
 G26271XI	HexNAc5Hex6dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -887,6 +1086,7 @@ G26623YL	H7N3F2	ShortComp
 G26623YL	HexNAc(3)Hex(7)Fuc(2)	Byonic
 G26696QO	H3N3F2S	ShortComp
 G26696QO	HexNAc(3)Hex(3)Fuc(2)NeuAc(1)	Byonic
+G26805JF	Sialyl T antigen	SemanticName
 G26853DK	H6N6F3S3	ShortComp
 G26853DK	HexNAc(6)Hex(6)Fuc(3)NeuAc(3)	Byonic
 G26903VB	H2N2FS	ShortComp
@@ -896,6 +1096,8 @@ G26918LL	HexNAc1Hex1dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G26918LL	HexNAc1Hex1dHex1S1	ShortUniCarbKB
 G26951VZ	H8N5FS	ShortComp
 G26951VZ	HexNAc(5)Hex(8)Fuc(1)NeuAc(1)	Byonic
+G26981KT	Di-sialyl T antigen	SemanticName
+G27025MB	Tn antigen	SemanticName
 G27033WF	HexNAc(8)Hex(9)dHex(1)NeuAc(3)	Byonic
 G27033WF	HexNAc8Hex9dHex1NeuAc3	ShortUniCarbKB
 G27033WF	HexNAc8Hex9dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -919,10 +1121,14 @@ G27342PV	HexNAc4Hex4dHex1P1	ShortUniCarbKB
 G27378DU	HexNAc(7)Hex(8)dHex(2)	Byonic
 G27378DU	HexNAc7Hex8dHex2	ShortUniCarbKB
 G27378DU	HexNAc7Hex8dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G27386EE	Monosulfated gangliotetraosylceramide	SemanticName
 G27391WQ	HexNAc(2)	Byonic
 G27391WQ	HexNAc2	ShortUniCarbKB
 G27391WQ	HexNAc2Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G27391WQ	N2	ShortComp
+G27476OM	GT3	SemanticName
+G27506VN	H6N5FS4	ShortComp
+G27506VN	HexNAc(5)Hex(6)Fuc(1)NeuAc(4)	Byonic
 G27550KO	HexNAc(7)Hex(6)Fuc(1)NeuAc(2)Sulpho(1)	Byonic
 G27615DP	HexNAc(6)Hex(7)dHex(3)NeuAc(3)	Byonic
 G27615DP	HexNAc6Hex7dHex3NeuAc3	ShortUniCarbKB
@@ -933,6 +1139,7 @@ G27622TD	HexNAc3Hex5dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G27660BA	H5NF2	ShortComp
 G27660BA	HexNAc(1)Hex(5)Fuc(2)	Byonic
 G27745TR	HexNAc(1)Hex(3)Fuc(1)NeuGc(1)	Byonic
+G27816PZ	GQ1b	SemanticName
 G27846BH	HexNAc(7)Hex(8)dHex(3)NeuAc(1)	Byonic
 G27846BH	HexNAc7Hex8dHex3NeuAc1	ShortUniCarbKB
 G27846BH	HexNAc7Hex8dHex3NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1017,17 +1224,30 @@ G29279QO	HexNAc4Hex5dHex1NeuAc1NeuGc1	ShortUniCarbKB
 G29279QO	HexNAc4Hex5dHex1NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G29299MO	H5N3F2	ShortComp
 G29299MO	HexNAc(3)Hex(5)Fuc(2)	Byonic
+G29437VV	GD2	SemanticName
 G29545VG	H7N6F2	ShortComp
 G29545VG	HexNAc(6)Hex(7)Fuc(2)	Byonic
+G29587NV	A antigen (type 3)	SemanticName
 G29651HS	HexNAc(5)Hex(5)dHex(2)	Byonic
 G29651HS	HexNAc5Hex5dHex2	ShortUniCarbKB
 G29651HS	HexNAc5Hex5dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G29658JP	Forssman glycolipid	SemanticName
+G29658JP	para-Forssman glycolipid	SemanticName
+G29807WF	H11N	ShortComp
+G29807WF	HexNAc(1)Hex(11)	Byonic
+G29807WF	HexNAc1Hex11	ShortUniCarbKB
+G29807WF	HexNAc1Hex11dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G29879MS	H3N5F2	ShortComp
 G29879MS	HexNAc(5)Hex(3)Fuc(2)	Byonic
 G29898ES	H3N5S	ShortComp
 G29898ES	HexNAc(5)Hex(3)NeuAc(1)	Byonic
 G29898ES	HexNAc5Hex3NeuAc1	ShortUniCarbKB
 G29898ES	HexNAc5Hex3dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G29964CE	Cytolipin R	SemanticName
+G29964CE	Globoside	SemanticName
+G29964CE	Isoglobotetraosylceramide	SemanticName
+G29966WK	B-GD1b	SemanticName
+G30110UW	Di-sialyl T antigen	SemanticName
 G30123TP	HexNAc(4)Hex(5)dHex(2)NeuGc(1)	Byonic
 G30123TP	HexNAc4Hex5dHex2NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G30123TP	HexNAc4Hex5dHex2NeuGc1	ShortUniCarbKB
@@ -1044,6 +1264,7 @@ G30248BL	H7N4S2	ShortComp
 G30248BL	HexNAc(4)Hex(7)NeuAc(2)	Byonic
 G30248BL	HexNAc4Hex7NeuAc2	ShortUniCarbKB
 G30248BL	HexNAc4Hex7dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G30356XK	B antigen (type 3)	SemanticName
 G30404JO	H7N6F3S2	ShortComp
 G30404JO	HexNAc(6)Hex(7)Fuc(3)NeuAc(2)	Byonic
 G30418WA	HexNAc(4)Hex(6)dHex(4)NeuAc(2)	Byonic
@@ -1052,12 +1273,14 @@ G30418WA	HexNAc4Hex6dHex4NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G30589MK	HexNAc(7)Hex(6)dHex(3)NeuAc(1)	Byonic
 G30589MK	HexNAc7Hex6dHex3NeuAc1	ShortUniCarbKB
 G30589MK	HexNAc7Hex6dHex3NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G30599HV	GM4	SemanticName
 G30621VE	HexNAc(5)Hex(6)dHex(3)NeuAc(2)	Byonic
 G30621VE	HexNAc5Hex6dHex3NeuAc2	ShortUniCarbKB
 G30621VE	HexNAc5Hex6dHex3NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G30630UO	HexNAc(8)Hex(5)dHex(1)	Byonic
 G30630UO	HexNAc8Hex5dHex1	ShortUniCarbKB
 G30630UO	HexNAc8Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G30710NE	T antigen	SemanticName
 G30740WO	H6N6S3	ShortComp
 G30740WO	HexNAc(6)Hex(6)NeuAc(3)	Byonic
 G30740WO	HexNAc6Hex6NeuAc3	ShortUniCarbKB
@@ -1066,6 +1289,7 @@ G30862UC	HexNAc(5)Hex(4)NeuGc(2)	Byonic
 G30862UC	HexNAc5Hex4NeuGc2	ShortUniCarbKB
 G30862UC	HexNAc5Hex4dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G30925QW	Sulfo-isogloboside	SemanticName
+G30945GT	2,6-Branched O-mannose	SemanticName
 G30970QQ	H6N7F	ShortComp
 G30970QQ	HexNAc(7)Hex(6)Fuc(1)	Byonic
 G31016RR	HexNAc(3)Hex(7)dHex(2)	Byonic
@@ -1075,6 +1299,8 @@ G31028YV	H3N9	ShortComp
 G31028YV	HexNAc(9)Hex(3)	Byonic
 G31028YV	HexNAc9Hex3	ShortUniCarbKB
 G31028YV	HexNAc9Hex3dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G31039KM	Blood group H (type 4)	SemanticName
+G31039KM	GL-6 fucosylated	SemanticName
 G31152IF	H9N7F	ShortComp
 G31152IF	HexNAc(7)Hex(9)Fuc(1)	Byonic
 G31166QV	H4N8S	ShortComp
@@ -1092,6 +1318,11 @@ G31458KO	HexNAc7Hex10dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G31483BB	HexNAc(8)Hex(3)dHex(2)	Byonic
 G31483BB	HexNAc8Hex3dHex2	ShortUniCarbKB
 G31483BB	HexNAc8Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G31558QR	HexNAc(7)Hex(3)Sulpho(1)	Byonic
+G31558QR	HexNAc7Hex3S1	ShortUniCarbKB
+G31558QR	HexNAc7Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G31618LI	Seminolipid	SemanticName
+G31618LI	Sulfatide	SemanticName
 G31632CJ	HexNAc(5)Hex(4)dHex(4)	Byonic
 G31632CJ	HexNAc5Hex4dHex4	ShortUniCarbKB
 G31632CJ	HexNAc5Hex4dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1110,6 +1341,9 @@ G32030CB	HexNAc0Hex6dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G32031XK	HexNAc6Hex7dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
 G32031XK	HexNAc6Hex7dHex1S1HexA1	ShortUniCarbKB
 G32107XR	HexNAc(5)Hex(6)Fuc(1)NeuAc(1)Sulpho(2)	Byonic
+G32118GY	HexNAc(11)Hex(7)dHex(1)	Byonic
+G32118GY	HexNAc11Hex7dHex1	ShortUniCarbKB
+G32118GY	HexNAc11Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G32254QI	GL-7 globoseries ganglioside	SemanticName
 G32390BU	H15N14F6S	ShortComp
 G32390BU	HexNAc(14)Hex(15)Fuc(6)NeuAc(1)	Byonic
@@ -1120,12 +1354,15 @@ G32392SM	HexNAc6Hex5dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G32406CO	HexNAc(2)Hex(1)Sulpho(1)	Byonic
 G32406CO	HexNAc2Hex1S1	ShortUniCarbKB
 G32406CO	HexNAc2Hex1dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G32592HX	Mono-fucosyl LN5	SemanticName
 G32611PG	HexNAc(7)Hex(8)dHex(1)NeuAc(2)NeuGc(1)	Byonic
 G32611PG	HexNAc7Hex8dHex1NeuAc2NeuGc1	ShortUniCarbKB
 G32611PG	HexNAc7Hex8dHex1NeuAc2NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G32633LC	HexNAc(5)Hex(7)dHex(1)NeuAc(1)	Byonic
 G32633LC	HexNAc5Hex7dHex1NeuAc1	ShortUniCarbKB
 G32633LC	HexNAc5Hex7dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G32675WL	Di-sialyl T antigen	SemanticName
+G32698HD	GM3	SemanticName
 G32762BU	HexNAc(5)Hex(6)NeuAc(1)Sulpho(2)	Byonic
 G32762BU	HexNAc5Hex6NeuAc1S2	ShortUniCarbKB
 G32762BU	HexNAc5Hex6dHex0NeuAc1NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
@@ -1137,6 +1374,7 @@ G32802UB	HexNAc1Hex6dHex0NeuAc0NeuGc0Pent0S0P2KDN0HexA0	UniCarbKB
 G32812YZ	HexNAc(5)Hex(5)dHex(2)NeuAc(2)	Byonic
 G32812YZ	HexNAc5Hex5dHex2NeuAc2	ShortUniCarbKB
 G32812YZ	HexNAc5Hex5dHex2NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G32860ZZ	cisGM1	SemanticName
 G32861ZJ	HexNAc(8)Hex(7)Fuc(1)NeuAc(2)Sulpho(2)	Byonic
 G32899LT	HexNAc(2)Hex(3)dHex(1)NeuAc(1)	Byonic
 G32899LT	HexNAc2Hex3dHex1NeuAc1	ShortUniCarbKB
@@ -1161,17 +1399,21 @@ G33553PX	HexNAc(14)Hex(15)Fuc(5)NeuAc(2)	Byonic
 G33556XM	HexNAc(6)Hex(3)dHex(1)NeuAc(1)	Byonic
 G33556XM	HexNAc6Hex3dHex1NeuAc1	ShortUniCarbKB
 G33556XM	HexNAc6Hex3dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G33570YF	GT3	SemanticName
 G33623LN	HexNAc2Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA2	UniCarbKB
 G33623LN	HexNAc2HexA2	ShortUniCarbKB
 G33635AG	HexNAc(7)Hex(6)dHex(3)	Byonic
 G33635AG	HexNAc7Hex6dHex3	ShortUniCarbKB
 G33635AG	HexNAc7Hex6dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G33765XW	Lactosylceramide	SemanticName
 G33766VH	HexNAc(6)Hex(3)dHex(1)NeuGc(1)	Byonic
 G33766VH	HexNAc6Hex3dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G33766VH	HexNAc6Hex3dHex1NeuGc1	ShortUniCarbKB
 G33792IQ	HexNAc(9)Hex(9)dHex(2)	Byonic
 G33792IQ	HexNAc9Hex9dHex2	ShortUniCarbKB
 G33792IQ	HexNAc9Hex9dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G33885RT	O-Linked mannose	SemanticName
+G33981OV	N-Glycolyl-GM2	SemanticName
 G34029GR	H4N7	ShortComp
 G34029GR	HexNAc(7)Hex(4)	Byonic
 G34029GR	HexNAc7Hex4	ShortUniCarbKB
@@ -1179,24 +1421,30 @@ G34029GR	HexNAc7Hex4dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G34207RX	HexNAc(2)Hex(1)dHex(1)Sulpho(1)	Byonic
 G34207RX	HexNAc2Hex1dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G34207RX	HexNAc2Hex1dHex1S1	ShortUniCarbKB
+G34491AS	2-Fucosyl-GM1	SemanticName
 G34516JZ	H3N3S	ShortComp
 G34516JZ	HexNAc(3)Hex(3)NeuAc(1)	Byonic
 G34516JZ	HexNAc3Hex3NeuAc1	ShortUniCarbKB
 G34516JZ	HexNAc3Hex3dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G34611YE	HNF	ShortComp
 G34611YE	HexNAc(1)Hex(1)Fuc(1)	Byonic
+G34674RX	cisGM1	SemanticName
+G34789KG	H antigen (type 3)	SemanticName
 G34830EE	HexNAc(3)Hex(4)dHex(1)NeuAc(1)Sulpho(1)	Byonic
 G34830EE	HexNAc3Hex4dHex1NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G34830EE	HexNAc3Hex4dHex1NeuAc1S1	ShortUniCarbKB
 G34852SB	HexNAc(6)Hex(6)dHex(3)	Byonic
 G34852SB	HexNAc6Hex6dHex3	ShortUniCarbKB
 G34852SB	HexNAc6Hex6dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G34878UL	GD2	SemanticName
+G34938CC	H antigen (type 3)	SemanticName
 G34989PA	H4N5FS2	ShortComp
 G34989PA	HexNAc(5)Hex(4)Fuc(1)NeuAc(2)	Byonic
 G35029YA	H3N4	ShortComp
 G35029YA	HexNAc(4)Hex(3)	Byonic
 G35029YA	HexNAc4Hex3	ShortUniCarbKB
 G35029YA	HexNAc4Hex3dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G35228ZS	GT2	SemanticName
 G35235RT	HexNAc(3)Hex(5)dHex(2)NeuAc(1)	Byonic
 G35235RT	HexNAc3Hex5dHex2NeuAc1	ShortUniCarbKB
 G35235RT	HexNAc3Hex5dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1204,11 +1452,19 @@ G35236NV	HexNAc2Hex3HexA1	ShortUniCarbKB
 G35236NV	HexNAc2Hex3dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA1	UniCarbKB
 G35253PZ	H3N5FS	ShortComp
 G35253PZ	HexNAc(5)Hex(3)Fuc(1)NeuAc(1)	Byonic
+G35255WG	Sialyl Tn antigen	SemanticName
+G35496OB	H14N	ShortComp
+G35496OB	HexNAc(1)Hex(14)	Byonic
+G35496OB	HexNAc1Hex14	ShortUniCarbKB
+G35496OB	HexNAc1Hex14dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G35541EV	H7N6F3	ShortComp
 G35541EV	HexNAc(6)Hex(7)Fuc(3)	Byonic
+G35609TJ	Di-sialyl T antigen	SemanticName
 G35726GI	HexNAc(1)Hex(2)dHex(3)	Byonic
 G35726GI	HexNAc1Hex2dHex3	ShortUniCarbKB
 G35726GI	HexNAc1Hex2dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G35815VK	GM4	SemanticName
+G35842UG	Di-sialyl T antigen	SemanticName
 G36003IU	H7N10	ShortComp
 G36003IU	HexNAc(10)Hex(7)	Byonic
 G36003IU	HexNAc10Hex7	ShortUniCarbKB
@@ -1220,6 +1476,8 @@ G36045MZ	HexNAc(4)Hex(2)NeuAc(4)	Byonic
 G36045MZ	HexNAc4Hex2NeuAc4	ShortUniCarbKB
 G36045MZ	HexNAc4Hex2dHex0NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G36123IU	Sialyl Tn antigen	SemanticName
+G36124QZ	T antigen	SemanticName
+G36263SU	Mono-sulfated globotetraosylceramide	SemanticName
 G36357CE	HexNAc(5)Hex(4)dHex(4)NeuAc(2)	Byonic
 G36357CE	HexNAc5Hex4dHex4NeuAc2	ShortUniCarbKB
 G36357CE	HexNAc5Hex4dHex4NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1228,6 +1486,7 @@ G36379GD	HexNAc(3)Hex(3)Fuc(1)	Byonic
 G36431RU	HexNAc(2)Hex(2)dHex(1)NeuAc(2)	Byonic
 G36431RU	HexNAc2Hex2dHex1NeuAc2	ShortUniCarbKB
 G36431RU	HexNAc2Hex2dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G36467MU	Mono-sulfated globopentaosylceramide	SemanticName
 G36476BA	GT2	SemanticName
 G36495EJ	H5N3F4	ShortComp
 G36495EJ	HexNAc(3)Hex(5)Fuc(4)	Byonic
@@ -1238,9 +1497,12 @@ G36653TZ	HexNAc4HexA3	ShortUniCarbKB
 G36670VW	HexNAc(5)Hex(5)dHex(1)NeuAc(2)	Byonic
 G36670VW	HexNAc5Hex5dHex1NeuAc2	ShortUniCarbKB
 G36670VW	HexNAc5Hex5dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G36691KB	Blood group A (type 4)	SemanticName
 G36699NY	HexNAc(7)Hex(8)dHex(4)NeuAc(5)	Byonic
 G36699NY	HexNAc7Hex8dHex4NeuAc5	ShortUniCarbKB
 G36699NY	HexNAc7Hex8dHex4NeuAc5NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G36723FO	Gb5	SemanticName
+G36723FO	SSEA-3	SemanticName
 G36823XT	HexNAc(1)Hex(3)dHex(1)NeuGc(1)	Byonic
 G36823XT	HexNAc1Hex3dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G36823XT	HexNAc1Hex3dHex1NeuGc1	ShortUniCarbKB
@@ -1263,6 +1525,8 @@ G37092BG	HexNAc(1)Hex(2)NeuAc(2)	Byonic
 G37092BG	HexNAc1Hex2NeuAc2	ShortUniCarbKB
 G37092BG	HexNAc1Hex2dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G37184KW	GD1b	SemanticName
+G37193ED	Sialyl Tn antigen	SemanticName
+G37223OF	B-GM1	SemanticName
 G37364RR	HexNAc(6)Hex(7)dHex(6)	Byonic
 G37364RR	HexNAc6Hex7dHex6	ShortUniCarbKB
 G37364RR	HexNAc6Hex7dHex6NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1276,22 +1540,30 @@ G37412TK	HexNAc5Hex4NeuAc2	ShortUniCarbKB
 G37412TK	HexNAc5Hex4dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G37509XX	H4N6F	ShortComp
 G37509XX	HexNAc(6)Hex(4)Fuc(1)	Byonic
+G37584UP	Sialyl Tn antigen	SemanticName
 G37659EV	HexNAc(9)Hex(4)dHex(1)	Byonic
 G37659EV	HexNAc9Hex4dHex1	ShortUniCarbKB
 G37659EV	HexNAc9Hex4dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G37692EO	H3N9F	ShortComp
 G37692EO	HexNAc(9)Hex(3)Fuc(1)	Byonic
+G37736TM	Glucosylceramide	SemanticName
+G37815LJ	GD1a	SemanticName
 G37818NZ	H7N6S2	ShortComp
 G37818NZ	HexNAc(6)Hex(7)NeuAc(2)	Byonic
 G37818NZ	HexNAc6Hex7NeuAc2	ShortUniCarbKB
 G37818NZ	HexNAc6Hex7dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G37830TX	Blood group A (type 4)	SemanticName
+G37891WT	Sialyl T antigen	SemanticName
+G38006JA	9-O-Acetyl GD3	SemanticName
+G38006JA	GD3	SemanticName
 G38025DM	H2NS	ShortComp
 G38025DM	HexNAc(1)Hex(2)NeuAc(1)	Byonic
 G38025DM	HexNAc1Hex2NeuAc1	ShortUniCarbKB
 G38025DM	HexNAc1Hex2dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G38037QN	O-Linked mannose	SemanticName
 G38052JH	HexNAc3Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA4	UniCarbKB
 G38052JH	HexNAc3HexA4	ShortUniCarbKB
+G38251WF	GT3	SemanticName
 G38398KX	HexNAc(9)Hex(1)dHex(1)	Byonic
 G38398KX	HexNAc9Hex1dHex1	ShortUniCarbKB
 G38398KX	HexNAc9Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1301,6 +1573,7 @@ G38508ZL	HexNAc7Hex7dHex6NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G38529AQ	HexNAc(1)Hex(2)dHex(1)Sulpho(1)	Byonic
 G38529AQ	HexNAc1Hex2dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G38529AQ	HexNAc1Hex2dHex1S1	ShortUniCarbKB
+G38552LX	GM3	SemanticName
 G38595OH	HexNAc(5)Hex(5)NeuGc(2)	Byonic
 G38595OH	HexNAc5Hex5NeuGc2	ShortUniCarbKB
 G38595OH	HexNAc5Hex5dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1311,6 +1584,7 @@ G38638KM	HexNAc(2)NeuAc(2)	Byonic
 G38638KM	HexNAc2Hex0dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G38638KM	HexNAc2NeuAc2	ShortUniCarbKB
 G38638KM	N2S2	ShortComp
+G38648NC	H antigen (type 3)	SemanticName
 G38680WX	HexNAc(7)Hex(7)dHex(4)	Byonic
 G38680WX	HexNAc7Hex7dHex4	ShortUniCarbKB
 G38680WX	HexNAc7Hex7dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1348,19 +1622,26 @@ G39471UU	H9N8	ShortComp
 G39471UU	HexNAc(8)Hex(9)	Byonic
 G39471UU	HexNAc8Hex9	ShortUniCarbKB
 G39471UU	HexNAc8Hex9dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G39558MO	Di-sialyl T antigen	SemanticName
+G39590OY	Ceramide dihexosyl sulfate	SemanticName
+G39686UR	2,6-Branched O-mannose	SemanticName
 G39689FZ	HexNAc(5)Hex(6)dHex(4)NeuAc(1)	Byonic
 G39689FZ	HexNAc5Hex6dHex4NeuAc1	ShortUniCarbKB
 G39689FZ	HexNAc5Hex6dHex4NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G39738WL	Tn antigen	SemanticName
+G39790MV	GT1a	SemanticName
 G39820SQ	HexNAc(7)Hex(8)dHex(3)NeuAc(4)	Byonic
 G39820SQ	HexNAc7Hex8dHex3NeuAc4	ShortUniCarbKB
 G39820SQ	HexNAc7Hex8dHex3NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G39916IH	HexNAc(2)Hex(4)dHex(1)NeuAc(1)	Byonic
 G39916IH	HexNAc2Hex4dHex1NeuAc1	ShortUniCarbKB
 G39916IH	HexNAc2Hex4dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G39924QQ	Di-sialyl T antigen	SemanticName
 G39927PF	H3N2S2	ShortComp
 G39927PF	HexNAc(2)Hex(3)NeuAc(2)	Byonic
 G39927PF	HexNAc2Hex3NeuAc2	ShortUniCarbKB
 G39927PF	HexNAc2Hex3dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G40041RJ	GM3	SemanticName
 G40183QN	GT1b	SemanticName
 G40206WX	H4N9	ShortComp
 G40206WX	HexNAc(9)Hex(4)	Byonic
@@ -1369,8 +1650,15 @@ G40206WX	HexNAc9Hex4dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G40257VP	HexNAc(7)Hex(7)dHex(2)NeuAc(3)	Byonic
 G40257VP	HexNAc7Hex7dHex2NeuAc3	ShortUniCarbKB
 G40257VP	HexNAc7Hex7dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G40306MD	GM1	SemanticName
+G40418GW	H11	ShortComp
+G40418GW	Hex(11)	Byonic
+G40418GW	Hex11	ShortUniCarbKB
+G40418GW	HexNAc0Hex11dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G40458PO	2-Fucosyl-GM1	SemanticName
 G40574BA	H6N4FS	ShortComp
 G40574BA	HexNAc(4)Hex(6)Fuc(1)NeuAc(1)	Byonic
+G40657ZV	GM3	SemanticName
 G40664HB	HexNAc(4)Hex(4)dHex(2)NeuAc(1)	Byonic
 G40664HB	HexNAc4Hex4dHex2NeuAc1	ShortUniCarbKB
 G40664HB	HexNAc4Hex4dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1378,6 +1666,7 @@ G40740AD	HexNAc(3)	Byonic
 G40740AD	HexNAc3	ShortUniCarbKB
 G40740AD	HexNAc3Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G40740AD	N3	ShortComp
+G40764VP	GM3	SemanticName
 G40792UP	HexNAc(5)Hex(3)dHex(2)	Byonic
 G40792UP	HexNAc5Hex3dHex2	ShortUniCarbKB
 G40792UP	HexNAc5Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1385,6 +1674,8 @@ G40834TG	H6N4S2	ShortComp
 G40834TG	HexNAc(4)Hex(6)NeuAc(2)	Byonic
 G40834TG	HexNAc4Hex6NeuAc2	ShortUniCarbKB
 G40834TG	HexNAc4Hex6dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G40843KY	Seminolipid	SemanticName
+G40843KY	Sulfatide	SemanticName
 G40887GX	HNS3	ShortComp
 G40887GX	HexNAc(1)Hex(1)NeuAc(3)	Byonic
 G40887GX	HexNAc1Hex1NeuAc3	ShortUniCarbKB
@@ -1401,6 +1692,7 @@ G41044JW	HexNAc6Hex7dHex1NeuAc3	ShortUniCarbKB
 G41044JW	HexNAc6Hex7dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G41071NU	H5N5F	ShortComp
 G41071NU	HexNAc(5)Hex(5)Fuc(1)	Byonic
+G41117VL	Pk antigen	SemanticName
 G41126SR	HexNAc(5)Hex(6)dHex(3)	Byonic
 G41126SR	HexNAc5Hex6dHex3	ShortUniCarbKB
 G41126SR	HexNAc5Hex6dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1410,25 +1702,38 @@ G41247ZX	H6N2	ShortComp
 G41247ZX	HexNAc(2)Hex(6)	Byonic
 G41247ZX	HexNAc2Hex6	ShortUniCarbKB
 G41247ZX	HexNAc2Hex6dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G41402DP	Disialosyl globopentaosylceramide	SemanticName
+G41759HA	GD2	SemanticName
 G41840AI	H6N3F2	ShortComp
 G41840AI	HexNAc(3)Hex(6)Fuc(2)	Byonic
 G41857UE	H7N7F3	ShortComp
 G41857UE	HexNAc(7)Hex(7)Fuc(3)	Byonic
+G41876BL	GM1	SemanticName
 G41879GR	HexNAc(6)Hex(7)NeuAc(2)Sulpho(2)	Byonic
 G41879GR	HexNAc6Hex7NeuAc2S2	ShortUniCarbKB
 G41879GR	HexNAc6Hex7dHex0NeuAc2NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
+G41883JI	LcGg4	SemanticName
 G41925PC	HexNAc(6)Hex(7)NeuAc(3)NeuGc(1)	Byonic
 G41925PC	HexNAc6Hex7NeuAc3NeuGc1	ShortUniCarbKB
 G41925PC	HexNAc6Hex7dHex0NeuAc3NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G41939GY	GT2	SemanticName
+G41970VG	HexNAc(5)Hex(10)dHex(1)	Byonic
+G41970VG	HexNAc5Hex10dHex1	ShortUniCarbKB
+G41970VG	HexNAc5Hex10dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G41972NX	HexNAc(7)Hex(9)dHex(2)	Byonic
+G41972NX	HexNAc7Hex9dHex2	ShortUniCarbKB
+G41972NX	HexNAc7Hex9dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G42032FN	HexNAc(2)Hex(3)dHex(1)Pent(1)	Byonic
 G42032FN	HexNAc2Hex3dHex1NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
 G42032FN	HexNAc2Hex3dHex1Pent1	ShortUniCarbKB
+G42033RV	Galactosylceramide	SemanticName
 G42124LM	H4N5F	ShortComp
 G42124LM	HexNAc(5)Hex(4)Fuc(1)	Byonic
 G42208HH	H2N3FS	ShortComp
 G42208HH	HexNAc(3)Hex(2)Fuc(1)NeuAc(1)	Byonic
 G42260PH	H8N7F2	ShortComp
 G42260PH	HexNAc(7)Hex(8)Fuc(2)	Byonic
+G42444AY	2-Fucosyl-GM1	SemanticName
 G42494UJ	HF	ShortComp
 G42494UJ	Hex(1)Fuc(1)	Byonic
 G42518JM	Hex(1)Pent(2)	Byonic
@@ -1442,6 +1747,7 @@ G42555WL	HexNAc6Hex7dHex0NeuAc2NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G42581TG	HexNAc(2)Hex(5)Phospho(1)	Byonic
 G42581TG	HexNAc2Hex5P1	ShortUniCarbKB
 G42581TG	HexNAc2Hex5dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
+G42784QY	GL-7 globoseries ganglioside	SemanticName
 G42789YX	HexNAc(6)Hex(7)dHex(3)	Byonic
 G42789YX	HexNAc6Hex7dHex3	ShortUniCarbKB
 G42789YX	HexNAc6Hex7dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1455,6 +1761,8 @@ G42817NX	HexNAc6Hex3dHex0NeuAc0NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G42823ZU	HexNAc(9)Hex(9)dHex(2)NeuAc(1)	Byonic
 G42823ZU	HexNAc9Hex9dHex2NeuAc1	ShortUniCarbKB
 G42823ZU	HexNAc9Hex9dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G42925XE	Gb5	SemanticName
+G42925XE	SSEA-3	SemanticName
 G42955FT	HexNAc(3)Hex(4)Fuc(1)NeuAc(1)Sulpho(1)	Byonic
 G42996AA	HexNAc5Hex6dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
 G42996AA	HexNAc5Hex6dHex1S1HexA1	ShortUniCarbKB
@@ -1470,13 +1778,21 @@ G43061MO	HexNAc(6)Hex(4)Fuc(3)	Byonic
 G43071TH	HexNAc(1)Hex(4)NeuGc(1)	Byonic
 G43071TH	HexNAc1Hex4NeuGc1	ShortUniCarbKB
 G43071TH	HexNAc1Hex4dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G43110WG	para-Forssman glycolipid	SemanticName
+G43145UD	Sialyl T antigen	SemanticName
+G43181MG	HexNAc(7)Hex(3)dHex(1)Sulpho(1)	Byonic
+G43181MG	HexNAc7Hex3dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G43181MG	HexNAc7Hex3dHex1S1	ShortUniCarbKB
 G43223CG	H5N5FS	ShortComp
 G43223CG	HexNAc(5)Hex(5)Fuc(1)NeuAc(1)	Byonic
+G43224ZR	GD1a	SemanticName
+G43326BY	T antigen	SemanticName
 G43343SY	HexNAc(7)Hex(7)Fuc(1)NeuAc(3)Sulpho(1)	Byonic
 G43417UB	HN	ShortComp
 G43417UB	HexNAc(1)Hex(1)	Byonic
 G43417UB	HexNAc1Hex1	ShortUniCarbKB
 G43417UB	HexNAc1Hex1dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G43523TH	Galactosylceramide	SemanticName
 G43560PI	HexNAc(7)Hex(4)dHex(2)	Byonic
 G43560PI	HexNAc7Hex4dHex2	ShortUniCarbKB
 G43560PI	HexNAc7Hex4dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1498,6 +1814,7 @@ G43734MM	H6N7	ShortComp
 G43734MM	HexNAc(7)Hex(6)	Byonic
 G43734MM	HexNAc7Hex6	ShortUniCarbKB
 G43734MM	HexNAc7Hex6dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G43761FR	O-Linked mannose	SemanticName
 G43769HG	H5N6	ShortComp
 G43769HG	HexNAc(6)Hex(5)	Byonic
 G43769HG	HexNAc6Hex5	ShortUniCarbKB
@@ -1505,16 +1822,30 @@ G43769HG	HexNAc6Hex5dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G43806FA	HexNAc(6)Hex(9)dHex(5)	Byonic
 G43806FA	HexNAc6Hex9dHex5	ShortUniCarbKB
 G43806FA	HexNAc6Hex9dHex5NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G44008HZ	Mono-fucosyl LN3	SemanticName
+G44023UC	HexNAc(16)Hex(12)dHex(1)	Byonic
+G44023UC	HexNAc16Hex12dHex1	ShortUniCarbKB
+G44023UC	HexNAc16Hex12dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G44029SF	Paragloboside	SemanticName
+G44145OW	Blood group H (type 4)	SemanticName
+G44145OW	GL-6 fucosylated	SemanticName
 G44211QA	HexNAc(5)Hex(6)dHex(1)	Byonic
 G44211QA	HexNAc5Hex6dHex1	ShortUniCarbKB
 G44211QA	HexNAc5Hex6dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G44438VT	HexNAc(7)Hex(5)dHex(1)NeuAc(1)	Byonic
+G44438VT	HexNAc7Hex5dHex1NeuAc1	ShortUniCarbKB
+G44438VT	HexNAc7Hex5dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G44502UE	Di-sialyl T antigen	SemanticName
 G44535PQ	HexNAc(6)Hex(7)Fuc(1)NeuAc(3)NeuGc(1)	Byonic
+G44540QB	GQ1b	SemanticName
+G44564LW	cisGM1	SemanticName
 G44606CY	HexNAc(6)Hex(7)dHex(1)NeuGc(4)	Byonic
 G44606CY	HexNAc6Hex7dHex1NeuAc0NeuGc4Pent0S0P0KDN0HexA0	UniCarbKB
 G44606CY	HexNAc6Hex7dHex1NeuGc4	ShortUniCarbKB
 G44630PQ	HexNAc(5)Hex(7)dHex(1)NeuAc(1)NeuGc(1)	Byonic
 G44630PQ	HexNAc5Hex7dHex1NeuAc1NeuGc1	ShortUniCarbKB
 G44630PQ	HexNAc5Hex7dHex1NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G44692LQ	Di-sialyl T antigen	SemanticName
 G44753VC	H7N6S	ShortComp
 G44753VC	HexNAc(6)Hex(7)NeuAc(1)	Byonic
 G44753VC	HexNAc6Hex7NeuAc1	ShortUniCarbKB
@@ -1522,6 +1853,7 @@ G44753VC	HexNAc6Hex7dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G44799CV	HexNAc(2)Hex(2)dHex(2)Sulpho(1)	Byonic
 G44799CV	HexNAc2Hex2dHex2NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G44799CV	HexNAc2Hex2dHex2S1	ShortUniCarbKB
+G44827DP	A antigen (type 3)	SemanticName
 G44900JK	HexNAc(4)Hex(8)dHex(2)NeuAc(1)	Byonic
 G44900JK	HexNAc4Hex8dHex2NeuAc1	ShortUniCarbKB
 G44900JK	HexNAc4Hex8dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1531,6 +1863,7 @@ G44953PJ	HexNAc5Hex4dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G45042TM	HexNAc(6)Hex(7)dHex(5)NeuAc(3)	Byonic
 G45042TM	HexNAc6Hex7dHex5NeuAc3	ShortUniCarbKB
 G45042TM	HexNAc6Hex7dHex5NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G45323ZF	Lactosylceramide	SemanticName
 G45395BF	H5N4FS2	ShortComp
 G45395BF	HexNAc(4)Hex(5)Fuc(1)NeuAc(2)	Byonic
 G45504EY	H4N4S	ShortComp
@@ -1547,6 +1880,7 @@ G45586SP	HexNAc1Pent1HexA1	ShortUniCarbKB
 G45631ZN	HexNAc(6)Hex(7)dHex(2)NeuAc(4)	Byonic
 G45631ZN	HexNAc6Hex7dHex2NeuAc4	ShortUniCarbKB
 G45631ZN	HexNAc6Hex7dHex2NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G45637XA	Di-sialyl T antigen	SemanticName
 G45703RF	H9N	ShortComp
 G45703RF	HexNAc(1)Hex(9)	Byonic
 G45703RF	HexNAc1Hex9	ShortUniCarbKB
@@ -1559,20 +1893,24 @@ G45778NU	HexNAc(5)Hex(6)Fuc(1)NeuGc(3)	Byonic
 G45819QB	HexNAc(4)Hex(5)dHex(1)NeuGc(2)	Byonic
 G45819QB	HexNAc4Hex5dHex1NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G45819QB	HexNAc4Hex5dHex1NeuGc2	ShortUniCarbKB
+G45827ZM	Sialyl T antigen	SemanticName
 G45886AG	H3N2FS	ShortComp
 G45886AG	HexNAc(2)Hex(3)Fuc(1)NeuAc(1)	Byonic
 G45972OV	H2N3F	ShortComp
 G45972OV	HexNAc(3)Hex(2)Fuc(1)	Byonic
+G46067UI	Paragloboside	SemanticName
 G46177TS	HexNAc(6)Hex(6)dHex(4)	Byonic
 G46177TS	HexNAc6Hex6dHex4	ShortUniCarbKB
 G46177TS	HexNAc6Hex6dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G46220VJ	H10N9FS4	ShortComp
 G46220VJ	HexNAc(9)Hex(10)Fuc(1)NeuAc(4)	Byonic
+G46252BF	Sialyl T antigen	SemanticName
 G46473FU	HexNAc(7)Hex(7)Fuc(1)NeuAc(1)Sulpho(3)	Byonic
 G46503DX	H3N4S2	ShortComp
 G46503DX	HexNAc(4)Hex(3)NeuAc(2)	Byonic
 G46503DX	HexNAc4Hex3NeuAc2	ShortUniCarbKB
 G46503DX	HexNAc4Hex3dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G46613JI	GM1	SemanticName
 G46677TE	GD1a	SemanticName
 G46691LC	H6N4F2	ShortComp
 G46691LC	HexNAc(4)Hex(6)Fuc(2)	Byonic
@@ -1582,6 +1920,8 @@ G46784SU	HexNAc4Hex8dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G46823ME	HexNAc(4)Hex(4)dHex(2)NeuAc(3)	Byonic
 G46823ME	HexNAc4Hex4dHex2NeuAc3	ShortUniCarbKB
 G46823ME	HexNAc4Hex4dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G46868TY	H antigen (type 3)	SemanticName
+G46884IT	B-GM1	SemanticName
 G46910OC	H3N2F2	ShortComp
 G46910OC	HexNAc(2)Hex(3)Fuc(2)	Byonic
 G46982GD	HexNAc(8)Hex(3)dHex(1)	Byonic
@@ -1591,9 +1931,12 @@ G47186OL	H3N5S4	ShortComp
 G47186OL	HexNAc(5)Hex(3)NeuAc(4)	Byonic
 G47186OL	HexNAc5Hex3NeuAc4	ShortUniCarbKB
 G47186OL	HexNAc5Hex3dHex0NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G47190LU	Sialyl T antigen	SemanticName
+G47219QN	GT1a	SemanticName
 G47388FY	HexNAc(7)Hex(6)dHex(1)NeuAc(2)Sulpho(1)	Byonic
 G47388FY	HexNAc7Hex6dHex1NeuAc2NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G47388FY	HexNAc7Hex6dHex1NeuAc2S1	ShortUniCarbKB
+G47437DS	GT1a	SemanticName
 G47621XV	HexNAc(3)Hex(4)dHex(1)NeuAc(2)	Byonic
 G47621XV	HexNAc3Hex4dHex1NeuAc2	ShortUniCarbKB
 G47621XV	HexNAc3Hex4dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1622,14 +1965,20 @@ G47978ON	HexNAc1NeuGc1	ShortUniCarbKB
 G48053DU	HexNAc(6)Hex(5)dHex(3)	Byonic
 G48053DU	HexNAc6Hex5dHex3	ShortUniCarbKB
 G48053DU	HexNAc6Hex5dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G48059CD	Paragloboside	SemanticName
 G48111PW	H8N4F2	ShortComp
 G48111PW	HexNAc(4)Hex(8)Fuc(2)	Byonic
 G48149UR	HexNAc(6)Hex(6)dHex(3)NeuAc(1)	Byonic
 G48149UR	HexNAc6Hex6dHex3NeuAc1	ShortUniCarbKB
 G48149UR	HexNAc6Hex6dHex3NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G48275JX	2,6-Branched O-mannose	SemanticName
 G48433AY	HexNAc(6)Hex(7)dHex(1)NeuAc(3)NeuGc(1)	Byonic
 G48433AY	HexNAc6Hex7dHex1NeuAc3NeuGc1	ShortUniCarbKB
 G48433AY	HexNAc6Hex7dHex1NeuAc3NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G48455YF	GM3	SemanticName
+G48522YQ	HexNAc(2)NeuGc(1)	Byonic
+G48522YQ	HexNAc2Hex0dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G48522YQ	HexNAc2NeuGc1	ShortUniCarbKB
 G48558GR	GM1	SemanticName
 G48577CN	HexNAc(4)Hex(5)Fuc(1)NeuAc(1)NeuGc(1)	Byonic
 G48586RX	HN2S	ShortComp
@@ -1642,9 +1991,12 @@ G48642OF	HexNAc5Hex6dHex0NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G48698AX	HexNAc(2)Fuc(1)	Byonic
 G48698AX	N2F	ShortComp
 G48777HU	HexNAc(5)Hex(6)Fuc(1)NeuGc(1)	Byonic
+G48818KL	Sialyl T antigen	SemanticName
+G48822HK	H antigen (type 3)	SemanticName
 G48840WY	HexNAc(6)Hex(7)dHex(1)Sulpho(1)	Byonic
 G48840WY	HexNAc6Hex7dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G48840WY	HexNAc6Hex7dHex1S1	ShortUniCarbKB
+G48905NO	Sialyl T antigen	SemanticName
 G48927BJ	Hex(3)dHex(1)	Byonic
 G48927BJ	Hex3dHex1	ShortUniCarbKB
 G48927BJ	HexNAc0Hex3dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1662,6 +2014,7 @@ G49112ZN	Fuc(1)	Byonic
 G49159VE	Hex(2)dHex(1)NeuAc(1)	Byonic
 G49159VE	Hex2dHex1NeuAc1	ShortUniCarbKB
 G49159VE	HexNAc0Hex2dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G49183WA	N-Glycolyl-GM2	SemanticName
 G49284IH	HexNAc(4)Hex(6)dHex(2)NeuAc(1)	Byonic
 G49284IH	HexNAc4Hex6dHex2NeuAc1	ShortUniCarbKB
 G49284IH	HexNAc4Hex6dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1670,10 +2023,16 @@ G49345XT	HexNAc4Hex7dHex2	ShortUniCarbKB
 G49345XT	HexNAc4Hex7dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G49474CH	H6N7F2S3	ShortComp
 G49474CH	HexNAc(7)Hex(6)Fuc(2)NeuAc(3)	Byonic
+G49488CS	GM1	SemanticName
+G49575MY	Tn antigen	SemanticName
+G49582PC	Sialyl T antigen	SemanticName
 G49589RB	H9N6F	ShortComp
 G49589RB	HexNAc(6)Hex(9)Fuc(1)	Byonic
+G49609ON	Di-sialyl T antigen	SemanticName
+G49632WD	T antigen	SemanticName
 G49642SA	H3N8F	ShortComp
 G49642SA	HexNAc(8)Hex(3)Fuc(1)	Byonic
+G49689OQ	GT1b	SemanticName
 G49739MP	HexNAc(6)Hex(7)dHex(1)	Byonic
 G49739MP	HexNAc6Hex7dHex1	ShortUniCarbKB
 G49739MP	HexNAc6Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1681,10 +2040,13 @@ G49755GI	H6N6S2	ShortComp
 G49755GI	HexNAc(6)Hex(6)NeuAc(2)	Byonic
 G49755GI	HexNAc6Hex6NeuAc2	ShortUniCarbKB
 G49755GI	HexNAc6Hex6dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G49763BM	Sialyl T antigen	SemanticName
+G49791FJ	GQ1ba	SemanticName
 G49906RN	H6N6	ShortComp
 G49906RN	HexNAc(6)Hex(6)	Byonic
 G49906RN	HexNAc6Hex6	ShortUniCarbKB
 G49906RN	HexNAc6Hex6dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G49922XM	B-GD1b	SemanticName
 G49955PK	H3N5	ShortComp
 G49955PK	HexNAc(5)Hex(3)	Byonic
 G49955PK	HexNAc5Hex3	ShortUniCarbKB
@@ -1692,6 +2054,7 @@ G49955PK	HexNAc5Hex3dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G50030TB	HexNAc(10)Hex(11)dHex(2)	Byonic
 G50030TB	HexNAc10Hex11dHex2	ShortUniCarbKB
 G50030TB	HexNAc10Hex11dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G50071OA	Sialyl T antigen	SemanticName
 G50073PQ	HexNAc(4)Hex(4)dHex(2)	Byonic
 G50073PQ	HexNAc4Hex4dHex2	ShortUniCarbKB
 G50073PQ	HexNAc4Hex4dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1702,6 +2065,8 @@ G50143PC	HexNAc9Hex7dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G50148ER	HexNAc(9)Hex(10)dHex(1)NeuAc(1)	Byonic
 G50148ER	HexNAc9Hex10dHex1NeuAc1	ShortUniCarbKB
 G50148ER	HexNAc9Hex10dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G50186ZP	9-O-Acetyl GD3	SemanticName
+G50186ZP	GD3	SemanticName
 G50204XM	HexNAc(5)Hex(6)dHex(1)NeuAc(1)NeuGc(1)	Byonic
 G50204XM	HexNAc5Hex6dHex1NeuAc1NeuGc1	ShortUniCarbKB
 G50204XM	HexNAc5Hex6dHex1NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1719,11 +2084,17 @@ G50713DU	H9N3	ShortComp
 G50713DU	HexNAc(3)Hex(9)	Byonic
 G50713DU	HexNAc3Hex9	ShortUniCarbKB
 G50713DU	HexNAc3Hex9dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G50733RG	GM1	SemanticName
+G50762GU	GT1c	SemanticName
+G50849VH	T antigen	SemanticName
 G50856PC	H7N6F4S	ShortComp
 G50856PC	HexNAc(6)Hex(7)Fuc(4)NeuAc(1)	Byonic
+G50866KI	Mono-sulfated globotetraosylceramide	SemanticName
 G50920KZ	H6N6F3S	ShortComp
 G50920KZ	HexNAc(6)Hex(6)Fuc(3)NeuAc(1)	Byonic
 G50926NK	Ceramide dihexosyl sulfate	SemanticName
+G50933ZE	Sulfo-isogloboside	SemanticName
+G50999TP	Di-sialyl T antigen	SemanticName
 G51096IO	HexNAc(6)Hex(7)NeuGc(1)	Byonic
 G51096IO	HexNAc6Hex7NeuGc1	ShortUniCarbKB
 G51096IO	HexNAc6Hex7dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1743,6 +2114,7 @@ G51421KN	HexNAc(3)Hex(5)Fuc(5)	Byonic
 G51434LA	HexNAc(3)Hex(2)dHex(4)	Byonic
 G51434LA	HexNAc3Hex2dHex4	ShortUniCarbKB
 G51434LA	HexNAc3Hex2dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G51481JV	HexNAc(1)Hex(1)Fuc(1)NeuGc(1)	Byonic
 G51488KH	HexNAc(8)Hex(5)dHex(3)	Byonic
 G51488KH	HexNAc8Hex5dHex3	ShortUniCarbKB
 G51488KH	HexNAc8Hex5dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1764,6 +2136,7 @@ G51699SI	para-Forssman glycolipid	SemanticName
 G51828IE	HexNAc(7)Hex(8)NeuGc(1)	Byonic
 G51828IE	HexNAc7Hex8NeuGc1	ShortUniCarbKB
 G51828IE	HexNAc7Hex8dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G51931HC	Sialyl T antigen	SemanticName
 G52162PS	HexNAc(4)Hex(3)dHex(2)NeuAc(1)	Byonic
 G52162PS	HexNAc4Hex3dHex2NeuAc1	ShortUniCarbKB
 G52162PS	HexNAc4Hex3dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1776,17 +2149,23 @@ G52687MJ	HexNAc10Hex11dHex1	ShortUniCarbKB
 G52687MJ	HexNAc10Hex11dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G52785CM	HN3F2	ShortComp
 G52785CM	HexNAc(3)Hex(1)Fuc(2)	Byonic
+G52792TO	Sialopentaosylceramide	SemanticName
 G52810YE	H8N8F2	ShortComp
 G52810YE	HexNAc(8)Hex(8)Fuc(2)	Byonic
 G52848YE	H9N8FS4	ShortComp
 G52848YE	HexNAc(8)Hex(9)Fuc(1)NeuAc(4)	Byonic
+G52887ZR	Sialyl T antigen	SemanticName
 G52952NI	HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA2	UniCarbKB
 G52952NI	HexNAc1HexA2	ShortUniCarbKB
+G52966FX	Lactotriaosylceramide	SemanticName
+G52967NB	GM2	SemanticName
 G53075ES	H7N6FS4	ShortComp
 G53075ES	HexNAc(6)Hex(7)Fuc(1)NeuAc(4)	Byonic
+G53140PB	GT1c	SemanticName
 G53188XU	HexNAc(4)Hex(5)dHex(6)NeuGc(3)	Byonic
 G53188XU	HexNAc4Hex5dHex6NeuAc0NeuGc3Pent0S0P0KDN0HexA0	UniCarbKB
 G53188XU	HexNAc4Hex5dHex6NeuGc3	ShortUniCarbKB
+G53224UW	GM1	SemanticName
 G53315IV	HexNAc(8)Hex(9)dHex(1)	Byonic
 G53315IV	HexNAc8Hex9dHex1	ShortUniCarbKB
 G53315IV	HexNAc8Hex9dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1809,13 +2188,19 @@ G53495LU	HexNAc(7)Hex(6)Fuc(1)NeuAc(2)	Byonic
 G53511WG	Hex(2)NeuGc(2)Sulpho(1)	Byonic
 G53511WG	Hex2NeuGc2S1	ShortUniCarbKB
 G53511WG	HexNAc0Hex2dHex0NeuAc0NeuGc2Pent0S1P0KDN0HexA0	UniCarbKB
+G53558IG	HexNAc(13)Hex(10)dHex(1)	Byonic
+G53558IG	HexNAc13Hex10dHex1	ShortUniCarbKB
+G53558IG	HexNAc13Hex10dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G53657ER	HexNAc(3)Hex(1)Sulpho(1)	Byonic
 G53657ER	HexNAc3Hex1S1	ShortUniCarbKB
 G53657ER	HexNAc3Hex1dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G53726DG	Sialyl T antigen	SemanticName
 G53744UF	H3N5S5	ShortComp
 G53744UF	HexNAc(5)Hex(3)NeuAc(5)	Byonic
 G53744UF	HexNAc5Hex3NeuAc5	ShortUniCarbKB
 G53744UF	HexNAc5Hex3dHex0NeuAc5NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G53749RD	A antigen (type 3)	SemanticName
+G53781XZ	GM4	SemanticName
 G53874PO	HexNAc(4)Hex(5)dHex(1)Sulpho(2)	Byonic
 G53874PO	HexNAc4Hex5dHex1NeuAc0NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G53874PO	HexNAc4Hex5dHex1S2	ShortUniCarbKB
@@ -1826,19 +2211,31 @@ G53969DE	H5N	ShortComp
 G53969DE	HexNAc(1)Hex(5)	Byonic
 G53969DE	HexNAc1Hex5	ShortUniCarbKB
 G53969DE	HexNAc1Hex5dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G54094BQ	Sialyl T antigen	SemanticName
 G54129SE	HexNAc(1)Hex(1)dHex(1)	Byonic
 G54129SE	HexNAc1Hex1dHex1	ShortUniCarbKB
 G54129SE	HexNAc1Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G54168YD	HexNAc(4)Hex(3)dHex(1)Sulpho(1)	Byonic
 G54168YD	HexNAc4Hex3dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G54168YD	HexNAc4Hex3dHex1S1	ShortUniCarbKB
+G54189IW	P1 antigen	SemanticName
 G54296PF	HexNAc2Hex3S1HexA1	ShortUniCarbKB
 G54296PF	HexNAc2Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
+G54353FA	GT1aa	SemanticName
+G54378KA	HexNAc(7)Hex(6)dHex(1)NeuAc(1)	Byonic
+G54378KA	HexNAc7Hex6dHex1NeuAc1	ShortUniCarbKB
+G54378KA	HexNAc7Hex6dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G54414HE	H2N2F2S	ShortComp
 G54414HE	HexNAc(2)Hex(2)Fuc(2)NeuAc(1)	Byonic
 G54417MJ	HexNAc(6)Hex(6)dHex(1)NeuAc(1)	Byonic
 G54417MJ	HexNAc6Hex6dHex1NeuAc1	ShortUniCarbKB
 G54417MJ	HexNAc6Hex6dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G54434YJ	GQ1c	SemanticName
+G54442GQ	GQ1c	SemanticName
+G54499HR	T antigen	SemanticName
+G54543KY	Hex(3)Sulpho(1)	Byonic
+G54543KY	Hex3S1	ShortUniCarbKB
+G54543KY	HexNAc0Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G54577VR	H7N6F3S	ShortComp
 G54577VR	HexNAc(6)Hex(7)Fuc(3)NeuAc(1)	Byonic
 G54600FO	HexNAc(4)Hex(4)dHex(1)NeuAc(1)	Byonic
@@ -1847,18 +2244,24 @@ G54600FO	HexNAc4Hex4dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G54620LW	HexNAc(3)Hex(5)dHex(1)NeuAc(2)	Byonic
 G54620LW	HexNAc3Hex5dHex1NeuAc2	ShortUniCarbKB
 G54620LW	HexNAc3Hex5dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G54624RV	Sialyl Tn antigen	SemanticName
 G54630CD	HexNAc(1)Hex(3)dHex(1)	Byonic
 G54630CD	HexNAc1Hex3dHex1	ShortUniCarbKB
 G54630CD	HexNAc1Hex3dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G54671CY	GQ1aa	SemanticName
+G54709BF	GM3	SemanticName
 G54733XO	GQ1ba	SemanticName
 G54736YR	H5N6F4	ShortComp
 G54736YR	HexNAc(6)Hex(5)Fuc(4)	Byonic
+G54920VX	Cytolipin R	SemanticName
+G54920VX	Isoglobotetraosylceramide	SemanticName
 G54968WM	HexNAc(2)Hex(1)Pent(1)	Byonic
 G54968WM	HexNAc2Hex1Pent1	ShortUniCarbKB
 G54968WM	HexNAc2Hex1dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
 G54992WG	HexNAc(3)Hex(7)dHex(1)NeuAc(1)	Byonic
 G54992WG	HexNAc3Hex7dHex1NeuAc1	ShortUniCarbKB
 G54992WG	HexNAc3Hex7dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G55091DF	B antigen (type 3)	SemanticName
 G55132BD	H7N6F4	ShortComp
 G55132BD	HexNAc(6)Hex(7)Fuc(4)	Byonic
 G55216FT	HexNAc(7)Hex(8)dHex(1)	Byonic
@@ -1875,6 +2278,11 @@ G55444WK	HexNAc3Hex6dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G55475TR	HexNAc(7)Hex(7)dHex(1)NeuAc(1)Sulpho(3)	Byonic
 G55475TR	HexNAc7Hex7dHex1NeuAc1NeuGc0Pent0S3P0KDN0HexA0	UniCarbKB
 G55475TR	HexNAc7Hex7dHex1NeuAc1S3	ShortUniCarbKB
+G55559HZ	H antigen (type 3)	SemanticName
+G55696LV	HexNAc(1)Hex(3)Phospho(1)	Byonic
+G55696LV	HexNAc1Hex3P1	ShortUniCarbKB
+G55696LV	HexNAc1Hex3dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
+G55753QM	H antigen (type 3)	SemanticName
 G55799EI	H2NF	ShortComp
 G55799EI	HexNAc(1)Hex(2)Fuc(1)	Byonic
 G55848QM	HexNAc(7)Hex(8)dHex(2)NeuAc(4)	Byonic
@@ -1894,20 +2302,28 @@ G56001JD	HexNAc12Hex12dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G56133NW	Sulfo-isogloboside	SemanticName
 G56226XE	H7N7F2S3	ShortComp
 G56226XE	HexNAc(7)Hex(7)Fuc(2)NeuAc(3)	Byonic
+G56258AG	GM1	SemanticName
+G56296MY	Di-sialyl T antigen	SemanticName
+G56299XO	Sialyl T antigen	SemanticName
 G56307ZW	H9N4	ShortComp
 G56307ZW	HexNAc(4)Hex(9)	Byonic
 G56307ZW	HexNAc4Hex9	ShortUniCarbKB
 G56307ZW	HexNAc4Hex9dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G56478LD	N-Glycolyl-GM2	SemanticName
+G56516VH	GM3	SemanticName
 G56518TU	H6N5F2S3	ShortComp
 G56518TU	HexNAc(5)Hex(6)Fuc(2)NeuAc(3)	Byonic
+G56526JU	2-Fucosyl-GM1	SemanticName
 G56610MH	HexNAc(6)Hex(4)dHex(1)	Byonic
 G56610MH	HexNAc6Hex4dHex1	ShortUniCarbKB
 G56610MH	HexNAc6Hex4dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G56630LC	GQ1c	SemanticName
 G56770VI	HNFS2	ShortComp
 G56770VI	HexNAc(1)Hex(1)Fuc(1)NeuAc(2)	Byonic
 G56770VP	H9N6F5	ShortComp
 G56770VP	HexNAc(6)Hex(9)Fuc(5)	Byonic
+G56923FN	GP1c	SemanticName
+G56947WF	H antigen (type 3)	SemanticName
 G56962DV	HexNAc(1)Hex(3)NeuGc(1)Sulpho(1)	Byonic
 G56962DV	HexNAc1Hex3NeuGc1S1	ShortUniCarbKB
 G56962DV	HexNAc1Hex3dHex0NeuAc0NeuGc1Pent0S1P0KDN0HexA0	UniCarbKB
@@ -1951,6 +2367,8 @@ G57776ZU	HexNAc3Hex4dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G57784IN	HexNAc(2)Hex(3)NeuGc(1)	Byonic
 G57784IN	HexNAc2Hex3NeuGc1	ShortUniCarbKB
 G57784IN	HexNAc2Hex3dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G57829QI	GP1ca	SemanticName
+G57941GW	HNK-1 on O-mannose	SemanticName
 G58001LT	HN2	ShortComp
 G58001LT	HexNAc(2)Hex(1)	Byonic
 G58001LT	HexNAc2Hex1	ShortUniCarbKB
@@ -1964,8 +2382,12 @@ G58087IP	H11N2	ShortComp
 G58087IP	HexNAc(2)Hex(11)	Byonic
 G58087IP	HexNAc2Hex11	ShortUniCarbKB
 G58087IP	HexNAc2Hex11dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G58124XI	Pk antigen	SemanticName
+G58213XM	Monosulfated gangliotetraosylceramide	SemanticName
 G58326GX	HexNAc(1)Hex(1)Fuc(1)NeuAc(1)Sulpho(1)	Byonic
+G58344PL	GQ1b	SemanticName
 G58414OV	HexNAc(4)Hex(5)Fuc(1)NeuAc(2)Sulpho(1)	Byonic
+G58436AI	GM4	SemanticName
 G58498GJ	H10N7S	ShortComp
 G58498GJ	HexNAc(7)Hex(10)NeuAc(1)	Byonic
 G58498GJ	HexNAc7Hex10NeuAc1	ShortUniCarbKB
@@ -1988,6 +2410,7 @@ G58954YZ	HexNAc(5)Hex(4)Fuc(2)NeuAc(1)	Byonic
 G59007LK	HexNAc(6)Hex(6)dHex(3)NeuAc(2)	Byonic
 G59007LK	HexNAc6Hex6dHex3NeuAc2	ShortUniCarbKB
 G59007LK	HexNAc6Hex6dHex3NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G59059LG	GQ1b	SemanticName
 G59101HX	HexNAc(6)Hex(7)dHex(3)NeuAc(2)	Byonic
 G59101HX	HexNAc6Hex7dHex3NeuAc2	ShortUniCarbKB
 G59101HX	HexNAc6Hex7dHex3NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -1995,6 +2418,10 @@ G59126YU	O-Linked mannose	SemanticName
 G59170OL	HexNAc(5)Hex(3)NeuGc(1)	Byonic
 G59170OL	HexNAc5Hex3NeuGc1	ShortUniCarbKB
 G59170OL	HexNAc5Hex3dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G59216AS	HexNAc(1)Hex(7)Phospho(2)	Byonic
+G59216AS	HexNAc1Hex7P2	ShortUniCarbKB
+G59216AS	HexNAc1Hex7dHex0NeuAc0NeuGc0Pent0S0P2KDN0HexA0	UniCarbKB
+G59287RT	Di-sialyl T antigen	SemanticName
 G59324HL	H12N2	ShortComp
 G59324HL	HexNAc(2)Hex(12)	Byonic
 G59324HL	HexNAc2Hex12	ShortUniCarbKB
@@ -2003,12 +2430,18 @@ G59334JE	H4N8	ShortComp
 G59334JE	HexNAc(8)Hex(4)	Byonic
 G59334JE	HexNAc8Hex4	ShortUniCarbKB
 G59334JE	HexNAc8Hex4dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G59354CW	H6N3S2	ShortComp
+G59354CW	HexNAc(3)Hex(6)NeuAc(2)	Byonic
+G59354CW	HexNAc3Hex6NeuAc2	ShortUniCarbKB
+G59354CW	HexNAc3Hex6dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G59365RI	Hex(2)Sulpho(1)	Byonic
 G59365RI	Hex2S1	ShortUniCarbKB
 G59365RI	HexNAc0Hex2dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G59381KD	GD1	SemanticName
 G59400CS	HexNAc(6)Hex(10)dHex(1)	Byonic
 G59400CS	HexNAc6Hex10dHex1	ShortUniCarbKB
 G59400CS	HexNAc6Hex10dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G59445BK	HexNAc(2)Hex(1)Fuc(1)NeuGc(1)	Byonic
 G59540CB	HexNAc(6)Hex(3)dHex(2)	Byonic
 G59540CB	HexNAc6Hex3dHex2	ShortUniCarbKB
 G59540CB	HexNAc6Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2022,6 +2455,7 @@ G59626AS	HexNAc4Hex5dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G59639BE	HexNAc(7)Hex(8)dHex(1)NeuAc(3)	Byonic
 G59639BE	HexNAc7Hex8dHex1NeuAc3	ShortUniCarbKB
 G59639BE	HexNAc7Hex8dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G59736KH	Monosulfated gangliotetraosylceramide	SemanticName
 G59924QI	H6N3F	ShortComp
 G59924QI	HexNAc(3)Hex(6)Fuc(1)	Byonic
 G59937CP	HexNAc(4)Hex(4)dHex(1)	Byonic
@@ -2044,10 +2478,14 @@ G60041XW	HexNAc5Hex3dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G60060GI	HexNAc(4)Hex(2)dHex(1)	Byonic
 G60060GI	HexNAc4Hex2dHex1	ShortUniCarbKB
 G60060GI	HexNAc4Hex2dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G60366UG	GT1a	SemanticName
+G60606QD	HNK-1 on O-mannose	SemanticName
+G60620RA	GT1c	SemanticName
 G60667HJ	H4N3S2	ShortComp
 G60667HJ	HexNAc(3)Hex(4)NeuAc(2)	Byonic
 G60667HJ	HexNAc3Hex4NeuAc2	ShortUniCarbKB
 G60667HJ	HexNAc3Hex4dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G60673PW	GT1c	SemanticName
 G60743GT	HexNAc(5)Hex(8)dHex(1)	Byonic
 G60743GT	HexNAc5Hex8dHex1	ShortUniCarbKB
 G60743GT	HexNAc5Hex8dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2062,11 +2500,14 @@ G60875AH	HexNAc4Hex6dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G60923RB	HexNAc(4)Hex(5)dHex(2)	Byonic
 G60923RB	HexNAc4Hex5dHex2	ShortUniCarbKB
 G60923RB	HexNAc4Hex5dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G61023PY	O-Linked mannose	SemanticName
+G61028BR	cisGM1	SemanticName
 G61084RR	Hex2Pent1HexA1	ShortUniCarbKB
 G61084RR	HexNAc0Hex2dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA1	UniCarbKB
 G61099GA	HexNAc(3)Hex(2)dHex(2)	Byonic
 G61099GA	HexNAc3Hex2dHex2	ShortUniCarbKB
 G61099GA	HexNAc3Hex2dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G61168WC	GM2	SemanticName
 G61177SU	HexNAc(5)Hex(5)dHex(2)NeuAc(3)	Byonic
 G61177SU	HexNAc5Hex5dHex2NeuAc3	ShortUniCarbKB
 G61177SU	HexNAc5Hex5dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2104,6 +2545,7 @@ G61633XP	HexNAc7Hex6dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G61855PQ	HexNAc(4)Hex(3)dHex(2)	Byonic
 G61855PQ	HexNAc4Hex3dHex2	ShortUniCarbKB
 G61855PQ	HexNAc4Hex3dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G61886WA	Di-sialyl T antigen	SemanticName
 G61948MO	HexNAc(5)Hex(7)dHex(4)	Byonic
 G61948MO	HexNAc5Hex7dHex4	ShortUniCarbKB
 G61948MO	HexNAc5Hex7dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2112,10 +2554,13 @@ G62150KR	HexNAc1Hex2dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA2	UniCarbKB
 G62273EM	HexNAc(5)Hex(4)dHex(1)Sulpho(2)	Byonic
 G62273EM	HexNAc5Hex4dHex1NeuAc0NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G62273EM	HexNAc5Hex4dHex1S2	ShortUniCarbKB
+G62274IX	Di-sialyl T antigen	SemanticName
+G62354MC	GM3	SemanticName
 G62554JH	LcGg4	SemanticName
 G62595EF	HexNAc(4)Hex(7)dHex(1)	Byonic
 G62595EF	HexNAc4Hex7dHex1	ShortUniCarbKB
 G62595EF	HexNAc4Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G62613QD	Di-sialyl T antigen	SemanticName
 G62630PF	HexNAc(1)Hex(4)NeuGc(2)	Byonic
 G62630PF	HexNAc1Hex4NeuGc2	ShortUniCarbKB
 G62630PF	HexNAc1Hex4dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2123,6 +2568,7 @@ G62695XZ	H3NS3	ShortComp
 G62695XZ	HexNAc(1)Hex(3)NeuAc(3)	Byonic
 G62695XZ	HexNAc1Hex3NeuAc3	ShortUniCarbKB
 G62695XZ	HexNAc1Hex3dHex0NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G62713BK	Sialyl T antigen	SemanticName
 G62765YT	H8N2	ShortComp
 G62765YT	HexNAc(2)Hex(8)	Byonic
 G62765YT	HexNAc2Hex8	ShortUniCarbKB
@@ -2142,6 +2588,8 @@ G62990JB	HexNAc5Hex5dHex1NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
 G62990JB	HexNAc5Hex5dHex1P1	ShortUniCarbKB
 G63041LO	H5N3FS	ShortComp
 G63041LO	HexNAc(3)Hex(5)Fuc(1)NeuAc(1)	Byonic
+G63083UK	Sialyl T antigen	SemanticName
+G63110FE	Di-sialyl T antigen	SemanticName
 G63136LV	H11N6F	ShortComp
 G63136LV	HexNAc(6)Hex(11)Fuc(1)	Byonic
 G63142YI	HexNAc(5)Hex(5)dHex(1)NeuGc(2)	Byonic
@@ -2169,6 +2617,7 @@ G63332OE	HexNAc6Hex8NeuAc2	ShortUniCarbKB
 G63332OE	HexNAc6Hex8dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G63386TM	HexNAc2Hex4S1HexA1	ShortUniCarbKB
 G63386TM	HexNAc2Hex4dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
+G63498YL	2,6-Branched O-mannose	SemanticName
 G63543FL	HexNAc(6)Hex(3)dHex(1)NeuAc(2)	Byonic
 G63543FL	HexNAc6Hex3dHex1NeuAc2	ShortUniCarbKB
 G63543FL	HexNAc6Hex3dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2192,12 +2641,17 @@ G63980BQ	H4N6S2	ShortComp
 G63980BQ	HexNAc(6)Hex(4)NeuAc(2)	Byonic
 G63980BQ	HexNAc6Hex4NeuAc2	ShortUniCarbKB
 G63980BQ	HexNAc6Hex4dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G64014BL	Lactosylceramide	SemanticName
 G64227KZ	Mono-fucosyl LN5	SemanticName
 G64236WJ	H4N4F3S	ShortComp
 G64236WJ	HexNAc(4)Hex(4)Fuc(3)NeuAc(1)	Byonic
 G64239ON	HexNAc(3)Hex(3)dHex(1)NeuAc(1)	Byonic
 G64239ON	HexNAc3Hex3dHex1NeuAc1	ShortUniCarbKB
 G64239ON	HexNAc3Hex3dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G64301WQ	GM1	SemanticName
+G64366TX	HexNAc(5)Hex(5)Sulpho(3)	Byonic
+G64366TX	HexNAc5Hex5S3	ShortUniCarbKB
+G64366TX	HexNAc5Hex5dHex0NeuAc0NeuGc0Pent0S3P0KDN0HexA0	UniCarbKB
 G64407XK	H2N3F4	ShortComp
 G64407XK	HexNAc(3)Hex(2)Fuc(4)	Byonic
 G64409MC	H3N4FS	ShortComp
@@ -2207,6 +2661,7 @@ G64591MN	HexNAc(3)Hex(2)Fuc(3)	Byonic
 G64615IX	HexNAc(7)Hex(8)dHex(1)NeuAc(4)	Byonic
 G64615IX	HexNAc7Hex8dHex1NeuAc4	ShortUniCarbKB
 G64615IX	HexNAc7Hex8dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G64652AR	GM4	SemanticName
 G64779QV	H8N6F	ShortComp
 G64779QV	HexNAc(6)Hex(8)Fuc(1)	Byonic
 G64876LY	HexNAc(4)Hex(2)dHex(2)	Byonic
@@ -2223,22 +2678,36 @@ G64916EE	HexNAc6Hex5dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G65057SM	HexNAc(9)Hex(7)dHex(1)NeuAc(4)	Byonic
 G65057SM	HexNAc9Hex7dHex1NeuAc4	ShortUniCarbKB
 G65057SM	HexNAc9Hex7dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G65109OK	Mono-sulfated globotetraosylceramide	SemanticName
+G65109OK	Sulfo-isogloboside	SemanticName
+G65112QB	Blood group B (type 4)	SemanticName
 G65142PC	HexNAc(2)Hex(3)dHex(4)	Byonic
 G65142PC	HexNAc2Hex3dHex4	ShortUniCarbKB
 G65142PC	HexNAc2Hex3dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G65156XZ	GM2	SemanticName
+G65180FA	Sialyl T antigen	SemanticName
 G65184UU	H5N5	ShortComp
 G65184UU	HexNAc(5)Hex(5)	Byonic
 G65184UU	HexNAc5Hex5	ShortUniCarbKB
 G65184UU	HexNAc5Hex5dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G65191ST	Di-sialyl T antigen	SemanticName
 G65223RT	Mono-fucosyl LN3	SemanticName
 G65225MN	HexNAc(7)Hex(5)dHex(1)NeuAc(2)	Byonic
 G65225MN	HexNAc7Hex5dHex1NeuAc2	ShortUniCarbKB
 G65225MN	HexNAc7Hex5dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G65234FH	Di-sialyl T antigen	SemanticName
+G65288NK	T antigen	SemanticName
+G65327TR	H15N	ShortComp
+G65327TR	HexNAc(1)Hex(15)	Byonic
+G65327TR	HexNAc1Hex15	ShortUniCarbKB
+G65327TR	HexNAc1Hex15dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G65414LI	H9N8F	ShortComp
 G65414LI	HexNAc(8)Hex(9)Fuc(1)	Byonic
 G65449OV	HexNAc(5)Hex(4)dHex(4)NeuAc(1)	Byonic
 G65449OV	HexNAc5Hex4dHex4NeuAc1	ShortUniCarbKB
 G65449OV	HexNAc5Hex4dHex4NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G65524NS	Gb5	SemanticName
+G65524NS	SSEA-3	SemanticName
 G65537UV	H3N3FS2	ShortComp
 G65537UV	HexNAc(3)Hex(3)Fuc(1)NeuAc(2)	Byonic
 G65562ZE	Sialyl T antigen	SemanticName
@@ -2246,18 +2715,22 @@ G65807AE	HexNAc(5)Hex(4)dHex(3)	Byonic
 G65807AE	HexNAc5Hex4dHex3	ShortUniCarbKB
 G65807AE	HexNAc5Hex4dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G65889KE	Galactosylceramide	SemanticName
+G65954YN	GM4	SemanticName
 G65957XL	HexNAc(8)Hex(7)dHex(1)	Byonic
 G65957XL	HexNAc8Hex7dHex1	ShortUniCarbKB
 G65957XL	HexNAc8Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G66128JY	GM1	SemanticName
 G66139DE	HexNAc(3)Hex(4)dHex(1)NeuGc(1)	Byonic
 G66139DE	HexNAc3Hex4dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G66139DE	HexNAc3Hex4dHex1NeuGc1	ShortUniCarbKB
+G66159UZ	Blood group A (type 4)	SemanticName
 G66228GC	HexNAc(5)Hex(6)NeuGc(3)	Byonic
 G66228GC	HexNAc5Hex6NeuGc3	ShortUniCarbKB
 G66228GC	HexNAc5Hex6dHex0NeuAc0NeuGc3Pent0S0P0KDN0HexA0	UniCarbKB
 G66241TF	HexNAc(7)Hex(6)dHex(4)	Byonic
 G66241TF	HexNAc7Hex6dHex4	ShortUniCarbKB
 G66241TF	HexNAc7Hex6dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G66281XG	GT2	SemanticName
 G66362RJ	HexNAc(7)Hex(7)dHex(1)NeuAc(4)	Byonic
 G66362RJ	HexNAc7Hex7dHex1NeuAc4	ShortUniCarbKB
 G66362RJ	HexNAc7Hex7dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2268,13 +2741,17 @@ G66537LK	HexNAc7Hex8dHex0NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G66578LC	HexNAc(6)Hex(3)dHex(1)NeuGc(2)	Byonic
 G66578LC	HexNAc6Hex3dHex1NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G66578LC	HexNAc6Hex3dHex1NeuGc2	ShortUniCarbKB
+G66582MS	Forssman glycolipid	SemanticName
 G66620ON	HexNAc(7)Hex(7)dHex(3)NeuAc(2)	Byonic
 G66620ON	HexNAc7Hex7dHex3NeuAc2	ShortUniCarbKB
 G66620ON	HexNAc7Hex7dHex3NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G66650NQ	HexNAc2Hex0dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA3	UniCarbKB
+G66650NQ	HexNAc2S1HexA3	ShortUniCarbKB
 G66758BH	HexNAc(5)Hex(6)Fuc(1)NeuAc(2)Sulpho(1)	Byonic
 G66863RH	HexNAc(2)Hex(2)Sulpho(1)	Byonic
 G66863RH	HexNAc2Hex2S1	ShortUniCarbKB
 G66863RH	HexNAc2Hex2dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G66874OD	Sialyl Tn antigen	SemanticName
 G66876TK	HexNAc(5)Hex(6)dHex(1)NeuAc(1)Sulpho(2)	Byonic
 G66876TK	HexNAc5Hex6dHex1NeuAc1NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G66876TK	HexNAc5Hex6dHex1NeuAc1S2	ShortUniCarbKB
@@ -2289,12 +2766,14 @@ G67113SI	H6N5S5	ShortComp
 G67113SI	HexNAc(5)Hex(6)NeuAc(5)	Byonic
 G67113SI	HexNAc5Hex6NeuAc5	ShortUniCarbKB
 G67113SI	HexNAc5Hex6dHex0NeuAc5NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G67163FW	GQ1ba	SemanticName
 G67172VF	Hex(4)dHex(2)	Byonic
 G67172VF	Hex4dHex2	ShortUniCarbKB
 G67172VF	HexNAc0Hex4dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G67199LR	HexNAc(1)Hex(2)dHex(2)	Byonic
 G67199LR	HexNAc1Hex2dHex2	ShortUniCarbKB
 G67199LR	HexNAc1Hex2dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G67200RM	T antigen	SemanticName
 G67324HN	HexNAc(3)Hex(5)dHex(1)NeuAc(1)	Byonic
 G67324HN	HexNAc3Hex5dHex1NeuAc1	ShortUniCarbKB
 G67324HN	HexNAc3Hex5dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2305,9 +2784,11 @@ G67350BD	HexNAc8Hex8dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G67367OT	HexNAc(7)Hex(3)dHex(1)	Byonic
 G67367OT	HexNAc7Hex3dHex1	ShortUniCarbKB
 G67367OT	HexNAc7Hex3dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G67383AR	2-Fucosyl-GD1b	SemanticName
 G67437JU	HexNAc(1)Hex(1)dHex(1)NeuAc(1)Sulpho(2)	Byonic
 G67437JU	HexNAc1Hex1dHex1NeuAc1NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G67437JU	HexNAc1Hex1dHex1NeuAc1S2	ShortUniCarbKB
+G67463LN	cisGM1	SemanticName
 G67486RJ	HexNAc(4)Hex(3)Sulpho(1)	Byonic
 G67486RJ	HexNAc4Hex3S1	ShortUniCarbKB
 G67486RJ	HexNAc4Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
@@ -2320,13 +2801,23 @@ G67583XR	HexNAc3Hex3dHex1S1	ShortUniCarbKB
 G67631MS	HexNAc(2)Hex(2)dHex(1)Sulpho(1)	Byonic
 G67631MS	HexNAc2Hex2dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G67631MS	HexNAc2Hex2dHex1S1	ShortUniCarbKB
+G67682CC	Di-sialyl T antigen	SemanticName
+G67710XV	Pk antigen	SemanticName
+G67772KL	Sialyl Tn antigen	SemanticName
+G67785RW	cisGM1	SemanticName
+G67969CT	T antigen	SemanticName
+G68008QO	Di-sialyl T antigen	SemanticName
+G68044QW	Paragloboside	SemanticName
 G68110IF	GT1a	SemanticName
 G68117MB	HexNAc(3)Hex(3)Sulpho(1)	Byonic
 G68117MB	HexNAc3Hex3S1	ShortUniCarbKB
 G68117MB	HexNAc3Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G68158BT	Galactosylceramide	SemanticName
+G68189PG	GQ1aa	SemanticName
 G68193LO	HexNAc(9)Hex(11)dHex(2)	Byonic
 G68193LO	HexNAc9Hex11dHex2	ShortUniCarbKB
 G68193LO	HexNAc9Hex11dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G68195QP	O-Linked mannose	SemanticName
 G68318VE	HexNAc(5)Hex(4)dHex(1)	Byonic
 G68318VE	HexNAc5Hex4dHex1	ShortUniCarbKB
 G68318VE	HexNAc5Hex4dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2335,6 +2826,7 @@ G68490OW	HexNAc(6)Hex(6)Fuc(1)NeuAc(1)	Byonic
 G68513DO	HexNAc(4)Hex(5)dHex(1)NeuAc(4)	Byonic
 G68513DO	HexNAc4Hex5dHex1NeuAc4	ShortUniCarbKB
 G68513DO	HexNAc4Hex5dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G68597CL	Pk antigen	SemanticName
 G68627ND	HexNAc(1)dHex(1)Pent(1)	Byonic
 G68627ND	HexNAc1Hex0dHex1NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
 G68627ND	HexNAc1dHex1Pent1	ShortUniCarbKB
@@ -2342,6 +2834,7 @@ G68711ZS	HN3S2	ShortComp
 G68711ZS	HexNAc(3)Hex(1)NeuAc(2)	Byonic
 G68711ZS	HexNAc3Hex1NeuAc2	ShortUniCarbKB
 G68711ZS	HexNAc3Hex1dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G68797ZS	O-Linked mannose	SemanticName
 G68814VP	HexNAc(7)Hex(6)dHex(6)	Byonic
 G68814VP	HexNAc7Hex6dHex6	ShortUniCarbKB
 G68814VP	HexNAc7Hex6dHex6NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2357,17 +2850,24 @@ G69041CZ	HexNAc(2)Hex(4)Fuc(1)NeuAc(2)	Byonic
 G69061BI	HexNAc(5)Hex(6)dHex(4)NeuAc(2)	Byonic
 G69061BI	HexNAc5Hex6dHex4NeuAc2	ShortUniCarbKB
 G69061BI	HexNAc5Hex6dHex4NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G69099KE	Sialyl Tn antigen	SemanticName
 G69107AL	HexNAc(5)Hex(5)dHex(3)	Byonic
 G69107AL	HexNAc5Hex5dHex3	ShortUniCarbKB
 G69107AL	HexNAc5Hex5dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G69121UK	HexNAc(5)Hex(3)dHex(1)Sulpho(1)	Byonic
 G69121UK	HexNAc5Hex3dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G69121UK	HexNAc5Hex3dHex1S1	ShortUniCarbKB
+G69158OT	GD1a	SemanticName
+G69277LC	GD1a	SemanticName
 G69364JQ	HexNAc(6)Hex(5)dHex(1)	Byonic
 G69364JQ	HexNAc6Hex5dHex1	ShortUniCarbKB
 G69364JQ	HexNAc6Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G69408FI	GT1c	SemanticName
+G69440CJ	Di-sialyl T antigen	SemanticName
+G69469KQ	Blood group B (type 4)	SemanticName
 G69521XL	H6N6FS2	ShortComp
 G69521XL	HexNAc(6)Hex(6)Fuc(1)NeuAc(2)	Byonic
+G69536IH	GD1b	SemanticName
 G69579SR	HexNAc(2)Hex(9)dHex(1)	Byonic
 G69579SR	HexNAc2Hex9dHex1	ShortUniCarbKB
 G69579SR	HexNAc2Hex9dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2390,6 +2890,7 @@ G70232NH	HexNAc(5)Hex(6)Fuc(1)NeuAc(3)	Byonic
 G70295RT	HexNAc(6)Hex(6)dHex(4)NeuAc(3)	Byonic
 G70295RT	HexNAc6Hex6dHex4NeuAc3	ShortUniCarbKB
 G70295RT	HexNAc6Hex6dHex4NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G70307EN	Monosulfated gangliotetraosylceramide	SemanticName
 G70324YS	HexNAc(4)Hex(5)Fuc(1)NeuGc(1)	Byonic
 G70333IQ	HexNAc(4)Hex(5)dHex(5)	Byonic
 G70333IQ	HexNAc4Hex5dHex5	ShortUniCarbKB
@@ -2402,8 +2903,11 @@ G70441OD	H6N5F	ShortComp
 G70441OD	HexNAc(5)Hex(6)Fuc(1)	Byonic
 G70445VR	H9N9F	ShortComp
 G70445VR	HexNAc(9)Hex(9)Fuc(1)	Byonic
+G70572KM	Di-sialyl T antigen	SemanticName
 G70619PT	H5N4F2	ShortComp
 G70619PT	HexNAc(4)Hex(5)Fuc(2)	Byonic
+G70642LU	Ceramide dihexosyl sulfate	SemanticName
+G70651ES	Sialyl T antigen	SemanticName
 G70696MD	H7N3S	ShortComp
 G70696MD	HexNAc(3)Hex(7)NeuAc(1)	Byonic
 G70696MD	HexNAc3Hex7NeuAc1	ShortUniCarbKB
@@ -2411,6 +2915,7 @@ G70696MD	HexNAc3Hex7dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G70787JZ	HexNAc(3)Hex(5)dHex(4)	Byonic
 G70787JZ	HexNAc3Hex5dHex4	ShortUniCarbKB
 G70787JZ	HexNAc3Hex5dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G70833HG	GM3	SemanticName
 G70888PK	H7N5FS2	ShortComp
 G70888PK	HexNAc(5)Hex(7)Fuc(1)NeuAc(2)	Byonic
 G70974BY	HexNAc(5)Hex(5)dHex(3)NeuAc(2)	Byonic
@@ -2418,14 +2923,19 @@ G70974BY	HexNAc5Hex5dHex3NeuAc2	ShortUniCarbKB
 G70974BY	HexNAc5Hex5dHex3NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G71009JJ	H6N6F2S3	ShortComp
 G71009JJ	HexNAc(6)Hex(6)Fuc(2)NeuAc(3)	Byonic
+G71012YN	Glucosylceramide	SemanticName
+G71026KP	Blood group H (type 4)	SemanticName
+G71026KP	GL-6 fucosylated	SemanticName
 G71085SF	H2NFS	ShortComp
 G71085SF	HexNAc(1)Hex(2)Fuc(1)NeuAc(1)	Byonic
 G71092VL	H2F2	ShortComp
 G71092VL	Hex(2)Fuc(2)	Byonic
 G71142DF	Glucosylceramide	SemanticName
+G71158TZ	GQ1b	SemanticName
 G71195LR	HexNAc(3)Hex(6)NeuGc(1)	Byonic
 G71195LR	HexNAc3Hex6NeuGc1	ShortUniCarbKB
 G71195LR	HexNAc3Hex6dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G71347LR	Ceramide dihexosyl sulfate	SemanticName
 G71426SM	HexNAc(5)Hex(5)NeuGc(1)	Byonic
 G71426SM	HexNAc5Hex5NeuGc1	ShortUniCarbKB
 G71426SM	HexNAc5Hex5dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2434,6 +2944,9 @@ G71435WN	HexNAc8Hex9dHex3	ShortUniCarbKB
 G71435WN	HexNAc8Hex9dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G71463BG	H7N7FS2	ShortComp
 G71463BG	HexNAc(7)Hex(7)Fuc(1)NeuAc(2)	Byonic
+G71469SQ	Blood group H (type 4)	SemanticName
+G71469SQ	GL-6 fucosylated	SemanticName
+G71484TR	GL-7 globoseries ganglioside	SemanticName
 G71502QP	HexNAc(1)Hex(1)NeuAc(1)Sulpho(1)	Byonic
 G71502QP	HexNAc1Hex1NeuAc1S1	ShortUniCarbKB
 G71502QP	HexNAc1Hex1dHex0NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
@@ -2447,12 +2960,18 @@ G71640LP	HexNAc6Hex3dHex1NeuAc0NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
 G71640LP	HexNAc6Hex3dHex1S2	ShortUniCarbKB
 G71784JC	H2N2F	ShortComp
 G71784JC	HexNAc(2)Hex(2)Fuc(1)	Byonic
+G71788OW	Hex(4)Phospho(1)	Byonic
+G71788OW	Hex4P1	ShortUniCarbKB
+G71788OW	HexNAc0Hex4dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
+G71832QJ	A antigen (type 3)	SemanticName
 G71889QA	HexNAc(1)Hex(5)dHex(1)	Byonic
 G71889QA	HexNAc1Hex5dHex1	ShortUniCarbKB
 G71889QA	HexNAc1Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G72008IY	Sialyl T antigen	SemanticName
 G72134PC	HexNAc(14)Hex(15)dHex(6)NeuAc(2)	Byonic
 G72134PC	HexNAc14Hex15dHex6NeuAc2	ShortUniCarbKB
 G72134PC	HexNAc14Hex15dHex6NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G72163XD	Lactosylceramide	SemanticName
 G72548RZ	Seminolipid	SemanticName
 G72548RZ	Sulfatide	SemanticName
 G72557NR	B-GD1b	SemanticName
@@ -2478,14 +2997,18 @@ G72866RZ	HexNAc(1)Hex(4)Fuc(1)NeuAc(2)	Byonic
 G72883AY	HN2F2	ShortComp
 G72883AY	HexNAc(2)Hex(1)Fuc(2)	Byonic
 G72886CU	HexNAc(5)Hex(6)Fuc(1)NeuAc(1)NeuGc(1)	Byonic
+G72894SZ	B-GM1	SemanticName
+G72950LO	GT1a	SemanticName
 G72951AH	H7N4FS3	ShortComp
 G72951AH	HexNAc(4)Hex(7)Fuc(1)NeuAc(3)	Byonic
 G73004SD	H2N3	ShortComp
 G73004SD	HexNAc(3)Hex(2)	Byonic
 G73004SD	HexNAc3Hex2	ShortUniCarbKB
 G73004SD	HexNAc3Hex2dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G73216SF	GM1	SemanticName
 G73343UE	H7N6F2S2	ShortComp
 G73343UE	HexNAc(6)Hex(7)Fuc(2)NeuAc(2)	Byonic
+G73349BT	Pk antigen	SemanticName
 G73408EA	HexNAc(7)Hex(7)dHex(1)NeuAc(3)Sulpho(1)	Byonic
 G73408EA	HexNAc7Hex7dHex1NeuAc3NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G73408EA	HexNAc7Hex7dHex1NeuAc3S1	ShortUniCarbKB
@@ -2520,21 +3043,29 @@ G73991OZ	HexNAc10Hex7dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G74006EE	HexNAc(6)Hex(6)dHex(1)NeuAc(1)NeuGc(1)	Byonic
 G74006EE	HexNAc6Hex6dHex1NeuAc1NeuGc1	ShortUniCarbKB
 G74006EE	HexNAc6Hex6dHex1NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G74052AH	GM2	SemanticName
 G74058SF	HexNAc(3)Hex(2)NeuGc(1)	Byonic
 G74058SF	HexNAc3Hex2NeuGc1	ShortUniCarbKB
 G74058SF	HexNAc3Hex2dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G74123QJ	HexNAc(6)Hex(4)Fuc(1)NeuAc(1)Sulpho(1)	Byonic
+G74160PK	HexNAc(7)Hex(6)dHex(1)NeuAc(2)	Byonic
+G74160PK	HexNAc7Hex6dHex1NeuAc2	ShortUniCarbKB
+G74160PK	HexNAc7Hex6dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G74381CZ	H8N7FS4	ShortComp
 G74381CZ	HexNAc(7)Hex(8)Fuc(1)NeuAc(4)	Byonic
 G74392IM	HexNAc(1)dHex(2)	Byonic
 G74392IM	HexNAc1Hex0dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G74392IM	HexNAc1dHex2	ShortUniCarbKB
+G74532PT	H antigen (type 3)	SemanticName
+G74603QS	GD1a	SemanticName
+G74621DY	Lactosylceramide	SemanticName
 G74865AI	H11N9F2	ShortComp
 G74865AI	HexNAc(9)Hex(11)Fuc(2)	Byonic
 G74909BN	HexNAc(6)Hex(6)Fuc(1)NeuAc(1)Sulpho(2)	Byonic
 G75060MV	HexNAc(6)Hex(6)dHex(2)NeuAc(3)	Byonic
 G75060MV	HexNAc6Hex6dHex2NeuAc3	ShortUniCarbKB
 G75060MV	HexNAc6Hex6dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G75300HM	Sialyl T antigen	SemanticName
 G75365RL	HexNAc(2)Hex(2)dHex(1)NeuAc(1)	Byonic
 G75365RL	HexNAc2Hex2dHex1NeuAc1	ShortUniCarbKB
 G75365RL	HexNAc2Hex2dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2553,6 +3084,12 @@ G75568BH	H8N7	ShortComp
 G75568BH	HexNAc(7)Hex(8)	Byonic
 G75568BH	HexNAc7Hex8	ShortUniCarbKB
 G75568BH	HexNAc7Hex8dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G75584YG	Di-sialyl T antigen	SemanticName
+G75660AY	Lactotriaosylceramide	SemanticName
+G75666MQ	B-GM1	SemanticName
+G75814EP	Disialosyl globopentaosylceramide	SemanticName
+G75860DG	HexNAc3Hex0dHex0NeuAc0NeuGc0Pent0S4P0KDN0HexA4	UniCarbKB
+G75860DG	HexNAc3S4HexA4	ShortUniCarbKB
 G75959TE	HexNAc(1)Hex(3)Sulpho(1)	Byonic
 G75959TE	HexNAc1Hex3S1	ShortUniCarbKB
 G75959TE	HexNAc1Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
@@ -2567,6 +3104,9 @@ G76264IE	H3N4F2	ShortComp
 G76264IE	HexNAc(4)Hex(3)Fuc(2)	Byonic
 G76295SF	H4N5FS	ShortComp
 G76295SF	HexNAc(5)Hex(4)Fuc(1)NeuAc(1)	Byonic
+G76383CF	GD2	SemanticName
+G76425GZ	Disialosyl globopentaosylceramide	SemanticName
+G76500XO	GM4	SemanticName
 G76552MT	HexNAc(5)Hex(4)Fuc(1)Sulpho(2)	Byonic
 G76685HR	HexNAc0Hex0dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G76685HR	NeuAc(1)	Byonic
@@ -2583,15 +3123,20 @@ G76733PY	HexNAc8Hex9dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G76792KM	HexNAc(5)Hex(6)NeuGc(2)	Byonic
 G76792KM	HexNAc5Hex6NeuGc2	ShortUniCarbKB
 G76792KM	HexNAc5Hex6dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
+G76859VT	Mono-fucosyl LN5	SemanticName
+G76864KF	GH1ca	SemanticName
 G76910TG	HexNAc(1)Fuc(2)	Byonic
 G76910TG	NF2	ShortComp
 G76919LY	H7N7F5	ShortComp
 G76919LY	HexNAc(7)Hex(7)Fuc(5)	Byonic
 G76966EE	H5N7F	ShortComp
 G76966EE	HexNAc(7)Hex(5)Fuc(1)	Byonic
+G77047WW	GD1a	SemanticName
 G77050QU	HexNAc(4)Hex(6)dHex(2)NeuAc(2)	Byonic
 G77050QU	HexNAc4Hex6dHex2NeuAc2	ShortUniCarbKB
 G77050QU	HexNAc4Hex6dHex2NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G77115OV	GD2	SemanticName
+G77186TD	Asialo-GM1	SemanticName
 G77240OA	H8N7F3S4	ShortComp
 G77240OA	HexNAc(7)Hex(8)Fuc(3)NeuAc(4)	Byonic
 G77277EH	HexNAc(7)Hex(9)dHex(1)NeuAc(1)	Byonic
@@ -2612,28 +3157,40 @@ G77380JK	HexNAc(6)Hex(3)dHex(4)	Byonic
 G77380JK	HexNAc6Hex3dHex4	ShortUniCarbKB
 G77380JK	HexNAc6Hex3dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G77384DM	HexNAc(4)Hex(4)Fuc(1)Sulpho(1)	Byonic
+G77409CT	Blood group B (type 4)	SemanticName
 G77513SG	H2N2S	ShortComp
 G77513SG	HexNAc(2)Hex(2)NeuAc(1)	Byonic
 G77513SG	HexNAc2Hex2NeuAc1	ShortUniCarbKB
 G77513SG	HexNAc2Hex2dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G77517VD	GD1b	SemanticName
 G77547TA	H4N4F2	ShortComp
 G77547TA	HexNAc(4)Hex(4)Fuc(2)	Byonic
+G77555YU	A antigen (type 3)	SemanticName
 G77669RF	H5N8F	ShortComp
 G77669RF	HexNAc(8)Hex(5)Fuc(1)	Byonic
+G77824XV	GM4	SemanticName
+G77893MJ	Mono-sulfated globopentaosylceramide	SemanticName
 G77894KZ	H2N4F3	ShortComp
 G77894KZ	HexNAc(4)Hex(2)Fuc(3)	Byonic
+G77900OU	Sialyl Tn antigen	SemanticName
 G77959MZ	HexNAc(5)Hex(6)dHex(1)NeuGc(2)	Byonic
 G77959MZ	HexNAc5Hex6dHex1NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G77959MZ	HexNAc5Hex6dHex1NeuGc2	ShortUniCarbKB
+G78072VO	Forssman glycolipid	SemanticName
 G78234TK	HexNAc(6)Hex(7)Fuc(1)NeuAc(3)Sulpho(1)	Byonic
+G78242EN	Pk antigen	SemanticName
 G78330KT	HexNAc(14)Hex(15)dHex(6)NeuAc(1)	Byonic
 G78330KT	HexNAc14Hex15dHex6NeuAc1	ShortUniCarbKB
 G78330KT	HexNAc14Hex15dHex6NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G78436BB	T antigen	SemanticName
 G78444UW	HexNAc(6)Hex(4)dHex(2)NeuAc(1)	Byonic
 G78444UW	HexNAc6Hex4dHex2NeuAc1	ShortUniCarbKB
 G78444UW	HexNAc6Hex4dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G78508BQ	Lactosylceramide	SemanticName
 G78649WQ	H5N6FS3	ShortComp
 G78649WQ	HexNAc(6)Hex(5)Fuc(1)NeuAc(3)	Byonic
+G78698EP	A antigen (type 3)	SemanticName
+G78768PN	Di-sialyl T antigen	SemanticName
 G78787DI	H4N7F	ShortComp
 G78787DI	HexNAc(7)Hex(4)Fuc(1)	Byonic
 G78811TO	HexNAc(6)Hex(7)dHex(5)	Byonic
@@ -2646,22 +3203,30 @@ G78923UG	HexNAc3Hex8dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
 G78983WZ	HexNAc(1)Hex(3)NeuGc(2)	Byonic
 G78983WZ	HexNAc1Hex3NeuGc2	ShortUniCarbKB
 G78983WZ	HexNAc1Hex3dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
+G79150MP	T antigen	SemanticName
+G79249LD	Lactosylceramide	SemanticName
 G79265CF	HexNAc(3)Hex(3)dHex(1)NeuAc(2)	Byonic
 G79265CF	HexNAc3Hex3dHex1NeuAc2	ShortUniCarbKB
 G79265CF	HexNAc3Hex3dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G79323CW	T antigen	SemanticName
+G79382TI	Lactotriaosylceramide	SemanticName
 G79389NT	GM2	SemanticName
 G79410LS	HexNAc(2)Hex(2)dHex(1)NeuGc(1)	Byonic
 G79410LS	HexNAc2Hex2dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G79410LS	HexNAc2Hex2dHex1NeuGc1	ShortUniCarbKB
 G79485UE	HexNAc2Hex0dHex0NeuAc0NeuGc0Pent0S2P0KDN0HexA2	UniCarbKB
 G79485UE	HexNAc2S2HexA2	ShortUniCarbKB
+G79533UR	GT1a	SemanticName
 G79635DB	HexNAc(7)Hex(8)dHex(6)	Byonic
 G79635DB	HexNAc7Hex8dHex6	ShortUniCarbKB
 G79635DB	HexNAc7Hex8dHex6NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G79648LW	GD2	SemanticName
 G79666IR	H6N5FS	ShortComp
 G79666IR	HexNAc(5)Hex(6)Fuc(1)NeuAc(1)	Byonic
 G79691XX	H5N3F3S	ShortComp
 G79691XX	HexNAc(3)Hex(5)Fuc(3)NeuAc(1)	Byonic
+G79763SM	Sialyl T antigen	SemanticName
+G79847QZ	Mono-fucosyl LN5	SemanticName
 G79874FN	HexNAc(4)Hex(7)Phospho(2)	Byonic
 G79874FN	HexNAc4Hex7P2	ShortUniCarbKB
 G79874FN	HexNAc4Hex7dHex0NeuAc0NeuGc0Pent0S0P2KDN0HexA0	UniCarbKB
@@ -2671,11 +3236,15 @@ G79941IJ	HexNAc6Hex4dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G79961MR	HexNAc(5)Hex(4)NeuAc(1)Sulpho(1)	Byonic
 G79961MR	HexNAc5Hex4NeuAc1S1	ShortUniCarbKB
 G79961MR	HexNAc5Hex4dHex0NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G80016DZ	Paragloboside	SemanticName
+G80031VE	O-Linked mannose	SemanticName
 G80062GG	Forssman glycolipid	SemanticName
 G80075MS	H6N5F3S	ShortComp
 G80075MS	HexNAc(5)Hex(6)Fuc(3)NeuAc(1)	Byonic
+G80102MT	GM4	SemanticName
 G80105XT	H3N3F2S2	ShortComp
 G80105XT	HexNAc(3)Hex(3)Fuc(2)NeuAc(2)	Byonic
+G80111QD	Di-sialyl T antigen	SemanticName
 G80160PH	HexNAc(5)Hex(6)NeuGc(1)	Byonic
 G80160PH	HexNAc5Hex6NeuGc1	ShortUniCarbKB
 G80160PH	HexNAc5Hex6dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2683,10 +3252,12 @@ G80193TN	Mono-sulfated globopentaosylceramide	SemanticName
 G80280AS	HexNAc(4)Hex(5)dHex(1)NeuGc(1)	Byonic
 G80280AS	HexNAc4Hex5dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G80280AS	HexNAc4Hex5dHex1NeuGc1	ShortUniCarbKB
+G80291PD	Mono-fucosyl LN3	SemanticName
 G80298NM	H9N9F2S	ShortComp
 G80298NM	HexNAc(9)Hex(9)Fuc(2)NeuAc(1)	Byonic
 G80323WP	H6N6F3	ShortComp
 G80323WP	HexNAc(6)Hex(6)Fuc(3)	Byonic
+G80324EI	Sialosyl paragloboside	SemanticName
 G80351KB	HexNAc(5)	Byonic
 G80351KB	HexNAc5	ShortUniCarbKB
 G80351KB	HexNAc5Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2713,16 +3284,19 @@ G80586MF	HexNAc6Hex8dHex1NeuAc3	ShortUniCarbKB
 G80586MF	HexNAc6Hex8dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G80669SJ	H7N6F5	ShortComp
 G80669SJ	HexNAc(6)Hex(7)Fuc(5)	Byonic
+G80708UE	GM4	SemanticName
 G80723WE	HexNAc(6)Hex(8)dHex(1)	Byonic
 G80723WE	HexNAc6Hex8dHex1	ShortUniCarbKB
 G80723WE	HexNAc6Hex8dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G80735OA	HexNAc(6)Hex(6)dHex(1)	Byonic
 G80735OA	HexNAc6Hex6dHex1	ShortUniCarbKB
 G80735OA	HexNAc6Hex6dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G80753ZP	Glucosylceramide	SemanticName
 G80920RR	H9N2	ShortComp
 G80920RR	HexNAc(2)Hex(9)	Byonic
 G80920RR	HexNAc2Hex9	ShortUniCarbKB
 G80920RR	HexNAc2Hex9dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G81020JP	Blood group B (type 4)	SemanticName
 G81124ET	H9N7	ShortComp
 G81124ET	HexNAc(7)Hex(9)	Byonic
 G81124ET	HexNAc7Hex9	ShortUniCarbKB
@@ -2733,6 +3307,7 @@ G81128KB	HexNAc6Hex7dHex4NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G81216TA	Hex(2)Pent(1)	Byonic
 G81216TA	Hex2Pent1	ShortUniCarbKB
 G81216TA	HexNAc0Hex2dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
+G81340AK	Monosulfated gangliotetraosylceramide	SemanticName
 G81399MY	H	ShortComp
 G81399MY	Hex(1)	Byonic
 G81399MY	Hex1	ShortUniCarbKB
@@ -2742,10 +3317,22 @@ G81572SC	HexNAc4Hex4dHex1NeuAc2	ShortUniCarbKB
 G81572SC	HexNAc4Hex4dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G81637OR	H7N6FS3	ShortComp
 G81637OR	HexNAc(6)Hex(7)Fuc(1)NeuAc(3)	Byonic
+G81647RY	Cytolipin R	SemanticName
+G81647RY	Globoside	SemanticName
+G81647RY	Isoglobotetraosylceramide	SemanticName
+G81904DM	HexNAc(11)Hex(12)dHex(1)	Byonic
+G81904DM	HexNAc11Hex12dHex1	ShortUniCarbKB
+G81904DM	HexNAc11Hex12dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G81920JR	HexNAc(4)Hex(3)dHex(1)Pent(1)	Byonic
 G81920JR	HexNAc4Hex3dHex1NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
 G81920JR	HexNAc4Hex3dHex1Pent1	ShortUniCarbKB
+G81928IQ	9-O-Acetyl GD3	SemanticName
+G81928IQ	GD3	SemanticName
 G81983KG	GD1	SemanticName
+G82184VE	GM2	SemanticName
+G82195SU	Mono-sulfated globopentaosylceramide	SemanticName
+G82208GO	HNK-1 on O-mannose	SemanticName
+G82233EX	Pk antigen	SemanticName
 G82347DR	H5N6F3	ShortComp
 G82347DR	HexNAc(6)Hex(5)Fuc(3)	Byonic
 G82348RD	HexNAc(7)Hex(8)dHex(1)NeuAc(1)	Byonic
@@ -2762,8 +3349,18 @@ G82458HY	HexNAc1Hex1dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G82537NK	HexNAc(4)Hex(5)dHex(3)NeuAc(1)NeuGc(1)	Byonic
 G82537NK	HexNAc4Hex5dHex3NeuAc1NeuGc1	ShortUniCarbKB
 G82537NK	HexNAc4Hex5dHex3NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G82558IX	Cytolipin R	SemanticName
+G82558IX	Globoside	SemanticName
+G82558IX	Isoglobotetraosylceramide	SemanticName
+G82710YP	GP1ca	SemanticName
+G82745AW	HexNAc(1)Hex(12)Phospho(1)	Byonic
+G82745AW	HexNAc1Hex12P1	ShortUniCarbKB
+G82745AW	HexNAc1Hex12dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
 G82851XG	H6N4FS2	ShortComp
 G82851XG	HexNAc(4)Hex(6)Fuc(1)NeuAc(2)	Byonic
+G82907DV	Globoside	SemanticName
+G82909UF	Seminolipid	SemanticName
+G82909UF	Sulfatide	SemanticName
 G82985VK	H8N	ShortComp
 G82985VK	HexNAc(1)Hex(8)	Byonic
 G82985VK	HexNAc1Hex8	ShortUniCarbKB
@@ -2772,6 +3369,8 @@ G83014KM	H8N5	ShortComp
 G83014KM	HexNAc(5)Hex(8)	Byonic
 G83014KM	HexNAc5Hex8	ShortUniCarbKB
 G83014KM	HexNAc5Hex8dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G83120FP	Blood group H (type 4)	SemanticName
+G83120FP	GL-6 fucosylated	SemanticName
 G83131MV	HexNAc(6)Hex(4)dHex(1)NeuAc(1)Sulpho(1)	Byonic
 G83131MV	HexNAc6Hex4dHex1NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G83131MV	HexNAc6Hex4dHex1NeuAc1S1	ShortUniCarbKB
@@ -2808,6 +3407,8 @@ G83806FR	HexNAc(4)Hex(5)Fuc(2)NeuGc(1)	Byonic
 G83973UR	HexNAc(5)Hex(6)Sulpho(2)	Byonic
 G83973UR	HexNAc5Hex6S2	ShortUniCarbKB
 G83973UR	HexNAc5Hex6dHex0NeuAc0NeuGc0Pent0S2P0KDN0HexA0	UniCarbKB
+G84052PW	GD1b	SemanticName
+G84081HV	cisGM1	SemanticName
 G84100PH	Hex(2)NeuAc(1)Sulpho(1)	Byonic
 G84100PH	Hex2NeuAc1S1	ShortUniCarbKB
 G84100PH	HexNAc0Hex2dHex0NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
@@ -2822,6 +3423,8 @@ G84259QT	H6N7S	ShortComp
 G84259QT	HexNAc(7)Hex(6)NeuAc(1)	Byonic
 G84259QT	HexNAc7Hex6NeuAc1	ShortUniCarbKB
 G84259QT	HexNAc7Hex6dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G84273ZH	Blood group H (type 4)	SemanticName
+G84273ZH	GL-6 fucosylated	SemanticName
 G84289JA	HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S3P0KDN0HexA1	UniCarbKB
 G84289JA	HexNAc1S3HexA1	ShortUniCarbKB
 G84291SQ	HexNAc(4)Hex(5)dHex(2)NeuAc(2)	Byonic
@@ -2837,6 +3440,7 @@ G84322TE	H5	ShortComp
 G84322TE	Hex(5)	Byonic
 G84322TE	Hex5	ShortUniCarbKB
 G84322TE	HexNAc0Hex5dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G84325DV	GT2	SemanticName
 G84349RE	H4N2F	ShortComp
 G84349RE	HexNAc(2)Hex(4)Fuc(1)	Byonic
 G84435MS	HexNAc(4)	Byonic
@@ -2846,6 +3450,7 @@ G84435MS	N4	ShortComp
 G84492TS	HexNAc(5)Hex(5)dHex(2)NeuAc(1)	Byonic
 G84492TS	HexNAc5Hex5dHex2NeuAc1	ShortUniCarbKB
 G84492TS	HexNAc5Hex5dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G84492TT	Sialosyl paragloboside	SemanticName
 G84664JR	HexNAc(7)Hex(9)dHex(1)	Byonic
 G84664JR	HexNAc7Hex9dHex1	ShortUniCarbKB
 G84664JR	HexNAc7Hex9dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2870,6 +3475,9 @@ G84862JD	HexNAc2Hex0dHex0NeuAc0NeuGc0Pent0S5P0KDN0HexA2	UniCarbKB
 G84862JD	HexNAc2S5HexA2	ShortUniCarbKB
 G84862VB	H4N4F3	ShortComp
 G84862VB	HexNAc(4)Hex(4)Fuc(3)	Byonic
+G84871HS	Hex(3)Phospho(1)	Byonic
+G84871HS	Hex3P1	ShortUniCarbKB
+G84871HS	HexNAc0Hex3dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
 G84957WC	H4N4FS2	ShortComp
 G84957WC	HexNAc(4)Hex(4)Fuc(1)NeuAc(2)	Byonic
 G84977PB	HNS4	ShortComp
@@ -2879,6 +3487,7 @@ G84977PB	HexNAc1Hex1dHex0NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G85144OK	HexNAc(5)Hex(6)dHex(1)NeuAc(2)	Byonic
 G85144OK	HexNAc5Hex6dHex1NeuAc2	ShortUniCarbKB
 G85144OK	HexNAc5Hex6dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G85237WB	LcGg4	SemanticName
 G85255EY	H11N11F2	ShortComp
 G85255EY	HexNAc(11)Hex(11)Fuc(2)	Byonic
 G85269DF	H4N3F2	ShortComp
@@ -2890,6 +3499,7 @@ G85282JO	HexNAc6Hex6dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G85335EW	HexNAc(2)Hex(4)Pent(1)	Byonic
 G85335EW	HexNAc2Hex4Pent1	ShortUniCarbKB
 G85335EW	HexNAc2Hex4dHex0NeuAc0NeuGc0Pent1S0P0KDN0HexA0	UniCarbKB
+G85350TW	GD1a	SemanticName
 G85373BL	HexNAc3Hex0dHex0NeuAc0NeuGc0Pent0S3P0KDN0HexA2	UniCarbKB
 G85373BL	HexNAc3S3HexA2	ShortUniCarbKB
 G85428IQ	HexNAc(14)Hex(15)dHex(5)NeuAc(2)	Byonic
@@ -2901,6 +3511,8 @@ G85582CB	H4N4S2	ShortComp
 G85582CB	HexNAc(4)Hex(4)NeuAc(2)	Byonic
 G85582CB	HexNAc4Hex4NeuAc2	ShortUniCarbKB
 G85582CB	HexNAc4Hex4dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G85595RO	Sialyl T antigen	SemanticName
+G85646QT	N-Glycolyl-GM2	SemanticName
 G85665UM	HexNAc(1)NeuGc(2)	Byonic
 G85665UM	HexNAc1Hex0dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G85665UM	HexNAc1NeuGc2	ShortUniCarbKB
@@ -2911,6 +3523,8 @@ G85677PP	HexNAc4Hex5dHex0NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G85740DB	HexNAc(5)Hex(5)dHex(1)	Byonic
 G85740DB	HexNAc5Hex5dHex1	ShortUniCarbKB
 G85740DB	HexNAc5Hex5dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G85821PU	Di-sialyl T antigen	SemanticName
+G85924HA	Sialyl T antigen	SemanticName
 G85945LZ	H7N	ShortComp
 G85945LZ	HexNAc(1)Hex(7)	Byonic
 G85945LZ	HexNAc1Hex7	ShortUniCarbKB
@@ -2918,6 +3532,8 @@ G85945LZ	HexNAc1Hex7dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G85987RP	HexNAc(5)Hex(7)dHex(1)	Byonic
 G85987RP	HexNAc5Hex7dHex1	ShortUniCarbKB
 G85987RP	HexNAc5Hex7dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G86130AV	Di-sialyl T antigen	SemanticName
+G86139YL	GH1ca	SemanticName
 G86182NS	H4N5S	ShortComp
 G86182NS	HexNAc(5)Hex(4)NeuAc(1)	Byonic
 G86182NS	HexNAc5Hex4NeuAc1	ShortUniCarbKB
@@ -2928,8 +3544,12 @@ G86200WT	HexNAc5Hex6dHex1NeuAc2S1	ShortUniCarbKB
 G86270PX	HexNAc(4)Hex(4)dHex(1)Sulpho(1)	Byonic
 G86270PX	HexNAc4Hex4dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G86270PX	HexNAc4Hex4dHex1S1	ShortUniCarbKB
+G86271BU	Galactosylceramide	SemanticName
 G86286CX	H3N3FS	ShortComp
 G86286CX	HexNAc(3)Hex(3)Fuc(1)NeuAc(1)	Byonic
+G86301XI	HexNAc(5)Hex(6)dHex(1)NeuAc(4)	Byonic
+G86301XI	HexNAc5Hex6dHex1NeuAc4	ShortUniCarbKB
+G86301XI	HexNAc5Hex6dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G86339HP	H6N9	ShortComp
 G86339HP	HexNAc(9)Hex(6)	Byonic
 G86339HP	HexNAc9Hex6	ShortUniCarbKB
@@ -2943,12 +3563,19 @@ G86458FO	HexNAc4Hex2dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G86509KY	HexNAc(7)Hex(5)dHex(4)NeuAc(1)	Byonic
 G86509KY	HexNAc7Hex5dHex4NeuAc1	ShortUniCarbKB
 G86509KY	HexNAc7Hex5dHex4NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G86562TA	B-GD1b	SemanticName
 G86577AW	HexNAc(6)Hex(4)dHex(5)NeuAc(1)	Byonic
 G86577AW	HexNAc6Hex4dHex5NeuAc1	ShortUniCarbKB
 G86577AW	HexNAc6Hex4dHex5NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G86579NT	HexNAc(4)Hex(4)dHex(1)NeuGc(1)	Byonic
 G86579NT	HexNAc4Hex4dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G86579NT	HexNAc4Hex4dHex1NeuGc1	ShortUniCarbKB
+G86600BB	HexNAc(5)Hex(6)Fuc(1)NeuAc(1)NeuGc(2)	Byonic
+G86655NE	Sialyl T antigen	SemanticName
+G86656HK	Di-sialyl T antigen	SemanticName
+G86658HZ	HexNAc(1)Sulpho(1)	Byonic
+G86658HZ	HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G86658HZ	HexNAc1S1	ShortUniCarbKB
 G86752LQ	HexNAc(5)Hex(6)dHex(1)NeuAc(1)	Byonic
 G86752LQ	HexNAc5Hex6dHex1NeuAc1	ShortUniCarbKB
 G86752LQ	HexNAc5Hex6dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -2956,6 +3583,8 @@ G86800DW	H12N	ShortComp
 G86800DW	HexNAc(1)Hex(12)	Byonic
 G86800DW	HexNAc1Hex12	ShortUniCarbKB
 G86800DW	HexNAc1Hex12dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G86811ZD	2-Fucosyl-GD1b	SemanticName
+G86874EI	GD1	SemanticName
 G86880BF	H6N5F2S	ShortComp
 G86880BF	HexNAc(5)Hex(6)Fuc(2)NeuAc(1)	Byonic
 G86950TV	HexNAc(4)Hex(4)Sulpho(2)	Byonic
@@ -2986,6 +3615,8 @@ G87208AT	HexNAc6Hex8NeuAc1	ShortUniCarbKB
 G87208AT	HexNAc6Hex8dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G87276XX	H3N2F3	ShortComp
 G87276XX	HexNAc(2)Hex(3)Fuc(3)	Byonic
+G87288SC	2-Fucosyl-GM1	SemanticName
+G87313XJ	O-Linked mannose	SemanticName
 G87321EI	H4N2F2S	ShortComp
 G87321EI	HexNAc(2)Hex(4)Fuc(2)NeuAc(1)	Byonic
 G87384DY	HexNAc(2)Hex(1)dHex(1)NeuAc(1)	Byonic
@@ -2998,6 +3629,7 @@ G87399DK	HexNAc(7)Hex(7)Fuc(1)NeuAc(4)	Byonic
 G87416MP	HexNAc(9)Hex(6)dHex(3)	Byonic
 G87416MP	HexNAc9Hex6dHex3	ShortUniCarbKB
 G87416MP	HexNAc9Hex6dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G87584CF	Asialo-GM1	SemanticName
 G87661QW	H5N5F2	ShortComp
 G87661QW	HexNAc(5)Hex(5)Fuc(2)	Byonic
 G87672CW	H9N6	ShortComp
@@ -3007,6 +3639,7 @@ G87672CW	HexNAc6Hex9dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G87709PJ	HexNAc(5)Hex(5)dHex(1)NeuAc(1)NeuGc(1)	Byonic
 G87709PJ	HexNAc5Hex5dHex1NeuAc1NeuGc1	ShortUniCarbKB
 G87709PJ	HexNAc5Hex5dHex1NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G87727XV	Lactotriaosylceramide	SemanticName
 G87733KR	HexNAc(6)Hex(7)dHex(4)NeuAc(2)	Byonic
 G87733KR	HexNAc6Hex7dHex4NeuAc2	ShortUniCarbKB
 G87733KR	HexNAc6Hex7dHex4NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3024,9 +3657,16 @@ G87875QF	H4N4S4	ShortComp
 G87875QF	HexNAc(4)Hex(4)NeuAc(4)	Byonic
 G87875QF	HexNAc4Hex4NeuAc4	ShortUniCarbKB
 G87875QF	HexNAc4Hex4dHex0NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G87919AW	HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S2P0KDN0HexA2	UniCarbKB
+G87919AW	HexNAc1S2HexA2	ShortUniCarbKB
 G88198IB	HexNAc(5)Hex(5)dHex(3)NeuAc(1)	Byonic
 G88198IB	HexNAc5Hex5dHex3NeuAc1	ShortUniCarbKB
 G88198IB	HexNAc5Hex5dHex3NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G88313DY	B antigen (type 3)	SemanticName
+G88356HA	Blood group A (type 4)	SemanticName
+G88372OE	Hex(5)Phospho(1)	Byonic
+G88372OE	Hex5P1	ShortUniCarbKB
+G88372OE	HexNAc0Hex5dHex0NeuAc0NeuGc0Pent0S0P1KDN0HexA0	UniCarbKB
 G88374WZ	HexNAc(4)Hex(5)dHex(1)NeuAc(2)	Byonic
 G88374WZ	HexNAc4Hex5dHex1NeuAc2	ShortUniCarbKB
 G88374WZ	HexNAc4Hex5dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3034,6 +3674,7 @@ G88431DQ	HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S2P0KDN0HexA1	UniCarbKB
 G88431DQ	HexNAc1S2HexA1	ShortUniCarbKB
 G88555AB	H2N3F2	ShortComp
 G88555AB	HexNAc(3)Hex(2)Fuc(2)	Byonic
+G88648CM	GM3	SemanticName
 G88691YO	HexNAc(5)Hex(4)dHex(1)NeuAc(1)Sulpho(1)	Byonic
 G88691YO	HexNAc5Hex4dHex1NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G88691YO	HexNAc5Hex4dHex1NeuAc1S1	ShortUniCarbKB
@@ -3051,14 +3692,20 @@ G88764HN	HexNAc0Hex1dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G88775CU	HexNAc(3)Hex(1)dHex(2)	Byonic
 G88775CU	HexNAc3Hex1dHex2	ShortUniCarbKB
 G88775CU	HexNAc3Hex1dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G88886BA	GM2	SemanticName
 G88891KO	H7N2F	ShortComp
 G88891KO	HexNAc(2)Hex(7)Fuc(1)	Byonic
 G88951ME	HexNAc(6)Hex(6)dHex(1)NeuGc(2)	Byonic
 G88951ME	HexNAc6Hex6dHex1NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
 G88951ME	HexNAc6Hex6dHex1NeuGc2	ShortUniCarbKB
+G88990JZ	GD2	SemanticName
 G89009DQ	HexNAc(7)Hex(6)dHex(1)	Byonic
 G89009DQ	HexNAc7Hex6dHex1	ShortUniCarbKB
 G89009DQ	HexNAc7Hex6dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G89034YM	9-O-Acetyl GD3	SemanticName
+G89034YM	GD3	SemanticName
+G89089ML	Sialosyl paragloboside	SemanticName
+G89089XB	T antigen	SemanticName
 G89373FA	H3N7S2	ShortComp
 G89373FA	HexNAc(7)Hex(3)NeuAc(2)	Byonic
 G89373FA	HexNAc7Hex3NeuAc2	ShortUniCarbKB
@@ -3066,6 +3713,11 @@ G89373FA	HexNAc7Hex3dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G89430VM	HexNAc(6)Hex(3)Sulpho(1)	Byonic
 G89430VM	HexNAc6Hex3S1	ShortUniCarbKB
 G89430VM	HexNAc6Hex3dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G89541CA	HexNAc(5)Hex(7)dHex(2)NeuAc(1)	Byonic
+G89541CA	HexNAc5Hex7dHex2NeuAc1	ShortUniCarbKB
+G89541CA	HexNAc5Hex7dHex2NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G89570VS	Di-sialyl T antigen	SemanticName
+G89631EN	GH1ca	SemanticName
 G89699WB	HexNAc(5)Hex(6)Fuc(1)Sulpho(2)	Byonic
 G89721KZ	HexNAc(5)Hex(7)Fuc(1)NeuGc(2)	Byonic
 G89864HJ	Hex(2)dHex(1)	Byonic
@@ -3073,14 +3725,20 @@ G89864HJ	Hex2dHex1	ShortUniCarbKB
 G89864HJ	HexNAc0Hex2dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G89930SE	H5N4F3S	ShortComp
 G89930SE	HexNAc(4)Hex(5)Fuc(3)NeuAc(1)	Byonic
+G89940VR	HexNAc(16)Hex(17)dHex(1)	Byonic
+G89940VR	HexNAc16Hex17dHex1	ShortUniCarbKB
+G89940VR	HexNAc16Hex17dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G90085MT	HexNAc(1)NeuAc(1)	Byonic
 G90085MT	HexNAc1Hex0dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G90085MT	HexNAc1NeuAc1	ShortUniCarbKB
 G90085MT	NS	ShortComp
+G90108IF	GT3	SemanticName
 G90187UT	HexNAc(5)Hex(6)Fuc(1)Sulpho(3)	Byonic
+G90233EO	Di-sialyl T antigen	SemanticName
 G90245IA	HexNAc(7)Hex(4)dHex(1)NeuAc(1)	Byonic
 G90245IA	HexNAc7Hex4dHex1NeuAc1	ShortUniCarbKB
 G90245IA	HexNAc7Hex4dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G90270UN	P1 antigen	SemanticName
 G90306QO	H4	ShortComp
 G90306QO	Hex(4)	Byonic
 G90306QO	Hex4	ShortUniCarbKB
@@ -3101,9 +3759,12 @@ G90444EI	HexNAc9Hex8dHex1	ShortUniCarbKB
 G90444EI	HexNAc9Hex8dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G90445GN	H5N4FS4	ShortComp
 G90445GN	HexNAc(4)Hex(5)Fuc(1)NeuAc(4)	Byonic
+G90490AC	GQ1ba	SemanticName
 G90519UC	HexNAc(2)Hex(4)NeuGc(2)	Byonic
 G90519UC	HexNAc2Hex4NeuGc2	ShortUniCarbKB
 G90519UC	HexNAc2Hex4dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
+G90539LD	Gb5	SemanticName
+G90539LD	SSEA-3	SemanticName
 G90575OW	H6N2F	ShortComp
 G90575OW	HexNAc(2)Hex(6)Fuc(1)	Byonic
 G90598GO	GQ1aa	SemanticName
@@ -3118,6 +3779,7 @@ G90659AW	HexNAc(4)Hex(5)Fuc(1)	Byonic
 G90665OT	HexNAc(2)Hex(4)dHex(3)	Byonic
 G90665OT	HexNAc2Hex4dHex3	ShortUniCarbKB
 G90665OT	HexNAc2Hex4dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G90734LY	GM1	SemanticName
 G90734RJ	H3N4S	ShortComp
 G90734RJ	HexNAc(4)Hex(3)NeuAc(1)	Byonic
 G90734RJ	HexNAc4Hex3NeuAc1	ShortUniCarbKB
@@ -3126,6 +3788,7 @@ G90750LT	H5N7F2S2	ShortComp
 G90750LT	HexNAc(7)Hex(5)Fuc(2)NeuAc(2)	Byonic
 G90787TS	H7N9FS4	ShortComp
 G90787TS	HexNAc(9)Hex(7)Fuc(1)NeuAc(4)	Byonic
+G90794QI	Sialyl T antigen	SemanticName
 G90851QG	HexNAc(5)Hex(6)dHex(1)NeuGc(1)	Byonic
 G90851QG	HexNAc5Hex6dHex1NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
 G90851QG	HexNAc5Hex6dHex1NeuGc1	ShortUniCarbKB
@@ -3140,11 +3803,14 @@ G90947HZ	Hex(3)Fuc(1)	Byonic
 G91158SA	HexNAc(8)Hex(6)dHex(3)	Byonic
 G91158SA	HexNAc8Hex6dHex3	ShortUniCarbKB
 G91158SA	HexNAc8Hex6dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G91227UA	B antigen (type 3)	SemanticName
+G91236EO	H antigen (type 3)	SemanticName
 G91237TK	GM3	SemanticName
 G91491VF	HexNAc(10)Hex(10)dHex(2)	Byonic
 G91491VF	HexNAc10Hex10dHex2	ShortUniCarbKB
 G91491VF	HexNAc10Hex10dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G91532KA	2-Fucosyl-GM1	SemanticName
+G91641FJ	GT3	SemanticName
 G91717QZ	HexNAc(5)Hex(6)Fuc(1)NeuGc(2)	Byonic
 G92050GC	H4N2	ShortComp
 G92050GC	HexNAc(2)Hex(4)	Byonic
@@ -3172,6 +3838,7 @@ G92275SC	H3N2F	ShortComp
 G92275SC	HexNAc(2)Hex(3)Fuc(1)	Byonic
 G92308BH	H3NFS2	ShortComp
 G92308BH	HexNAc(1)Hex(3)Fuc(1)NeuAc(2)	Byonic
+G92345KY	Sialyl Tn antigen	SemanticName
 G92358TX	HexNAc1Hex2S1HexA1	ShortUniCarbKB
 G92358TX	HexNAc1Hex2dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA1	UniCarbKB
 G92406TI	H7N3F	ShortComp
@@ -3186,6 +3853,7 @@ G92551JA	HexNAc(6)Hex(3)Fuc(3)	Byonic
 G92597CK	HexNAc(3)Hex(4)dHex(2)	Byonic
 G92597CK	HexNAc3Hex4dHex2	ShortUniCarbKB
 G92597CK	HexNAc3Hex4dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G92630VX	N-Glycolyl-GM2	SemanticName
 G92643JL	HexNAc(7)Hex(7)dHex(1)NeuAc(2)NeuGc(1)	Byonic
 G92643JL	HexNAc7Hex7dHex1NeuAc2NeuGc1	ShortUniCarbKB
 G92643JL	HexNAc7Hex7dHex1NeuAc2NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3198,15 +3866,23 @@ G92775BB	HexNAc7Hex6dHex2NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G92821TF	HexNAc(4)Hex(4)NeuGc(1)	Byonic
 G92821TF	HexNAc4Hex4NeuGc1	ShortUniCarbKB
 G92821TF	HexNAc4Hex4dHex0NeuAc0NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G92917CM	Lactotriaosylceramide	SemanticName
+G93146WS	GQ1aa	SemanticName
+G93210GW	GM3	SemanticName
 G93218EI	Hex(2)NeuGc(2)	Byonic
 G93218EI	Hex2NeuGc2	ShortUniCarbKB
 G93218EI	HexNAc0Hex2dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
+G93275TB	2-Fucosyl-GM1	SemanticName
 G93372MC	HexNAc(3)Hex(1)NeuAc(1)Sulpho(1)	Byonic
 G93372MC	HexNAc3Hex1NeuAc1S1	ShortUniCarbKB
 G93372MC	HexNAc3Hex1dHex0NeuAc1NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
+G93468NI	GT1a	SemanticName
+G93523MF	Sialyl T antigen	SemanticName
 G93526NJ	HexNAc(6)Hex(3)dHex(3)	Byonic
 G93526NJ	HexNAc6Hex3dHex3	ShortUniCarbKB
 G93526NJ	HexNAc6Hex3dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G93536PN	Mono-fucosyl LN5	SemanticName
+G93542QZ	Sialyl Tn antigen	SemanticName
 G93579XB	HexNAc(2)Hex(2)dHex(1)	Byonic
 G93579XB	HexNAc2Hex2dHex1	ShortUniCarbKB
 G93579XB	HexNAc2Hex2dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3232,6 +3908,7 @@ G94094XU	Hex(2)NeuAc(1)	Byonic
 G94094XU	Hex2NeuAc1	ShortUniCarbKB
 G94094XU	HexNAc0Hex2dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G94169BU	HexNAc(6)Hex(7)Fuc(1)NeuAc(2)Sulpho(2)	Byonic
+G94264FX	Sialyl T antigen	SemanticName
 G94310CV	H7N10FS4	ShortComp
 G94310CV	HexNAc(10)Hex(7)Fuc(1)NeuAc(4)	Byonic
 G94435QH	H antigen (type 3)	SemanticName
@@ -3242,6 +3919,7 @@ G94470IW	HexNAc(6)Hex(3)Fuc(1)NeuAc(2)	Byonic
 G94583DZ	HexNAc(2)Hex(1)dHex(1)	Byonic
 G94583DZ	HexNAc2Hex1dHex1	ShortUniCarbKB
 G94583DZ	HexNAc2Hex1dHex1NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G94585EO	P1 antigen	SemanticName
 G94917XT	HexNAc(5)Hex(6)dHex(1)NeuAc(3)	Byonic
 G94917XT	HexNAc5Hex6dHex1NeuAc3	ShortUniCarbKB
 G94917XT	HexNAc5Hex6dHex1NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3270,6 +3948,9 @@ G95678HJ	HexNAc6Hex7dHex1NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G95732YS	HexNAc(6)Hex(7)NeuGc(2)	Byonic
 G95732YS	HexNAc6Hex7NeuGc2	ShortUniCarbKB
 G95732YS	HexNAc6Hex7dHex0NeuAc0NeuGc2Pent0S0P0KDN0HexA0	UniCarbKB
+G95742MR	O-Linked mannose	SemanticName
+G95825CM	HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S1P0KDN0HexA2	UniCarbKB
+G95825CM	HexNAc1S1HexA2	ShortUniCarbKB
 G95835XS	HexNAc(5)Hex(4)dHex(1)NeuAc(2)	Byonic
 G95835XS	HexNAc5Hex4dHex1NeuAc2	ShortUniCarbKB
 G95835XS	HexNAc5Hex4dHex1NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3280,6 +3961,8 @@ G95865ZB	H4N3S	ShortComp
 G95865ZB	HexNAc(3)Hex(4)NeuAc(1)	Byonic
 G95865ZB	HexNAc3Hex4NeuAc1	ShortUniCarbKB
 G95865ZB	HexNAc3Hex4dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G95932VM	GD2	SemanticName
+G95969MO	GL-7 globoseries ganglioside	SemanticName
 G95995BI	HexNAc(2)Hex(7)Phospho(2)	Byonic
 G95995BI	HexNAc2Hex7P2	ShortUniCarbKB
 G95995BI	HexNAc2Hex7dHex0NeuAc0NeuGc0Pent0S0P2KDN0HexA0	UniCarbKB
@@ -3290,16 +3973,22 @@ G96038NV	H4N6S5	ShortComp
 G96038NV	HexNAc(6)Hex(4)NeuAc(5)	Byonic
 G96038NV	HexNAc6Hex4NeuAc5	ShortUniCarbKB
 G96038NV	HexNAc6Hex4dHex0NeuAc5NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G96057TO	H antigen (type 3)	SemanticName
 G96091TT	H6N3FS	ShortComp
 G96091TT	HexNAc(3)Hex(6)Fuc(1)NeuAc(1)	Byonic
 G96235ZC	HexNAc(5)Hex(4)dHex(1)NeuAc(1)NeuGc(1)	Byonic
 G96235ZC	HexNAc5Hex4dHex1NeuAc1NeuGc1	ShortUniCarbKB
 G96235ZC	HexNAc5Hex4dHex1NeuAc1NeuGc1Pent0S0P0KDN0HexA0	UniCarbKB
+G96400MT	Sialopentaosylceramide	SemanticName
+G96428WC	Forssman glycolipid	SemanticName
 G96430BV	H3N8	ShortComp
 G96430BV	HexNAc(8)Hex(3)	Byonic
 G96430BV	HexNAc8Hex3	ShortUniCarbKB
 G96430BV	HexNAc8Hex3dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G96496HU	2,6-Branched O-mannose	SemanticName
 G96596OC	Monosulfated gangliotetraosylceramide	SemanticName
+G96614JE	Monosulfated gangliotetraosylceramide	SemanticName
+G96823NW	GM4	SemanticName
 G96888OD	HexNAc(2)Hex(1)Fuc(1)NeuAc(1)Sulpho(1)	Byonic
 G96970RU	H3NS2	ShortComp
 G96970RU	HexNAc(1)Hex(3)NeuAc(2)	Byonic
@@ -3307,6 +3996,7 @@ G96970RU	HexNAc1Hex3NeuAc2	ShortUniCarbKB
 G96970RU	HexNAc1Hex3dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G96993FE	H3N3F3	ShortComp
 G96993FE	HexNAc(3)Hex(3)Fuc(3)	Byonic
+G97048GO	Paragloboside	SemanticName
 G97169FL	HexNAc(6)Hex(7)dHex(3)NeuAc(4)	Byonic
 G97169FL	HexNAc6Hex7dHex3NeuAc4	ShortUniCarbKB
 G97169FL	HexNAc6Hex7dHex3NeuAc4NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
@@ -3314,10 +4004,13 @@ G97205DE	H4N2S	ShortComp
 G97205DE	HexNAc(2)Hex(4)NeuAc(1)	Byonic
 G97205DE	HexNAc2Hex4NeuAc1	ShortUniCarbKB
 G97205DE	HexNAc2Hex4dHex0NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G97276KK	2-Fucosyl-GD1b	SemanticName
 G97591GH	H8	ShortComp
 G97591GH	Hex(8)	Byonic
 G97591GH	Hex8	ShortUniCarbKB
 G97591GH	HexNAc0Hex8dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G97612UN	GD1b	SemanticName
+G97718OE	P1 antigen	SemanticName
 G97738LC	H4NF2	ShortComp
 G97738LC	HexNAc(1)Hex(4)Fuc(2)	Byonic
 G97746VZ	HexNAc(3)Hex(6)dHex(2)NeuAc(2)	Byonic
@@ -3328,15 +4021,19 @@ G97828ZX	HexNAc3Hex2dHex1NeuAc0NeuGc0Pent0S1P0KDN0HexA0	UniCarbKB
 G97828ZX	HexNAc3Hex2dHex1S1	ShortUniCarbKB
 G97829MZ	H11N11F	ShortComp
 G97829MZ	HexNAc(11)Hex(11)Fuc(1)	Byonic
+G97898ZO	GT1a	SemanticName
 G97932OH	Disialosyl globopentaosylceramide	SemanticName
 G97949VC	HexNAc(1)Hex(3)dHex(1)NeuAc(1)	Byonic
 G97949VC	HexNAc1Hex3dHex1NeuAc1	ShortUniCarbKB
 G97949VC	HexNAc1Hex3dHex1NeuAc1NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G97993TU	H7N5F	ShortComp
 G97993TU	HexNAc(5)Hex(7)Fuc(1)	Byonic
+G98025TB	O-Linked mannose	SemanticName
 G98129ME	HexNAc(11)Hex(11)dHex(2)	Byonic
 G98129ME	HexNAc11Hex11dHex2	ShortUniCarbKB
 G98129ME	HexNAc11Hex11dHex2NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G98190NG	Mono-sulfated globotetraosylceramide	SemanticName
+G98190NG	Sulfo-isogloboside	SemanticName
 G98208DX	H5N7S	ShortComp
 G98208DX	HexNAc(7)Hex(5)NeuAc(1)	Byonic
 G98208DX	HexNAc7Hex5NeuAc1	ShortUniCarbKB
@@ -3350,12 +4047,14 @@ G98330KY	HexNAc(6)Hex(6)Fuc(2)NeuAc(2)	Byonic
 G98385AL	HexNAc(7)Hex(7)dHex(3)	Byonic
 G98385AL	HexNAc7Hex7dHex3	ShortUniCarbKB
 G98385AL	HexNAc7Hex7dHex3NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G98397EB	GD2	SemanticName
 G98457BU	H6N4S3	ShortComp
 G98457BU	HexNAc(4)Hex(6)NeuAc(3)	Byonic
 G98457BU	HexNAc4Hex6NeuAc3	ShortUniCarbKB
 G98457BU	HexNAc4Hex6dHex0NeuAc3NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
 G98465JN	Blood group H (type 4)	SemanticName
 G98465JN	GL-6 fucosylated	SemanticName
+G98535LH	Sialyl T antigen	SemanticName
 G98544DH	9-O-Acetyl GD3	SemanticName
 G98544DH	GD3	SemanticName
 G98544EX	HexNAc(6)Hex(6)dHex(2)NeuAc(2)	Byonic
@@ -3375,6 +4074,8 @@ G98611JV	H5N5S2	ShortComp
 G98611JV	HexNAc(5)Hex(5)NeuAc(2)	Byonic
 G98611JV	HexNAc5Hex5NeuAc2	ShortUniCarbKB
 G98611JV	HexNAc5Hex5dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G98750DB	Sialosyl paragloboside	SemanticName
+G98848EU	para-Forssman glycolipid	SemanticName
 G98888DJ	H2N4F	ShortComp
 G98888DJ	HexNAc(4)Hex(2)Fuc(1)	Byonic
 G98896IU	HexNAc(1)Hex(1)dHex(1)NeuAc(1)	Byonic
@@ -3384,22 +4085,29 @@ G98983JY	H2N4FS2	ShortComp
 G98983JY	HexNAc(4)Hex(2)Fuc(1)NeuAc(2)	Byonic
 G99053DY	Gb5	SemanticName
 G99053DY	SSEA-3	SemanticName
+G99103PU	HNK-1 on O-mannose	SemanticName
 G99196VL	H2N3S2	ShortComp
 G99196VL	HexNAc(3)Hex(2)NeuAc(2)	Byonic
 G99196VL	HexNAc3Hex2NeuAc2	ShortUniCarbKB
 G99196VL	HexNAc3Hex2dHex0NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G99312NX	Globoside	SemanticName
 G99315PE	A antigen (type 3)	SemanticName
 G99329BX	H5N6F2S2	ShortComp
 G99329BX	HexNAc(6)Hex(5)Fuc(2)NeuAc(2)	Byonic
+G99506XN	GT2	SemanticName
 G99524KA	GQ1c	SemanticName
 G99531FX	HexNAc(9)Hex(7)dHex(4)	Byonic
 G99531FX	HexNAc9Hex7dHex4	ShortUniCarbKB
 G99531FX	HexNAc9Hex7dHex4NeuAc0NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G99556PB	Sialyl T antigen	SemanticName
 G99618ZW	HexNAc(7)Hex(8)dHex(3)NeuAc(2)	Byonic
 G99618ZW	HexNAc7Hex8dHex3NeuAc2	ShortUniCarbKB
 G99618ZW	HexNAc7Hex8dHex3NeuAc2NeuGc0Pent0S0P0KDN0HexA0	UniCarbKB
+G99634KV	GL-7 globoseries ganglioside	SemanticName
 G99668VU	H7N5FS	ShortComp
 G99668VU	HexNAc(5)Hex(7)Fuc(1)NeuAc(1)	Byonic
+G99669ZF	9-O-Acetyl GD3	SemanticName
+G99669ZF	GD3	SemanticName
 G99679NM	H7N6S3	ShortComp
 G99679NM	HexNAc(6)Hex(7)NeuAc(3)	Byonic
 G99679NM	HexNAc6Hex7NeuAc3	ShortUniCarbKB
