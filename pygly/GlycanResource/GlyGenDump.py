@@ -1,6 +1,6 @@
 
 from .WebServiceResource import WebServiceResource
-import os, os.path, re
+import os, os.path, re, traceback, sys
 
 def uniqueify(iterable):
     def wrapper(*args,**kwargs):
@@ -16,7 +16,7 @@ class GlyGenSourceFile(WebServiceResource):
     # verbose = True
     def __init__(self,**kw):
         self._taxidlookup = None
-        kw['delaytime'] = 60
+        # kw['delaytime'] = 60
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygendump.ini")
         super(GlyGenSourceFile,self).__init__(**kw)
 
@@ -92,7 +92,7 @@ class GlyGenSourceFile(WebServiceResource):
 
     @uniqueify
     def glygen_protein_taxa(self):
-        for row in self.query_protein_masterlist("glygen"):
+        for row in self.query_glygen_protein_masterlist():
             taxid = row['tax_id']
             for key in ("uniprotkb_canonical_ac","unreviewed_isoforms","reviewed_isoforms"):
                 if row.get(key):
@@ -119,60 +119,123 @@ class GlyGenSourceFile(WebServiceResource):
         unknown_34191522_glygen
     """.split()
 
-    def unicarbkb(self,loadtaxid=False):
+    badupacc = dict(map(str.split,filter(lambda s: s.strip() != "","""
+       P02470	9913
+       P02488	9544
+       P02505	8797
+       P03070	1891767
+       P08318	10360
+       P17767	12214
+       P54939	9031
+       Q8BHY1	10090
+       Q9QYX7 	10090
+       Q9QYX6	10090
+       A4D997	9606
+       Q9UBGc0Pent0S0P0KDN0HexA0	-
+       Q7Z7Gc0Pent0S0P0KDN0HexA0	-
+       Q4KMGc0Pent0S0P0KDN0HexA0	-
+       #N/A	-
+       Q7TQ25	10116
+       B4F7C9	10116
+       B5DEQ0	10116
+       F1LTJ9	10116
+       F1LUR0	10116
+       F1M8K1	10116
+       D3ZWD0	10116
+       D3ZGJ7	10116
+       G3V3K2	9606
+       B7Z1H8	9606
+       B4E1H2	9606
+       P90489	868565
+       K9N5Q8	1263720
+       Protein	-
+    """.splitlines())))
+
+    def unicarbkb(self,filename,loadtaxid=False):
         if self._taxidlookup == None:
             self._taxidlookup = {}
             for key,(sp,taxid) in self.glygen_species.items():
                 self._taxidlookup[sp] = taxid
                 self._taxidlookup[key] = taxid
-        if loadtaxid and len(self._taxidlookup) == len(self.glygen_species):
+        if loadtaxid and len(set(self._taxidlookup.values())) == len(self.glygen_species):
             self._taxidlookup.update(dict(self.glygen_protein_taxa()))
-        for filename in set(self.unicarbkb_filenames):
-            for row in self.query_csvsourcefile(source="unicarbkb",filename=filename):
-                # deal with case inconsistency
-                for k in list(row.keys()):
-                    row[k] = row[k].strip()
-                    if k.lower() != k:
-                        row[k.lower()] = row[k]
-                        del row[k]
-                if not row.get('taxid') and row.get('species'):
-                    val = row.get('species')
-                    if val in self._taxidlookup:
-                        row['taxid'] = self._taxidlookup[val]
-                    elif val.lower() in self._taxidlookup:
-                        row['taxid'] = self._taxidlookup[val.lower()]
-                    elif val in ("","0"):
-                        pass
-                    else:
-                        assert False, row
-                if not row.get('taxid') and row.get('protein'):
-                    val = row.get('protein')
-                    if val in self._taxidlookup:
-                        row['taxid'] = self._taxidlookup[val]
-                uckbid = None
-                try:
-                    uckbid = int(row['id'])
-                except KeyError:
-                    if 'glytoucan' in row:
-                        row['id'] = row['glytoucan']
-                    else:
-                        continue
-                except ValueError:
+            for k,v in self.badupacc.items():
+                if v == "-":
+                    self._taxidlookup[k] = None
+                else:
+                    self._taxidlookup[k] = v
+        for i,row in enumerate(self.query_csvsourcefile(source="unicarbkb",filename=filename)):
+            row['filename'] = filename
+            row['lineno'] = str(i+2);
+            # deal with case inconsistency
+            for k in list(row.keys()):
+                row[k] = row[k].strip()
+                if k.lower() != k:
+                    row[k.lower()] = row[k]
+                    del row[k]
+            thetaxid = None
+            if row.get('taxid'):
+                thetaxid = row.get('taxid')
+            prottaxid = None
+            if row.get('protein'):
+                val = row.get('protein')
+                if val in self._taxidlookup:
+                    prottaxid = self._taxidlookup[val]
+                elif val in ("","0","NULL"):
                     pass
-                if not uckbid:
-                    # comp_HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0
-                    if re.search(r'^comp_HexNAc\d+Hex\d+dHex\d+NeuAc\d+NeuGc\d+Pent\d+S\d+P\d+KDN\d+HexA\d+$',row['id']):
-                        uckbid = row['id']
-                    elif re.search(r'^G\d{5}[A-Z]{2}$',row['id']):
-                        uckbid = row['id']
-                    else:
-                        continue
-                row['id'] = uckbid
-                yield row
+                elif loadtaxid:
+                    raise RuntimeError("Bad protein accession, %s: %s"%(val,row))
+            spectaxid = None
+            if row.get('species'):
+                val = row.get('species')
+                if val in self._taxidlookup:
+                    spectaxid = self._taxidlookup[val]
+                elif val.lower() in self._taxidlookup:
+                    spectaxid = self._taxidlookup[val.lower()]
+                elif val in ("","0"):
+                    pass
+                else:
+                    raise RuntimeError("Bad species, %s: %s"%(val,row))
+
+            if loadtaxid and len(set(filter(None,[thetaxid,prottaxid,spectaxid]))) > 1:
+                # print("WARNING: Species conflict %s:%s, taxid=%s,protein=%s,spectaxid=%s,pmid=%s"%(row['filename'],row['lineno'],thetaxid,prottaxid,spectaxid,row['pmid']),file=sys.stderr)
+                # continue
+                # sys.exit(1)
+                pass
+
+            if thetaxid:
+                row['taxid'] = thetaxid
+            elif prottaxid:
+                row['taxid'] = prottaxid
+            elif spectaxid:
+                row['taxid'] = spectaxid
+
+            uckbid = None
+            try:
+                uckbid = int(row['id'])
+            except KeyError:
+                if 'glytoucan' in row:
+                    row['id'] = row['glytoucan']
+                else:
+                    continue
+            except ValueError:
+                pass
+            if not uckbid:
+                # comp_HexNAc1Hex0dHex0NeuAc0NeuGc0Pent0S0P0KDN0HexA0
+                if re.search(r'^comp_HexNAc\d+Hex\d+dHex\d+NeuAc\d+NeuGc\d+Pent\d+S\d+P\d+KDN\d+HexA\d+$',row['id']):
+                    uckbid = row['id']
+                elif re.search(r'^G\d{5}[A-Z]{2}$',row['id']):
+                    uckbid = row['id']
+                else:
+                    continue
+            row['id'] = uckbid
+            # print(row)
+            yield row
 
     def unicarbkb_all(self,**kw):
-        for row in self.unicarbkb(**kw):
-            yield row
+        for filename in self.unicarbkb_filenames:
+            for row in self.unicarbkb(filename=filename,**kw):
+                yield row
 
     @uniqueify
     def unicarbkb_allgtc(self):
