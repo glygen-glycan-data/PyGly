@@ -3,12 +3,20 @@ import re
 import sys
 import ssl
 import os, os.path, urllib, time
+import psutil
 import urllib2
 from collections import defaultdict
 import datetime
 
 import rdflib
 import json
+
+def printmem():
+    process = psutil.Process()
+    mi = process.memory_info()
+    res = float(mi.rss)
+    vir = float(mi.vms)
+    print("# Memory: %.2fGB (virtual) %.2fGB (resident)"%(res/1024**3,vir/1024**3))
 
 class GNOmeAPI(object):
 
@@ -120,38 +128,38 @@ class GNOmeAPI(object):
     # All nodes with a base composition node
     def has_molecularweight(self, accession):
         assert self.ismolecularweight(accession)
-	if self.get_molecularweight(accession) == accession:
-	    yield accession
+        if self.get_molecularweight(accession) == accession:
+            yield accession
         for desc in self.descendants(accession):
-	    if self.get_molecularweight(desc) == accession:
-		yield desc
+            if self.get_molecularweight(desc) == accession:
+                yield desc
 
     # All nodes with a base composition node
     def has_basecomposition(self, accession):
         assert self.isbasecomposition(accession)
-	if self.get_basecomposition(accession) == accession:
-	    yield accession
+        if self.get_basecomposition(accession) == accession:
+            yield accession
         for desc in self.descendants(accession):
-	    if self.get_basecomposition(desc) == accession:
-		yield desc
+            if self.get_basecomposition(desc) == accession:
+                yield desc
 
     # All nodes with a composition node
     def has_composition(self, accession):
         assert self.iscomposition(accession)
-	if self.get_composition(accession) == accession:
-	    yield accession
+        if self.get_composition(accession) == accession:
+            yield accession
         for desc in self.descendants(accession):
-	    if self.get_composition(desc) == accession:
-		yield desc
+            if self.get_composition(desc) == accession:
+                yield desc
 
     # All nodes with a topology node
     def has_topology(self, accession):
         assert self.istopology(accession), "Not a topology: "+accession
-	if self.get_topology(accession) == accession:
-	    yield accession
+        if self.get_topology(accession) == accession:
+            yield accession
         for desc in self.descendants(accession):
-	    if self.get_topology(desc) == accession:
-		yield desc
+            if self.get_topology(desc) == accession:
+                yield desc
 
     def restrict(self, restriction, **kw):
 
@@ -175,7 +183,7 @@ class GNOmeAPI(object):
         parents = defaultdict(set)
         for acc in keep:
             for anc in self.ancestors(acc):
-		if anc in keep:
+                if anc in keep:
                     parents[acc].add(anc)
 
         # then eliminate shortcuts
@@ -213,11 +221,11 @@ class GNOme(GNOmeAPI):
         self.ns['rdf'] = rdflib.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         self.ns['rdfs'] = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
         self.ns[None] = rdflib.Namespace("")
-	versionurl = None
+        versionurl = None
         for s,p,o in self.triples("owl:Ontology","owl:versionIRI",None):
             versionurl = str(o)
             break
-	if versionurl:
+        if versionurl:
             self.version = versionurl.split('/')[-2][1:]
 
     def triples(self, subj=None, pred=None, obj=None):
@@ -266,7 +274,7 @@ class GNOme(GNOmeAPI):
             else:
                 olab = self.accession(o)
                 if plab not in attr:
-		                attr[plab] = []
+                                attr[plab] = []
                 attr[plab].append(olab)
         attr[u'level'] = self.level(accession)
         return attr
@@ -333,9 +341,9 @@ class GNOme(GNOmeAPI):
 
     def dump(self):
         for acc in sorted(g.nodes()):
-            print acc
+            print(acc)
             for k, v in sorted(g.attributes(acc).items()):
-                print "  %s: %s" % (k, v)
+                print("  %s: %s" % (k, v))
 
     def get_cb_button_str(self, acc):
         for s, p, o in self.triples(None, "gno:00000101", None):
@@ -472,131 +480,136 @@ class SubsumptionGraph(GNOmeAPI):
         self.verbose = kwargs.get('verbose', 0)
         self.score = IncompleteScore()
 
-	# We establish the following sets
-	# 1. GlyTouCan accessions (self.allacc)
-	# 2. Archived GlyTouCan accession (some with replacements) (self.replace)
+        # We establish the following sets
+        # 1. GlyTouCan accessions (self.allacc)
+        # 2. Archived GlyTouCan accession (some with replacements) (self.replace)
         # 3. GlyCosmos (validated) accessions (self.allgco)
 
-	self.allacc = set(self.gtc.allaccessions())
-	self.allgco = set(self.gco.allaccessions())
+        self.allacc = set(self.gtc.allaccessions())
+        self.allgco = set(self.gco.allaccessions())
         self.replace = self.gco.replace()
-	for acc in self.replace:
-	    try:
-	        self.allacc.remove(acc)
-	    except KeyError:
-	        pass
+        for acc in self.replace:
+            try:
+                self.allacc.remove(acc)
+            except KeyError:
+                pass
+
+        printmem()
 
         masscluster = defaultdict(dict)
-	clustermap = defaultdict(set)
+        clustermap = defaultdict(set)
         if len(args) > 0:
-	    argmass = []
-	    for a in args:
-		if '-' in a:
-		    low,high = [ s.strip() for s in a.split('-') ]
-		    if not low:
-			low = 0.0
-		    if not high:
-			high = 1e+20
-		    low = str(round(float(low),2))
-		    high = str(round(float(high),2))
-		else:
-		    low = str(round(float(a),2))
-		    high = low
-		argmass.append((low,high))
-	    for glyacc in self.allacc:
-		mass = self.gco.getmass(glyacc) 
-		if not mass:
-		    mass = self.gtc.getmass(glyacc)
-		if not mass:
-		    mass = self.gco.umw(glyacc,fetch='wurcs')
-		if not mass:
-		    mass = self.gtc.umw(glyacc,fetch='wurcs')
-	        if not mass:
-		    continue
-		rmass = str(round(mass, 2))
-		if glyacc in clustermap:
-		    for rmi in clustermap[glyacc]:
-		        if glyacc in masscluster[rmi]:
-                            del masscluster[rmi][glyacc]
-		    clustermap[glyacc].add(rmass)
-		    continue
-		for low,high in argmass:
-		    if float(low) <= float(rmass) <= float(high):
-                        masscluster[rmass][glyacc] = dict(accession=glyacc)
-			clustermap[glyacc].add(rmass)
-			break
-        else:
-	    for glyacc in self.allacc:
-		mass = self.gco.getmass(glyacc)
-		if not mass:
-		    mass = self.gtc.getmass(glyacc)
-		if not mass:
-		    mass = self.gco.umw(glyacc,fetch='wurcs')
-		if not mass:
-		    mass = self.gtc.umw(glyacc,fetch='wurcs')
-		if not mass:
-		    continue
+            argmass = []
+            for a in args:
+                if '-' in a:
+                    low,high = [ s.strip() for s in a.split('-') ]
+                    if not low:
+                        low = 0.0
+                    if not high:
+                        high = 1e+20
+                    low = str(round(float(low),2))
+                    high = str(round(float(high),2))
+                else:
+                    low = str(round(float(a),2))
+                    high = low
+                argmass.append((low,high))
+            for glyacc in self.allacc:
+                mass = self.gco.getmass(glyacc) 
+                if not mass:
+                    mass = self.gtc.getmass(glyacc)
+                if not mass:
+                    mass = self.gco.umw(glyacc,fetch='wurcs')
+                if not mass:
+                    mass = self.gtc.umw(glyacc,fetch='wurcs')
+                if not mass:
+                    continue
                 rmass = str(round(mass, 2))
-		if glyacc in clustermap:
-		    for rmi in clustermap[glyacc]:
+                if glyacc in clustermap:
+                    for rmi in clustermap[glyacc]:
+                        if glyacc in masscluster[rmi]:
+                            del masscluster[rmi][glyacc]
+                    clustermap[glyacc].add(rmass)
+                    continue
+                for low,high in argmass:
+                    if float(low) <= float(rmass) <= float(high):
+                        masscluster[rmass][glyacc] = dict(accession=glyacc)
+                        clustermap[glyacc].add(rmass)
+                        break
+        else:
+            for glyacc in self.allacc:
+                mass = self.gco.getmass(glyacc)
+                if not mass:
+                    mass = self.gtc.getmass(glyacc)
+                if not mass:
+                    mass = self.gco.umw(glyacc,fetch='wurcs')
+                if not mass:
+                    mass = self.gtc.umw(glyacc,fetch='wurcs')
+                if not mass:
+                    continue
+                rmass = str(round(mass, 2))
+                if glyacc in clustermap:
+                    for rmi in clustermap[glyacc]:
                         if glyacc in masscluster[rmi]:
                             del masscluster[rmi][glyacc]                                                                    
                     clustermap[glyacc].add(rmass)
                     continue
                 masscluster[rmass][glyacc] = dict(accession=glyacc)
-		clustermap[glyacc].add(rmass)
+                clustermap[glyacc].add(rmass)
 
-	for rmass,cluster in masscluster.items():
-	    for acc in list(cluster):
-		topo = self.gtc.gettopo(acc)
-		if topo in self.replace:
-		    topo = self.replace[topo]
-	        if topo and topo not in cluster:
-		    masscluster[rmass][topo] = dict(accession=topo)
-		    for rmi in clustermap.get(topo,[]):
-			del masscluster[rmi][topo]
-		comp = self.gtc.getcomp(acc)
-		if comp in self.replace:
-		    comp = self.replace[comp]
-	        if comp and comp not in cluster:
-		    masscluster[rmass][comp] = dict(accession=comp)
-		    for rmi in clustermap.get(comp,[]):
-		        del masscluster[rmi][comp]
-		bcomp = self.gtc.getbasecomp(acc)
-		if bcomp in self.replace:
-		    bcomp = self.replace[bcomp]
-	        if bcomp and bcomp not in cluster:
-		    masscluster[rmass][bcomp] = dict(accession=bcomp)
-		    for rmi in clustermap.get(bcomp,[]):
-		        del masscluster[rmi][bcomp]
+        for rmass,cluster in masscluster.items():
+            for acc in list(cluster):
+                topo = self.gtc.gettopo(acc)
+                if topo in self.replace:
+                    topo = self.replace[topo]
+                if topo and topo not in cluster:
+                    masscluster[rmass][topo] = dict(accession=topo)
+                    for rmi in clustermap.get(topo,[]):
+                        del masscluster[rmi][topo]
+                comp = self.gtc.getcomp(acc)
+                if comp in self.replace:
+                    comp = self.replace[comp]
+                if comp and comp not in cluster:
+                    masscluster[rmass][comp] = dict(accession=comp)
+                    for rmi in clustermap.get(comp,[]):
+                        del masscluster[rmi][comp]
+                bcomp = self.gtc.getbasecomp(acc)
+                if bcomp in self.replace:
+                    bcomp = self.replace[bcomp]
+                if bcomp and bcomp not in cluster:
+                    masscluster[rmass][bcomp] = dict(accession=bcomp)
+                    for rmi in clustermap.get(bcomp,[]):
+                        del masscluster[rmi][bcomp]
+
+        printmem()
 
         for rmass, cluster in sorted(masscluster.items(),key=lambda t: float(t[0])):
             self.compute_component(rmass, cluster)
+            printmem()
 
     def warning(self, msg, level):
         if self.verbose >= level:
-            print "# WARNING:%d - %s" % (level, msg)
-	    sys.stdout.flush()
+            print("# WARNING:%d - %s" % (level, msg))
+            sys.stdout.flush()
 
     def compute_component(self, rmass, cluster):
         start = time.time()
 
-        print "# START %s - %d accessions in molecular weight cluster for %s" % (time.ctime(), len(cluster), rmass)
+        print("# START %s - %d accessions in molecular weight cluster for %s" % (time.ctime(), len(cluster), rmass))
         sys.stdout.flush()
 
         badparse = 0
         total = len(cluster)
         allgly = dict()
         for acc in sorted(cluster):
-	    if acc in self.replace:
-		repl = self.replace[acc]
-		if repl == None:
-		    self.warning("Glycan accession archived: %s"%(acc,),2)
-	        else:
-		    self.warning("Glycan accession %s archived and replaced by %s"%(acc,repl,),2)
-	        continue
+            if acc in self.replace:
+                repl = self.replace[acc]
+                if repl == None:
+                    self.warning("Glycan accession archived: %s"%(acc,),2)
+                else:
+                    self.warning("Glycan accession %s archived and replaced by %s"%(acc,repl,),2)
+                continue
             gly = self.gco.getGlycan(acc,format='wurcs')
-	    if not gly:
+            if not gly:
                 gly = self.gtc.getGlycan(acc,format='wurcs')
             if not gly:
                 badparse += 1
@@ -604,58 +617,58 @@ class SubsumptionGraph(GNOmeAPI):
                 if len(skels) > 0:
                     for skel in skels:
                         self.warning("unsupported skeleton code: " + skel + " in glycan " + acc, 2)
-		if len(substs) > 0:
-		    for subst in substs:
+                if len(substs) > 0:
+                    for subst in substs:
                         self.warning("unsupported substituent: " + subst + " in glycan " + acc, 2)
-		if len(invalid) > 0:
-		    for inv in invalid:
+                if len(invalid) > 0:
+                    for inv in invalid:
                         self.warning("unsupported monosaccharide: " + inv + " in glycan " + acc, 2)
-		if len(other) > 0:
-		    for oth in other:
+                if len(other) > 0:
+                    for oth in other:
                         self.warning("other glycan error: " + oth + " in glycan " + acc, 2)
-		if max(map(len,[skels,substs,invalid,other])) == 0:
+                if max(map(len,[skels,substs,invalid,other])) == 0:
                     self.warning("unknown problem parsing glycan " + acc, 2)
                 continue
             cluster[acc]['glycan'] = gly
-	    if acc not in self.allgco:
-		self.warning("Glycan not validated by GlyCosmos: %s"%(acc,),3)
-		# continue
-	    gcomass = self.gco.getmass(acc)
-	    gtcmass = self.gtc.getmass(acc)
-	    mygcomass = self.gco.umw(acc,fetch='wurcs')
-	    mygtcmass = self.gtc.umw(acc,fetch='wurcs')
-	    if gcomass and abs(float(rmass)-gcomass) <= 0.01:
+            if acc not in self.allgco:
+                self.warning("Glycan not validated by GlyCosmos: %s"%(acc,),3)
+                # continue
+            gcomass = self.gco.getmass(acc)
+            gtcmass = self.gtc.getmass(acc)
+            mygcomass = self.gco.umw(acc,fetch='wurcs')
+            mygtcmass = self.gtc.umw(acc,fetch='wurcs')
+            if gcomass and abs(float(rmass)-gcomass) <= 0.01:
                 cluster[acc]['mass'] = gcomass
-	    elif gtcmass and abs(float(rmass)-gtcmass) <= 0.01:
+            elif gtcmass and abs(float(rmass)-gtcmass) <= 0.01:
                 cluster[acc]['mass'] = gtcmass
-	    elif mygcomass and abs(float(rmass)-mygcomass) <= 0.01:
+            elif mygcomass and abs(float(rmass)-mygcomass) <= 0.01:
                 cluster[acc]['mass'] = mygcomass
-	    elif mygtcmass and abs(float(rmass)-mygtcmass) <= 0.01:
+            elif mygtcmass and abs(float(rmass)-mygtcmass) <= 0.01:
                 cluster[acc]['mass'] = mygtcmass
-	    else:
-		cluster[acc]['mass'] = float(rmass)
+            else:
+                cluster[acc]['mass'] = float(rmass)
 
         clusteracc = set(map(lambda t: t[0], filter(lambda t: t[1].has_key('glycan'), cluster.items())))
 
         outedges = defaultdict(set)
         inedges = defaultdict(set)
 
-	self.warning("Computation of subsumption relationships started",5)
+        self.warning("Computation of subsumption relationships started",5)
         for acc1 in sorted(clusteracc):
             gly1 = cluster[acc1]['glycan']
             for acc2 in sorted(clusteracc):
                 gly2 = cluster[acc2]['glycan']
                 if acc1 != acc2:
-		    self.warning("%s <?= %s"%(acc1,acc2),5)
+                    self.warning("%s <?= %s"%(acc1,acc2),5)
                     if self.subsumption.leq(gly1, gly2):
-			iseq = self.geq.eq(gly1, gly2)
+                        iseq = self.geq.eq(gly1, gly2)
                         if not iseq or acc2 < acc1:
                             outedges[acc2].add(acc1)
                             inedges[acc1].add(acc2)
                         if iseq and self.geqwwc.eq(gly1, gly2) and acc1 < acc2:
                             self.warning("Potential WURCS canonicalization issue: %s == %s"%(acc1,acc2),1)
 
-	self.warning("Computation of subsumption relationships done",5)
+        self.warning("Computation of subsumption relationships done",5)
 
         # Check GlyTouCan topology, composition, basecomposition, and
         # molecular weight annotations with respect to computed
@@ -664,8 +677,8 @@ class SubsumptionGraph(GNOmeAPI):
         for acc in sorted(clusteracc):
 
             topo = self.gtc.gettopo(acc)
-	    if topo in self.replace:
-		topo = self.replace[topo]
+            if topo in self.replace:
+                topo = self.replace[topo]
             if topo:
                 if topo not in cluster:
                     self.warning("annotated topology %s of %s is not in %s rounded mass cluster" % (topo, acc, rmass), 1)
@@ -675,8 +688,8 @@ class SubsumptionGraph(GNOmeAPI):
                     self.warning("annotated topology %s does not subsume %s" % (topo, acc), 1)
 
             comp = self.gtc.getcomp(acc)
-	    if comp in self.replace:
-		comp = self.replace[comp]
+            if comp in self.replace:
+                comp = self.replace[comp]
             if comp:
                 if comp not in cluster:
                     self.warning("annotated composition %s of %s is not in %s rounded mass cluster" % (comp, acc, rmass), 1)
@@ -686,8 +699,8 @@ class SubsumptionGraph(GNOmeAPI):
                     self.warning("annotated composition %s does not subsume %s" % (comp, acc), 1)
 
             bcomp = self.gtc.getbasecomp(acc)
-	    if bcomp in self.replace:
-		bcomp = self.replace[bcomp]
+            if bcomp in self.replace:
+                bcomp = self.replace[bcomp]
             if bcomp:
                 if bcomp not in cluster:
                     self.warning("annotated base composition %s of %s is not in %s rounded mass cluster" % (bcomp, acc, rmass),1)
@@ -710,15 +723,15 @@ class SubsumptionGraph(GNOmeAPI):
 
         for acc in sorted(clusteracc):
 
-	    bcomp = self.gtc.getbasecomp(acc)
-	    if bcomp in self.replace:
-		bcomp = self.replace[bcomp]
-	    comp = self.gtc.getcomp(acc)
-	    if comp in self.replace:
-		comp = self.replace[comp]
-	    topo = self.gtc.gettopo(acc)
-	    if topo in self.replace:
-		topo = self.replace[topo]
+            bcomp = self.gtc.getbasecomp(acc)
+            if bcomp in self.replace:
+                bcomp = self.replace[bcomp]
+            comp = self.gtc.getcomp(acc)
+            if comp in self.replace:
+                comp = self.replace[comp]
+            topo = self.gtc.gettopo(acc)
+            if topo in self.replace:
+                topo = self.replace[topo]
 
             if acc == bcomp:
                 cluster[acc]['level'] = "BaseComposition"
@@ -762,7 +775,7 @@ class SubsumptionGraph(GNOmeAPI):
                     cluster[acc]['level'] = 'Saccharide*'
                 elif level != "Saccharide":
                     self.warning("annotation inferred level %s for %s != computed level Saccharide (anomer)" % (level, acc), 1)
-		    # cluster[acc]['level'] = 'Saccharide*'
+                    # cluster[acc]['level'] = 'Saccharide*'
                 continue
 
             if self.any_parent_pos(gly):
@@ -790,7 +803,7 @@ class SubsumptionGraph(GNOmeAPI):
                     # cluster[acc]['level'] = 'Topology*'
                 continue
 
-	    if self.any_ring(gly):
+            if self.any_ring(gly):
                 self.warning("%s has no linkages but does have ring values" % (acc,), 1)
 
             if self.any_stem(gly):
@@ -812,9 +825,9 @@ class SubsumptionGraph(GNOmeAPI):
         # make sure they are consistent with ours. Put a * on those we
         # set. Currently, GlyTouCan annotations take precedence.
 
-	self.warning("Checking topo, comp, bcomp relationships...",5)
+        self.warning("Checking topo, comp, bcomp relationships...",5)
         for acc in sorted(clusteracc):
-	    self.warning("Checking topo, comp, bcomp relationships for %s"%(acc,),5)
+            self.warning("Checking topo, comp, bcomp relationships for %s"%(acc,),5)
             g = cluster[acc]
 
             gly = g['glycan']
@@ -841,8 +854,8 @@ class SubsumptionGraph(GNOmeAPI):
                     print self.composition(gly).glycoct()
                     print acc1
                     print gly1.glycoct()
-		
-	        self.warning("Checking topo, comp, bcomp relationships for %s: %s (%s)"%(acc,acc1,level1),5)
+                
+                self.warning("Checking topo, comp, bcomp relationships for %s: %s (%s)"%(acc,acc1,level1),5)
                 if level1 == "BaseComposition" and self.geq.eq(gly1,self.basecomposition(gly)) and acc1 not in self.replace:
                     bcomp.add(acc1)
                 elif level1 == "Composition" and self.geq.eq(gly1,self.composition(gly)) and acc1 not in self.replace:
@@ -853,16 +866,16 @@ class SubsumptionGraph(GNOmeAPI):
             if len(topo) > 1:
                 self.warning("multiple topologies %s for %s"%(", ".join(topo), acc), 1)
                 if g.get('topo') in topo:
-		    # Take GTC one if present
+                    # Take GTC one if present
                     topo = g.get('topo')
                 else:
-		    # Take the one subsumed by all the others...
-		    topo1=None
-		    for acc in topo-set(self.replace):
-			if (topo-inedges[acc]) == set([acc]):
-			    topo1 = acc
-			    break
-		    topo = topo1
+                    # Take the one subsumed by all the others...
+                    topo1=None
+                    for acc in topo-set(self.replace):
+                        if (topo-inedges[acc]) == set([acc]):
+                            topo1 = acc
+                            break
+                    topo = topo1
             elif len(topo) == 0:
                 topo = None
             else:
@@ -871,14 +884,14 @@ class SubsumptionGraph(GNOmeAPI):
             if len(comp) > 1:
                 self.warning("multiple compositions %s for %s"%(", ".join(comp), acc), 1)
                 if g.get('comp') in comp:
-		    # Take GTC one if present
+                    # Take GTC one if present
                     comp = g.get('comp')
                 else:
-		    comp1=None
-		    for acc in comp-set(self.replace):
-			if (comp-inedges[acc]) == set([acc]):
-			    comp1 = acc
-			    break
+                    comp1=None
+                    for acc in comp-set(self.replace):
+                        if (comp-inedges[acc]) == set([acc]):
+                            comp1 = acc
+                            break
                     comp = comp1
             elif len(comp) == 0:
                 comp = None
@@ -888,14 +901,14 @@ class SubsumptionGraph(GNOmeAPI):
             if len(bcomp) > 1:
                 self.warning("multiple base compositions %s for %s"%(", ".join(bcomp), acc), 1)
                 if g.get('bcomp') in bcomp:
-		    # Take GTC one if present
+                    # Take GTC one if present
                     bcomp = g.get('bcomp')
                 else:
-		    bcomp1=None
-		    for acc in bcomp-set(self.replace):
-			if (bcomp-inedges[acc]) == set([acc]):
-			    bcomp1 = acc
-			    break
+                    bcomp1=None
+                    for acc in bcomp-set(self.replace):
+                        if (bcomp-inedges[acc]) == set([acc]):
+                            bcomp1 = acc
+                            break
                     bcomp = bcomp1
             elif len(bcomp) == 0:
                 bcomp = None
@@ -911,14 +924,14 @@ class SubsumptionGraph(GNOmeAPI):
 
             if g.get('comp') and g.get('comp') != comp:
                 self.warning("annotated composition %s for %s != computed composition %s"%(g.get('comp'),acc,comp),1)
-	        if g.get('comp') in cluster and 'glycan' in cluster[g.get('comp')]:
-		    glycomp = cluster[g.get('comp')]['glycan']
-		    floating = set()
-		    for r in glycomp.all_nodes(undet_subst=True):
-		        if not r.is_monosaccharide():
-			    if r.name() not in Composition.floating_substs:
-			        floating.add(str(r).split(":")[1])
-		    assert len(floating) == 0, "Unaccounted for floating substs: "+", ".join(floating)
+                if g.get('comp') in cluster and 'glycan' in cluster[g.get('comp')]:
+                    glycomp = cluster[g.get('comp')]['glycan']
+                    floating = set()
+                    for r in glycomp.all_nodes(undet_subst=True):
+                        if not r.is_monosaccharide():
+                            if r.name() not in Composition.floating_substs:
+                                floating.add(str(r).split(":")[1])
+                    assert len(floating) == 0, "Unaccounted for floating substs: "+", ".join(floating)
             if acc == comp and cluster[acc].get('level').strip("*") != "Composition":
                 self.warning("bad level %s for %s with composition %s"%(cluster[acc].get('level'),acc,comp),1)
             if not g.get('comp') and comp:
@@ -931,9 +944,9 @@ class SubsumptionGraph(GNOmeAPI):
             if not g.get('bcomp') and bcomp:
                 g['bcomp'] = bcomp + "*"
 
-	self.warning("Checking topo, comp, bcomp relationships... done.",5)
+        self.warning("Checking topo, comp, bcomp relationships... done.",5)
 
-	for acc in clusteracc:
+        for acc in clusteracc:
             cluster[acc]['missing'] = None
             try:
                 cluster[acc]['missing'] = self.score.score(cluster[acc]["glycan"])
@@ -949,20 +962,20 @@ class SubsumptionGraph(GNOmeAPI):
         for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level').rstrip('*'),acc) ):
             g = cluster[acc]
             print acc,
-	    print g.get('mass'),
+            print g.get('mass'),
             print g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
             gly = g.get('glycan')
-	    extras = []
-	    if not gly.has_root():
-		extras.append("COMP")
-	    if gly.undetermined() and gly.has_root():
-	        extras.append("UNDET")
-	    if gly.fully_determined():
-		extras.append("FULL")
-	    for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=True).items()):
+            extras = []
+            if not gly.has_root():
+                extras.append("COMP")
+            if gly.undetermined() and gly.has_root():
+                extras.append("UNDET")
+            if gly.fully_determined():
+                extras.append("FULL")
+            for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=True).items()):
                 if m != "Count" and c > 0:
-		    extras.append("%s:%d"%(m,c))
-	    print " ".join(extras)
+                    extras.append("%s:%d"%(m,c))
+            print " ".join(extras)
         print "# ENDNODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
         sys.stdout.flush()
 
@@ -1090,17 +1103,17 @@ class SubsumptionGraph(GNOmeAPI):
                     continue
                 elif lineInfo == "node":
                     nodeacc = l.split()[0]
-		    nodemw = "%.2f"%(float(l.split()[1]),)
+                    nodemw = "%.2f"%(float(l.split()[1]),)
                     nodetype = l.split()[2].rstrip("*")
                     topoacc = l.split()[3].rstrip("*")
-		    if topoacc == "None":
-			topoacc = None
+                    if topoacc == "None":
+                        topoacc = None
                     compacc = l.split()[4].rstrip("*")
-		    if compacc == "None":
-			compacc = None
+                    if compacc == "None":
+                        compacc = None
                     bcompacc = l.split()[5].rstrip("*")
-		    if bcompacc == "None":
-			bcompacc = None
+                    if bcompacc == "None":
+                        bcompacc = None
                     content["nodes"][nodeacc] = (nodemw,nodetype,topoacc,compacc,bcompacc)
 
                     mono_count = {}
@@ -1151,10 +1164,10 @@ class SubsumptionGraph(GNOmeAPI):
         self.allnodestype["00000001"] = "glycan"
         self.alledges["00000001"] = allmass
 
-	self.allinedges = defaultdict(set)
-	for pa,chs in self.alledges.items():
-	    for ch in chs:
-		self.allinedges[ch].add(pa)
+        self.allinedges = defaultdict(set)
+        for pa,chs in self.alledges.items():
+            for ch in chs:
+                self.allinedges[ch].add(pa)
 
         return raw_data
 
@@ -1174,35 +1187,35 @@ class SubsumptionGraph(GNOmeAPI):
             yield c
 
     def level(self, accession):
-	if accession in self.allnodestype:
-	    return self.allnodestype[accession][1].lower()
+        if accession in self.allnodestype:
+            return self.allnodestype[accession][1].lower()
         return None
 
     def get_molecularweight(self, accession):
-	if accession in self.allnodestype:
-	    return self.allnodestype[accession][0]
-	return None
+        if accession in self.allnodestype:
+            return self.allnodestype[accession][0]
+        return None
 
     def get_basecomposition(self, accession):
-	if accession in self.allnodestype:
-	    bcomp = self.allnodestype[accession][4]
-	    if bcomp and bcomp in self.allnodestype:
-	        return bcomp
-	return None
+        if accession in self.allnodestype:
+            bcomp = self.allnodestype[accession][4]
+            if bcomp and bcomp in self.allnodestype:
+                return bcomp
+        return None
 
     def get_composition(self, accession):
-	if accession in self.allnodestype:
-	    comp = self.allnodestype[accession][3]
-	    if comp and comp in self.allnodestype:
-	        return comp
-	return None
+        if accession in self.allnodestype:
+            comp = self.allnodestype[accession][3]
+            if comp and comp in self.allnodestype:
+                return comp
+        return None
 
     def get_topology(self, accession):
-	if accession in self.allnodestype:
-	    topo = self.allnodestype[accession][2]
-	    if topo and topo in self.allnodestype:
-	        return topo
-	return None
+        if accession in self.allnodestype:
+            topo = self.allnodestype[accession][2]
+            if topo and topo in self.allnodestype:
+                return topo
+        return None
 
     def get_iupac_composition(self, accession):
         return self.monosaccharide_count.get(accession, None)
@@ -1457,7 +1470,7 @@ class OWLWriter():
                                 A subsumption category for glycans
                                 described by their underivatized
                                 molecular weight.
-					  """,
+                                          """,
                             "seeAlso": ["gtco:has_derivatization_type",
                                         "gtco:derivatization_type",
                                         "gtco:derivatization_type_permethylated"],
@@ -1475,37 +1488,37 @@ class OWLWriter():
         "basecomposition": {"id": 13,
                             "label": "basecomposition",
                             "definition": """
-				A subsumption category for glycans
-				described by the number and type of
-				monosaccharides with no monosaccharide
-				stereochemistry or glycosidic bonds
-				linking monosaccharides indicated.
-					  """,
+                                A subsumption category for glycans
+                                described by the number and type of
+                                monosaccharides with no monosaccharide
+                                stereochemistry or glycosidic bonds
+                                linking monosaccharides indicated.
+                                          """,
                             "seeAlso": ["rocs:Base_composition"]
                             },
 
         "composition": {"id": 14,
                         "label": "composition",
                         "definition": """
-				A subsumption category for glycans
-				described by the number and type
-				of monosaccharides with partial or
-				complete monosaccharide stereochemistry,
-				but with no glycosidic bonds linking
-				monosaccharides indicated.
-					  """,
+                                A subsumption category for glycans
+                                described by the number and type
+                                of monosaccharides with partial or
+                                complete monosaccharide stereochemistry,
+                                but with no glycosidic bonds linking
+                                monosaccharides indicated.
+                                          """,
                         "seeAlso": ["rocs:Monosaccharide_composition"]
                         },
 
         "topology": {"id": 15,
                      "label": "topology",
                      "definition": """
-				A subsumption category for glycans
-				described by the arrangement of
-				monosaccharides and the glycosidic bonds
-				linking them, but with no linkage position
-				or anomeric configuration indicated.
-					  """,
+                                A subsumption category for glycans
+                                described by the arrangement of
+                                monosaccharides and the glycosidic bonds
+                                linking them, but with no linkage position
+                                or anomeric configuration indicated.
+                                          """,
                      "seeAlso": ["rocs:Glycosidic_topology"]
                      },
 
@@ -1518,7 +1531,7 @@ class OWLWriter():
                                 bonds linking them, and with partial or
                                 complete linkage position or anomeric
                                 configuration indicated.
-					  """,
+                                          """,
                        "seeAlso": ["rocs:Linkage_defined_saccharide"]
                        },
 
@@ -2314,7 +2327,7 @@ class IncompleteScore:
 
         monos = list(g.all_nodes())
         total_mono = len(monos)
-	unconnected_mono_root = list(g.unconnected_roots())
+        unconnected_mono_root = list(g.unconnected_roots())
         unconnected_mono_root = filter(lambda m: m.is_monosaccharide(), unconnected_mono_root)
         det_parent_links = [list(m.parent_links()) for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
         und_parent_links = [list(m.parent_links()) for m in unconnected_mono_root]
@@ -2610,16 +2623,16 @@ def main():
 
     else:
 
-	gnome = GNOme()
+        gnome = GNOme()
 
-	if hasattr(gnome,cmd):
-	    result = getattr(gnome,cmd)(*sys.argv[1:])
-	    if isinstance(result,basestring):
-		print result
-	    else:
-	        for r in result:
-		    print r
-	else:
+        if hasattr(gnome,cmd):
+            result = getattr(gnome,cmd)(*sys.argv[1:])
+            if isinstance(result,basestring):
+                print result
+            else:
+                for r in result:
+                    print r
+        else:
             print >> sys.stderr, "Bad command: %s" % (cmd,)
             sys.exit(1)
 
