@@ -28,7 +28,6 @@ allgco = set(gco.allaccessions())
 # for acc,label,redend in gtc.allmotifs():
 #     allmotifs[acc] = dict(label=label,redend=redend)
 
-
 archived = set(map(lambda d: d['accession'],gco.archived()))
 print "%d accessions archived."%(len(archived),)
 
@@ -37,6 +36,7 @@ current = set()
 for gtcacc in accessions(sys.argv[1:]):
     start = time.time()
 
+    # print >>sys.stderr, gtcacc
     g = w.get(gtcacc)
     newgly = False
 
@@ -63,7 +63,14 @@ for gtcacc in accessions(sys.argv[1:]):
                      source='GlyTouCan',type='Sequence')
     g.delete_annotations(property='IUPAC',source='GlyTouCan',type='Sequence')
     iupacseq = gco.getseq(gtcacc,'iupac_extended')
-    if iupacseq != None and "," not in iupacseq:
+    if iupacseq != None and "," not in iupacseq and "'" not in iupacseq:
+        try:
+            iupacseq = iupacseq.toPython()
+            iupacseq = iupacseq.replace(u'\u2192','->').replace(u'\u2194','<->').replace(u'\u03b1','alpha').replace(u'\u03b2','beta')
+        except AttributeError:
+            # print(gtcacc,repr(iupacseq))
+            # raise 
+            pass
         g.set_annotation(value=iupacseq,
                          property='IUPAC',
                          source='GlyCosmos',type='Sequence')
