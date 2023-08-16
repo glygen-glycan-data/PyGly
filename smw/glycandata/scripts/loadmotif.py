@@ -36,7 +36,7 @@ for g in w.iterglycan():
     strictclassmotifs = set()
     names = set()
     for coll in collections:
-	for m,s in gm.getmotif(coll,acc):
+	for m,s,strict,ids,linkids in gm.getmotif(coll,acc):
 	    if not allmotifs[m]['classification']:
 		if s:
 		    strictglygenmotifs.add(m)
