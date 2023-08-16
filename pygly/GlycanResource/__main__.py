@@ -34,6 +34,10 @@ kwargs = {}
 for i in range(len(args)-1,-1,-1):
     if re.search(r'^[a-z]+=',args[i]):
         k,v = args[i].split('=',1)
+        try:
+            v = eval(v)
+        except:
+            pass
         kwargs[k] = v
         del args[i]
 result = method(*args,**kwargs)
