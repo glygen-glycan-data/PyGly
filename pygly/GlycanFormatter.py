@@ -616,12 +616,16 @@ class GlycoCTFormat(GlycanFormatter):
             if state in ("LIN", "REP", "REPLIN", "UNDLIN"):
                 id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.monofmt.linkParseBase(l)
 
+                islinkinout = False
                 if parentid in rep:
                     rep[parentid]["link_out"] = l
-                    continue
+                    islinkinout = True
 
                 if childid in rep:
                     rep[childid]["link_in"] = l
+                    islinkinout = True
+
+                if islinkinout:
                     continue
 
                 if r1:
@@ -636,6 +640,8 @@ class GlycoCTFormat(GlycanFormatter):
                     rep[tmp]["start"] = childid
                     rep[tmp]["end"] = parentid
                     rep[tmp]["repeat_bridge"] = l
+                    rep[tmp]["entry_link_child_type"] = childtype
+                    rep[tmp]["exit_link_parent_type"] = parenttype
 
                     rmin = 0
                     if r2 != None:
@@ -719,9 +725,16 @@ class GlycoCTFormat(GlycanFormatter):
             if "link_in" in rep[glycoctid]:
                 id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.monofmt.linkParseBase(rep[glycoctid]["link_in"])
                 childid = rep[glycoctid]["start"]
+                if parentid in rep:
+                    parentid = rep[parentid]["end"]
                 parent = res[parentid]
                 child = res[childid]
-                self.monofmt.linkFromPara(parent, child, parenttype, parentpos, entry_link_child_type, childpos)
+                linkmade = False
+                for l in parent.links():
+                    if l.child() == child:
+                        linkmade = True
+                if not linkmade:
+                    self.monofmt.linkFromPara(parent, child, parenttype, parentpos, entry_link_child_type, childpos)
             else:
                 r = res[rep[glycoctid]["start"]]
                 unconnected.add(r)
@@ -730,6 +743,9 @@ class GlycoCTFormat(GlycanFormatter):
                 id, parentid, parentpos, parenttype, childid, childpos, childtype, r1, r2, r3 = self.monofmt.linkParseBase(rep[glycoctid]["link_out"])
                 parentid = rep[glycoctid]["end"]
                 parent = res[parentid]
+                if childid in rep:
+                    childtype = rep[childid]["entry_link_child_type"]
+                    childid = rep[childid]["start"]
                 child = res[childid]
                 self.monofmt.linkFromPara(parent, child, exit_link_parent_type, parentpos, childtype, childpos, repeat_exit=True)
 
