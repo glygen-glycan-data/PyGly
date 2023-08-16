@@ -4,10 +4,11 @@ import sys, time, traceback, hashlib
 from collections import defaultdict
 
 import findpygly
-from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCan, GlyTouCanNoPrefetch
-from pygly.Monosaccharide import Linkage
+from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCan, GlyTouCanNoPrefetch, Glycam
+from pygly.Monosaccharide import Linkage, Config, Stem, SuperClass
 
 gtc = GlyTouCanNoCache();
+glycamres = Glycam();
 
 acc2hash = defaultdict(set)
 
@@ -68,22 +69,38 @@ for g in accessions():
 
     try:
         any_subst_to_mono = any([m.has_links(default=False,fromto=Linkage.SUBST_TO_MONO) for m in glycan.all_nodes()])
-	if glycan and glycan.fully_determined() and not any_subst_to_mono:
+        any_furanose = any([m.superclass() == SuperClass.HEX and m.ring_end() == 4 for m in glycan.all_nodes()])
+	if glycan and glycan.fully_determined() and not any_subst_to_mono and not any_furanose:
             # print(glycan)
             # for n in glycan.all_nodes():
                 # print(n)
             glycam = glycan.glycam()
-            # print(glycam)
-	    if glycam and '?' not in glycam:
+            glycamhash = hashlib.sha256(glycam).hexdigest().lower()
+            if not g.has_annotations(property="GLYCAM-IUPAC-Hash",type='Sequence',source='EdwardsLab') or \
+               not g.get_annotation_value(property="GLYCAM-IUPAC-Hash",type='Sequence',source='EdwardsLab') == glycamhash or \
+               not g.has_annotations(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab'):
+                # print(glycam)
+                isvalid = glycamres.valid(glycam).next()['valid']
+                g.set_annotation(property="GLYCAM-IUPAC-Hash",type='Sequence',source='EdwardsLab',value=glycamhash)
+                g.set_annotation(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab',value=str(isvalid).lower())
+            else:
+                isvalid = (g.get_annotation_value(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab').lower() == 'true')
+	    if glycam and isvalid:
                 g.set_annotation(value=glycam,property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
 	    else:
                 g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
 	else:
             g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
+            g.delete_annotations(property="GLYCAM-IUPAC-Hash",type='Sequence',source='EdwardsLab')
+            g.delete_annotations(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab')
     except (KeyError,AssertionError,AttributeError):
         g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
+        g.delete_annotations(property="GLYCAM-IUPAC-Hash",type='Sequence',source='EdwardsLab')
+        g.delete_annotations(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab')
     except:
         g.delete_annotations(property="GLYCAM-IUPAC",type='Sequence',source='EdwardsLab')
+        g.delete_annotations(property="GLYCAM-IUPAC-Hash",type='Sequence',source='EdwardsLab')
+        g.delete_annotations(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab')
         traceback.print_exc()
 
     if glycan and not glycan.has_root():
@@ -159,6 +176,7 @@ for g in accessions():
 	    if not glycan.repeated():
                 comp = glycan.iupac_composition()
                 comp1 = glycan.iupac_composition(floating_substituents=False)
+                # print(comp)
                 # print(comp1)
 		comp2 = defaultdict(int)
 		comp3 = defaultdict(int)
