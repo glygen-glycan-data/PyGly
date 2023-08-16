@@ -618,7 +618,7 @@ class Glycan:
                 elif sym in ('Man+aldi','Gal+aldi','Glc+aldi'):
                     items.append((mid,'Hex+aldi',True))
                 elif sym in ('GalNAc+aldi','GlcNAc+aldi','ManNAc+aldi'):
-                    items.append((mid,'Hex+aldi',True))
+                    items.append((mid,'HexNAc+aldi',True))
                 elif sym in ('Fuc',):
                     items.append((mid,'dHex',True))
                 elif sym in ('Fuc+aldi',):
@@ -673,7 +673,7 @@ class Glycan:
                                                aggregate_basecomposition=aggregate_basecomposition):
 
             c[sym] += 1
-            if not isaggr and sym in validmonosyms:
+            if not isaggr and (sym in validmonosyms or sym == 'Xxx'):
                 c['Count'] += 1
  
         return c
@@ -861,7 +861,6 @@ class Glycan:
             if node.is_repeat_start():
                 repeat_starts.append(node)
 
-
         for rs in repeat_starts:
 
             for pl in rs.parent_links(default=False):
@@ -882,7 +881,7 @@ class Glycan:
 
                         if n == re:
                             inside_repeat_unit_child = []
-                            for l in re.links():
+                            for l in n.links():
                                 if l.is_non_repeat():
                                     inside_repeat_unit_child.append(l.child())
                             todo += inside_repeat_unit_child
