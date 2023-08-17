@@ -1,0 +1,38 @@
+__NOEDITSECTION__
+== Motifs == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Strict Motif Alignment
+| {{CountPropertyValueLink|StrictMotif|+}} 
+|-
+! style="width: 200px;" | Non-Strict Motif Alignment
+| {{CountPropertyValueLink|Motif|+}} 
+|-
+! style="width: 200px;" | Strict Classif. Alignment
+| {{CountPropertyValueLink|StrictClassMotif|+}} 
+|-
+! style="width: 200px;" | Non-Strict Classif. Alignment
+| {{CountPropertyValueLink|ClassMotif|+}} 
+|-
+|}
+
+== Classification ==
+{| class="wikitable" style="text-align: right;"
+|-
+! style="width: 200px;" | [[N-Glycan Classification|N-linked]] 
+| {{CountPropertyValueImageLink|GlycanType|N-linked}} 
+|-
+! style="width: 200px;" | [[O-Glycan Classification|O-linked]] 
+| {{CountPropertyValueImageLink|GlycanType|O-linked}} 
+|-
+! style="width: 200px;" | [[Glycosphingolipid Classification|Glycosphingolipid]] 
+| {{CountPropertyValueImageLink|GlycanType|Glycosphingolipid}} 
+|-
+! style="width: 200px;" | [[GAG Classification|GAG]]
+| {{CountPropertyValueImageLink|GlycanType|GAG}} 
+|-
+! style="width: 200px;" | GPI Anchor
+| {{CountPropertyValueImageLink|GlycanType|GPI anchor}} 
+|-
+! style="width: 200px;" | [[Other Classification|Other]] 
+| {{CountPropertyValueImageLink|GlycanTypeCount|0}} 
+|}

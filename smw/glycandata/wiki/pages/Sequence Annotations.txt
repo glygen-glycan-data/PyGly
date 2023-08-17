@@ -1,0 +1,21 @@
+{| class="wikitable" style="text-align: right;"
+|-
+! style="width: 200px;" | GLYCAM-IUPAC
+| {{CountPropertyValueLink|GLYCAM-IUPAC|+}} 
+|-
+! style="width: 200px;" | GlycoCT
+| {{CountPropertyValueLink|GlycoCT|+}} 
+|-
+! style="width: 200px;" | GlycoCT-XML
+| {{CountPropertyValueLink|GlycoCT-XML|+}} 
+|-
+! style="width: 200px;" | GlycoWorkBench
+| {{CountPropertyValueLink|GlycoWorkBench|+}} 
+|-
+! style="width: 200px;" | IUPAC
+| {{CountPropertyValueLink|IUPAC|+}} 
+|-
+! style="width: 200px;" | WURCS
+| {{CountPropertyValueLink|WURCS|+}} 
+|-
+|}

@@ -1,0 +1,14 @@
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Composition
+| {{CountPropertyValueLink1|Structure|Composition|true}} 
+|-
+! style="width: 200px;" | Undetermined Topology
+| {{CountPropertyValueLink|UndeterminedTopology|true}} 
+|-
+! style="width: 200px;" | Fully Determined*
+| {{CountPropertyValueLink|FullyDetermined|true}} 
+|-
+! style="width: 200px;" | HasRepeat
+| {{CountPropertyValueLink|HasRepeat|true}} 
+|-
+|}

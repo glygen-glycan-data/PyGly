@@ -1,0 +1,14 @@
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | GlyGen
+| {{CountPropertyValueLink|GlyGen|+}} 
+|-
+! style="width: 200px;" | GNOme
+| {{CountPropertyValueLink|GNOme|+}} 
+|-
+! style="width: 200px;" | KEGG
+| {{CountPropertyValueLink|KEGG|+}} 
+|-
+! style="width: 200px;" | PubChem
+| {{CountPropertyValueLink|PubChem|+}} 
+|-
+|}

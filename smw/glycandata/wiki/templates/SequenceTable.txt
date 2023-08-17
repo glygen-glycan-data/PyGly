@@ -1,6 +1,8 @@
 <includeonly>{{#ask:
 [[glycandata:hasglycan::{{PAGENAME}}]]
 [[glycandata:property::!SequenceHash]]
+[[glycandata:property::!GLYCAM-IUPAC-Hash]]
+[[glycandata:property::!GLYCAM-IUPAC-Valid]]
 [[glycandata:type::{{{2}}}]]
 |?glycandata:property=Property
 |?glycandata:source=Source

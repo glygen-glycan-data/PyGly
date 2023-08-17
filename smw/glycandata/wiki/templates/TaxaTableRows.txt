@@ -8,5 +8,6 @@
 |GlyConnectStructure={{{3}}}:<span class="plainlinks">[https://glyconnect.expasy.org/browser/structures/{{{4}}} {{{4}}}]</span>
 |GlyConnectComposition={{{3}}}:<span class="plainlinks">[https://glyconnect.expasy.org/browser/compositions/{{{4}}} {{{4}}}]</span>
 |GPTwiki={{{3}}}:<span class="plainlinks">[https://edwardslab.bmcb.georgetown.edu/gptwiki/{{{4}}} {{{4}}}]</span>
+|GlyCosmos={{{3}}}:<span class="plainlinks">[https://glycosmos.org/glycans/show/{{{4}}} {{{4}}}]</span>
 |{{{3}}}:{{{4}}}}}|{{{3}}}}}
 </includeonly>

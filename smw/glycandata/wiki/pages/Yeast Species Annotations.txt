@@ -1,0 +1,17 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Taxonomy (4932)
+| {{CountPropertyValueLink|Taxonomy|4932}} 
+|-
+! style="text-align: left;" | Direct
+| {{CountPropertyValueLink|Yeast Category|Direct}} 
+|-
+! style="text-align: left;" | Subsumption
+| {{CountPropertyValueLink|Yeast Category|Subsumption}} 
+|-
+! style="text-align: left;" | Direct+Subsumption
+| {{CountPropertyValueLink|Yeast |true}} 
+|-
+! style="text-align: left;" | Composition
+| {{CountPropertyValueLink|Yeast Category|Composition}} 
+|}

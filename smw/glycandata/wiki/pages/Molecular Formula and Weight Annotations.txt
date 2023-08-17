@@ -1,0 +1,20 @@
+__NOEDITSECTION__ 
+== Molecular Weight == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Underivitized
+| {{CountPropertyValueLink|UnderivitizedMW|+}} 
+|-
+! style="width: 200px;" | Permethylated
+| {{CountPropertyValueLink|PermethylatedMW|+}} 
+|-
+|}
+
+== Molecular Formula == 
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | Underivitized
+| {{CountPropertyValueLink|NativeMolecularFormula|+}} 
+|-
+! style="width: 200px;" | Permethylated
+| {{CountPropertyValueLink|PermethylatedMolecularFormula|+}} 
+|-
+|}

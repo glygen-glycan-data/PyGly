@@ -1,0 +1,29 @@
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | [[Human Species Annotations|Human]]
+| {{CountPropertyValueLink|Human|true}} 
+|-
+! style="width: 200px;" | [[Mouse Species Annotations|Mouse]]
+| {{CountPropertyValueLink|Mouse|true}} 
+|-
+! style="width: 200px;" | [[Rat Species Annotations|Rat]]
+| {{CountPropertyValueLink|Rat|true}} 
+|-
+! style="width: 200px;" | [[Pig Species Annotations|Pig]]
+| {{CountPropertyValueLink|Pig|true}} 
+|-
+! style="width: 200px;" | [[FruitFly Species Annotations|Fruit Fly]]
+| {{CountPropertyValueLink|FruitFly|true}} 
+|-
+! style="width: 200px;" | [[Yeast Species Annotations|Yeast]]
+| {{CountPropertyValueLink|Yeast|true}} 
+|-
+! style="width: 200px;" | [[SlimeMold Species Annotations|SlimeMold]]
+| {{CountPropertyValueLink|SlimeMold|true}} 
+|-
+! style="width: 200px;" | [[HCV Species Annotations|HCV]]
+| {{CountPropertyValueLink|HCV|true}} 
+|-
+! style="width: 200px;" | [[SARS Species Annotations|SARS]]
+| {{CountPropertyValueLink|SARS|true}} 
+|-
+|}

@@ -1,0 +1,17 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="text-align: left;" | Taxonomy (44689)
+| {{CountPropertyValueLink|Taxonomy|44689}} 
+|-
+! style="text-align: left;" | Direct
+| {{CountPropertyValueLink|SlimeMold Category|Direct}} 
+|-
+! style="text-align: left;" | Subsumption
+| {{CountPropertyValueLink|SlimeMold Category|Subsumption}} 
+|-
+! style="text-align: left;" | Direct+Subsumption
+| {{CountPropertyValueLink|SlimeMold|true}} 
+|-
+! style="text-align: left;" | Composition
+| {{CountPropertyValueLink|SlimeMold Category|Composition}} 
+|}

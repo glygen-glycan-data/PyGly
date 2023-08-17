@@ -1,0 +1,18 @@
+
+{| class="wikitable" style="text-align: right;"
+! style="width: 200px;" | BaseComposition 
+| {{CountPropertyValueLink|Level|BaseComposition}} 
+|-
+! style="width: 200px;" | Composition 
+| {{CountPropertyValueLink|Level|Composition}} 
+|-
+! style="width: 200px;" | Topology 
+| {{CountPropertyValueLink|Level|Topology}} 
+|-
+! style="width: 200px;" | Saccharide 
+| {{CountPropertyValueLink|Level|Saccharide}} 
+|-
+! style="width: 200px;" | Fully Determined
+| {{CountPropertyValueLink|MissingScore|0}} 
+|-
+|}
