@@ -362,6 +362,79 @@ class Monosaccharide(Node):
     def noring(self):
         return (self.ring() == (0,0))
 
+    posdetails = {
+        SuperClass.HEX: {
+            'minposval': 1,
+            'maxposval': 6
+        }
+    }
+
+    def has_valid_positions(self):
+        if self.superclass() not in self.posdetails:
+            return
+        posdets =  self.posdetails[self.superclass()]
+        validpos = set(range(posdets['minposval'],posdets['maxposval']+1))
+        start = min(validpos)
+        if self.ring_start():
+            if self.ring_start() != start:
+                raise RuntimeError("Ring start inconsistent with superclass: %s != %s"%(self.ring_start(),start))
+        
+        count = 0
+        for pl in self.parent_links():
+            if pl.child_pos():
+                if pl.child_pos() != set([start]):
+                    raise RuntimeError("Parent link child position != ring start position: %s != %s"%(pl.child_pos(),set([start])))
+                else:
+                    if start in validpos:
+                        validpos.remove(start)
+            else:
+                count += 1
+
+        modpos = []
+        for p,m in self.mods():
+            if not set(p) <= validpos:
+                raise RuntimeError("Mod position contains a bad position: %s </= %s"%(p,validpos))
+            count += 1
+            modpos.extend(p)
+        if len(modpos) != len(set(modpos)):
+            raise RuntimeError("Repeated mod positions: %s"%(modpos,))
+        modpos = set(modpos)
+        
+        subpos = []
+        for sl in self.substituent_links():
+            count += 1
+            if sl.parent_pos():
+                if not set(sl.parent_pos()) <= validpos:
+                    raise RuntimeError("Substituent link parent position contains a bad position: %s </= %s"%(sl.parent_pos(),validpos))
+                subpos.extend(sl.parent_pos())
+        if len(subpos) != len(set(subpos)):
+            raise RuntimeError("Repeated substituent link parent positions: %s"%(subpos,))
+        subpos = set(subpos)
+        
+        if len(modpos & subpos) > 0:
+            raise RuntimeError("Mod positions and substituent link parent positions intersect: %s & %s"%(modpos,subpos,))
+        
+        linkpos = []
+        for cl in self.links():
+            count += 1
+            if cl.parent_pos():
+                if not set(cl.parent_pos()) <= validpos:
+                    raise RuntimeError("Child link parent position contains bad position: %s </= %s"%(cl.parent_pos(),validpos))
+                linkpos.extend(cl.parent_pos())
+        linkpos = set(linkpos)
+        
+        if len(linkpos & modpos) > 0:
+            raise RuntimeError("Mod positions and child link parent positions intersect: %s & %s"%(modpos,linkpos,))
+        if len(linkpos & subpos) > 0:
+            raise RuntimeError("Substituent link parent positions and child link parent positions intersect: %s & %s"%(subpos,linkpos,))
+        
+        pos = (modpos | subpos | linkpos)
+        if not pos <= validpos:
+            raise RuntimeError("Position out of range: %s </= %s"%(pos,validpos))
+        if count > len(validpos):
+            raise RuntimeError("Too many positions needed: %s > %s"%(count,len(validpos)))
+        return
+
     def deepclone(self, identified_link=None, cache=None):
 
         if cache == None:
@@ -722,14 +795,18 @@ class Monosaccharide(Node):
                 if l.instantiated():
                     l_linkage_symbol = "-"
                 if l.is_repeat_bridge():
-                    l_linkage_symbol = "-[R]-"
+                    l_linkage_symbol = "-[Rb]-"
+                if l.is_repeat_exit():
+                    l_linkage_symbol = "-[Rx]-"
 
                 if l_linked_by_sub:
                     l_upper = l.parent().any_parent_link()
                     l_lower = l
                     tmp_s = ""
                     if l.is_repeat_bridge():
-                        tmp_s = "[R]"
+                        tmp_s = "[Rb]"
+                    if l.is_repeat_exit():
+                        tmp_s = "[Rx]"
                     ch.append("%s -( %s )%s-> %s Monosaccharide:%s" % (l_upper, l.parent(), tmp_s, l, l.child().id()))
                 else:
                     l_linkage_symbol += ">"
@@ -754,7 +831,9 @@ class Monosaccharide(Node):
                 if l.instantiated():
                     l_linkage_symbol = "->"
                 if l.is_repeat_bridge():
-                    l_linkage_symbol = "-[R]->"
+                    l_linkage_symbol = "-[Rb]->"
+                if l.is_repeat_exit():
+                    l_linkage_symbol = "-[Rx]->"
                 ch.append("%s:%s %s %s" % (l_parent_type, l.parent().id(), l_linkage_symbol, l))
 
 
