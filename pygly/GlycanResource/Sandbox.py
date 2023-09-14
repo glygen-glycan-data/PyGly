@@ -22,7 +22,7 @@ class GlycoTreeSandbox(WebServiceResource):
         g = self.query_glycan(accession=accession)
         g['accession'] = g['glytoucan_ac']
         del g['glytoucan_ac']
-        yield g
+        return g
 
     def allglycans(self,mode='all'):
         assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
