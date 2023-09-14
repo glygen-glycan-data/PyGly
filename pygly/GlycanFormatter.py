@@ -1000,6 +1000,7 @@ class IUPACLinearFormat(GlycanFormatter):
             return self.linearstr(kidlinks[-1],kidlinks[-1].child())+t+s+conn
 
     def toGlycan(self, s):
+        s = s.strip()
         orig = s
         m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Hex|Glc|Gal|Man|Fuc|Xyl)[a-zA-Z5926,]*)$',s)
         if not m:
