@@ -21,3 +21,5 @@ class WURCS20ParseError(GlycanParseError):
 class GlycanBuilderSVGParseError(GlycanParseError):
     pass
 
+class CompositionParseError(GlycanParseError):
+    pass
