@@ -1,4 +1,6 @@
 
+from __future__ import print_function
+
 from . Monosaccharide import Anomer, Stem, SuperClass, Config, Substituent
 
 class Manipulation(object):
