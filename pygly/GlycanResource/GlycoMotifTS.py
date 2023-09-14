@@ -19,17 +19,32 @@ class GlycoMotifTS(TripleStoreResource):
         if 'cachemode' not in kw:
             kw['cachemode'] = 'c'
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glycomotif.ini")
+        kw['delaytime'] = 0.5
+        kw['delaybatch'] = 2
         super(GlycoMotifTS,self).__init__(**kw)
         for k in list(self.keys()):
             if k == 'query_motifs':
                 self.modify_method(k,partitioner())
             elif k == 'query_struct':
                 self.modify_method(k,partitioner(kwarg="motifacc",fmt=".*%%0%dd"))
+            elif k == 'query_hasstruct':
+                self.modify_method(k,partitioner())
             if self._prefetch:
                 if k == 'query_motifs':
                     self.modify_method(k,prefetcher(usecache=self._usecache))
                 elif k == 'query_struct':
                     self.modify_method(k,prefetcher("motifacc",usecache=self._usecache))
+                elif k == 'query_hasstruct':
+                    self.modify_method(k,prefetcher(usecache=self._usecache))
+
+    def collections(self):
+        for row in self.query_collections():
+            yield row['CollectionID']
+
+    def hasstructure(self,accession):
+        for row in self.query_hasstruct(accession=accession):
+            return True
+        return False
 
     def getmotif(self,collection,accession):
         return [ ("%s.%s"%(collection,row['MotifAccession']),row['MotifAlignment'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_motifs(collection=collection,accession=accession) ]
@@ -37,6 +52,8 @@ class GlycoMotifTS(TripleStoreResource):
     def getstruct(self,collection,motifacc):
         return sorted(set((row['accession'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_struct(collection=collection,motifacc=motifacc)))
 
+    def getmotifbystruct(self,accession):
+        return [ ("%s.%s"%(row['CollectionID'],row['MotifAccession']),row['MotifAlignment'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_motifsbystructure(accession=accession) ]
 
     def allmotifaligns(self,collection):
         for row in self.query_motifs(collection=collection):
