@@ -15,6 +15,10 @@ try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
+try:
+    from io import BytesIO
+except ImportError:
+    pass
 
 from . GlycanFormatter import GlycanFormatter
 from . GlycanFormatterExceptions import *
@@ -80,8 +84,8 @@ class GlycanBuilderSVG(GlycanFormatter):
         self.monofactory = MonoFactory()
 
     def toGlycan(self,s):
-        s = s.replace('data:','data.')
-        doc = ET.parse(StringIO(s))
+        s = s.replace(b'data:',b'data.')
+        doc = ET.parse(BytesIO(s))
         undetroot = dict()
         undetrootlinkpos = dict()
         monos = dict()
@@ -94,7 +98,9 @@ class GlycanBuilderSVG(GlycanFormatter):
                  res = g.attrib['data.residueName']
                  try:
                      m = self.monofactory.new(res)
-                 except KeyError:
+                 except KeyError as e:
+                     m = None
+                 if not m:
                      raise GlycanBuilderSVGMonosaccharideLookupError(res)
                  anomer = g.attrib['data.residueAnomericState']
                  if anomer == 'a':
