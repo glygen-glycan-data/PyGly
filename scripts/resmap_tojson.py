@@ -1,5 +1,7 @@
 #!/bin/env python2
 
+from __future__ import print_function
+
 import json
 import glob 
 import io
@@ -18,6 +20,12 @@ ctable = ResidueCompositionTable()
 iupacSym = IUPACSym()
 
 ip = IUPACLinearFormat()
+
+verbose = False
+if sys.argv[1] == "-v":
+    verbose = True
+    sys.argv.pop(1)
+
 wurcs_dir = sys.argv[1]
 svg_dir = sys.argv[2]
 if os.path.isdir(sys.argv[3]):
@@ -46,70 +54,85 @@ for path in sorted(os.listdir(wurcs_dir)):
     if len(accs) != 0 and acc not in accs:
         continue
 
-    if os.path.exists(os.path.join(out_dir,acc+".json")):
-        continue
+    # if os.path.exists(os.path.join(out_dir,acc+".json")):
+    #     continue
 
     # We must have an SVG file...
     svg_filename = os.path.join(svg_dir,acc+".svg")
     if not os.path.exists(svg_filename):
         continue
     
-    canon_seq = open(os.path.join(wurcs_dir,path), "r").read().strip()
-    canon_seqhash = hashlib.md5(canon_seq).hexdigest().lower()
+    canon_seq = open(os.path.join(wurcs_dir,path)).read().strip()
+    canon_seqhash = hashlib.md5(canon_seq.encode('ascii')).hexdigest().lower()
 
     try: 
         canon_gly = wp.toGlycan(canon_seq)
     except GlycanParseError:
-        # traceback.print_exc(file=sys.stdout)
+        if verbose:
+            print("Error accession:",acc,file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
         continue
 
-    svg_seq = open(svg_filename, "r").read().strip()
+    svg_seq = open(svg_filename, "rb").read().strip()
     svg_seqhash = hashlib.md5(svg_seq).hexdigest().lower()
 
     try:
         svg_gly = sp.toGlycan(svg_seq)
     except GlycanParseError:
-        # traceback.print_exc(file=sys.stdout)
+        if verbose:
+            print("Error accession:",acc,file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
         continue
 
     canonres_data = {}
     iupac_annotations = defaultdict(list)
     for m in canon_gly.all_nodes(undet_subst=True):
         data = json.loads(jcr.toStr(m))
+        data['residueid'] = str(data['residueid'])
+        if 'parentid' in data:
+            data['parentid'] = str(data['parentid'])
         canonres_data[m.id()] = data
 
     for mid,iupacsym,isaggr in canon_gly.iupac_items(canon_gly.all_nodes(undet_subst=True)):
-        iupac_annotations[iupacsym].append(mid)
+        iupac_annotations[iupacsym].append(str(mid))
     for iupacsym in iupac_annotations:
         iupac_annotations[iupacsym] = sorted(iupac_annotations[iupacsym],key=int)
-    iupac_synonyms = {}
-    for iupacsym in iupac_annotations:
-        if iupacsym.lower() != iupacsym:
-            iupac_synonyms[iupacsym.lower()] = iupacsym
-    iupac_annotations['__synonyms__'] = iupac_synonyms
+    # iupac_synonyms = {}
+    # for iupacsym in iupac_annotations:
+    #     if iupacsym.lower() != iupacsym:
+    #         iupac_synonyms[iupacsym.lower()] = iupacsym
+    # iupac_annotations['__synonyms__'] = iupac_synonyms
 
     canonres_data = sorted(canonres_data.values(),key=lambda item: int(item['residueid']))
 
     svg_idmap = []
     if canon_gly.has_root() and svg_gly.has_root():
         if not glyimeq.eq(svg_gly,canon_gly,idmap=svg_idmap):
+            if verbose:
+                print("Error accession:",acc,file=sys.stderr)
+                print("Cannot align SVG-based and WURCS-based glycans",file=sys.stderr)
             continue
     elif not canon_gly.has_root() and not svg_gly.has_root():
         if not glycompimeq.eq(svg_gly,canon_gly,idmap=svg_idmap):
+            if verbose:
+                print("Error accession:",acc,file=sys.stderr)
+                print("Cannot align SVG-based and WURCS-based composition glycans",file=sys.stderr)
             continue
     else:
+        if verbose:
+            print("Error accession:",acc,file=sys.stderr)
+            print("Cannot align SVG-based and WURCS-based glycans - composition mismatch",file=sys.stderr)
         continue
 
- 
     svg_idmapids = [ (t[0].external_descriptor_id(),t[1].id()) for t in svg_idmap ]
 
     svg_idmap_dict = defaultdict(list)
     for svg_id,canon_id in svg_idmapids:
-        svg_idmap_dict[canon_id].extend(svg_id.split(';'))
+        svg_idmap_dict[str(canon_id)].extend(svg_id.split(';'))
 
     for l in canon_gly.all_links():
-        parent_svgid =  svg_idmap_dict[l.parent().id()][0]
-        child_svgid =  svg_idmap_dict[l.child().id()][0]
+        parent_svgid =  svg_idmap_dict[str(l.parent().id())][0]
+        child_svgid =  svg_idmap_dict[str(l.child().id())][0]
         svgidbase,parent_svgid1 = parent_svgid.rsplit(':',1)
         svgidbase = svgidbase.split('-',1)[1]
         child_svgid1 = child_svgid.rsplit(':',1)[1]
@@ -117,7 +140,11 @@ for path in sorted(os.listdir(wurcs_dir)):
         svg_link_id = "l-1:" + str(parent_svgid1) + ","+ str(child_svgid1)
         svg_idmap_dict[link_id].append(svg_link_id)
 
-    structure_dict = {}
+    if not os.path.exists(os.path.join(out_dir,acc+".json")):
+        structure_dict = {}
+    else:
+        structure_dict = json.loads(open(os.path.join(out_dir,acc+".json")).read())
+
     structure_dict['canonical_sequence_accession'] = acc
     structure_dict['canonical_sequence_md5'] = canon_seqhash
     
