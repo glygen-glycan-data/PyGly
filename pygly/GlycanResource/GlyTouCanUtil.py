@@ -160,6 +160,57 @@ class GlyTouCanUtil(object):
             if len(v) > 1:
                 yield k
 
+    symbol2wurcs_definition = """
+	NeuAc   AUd21122h_5*NCC/3=O   1
+	NeuGc   AUd21122h_5*NCCO/3=O  2
+	Fuc     u1221m                6
+	Hex     uxxxxh                5
+	HexNAc  uxxxxh_2*NCC/3=O      4
+	dHex    uxxxxm                3
+	Pent    uxxxh                 10
+	P       *OPO/3O/3=O           -1
+	Phospho *OPO/3O/3=O           -1
+	S       *OSO/3=O/3=O          -1
+	Sulpho  *OSO/3=O/3=O          -1
+	"""
+    symbol2wurcs=None
+    wurcsorder=None
+
+    def makecompseq(self,**incomp):
+        if self.symbol2wurcs == None:
+            self.symbol2wurcs = {}
+            self.wurcsorder = {}
+            for l in self.symbol2wurcs_definition.splitlines():
+                if not l.strip():
+                    continue
+                sl = l.split()
+                self.symbol2wurcs[sl[0]] = sl[1]
+                self.wurcsorder[sl[1]] = int(sl[2])
+        comp = {}
+        subst = {}
+        for k,v in incomp.items():
+            if k not in self.symbol2wurcs:
+                raise ValueError("Bad symbol in composition")
+            skel = self.symbol2wurcs[k]
+            v = int(v)
+            if self.wurcsorder[skel] < 0:
+                subst[skel] = v
+            else:
+                comp[skel] = v
+        skels = sorted(comp,key=self.wurcsorder.get)
+        total = sum(comp.values())
+        if total == 0:
+            raise ValueError("No monosaccharides in composition")
+        uniq = len(skels)
+        wurcsseq = "WURCS=2.0/%s,%s,%s/" % (uniq, total, "0+")
+        wurcsseq += "".join(map(lambda sk: "[%s]" % (sk,), skels)) + "/"
+        inds = []
+        for i, sk in enumerate(skels):
+            inds.extend([str(i + 1)] * comp[sk])
+        wurcsseq += "-".join(inds)
+        wurcsseq += "/"
+        return self.fixcompwurcs(wurcsseq,subst)
+
     def fixcompwurcs(self, wurcsseq, subst=[]):
         if not self._alphamap:
             self._alphamap = dict()
