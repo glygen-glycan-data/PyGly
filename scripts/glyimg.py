@@ -13,6 +13,7 @@ if len(sys.argv) <= 1:
     orientation  (RL|LR|TB|BT)                         [RL]
     notation     (cfg|cfgbw|cfglink|uoxf|text|uoxfcol) [cfg]
     display      (normal|normalinfo|compact)           [normalinfo]
+    format	 (png|svg)                             [png]
     """.strip()
     sys.exit(1)
 
@@ -31,6 +32,6 @@ for i in range(1,len(sys.argv),2):
     lastopt = i+1
 
 for acc in sys.argv[(lastopt+1):]:
-    outfile = acc + ".png"
     g = gtc.getGlycan(acc)
+    outfile = acc + "." + imageWriter.format()
     imageWriter.writeImage(g,outfile)
