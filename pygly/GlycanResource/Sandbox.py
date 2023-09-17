@@ -28,3 +28,6 @@ class GlycoTreeSandbox(WebServiceResource):
         assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
         for acc in self.list(mode):
             yield self.glycan(acc)
+
+class GlycoTreeSandboxDev(GlycoTreeSandbox):
+    apiurl = 'https://edwardslab.bmcb.georgetown.edu/sandboxdev/api'
