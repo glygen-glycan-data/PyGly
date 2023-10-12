@@ -24,6 +24,12 @@ class GlycoTreeSandbox(WebServiceResource):
         del g['glytoucan_ac']
         return g
 
+    def glycans(self,*accs):
+        for g in self.query_glycans(accessions=",".join(accs)):
+            g['accession'] = g['glytoucan_ac']
+            del g['glytoucan_ac']
+            yield g
+
     def allglycans(self,mode='all'):
         assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
         for acc in self.list(mode):
@@ -31,3 +37,11 @@ class GlycoTreeSandbox(WebServiceResource):
 
 class GlycoTreeSandboxDev(GlycoTreeSandbox):
     apiurl = 'https://edwardslab.bmcb.georgetown.edu/sandboxdev/api'
+
+    def allglycans(self,mode='all',blocksize=20):
+        assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
+        listaccs = list(self.list(mode))
+        for i in range(0,len(listaccs),blocksize):
+            accs = listaccs[i:(i+blocksize)]
+            for r in self.glycans(*accs):
+                yield r
