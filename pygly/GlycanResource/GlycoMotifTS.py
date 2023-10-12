@@ -78,3 +78,10 @@ class GlycoMotifTS(TripleStoreResource):
             if row.get('dbxref'):
                 dbxrefs = row.get('dbxref').split('//')
             yield "%s.%s"%(collection,row['accession']),row['gtcacc'],row['alignment'],row['redend'],row['aglycon'],names,pmids,keywords,dbxrefs
+
+class GlycoMotifDevTS(GlycoMotifTS):
+   
+    endpt = "https://glycomotif.glyomics.org/glycomotifdev/sparql/query"
+    defns = "http://glyomics.org/glycomotifdev/Special:URIResolver/"
+    cachefile = ".gmd.cache"
+

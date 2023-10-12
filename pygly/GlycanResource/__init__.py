@@ -6,6 +6,7 @@ from .GlyGen import GlyGen, GlyGenBeta
 from .GlyGenWS import GlyGenWS
 from .GlyGenDump import GlyGenSourceFile, GlyGenDataset, GlyGenFile
 from .GlycoMotif import GlycoMotif, GlycoMotifNoPrefetch, GlycoMotifNoCache
+from .GlycoMotif import GlycoMotifDev, GlycoMotifDevNoPrefetch, GlycoMotifDevNoCache
 from .GlycanImage import GlycanImage
 from .GlyConnect import GlyConnect
 from .GlyCosmosSparqList import GlyCosmosSparqList
