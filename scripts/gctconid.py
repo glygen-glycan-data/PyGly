@@ -8,7 +8,7 @@ from pygly.alignment import GlycanEqual, GlycanImageEqual
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
 from pygly.GlycanResource import GlyTouCanNoPrefetch
 
-gtc = GlyTouCanNoPrefetch()
+gtc = GlyTouCanNoPrefetch(verbose=False)
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
@@ -23,9 +23,13 @@ if os.path.exists(idmapfilename):
 
 for acc in sys.argv[1:]:
 
-    gct = gtc.getseq(acc,'glycoct')
-    if not gct:
-        gct = gtc.glycoct(acc)
+    if acc.endswith('.txt'):
+        gct = open(acc).read()
+        acc = acc.split('.',1)[0]
+    else:
+        gct = gtc.getseq(acc,'glycoct')
+        if not gct:
+            gct = gtc.glycoct(acc)
     wcs = gtc.getseq(acc,'wurcs')
 
     if not wcs or not gct:
@@ -42,12 +46,14 @@ for acc in sys.argv[1:]:
         sys.exit(1)
 
     idmap = []
-    if not glyeq.eq(gctgly,wcsgly,idmap=idmap):
-        if not glyimgeq.eq(gctgly,wcsgly,idmap=idmap):
-	    pass
-
-    for gctmono,wcsmono in idmap:
-        idmaps[acc][int(gctmono.id())] = int(wcsmono.external_descriptor_id())
+    if glyeq.eq(gctgly,wcsgly,idmap=idmap):
+        for gctmono,wcsmono in idmap:
+            for gctid,wcsid in glyeq.monoidmap(gctmono,wcsmono):
+                idmaps[acc][gctid] = wcsid
+    elif glyimgeq.eq(gctgly,wcsgly,idmap=idmap):
+        for gctmono,wcsmono in idmap:
+            for gctid,wcsid in glyimgeq.monoidmap(gctmono,wcsmono):
+                idmaps[acc][gctid] = wcsid
 
     filename = acc + ".txt"
 

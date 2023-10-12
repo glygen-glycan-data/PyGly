@@ -39,24 +39,24 @@ for fn in sys.argv[1:]:
             print(acc)
             traceback.print_exc(file=sys.stdout)
             continue
-    cannongly = gtc.getGlycan(acc,'wurcs')
-    if not cannongly:
+    canongly = gtc.getGlycan(acc,'wurcs')
+    if not canongly:
         continue
     idmap = []
-    if glyeq.eq(gly,cannongly,idmap=idmap):
+    if glyeq.eq(gly,canongly,idmap=idmap):
         bad = False
-        glyids = [ m.external_descriptor_id() for m in gly.all_nodes() ]
+        glyids = [ m.external_descriptor_id() for m in gly.all_nodes(undet_subst=True) ]
         idmapglyids = [ t[0].external_descriptor_id() for t in idmap ]
-        cannonglyids = [ m.id() for m in cannongly.all_nodes() ]
-        cannonidmapglyids = [ t[1].id() for t in idmap ]
-        idmapids = [ (t[0].external_descriptor_id(),t[1].id()) for t in idmap ]
-        if len(glyids) != len(idmap) or len(cannonglyids) != len(idmap):
-            print("Sequence %s:%s has an incorrect number of nodes in idmap: %d, %d, %d"%(acc,seqhash,len(glyids),len(idmap),len(cannonglyids)))
+        canonglyids = [ m.id() for m in canongly.all_nodes(undet_subst=True) ]
+        canonidmapglyids = [ t[1].id() for t in idmap ]
+        idmapids = [ ti for t in idmap for ti in glyeq.monoidmap(*t) ]
+        if len(glyids) != len(idmap) or len(canonglyids) != len(idmap):
+            print("Sequence %s:%s has an incorrect number of nodes in idmap: %d, %d, %d"%(acc,seqhash,len(glyids),len(idmap),len(canonglyids)))
             bad = True
-        if (not gly.undetermined() and len(glyids) != len(set(glyids))) or len(cannonglyids) != len(set(cannonglyids)):
-            print("Sequence %s:%s has non-unique monosaccharide ids: %s,%s"%(acc,seqhash,glyids,cannonglyids))
+        if (not gly.undetermined() and len(glyids) != len(set(glyids))) or len(canonglyids) != len(set(canonglyids)):
+            print("Sequence %s:%s has non-unique monosaccharide ids: %s,%s"%(acc,seqhash,glyids,canonglyids))
             bad = True
-        if (not gly.undetermined() and len(idmapglyids) != len(set(idmapglyids))) or len(cannonidmapglyids) != len(set(cannonidmapglyids)):
+        if (not gly.undetermined() and len(idmapglyids) != len(set(idmapglyids))) or len(canonidmapglyids) != len(set(canonidmapglyids)):
             print("Sequence %s:%s idmap has non-unique monosaccharide ids: %s"%(acc,seqhash,idmapids))
             bad = True
         if len(idmapids) != len(set(idmapids)):
@@ -69,11 +69,19 @@ for fn in sys.argv[1:]:
                 print(mj)
                 bad = True
         if not bad:
-            print("Sequence %s:%s:%s: %s"%(acc,seqhash,fmt,", ".join(map(lambda t: "%s->%d"%t,sorted(idmapids)))))
+            # print(gly.external_descriptor_ids())
+            # print(canongly.external_descriptor_ids())
+            # for mj in canongly.all_nodes(subst=True,undet_subst=True):
+            #     print(mj.external_descriptor_id())
+            # for mi,mj in idmap:
+            #     print(mi)
+            #     print(mj)
+            #     print(glyeq.monoidmap(mi,mj))
+            print("Sequence %s:%s:%s: %s"%(acc,seqhash,fmt,", ".join(map(lambda t: "%s->%s"%t,sorted(idmapids)))))
         else:
             sys.exit(1)
     else:
-        print("Sequence %s:%s:%s does not equal cannonical WURCS sequence"%(acc,seqhash,fmt))
+        print("Sequence %s:%s:%s does not equal canonical WURCS sequence"%(acc,seqhash,fmt))
         print(gly.glycoct())
-        print(cannongly.glycoct())
+        print(canongly.glycoct())
         sys.exit(1)
