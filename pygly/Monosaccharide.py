@@ -274,6 +274,18 @@ class Node(object):
     def external_descriptor_id(self):
         return self._eid
 
+    def external_descriptor_ids(self):
+        if not self.is_monosaccharide():
+            if self.external_descriptor_id() != None:
+                return [self.external_descriptor_id()]
+            else:
+                return []
+        eids = [self.external_descriptor_id()]
+        for s in self.substituents():
+            if s.external_descriptor_id() != None:
+                eids.append(s.external_descriptor_id())
+        return eids
+
     def is_repeat_start(self):
         for l in self.parent_links(default=False,repeat=Linkage.REPEAT_BRIDGE,inst=Linkage.INSTANTIATED):
             return True

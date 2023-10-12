@@ -195,9 +195,10 @@ class GlycanBuilderSVG(GlycanFormatter):
                     parent.add_substituent(sub, 
                                            parent_pos=parent_pos, parent_type=self.substmap[subres]['parent_type'], 
                                            child_pos=child_pos, child_type=self.substmap[subres]['child_type'])
-                    parent_eid = parent.external_descriptor_id()
-                    parent_eid += ';'+g.attrib['ID']
-                    parent.set_external_descriptor_id(parent_eid)
+                    sub.set_external_descriptor_id(g.attrib['ID']);
+                    # parent_eid = parent.external_descriptor_id()
+                    # parent_eid += ';'+g.attrib['ID']
+                    # parent.set_external_descriptor_id(parent_eid)
 
         for g in root.getiterator(ns+'g'):
             if g.attrib.get('data.type') == 'Linkage':

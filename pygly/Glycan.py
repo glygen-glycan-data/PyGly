@@ -492,6 +492,11 @@ class Glycan:
             for m in self.subtree_nodes(root,subst):
                 yield m
 
+    def external_descriptor_ids(self):
+        eids = []
+        for n in self.all_nodes(undet_subst=True):
+            eids.extend(n.external_descriptor_ids())
+        return eids
 
     def repeat_nodes(self):
         allrepnodes = []
@@ -565,24 +570,40 @@ class Glycan:
                 except KeyError:
                     pass
 
-            if sym == None and sym1 == None:
+            if sym == None:
                 if isinstance(m,Monosaccharide):        
-                    items.append((m.id(),'Xxx',False))
+                    sym = "Xxx"
                 else:
-                    items.append((m.id(),'X',False))
-                continue
+                    sym = "X"
+
+            if sym1 == None:
+                if isinstance(m,Monosaccharide):        
+                    sym1 = "Xxx"
+                else:
+                    sym1 = "X"
 
             if floating_substituents:
-                if sym != None:
-                    syms = [ s.strip() for s in sym.split('+') ]
-                else:
-                    syms = [ None ]
-                if sym1 != None:
-                    syms1 = [ s.strip() for s in sym1.split('+') ]
-                else:
-                    syms1 = [ None ]
+                syms = [sym.split('+')[0]]
+                eids = [[m.external_descriptor_id()]]
+                for s in m.substituents():
+                    if s.name() in Composition.floating_substs:
+                        try:
+                            syms.append(iupacSym.toStr(s))
+                        except KeyError:
+                            syms.append("X")
+                        eids.append(s.external_descriptor_ids())
+                    else:
+                        eids[0].append(s.external_descriptor_id())
+                syms1 = [sym1.split('+')[0]]
+                for s in m1.substituents():
+                    if s.name() in Composition.floating_substs:
+                        try:
+                            syms1.append(iupacSym.toStr(s))
+                        except KeyError:
+                            syms1.append("X")
             else:
                 syms = [sym]
+                eids = [ m.external_descriptor_ids() ]
                 syms1 = [sym1]
 
             if syms[0] not in validsyms:
@@ -599,15 +620,15 @@ class Glycan:
                     syms[i] = 'X'
 
             if syms[0] == 'Xxx' or 'X' in syms:
-                items.append((m.id(),'Xxx',False))
+                items.append((m.external_descriptor_ids(),'Xxx',False))
                 continue
 
             if syms[0] == 'X':
-                items.append((m.id(),'X',False))
+                items.append((m.external_descriptor_ids(),'X',False))
                 continue
 
-            for sym in syms:
-                items.append((m.id(),sym,False))
+            for sym,eid in zip(syms,eids):
+                items.append((eid,sym,False))
 
         if aggregate_basecomposition:
             for mid,sym,isaggr in list(items):

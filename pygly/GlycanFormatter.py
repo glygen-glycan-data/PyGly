@@ -6,6 +6,7 @@ from . WURCS20MonoFormatter import WURCS20MonoFormat
 from . Monosaccharide import *
 from . Glycan import Glycan
 from . MonoFactory import MonoFactory
+from . manipulation import Composition
 
 import re, sys, traceback
 import copy
@@ -751,16 +752,19 @@ class GlycoCTFormat(GlycanFormatter):
 
 
         monocnt = 0
+        flsubst = 0
         for id,r in res.items():
-            if not isinstance(r,Monosaccharide):
-                continue
-            monocnt += 1
+            if isinstance(r,Monosaccharide):
+                monocnt += 1
+            else:
+                if not r.has_parent_links():
+                    flsubst += 1
             if r.has_parent_links():
                 continue
             r.set_connected(False)
             unconnected.add(r)
 
-        if len(unconnected) not in (1,monocnt):
+        if len(unconnected) not in (1,monocnt+flsubst):
             raise GlycoCTUnconnectedCountError()
         # single monosacharides are considered a structure, not a composition...
         if len(unconnected) == 1:
@@ -1814,7 +1818,9 @@ class WURCS20Format(GlycanFormatter):
         for i,ms in enumerate(m.group(4).split('-')):
             mono[i+1] = self.mf.get(distinctmono[int(ms)])
             mono[i+1].set_id(i+1)
-            mono[i+1].set_external_descriptor_id(i+1)
+            mono[i+1].set_external_descriptor_id(str(i+1))
+            for j,s in enumerate(mono[i+1].substituents()):
+                s.set_external_descriptor_id("%d.%s"%(i+1,j+1))
 
         undets = set()
         floating_substs = []
@@ -1900,7 +1906,8 @@ class WURCS20Format(GlycanFormatter):
                 subst = self.mf.getsubst(mi.group(5))
                 subst.set_connected(False)
                 floating_substs.append(subst)
-                subst.set_id(-len(floating_substs))
+                subst.set_id("0.%d"%(len(floating_substs),))
+                subst.set_external_descriptor_id("0.%d"%(len(floating_substs),))
                 continue
 
 
@@ -1954,7 +1961,8 @@ class WURCS20Format(GlycanFormatter):
                 subst = self.mf.getsubst(mi.group(3))
                 subst.set_connected(False)
                 floating_substs.append(subst)
-                subst.set_id(-len(floating_substs))
+                subst.set_id("0.%d"%(len(floating_substs),))
+                subst.set_external_descriptor_id("0.%d"%(len(floating_substs),))
                 continue
 
 
@@ -2054,6 +2062,7 @@ class WURCS20Format(GlycanFormatter):
                 childmono = mono[ind2]
 
                 parentmono.add_substituent(subst, parent_type=substparenttype1, parent_pos=pos1, child_type=substchildtype1, child_pos=1)
+                subst.set_external_descriptor_id("%s.%s"%(parentmono.external_descriptor_id(),sum(1 for _ in parentmono.substituents())))
                 linkage = SubstOutLinkage(parent_type=substparenttype2, 
                                           parent_pos=1, 
                                           child_type=substchildtype2, 

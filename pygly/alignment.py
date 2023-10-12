@@ -92,6 +92,24 @@ class MonosaccharideComparitor(Comparitor):
     def sublinkleq(self,a,b):
         return self._sublinkcmp.leq(a,b)
 
+    def idmap(self,a,b,leq=False):
+        assert a.is_monosaccharide() == b.is_monosaccharide()
+        if a.is_monosaccharide():
+            if leq:
+                assert self.leq(a,b)
+            else:
+                assert self.eq(a,b)
+        else:
+            assert self.substeq(a,b)
+        retval = [(a.external_descriptor_id(),b.external_descriptor_id())]
+	for ii,jj in itermatchings(a.substituent_links(),b.substituent_links(),
+                                   lambda i,j: self.sublinkeq(i,j) and self.substeq(i.child(),j.child())):
+            for i,j in zip(ii,jj): 
+                if i.child().external_descriptor_id() and j.child().external_descriptor_id():
+                    retval.append((i.child().external_descriptor_id(),j.child().external_descriptor_id()))
+            break
+        return retval
+
 class SubstituentComparitor(Comparitor):
     pass
 
@@ -163,12 +181,13 @@ class GlycanEquivalence(Comparitor):
 
     ### Assumes glycans have the same topology...
 
-    def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,**kw):
+    def __init__(self,monocmp=None,linkcmp=None,rootmonocmp=None,substcmp=None,**kw):
         self._monocmp = monocmp
         if rootmonocmp:
             self._rootmonocmp = rootmonocmp
         else:
             self._rootmonocmp = monocmp
+        self._substcmp = substcmp
         self._linkcmp = linkcmp
         self.adist = None
         self.bdist = None
@@ -184,7 +203,14 @@ class GlycanEquivalence(Comparitor):
         return self._rootmonocmp.eq(a,b)
 
     def monoeq(self,a,b):
-        return self._monocmp.eq(a,b)
+        if a.is_monosaccharide() and b.is_monosaccharide():
+            return self._monocmp.eq(a,b)
+        elif not a.is_monosaccharide() and not b.is_monosaccharide():
+            return self._substcmp.eq(a,b)
+        return False
+
+    def monoidmap(self,a,b):
+        return self._monocmp.idmap(a,b)
 
     def linkeq(self,a,b):
         return self._linkcmp.eq(a,b)
@@ -391,8 +417,8 @@ class GlycanEquivalence(Comparitor):
             # TODO Cannot handle cases like this...
             return False
 
-        nodeset1 = list(a.all_nodes(subst=False))
-        nodeset2 = list(b.all_nodes(subst=False))
+        nodeset1 = list(a.all_nodes(subst=False,undet_subst=True))
+        nodeset2 = list(b.all_nodes(subst=False,undet_subst=True))
 
         if len(nodeset1) != len(nodeset2):
             return False
@@ -474,8 +500,11 @@ class CompositionEquivalence(Comparitor):
             return self._substcmp.eq(a,b)
         return False
 
+    def monoidmap(self,a,b):
+        return self._monocmp.idmap(a,b)
+
     def eq(self,a,b,idmap=None):
-      
+
         assert idmap in (None,[])
 
         nodeset1 = list(a.all_nodes(subst=False,undet_subst=True))
@@ -518,6 +547,9 @@ class GlycanPartialOrder(Comparitor):
 
     def monoleq(self,a,b):
         return self._monocmp.leq(a,b)
+
+    def monoidmap(self,a,b):
+        return self._monocmp.idmap(a,b,leq=True)
 
     def linkleq(self,a,b):
         return self._linkcmp.leq(a,b)

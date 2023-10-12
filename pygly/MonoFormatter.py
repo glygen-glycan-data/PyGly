@@ -144,11 +144,12 @@ class GlycoCTMonoFormat:
 
             s = Substituent(self.toSym[('Substituent',desc)])
             s.set_id(id)
+            s.set_external_descriptor_id(str(id))
             return s
 
         m = Monosaccharide()
         m.set_id(id)
-        m.set_external_descriptor_id(id)
+        m.set_external_descriptor_id(str(id))
         MODS = desc.split('|')
         MONO = MODS.pop(0).split('-')
         
@@ -369,7 +370,7 @@ class JSONCanonResidue(object):
     def toStr(self,m):
         data = dict()
         if isinstance(m,Monosaccharide):
-            data['residueid'] = m.id()
+            data['residueid'] = m.external_descriptor_id()
             data['residuetype'] = 'monosaccharide'
             data['monodb'] = self.mdb.toStr(m)
             try:
@@ -410,11 +411,11 @@ class JSONCanonResidue(object):
                 pl = m.any_parent_link()
                 if pl.parent_pos() != None:
                     data['site'] = str(pl.posstr(pl.parent_pos()))
-                data['parentid'] = pl.parent().id()
+                data['parentid'] = pl.parent().external_descriptor_id()
       
         elif isinstance(m,Substituent):
 
-            data['residueid'] = m.id()
+            data['residueid'] = m.external_descriptor_id();
             data['residuetype'] = 'substituent'
             data['monodb'] = self.mdb.toStr(m)
             data['name'] = self.gctmf.toStr(m).split(':',1)[1]
