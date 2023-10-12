@@ -55,7 +55,7 @@ for path in sorted(os.listdir(out_dir)):
         # print(3,motifacc,motifs[motifacc])
         # print(4,sorted(motifs[motifacc][0],key=int))
         # print(5,sorted(motifs[motifacc][1],key=lambda t: tuple(map(int,t.split('-')))))
-        motifs[motifacc] = sorted(motifs[motifacc][0],key=int) + \
+        motifs[motifacc] = sorted(motifs[motifacc][0],key=float) + \
                            sorted(motifs[motifacc][1],key=lambda t: tuple(map(int,t.split('-'))))
         # print(6,motifs[motifacc])
     

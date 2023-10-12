@@ -18,6 +18,7 @@ else:
 
 accs = sys.argv[1:]
 
+# sandbox = GlycoTreeSandboxDev()
 sandbox = GlycoTreeSandbox()
 
 if len(accs) == 0:
@@ -53,17 +54,17 @@ for acc in accs:
                 org = 'Mouse'
             if up not in enzymes:
                 enzymes[up] = ([],[])
-            enzymes[up][0].append(str(can_res_index))
-            if canon_parent_id.get(str(can_res_index)):
-                enzymes[up][1].append("%s-%s"%(canon_parent_id[str(can_res_index)],can_res_index))
+            enzymes[up][0].append(can_res_index)
+            if canon_parent_id.get(can_res_index):
+                enzymes[up][1].append("%s-%s"%(canon_parent_id[can_res_index],can_res_index))
             enzymes['__synonyms__'][gn] = up
             enzymes['__synonyms__']["%s.%s"%(org,gn)] = up
     for up in enzymes:
         if up == '__synonyms__':
             continue
-        enzymes[up] = sorted(set(enzymes[up][0]),key=int) + \
-                      sorted(set(enzymes[up][1]),key=lambda t: tuple(map(int,t.split('-'))))
-    
+        enzymes[up] = sorted(set(enzymes[up][0]),key=float) + \
+                      sorted(set(enzymes[up][1]),key=lambda t: tuple(map(float,t.split('-'))))
+
     structure_dict['annotations']['Enzyme'] = enzymes
     print("%s.json -> %s.json"%(acc,acc))
     with open(json_filename, "w") as json_file:

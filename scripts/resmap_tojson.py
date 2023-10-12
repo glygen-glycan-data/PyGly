@@ -88,22 +88,19 @@ for path in sorted(os.listdir(wurcs_dir)):
     iupac_annotations = defaultdict(list)
     for m in canon_gly.all_nodes(undet_subst=True):
         data = json.loads(jcr.toStr(m))
-        data['residueid'] = str(data['residueid'])
-        if 'parentid' in data:
-            data['parentid'] = str(data['parentid'])
-        canonres_data[m.id()] = data
+        canonres_data[m.external_descriptor_id()] = data
 
     for mid,iupacsym,isaggr in canon_gly.iupac_items(canon_gly.all_nodes(undet_subst=True)):
-        iupac_annotations[iupacsym].append(str(mid))
+        iupac_annotations[iupacsym].append(mid[0])
     for iupacsym in iupac_annotations:
-        iupac_annotations[iupacsym] = sorted(iupac_annotations[iupacsym],key=int)
+        iupac_annotations[iupacsym] = sorted(iupac_annotations[iupacsym],key=float)
     # iupac_synonyms = {}
     # for iupacsym in iupac_annotations:
     #     if iupacsym.lower() != iupacsym:
     #         iupac_synonyms[iupacsym.lower()] = iupacsym
     # iupac_annotations['__synonyms__'] = iupac_synonyms
 
-    canonres_data = sorted(canonres_data.values(),key=lambda item: int(item['residueid']))
+    canonres_data = sorted(canonres_data.values(),key=lambda item: float(item['residueid']))
 
     svg_idmap = []
     if canon_gly.has_root() and svg_gly.has_root():
@@ -112,19 +109,20 @@ for path in sorted(os.listdir(wurcs_dir)):
                 print("Error accession:",acc,file=sys.stderr)
                 print("Cannot align SVG-based and WURCS-based glycans",file=sys.stderr)
             continue
+        svg_idmapids = [ ti for t in svg_idmap for ti in glyimeq.monoidmap(*t)]
     elif not canon_gly.has_root() and not svg_gly.has_root():
         if not glycompimeq.eq(svg_gly,canon_gly,idmap=svg_idmap):
             if verbose:
                 print("Error accession:",acc,file=sys.stderr)
                 print("Cannot align SVG-based and WURCS-based composition glycans",file=sys.stderr)
             continue
+        svg_idmapids = [ ti for t in svg_idmap for ti in glycompimeq.monoidmap(*t)]
+
     else:
         if verbose:
             print("Error accession:",acc,file=sys.stderr)
             print("Cannot align SVG-based and WURCS-based glycans - composition mismatch",file=sys.stderr)
         continue
-
-    svg_idmapids = [ (t[0].external_descriptor_id(),t[1].id()) for t in svg_idmap ]
 
     svg_idmap_dict = defaultdict(list)
     for svg_id,canon_id in svg_idmapids:
@@ -153,7 +151,8 @@ for path in sorted(os.listdir(wurcs_dir)):
     structure_dict['residuemap'] = svg_idmap_dict
     structure_dict['svg_sequence_md5'] = svg_seqhash
     
-    structure_dict['annotations'] = {}
+    if 'annotations' not in structure_dict:
+        structure_dict['annotations'] = {}
     structure_dict['annotations']['IUPAC'] = iupac_annotations
     
     print("%s.txt,%s.svg -> %s.json"%(acc,acc,acc))
