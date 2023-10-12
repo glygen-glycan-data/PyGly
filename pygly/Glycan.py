@@ -24,6 +24,7 @@ from . CompositionTable import Composition,ResidueCompositionTable,PermethylComp
 from . ElementMass import MonoisotopicElementMass
 from . MonoFactory import MonoFactory
 from . MonoFormatter import MassSym
+from . manipulation import Composition
 
 ctable = ResidueCompositionTable()
 pctable = PermethylCompositionTable()
