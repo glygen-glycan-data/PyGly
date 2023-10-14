@@ -24,7 +24,7 @@ from . CompositionTable import Composition,ResidueCompositionTable,PermethylComp
 from . ElementMass import MonoisotopicElementMass
 from . MonoFactory import MonoFactory
 from . MonoFormatter import MassSym
-from . manipulation import Composition
+from . import manipulation
 
 ctable = ResidueCompositionTable()
 pctable = PermethylCompositionTable()
@@ -587,7 +587,7 @@ class Glycan:
                 syms = [sym.split('+')[0]]
                 eids = [[m.external_descriptor_id()]]
                 for s in m.substituents():
-                    if s.name() in Composition.floating_substs:
+                    if s.name() in manipulation.Composition.floating_substs:
                         try:
                             syms.append(iupacSym.toStr(s))
                         except KeyError:
@@ -597,7 +597,7 @@ class Glycan:
                         eids[0].append(s.external_descriptor_id())
                 syms1 = [sym1.split('+')[0]]
                 for s in m1.substituents():
-                    if s.name() in Composition.floating_substs:
+                    if s.name() in manipulation.Composition.floating_substs:
                         try:
                             syms1.append(iupacSym.toStr(s))
                         except KeyError:
