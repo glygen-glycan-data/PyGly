@@ -546,6 +546,26 @@ class Glycan:
     iupac_composition_syms = ['Man','Gal','Glc','Xyl','Fuc','ManNAc','GlcNAc','GalNAc','NeuAc','NeuGc','Hex','HexNAc','dHex','Pent','Kdn','Sia','GlcA','GalA','IdoA','ManA','HexA','GlcN','GalN','ManN','HexN']
     iupac_aldi_composition_syms = ['Man+aldi','Gal+aldi','Glc+aldi','Fuc+aldi','ManNAc+aldi','GlcNAc+aldi','GalNAc+aldi','Hex+aldi','HexNAc+aldi','dHex+aldi']
     subst_composition_syms = ['S','P','Me','aldi']
+    subsumption_relationships = dict(map(lambda l: tuple(l.split()),filter(None,map(str.strip,"""
+        Man       Hex
+        Gal       Hex
+        Glc       Hex
+        Fuc       dHex
+        ManNAc    HexNAc
+        GlcNAc    HexNAc
+        GalNAc    HexNAc
+        NeuAc     Sia
+        NeuGc     Sia
+        Kdn       Sia
+        GalA      HexA
+        GlcA      HexA
+        IdoA      HexA
+        ManA      HexA
+        GlcN      HexN
+        GalN      HexN
+        ManN      HexN
+        Xyl       Pent
+    """.splitlines()))))
 
     def iupac_items(self, nodeiterable, floating_substituents=True, aggregate_basecomposition=True):
 
@@ -633,26 +653,8 @@ class Glycan:
 
         if aggregate_basecomposition:
             for mid,sym,isaggr in list(items):
-                if sym in ('Man','Gal','Glc'):
-                    items.append((mid,'Hex',True))
-                elif sym in ('GalNAc','GlcNAc','ManNAc'):
-                    items.append((mid,'HexNAc',True))
-                elif sym in ('Man+aldi','Gal+aldi','Glc+aldi'):
-                    items.append((mid,'Hex+aldi',True))
-                elif sym in ('GalNAc+aldi','GlcNAc+aldi','ManNAc+aldi'):
-                    items.append((mid,'HexNAc+aldi',True))
-                elif sym in ('Fuc',):
-                    items.append((mid,'dHex',True))
-                elif sym in ('Fuc+aldi',):
-                    items.append((mid,'dHex+aldi',True))
-                elif sym in ('Xyl',):
-                    items.append((mid,'Pent',True))
-                elif sym in ('NeuAc','NeuGc','Kdn'):
-                    items.append((mid,'Sia',True))
-                elif sym in ('GlcA','GalA','IdoA','ManA'):
-                    items.append((mid,'HexA',True))
-                elif sym in ('GlcN','GalN','ManN'):
-                    items.append((mid,'HexN',True))
+                if sym in self.subsumption_relationships:
+                    items.append((mid,self.subsumption_relationships[sym],True))
 
         return items
 
