@@ -2,14 +2,18 @@
 
 from getwiki import GlycoMotifWiki, Enzyme
 import sys, re, glob, json
+import findpygly
+from pygly.GlycanResource import GlycoTreeSandbox, GlycoTreeSandboxDev
 
-w = GlycoMotifWiki()
+# gts = GlycoTreeSandbox()
+gts = GlycoTreeSandboxDev()
 
 allenz = dict()
 tree = dict()
 
-for jf in glob.glob(sys.argv[1]+'/*.json'):
-    enzdata = json.loads(open(jf).read())
+for gtsselector in ['mapped_N','mapped_O']:
+  for enzdata in gts.allglycans(gtsselector):
+    print(enzdata['accession'])
     for r in enzdata["residues"]:
         if r.get('glycotree',"none") == "none":
             continue
@@ -34,8 +38,9 @@ for r in tree.values():
     ch.add(r['id'])
     p['child'] = ch
 
-for jf in glob.glob(sys.argv[1]+'/*.json'):
-    enzdata = json.loads(open(jf).read())
+for gtsselector in ['mapped_N','mapped_O']:
+  for enzdata in gts.allglycans(gtsselector):
+    print(enzdata['accession'])
     for r in enzdata["residues"]:
         if r.get('glycotree',"none") == "none":
             continue
@@ -46,26 +51,40 @@ for jf in glob.glob(sys.argv[1]+'/*.json'):
             if e['gene_name'] in allenz:
                 allenz[e['gene_name']]['action'].add(action)
                 continue
-            allenz[e['gene_name']] = dict(genename=e['gene_name'],
+            allenz[e['gene_name']] = dict(genename=e['gene_name'],glycotree=gtsselector.split('_')[-1],
                                           species=('Human' if e['species'] == 'Homo sapiens' else 'Mouse'),
                                           uniprot=e['uniprot'],action=set([action]))
+
+w = GlycoMotifWiki()
 
 for ed in allenz.values():
     if 'action' in ed:
       d = []
       for i,a in enumerate(sorted(ed['action'])):
         if a[3]:
-            d.append('%s %s %s %s to %s'%("Attach" if i == 0 else "attach",a[1],a[2],a[0],a[3]))
+            if a[0] not in ('sulfate',):
+                d.append('%s %s %s %s to %s'%("Attach" if i == 0 else "attach",a[1],a[2],a[0],a[3]))
+            else:
+                d.append('%s %s linked %s to %s'%("Attach" if i == 0 else "attach",a[2],a[0],a[3]))
         else:
-            d.append('%s %s to Asn'%("Attach" if i == 0 else "attach",a[0]))
+            if ed['glycotree'] == 'N':
+                d.append('%s %s to Asn'%("Attach" if i == 0 else "attach",a[0]))
+            elif ed['glycotree'] == 'O':
+                d.append('%s %s to Ser/Thr'%("Attach" if i == 0 else "attach",a[0]))
       ed['description'] = "; ".join(d) + "."
       del ed['action']
     else:
       ed['description'] = ""
+    if 'action' in ed:
+        del ed['action']
+    if 'glycotree' in ed:
+        del ed['glycotree']
     enz = w.get(ed['genename'])
-    enz.update(**ed)
     if not enz:
         enz = Enzyme(**ed)
+    else:
+        enz.update(**ed)
     enz.delete('action')
+    enz.delete('tree')
     if w.put(enz):
         print("Enzyme %s updated."%(ed['genename'],))

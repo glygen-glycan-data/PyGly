@@ -53,18 +53,24 @@ def check_idmaps(motifids,glycanids,idmaps): ###ID MAPS
             break
     return bad == 0
 
+def idmaps_toids(idmaps,aligner):
+    newidmaps = []
+    for idmap in idmaps:
+        idmapids = [ ti for t in idmap for ti in aligner.monoidmap(*t) ]
+        newidmaps.append(idmapids)
+    return newidmaps
 
 def get_match_index (idmaps,glycan=None):
     allstructids = set()
     allstructlinkids = set()
     for idmap in idmaps: 
-        structids = set(t[1].id() for t in idmap)
+        structids = set(t[1] for t in idmap)
         allstructids.update(structids)
         if glycan:
             for l in glycan.all_links():
-                if l.parent().id() in structids and \
-                   l.child().id() in structids:
-                    allstructlinkids.add((l.parent().id(),l.child().id()))
+                if l.parent().external_descriptor_id() in structids and \
+                   l.child().external_descriptor_id() in structids:
+                    allstructlinkids.add((l.parent().external_descriptor_id(),l.child().external_descriptor_id()))
     x = "Y:"+",".join(str(i) for i in sorted(allstructids))
     if glycan:
         x += ":"+",".join("%s-%s"%p for p in sorted(allstructlinkids))
@@ -105,10 +111,9 @@ if len(sys.argv) > 2:
         continue
     if gly:
         motif_gobjs[acc] = gly
-        motifids[acc] = [ m.id() for m in motif_gobjs[acc].all_nodes() ]
+        motifids[acc] = motif_gobjs[acc].external_descriptor_ids()
         assert len(motifids[acc]) == len(set(motifids[acc]))
         motifids[acc] = set(motifids[acc]) 
-        
    
 else:
       for m in w.itermotif():
@@ -119,7 +124,7 @@ else:
         gly = gtc.getGlycan(acc)
         if gly:
             motif_gobjs[acc] = gly
-            motifids[acc] = [ m.id() for m in motif_gobjs[acc].all_nodes() ]
+            motifids[acc] = motif_gobjs[acc].external_descriptor_ids()
             assert len(motifids[acc]) == len(set(motifids[acc]))
             motifids[acc] = set(motifids[acc]) 
  
@@ -150,39 +155,6 @@ def secondtostr(i):
 result = []
 i, l, lastper = 0.0, len(list(gtc.allseq(format="wurcs"))) / 100.0, 0
 
-
-start_ts = time.time()
-motif_accs = motif_gobjs.keys()
-
-archived = set()
-gco = GlyCosmosNoCache()
-for acc in gco.archived():
-    acc = acc["accession"]
-    archived.add(acc)
-    #print(acc)
-
-
-def secondtostr(i):
-    i = int(i)
-
-    h = i / 3600
-    m = (i - h * 3600) / 60
-
-    h = str(h)
-    if len(h) == 1:
-        h = "0" + h
-
-    m = str(m)
-    if len(m) == 1:
-        m = "0" + m
-
-    return "%sh:%sm" % (h, m)
-
-# f1 = open("tmp.txt", "w")
-result = []
-i, l, lastper = 0.0, len(list(gtc.allseq(format="wurcs"))) / 100.0, 0
-
-
 start_ts = time.time()
 motif_accs = motif_gobjs.keys()
 
@@ -196,19 +168,18 @@ result_file.write("Motif\tStructure\tCore_Inclusive\tSubstructure_Inclusive\tWho
 
 for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
     #print(glycan_acc)
-    
-        
+
     i += 1
     per = i / l
 
-    if glycan_acc in archived:
-        continue
+    # if glycan_acc in archived:
+    #     continue
  
     nodes_cache.clear()
     
     try:
         glycan = wp.toGlycan(s)
-        glycanids = [ m.id() for m in glycan.all_nodes() ]
+        glycanids = glycan.external_descriptor_ids()
         assert len(glycanids) == len(set(glycanids))
         glycanids = set(glycanids)
     except:
@@ -225,10 +196,12 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
        
         idmaps_loose_core = []
         loose_core = loose_matcher.leq(motif, glycan, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=True, idmaps=idmaps_loose_core)
+        idmaps_loose_core = idmaps_toids(idmaps_loose_core,loose_matcher)
         
         idmaps_loose_noncore = []
         loose_noncore = loose_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=True, idmaps=idmaps_loose_noncore)
-
+        idmaps_loose_noncore = idmaps_toids(idmaps_loose_noncore,loose_matcher)
+ 
         loose_substructure = loose_core or loose_noncore
         idmaps_loose_substructure = list(idmaps_loose_core) + list(idmaps_loose_noncore)
 
@@ -242,6 +215,7 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
         idmaps_loose_nred = [] 
         if not motif.repeated() and not glycan.repeated() and loose_substructure:
             loose_nred = loose_nred_matcher.leq(motif, glycan, underterminedLinkage=True, idmaps=idmaps_loose_nred)
+            idmaps_loose_nred = idmaps_toids(idmaps_loose_nred,loose_nred_matcher)
 
         strict_core, strict_noncore, strict_whole, strict_nred = False, False, False, False
         idmaps_strict_core = []
@@ -251,10 +225,11 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
         
         if loose_core:
             strict_core = strict_matcher.leq(motif, glycan, rootOnly=True, anywhereExceptRoot=False, underterminedLinkage=False, idmaps=idmaps_strict_core)
-            
+            idmaps_strict_core = idmaps_toids(idmaps_strict_core,strict_matcher)
       
         if loose_noncore:
-            strict_noncore = strict_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False, idmaps=idmaps_strict_noncore) #partial changed here
+            strict_noncore = strict_matcher.leq(motif, glycan, rootOnly=False, anywhereExceptRoot=True, underterminedLinkage=False, idmaps=idmaps_strict_noncore)
+            idmaps_strict_noncore = idmaps_toids(idmaps_strict_noncore,strict_matcher)
      
         strict_substructure = strict_core or strict_noncore
         idmaps_strict_substructure = list(idmaps_strict_core) + list(idmaps_strict_noncore) #partial changed here
@@ -265,6 +240,7 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
        
         if loose_nred and strict_substructure:
             strict_nred = strict_nred_matcher.leq(motif, glycan, underterminedLinkage=False, idmaps=idmaps_strict_nred)
+            idmaps_strict_nred = idmaps_toids(idmaps_strict_nred,strict_nred_matcher)
             
         res0 = [loose_core, loose_substructure, loose_whole, loose_nred, 
                 strict_core, strict_substructure,strict_whole, strict_nred]

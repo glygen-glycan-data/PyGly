@@ -3,6 +3,7 @@ import os
 import sys
 import csv
 import copy
+import gzip
 import hashlib
 import rdflib
 import rdflib.plugins.serializers.rdfxml
@@ -39,7 +40,7 @@ ColumnMap = {
     "Nonreducing-End": ('Non_Red_Inclusive','Non_Red_Strict')
 }
 
-for line in csv.DictReader(open(motif_tsv), dialect="excel-tab"):
+for line in csv.DictReader(gzip.open(motif_tsv), dialect="excel-tab"):
     motifacc = line['Motif']
     acc = line['Structure']
     for alignment_type in ColumnMap:

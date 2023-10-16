@@ -1570,10 +1570,42 @@ class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
 
         return True
 
+    def idmap(self,a,b,**kw):
+        assert a.is_monosaccharide() == b.is_monosaccharide()
+        if a.is_monosaccharide():
+            assert self.leq(a,b)
+        else:
+            assert self.substeq(a,b)
 
+        retval = [(a.external_descriptor_id(),b.external_descriptor_id())]
+        any = False
 
+        asl = list(a.substituent_links())
+        bsl = list(b.substituent_links())
+        if len(asl) > len(bsl):
+            return False
 
-      
+        bsl_mandatory, bsl_optional = [], []
+        for sl in bsl:
+            if sl.child().name() in [Substituent.sulfate, Substituent.phosphate]:
+                bsl_optional.append(sl)
+            else:
+                bsl_mandatory.append(sl)
+
+        for x in choose(bsl_optional, len(asl) - len(bsl_mandatory)):
+
+            for ii, jj in itermatchings(asl, x + bsl_mandatory,
+                                        lambda i, j: self.sublinkeq(i, j) and self.substeq(i.child(), j.child())):
+                for i,j in zip(ii,jj): 
+                    if i.child().external_descriptor_id() and j.child().external_descriptor_id():
+                        retval.append((i.child().external_descriptor_id(),j.child().external_descriptor_id()))
+                any = True
+                break
+            if any:
+                break
+        assert(any)
+        return retval
+
 class SubstituentEqual(SubstituentComparitor):
     def eq(self,a,b):
         if a._sub != b._sub:
