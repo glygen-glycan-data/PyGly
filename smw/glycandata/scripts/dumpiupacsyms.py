@@ -4,7 +4,7 @@ import findpygly
 from pygly.Glycan import Glycan
 
 print("\t".join(["IUPAC","Subsumption"]))
-for sym in Glycan.iupac_composition_syms + ["Xxx"]:
+for sym in sorted(Glycan.iupac_composition_syms + ["Xxx"],key=lambda s: Glycan.subsumption_relationships.get(s,s)):
     if sym in Glycan.subsumption_relationships:
         print("\t".join([sym,Glycan.subsumption_relationships[sym]]))
     else:
