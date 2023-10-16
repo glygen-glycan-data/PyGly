@@ -1,6 +1,6 @@
 #!/bin/env python2
 
-import csv, sys
+import csv, sys, gzip
 from collections import defaultdict
 
 from getwiki import GlycoMotifWiki
@@ -54,7 +54,7 @@ def process_pairs(g,gn,pairs,total,grpspec,highlow):
     print("\t".join(map(str,[g,gn,cat,spec])))
 
 fieldnames = ['Tissue','Cell type']
-rows = csv.DictReader(open(inputfile),dialect='excel-tab')
+rows = csv.DictReader(gzip.open(inputfile),dialect='excel-tab')
 allgroups = set()
 fieldname = None
 for r in rows:
@@ -70,7 +70,7 @@ total = len(allgroups)
 grpspec = 5
 highlow = 10
 
-rows = csv.DictReader(open(inputfile),dialect='excel-tab')
+rows = csv.DictReader(gzip.open(inputfile),dialect='excel-tab')
 lastgene = None
 for r in rows:
     g = r['Gene']
