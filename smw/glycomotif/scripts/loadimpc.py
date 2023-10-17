@@ -15,6 +15,8 @@ for row in csv.DictReader(gzip.open(sys.argv[1])):
 
 for e in w.iterenzyme():
     gn = e.get('genename')
+    if e.get('species') != 'Mouse':
+       continue
     if len(phenotypes.get(gn,[])) > 0:
        e.set("phenotype",sorted(phenotypes[gn]))
        e.set("phenotype_source","IMPC")
