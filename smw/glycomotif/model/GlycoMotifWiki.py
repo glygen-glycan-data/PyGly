@@ -326,25 +326,18 @@ class Enzyme(SMW.SMWClass):
     def toPython(self,data):
         data = super(Enzyme,self).toPython(data)
 
-	if isinstance(data.get('phenotype'),basestring):
-	    data['phenotype'] = data.get('phenotype','').split(';')
-
-	if isinstance(data.get('disease'),basestring):
-	    data['disease'] = data.get('disease','').split(';')
-
-	if isinstance(data.get('ortholog'),basestring):
-	    data['ortholog'] = data.get('ortholog','').split(',')
+        for key in ('phenotype','disease','tissue','celltype'):
+	    if isinstance(data.get(key),basestring):
+	        data[key] = data.get(key,'').split(';')
 
 	return data
 
     def toTemplate(self,data):
         data = super(Enzyme,self).toTemplate(data)
 
-	if 'phenotype' in data:
-	    data['phenotype'] = ';'.join(map(str,data.get('phenotype')))
-
-	if 'disease' in data:
-	    data['disease'] = ';'.join(map(str,data.get('disease')))
+        for key in ('phenotype','disease','tissue','celltype'):
+	    if key in data:
+	        data[key] = ';'.join(map(str,data.get(key,'')))
 
         if 'ortholog' in data:
             data['ortholog'] = ",".join(sorted(data['ortholog']))
