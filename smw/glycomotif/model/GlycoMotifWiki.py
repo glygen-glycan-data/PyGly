@@ -330,6 +330,10 @@ class Enzyme(SMW.SMWClass):
 	    if isinstance(data.get(key),basestring):
 	        data[key] = data.get(key,'').split(';')
 
+        for key in ('ortholog',):
+	    if isinstance(data.get(key),basestring):
+	        data[key] = data.get(key,'').split(',')
+
 	return data
 
     def toTemplate(self,data):
