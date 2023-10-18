@@ -53,9 +53,6 @@ for e in w.iterenzyme():
        e.set("celltype_source","GTEX")
        sorted_list = sorted(celltype[gn]) if isinstance(celltype[gn], list) else celltype[gn]
        e.set("celltype", sorted_list)
-       e.delete("cell_source_key")
-       e.delete("cell_source")
-       e.delete("cell")
        print(e)
     else:	
        e.delete("celltype_source_key")
