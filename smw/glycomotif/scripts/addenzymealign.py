@@ -63,12 +63,12 @@ for r in csv.DictReader(gzip.open(sys.argv[1]),dialect='excel-tab'):
 for m in w.itermotif(collection="GGM"):
     mgtc = m.get('glytoucan')
     align = m.get('alignment')[0]
-    he = enzdata[mgtc,align].get('human',[])
+    he = enzdata[mgtc,align].get('human',{})
     if len(he) > 0:
         m.set("humanenzyme",[ "%s:%s"%(t[0],",".join(t[1])) for t in he.items() ])
     else:
         m.delete("humanenzyme")
-    me = enzdata[mgtc,align].get('mouse',[])
+    me = enzdata[mgtc,align].get('mouse',{})
     if len(me) > 0:
         m.set("mouseenzyme",[ "%s:%s"%(t[0],",".join(t[1])) for t in me.items() ])
     else:

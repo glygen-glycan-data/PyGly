@@ -19,6 +19,12 @@ if len(sys.argv) > 1:
       print >>sys.stderr, p.name
       w.refresh(p)
 
+  elif sys.argv[1] == "Enzymes":
+
+    for p in w.iterpages(include_categories=['Enzyme']):
+      print >>sys.stderr, p.name
+      w.refresh(p)
+
   elif sys.argv[1] == "Collections":
 
     for p in w.iterpages(include_categories=['Collection']):
