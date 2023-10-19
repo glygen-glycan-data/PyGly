@@ -29,14 +29,12 @@ for row in csv.DictReader((open(sys.argv[2])), delimiter = "\t", fieldnames=head
 	disease[row["database_id"]] = row["disease_name"]
 
 
-print(dis_id)
+#print(dis_id.get)
 for gene, v in dis_id.items():
    for ids in v:
        if ids in disease:
-          #print(disease[ids])
           gdisease[gene].append(disease[ids])
-       else:
-         gdisease[gene] = []
+
 
 #print(gdisease)
 
