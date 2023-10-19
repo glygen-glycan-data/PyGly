@@ -20,14 +20,14 @@ for row in csv.DictReader((open(sys.argv[1])), delimiter = "\t", fieldnames=head
 for k, v in tis_type.items():
       
       if "detected" in v[1]:
-         detected = v[1].partition(",")[0]
+         part = v[1].partition(",")
+         detected = part[0]
          detected = detected.replace("%", "")
-         high = v[1].partition(",")[1]
-         high = detected.replace("%", "")
-
-         if float(detected.split("=")[1]) >= 80:
+         high = part[2]
+         high = high.replace("%", "")
+         if float(high.split("=")[1]) >= 80:
             tissue[k] = ["Ubiquitous, highly expressed"]
-         elif float(high.split("=")[1]) >= 80:
+         elif float(detected.split("=")[1]) >= 80:
             tissue[k] = ["Ubiquitous"]
 
       if v[0] == "Group enriched":
@@ -37,6 +37,7 @@ for k, v in tis_type.items():
          tissue[k] = ["Enriched in " + v[1]]
       elif v[0] == "Highly enriched":
          tissue[k] = ["Highly enriched in " + v[1]]
+
 
 
 
