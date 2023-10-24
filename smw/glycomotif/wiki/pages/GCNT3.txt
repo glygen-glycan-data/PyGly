@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.
+|genename=GCNT3
+|ortholog=Gcnt3
+|species=Human
+|uniprot=O95395
+}}

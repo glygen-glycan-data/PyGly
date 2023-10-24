@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach 4 linked sulfate to GalNAc.
+|genename=Chst9
+|mgiacc=MGI:1918617
+|ortholog=CHST9
+|species=Mouse
+|uniprot=Q76EC5
+}}

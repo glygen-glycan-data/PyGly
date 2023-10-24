@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000180
 |displayhgv=false
-|enzyme=B3GNT2;B3GNT4;B3GNT8;B3gnt2;B3gnt4;B3gnt8;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;FUT3;FUT4;FUT5;FUT6;FUT9;Fut4;Fut9;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b;ST3GAL3;ST3GAL4;ST3GAL6;St3gal3;St3gal4;St3gal6
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl
@@ -26,10 +25,14 @@ LIN
 7:7o(3+2)8d
 8:8d(5+1)9n
 |glytoucan=G22418PV
+|humanenzyme=B3GNT2:1,4;B3GNT4:1,4;B3GNT5:1,4;B3GNT8:1,4;B4GALT1:3,5;B4GALT2:3,5;B4GALT3:3,5;B4GALT4:3,5;B4GALT5:3,5;FUT10:2;FUT11:2;FUT3:2;FUT4:2;FUT5:2;FUT6:2;FUT7:2;FUT9:2;GCNT1:1;GCNT2:1;GCNT3:1;MGAT2:1;MGAT4A:1;MGAT4B:1;MGAT4C:1;MGAT5:1;MGAT5B:1;ST3GAL1:6;ST3GAL2:6;ST3GAL3:6;ST3GAL4:6;ST3GAL5:6;ST3GAL6:6
+|mouseenzyme=B3gnt2:1,4;B3gnt4:1,4;B3gnt5:1,4;B3gnt8:1,4;B4galt1:3,5;B4galt2:3,5;B4galt3:3,5;B4galt4:3,5;B4galt5:3,5;Fut10:2;Fut11:2;Fut4:2;Fut7:2;Fut9:2;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat2:1;Mgat4a:1;Mgat4b:1;Mgat4c:1;Mgat5:1;Mgat5b:1;St3gal1:6;St3gal2:6;St3gal3:6;St3gal4:6;St3gal5:6;St3gal6:6
 |name=VIM-2
 |prefname=VIM-2
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Macher et al. (1988) A novel carbohydrate, differentiation antigen on fucogangliosides of human myeloid ...
 |sameas=GD.R000463,GDC.000033,GDH.000155,GDV.000111,GE.EP0019,GM.G22418PV,UCM.000155
+|sandbox_nlinked=G02076VP;G03754YM;G06327TZ;G20650NV;G43873MM;G51074KT;G60483MG;G62836JK;G66106WQ;G76705YY
+|sandbox_olinked=G00978GW;G02150AC;G13496UJ;G24475OY;G55638XL;G58201OX;G67775HG;G77557JA
 |wurcs=WURCS{{=}}2.0/4,6,5/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3-1-3-4/a3-b1_a4-c1_c3-d1_d4-e1_e3-f2
 }}

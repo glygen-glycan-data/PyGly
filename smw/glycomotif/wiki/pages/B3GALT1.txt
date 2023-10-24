@@ -1,0 +1,10 @@
+{{Enzyme
+|celltype=Enriched in Astrocytes;Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000172318
+|description=Attach beta 3 Gal to GlcNAc.
+|genename=B3GALT1
+|ortholog=B3galt1
+|species=Human
+|uniprot=Q9Y5Z6
+}}

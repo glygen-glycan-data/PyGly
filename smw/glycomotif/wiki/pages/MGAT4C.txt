@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Enriched in Astrocytes;Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000182050
 |description=Attach beta 4 GlcNAc to Man.
 |genename=MGAT4C
 |ortholog=Mgat4c

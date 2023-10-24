@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000075
 |displayhgv=false
-|enzyme=B4GALNT3;B4GALNT4;B4galnt3;B4galnt4;FUT10;FUT11;FUT3;FUT4;FUT5;FUT6;FUT9;Fut10;Fut11;Fut4;Fut9;MGAT1;MGAT2;Mgat1;Mgat2
 |glycoct=RES
 1b:x-dglc-HEX-1:5
 2s:n-acetyl
@@ -18,12 +17,16 @@ LIN
 3:1o(4+1)4d
 4:4d(2+1)5n
 |glytoucan=G02240AO
+|humanenzyme=B4GALNT3:3;B4GALNT4:3;FUT10:2;FUT11:2;FUT3:2;FUT4:2;FUT5:2;FUT6:2;FUT7:2;FUT9:2;GCNT1:1;GCNT2:1;GCNT3:1;MGAT1:1;MGAT2:1
 |keyword=LacdiNAc;N,N'-diacetyllactosediamine
+|mouseenzyme=B4galnt3:3;B4galnt4:3;Fut10:2;Fut11:2;Fut4:2;Fut7:2;Fut9:2;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat1:1;Mgat2:1
 |name=Fucosylated LDN
 LDNF
 |prefname=Fucosylated LDN
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Nyame et al. (2000) Antibody responses to the fucosylated LacdiNAc glycan antigen in Schistosoma ...
 |sameas=CCRC.000017,GD.R000209,GDC.000017,GDH.000089,GDV.000067,GE.EP0151,GM.G02240AO,UCM.000089
+|sandbox_nlinked=G01522FD;G02473HY;G02670IJ;G03319HQ;G05081RC;G06432WK;G09255AF;G09605DV;G10223RO;G10716SX
+|sandbox_olinked=G11846US;G17766PJ;G26021BY;G70332AA
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3/a3-b1_a4-c1
 }}

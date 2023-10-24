@@ -1,0 +1,10 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=GALNT14
+|ortholog=Galnt14
+|species=Human
+|tissue=Enriched in cerebral cortex;Enriched in esophagus;Enriched in kidney;Enriched in pituitary gland
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000158089
+|uniprot=Q96FL9
+}}

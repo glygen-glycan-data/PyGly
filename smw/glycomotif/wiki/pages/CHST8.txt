@@ -1,0 +1,13 @@
+{{Enzyme
+|description=Attach 4 linked sulfate to GalNAc.
+|disease=Peeling skin syndrome 3
+|disease_source=HPO
+|disease_source_key=64377
+|genename=CHST8
+|ortholog=Chst8
+|phenotype=Abnormal hair morphology;Autosomal recessive inheritance;Erythema;Juvenile onset;Pruritus;White scaling skin
+|phenotype_source=HPO
+|phenotype_source_key=64377
+|species=Human
+|uniprot=Q9H2A9
+}}

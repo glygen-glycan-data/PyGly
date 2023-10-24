@@ -1,8 +1,20 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000168282
 |description=Attach beta 2 GlcNAc to Man.
+|disease=Congenital disorder of glycosylation, type IIa;MGAT2-CDG
+|disease_source=HPO
+|disease_source_key=4247
 |genename=MGAT2
 |iscdg=true
 |ortholog=Mgat2
+|phenotype=Abnormal bleeding;Abnormal earlobe morphology;Abnormal facial shape;Abnormal heart morphology;Abnormal repetitive mannerisms;Abnormal rib cage morphology;Abnormal scalp morphology;Abnormality of the common coagulation pathway;Abnormality of the endocrine system;Aggressive behavior;Arrhythmia;Autosomal recessive inheritance;Brachycephaly;Brachydactyly;Brain atrophy;Cerebellar hypoplasia;Combined immunodeficiency;Convex nasal ridge;Coxa valga;Decreased circulating IgG level;Decreased circulating antibody level;Decreased lymphocyte proliferation in response to mitogen;Dental crowding;Diastema;Dolichocephaly;Downslanted palpebral fissures;Everted lower lip vermilion;Failure to thrive;Feeding difficulties;Gastroesophageal reflux;Gastroparesis;Gastrostomy tube feeding in infancy;Generalized hypotonia;Gingival overgrowth;Global developmental delay;Hirsutism;Hydrops fetalis;Hypertelorism;Hypertonia;Hypoplastic nipples;Hypotonia;Hypsarrhythmia;Impaired lymphocyte transformation with phytohemagglutinin;Impaired platelet aggregation;Infantile onset;Infantile spasms;Intellectual disability, severe;Inverted nipples;Kyphosis;Long eyelashes;Long philtrum;Low hanging columella;Low-set ears;Low-set, posteriorly rotated ears;Macrocephaly;Macrodontia;Macrotia;Mandibular prognathia;Microcephaly;Midfrontal capillary hemangioma;Open mouth;Osteopenia;Patent ductus arteriosus;Pectus excavatum;Peripheral neuropathy;Pes planus;Posteriorly rotated ears;Postnatal growth retardation;Progressive microcephaly;Prominent antihelix;Prominent nasal bridge;Protruding tongue;Proximal placement of thumb;Recurrent upper and lower respiratory tract infections;Reduced antithrombin III activity;Reduced factor IX activity;Reduced factor XI activity;Reduced factor XII activity;Reduced level of N-acetylglucosaminyltransferase II;Reflex asystolic syncope;Respiratory distress;Retrognathia;Scoliosis;Seizure;Self-mutilation;Sensorineural hearing impairment;Severe global developmental delay;Short neck;Short stature;Slender long bone;Sparse hair;Stereotypical hand wringing;Thick eyebrow;Thin vermilion border;Thoracolumbar kyphoscoliosis;Type II transferrin isoform profile;Unsteady gait;Ventricular septal defect;Wide intermamillary distance;Wide mouth
+|phenotype_source=HPO
+|phenotype_source_key=4247
 |species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000168282
 |uniprot=Q10469
 }}

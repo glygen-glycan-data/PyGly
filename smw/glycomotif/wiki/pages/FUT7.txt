@@ -1,0 +1,10 @@
+{{Enzyme
+|celltype=Enriched in B-cells;Enriched in Langerhans cells;Enriched in NK-cells;Enriched in Schwann cells;Enriched in dendritic cells
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000180549
+|description=Attach alpha 3 Fuc to GlcNAc.
+|genename=FUT7
+|ortholog=Fut7
+|species=Human
+|uniprot=Q11130
+}}

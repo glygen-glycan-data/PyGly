@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000034
 |displayhgv=false
-|enzyme=ABO;Abo;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;FUT1;FUT2;Fut1;Fut2;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Sec1
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl
@@ -18,11 +17,15 @@ LIN
 3:3o(2+1)4d
 4:3o(3+1)5d
 |glytoucan=G94956AW
+|humanenzyme=A3GALT2:4;ABO:4;B3GNT3:1;B3GNT6:1;B4GALT1:2;B4GALT2:2;B4GALT3:2;B4GALT4:2;B4GALT5:2;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;GGTA1:4;MGAT1:1;MGAT2:1;MGAT4A:1;MGAT4B:1;MGAT4C:1
 |keyword=Blood group B;Blood group type 2
+|mouseenzyme=A3galt2:4;Abo:4;B3gnt3:1;B3gnt6:1;B4galt1:2;B4galt2:2;B4galt3:2;B4galt4:2;B4galt5:2;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Ggta1:4;Mgat1:1;Mgat2:1;Mgat4a:1;Mgat4b:1;Mgat4c:1;Sec1:3
 |name=Blood group B (type 2)
 |prefname=Blood group B (type 2)
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
 |sameas=GD.R000192,GDB.002191,GDH.000028,GE.EP0262,GM.G94956AW,UCM.000028
+|sandbox_nlinked=G00797ZX;G01476WA;G05227QG;G06437BU;G08113XU;G08242BT;G12174RN;G14354BD;G19615BB;G21050RT
+|sandbox_olinked=G00428HK;G00924FH;G07764JS;G12230UX;G14623FX;G16682CP;G25845BH;G30651QG;G35486FC;G38859XU
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4/a4-b1_b2-c1_b3-d1
 }}

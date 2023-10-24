@@ -3,5 +3,8 @@
 |genename=ST6GAL1
 |ortholog=St6gal1
 |species=Human
+|tissue=Enriched in liver
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000073849
 |uniprot=P15907
 }}

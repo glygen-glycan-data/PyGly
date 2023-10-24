@@ -1,0 +1,12 @@
+{{#ask:
+ [[glycomotif:phenotype::+]]
+ |?glycomotif:phenotype=
+ |format=valuerank
+ |mainlabel=- 
+ |headers=hide
+ |liststyle=none
+ |template=RowForPhenotypes
+ |introtemplate=IntroForPhenotypes
+ |outrotemplate=OutroForPhenotypes
+ |maxtags=20
+}}

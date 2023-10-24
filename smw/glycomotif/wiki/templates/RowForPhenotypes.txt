@@ -1,0 +1,5 @@
+<includeonly>
+|-
+|{{PhenotypeLink|glycomotif:phenotype|{{{1|}}}}}
+|{{{rank|}}}
+</includeonly>

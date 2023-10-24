@@ -25,10 +25,14 @@ LIN
 7:7d(2+1)8n
 8:7o(4+1)9d
 |glytoucan=G56045WU
+|humanenzyme=B3GNT2:3;B3GNT3:1,3;B3GNT4:3;B3GNT5:3;B3GNT6:1;B3GNT8:3;B4GALT1:2,4,6;B4GALT2:2,4,6;B4GALT3:2,4;B4GALT4:2;B4GALT5:2;GCNT1:5;GCNT2:5;GCNT3:5;MGAT1:1
+|mouseenzyme=B3gnt2:3;B3gnt3:1,3;B3gnt4:3;B3gnt5:3;B3gnt6:1;B3gnt8:3;B4galt1:2,4,6;B4galt2:2,4,6;B4galt3:2,4;B4galt4:2;B4galt5:2;Gcnt1:5;Gcnt2:5;Gcnt3:5;Mgat1:1
 |name=I antigen
 |prefname=I antigen
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Feizi et al. (1979) Three types of blood group I specificity among monoclonal anti-I ...
 |sameas=GD.R000498,GDC.000003,GDH.000084,GDV.000040,GE.EP0138,GM.G56045WU,UCM.000084
+|sandbox_nlinked=G17650QU;G32247GO;G93913SP
+|sandbox_olinked=G00069YC;G03494YC;G04478DK;G05128BK;G07145VL;G19075LN;G23870PO;G32405GG;G32944VN;G33877TL
 |wurcs=WURCS{{=}}2.0/2,6,5/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2-1-2/a4-b1_b3-c1_b6-e1_c4-d1_e4-f1
 }}

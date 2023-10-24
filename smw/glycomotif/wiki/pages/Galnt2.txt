@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=Galnt2
+|mgiacc=MGI:894694
+|ortholog=GALNT2
+|phenotype=preweaning lethality, incomplete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:894694
+|species=Mouse
+|uniprot=Q6PB93
+}}

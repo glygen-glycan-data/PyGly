@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=GALNT9
+|ortholog=Galnt9
+|species=Human
+|uniprot=Q9HCQ5
+}}

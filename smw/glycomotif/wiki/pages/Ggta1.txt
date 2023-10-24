@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 Gal to Gal.
+|genename=Ggta1
+|mgiacc=MGI:95704
+|ortholog=GGTA1
+|species=Mouse
+|uniprot=P23336
+}}

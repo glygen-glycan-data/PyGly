@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Enriched in Oocytes
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000130383
 |description=Attach alpha 3 Fuc to GlcNAc.
 |genename=FUT5
 |species=Human

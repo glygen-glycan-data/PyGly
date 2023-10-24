@@ -1,68 +1,162 @@
 /* Any JavaScript here will be loaded for all users on every page load. */
 
-// Common action for all pages
+// Convenience globals
 window.$ = jQuery;
 window.mw = window.mediaWiki = mw;
-console.log("Common.js is running");
-var topologyComponents, redonlyComponents, nonredonlyComponents;
 
-// s stands for the scripts, while p stand for the loading status for the page
-var syncStatus = {"s1": false, "s2": false, "s3": false, "c1": false, "c2": false, "c3": false, "p": false};
-function injectEssentialElementForTheViewer(){
-    /* Inject the 3 script and the style sheet into each page */
-    jQuery.ajaxSetup({cache: true});
-    jQuery.getScript("https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/HGV/hgv.js", function () {
-        syncStatus.s1 = true;
-        syncAndContinue();
-    });
-    jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.js", function () {
-        syncStatus.s2 = true;
-        syncAndContinue();
-    });
+// Decide what javascript module(s) are used on the page
+var MODULE_GLYRELVIEWER = "GlycanRelViewer";
+var MODULE_MOTIFALIGN = "MotifAlign";
+var MODULE_ONDEMANDALIGN = "OnDemandAlignment";
+var MODULE_ENZYME = "Enzyme";
 
-    // Test URL: https://cdn.jsdelivr.net/gh/glygen-glycan-data/PyGly@c01f426fe6147f9ce5c15495fc2dc0d5bd3b1eda/smw/glycomotif/data/glycoepitope.txt
-    // Production URL: https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology.json
-    var params = document.getElementById("hgv_para")
-    var prefix;
-    if (params) {
-        prefix = params.getAttribute("data-prefix");
-    }
-    var fileending=".json";
+var pageModules = new Set();
+if (document.getElementById("hgv_para") != null) {
+    pageModules.add(MODULE_GLYRELVIEWER);
+}
+if (document.getElementById("motif_align_para") != null) {
+    pageModules.add(MODULE_MOTIFALIGN);
+}
+if (document.getElementById("motif_match_real_time_para") != null) {
+    pageModules.add(MODULE_ONDEMANDALIGN);
+} 
+if (document.getElementById("enzymepage") != null) {
+    pageModules.add(MODULE_ENZYME);
+} 
+
+
+// configure the asynchronous requests 
+// for supporting JS, CSS, and JSON files
+var asyncurls = {};
+var jsondata = {};
+
+if (pageModules.has(MODULE_GLYRELVIEWER)) {
+
+  asyncurls.js1 = "https://cdn.jsdelivr.net/gh/glygen-glycan-data/JSWidgets/HGV/hgv.js";
+  asyncurls.js2 = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.js";
+  asyncurls.js3 = "https://d3js.org/d3.v3.min.js";
+
+  var params = document.getElementById("hgv_para")
+  var jsonversion = "";
+  if (params) {
+    prefix = params.getAttribute("data-prefix");
     if (prefix == "glycomotifdev") {
-        fileending="dev.json";
+        jsonversion="dev";
     } else if (prefix == "glycomotiftest") {
-        fileending="test.json";
+        jsonversion="test";
     }
-    jQuery.getScript("https://d3js.org/d3.v3.min.js", function () {
-        syncStatus.s3 = true;
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/topology"+fileending, function (data) {
-            topologyComponents = data;
-            syncStatus.c1 = true;
-            syncAndContinue();
-        });
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/redonly"+fileending, function (data) {
-            redonlyComponents = data;
-            syncStatus.c2 = true;
-            syncAndContinue();
-        });
-        d3.json("https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/nonredonly"+fileending, function (data) {
-            nonredonlyComponents = data;
-            syncStatus.c3 = true;
-            syncAndContinue();
-        });
-    });
-    $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css" type="text/css" />');
+  }
+  
+  var base = "https://raw.githubusercontent.com/glygen-glycan-data/PyGly/master/smw/glycomotif/data/";
+  asyncurls.json1 = base + "topology" + jsonversion + ".json";
+  asyncurls.json2 = base + "redonly" + jsonversion + ".json";
+  asyncurls.json3 = base + "nonredonly" + jsonversion + ".json";
+  
+  asyncurls.css1 = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css";
 }
-if (document.getElementById("hgv_para") != null){
-    injectEssentialElementForTheViewer();
+
+if (pageModules.has(MODULE_MOTIFALIGN) || pageModules.has(MODULE_ENZYME)) {
+  asyncurls.js4 = "https://glymage.glyomics.org/js/glymagesvg.js";
+  // asyncurls.js4 = "https://edwardslab.bmcb.georgetown.edu/glymagedev/js/glymagesvg.js";
+  // asyncurls.css2 = "https://glymage.glyomics.org/css/glymagesvg.css";
+  // asyncurls.css2 = "https://edwardslab.bmcb.georgetown.edu/glymagedev/css/glymagesvg.css";
 }
+
+var syncStatus = {};
+syncStatus.page = false;
+Object.keys(asyncurls).forEach(function (key) {
+  syncStatus[key] = false;
+});
 
 jQuery(document).ready(function() {
-    syncStatus.p = true;
+    syncStatus.page = true;
     syncAndContinue();
 });
 
-var hgv_option_template = {
+function checkpoint(keys,func) {
+  var ready = true;
+  keys.forEach(function (key) {
+    if (!syncStatus[key]) {
+      ready = false;
+    }
+  });
+  if (ready) {
+    func();
+  }
+}
+
+function syncAndContinue() {
+  checkpoint(Object.keys(syncStatus), function() {
+    if (pageModules.has(MODULE_GLYRELVIEWER)) {
+      initGlyRelViewer();
+    }
+    if (pageModules.has(MODULE_MOTIFALIGN)) {
+      initMotifAlign();
+    }
+    if (pageModules.has(MODULE_ENZYME)) {
+      initEnzyme();
+    }
+    if (pageModules.has(MODULE_ONDEMANDALIGN)) {
+      initOnDemandAlign();
+    }
+  });
+}
+
+function getasyncjs() {
+  jQuery.ajaxSetup({cache: true});
+  var keys = new Array();
+  Object.keys(asyncurls).forEach(function (key) {
+    if (key.startsWith("js") && !key.startsWith("json")) {
+      keys.push(key);
+    };
+  });
+  keys.forEach(function (key) {
+    jQuery.getScript(asyncurls[key], function () {
+      syncStatus[key] = true;
+      checkpoint(keys,getasyncjson);
+    });
+  });
+  checkpoint(keys,getasyncjson);
+};
+
+function getasyncjson() {
+  var keys = new Array();
+  Object.keys(asyncurls).forEach(function (key) {
+    if (key.startsWith("json")) {
+      keys.push(key);
+    };
+  });
+  keys.forEach(function (key) {
+    d3.json(asyncurls[key], function (data) {
+      syncStatus[key] = true;
+      jsondata[key] = data;
+      checkpoint(keys,syncAndContinue);
+    });
+  });
+  checkpoint(keys,syncAndContinue);
+};
+
+function getasync() {
+  var keys = new Array();
+  Object.keys(asyncurls).forEach(function (key) {
+    if (key.startsWith("css")) {
+      keys.push(key);
+    };
+  });
+  keys.forEach(function (key) {
+    $('head').append('<link rel="stylesheet" href="'+asyncurls[key]+'" type="text/css" />');
+    syncStatus[key] = true;
+  });
+  getasyncjs();
+};
+
+// Kick off all asyncronous loading...
+getasync();
+
+// Kick off the GLYRELVIEWER module
+function initGlyRelViewer() {
+  
+  var hgv_option_template = {
     essentials : {
         div_ID : "", // the ID of div container
         component : {}, // the data, it will be added momentarily
@@ -92,646 +186,672 @@ var hgv_option_template = {
         externalURL1: "", //"https://edwardslab.bmcb.georgetown.edu/glycomotif/GM.",
         externalURL2: ""
     }
-};
-var divid1 = "hgv_topology";
-var divid2 = "hgv_topology_navigator";
-var divid3 = "hgv_topology_navigator2";
+  };
+  var divid1 = "hgv_topology";
+  var divid2 = "hgv_topology_navigator";
+  var divid3 = "hgv_topology_navigator2";
 
-var externalURL1 = "";
-var imageURLonCluster = "";
-var paraDiv = document.getElementById("hgv_para");
-if (paraDiv){
+  var externalURL1 = "";
+  var imageURLonCluster = "";
+  var paraDiv = document.getElementById("hgv_para");
+  if (paraDiv){
     var gtcacc = paraDiv.getAttribute("data-glytoucan");
+    console.log("gtcacc", gtcacc)
     var appPrefix = paraDiv.getAttribute("data-prefix");
     var displayBool = paraDiv.getAttribute("data-display");
     externalURL1 = paraDiv.getAttribute("data-jumpurlprefix");
     imageURLonCluster = paraDiv.getAttribute("data-imageurlprefix");
     var displayBool = true;
-
-}
-else{
+  }
+  else{
     var displayBool = false;
+  }
+
+  hgv_option_template.contextMenu.externalURL1 = externalURL1;
+
+  var option1 = jQuery.extend(true, {}, hgv_option_template);
+  var option2 = jQuery.extend(true, {}, hgv_option_template);
+  var option3 = jQuery.extend(true, {}, hgv_option_template);
+  option1.essentials.div_ID = divid1;
+  option2.essentials.div_ID = divid2;
+  option3.essentials.div_ID = divid3;
+  option2.essentials.GlyTouCanImagePara.style = "compact";
+  option3.essentials.GlyTouCanImagePara.style = "compact";
+  option2.display.orientation = 4;
+
+  var topologyComponents = jsondata.json1;
+  var redonlyComponents = jsondata.json2;
+  var nonredonlyComponents = jsondata.json3;
+
+  var viewer1, viewer2, viewer3;
+
+  // for the GLYRELVIEWER module
+  function deepCopyViewer(){
+      viewer1 = jQuery.extend(true, {}, glycanviewer);
+      viewer2 = jQuery.extend(true, {}, glycanviewer);
+      viewer3 = jQuery.extend(true, {}, glycanviewer);
+  }
+
+  // for the GLYRELVIEWER module
+  function fillTheDiv() {
+      locateViewer1();
+      locateViewer2();
+      locateViewer3();
+  }
+
+  // for the GLYRELVIEWER module
+  // Load topology
+  function locateViewer1(){
+      var flag = false;
+      for (var key in topologyComponents){
+          if (Object.keys(topologyComponents[key].nodes).includes(gtcacc)){
+              var comp = topologyComponents[key];
+              for (var node in comp.nodes){
+                  if (node == "Topology"){
+                      comp.nodes["Topology"].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/compact/" + gtcacc + ".png";
+                  }
+                  else {
+                      comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/"+node+".png";
+                  }
+              }
+
+              option1.essentials.component = comp;
+              //var style = '<style>#'+ divid1 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
+              var style = '<style>#'+ divid1 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
+              $('head').append(style);
+              flag = true;
+              break;
+          }
+      }
+      if (flag){
+          viewer1.init(option1);
+          viewer1.network.fit();
+          setTimeout(function(){
+              viewer1.network.selectNodes([gtcacc]);
+          }, 1500);
+      }
+      else{
+          console.log("Bug in load viewer1")
+      }
+  }
+
+  // for the GLYRELVIEWER module
+  // Load sub-structure matching
+  function locateViewer2(){
+      var flag = false;
+      for (var key in nonredonlyComponents){
+          if (key == gtcacc){
+              var comp = nonredonlyComponents[key];
+              for (var node in comp.nodes){
+                  if (node == gtcacc){
+                      comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
+                  }
+                  else{
+                      comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
+                  }
+                  // Clobber
+                  comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/compact/" + node + ".png";
+              }
+              option2.essentials.component = comp;
+              var style = '<style>#'+ divid2 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
+              $('head').append(style);
+              flag = true;
+              break;
+          }
+      }
+      if (flag){
+          viewer2.init(option2);
+          viewer2.network.fit();
+          setTimeout(function(){
+              viewer2.network.selectNodes([gtcacc]);
+          }, 1500);
+
+      }
+      else{
+          console.log("Bug in load viewer2")
+      }
+  }
+
+
+  // for the GLYRELVIEWER module
+  function locateViewer3(){
+      var flag = false;
+      
+      for (var key in redonlyComponents){
+          if (key == gtcacc){
+              var comp = redonlyComponents[key];
+              for (var node in comp.nodes){
+                  if (node == gtcacc){
+                      comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
+                  }
+                  else{
+                      comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
+                  }
+                  // Clobber
+                  comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/compact/" + node + ".png";
+              }
+              option3.essentials.component = comp;
+              var style = '<style>#'+ divid3 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
+              $('head').append(style);
+              flag = true;
+              break;
+          }
+      }
+      if (flag){
+          viewer3.init(option3);
+          viewer3.network.fit();
+          setTimeout(function(){
+              viewer3.network.selectNodes([gtcacc]);
+          }, 1500);
+
+      }
+      else{
+          console.log("Bug in load viewer3")
+      }
+  }
+
+  if (displayBool){
+    deepCopyViewer();
+    fillTheDiv();
+  }
+
+} // close function initGlyRelViewer
+
+// Kick off the ENZYME module
+function initEnzyme() {
+
+  var glymagesvg_params = {
+      baseurl: "https://glymage.glyomics.org/"
+      // baseurl: "https://edwardslab.bmcb.georgetown.edu/glymagedev/"
+  }
+  glymagesvg.init(glymagesvg_params);
+
 }
 
-hgv_option_template.contextMenu.externalURL1 = externalURL1;
+// Kick off the MOTIFALIGN module
+function initMotifAlign() {
 
-var option1 = jQuery.extend(true, {}, hgv_option_template);
-var option2 = jQuery.extend(true, {}, hgv_option_template);
-var option3 = jQuery.extend(true, {}, hgv_option_template);
-option1.essentials.div_ID = divid1;
-option2.essentials.div_ID = divid2;
-option3.essentials.div_ID = divid3;
-option2.essentials.GlyTouCanImagePara.style = "compact";
-option3.essentials.GlyTouCanImagePara.style = "compact";
-option2.display.orientation = 4;
+  var glymagesvg_params = {
+      baseurl: "https://glymage.glyomics.org/"
+      // baseurl: "https://edwardslab.bmcb.georgetown.edu/glymagedev/"
+  }
+  glymagesvg.init(glymagesvg_params);
 
-var viewer1, viewer2, viewer3;
+  var imageURLprefix = "https://glymage.glyomics.org/image/snfg/extended/";
+  var imageURLsuffix = ".png";
 
-function syncAndContinue (){
-    var proceed = true;
-    for (var k in syncStatus){
-        var v = syncStatus[k];
-        if (!v){
-            proceed = false
-        }
+  var motifpageid = document.getElementById("motif_align_para").getAttribute("data-page_id");
+  var prefix = document.getElementById("motif_align_para").getAttribute("data-prefix");
+  var sandbox = new Set(document.getElementById("motif_align_para").getAttribute("data-sandbox").split(';'));
+  console.log(sandbox);
+
+  var colNum = 3;
+  var rowNum = 5;
+  var alignment_info = {};
+
+  // for the MOTIFALIGN module
+  function alignmentQueryConstructor(motif_page_id, first) {
+    var set_query = " LIMIT 61";
+    if (!first) {
+      set_query = " OFFSET 61";
     }
-    if (proceed){
-        console.log("scripts and page loading complete");
-        if (displayBool){
-            deepCopyViewer();
-            fillTheDiv();
-        }
-    }
-}
-
-function deepCopyViewer(){
-    viewer1 = jQuery.extend(true, {}, glycanviewer);
-    viewer2 = jQuery.extend(true, {}, glycanviewer);
-    viewer3 = jQuery.extend(true, {}, glycanviewer);
-}
-
-function fillTheDiv() {
-    locateViewer1();
-    locateViewer2();
-    locateViewer3();
-}
-
-// Load topology
-function locateViewer1(){
-    var flag = false;
-    for (var key in topologyComponents){
-        if (Object.keys(topologyComponents[key].nodes).includes(gtcacc)){
-            var comp = topologyComponents[key];
-            for (var node in comp.nodes){
-                if (node == "Topology"){
-                    comp.nodes["Topology"].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/compact/" + gtcacc + ".png";
-                }
-                else {
-                    comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/"+node+".png";
-                }
-            }
-
-            option1.essentials.component = comp;
-            //var style = '<style>#'+ divid1 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
-            var style = '<style>#'+ divid1 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
-            $('head').append(style);
-            flag = true;
-            break;
-        }
-    }
-    if (flag){
-        viewer1.init(option1);
-        viewer1.network.fit();
-        setTimeout(function(){
-            viewer1.network.selectNodes([gtcacc]);
-        }, 1500);
-    }
-    else{
-        console.log("Bug in load viewer1")
-    }
-}
-
-// Load sub-structure matching
-function locateViewer2(){
-    var flag = false;
-    for (var key in nonredonlyComponents){
-        if (key == gtcacc){
-            var comp = nonredonlyComponents[key];
-            for (var node in comp.nodes){
-                if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
-                }
-                else{
-                    comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
-                }
-                // Clobber
-                comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/compact/" + node + ".png";
-            }
-            option2.essentials.component = comp;
-            var style = '<style>#'+ divid2 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
-            $('head').append(style);
-            flag = true;
-            break;
-        }
-    }
-    if (flag){
-        viewer2.init(option2);
-        viewer2.network.fit();
-        setTimeout(function(){
-            viewer2.network.selectNodes([gtcacc]);
-        }, 1500);
-
-    }
-    else{
-        console.log("Bug in load viewer2")
-    }
-}
-
-
-function locateViewer3(){
-    var flag = false;
-    for (var key in redonlyComponents){
-        if (key == gtcacc){
-            var comp = redonlyComponents[key];
-            for (var node in comp.nodes){
-                if (node == gtcacc){
-                    comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
-                }
-                else{
-                    comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/extended/" + node + ".png";
-                }
-                // Clobber
-                comp.nodes[node].alternativeImageURL = "https://glymage.glyomics.org/image/snfg/compact/" + node + ".png";
-            }
-            option3.essentials.component = comp;
-            var style = '<style>#'+ divid3 + '{width: calc(100%); height: calc(70vh); overflow: hidden; border: solid;border-color: lightgrey;}</style>';
-            $('head').append(style);
-            flag = true;
-            break;
-        }
-    }
-    if (flag){
-        viewer3.init(option3);
-        viewer3.network.fit();
-        setTimeout(function(){
-            viewer3.network.selectNodes([gtcacc]);
-        }, 1500);
-
-    }
-    else{
-        console.log("Bug in load viewer3")
-    }
-}
-
-if (document.getElementById("motif_align_para") != null){
-    // SNFG
-
-    var imageURLprefix = "https://glymage.glyomics.org/image/snfg/extended/";
-    var imageURLsuffix = ".png";
-
-    var motifpageid = document.getElementById("motif_align_para").getAttribute("data-page_id");
-    var prefix = document.getElementById("motif_align_para").getAttribute("data-prefix");
-
-    function alignmentQueryConstructor(motif_page_id, first) {
-        var set_query = " LIMIT 61";
-	if (!first) {
-	    set_query = " OFFSET 61";
-	}
-        var query =
-            'PREFIX glycomotif: <http://glyomics.org/glycomotif#>\n' +
-            '\n' +
-            'SELECT ?alignment_type ?structure_gtc_acc ?strict ?structure_residue_ids ?structure_link_ids\n' +
-            'WHERE {\n' +
-            '\n' +
-            '   ?collection a glycomotif:Collection .\n' +
-            '   ?motif a glycomotif:Motif .\n' +
-            '   \n' +
-            '   ?motif glycomotif:id ?PageID .\n' +
-            '   ?motif glycomotif:incollection ?collection .\n' +
-            '   ?motif glycomotif:glytoucan ?motif_gtc_acc .\n' +
-            '   ?motif glycomotif:alignment ?alignment_type .\n' +
-            '\n' +
-            '   ?alignment glycomotif:motif_accession ?motif_gtc_acc .\n' +
-            '   ?alignment glycomotif:alignment_type ?alignment_type .\n' +
-            '   ?alignment glycomotif:structure_accession ?structure_gtc_acc .\n' +
-            '   ?alignment glycomotif:structure_residue_ids ?structure_residue_ids .\n' +
-            '   ?alignment glycomotif:structure_link_ids ?structure_link_ids .\n' +
-            '   ?alignment glycomotif:strict ?strict .\n' +
-            '\n' +
-            '   ?motif glycomotif:id "' + motif_page_id + '" .\n' +
-            '}' + ' ORDER BY ?structure_gtc_acc ?alignment_type' + set_query;
-        return query
-    }
-
-
-
-    function sparqlQuery(endpt, query) {
-
-        var params={
-            "default-graph": "", "should-sponge": "soft", "query": query,
-            "debug": "on", "timeout": 1000, "format": "application/json",
-            "save": "display", "fname": ""
-        };
-
-        var querypart="";
-        for(var k in params) {
-            querypart+=k+"="+encodeURIComponent(params[k])+"&";
-        }
-        var queryURL = endpt + '?' + querypart;
-
-        return queryURL;
-    }
-
-    function alignment(motif, first){
-        var endpt = "https://glycomotif.glyomics.org/" + prefix + "/sparql/query";
-        
-	var query = alignmentQueryConstructor(motif, first);
-        var qurl = sparqlQuery(endpt, query);
-        jQuery.getJSON(qurl).then(function (a){
-            alignmentPart2(a, first)
-        });
-    }
-
-    function alignmentPart2(response, first){
-
-        var result = response.results.bindings;
-        
-        for (var i in result){
-            var pair = result[i];
-            
-            var structure_gtc_acc = pair.structure_gtc_acc.value;
-            var alignment_type = pair.alignment_type.value;
-            var structure_residue_ids = pair.structure_residue_ids.value;
-            var structure_link_ids = pair.structure_link_ids.value;
-
-            var strictstr = pair.strict.value;
-            var strict = false;
-            if (strictstr == "true"){
-                strict = true;
-            } else if (strictstr == "false"){
-                strict = false;
-            }
-
-            if (strict){
-                alignment_type = alignment_type + ",&nbsp;strict";
-            }
-
-            if (structure_gtc_acc) { 
-                if (alignment_info.hasOwnProperty(structure_gtc_acc)) {
-                    align_info = alignment_info[structure_gtc_acc];
-                    align_info["Alignment_Type"].push(alignment_type);
-                    align_info["IDs"].push(structure_residue_ids);
-                    align_info["LinkIDs"].push(structure_link_ids);
-                } else {
-                    align_info = {};
-                    align_info["Accesssion"] = structure_gtc_acc;
-                    align_info["Alignment_Type"] = [alignment_type];
-                    align_info["IDs"] = [structure_residue_ids];
-                    align_info["LinkIDs"] = [structure_link_ids];
-                    alignment_info[structure_gtc_acc]=align_info;
-                }
-            }
-        }
-
-        if (Object.keys(alignment_info).length > 0){
-             if (first) {
-	         draw(0); 
-	         alignment(motifpageid,false);
-	     }
-        } else {
-            document.getElementById("glycomotif_alignment_result")
-                .innerText = "No alignment found for this motif";
-        }
-         
-        return alignment_info;
-    }
-
-    
-    function CreateGlycanFigure(gtcid, extra, alignment_ids, alignment_link_ids) {
-
-        var figure = document.createElement("figure");
-        //console.log(gtcid);
-        figure.style = "width: 100%; text-align: center; margin: 0px;"
-        figure.id = "img_" + gtcid;
-
-        var img = document.createElement("object");
-        img.data = "https://glymage.glyomics.org/getimage?notation=snfg&display=extended&image_format=svg&acc=" + gtcid + "&highlight=" + alignment_ids;
-
-        if (alignment_link_ids.length > 0) {
-           img.data += ','+alignment_link_ids;
-        }
-        img.style = "max-width: 100%; height: auto; vertical-align: middle; cursor: pointer;";
-        img.acc = gtcid;
-        img.onclick = function (d) {
-            var acc = this.acc;
-            window.open("https://glytoucan.org/Structures/Glycans/" + acc);
-        }
-
-        var captionacc = document.createElement("a");
-        captionacc.innerText = gtcid;
-        captionacc.style.textAlign = "center";
-        captionacc.href = "https://glytoucan.org/Structures/Glycans/" + gtcid;
-
-        var caption = document.createElement("figcaption");
-       
-        figure.appendChild(img);
-        caption.appendChild(captionacc);
-        if (extra.length > 0){
-            caption.innerHTML += "<br/>("+extra+")";
-        }
-        caption.style.textAlign = "center";
-        figure.appendChild(caption);
-
-        return figure
-    }
-
-    var colNum = 3;
-    var rowNum = 5;
-    function draw(pageNum){
-  
-        var container = document.getElementById("glycomotif_alignment_result");
-        var pageTotalNum = Math.ceil(Object.keys(alignment_info).length/ (rowNum * colNum));
-
-        container.innerHTML = "";
-        var table = document.createElement("table");
-        table.style.width = "100%";
-
-        var count = 0;
-
-        var tr = document.createElement("tr");
-
-        var i = 1;
-        while (i <= colNum){
-            var td = document.createElement("td");
-            td.style.width = (100/colNum).toString() + "%";
-            tr.appendChild(td);
-            i+=1;
-        }
-        table.appendChild(tr);
-
-        var tr = document.createElement("tr");
-        var td = document.createElement("td");
-        
-        var allacc = Object.keys(alignment_info);
-        var len = allacc.length;
-        var pageSize = rowNum*colNum;
-        for (var i = pageSize*pageNum; i < Math.min(len,pageSize*(pageNum+1)); i++) {
-            var c = allacc[i];
-            var alignment_ids = alignment_info[c].IDs;
-            var alignment_link_ids = alignment_info[c].LinkIDs;
-            var alignment_types_new = alignment_info[c].Alignment_Type;
-            count += 1;
-            if (count == colNum+1){
-                table.appendChild(tr);
-                count = 1;
-                tr = document.createElement("tr");
-            }
-            td = document.createElement("td");
-
-          
-            alignment_types_new = alignment_types_new.sort();
-            alignment_types_new = alignment_types_new.join("; ");
-            alignment_ids = new Set(alignment_ids.join(",").split(","));
-            alignment_ids = Array.from(alignment_ids).join(",");
-            alignment_link_ids = new Set(alignment_link_ids.join(",").split(","));
-            alignment_link_ids = Array.from(alignment_link_ids).join(",");
-
-            var figure = CreateGlycanFigure(c, alignment_types_new, alignment_ids, alignment_link_ids);
-
-            td.appendChild(figure);
-            tr.appendChild(td);
-        }
-        table.appendChild(tr);
-        container.appendChild(table);
-
-        var containerButton = document.createElement("div");
-
-        function jump() {
-            draw(parseInt(this.pageNum));
-        }
-
-        function buttonGenerator() {
-            var button = document.createElement("a");
-            button.onclick = jump;
-            containerButton.appendChild(button);
-            return button
-        }
-
-        var button, valid;
-        valid = (pageNum != 0);
-        button = document.createElement("a");
-        containerButton.appendChild(button);
-        button.innerText = "Prev";
-        button.onclick = jump;
-        if (valid){
-            button.pageNum = pageNum-1;
-            button.href = "javascript:;";
-        }
-        else{
-            button.pageNum = 0;
-        }
-
-        var space = document.createElement("span");
-        space.innerHTML = "&nbsp/&nbsp"
-        containerButton.appendChild(space);
-
-        var button, valid;
-        valid = (pageNum != pageTotalNum-1);
-        button = document.createElement("a");
-        containerButton.appendChild(button);
-        button.innerText = "Next";
-        button.onclick = jump;
-        if (valid){
-            button.pageNum = pageNum+1;
-            button.href = "javascript:;";
-        }
-        else{
-            button.pageNum = pageNum;
-        }
-
-        container.appendChild(document.createElement("br"));
-        container.appendChild(document.createElement("br"));
-        container.appendChild(document.createElement("br"));
-        container.appendChild(containerButton);
-        containerButton.style = "position: absolute; right: 10%; ";
-
-    }
-
-    var alignment_info = {};
-    alignment(motifpageid,true);
-    
-}
-
-if (document.getElementById("motif_match_real_time_para")){
-
-    var motif_match_webservice_url = "https://motifmatch.glyomics.org/";
-    var glymage_webservice_url = "https://glymage.glyomics.org/";
-    var image_url_prefix = "https://glymage.glyomics.org/image/snfg/extended/";
-    var image_url_suffix = ".png";
-
-
-    var alignment_result = [];
-
-    var inputSectionEle = document.getElementById("motif_match_real_time_input");
-    var inputEle = document.getElementById("motif_match_real_time_para");
-
-    var resultSectionEle = document.getElementById("motif_rt_result");
-    var queryGlycanEle = document.getElementById("query_glycan");
-    var resultTableEle = document.getElementById("alignment_table");
-
-    var original_seq = "";
-    var prefix = "";
-
-    inputEle.innerHTML = "<table style=\"width: 80%; max-width: 80%; height: 300px; margin: 0 auto;\"><tr><td>Glycan (GlycoCT or WURCS format):</td></tr><tr><td><textarea style=\"width: 100%; max-width: 100%; height: 300px; margin: 0 auto;\" id=\"query_sequence\" >WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea></td></tr>" +
-        "<tr><td align=\"right\"><button onclick=\"submit()\">Align</button></td></tr></table>";
-
-
-    function submit(){
-        var seq = document.getElementById("query_sequence").value;
-        seq = seq.trim();
-
-        original_seq = seq;
-           
-        var mmrtpara = document.getElementById("motif_match_real_time_para")
-        prefix = mmrtpara.getAttribute("data-prefix");
-        var collection = mmrtpara.getAttribute("data-collection");
-        if (collection == null){
-            collection = "GM";
-        }
-
-        var task = JSON.stringify({
-            "seq": seq,
-            "collection": collection
-        });
-
-        image_update();
-
-        jQuery.post(motif_match_webservice_url+"submit", 
-                   {"developer_email": prefix+"@glyomics.org", "task": task}, function (d){
-            var jobid = d[0].id;
-            retrieve(jobid);
-        },'json');
-
+    var query =
+      'PREFIX glycomotif: <http://glyomics.org/glycomotif#>\n' +
+      '\n' +
+      'SELECT ?alignment_type ?structure_gtc_acc ?strict ?structure_residue_ids ?structure_link_ids\n' +
+      'WHERE {\n' +
+      '\n' +
+      '   ?collection a glycomotif:Collection .\n' +
+      '   ?motif a glycomotif:Motif .\n' +
+      '   \n' +
+      '   ?motif glycomotif:id ?PageID .\n' +
+      '   ?motif glycomotif:incollection ?collection .\n' +
+      '   ?motif glycomotif:glytoucan ?motif_gtc_acc .\n' +
+      '   ?motif glycomotif:alignment ?alignment_type .\n' +
+      '\n' +
+      '   ?alignment glycomotif:motif_accession ?motif_gtc_acc .\n' +
+      '   ?alignment glycomotif:alignment_type ?alignment_type .\n' +
+      '   ?alignment glycomotif:structure_accession ?structure_gtc_acc .\n' +
+      '   ?alignment glycomotif:structure_residue_ids ?structure_residue_ids .\n' +
+      '   ?alignment glycomotif:structure_link_ids ?structure_link_ids .\n' +
+      '   ?alignment glycomotif:strict ?strict .\n' +
+      '\n' +
+      '   ?motif glycomotif:id "' + motif_page_id + '" .\n' +
+      '}' + ' ORDER BY ?structure_gtc_acc ?alignment_type' + set_query;
+    return query
+  }
+
+  // for the MOTIFALIGN module
+  function sparqlQuery(endpt, query) {
+
+    var params={
+      "default-graph": "", "should-sponge": "soft", "query": query,
+      "debug": "on", "timeout": 1000, "format": "application/json",
+      "save": "display", "fname": ""
     };
 
-    function retrieve(jobid){
-        jQuery.getJSON(motif_match_webservice_url+ "retrieve?task_id=" + jobid, {}, function (d){
-            var result = d[0];
-            var jobid = result.id;
+    var querypart="";
+    for(var k in params) {
+      querypart+=k+"="+encodeURIComponent(params[k])+"&";
+    }
+    var queryURL = endpt + '?' + querypart;
+    return queryURL;
+  }
 
-            if (result.finished){
-                update_result(result);
-            }
-            else {
-                setTimeout(retrieve, 200, jobid);
-            }
+  // for the MOTIFALIGN module
+  function alignment(motif, first){
+    var endpt = "https://glycomotif.glyomics.org/" + prefix + "/sparql/query";
+          
+    var query = alignmentQueryConstructor(motif, first);
+    var qurl = sparqlQuery(endpt, query);
+    jQuery.getJSON(qurl).then(function (a){
+      alignmentPart2(a, first)
+    });
+  }
 
-        })
+  // for the MOTIFALIGN module
+  function alignmentPart2(response, first){
+
+    var result = response.results.bindings;
+    for (var i in result){
+      var pair = result[i];
+            
+      var structure_gtc_acc = pair.structure_gtc_acc.value;
+      var alignment_type = pair.alignment_type.value;
+      //console.log("alignment_type",alignment_type)
+      var structure_residue_ids = pair.structure_residue_ids.value;
+      var structure_link_ids = pair.structure_link_ids.value;
+
+      var strictstr = pair.strict.value;
+      var strict = false;
+      if (strictstr == "true"){
+        strict = true;
+      } else if (strictstr == "false"){
+        strict = false;
+      }
+
+      if (strict){
+        alignment_type = alignment_type + ",&nbsp;strict";
+      }
+
+      if (structure_gtc_acc) { 
+        if (alignment_info.hasOwnProperty(structure_gtc_acc)) {
+          align_info = alignment_info[structure_gtc_acc];
+          align_info["Alignment_Type"].push(alignment_type);
+          align_info["IDs"].push(structure_residue_ids);
+          align_info["LinkIDs"].push(structure_link_ids);
+        } else {
+          align_info = {};
+          align_info["Accesssion"] = structure_gtc_acc;
+          align_info["Alignment_Type"] = [alignment_type];
+          align_info["IDs"] = [structure_residue_ids];
+          align_info["LinkIDs"] = [structure_link_ids];
+          alignment_info[structure_gtc_acc]=align_info;
+        }
+      }
     }
 
-    function update_result(r){
-        // console.log(r.result);
+    
 
-        alignment_result = [];
-        var alignment_result_tmp = {};
-        for (var i in r.result){
-            var line = r.result[i];
-            // console.log(line);
-            // collection, page name, gtcacc, name, type, strict;
-            var key = [];
-
-            key.push(line[0]);
-            key.push(line[1]);
-            key.push(line[2]);
-            key.push(line[3]);
-
-            key = JSON.stringify(key);
-            if ( !Object.keys(alignment_result_tmp).includes(key) ){
-                alignment_result_tmp[key] = [];
-            }
-
-            alignment_result_tmp[key].push([line[4], line[5]]);
-        }
-
-        var keys = Object.keys(alignment_result_tmp);
-        for (var i in keys){
-            var key_list = JSON.parse(keys[i]);
-            key_list.push(alignment_result_tmp[keys[i]])
-
-            alignment_result.push(key_list)
-        }
-
-        // alignment_result.push(newline)
-        console.log(alignment_result)
-
-        update_table()
+    if (Object.keys(alignment_info).length > 0){
+      if (first) {
+        draw(0); 
+        alignment(motifpageid,false);
+      }
+    } else {
+      document.getElementById("glycomotif_alignment_result")
+              .innerText = "No alignment found for this motif";
     }
-
-    // motif accession, img+name, alignment type, loose, strict
-
-    function update_table(){
-        inputSectionEle.style.display = "none";
-        resultSectionEle.style.display = "inline";
-
-
-        var tableBodyEle = resultTableEle.getElementsByTagName("tbody")[0];
-
-        for (var i in tableBodyEle.childNodes){
-            var tr = tableBodyEle.childNodes[i];
-            var glycomotifacc, alignmentEle;
-            var deleteTr = true;
-
-            if (!tr || tr.tagName != "TR"){
-                continue
-            }
-
-            var k = 0;
-            for (var j in tr.childNodes) {
-                var td = tr.childNodes[j];
-
-                if (!td || td.tagName != "TD"){
-                    continue
-                }
-                k += 1;
-                if (k == 1){
-                    glycomotifacc = td.getElementsByTagName("a")[0].innerText;
-                }
-
-                if (k == 5){
-                    alignmentEle = td.getElementsByTagName("a")[0];
-                }
-
-            }
-
-
-
-            // console.log(glycomotifacc);
-            // console.log(alignmentEle);
-
-            for (var l in alignment_result){
-                var alignment_result_row = alignment_result[l];
-
-                if (glycomotifacc != alignment_result_row[1]){
-                    continue
-                }
-
-                for (var m in alignment_result_row[4]){
-                    var at = alignment_result_row[4][m][0];
-                    var at_strict = alignment_result_row[4][m][1];
-
-                    if (at == alignmentEle.innerText){
-                        deleteTr = false;
-
-                        if (at_strict){
-                            alignmentEle.innerText += " (strict)";
-                        }
-                    }
-                }
-
-                // console.log(glycomotifacc, alignmentEle.innerText, alignment_result_row[4])
-            }
-
-            if (deleteTr){
-                tableBodyEle.removeChild(tr)
-            }
-
-        }
-
-    }
-
-    function image_update(){
         
-        var imgtask = JSON.stringify({"seq": original_seq,
-                                     "notation": "snfg", "display": "extended", "image_format": "png"});
-        jQuery.post(glymage_webservice_url+ "submit", 
-                    {"developer_email": prefix+"@glyomics.org", "task": imgtask}, function (d){
-            var jobid = d[0].id;
-            var image_ele_str = "<button style=\"float: right;\" onclick=\"window.location.reload();\">Clear</button>";
-            image_ele_str += "<img src='"+ glymage_webservice_url + "getimage?task_id=" + jobid + "' style='display: block; margin-left: auto; margin-right: auto; '>";
-            var seq = "<div><div style=\"width: 80%; margin: 0 auto;\" class=\"smwpre\">"+original_seq+"</div></div>";
-            queryGlycanEle.innerHTML = image_ele_str + seq;
-        },"json");
+    return alignment_info;
+  }
 
+  // for the MOTIFALIGN module
+  function CreateGlycanFigure(gtcid, extra, alignment_ids, alignment_link_ids) {
+
+    var figure = document.createElement("figure");
+    //console.log(gtcid);
+    figure.style = "width: 100%; text-align: center; margin: 0px;"
+
+    figure.setAttribute("glymagesvg_accession", gtcid);
+    figure.setAttribute("glymagesvg_imageclass", "glymagesvg_hover_low_opacity");
+    figure.setAttribute("glymagesvg_class", "glymagesvg_hover_high_opacity");
+    figure.setAttribute("glymagesvg_linkinfoclass", "glymagesvg_hover_high_opacity");
+    figure.setAttribute("glymagesvg_substclass", "glymagesvg_hover_high_opacity");
+    figure.setAttribute("glymagesvg_parentlinkclass", "glymagesvg_hover_low_opacity");
+    figure.setAttribute("glymagesvg_parentlinkinfoclass", "glymagesvg_hover_high_opacity_anomer");
+    figure.setAttribute("glymagesvg_highlight_parent_link", "true");
+    // figure.setAttribute("glymagesvg_annotation", "MotifAlignments." + motifpageid);
+    if (alignment_link_ids.length > 0) {
+      figure.setAttribute("glymagesvg_annotation", "CanonicalResidueIDs." + alignment_ids + "," + alignment_link_ids);
+    } else {
+      figure.setAttribute("glymagesvg_annotation", "CanonicalResidueIDs." + alignment_ids);
+    }
+    figure.setAttribute("glymagesvg_width", "auto");
+    figure.setAttribute("glymagesvg_insertpos", "0");
+
+    var captionacc = document.createElement("a");
+    captionacc.innerText = gtcid;
+    captionacc.style.textAlign = "center";
+    captionacc.href = "https://glytoucan.org/Structures/Glycans/" + gtcid;
+
+    var caption = document.createElement("figcaption");
+ 
+    caption.appendChild(captionacc);
+    if (sandbox.has(gtcid)) {
+      caption.innerHTML += ' (<A target="_sandbox" href="https://edwardslab.bmcb.georgetown.edu/sandboxdev/explore.html?focus='+gtcid+'">Sandbox</A>)';
+    }
+    if (extra.length > 0){
+        caption.innerHTML += "<br/>("+extra+")";
+    }
+    caption.style.textAlign = "center";
+    figure.appendChild(caption);
+
+    return figure
+  }
+
+  // for the MOTIFALIGN module
+  function draw(pageNum){
+    
+    var container = document.getElementById("glycomotif_alignment_result");
+    var pageTotalNum = Math.ceil(Object.keys(alignment_info).length/ (rowNum * colNum));
+
+    container.innerHTML = "";
+    var table = document.createElement("table");
+    table.style.width = "100%";
+
+    var count = 0;
+
+    var tr = document.createElement("tr");
+
+    var i = 1;
+    while (i <= colNum){
+      var td = document.createElement("td");
+      td.style.width = (100/colNum).toString() + "%";
+      tr.appendChild(td);
+      i+=1;
+    }
+    table.appendChild(tr);
+
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+          
+    var allacc = Object.keys(alignment_info);
+    var len = allacc.length;
+    var pageSize = rowNum*colNum;
+    for (var i = pageSize*pageNum; i < Math.min(len,pageSize*(pageNum+1)); i++) {
+      var c = allacc[i];
+      var alignment_ids = alignment_info[c].IDs;
+      var alignment_link_ids = alignment_info[c].LinkIDs;
+      var alignment_types_new = alignment_info[c].Alignment_Type;
+      count += 1;
+      if (count == colNum+1){
+          table.appendChild(tr);
+          count = 1;
+          tr = document.createElement("tr");
+      }
+      td = document.createElement("td");
+
+      alignment_types_new = alignment_types_new.sort();
+      alignment_types_new = alignment_types_new.join("; ");
+      alignment_ids = new Set(alignment_ids.join(",").split(","));
+      alignment_ids = Array.from(alignment_ids).join(",");
+      alignment_link_ids = new Set(alignment_link_ids.join(",").split(","));
+      alignment_link_ids = Array.from(alignment_link_ids).join(",");
+
+      var figure = CreateGlycanFigure(c, alignment_types_new, alignment_ids, alignment_link_ids);
+
+      td.appendChild(figure);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+    container.appendChild(table);
+    glymagesvg.init(glymagesvg_params);
+    
+    var containerButton = document.createElement("div");
+
+    function jump() {
+        draw(parseInt(this.pageNum));
     }
 
-}
+    function buttonGenerator() {
+        var button = document.createElement("a");
+        button.onclick = jump;
+        containerButton.appendChild(button);
+        return button
+    }
+
+    var button, valid;
+    valid = (pageNum != 0);
+    button = document.createElement("a");
+    containerButton.appendChild(button);
+    button.innerText = "Prev";
+    button.onclick = jump;
+    if (valid){
+      button.pageNum = pageNum-1;
+      button.href = "javascript:;";
+    }
+    else{
+      button.pageNum = 0;
+    }
+
+    var space = document.createElement("span");
+    space.innerHTML = "&nbsp/&nbsp"
+    containerButton.appendChild(space);
+
+    var button, valid;
+    valid = (pageNum != pageTotalNum-1);
+    button = document.createElement("a");
+    containerButton.appendChild(button);
+    button.innerText = "Next";
+    button.onclick = jump;
+    if (valid){
+      button.pageNum = pageNum+1;
+      button.href = "javascript:;";
+    }
+    else{
+      button.pageNum = pageNum;
+    }
+
+    container.appendChild(document.createElement("br"));
+    container.appendChild(document.createElement("br"));
+    container.appendChild(document.createElement("br"));
+    container.appendChild(containerButton);
+    containerButton.style = "position: absolute; right: 10%; ";
+  }
+
+  alignment(motifpageid,true);
+
+}; // close of initMotifAlign
+
+// kick off the ONDEMANDALIGN module
+function initOnDemandAlign() {
+
+  var motif_match_webservice_url = "https://motifmatch.glyomics.org/";
+  var glymage_webservice_url = "https://glymage.glyomics.org/";
+  var image_url_prefix = "https://glymage.glyomics.org/image/snfg/extended/";
+  var image_url_suffix = ".png";
+
+
+  var alignment_result = [];
+
+  var inputSectionEle = document.getElementById("motif_match_real_time_input");
+  var inputEle = document.getElementById("motif_match_real_time_para");
+
+  var resultSectionEle = document.getElementById("motif_rt_result");
+  var queryGlycanEle = document.getElementById("query_glycan");
+  var resultTableEle = document.getElementById("alignment_table");
+
+  var original_seq = "";
+  var prefix = "";
+
+
+  // for the ONDEMANDALIGN module
+  function submit(){
+    var seq = document.getElementById("query_sequence").value;
+    seq = seq.trim();
+
+    original_seq = seq;
+       
+    var mmrtpara = document.getElementById("motif_match_real_time_para")
+    prefix = mmrtpara.getAttribute("data-prefix");
+    var collection = mmrtpara.getAttribute("data-collection");
+    if (collection == null){
+      collection = "GM";
+    }
+
+    var task = JSON.stringify({
+      "seq": seq,
+      "collection": collection
+    });
+
+    image_update();
+
+    jQuery.post(motif_match_webservice_url+"submit", 
+               {"developer_email": prefix+"@glyomics.org", "task": task}, function (d){
+      var jobid = d[0].id;
+      retrieve(jobid);
+    },'json');
+
+  };
+
+  // for the ONDEMANDALIGN module
+  function retrieve(jobid){
+    jQuery.getJSON(motif_match_webservice_url+ "retrieve?task_id=" + jobid, {}, function (d){
+      var result = d[0];
+      var jobid = result.id;
+
+      if (result.finished){
+        update_result(result);
+      }
+      else {
+        setTimeout(retrieve, 200, jobid);
+      }
+    })
+  }
+
+  // for the ONDEMANDALIGN module
+  function update_result(r){
+    // console.log(r.result);
+
+    alignment_result = [];
+    var alignment_result_tmp = {};
+    for (var i in r.result){
+      var line = r.result[i];
+      // console.log(line);
+      // collection, page name, gtcacc, name, type, strict;
+      var key = [];
+
+      key.push(line[0]);
+      key.push(line[1]);
+      key.push(line[2]);
+      key.push(line[3]);
+
+      key = JSON.stringify(key);
+      if ( !Object.keys(alignment_result_tmp).includes(key) ){
+        alignment_result_tmp[key] = [];
+      }
+
+      alignment_result_tmp[key].push([line[4], line[5]]);
+    }
+
+    var keys = Object.keys(alignment_result_tmp);
+    for (var i in keys){
+      var key_list = JSON.parse(keys[i]);
+      key_list.push(alignment_result_tmp[keys[i]])
+
+      alignment_result.push(key_list)
+    }
+
+    // alignment_result.push(newline)
+    console.log(alignment_result)
+
+    update_table()
+  }
+
+  // motif accession, img+name, alignment type, loose, strict
+
+  // for the ONDEMANDALIGN module
+  function update_table(){
+    inputSectionEle.style.display = "none";
+    resultSectionEle.style.display = "inline";
+
+
+    var tableBodyEle = resultTableEle.getElementsByTagName("tbody")[0];
+
+    for (var i in tableBodyEle.childNodes){
+      var tr = tableBodyEle.childNodes[i];
+      var glycomotifacc, alignmentEle;
+      var deleteTr = true;
+
+      if (!tr || tr.tagName != "TR"){
+        continue
+      }
+
+      var k = 0;
+      for (var j in tr.childNodes) {
+        var td = tr.childNodes[j];
+
+        if (!td || td.tagName != "TD"){
+            continue
+        }
+        k += 1;
+        if (k == 1){
+            glycomotifacc = td.getElementsByTagName("a")[0].innerText;
+        }
+
+        if (k == 5){
+            alignmentEle = td.getElementsByTagName("a")[0];
+        }
+      }
+
+      for (var l in alignment_result){
+        var alignment_result_row = alignment_result[l];
+
+        if (glycomotifacc != alignment_result_row[1]){
+            continue
+        }
+
+        for (var m in alignment_result_row[4]){
+            var at = alignment_result_row[4][m][0];
+            var at_strict = alignment_result_row[4][m][1];
+
+            if (at == alignmentEle.innerText){
+                deleteTr = false;
+
+                if (at_strict){
+                    alignmentEle.innerText += " (strict)";
+                }
+            }
+        }
+
+        // console.log(glycomotifacc, alignmentEle.innerText, alignment_result_row[4])
+      }
+
+      if (deleteTr){
+          tableBodyEle.removeChild(tr)
+      }
+    }
+  }
+
+  // for the ONDEMANDALIGN module
+  function image_update(){
+      
+      var imgtask = JSON.stringify({"seq": original_seq,
+                                   "notation": "snfg", "display": "extended", "image_format": "png"});
+      jQuery.post(glymage_webservice_url+ "submit", 
+                  {"developer_email": prefix+"@glyomics.org", "task": imgtask}, function (d){
+          var jobid = d[0].id;
+          var image_ele_str = "<button style=\"float: right;\" onclick=\"window.location.reload();\">Clear</button>";
+          image_ele_str += "<img src='"+ glymage_webservice_url + "getimage?task_id=" + jobid + "' style='display: block; margin-left: auto; margin-right: auto; '>";
+          var seq = "<div><div style=\"width: 80%; margin: 0 auto;\" class=\"smwpre\">"+original_seq+"</div></div>";
+          queryGlycanEle.innerHTML = image_ele_str + seq;
+      },"json");
+  }
+  
+  inputEle.innerHTML = "<table style=\"width: 80%; max-width: 80%; height: 300px; margin: 0 auto;\"><tr><td>Glycan (GlycoCT or WURCS format):</td></tr><tr><td><textarea style=\"width: 100%; max-width: 100%; height: 300px; margin: 0 auto;\" id=\"query_sequence\" >WURCS=2.0/5,7,6/[a2112h-1x_1-5_2*NCC/3=O][a2112h-1b_1-5][a1221m-1a_1-5][a2112h-1a_1-5][a2122h-1b_1-5_2*NCC/3=O_6*OSO/3=O/3=O]/1-2-3-4-2-5-3/a3-b1_a6-f1_b2-c1_b3-d1_d2-e1_f3-g1</textarea></td></tr>" +
+      "<tr><td align=\"right\"><button>Align</button></td></tr></table>";
+  var buttons = inputEle.getElementsByTagName("button");
+  buttons[0].onclick = function(){submit()};
+
+} // close initOnDemandAlign function

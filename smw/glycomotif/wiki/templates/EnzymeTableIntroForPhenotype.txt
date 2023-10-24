@@ -1,0 +1,10 @@
+<includeonly>
+{| class="wikitable sortable" style="width: 100%;"
+! Enzyme
+! Description
+! Species
+! Phenotypes 
+! Motifs
+! Othologs
+|-
+</includeonly>

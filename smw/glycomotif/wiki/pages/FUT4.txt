@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000196371
 |description=Attach alpha 3 Fuc to GlcNAc.
 |genename=FUT4
 |ortholog=Fut4

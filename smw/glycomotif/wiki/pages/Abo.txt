@@ -4,6 +4,8 @@
 |mgiacc=MGI:2135738
 |ortholog=ABO
 |phenotype=abnormal skin morphology;abnormal testis morphology;small testis
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2135738
 |species=Mouse
 |uniprot=P38649
 }}

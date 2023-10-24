@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 Gal to Gal.
+|genename=A3galt2
+|mgiacc=MGI:2685279
+|ortholog=A3GALT2
+|species=Mouse
+|uniprot=Q3V1N9
+}}

@@ -1,8 +1,20 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000033011
 |description=Attach beta 4 Man to GlcNAc.
+|disease=ALG1-CDG;Congenital disorder of glycosylation, type Ik
+|disease_source=HPO
+|disease_source_key=56052
 |genename=ALG1
 |iscdg=true
 |ortholog=Alg1
+|phenotype=Abnormal facial shape;Abnormal heart morphology;Abnormality of blood and blood-forming tissues;Abnormality of the amniotic fluid;Abnormality of the eye;Abnormality of the gastrointestinal tract;Abnormality of the kidney;Abnormality of the skeletal system;Areflexia;Autosomal recessive inheritance;Brain imaging abnormality;Cardiomyopathy;Cerebellar atrophy;Cerebral atrophy;Chronic diarrhea;Death in infancy;Decreased liver function;Flexion contracture;Generalized hypotonia;Global developmental delay;Hepatomegaly;Hypertelorism;Hypoalbuminemia;Hypogonadism;Hypotonia;Immunodeficiency;Intellectual disability;Intellectual disability, mild;Intrauterine growth retardation;Joint contracture;Kyphosis;Large fontanelles;Limitation of joint mobility;Microcephaly;Micrognathia;Multifocal epileptiform discharges;Nephrotic syndrome;Nonimmune hydrops fetalis;Nystagmus;Progressive microcephaly;Protein-losing enteropathy;Recurrent infections;Renal insufficiency;Respiratory failure;Scoliosis;Seizure;Sepsis;Severe global developmental delay;Splenomegaly;Strabismus;Thin vermilion border;Third trimester onset;Type I transferrin isoform profile
+|phenotype_source=HPO
+|phenotype_source_key=56052
 |species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000033011
 |uniprot=Q9BT22
 }}

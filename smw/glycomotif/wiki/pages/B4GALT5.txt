@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Ubiquitous, highly expressed
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000158470
+|description=Attach beta 4 Gal to GlcNAc.
+|genename=B4GALT5
+|ortholog=B4galt5
+|species=Human
+|tissue=Ubiquitous, highly expressed
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000158470
+|uniprot=O43286
+}}

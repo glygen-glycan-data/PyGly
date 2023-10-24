@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000176597
+|description=Attach beta 3 GlcNAc to Gal.
+|genename=B3GNT5
+|ortholog=B3gnt5
+|species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000176597
+|uniprot=Q9BYG0
+}}

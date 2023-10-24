@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=Galntl5
+|mgiacc=MGI:1915159
+|ortholog=GALNTL5
+|phenotype=abnormal eye posterior chamber depth;abnormal skin coloration;preweaning lethality, incomplete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1915159
+|species=Mouse
+|uniprot=Q9D4M9
+}}

@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 4 GlcNAc to Gal.
+|genename=A4gnt
+|mgiacc=MGI:2143261
+|ortholog=A4GNT
+|species=Mouse
+|uniprot=Q14BT6
+}}

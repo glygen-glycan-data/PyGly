@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 3 NeuNAc to Gal.
+|genename=St3gal1
+|mgiacc=MGI:98304
+|ortholog=ST3GAL1
+|species=Mouse
+|uniprot=P54751
+}}

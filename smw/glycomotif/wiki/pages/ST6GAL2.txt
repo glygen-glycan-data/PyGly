@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Enriched in Astrocytes;Enriched in Excitatory neurons;Enriched in Inhibitory neurons;Enriched in Oligodendrocyte precursor cells
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000144057
 |description=Attach alpha 6 NeuNAc to Gal; attach alpha 6 NeuNAc to GalNAc; attach alpha 6 NeuNGc to Gal.
 |genename=ST6GAL2
 |ortholog=St6gal2

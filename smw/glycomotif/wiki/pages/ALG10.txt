@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000139133
 |description=Attach alpha 2 Glc to Glc.
 |genename=ALG10
 |ortholog=Alg10b

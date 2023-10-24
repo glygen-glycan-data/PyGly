@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000037
 |displayhgv=false
-|enzyme=B3GNT2;B3GNT4;B3GNT8;B3gnt2;B3gnt4;B3gnt8;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;FUT1;FUT2;Fut1;Fut2;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b;Sec1
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl
@@ -16,11 +15,15 @@ LIN
 2:1o(4+1)3d
 3:3o(2+1)4d
 |glytoucan=G61459JW
+|humanenzyme=B3GNT2:1;B3GNT3:1;B3GNT4:1;B3GNT5:1;B3GNT6:1;B3GNT8:1;B4GALT1:2;B4GALT2:2;B4GALT3:2;B4GALT4:2;B4GALT5:2;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;MGAT1:1;MGAT2:1;MGAT4A:1;MGAT4B:1;MGAT4C:1;MGAT5:1;MGAT5B:1
 |keyword=Blood group H;Blood group type 2
+|mouseenzyme=B3gnt2:1;B3gnt3:1;B3gnt4:1;B3gnt5:1;B3gnt6:1;B3gnt8:1;B4galt1:2;B4galt2:2;B4galt3:2;B4galt4:2;B4galt5:2;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat1:1;Mgat2:1;Mgat4a:1;Mgat4b:1;Mgat4c:1;Mgat5:1;Mgat5b:1;Sec1:3
 |name=Blood group H (type 2)
 |prefname=Blood group H (type 2)
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1981) Two monoclonal anticarbohydrate antibodies directed to glycosphingolipids with a lacto-N-glycosyl ...
 |sameas=GD.R000003,GDB.002141,GDH.000031,GE.EP0252,GM.G61459JW,UCM.000031
+|sandbox_nlinked=G00480NH;G00531ZU;G00797ZX;G01378OV;G01476WA;G01489UZ;G01996OW;G02188RD;G03347EL;G03404VQ
+|sandbox_olinked=G00027JG;G00069YC;G00196CO;G00376RB;G00428HK;G00496OX;G00729SA;G00901NZ;G00924FH;G01243KR
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a4-b1_b2-c1
 }}

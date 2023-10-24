@@ -4,6 +4,8 @@
 |mgiacc=MGI:2142632
 |ortholog=ALG11
 |phenotype=decreased grip strength;embryonic lethality prior to organogenesis;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2142632
 |species=Mouse
 |uniprot=Q3TZM9
 }}

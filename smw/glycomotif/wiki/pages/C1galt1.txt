@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach beta 3 Gal to GalNAc.
+|genename=C1galt1
+|mgiacc=MGI:2151071
+|ortholog=C1GALT1
+|phenotype=preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2151071
+|species=Mouse
+|uniprot=Q9JJ06
+}}

@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000115525
+|description=Attach alpha 3 NeuNAc to Gal.
+|disease=Salt and pepper developmental regression syndrome
+|disease_source=HPO
+|disease_source_key=8869
+|genename=ST3GAL5
+|ortholog=St3gal5
+|phenotype=Absent speech;Autosomal recessive inheritance;Bilateral tonic-clonic seizure;Cerebral visual impairment;Choreoathetosis;Developmental regression;Developmental stagnation at onset of seizures;Failure to thrive;Feeding difficulties in infancy;Global brain atrophy;Global developmental delay;Hearing impairment;Hypermelanotic macule;Hyporeflexia of upper limbs;Hypotonia;Infantile onset;Irritability;Lower limb hyperreflexia;Microcephaly;Multifocal epileptiform discharges;Myoclonus;Neonatal onset;Optic atrophy;Status epilepticus;Visual loss;Vomiting
+|phenotype_source=HPO
+|phenotype_source_key=8869
+|species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000115525
+|uniprot=Q9UNP4
+}}

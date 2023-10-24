@@ -1,0 +1,4 @@
+{{Keyword
+|keyword=Mucin-type O-glycan core
+|definition=Mucin-type O-glycan cores for O-glycan subtype classification
+}}

@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000002
 |displayhgv=false
-|enzyme=B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;MGAT1;MGAT2;Mgat1;Mgat2;ST6GAL1;ST6GAL2;St6gal1;St6gal2
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl
@@ -20,12 +19,16 @@ LIN
 4:4d(5+1)5n
 5:1o(6+1)6n
 |glytoucan=G43191LZ
+|humanenzyme=B3GNT3:1;B4GALT1:2;B4GALT2:2;B4GALT3:2;GCNT1:1;GCNT2:1;GCNT3:1;MGAT1:1;MGAT2:1;ST6GAL1:3;ST6GAL2:3
 |keyword=LacNAc;N-acetyllactosamine
+|mouseenzyme=B3gnt3:1;B4galt1:2;B4galt2:2;B4galt3:2;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat1:1;Mgat2:1;St6gal1:3;St6gal2:3
 |name=2,6-sialyl-Sulfo-LN
 6-sialyl-6-sulfo LN
 |prefname=2,6-sialyl-Sulfo-LN
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kimura et al. (2007) Human B-lymphocytes express alpha2-6-sialylated 6-sulfo-N-acetyllactosamine serving as a preferred ligand ...;Macauley et al. (2014) Siglec-mediated regulation of immune cell function in ...
 |sameas=GD.R000339,GDV.000115,GM.G43191LZ
+|sandbox_nlinked=G01260KO;G03510LN;G04844PH;G04931SY;G07802IC;G15269NF;G17413FR;G19140RD;G23142YD;G28747XN
+|sandbox_olinked=G05490PJ;G05785JJ;G25726HS;G27192WV;G34123VN;G66576RC;G90901EO
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O_6*OSO/3{{=}}O/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3/a4-b1_b6-c2
 }}

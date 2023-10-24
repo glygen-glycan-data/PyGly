@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=GALNT12
+|ortholog=Galnt12
+|species=Human
+|uniprot=Q8IXK2
+}}

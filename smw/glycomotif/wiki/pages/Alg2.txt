@@ -4,6 +4,8 @@
 |mgiacc=MGI:1914731
 |ortholog=ALG2
 |phenotype=decreased fasting circulating glucose level;embryonic lethality prior to organogenesis;increased circulating insulin level;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1914731
 |species=Mouse
 |uniprot=Q9DBE8
 }}

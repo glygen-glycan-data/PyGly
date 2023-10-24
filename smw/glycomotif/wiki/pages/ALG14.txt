@@ -1,8 +1,17 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000172339
 |description=Attach beta 4 GlcNAc to GlcNAc.
+|disease=Congenital myasthenic syndromes with glycosylation defect;Intellectual developmental disorder with epilepsy, behavioral abnormalities, and coarse facies;Myasthenic syndrome, congenital, 15;Myopathy, epilepsy, and progressive cerebral atrophy
+|disease_source=HPO
+|disease_source_key=199857
 |genename=ALG14
 |iscdg=true
 |ortholog=Alg14
+|phenotype=Abnormal peripheral nervous system synaptic transmission;Absent speech;Aggressive behavior;Anti-acetylcholine receptor antibody positivity;Anxiety;Arachnodactyly;Areflexia;Autism;Autosomal recessive inheritance;Blepharophimosis;Cerebral atrophy;Chylothorax;Coarse facial features;Congenital contracture;Death in infancy;Decreased fetal movement;Delayed CNS myelination;Difficulty climbing stairs;Difficulty running;Difficulty walking;Distal muscle weakness;EEG with burst suppression;EMG: decremental response of compound muscle action potential to repetitive nerve stimulation;Easy fatigability;Elevated circulating creatine kinase concentration;Facial palsy;Fatigable weakness;Favorable response of weakness to acetylcholine esterase inhibitors;Feeding difficulties in infancy;Flexion contracture;Frequent falls;Generalized hypotonia;Generalized weakness of limb muscles;Global developmental delay;Gowers sign;High palate;Hyperactivity;Hypsarrhythmia;Increased jitter at single fiber EMG;Infantile onset;Infantile spasms;Intellectual disability, severe;Joint laxity;Knee flexion contracture;Limb-girdle muscle weakness;Lumbar hyperlordosis;Mandibular prognathia;Micrognathia;Motor delay;Multiple joint contractures;Muscle fiber tubular inclusions;Muscle spasm;Myopathy;Neonatal respiratory distress;Pes planus;Polyhydramnios;Poor head control;Proximal muscle weakness;Ptosis;Ragged-red muscle fibers;Scaphocephaly;Scapular winging;Scoliosis;Seizure;Self-injurious behavior;Severe muscular hypotonia;Slowly progressive;Talipes equinovarus;Thymus hyperplasia;Turricephaly;Type 1 muscle fiber atrophy;Type 1 muscle fiber predominance;Type 2 muscle fiber atrophy;Type 2 muscle fiber predominance;Waddling gait;Wide intermamillary distance
+|phenotype_source=HPO
+|phenotype_source_key=199857
 |species=Human
 |uniprot=Q96F25
 }}

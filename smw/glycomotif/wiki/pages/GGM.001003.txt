@@ -4,7 +4,6 @@
 |alignment=Core
 |collection=GGM
 |displayhgv=false
-|enzyme=ALG1;ALG13;ALG14;ALG2;ALG3;Alg1;Alg13;Alg14;Alg2;Alg3;DPAGT1;Dpagt1;Glt28d2;MGAT1;MGAT4A;MGAT4B;MGAT4C;Mgat1;Mgat4a;Mgat4b;Mgat4c
 |glycoct=RES
 1b:x-dglc-HEX-x:x
 2s:n-acetyl
@@ -27,10 +26,13 @@ LIN
 8:5o(6+1)9d
 9:9o(3{{!}}6+1)10d
 |glytoucan=G19610CW
+|humanenzyme=ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;ALG3:7;DPAGT1:1;MGAT1:5;MGAT4A:5;MGAT4B:5;MGAT4C:5
 |keyword=N-glycan classification
+|mouseenzyme=Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Alg3:7;Dpagt1:1;Glt28d2:2;Mgat1:5;Mgat4a:5;Mgat4b:5;Mgat4c:5
 |name=N-Glycan hybrid
 |prefname=N-Glycan hybrid
 |redend=true
 |sameas=GM.G19610CW
+|sandbox_nlinked=G00247PL;G00349CA;G00471UP;G00706VT;G00740UU;G00741NZ;G01079TS;G01772HV;G01999JH;G02945KQ
 |wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-2-4-4/a4-b1_b4-c1_c3-d1_c6-f1_e1-d2{{!}}d4_g1-f3{{!}}f6
 }}

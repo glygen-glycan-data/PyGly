@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000152127
 |description=Attach beta 6 GlcNAc to Man.
 |genename=MGAT5
 |ortholog=Mgat5
 |species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000152127
 |uniprot=Q09328
 }}

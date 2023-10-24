@@ -18,11 +18,14 @@ LIN
 4:3o(3+1)5d
 5:5d(2+1)6n
 |glytoucan=G99315PE
+|humanenzyme=ABO:4;C1GALT1:2;C1GALT1C1:2;FUT1:3;FUT2:3;GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
 |keyword=Blood group A;Blood group type 3
+|mouseenzyme=Abo:4;C1galt1:2;C1galt1c1:2;Fut1:3;Fut2:3;Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Sec1:3
 |name=A antigen (type 3)
 |prefname=A antigen (type 3)
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Breimer et al. (1988) Structures of the eight- to nine-sugar glycolipids of human blood ...;Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=GD.R000396,GDC.000011,GDH.000026,GDV.000056,GE.EP0258,GM.G99315PE,UCM.000026
+|sandbox_olinked=G99315PE
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-1/a3-b1_b2-c1_b3-d1
 }}

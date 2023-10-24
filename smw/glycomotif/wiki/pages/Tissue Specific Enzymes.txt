@@ -1,0 +1,12 @@
+{{#ask:
+ [[glycomotif:tissuespec::+]]
+ |?glycomotif:tissuespec=
+ |format=valuerank
+ |mainlabel=- 
+ |headers=hide
+ |liststyle=none
+ |template=RowForTissue
+ |introtemplate=IntroForTissue
+ |outrotemplate=OutroForTissue
+ |maxtags=20
+}}

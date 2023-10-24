@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 Gal to Gal.
+|genename=A3GALT2
+|ortholog=A3galt2
+|species=Human
+|uniprot=U3KPV4
+}}

@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000111
 |displayhgv=false
-|enzyme=B3GNT2;B3GNT4;B3GNT8;B3gnt2;B3gnt4;B3gnt8;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl
@@ -20,12 +19,16 @@ LIN
 4:4d(2+1)5n
 5:4o(4+1)6d
 |glytoucan=G00058MO
+|humanenzyme=B3GNT2:1,3;B3GNT3:1,3;B3GNT4:1,3;B3GNT5:1,3;B3GNT6:1;B3GNT8:1,3;B4GALT1:2,4;B4GALT2:2,4;B4GALT3:2,4;B4GALT4:2,4;B4GALT5:2,4;GCNT1:1;GCNT2:1;GCNT3:1;MGAT1:1;MGAT2:1;MGAT4A:1;MGAT4B:1;MGAT4C:1;MGAT5:1;MGAT5B:1
 |keyword=LacNAc;N-acetyllactosamine;N-acetyllactosamine type 2
+|mouseenzyme=B3gnt2:1,3;B3gnt3:1,3;B3gnt4:1,3;B3gnt5:1,3;B3gnt6:1;B3gnt8:1,3;B4galt1:2,4;B4galt2:2,4;B4galt3:2,4;B4galt4:2,4;B4galt5:2,4;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat1:1;Mgat2:1;Mgat4a:1;Mgat4b:1;Mgat4c:1;Mgat5:1;Mgat5b:1
 |name=Type 2 LN2
 i antigen
 |prefname=Type 2 LN2
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Miyake et al. (1989) Human IgG3 monoclonal antibody directed to an unbranched repeating type ...;Watanabe et al. (1979) Characterization of a blood group I-active ganglioside. Structural requirements for ...
 |sameas=GD.R000225,GDB.002171,GDC.000002,GDH.000156,GDV.000045,GE.EP0139,GM.G00058MO,GTC.G00058MO,UCM.000156
+|sandbox_nlinked=G00113FP;G00584LL;G00810PC;G00995HW;G01001RL;G01342FO;G01613KN;G01917CF;G02076VP;G02122FK
+|sandbox_olinked=G00069YC;G00321UH;G00520NI;G00728SN;G00978GW;G00980BE;G01243KR;G01325OU;G01674VT;G02150AC
 |wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2/a4-b1_b3-c1_c4-d1
 }}

@@ -4,6 +4,8 @@
 |mgiacc=MGI:2384774
 |ortholog=ALG1
 |phenotype=abnormal cholesterol homeostasis;abnormal coat/hair pigmentation;increased basophil cell number;increased eosinophil cell number;increased leukocyte cell number;increased lymphocyte cell number;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2384774
 |species=Mouse
 |uniprot=Q921Q3
 }}

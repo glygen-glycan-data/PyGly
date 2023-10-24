@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=Galnt11
+|mgiacc=MGI:2444392
+|ortholog=GALNT11
+|species=Mouse
+|uniprot=Q921L8
+}}

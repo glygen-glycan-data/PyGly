@@ -4,6 +4,8 @@
 |mgiacc=MGI:109375
 |ortholog=FUT1
 |phenotype=abnormal seminal vesicle morphology;small stomach
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:109375
 |species=Mouse
 |uniprot=O09160
 }}

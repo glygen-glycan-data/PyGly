@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enriched in Astrocytes;Enriched in Early spermatids;Enriched in Late spermatids
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000172728
 |description=Attach alpha 3 Fuc to GlcNAc.
 |genename=FUT10
 |ortholog=Fut10
 |species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000172728
 |uniprot=Q6P4F1
 }}

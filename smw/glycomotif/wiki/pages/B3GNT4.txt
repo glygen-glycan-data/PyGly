@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Enriched in Oocytes
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000176383
 |description=Attach beta 3 GlcNAc to Gal.
 |genename=B3GNT4
 |ortholog=B3gnt4

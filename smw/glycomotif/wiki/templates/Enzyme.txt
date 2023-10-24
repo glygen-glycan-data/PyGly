@@ -33,17 +33,27 @@ Edit the page to see the template text.
 {{!}} {{#arraymap:{{{ortholog|}}}|,|x|[[glycomotif:ortholog::x]]}}
 {{!}}-
 }}
-{{#if:{{{iscdg|}}}|
-! CDG
-{{!}} {{{iscdg|}}}
-{{!}}-
+|}{{#ifeq:{{{phenotype_source|}}}|IMPC| 
+
+<h2 class="plainlinks">[https://www.mousephenotype.org/data/genes/{{{phenotype_source_key|}}} IMPC KO Phenotypes]</h2>
+{{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|;&#32;}}.
+}}{{#ifeq:{{{disease_source|}}}|HPO| 
+
+<h2 class="plainlinks">[https://hpo.jax.org/app/browse/gene/{{{disease_source_key|}}} HPO Diseases]</h2>
+{{#arraymap:{{{disease|}}}|;|x|[[glycomotif:disease::x]]|;&#32;}}.
+}}{{#ifeq:{{{phenotype_source|}}}|HPO| 
+
+<h2 class="plainlinks">[https://hpo.jax.org/app/browse/gene/{{{phenotype_source_key|}}} HPO Phenotypes]</h2>
+{{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|;&#32;}}.
+}}{{#ifeq:{{{tissue_source|}}}|GTEX| 
+
+<h2 class="plainlinks">[https://www.proteinatlas.org/{{{tissue_source_key|}}}/tissue#rna_expression HPA Tissue Specificity]</h2>
+{{#arraymap:{{{tissue|}}}|;|x|[[glycomotif:tissuespec::x]]|;&#32;}}.
+}}{{#ifeq:{{{celltype_source|}}}|GTEX| 
+
+<h2 class="plainlinks">[https://www.proteinatlas.org/{{{celltype_source_key|}}}/single+cell+type HPA Cell-Type Specificity]</h2>
+{{#arraymap:{{{celltype|}}}|;|x|[[glycomotif:celltypespec::x]]|;&#32;}}.
 }}
-{{#if:{{{phenotype|}}}| 
-!style="vertical-align:top;" {{!}} <span class="plainlinks">[https://www.mousephenotype.org/data/genes/{{{mgiacc|}}} IMPC KO Phenotype]</span>
-{{!}} {{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|<br/>}}
-{{!}}-
-}}
-|}
 
 == GlyGen Motifs ==
 
@@ -60,14 +70,14 @@ Edit the page to see the template text.
 |?glycomotif:instancecount
 |?glycomotif:glytoucan
 |format=template
-|template=MotifTableRows
+|template=MotifTableRowsForEnzyme
 |introtemplate=MotifTableIntro
 |outrotemplate=MotifTableOutro
 |link=none
 |limit=1000
 }}
 
-{{#set:
+<span id="enzymepage"/>{{#set:
 |glycomotif:instancecount={{#ask:[[Category:Motif]]
 [[glycomotif:incollection::GGM]]
 [[glycomotif:hasenzyme::{{PAGENAME}}]]

@@ -1,0 +1,5 @@
+<includeonly>
+|-
+|{{PhenotypeLink|glycomotif:tissuespec|{{{1|}}}}}
+|{{{rank|}}}
+</includeonly>

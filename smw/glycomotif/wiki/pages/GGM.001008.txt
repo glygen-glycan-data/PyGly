@@ -16,11 +16,14 @@ LIN
 3:1o(6+1)4d
 4:4d(2+1)5n
 |glytoucan=G00034MO
-|keyword=O-glycan classification
+|humanenzyme=C1GALT1:2;C1GALT1C1:2;GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1;GCNT1:3;GCNT2:3;GCNT3:3
+|keyword=Mucin-type O-glycan core;O-glycan classification
+|mouseenzyme=C1galt1:2;C1galt1c1:2;Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Gcnt1:3;Gcnt2:3;Gcnt3:3
 |name=O-Glycan core 2 fuzzy
 |prefname=O-Glycan core 2 fuzzy
 |redend=true
 |reference=Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=GM.G00034MO,GTC.G00034MO
+|sandbox_olinked=G00027JG;G00033MO;G00034MO;G00069YC;G00094SE;G00196CO;G00372ZO;G00430ZK;G00468NI;G00496OX
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}u2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3/a3-b1_a6-c1
 }}

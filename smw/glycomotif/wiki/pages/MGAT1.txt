@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Ubiquitous, highly expressed
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000131446
 |description=Attach beta 2 GlcNAc to Man.
 |genename=MGAT1
 |ortholog=Mgat1
 |species=Human
+|tissue=Ubiquitous, highly expressed
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000131446
 |uniprot=P26572
 }}

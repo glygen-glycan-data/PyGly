@@ -1,8 +1,20 @@
 {{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000253710
 |description=Attach alpha 2 Man to Man.
+|disease=ALG11-CDG;Congenital disorder of glycosylation, type Ip
+|disease_source=HPO
+|disease_source_key=440138
 |genename=ALG11
 |iscdg=true
 |ortholog=Alg11
+|phenotype=Abnormal adipose tissue morphology;Abnormal cerebral white matter morphology;Abnormal facial shape;Abnormal isoelectric focusing of serum transferrin;Abnormal skeletal morphology;Abnormality of vision;Absent speech;Ataxia;Autosomal recessive inheritance;Axial hypotonia;Cerebral atrophy;Cerebral white matter atrophy;Death in childhood;Decreased corneal reflex;Delayed myelination;Dry skin;EEG with burst suppression;EEG with generalized epileptiform discharges;Elevated hepatic transaminase;Episodic vomiting;Failure to thrive;Feeding difficulties;Global developmental delay;Gray matter heterotopia;Hearing impairment;High forehead;Hyperammonemia;Hyperreflexia;Hypertonia;Hypokinesia;Hypotonia;Impaired social interactions;Infantile muscular hypotonia;Infantile onset;Intellectual disability;Inverted nipples;Limb hypertonia;Long philtrum;Low anterior hairline;Microcephaly;Neonatal hypotonia;Neonatal onset;Opisthotonus;Retrognathia;Scoliosis;Seizure;Sensorineural hearing impairment;Strabismus;Temperature instability;Type I transferrin isoform profile;Vomiting;Widened subarachnoid space
+|phenotype_source=HPO
+|phenotype_source_key=440138
 |species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000253710
 |uniprot=Q2TAA5
 }}

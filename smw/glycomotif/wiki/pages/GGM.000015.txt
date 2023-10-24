@@ -5,18 +5,21 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000016
 |displayhgv=false
-|enzyme=ABO;Abo;B3GALT2;B3GALT5;B3galt2;B3galt5;B4GALT1;B4GALT2;B4GALT3;B4galt1;B4galt2;B4galt3
 |glycoct=RES
 1b:b-dgal-HEX-1:5
 2b:a-dgal-HEX-1:5
 LIN
 1:1o(3+1)2d
 |glytoucan=G24432YB
+|humanenzyme=A3GALT2:2;ABO:2;B3GALT1:1;B3GALT2:1;B3GALT4:1;B3GALT5:1;B4GALT1:1;B4GALT2:1;B4GALT3:1;B4GALT4:1;B4GALT5:1;C1GALT1:1;C1GALT1C1:1;GGTA1:2
+|mouseenzyme=A3galt2:2;Abo:2;B3galt1:1;B3galt2:1;B3galt4:1;B3galt5:1;B4galt1:1;B4galt2:1;B4galt3:1;B4galt4:1;B4galt5:1;C1galt1:1;C1galt1c1:1;Ggta1:2
 |name=a-Gal antigen
 alpha-Gal antigen
 |prefname=a-Gal antigen
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Galili et al. (1985) Human natural anti-alpha-galactosyl IgG. II. The specific recognition of alpha ...
 |sameas=GD.R000079,GDC.000015,GDV.000022,GM.G24432YB
+|sandbox_nlinked=G00212RH;G00706YM;G00741NZ;G00797ZX;G00966RI;G00995HW;G01295AX;G01323LL;G01406RR;G01476WA
+|sandbox_olinked=G00428HK;G00924FH;G01801SZ;G02642GO;G02729OV;G03877AD;G04548YV;G07430HH;G07764JS;G10480CH
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
 }}
