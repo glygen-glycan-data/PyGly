@@ -14,7 +14,7 @@ except ImportError:
 
 from . combinatorics import itermatchings, iterecmatchings
 
-from . Monosaccharide import Monosaccharide, Linkage, Mod
+from . Monosaccharide import Monosaccharide, Linkage, Mod, Substituent
 from . MonoFormatter import IUPACSym, LinCodeSym
 
 iupacSym = IUPACSym()
@@ -607,7 +607,7 @@ class Glycan:
                 syms = [sym.split('+')[0]]
                 eids = [[m.external_descriptor_id()]]
                 for s in m.substituents():
-                    if s.name() in manipulation.Composition.floating_substs:
+                    if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
                         try:
                             syms.append(iupacSym.toStr(s))
                         except KeyError:
@@ -617,7 +617,7 @@ class Glycan:
                         eids[0].append(s.external_descriptor_id())
                 syms1 = [sym1.split('+')[0]]
                 for s in m1.substituents():
-                    if s.name() in manipulation.Composition.floating_substs:
+                    if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
                         try:
                             syms1.append(iupacSym.toStr(s))
                         except KeyError:
