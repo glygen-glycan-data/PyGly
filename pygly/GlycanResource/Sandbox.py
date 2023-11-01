@@ -14,7 +14,7 @@ class GlycoTreeSandbox(WebServiceResource):
         super(GlycoTreeSandbox,self).__init__(**kw)
 
     def list(self,mode='all'):
-        assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
+        assert mode in ('all','all_N','all_O','mapped','mapped_N','mapped_O','clean','clean_N','clean_O')
         for d in self.query_list(mode=mode):
             yield d['glytoucan_ac']
 
@@ -31,7 +31,7 @@ class GlycoTreeSandbox(WebServiceResource):
             yield g
 
     def allglycans(self,mode='all',blocksize=20):
-        assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
+        assert mode in ('all','all_N','all_O','mapped','mapped_N','mapped_O','clean','clean_N','clean_O')
         listaccs = list(self.list(mode))
         for i in range(0,len(listaccs),blocksize):
             accs = listaccs[i:(i+blocksize)]
