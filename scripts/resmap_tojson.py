@@ -84,6 +84,10 @@ for path in sorted(os.listdir(wurcs_dir)):
             traceback.print_exc(file=sys.stderr)
         continue
 
+    svglinkids = set()
+    for m in re.findall(r' ID="(l-1:\d+,\d+)" ',svg_seq):
+        svglinkids.add(m)
+
     canonres_data = {}
     iupac_annotations = defaultdict(list)
     for m in canon_gly.all_nodes(undet_subst=True):
@@ -108,6 +112,8 @@ for path in sorted(os.listdir(wurcs_dir)):
             if verbose:
                 print("Error accession:",acc,file=sys.stderr)
                 print("Cannot align SVG-based and WURCS-based glycans",file=sys.stderr)
+                print(svg_gly.glycoct())
+                print(canon_gly.glycoct())
             continue
         svg_idmapids = [ ti for t in svg_idmap for ti in glyimeq.monoidmap(*t)]
     elif not canon_gly.has_root() and not svg_gly.has_root():
@@ -128,15 +134,22 @@ for path in sorted(os.listdir(wurcs_dir)):
     for svg_id,canon_id in svg_idmapids:
         svg_idmap_dict[str(canon_id)].extend(svg_id.split(';'))
 
-    for l in canon_gly.all_links():
+    for l in canon_gly.all_links(uninstantiated=True):
         parent_svgid =  svg_idmap_dict[str(l.parent().id())][0]
         child_svgid =  svg_idmap_dict[str(l.child().id())][0]
         svgidbase,parent_svgid1 = parent_svgid.rsplit(':',1)
         svgidbase = svgidbase.split('-',1)[1]
         child_svgid1 = child_svgid.rsplit(':',1)[1]
-        link_id = str(l.parent().id()) + "-" + str(l.child().id())
-        svg_link_id = "l-1:" + str(parent_svgid1) + ","+ str(child_svgid1)
+        if l.instantiated():
+            link_id = str(l.parent().id()) + "-" + str(l.child().id())
+            svg_link_id = "l-1:" + str(parent_svgid1) + ","+ str(child_svgid1)
+        else:
+            link_id = "-" + str(l.child().id())
+            svg_link_id = [ sli for sli in svglinkids if sli.endswith(","+str(child_svgid1)) ][0]
         svg_idmap_dict[link_id].append(svg_link_id)
+
+    for canid in svg_idmap_dict:
+        svg_idmap_dict[canid] = sorted(set(svg_idmap_dict[canid]))
 
     if not os.path.exists(os.path.join(out_dir,acc+".json")):
         structure_dict = {}
