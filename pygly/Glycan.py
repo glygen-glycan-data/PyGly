@@ -565,6 +565,13 @@ class Glycan:
         GalN      HexN
         ManN      HexN
         Xyl       Pent
+        Man+aldi  Hex+aldi
+        Gal+aldi  Hex+aldi
+        Glc+aldi  Hex+aldi
+        Fuc+aldi  dHex+aldi
+        ManNAc+aldi    HexNAc+aldi
+        GlcNAc+aldi    HexNAc+aldi
+        GalNAc+aldi    HexNAc+aldi
     """.splitlines()))))
 
     def iupac_items(self, nodeiterable, floating_substituents=True, aggregate_basecomposition=True):
