@@ -38,6 +38,18 @@ class GlycoTreeSandbox(WebServiceResource):
             for r in self.glycans(*accs):
                 yield r
 
+    def enzymes(self,status=None):
+        assert status in (None,'active','proposed','active,proposed')
+        if status:
+            status = set(map(str.strip,status.split(',')))
+        for row in self.query_enzymes()['data']:
+            if status and row.get('status') not in status:
+                continue
+            for k in list(row):
+                if not row.get(k):
+                    del row[k]
+            yield row
+
 class GlycoTreeSandboxDev(GlycoTreeSandbox):
     apiurl = 'https://edwardslab.bmcb.georgetown.edu/sandboxdev/api'
 
