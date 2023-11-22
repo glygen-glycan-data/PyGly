@@ -102,7 +102,7 @@ class MonosaccharideComparitor(Comparitor):
         else:
             assert self.substeq(a,b)
         retval = [(a.external_descriptor_id(),b.external_descriptor_id())]
-	for ii,jj in itermatchings(a.substituent_links(),b.substituent_links(),
+        for ii,jj in itermatchings(a.substituent_links(),b.substituent_links(),
                                    lambda i,j: self.sublinkeq(i,j) and self.substeq(i.child(),j.child())):
             for i,j in zip(ii,jj): 
                 if i.child().external_descriptor_id() and j.child().external_descriptor_id():
