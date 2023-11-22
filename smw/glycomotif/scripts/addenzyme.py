@@ -8,52 +8,63 @@ from pygly.GlycanResource import GlycoTreeSandbox, GlycoTreeSandboxDev
 # gts = GlycoTreeSandbox()
 gts = GlycoTreeSandboxDev()
 
+form_name_dict = dict(map(lambda s: tuple(s.split()),filter(lambda s: s.strip(),"""
+Fucp Fuc
+Galf Gal
+Galp Gal
+GalpNAc GalNAc
+GalxNAc GalNAc
+GlcAp GlcA
+Glcp Glc
+GlcpNAc GlcNAc
+GlcxNAc GlcNAc
+KDN KDN
+Manp Man
+ManpNAc ManNAc
+NeupNAc NeuAc
+NeupNGc NeuGc
+phosphate phosphate
+sulfate sulfate
+Xylf Xyl
+Xylp Xyl
+""".splitlines())))
+
 allenz = dict()
 tree = dict()
 
-for gtsselector in ['mapped_N','mapped_O']:
-  for enzdata in gts.allglycans(gtsselector):
-    print(enzdata['accession'])
-    for r in enzdata["residues"]:
-        if r.get('glycotree',"none") == "none":
-            continue
-        glycotree = r['glycotree']
-        residue_id = r["residue_id"]
-        name = r["name"]
-        anomer = r["anomer"]
-        if anomer == "a":
-            anomer = "alpha"
-        elif anomer == "b":
-            anomer = "beta"
-        site = r["site"]
-        parent_id = r["parent_id"]
-        tree[residue_id] = dict(id=residue_id, name=name, anomer=anomer, site=site, 
-                                parent_id=parent_id, glycotree=r['glycotree'])
+for r in gts.enzymes():
+    glycotree = r['residue_id'][0]
+    residue_id = r["residue_id"]
+    name = form_name_dict[r["form_name"]]
+    anomer = r["anomer"]
+    if anomer == "a":
+        anomer = "alpha"
+    elif anomer == "b":
+        anomer = "beta"
+    site = r["site"]
+    parent_id = r["parent_id"]
+    if parent_id == 'no_id':
+        parent_id = None
+    tree[residue_id] = dict(id=residue_id, name=name, anomer=anomer, site=site, 
+                            parent_id=parent_id, glycotree=glycotree)
+    if r.get('gene_name'):
+        if r['gene_name'] not in allenz:
+            allenz[r['gene_name']] = dict(genename=r['gene_name'],glycotree=glycotree,
+                                          species=('Human' if r['species'] == 'Homo sapiens' else 'Mouse'),
+                                          uniprot=r['uniprot'],residues=set([residue_id]))
+        else:
+            allenz[r['gene_name']]['residues'].add(residue_id)
 
-for r in tree.values():
-    if r['parent_id'] == '0':
-        continue
-    p = tree[r['parent_id']]
-    ch = p.get('child',set())
-    ch.add(r['id'])
-    p['child'] = ch
+for rid in tree:
+    pid = tree[rid]['parent_id']
+    action = (tree[rid]['name'],tree[rid]['anomer'],tree[rid]['site'],tree[pid]['name'] if pid else None)
+    tree[rid]['action'] = action
 
-for gtsselector in ['mapped_N','mapped_O']:
-  for enzdata in gts.allglycans(gtsselector):
-    print(enzdata['accession'])
-    for r in enzdata["residues"]:
-        if r.get('glycotree',"none") == "none":
-            continue
-        rid = r['residue_id']
-        pid = r['parent_id']
-        action = (tree[rid]['name'],tree[rid]['anomer'],tree[rid]['site'],tree[pid]['name'] if pid != "0" else "")
-        for e in r['enzymes']:
-            if e['gene_name'] in allenz:
-                allenz[e['gene_name']]['action'].add(action)
-                continue
-            allenz[e['gene_name']] = dict(genename=e['gene_name'],glycotree=gtsselector.split('_')[-1],
-                                          species=('Human' if e['species'] == 'Homo sapiens' else 'Mouse'),
-                                          uniprot=e['uniprot'],action=set([action]))
+for gn in allenz:
+    allenz[gn]['action'] = set()
+    for rid in allenz[gn]['residues']:
+        allenz[gn]['action'].add(tree[rid]['action'])
+    del allenz[gn]['residues']
 
 w = GlycoMotifWiki()
 
@@ -77,6 +88,8 @@ for ed in allenz.values():
       ed['description'] = ""
     if 'action' in ed:
         del ed['action']
+    if 'residues' in ed:
+        del ed['residues']
     if 'glycotree' in ed:
         del ed['glycotree']
     enz = w.get(ed['genename'])
@@ -86,5 +99,6 @@ for ed in allenz.values():
         enz.update(**ed)
     enz.delete('action')
     enz.delete('tree')
+    enz.delete('residues')
     if w.put(enz):
         print("Enzyme %s updated."%(ed['genename'],))
