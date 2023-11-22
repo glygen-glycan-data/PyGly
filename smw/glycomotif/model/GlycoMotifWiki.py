@@ -341,7 +341,7 @@ class Enzyme(SMW.SMWClass):
 
         for key in ('phenotype','disease','tissue','celltype'):
 	    if key in data:
-	        data[key] = ';'.join(map(str,data.get(key,'')))
+	        data[key] = ';'.join(sorted(map(str,data.get(key,''))))
 
         if 'ortholog' in data:
             data['ortholog'] = ",".join(sorted(data['ortholog']))
