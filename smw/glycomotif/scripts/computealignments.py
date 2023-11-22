@@ -60,17 +60,25 @@ def idmaps_toids(idmaps,aligner):
         newidmaps.append(idmapids)
     return newidmaps
 
-def get_match_index (idmaps,glycan=None):
+def get_match_index (motifacc,structacc,idmaps,glycan=None):
     allstructids = set()
     allstructlinkids = set()
     for idmap in idmaps: 
         structids = set(t[1] for t in idmap)
         allstructids.update(structids)
+        monoids = set(t1 for t1 in structids if '.' not in t1)
+        linkids = set()
         if glycan:
-            for l in glycan.all_links():
-                if l.parent().external_descriptor_id() in structids and \
-                   l.child().external_descriptor_id() in structids:
-                    allstructlinkids.add((l.parent().external_descriptor_id(),l.child().external_descriptor_id()))
+            for l in glycan.all_links(uninstantiated=True):
+                if l.parent().external_descriptor_id() in monoids and \
+                   l.child().external_descriptor_id() in monoids:
+                    if l.instantiated():
+                        linkids.add((l.parent().external_descriptor_id(),l.child().external_descriptor_id()))
+                    else:
+                        linkids.add(('',l.child().external_descriptor_id()))
+            if len(monoids) != (len(linkids) + 1):
+                print >>sys.stderr, "Warning: Bad linkids length motifacc: %s structacc: %s"%(motifacc,structacc)
+            allstructlinkids.update(linkids)
     x = "Y:"+",".join(str(i) for i in sorted(allstructids))
     if glycan:
         x += ":"+",".join("%s-%s"%p for p in sorted(allstructlinkids))
@@ -254,7 +262,7 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
         
         for mt,idmaps in zip(res0,index_numbers):
             if mt:
-                indices=get_match_index(idmaps,glycan)
+                indices=get_match_index(macc,glycan_acc,idmaps,glycan)
                 res1.append(indices)
             else:
                 res1.append("N")
