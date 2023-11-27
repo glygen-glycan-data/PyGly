@@ -27,6 +27,6 @@ LIN
 |prefname=N-Glycan core, superclass
 |redend=true
 |sameas=GM.G09820LN
-|sandbox_nlinked=G00176HZ;G00201AB;G00231WL;G00247PL;G00279YF;G00320ZP;G00361YF;G00368HM;G00413UF;G00432WV
+|sandbox_nlinked=G00087ZB;G00116DX;G00176HZ;G00201AB;G00219FW;G00231WL;G00247PL;G00255RE;G00279YF;G00281ZP
 |wurcs=WURCS{{=}}2.0/2,5,4/{{!(}}axxxxh-1x_1-?_2*NCC/3{{=}}O{{!)}}{{!(}}axxxxh-1x_1-?{{!)}}/1-1-2-2-2/a?-b1_b?-c1_c?-d1_c?-e1
 }}

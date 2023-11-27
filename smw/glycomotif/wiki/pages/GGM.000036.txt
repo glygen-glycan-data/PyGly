@@ -23,7 +23,7 @@ LIN
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1981) Two monoclonal anticarbohydrate antibodies directed to glycosphingolipids with a lacto-N-glycosyl ...
 |sameas=GD.R000003,GDB.002141,GDH.000031,GE.EP0252,GM.G61459JW,UCM.000031
-|sandbox_nlinked=G00480NH;G00531ZU;G00797ZX;G01378OV;G01476WA;G01489UZ;G01996OW;G02188RD;G03347EL;G03404VQ
-|sandbox_olinked=G00027JG;G00069YC;G00196CO;G00376RB;G00428HK;G00496OX;G00729SA;G00901NZ;G00924FH;G01243KR
+|sandbox_nlinked=G00116DX;G00380ZN;G00480NH;G00531ZU;G00797ZX;G00932EO;G01128XX;G01378OV;G01476WA;G01489UZ
+|sandbox_olinked=G00027JG;G00030VN;G00069YC;G00196CO;G00376RB;G00428HK;G00496OX;G00729SA;G00901NZ;G00924FH
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a4-b1_b2-c1
 }}

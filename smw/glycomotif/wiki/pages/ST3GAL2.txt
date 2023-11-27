@@ -2,7 +2,7 @@
 |celltype=Ubiquitous
 |celltype_source=GTEX
 |celltype_source_key=ENSG00000157350
-|description=Attach alpha 3 NeuNAc to Gal.
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc.
 |genename=ST3GAL2
 |ortholog=St3gal2
 |species=Human

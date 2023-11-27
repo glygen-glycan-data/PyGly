@@ -28,7 +28,7 @@ i antigen
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Miyake et al. (1989) Human IgG3 monoclonal antibody directed to an unbranched repeating type ...;Watanabe et al. (1979) Characterization of a blood group I-active ganglioside. Structural requirements for ...
 |sameas=GD.R000225,GDB.002171,GDC.000002,GDH.000156,GDV.000045,GE.EP0139,GM.G00058MO,GTC.G00058MO,UCM.000156
-|sandbox_nlinked=G00113FP;G00584LL;G00810PC;G00995HW;G01001RL;G01342FO;G01613KN;G01917CF;G02076VP;G02122FK
-|sandbox_olinked=G00069YC;G00321UH;G00520NI;G00728SN;G00978GW;G00980BE;G01243KR;G01325OU;G01674VT;G02150AC
+|sandbox_nlinked=G00049HA;G00113FP;G00255RE;G00314AH;G00584LL;G00810PC;G00932EO;G00995HW;G01001RL;G01342FO
+|sandbox_olinked=G00069YC;G00321UH;G00505CR;G00520NI;G00728SN;G00978GW;G00980BE;G01243KR;G01325OU;G01674VT
 |wurcs=WURCS{{=}}2.0/2,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-1-2/a4-b1_b3-c1_c4-d1
 }}

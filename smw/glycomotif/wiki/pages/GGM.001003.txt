@@ -33,6 +33,6 @@ LIN
 |prefname=N-Glycan hybrid
 |redend=true
 |sameas=GM.G19610CW
-|sandbox_nlinked=G00247PL;G00349CA;G00471UP;G00706VT;G00740UU;G00741NZ;G01079TS;G01772HV;G01999JH;G02945KQ
+|sandbox_nlinked=G00247PL;G00349CA;G00471UP;G00706VT;G00740UU;G00741NZ;G01021TH;G01079TS;G01772HV;G01999JH
 |wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-2-4-4/a4-b1_b4-c1_c3-d1_c6-f1_e1-d2{{!}}d4_g1-f3{{!}}f6
 }}

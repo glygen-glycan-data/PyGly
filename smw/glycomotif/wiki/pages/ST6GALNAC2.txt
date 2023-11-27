@@ -2,7 +2,7 @@
 |celltype=Enriched in Basal squamous epithelial cells;Enriched in Late spermatids;Enriched in Schwann cells;Enriched in Squamous epithelial cells
 |celltype_source=GTEX
 |celltype_source_key=ENSG00000070731
-|description=Attach alpha 6 NeuNAc to GalNAc.
+|description=Attach alpha 6 NeuAc to GalNAc.
 |genename=ST6GALNAC2
 |ortholog=St6galnac2
 |species=Human

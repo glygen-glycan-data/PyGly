@@ -1,5 +1,5 @@
 {{Enzyme
-|description=Attach alpha 3 Gal to Gal.
+|description=Attach alpha 3 Gal to Gal; attach alpha 3 Gal to GalNAc.
 |genename=Ggta1
 |mgiacc=MGI:95704
 |ortholog=GGTA1

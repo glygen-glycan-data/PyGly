@@ -1,5 +1,5 @@
 {{Enzyme
-|description=Attach alpha 6 NeuNAc to GalNAc.
+|description=Attach alpha 6 NeuAc to GalNAc.
 |genename=ST6GALNAC6
 |ortholog=St6galnac6
 |species=Human

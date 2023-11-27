@@ -2,7 +2,7 @@
 |celltype=Ubiquitous
 |celltype_source=GTEX
 |celltype_source_key=ENSG00000126091
-|description=Attach alpha 3 NeuNAc to Gal; attach alpha 3 NeuNGc to Gal.
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal.
 |disease=Developmental and epileptic encephalopathy 15;Infantile spasms syndrome;Mental retardation, autosomal recessive 12
 |disease_source=HPO
 |disease_source_key=6487

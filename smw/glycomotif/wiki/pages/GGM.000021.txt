@@ -28,6 +28,6 @@ Le^b
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Brockhaus et al. (1981) Monoclonal antibodies directed against the human Leb blood group ...
 |sameas=GD.R000197,GDC.000021,GDSB.000146,GDV.000004,GM.G39211DH
 |sandbox_nlinked=G66689PB;G92627GM
-|sandbox_olinked=G03140AX;G04536JV;G07164WO;G07578MJ;G08382XT;G12111NA;G13863XN;G19238ZQ;G19555CW;G21807KQ
+|sandbox_olinked=G03140AX;G04536JV;G06579LC;G07164WO;G07578MJ;G08382XT;G12111NA;G13863XN;G19238ZQ;G19555CW
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-3/a3-b1_a4-d1_b2-c1
 }}

@@ -25,7 +25,7 @@ Le^a
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Young et al. (1983) Characterization of monoclonal antibodies specific for the Lewis a human ...
 |sameas=CCRC.000020,GD.R000229,GDC.000020,GDV.000026,GM.G00047MO,GTC.G00047MO
-|sandbox_nlinked=G24095BS;G56720TK;G66689PB;G92627GM
-|sandbox_olinked=G00371DJ;G00430ZK;G00944OL;G02844SX;G02912JK;G03140AX;G03542TR;G03900NK;G04536JV;G06676BQ
+|sandbox_nlinked=G00219FW;G00767OE;G05678RU;G07371PE;G08812UY;G10750RR;G11513MH;G14030GZ;G17538IG;G21287VY
+|sandbox_olinked=G00371DJ;G00430ZK;G00944OL;G02844SX;G02912JK;G03140AX;G03542TR;G03900NK;G04536JV;G06579LC
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3/a3-b1_a4-c1
 }}

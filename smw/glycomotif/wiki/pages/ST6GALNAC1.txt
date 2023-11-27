@@ -2,7 +2,7 @@
 |celltype=Enriched in Intestinal goblet cells
 |celltype_source=GTEX
 |celltype_source_key=ENSG00000070526
-|description=Attach alpha 6 NeuNAc to GalNAc.
+|description=Attach alpha 6 NeuAc to GalNAc.
 |genename=ST6GALNAC1
 |ortholog=St6galnac1
 |species=Human

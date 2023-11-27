@@ -539,7 +539,8 @@ function initMotifAlign() {
  
     caption.appendChild(captionacc);
     if (sandbox.has(gtcid)) {
-      caption.innerHTML += ' (<A target="_sandbox" href="https://edwardslab.bmcb.georgetown.edu/sandboxdev/explore.html?focus='+gtcid+'">Sandbox</A>)';
+      caption.innerHTML += ' (<A target="_sandbox" href="https://sandbox.glyomics.org/explore.html?focus='+gtcid+'">Sandbox</A>)';
+      // caption.innerHTML += ' (<A target="_sandbox" href="https://edwardslab.bmcb.georgetown.edu/sandboxdev/explore.html?focus='+gtcid+'">Sandbox</A>)';
     }
     if (extra.length > 0){
         caption.innerHTML += "<br/>("+extra+")";

@@ -21,6 +21,6 @@ LIN
 |prefname=O-Glycan core 5
 |redend=true
 |sameas=GM.G00039MO,GTC.G00039MO
-|sandbox_olinked=G00039MO;G32397EL;G74960IM;G81016SV;G85862MS;G94972RF
+|sandbox_olinked=G00039MO;G27297CO;G32397EL;G74960IM;G81016SV;G85862MS;G94972RF
 |wurcs=WURCS{{=}}2.0/1,2,1/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-1/a3-b1
 }}

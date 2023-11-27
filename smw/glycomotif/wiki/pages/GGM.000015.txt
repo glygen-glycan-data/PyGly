@@ -19,7 +19,7 @@ alpha-Gal antigen
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Galili et al. (1985) Human natural anti-alpha-galactosyl IgG. II. The specific recognition of alpha ...
 |sameas=GD.R000079,GDC.000015,GDV.000022,GM.G24432YB
-|sandbox_nlinked=G00212RH;G00706YM;G00741NZ;G00797ZX;G00966RI;G00995HW;G01295AX;G01323LL;G01406RR;G01476WA
-|sandbox_olinked=G00428HK;G00924FH;G01801SZ;G02642GO;G02729OV;G03877AD;G04548YV;G07430HH;G07764JS;G10480CH
+|sandbox_nlinked=G00049HA;G00212RH;G00255RE;G00314AH;G00706YM;G00741NZ;G00767OE;G00797ZX;G00932EO;G00966RI
+|sandbox_olinked=G00428HK;G00924FH;G01801SZ;G01861KO;G02642GO;G02729OV;G03877AD;G04548YV;G05754QM;G07430HH
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
 }}

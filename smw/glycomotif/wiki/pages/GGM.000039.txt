@@ -21,9 +21,9 @@ LIN
 5:4o(3+1)6d
 6:6d(2+1)7n
 |glytoucan=G54826OZ
-|humanenzyme=ABO:5;B4GALT1:3;B4GALT2:3;B4GALT3:3;FUT10:2;FUT11:2;FUT1:4;FUT2:4;MGAT1:1
+|humanenzyme=ABO:5;B3GNT6:1;B4GALT1:3;B4GALT2:3;B4GALT3:3;B4GALT4:3;B4GALT5:3;FUT10:2;FUT11:2;FUT1:4;FUT2:4;MGAT1:1
 |keyword=Blood group A;Blood group type 2;Lewis y
-|mouseenzyme=Abo:5;B4galt1:3;B4galt2:3;B4galt3:3;Fut10:2;Fut11:2;Fut1:4;Fut2:4;Mgat1:1;Sec1:4
+|mouseenzyme=Abo:5;B3gnt6:1;B4galt1:3;B4galt2:3;B4galt3:3;B4galt4:3;B4galt5:3;Fut10:2;Fut11:2;Fut1:4;Fut2:4;Mgat1:1;Sec1:4
 |name=Blood group A (type 2) - Lewis y
 A-Ley
 A-Le^y
@@ -32,5 +32,6 @@ A-Le^y
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome
 |sameas=GD.R000501,GDC.000039,GDH.000025,GDV.000059,GE.EP0261,GM.G54826OZ,UCM.000025
 |sandbox_nlinked=G07041CT;G19778AE;G29733CJ;G37745NY;G68817WF
+|sandbox_olinked=G25707UW;G29349LH;G32402RO
 |wurcs=WURCS{{=}}2.0/4,5,4/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-2-4/a3-b1_a4-c1_c2-d1_c3-e1
 }}

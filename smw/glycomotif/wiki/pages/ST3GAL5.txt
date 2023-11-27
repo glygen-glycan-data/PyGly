@@ -2,7 +2,7 @@
 |celltype=Ubiquitous
 |celltype_source=GTEX
 |celltype_source_key=ENSG00000115525
-|description=Attach alpha 3 NeuNAc to Gal.
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc.
 |disease=Salt and pepper developmental regression syndrome
 |disease_source=HPO
 |disease_source_key=8869

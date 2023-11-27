@@ -2,7 +2,7 @@
 |celltype=Ubiquitous
 |celltype_source=GTEX
 |celltype_source_key=ENSG00000136840
-|description=Attach alpha 6 NeuNAc to GalNAc.
+|description=Attach alpha 6 NeuAc to GalNAc.
 |genename=ST6GALNAC4
 |ortholog=St6galnac4
 |species=Human
