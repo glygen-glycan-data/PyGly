@@ -590,6 +590,7 @@ class Glycan:
                 sym = None
 
             sym1 = None
+            m1 = None
             if isinstance(m,Monosaccharide) and aggregate_basecomposition:
                 try:
                     m1 = m.clone()
@@ -623,12 +624,13 @@ class Glycan:
                     else:
                         eids[0].append(s.external_descriptor_id())
                 syms1 = [sym1.split('+')[0]]
-                for s in m1.substituents():
-                    if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
-                        try:
-                            syms1.append(iupacSym.toStr(s))
-                        except KeyError:
-                            syms1.append("X")
+                if m1:
+                    for s in m1.substituents():
+                        if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
+                            try:
+                                syms1.append(iupacSym.toStr(s))
+                            except KeyError:
+                                syms1.append("X")
             else:
                 syms = [sym]
                 eids = [ m.external_descriptor_ids() ]
