@@ -1,0 +1,1 @@
+<includeonly>{{#ask: [[Category:Enzyme]][[{{{1|}}}::{{{2|}}}]] |?glycomotif:genename|mainlabel=-|format=template|template=EnzymeTableRowsForPhenotype|introtemplate=EnzymeTableIntroForPhenotype|outrotemplate=EnzymeTableOutroForPhenotype|limit=0|searchlabel={{{2|}}}}}</includeonly>

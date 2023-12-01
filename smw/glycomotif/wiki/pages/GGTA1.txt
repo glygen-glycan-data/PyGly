@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach alpha 3 Gal to Gal; attach alpha 3 Gal to GalNAc.
+|genename=GGTA1
+|ortholog=Ggta1
+|species=Human
+|uniprot=Q4G0N0
+}}

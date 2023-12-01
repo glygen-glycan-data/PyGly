@@ -1,0 +1,10 @@
+{{Enzyme
+|celltype=Enriched in Cholangiocytes;Enriched in Gastric mucus-secreting cells
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000118017
+|description=Attach alpha 4 GlcNAc to Gal.
+|genename=A4GNT
+|ortholog=A4gnt
+|species=Human
+|uniprot=Q9UNA3
+}}

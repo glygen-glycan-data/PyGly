@@ -1,0 +1,10 @@
+{{Enzyme
+|celltype=Enriched in Excitatory neurons;Enriched in Inhibitory neurons;Enriched in Oligodendrocyte precursor cells;Enriched in Oligodendrocytes
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000144278
+|description=Attach GalNAc to Ser/Thr.
+|genename=GALNT13
+|ortholog=Galnt13
+|species=Human
+|uniprot=Q8IUC8
+}}

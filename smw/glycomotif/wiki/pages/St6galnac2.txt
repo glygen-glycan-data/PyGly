@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 6 NeuAc to GalNAc.
+|genename=St6galnac2
+|mgiacc=MGI:107553
+|ortholog=ST6GALNAC2
+|species=Mouse
+|uniprot=P70277
+}}

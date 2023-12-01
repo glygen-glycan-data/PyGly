@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach beta 3 Gal to GlcNAc.
+|genename=B3galt1
+|mgiacc=MGI:1349403
+|ortholog=B3GALT1
+|phenotype=abnormal locomotor behavior;decreased circulating creatinine level;decreased exploration in new environment;decreased locomotor activity;increased mean platelet volume
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1349403
+|species=Mouse
+|uniprot=O54904
+}}

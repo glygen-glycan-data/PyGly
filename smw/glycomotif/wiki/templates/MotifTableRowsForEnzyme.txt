@@ -1,0 +1,8 @@
+<includeonly>
+| [[{{{1}}}|{{{2}}}]]
+| style="text-align:center;" | {{EnzymePageMotifImage|{{{1}}}|{{PAGENAME}}}}<br/>{{{3}}}
+| {{{4}}}
+| {{{6}}}
+| {{toalpage|{{{5}}}}}
+|-
+</includeonly>

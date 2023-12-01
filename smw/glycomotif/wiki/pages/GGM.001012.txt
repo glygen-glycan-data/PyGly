@@ -18,10 +18,13 @@ LIN
 4:1o(6+1)5d
 5:5d(2+1)6n
 |glytoucan=G00038MO
-|keyword=O-glycan classification
+|humanenzyme=B3GNT6:2;GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1;GCNT2:3;GCNT3:3
+|keyword=Mucin-type O-glycan core;O-glycan classification
+|mouseenzyme=B3gnt6:2;Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Gcnt2:3;Gcnt3:3
 |name=O-Glycan core 4 fuzzy
 |prefname=O-Glycan core 4 fuzzy
 |redend=true
 |sameas=GM.G00038MO,GTC.G00038MO
+|sandbox_olinked=G00037MO;G00038MO;G00901NZ;G01056RH;G01243KR;G01457KB;G01488BS;G01744JD;G01922RI;G02032MW
 |wurcs=WURCS{{=}}2.0/2,3,2/{{!(}}u2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2-2/a3-b1_a6-c1
 }}

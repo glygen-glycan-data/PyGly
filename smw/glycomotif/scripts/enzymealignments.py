@@ -15,7 +15,7 @@ from getwiki import GlycoMotifWiki
 
 w = GlycoMotifWiki()
 
-gtc = GlyTouCan()
+gtc = GlyTouCanNoCache()
 # gts = GlycoTreeSandbox()
 gts = GlycoTreeSandboxDev()
 

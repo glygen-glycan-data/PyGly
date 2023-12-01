@@ -4,7 +4,6 @@
 |alignment=Core
 |collection=GGM
 |displayhgv=false
-|enzyme=ALG1;ALG13;ALG14;ALG2;Alg1;Alg13;Alg14;Alg2;DPAGT1;Dpagt1;Glt28d2
 |glycoct=RES
 1b:x-HEX-1:x
 2s:n-acetyl
@@ -21,10 +20,13 @@ LIN
 5:5o(-1+1)6d
 6:5o(-1+1)7d
 |glytoucan=G09820LN
+|humanenzyme=ALG13:2;ALG14:2;ALG1:3;ALG2:5,4;DPAGT1:1
 |keyword=N-glycan classification
+|mouseenzyme=Alg13:2;Alg14:2;Alg1:3;Alg2:5,4;Dpagt1:1;Glt28d2:2
 |name=N-Glycan core, superclass
 |prefname=N-Glycan core, superclass
 |redend=true
 |sameas=GM.G09820LN
+|sandbox_nlinked=G00087ZB;G00116DX;G00176HZ;G00201AB;G00219FW;G00231WL;G00247PL;G00255RE;G00279YF;G00281ZP
 |wurcs=WURCS{{=}}2.0/2,5,4/{{!(}}axxxxh-1x_1-?_2*NCC/3{{=}}O{{!)}}{{!(}}axxxxh-1x_1-?{{!)}}/1-1-2-2-2/a?-b1_b?-c1_c?-d1_c?-e1
 }}

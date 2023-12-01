@@ -1,0 +1,9 @@
+<includeonly>
+| [[{{{1}}}]]
+| {{#show:{{{1}}}|?glycomotif:description}}
+| {{#show:{{{1}}}|?glycomotif:species}}
+| {{#show:{{{1}}}|?glycomotif:phenocount}}
+| {{#show:{{{1}}}|?glycomotif:instancecount}}
+| {{#show:{{{1}}}|?glycomotif:ortholog}}
+|-
+</includeonly>

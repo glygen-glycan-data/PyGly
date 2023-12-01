@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.
+|genename=Gcnt3
+|mgiacc=MGI:1919327
+|ortholog=GCNT3
+|species=Mouse
+|uniprot=Q5JCT0
+}}

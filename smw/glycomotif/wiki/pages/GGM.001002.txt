@@ -4,7 +4,6 @@
 |alignment=Core
 |collection=GGM
 |displayhgv=false
-|enzyme=ALG1;ALG13;ALG14;ALG2;ALG3;Alg1;Alg13;Alg14;Alg2;Alg3;DPAGT1;Dpagt1;Glt28d2
 |glycoct=RES
 1b:x-dglc-HEX-x:x
 2s:n-acetyl
@@ -25,10 +24,13 @@ LIN
 7:7o(3+1)8d
 8:7o(6+1)9d
 |glytoucan=G00028MO
+|humanenzyme=ALG13:2;ALG14:2;ALG1:3;ALG2:5,4;ALG3:7,6;DPAGT1:1
 |keyword=N-glycan classification
+|mouseenzyme=Alg13:2;Alg14:2;Alg1:3;Alg2:5,4;Alg3:7,6;Dpagt1:1;Glt28d2:2
 |name=N-Glycan high mannose
 |prefname=N-Glycan high mannose
 |redend=true
 |sameas=GM.G00028MO,GTC.G00028MO
+|sandbox_nlinked=G00028MO;G00281ZP;G00349CA;G00471UP;G00706VT;G00741NZ;G00883ZT;G01021TH;G01079TS;G01509KX
 |wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-4-4-4/a4-b1_b4-c1_c3-d1_c6-e1_e3-f1_e6-g1
 }}

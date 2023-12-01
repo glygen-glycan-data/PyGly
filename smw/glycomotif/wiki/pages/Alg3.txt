@@ -4,6 +4,8 @@
 |mgiacc=MGI:1098592
 |ortholog=ALG3
 |phenotype=hyperactivity;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1098592
 |species=Mouse
 |uniprot=Q8K2A8
 }}

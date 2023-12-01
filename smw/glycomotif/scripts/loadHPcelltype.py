@@ -12,8 +12,8 @@ celltype= defaultdict(list)
 
 header = ["ensembl_id", "gene_symbol", "tissue_type", "expression"]
 for row in csv.DictReader((open(sys.argv[1])), delimiter = "\t", fieldnames=header):
-	 c_type[row['gene_symbol'].upper()] = [row["tissue_type"], row["expression"]]
-         e_id[row['gene_symbol'].upper()] = row["ensembl_id"]
+	 c_type[row['gene_symbol']] = [row["tissue_type"], row["expression"]]
+         e_id[row['gene_symbol']] = row["ensembl_id"]
 
 
 
@@ -46,19 +46,19 @@ for k, v in c_type.items():
 for e in w.iterenzyme():
     gn = e.get('genename')
     species = e.get('species')
-    if species == "Mouse":
+    if species != "Human":
        continue
     if len(celltype.get(gn,[])) > 0:
        e.set("celltype_source_key",(e_id[gn]))
-       e.set("celltype_source","GTEX")
-       sorted_list = sorted(celltype[gn]) if isinstance(celltype[gn], list) else celltype[gn]
-       e.set("celltype", sorted_list)
+       e.set("celltype_source","GTEx")
+       e.set("celltype", sorted(celltype[gn]))
        print(e)
     else:	
        e.delete("celltype_source_key")
+       e.delete("celltype_source")
        e.delete("celltype")
 
-
+"""
     if w.put(e):
        print (gn)
-
+"""

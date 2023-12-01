@@ -5,7 +5,6 @@
 |collection=GGM
 |dbxref=GlycanDictionary:GSD000030
 |displayhgv=false
-|enzyme=B3GALT2;B3GALT5;B3galt2;B3galt5;MGAT1;MGAT2;Mgat1;Mgat2
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 2s:n-acetyl
@@ -20,11 +19,15 @@ LIN
 4:3o(3+1)5d
 5:5d(2+1)6n
 |glytoucan=G66163TI
+|humanenzyme=ABO:4;B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT2:1;B3GNT3:1;B3GNT4:1;B3GNT5:1;B3GNT6:1;B3GNT8:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;MGAT1:1;MGAT2:1
 |keyword=Blood group A;Blood group type 1
+|mouseenzyme=Abo:4;B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt2:1;B3gnt3:1;B3gnt4:1;B3gnt5:1;B3gnt6:1;B3gnt8:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat1:1;Mgat2:1;Sec1:3
 |name=Blood group A (type 1)
 |prefname=Blood group A (type 1)
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...
 |sameas=GD.R000092,GDB.002116,GDC.000044,GDH.000022,GDV.000058,GE.EP0256,GM.G66163TI,UCM.000022
+|sandbox_nlinked=G27432KC;G31152NK
+|sandbox_olinked=G09941BM;G10453CW;G13205MF;G21385AQ;G22629JM;G29025YS;G30086CM;G31997DH;G33740YL;G34962LY
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2-3-4/a3-b1_b2-c1_b3-d1
 }}

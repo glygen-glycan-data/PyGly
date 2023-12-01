@@ -1,7 +1,13 @@
 {{Enzyme
-|description=Attach alpha 3 NeuNAc to Gal; attach alpha 3 NeuNGc to Gal.
+|celltype=Enriched in Syncytiotrophoblasts
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000110080
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal.
 |genename=ST3GAL4
 |ortholog=St3gal4
 |species=Human
+|tissue=Ubiquitous, highly expressed
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000110080
 |uniprot=Q11206
 }}

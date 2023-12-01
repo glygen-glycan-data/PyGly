@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000121578
+|description=Attach beta 4 Gal to GlcNAc.
+|genename=B4GALT4
+|ortholog=B4galt4
+|species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000121578
+|uniprot=O60513
+}}

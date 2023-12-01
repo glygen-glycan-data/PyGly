@@ -1,0 +1,13 @@
+{{Enzyme
+|description=Attach beta 4 GalNAc to Gal.
+|disease=Autosomal recessive spastic paraplegia type 26;Spastic paraplegia 26, autosomal recessive
+|disease_source=HPO
+|disease_source_key=2583
+|genename=B4GALNT1
+|ortholog=B4galnt1
+|phenotype=Abnormal cerebellum morphology;Abnormality of the urinary system;Ataxia;Autosomal recessive inheritance;Babinski sign;Cataract;Cerebral cortical atrophy;Childhood onset;Decreased serum testosterone concentration;Difficulty walking;Distal lower limb amyotrophy;Dysarthria;Dyskinesia;Dysmetria;Dystonia;Early young adult onset;Emotional lability;Frequent falls;Gait disturbance;Hyperintensity of cerebral white matter on MRI;Hyperreflexia;Hyporeflexia;Impaired vibration sensation at ankles;Impaired vibratory sensation;Infantile onset;Intellectual disability;Intellectual disability, mild;Lower limb muscle weakness;Lower limb spasticity;Muscle weakness;Nystagmus;Pes cavus;Posterior capsular cataract;Premature ovarian insufficiency;Progressive;Pseudobulbar paralysis;Scoliosis;Sensorimotor neuropathy;Skeletal muscle atrophy;Spastic gait;Spastic paraplegia;Tip-toe gait;Upper limb muscle weakness;Upper limb spasticity;Urinary urgency
+|phenotype_source=HPO
+|phenotype_source_key=2583
+|species=Human
+|uniprot=Q00973
+}}

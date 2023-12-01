@@ -1,1 +1,12 @@
-Temporary, waiting for GlyTouCan registration of form with beta anomer at the reducing end. Switch GlyTouCan accession once done.
+
+Corrected from Cummings reference, to have two GlcNAc residues at core. Original GlyTouCan accession G54792LL.
+
+[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 12:08, 9 November 2023 (EST)
+
+Also corrected to put the phosphate on the 6-arm of the 6-linked mannose, consistent with figure 1 of Cummings.
+
+[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 11:24, 10 November 2023 (EST)
+
+Note that the name of this motif is quite misleading, per the citation (#39, Dahms et al. 2008) from Cummings, Man-6-P refers to the linkage of the phosphate, not the number of mannose residues. Also, it is unclear why diphosphate and the Man6 N-linked structure is the only one in the Cummings table, as the citation shows Man9 with up to 5 possible mannose placements for the (single) phosphate (Figure 1). 
+
+[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 13:35, 10 November 2023 (EST)

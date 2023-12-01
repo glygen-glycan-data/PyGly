@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=Galntl6
+|mgiacc=MGI:1913581
+|ortholog=GALNTL6
+|phenotype=hyperactivity
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1913581
+|species=Mouse
+|uniprot=E5D8G1
+}}

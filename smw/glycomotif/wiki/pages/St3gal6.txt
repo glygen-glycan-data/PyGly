@@ -1,5 +1,5 @@
 {{Enzyme
-|description=Attach alpha 3 NeuNAc to Gal; attach alpha 3 NeuNGc to Gal.
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal.
 |genename=St3gal6
 |mgiacc=MGI:1888707
 |ortholog=ST3GAL6

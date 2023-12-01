@@ -1,0 +1,1 @@
+<span class="plainlinks">[[glycomotif:hasenzyme::{{#explode:{{{1}}}|:|0}}]]</span><html>&nbsp;<div glymagesvg_forid="motifsvgimage" glymagesvg_annotation="CanonicalResidueIDs.</html>{{#explode:{{{1}}}|:|1}}<html>" glymagesvg_textclass="glymagesvg_checkbox_black_checked" class="glymagesvg_checkbox">&#x2714;</div></html>{{#set:|glycomotif:enzymecanonres={{{1}}}}}

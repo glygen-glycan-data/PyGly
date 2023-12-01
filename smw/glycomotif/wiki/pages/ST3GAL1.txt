@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Ubiquitous
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000008513
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc.
+|genename=ST3GAL1
+|ortholog=St3gal1
+|species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000008513
+|uniprot=Q11201
+}}

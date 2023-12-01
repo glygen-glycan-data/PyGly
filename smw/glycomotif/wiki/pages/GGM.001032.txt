@@ -1,0 +1,24 @@
+{{Motif
+|accession=001032
+|aglycon=Ser/Thr
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dgal-HEX-1:5
+2s:n-acetyl
+3b:a-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(3+1)3d
+|glytoucan=G76355TG
+|humanenzyme=GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1;GGTA1:2
+|keyword=Mucin-type O-glycan core;O-glycan classification
+|mouseenzyme=Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Ggta1:2
+|name=O-Glycan core 8
+|prefname=O-Glycan core 8
+|redend=true
+|sameas=GM.G76355TG
+|sandbox_olinked=G25184AN;G66418NO;G76355TG
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2/a3-b1
+}}

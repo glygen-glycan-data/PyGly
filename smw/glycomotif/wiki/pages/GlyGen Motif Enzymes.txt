@@ -8,10 +8,11 @@
 |?=Enzyme
 |?glycomotif:description=Description
 |?glycomotif:instancecount=Motifs
-|?glycomotif:iscdg=CDG?
+|?glycomotif:phenocount=Phenotypes
 |?glycomotif:ortholog=Ortholog
 |mainlabel=-
 |sep=,&nbsp;
+|limit=100
 |format=broadtable
 }}
 
@@ -24,10 +25,11 @@
 |?=Enzyme
 |?glycomotif:description=Description
 |?glycomotif:instancecount=Motifs
-|?glycomotif:phenocount=IMPC KO Phenotypes
+|?glycomotif:phenocount=Phenotypes
 |?glycomotif:ortholog=Ortholog
 |mainlabel=-
 |sep=,&nbsp;
+|limit=100
 |format=broadtable
 }}
 

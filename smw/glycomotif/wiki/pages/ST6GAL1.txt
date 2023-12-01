@@ -1,7 +1,10 @@
 {{Enzyme
-|description=Attach alpha 6 NeuNAc to Gal; attach alpha 6 NeuNAc to GalNAc; attach alpha 6 NeuNGc to Gal.
+|description=Attach alpha 6 NeuAc to Gal; attach alpha 6 NeuGc to Gal.
 |genename=ST6GAL1
 |ortholog=St6gal1
 |species=Human
+|tissue=Enriched in liver
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000073849
 |uniprot=P15907
 }}

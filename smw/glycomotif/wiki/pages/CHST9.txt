@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach 4 linked sulfate to GalNAc.
+|genename=CHST9
+|ortholog=Chst9
+|species=Human
+|uniprot=Q7L1S5
+}}

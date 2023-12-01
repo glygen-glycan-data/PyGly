@@ -57,6 +57,9 @@ class GlycanBuilderSVG(GlycanFormatter):
                 'N': {'type': Substituent.amino, 
                       'parent_type': Linkage.oxygenLost, 
                       'child_type': Linkage.nitrogenAdded},
+                'NS': {'type': Substituent.nsulfate, 
+                       'parent_type': Linkage.oxygenPreserved, 
+                       'child_type': Linkage.nitrogenAdded},
                 'Ac': {'type': Substituent.acetyl,
                        'parent_type': Linkage.oxygenPreserved, 
                        'child_type': Linkage.nitrogenAdded},
@@ -192,6 +195,15 @@ class GlycanBuilderSVG(GlycanFormatter):
                         parent = monos[int(g.attrib['data.parentResidueIndex'])]
                     except (KeyError,ValueError):
                         raise GlycanBuilderSVGUnexpectedLinkConnectionError()
+
+                    if sub.name() == Substituent.sulfate and parent_pos == set([2,]):
+                        for sl in parent.substituent_links():
+                            if sl.child().name() == Substituent.amino and sl.parent_pos() == set([2,]):
+                                subres = "NS"
+                                parent.remove_substituent_link(sl)
+                                sub = Substituent(self.substmap[subres]['type'])
+                                break
+
                     parent.add_substituent(sub, 
                                            parent_pos=parent_pos, parent_type=self.substmap[subres]['parent_type'], 
                                            child_pos=child_pos, child_type=self.substmap[subres]['child_type'])

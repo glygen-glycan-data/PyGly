@@ -1,8 +1,20 @@
 {{Enzyme
+|celltype=Ubiquitous, highly expressed
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000101901
 |description=Attach beta 4 GlcNAc to GlcNAc.
+|disease=ALG13-CDG;Epileptic encephalopathy, early infantile, 36
+|disease_source=HPO
+|disease_source_key=79868
 |genename=ALG13
 |iscdg=true
 |ortholog=Alg13
+|phenotype=Abnormal bleeding;Abnormal lateral ventricle morphology;Abnormal pyramidal sign;Abnormality of brain morphology;Abnormality of extrapyramidal motor function;Adducted thumb;Anteverted nares;Atonic seizure;Autism;Cerebral atrophy;Clumsiness;Coarse facial features;Cognitive impairment;Decreased body weight;Delayed CNS myelination;Delayed speech and language development;Feeding difficulties;Flexion contracture;Generalized hypotonia;Global brain atrophy;Global developmental delay;Hepatomegaly;Horizontal nystagmus;Hydrocephalus;Hypertelorism;Hypotonia;Hypsarrhythmia;Infantile onset;Infantile spasms;Intellectual disability, severe;Long philtrum;Low-set ears;Macrocephaly;Microcephaly;Microretrognathia;Myoclonic seizure;Nystagmus;Optic atrophy;Poor head control;Prolonged partial thromboplastin time;Recurrent infections;Reduced eye contact;Scoliosis;Seizure;Self-mutilation;Short chin;Sleep disturbance;Small hand;Tonic seizure;Type I transferrin isoform profile;X-linked inheritance
+|phenotype_source=HPO
+|phenotype_source_key=79868
 |species=Human
+|tissue=Ubiquitous, highly expressed
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000101901
 |uniprot=Q9NP73
 }}

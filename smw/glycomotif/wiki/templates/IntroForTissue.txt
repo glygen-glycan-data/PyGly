@@ -1,0 +1,5 @@
+<includeonly>
+{| class="sortable wikitable smwtable"
+!Tissue Specificity
+!Enzymes
+</includeonly>

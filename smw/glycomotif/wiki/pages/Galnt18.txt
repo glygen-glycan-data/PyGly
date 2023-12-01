@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=Galnt18
+|mgiacc=MGI:2446239
+|ortholog=GALNT18
+|phenotype=decreased circulating fructosamine level;decreased total body fat amount;increased NK cell number;increased circulating alkaline phosphatase level;increased lean body mass;increased red blood cell distribution width
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2446239
+|species=Mouse
+|uniprot=Q8K1B9
+}}

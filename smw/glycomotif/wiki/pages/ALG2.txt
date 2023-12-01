@@ -1,8 +1,20 @@
 {{Enzyme
+|celltype=Ubiquitous, highly expressed
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000119523
 |description=Attach alpha 3 Man to Man; attach alpha 6 Man to Man.
+|disease=ALG2-CDG;Congenital disorder of glycosylation, type Ii;Congenital myasthenic syndromes with glycosylation defect;Myasthenic syndrome, congenital, 14
+|disease_source=HPO
+|disease_source_key=85365
 |genename=ALG2
 |iscdg=true
 |ortholog=Alg2
+|phenotype=Abnormal basal ganglia MRI signal intensity;Abnormal circulating enzyme concentration or activity;Abnormal facial shape;Abnormal peripheral nervous system synaptic transmission;Abnormality of coagulation;Abnormality of the nervous system;Areflexia;Autosomal recessive inheritance;Cataract;Centrally nucleated skeletal muscle fibers;Cerebral hypomyelination;Childhood onset;Decreased body weight;Delayed CNS myelination;Delayed speech and language development;Diarrhea;Difficulty climbing stairs;Difficulty running;Difficulty walking;Dilation of Virchow-Robin spaces;Distal joint laxity;Distal muscle weakness;Downslanted palpebral fissures;Dystonia;EMG: decremental response of compound muscle action potential to repetitive nerve stimulation;Easy fatigability;Elevated circulating creatine kinase concentration;Epicanthus;Epileptic spasm;Esodeviation;Esotropia;Facial palsy;Fatigable weakness;Favorable response of weakness to acetylcholine esterase inhibitors;Flat face;Flexion contracture;Focal T2 hyperintense basal ganglia lesion;Frequent falls;Gastroesophageal reflux;Generalized hypotonia;Generalized weakness of limb muscles;Global developmental delay;Gowers sign;Hepatomegaly;High palate;Hyperintensity of cerebral white matter on MRI;Hyperlordosis;Hyperreflexia;Hypoplasia of the corpus callosum;Hypothyroidism;Hypotonia;Hypsarrhythmia;Increased jitter at single fiber EMG;Increased variability in muscle fiber diameter;Infantile onset;Infantile spasms;Intellectual disability;Intellectual disability, severe;Inverted nipples;Iris coloboma;Iron deficiency anemia;Joint laxity;Knee flexion contracture;Lateral ventricle dilatation;Limb-girdle muscle weakness;Low-set ears;Lumbar hyperlordosis;Microcephaly;Mildly elevated creatine kinase;Motor delay;Muscle fiber tubular inclusions;Muscle spasm;Myopathy;Nasogastric tube feeding;Nystagmus;Pes planus;Poor head control;Prolonged partial thromboplastin time;Proximal muscle weakness;Ptosis;Ragged-red muscle fibers;Reduced eye contact;Reduced factor XI activity;Scapular winging;Scoliosis;Seizure;Sensorineural hearing impairment;Severe global developmental delay;Short stature;Slowly progressive;Thin corpus callosum;Type 1 muscle fiber predominance;Type I transferrin isoform profile;Upslanted palpebral fissure;Ventriculomegaly;Visual impairment;Waddling gait;Weakness of facial musculature;Wide nasal bridge;Widened subarachnoid space
+|phenotype_source=HPO
+|phenotype_source_key=85365
 |species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000119523
 |uniprot=Q9H553
 }}

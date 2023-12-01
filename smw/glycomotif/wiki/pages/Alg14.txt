@@ -4,6 +4,8 @@
 |mgiacc=MGI:1914039
 |ortholog=ALG14
 |phenotype=embryonic lethality prior to organogenesis;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1914039
 |species=Mouse
 |uniprot=Q9D081
 }}

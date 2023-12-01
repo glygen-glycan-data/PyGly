@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach 4 linked sulfate to GalNAc.
+|genename=Chst8
+|mgiacc=MGI:1916197
+|ortholog=CHST8
+|phenotype=abnormal eye morphology;abnormal vibrissa morphology;increased circulating alanine transaminase level
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1916197
+|species=Mouse
+|uniprot=Q8BQ86
+}}

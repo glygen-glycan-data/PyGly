@@ -4,7 +4,6 @@
 |alignment=Substructure
 |collection=GGM
 |displayhgv=false
-|enzyme=B4GALNT3;B4GALNT4;B4galnt3;B4galnt4;MGAT1;MGAT2;Mgat1;Mgat2
 |glycoct=RES
 1b:x-dglc-HEX-1:5
 2s:n-acetyl
@@ -17,11 +16,14 @@ LIN
 3:3d(2+1)4n
 4:3o(4+1)5n
 |glytoucan=G18464VS
+|humanenzyme=B4GALNT3:2;B4GALNT4:2;CHST8:2.2;CHST9:2.2;MGAT1:1;MGAT2:1
 |keyword=LacdiNAc;N,N'-diacetyllactosediamine
+|mouseenzyme=B4galnt3:2;B4galnt4:2;Chst8:2.2;Chst9:2.2;Mgat1:1;Mgat2:1
 |name=4'-sulfated LDN
 |prefname=4'-sulfated LDN
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Roseman et al. (2001) The mannose N-acetylgalactosamine-4-SO4 receptor displays greater specificity for multivalent than monovalent ...
 |sameas=CCRC.000049,GD.R000103,GDV.000078,GM.G18464VS
+|sandbox_nlinked=G00017IP;G00636QL;G00740UU;G04893EC;G05151WT;G05191VL;G05377HJ;G05611SB;G06216UH;G07123BN
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5_2*NCC/3{{=}}O_4*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2/a4-b1
 }}

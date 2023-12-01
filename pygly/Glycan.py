@@ -14,7 +14,7 @@ except ImportError:
 
 from . combinatorics import itermatchings, iterecmatchings
 
-from . Monosaccharide import Monosaccharide, Linkage, Mod
+from . Monosaccharide import Monosaccharide, Linkage, Mod, Substituent
 from . MonoFormatter import IUPACSym, LinCodeSym
 
 iupacSym = IUPACSym()
@@ -565,6 +565,13 @@ class Glycan:
         GalN      HexN
         ManN      HexN
         Xyl       Pent
+        Man+aldi  Hex+aldi
+        Gal+aldi  Hex+aldi
+        Glc+aldi  Hex+aldi
+        Fuc+aldi  dHex+aldi
+        ManNAc+aldi    HexNAc+aldi
+        GlcNAc+aldi    HexNAc+aldi
+        GalNAc+aldi    HexNAc+aldi
     """.splitlines()))))
 
     def iupac_items(self, nodeiterable, floating_substituents=True, aggregate_basecomposition=True):
@@ -583,6 +590,7 @@ class Glycan:
                 sym = None
 
             sym1 = None
+            m1 = None
             if isinstance(m,Monosaccharide) and aggregate_basecomposition:
                 try:
                     m1 = m.clone()
@@ -607,7 +615,7 @@ class Glycan:
                 syms = [sym.split('+')[0]]
                 eids = [[m.external_descriptor_id()]]
                 for s in m.substituents():
-                    if s.name() in manipulation.Composition.floating_substs:
+                    if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
                         try:
                             syms.append(iupacSym.toStr(s))
                         except KeyError:
@@ -616,12 +624,13 @@ class Glycan:
                     else:
                         eids[0].append(s.external_descriptor_id())
                 syms1 = [sym1.split('+')[0]]
-                for s in m1.substituents():
-                    if s.name() in manipulation.Composition.floating_substs:
-                        try:
-                            syms1.append(iupacSym.toStr(s))
-                        except KeyError:
-                            syms1.append("X")
+                if m1:
+                    for s in m1.substituents():
+                        if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
+                            try:
+                                syms1.append(iupacSym.toStr(s))
+                            except KeyError:
+                                syms1.append("X")
             else:
                 syms = [sym]
                 eids = [ m.external_descriptor_ids() ]

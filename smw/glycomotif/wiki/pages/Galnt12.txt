@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=Galnt12
+|mgiacc=MGI:2444664
+|ortholog=GALNT12
+|phenotype=hyperactivity;increased heart weight
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2444664
+|species=Mouse
+|uniprot=Q8BGT9
+}}

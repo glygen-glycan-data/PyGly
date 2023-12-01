@@ -1,0 +1,12 @@
+{{#ask:
+ [[glycomotif:celltypespec::+]]
+ |?glycomotif:celltypespec=
+ |format=valuerank
+ |mainlabel=- 
+ |headers=hide
+ |liststyle=none
+ |template=RowForCellType
+ |introtemplate=IntroForTissue
+ |outrotemplate=OutroForTissue
+ |maxtags=20
+}}

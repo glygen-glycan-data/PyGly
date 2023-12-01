@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach alpha 6 NeuAc to GalNAc.
+|genename=St6galnac3
+|mgiacc=MGI:1341828
+|ortholog=ST6GALNAC3
+|phenotype=cataract;decreased grip strength
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1341828
+|species=Mouse
+|uniprot=Q9WUV2
+}}

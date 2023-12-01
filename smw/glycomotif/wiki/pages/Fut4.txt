@@ -4,6 +4,8 @@
 |mgiacc=MGI:95594
 |ortholog=FUT4
 |phenotype=abnormal freezing behavior;abnormal kidney morphology;decreased circulating creatinine level;decreased lean body mass;increased bone mineral content;increased total body fat amount
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:95594
 |species=Mouse
 |uniprot=Q11127
 }}

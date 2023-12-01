@@ -21,16 +21,17 @@ for e in w.iterenzyme():
     gn = e.get('genename')
     species = e.get('species')
     #if species == 'Mouse':
-    if species != 'Human':
+    if species != "Human":
        continue
         
     if len(phenotypes.get(gn,[])) > 0: 
-       e.set("phenotype",(sorted(phenotypes[gn])))
+       e.set("phenotype",(phenotypes[gn]), )
        e.set("phenotype_source_key",(geneid[gn]))
        e.set("phenotype_source","HPO")
        print(e)
     else:	
        e.delete("phenotype")
+       e.delete("phenotype_source")
        e.delete("phenotype_source_key")
        e.delete("phenotype_source")
 

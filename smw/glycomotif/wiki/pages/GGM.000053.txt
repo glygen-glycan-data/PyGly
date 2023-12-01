@@ -29,12 +29,15 @@ LIN
 9:9o(3+2)10d
 10:10d(5+1)11n
 |glytoucan=G97345NY
+|humanenzyme=B4GALT1:6;B4GALT2:6;B4GALT3:6;B4GALT4:6;B4GALT5:6;C1GALT1:2;C1GALT1C1:2;GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1;GCNT1:4;GCNT2:4;GCNT3:4;ST3GAL1:3,7;ST3GAL2:7;ST3GAL3:7;ST3GAL4:7;ST3GAL5:7;ST3GAL6:7
 |keyword=Lewis x
+|mouseenzyme=B4galt1:6;B4galt2:6;B4galt3:6;B4galt4:6;B4galt5:6;C1galt1:2;C1galt1c1:2;Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Gcnt1:4;Gcnt2:4;Gcnt3:4;St3gal1:3,7;St3gal2:7;St3gal3:7;St3gal4:7;St3gal5:7;St3gal6:7
 |name=SLex Core 2 O-glycan
 SLe^x Core 2 O-glycan
 |prefname=SLex Core 2 O-glycan
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Leppanen et al. (1999) A novel glycosulfopeptide binds to P-selectin and inhibits leukocyte adhesion ...;Walcheck et al. (2002) The monoclonal antibody CHO-131 binds to a core 2 O-glycan ...
 |sameas=GD.R000481,GDB.002166,GDC.000053,GDV.000106,GM.G97345NY
+|sandbox_olinked=G97345NY
 |wurcs=WURCS{{=}}2.0/5,7,6/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4-5-2-3/a3-b1_a6-d1_b3-c2_d3-e1_d4-f1_f3-g2
 }}

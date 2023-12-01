@@ -1,0 +1,16 @@
+{{Enzyme
+|celltype=Enriched in Oocytes
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000111846
+|description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.
+|disease=Cataract 13 with adult i phenotype
+|disease_source=HPO
+|disease_source_key=2651
+|genename=GCNT2
+|ortholog=Gcnt2
+|phenotype=Autosomal recessive inheritance;Developmental cataract
+|phenotype_source=HPO
+|phenotype_source_key=2651
+|species=Human
+|uniprot=Q8N0V5
+}}

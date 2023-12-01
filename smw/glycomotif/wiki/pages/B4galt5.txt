@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach beta 4 Gal to GlcNAc.
+|genename=B4galt5
+|mgiacc=MGI:1927169
+|ortholog=B4GALT5
+|phenotype=abnormal embryo size;abnormal skin morphology;cataract;embryonic growth retardation;embryonic lethality prior to tooth bud stage;enlarged lymph nodes;increased circulating alanine transaminase level;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1927169
+|species=Mouse
+|uniprot=Q9JMK0
+}}

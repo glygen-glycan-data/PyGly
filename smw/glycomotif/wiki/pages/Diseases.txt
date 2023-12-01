@@ -1,0 +1,12 @@
+{{#ask:
+ [[glycomotif:disease::+]]
+ |?glycomotif:disease=
+ |format=valuerank
+ |mainlabel=- 
+ |headers=hide
+ |liststyle=none
+ |template=RowForTissue
+ |introtemplate=IntroForTissue
+ |outrotemplate=OutroForTissue
+ |maxtags=20
+}}

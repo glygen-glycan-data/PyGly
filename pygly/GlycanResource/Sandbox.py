@@ -14,7 +14,7 @@ class GlycoTreeSandbox(WebServiceResource):
         super(GlycoTreeSandbox,self).__init__(**kw)
 
     def list(self,mode='all'):
-        assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
+        assert mode in ('all','all_N','all_O','mapped','mapped_N','mapped_O','clean','clean_N','clean_O')
         for d in self.query_list(mode=mode):
             yield d['glytoucan_ac']
 
@@ -30,18 +30,26 @@ class GlycoTreeSandbox(WebServiceResource):
             del g['glytoucan_ac']
             yield g
 
-    def allglycans(self,mode='all'):
-        assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
-        for acc in self.list(mode):
-            yield self.glycan(acc)
-
-class GlycoTreeSandboxDev(GlycoTreeSandbox):
-    apiurl = 'https://edwardslab.bmcb.georgetown.edu/sandboxdev/api'
-
     def allglycans(self,mode='all',blocksize=20):
-        assert mode in ('all','all_N','all_O','mapped_N','mapped_O')
+        assert mode in ('all','all_N','all_O','mapped','mapped_N','mapped_O','clean','clean_N','clean_O')
         listaccs = list(self.list(mode))
         for i in range(0,len(listaccs),blocksize):
             accs = listaccs[i:(i+blocksize)]
             for r in self.glycans(*accs):
                 yield r
+
+    def enzymes(self,status=None):
+        assert status in (None,'active','proposed','active,proposed')
+        if status:
+            status = set(map(str.strip,status.split(',')))
+        for row in self.query_enzymes()['data']:
+            if status and row.get('status') not in status:
+                continue
+            for k in list(row):
+                if not row.get(k):
+                    del row[k]
+            yield row
+
+class GlycoTreeSandboxDev(GlycoTreeSandbox):
+    apiurl = 'https://edwardslab.bmcb.georgetown.edu/sandboxdev/api'
+

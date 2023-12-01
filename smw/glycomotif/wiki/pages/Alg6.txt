@@ -4,6 +4,8 @@
 |mgiacc=MGI:2444031
 |ortholog=ALG6
 |phenotype=abnormal allantois morphology;abnormal embryo development;abnormal embryo size;abnormal skin morphology;decreased exploration in new environment;embryonic growth retardation;enlarged lymph nodes;enlarged urinary bladder;prenatal lethality prior to heart atrial septation;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2444031
 |species=Mouse
 |uniprot=Q3TAE8
 }}

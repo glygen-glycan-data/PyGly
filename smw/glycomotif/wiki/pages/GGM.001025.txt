@@ -4,7 +4,6 @@
 |alignment=Core
 |collection=GGM
 |displayhgv=false
-|enzyme=ALG1;ALG13;ALG14;ALG2;Alg1;Alg13;Alg14;Alg2;DPAGT1;Dpagt1;FUT10;FUT11;FUT3;FUT4;FUT5;FUT6;FUT9;Fut10;Fut11;Fut4;Fut9;Glt28d2;MGAT1;MGAT2;MGAT4A;MGAT4B;MGAT4C;MGAT5;MGAT5B;Mgat1;Mgat2;Mgat4a;Mgat4b;Mgat4c;Mgat5;Mgat5b
 |glycoct=RES
 1b:x-dglc-HEX-x:x
 2s:n-acetyl
@@ -27,10 +26,13 @@ LIN
 8:7o(-1+1)9d
 9:5o(3{{!}}6+1)10d
 |glytoucan=G05006NI
+|humanenzyme=ALG13:2;ALG14:2;ALG1:3;ALG2:4,7;DPAGT1:1;FUT10:6;FUT11:6;FUT3:6;FUT4:6;FUT5:6;FUT6:6;FUT9:6;MGAT1:5;MGAT2:5;MGAT4A:5;MGAT4B:5;MGAT4C:5;MGAT5:5;MGAT5B:5
 |keyword=N-glycan classification
+|mouseenzyme=Alg13:2;Alg14:2;Alg1:3;Alg2:4,7;Dpagt1:1;Fut10:6;Fut11:6;Fut4:6;Fut9:6;Glt28d2:2;Mgat1:5;Mgat2:5;Mgat4a:5;Mgat4b:5;Mgat4c:5;Mgat5:5;Mgat5b:5
 |name=N-Glycan core, arm-fucosylated
 |prefname=N-Glycan core, arm-fucosylated
 |redend=true
 |sameas=GM.G05006NI
+|sandbox_nlinked=G00087ZB;G00113FP;G00116DX;G00219FW;G00255RE;G00369RM;G00380ZN;G00432WV;G00471UP;G00584LL
 |wurcs=WURCS{{=}}2.0/5,7,6/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-4-2-5-4/a4-b1_b4-c1_d1-c3{{!}}c6_g1-c3{{!}}c6_d?-e1_e?-f1
 }}

@@ -1,0 +1,19 @@
+
+{{#ask:
+[[Category:Enzyme]]
+[[glycomotif:disease::~"Congenital disorder of glycosylation"]]
+OR
+[[Category:Enzyme]]
+[[glycomotif:disease::like:*-CDG]]
+OR
+[[Category:Enzyme]]
+[[glycomotif:iscdg::true]]
+|?=Enzyme
+|?glycomotif:disease=Disease
+|?glycomotif:species=Species
+|?glycomotif:instancecount=Motifs
+|?glycomotif:ortholog=Orthologs
+|mainlabel=-
+|limit=100
+|format=broadtable
+}}

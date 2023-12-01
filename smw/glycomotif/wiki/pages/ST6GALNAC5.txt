@@ -1,0 +1,10 @@
+{{Enzyme
+|celltype=Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000117069
+|description=Attach alpha 6 NeuAc to GalNAc.
+|genename=ST6GALNAC5
+|ortholog=St6galnac5
+|species=Human
+|uniprot=Q9BVH7
+}}

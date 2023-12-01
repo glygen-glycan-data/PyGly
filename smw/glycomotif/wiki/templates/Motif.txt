@@ -16,8 +16,9 @@ It should be called in the following format:
 }}
 </pre>
 Edit the page to see the template text.
-</noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}{{PrevNextLinks|{{{collection|}}}|{{{accession|}}}}}{{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}<div style="position: relative;">
-	<img src="{{ImageURL|{{{glytoucan|}}}}}" style="display: block; margin-left: auto; margin-right: auto;">
+
+</noinclude><includeonly>__NOEDITSECTION__ {{DISPLAYTITLE:{{{accession|}}}}}{{PrevNextLinks|{{{collection|}}}|{{{accession|}}}}}{{#ifeq:{{{displayhgv|}}}|true|<div class="noautonum" style="position: absolute; right: 10px; top: 10px;">__TOC__</div>|}}<div style="text-align: center; position: relative;">
+<html><span id="motifsvgimage" glymagesvg_accession="</html>{{{glytoucan}}}<html>" glymagesvg_imageclass="glymagesvg_low_opacity" glymagesvg_class="glymagesvg_high_opacity" glymagesvg_linkinfoclass="glymagesvg_high_opacity" glymagesvg_substclass="glymagesvg_high_opacity" glymagesvg_highlight_parent_link="true"/></html>
 </div><br>
 {| class="wikitable" style="width:100%"
 ! style="" | Collection
@@ -53,8 +54,11 @@ Edit the page to see the template text.
 ! style="" | GlyTouCan Accession
 | style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
 |-
-! style="" | Enzyme(s)
-| style="" | {{#arraymap:{{{enzyme|}}}|;|x|[[glycomotif:hasenzyme::x]]}}
+! style="" | Human Enzyme(s)
+| style="" | {{#arraymap:{{{humanenzyme|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}
+|-
+! style="" | Mouse Enzyme(s)
+| style="" | {{#arraymap:{{{mouseenzyme|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}
 |-
 ! style="" | Cross Reference(s)
 | style="" | {{#arraymap:{{{dbxref|}}}|;|x|{{crossrefdisplay|x}}|, }}
@@ -78,7 +82,7 @@ Edit the page to see the template text.
 |}
 
 {{#ifeq:{{{displayhgv|}}}|true|
-<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-prefix="{{PREFIX}}" data-jumpurlprefix="https://edwardslab.bmcb.georgetown.edu/{{PREFIX}}/GM." data-imageurlprefix="https://glymage.glyomics.org/image/"></div>
+<div id="hgv_para" data-glytoucan="{{{glytoucan|}}}" data-prefix="{{PREFIX}}" data-jumpurlprefix="https://glycomotif.glyomics.org/{{PREFIX}}/GM." data-imageurlprefix="https://glymage.glyomics.org/image/"></div>
 == Topology Cluster ==
 <div id="hgv_topology"></div>
 == Non-Reducing End Topology Navigator ==
@@ -88,7 +92,7 @@ Edit the page to see the template text.
 |
 }}
 == Alignments ==
-<div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}"></div>
+<div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}" data-sandbox="{{{sandbox_nlinked|}}};{{{sandbox_olinked|}}}"></div>
 <div id="glycomotif_alignment_result"></div>
 
 '''Download:'''

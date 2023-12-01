@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype_source=GTEX
+|celltype_source_key=ENSG00000185274
+|description=Attach GalNAc to Ser/Thr.
+|genename=GALNT17
+|ortholog=Galnt17
+|species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000185274
+|uniprot=Q6IS24
+}}

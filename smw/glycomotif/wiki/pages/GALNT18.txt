@@ -1,0 +1,10 @@
+{{Enzyme
+|description=Attach GalNAc to Ser/Thr.
+|genename=GALNT18
+|ortholog=Galnt18
+|species=Human
+|tissue=Ubiquitous
+|tissue_source=GTEX
+|tissue_source_key=ENSG00000110328
+|uniprot=Q6P9A2
+}}

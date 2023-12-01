@@ -24,8 +24,12 @@ http://glyomics.org/glycomotif#|[http://glyomics.org/glycomotif Glyomics Glycomo
  description|Type:Text
  iscdg|Type:Boolean
  phenotype|Type:Text
+ disease|Type:Text
+ tissuespec|Type:Text
+ celltypespec|Type:Text
  phenocount|Type:Number
  hasenzyme|Type:Page
+ enzymecanonres|Type:Text
  collectioncount|Type:Number
  instancecount|Type:Number
  aglycon|Type:Text

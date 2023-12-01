@@ -4,6 +4,8 @@
 |mgiacc=MGI:1928893
 |ortholog=FUT2
 |phenotype=increased heart weight
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1928893
 |species=Mouse
 |uniprot=P97353
 }}
