@@ -87,6 +87,9 @@ for path in sorted(os.listdir(wurcs_dir)):
     svglinkids = set()
     for m in re.findall(r' ID="(l-1:\d+,\d+)" ',svg_seq):
         svglinkids.add(m)
+    # somtimes the link is left out but the linkinfo is there...
+    for m in re.findall(r' ID="(li-1:\d+,\d+)" ',svg_seq):
+        svglinkids.add(m.replace("li-1:","l-1:"))
 
     canonres_data = {}
     iupac_annotations = defaultdict(list)
@@ -145,8 +148,12 @@ for path in sorted(os.listdir(wurcs_dir)):
             svg_link_id = "l-1:" + str(parent_svgid1) + ","+ str(child_svgid1)
         else:
             link_id = "-" + str(l.child().id())
-            svg_link_id = [ sli for sli in svglinkids if sli.endswith(","+str(child_svgid1)) ][0]
-        svg_idmap_dict[link_id].append(svg_link_id)
+            try:
+                svg_link_id = [ sli for sli in svglinkids if sli.endswith(","+str(child_svgid1)) ][0]
+            except IndexError:
+                svg_link_id = None
+        if svg_link_id:
+            svg_idmap_dict[link_id].append(svg_link_id)
 
     for canid in svg_idmap_dict:
         svg_idmap_dict[canid] = sorted(set(svg_idmap_dict[canid]))

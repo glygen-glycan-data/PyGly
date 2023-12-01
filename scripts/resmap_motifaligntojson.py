@@ -49,7 +49,7 @@ for path in sorted(os.listdir(out_dir)):
     # synonyms = dict()
 
     for motifacc,altype,isstrict,nodeids,linkids in getmotifs(acc):
-        print(1,motifacc, altype, isstrict, nodeids, linkids)
+        # print(1,motifacc, altype, isstrict, nodeids, linkids)
         if motifacc not in motifs:
             motifs[motifacc] = [set(filter(None,nodeids.split(','))),
                                 set(filter(None,linkids.split(',')))]
@@ -63,7 +63,7 @@ for path in sorted(os.listdir(out_dir)):
         # print(5,sorted(motifs[motifacc][1],key=lambda t: tuple(map(int,t.split('-')))))
         motifs[motifacc] = sorted(motifs[motifacc][0],key=float) + \
                            sorted(motifs[motifacc][1],key=lambda t: tuple(map(intstrkey,t.split('-'))))
-        print(6,motifs[motifacc])
+        # print(6,motifs[motifacc])
     
     json_filename = os.path.join(out_dir,path)
     structure_dict = json.loads(open(json_filename).read())
