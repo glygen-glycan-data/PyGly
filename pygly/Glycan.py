@@ -623,6 +623,10 @@ class Glycan:
                         eids.append(s.external_descriptor_ids())
                     else:
                         eids[0].append(s.external_descriptor_id())
+                if 'aldi' in sym.split('+')[1:]:
+                    syms.append("aldi")
+                    eids.append(["%s.0"%(m.external_descriptor_id(),)])
+                    
                 syms1 = [sym1.split('+')[0]]
                 if m1:
                     for s in m1.substituents():
@@ -631,6 +635,8 @@ class Glycan:
                                 syms1.append(iupacSym.toStr(s))
                             except KeyError:
                                 syms1.append("X")
+                    if 'aldi' in sym1.split('+')[1:]:
+                        syms1.append("aldi")
             else:
                 syms = [sym]
                 eids = [ m.external_descriptor_ids() ]
@@ -649,7 +655,7 @@ class Glycan:
                 if syms[i] not in self.subst_composition_syms:
                     syms[i] = 'X'
 
-            if syms[0] == 'Xxx' or 'X' in syms:
+            if syms[0] == 'Xxx' or 'X' in syms[1:]:
                 items.append((m.external_descriptor_ids(),'Xxx',False))
                 continue
 
