@@ -12,7 +12,7 @@ def uniqueify(iterable):
     return wrapper
 
 class GlyGenSourceFile(WebServiceResource):
-    apiurl = "https://data.glygen.org/ln2data/downloads"
+    apiurl = "https://data.glygen.org/ln2downloads"
     # verbose = True
     def __init__(self,**kw):
         self._taxidlookup = None
@@ -20,64 +20,14 @@ class GlyGenSourceFile(WebServiceResource):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygendump.ini")
         super(GlyGenSourceFile,self).__init__(**kw)
 
-    def glyconnect(self,name):
-        for row in self.query_jsonsourcefile(source="glyconnect",filename="glyconnect_"+name)['results']:
-            yield row
+    def section2filename(self,section):
+        return section
 
-    def glyconnect_human(self):
-        for row in self.glyconnect("human"):
-            yield row
-
-    def glyconnect_mouse(self):
-        for row in self.glyconnect("mouse"):
-            yield row
-
-    def glyconnect_rat(self):
-        for row in self.glyconnect("rat"):
-            yield row
-
-    def glyconnect_dros(self):
-        for row in self.glyconnect("fruitfly"):
-            yield row
-
-    def glyconnect_covid(self):
-        for row in self.glyconnect("sarscov2"):
-            yield row
-
-    def glyconnect_yeast(self):
-        for row in self.glyconnect("yeast"):
-            yield row
-
-    def glyconnect_all(self):
-        for sp in ("human","mouse","rat","fruitfly","sarscov2","yeast"):
-            for row in self.glyconnect(sp):
-                yield row
-
-    @uniqueify
-    def glyconnect_allgtc(self):
-        for row in self.glyconnect_all():
-            if row['structure'].get('glytoucan_id'):
-                yield ("S"+str(row['structure']['id']),row['structure'].get('glytoucan_id'))
-            if row['composition'].get('glytoucan_id'):
-                yield ("C"+str(row['composition']['id']),row['composition'].get('glytoucan_id'))
-
-    @uniqueify
-    def glyconnect_alltaxa(self):
-        for row in self.glyconnect_all():
-            if row['taxonomy'].get('taxonomy_id'):
-                yield ("S"+str(row['structure']['id']),row['taxonomy'].get('taxonomy_id'))
-                yield ("C"+str(row['composition']['id']),row['taxonomy'].get('taxonomy_id'))
-
-    @uniqueify
-    def glyconnect_allpubs(self):
-        for row in self.glyconnect_all():
-            for pub in row['references']:
-                if pub.get('pmid'):
-                    yield ("S"+str(row['structure']['id']),pub['pmid'])
-                    yield ("C"+str(row['composition']['id']),pub['pmid'])
+    def json2rows(self,json):
+        return json
 
     glygen_species = {
-	"human": ('Homo sapiens','9606'),
+        "human": ('Homo sapiens','9606'),
         "mouse": ('Mus musculus','10090'),
         "rat": ('Rattus norvegicus','10116'),
         "hcv1a": ('Hepatitis C virus (genotype 1a, isolate H)','11108'),
@@ -101,7 +51,170 @@ class GlyGenSourceFile(WebServiceResource):
                     acc = acc.split('-',1)[0]
                     yield acc,taxid
 
-    unicarbkb_filenames = """ 
+    def jsonrows(self,section,filename=None):
+        if not filename:
+            filename = section
+        for row in self.json2rows(self.query_jsonsourcefile(source=self.source,filename=filename)):
+            for k,v in list(row.items()):
+                if isinstance(v,str):
+                    row[k] = v.strip()
+                if not row[k]:
+                    del row[k]
+            yield row
+
+    def csvrows(self,section,filename=None,path=None):
+        if filename:
+            path = self.source + "/current/" + filename
+        for row in self.query_csvfullurl(url=self.apiurl+'/'+path+".csv"):
+            for k,v in list(row.items()):
+                if isinstance(v,str):
+                    row[k] = v.strip()
+                if not row[k]:
+                    del row[k]
+            yield row
+
+    def allrows(self,**kw):
+        sections = self.sections.split()
+        if not hasattr(self,'glygen_sourceid'):
+            ggsids = [None]*len(sections)
+        elif self.glygen_sourceid == None:
+            ggsids = [None]*len(sections)
+        else:
+            ggsids = self.glygen_sourceid.split()
+        assert(len(sections) == len(ggsids))
+        if not hasattr(self,'glygen_pubmedid'):
+            ggpmids = [None]*len(sections)
+        else:
+            ggpmids = self.glygen_pubmedid.split()
+        assert(len(sections) == len(ggpmids))
+        for sec,ggsid,ggpmid in zip(sections,ggsids,ggpmids):
+            for row in self.rows(sec,**kw):
+                if ggsid:
+                    row['_glygen_sourceid'] = ggsid
+                if ggpmid:
+                    row['_glygen_pubmedid'] = ggpmid
+                yield row
+
+    gtcfield = 'glytoucan_ac'
+    gtcfixed = None
+    taxidfield = 'taxid'
+    taxidfixed = None
+    pmidfield = 'pmid'
+    pmidfixed = None
+
+    def getgtc(self,row):
+        if row.get(self.gtcfield,self.gtcfixed):
+            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed)
+
+    def gettaxa(self,row):
+        if row.get(self.gtcfield,self.gtcfixed) and row.get(self.taxidfield,self.taxidfixed):
+            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.taxidfield,self.taxidfixed)
+
+    def getpubs(self,row):
+        if row.get(self.gtcfield,self.gtcfixed) and row.get(self.pmidfield,self.pmidfixed):
+            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.pmidfield,self.pmidfixed)
+
+    @uniqueify
+    def allgtc(self):
+        for row in self.allrows():
+            for acc,gtc in self.getgtc(row):
+                if not hasattr(self,'glygen_sourceid'):
+                    yield acc,gtc,self.glygen_source,None
+                elif self.glygen_sourceid == None:
+                    yield acc,gtc,self.glygen_source,acc
+                else:
+                    yield acc,gtc,self.glygen_source,row['_glygen_sourceid']
+
+    @uniqueify
+    def alltaxa(self):
+        for row in self.allrows():
+            for acc,gtc,taxid in self.gettaxa(row):
+                if not hasattr(self,'glygen_sourceid'):
+                    yield acc,gtc,taxid,self.glygen_source,None
+                elif self.glygen_sourceid == None:
+                    yield acc,gtc,taxid,self.glygen_source,acc
+                else:
+                    yield acc,gtc,taxid,self.glygen_source,row['_glygen_sourceid']
+                if hasattr(self,'glygen_pubmedid'):
+                    yield acc,gtc,taxid,"PubMed",row['_glygen_pubmedid']
+
+    @uniqueify
+    def allpubs(self):
+        for row in self.allrows():
+            for acc,gtc,pmid in self.getpubs(row):
+                if not hasattr(self,'glygen_sourceid'):
+                    yield acc,gtc,pmid,self.glygen_source,None
+                elif self.glygen_sourceid == None:
+                    yield acc,gtc,pmid,self.glygen_source,acc
+                else:
+                    yield acc,gtc,pmid,self.glygen_source,row['_glygen_sourceid']
+
+    def allsourcegtc(self):
+        for src in self.sources:
+            ggsf = eval(src+"SourceFile")(verbose=self._verbose)
+            for row in ggsf.allgtc():
+                yield row
+
+    def allsourcetaxa(self):
+        for src in self.sources:
+            ggsf = eval(src+"SourceFile")(verbose=self._verbose)
+            for row in ggsf.alltaxa():
+                yield row
+
+    def allsourcepubs(self):
+        for src in self.sources:
+            ggsf = eval(src+"SourceFile")(verbose=self._verbose)
+            for row in ggsf.allpubs():
+                yield row
+
+    sources = """
+        GlyConnect
+        UniCarbKB
+        NCFG
+        Synthetic
+        GPTWiki
+        MCWOGlcNAc
+        OGlcNAcAtlas
+        Harvard
+        OGluC
+        Literature
+        BiomarkerDB
+    """.split()
+
+class GlyConnectSourceFile(GlyGenSourceFile):
+    source = 'glyconnect'
+    glygen_source = "GlyConnect"
+    glygen_sourceid = None
+    sections = 'human mouse rat fruitfly sarscov2 yeast dictyostelium'
+
+    def json2rows(self,json):
+        return json['results']
+
+    def rows(self,section):
+        return self.jsonrows(section=section,filename=self.source + "_" + section)
+
+    def getgtc(self,row):
+        if row['structure'].get('glytoucan_id'):
+            yield "S"+str(row['structure']['id']),row['structure'].get('glytoucan_id')
+        if row['composition'].get('glytoucan_id'):
+            yield "C"+str(row['composition']['id']),row['composition'].get('glytoucan_id')
+
+    def gettaxa(self,row):
+        if row['taxonomy'].get('taxonomy_id'):
+            yield "S"+str(row['structure']['id']),row['structure'].get('glytoucan_id',"-"),row['taxonomy'].get('taxonomy_id')
+            yield "C"+str(row['composition']['id']),row['composition'].get('glytoucan_id',"-"),row['taxonomy'].get('taxonomy_id')
+
+    def getpubs(self,row):
+        for pub in row['references']:
+            if pub.get('pmid'):
+                yield "S"+str(row['structure']['id']),row['structure'].get('glytoucan_id',"-"),pub['pmid']
+                yield "C"+str(row['composition']['id']),row['structure'].get('glytoucan_id',"-"),pub['pmid']
+
+class UniCarbKBSourceFile(GlyGenSourceFile):
+    source = 'unicarbkb'
+    glygen_source = "UniCarbKB"
+    glygen_sourceid = None
+    sections = """ 
         known_legacy_dbogap_dbogap2_glygen
         known_34106099_glygen known_unicarbkb_glycomics_study
         fuzzy_legacy_cph_start_end_positions
@@ -117,8 +230,7 @@ class GlyGenSourceFile(WebServiceResource):
         unknown_34083726_glygen known_legacy_larsson_xyl
         unknown_34327564_glygen fuzzy_legacy_qin_oglanac
         unknown_34191522_glygen
-    """.split()
-
+    """
     badupacc = dict(map(str.split,filter(lambda s: s.strip() != "","""
        P02470	9913
        P02488	9544
@@ -149,9 +261,10 @@ class GlyGenSourceFile(WebServiceResource):
        P90489	868565
        K9N5Q8	1263720
        Protein	-
+       B2RYF6	10116
     """.splitlines())))
 
-    def unicarbkb(self,filename,loadtaxid=False):
+    def rows(self,filename,loadtaxid=False):
         if self._taxidlookup == None:
             self._taxidlookup = {}
             for key,(sp,taxid) in self.glygen_species.items():
@@ -164,12 +277,11 @@ class GlyGenSourceFile(WebServiceResource):
                     self._taxidlookup[k] = None
                 else:
                     self._taxidlookup[k] = v
-        for i,row in enumerate(self.query_csvsourcefile(source="unicarbkb",filename=filename)):
+        for i,row in enumerate(self.csvrows(filename,filename=filename)):
             row['filename'] = filename
             row['lineno'] = str(i+2);
             # deal with case inconsistency
             for k in list(row.keys()):
-                row[k] = row[k].strip()
                 if k.lower() != k:
                     row[k.lower()] = row[k]
                     del row[k]
@@ -229,192 +341,177 @@ class GlyGenSourceFile(WebServiceResource):
                 else:
                     continue
             row['id'] = uckbid
-            # print(row)
             yield row
 
-    def unicarbkb_all(self,**kw):
-        for filename in self.unicarbkb_filenames:
-            for row in self.unicarbkb(filename=filename,**kw):
-                yield row
-
-    @uniqueify
-    def unicarbkb_allgtc(self):
-        for row in self.unicarbkb_all():
-            if row.get('toucan') and row.get('id'):
-                if re.search('^G\d{5}[A-Z]{2}$',row.get('toucan').strip()):
-                    yield (row['id'],row.get('toucan').strip())
-
-    @uniqueify
-    def unicarbkb_alltaxa(self):
-        for row in self.unicarbkb_all(loadtaxid=True):
-            if row.get('taxid') and row.get('id'):
-                if int(row['taxid']) > 0:
-                    yield (row['id'],row['taxid'].strip())
-
-    @uniqueify
-    def unicarbkb_allpubs(self):
-        for row in self.unicarbkb_all():
-            if row.get('id') and row.get('pmid'):
-                if int(row['pmid']) > 0:
-                    yield (row['id'],row['pmid'].strip())
-
-    def ncfg(self,name):
-        for row in self.query_csvsourcefile(source="ncfg",filename=name+"_ncfg"):
-            yield row
-
-    def ncfg_synthetic(self):
-        for row in self.ncfg("glycan_evidence"):
-            yield row
-
-    def ncfg_all(self):
-        for sp in ("glycan_evidence",):
-            for row in self.ncfg(sp):
-                yield row
-
-    def ncfg_allgtc(self):
-        for row in self.ncfg_all():
-            if row.get('glytoucan_ac'):
-                yield row['glytoucan_ac'],row['glytoucan_ac']
-
-    def ncfg_allpubs(self):
-        for row in self.ncfg_all():
-            if row.get('glytoucan_ac') and row.get('evidence'):
-                yield row['glytoucan_ac'],row['evidence']
-
-    def synthetic(self):
-        for row in self.query_csvfullurl(url='https://data.glygen.org/ln2releases/data/current/compiled/glycan_synthesized.csv'):
-            yield row
-
-    def synthetic_all(self):
-        for row in self.synthetic():
-            yield row
-
-    def synthetic_allgtc(self):
-        for row in self.synthetic_all():
-            if row.get('glytoucan_ac'):
-                yield row['glytoucan_ac'],row['glytoucan_ac']
-
-    def synthetic_allpubs(self):
-        for row in self.synthetic_all():
-            if row.get('glytoucan_ac') and row.get('evidence'):
-                yield row['glytoucan_ac'],row['evidence']
-
-    def gptwiki(self,name):
-        for row in self.query_csvsourcefile(source="gptwiki",filename=name):
-            yield row
-
-    def gptwiki_sites(self):
-        for row in self.gptwiki("glycosites"):
-            yield row
-
-    def gptwiki_all(self):
-        for sp in ("glycosites",):
-            for row in self.gptwiki(sp):
-                yield row
-
-    @uniqueify
-    def gptwiki_allgtc(self):
-        for row in self.gptwiki_all():
-            yield (row['GlyTouCan'],row['GlyTouCan'])
-
-    @uniqueify
-    def gptwiki_alltaxa(self):
-        for row in self.gptwiki_all():
-            yield (row['GlyTouCan'],"9606")
-
-    def sandbox(self,name):
-        for row in self.query_csvsourcefile(source="sandbox",filename="sandbox_"+name):
-            yield row
-
-    def sandbox_glycans(self):
-        for row in self.sandbox("accessions"):
-            yield row
-
-    def sandbox_all(self):
-        for sp in ("accessions",):
-            for row in self.sandbox(sp):
-                yield row
-
-    @uniqueify
-    def sandbox_allgtc(self):
-        for row in self.sandbox_all():
-            yield row['glytoucan_ac'],row['glytoucan_ac']
-
-    def mcw_oglcnac(self,name):
-        for row in self.query_csvsourcefile(source="mcw_oglcnac",filename=name+"_o_glcnacome_mcw"):
-            yield row
-
-    def mcw_oglcnac_human(self):
-        for row in self.mcw_oglcnac("human"):
-            yield row
-
-    def mcw_oglcnac_mouse(self):
-        for row in self.mcw_oglcnac("mouse"):
-            yield row
-
-    def mcw_oglcnac_rat(self):
-        for row in self.mcw_oglcnac("rat"):
-            yield row
-
-    def mcw_oglcnac_fruitfly(self):
-        for row in self.mcw_oglcnac("fruitfly"):
-            yield row
-
-    def mcw_oglcnac_yeast(self):
-        for row in self.mcw_oglcnac("yeast"):
-            yield row
-
-    def mcw_oglcnac_all(self):
-        for sp in ("human","mouse","rat","fruitfly","yeast"):
-            for row in self.mcw_oglcnac(sp):
-                yield row
-
-    @uniqueify
-    def mcw_oglcnac_allgtc(self):
-        for row in self.mcw_oglcnac_all():
-            yield "G49108TO","G49108TO"
-
-    @uniqueify
-    def mcw_oglcnac_alltaxa(self):
-        taxa_lookup = dict()
-        for k,v in self.glygen_species.values():
-            taxa_lookup[k] = v
-        for row in self.mcw_oglcnac_all():
-            if 'organism' in row:
-                org = row['organism'].strip()
-                if org in taxa_lookup:
-                    yield "G49108TO",taxa_lookup[org]
-                else:
-                    assert False, row
-
-    @uniqueify
-    def mcw_oglcnac_allpubs(self):
-        for row in self.mcw_oglcnac_all():
-            if row.get('PMIDS'):
-                for pmid in row.get('PMIDS').split(';'):
-                    try:
-                        pmid = int(pmid)
-                        if pmid > 0:
-                            yield "G49108TO",pmid
-                    except ValueError:
-                        pass
-
-    @uniqueify
-    def allgtc(self):
-        for source in ("unicarbkb","glyconnect","ncfg","gptwiki","sandbox","synthetic","mcw_oglcnac"):
-            for row in getattr(self,source+"_allgtc")():
-                yield row[0],row[1]
+    def getgtc(self,row):
+        if row.get('toucan') and row.get('id'):
+            if re.search('^G\d{5}[A-Z]{2}$',row.get('toucan')):
+                yield row['id'],row.get('toucan')
 
     @uniqueify
     def alltaxa(self):
-        for source in ("unicarbkb","glyconnect","gptwiki","mcw_oglcnac"):
-            for row in getattr(self,source+"_alltaxa")():
-                yield row[0],row[1],source
+        for row in self.allrows(loadtaxid=True):
+            for acc,gtc,taxid in self.gettaxa(row):
+                if not hasattr(self,'glygen_sourceid'):
+                    yield acc,gtc,taxid,self.glygen_source,None
+                elif self.glygen_sourceid == None:
+                    yield acc,gtc,taxid,self.glygen_source,acc
+                else:
+                    yield acc,gtc,taxid,self.glygen_source,row['_glygen_sourceid']
+
+    def gettaxa(self,row):
+        if row.get('taxid') and row.get('id'):
+            gtc = row.get('toucan',"")
+            if not re.search('^G\d{5}[A-Z]{2}$',gtc):
+                gtc = "-"
+            if int(row['taxid']) > 0:
+                yield row['id'],gtc,row['taxid']
+
     @uniqueify
-    def allpubs(self):
-        for source in ("unicarbkb","glyconnect","ncfg","synthetic","mcw_oglcnac"):
-            for row in getattr(self,source+"_allpubs")():
-                yield row[0],row[1],source
+    def getpubs(self,row):
+        if row.get('id') and row.get('pmid'):
+            gtc = row.get('toucan',"")
+            if not re.search('^G\d{5}[A-Z]{2}$',gtc):
+                gtc = "-"
+            if int(row['pmid']) > 0:
+                yield row['id'],gtc,row['pmid']
+
+class NCFGSourceFile(GlyGenSourceFile):
+    source="ncfg"
+    glygen_source="NCFG"
+    glygen_sourceid="GLY_000600"
+    glygen_pubmedid="30745240"
+    sections="glycan_evidence"
+    pmidfield="evidence"
+
+    def rows(self,section):
+        return self.csvrows(section=self.source,filename=section+"_ncfg")
+
+class SyntheticSourceFile(GlyGenSourceFile):
+    source="synthetic"
+    glygen_source="GlyGen"
+    glygen_sourceid="GLY_000309"
+    sections="synthetic"
+    pmidfield="evidence"
+
+    def rows(self,section):
+        return self.csvrows(section=self.source,path="export_files/compiled/glycan_synthesized")
+
+class GPTWikiSourceFile(GlyGenSourceFile):
+    source="gptwiki"
+    glygen_source="GPTwiki"
+    glygen_sourceid=None
+    sections="glycosites"
+    gtcfield="GlyTouCan"
+    taxidfixed="9606"
+
+    def rows(self,section):
+        return self.csvrows(self.source,filename=section)
+
+class MCWOGlcNAcSourceFile(GlyGenSourceFile):
+    source = "mcw_oglcnac"
+    glygen_source = "OGlcNAcDB"
+    glygen_sourceid = """
+       GLY_000517
+       GLY_000631
+       GLY_000632
+       GLY_000633
+       GLY_000788
+    """
+    sections = "human mouse rat fruitfly yeast"
+    gtcfixed = "G49108TO"
+
+    def rows(self,section):
+        return self.csvrows(section,filename=section+"_o_glcnacome_mcw")
+
+    def gettaxa(self,row):
+        if not hasattr(self,'_taxa_lookup'):
+            self._taxa_lookup = dict()
+            for k,v in self.glygen_species.values():
+                self._taxa_lookup[k] = v
+        if 'organism' in row:
+            org = row['organism']
+            assert(org in self._taxa_lookup)
+            yield self.gtcfixed,self.gtcfixed,self._taxa_lookup[org]
+
+    def getpubs(self,row):
+        if row.get('PMIDS'):
+            for pmid in row.get('PMIDS').split(';'):
+                try:
+                    pmid = int(pmid)
+                    if pmid > 0:
+                        yield self.gtcfixed,self.gtcfixed,pmid,row['section']
+                except ValueError:
+                    pass
+
+class OGlcNAcAtlasSourceFile(GlyGenSourceFile):
+    source = 'atlas_oglcnac'
+    glygen_source = "OGlcNAcAtlas"
+    sections = "ambiguous_sites unambiguous_sites"
+    gtcfixed = "G49108TO"
+
+    def rows(self,section):
+        for row in self.csvrows(self.source,filename=section+'_version_2.0'):
+            if row['species'] in  self.glygen_species:
+                row['taxid'] = self.glygen_species[row['species']][1]
+            if row['pmid']:
+                try:
+                    int(row['pmid'])
+                except ValueError:
+                    del row['pmid']
+            yield row
+
+class HarvardSourceFile(GlyGenSourceFile):
+    source = "harvard"
+    glygen_source = "Harvard"
+    glygen_sourceid = "GLY_000142"
+    glygen_pubmedid = "29351928"
+    sections = "human_glycosylation_current"
+    gtcfixed = "G70994MS"
+    taxidfixed = "9606"
+    pmidfixed = "29351928"
+  
+    def rows(self,section):
+        return self.csvrows(self.source,filename=section)
+
+class OGluCSourceFile(GlyGenSourceFile):
+    source = "ogluc"
+    glygen_source = "GlyGen"
+    glygen_sourceid = "GLY_000716"
+    glygen_pubmedid = "34411563"
+    sections = "human"
+    gtcfield = "saccharide"
+    pmidfield = "evidence"
+    
+    def rows(self,section):
+        return self.csvrows(section,path="export_files/compiled/%s_proteoform_glycosylation_sites_o-gluc"%(section,))
+
+class LiteratureSourceFile(GlyGenSourceFile):
+    source = "literature"
+    glygen_source = "GlyGen"
+    glygen_sourceid = "GLY_000612 GLY_000335"
+    glygen_pubmedid = "16442106 18187336"
+    sections = "sarscov1 hcv1a"
+    gtcfield = "saccharide"
+    taxidfield = "tax_id_uniprotkb_ac"
+    pmidfield = "evidence"
+    
+    def rows(self,section):
+        return self.csvrows(section,path="export_files/compiled/%s_proteoform_glycosylation_sites_literature"%(section,))
+
+class BiomarkerDBSourceFile(GlyGenSourceFile):
+    source = "biomarkerdb"
+    glygen_source = "BiomarkerKB"
+    glygen_sourceid = "GLY_000737"
+    sections = "allbiomarkers-all"
+    gtcfield = "GlyTouCan"
+
+    def rows(self,section):
+        for row in self.csvrows(section=self.source,filename=section):
+            for xref in map(str.strip,row.get('Main x-ref',"").split("|")):
+                if xref.startswith("GTC:"):
+                    row['GlyTouCan'] = xref[4:]
+                    yield row
 
 class GlyGenDataset(WebServiceResource):
     apiurl = "https://data.glygen.org/ln2releases/data/current/reviewed"
@@ -446,19 +543,19 @@ class GlyGenDataset(WebServiceResource):
             yield row
 
     datasets_data = """
-        GLY_000142      human_proteoform_glycosylation_sites_harvard                9606
-        GLY_000335      hcv1a_proteoform_glycosylation_sites_literature             11108
-        GLY_000632      rat_proteoform_glycosylation_sites_oglcnac_mcw              10116
-        GLY_000633      fruitfly_proteoform_glycosylation_sites_oglcnac_mcw         7227
-        GLY_000631      mouse_proteoform_glycosylation_sites_oglcnac_mcw            10090
-        GLY_000517      human_proteoform_glycosylation_sites_oglcnac_mcw            9606
-        GLY_000708      human_proteoform_glycosylation_sites_oglcnac_atlas          9606
-        GLY_000709      mouse_proteoform_glycosylation_sites_oglcnac_atlas          10090
-        GLY_000710      rat_proteoform_glycosylation_sites_oglcnac_atlas            10116
-        GLY_000711      fruitfly_proteoform_glycosylation_sites_oglcnac_atlas       7227
-        GLY_000716      human_proteoform_glycosylation_sites_o_gluc                 9606
     """
-    # yeast_proteoform_glycosylation_sites_oglcnac_mcw
+    #     yeast_proteoform_glycosylation_sites_oglcnac_mcw
+    #     GLY_000142      human_proteoform_glycosylation_sites_harvard                9606
+    #     GLY_000335      hcv1a_proteoform_glycosylation_sites_literature             11108
+    #     GLY_000632      rat_proteoform_glycosylation_sites_oglcnac_mcw              10116
+    #     GLY_000633      fruitfly_proteoform_glycosylation_sites_oglcnac_mcw         7227
+    #     GLY_000631      mouse_proteoform_glycosylation_sites_oglcnac_mcw            10090
+    #     GLY_000517      human_proteoform_glycosylation_sites_oglcnac_mcw            9606
+    #     GLY_000708      human_proteoform_glycosylation_sites_oglcnac_atlas          9606
+    #     GLY_000709      mouse_proteoform_glycosylation_sites_oglcnac_atlas          10090
+    #     GLY_000710      rat_proteoform_glycosylation_sites_oglcnac_atlas            10116
+    #     GLY_000711      fruitfly_proteoform_glycosylation_sites_oglcnac_atlas       7227
+    #     GLY_000716      human_proteoform_glycosylation_sites_o_gluc                 9606
 
     @uniqueify
     def dataset_allgtc(self,dsid):
@@ -468,32 +565,32 @@ class GlyGenDataset(WebServiceResource):
     @uniqueify
     def dataset_alltaxa(self,dsid):
         for row in self.dataset(dsid):
-            yield row['accession'],row['taxid']
+            yield row['accession'],row['accession'],row['taxid']
             
     @uniqueify
     def dataset_allpubs(self,dsid):
         for row in self.dataset(dsid):
             if 'pmid' in row:
                 for pmid in row['pmid'].split(';'):
-                    yield row['accession'],pmid
+                    yield row['accession'],row['accession'],pmid
             
     @uniqueify
     def allgtc(self):
         for dsid in self.datasets:
             for row in self.dataset_allgtc(dsid):
-                yield row,dsid
+                yield row[0],row[1],dsid
 
     @uniqueify
     def alltaxa(self):
         for dsid in self.datasets:
             for row in self.dataset_alltaxa(dsid):
-                yield row[0],row[1],dsid
+                yield row[0],row[1],row[2],dsid
 
     @uniqueify
     def allpubs(self):
         for dsid in self.datasets:
             for row in self.dataset_allpubs(dsid):
-                yield row[0],row[1],dsid
+                yield row[0],row[1],row[2],dsid
 
 class GlyGenFile:
 
