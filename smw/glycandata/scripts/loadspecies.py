@@ -227,7 +227,7 @@ for m in iterglycan():
             if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['NeuGc'] and not hasmono['Alt']:
 	        evidence.add(ec('noXylAltNeuGc'))
 		direct = True
-	elif sp in ('mouse','rat'):
+	elif sp in ('mouse','rat','pig'):
     	    if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
 	        evidence.add(ec('noXylAlt'))
                 direct = True

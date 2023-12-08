@@ -7,9 +7,9 @@ from getwiki import GlycanData
 w = GlycanData()
 
 import findpygly
-from pygly.GlycanResource import GlycoMotif
+from pygly.GlycanResource import GlycoMotifDev, GlycoMotif
 
-gm = GlycoMotif(prefetch=True,verbose=False,usecache=False)
+gm = GlycoMotifDev(prefetch=True,verbose=False,usecache=False)
 
 collections = ('GGM',)
 

@@ -4,7 +4,7 @@ import sys, time, traceback, hashlib, os, os.path, glob, csv
 from collections import defaultdict
 
 import findpygly
-from pygly.alignment import GlycanEqual
+from pygly.alignment import GlycanEqual, GlycanImageEqual
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
 
 from getwiki import GlycanData
@@ -13,6 +13,7 @@ w = GlycanData()
 wp = WURCS20Format()
 gp = GlycoCTFormat()
 glyeq = GlycanEqual()
+glyimgeq = GlycanImageEqual()
 
 allfn = set(glob.glob(sys.argv[1]+"/G*.txt"))
 
@@ -20,7 +21,20 @@ idmapfilename = sys.argv[1] + "/residmap.txt"
 idmaps = defaultdict(dict)
 if os.path.exists(idmapfilename):
     for r in csv.DictReader(open(idmapfilename),dialect='excel-tab'):
-        idmaps[r['Accession']][int(r['GlycoCTResidueIndex'])] = int(r['CanonicalResidueIndex'])
+        idmaps[r['Accession']][r['GlycoCTResidueIndex']] = r['CanonicalResidueIndex']
+
+def check_idmap(gly1,gly2,idmap):
+    ids1 = gly1.external_descriptor_ids()
+    ids2 = gly2.external_descriptor_ids()
+    idm = list(idmap.items())
+    idm1 = [ p[0] for p in idm ]
+    idm2 = [ p[1] for p in idm ]
+    assert len(ids1) == len(set(ids1))
+    assert len(ids2) == len(set(ids2))
+    assert len(idm1) == len(set(idm1))
+    assert len(idm2) == len(set(idm2))
+    assert set(ids1) == set(idm1)
+    assert set(ids2) == set(idm2)
 
 glycanclass = sys.argv[2]
 assert glycanclass in ("N-linked","O-linked")
@@ -47,13 +61,28 @@ for g in w.iterglycan():
     elif glycanclass == "O-linked":
         if g.has_annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
 	    for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
-                if value in ("GGM.001006","GGM.001010","GGM.001014","GGM.001016","GGM.001018"):
+                if value in ("GGM.001006","GGM.001010","GGM.001014","GGM.001016","GGM.001018","GGM.001033"):
 		    inclass = True
 		    break
+                if value in ("GGM.001034",):
+                    try:
+                        monocnt = int(g.get_annotation_value(property="MonosaccharideCount",type="MonosaccharideCount",source="EdwardsLab"))
+                    except ValueError:
+                        monocnt = 0
+                    try:
+                        neuaccnt = int(g.get_annotation_value(property="NeuAcCount",type="MonosaccharideCount",source="EdwardsLab"))
+                    except LookupError:
+                        neuaccnt = 0
+                    if monocnt == 1:
+                        inclass = True
+                        break
+                    if monocnt == 2 and neuaccnt == 1:
+                        inclass = True
+                        break
     else:
 	raise RuntimeError("Bad glycan-class...")
 
-    if gct == None or not inclass:
+    if gct == None or wcs == None or not inclass:
 	continue
 
     try:
@@ -67,19 +96,27 @@ for g in w.iterglycan():
         sys.exit(1)
 
     idmap = []
-    if not glyeq.eq(gctgly,wcsgly,idmap=idmap):
-	continue
+    if glyeq.eq(gctgly,wcsgly,idmap=idmap):
+        for gctmono,wcsmono in idmap:
+            for gctid,wcsid in glyeq.monoidmap(gctmono,wcsmono):
+                idmaps[acc][str(gctid)] = str(wcsid)
+        # print(acc,idmaps[acc])
+    elif glyimgeq.eq(gctgly,wcsgly,idmap=idmap):
+        for gctmono,wcsmono in idmap:
+            for gctid,wcsid in glyimgeq.monoidmap(gctmono,wcsmono):
+                idmaps[acc][str(gctid)] = str(wcsid)
+        # print(acc,idmaps[acc])
 
-    for gctmono,wcsmono in idmap:
-        idmaps[acc][int(gctmono.id())] = int(wcsmono.external_descriptor_id())
+    check_idmap(gctgly,wcsgly,idmaps[acc])
 
     filename = sys.argv[1] + "/" + acc + ".txt"
+    print >>sys.stderr, acc
 
     if filename in allfn:
         allfn.remove(filename)	
 	continue
 
-    print >>sys.stderr, acc
+    # print >>sys.stderr, acc
     wh = open(filename,'w')
     wh.write(gct)
     wh.close()

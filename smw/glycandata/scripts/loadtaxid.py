@@ -11,6 +11,7 @@ gtc2taxid = defaultdict(lambda: defaultdict(set))
 for f in sys.argv[1:]:
   for l in open(f):
     sl = l.split()
+    # print(sl)
     gtc = sl[0]
     taxid = int(sl[1])
     source = sl[2]

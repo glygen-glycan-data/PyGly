@@ -807,6 +807,35 @@ class NGlycanAlditolReduced(MotifClassifier):
     _class = ("N-linked","N-linked alditol-reduced")
     _motifs = ["GGM.001026"]
 
+class NGlycanBiantennary(MotifClassifier):
+    _class = ("N-linked","N-linked biantennary")
+    _motifs = ["GGM.001037"]
+    _exceptions = ["GGM.001038"]
+
+    def refine(self,data):
+        if not data.has_motif("GGM.001004"):
+            return False
+        return True
+
+class NGlycanTriantennary(MotifClassifier):
+    _class = ("N-linked","N-linked triantennary")
+    _motifs = ["GGM.001038"]
+    _exceptions = ["GGM.001039"]
+
+    def refine(self,data):
+        if not data.has_motif("GGM.001004"):
+            return False
+        return True
+
+class NGlycanTetraantennary(MotifClassifier):
+    _class = ("N-linked","N-linked tetraantennary")
+    _motifs = ["GGM.001039"]
+
+    def refine(self,data):
+        if not data.has_motif("GGM.001004"):
+            return False
+        return True
+
 class OGlycanOGlcNAc(MotifClassifier):
     _class = ("O-linked","O-GlcNAc")
     _motifs = ["GGM.001028"]

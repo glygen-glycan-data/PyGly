@@ -7,6 +7,11 @@ DATA=../data
 
 $PYTHON $PYGLY/GlycanResource/main.py GlyGen allglycans | sort > $DATA/glygen_accessions.txt
 
+touch $DATA/glygen_exclude_accessions.txt
+for accfile in $DATA/glygen_accessions.txt; do
+    fgrep -v -f $DATA/glygen_exclude_accessions.txt ${accfile} > ${accfile}.new; mv -f ${accfile}.new $accfile
+done
+
 # Special/Other Requests
 rm -f $DATA/glygen_req_accessions.txt
 touch $DATA/glygen_req_accessions.txt
@@ -27,7 +32,7 @@ for taxid in 9606 10090 10116 10114 111108 11116 11103 63746 694009 2697049 7227
 done
 
 # echo "#GlyGenSourceFile allgtc" >> $DATA/glygen_req_accessions.txt
-$PYTHON $PYGLY/GlycanResource/main.py GlyGenFile allgtc | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
+$PYTHON $PYGLY/GlycanResource/main.py GlyGenSourceFile allsourcegtc | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
 
 cat $DATA/glygen_req_accessions.txt | \
   fgrep -v -f $DATA/glygen_accessions.txt | \

@@ -8,13 +8,14 @@ from getwiki import GlycanData, Glycan
 w = GlycanData()
 
 import findpygly
-from pygly.GlycanResource import GlyGenSourceFile
+from pygly.GlycanResource import GlyConnectSourceFile
 
-ggsf = GlyGenSourceFile()
+ggsf = GlyConnectSourceFile()
 
 gtc2acc = defaultdict(set)
-for acc,gtc in ggsf.glyconnect_allgtc():
-    gtc2acc[gtc].add(acc)
+for row in ggsf.allgtc():
+    if row[1] != "-":
+        gtc2acc[row[1]].add(row[0])
 
 for m in w.iterglycan():
     acc = m.get('accession')

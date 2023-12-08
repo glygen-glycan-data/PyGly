@@ -131,9 +131,9 @@ for gtcacc in accessions(sys.argv[1:]):
     #                  source='GlyTouCan', type='Motif')
 
     g.delete_annotations(source='GlyTouCan',type='Taxonomy')
-    g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),
-                     property='Taxonomy', sourceid=gtcacc, 
-                     source='GlyTouCan', type='Taxonomy')
+    # g.set_annotation(value=list(set(gtc.gettaxa(gtcacc))),
+    #                  property='Taxonomy', sourceid=gtcacc, 
+    #                  source='GlyTouCan', type='Taxonomy')
 
     g.delete_annotations(source='GlyCosmos',type='Taxonomy')
     g.set_annotation(value=list(set(gco.gettaxa(gtcacc))),
