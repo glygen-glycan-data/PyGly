@@ -637,10 +637,10 @@ GGM.000054	Collection	GGM
 GGM.000054	Accession	000054
 GGM.000054	PreferredName	Diphosphorylated Man6
 GGM.000054	AlternativeName	Diphosphorylated Man_6
-GGM.000054	Aglycon	R
-GGM.000054	Alignment	Substructure
-GGM.000054	MotifGlyTouCan	G54792LL
-GGM.000054	ReducingEnd	false
+GGM.000054	Aglycon	Asn
+GGM.000054	Alignment	Core
+GGM.000054	MotifGlyTouCan	G10907PF
+GGM.000054	ReducingEnd	true
 GGM.000054	PMID	18621992
 GGM.000054	PMID	19756298
 GGM.000054	CrossRef	GlycanDictionary:GSD000059
