@@ -32,6 +32,27 @@ if os.path.exists(idmapfilename):
     for r in csv.DictReader(open(idmapfilename),dialect='excel-tab'):
         idmaps[r['Accession']][r['GlycoCTResidueIndex']] = r['CanonicalResidueIndex']
 
+validresidues = set(filter(None,"""
+GlcNAc
+Glc
+Man
+Gal
+GalNAc
+Fuc
+Xyl
+NeuAc
+NeuGc
+P
+S
+Count
+""".split()))
+
+def validcomp(comp):
+    for k,v in comp.items():
+        if k not in validresidues and v > 0:
+            return False
+    return True
+
 def check_idmap(gly1,gly2,idmap):
     ids1 = gly1.external_descriptor_ids()
     ids2 = gly2.external_descriptor_ids()
@@ -50,6 +71,13 @@ def iternlinkedaccs():
     for acc,strict,resids,linkids in gm.getstruct('GGM','001001'):
         if acc in seen:
             continue
+        gly = gtc.getGlycan(acc)
+        if not gly or gly.repeated():
+            continue
+        comp = gly.iupac_composition(aggregate_basecomposition=False)
+        # print(comp)
+        if not validcomp(comp):
+            continue
         yield acc
         seen.add(acc)
 
@@ -65,11 +93,14 @@ def iterolinkedaccs():
         for acc,strict,resids,linkids in gm.getstruct('GGM',olc):
             if acc in seen:
                 continue
+            gly = gtc.getGlycan(acc)
+            if not gly or gly.repeated():
+                continue
+            comp = gly.iupac_composition(aggregate_basecomposition=False)
+            print(comp)
+            if not validcomp(comp):
+                continue
             if olc in "001034":
-                gly = gtc.getGlycan(acc)
-                if not gly or gly.repeated():
-                    continue
-                comp = gly.iupac_composition()
                 if comp['Count'] not in (1,2):
                     continue
                 if comp['Count'] == 2 and comp['NeuAc'] != 1:
