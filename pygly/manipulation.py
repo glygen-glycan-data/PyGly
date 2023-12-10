@@ -121,6 +121,7 @@ class Composition(Manipulation):
                     sublink.child().del_parent_link(sublink)
                     sublink.child().set_connected(False)
                     floating.append(sublink.child())
+                    sublink.child().clear_links()
         undets.extend(floating)
         if len(undets) == 1:
             g.set_root(undets[0])
