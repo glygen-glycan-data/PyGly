@@ -101,18 +101,19 @@ class Composition(Manipulation):
     def manip(self,g):
         self.topo.manip(g)
         undets = []
-        for m in g.all_nodes():
+        for m in g.all_nodes(undet_subst=True):
             undets.append(m)
         floating = []
         for m in undets:
             m.set_connected(False)
             m.clear_links()
             m.clear_parent_links()
-            if "%s:%s"%(m.ring_start(),m.ring_end()) == "0:0" and m.anomer() == Anomer.uncyclized:
-                pass
-            else:
-                m.set_ring_start(None)
-                m.set_ring_end(None)
+            if m.is_monosaccharide():
+                if "%s:%s"%(m.ring_start(),m.ring_end()) == "0:0" and m.anomer() == Anomer.uncyclized:
+                    pass
+                else:
+                    m.set_ring_start(None)
+                    m.set_ring_end(None)
             for sublink in list(m.substituent_links()):
                 assert sublink.child().name() in self.floating_substs or sublink.child().name() in self.non_floating_substs, str(sublink.child())
                 if sublink.child().name() in self.floating_substs:
