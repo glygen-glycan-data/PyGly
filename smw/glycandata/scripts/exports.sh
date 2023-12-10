@@ -8,9 +8,11 @@
 set -x 
 rm -rf glycandata*.tdb
 ./tordf.py "$@" glycandata | gzip -9 -c > ../export/glycandata.rdf.gz
+rm -f ../export/glycandata.rdf.gz.[0-9][0-9]
 split -b 40m -d ../export/glycandata.rdf.gz ../export/glycandata.rdf.gz.
 ./loadts.sh ../export/glycandata.rdf.gz
 ./queryall.sh glycandata.tdb
+rm -f ../export/glycoctxml.zip.[0-9][0-9]
 split -b 40m -d ../export/glycoctxml.zip ../export/glycoctxml.zip.
 ./glycanprop.py "$@" > ../export/glycan_properties.tsv
 ./monocomp.py "$@" > ../export/monocomp.tsv
