@@ -1167,10 +1167,20 @@ class IUPACParserAbstract():
         branchPoint = []
         parentMono = 0
 
+        coremonos = []
+        undetroots = []
+        incore = True
+
         # Process
         regexRes = self.regexSearch(seq)
         for i, monoinfo in enumerate(regexRes):
             mono = self.monoAssemble(monoinfo)
+            mono.set_id(i+1)
+            if monoinfo.get('undetroot',False):
+                incore = False
+                undetroots.append(mono)
+            if incore:
+                coremonos.append(mono)
             add_stack = monoinfo["branchpointstart"]
             remove_stack = monoinfo["branchpointend"]
 
@@ -1192,9 +1202,18 @@ class IUPACParserAbstract():
                     except ValueError:
                         raise IUPACLinearBadPosition(code=seq, pos=len(seq), badpos=cp)
 
-                parentMono.add_child(mono, child_pos=cp, parent_pos=pp,
-                                     parent_type=Linkage.oxygenPreserved,
-                                     child_type=Linkage.oxygenLost)
+                if not monoinfo.get('undetroot',False):
+                    parentMono.add_child(mono, child_pos=cp, parent_pos=pp,
+                                         parent_type=Linkage.oxygenPreserved,
+                                         child_type=Linkage.oxygenLost)
+                else:
+                    for mi in coremonos:
+                        linkage = UninstantiatedLinkage(child_pos=cp,
+                                                        parent_pos=pp,
+                                                        parent_type=Linkage.oxygenPreserved, 
+                                                        child_type=Linkage.oxygenLost)
+                        l = mi.add_child_with_special_linkage(mono,linkage)                       
+                        mono.set_connected(False)
 
                 # Debug: Possibility for multiple branching starting bracket
                 # It doesn't really make any sense to be honest.
@@ -1210,12 +1229,13 @@ class IUPACParserAbstract():
                         raise IUPACBranchingError
                     parentMono = branchPoint.pop(-1)
         glycanObj = Glycan(root)
+        glycanObj.set_undetermined(undetroots)
         if len(list(glycanObj.all_nodes())) != self.monoNumCheck(seq):
             raise IUPACSkippedMonosaccharide
         return glycanObj
 
     def monoNumCheck(self, seq):
-        possibleTriletter = "Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO|Neu"
+        possibleTriletter = "Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO|Neu|Hex"
         possibleTriletter = possibleTriletter.lower()
         ptl = possibleTriletter.split("|")
         s = seq.lower()
@@ -1231,13 +1251,24 @@ class IUPACParserAbstract():
         raise NotImplemented
 
     def monoAssemble(self, info):
-        fullname = self.alias + info["skel"]
-        try:
-            m = self.mf.new(fullname)
-        except:
+        m = None
+        if not m:
+            try:
+                m = self.mf.new(info["skel"])
+            except LookupError:
+                pass
+        if not m:
+            fullname = self.alias + info["skel"]
+            try:
+                m = self.mf.new(fullname)
+            except LookupError:
+                pass
+        if not m:
             raise LinearCodeBadSym("", 0, fullname)
         if m.anomer() != Anomer.uncyclized and info["anomer"]:
             m.set_anomer(eval(info["anomer"]))
+        for mod in info.get("mod",[]):
+            m.add_mod(mod[0],eval(mod[1]))
         return m
 
 
@@ -1322,13 +1353,16 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
 
 
 class IUPACParserExtended1(IUPACParserAbstract):
-    # Matthew's IUPAC, also the one in hayes column
+    # Matthew's IUPAC, also the one in hayes column, adapted to parse glycowork iupac strings
     description = "UniCarb IUPAC string"
     example = "D-Neu5Ac(a2-3)[HSO3(-3)]D-Gal(b1-3)D-GalNAc(b1-4)[D-Neu5Ac(a2-8)D-Neu5Ac(a2-3)]D-Gal(b1-4)D-Glc(b1-1)Cer"
     alias = "IUPACExtended1:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN)([a-zA-Z5926,]+)?)(?P<link>(\([ab]([1-9](/[1-9])*)-([1-9])?(/[1-9])*\)))?(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<bpe>(\[|{)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Kdn|Rib|Tal)([a-zA-Z1-9,-]+)?)(?P<link>(\([ab?]([1-9?](/[1-9])*)-(([1-9?])(/[1-9])*\))?))?(?P<bps>(\]|})*)"
 
     def regexSearch(self, seq):
+        if seq.endswith('1Cer'):
+            seq = seq[:-4]
+            
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
         searchres = list(reversed(searchres))
         if len(searchres) == 0:
@@ -1357,6 +1391,7 @@ class IUPACParserExtended1(IUPACParserAbstract):
                 anomer = None
                 link = (None, None)
 
+            mod = []
             skel = s["skel"]
             sub = s["sub"]
             # sublink = s["sublink"]
@@ -1365,11 +1400,22 @@ class IUPACParserExtended1(IUPACParserAbstract):
                 skel = sub + s["skel"]
                 # print sub
 
+            if skel.endswith('-ol') and anomer == None:
+                skel = skel[:-3]
+		anomer='Anomer.uncyclized'
+                mod = [(1,'Mod.aldi')]
+
             res0["anomer"] = anomer
             res0["skel"] = skel
+            res0["mod"] = mod
             res0["link"] = tuple(link)
             res0["substituent"] = sub
             # res0["sublink"] = sublink
+            if s["bps"] == "}":
+                s["bps"] = ""
+                res0["undetroot"] = True
+            if s["bpe"] == "{":
+                s["bpe"] = ""
             res0["branchpointstart"] = len(s["bps"])
             res0["branchpointend"] = len(s["bpe"])
             res.append(res0)

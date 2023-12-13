@@ -212,8 +212,8 @@ class Node(object):
         l.child().add_parent_link(l)
         return l
 
-    def has_children(self):
-        return (self.any_link() != None)
+    def has_children(self, **kw):
+        return (self.any_link(**kw) != None)
 
     def set_connected(self,conn):
         self._connected = conn
@@ -798,7 +798,7 @@ class Monosaccharide(Node):
         # s += "   isNAcetylated = %s\n"%self.isNAcetylated()
         # s += "     Composition = %s\n"%self.composition()
         # s += "MonoisotopicMass = %f\n"%self.mass()
-        if self.has_children():
+        if self.has_children(default=False):
             s += "        Children = "
             ch = []
             for l in self.links(default=False): #implies all links
