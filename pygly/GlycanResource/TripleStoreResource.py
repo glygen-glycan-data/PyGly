@@ -37,6 +37,8 @@ class TripleStoreResource(GlycanResource):
         self.attr(kw,'defns',default=None)
         self.attr(kw,'endpt',required=True)
         self.attr(kw,'verbose',default=False)
+        self.attr(kw,'local',default=False)
+        self.attr(kw,'localendpt',default=None)
 
         self.attr(kw,'cachefile',default=False)
         self.attr(kw,'usecache',default=False)
@@ -47,6 +49,9 @@ class TripleStoreResource(GlycanResource):
 
         if self._defns:
             self._ns = rdflib.Namespace(self._defns)
+
+        if self._local:
+            self._endpt = self._localendpt
 
         # from rdflib.query import ResultParser
         # from rdflib.plugin import register

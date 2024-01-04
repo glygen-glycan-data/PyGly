@@ -8,6 +8,7 @@ import hashlib
 class GlycoTreeSandbox(WebServiceResource):
     # apiurl = 'https://glygen.ccrc.uga.edu/sandbox/api/'
     apiurl = 'https://sandbox.glyomics.org/api'
+    localurl = 'http://trypsin:10989/api'
 
     def __init__(self,**kw):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glycotreews.ini")
@@ -52,4 +53,5 @@ class GlycoTreeSandbox(WebServiceResource):
 
 class GlycoTreeSandboxDev(GlycoTreeSandbox):
     apiurl = 'https://edwardslab.bmcb.georgetown.edu/sandboxdev/api'
+    localurl = 'http://trypsin:10988/api'
 

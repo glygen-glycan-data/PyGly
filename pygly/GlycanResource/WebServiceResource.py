@@ -42,6 +42,12 @@ class WebServiceResource(GlycanResource):
     def __init__(self,*args,**kw):
         self.attr(kw,'apiurl',required=True)
         self.attr(kw,'verbose',default=False)
+        self.attr(kw,'local',default=False)
+        self.attr(kw,'localurl',default=None)
+
+        if self._local:
+            self._apiurl = self._localurl
+
         self.cj = CookieJar()
         self.opener = build_opener(HTTPCookieProcessor(self.cj))
         # self.opener = build_opener(HTTPCookieProcessor(self.cj),HTTPSHandler(debuglevel=1))
