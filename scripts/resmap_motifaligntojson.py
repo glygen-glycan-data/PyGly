@@ -18,7 +18,7 @@ else:
 
 accs = sys.argv[1:]
 
-gm = GlycoMotifNoCache(verbose=False)
+gm = GlycoMotifNoCache(verbose=False,local=True)
 colls = list(gm.collections())
 
 def getmotifs(acc):

@@ -18,19 +18,28 @@ else:
 
 accs = sys.argv[1:]
 
-# sandbox = GlycoTreeSandboxDev()
-sandbox = GlycoTreeSandbox()
+sandbox = GlycoTreeSandbox(local=True,delaytime=3)
 
-if len(accs) == 0:
-    accs = sandbox.list()
+def glycansiter(sandbox,accs):
+    if len(accs) == 0:
+        for jd in sandbox.allglycans(blocksize=50):
+            yield jd
+    else:
+        for acc in accs:
+            yield sandbox.glycan(acc)
 
 # Loop through the file paths and read the contents of each file
-for acc in accs:
+for sbjdoc in glycansiter(sandbox,accs):
+    acc = sbjdoc['accession']
+
     json_filename = os.path.join(out_dir,acc+".json")
     if not os.path.exists(json_filename):
         continue
 
-    structure_dict = json.loads(open(json_filename).read())
+    try:
+        structure_dict = json.loads(open(json_filename).read())
+    except ValueError:
+        raise RuntimeError("Bad JSON format: "+json_filename)
     canon_parent_id = {}
     for res in structure_dict['residues']:
         if res.get('parentid'):
@@ -39,8 +48,7 @@ for acc in accs:
     enzymes = dict()
     enzymes['__synonyms__'] = dict()
 
-    jdoc = sandbox.glycan(acc)
-    for r in jdoc['residues']:
+    for r in sbjdoc['residues']:
         can_res_index = r.get('canonical_residue_index')
         if not can_res_index:
             continue

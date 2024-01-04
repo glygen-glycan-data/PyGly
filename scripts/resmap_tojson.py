@@ -161,7 +161,10 @@ for path in sorted(os.listdir(wurcs_dir)):
     if not os.path.exists(os.path.join(out_dir,acc+".json")):
         structure_dict = {}
     else:
-        structure_dict = json.loads(open(os.path.join(out_dir,acc+".json")).read())
+        try:
+            structure_dict = json.loads(open(os.path.join(out_dir,acc+".json")).read())
+        except ValueError:
+            raise RuntimeError("Bad JSON format: "+os.path.join(out_dir,acc+".json"))
 
     structure_dict['canonical_sequence_accession'] = acc
     structure_dict['canonical_sequence_md5'] = canon_seqhash
