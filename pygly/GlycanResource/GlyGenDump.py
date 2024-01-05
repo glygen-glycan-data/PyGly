@@ -108,7 +108,7 @@ class GlyGenSourceFile(WebServiceResource):
 
     def gettaxa(self,row):
         if row.get(self.gtcfield,self.gtcfixed) and row.get(self.taxidfield,self.taxidfixed):
-            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.taxidfield,self.taxidfixed)
+            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.taxidfield,self.taxidfixed),row.get(self.pmidfield,self.pmidfixed)
 
     def getpubs(self,row):
         if row.get(self.gtcfield,self.gtcfixed) and row.get(self.pmidfield,self.pmidfixed):
@@ -128,13 +128,15 @@ class GlyGenSourceFile(WebServiceResource):
     @uniqueify
     def alltaxa(self):
         for row in self.allrows():
-            for acc,gtc,taxid in self.gettaxa(row):
+            for acc,gtc,taxid,pmid in self.gettaxa(row):
                 if not hasattr(self,'glygen_sourceid'):
                     yield acc,gtc,taxid,self.glygen_source,None
                 elif self.glygen_sourceid == None:
                     yield acc,gtc,taxid,self.glygen_source,acc
                 else:
                     yield acc,gtc,taxid,self.glygen_source,row['_glygen_sourceid']
+                if pmid:
+                    yield acc,gtc,taxid,"PubMed",pmid
                 if hasattr(self,'glygen_pubmedid'):
                     yield acc,gtc,taxid,"PubMed",row['_glygen_pubmedid']
 
@@ -185,7 +187,7 @@ class GlyConnectSourceFile(GlyGenSourceFile):
     source = 'glyconnect'
     glygen_source = "GlyConnect"
     glygen_sourceid = None
-    sections = 'human mouse rat fruitfly sarscov2 yeast dictyostelium'
+    sections = 'human mouse rat fruitfly sarscov2 yeast dicty'
 
     def json2rows(self,json):
         return json['results']
@@ -201,8 +203,10 @@ class GlyConnectSourceFile(GlyGenSourceFile):
 
     def gettaxa(self,row):
         if row['taxonomy'].get('taxonomy_id'):
-            yield "S"+str(row['structure']['id']),row['structure'].get('glytoucan_id',"-"),row['taxonomy'].get('taxonomy_id')
-            yield "C"+str(row['composition']['id']),row['composition'].get('glytoucan_id',"-"),row['taxonomy'].get('taxonomy_id')
+          for pub in row['references']:
+            pmid = pub.get('pmid')
+            yield "S"+str(row['structure']['id']),row['structure'].get('glytoucan_id',"-"),row['taxonomy'].get('taxonomy_id'),pmid
+            yield "C"+str(row['composition']['id']),row['composition'].get('glytoucan_id',"-"),row['taxonomy'].get('taxonomy_id'),pmid
 
     def getpubs(self,row):
         for pub in row['references']:
@@ -351,13 +355,15 @@ class UniCarbKBSourceFile(GlyGenSourceFile):
     @uniqueify
     def alltaxa(self):
         for row in self.allrows(loadtaxid=True):
-            for acc,gtc,taxid in self.gettaxa(row):
+            for acc,gtc,taxid,pmid in self.gettaxa(row):
                 if not hasattr(self,'glygen_sourceid'):
                     yield acc,gtc,taxid,self.glygen_source,None
                 elif self.glygen_sourceid == None:
                     yield acc,gtc,taxid,self.glygen_source,acc
                 else:
                     yield acc,gtc,taxid,self.glygen_source,row['_glygen_sourceid']
+                if pmid:
+                    yield acc,gtc,taxid,"PubMed",pmid
 
     def gettaxa(self,row):
         if row.get('taxid') and row.get('id'):
@@ -365,7 +371,8 @@ class UniCarbKBSourceFile(GlyGenSourceFile):
             if not re.search('^G\d{5}[A-Z]{2}$',gtc):
                 gtc = "-"
             if int(row['taxid']) > 0:
-                yield row['id'],gtc,row['taxid']
+                pmid = row.get('pmid')
+                yield row['id'],gtc,row['taxid'],pmid
 
     @uniqueify
     def getpubs(self,row):
@@ -432,7 +439,18 @@ class MCWOGlcNAcSourceFile(GlyGenSourceFile):
         if 'organism' in row:
             org = row['organism']
             assert(org in self._taxa_lookup)
-            yield self.gtcfixed,self.gtcfixed,self._taxa_lookup[org]
+            if not row.get('PMIDS'):
+                yield self.gtcfixed,self.gtcfixed,self._taxa_lookup[org],None
+            else:
+                for pmid in row.get('PMIDS').split(';'):
+                    try:
+                        pmid = int(pmid)
+                    except ValueError:
+                        continue
+                    if pmid > 0:
+                        yield self.gtcfixed,self.gtcfixed,self._taxa_lookup[org],pmid
+                    else:
+                        yield self.gtcfixed,self.gtcfixed,self._taxa_lookup[org],None
 
     def getpubs(self,row):
         if row.get('PMIDS'):
@@ -565,7 +583,7 @@ class GlyGenDataset(WebServiceResource):
     @uniqueify
     def dataset_alltaxa(self,dsid):
         for row in self.dataset(dsid):
-            yield row['accession'],row['accession'],row['taxid']
+            yield row['accession'],row['accession'],row['taxid'],None
             
     @uniqueify
     def dataset_allpubs(self,dsid):
