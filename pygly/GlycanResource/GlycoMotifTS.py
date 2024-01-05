@@ -6,7 +6,7 @@ from .GlycanResourceWrappers import partitioner, prefetcher
 class GlycoMotifTS(TripleStoreResource):
    
     endpt = "https://glycomotif.glyomics.org/glycomotif/sparql/query"
-    localendpt = "http://trypsin:8081/glycomotif/sparql/query"
+    localendpt = "http://192.168.1.9:8081/glycomotif/sparql/query"
     defns = "http://glyomics.org/glycomotif/Special:URIResolver/"
     # verbose = True
     cachefile = ".gm.cache"
@@ -83,7 +83,7 @@ class GlycoMotifTS(TripleStoreResource):
 class GlycoMotifDevTS(GlycoMotifTS):
    
     endpt = "https://glycomotif.glyomics.org/glycomotifdev/sparql/query"
-    localendpt = "http://trypsin:8080/glycomotifdev/sparql/query"
+    localendpt = "http://192.168.1.9:8080/glycomotifdev/sparql/query"
     defns = "http://glyomics.org/glycomotifdev/Special:URIResolver/"
     cachefile = ".gmd.cache"
 
