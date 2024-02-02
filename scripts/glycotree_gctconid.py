@@ -5,12 +5,13 @@ from collections import defaultdict
 
 import findpygly
 from pygly.alignment import GlycanEqual, GlycanImageEqual
+from pygly.Monosaccharide import Mod
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
 from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCanNoPrefetch
 from pygly.GlycanResource import GlycoMotif, GlycoMotifDev, GlycoMotifNoCache, GlycoMotifDevNoCache
 
 gtc = GlyTouCanNoCache(verbose=False)
-gm = GlycoMotifNoCache(verbose=False)
+gm = GlycoMotifNoCache(local=True,verbose=False)
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
@@ -44,13 +45,18 @@ NeuAc
 NeuGc
 P
 S
+aldi
 Count
 """.split()))
 
-def validcomp(comp):
+def validcomp(comp,root):
     for k,v in comp.items():
         if k not in validresidues and v > 0:
             return False
+    if comp['aldi'] > 1:
+        return False
+    if root.count_mod(Mod.aldi) == 0 and comp['aldi'] > 0:
+        return False
     return True
 
 def check_idmap(gly1,gly2,idmap):
@@ -76,7 +82,7 @@ def iternlinkedaccs():
             continue
         comp = gly.iupac_composition(aggregate_basecomposition=False)
         # print(comp)
-        if not validcomp(comp):
+        if not validcomp(comp,gly.root()):
             continue
         yield acc
         seen.add(acc)
@@ -97,8 +103,8 @@ def iterolinkedaccs():
             if not gly or gly.repeated():
                 continue
             comp = gly.iupac_composition(aggregate_basecomposition=False)
-            print(comp)
-            if not validcomp(comp):
+            # print(acc,comp)
+            if not validcomp(comp,gly.root()):
                 continue
             if olc in "001034":
                 if comp['Count'] not in (1,2):
