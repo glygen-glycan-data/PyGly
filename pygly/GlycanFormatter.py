@@ -1402,7 +1402,7 @@ class IUPACParserExtended1(IUPACParserAbstract):
 
             if skel.endswith('-ol') and anomer == None:
                 skel = skel[:-3]
-		anomer='Anomer.uncyclized'
+                anomer='Anomer.uncyclized'
                 mod = [(1,'Mod.aldi')]
 
             res0["anomer"] = anomer
