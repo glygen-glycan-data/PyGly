@@ -4,7 +4,7 @@ from .GlyCosmos import GlyCosmos, GlyCosmosNoCache, GlyCosmosNoPrefetch
 from .UniCarbKB import UniCarbKB
 from .GlyGen import GlyGen, GlyGenBeta
 from .GlyGenWS import GlyGenWS
-from .GlyGenDump import GlyGenSourceFile, GlyGenDataset, GlyGenFile, UniCarbKBSourceFile, GlyConnectSourceFile
+from .GlyGenDump import GlyGenSourceFile, GlyGenDataset, GlyGenFile, UniCarbKBSourceFile, GlyConnectSourceFile, EMBLSourceFile, OGlcNAcAtlasSourceFile, MCWOGlcNAcSourceFile
 from .GlycoMotif import GlycoMotif, GlycoMotifNoPrefetch, GlycoMotifNoCache
 from .GlycoMotif import GlycoMotifDev, GlycoMotifDevNoPrefetch, GlycoMotifDevNoCache
 from .GlycanImage import GlycanImage

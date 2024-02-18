@@ -103,7 +103,10 @@ class WebServiceResource(GlycanResource):
             elif thetype == "TEXTGZ":
                 response = TextIOWrapper(BytesIO(gzipdecompress(response)),encoding='utf8')
             elif thetype == "TEXT":
-                response = TextIOWrapper(response,encoding='utf8')
+                try:
+                    response = TextIOWrapper(response,encoding='utf8')
+                except AttributeError:
+                    pass
             return response
 
         self.set_method("query_"+str(name), _query)

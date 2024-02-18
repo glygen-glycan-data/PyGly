@@ -25,15 +25,15 @@ for row in ggsf.allsourcegtc():
 seen = set()
 for origid,gtcacc,taxid,source,sourceid in ggsf.allsourcetaxa():
     if source == "GlyConnect":
-        if sourceid.startswith("S"):
+        if origid.startswith("S"):
             source = "GlyConnectStructure"
         else:
             source = "GlyConnectComposition"
-        accs = acc2gtc[sourceid]
-        sourceid = sourceid[1:]
+        accs = acc2gtc[origid]
+        sourceid = origid[1:]
     elif sourceid in acc2gtc:
         accs = acc2gtc[origid]
-    else:
+    elif gtcacc != "-":
         accs = [gtcacc]
     for acc in accs:
         if (acc,taxid,source,sourceid) in seen:
