@@ -1,4 +1,7 @@
 
+from __future__ import print_function
+from past.builtins import basestring
+
 __all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword", "Enzyme",
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
@@ -14,26 +17,26 @@ class Collection(SMW.SMWClass):
     template = 'Collection'
 
     def __init__(self,**kwargs):
-	if kwargs.get('primary') == None:
-	    kwargs['primary'] = True
+        if kwargs.get('primary') == None:
+            kwargs['primary'] = True
         super(Collection,self).__init__(**kwargs)
 
     def toPython(self,data):
-	data = super(Collection,self).toPython(data)
+        data = super(Collection,self).toPython(data)
 
-	if isinstance(data.get('primary'),basestring):
-	    data['primary'] = self.asboolean(data.get('primary'))
-	
-	return data
+        if isinstance(data.get('primary'),basestring):
+            data['primary'] = self.asboolean(data.get('primary'))
+        
+        return data
 
     def toTemplate(self,data):
-	data = super(Collection,self).toTemplate(data)
+        data = super(Collection,self).toTemplate(data)
 
-	if 'primary' in data:
-	    data['primary'] = ("true" if data['primary'] else "false")
-	
-	return data
-	
+        if 'primary' in data:
+            data['primary'] = ("true" if data['primary'] else "false")
+        
+        return data
+        
 
 class Motif(SMW.SMWClass):
     template = 'Motif'
@@ -79,12 +82,12 @@ class Motif(SMW.SMWClass):
         # redend_alignments is comma separated
         # if isinstance(data.get('redend_alignments'), basestring):
         #     data['redend_alignments'] = map(lambda s: s.strip(), data.get('redend_alignments').split(','))
-	# data['redend_alignments'] = sorted(set(data['redend_alignments']))
+        # data['redend_alignments'] = sorted(set(data['redend_alignments']))
         
         # other_alignments is comma separated (these two keys should partition the alignments)
         # if isinstance(data.get('other_alignments'), basestring):
         #     data['other_alignments'] = map(lambda s: s.strip(), data.get('other_alignments').split(','))
-	# data['other_alignments'] = sorted(set(data['other_alignments'])-set(data['redend_alignments']))
+        # data['other_alignments'] = sorted(set(data['other_alignments'])-set(data['redend_alignments']))
         
         if isinstance(data.get("displayhgv"), basestring):
             data["displayhgv"] = self.asboolean(data.get("displayhgv"))
@@ -102,32 +105,32 @@ class Motif(SMW.SMWClass):
             data['alignment'] = map(lambda s: s.strip(), data.get('alignment').split(','))
             data['alignment'] = sorted(filter(lambda x: x in self.alignmentvalues, data['alignment']))
 
-	if isinstance(data.get('keyword'),basestring):
-	    data['keyword'] = set(map(lambda s: s.strip(),data.get('keyword').split(';')))
+        if isinstance(data.get('keyword'),basestring):
+            data['keyword'] = set(map(lambda s: s.strip(),data.get('keyword').split(';')))
 
-	if isinstance(data.get('sandbox'),basestring):
-	    data['sandbox'] = set(map(lambda s: s.strip(),data.get('sandbox').split(';')))
+        if isinstance(data.get('sandbox'),basestring):
+            data['sandbox'] = set(map(lambda s: s.strip(),data.get('sandbox').split(';')))
 
-	if isinstance(data.get('sandbox_nlinked'),basestring):
-	    data['sandbox_nlinked'] = set(map(lambda s: s.strip(),data.get('sandbox_nlinked').split(';')))
+        if isinstance(data.get('sandbox_nlinked'),basestring):
+            data['sandbox_nlinked'] = set(map(lambda s: s.strip(),data.get('sandbox_nlinked').split(';')))
 
-	if isinstance(data.get('sandbox_olinked'),basestring):
-	    data['sandbox_olinked'] = set(map(lambda s: s.strip(),data.get('sandbox_olinked').split(';')))
+        if isinstance(data.get('sandbox_olinked'),basestring):
+            data['sandbox_olinked'] = set(map(lambda s: s.strip(),data.get('sandbox_olinked').split(';')))
 
-	if isinstance(data.get('enzyme'),basestring):
-	    data['enzyme'] = set(map(lambda s: s.strip(),data.get('enzyme').split(';')))
+        if isinstance(data.get('enzyme'),basestring):
+            data['enzyme'] = set(map(lambda s: s.strip(),data.get('enzyme').split(';')))
 
-	if isinstance(data.get('humanenzyme'),basestring):
-	    data['humanenzyme'] = set(map(lambda s: s.strip(),data.get('humanenzyme').split(';')))
+        if isinstance(data.get('humanenzyme'),basestring):
+            data['humanenzyme'] = set(map(lambda s: s.strip(),data.get('humanenzyme').split(';')))
 
-	if isinstance(data.get('mouseenzyme'),basestring):
-	    data['mouseenzyme'] = set(map(lambda s: s.strip(),data.get('mouseenzyme').split(';')))
+        if isinstance(data.get('mouseenzyme'),basestring):
+            data['mouseenzyme'] = set(map(lambda s: s.strip(),data.get('mouseenzyme').split(';')))
 
-	if isinstance(data.get('motifcanonres'),basestring):
-	    data['motifcanonres'] = set(map(lambda s: s.strip(),data.get('motifcanonres').split(';')))
+        if isinstance(data.get('motifcanonres'),basestring):
+            data['motifcanonres'] = set(map(lambda s: s.strip(),data.get('motifcanonres').split(';')))
 
-	if isinstance(data.get('dbxref'),basestring):
-	    data['dbxref'] = set(map(lambda s: tuple(s.strip().split(':')),data.get('dbxref').split(';')))
+        if isinstance(data.get('dbxref'),basestring):
+            data['dbxref'] = set(map(lambda s: tuple(s.strip().split(':')),data.get('dbxref').split(';')))
 
         # Strip <pre> and </pre> if it is there
         # if 'wurcs' in data:
@@ -184,7 +187,7 @@ class Motif(SMW.SMWClass):
         if 'topology' in data:
             data['topology'] = ",".join(data['topology'])
 
-	# rea = set()
+        # rea = set()
         # if 'redend_alignments' in data:
         #     # rea = sorted(set(data['redend_alignments']))
         #     # data['redend_alignments'] = ",".join(rea)
@@ -284,33 +287,33 @@ class Publication(SMW.SMWClass):
     @staticmethod
     def pagename(**kwargs):
         assert kwargs.get('authors') and kwargs.get('title') and kwargs.get('year')
-	authlist = kwargs.get('authors').split(None,3)
-	if len(authlist) > 2 and authlist[2] != "":
-	    authslug = authlist[0]+' et al.'
-	else:
-	    authslug = authlist[0]
-	year = kwargs.get('year')
+        authlist = kwargs.get('authors').split(None,3)
+        if len(authlist) > 2 and authlist[2] != "":
+            authslug = authlist[0]+' et al.'
+        else:
+            authslug = authlist[0]
+        year = kwargs.get('year')
         titlewords = kwargs.get('title').split(None,10)
-	titleslug = ' '.join(titlewords[:-1])
-	if titlewords[-1]:
-	    titleslug += ' ...'
+        titleslug = ' '.join(titlewords[:-1])
+        if titlewords[-1]:
+            titleslug += ' ...'
         return ("%s (%s) %s"%(authslug,year,titleslug)).replace(" ",'_').replace("[","").replace(']','')
 
     def toPython(self,data):
         data = super(Publication,self).toPython(data)
 
-	if isinstance(data.get('citedby'),basestring):
-	    data['citedby'] = data.get('citedby').split(';')
+        if isinstance(data.get('citedby'),basestring):
+            data['citedby'] = data.get('citedby').split(';')
 
-	return data
+        return data
 
     def toTemplate(self,data):
         data = super(Publication,self).toTemplate(data)
 
-	if 'citedby' in data:
-	    data['citedby'] = ';'.join(map(str,data.get('citedby')))
+        if 'citedby' in data:
+            data['citedby'] = ';'.join(map(str,data.get('citedby')))
 
-	return data
+        return data
 
 class Keyword(SMW.SMWClass):
     template = 'Keyword'
@@ -318,7 +321,7 @@ class Keyword(SMW.SMWClass):
     @staticmethod
     def pagename(**kwargs):
         assert kwargs.get('keyword')
-	return kwargs.get('keyword')
+        return kwargs.get('keyword')
 
 class Enzyme(SMW.SMWClass):
     template = 'Enzyme'
@@ -327,38 +330,38 @@ class Enzyme(SMW.SMWClass):
         data = super(Enzyme,self).toPython(data)
 
         for key in ('phenotype','disease','tissue','celltype'):
-	    if isinstance(data.get(key),basestring):
-	        data[key] = data.get(key,'').split(';')
+            if isinstance(data.get(key),basestring):
+                data[key] = data.get(key,'').split(';')
 
         for key in ('ortholog',):
-	    if isinstance(data.get(key),basestring):
-	        data[key] = data.get(key,'').split(',')
+            if isinstance(data.get(key),basestring):
+                data[key] = data.get(key,'').split(',')
 
-	return data
+        return data
 
     def toTemplate(self,data):
         data = super(Enzyme,self).toTemplate(data)
 
         for key in ('phenotype','disease','tissue','celltype'):
-	    if key in data:
-	        data[key] = ';'.join(sorted(map(str,data.get(key,''))))
+            if key in data:
+                data[key] = ';'.join(sorted(map(str,data.get(key,''))))
 
         if 'ortholog' in data:
             data['ortholog'] = ",".join(sorted(data['ortholog']))
 
-	return data
+        return data
 
     @staticmethod
     def pagename(**kwargs):
         assert kwargs.get('genename')
-	return kwargs.get('genename')
+        return kwargs.get('genename')
 
 class GlycoMotifWiki(SMW.SMWSite):
     _name = 'glycomotif'
 
     def get(self,pagename=None,collection=None,accession=None):
-	if pagename:
-	    return super(GlycoMotifWiki,self).get(pagename)
+        if pagename:
+            return super(GlycoMotifWiki,self).get(pagename)
         return super(GlycoMotifWiki,self).get(Motif.pagename(collection=collection,accession=accession))
 
     def itermotif(self,collection=None):
@@ -374,12 +377,12 @@ class GlycoMotifWiki(SMW.SMWSite):
                 yield m
 
     def itercollection(self):
-	for pagename in self.itercat('Collection'):
-	    yield self.get(pagename)
+        for pagename in self.itercat('Collection'):
+            yield self.get(pagename)
 
     def iterenzyme(self,species=None):
-	for pagename in self.itercat('Enzyme'):
-	    e = self.get(pagename)
+        for pagename in self.itercat('Enzyme'):
+            e = self.get(pagename)
             if not species or e.get('species') == species:
                 yield e
 
@@ -387,10 +390,10 @@ if __name__ == "__main__":
     import sys, os
 
     smw = GlycoMotifWiki()
-    print smw.get(collection='GlyTouCan',accession='G00026MO')
-    print smw.get(collection='GlyTouCan',accession='G00029MO')
+    print(smw.get(collection='GlyTouCan',accession='G00026MO'))
+    print(smw.get(collection='GlyTouCan',accession='G00029MO'))
 
     motif = GlyTouCanMotif(accession="G00028MO",
                            name="N-Glycan high mannose")
     smw.put(motif)
-    print smw.get(collection='GlyTouCan',accession='G00028MO')
+    print(smw.get(collection='GlyTouCan',accession='G00028MO'))

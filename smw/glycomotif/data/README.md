@@ -3,3 +3,9 @@
 * IMPC download (FTP site):
   - http://ftp.ebi.ac.uk/pub/databases/impc/all-data-releases/latest/results/phenotypeHitsPerGene.csv.gz
   - http://ftp.ebi.ac.uk/pub/databases/impc/all-data-releases/latest/results/viability.csv.gz
+* Human Phenotype Ontology:
+  - https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/phenotype.hpoa
+  - https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/genes_to_disease.txt
+  - https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/genes_to_phenotype.txt
+* Human Protein Atlas:
+  - https://www.proteinatlas.org/download/proteinatlas.tsv.zip
