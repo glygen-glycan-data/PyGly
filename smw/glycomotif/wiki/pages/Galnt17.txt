@@ -3,7 +3,7 @@
 |genename=Galnt17
 |mgiacc=MGI:2137594
 |ortholog=GALNT17
-|phenotype=decreased body length;decreased grip strength
+|phenotype=decreased grip strength
 |phenotype_source=IMPC
 |phenotype_source_key=MGI:2137594
 |species=Mouse

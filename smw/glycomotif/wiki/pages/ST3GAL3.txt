@@ -1,19 +1,19 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Microglial cells;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes;Enhanced in Rod photoreceptor cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000126091
-|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal.
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.
 |disease=Developmental and epileptic encephalopathy 15;Infantile spasms syndrome;Mental retardation, autosomal recessive 12
 |disease_source=HPO
 |disease_source_key=6487
 |genename=ST3GAL3
 |ortholog=St3gal3
-|phenotype=Abnormality of skin morphology;Abnormality of the nervous system;Atonic seizure;Autosomal recessive inheritance;Bilateral tonic-clonic seizure;Developmental regression;Epileptic encephalopathy;Epileptic spasm;Focal clonic seizure;Hypotonia;Hypsarrhythmia;Inability to walk;Infantile onset;Infantile spasms;Intellectual disability;Intellectual disability, profound;Irritability;Myoclonic seizure;Myoclonus;Primitive reflex;Reduced eye contact;Severe global developmental delay;Tonic seizure
+|phenotype=Abnormal skin morphology;Abnormality of the nervous system;Atonic seizure;Autosomal recessive inheritance;Bilateral tonic-clonic seizure;Developmental regression;Epileptic encephalopathy;Epileptic spasm;Focal clonic seizure;Hypotonia;Hypsarrhythmia;Inability to walk;Infantile onset;Infantile spasms;Intellectual disability;Intellectual disability, profound;Irritability;Myoclonic seizure;Myoclonus;Primitive reflex;Reduced eye contact;Severe global developmental delay;Tonic seizure
 |phenotype_source=HPO
 |phenotype_source_key=6487
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in skeletal muscle;Enhanced in tongue
+|tissue_source=HPA
 |tissue_source_key=ENSG00000126091
 |uniprot=Q11203
 }}

@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Alveolar cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000117411
 |description=Attach beta 4 Gal to GlcNAc.
 |genename=B4GALT2
 |ortholog=B4galt2
 |species=Human
-|tissue=Ubiquitous, highly expressed
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000117411
 |uniprot=O60909
 }}

@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Not detected
+|celltype_source=HPA
+|celltype_source_key=ENSG00000184389
 |description=Attach alpha 3 Gal to Gal; attach alpha 3 Gal to GlcNAc.
 |genename=A3GALT2
 |ortholog=A3galt2
 |species=Human
+|tissue=Not detected
+|tissue_source=HPA
+|tissue_source_key=ENSG00000184389
 |uniprot=U3KPV4
 }}

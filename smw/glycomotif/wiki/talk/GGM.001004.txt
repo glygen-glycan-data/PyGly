@@ -1,0 +1,4 @@
+
+Previous GlyTouCan accession G00030MO implied that the 6-arm could only have GlcNAc linkages of 2 or 4, when 2, 4, or 6 are acceptable.
+
+[[User:Edwardsnj|Edwardsnj]] ([[User talk:Edwardsnj|talk]]) 13:26, 10 November 2023 (EST)

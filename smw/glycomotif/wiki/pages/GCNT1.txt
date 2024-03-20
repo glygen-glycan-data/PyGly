@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Enteroendocrine cells;Enhanced in Gastric mucus-secreting cells;Enhanced in Mesothelial cells;Enhanced in Proximal enterocytes
+|celltype_source=HPA
+|celltype_source_key=ENSG00000187210
 |description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.
 |genename=GCNT1
 |ortholog=Gcnt1
 |species=Human
+|tissue=Enriched in intestine;Enriched in parathyroid gland;Enriched in stomach;Enriched in thyroid gland
+|tissue_source=HPA
+|tissue_source_key=ENSG00000187210
 |uniprot=Q02742
 }}

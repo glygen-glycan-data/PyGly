@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Late spermatids;Enhanced in Spermatocytes
+|celltype_source=HPA
 |celltype_source_key=ENSG00000235863
 |description=Attach beta 3 Gal to GlcNAc.
 |genename=B3GALT4
 |ortholog=B3galt4
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in testis
+|tissue_source=HPA
 |tissue_source_key=ENSG00000235863
 |uniprot=O96024
 }}

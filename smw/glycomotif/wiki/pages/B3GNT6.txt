@@ -1,13 +1,13 @@
 {{Enzyme
 |celltype=Enriched in Gastric mucus-secreting cells;Enriched in Intestinal goblet cells
-|celltype_source=GTEX
+|celltype_source=HPA
 |celltype_source_key=ENSG00000198488
 |description=Attach beta 3 GlcNAc to GalNAc.
 |genename=B3GNT6
 |ortholog=B3gnt6
 |species=Human
-|tissue=Enriched in colon;Enriched in esophagus;Enriched in salivary gland;Enriched in small intestine;Enriched in stomach
-|tissue_source=GTEX
+|tissue=Enriched in intestine;Enriched in salivary gland;Enriched in stomach
+|tissue_source=HPA
 |tissue_source_key=ENSG00000198488
 |uniprot=Q6ZMB0
 }}

@@ -1,6 +1,6 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Cytotrophoblasts
+|celltype_source=HPA
 |celltype_source_key=ENSG00000088035
 |description=Attach alpha 3 Glc to Man.
 |disease=ALG6-CDG;Congenital disorder of glycosylation, type Ic
@@ -13,8 +13,8 @@
 |phenotype_source=HPO
 |phenotype_source_key=29929
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000088035
 |uniprot=Q9Y672
 }}

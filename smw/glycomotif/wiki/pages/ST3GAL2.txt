@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Langerhans cells;Enhanced in dendritic cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000157350
-|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc.
+|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.
 |genename=ST3GAL2
 |ortholog=St3gal2
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000157350
 |uniprot=Q16842
 }}

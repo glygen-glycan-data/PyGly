@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous, highly expressed
-|celltype_source=GTEX
+|celltype=Enhanced in Oligodendrocytes;Enhanced in Syncytiotrophoblasts
+|celltype_source=HPA
 |celltype_source_key=ENSG00000106392
 |description=Attach beta 3 Gal to GalNAc.
 |genename=C1GALT1
 |ortholog=C1galt1
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000106392
 |uniprot=Q9NS00
 }}

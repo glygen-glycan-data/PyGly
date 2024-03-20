@@ -3,7 +3,7 @@
 |genename=Galnt13
 |mgiacc=MGI:2139447
 |ortholog=GALNT13
-|phenotype=abnormal kidney morphology;abnormal skin morphology;abnormal spleen morphology;abnormal vitreous body morphology;cataract;decreased locomotor activity;enlarged seminal vesicle;enlarged spleen;small kidney;small spleen
+|phenotype=abnormal kidney morphology;abnormal skin morphology;abnormal spleen morphology;abnormal vitreous body morphology;cataract;enlarged seminal vesicle;enlarged spleen;small kidney;small spleen
 |phenotype_source=IMPC
 |phenotype_source_key=MGI:2139447
 |species=Mouse

@@ -1,6 +1,6 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enriched in Oligodendrocytes
+|celltype_source=HPA
 |celltype_source_key=ENSG00000033170
 |description=Attach alpha 6 Fuc to GlcNAc.
 |disease=Congenital disorder of glycosylation with defective fucosylation 1
@@ -12,8 +12,8 @@
 |phenotype_source=HPO
 |phenotype_source_key=2530
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000033170
 |uniprot=Q9BYC5
 }}

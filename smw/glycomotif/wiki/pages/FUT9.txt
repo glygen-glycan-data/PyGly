@@ -1,10 +1,13 @@
 {{Enzyme
-|celltype=Enriched in Astrocytes;Enriched in Excitatory neurons;Enriched in Inhibitory neurons;Enriched in Oligodendrocyte precursor cells;Enriched in Oligodendrocytes
-|celltype_source=GTEX
+|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes
+|celltype_source=HPA
 |celltype_source_key=ENSG00000172461
 |description=Attach alpha 3 Fuc to GlcNAc.
 |genename=FUT9
 |ortholog=Fut9
 |species=Human
+|tissue=Enriched in brain;Enriched in stomach
+|tissue_source=HPA
+|tissue_source_key=ENSG00000172461
 |uniprot=Q9Y231
 }}

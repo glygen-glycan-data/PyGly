@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Enhanced in Early spermatids;Enhanced in Excitatory neurons;Enhanced in Granulosa cells;Enhanced in Horizontal cells;Enhanced in Late spermatids;Enhanced in Oligodendrocyte precursor cells;Enhanced in Pancreatic endocrine cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000124302
 |description=Attach 4 linked sulfate to GalNAc.
 |disease=Peeling skin syndrome 3
 |disease_source=HPO
@@ -9,5 +12,8 @@
 |phenotype_source=HPO
 |phenotype_source_key=64377
 |species=Human
+|tissue=Enriched in brain;Enriched in pituitary gland
+|tissue_source=HPA
+|tissue_source_key=ENSG00000124302
 |uniprot=Q9H2A9
 }}

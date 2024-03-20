@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Bipolar cells;Enhanced in Cardiomyocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Leydig cells;Enhanced in Peritubular cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000162630
 |description=Attach beta 3 Gal to GlcNAc.
 |genename=B3GALT2
 |ortholog=B3galt2
 |species=Human
+|tissue=Enhanced in brain;Enhanced in gallbladder;Enhanced in heart muscle
+|tissue_source=HPA
+|tissue_source_key=ENSG00000162630
 |uniprot=O43825
 }}

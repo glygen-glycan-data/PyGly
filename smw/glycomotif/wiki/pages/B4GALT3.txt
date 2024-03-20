@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Extravillous trophoblasts;Enhanced in Plasma cells;Enhanced in Syncytiotrophoblasts
+|celltype_source=HPA
 |celltype_source_key=ENSG00000158850
 |description=Attach beta 4 Gal to GlcNAc.
 |genename=B4GALT3
 |ortholog=B4galt3
 |species=Human
-|tissue=Ubiquitous, highly expressed
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000158850
 |uniprot=O60512
 }}

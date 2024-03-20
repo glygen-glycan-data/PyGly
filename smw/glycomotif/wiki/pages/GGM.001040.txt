@@ -1,0 +1,21 @@
+{{Motif
+|accession=001040
+|aglycon=Ser/Thr
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:x-dglc-HEX-x:x
+2s:n-acetyl
+3b:b-dgal-HEX-1:5
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+|glytoucan=G66213AR
+|keyword=O-glycan classification
+|name=O-GlcNAc Core EGF Type
+|prefname=O-GlcNAc Core EGF Type
+|redend=true
+|sameas=GM.G66213AR
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2/a4-b1
+}}

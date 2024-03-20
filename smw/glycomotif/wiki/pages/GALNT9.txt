@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Collecting duct cells;Enhanced in Excitatory neurons;Enhanced in Horizontal cells;Enhanced in Inhibitory neurons;Enhanced in Mesothelial cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000182870
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNT9
 |ortholog=Galnt9
 |species=Human
+|tissue=Enriched in brain
+|tissue_source=HPA
+|tissue_source_key=ENSG00000182870
 |uniprot=Q9HCQ5
 }}

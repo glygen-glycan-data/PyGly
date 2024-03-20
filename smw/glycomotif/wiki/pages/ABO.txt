@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Distal enterocytes;Enhanced in Enteroendocrine cells;Enhanced in Intestinal goblet cells;Enhanced in Proximal enterocytes;Enhanced in Undifferentiated cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000175164
 |description=Attach alpha 3 Gal to Gal; attach alpha 3 GalNAc to Gal.
 |genename=ABO
 |ortholog=Abo
 |species=Human
+|tissue=Enhanced in intestine
+|tissue_source=HPA
+|tissue_source_key=ENSG00000175164
 |uniprot=P16442
 }}

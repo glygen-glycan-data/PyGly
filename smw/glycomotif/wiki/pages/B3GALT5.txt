@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Distal enterocytes;Enhanced in Enteroendocrine cells;Enhanced in Intestinal goblet cells;Enhanced in Paneth cells;Enhanced in Proximal enterocytes
+|celltype_source=HPA
+|celltype_source_key=ENSG00000183778
 |description=Attach beta 3 Gal to GlcNAc.
 |genename=B3GALT5
 |ortholog=B3galt5
 |species=Human
+|tissue=Enriched in intestine
+|tissue_source=HPA
+|tissue_source_key=ENSG00000183778
 |uniprot=Q9Y2C3
 }}

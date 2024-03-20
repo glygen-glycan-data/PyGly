@@ -1,10 +1,13 @@
 {{Enzyme
-|celltype=Enriched in B-cells;Enriched in Langerhans cells;Enriched in NK-cells;Enriched in Schwann cells;Enriched in dendritic cells
-|celltype_source=GTEX
+|celltype=Enhanced in B-cells;Enhanced in Langerhans cells;Enhanced in NK-cells;Enhanced in Schwann cells;Enhanced in dendritic cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000180549
 |description=Attach alpha 3 Fuc to GlcNAc.
 |genename=FUT7
 |ortholog=Fut7
 |species=Human
+|tissue=Enriched in bone marrow;Enriched in brain;Enriched in lymphoid tissue
+|tissue_source=HPA
+|tissue_source_key=ENSG00000180549
 |uniprot=Q11130
 }}

@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Bipolar cells;Enhanced in Cardiomyocytes;Enhanced in Oocytes
+|celltype_source=HPA
 |celltype_source_key=ENSG00000169255
 |description=Attach beta 3 Gal to GlcNAc.
 |genename=B3GALNT1
 |ortholog=B3galnt1
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in heart muscle
+|tissue_source=HPA
 |tissue_source_key=ENSG00000169255
 |uniprot=O75752
 }}

@@ -1,4 +1,7 @@
 {{Enzyme
+|celltype=Enhanced in Bipolar cells;Enhanced in Excitatory neurons;Enhanced in Horizontal cells;Enhanced in Inhibitory neurons;Enhanced in Schwann cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000135454
 |description=Attach beta 4 GalNAc to Gal.
 |disease=Autosomal recessive spastic paraplegia type 26;Spastic paraplegia 26, autosomal recessive
 |disease_source=HPO
@@ -9,5 +12,8 @@
 |phenotype_source=HPO
 |phenotype_source_key=2583
 |species=Human
+|tissue=Enriched in brain
+|tissue_source=HPA
+|tissue_source_key=ENSG00000135454
 |uniprot=Q00973
 }}

@@ -1,6 +1,6 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Low cell type specificity
+|celltype_source=HPA
 |celltype_source_key=ENSG00000033011
 |description=Attach beta 4 Man to GlcNAc.
 |disease=ALG1-CDG;Congenital disorder of glycosylation, type Ik
@@ -13,8 +13,8 @@
 |phenotype_source=HPO
 |phenotype_source_key=56052
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000033011
 |uniprot=Q9BT22
 }}

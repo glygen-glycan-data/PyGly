@@ -1,10 +1,13 @@
 {{Enzyme
-|description=Attach alpha 6 NeuAc to GalNAc.
+|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in NK-cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000160408
+|description=Attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
 |genename=ST6GALNAC6
 |ortholog=St6galnac6
 |species=Human
-|tissue=Ubiquitous, highly expressed
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000160408
 |uniprot=Q969X2
 }}

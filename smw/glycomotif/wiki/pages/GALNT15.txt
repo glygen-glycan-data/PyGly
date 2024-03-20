@@ -1,10 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Adipocytes;Enhanced in Astrocytes;Enhanced in Early spermatids;Enhanced in Endothelial cells;Enhanced in Fibroblasts;Enhanced in Muller glia cells;Enhanced in Oligodendrocytes
+|celltype_source=HPA
+|celltype_source_key=ENSG00000131386
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNT15
 |ortholog=Galnt15
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in adipose tissue
+|tissue_source=HPA
 |tissue_source_key=ENSG00000131386
 |uniprot=Q8N3T1
 }}

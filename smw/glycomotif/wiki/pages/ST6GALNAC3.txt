@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Enriched in Astrocytes;Enriched in Microglial cells;Enriched in Oligodendrocytes
-|celltype_source=GTEX
+|celltype=Enriched in Microglial cells;Enriched in Oligodendrocytes
+|celltype_source=HPA
 |celltype_source_key=ENSG00000184005
-|description=Attach alpha 6 NeuAc to GalNAc.
+|description=Attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
 |genename=ST6GALNAC3
 |ortholog=St6galnac3
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000184005
 |uniprot=Q8NDV1
 }}

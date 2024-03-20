@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Microglial cells;Enhanced in NK-cells;Enhanced in Proximal enterocytes;Enhanced in T-cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000071073
 |description=Attach beta 4 GlcNAc to Man.
 |genename=MGAT4A
 |ortholog=Mgat4a
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in bone marrow
+|tissue_source=HPA
 |tissue_source_key=ENSG00000071073
 |uniprot=Q9UM21
 }}

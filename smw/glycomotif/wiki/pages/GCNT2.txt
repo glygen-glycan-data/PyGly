@@ -1,6 +1,6 @@
 {{Enzyme
 |celltype=Enriched in Oocytes
-|celltype_source=GTEX
+|celltype_source=HPA
 |celltype_source_key=ENSG00000111846
 |description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.
 |disease=Cataract 13 with adult i phenotype
@@ -12,5 +12,8 @@
 |phenotype_source=HPO
 |phenotype_source_key=2651
 |species=Human
+|tissue=Enhanced in prostate
+|tissue_source=HPA
+|tissue_source_key=ENSG00000111846
 |uniprot=Q8N0V5
 }}

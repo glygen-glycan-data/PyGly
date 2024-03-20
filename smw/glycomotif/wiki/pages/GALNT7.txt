@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Inhibitory neurons;Enhanced in Intestinal goblet cells;Enhanced in Prostatic glandular cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000109586
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNT7
 |ortholog=Galnt7
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in stomach
+|tissue_source=HPA
 |tissue_source_key=ENSG00000109586
 |uniprot=Q86SF2
 }}

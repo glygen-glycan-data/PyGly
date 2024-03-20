@@ -45,11 +45,11 @@ Edit the page to see the template text.
 
 <h2 class="plainlinks">[https://hpo.jax.org/app/browse/gene/{{{phenotype_source_key|}}} HPO Phenotypes]</h2>
 {{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|;&#32;}}.
-}}{{#ifeq:{{{tissue_source|}}}|GTEX| 
+}}{{#ifeq:{{{tissue_source|}}}|HPA| 
 
 <h2 class="plainlinks">[https://www.proteinatlas.org/{{{tissue_source_key|}}}/tissue#rna_expression HPA Tissue Specificity]</h2>
 {{#arraymap:{{{tissue|}}}|;|x|[[glycomotif:tissuespec::x]]|;&#32;}}.
-}}{{#ifeq:{{{celltype_source|}}}|GTEX| 
+}}{{#ifeq:{{{celltype_source|}}}|HPA| 
 
 <h2 class="plainlinks">[https://www.proteinatlas.org/{{{celltype_source_key|}}}/single+cell+type HPA Cell-Type Specificity]</h2>
 {{#arraymap:{{{celltype|}}}|;|x|[[glycomotif:celltypespec::x]]|;&#32;}}.

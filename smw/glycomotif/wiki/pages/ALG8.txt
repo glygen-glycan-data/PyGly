@@ -1,6 +1,6 @@
 {{Enzyme
-|celltype=Ubiquitous, highly expressed
-|celltype_source=GTEX
+|celltype=Enhanced in Spermatocytes
+|celltype_source=HPA
 |celltype_source_key=ENSG00000159063
 |description=Attach alpha 3 Glc to Glc.
 |disease=ALG8-CDG;Congenital disorder of glycosylation, type Ih;Polycystic liver disease 3 with or without kidney cysts
@@ -9,12 +9,12 @@
 |genename=ALG8
 |iscdg=true
 |ortholog=Alg8
-|phenotype=Abdominal distention;Abnormal facial shape;Abnormality of skin morphology;Abnormality of subcutaneous fat tissue;Abnormality of the coagulation cascade;Abnormality of the eye;Abnormality of the gastrointestinal tract;Abnormality of the nervous system;Anemia;Ascites;Ataxia;Autosomal dominant inheritance;Autosomal recessive inheritance;Brachydactyly;Camptodactyly;Cataract;Cerebral cortical atrophy;Cholestasis;Congenital onset;Cryptorchidism;Cutis laxa;Death in infancy;Decreased circulating T4 concentration;Decreased fetal movement;Decreased liver function;Diarrhea;Edema;Elevated circulating creatinine concentration;Elevated hepatic transaminase;Failure to thrive;Feeding difficulties;Fetal onset;Global developmental delay;Hepatic cysts;Hepatomegaly;Hydrops fetalis;Hypertelorism;Hypoalbuminemia;Hyponatremia;Hypoplasia of the corpus callosum;Hypothyroidism;Hypotonia;Infantile onset;Intrauterine growth retardation;Inverted nipples;Large fontanelles;Leukodystrophy;Leukoencephalopathy;Long philtrum;Low-set ears;Macroglossia;Neonatal death;Nystagmus;Oligohydramnios;Optic atrophy;Patent ductus arteriosus;Perimembranous ventricular septal defect;Premature birth;Premature skin wrinkling;Protein-losing enteropathy;Reduced antithrombin III activity;Reduced factor XI activity;Reduced protein C activity;Renal cyst;Retinopathy;Seizure;Short neck;Small for gestational age;Talipes equinovarus;Thrombocytopenia;Type I transferrin isoform profile;Ventriculomegaly;Vomiting
+|phenotype=Abdominal distention;Abnormal facial shape;Abnormal skin morphology;Abnormality of subcutaneous fat tissue;Abnormality of the coagulation cascade;Abnormality of the eye;Abnormality of the gastrointestinal tract;Abnormality of the nervous system;Anemia;Ascites;Ataxia;Autosomal dominant inheritance;Autosomal recessive inheritance;Brachydactyly;Camptodactyly;Cataract;Cerebral cortical atrophy;Cholestasis;Congenital onset;Cryptorchidism;Cutis laxa;Death in infancy;Decreased circulating T4 concentration;Decreased fetal movement;Decreased liver function;Diarrhea;Edema;Elevated circulating creatinine concentration;Elevated hepatic transaminase;Failure to thrive;Feeding difficulties;Fetal onset;Global developmental delay;Hepatic cysts;Hepatomegaly;Hydrops fetalis;Hypertelorism;Hypoalbuminemia;Hyponatremia;Hypoplasia of the corpus callosum;Hypothyroidism;Hypotonia;Infantile onset;Intrauterine growth retardation;Inverted nipples;Large fontanelles;Leukodystrophy;Leukoencephalopathy;Long philtrum;Low-set ears;Macroglossia;Neonatal death;Nystagmus;Oligohydramnios;Optic atrophy;Patent ductus arteriosus;Perimembranous ventricular septal defect;Premature birth;Premature skin wrinkling;Protein-losing enteropathy;Reduced antithrombin III activity;Reduced factor XI activity;Reduced protein C activity;Renal cyst;Retinopathy;Seizure;Short neck;Small for gestational age;Talipes equinovarus;Thrombocytopenia;Type I transferrin isoform profile;Ventriculomegaly;Vomiting
 |phenotype_source=HPO
 |phenotype_source_key=79053
 |species=Human
-|tissue=Ubiquitous, highly expressed
-|tissue_source=GTEX
+|tissue=Low tissue specificity
+|tissue_source=HPA
 |tissue_source_key=ENSG00000159063
 |uniprot=Q9BVK2
 }}

@@ -1,7 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Distal enterocytes;Enhanced in Gastric mucus-secreting cells;Enhanced in Ionocytes;Enhanced in Mucus glandular cells;Enhanced in Proximal enterocytes;Enhanced in Salivary duct cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000176920
 |description=Attach alpha 2 Fuc to Gal.
 |genename=FUT2
 |ortholog=Fut2,Sec1
 |species=Human
+|tissue=Enhanced in intestine;Enhanced in salivary gland;Enhanced in stomach
+|tissue_source=HPA
+|tissue_source_key=ENSG00000176920
 |uniprot=Q10981
 }}

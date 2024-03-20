@@ -1,10 +1,13 @@
 {{Enzyme
 |celltype=Enriched in Intestinal goblet cells
-|celltype_source=GTEX
+|celltype_source=HPA
 |celltype_source_key=ENSG00000070526
-|description=Attach alpha 6 NeuAc to GalNAc.
+|description=Attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
 |genename=ST6GALNAC1
 |ortholog=St6galnac1
 |species=Human
+|tissue=Enriched in cervix;Enriched in intestine;Enriched in stomach
+|tissue_source=HPA
+|tissue_source_key=ENSG00000070526
 |uniprot=Q9NSC7
 }}

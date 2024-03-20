@@ -1,13 +1,13 @@
 {{Enzyme
 |celltype=Enriched in Early spermatids;Enriched in Late spermatids
-|celltype_source=GTEX
+|celltype_source=HPA
 |celltype_source_key=ENSG00000106648
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNTL5
 |ortholog=Galntl5
 |species=Human
 |tissue=Enriched in testis
-|tissue_source=GTEX
+|tissue_source=HPA
 |tissue_source_key=ENSG00000106648
 |uniprot=Q7Z4T8
 }}

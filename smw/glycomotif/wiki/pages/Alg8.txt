@@ -3,7 +3,7 @@
 |genename=Alg8
 |mgiacc=MGI:2141959
 |ortholog=ALG8
-|phenotype=abnormal chorioallantoic fusion;abnormal coat/hair pigmentation;abnormal embryo size;abnormal embryo turning;abnormal vibrissa morphology;decreased bone mineral content;decreased lean body mass;embryonic growth retardation;embryonic lethality prior to tooth bud stage;hyperactivity;increased total body fat amount;preweaning lethality, complete penetrance
+|phenotype=abnormal chorioallantoic fusion;abnormal coat/hair pigmentation;abnormal embryo size;abnormal embryo turning;abnormal vibrissa morphology;decreased bone mineral content;decreased lean body mass;embryonic growth retardation;embryonic lethality prior to tooth bud stage;hyperactivity;increased circulating HDL cholesterol level;increased circulating cholesterol level;increased total body fat amount;preweaning lethality, complete penetrance
 |phenotype_source=IMPC
 |phenotype_source_key=MGI:2141959
 |species=Mouse

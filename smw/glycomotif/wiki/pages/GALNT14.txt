@@ -1,10 +1,13 @@
 {{Enzyme
+|celltype=Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Oocytes;Enhanced in Proximal enterocytes;Enhanced in Proximal tubular cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000158089
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNT14
 |ortholog=Galnt14
 |species=Human
-|tissue=Enriched in cerebral cortex;Enriched in esophagus;Enriched in kidney;Enriched in pituitary gland
-|tissue_source=GTEX
+|tissue=Enhanced in kidney
+|tissue_source=HPA
 |tissue_source_key=ENSG00000158089
 |uniprot=Q96FL9
 }}

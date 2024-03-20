@@ -1,13 +1,13 @@
 {{Enzyme
-|celltype=Ubiquitous
-|celltype_source=GTEX
+|celltype=Enhanced in Alveolar cells;Enhanced in Granulosa cells;Enhanced in Oligodendrocyte precursor cells
+|celltype_source=HPA
 |celltype_source_key=ENSG00000164574
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNT10
 |ortholog=Galnt10
 |species=Human
-|tissue=Ubiquitous
-|tissue_source=GTEX
+|tissue=Enhanced in ovary
+|tissue_source=HPA
 |tissue_source_key=ENSG00000164574
 |uniprot=Q86SR1
 }}
