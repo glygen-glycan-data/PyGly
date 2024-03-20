@@ -11,6 +11,9 @@ gdisease = defaultdict(set)
 disease = defaultdict(list)
 geneid = defaultdict(list)
 
+#
+# loadHPOdisease.py ../data/phenotype.hpoa ../data/genes_to_disease.txt
+#
 
 
 #database_id	disease_name	qualifier	hpo_id	reference	evidence	onset	frequency	sex	modifier	aspect	biocuration
@@ -49,7 +52,6 @@ for e in w.iterenzyme():
        e.set("disease_source_key",(geneid[gn]))
        e.set("disease_source","HPO")
        e.set("disease",(sorted(gdisease[gn])))
-       print(e)
     else:	
        e.delete("disease")
        e.delete("disease_source_key")

@@ -9,6 +9,11 @@ w = GlycoMotifWiki()
 geneid = {}
 phenotypes = defaultdict(set)
 
+#
+# loadHPOphenotype.py ../data/genes_to_phenotype.txt
+#
+
+
 # "ncbi_gene_id","gene_symbol","hpo_id", "hpo_name","frequency",  "disease_id", 
 for row in csv.DictReader((open(sys.argv[1])), delimiter = "\t"):
     geneid[row['gene_symbol']] = row['ncbi_gene_id']
@@ -28,7 +33,6 @@ for e in w.iterenzyme():
        e.set("phenotype",(phenotypes[gn]), )
        e.set("phenotype_source_key",(geneid[gn]))
        e.set("phenotype_source","HPO")
-       print(e)
     else:	
        e.delete("phenotype")
        e.delete("phenotype_source")
