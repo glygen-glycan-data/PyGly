@@ -5,8 +5,8 @@ import sys, re, glob, json
 import findpygly
 from pygly.GlycanResource import GlycoTreeSandbox, GlycoTreeSandboxDev
 
-# gts = GlycoTreeSandbox()
-gts = GlycoTreeSandboxDev()
+gts = GlycoTreeSandbox()
+# gts = GlycoTreeSandboxDev()
 
 form_name_dict = dict(map(lambda s: tuple(s.split()),filter(lambda s: s.strip(),"""
 Fucp Fuc

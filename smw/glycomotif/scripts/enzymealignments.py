@@ -16,8 +16,8 @@ from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
 gtc = GlyTouCanNoCache()
-# gts = GlycoTreeSandbox()
-gts = GlycoTreeSandboxDev()
+gts = GlycoTreeSandbox()
+# gts = GlycoTreeSandboxDev()
 
 nodes_cache = pygly.alignment.ConnectedNodesCache()
 strict_matcher = pygly.alignment.MotifStrict(connected_nodes_cache=nodes_cache)
