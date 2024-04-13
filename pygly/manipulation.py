@@ -1,7 +1,9 @@
 
 from __future__ import print_function
 
-from . Monosaccharide import Anomer, Stem, SuperClass, Config, Substituent
+from . Monosaccharide import Anomer, Stem, SuperClass, Config, Substituent, Mod
+
+import re, copy
 
 class Manipulation(object):
 
@@ -12,6 +14,25 @@ class Manipulation(object):
         g1 = g.clone()
         self.manip(g1)
         return g1
+
+class RemoveAlditol(Manipulation):
+
+    def manip(self,g):
+        assert g.has_root()
+        r = g.root()
+        r.remove_mod(Mod.aldi,(1,))
+
+class Archetype(Manipulation):
+ 
+    def manip(self,g):
+        # fully_defined does not require the root monosaccharide anomer
+        # or ring start and end be defined
+        assert(g.has_root() and not g.repeated())
+        r = g.root()
+        r.set_anomer(Anomer.missing)
+        r.set_ring_start(None)
+        r.set_ring_end(None)
+        r.remove_mod(Mod.aldi,(1,))
 
 class Topology(Manipulation):
 
@@ -167,6 +188,175 @@ class LevelSniffer(object):
             elif g.equals(self.composition(g)):
                 return "Composition"
         raise ValueError
+
+class WURCSManipulation(object):
+    def __init__(self):
+        self.alpha2ind = dict()
+        self.ind2alpha = dict()
+        for i in range(ord('a'),ord('z')+1):
+            self.alpha2ind[chr(i)] = i-ord('a')+1
+            self.ind2alpha[i-ord('a')+1] = chr(i)
+        for i in range(ord('A'),ord('Z')+1):
+            self.alpha2ind[chr(i)] = i-ord('A')+1+26
+            self.ind2alpha[i-ord('A')+1+26] = chr(i)
+
+    def __call__(self,seq):
+        return self.modify(seq)
+
+    def deconstruct(self,seq):
+        head,cnts,rest = seq.split('/',2)
+        monos,rest = rest.split(']/',1)
+        inds,links = rest.split('/',1)
+                                                                                                           
+        cnts = list(map(int,cnts.split(',')))
+        inds = list(map(int,inds.split('-')))
+        monos = monos.lstrip('[').rstrip(']').split('][')
+        monos = [ self.monodeconstruct(m) for m in monos ]
+        links = filter(None,links.split('_'))
+        links = [ self.linkdeconstruct(l) for l in links ]
+        return dict(head=head,monos=monos,indices=inds,links=links)
+
+    def toseq(self,parts):
+        head = parts['head']
+        monos = parts['monos']
+        inds = parts['indices']
+        links = parts['links']
+        monos,inds = self.repairindices(monos,inds)
+
+        cnts = ",".join(map(str,[len(monos),len(inds),len(links)]))
+        monos = '[' + ']['.join([ self.monoseq(m) for m in monos]) + ']'
+        inds = '-'.join(map(str,inds))
+        links = '_'.join([ self.linkseq(l) for l in links])
+        return '/'.join([head,cnts,monos,inds,links])
+
+    def monodeconstruct(self,monoseq):
+        sm = monoseq.split('_')
+        try:
+            base,anomer = sm[0].split('-')
+        except ValueError:
+            base = sm[0]
+            anomer = None
+            childpos = None
+            ring = None
+        if anomer:
+            m = re.search(r'^\d[abx]$',anomer)
+            assert(m)
+            childpos,anomer = tuple(anomer)
+            childpos = int(childpos)
+            ring = sm[1]
+            substs=sm[2:]
+        else:
+            substs=sm[1:]
+        return dict(skeleton=base,anomer=anomer,childpos=childpos,ring=ring,substituents=substs)
+
+    def monoseq(self,m):
+        mseq = m['skeleton']
+        if m.get('anomer') and m.get('childpos'):
+            mseq += '-' + str(m['childpos']) + m['anomer']
+        if m.get('ring'):
+            mseq += "_" + m['ring']
+        if len(m['substituents']) > 0:
+            mseq += "_" + "_".join(m['substituents'])
+        return mseq
+
+    linkre = re.compile(r'^([a-zA-Z])(\d|\?)-([a-zA-Z])(\d|\?)$')
+    def linkdeconstruct(self,linkseq):
+        m = self.linkre.search(linkseq)
+        if not m:
+            return dict(seq=linkseq)
+        try:
+            parentpos = int(m.group(2))
+        except ValueError:
+            parentpos = m.group(2)
+        try:
+            childpos = int(m.group(4))
+        except ValueError:
+            childpos = m.group(4)
+        return dict(parentindex=self.alpha2ind[m.group(1)],parentpos=parentpos,
+                    childindex=self.alpha2ind[m.group(3)],childpos=childpos)
+
+    def linkseq(self,l):
+        if 'seq' in l:
+            return l['seq']
+        return "%s%s-%s%s"%(self.ind2alpha[l['parentindex']],l['parentpos'],
+                            self.ind2alpha[l['childindex']],l['childpos'])
+
+    def repairindices(self,monos,indices):
+        unused = [ i for i in range(len(monos)) if (i+1) not in indices ]
+        monoseq = [ self.monoseq(m) for m in monos ]
+        newmonos = list(monos)
+        newmonoseq = [ self.monoseq(m) for m in newmonos ]
+        for i in range(len(newmonos)-1,-1,-1):
+            try:
+                ind = newmonoseq[:i].index(newmonoseq[i])
+            except ValueError:
+                if i not in unused:
+                    continue
+            del newmonos[i]
+            del newmonoseq[i]
+        indsmap = dict()
+        for i in range(len(monos)):
+            if i not in unused:
+                indsmap[i+1] = newmonoseq.index(monoseq[i])+1
+        inds = [ indsmap[ind] for ind in indices ]
+        indsremap = dict()
+        indsinvremap = dict()
+        for j,i in enumerate(sorted(list(range(1,len(newmonoseq)+1)),key=lambda i: inds.index(i))):
+            indsremap[j+1] = i
+            indsinvremap[i] = (j+1)
+        newmonoseq1 = []
+        newmonos1 = []
+        for i in range(len(newmonoseq)):
+            newmonoseq1.append(newmonoseq[indsremap[i+1]-1])
+            newmonos1.append(newmonos[indsremap[i+1]-1])
+        inds1 = []
+        for i in range(len(inds)):
+            inds1.append(indsinvremap[inds[i]])
+        newmonoseq = newmonoseq1
+        newmonos = newmonos1
+        inds = inds1
+        assert(len(set(inds)) == len(newmonoseq) and min(inds) == 1 and max(inds) == len(newmonoseq))
+        return newmonos,inds
+
+class WURCSArchetype(WURCSManipulation):
+
+    def mapskel(self,skel):
+        m = re.search(r'^([hA][1234dx])[aUO]([1234dx]+[mhA])$',skel)
+        if m:
+            return m.group(1)+'U'+m.group(2)
+        m = re.search(r'^([hA])[aUO]([1234dx]+[mhA])$',skel)
+        if m:
+            return m.group(1)+'U'+m.group(2)
+        m = re.search(r'^[ahou]([1234568defxzEFZ]+[mhA])$',skel)
+        if m:
+            return 'u'+m.group(1)
+        return None
+
+    def redend_mono(self,monostr):
+        redendmono = self.monodeconstruct(monostr)
+        redendmono['skeleton'] = self.mapskel(redendmono['skeleton'])
+        redendmono['anomer'] = None
+        redendmono['childpos'] = None
+        redendmono['ring'] = None
+        return self.monoseq(redendmono)
+
+    def modify(self,seq):
+        parts = self.deconstruct(seq)
+        redendmono = parts['monos'][0]
+        redendmono = copy.deepcopy(redendmono)
+        skel2 = self.mapskel(redendmono['skeleton'])
+	assert skel2, redendmono['skeleton']
+	# assert redendmono['skeleton'] in self.skelmap, redendmono['skeleton']
+        # skel1 = self.skelmap.get(redendmono['skeleton'])
+        # assert skel1 == skel2, " ".join(map(str,[redendmono['skeleton'],skel1, skel2]))
+        redendmono['skeleton'] = skel2
+        redendmono['anomer'] = None
+        redendmono['childpos'] = None
+        redendmono['ring'] = None
+        parts['monos'].insert(0,redendmono)
+        parts['indices'] = [ i+1 for i in parts['indices'] ]
+        parts['indices'][0] = 1
+        return self.toseq(parts)
 
 def showdiff(g,g2):
     gctstr = glycoct_parser.toStr(g)

@@ -171,6 +171,15 @@ class Glycan:
                 return False
         return True
 
+    def has_alditol_root(self):
+        if not self.has_root():
+            return False 
+        r = self.root()
+        for pos,mod in r.mods():
+            if mod == Mod.aldi and pos == (1,):
+                return True
+        return False
+
 ##     def add_instantiation(self, inst):
 ##         if self._instantiations == None:
 ##             self._instantiations = []

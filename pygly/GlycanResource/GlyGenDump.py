@@ -544,8 +544,8 @@ class EMBLSourceFile(GlyGenSourceFile):
     glygen_source = "EMBL"
     sections = "glygen_upload"
     taxid2dsid = { 
-                  "9606": "GLY_000708",
-                  "10090": "GLY_000709",
+                  "9606": "GLY_000888",
+                  "10090": "GLY_000889",
                  }
     byonic2gtcacc = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/data/byonic2glytoucan.txt"
 

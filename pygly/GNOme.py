@@ -24,6 +24,12 @@ class GNOmeAPI(object):
     # released OWL file and the so-called Subsumption Graph raw dump
     # file.
 
+    # Subsumption types - Ugh!
+    class EdgeType:
+        Any = None
+        Strict = 1
+        Other = 2
+
     # All nodes
     def nodes(self):
         raise NotImplemented("GNOme API method nodes not implemented")
@@ -33,15 +39,15 @@ class GNOmeAPI(object):
         raise NotImplemented("GNOme API method delete_node not implemented")
 
     # Child nodes of a node
-    def children(self, accession):
+    def children(self, accession, edgetype=EdgeType.Strict):
         raise NotImplemented("GNOme API method children not implemented")
 
     # Parent nodes of a node
-    def parents(self, accession):
+    def parents(self, accession, edgetype=EdgeType.Strict):
         raise NotImplemented("GNOme API method parents not implemented")
 
     # Set the parents of a node
-    def set_parents(self, accession, parents):
+    def set_parents(self, accession, parents, edgetype=EdgeType.Strict):
         raise NotImplemented("GNOme API method set_parents not implemented")
 
     # Subsumption level of a node
@@ -68,36 +74,36 @@ class GNOmeAPI(object):
     ####
 
     # All edges
-    def edges(self):
+    def edges(self,edgetype=EdgeType.Strict):
         for n in self.nodes():
-            for c in self.children(n):
+            for c in self.children(n, edgetype):
                 yield n,c
 
     # Descendants of a node
-    def descendants(self, accession):
+    def descendants(self, accession, edgetype=EdgeType.Strict):
         desc = set()
-        for c in self.children(accession):
+        for c in self.children(accession, edgetype):
             desc.add(c)
-            desc.update(self.descendants(c))
+            desc.update(self.descendants(c, edgetype))
         return desc
 
     # Ancestors of a node
-    def ancestors(self, accession):
+    def ancestors(self, accession, edgetype=EdgeType.Strict):
         anc = set()
-        for p in self.parents(accession):
+        for p in self.parents(accession, edgetype):
             anc.add(p)
-            anc.update(self.ancestors(p))
+            anc.update(self.ancestors(p, edgetype))
         return anc
 
     # Whether a node is a leaf
-    def isleaf(self, accession):
-        for ch in self.children(accession):
+    def isleaf(self, accession, edgetype=EdgeType.Strict):
+        for ch in self.children(accession, edgetype):
             return False
         return True
 
     # Whether a node is a root node
     def isroot(self,accession):
-        for pt in self.parents(accession):
+        for pt in self.parents(accession, edgetype=EdgeType.Strict):
             return False
         return True
 
@@ -186,6 +192,13 @@ class GNOmeAPI(object):
                 if anc in keep:
                     parents[acc].add(anc)
 
+        # find all ancestors of each kept node
+        allparents = defaultdict(set)
+        for acc in keep:
+            for anc in self.ancestors(acc,GNOmeAPI.EdgeType.Any):
+                if anc in keep:
+                    allparents[acc].add(anc)
+
         # then eliminate shortcuts
         toremove = set()
         for n1 in keep:
@@ -196,11 +209,22 @@ class GNOmeAPI(object):
         for n1, n3 in toremove:
             parents[n1].remove(n3)
 
+        # then eliminate shortcuts
+        toremove = set()
+        for n1 in keep:
+            for n2 in allparents[n1]:
+                for n3 in allparents[n2]:
+                    if n3 in allparents[n1]:
+                        toremove.add((n1, n3))
+        for n1, n3 in toremove:
+            allparents[n1].remove(n3)
+
         for n in self.nodes():
             if n not in keep:
                 self.delete_node(n)
             else:
-                self.set_parents(n,parents[n])
+                self.set_parents(n,parents[n],GNOmeAPI.EdgeType.Strict)
+                self.set_parents(n,allparents[n]-parents[n],GNOmeAPI.EdgeType.Other)
 
 class GNOme(GNOmeAPI):
     referenceowl = "http://purl.obolibrary.org/obo/gno.owl"
@@ -282,15 +306,39 @@ class GNOme(GNOmeAPI):
     def root(self):
         return "00000001"
 
-    def parents(self, accession):
+    def parents(self, accession, edgetype=GNOmeAPI.EdgeType.Strict):
         uri = "gno:%s" % (accession,)
-        for s, p, o in self.triples(uri, 'rdfs:subClassOf', None):
-            yield self.accession(o)
+        if edgetype == GNOmeAPI.EdgeType.Strict:
+            for s, p, o in self.triples(uri, 'rdfs:subClassOf', None):
+                yield self.accession(o)
+        elif edgetype == GNOmeAPI.EdgeType.Any:
+            for s, p, o in self.triples(uri, 'gno:00000024', None):
+                yield self.accession(o)
+        elif edgetype == GNOmeAPI.EdgeType.Other:
+            items = set()
+            for s, p, o in self.triples(uri, 'gno:00000024', None):
+                items.add(self.accession(o))
+            for s, p, o in self.triples(uri, 'rdfs:subClassOf', None):
+                items.remove(self.accession(o))
+            for acc in items:
+                yield acc
 
-    def children(self, accession):
+    def children(self, accession, edgetype=GNOmeAPI.EdgeType.Strict):
         uri = "gno:%s" % (accession,)
-        for s, p, o in self.triples(None, 'rdfs:subClassOf', uri):
-            yield self.accession(s)
+        if edgetype == GNOmeAPI.EdgeType.Strict:
+            for s, p, o in self.triples(None, 'rdfs:subClassOf', uri):
+                yield self.accession(s)
+        elif edgetype == GNOmeAPI.EdgeType.Any:
+            for s, p, o in self.triples(None, 'gno:00000024', uri):
+                yield self.accession(s)
+        elif edgetype == GNOmeAPI.EdgeType.Other:
+            items = set()
+            for s, p, o in self.triples(None, 'gno:00000024', uri):
+                items.add(self.accession(s))
+            for s, p, o in self.triples(None, 'rdfs:subClassOf', uri):
+                items.remove(self.accession(s))
+            for acc in items:
+                yield acc
 
     def level(self, accession):
         uri = "gno:%s" % (accession,)
@@ -327,13 +375,32 @@ class GNOme(GNOmeAPI):
         for s, p, o in self.triples(uri, "gno:00000035", None):
             return self.label(o)
 
+    def get_archetype(self, accession):
+        uri = "gno:%s" % (accession,)
+        for s, p, o in self.triples(uri, "gno:00000036", None):
+            return self.label(o)
+
+    def isarchetype(self, accession):
+        return self.get_archetype(accession) == accession
+
     def delete_node(self, accession):
         self.gnome.remove((self.uri("gno:" + accession), None, None))
 
-    def set_parents(self, accession, parents):
+    def set_parents(self, accession, parents, edgetype=GNOmeAPI.EdgeType.Strict):
+        assert edgetype in (GNOmeAPI.EdgeType.Strict,GNOmeAPI.EdgeType.Other)
+        strict = set(self.parents(accession,GNOmeAPI.EdgeType.Strict))
+        other = set(self.parents(accession,GNOmeAPI.EdgeType.Other))
         self.gnome.remove((self.uri("gno:" + accession), self.uri("rdfs:subClassOf"), None))
-        for parent in parents:
+        self.gnome.remove((self.uri("gno:" + accession), self.uri("gno:00000024"), None))
+        if edgetype == GNOmeAPI.EdgeType.Strict:
+            strict = set(parents)
+        else:
+            other = set(parents)
+        for parent in strict:
             self.gnome.add((self.uri("gno:" + accession), self.uri("rdfs:subClassOf"), self.uri("gno:" + parent)))
+            self.gnome.add((self.uri("gno:" + accession), self.uri("gno:00000024"), self.uri("gno:" + parent)))
+        for parent in other:
+            self.gnome.add((self.uri("gno:" + accession), self.uri("gno:00000024"), self.uri("gno:" + parent)))
 
     def write(self, handle):
         writer = OWLWriter()
@@ -416,15 +483,28 @@ class GNOme(GNOmeAPI):
             else:
                 continue
 
+            arch = self.get_archetype(n)
+            isarch = self.isarchetype(n)
+
             if n not in cbbutton:
                 continue
 
-            children = sorted(self.children(n))
+            children = sorted(self.children(n,GNOmeAPI.EdgeType.Any))
+            # parents = sorted(self.parents(n,GNOmeAPI.EdgeType.Any))
+            otherchildren = sorted(self.children(n,GNOmeAPI.EdgeType.Other))
+            edgetype = dict()
+            for acc in otherchildren:
+                edgetype[acc] = 'other'
+
             res[n] = {
-                "level": t, "children": children, "count": cbbutton[n], "score": scores[n]
+                "level": t, "children": children, "edgetype": edgetype, "count": cbbutton[n], "score": int(scores[n]), "archetype": arch
             }
             if len(children) == 0:
                 del res[n]['children']
+            if len(otherchildren) == 0:
+                del res[n]['edgetype']
+            if arch == None:
+                del res[n]['archetype']
 
             if n in syms:
                 res[n]['syms'] = sorted(syms[n])
@@ -461,7 +541,7 @@ class GNOme(GNOmeAPI):
 from . alignment import GlycanSubsumption, GlycanEqual, GlycanEqualWithWURCSCheck
 from . Monosaccharide import Anomer, Substituent
 from . GlycanResource import GlyTouCan, GlyCosmos
-from . manipulation import Topology, Composition, BaseComposition
+from . manipulation import Topology, Composition, BaseComposition, Archetype, WURCSArchetype, WURCSManipulation, RemoveAlditol
 
 
 class SubsumptionGraph(GNOmeAPI):
@@ -474,6 +554,9 @@ class SubsumptionGraph(GNOmeAPI):
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
         self.geqwwc = GlycanEqualWithWURCSCheck()
+        self.archetype = Archetype()
+        self.wurcs_archetype = WURCSArchetype()
+        self.remove_aldi = RemoveAlditol()
         self.topology = Topology()
         self.composition = Composition()
         self.basecomposition = BaseComposition()
@@ -497,7 +580,9 @@ class SubsumptionGraph(GNOmeAPI):
         printmem()
 
         masscluster = defaultdict(dict)
+        extramasscluster = defaultdict(dict)
         clustermap = defaultdict(set)
+        extraclustermap = defaultdict(set)
         if len(args) > 0:
             argmass = []
             for a in args:
@@ -517,13 +602,24 @@ class SubsumptionGraph(GNOmeAPI):
                 mass = self.gco.getmass(glyacc) 
                 if not mass:
                     mass = self.gtc.getmass(glyacc)
-                if not mass:
-                    mass = self.gco.umw(glyacc,fetch='wurcs')
-                if not mass:
-                    mass = self.gtc.umw(glyacc,fetch='wurcs')
+                mass1 = self.gco.umw(glyacc,fetch='wurcs')
+                if not mass1:
+                    mass1 = self.gtc.umw(glyacc,fetch='wurcs')
+                if not mass and not mass1:
+                    self.warning("mass could not be determined for %s" % (glyacc), 2)
+                    continue
+                elif mass and mass1 and abs(mass - mass1) > 0.0001:
+                    self.warning("mass inconsistency for %s: %f vs %f" % (glyacc, mass, mass1), 2)
+                if mass1:
+                    mass = mass1
                 if not mass:
                     continue
                 rmass = str(round(mass, 2))
+                gly = self.gco.getGlycan(glyacc,format='wurcs')
+                if not gly:
+                    gly = self.gtc.getGlycan(glyacc,format='wurcs')
+                if not gly:
+                    continue
                 if glyacc in clustermap:
                     for rmi in clustermap[glyacc]:
                         if glyacc in masscluster[rmi]:
@@ -532,29 +628,62 @@ class SubsumptionGraph(GNOmeAPI):
                     continue
                 for low,high in argmass:
                     if float(low) <= float(rmass) <= float(high):
-                        masscluster[rmass][glyacc] = dict(accession=glyacc)
+                        masscluster[rmass][glyacc] = dict(accession=glyacc,glycan=gly)
                         clustermap[glyacc].add(rmass)
                         break
+                if gly and gly.has_alditol_root():
+                    gly1 = self.remove_aldi(gly)
+                    rmass_minus_aldi = str(round(mass-2.015650070,2))
+                    if glyacc in extraclustermap:
+                        for rmi in extraclustermap[glyacc]:
+                            if glyacc in extramasscluster[rmi]:
+                                del extramasscluster[rmi][glyacc]
+                        extraclustermap[glyacc].add(rmass_minus_aldi)
+                        continue
+                    for low,high in argmass:
+                        if float(low) <= float(rmass_minus_aldi) <= float(high):
+                            extramasscluster[rmass_minus_aldi][glyacc] = dict(accession=glyacc,mass=mass,rmass=rmass,mass1=mass-2.015650070,rmass1=rmass_minus_aldi,delta=+2.015650070,glycan=gly1)
+                            extraclustermap[glyacc].add(rmass_minus_aldi)
         else:
             for glyacc in self.allacc:
                 mass = self.gco.getmass(glyacc)
                 if not mass:
                     mass = self.gtc.getmass(glyacc)
-                if not mass:
-                    mass = self.gco.umw(glyacc,fetch='wurcs')
-                if not mass:
-                    mass = self.gtc.umw(glyacc,fetch='wurcs')
+                mass1 = self.gco.umw(glyacc,fetch='wurcs')
+                if not mass1:
+                    mass1 = self.gtc.umw(glyacc,fetch='wurcs')
+                if not mass and not mass1:
+                    self.warning("mass could not be determined for %s" % (glyacc), 2)
+                    continue
+                elif mass and mass1 and abs(mass - mass1) > 0.0001:
+                    self.warning("mass inconsistency for %s: %f vs %f" % (glyacc, mass, mass1), 2)
+                if mass1:
+                    mass = mass1
                 if not mass:
                     continue
                 rmass = str(round(mass, 2))
+                gly = self.gco.getGlycan(glyacc,format='wurcs')
+                if not gly:
+                    gly = self.gtc.getGlycan(glyacc,format='wurcs')
                 if glyacc in clustermap:
                     for rmi in clustermap[glyacc]:
                         if glyacc in masscluster[rmi]:
-                            del masscluster[rmi][glyacc]                                                                    
+                            del masscluster[rmi][glyacc]
                     clustermap[glyacc].add(rmass)
                     continue
-                masscluster[rmass][glyacc] = dict(accession=glyacc)
+                masscluster[rmass][glyacc] = dict(accession=glyacc,glycan=gly)
                 clustermap[glyacc].add(rmass)
+                if gly and gly.has_alditol_root():
+                    gly1 = self.remove_aldi(gly)
+                    rmass_minus_aldi = str(round(mass-2.015650070,2))
+                    if glyacc in extraclustermap:
+                        for rmi in extraclustermap[glyacc]:
+                            if glyacc in extramasscluster[rmi]:
+                                del extramasscluster[rmi][glyacc]
+                        extraclustermap[glyacc].add(rmass_minus_aldi)
+                        continue
+                    extramasscluster[rmass_minus_aldi][glyacc] = dict(accession=glyacc,mass=mass,rmass=rmass,mass1=mass-2.015650070,rmass1=rmass_minus_aldi,delta=+2.015650070,glycan=gly1)
+                    extraclustermap[glyacc].add(rmass_minus_aldi)
 
         for rmass,cluster in masscluster.items():
             for acc in list(cluster):
@@ -583,7 +712,7 @@ class SubsumptionGraph(GNOmeAPI):
         printmem()
 
         for rmass, cluster in sorted(masscluster.items(),key=lambda t: float(t[0])):
-            self.compute_component(rmass, cluster)
+            self.compute_component(rmass, masscluster, extramasscluster)
             printmem()
 
     def warning(self, msg, level):
@@ -591,7 +720,12 @@ class SubsumptionGraph(GNOmeAPI):
             print("# WARNING:%d - %s" % (level, msg))
             sys.stdout.flush()
 
-    def compute_component(self, rmass, cluster):
+    def compute_component(self, rmass, masscluster, extramasscluster):
+        cluster = masscluster[rmass];
+        extracluster = extramasscluster[rmass]
+        combinedcluster = dict()
+        combinedcluster.update(cluster.items())
+        combinedcluster.update(extracluster.items())
         start = time.time()
 
         print("# START %s - %d accessions in molecular weight cluster for %s" % (time.ctime(), len(cluster), rmass))
@@ -608,7 +742,9 @@ class SubsumptionGraph(GNOmeAPI):
                 else:
                     self.warning("Glycan accession %s archived and replaced by %s"%(acc,repl,),2)
                 continue
-            gly = self.gco.getGlycan(acc,format='wurcs')
+            gly = cluster[acc].get('glycan')
+            if not gly:
+                gly = self.gco.getGlycan(acc,format='wurcs')
             if not gly:
                 gly = self.gtc.getGlycan(acc,format='wurcs')
             if not gly:
@@ -648,26 +784,26 @@ class SubsumptionGraph(GNOmeAPI):
             else:
                 cluster[acc]['mass'] = float(rmass)
 
-        clusteracc = set(map(lambda t: t[0], filter(lambda t: t[1].has_key('glycan'), cluster.items())))
+        clusteracc = set(map(lambda t: t[0], filter(lambda t: t[1].get('glycan'), cluster.items())))
+        combclusteracc = set(map(lambda t: t[0], filter(lambda t: t[1].get('glycan'), combinedcluster.items())))
 
         outedges = defaultdict(set)
         inedges = defaultdict(set)
 
         self.warning("Computation of subsumption relationships started",5)
-        for acc1 in sorted(clusteracc):
-            gly1 = cluster[acc1]['glycan']
-            for acc2 in sorted(clusteracc):
-                gly2 = cluster[acc2]['glycan']
-                if acc1 != acc2:
+        for acc1 in sorted(combclusteracc):
+            gly1 = combinedcluster[acc1]['glycan']
+            for acc2 in sorted(combclusteracc):
+                gly2 = combinedcluster[acc2]['glycan']
+                if acc1 != acc2 and not (acc1 in cluster and acc2 in extracluster):
                     self.warning("%s <?= %s"%(acc1,acc2),5)
                     if self.subsumption.leq(gly1, gly2):
                         iseq = self.geq.eq(gly1, gly2)
-                        if not iseq or acc2 < acc1:
+                        if not iseq or acc2 < acc1 or (acc1 in extracluster and acc2 in cluster):
                             outedges[acc2].add(acc1)
                             inedges[acc1].add(acc2)
-                        if iseq and self.geqwwc.eq(gly1, gly2) and acc1 < acc2:
+                        if iseq and (acc1 in cluster and acc2 in cluster) and self.geqwwc.eq(gly1, gly2) and acc1 < acc2:
                             self.warning("Potential WURCS canonicalization issue: %s == %s"%(acc1,acc2),1)
-
         self.warning("Computation of subsumption relationships done",5)
 
         # Check GlyTouCan topology, composition, basecomposition, and
@@ -946,6 +1082,28 @@ class SubsumptionGraph(GNOmeAPI):
 
         self.warning("Checking topo, comp, bcomp relationships... done.",5)
 
+        for acc0 in clusteracc:
+            gly0 = cluster[acc0]['glycan']
+            # if acc0 == "G00026MO":
+            #     print(acc0)
+            #     print(gly0.glycoct())
+            for acc1 in clusteracc:
+                gly1 = cluster[acc1]['glycan']
+                if gly1.has_root() and not gly1.repeated() and self.geq.eq(gly0,self.archetype(gly1)):
+                    if self.wurcs_archetype.redend_mono(gly1.root().external_descriptor()) == gly0.root().external_descriptor() and (acc0 == acc1 or 'has_archetype' not in cluster[acc1]):
+                        cluster[acc1]['has_archetype'] = acc0
+            for acc1 in extracluster:
+                gly1 = extracluster[acc1]['glycan']
+                # if acc0 == "G00026MO" and acc1 == "G62167DK":
+                #     print(acc1)
+                #     print(gly1.glycoct())
+                #     print(self.archetype(gly1).glycoct())
+                if gly1.has_root() and not gly1.repeated() and self.geq.eq(gly0,self.archetype(gly1)):
+                    if self.wurcs_archetype.redend_mono(gly1.root().external_descriptor()) == gly0.root().external_descriptor():
+                        # extracluster[acc1]['has_archetype'] = acc0
+                        if acc1 in masscluster[extracluster[acc1]['rmass']]:
+                            masscluster[extracluster[acc1]['rmass']][acc1]['has_archetype'] = acc0 + "*"
+
         for acc in clusteracc:
             cluster[acc]['missing'] = None
             try:
@@ -958,7 +1116,7 @@ class SubsumptionGraph(GNOmeAPI):
             sys.stdout.flush()
             return
 
-        print "# NODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
+        print "# NODES - %d/%d + %d glycans in molecular weight cluster for %s" % (len(clusteracc), total, len(extracluster), rmass)
         for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level').rstrip('*'),acc) ):
             g = cluster[acc]
             print acc,
@@ -972,26 +1130,28 @@ class SubsumptionGraph(GNOmeAPI):
                 extras.append("UNDET")
             if gly.fully_determined():
                 extras.append("FULL")
+            if g.get('has_archetype'):
+                extras.append("HASARCH:%s"%(g['has_archetype'],))
             for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=True).items()):
                 if m != "Count" and c > 0:
                     extras.append("%s:%d"%(m,c))
             print " ".join(extras)
-        print "# ENDNODES - %d/%d glycans in molecular weight cluster for %s" % (len(clusteracc), total, rmass)
+        print "# ENDNODES - %d/%d + %d glycans in molecular weight cluster for %s" % (len(clusteracc), total, len(extracluster), rmass)
         sys.stdout.flush()
 
         prunedoutedges = self.prune_edges(outedges)
         prunedinedges = self.prune_edges(inedges)
 
         print "# TREE"
-        for r in sorted(clusteracc):
+        for r in sorted(combclusteracc):
             if len(prunedinedges[r]) == 0:
-                self.print_tree(cluster, prunedoutedges, r)
+                self.print_tree(combinedcluster, prunedoutedges, r)
         print "# ENDTREE"
 
         print "# EDGES"
         for n in sorted(clusteracc):
-            print "%s:" % (n,),
-            print " ".join(sorted(prunedoutedges[n]))
+            print "%s:"%(n,),
+            print " ".join(map(lambda s: s+"*" if combinedcluster[s].has_key('delta') else s,sorted(prunedoutedges[n])))
         print "# ENDEDGES"
         sys.stdout.flush()
 
@@ -1049,7 +1209,8 @@ class SubsumptionGraph(GNOmeAPI):
         return edges
 
     def print_tree(self, cluster, edges, root, indent=0):
-        print "%s%s" % (" " * indent, root), cluster[root]['level'], cluster[root].get('missing','-')
+        
+        print "%s%s%s" % (" " * indent, root, "*" if cluster[root].has_key('delta') else ""), cluster[root].get('level',"-"), cluster[root].get('missing','-')
         for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
@@ -1061,6 +1222,7 @@ class SubsumptionGraph(GNOmeAPI):
     warningsbytype = None
     monosaccharide_count = {}
     monosaccharide_count_pattern = re.compile(r"[\w\+]{1,13}:\d{1,3}")
+    extra_properties = defaultdict(dict)
 
     def loaddata(self, dumpfilepath):
         self.readfile(dumpfilepath)
@@ -1087,7 +1249,7 @@ class SubsumptionGraph(GNOmeAPI):
                 lineInfo = "node"  # node type none
                 if l.startswith("# NODES"):
                     lineInfo = "node"
-                    mass = float(re.compile("\d{2,5}\.\d{1,2}").findall(l)[0])
+                    mass = float(re.compile("\d{2,6}\.\d{1,2}").findall(l)[0])
                     mass = "%.2f" % mass
                     content = {"nodes": {}, "edges": {}, "missing": {}}
                     raw_data[mass] = content
@@ -1117,27 +1279,42 @@ class SubsumptionGraph(GNOmeAPI):
                     content["nodes"][nodeacc] = (nodemw,nodetype,topoacc,compacc,bcompacc)
 
                     mono_count = {}
-                    for cell in l.split():
+                    for cell in l.split()[6:]:
                         temp2 = self.monosaccharide_count_pattern.findall(cell)
                         if len(temp2) == 1:
                             temp2 = temp2[0].split(":")
                             iupac_comp_mono, count = temp2[0], int(temp2[1])
                             mono_count[iupac_comp_mono] = count
-                        if mono_count:
-                            temp3 = ""
-                            for iupac_mono_str, mono_count_eatch in sorted(mono_count.items()):
-                                temp3 += iupac_mono_str + str(mono_count_eatch)
-                            self.monosaccharide_count[nodeacc] = mono_count
+                    if len(mono_count) > 0:
+                        temp3 = ""
+                        for iupac_mono_str, mono_count_eatch in sorted(mono_count.items()):
+                            temp3 += iupac_mono_str + str(mono_count_eatch)
+                        self.monosaccharide_count[nodeacc] = mono_count
+
+                    for word in l.split()[6:]:
+                        m = re.search("^([A-Z]+)(:(.*))?$",word)
+                        if m:
+                             if m.group(3):
+                                 self.extra_properties[nodeacc][m.group(1)] = m.group(3)
+                             else:
+                                 self.extra_properties[nodeacc][m.group(1)] = True
+                             
 
                 elif lineInfo == "edge":
-                    to = re.compile("G\d{5}\w{2}").findall(l)
-                    fromx = to.pop(0)
-                    if to:
-                        content["edges"][fromx] = to
+                    fromx,tostr = l.split(':')
+                    fromx = fromx.strip()
+                    assert(fromx not in content["edges"])
+                    content["edges"][fromx] = []
+                    for to in tostr.split():
+                        if to.endswith("*"):
+                            content["edges"][fromx].append((to[:-1],"+aldi"))
+                        else:
+                            content["edges"][fromx].append((to,"subsumed"))
 
                 elif lineInfo == "tree":
-                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}) (BaseComposition|Composition|Topology|Saccharide)(\*)? (\d{1,5})").findall(l))[0]
-                    content["missing"][gtcacc] = missingrank
+                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}\*?) (BaseComposition|Composition|Topology|Saccharide|-)(\*)? (\d{1,5}|-)").findall(l))[0]
+                    if not gtcacc.endswith("*"):
+                        content["missing"][gtcacc] = missingrank
 
                 else:
                     raise RuntimeError
@@ -1156,18 +1333,18 @@ class SubsumptionGraph(GNOmeAPI):
             self.allnodestype[m] =  (m, "molecular weight", None, None, None)
             allmass.append(m)
             top = set(raw_data[m]["nodes"].keys())
-            for chilren in raw_data[m]["edges"].values():
-                top = top - set(chilren)
-            top = list(top)
+            for children in raw_data[m]["edges"].values():
+                top = top - set(c[0] for c in children if c[1] == 'subsumed')
+            top = [ (n,"subsumed") for n in top ]
             self.alledges[m] = top
 
         self.allnodestype["00000001"] = "glycan"
-        self.alledges["00000001"] = allmass
+        self.alledges["00000001"] = [ (m,"subsumed") for m in allmass ]
 
         self.allinedges = defaultdict(set)
         for pa,chs in self.alledges.items():
             for ch in chs:
-                self.allinedges[ch].add(pa)
+                self.allinedges[ch[0]].add((pa,ch[1]))
 
         return raw_data
 
@@ -1178,13 +1355,23 @@ class SubsumptionGraph(GNOmeAPI):
         for n in self.allnodestype.keys():
             yield n
 
-    def parents(self, accession):
+    def parents(self, accession, edgetype=GNOmeAPI.EdgeType.Strict):
         for p in self.allinedges.get(accession, []):
-            yield p
+            if edgetype == GNOmeAPI.EdgeType.Any:
+                yield p[0]
+            elif edgetype == GNOmeAPI.EdgeType.Strict and p[1] == "subsumed":
+                yield p[0]
+            elif edgetype == GNOmeAPI.EdgeType.Other and p[1] != "subsumed":
+                yield p[0]
 
-    def children(self, accession):
+    def children(self, accession, edgetype=GNOmeAPI.EdgeType.Strict):
         for c in self.alledges.get(accession, []):
-            yield c
+            if edgetype == GNOmeAPI.EdgeType.Any:
+                yield c[0]
+            elif edgetype == GNOmeAPI.EdgeType.Strict and c[1] == "subsumed":
+                yield c[0]
+            elif edgetype == GNOmeAPI.EdgeType.Other and c[1] != "subsumed":
+                yield c[0]
 
     def level(self, accession):
         if accession in self.allnodestype:
@@ -1215,6 +1402,12 @@ class SubsumptionGraph(GNOmeAPI):
             topo = self.allnodestype[accession][2]
             if topo and topo in self.allnodestype:
                 return topo
+        return None
+
+    def get_archetype(self, accession):
+        retval = self.extra_properties.get(accession,{}).get('HASARCH',None)
+        if retval:
+            return retval.rstrip('*')
         return None
 
     def get_iupac_composition(self, accession):
@@ -1322,6 +1515,7 @@ class SubsumptionGraph(GNOmeAPI):
                 node_obj.set_topology(self.get_topology(n))
                 node_obj.set_iupac_composition(self.get_iupac_composition_str_for_viewer(n))
                 node_obj.set_missing_rank(self.get_missing_rank(n))
+                node_obj.set_archetype(self.get_archetype(n))
 
 
                 if n in all_syms:
@@ -1331,9 +1525,12 @@ class SubsumptionGraph(GNOmeAPI):
             nodes.add(mass)
 
             for n in nodes:
-                if self.children(n):
-                    for c in self.children(n):
-                        r.connect(r.getNode(n), r.getNode(c), "subsumes")
+                for c in self.children(n):
+                    r.connect(r.getNode(n), r.getNode(c), "strict")
+
+        for n in self.nodes():
+            for c in self.children(n,GNOmeAPI.EdgeType.Other):
+                r.connect(r.getNode(n), r.getNode(c), "other")
 
         f = open(output_file_path, "w")
         s = r.write(f, r.make_graph())
@@ -1402,10 +1599,10 @@ class OWLWriter():
             for e, i in enumerate(mass_lut_file_content):
                 if e == 0:
                     continue
-                x = i.split("\t")
-                d[float(x[1])] = x[0]
+                x = i.split()
+                d[x[1]] = x[0]
         else:
-            d[1.01] = "10000001"
+            d["1.01"] = "10000001"
         self.massiddict = d
         self.used_mass = set()
 
@@ -1415,9 +1612,9 @@ class OWLWriter():
         print "new mass ID was assigned"
         mass_lut_file_handle = open(self.mass_LUT_file_path, "w")
         mass_lut_file_handle.write("id\tmass\n")
-        for mass in sorted(self.massiddict.keys()):
+        for mass in sorted(self.massiddict.keys(),key=float):
             id = self.massiddict[mass]
-            mass_lut_file_handle.write("%s\t%.2f\n" % (id, mass))
+            mass_lut_file_handle.write("%s\t%s\n" % (id, mass))
         mass_lut_file_handle.close()
 
 
@@ -1453,6 +1650,7 @@ class OWLWriter():
     subsumption_level_annotation_property = 21
     glytoucan_id_annotation_property = 22
     glytoucan_link_annotation_property = 23
+    is_subsumed_by_node_annotation_property = 24
 
     structure_browser_link = 41
     composition_browser_link = 42
@@ -1555,7 +1753,14 @@ class OWLWriter():
             "id": 35,
             "label": "has_topology",
             "definition": """A metadata relation between a glycan and a glycan, with subsumption level topology, that is equivalent to the glycan after the removal of all linkage positions and anomeric configurations."""
-        }
+        },
+
+        "archetype": {
+            "id": 36,
+            "label": "has_archetype",
+            "definition": """A metadata relation between a glycan and its archetype that is equivalent to the glycan after the removal of reducing end ring information and anomeric configuration."""
+        },
+
     }
 
     def gnoid(self, id):
@@ -1571,16 +1776,18 @@ class OWLWriter():
         return rdflib.URIRef(self.gno + self.gnoid(id))
 
     def mass_decimal_to_mass_id(self, mass):
+        rmass = "%.2f"%(float(mass),)
         try:
-            res = self.massiddict[float(mass)]
+            res = self.massiddict[rmass]
         except KeyError:
             res = str(int(max(self.massiddict.values())) + 1)
-            self.massiddict[float(mass)] = res
+            self.massiddict[rmass] = res
             self.newMass = True
         return res
 
-    def add_massnode_to_graph(self, graph, node, mass, definition, rdfs, Literal, has_subsumption_level_node, subsumption_level_node):
+    def add_massnode_to_graph(self, graph, node, mass, definition, rdfs, Literal, has_subsumption_level_node, subsumption_level_node, is_subsumed_by_property):
         graph.add((node, rdfs.subClassOf, self.gnouri(self.glycan_class)))
+        graph.add((node, is_subsumed_by_property, self.gnouri(self.glycan_class)))
         graph.add((node, has_subsumption_level_node, subsumption_level_node))
         graph.add((node, definition, Literal("A glycan characterized by underivitized molecular weight of %s Daltons." % mass)))
         graph.add((node, rdfs.label, Literal("glycan of molecular weight %s Da" % mass)))
@@ -1679,6 +1886,13 @@ class OWLWriter():
         outputGraph.add((has_glytoucan_link_node, definition,
                          Literal("The URL of the GlyTouCan entry describing the indicated glycan.")))
 
+        is_subsumed_by_node = self.gnouri(self.is_subsumed_by_node_annotation_property)
+
+        outputGraph.add((is_subsumed_by_node, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((is_subsumed_by_node, rdfs.label, Literal("is_subsumed_by")))
+        outputGraph.add((is_subsumed_by_node, definition,
+                         Literal("A metadata relation between a glycan and a glycan that subsumes it. Note that this relation is a superset of the subClassOf relation as molecular weight is not necessarily conserved as it is for subClassOf.")))
+
         # Add sumbsumption level class and its instances
         rdfNodeSubsumption = self.gnouri(self.subsumption_level_class)
 
@@ -1705,7 +1919,7 @@ class OWLWriter():
 
         # Add AnnotationProperty for 3 different has subsumption level
         has_xxx_nodes = {}
-        for sl in ("basecomposition", "composition", "topology"):
+        for sl in ("basecomposition", "composition", "topology", "archetype"):
             has_xxx_node = self.gnouri(self.has_subsumption_level[sl]["id"])
 
             outputGraph.add((has_xxx_node, rdf.type, owl.AnnotationProperty))
@@ -1717,6 +1931,7 @@ class OWLWriter():
         has_topology_node = has_xxx_nodes["topology"]
         has_composition_node = has_xxx_nodes["composition"]
         has_basecomposition_node = has_xxx_nodes["basecomposition"]
+        has_archetype_node = has_xxx_nodes["archetype"]
 
         # Add AnnotationProperty for IUPAC composition (for the viewer)
         cbbutton_node = self.gnouri(self.cbbutton_annotation_property)
@@ -1815,7 +2030,7 @@ class OWLWriter():
 
             else:
                 self.used_mass.add(n.getID())
-                self.add_massnode_to_graph(outputGraph, rdfNode, n.getID(), definition, rdfs, Literal, has_subsumption_level_node, subsumptionLevel["molecularweight"])
+                self.add_massnode_to_graph(outputGraph, rdfNode, n.getID(), definition, rdfs, Literal, has_subsumption_level_node, subsumptionLevel["molecularweight"], is_subsumed_by_node)
 
             for sym, sym_type in n.synonym():
                 outputGraph.add((rdfNode, sym_types[sym_type], Literal(sym)))
@@ -1823,12 +2038,15 @@ class OWLWriter():
             bcomp_acc = n.get_basecomposition()
             comp_acc = n.get_composition()
             topo_acc = n.get_topology()
+            arch_acc = n.get_archetype()
             if bcomp_acc:
                 outputGraph.add((rdfNode, has_basecomposition_node, self.gnouri(bcomp_acc)))
             if comp_acc:
                 outputGraph.add((rdfNode, has_composition_node, self.gnouri(comp_acc)))
             if topo_acc:
                 outputGraph.add((rdfNode, has_topology_node, self.gnouri(topo_acc)))
+            if arch_acc:
+                outputGraph.add((rdfNode, has_archetype_node, self.gnouri(arch_acc)))
 
             cbbutton_str = n.get_iupac_composition()
             if cbbutton_str:
@@ -1843,15 +2061,18 @@ class OWLWriter():
 
 
         for l in self.allRelationship():
-            if l.getEdgeType() == "subsumes":
+            if l.getEdgeType() in ("strict","other"):
                 if l._sideA._nodeType == "molecularweight":
-                    id = self.massiddict[float(l._sideA.getID())]
+                    id = self.massiddict["%.2f"%(float(l._sideA.getID()),)]
                     n1 = self.gnouri(id)
                 else:
                     n1 = self.gnouri(l._sideA.getID())
                 n2 = self.gnouri(l._sideB.getID())
-                outputGraph.add((n2, rdfs.subClassOf, n1))
-
+                if l.getEdgeType() == "strict":
+                    outputGraph.add((n2, rdfs.subClassOf, n1))
+                    outputGraph.add((n2, is_subsumed_by_node, n1))
+                elif l.getEdgeType() == "other":
+                    outputGraph.add((n2, is_subsumed_by_node, n1))
 
         tmp1 = len(self.gtc_accession)
         self.gtc_accession = self.gtc_accession.union(self.used_gtcacc)
@@ -1867,14 +2088,14 @@ class OWLWriter():
 
 
 
-        unused_mass = set(self.massiddict.keys()) - set(map(float, self.used_mass))
+        unused_mass = set(self.massiddict.keys()) - set(map(lambda m: "%.2f"%(float(m),), self.used_mass))
         unused_gtc_acc = self.gtc_accession - self.used_gtcacc
 
         rdfNodeXSDTrue = rdflib.Literal("true", datatype=rdflib.XSD.boolean)
         for n in unused_mass:
             rdfNode = self.gnouri(self.mass_decimal_to_mass_id(n))
             outputGraph.add((rdfNode, rdf.type, owl.Class))
-            self.add_massnode_to_graph(outputGraph, rdfNode, n, definition, rdfs, Literal, has_subsumption_level_node, subsumptionLevel["molecularweight"])
+            self.add_massnode_to_graph(outputGraph, rdfNode, n, definition, rdfs, Literal, has_subsumption_level_node, subsumptionLevel["molecularweight"],is_subsumed_by_node)
 
         for n in unused_gtc_acc:
             rdfNode = self.gnouri(n)
@@ -2034,6 +2255,15 @@ class NormalNode:
         except AttributeError:
             return None
 
+    def set_archetype(self, archetype):
+        self._archetype = archetype
+
+    def get_archetype(self):
+        try:
+            return self._archetype
+        except AttributeError:
+            return None
+
     def set_iupac_composition(self, ic):
         self._iupac_composition_str = ic
 
@@ -2084,7 +2314,7 @@ class NormalNode:
 class NormalLink:
     _id = None
     _edgeType = None
-    _edgeTypes = tuple(["equal", "subsumes"])
+    _edgeTypes = tuple(["equal", "strict", "other"])
     _exist = False
     # Real node object rather than node ID
     _sideA = None  # Parent
@@ -2161,7 +2391,7 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
         return {
             "icon_style": "snfg",
             "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_url_suffix": ".png",
+            "image_url_suffix": ".svg",
             "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
             "external_resources": [
                 {
@@ -2180,7 +2410,7 @@ class GNOme_Theme_GlyGen_Sandbox(GNOme_Theme_Base):
         return {
             "icon_style": "snfg",
             "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_url_suffix": ".png",
+            "image_url_suffix": ".svg",
             "brand": "A <a href='https://www.glygen.org/' target='_blank'>GlyGen</a> project",
             "external_resources": [
                 {
@@ -2191,7 +2421,7 @@ class GNOme_Theme_GlyGen_Sandbox(GNOme_Theme_Base):
                 },
                 {
                     "name": "Sandbox",
-                    "url_prefix": "https://glygen.ccrc.uga.edu/sandbox/explore.html?focus=",
+                    "url_prefix": "https://sandbox.glyomics.org/explore.html?focus=",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlycoTree_NGlycans","GlycoTree_OGlycans")
                 }
@@ -2205,7 +2435,7 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
         return {
             "icon_style": "snfg",
             "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
-            "image_url_suffix": ".png",
+            "image_url_suffix": ".svg",
             "brand": None,
             "external_resources": [
                 {
@@ -2215,7 +2445,7 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
                     "glycan_set": self.get_accessions("GlyGen")
                 },{
                     "name": "GlyCosmos",
-                    "url_prefix": "https://glycosmos.org/glycans/show?gtc_id=",
+                    "url_prefix": "https://glycosmos.org/glycans/show/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyCosmos")
                 },{
