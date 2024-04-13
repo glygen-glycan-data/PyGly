@@ -52,13 +52,15 @@ gh repo clone glygen-glycan-data/GNOme
 
 ./gnome_compute.py viewerdata ./GNOme.owl ./BrowserData.json
 mv ./BrowserData.json ./GNOme/
-
+./minify_json.py ./GNOme/BrowserData.json > ./GNOme/BrowserData.min.json
+jq -r 'keys|@tsv'  ./GNOme/BrowserData.json | fmt -w 8 | sort -u > ./GNOme/valid-accessions.txt
 
 for Restriction_set in "${restriction_set_names_standard[@]}"
 do
   echo $Restriction_set
   ./gnome_compute.py writeresowl ./GNOme.owl ./GNOme/restrictions/GNOme_$Restriction_set.accessions.txt ./GNOme_$Restriction_set.owl
   ./gnome_compute.py viewerdata ./GNOme_$Restriction_set.owl ./GNOme/restrictions/$Restriction_set.BrowserData.json
+  ./minify_json.py ./GNOme/restrictions/$Restriction_set.BrowserData.json > ./GNOme/restrictions/$Restriction_set.BrowserData.min.json
   jq -r 'keys|@tsv' ./GNOme/restrictions/$Restriction_set.BrowserData.json | fmt -w 8 | sort -u > ./GNOme/restrictions/$Restriction_set.valid-accessions.txt
 done
 
@@ -71,6 +73,11 @@ do
 done
 
 ./gnome_compute.py UpdateTheme ./GNOme/restrictions ./GNOme/JS/theme/
+for thjson in `ls ./GNOme/JS/theme/*.json | fgrep -v .min.json`; do
+  echo "$thjson"
+  thjson1=`basename "$thjson" .json`
+  ./minify_json.py $thjson > $thjson1.min.json
+done
 
 ./GNOme/convert.sh
 
