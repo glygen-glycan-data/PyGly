@@ -36,6 +36,7 @@ if os.path.exists(idmapfilename):
 validresidues = set(filter(None,"""
 GlcNAc
 Glc
+GlcA
 Man
 Gal
 GalNAc
@@ -93,7 +94,8 @@ def iterolinkedaccs():
                      "001014", "001016", 
                      "001018", "001033",
                      "001034", "001035",
-                     "001036", "001028"
+                     "001036", "001028",
+                     "001031"
                    ]
     for olc in olinkedcores:
         for acc,strict,resids,linkids in gm.getstruct('GGM',olc):

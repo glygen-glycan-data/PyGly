@@ -19,7 +19,7 @@ idmapfilename = "residmap.txt"
 idmaps = defaultdict(dict)
 if os.path.exists(idmapfilename):
     for r in csv.DictReader(open(idmapfilename),dialect='excel-tab'):
-        idmaps[r['Accession']][int(r['GlycoCTResidueIndex'])] = int(r['CanonicalResidueIndex'])
+        idmaps[r['Accession']][int(r['GlycoCTResidueIndex'])] = r['CanonicalResidueIndex']
 
 for acc in sys.argv[1:]:
 
@@ -42,18 +42,18 @@ for acc in sys.argv[1:]:
         continue
     except:
         traceback.print_exc()
-        print acc
+        print >>sys.stderr, acc
         sys.exit(1)
 
     idmap = []
     if glyeq.eq(gctgly,wcsgly,idmap=idmap):
         for gctmono,wcsmono in idmap:
             for gctid,wcsid in glyeq.monoidmap(gctmono,wcsmono):
-                idmaps[acc][gctid] = wcsid
+                idmaps[acc][int(gctid)] = wcsid
     elif glyimgeq.eq(gctgly,wcsgly,idmap=idmap):
         for gctmono,wcsmono in idmap:
             for gctid,wcsid in glyimgeq.monoidmap(gctmono,wcsmono):
-                idmaps[acc][gctid] = wcsid
+                idmaps[acc][int(gctid)] = wcsid
 
     filename = acc + ".txt"
 
