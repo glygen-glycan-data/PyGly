@@ -58,17 +58,24 @@ def ec(*args):
     rest = tuple(args[1:])
     return ecd[key]%rest
 
+species2common = dict()
 species2taxid = dict()
 species2taxid['human'] = set(map(int,"""
     9606 63221 741158
     """.split()))
+species2common['human'] = 'Human'
+
 species2taxid['mouse'] = set(map(int,"""
     10090 1385377 35531 179238 947985 1266728 10091 10092 80274 57486
     477816 39442 1879032 477815 46456 116058 1643390
     """.split()))
+species2common['mouse'] = 'Mouse'
+
 species2taxid['dros'] = set(map(int,"""
     7227
 """.split()))
+species2common['dros'] = 'FruitFly'
+
 species2taxid['rat'] = set(map(int,"""
     10116 10114 2651915 2651916 323373 1258734 1258735 397343 10017 10018
     10019 10020 94247 94248 108146 323374 323375 323376 323377 323378
@@ -77,8 +84,10 @@ species2taxid['rat'] = set(map(int,"""
     105255 147438 147439 108144 1258737 1258738 1258739 549621 549622
     549623 549624 549625 549626 284671
     """.split()))
+species2common['rat'] = 'Rat'
+
 species2taxid['hcv'] = set(map(int,"""
-	11103 945067 578306 945063 1173523 1544726 484894 945073 356386
+	3052230 11103 945067 578306 945063 1173523 1544726 484894 945073 356386
 	356387 356388 356390 356391 2340905 2340906 2340907 1405107
 	1972279 1972280 356410 356411 356412 356413 356414 356415 356416
 	356417 356418 356419 356420 356421 356422 413255 413256 413257
@@ -100,7 +109,31 @@ species2taxid['hcv'] = set(map(int,"""
 	945057 44023 945058 33745 33746 945059 1053140 1053141 1053142
 	1053143 1053144 1053145 1053146 1053147 945061 333284 945062
 	357355 945064 44019 44020 421877 44022 421879 578303
+	3052230 945067 63746 945063 1173523 1544726 2847144 484894 945073
+	356386 356387 356388 356390 356391 2340905 2340906 2340907 1405107
+	1972279 1972280 356410 356411 356412 356413 356414 356415 356416
+	356417 356418 356419 356420 356421 356422 413255 413256 413257
+	356426 356427 1006434 758864 1006435 11108 761189 438880 438881
+	357986 357987 357988 357989 357990 357991 761191 761967 356465
+	356466 356467 356468 356469 1006441 1006442 759939 2491016 1006444
+	378506 378507 1006439 595609 595610 595611 595612 11104 1544902
+	1406421 329389 693426 693427 693428 693429 1006437 1193076 2080447
+	1544901 42182 487624 1006438 1053139 36390 745709 1006443 1094895
+	760561 1094898 1094899 1094900 1094901 1406420 761190 1208062
+	1208063 578306 1406424 1406422 569610 1406423 679182 578319 356113
+	356114 356115 356116 357985 1406426 467354 761192 1406425 1406427
+	42791 42792 1006440 945065 128819 128820 128821 668553 1259832
+	668554 668555 420174 40271 1006431 1006432 11105 11106 11107
+	1006436 11109 11110 11111 11112 11113 11114 11115 11116 11117
+	1006433 41856 467337 467338 467339 31642 31643 31644 31645 31647
+	31648 31649 31650 31651 945060 31653 31654 31655 40360 40361
+	945066 356423 945068 945069 945070 945071 945072 356424 356425
+	44021 2847145 945057 44023 945058 33745 33746 945059 1053140
+	1053141 1053142 1053143 1053144 1053145 1053146 1053147 945061
+	333284 945062 357355 945064 44019 44020 421877 44022 421879 578303
     """.split()))
+species2common['hcv'] = 'HCV'
+
 species2taxid['sars'] = set(map(int,"""
 	694009 2697049 284672 305408 511433 1415851 305409 292360 305405
 	227860 227861 1283332 698398 241183 1699360 1699361 293933 293934
@@ -132,6 +165,7 @@ species2taxid['sars'] = set(map(int,"""
 	266147 285945 266148 1503303 241628 241629 248485 253435 305401
 	260069 285948 228330 285949 305406 722424 253433 253434 228607
     """.split()))
+species2common['sars'] = 'SARS'
 
 # Saccharomyces cerevisiae 
 species2taxid['yeast'] = set(map(int,"""
@@ -176,16 +210,37 @@ species2taxid['yeast'] = set(map(int,"""
         1294320 574961 1294322 1294323 1294324 1294325 1294326 1294327
         1294328 1294329 1294330 1294331 1294332 1294333 1294334 1294335
 """.split()))
+species2common['yeast'] = 'Yeast'
 
 # Dictyostelium discoideum
 species2taxid['slimemold'] = set(map(int,"""
         44689 352472 366501 1592886
 """.split()))
+species2common['slimemold'] = 'SlimeMold'
 
 # Pig
 species2taxid['pig'] = set(map(int,"""
 9823 2485929 9825 1611878 1611879 1611880 1170810 291050 415978 310260 310261 490583 309913 309914 375579 375578
 """.split()))
+species2common['pig'] = 'Pig'
+
+# Arabidopsis thaliana
+species2taxid['arabidopsis'] = set(map(int,"""
+3702 
+""".split()))
+species2common['arabidopsis'] = 'Arabidopsis'
+
+# Chicken
+species2taxid['chicken'] = set(map(int,"""
+9031 405000 400035 208524 208525 208526
+""".split()))
+species2common['chicken'] = 'Chicken'
+
+# Chinese hamster
+species2taxid['hampster'] = set(map(int,"""
+10029 
+""".split()))
+species2common['hampster'] = 'Hampster'
 
 species = defaultdict(dict)
 
@@ -227,7 +282,7 @@ for m in iterglycan():
             if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
 	        evidence.add(ec('noXylAlt'))
 		direct = True
-	elif sp in ('mouse','rat','pig'):
+	elif sp in ('mouse','rat','pig','hampster','chicken'):
     	    if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
 	        evidence.add(ec('noXylAlt'))
                 direct = True
@@ -274,131 +329,20 @@ for acc in sorted(species):
 
     m.delete_annotations(type="Species",source="EdwardsLab")
 
-    m.set_annotation(property="Human Evidence",
-                     value=species[acc]['human'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="Human",
-                     value='true' if species[acc]['human'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['human'][0] != 'False':
-        m.set_annotation(property="Human Category",
-                         value=species[acc]['human'][0],
+    for sp in species2common:
+        m.set_annotation(property="%s Evidence"%(species2common[sp],),
+                         value=species[acc][sp][1],
                          type="Species",
                          source="EdwardsLab")
-
-    m.set_annotation(property="Mouse Evidence",
-                     value=species[acc]['mouse'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="Mouse",
-                     value='true' if species[acc]['mouse'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['mouse'][0] != 'False':
-        m.set_annotation(property="Mouse Category",
-                         value=species[acc]['mouse'][0],
+        m.set_annotation(property=species2common[sp],
+                         value='true' if species[acc][sp][0] in ('Direct','Subsumption') else 'false',
                          type="Species",
                          source="EdwardsLab")
-    
-    m.set_annotation(property="Rat Evidence",
-                     value=species[acc]['rat'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="Rat",
-                     value='true' if species[acc]['rat'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['rat'][0] != 'False':
-        m.set_annotation(property="Rat Category",
-                         value=species[acc]['rat'][0],
-                         type="Species",
-                         source="EdwardsLab")
-
-    m.set_annotation(property="HCV Evidence",
-                     value=species[acc]['hcv'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="HCV",
-                     value='true' if species[acc]['hcv'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['hcv'][0] != 'False':
-        m.set_annotation(property="HCV Category",
-                         value=species[acc]['hcv'][0],
-                         type="Species",
-                         source="EdwardsLab")
-
-    m.set_annotation(property="SARS Evidence",
-                     value=species[acc]['sars'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="SARS",
-                     value='true' if species[acc]['sars'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['sars'][0] != 'False':
-        m.set_annotation(property="SARS Category",
-                         value=species[acc]['sars'][0],
-                         type="Species",
-                         source="EdwardsLab")
-
-    m.set_annotation(property="FruitFly Evidence",
-                     value=species[acc]['dros'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="FruitFly",
-                     value='true' if species[acc]['dros'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['dros'][0] != 'False':
-        m.set_annotation(property="FruitFly Category",
-                         value=species[acc]['dros'][0],
-                         type="Species",
-                         source="EdwardsLab")
-
-    m.set_annotation(property="Yeast Evidence",
-                     value=species[acc]['yeast'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="Yeast",
-                     value='true' if species[acc]['yeast'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['yeast'][0] != 'False':
-        m.set_annotation(property="Yeast Category",
-                         value=species[acc]['yeast'][0],
-                         type="Species",
-                         source="EdwardsLab")
-
-    m.set_annotation(property="Pig Evidence",
-                     value=species[acc]['pig'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="Pig",
-                     value='true' if species[acc]['pig'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['pig'][0] != 'False':
-        m.set_annotation(property="Pig Category",
-                         value=species[acc]['pig'][0],
-                         type="Species",
-                         source="EdwardsLab")
-
-    m.set_annotation(property="SlimeMold Evidence",
-                     value=species[acc]['slimemold'][1],
-                     type="Species",
-                     source="EdwardsLab")
-    m.set_annotation(property="SlimeMold",
-                     value='true' if species[acc]['slimemold'][0] in ('Direct','Subsumption') else 'false',
-                     type="Species",
-                     source="EdwardsLab")
-    if species[acc]['slimemold'][0] != 'False':
-        m.set_annotation(property="SlimeMold Category",
-                         value=species[acc]['slimemold'][0],
-                         type="Species",
-                         source="EdwardsLab")
+        if species[acc][sp][0] != 'False':
+            m.set_annotation(property="%s Category"%(species2common[sp],),
+                             value=species[acc][sp][0],
+                             type="Species",
+                             source="EdwardsLab")
 
     if w.put(m):
         print acc
