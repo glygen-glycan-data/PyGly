@@ -191,7 +191,7 @@ for acc in sorted(accessions()):
 
     short_good = False
     if node_count == sum(map(lambda k: comp.get(k,0),
-                             ("HexNAc","Hex","Fuc","NeuAc"))):
+                             ("HexNAc","Hex","Fuc","NeuAc","NeuGc"))):
 	short_good = True
 
     if not byonic_good and not uckb_good and not short_good:
@@ -219,7 +219,8 @@ for acc in sorted(accessions()):
             comp['N'] = comp['HexNAc']
             comp['F'] = comp['Fuc']
             comp['Sia'] = comp['NeuAc']
-            for k in ['H','N','F','Sia']:
+            comp['G'] = comp['NeuGc']
+            for k in ['H','N','F','Sia','G']:
                 if comp[k] != 0:
 		    short_string += k[0]
 		    if comp[k] > 1:
@@ -256,7 +257,8 @@ for acc in sorted(accessions()):
             comp['H'] = comp['Hex']
             comp['N'] = comp['HexNAc']
             comp['Sia'] = comp['NeuAc']
-            for k in ['H','N','Sia']:
+            comp['G'] = comp['NeuGc']
+            for k in ['H','N','Sia','G']:
                 if comp[k] > 0:
 	    	    short_string += k[0]
 		    if comp[k] > 1:
