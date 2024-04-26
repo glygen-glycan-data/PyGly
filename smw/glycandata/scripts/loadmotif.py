@@ -9,7 +9,7 @@ w = GlycanData()
 import findpygly
 from pygly.GlycanResource import GlycoMotifDev, GlycoMotif
 
-gm = GlycoMotifDev(prefetch=True,verbose=False,usecache=False)
+gm = GlycoMotif(local=True,prefetch=True,verbose=False,usecache=False)
 
 collections = ('GGM',)
 
@@ -36,15 +36,15 @@ for g in w.iterglycan():
     strictclassmotifs = set()
     names = set()
     for coll in collections:
-	for m,s,strict,ids,linkids in gm.getmotif(coll,acc):
+	for m,aligntype,strict,ids,linkids in gm.getmotif(coll,acc):
 	    if not allmotifs[m]['classification']:
-		if s:
+		if strict:
 		    strictglygenmotifs.add(m)
 		    if allmotifs[m]['alignment'] == "Whole-Glycan":
 			names.add((m,allmotifs[m]['names'][0]))
 	        allglygenmotifs.add(m)
 	    else:
-		if s:
+		if strict:
 		    strictclassmotifs.add(m)
                 classmotifs.add(m)
     g.set_annotation(value=sorted(strictglygenmotifs),
@@ -64,6 +64,7 @@ for g in w.iterglycan():
                      source='GlycoMotif',
                      type='Motif')
 
+    g.delete_annotations(property="SemanticName",source="GlycoMotif",type="Name")
     for m,n in names:
         g.set_annotation(value=n,property="SemanticName",source="GlycoMotif",sourceid=m,type="Name")
 
