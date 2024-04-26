@@ -149,7 +149,8 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toPython(data)
 
 	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
-           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','Human Evidence','Mouse Evidence','Rat Evidence','Pig Evidence','HCV Evidence','SARS Evidence','FruitFly Evidence','SlimeMold Evidence','Yeast Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide']:
+           data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide'] or \
+           data.get('property').endswith(' Evidence'):
             if isinstance(data.get('value'),basestring):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
@@ -161,7 +162,8 @@ class Annotation(SMW.SMWClass):
         
 	if data.get('value'):
 	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
-             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','Human Evidence','Mouse Evidence','Rat Evidence','Pig Evidence','HCV Evidence','SARS Evidence','FruitFly Evidence','SlimeMold Evidence','Yeast Evidence','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide']:
+             data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide'] or \
+             data.get('property').endswith(' Evidence'):
 	    if isinstance(data['value'],list) or isinstance(data['value'],set):
 		if len(set(data['value'])) > 1:
                     data['value'] = ";".join(map(str,sorted(set(data['value']),key=self.intstrvalue)))
