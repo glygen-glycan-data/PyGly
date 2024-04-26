@@ -1,6 +1,6 @@
 PREFIX glycandata: <http://glyomics.org/glycandata#>
 
-SELECT (?accession  as ?GlyTouCanAccession)
+SELECT DISTINCT (?accession  as ?GlyTouCanAccession)
        (?value as ?MatrixDBAccession)
 WHERE {
   ?glycan glycandata:accession ?accession .
