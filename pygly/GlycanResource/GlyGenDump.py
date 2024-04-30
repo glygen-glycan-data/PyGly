@@ -1,6 +1,7 @@
 
 from .WebServiceResource import WebServiceResource
 import os, os.path, re, traceback, sys
+from collections import defaultdict
 
 def uniqueify(iterable):
     def wrapper(*args,**kwargs):
@@ -37,7 +38,8 @@ class GlyGenSourceFile(WebServiceResource):
         "fruitfly": ('Drosophila melanogaster','7227'),
         "yeast": ('Saccharomyces cerevisiae', '4932'),
         "slimemold": ('Dictyostelium discoideum', '44689'),
-        "pig": ('Sus scrofa', '9823')
+        "pig": ('Sus scrofa', '9823'),
+        "chicken": ('Gallus gallus', '9031')
     }
 
     @uniqueify
@@ -73,6 +75,17 @@ class GlyGenSourceFile(WebServiceResource):
                     del row[k]
             yield row
 
+    def tsvrows(self,section,filename=None,path=None,extn="tsv"):
+        if filename:
+            path = self.source + "/current/" + filename
+        for row in self.query_tsvfullurl(url=self.apiurl+'/'+path+"."+extn):
+            for k,v in list(row.items()):
+                if isinstance(v,str):
+                    row[k] = v.strip()
+                if not row[k]:
+                    del row[k]
+            yield row
+
     def allrows(self,**kw):
         sections = self.sections.split()
         if not hasattr(self,'glygen_sourceid'):
@@ -95,6 +108,8 @@ class GlyGenSourceFile(WebServiceResource):
                     row['_glygen_pubmedid'] = ggpmid
                 yield row
 
+    idfield = 'glytoucan_ac'
+    idfixed = None
     gtcfield = 'glytoucan_ac'
     gtcfixed = None
     taxidfield = 'taxid'
@@ -104,15 +119,15 @@ class GlyGenSourceFile(WebServiceResource):
 
     def getgtc(self,row):
         if row.get(self.gtcfield,self.gtcfixed):
-            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed)
+            yield row.get(self.idfield,self.idfixed),row.get(self.gtcfield,self.gtcfixed)
 
     def gettaxa(self,row):
-        if row.get(self.gtcfield,self.gtcfixed) and row.get(self.taxidfield,self.taxidfixed):
-            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.taxidfield,self.taxidfixed),row.get(self.pmidfield,self.pmidfixed)
+        if row.get(self.idfield,self.idfixed) and row.get(self.taxidfield,self.taxidfixed):
+            yield row.get(self.idfield,self.idfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.taxidfield,self.taxidfixed),row.get(self.pmidfield,self.pmidfixed)
 
     def getpubs(self,row):
-        if row.get(self.gtcfield,self.gtcfixed) and row.get(self.pmidfield,self.pmidfixed):
-            yield row.get(self.gtcfield,self.gtcfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.pmidfield,self.pmidfixed)
+        if row.get(self.idfield,self.idfixed) and row.get(self.pmidfield,self.pmidfixed):
+            yield row.get(self.idfield,self.idfixed),row.get(self.gtcfield,self.gtcfixed),row.get(self.pmidfield,self.pmidfixed)
 
     @uniqueify
     def allgtc(self):
@@ -167,13 +182,16 @@ class GlyGenSourceFile(WebServiceResource):
         Literature
         BiomarkerDB
         EMBL
+        MatrixDB
+        PDCCCRCC
+        Diabetes
     """.split()
 
 class GlyConnectSourceFile(GlyGenSourceFile):
     source = 'glyconnect'
     glygen_source = "GlyConnect"
     glygen_sourceid = None
-    sections = 'human mouse rat fruitfly sarscov2 yeast dicty pig'
+    sections = 'human mouse rat fruitfly sarscov2 yeast dicty pig chicken'
 
     def json2rows(self,json):
         return json['results']
@@ -396,8 +414,9 @@ class SyntheticSourceFile(GlyGenSourceFile):
 class GPTWikiSourceFile(GlyGenSourceFile):
     source="gptwiki"
     glygen_source="GPTwiki"
-    glygen_sourceid=None
+    # glygen_sourceid="GLY_000480"
     sections="glycosites"
+    idfield="GlyTouCan"
     gtcfield="GlyTouCan"
     taxidfixed="9606"
 
@@ -456,19 +475,21 @@ class OGlcNAcAtlasSourceFile(GlyGenSourceFile):
     glygen_source = "OGlcNAcAtlas"
     sections = "ambiguous_sites unambiguous_sites"
     gtcfixed = "G49108TO"
+    idfixed = "G49108TO"
     taxid2dsid = { 
                   "9606": "GLY_000708",
                   "10090": "GLY_000709",
                   "10116": "GLY_000710",
                   "7227": "GLY_000711",
                   "4932": "GLY_000800",
+                  "9823": "GLY_000955"
                  }
     speciesmap = {
                   "Drosophila": "fruitfly",
                  }
 
     def rows(self,section):
-        for row in self.csvrows(self.source,filename=section+'_version_2.0'):
+        for row in self.csvrows(self.source,filename=section):
             species = self.speciesmap.get(row['species'],row['species'])
             if species in self.glygen_species:
                 row['taxid'] = self.glygen_species[species][1]
@@ -502,6 +523,7 @@ class OGluCSourceFile(GlyGenSourceFile):
     glygen_sourceid = "GLY_000716"
     glygen_pubmedid = "34411563"
     sections = "human"
+    idfield = "saccharide"
     gtcfield = "saccharide"
     pmidfield = "evidence"
     
@@ -517,6 +539,7 @@ class LiteratureSourceFile(GlyGenSourceFile):
     # glygen_sourceid = "GLY_000612 GLY_000335"
     # glygen_pubmedid = "16442106 18187336"
     # sections = "sarscov1 hcv1a"
+    idfield = "saccharide"
     gtcfield = "saccharide"
     taxidfield = "tax_id_uniprotkb_ac"
     pmidfield = "evidence"
@@ -524,20 +547,38 @@ class LiteratureSourceFile(GlyGenSourceFile):
     def rows(self,section):
         return self.csvrows(section,path="export_files/current/%s_proteoform_glycosylation_sites_literature"%(section,))
 
+class DiabetesSourceFile(GlyGenSourceFile):
+    glygen_source = "GornikLab"
+    source = "export_files"
+    sections = "none"
+    idfield = "ID"
+    gtcfield = "GlyTouCan"
+    taxidfixed = "9606"
+    glygen_sourceid = "GLY_000960"
+    glygen_pubmedid = "28905229"
+    pmidfixed = "28905229"
+
+    def rows(self,section):
+        return self.csvrows("export_files",filename="diabetes_glycomic_mapping")
+
 class BiomarkerDBSourceFile(GlyGenSourceFile):
     source = "biomarkerdb"
     glygen_source = "BiomarkerKB"
     glygen_sourceid = "GLY_000737"
-    sections = "allbiomarkers-all"
+    sections = "allbiomarkers"
+    idfield = "GlyTouCan"
     gtcfield = "GlyTouCan"
     taxidfixed = "9606"
 
     def rows(self,section):
-        for row in self.csvrows(section=self.source,filename=section):
-            for xref in map(str.strip,row.get('Main x-ref',"").split("|")):
-                if xref.startswith("GTC:"):
-                    row['GlyTouCan'] = xref[4:]
-                    yield row
+        for row in self.tsvrows(section=self.source,filename=section):
+            pmid = row.get("evidence_source","")
+            if pmid.startswith("Pubmed:"):
+                row['pmid'] = pmid.split(':',1)[1]
+            xref = row.get("assessed_biomarker_entity_id","")
+            if xref.startswith("GTC:"):
+                row['GlyTouCan'] = xref.split(':',1)[1]
+                yield row
 
 class EMBLSourceFile(GlyGenSourceFile):
     source = "embl"
@@ -565,6 +606,79 @@ class EMBLSourceFile(GlyGenSourceFile):
             row['glytoucan_ac'] = self._comp_lookup[comp]
             row['taxid'] = taxid
             row['_glygen_sourceid'] = self.taxid2dsid[taxid]
+            yield row
+
+class MatrixDBSourceFile(GlyGenSourceFile):
+    source = "matrixdb"
+    glygen_source = "MatrixDB"
+    sections = "matrixdb_CORE"
+    gagurl = "http://matrixdb.univ-lyon1.fr/download//Custom_MatrixDB_biomolecules.tsv"
+    idfield = "id"
+    gtcfield = "gtcacc"
+
+    def rows(self,section):
+        if not hasattr(self,'_gag_lookup'):
+            self._gag_lookup = dict()
+            header = None
+            for l in self.query_txtfullurl(url=self.gagurl).splitlines():
+                sl = l.decode('utf8').split('\t')
+                if not header:
+                    header = sl
+                    continue
+                row = dict(zip(header,sl))
+                if not row['MatrixDB identifier'].startswith('GAG_'):
+                    continue
+                gtcid = None
+                for exid in row['External identifiers'].split(','):
+                    if exid.startswith('GlyTouCan:'):
+                        gtcid = exid.split(':',1)[1]
+                        break
+                if not gtcid:
+                    continue
+                self._gag_lookup[row['MatrixDB identifier'].strip()] = gtcid
+        gagseen = set()
+        for row in self.tsvrows(self.source,filename=section,extn='tab'):
+            for key in ("#ID(s) interactor A","ID(s) interactor B","Alt. ID(s) interactor A","Alt. ID(s) interactor B"):
+                if row[key].startswith('matrixdb:GAG_'):
+                    gagid = row[key].split(':',1)[1]
+                    if gagid not in gagseen and gagid in self._gag_lookup:
+                        gagseen.add(gagid)
+                        yield dict(id=gagid,gtcacc=self._gag_lookup[gagid])
+
+class PDCCCRCCSourceFile(GlyGenSourceFile):
+    source = "pdc"
+    glygen_source = "PDC-CCRCC"
+    sections = "none"
+    taxidfixed = "9606"
+    glygen_sourceid = "GLY_000961"
+    glygen_pubmedid = "37074911"
+    pmidfixed = "37074911"
+    shortcomp2gtcacc = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/data/shortcomp2glytoucan.txt"
+
+    def rows(self,section):
+        if not hasattr(self,'_comp_lookup'):
+            self._comp_lookup = dict()
+            for l in self.query_txtfullurl(url=self.shortcomp2gtcacc).splitlines():
+                gtcacc,shcomp = l.decode('utf8').split()
+                self._comp_lookup[shcomp] = gtcacc
+        for row in self.tsvrows(self.source,filename="ccRCC_TMT_intact_glycopeptide_abundance_MD-MAD"):
+            # print(row['Nglycan'])
+            splshcomp = re.split(r'([A-Z])',row['Nglycan'])
+            shcompdict = defaultdict(int)
+            for i in range(1,len(splshcomp),2):
+                if int(splshcomp[i+1]) > 0:
+                    shcompdict[splshcomp[i]] = int(splshcomp[i+1])
+            normshcomp = ""
+            for m in "HNFS":
+                if shcompdict[m] > 1:
+                    normshcomp += (m + str(shcompdict[m]))
+                elif shcompdict[m] == 1:
+                    normshcomp += m
+            # print(normshcomp)
+            if normshcomp not in self._comp_lookup:
+                continue
+            gtcacc = self._comp_lookup[normshcomp]
+            row['glytoucan_ac'] = gtcacc
             yield row
 
 class GlyGenDataset(WebServiceResource):

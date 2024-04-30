@@ -100,6 +100,8 @@ class WebServiceResource(GlycanResource):
                 response = json.loads(response)
             elif thetype == "CSV":
                 response = csv.DictReader(StringIO(response.decode(encoding='ascii',errors='ignore')))
+            elif thetype == "TSV":
+                response = csv.DictReader(StringIO(response.decode(encoding='ascii',errors='ignore')),dialect='excel-tab')
             elif thetype == "TEXTGZ":
                 response = TextIOWrapper(BytesIO(gzipdecompress(response)),encoding='utf8')
             elif thetype == "TEXT":

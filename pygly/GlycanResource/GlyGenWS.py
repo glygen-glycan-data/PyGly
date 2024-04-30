@@ -15,8 +15,13 @@ class GlyGenWS(WebServiceResource):
         query=json.dumps(kw)
         result = self.query_glycan_search(query=query)
         list_id = result['list_id']
-        for r in self.query_download_list(list_id=list_id):
-            yield r
+        headers = None
+        for l in self.query_download_list(list_id=list_id).splitlines():
+            if not headers:
+                headers = map(lambda s: s.strip('"'),l.split(","))
+                continue
+            sl = l.strip('"').split('","')
+            yield dict(zip(headers,sl))
 
     def glycan_directsearch(self,**kw):
         offset = 1
