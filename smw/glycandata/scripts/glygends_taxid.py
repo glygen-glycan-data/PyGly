@@ -15,26 +15,30 @@ for acc,taxid,dsid in ggds.alltaxa():
     print "\t".join(map(str,[acc,taxid,"GlyGen",dsid]))
 
 ggsf = GlyGenSourceFile(verbose=False)
-acc2gtc = defaultdict(set)
+acc2gtc = defaultdict(lambda: defaultdict(set))
 for row in ggsf.allsourcegtc():
     if row[1] == "-":
         continue
-    if row[0] != row[1]:
-        acc2gtc[row[0]].add(row[1])
+    if row[0] and row[0] != row[1]:
+        acc2gtc[row[2]][row[0]].add(row[1])
 
 seen = set()
 for origid,gtcacc,taxid,source,sourceid in ggsf.allsourcetaxa():
+    # print(origid,gtcacc,taxid,source,sourceid)
+    accs = None
     if source == "GlyConnect":
         if origid.startswith("S"):
             source = "GlyConnectStructure"
         else:
             source = "GlyConnectComposition"
-        accs = acc2gtc[origid]
+        accs = acc2gtc['GlyConnect'][origid]
         sourceid = origid[1:]
-    elif sourceid in acc2gtc:
-        accs = acc2gtc[origid]
-    elif gtcacc != "-":
+    elif sourceid in acc2gtc[source]:
+        accs = acc2gtc[source][origid]
+    elif gtcacc not in ("-",None):
         accs = [gtcacc]
+    else:
+        continue
     for acc in accs:
         if (acc,taxid,source,sourceid) in seen:
             continue
