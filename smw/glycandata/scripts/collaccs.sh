@@ -25,7 +25,7 @@ cat $DATA/glygen_manual_accessions.txt >> $DATA/glygen_req_accessions.txt
 # echo "#GlycoMotif allmotifs GGM" >> $DATA/glygen_req_accessions.txt
 $PYTHON $PYGLY/GlycanResource/main.py GlycoMotif allmotifs GGM | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
 
-for taxid in 9606 10090 10116 10114 111108 11116 11103 63746 694009 2697049 7227 4932 9823 44689; do
+for taxid in 9606 10090 10116 10114 111108 11116 11103 63746 694009 2697049 7227 4932 9823 44689 9031; do
   # echo "#GlyTouCanNoCache bytaxa $taxid" >> $DATA/glygen_req_accessions.txt
   $PYTHON $PYGLY/GlycanResource/main.py GlyTouCanNoCache bytaxa $taxid >> $DATA/glygen_req_accessions.txt
   $PYTHON $PYGLY/GlycanResource/main.py GlyCosmosNoCache bytaxa $taxid >> $DATA/glygen_req_accessions.txt
