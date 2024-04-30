@@ -345,8 +345,8 @@ class WURCSArchetype(WURCSManipulation):
         redendmono = parts['monos'][0]
         redendmono = copy.deepcopy(redendmono)
         skel2 = self.mapskel(redendmono['skeleton'])
-	assert skel2, redendmono['skeleton']
-	# assert redendmono['skeleton'] in self.skelmap, redendmono['skeleton']
+        assert skel2, redendmono['skeleton']
+        # assert redendmono['skeleton'] in self.skelmap, redendmono['skeleton']
         # skel1 = self.skelmap.get(redendmono['skeleton'])
         # assert skel1 == skel2, " ".join(map(str,[redendmono['skeleton'],skel1, skel2]))
         redendmono['skeleton'] = skel2
