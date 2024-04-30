@@ -1,0 +1,441 @@
+MatrixDB identifier	Common name	Other names	Species	External identifiers	Comments	Other info
+PFRAG_1_human	Endostatin	C-terminus of collagen XVIII	Homo sapiens (taxid:9606)	P39060-PRO_0000005794	His1572_Lys1754	belongs to:P39060,PFRAG_3_human
+PFRAG_1_mouse	Endostatin	C-terminus of collagen XVIII	Mus musculus (taxid:10090)	P39061-PRO_0000005796	His1591_Lys1774	belongs to:P39061,PFRAG_3_mouse
+PFRAG_2_human	Restin	Endostatin-XV,C-terminus domain of collagen XV	Homo sapiens (taxid:9606)	P39059-PRO_0000005789	Pro1198_Ala1386	belongs to:P39059,PFRAG_4_human
+PFRAG_2_mouse	Restin	Endostatin-XV,C-terminus domain of collagen XV	Mus musculus (taxid:10090)	O35206-PRO_0000005791	Pro1177_Thr1365	belongs to:O35206,PFRAG_4_mouse
+PFRAG_3_human	NC1-XVIII	Non collagenous C-terminal domain 1 of collagen XVIII	Homo sapiens (taxid:9606)	P39060-PRO_0000441861	?_Lys1754	belongs to:P39060
+PFRAG_3_mouse	NC1-XVIII	Non collagenous C-terminal domain 1 of collagen XVIII	Mus musculus (taxid:10090)	P39061-PRO_0000441862	?_Lys1774	belongs to:P39061
+PFRAG_4_human	NC1-XV	Non collagenous C-terminal domain 1 of collagen XV	Homo sapiens (taxid:9606)		Asn1133_Lys1388	belongs to:P39059
+PFRAG_4_mouse	NC1-XV	Non collagenous C-terminal domain 1 of collagen XV	Mus musculus (taxid:10090)		Asn1112_Lys1367	belongs to:O35206
+PFRAG_5_human	Tumstatin	Non collagenous C-terminal domain 1 of the alpha 3 chain of collagen IV	Homo sapiens (taxid:9606)	Q01955-PRO_0000279684	Pro1426_His1670	belongs to:Q01955
+PFRAG_5_mouse	Tumstatin	Non collagenous C-terminal domain 1 of the alpha 3 chain of collagen IV	Mus musculus (taxid:10090)	Q9QZS0-PRO_0000279699	Pro1424_His1669	belongs to:Q9QZS0
+PFRAG_6_human	Endorepellin	C terminal domain of perlecan	Homo sapiens (taxid:9606)	P98160-PRO_0000391621	Glu3687_Ser4391	belongs to:P98160
+PFRAG_6_mouse	Endorepellin	C terminal domain of perlecan	Mus musculus (taxid:10090)	Q05793-PRO_0000391623	Glu3008_Ser3707	belongs to:Q05793
+PFRAG_7_human	Canstatin	Non collagenous C-terminal domain 1 of the alpha 2 chain of collagen IV	Homo sapiens (taxid:9606)	P08572-PRO_0000283775	Val1486_Leu1712	belongs to:P08572
+PFRAG_7_mouse	Canstatin	Non collagenous C-terminal domain 1 of the alpha 2 chain of collagen IV	Mus musculus (taxid:10090)	P08122-PRO_0000390487	Val1481_Leu1707	belongs to:P08122
+PFRAG_8_human	Arresten	Non collagenous C-terminal domain 1 of the alpha 1 chain of collagen IV	Homo sapiens (taxid:9606)	P02462-PRO_0000390482	Gly1445_Thr1669	belongs to:P02462
+PFRAG_8_mouse	Arresten	Non collagenous C-terminal domain 1 of the alpha 1 chain of collagen IV	Mus musculus (taxid:10090)	P02463-PRO_0000390483	Gly1445_Thr1669	belongs to:P02463
+PFRAG_9_human	Angiostatin	Kringle domains of plasminogen	Homo sapiens (taxid:9606)	P00747-PRO_0000028057	Asn79_Pro466	belongs to:P00747
+PFRAG_9_mouse	Angiostatin	Kringle domains of plasminogen	Mus musculus (taxid:10090)	P20918-PRO_0000028073	Val98_Trp436	belongs to:P20918
+PFRAG_10_chick	PEX	Hemopexin,C-terminal hemopexin domain of MMP-2	Gallus gallus (taxid:9031)			belongs to:Q90611
+PFRAG_10_human	PEX	Hemopexin,C-terminal hemopexin domain of MMP-2	Homo sapiens (taxid:9606)	P08253-PRO_0000391626	Tyr445_Cys660	belongs to:P08253
+PFRAG_10_mouse	PEX	Hemopexin,C-terminal hemopexin domain of MMP-2	Mus musculus (taxid:10090)	P33434-PRO_0000391627	Tyr445_Cys662	belongs to:P33434
+PFRAG_11_human	Vastatin	Non collagenous C-terminal domain of the alpha 1 chain of collagen VIII	Homo sapiens (taxid:9606)	P27658-PRO_0000390484	Ala572_Met744	belongs to:P27658
+PFRAG_11_mouse	Vastatin	Non collagenous C-terminal domain of the alpha 1 chain of collagen VIII	Mus musculus (taxid:10090)	Q00780-PRO_0000390485	Ala573_Met744	belongs to:Q00780
+PFRAG_12_human	Beta-amyloid peptide 1-42	Peptide (1-42) of the amyloid precursor protein	Homo sapiens (taxid:9606)	P05067-PRO_0000000092	Asp672_Ala713	belongs to:P05067
+PFRAG_12_mouse	Beta-amyloid peptide 1-42	Peptide(1-42) of the amyloid precursor protein	Mus musculus (taxid:10090)	P12023-PRO_0000000118	Asp672_Ala713	belongs to:P12023
+PFRAG_13_human	Beta-amyloid peptide 1-40	Peptide (1-40) of the amyloid precursor protein	Homo sapiens (taxid:9606)	P05067-PRO_0000000093	Asp672_Val711	belongs to:P05067
+PFRAG_13_mouse	Beta-amyloid peptide 1-40	Peptide (1-40) of the amyloid precursor protein	Mus musculus (taxid:10090)	P12023-PRO_0000000119	Asp672_Val711	belongs to:P12023
+PFRAG_14_human	HepV		Homo sapiens (taxid:9606)		Ile824_Pro950	belongs to:P20908
+PFRAG_14_mouse	HepV		Mus musculus (taxid:10090)		Ile824_Pro950	belongs to:O88207
+PFRAG_15_human	Tetrastatin	Non collagenous C-terminal domain domain of the alpha 4 chain of collagen IV	Homo sapiens (taxid:9606)		tyr1462_Ser1690	belongs to:P53420
+PFRAG_16_human	LG3	C-terminus of perlecan	Homo sapiens (taxid:9606)	P98160-PRO_0000391622	Asp4197_Ser4391	belongs to:PFRAG_6_human,P98160
+PFRAG_16_mouse	LG3	C-terminus of perlecan	Mus musculus (taxid:10090)	Q05793-PRO_0000391624	Asp3514_Ser3707	belongs to:PFRAG_6_mouse,Q05793
+PFRAG_17_human	Complement C3b alpha' chain		Homo sapiens (taxid:9606)	P01024-PRO_0000005911	Ser749_Asn1663	belongs to:P01024
+PFRAG_17_mouse	Complement C3b alpha' chain		Mus musculus (taxid:10090)	P01027-PRO_0000005921	Ser749_Asn1663	belongs to:P01027
+PFRAG_18_human	Complement C3 beta chain		Homo sapiens (taxid:9606)	P01024-PRO_0000005908	Ser23_Ala667	belongs to:P01024
+PFRAG_18_mouse	Complement C3 beta chain		Mus musculus (taxid:10090)	P01027-PRO_0000005918	Ile25_Ala666	belongs to:P01027
+PFRAG_19_human	Transforming growth factor beta-1		Homo sapiens (taxid:9606)	P01137-PRO_0000033763	Ala279_Ser390	belongs to:P01137
+PFRAG_19_mouse	Transforming growth factor beta-1		Mus musculus (taxid:10090)	P04202-PRO_0000033767	Ala279_Ser390	belongs to:P04202
+PFRAG_20_human	Transforming growth factor beta-2		Homo sapiens (taxid:9606)	P61812-PRO_0000033785	Ala303_Ser414	belongs to:P61812
+PFRAG_20_mouse	Transforming growth factor beta-2		Mus musculus (taxid:10090)	P27090-PRO_0000033787	Ala303_Ser414	belongs to:P27090
+PFRAG_21_human	Transforming growth factor beta-3		Homo sapiens (taxid:9606)	P10600-PRO_0000033797	Ala301_Ser412	belongs to:P10600
+PFRAG_21_mouse	Transforming growth factor beta-3		Mus musculus (taxid:10090)	P17125-PRO_0000033799	Ala299_Ser410	belongs to:P17125
+PFRAG_22_human	Anastellin		Homo sapiens (taxid:9606)	P02751-PRO_0000390479	Pro627_Thr702	belongs to:P02751
+PFRAG_23_human	Heparanase 8 kDa subunit		Homo sapiens (taxid:9606)	Q9Y251-PRO_0000042260	Gln36_Glu109	belongs to:Q9Y251
+PFRAG_23_mouse	Heparanase 8 kDa subunit		Mus musculus (taxid:10090)	Q6YGZ1-PRO_0000042263	Asp28_Glu101	belongs to:Q6YGZ1
+PFRAG_24_human	Heparanase 50 kDa subunit		Homo sapiens (taxid:9606)	Q9Y251-PRO_0000042262	Lys158_Ile543	belongs to:Q9Y251
+PFRAG_24_mouse	Heparanase 50 kDa subunit		Mus musculus (taxid:10090)	Q6YGZ1-PRO_0000042265	Lys150_Ile535	belongs to:Q6YGZ1
+PFRAG_25_HIV1	Surface protein gp120		Human immunodeficiency virus type 1 group M subtype B (taxid:11686)	P03377-PRO_0000038388	Lys33_Arg516	belongs to:P03377
+PFRAG_26_human	Tumor necrosis factor ligand superfamily member 11, soluble form		Homo sapiens (taxid:9606)	O14788-PRO_0000034515	Ile140_Asp317	belongs to:O14788
+PFRAG_27_human	Serine protease HTRA2, mitochondrial		Homo sapiens (taxid:9606)	O43464-PRO_0000026946	Ala134_Glu458	belongs to:O43464
+PFRAG_28_human	Processed cyclic AMP-responsive element-binding protein 3		Homo sapiens (taxid:9606)	O43889-PRO_0000296204	Met1_?	belongs to:O43889
+PFRAG_29_human	Factor VIIIa heavy chain, 200 kDa isoform		Homo sapiens (taxid:9606)	P00451-PRO_0000002968	Ala20_Arg1332	belongs to:P00451
+PFRAG_30_human	Complement C1r subcomponent heavy chain		Homo sapiens (taxid:9606)	P00736-PRO_0000027578	Ser18_Arg463	belongs to:P00736
+PFRAG_31_human	Complement C1r subcomponent light chain		Homo sapiens (taxid:9606)	P00736-PRO_0000027579	Ile464_Asp705	belongs to:P00736
+PFRAG_32_human	Plasmin heavy chain A		Homo sapiens (taxid:9606)	P00747-PRO_0000028054	Glu20_Arg580	belongs to:P00747
+PFRAG_33_human	Plasmin heavy chain A, short form		Homo sapiens (taxid:9606)	P00747-PRO_0000028056	Val98_Arg580	belongs to:P00747
+PFRAG_34_bovine	Angiotensin-2		Bos taurus (taxid:9913)	P01017-PRO_0000032443	Asp1-Phe8	belongs to:P01017
+PFRAG_34_human	Angiotensin-2		Homo sapiens (taxid:9606)	P01019-PRO_0000032458	Asp34_Phe41	belongs to:P01019
+PFRAG_35_human	Angiotensin-3		Homo sapiens (taxid:9606)	P01019-PRO_0000032459	Arg35_Phe41	belongs to:P01019
+PFRAG_36_human	Complement C3d fragment		Homo sapiens (taxid:9606)	P01024-PRO_0000005915	His1002_Arg1303	belongs to:P01024
+PFRAG_37_human	Lysyl-bradykinin		Homo sapiens (taxid:9606)	P01042-PRO_0000006687	Lys380_Arg389	belongs to:P01042
+PFRAG_38_human	Bradykinin		Homo sapiens (taxid:9606)	P01042-PRO_0000006688	Arg381_Arg389	belongs to:P01042
+PFRAG_38_rat	Bradykinin		Rattus norvegicus (taxid:10116)	P08934-PRO_0000006697	Arg381_Arg389	belongs to:P08934
+PFRAG_39_human	Propeptide		Homo sapiens (taxid:9606)	P01138-PRO_0000019599	Glu19_Arg121	belongs to:P01138
+PFRAG_40_human	Beta-nerve growth factor		Homo sapiens (taxid:9606)	P01138-PRO_0000019600	Ser122_Ala241	belongs to:P01138
+PFRAG_40_mouse	Beta-nerve growth factor		Mus musculus (taxid:10090)	P01139-PRO_0000019602	Ser122_Gly241	belongs to:P01139
+PFRAG_41_human	Arg-vasopressin		Homo sapiens (taxid:9606)	P01185-PRO_0000020515	Cys20_Gly28	belongs to:P01185
+PFRAG_42_human	Met-enkephalin		Homo sapiens (taxid:9606)	P01210-PRO_0000008243	Tyr100_Met104	belongs to:P01210
+PFRAG_43_human	Vasoactive intestinal peptide		Homo sapiens (taxid:9606)	P01282-PRO_0000011460	His125_Asn152	belongs to:P01282
+PFRAG_44_human	Neuropeptide Y		Homo sapiens (taxid:9606)	P01303-PRO_0000025321	Tyr29_Tyr64	belongs to:P01303
+PFRAG_45_human	Gastrin		Homo sapiens (taxid:9606)	P01350-PRO_0000010636	Gln76_Phe92	belongs to:P01350
+PFRAG_46_human	Tumor necrosis factor, soluble form		Homo sapiens (taxid:9606)	P01375-PRO_0000034424	Val77_Leu233	belongs to:P01375
+PFRAG_47_human	Plasma kallikrein heavy chain		Homo sapiens (taxid:9606)	P03952-PRO_0000028021	Gly20_Arg390	belongs to:P03952
+PFRAG_48_human	Major prion protein		Homo sapiens (taxid:9606)	P04156-PRO_0000025675	Lys23_Ser230	belongs to:P04156
+PFRAG_49_human	C99		Homo sapiens (taxid:9606)	P05067-PRO_0000000091	Asp672_Asn770	belongs to:P05067
+PFRAG_50_human	Gamma-secretase C-terminal fragment 57		Homo sapiens (taxid:9606)	P05067-PRO_0000000098	Thr714_Asn770	belongs to:P05067
+PFRAG_51_human	Fibroblast growth factor 1		Homo sapiens (taxid:9606)	P05230-PRO_0000008908	Phe16_Asp155	belongs to:P05230
+PFRAG_52_human	Insulin receptor subunit beta		Homo sapiens (taxid:9606)	P06213-PRO_0000016689	Ser763_Ser1382	belongs to:P06213
+PFRAG_52_rat	Insulin receptor subunit beta		Rattus norvegicus (taxid:10116)	P15127-PRO_0000016698	Ser764_Ser1383	belongs to:P15127
+PFRAG_53_human	Cholecystokinin-8		Homo sapiens (taxid:9606)	P06307-PRO_0000010542	Asp96_Phe103	belongs to:P06307
+PFRAG_54_human	Calcitonin gene-related peptide 1		Homo sapiens (taxid:9606)	P06881-PRO_0000004054	Ala83_Phe119	belongs to:P06881
+PFRAG_55_human	Osteopontin		Homo sapiens (taxid:9606)	P10451-PRO_0000020321	Ile17_Asn314	belongs to:P10451
+PFRAG_56_human	DBL-transforming protein		Homo sapiens (taxid:9606)	P10911-PRO_0000030434	His498_Tyr925	belongs to:P10911
+PFRAG_57_human	Cleaved by PCSK5		Homo sapiens (taxid:9606)	P12643-PRO_0000033824	Leu24_Arg282	belongs to:P12643
+PFRAG_58_human	Bone morphogenetic protein 2		Homo sapiens (taxid:9606)	P12643-PRO_0000033825	Gln283_Arg396	belongs to:P12643
+PFRAG_59_human	MIP-1-beta(3-69)		Homo sapiens (taxid:9606)	P13236-PRO_0000005165	Met26_Asn92	belongs to:P13236
+PFRAG_60_human	Mucin-1 subunit beta		Homo sapiens (taxid:9606)	P15941-PRO_0000317447	Ser1098_Leu1255	belongs to:P15941
+PFRAG_61_human	Inter-alpha-trypsin inhibitor heavy chain H2		Homo sapiens (taxid:9606)	P19823-PRO_0000016518	Ser55_Asp702	belongs to:P19823
+PFRAG_62_human	Inter-alpha-trypsin inhibitor heavy chain H1		Homo sapiens (taxid:9606)	P19827-PRO_0000016507	Ser35_Asp672	belongs to:P19827
+PFRAG_63_human	Nuclear factor NF-kappa-B p50 subunit		Homo sapiens (taxid:9606)	P19838-PRO_0000030311	Met1_Gly433	belongs to:P19838
+PFRAG_63_mouse	Nuclear factor NF-kappa-B p50 subunit		Mus musculus (taxid:10090)	P25799-PRO_0000030313	Met1_Gly431	belongs to:P25799
+PFRAG_64_human	Substance P		Homo sapiens (taxid:9606)	P20366-PRO_0000033530	Arg58_Met68	belongs to:P20366
+PFRAG_65_human	Neurokinin A		Homo sapiens (taxid:9606)	P20366-PRO_0000033534	His98_Met107	belongs to:P20366
+PFRAG_66_human	Galanin		Homo sapiens (taxid:9606)	P22466-PRO_0000010449	Gly33_Ser62	belongs to:P22466
+PFRAG_67_human	Peptidyl-prolyl cis-trans isomerase B		Homo sapiens (taxid:9606)	P23284-PRO_0000025479	Asp34_Glu216	belongs to:P23284
+PFRAG_68_human	Caspase-1 subunit p20		Homo sapiens (taxid:9606)	P29466-PRO_0000004522	Asn120_Asp497	belongs to:P29466
+PFRAG_69_human	Neurotensin		Homo sapiens (taxid:9606)	P30990-PRO_0000019524	Gln151_Leu163	belongs to:P30990
+PFRAG_70_human	Adrenomedullin		Homo sapiens (taxid:9606)	P35318-PRO_0000000963	Tyr95_Tyr146	belongs to:P35318
+PFRAG_71_human	Caspase-3 subunit p17		Homo sapiens (taxid:9606)	P42574-PRO_0000004571	Ser29_Asp175	belongs to:P42574
+PFRAG_72_human	Caspase-3 subunit p12		Homo sapiens (taxid:9606)	P42574-PRO_0000004572	Ser176_His277	belongs to:P42574
+PFRAG_73_human	Notch 1 intracellular domain		Homo sapiens (taxid:9606)	P46531-PRO_0000007676	Val1754_Lys2555	belongs to:P46531
+PFRAG_73_mouse	Notch 1 intracellular domain		Mus musculus (taxid:10090)	Q01705-PRO_0000007679	Val1744_Lys2531	belongs to:Q01705
+PFRAG_74_human	MAP1 light chain LC1		Homo sapiens (taxid:9606)	P46821-PRO_0000018605	Asp2207_Leu2468	belongs to:P46821
+PFRAG_75_human	Lymphotactin		Homo sapiens (taxid:9606)	P47992-PRO_0000005248	Val22_Gly114	belongs to:P47992
+PFRAG_76_human	Presenilin-1 NTF subunit		Homo sapiens (taxid:9606)	P49768-PRO_0000025591	Met1_Met298	belongs to:P49768
+PFRAG_76_mouse	Presenilin-1 NTF subunit		Mus musculus (taxid:10090)	P49769-PRO_0000025597	Met1_Met298	belongs to:P49769
+PFRAG_76_rat	Presenilin-1 NTF subunit		Rattus norvegicus (taxid:10116)	P97887-PRO_0000025599	Met1_Met298	belongs to:P97887
+PFRAG_77_human	Presenilin-1 CTF subunit		Homo sapiens (taxid:9606)	P49768-PRO_0000025592	Ala299_Ile467	belongs to:P49768
+PFRAG_77_mouse	Presenilin-1 CTF subunit		Mus musculus (taxid:10090)	P49769-PRO_0000025598	Ala299_Ile467	belongs to:P49769
+PFRAG_77_rat	Presenilin-1 CTF subunit		Rattus norvegicus (taxid:10116)	P97887-PRO_0000025600	Ala299_Ile468	belongs to:P97887
+PFRAG_78_human	Presenilin-2 NTF subunit		Homo sapiens (taxid:9606)	P49810-PRO_0000025603	Met1_Ala297	belongs to:P49810
+PFRAG_79_human	Antibacterial peptide LL-37		Homo sapiens (taxid:9606)	P49913-PRO_0000004724	Leu134_Ser170	belongs to:P49913
+PFRAG_80_human	Nuclear pore complex protein Nup96		Homo sapiens (taxid:9606)	P52948-PRO_0000019930	Ser881_Leu1817	belongs to:P52948
+PFRAG_81_human	Nuclear factor NF-kappa-B p52 subunit		Homo sapiens (taxid:9606)	Q00653-PRO_0000030322	Met1_Ala454	belongs to:Q00653
+PFRAG_82_human	MLL cleavage product N320		Homo sapiens (taxid:9606)	Q03164-PRO_0000390949	Met1-Asp2718	belongs to:Q03164
+PFRAG_83_human	MLL cleavage product C180		Homo sapiens (taxid:9606)	Q03164-PRO_0000390950	Gly2719_Asn3969	belongs to:Q03164
+PFRAG_84_human	Inter-alpha-trypsin inhibitor heavy chain H3		Homo sapiens (taxid:9606)	Q06033-PRO_0000016530	Leu35_Asp651	belongs to:Q06033
+PFRAG_85_human	Nociceptin		Homo sapiens (taxid:9606)	Q13519-PRO_0000008327	Phe130_Gln146	belongs to:Q13519
+PFRAG_86_human	Caspase-8 subunit p18		Homo sapiens (taxid:9606)	Q14790-PRO_0000004629	Ser217_Asp374	belongs to:Q14790
+PFRAG_87_human	Cyclin-dependent kinase 5 activator 1, p25		Homo sapiens (taxid:9606)	Q15078-PRO_0000004795	Ala99_Arg307	belongs to:Q15078
+PFRAG_88_human	GTP-binding protein Rheb		Homo sapiens (taxid:9606)	Q15382-PRO_0000082708	Met1_Cys181	belongs to:Q15382
+PFRAG_89_human	Platelet-derived growth factor D, receptor-binding form		Homo sapiens (taxid:9606)	Q9GZP0-PRO_0000250189	Ser250_Arg370	belongs to:Q9GZP0
+PFRAG_90_human	Neurokinin-B		Homo sapiens (taxid:9606)	Q9UHF0-PRO_0000033566	Asp81_Met90	belongs to:Q9UHF0
+PFRAG_91_human	Band 4.1-like protein 3, N-terminally processed		Homo sapiens (taxid:9606)	Q9Y2J2-PRO_0000423194	Thr2_Asp1087	belongs to:Q9Y2J2
+PFRAG_92_human	Apoptosis-inducing factor 1, mitochondrial		Homo sapiens (taxid:9606)	O95831-PRO_0000022030	Leu102_Asp613	belongs to:O95831
+PFRAG_92_mouse	Apoptosis-inducing factor 1, mitochondrial		Mus musculus (taxid:10090)	Q9Z0X1-PRO_0000022031	Gly102_Asp612	belongs to:Q9Z0X1
+PFRAG_93_human	Atrial natriuretic factor		Homo sapiens (taxid:9606)	P01160-PRO_0000001494	Ser124_Tyr151	belongs to:P01160
+PFRAG_93_rat	Atrial natriuretic factor		Rattus norvegicus (taxid:10116)	P01161-PRO_0000391785	Ser123_Tyr150	belongs to:P01161
+PFRAG_94_bovine	Insulin B chain		Bos taurus (taxid:9913)	P01317-PRO_0000015764	Phe25_Ala54	belongs to:P01317
+PFRAG_94_human	Insulin B chain		Homo sapiens (taxid:9606)	P01308-PRO_0000015819	Phe25_Thr54	belongs to:P01308
+PFRAG_95_human	CTF1-alpha		Homo sapiens (taxid:9606)	O94985-PRO_0000323598	Ala826_Tyr981	belongs to:O94985
+PFRAG_95_mouse	CTF1-alpha		Mus musculus (taxid:10090)	Q9EPL2-PRO_0000323600	Ala826_Tyr979	belongs to:Q9EPL2
+PFRAG_96_human	Soluble APP-beta		Homo sapiens (taxid:9606)	P05067-PRO_0000000090	Leu18_Met671	belongs to:P05067
+PFRAG_96_rat	Soluble APP-beta		Rattus norvegicus (taxid:10116)	P08592-PRO_0000000161	Leu18_Met671	belongs to:P08592
+PFRAG_97_human	BH3-interacting domain death agonist p15		Homo sapiens (taxid:9606)	P55957-PRO_0000223233	Asn62_Asp195	belongs to:P55957
+PFRAG_97_mouse	BH3-interacting domain death agonist p15		Mus musculus (taxid:10090)	P70444-PRO_0000223236	Ser61_Asp195	belongs to:P70444
+PFRAG_98_human	Notch 3 intracellular domain		Homo sapiens (taxid:9606)	Q9UM47-PRO_0000007694	Val1662_Ala2321	belongs to:Q9UM47
+PFRAG_98_mouse	Notch 3 intracellular domain		Mus musculus (taxid:10090)	Q61982-PRO_0000007697	Val1663_Ala2318mouse	belongs to:Q61982
+PFRAG_99_human	Alpha-dystroglycan		Homo sapiens (taxid:9606)	Q14118-PRO_0000021065	His30_Gly653	belongs to:Q14118
+PFRAG_99_mouse	Alpha-dystroglycan		Mus musculus (taxid:10090)	Q62165-PRO_0000021067	His28_Gly651	belongs to:Q62165
+PFRAG_100_human	Beta-dystroglycan		Homo sapiens (taxid:9606)	Q14118-PRO_0000021066	Ser654_Pro895	belongs to:Q14118
+PFRAG_100_mouse	Beta-dystroglycan		Mus musculus (taxid:10090)	Q62165-PRO_0000021068	Ser652_Pro893	belongs to:Q62165
+PFRAG_101_bovine	Lysyl oxidase propeptide		Bos taurus (taxid:9913)	P33072-PRO_0000045436	Ala21_Gly169	belongs to:P33072
+PFRAG_101_chick	Lysyl oxidase propeptide		Gallus gallus (taxid:9031)	Q05063-PRO_0000018526	Leu22_Gly171	belongs to:Q05063
+PFRAG_101_human	Lysyl oxidase propeptide		Homo sapiens (taxid:9606)	P28300-PRO_0000018520	Ala22_Gly168	belongs to:P28300
+PFRAG_101_mouse	Lysyl oxidase propeptide		Mus musculus (taxid:10090)	P28301-PRO_0000018522	Ala22_Gly162	belongs to:P28301
+PFRAG_101_rat	Lysyl oxidase propeptide		Rattus norvegicus (taxid:10116)	P16636-PRO_0000018524	Ala22_Gly162	belongs to:P16636
+PFRAG_102_bovine	Protein-lysine 6-oxidase	Lysyl oxidase mature	Bos taurus (taxid:9913)	P33072-PRO_0000045437	Asp170_Tyr418	belongs to:P33072
+PFRAG_102_chick	Protein-lysine 6-oxidase	Lysyl oxidase mature	Gallus gallus (taxid:9031)	Q05063-PRO_0000018527	Asp172_Tyr420	belongs to:Q05063
+PFRAG_102_human	Protein-lysine 6-oxidase	Lysyl oxidase mature	Homo sapiens (taxid:9606)	P28300-PRO_0000018521	Asp169_Tyr417	belongs to:P28300
+PFRAG_102_mouse	Protein-lysine 6-oxidase	Lysyl oxidase mature	Mus musculus (taxid:10090)	P28301-PRO_0000018523	Asp163_Tyr411	belongs to:P28301
+PFRAG_102_rat	Protein-lysine 6-oxidase	Lysyl oxidase mature	Rattus norvegicus (taxid:10116)	P16636-PRO_0000018525	Asp163_Tyr411	belongs to:P16636
+GAG_1	Heparin			CHEBI:28304,KEGG:cpd:C00374	A highly sulfated linear glycosaminoglycan comprising complex patterns of uronic acid-(1->4)-D-glucosamine repeating subunits. Used as an injectable anticoagulant, it has the highest negative charge density of any known biological molecule.	Defined by the disaccharide unit (GlcNAc[alpha]1-4GlcA[beta]1-4IdoA[alpha] 1-4)n, containing N- and O-sulfate esters at various positions that has the highest amount of iduronic acid and of N- and O-sulfate residues. Made by mast cells.
+GAG_2	Heparan sulfate			CHEBI:28815,KEGG:cpd:C00925	A linear polysaccharide in which the backbone consists of a variably sulfated repeating disaccharide unit. The structure of heparan sulfate is representative and shows the most common repeating unit, which is variably sulfated.	Defined by the disaccharide unit (GlcNAc[alpha]1-4GlcA[beta]1-4IdoA[alpha] 1-4)n, containing N- and O-sulfate esters at various positions, and typically found covalently linked to a proteoglycan core protein.
+GAG_3	Dermatan Sulfate	Chondroitin_Sulfate_B		CHEBI:18376,KEGG:cpd:C00426	Any of a group of glycosaminoglycans with repeating units consisting of variously sulfated beta1->4-linked L-iduronyl-(beta1->3)-N-acetyl-D-galactosamine units. The structure shown is an example of a repeating unit. Each monosaccharide may be unsulfated, sulfated once, or sulfated twice. Most commonly the hydroxy groups of the 4- and 6-positions of the N-acetyl-galactosamine are sulfated, with some chains also having sulfation at the 2-position of the iduronic acid.	A modified form of chondroitin sulfate  (defined by the disaccharide unit (GalNAc[beta]1-4GlcA[beta] 1-3)n, modified with ester-linked sulfate at certain positions) in which a portion of the D-glucuronate residues are epimerized to L-iduronates. Typically found covalently linked to a core protein to form a proteoglycan.
+GAG_4	Chondroitin Sulfate A	Chondroitin 4-sulfate		CHEBI:18250,KEGG:cpd:C00634,GlyTouCan:G19059PI	A chondroitin sulfate in which the site of sulfation is carbon 4 of the N-acetylgalactosamine (GalNAc) sugar.	Defined by the disaccharide unit (GalNAc[beta]1-4GlcA[beta] 1-3)n, modified with ester-linked sulfate at certain positions and typically found covalently linked to a core protein to form a proteoglycan.
+GAG_5	Chondroitin Sulfate C	Chondroitin 6-sulfate		CHEBI:18296,KEGG:cpd:C00635,GlyTouCan:G34992DF	A chondroitin sulfate in which the site of sulfation is carbon 6 of the N-acetylgalactosamine (GalNAc) sugar.	Defined by the disaccharide unit (GalNAc[beta]1-4GlcA[beta] 1-3)n, modified with ester-linked sulfate at certain positions and typically found covalently linked to a core protein to form a proteoglycan.
+GAG_6	Chondroitin Sulfate D			CHEBI:37397,KEGG:cpd:C00607,GlyTouCan:G46732TY	A chondroitin sulfate in which the sites of sulfation are carbon 2 of the glucuronic acid and carbon 6 of the N-acetylgalactosamine (GalNAc) sugar.	Defined by the disaccharide unit (GalNAc[beta]1-4GlcA[beta] 1-3)n, modified with ester-linked sulfate at certain positions and typically found covalently linked to a core protein to form a proteoglycan.
+GAG_7	Chondroitin Sulfate E			CHEBI:52562,KEGG:cpd:C00607,GlyTouCan:G03536SO	A chondroitin sulfate in which the site of sulfation is positions 4 and 6 of the N-acetylgalactosamine (GalNAc) sugar.	Defined by the disaccharide unit (GalNAc[beta]1-4GlcA[beta] 1-3)n, modified with ester-linked sulfate at certain positions and typically found covalently linked to a core protein to form a proteoglycan.
+GAG_8	Keratan Sulfate			CHEBI:18331,KEGG:cpd:C00573,GlyTouCan:G11500GM		A poly-N-acetyllactosamine (Gal[beta]1-4GlcNAc[beta] 1-3)n with sulfate esters at C-6 of N-acetylglucosamine and galactose residues, typically found covalently linked to a core protein to form a proteoglycan.
+GAG_9	Hyaluronan			CHEBI:16336,KEGG:cpd:C00518,GlyTouCan:G16235VG		Defined by the disaccharide unit (GlcNAc[beta]1-4GlcA[beta] 1-3)n that is neither sulfated nor covalently linked to protein.
+GAG_10	HepMer_dp04_0001	Heparin,Heparan sulfate		CHEBI:91145,GlyTouCan:G35277LL	An amino tetrasaccharide consisting of alpha-D-GlcNAc-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNAc-(1->4)-beta-D-GlcA in which the hydrogen attached to the anomeric oxygen is replaced by a 4-nitrophenyl group.	alpha-D-GlcNAc-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNAc-(1->4)-beta-D-GlcA-O-pNP
+GAG_11	HepMer_dp04_0002	Heparin,Heparan sulfate		CHEBI:91147,GlyTouCan:G03243KT	An amino tetrasaccharide consisting of alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA in which the hydrogen attached to the anomeric oxygen is replaced by a 4-nitrophenyl group.	alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-O-pNP
+GAG_12	HepMer_dp04_0003	Heparin,Heparan sulfate		CHEBI:91149,GlyTouCan:G26202VU	An amino tetrasaccharide comprising the sequence alpha-L-deltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-IdoA-(1->4)-alpha-D-GlcNS(6S) in which the deltaHexA residue at the non-reducing and can be either D-glucuronic acid or its 5-epimer L-iduronic acid.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNS(6S)
+GAG_13	HepMer_dp09_0001	Heparin,Heparan sulfate		CHEBI:91148,GlyTouCan:G96442QF	An amino tetrasaccharide consisting of beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA in which the hydrogen attached to the anomeric oxygen is replaced by a 4-nitrophenyl group.	beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA-O-pNP
+GAG_14	HP_dp02_0002	Heparin		CHEBI:138717,GlyTouCan:G69038UV	An heparin disaccharide.	alpha-L-IdoA-(1->4)-alpha-D-GlcNS(6S)
+GAG_15	HP_dp02_0003	Heparin		CHEBI:138716,GlyTouCan:G97423JA	An heparin disaccharide.	alpha-L-IdoA-(1->4)-alpha-D-GlcNS
+GAG_16	HP_dp02_0004	Heparin		CHEBI:138715,GlyTouCan:G98814RL	An heparin disaccharide.	alpha-L-IdoA-(1->4)-alpha-D-GlcNAc
+GAG_17	HP_dp02_0005	Heparin		CHEBI:138714,GlyTouCan:G26097PL	An heparin disaccharide.	alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS
+GAG_18	HP_dp02_0007	Heparin		CHEBI:138712,GlyTouCan:G29057GU	An heparin disaccharide.	alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)
+GAG_19	HP_dp02_0008	Heparin		CHEBI:138684,GlyTouCan:G92417BR	An unsaturated heparin disaccharide that is 2-deoxy-2-(sulfoamino)-alpha-D-glucopyranose in which the hydroxy group at position 4 has been glycosylated by a 4-deoxy-2-O-sulfo-alpha-L-threo-hex-4-enopyranosiduronic acid moiety.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS
+GAG_20	HP_dp02_0009	Heparin		CHEBI:138683,GlyTouCan:G01871HO	An unsaturated heparin disaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_21	HP_dp04_0001	Heparin		CHEBI:138711,GlyTouCan:G88016IC	An unsaturated heparin tetrasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_22	HP_dp04_0002	Heparin		CHEBI:138682,GlyTouCan:G09846IP	An unsaturated heparin tetrasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS
+GAG_23	HP_dp04_0003	Heparin		CHEBI:138681,GlyTouCan:G73053PN	An unsaturated heparin tetrasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)
+GAG_24	HP_dp05_0001	Heparin		CHEBI:138680,GlyTouCan:G90831KA	An unsaturated heparin pentasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA
+GAG_25	HP_dp06_0001	Heparin		CHEBI:138710,GlyTouCan:G26920WX	An unsaturated heparin hexasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_26	HP_dp06_0002	Heparin		CHEBI:138709,GlyTouCan:G13420YS	An unsaturated heparin hexasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)
+GAG_27	HP_dp06_0003	Heparin		CHEBI:138708,GlyTouCan:G56305UV	An unsaturated heparin hexasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS
+GAG_28	HP_dp06_0004	Heparin		CHEBI:138707,GlyTouCan:G92598CL	An unsaturated heparin hexasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)
+GAG_29	HP_dp06_0005	Heparin		CHEBI:138679,GlyTouCan:G40967YY	An unsaturated heparin hexasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNAc-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)
+GAG_30	HP_dp06_0006	Heparin		CHEBI:138678,GlyTouCan:G58077WX	An unsaturated heparin hexasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(3S)(6S)
+GAG_31	HP_dp08_0001	Heparin		CHEBI:138706,GlyTouCan:G22282SV	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS
+GAG_32	HP_dp08_0002	Heparin		CHEBI:138705,GlyTouCan:G65177QF	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS
+GAG_33	HP_dp08_0003	Heparin		CHEBI:138703,GlyTouCan:G60882FW	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-HexA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS
+GAG_34	HP_dp08_0004	Heparin		CHEBI:138702,GlyTouCan:G85616AG	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-HexA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-HexA(2S)-(1->4)-alpha-D-GlcNS
+GAG_35	HP_dp08_0005	Heparin		CHEBI:138701,GlyTouCan:G14047QT	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-HexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS
+GAG_36	HP_dp08_0006	Heparin		CHEBI:138700,GlyTouCan:G46889XM	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-HexA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-HexA-(1->4)-alpha-D-GlcNS
+GAG_37	HP_dp08_0007	Heparin		CHEBI:138699,GlyTouCan:G47808WF	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA-(1->4)-alpha-D-GlcNS-(1->4)-HexA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-HexA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-HexA-(1->4)-alpha-D-GlcNS(6S)
+GAG_38	HP_dp08_0008	Heparin		CHEBI:138698,GlyTouCan:G54227RG	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_39	HP_dp08_0009	Heparin		CHEBI:138697,GlyTouCan:G97015NM	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)
+GAG_40	HP_dp08_0010	Heparin		CHEBI:138696,GlyTouCan:G85566ZI	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(3S)(6S)
+GAG_41	HP_dp08_0011	Heparin		CHEBI:138677,GlyTouCan:G17219LE	An unsaturated heparin octasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS
+GAG_42	HP_dp10_0001	Heparin		CHEBI:138695,GlyTouCan:G39123FZ	An unsaturated heparin decasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_43	HP_dp02_0001	Heparin		CHEBI:138719,GlyTouCan:G70805NP	An heparin disaccharide.	alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcN(6S)
+GAG_44	HP_dp02_0006	Heparin		CHEBI:138713,GlyTouCan:G76925AY	An heparin disaccharide.	alpha-L-IdoA-(1->4)-alpha-D-GlcNS(6S)
+GAG_45	HP_dp10_0002	Heparin		CHEBI:138694,GlyTouCan:G34852RF	An unsaturated heparin decasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_46	HP_dp10_0003	Heparin		CHEBI:138720,GlyTouCan:G32123ZH	An unsaturated heparin decasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)
+GAG_47	HP_dp10_0004	Heparin		CHEBI:138693,GlyTouCan:G27251IC	An unsaturated heparin decasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(3S)(6S)
+GAG_48	HP_dp12_0001	Heparin		CHEBI:138692,GlyTouCan:G22954FD	An unsaturated heparin dodecasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_49	HP_dp12_0002	Heparin		CHEBI:138690,GlyTouCan:G44304UI	An unsaturated heparin dodecasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(3S)(6S)
+GAG_50	HP_dp14_0001	Heparin		CHEBI:138689,GlyTouCan:G62838IP	An unsaturated heparin tetradecasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_51	HP_dp14_0002	Heparin		CHEBI:138688,GlyTouCan:G39725XP	An unsaturated heparin tetradecasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(3S)(6S)
+GAG_52	HP_dp16_0001	Heparin		CHEBI:138687,GlyTouCan:G12157FB	An unsaturated heparin hexadecasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_53	HP_dp16_0002	Heparin		CHEBI:138686,GlyTouCan:G96934QC	An unsaturated heparin hexadecasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA-(1->4)-alpha-D-GlcNAc(6S)-(1->4)-beta-D-GlcA-(1->4)-alpha-D-GlcNS(3S)(6S)
+GAG_54	HP_dp20_0001	Heparin		CHEBI:138685,GlyTouCan:G08415CQ	An unsaturated heparin icosasaccharide.	alpha-L-DeltaHexA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)
+GAG_55	HS_dp08_0001	Heparan sulfate		CHEBI:140926,GlyTouCan:G05609SX	An heparan sulfate octasaccharide. aManR=2,5-anhydromannitol.	beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-beta-D-GlcA-(1->4)-aManR
+GAG_56	HS_dp08_0002	Heparan sulfate		CHEBI:140925,GlyTouCan:G05889HU	An heparan sulfate octasaccharide. aManR=2,5-anhydromannitol.	beta-D-GlcA-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA-(1->4)-aManR(6S)
+GAG_57	HS_dp08_0003	Heparan sulfate		CHEBI:140924,GlyTouCan:G97860RU	An heparan sulfate octasaccharide. aManR=2,5-anhydromannitol.	beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA-(1->4)-aManR(6S)
+GAG_58	HS_dp08_0004	Heparan sulfate		CHEBI:140923,GlyTouCan:G90290QZ	An heparan sulfate octasaccharide. aManR=2,5-anhydromannitol.	beta-D-GlcA-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS(6S)-(1->4)-alpha-L-IdoA(2S)-(1->4)-alpha-D-GlcNS-(1->4)-alpha-L-IdoA-(1->4)-aManR
+CAT_1	Zinc			CHEBI:29105,KEGG:cpd:C00038		
+CAT_2	Copper			CHEBI:29036,KEGG:cpd:C00070		
+CAT_3	Calcium			CHEBI:29108,KEGG:cpd:C00076		
+CAT_4	Iron			CHEBI:29033,KEGG:cpd:C14818		
+LIP_1	Glycolipid Sulfatide	Galactosylceramide sulfate		CHEBI:18318,KEGG:cpd:C06125,LipidMaps:LMSP06020000	A galactosylceramide subtituted at O3 of galactose by a sulfo group.	
+LIP_2	Phosphatidylserine	Phosphatidyl-L-Serine		CHEBI:18303,KEGG:cpd:C02737,LipidMaps:LMGP03010000	A class of glycerophospholipids in which a phosphatidyl group is esterified to the hydroxy group of serine.,Major acidic phospholipid exposed on the external surfaces of cancer cells	
+MULT_1_human	Laminin-111	Laminin-1,LM-111	Homo sapiens (taxid:9606)	CPX-1770	Heterotrimers of one alpha 1, one beta 1 and one gamma 1 chains	components:P25391,P07942,P11047
+MULT_1_mouse	Laminin-111	Laminin-1,LM-111	Mus musculus (taxid:10090)	CPX-3008	Heterotrimers of one alpha 1, one beta 1 and one gamma 1 chains	components:P19137,P02469,P02468
+MULT_2_human	Laminin-111_Nidogen-1		Homo sapiens (taxid:9606)	CPX-1265	Laminin-111 nidogen-1 complex	components:MULT_1_human,P14543
+MULT_2_mouse	Laminin-111_Nidogen-1		Mus musculus (taxid:10090)	CPX-1281	Laminin-111 nidogen-1 complex	components:MULT_1_mouse,P10493
+MULT_3_bovine	Collagen-I		Bos taurus (taxid:9913)	CPX-3101	Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:P02453,P02465
+MULT_3_chick	Collagen-I		Gallus gallus (taxid:9031)	CPX-3102	Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:P02457,P02467
+MULT_3_dog	Collagen-I		Canis lupus familiaris (taxid:9615)	CPX-3103	Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:Q9XSJ7,O46392
+MULT_3_human	Collagen-I		Homo sapiens (taxid:9606)	CPX-1650	Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:P02452,P08123
+MULT_3_mouse	Collagen-I		Mus musculus (taxid:10090)	CPX-2956	Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:P11087,Q01149
+MULT_3_pig	Collagen-I		Sus scrofa (taxid:9823)		Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:Q6H2X9,Q1T7B0
+MULT_3_rat	Collagen-I		Rattus norvegicus (taxid:10116)	CPX-3104	Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:P02454,P02466
+MULT_3_sheep	Collagen-I		Ovis aries (taxid:9940)		Heterotrimers of two alpha 1(I) and one alpha 2(I) chains	components:Q9MZW3,A9P555
+MULT_4_VAR1_bovine	Collagen-IV v1		Bos taurus (taxid:9913)	CPX-3107	Heterotrimers of two alpha1(IV) chains and one alpha2(IV) chain	components:Q7SIB2,Q7SIB3
+MULT_4_VAR1_human	Collagen-IV v1		Homo sapiens (taxid:9606)	CPX-1723	Heterotrimers of two alpha1(IV) chains and one alpha2(IV) chain	components:P02462,P08572
+MULT_4_VAR1_mouse	Collagen-IV v1		Mus musculus (taxid:10090)	CPX-2959	Heterotrimers of two alpha1(IV) chains and one alpha2(IV) chain	components:P02463,P08122
+MULT_4_VAR2_human	Collagen-IV v2		Homo sapiens (taxid:9606)	CPX-1724	Heterotrimers of two alpha5(IV) chain and one alpha6(IV) chain	components:P29400,Q14031
+MULT_4_VAR3_human	Collagen-IV v3		Homo sapiens (taxid:9606)	CPX-1725	Heterotrimers of one alpha3(IV) chain, one alpha4(IV) chain and one alpha5(IV) chain	components:Q01955,P53420,P29400
+MULT_5_VAR1_bovine	Collagen-V heterotrimer 2 different chains		Bos taurus (taxid:9913)	CPX-3300	Heterotrimer of two alpha 1(V) and one alpha 2(V) chains	
+MULT_5_VAR1_dog	Collagen-V heterotrimer 2 different chains		Canis lupus familiaris (taxid:9615)		Heterotrimer of two alpha 1(V) and one alpha 2(V) chains	
+MULT_5_VAR1_human	Collagen-V heterotrimer 2 different chains		Homo sapiens (taxid:9606)	CPX-1727	Heterotrimer of two alpha 1(V) and one alpha 2(V) chains	components:P20908,P05997
+MULT_5_VAR1_mouse	Collagen-V heterotrimer 2 different chains		Mus musculus (taxid:10090)	CPX-2962	Heterotrimer of two alpha 1(V) and one alpha 2(V) chains	components:O88207,Q3U962
+MULT_5_VAR2_human	Collagen-V heterotrimer 3 different chains		Homo sapiens (taxid:9606)	CPX-1728	Heterotrimer of one alpha-1(V), one alpha-2(V), and one alpha-3(V) chains.	components:P20908,P05997,P25940
+MULT_5_VAR3_human	Collagen-V homotrimer		Homo sapiens (taxid:9606)	CPX-1729	Homotrimer of three alpha-1(V) chains.	components:P20908
+MULT_5_VAR3_mouse	Collagen-V homotrimer		Mus musculus (taxid:10090)	CPX-2964	Homotrimer of three alpha-1(V) chains.	components:O88207
+MULT_6_bovine	Collagen-IX		Bos taurus (taxid:9913)		Heterotrimer of one alpha 1(IX) chain, one alpha 2(IX) chain and one alpha 3(IX) chain	
+MULT_6_human	Collagen-IX		Homo sapiens (taxid:9606)	CPX-1748	Heterotrimer of one alpha 1(IX) chain, one alpha 2(IX) chain and one alpha 3(IX) chain	components:P20849,Q14055,Q14050
+MULT_7_VAR1_bovine	Collagen-XI v1		Bos taurus (taxid:9913)	CPX-3108	Heterotrimers of one alpha 1(XI)chain, one alpha 2(XI)chain, and alpha 3(XI)chain. Alpha 3(XI)chain results from a post-translational modification of alpha 1(II)chain	components:Q28083,Q32S24,P02459
+MULT_7_VAR1_human	Collagen-XI v1		Homo sapiens (taxid:9606)	CPX-1750	Heterotrimers of one alpha 1(XI)chain, one alpha 2(XI)chain, and alpha 3(XI)chain. Alpha 3(XI)chain results from a post-translational modification of alpha 1(II)chain	components:P12107,P13942,P02458
+MULT_7_VAR1_mouse	Collagen-XI v1		Mus musculus (taxid:10090)	CPX-2975	Heterotrimers of one alpha 1(XI)chain, one alpha 2(XI)chain, and alpha 3(XI)chain. Alpha 3(XI)chain results from a post-translational modification of alpha 1(II)chain	components:Q61245,Q64739,P28481
+MULT_7_VAR2_human	Collagen-XI v2		Homo sapiens (taxid:9606)	CPX-1751	Heterotrimers of two alpha 1(XI)chain, one alpha 2(V)chain	components:P12107,P05997
+MULT_7_VAR3_human	Collagen-XI v3		Homo sapiens (taxid:9606)	CPX-1752	Heterotrimers of one alpha 1(V)chain, one alpha 1(XI)chain, and alpha 2(V)chain.	components:P20908,P12107,P05997
+MULT_8_bovine	Collagen-VI		Bos taurus (taxid:9913)		Heterotrimers composed of three different chains: alpha 1(VI), alpha 2(VI), and alpha 3(VI)	
+MULT_8_human	Collagen-VI		Homo sapiens (taxid:9606)	CPX-1736	Heterotrimers composed of three different chains: alpha 1(VI), alpha 2(VI), and alpha 3(VI)	components:P12109,P12110,P12111
+MULT_9_bovine	Collagen-II		Bos taurus (taxid:9913)	CPX-3105	Homotrimers of three alpha 1(II) chains	components:P02459
+MULT_9_chick	Collagen-II		Gallus gallus (taxid:9031)	CPX-960	Homotrimers of three alpha 1(II) chains	components:P02460
+MULT_9_human	Collagen-II		Homo sapiens (taxid:9606)	CPX-1713	Homotrimers of three alpha 1(II) chains	components:P02458
+MULT_9_mouse	Collagen-II		Mus musculus (taxid:10090)	CPX-2957	Homotrimers of three alpha 1(II) chains	components:P28481
+MULT_10_bovine	Collagen-III		Bos taurus (taxid:9913)	CPX-3106	Homotrimers of three alpha 1(III) chains	components:P04258
+MULT_10_dog	Collagen-III		Canis lupus familiaris (taxid:9615)		Homotrimers of three alpha 1(III) chains	
+MULT_10_human	Collagen-III		Homo sapiens (taxid:9606)	CPX-1714	Homotrimers of three alpha 1(III) chains	components:P02461
+MULT_10_mouse	Collagen-III		Mus musculus (taxid:10090)	CPX-2958	Homotrimers of three alpha 1(III) chains	components:P08121
+MULT_11_chick	Collagen-XII		Gallus gallus (taxid:9031)	CPX-3109	Homotrimer of three alpha1(XII)chains	components:P13944
+MULT_11_human	Collagen-XII		Homo sapiens (taxid:9606)	CPX-1753	Homotrimer of three alpha1(XII)chains	components:Q99715
+MULT_11_mouse	Collagen-XII		Mus musculus (taxid:10090)	CPX-2978	Homotrimer of three alpha1(XII)chains	components:Q60847
+MULT_12_human	Collagen-XIII		Homo sapiens (taxid:9606)	CPX-1754	Homotrimer of three alpha1(XIII)chains .	components:Q5TAT6
+MULT_12_mouse	Collagen-XIII		Mus musculus (taxid:10090)	CPX-2980	Homotrimer of three alpha1(XIII)chains .	components:Q9R1N9
+MULT_13_chick	Collagen-XIV		Gallus gallus (taxid:9031)	CPX-3110	Homotrimer of three alpha1(XIV)chains	components:P32018
+MULT_13_human	Collagen-XIV		Homo sapiens (taxid:9606)	CPX-1755	Homotrimer of three alpha1(XIV)chains	components:Q05707
+MULT_13_mouse	Collagen-XIV		Mus musculus (taxid:10090)	CPX-2992	Homotrimer of three alpha1(XIV)chains	components:Q80X19
+MULT_14_human	Tenascin-C		Homo sapiens (taxid:9606)	CPX-466	Hexamer	components:P24821
+MULT_14_mouse	Tenascin-C		Mus musculus (taxid:10090)	CPX-471	Hexamer	components:Q80YX1
+MULT_15_human	Integrin-alpha5beta1		Homo sapiens (taxid:9606)	CPX-1794	Form the integrin alpha 5 beta 1	components:P05556,P08648
+MULT_15_mouse	Integrin-alpha5beta1		Mus musculus (taxid:10090)	CPX-3027	Form the integrin alpha 5 beta 1	components:P11688,P09055
+MULT_16_bovine	Integrin-alphavbeta3		Bos taurus (taxid:9913)		Form the integrin alpha v beta 3	components:P80746
+MULT_16_human	Integrin-alphavbeta3		Homo sapiens (taxid:9606)	CPX-1795	Form the integrin alpha v beta 3	components:P05106,P06756
+MULT_16_mouse	Integrin-alphavbeta3		Mus musculus (taxid:10090)	CPX-3035	Form the integrin alpha v beta 3	components:O54890,P43406
+MULT_17_human	Integrin-alphavbeta5		Homo sapiens (taxid:9606)	CPX-1796	Form the integrin alpha v beta 5	components:P18084,P06756
+MULT_17_mouse	Integrin-alphavbeta5		Mus musculus (taxid:10090)	CPX-3131	Form the integrin alpha v beta 5	components:O70309,P43406
+MULT_18_human	Integrin-alpha3beta1		Homo sapiens (taxid:9606)	CPX-1797	Form the integrin alpha 3 beta 1	components:P05556,P26006
+MULT_18_mouse	Integrin-alpha3beta1		Mus musculus (taxid:10090)	CPX-3117	Form the integrin alpha 3 beta 1	components:P09055,Q62470
+MULT_19_human	Integrin-alpha1beta1		Homo sapiens (taxid:9606)	CPX-1798	Form the integrin alpha 1 beta 1	components:P05556,P56199
+MULT_19_mouse	Integrin-alpha1beta1		Mus musculus (taxid:10090)	CPX-3114	Form the integrin alpha 1 beta 1	components:P09055,Q3V3R4
+MULT_20_human	Tenascin-W		Homo sapiens (taxid:9606)	CPX-1012	Hexamer	components:Q9UQP3
+MULT_21_bovine	Tenascin-X		Bos taurus (taxid:9913)	CPX-1035	Homotrimer	components:O18977
+MULT_21_human	Tenascin-X		Homo sapiens (taxid:9606)	CPX-1014	Homotrimer	components:P22105
+MULT_21_mouse	Tenascin-X		Mus musculus (taxid:10090)	CPX-1034	Homotrimer	components:O54796
+MULT_22_human	Collagen-X		Homo sapiens (taxid:9606)	CPX-1749	Homotrimer of three alpha-1(X) chains.	components:Q03692
+MULT_22_mouse	Collagen-X		Mus musculus (taxid:10090)	CPX-2971	Homotrimer of three alpha-1(X) chains	components:Q05306
+MULT_23_human	Fibrinogen		Homo sapiens (taxid:9606)	CPX-1922	Heterohexamer. The 2 heterotrimers (alpha, beta, gamma) are in head to head conformation with the N-termini in a small central domain.	components:P02671,P02675,P02679
+MULT_23_mouse	Fibrinogen		Mus musculus (taxid:10090)	CPX-1916	Heterohexamer. The 2 heterotrimers (alpha, beta, gamma) are in head to head conformation with the N-termini in a small central domain.	components:Q8K0E8,E9PV24,Q8VCM7
+MULT_24_human	Integrin-alphaIIbbeta3		Homo sapiens (taxid:9606)	CPX-1799	Form the integrin alpha IIb beta 3	components:P05106,P08514
+MULT_24_mouse	Integrin-alphaIIbbeta3		Mus musculus (taxid:10090)	CPX-3116	Form the integrin alpha IIb beta 3	components:O54890,Q9QUM0
+MULT_25_human	Integrin-alpha2beta1		Homo sapiens (taxid:9606)	CPX-1801	Form the integrin alpha 2 beta 1	components:P05556,P17301
+MULT_25_mouse	Integrin-alpha2beta1		Mus musculus (taxid:10090)	CPX-3115	Form the integrin alpha 2 beta 1	components:P09055,Q62469
+MULT_26_human	Integrin-alpha4beta1		Homo sapiens (taxid:9606)	CPX-1802	Form the integrin alpha 4 beta 1	components:P05556,P13612
+MULT_26_mouse	Integrin-alpha4beta1		Mus musculus (taxid:10090)	CPX-3118	Form the integrin alpha 4 beta 1	components:P09055,Q00651
+MULT_27_human	Laminin-211	LM-211,Laminin-2	Homo sapiens (taxid:9606)	CPX-1771	Heterotrimers of one alpha 2, one beta 1 and one gamma 1 chains	components:P24043,P07942,P11047
+MULT_27_mouse	Laminin-211	LM-211,Laminin-2	Mus musculus (taxid:10090)	CPX-3009	Heterotrimers of one alpha 2, one beta 1 and one gamma 1 chains	components:Q60675,P02469,P02468
+MULT_28_human	Laminin-121	LM-121,Laminin-3	Homo sapiens (taxid:9606)	CPX-1772	Heterotrimers of one alpha 1, one beta 2 and one gamma 1 chains	components:P25391,P55268,P11047
+MULT_28_mouse	Laminin-121	LM-121,Laminin-3	Mus musculus (taxid:10090)	CPX-3010	Heterotrimers of one alpha 1, one beta 2 and one gamma 1 chains	components:P19137,Q61292,P02468
+MULT_29_human	Laminin-221	Laminin-4,LM-221	Homo sapiens (taxid:9606)	CPX-1773	Heterotrimers of one alpha 2, one beta 2 and one gamma 1 chains	components:P24043,P55268,P11047
+MULT_29_mouse	Laminin-221	Laminin-4,LM-221	Mus musculus (taxid:10090)	CPX-3011	Heterotrimers of one alpha 2, one beta 2 and one gamma 1 chains	components:Q60675,Q61292,P02468
+MULT_30_VAR1_human	Laminin-3A32	Laminin-5A,LM-3A32	Homo sapiens (taxid:9606)	CPX-1774	Heterotrimers of one alpha 3, one beta 3 and one gamma 2 chains, variant A	components:Q16787,Q13751,Q13753
+MULT_30_VAR1_mouse	Laminin-3A32	Laminin-5A,LM-3A32	Mus musculus (taxid:10090)	CPX-3012	Heterotrimers of one alpha 3, one beta 3 and one gamma 2 chains, variant A	components:Q61789,Q61087,Q61092
+MULT_30_VAR2_human	Laminin-3B32	Laminin-5B,LM-3B32	Homo sapiens (taxid:9606)	CPX-3165	Heterotrimers of one alpha 3, one beta 3 and one gamma 2 chains, variant B	components:Q16787,Q13751,Q13753
+MULT_30_VAR2_mouse	Laminin-3B32	Laminin-5B,LM-3B32	Mus musculus (taxid:10090)	CPX-3164	Heterotrimers of one alpha 3, one beta 3 and one gamma 2 chains, variant B	components:Q61789,Q61087,Q61092
+MULT_31_VAR1_human	Laminin-3A11	Laminin-6A,LM-3A11	Homo sapiens (taxid:9606)	CPX-1775	Heterotrimers of one alpha 3, one beta 1 and one gamma 1 chains	components:Q16787,P07942,P11047
+MULT_31_VAR1_mouse	Laminin-3A11	Laminin-6,LM-3A11	Mus musculus (taxid:10090)	CPX-3013	Heterotrimers of one alpha 3, one beta 1 and one gamma 1 chains	components:Q61789,P02469,P02468
+MULT_31_VAR2_human	Laminin-3B11	Laminin-6B,LM-3B11	Homo sapiens (taxid:9606)	CPX-3166	Heterotrimers of one alpha 3, one beta 1 and one gamma 1 chains	components:Q16787,P07942,P11047
+MULT_31_VAR2_mouse	Laminin-3B11	Laminin-6,LM-3B11	Mus musculus (taxid:10090)	CPX-3167	Heterotrimers of one alpha 3, one beta 1 and one gamma 1 chains	components:Q61789,P02469,P02468
+MULT_32_human	Laminin-321	Laminin-7,LM-321	Homo sapiens (taxid:9606)	CPX-1776	Heterotrimers of one alpha 3, one beta 2 and one gamma 1 chains	components:Q16787,P55268,P11047
+MULT_32_mouse	Laminin-321	Laminin-7,LM-321	Mus musculus (taxid:10090)	CPX-3014	Heterotrimers of one alpha 3, one beta 2 and one gamma 1 chains	components:Q61789,Q61292,P02468
+MULT_33_human	Laminin-411	Laminin-8,LM-411	Homo sapiens (taxid:9606)	CPX-1777	Heterotrimers of one alpha 4, one beta 1 and one gamma 1 chains	components:Q16363,P07942,P11047
+MULT_33_mouse	Laminin-411	Laminin-8,LM-411	Mus musculus (taxid:10090)	CPX-3015	Heterotrimers of one alpha 4, one beta 1 and one gamma 1 chains	components:P97927,P02469,P02468
+MULT_34_human	Laminin-421	Laminin-9,LM-421	Homo sapiens (taxid:9606)	CPX-1778	Heterotrimers of one alpha 4, one beta 2 and one gamma 1 chains	components:Q16363,P55268,P11047
+MULT_34_mouse	Laminin-421	Laminin-9,LM-421	Mus musculus (taxid:10090)	CPX-3031	Heterotrimers of one alpha 4, one beta 2 and one gamma 1 chains	components:P97927,Q61292,P02468
+MULT_35_human	Laminin-511	Laminin-10,LM-511	Homo sapiens (taxid:9606)	CPX-1779	Heterotrimers of one alpha 5, one beta 1 and one gamma 1 chains	components:O15230,P07942,P11047
+MULT_35_mouse	Laminin-511	Laminin-10,LM-511	Mus musculus (taxid:10090)	CPX-3016	Heterotrimers of one alpha 5, one beta 1 and one gamma 1 chains	components:Q61001,P02469,P02468
+MULT_36_human	Laminin-521	Laminin-11,LM-521	Homo sapiens (taxid:9606)	CPX-1780	Heterotrimers of one alpha 5, one beta 2 and one gamma 1 chains	components:O15230,P55268,P11047
+MULT_36_mouse	Laminin-521	Laminin-11,LM-521	Mus musculus (taxid:10090)	CPX-3017	Heterotrimers of one alpha 5, one beta 2 and one gamma 1 chains	components:Q61001,Q61292,P02468
+MULT_37_human	Laminin-213	Laminin_12,LM-213	Homo sapiens (taxid:9606)	CPX-1781	Heterotrimers of one alpha 2, one beta 1 and one gamma 3 chains	components:P24043,P07942,Q9Y6N6
+MULT_37_mouse	Laminin-213	Laminin_12,LM-213	Mus musculus (taxid:10090)	CPX-3018	Heterotrimers of one alpha 2, one beta 1 and one gamma 3 chains	components:Q60675,P02469,Q9R0B6
+MULT_38_human	Laminin-423	Laminin-14,LM-423	Homo sapiens (taxid:9606)	CPX-1782	Heterotrimers of one alpha 4, one beta 2 and one gamma 3 chains	components:Q16363,P55268,Q9Y6N6
+MULT_38_mouse	Laminin-423	Laminin-14,LM-423	Mus musculus (taxid:10090)	CPX-3019	Heterotrimers of one alpha 4, one beta 2 and one gamma 3 chains	components:P97927,Q61292,Q9R0B6
+MULT_39_human	Laminin-522	LM-522	Homo sapiens (taxid:9606)	CPX-1783	Heterotrimers of one alpha 5, one beta 2 and one gamma 2 chains	components:O15230,P55268,Q13753
+MULT_39_mouse	Laminin-522	LM-522	Mus musculus (taxid:10090)	CPX-3020	Heterotrimers of one alpha 5, one beta 2 and one gamma 2 chains	components:Q61001,Q61292,Q61092
+MULT_40_human	Laminin-523	Laminin-15,LM-523	Homo sapiens (taxid:9606)	CPX-1784	Heterotrimers of one alpha 5, one beta 2 and one gamma 3 chains	components:O15230,P55268,Q9Y6N6
+MULT_40_mouse	Laminin-523	Laminin-15,LM-523	Mus musculus (taxid:10090)	CPX-3021	Heterotrimers of one alpha 5, one beta 2 and one gamma 3 chains	components:Q61001,Q61292,Q9R0B6
+MULT_41_human	Collagen-VII		Homo sapiens (taxid:9606)	CPX-1737	Homotrimer of 3 alpha 1(VII) chains	components:Q02388
+MULT_41_mouse	Collagen-VII		Mus musculus (taxid:10090)	CPX-2966	Homotrimer of 3 alpha 1(VII) chains	components:Q63870
+MULT_42_VAR1_human	Collagen-VIII v1		Homo sapiens (taxid:9606)	CPX-1745	Heterotrimer of two alpha 1(VIII) and one alpha 2(VIII) chains	components:P27658,P25067
+MULT_42_VAR1_mouse	Collagen-VIII v1		Mus musculus (taxid:10090)	CPX-2967	Heterotrimer of two alpha 1(VIII) and one alpha 2(VIII) chains	components:Q00780,P25318
+MULT_42_VAR2_human	Collagen-VIII v2		Homo sapiens (taxid:9606)	CPX-1746	Homotrimer of 3 alpha 1(VIII) chains	components:P27658
+MULT_42_VAR2_mouse	Collagen-VIII v2		Mus musculus (taxid:10090)	CPX-2968	Homotrimer of 3 alpha 1(VIII) chains	components:Q00780
+MULT_42_VAR3_human	Collagen-VIII v3		Homo sapiens (taxid:9606)	CPX-1747	Homotrimer of 3 alpha 2(VIII) chains	components:P25067
+MULT_42_VAR3_mouse	Collagen-VIII v3		Mus musculus (taxid:10090)	CPX-2969	Homotrimer of 3 alpha 2(VIII) chains	components:P25318
+MULT_43_human	Collagen-XV		Homo sapiens (taxid:9606)	CPX-1756	Homotrimer of 3 alpha 1(XV) chains	components:P39059
+MULT_43_mouse	Collagen-XV		Mus musculus (taxid:10090)	CPX-2993	Homotrimer of 3 alpha 1(XV) chains	components:O35206
+MULT_44_human	Collagen-XVI		Homo sapiens (taxid:9606)	CPX-1757	Homotrimer of 3 alpha 1(XVI) chains	components:Q07092
+MULT_44_mouse	Collagen-XVI		Mus musculus (taxid:10090)	CPX-2994	Homotrimer of 3 alpha 1(XVI) chains	components:Q8BLX7
+MULT_45_human	Collagen-XVII		Homo sapiens (taxid:9606)	CPX-1758	Homotrimer of 3 alpha 1(XVII) chains	components:Q9UMD9
+MULT_45_mouse	Collagen-XVII		Mus musculus (taxid:10090)	CPX-2995	Homotrimer of 3 alpha 1(XVII) chains	components:Q07563
+MULT_46_chick	Collagen-XVIII		Gallus gallus (taxid:9031)	CPX-3173	Homotrimer of three alpha1(XVIII)chains	components:O93419
+MULT_46_human	Collagen-XVIII		Homo sapiens (taxid:9606)	CPX-1759	Homotrimer of 3 alpha 1(XVIII) chains	components:P39060
+MULT_46_mouse	Collagen-XVIII		Mus musculus (taxid:10090)	CPX-2996	Homotrimer of 3 alpha 1(XVIII) chains	components:P39061
+MULT_47_human	Collagen-XIX		Homo sapiens (taxid:9606)	CPX-1760	Homotrimer of 3 alpha 1(XIX) chains	components:Q14993
+MULT_47_mouse	Collagen-XIX		Mus musculus (taxid:10090)	CPX-3002	Homotrimer of 3 alpha 1(XIX) chains	components:Q0VF58
+MULT_48_human	Collagen-XX		Homo sapiens (taxid:9606)	CPX-1761	Homotrimer of 3 alpha 1(XX) chains	components:Q9P218
+MULT_48_mouse	Collagen-XX		Mus musculus (taxid:10090)	CPX-3003	Homotrimer of 3 alpha 1(XX) chains	components:Q923P0
+MULT_49_human	Collagen-XXI		Homo sapiens (taxid:9606)	CPX-1762	Homotrimer of 3 alpha 1(XXI) chains	components:Q96P44
+MULT_50_human	Collagen-XXII		Homo sapiens (taxid:9606)	CPX-1763	Homotrimer of 3 alpha 1(XXII) chains	components:Q8NFW1
+MULT_51_human	Collagen-XXIII		Homo sapiens (taxid:9606)	CPX-1764	Homotrimer of 3 alpha 1(XXIII) chains	components:Q86Y22
+MULT_51_mouse	Collagen-XXIII		Mus musculus (taxid:10090)	CPX-3005	Homotrimer of 3 alpha 1(XXIII) chains	components:Q8K4G2
+MULT_52_human	Collagen-XXIV		Homo sapiens (taxid:9606)	CPX-1765	Homotrimer of 3 alpha 1(XXIV) chains	components:Q17RW2
+MULT_52_mouse	Collagen-XXIV		Mus musculus (taxid:10090)	CPX-3001	Homotrimer of 3 alpha 1(XXIV) chains	components:Q30D77
+MULT_53_mouse	Collagen_XXV		Mus musculus (taxid:10090)	CPX-3006	Homotrimer of 3 alpha 1(XXV) chains	components:Q99MQ5
+MULT_53_VAR1_human	Collagen_XXV		Homo sapiens (taxid:9606)	CPX-1766	Homotrimer of 3 alpha 1(XXV) chains	components:Q9BXS0
+MULT_53_VAR2_human	Collagen_XXV		Homo sapiens (taxid:9606)	CPX-390	Homotrimer of 3 alpha 1(XXV) chains	components:Q9BXS0
+MULT_53_VAR3_human	Collagen_XXV		Homo sapiens (taxid:9606)	CPX-391	Homotrimer of 3 alpha 1(XXV) chains	components:Q9BXS0
+MULT_54_human	Collagen-XXVI		Homo sapiens (taxid:9606)	CPX-1767	Homotrimer of 3 alpha 1(XXVI) chains	components:Q96A83
+MULT_54_mouse	Collagen-XXVI		Mus musculus (taxid:10090)	CPX-3007	Homotrimer of 3 alpha 1(XXVI) chains	components:Q91VF6
+MULT_55_human	Collagen-XXVII		Homo sapiens (taxid:9606)	CPX-1768	Homotrimer of 3 alpha 1(XXVII) chains	components:Q8IZC6
+MULT_55_mouse	Collagen-XXVII		Mus musculus (taxid:10090)	CPX-3030	Homotrimer of 3 alpha 1(XXVII) chains	components:Q5QNQ9
+MULT_56_human	Collagen-XXVIII		Homo sapiens (taxid:9606)	CPX-1769	Homotrimer of 3 alpha 1(XXVIII) chains	components:Q2UY09
+MULT_56_mouse	Collagen-XXVIII		Mus musculus (taxid:10090)	CPX-3029	Homotrimer of 3 alpha 1(XXVIII) chains	components:Q2UY11
+MULT_57_human	Thrombospondin-1		Homo sapiens (taxid:9606)	CPX-1785	Homotrimer	components:P07996
+MULT_57_mouse	Thrombospondin-1		Mus musculus (taxid:10090)	CPX-3022	Homotrimer	components:P35441
+MULT_58_human	Thrombospondin-2		Homo sapiens (taxid:9606)	CPX-1788	Homotrimer	components:P35442
+MULT_58_mouse	Thrombospondin-2		Mus musculus (taxid:10090)	CPX-3023	Homotrimer	components:Q03350
+MULT_59_human	Thrombospondin-3		Homo sapiens (taxid:9606)	CPX-1789	Homopentamer	components:P49746
+MULT_59_mouse	Thrombospondin-3		Mus musculus (taxid:10090)	CPX-3024	Homopentamer	components:Q05895
+MULT_60_human	Thrombospondin-4		Homo sapiens (taxid:9606)	CPX-1790	Homopentamer	components:P35443
+MULT_60_mouse	Thrombospondin-4		Mus musculus (taxid:10090)	CPX-3025	Homopentamer	components:Q9Z1T2
+MULT_61_human	Thrombospondin_5		Homo sapiens (taxid:9606)	CPX-1791	Homopentamer	components:P49747
+MULT_61_mouse	Thrombospondin_5		Mus musculus (taxid:10090)	CPX-3026	Homopentamer	components:Q9R0G6
+MULT_62_human	Integrin-alpha6beta1		Homo sapiens (taxid:9606)	CPX-1803	Form the integrin alpha 6 beta 1	components:P23229,P05556
+MULT_62_mouse	Integrin-alpha6beta1		Mus musculus (taxid:10090)	CPX-3119	Form the integrin alpha 6 beta 1	components:Q61739,P09055
+MULT_63_human	Integrin-alpha7beta1		Homo sapiens (taxid:9606)	CPX-1804	Form the integrin alpha 7 beta 1	components:Q13683,P05556
+MULT_63_mouse	Integrin-alpha7beta1		Mus musculus (taxid:10090)	CPX-3121	Form the integrin alpha 7 beta 1	components:Q61738,P09055
+MULT_64_human	Integrin-alpha8beta1		Homo sapiens (taxid:9606)	CPX-1815	Form the integrin alpha 8 beta 1	components:P53708,P05556
+MULT_64_mouse	Integrin-alpha8beta1		Mus musculus (taxid:10090)	CPX-3122	Form the integrin alpha 8 beta 1	components:A2ARA8,P09055
+MULT_65_human	Integrin-alpha9beta1		Homo sapiens (taxid:9606)	CPX-1816	Form the integrin alpha 9 beta 1	components:Q13797,P05556
+MULT_66_human	Integrin-alpha10beta1		Homo sapiens (taxid:9606)	CPX-1817	Form the integrin alpha 9 beta 1	components:O75578,P05556
+MULT_67_human	Integrin-alpha11beta1		Homo sapiens (taxid:9606)	CPX-1818	Form the integrin alpha 11 beta 1	components:Q9UKX5,P05556
+MULT_67_mouse	Integrin-alpha11beta1		Mus musculus (taxid:10090)	CPX-3125	Form the integrin alpha 11 beta 1	components:P61622,P09055
+MULT_68_human	Integrin-alphavbeta1		Homo sapiens (taxid:9606)	CPX-1819	Form the integrin alpha v beta 1	components:P06756,P05556
+MULT_68_mouse	Integrin-alphavbeta1		Mus musculus (taxid:10090)	CPX-3130	Form the integrin alpha v beta 1	components:P43406,P09055
+MULT_69_human	Integrin-alphavbeta6		Homo sapiens (taxid:9606)	CPX-1820	Form the integrin alpha v beta 6	components:P06756,P18564
+MULT_69_mouse	Integrin-alphavbeta6		Mus musculus (taxid:10090)	CPX-3132	Form the integrin alpha v beta 6	components:P43406,Q9Z0T9
+MULT_70_human	Integrin-alphavbeta8		Homo sapiens (taxid:9606)	CPX-1821	Form the integrin alphav beta 8	components:P06756,P26012
+MULT_71_human	Integrin-alpha6beta4		Homo sapiens (taxid:9606)	CPX-1822	Form the integrin alpha6 beta 4	components:P23229,P16144
+MULT_71_mouse	Integrin-alpha6beta4		Mus musculus (taxid:10090)	CPX-3120	Form the integrin alpha6 beta 4	components:Q61739,A2A863
+MULT_72_human	Integrin-alpha4beta7		Homo sapiens (taxid:9606)	CPX-1823	Form the integrin alpha4 beta 7	components:P13612,P26010
+MULT_72_mouse	Integrin-alpha4beta7		Mus musculus (taxid:10090)	CPX-3077	Form the integrin alpha4 beta 7	components:Q00651,P26011
+MULT_73_human	Integrin-alphaEbeta7		Homo sapiens (taxid:9606)	CPX-1824	Form the integrin alphaE beta 7	components:P38570,P26010
+MULT_73_mouse	Integrin-alphaEbeta7		Mus musculus (taxid:10090)	CPX-3127	Form the integrin alphaE beta 7	components:Q60677,P26011
+MULT_74_human	Integrin-alphaLbeta2		Homo sapiens (taxid:9606)	CPX-1825	Form the integrin alphaL beta 2	components:P20701,P05107
+MULT_74_mouse	Integrin-alphaLbeta2		Mus musculus (taxid:10090)	CPX-3128	Form the integrin alphaL beta 2	components:P24063,P11835
+MULT_75_human	Integrin-alphaMbeta2		Homo sapiens (taxid:9606)	CPX-1826	Form the integrin alphaM beta 2	components:P11215,P05107
+MULT_75_mouse	Integrin-alphaMbeta2		Mus musculus (taxid:10090)	CPX-3129	Form the integrin alphaM beta 2	components:P05555,P11835
+MULT_76_human	Integrin-alphaXbeta2		Homo sapiens (taxid:9606)	CPX-1827	Form the integrin alphaX beta 2	components:P20702,P05107
+MULT_76_mouse	Integrin-alphaXbeta2		Mus musculus (taxid:10090)	CPX-3134	Form the integrin alphaX beta 2	components:Q9QXH4,P11835
+MULT_77_human	Integrin-alphaDbeta2		Homo sapiens (taxid:9606)	CPX-1828	Form the integrin alphaD beta 2	components:Q13349,P05107
+MULT_77_mouse	Integrin-alphaDbeta2		Mus musculus (taxid:10090)	CPX-3126	Form the integrin alphaD beta 2	components:Q3V0T4,P11835
+MULT_78_human	PDGF-BB		Homo sapiens (taxid:9606)	CPX-1876	Homodimer of PDGF subunit B	components:P01127
+MULT_78_mouse	PDGF-BB		Mus musculus (taxid:10090)	CPX-2905	Homodimer of PDGF subunit B	components:P31240
+MULT_79_human	PDGF-AB		Homo sapiens (taxid:9606)	CPX-1875	Heterodimer of PDGF subunit A and B	components:P04085,P01127
+MULT_79_mouse	PDGF-AB		Mus musculus (taxid:10090)	CPX-2900	Heterodimer of PDGF subunit A and B	components:P20033,P31240
+MULT_80_human	PDGF-AA		Homo sapiens (taxid:9606)	CPX-1874	Homodimer of PDGF subunit A	components:P04085
+MULT_80_mouse	PDGF-AA		Mus musculus (taxid:10090)	CPX-2893	Homodimer of PDGF subunit A	components:P20033
+MULT_81_VAR1_human	VEGF-A165		Homo sapiens (taxid:9606)	CPX-1977	Homodimer of VEGF-165 isoforms,VEGF-165 : P15692-4 isoform	components:P15692
+MULT_81_VAR1_mouse	VEGF-A165		Mus musculus (taxid:10090)	CPX-3160	Homodimer of VEGF-165 isoforms	components:Q00731
+MULT_82_human	Complement 1Q		Homo sapiens (taxid:9606)	CPX-1919	C1QA-C1QB-C1QC complex,Each polypeptide chain (A=28 kDa, B=25 kDa, C=24 kDa) consists of 81amino acid-long collagen-like N-terminal stalk and a C-terminal, globular head of 136 amino acids. The chains are arranged to form 6 triple helical strands, three peptide chains, A, B,and C, forming one strand. In each strand, the triple helix is formed between the N-terminal collagen-like sequences of the three chains while the globular head is formed from the C-terminal portion of these chains. Chains A and B are disulfide-linked whilst the C chain forms a disulfide bond with the C chain of the next strand.	components:P02747,P02745,P02746
+MULT_84_human	Complement C3		Homo sapiens (taxid:9606)	CPX-973	Heterodimer	components:PFRAG_17_human,PFRAG_18_human
+MULT_84_mouse	Complement C3		Mus musculus (taxid:10090)	CPX-988	Heterodimer	components:PFRAG_17_mouse,PFRAG_18_mouse
+MULT_92_human	Tenascin R		Homo sapiens (taxid:9606)	CPX-1019	Homotrimer	components:Q92752
+MULT_92_mouse	Tenascin R		Mus musculus (taxid:10090)	CPX-1033	Homotrimer	components:Q8BYI9
+MULT_93_human	Emilin 1		Homo sapiens (taxid:9606)	CPX-421	Homotrimer	components:Q9Y6C2
+MULT_93_mouse	Emilin 1		Mus musculus (taxid:10090)	CPX-437	Homotrimer	components:Q99K41
+MULT_94_human	Emilin 2		Homo sapiens (taxid:9606)	CPX-436	Homotrimer	components:Q9BXX0
+MULT_94_mouse	Emilin 2		Mus musculus (taxid:10090)	CPX-438	Homotrimer	components:Q8K482
+MULT_95_human	Multimerin_1		Homo sapiens (taxid:9606)	CPX-445	Homotrimer	components:Q13201
+MULT_95_mouse	Multimerin_1		Mus musculus (taxid:10090)	CPX-447	Homotrimer	components:B2RPV6
+MULT_96_human	Multimerin_2		Homo sapiens (taxid:9606)	CPX-450	Homotrimer	components:Q9H8L6
+MULT_96_mouse	Multimerin_2		Mus musculus (taxid:10090)	CPX-451	Homotrimer	components:A6H6E2
+MULT_97_human	TGF beta 1		Homo sapiens (taxid:9606)	CPX-602	Homodimer	components:PFRAG_19_human
+MULT_97_mouse	TGF beta 1		Mus musculus (taxid:10090)	CPX-821	Homodimer	components:PFRAG_19_mouse
+MULT_98_human	TGF beta 2		Homo sapiens (taxid:9606)	CPX-605	Homodimer	components:PFRAG_20_human
+MULT_98_mouse	TGF beta 2		Mus musculus (taxid:10090)	CPX-827	Homodimer	components:PFRAG_20_mouse
+MULT_99_human	TGF beta 3		Homo sapiens (taxid:9606)	CPX-606	Homodimer	components:PFRAG_21_human
+MULT_99_mouse	TGF beta 3		Mus musculus (taxid:10090)	CPX-825	Homodimer	components:PFRAG_21_mouse
+MULT_100_human	Heparanase Complex		Homo sapiens (taxid:9606)	CPX-362	Heterodimer	components:PFRAG_23_human,PFRAG_24_human
+MULT_100_mouse	Heparanase Complex		Mus musculus (taxid:10090)	CPX-363	Heterodimer	components:PFRAG_23_mouse,PFRAG_24_mouse
+MULT_101_human	Laminin-211_Nidogen-1		Homo sapiens (taxid:9606)	CPX-1282	Laminin-211 nidogen-1 complex	
+MULT_101_mouse	Laminin-211_Nidogen-1		Mus musculus (taxid:10090)	CPX-1284	Laminin-211 nidogen-1 complex	
+MULT_102_human	Laminin-221_Nidogen-1		Homo sapiens (taxid:9606)	CPX-1285	Laminin-221 nidogen-1 complex	
+MULT_102_mouse	Laminin-221_Nidogen-1		Mus musculus (taxid:10090)	CPX-1286	Laminin-221 nidogen-1 complex	
+SMALLMOL_1	Hydroxylapatite			CHEBI:52255	A phosphate mineral with the formula Ca5(PO4)3(OH).	
+SMALLMOL_2	1,3-dimethyl-2-[2-oxopropyl thio]imidazolium chloride			CHEBI:72702	An organic chloride salt in which the cationic component is 1,3-dimethyl-2-[2-oxopropyl thio]imidazolium.	
+SMALLMOL_3	Thioflavine T			CHEBI:76023	An organic chloride salt having 2-[4-(dimethylamino)phenyl]-3,6-dimethyl-1,3-benzothiazol-3-ium as the counterion. It is widely used to visualise and quantify the presence of amyloids, both in vitro and in vivo.	
+SPEP_1	Boc-DON-Gln-Ile-Val-OMe				A tetrapeptide comprising N-(tert-butoxycarbonyl)-6-diazo-5-oxo-L-norleucyl, L-glutaminyl, L-isoleucyl and methyl L-valinate residues coupled in sequence.	
+SPEP_2	NFF-1			EBI-6894566	(Mca-Pro-Lys-Pro-Gln-Gln-Phe-Phe-Gly-Leu-Lys-(Dnp)-Gly, where Mca is (7-methoxycoumarin-4-yl)acetyl and Dnp is 2,4-dinitrophenyl.	sequence:MCAPROLYSPROGLNGLNPHEPHEGLYLEULYSDNPGLY
+SPEP_3	Triple-helical FRET peptide substrate fTHP-15	fthp-15		EBI-6894609	Gly-Pro-Hyp)5-Gly-Pro-Lys(Mca)-Gly-Pro-Gln-Gly-Leu-Arg-Gly-Gln-Lys(Dnp)-Gly-Val-Arg-(Gly-Pro-Hyp)5-NH2 contain the fluorophore Mca (7- metoxycoumarin-4-yl)acetyl and the quencher Dnp (2,4-dinitrophenyl)	sequence:GLYPROHYPGLYPROHYPGLYPROHYPGLYPROHYPGLYPROHYPGLYPROLYSGLYPROGLNGLYLEUARGGLYGLNLYSGLYVALARGGLYPROHYPGLYPROHYPGLYPROHYPGLYPROHYPGLYPROHYP
+SPEP_4	CRLKEKHC			EBI-6252260		
