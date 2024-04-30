@@ -237,10 +237,10 @@ species2taxid['chicken'] = set(map(int,"""
 species2common['chicken'] = 'Chicken'
 
 # Chinese hamster
-species2taxid['hampster'] = set(map(int,"""
+species2taxid['hamster'] = set(map(int,"""
 10029 
 """.split()))
-species2common['hampster'] = 'Hampster'
+species2common['hamster'] = 'Hamster'
 
 species = defaultdict(dict)
 
@@ -282,7 +282,7 @@ for m in iterglycan():
             if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
 	        evidence.add(ec('noXylAlt'))
 		direct = True
-	elif sp in ('mouse','rat','pig','hampster','chicken'):
+	elif sp in ('mouse','rat','pig','hamster','chicken'):
     	    if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
 	        evidence.add(ec('noXylAlt'))
                 direct = True
