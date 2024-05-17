@@ -12,7 +12,7 @@ fi
 
 set -x
 
-GLYRES="python2 ../pygly/GlycanResource/main.py"
+GLYRES="./glyres.py"
 
 function restriction () {
   $GLYRES $1 $2 | sort -u > ./GNOme/restrictions/GNOme_${3}.accessions.txt 
@@ -51,5 +51,5 @@ getdata GlyCosmosNoCache archived glytoucan_archived.txt
 getdata GlyCosmosNoCache replaced glytoucan_replaced.txt
 
 # Synonyms
-python2 ../smw/glycandata/scripts/getbasecomplist.py \* > ./GNOme/data/basecomplist.txt
+python3 ../smw/glycandata/scripts/getbasecomplist.py \* > ./GNOme/data/basecomplist.txt
 ( cd ./GNOme/data; ../../../smw/glycandata/data/splitbasecomp.sh )

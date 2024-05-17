@@ -4,7 +4,6 @@ import sys
 import ssl
 import os, os.path, urllib, time
 import psutil
-import urllib2
 from collections import defaultdict
 import datetime
 
@@ -273,11 +272,11 @@ class GNOme(GNOmeAPI):
     def label(self, uri):
         if isinstance(uri, rdflib.term.URIRef):
             for s, p, o in self.triples(uri, "rdfs:label", None):
-                return unicode(o)
+                return str(o)
         for ns in self.ns.values():
             if ns.startswith('http://') and uri.startswith(ns):
                 return uri[len(ns):]
-        return unicode(uri)
+        return str(uri)
 
     def nodes(self):
         for s, p, o in self.triples(None, 'rdf:type', 'owl:Class'):
@@ -429,7 +428,7 @@ class GNOme(GNOmeAPI):
         additional_xxx += res.get('Hex+aldi',0)
         additional_xxx += res.get('dHex+aldi',0)
  
-        for mmm, count in res.items():
+        for mmm, count in list(res.items()):
             if "+aldi" in mmm:
                 del res[mmm]
 
@@ -549,8 +548,8 @@ class SubsumptionGraph(GNOmeAPI):
         pass
 
     def compute(self, *args, **kwargs):
-        self.gtc = GlyTouCan(usecache=False)
-        self.gco = GlyCosmos(usecache=False)
+        self.gtc = GlyTouCan(usecache=kwargs.get('usecache',False))
+        self.gco = GlyCosmos(usecache=kwargs.get('usecache',False))
         self.subsumption = GlycanSubsumption()
         self.geq = GlycanEqual()
         self.geqwwc = GlycanEqualWithWURCSCheck()
@@ -598,15 +597,15 @@ class SubsumptionGraph(GNOmeAPI):
                     low = str(round(float(a),2))
                     high = low
                 argmass.append((low,high))
-            for glyacc in self.allacc:
+            for glyacc in sorted(self.allacc):
                 mass = self.gco.getmass(glyacc) 
                 if not mass:
                     mass = self.gtc.getmass(glyacc)
-                mass1 = self.gco.umw(glyacc,fetch='wurcs')
+                mass1 = self.gco.umw(accession=glyacc,format='wurcs')
                 if not mass1:
-                    mass1 = self.gtc.umw(glyacc,fetch='wurcs')
+                    mass1 = self.gtc.umw(accession=glyacc,format='wurcs')
                 if not mass and not mass1:
-                    self.warning("mass could not be determined for %s" % (glyacc), 2)
+                    self.warning("mass could not be determined for %s" % (glyacc), 5)
                     continue
                 elif mass and mass1 and abs(mass - mass1) > 0.0001:
                     self.warning("mass inconsistency for %s: %f vs %f" % (glyacc, mass, mass1), 2)
@@ -645,15 +644,15 @@ class SubsumptionGraph(GNOmeAPI):
                             extramasscluster[rmass_minus_aldi][glyacc] = dict(accession=glyacc,mass=mass,rmass=rmass,mass1=mass-2.015650070,rmass1=rmass_minus_aldi,delta=+2.015650070,glycan=gly1)
                             extraclustermap[glyacc].add(rmass_minus_aldi)
         else:
-            for glyacc in self.allacc:
+            for glyacc in sorted(self.allacc):
                 mass = self.gco.getmass(glyacc)
                 if not mass:
                     mass = self.gtc.getmass(glyacc)
-                mass1 = self.gco.umw(glyacc,fetch='wurcs')
+                mass1 = self.gco.umw(accession=glyacc,format='wurcs')
                 if not mass1:
-                    mass1 = self.gtc.umw(glyacc,fetch='wurcs')
+                    mass1 = self.gtc.umw(accession=glyacc,format='wurcs')
                 if not mass and not mass1:
-                    self.warning("mass could not be determined for %s" % (glyacc), 2)
+                    self.warning("mass could not be determined for %s" % (glyacc), 5)
                     continue
                 elif mass and mass1 and abs(mass - mass1) > 0.0001:
                     self.warning("mass inconsistency for %s: %f vs %f" % (glyacc, mass, mass1), 2)
@@ -771,8 +770,8 @@ class SubsumptionGraph(GNOmeAPI):
                 # continue
             gcomass = self.gco.getmass(acc)
             gtcmass = self.gtc.getmass(acc)
-            mygcomass = self.gco.umw(acc,fetch='wurcs')
-            mygtcmass = self.gtc.umw(acc,fetch='wurcs')
+            mygcomass = self.gco.umw(accession=acc,format='wurcs')
+            mygtcmass = self.gtc.umw(accession=acc,format='wurcs')
             if gcomass and abs(float(rmass)-gcomass) <= 0.01:
                 cluster[acc]['mass'] = gcomass
             elif gtcmass and abs(float(rmass)-gtcmass) <= 0.01:
@@ -977,19 +976,19 @@ class SubsumptionGraph(GNOmeAPI):
                     continue
                 gly1 = cluster[acc1]['glycan']
 
-                if False and level1 == "Topology" and acc == "G65022XW":
-                    print self.geq.eq(gly1,self.topology(gly))
-                    print "topology(%s)"%(acc,)
-                    print self.topology(gly).glycoct()
-                    print acc1
-                    print gly1.glycoct()
+                # if False and level1 == "Topology" and acc == "G65022XW":
+                #     print self.geq.eq(gly1,self.topology(gly))
+                #     print "topology(%s)"%(acc,)
+                #     print self.topology(gly).glycoct()
+                #     print acc1
+                #     print gly1.glycoct()
 
-                if False and level1 == "Composition" and acc == "G76453ML":
-                    print self.geq.eq(gly1,self.composition(gly))
-                    print "composition(%s)"%(acc,)
-                    print self.composition(gly).glycoct()
-                    print acc1
-                    print gly1.glycoct()
+                # if False and level1 == "Composition" and acc == "G76453ML":
+                #     print self.geq.eq(gly1,self.composition(gly))
+                #     print "composition(%s)"%(acc,)
+                #     print self.composition(gly).glycoct()
+                #     print acc1
+                #     print gly1.glycoct()
                 
                 self.warning("Checking topo, comp, bcomp relationships for %s: %s (%s)"%(acc,acc1,level1),5)
                 if level1 == "BaseComposition" and self.geq.eq(gly1,self.basecomposition(gly)) and acc1 not in self.replace:
@@ -1112,16 +1111,16 @@ class SubsumptionGraph(GNOmeAPI):
                 self.warning("Unable to compute missing rank for %s" % (acc), 1)
 
         if len(clusteracc) < 1:
-            print "# DONE - Elapsed time %.2f sec." % (time.time() - start,)
+            print("# DONE - Elapsed time %.2f sec." % (time.time() - start,))
             sys.stdout.flush()
             return
 
-        print "# NODES - %d/%d + %d glycans in molecular weight cluster for %s" % (len(clusteracc), total, len(extracluster), rmass)
+        print("# NODES - %d/%d + %d glycans in molecular weight cluster for %s" % (len(clusteracc), total, len(extracluster), rmass))
         for acc in sorted(clusteracc, key=lambda acc: (cluster[acc].get('level').rstrip('*'),acc) ):
             g = cluster[acc]
-            print acc,
-            print g.get('mass'),
-            print g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),
+            print(acc,end=" ")
+            print(g.get('mass'),end=" ")
+            print(g.get('level'), g.get('topo'), g.get('comp'), g.get('bcomp'),end=" ")
             gly = g.get('glycan')
             extras = []
             if not gly.has_root():
@@ -1132,30 +1131,30 @@ class SubsumptionGraph(GNOmeAPI):
                 extras.append("FULL")
             if g.get('has_archetype'):
                 extras.append("HASARCH:%s"%(g['has_archetype'],))
-            for m,c in sorted(gly.iupac_composition(floating_substituents=False,aggregate_basecomposition=True).items()):
+            for m,c in sorted(gly.iupac_composition(floating_substituents=True,aggregate_basecomposition=True).items()):
                 if m != "Count" and c > 0:
                     extras.append("%s:%d"%(m,c))
-            print " ".join(extras)
-        print "# ENDNODES - %d/%d + %d glycans in molecular weight cluster for %s" % (len(clusteracc), total, len(extracluster), rmass)
+            print(" ".join(extras))
+        print("# ENDNODES - %d/%d + %d glycans in molecular weight cluster for %s" % (len(clusteracc), total, len(extracluster), rmass))
         sys.stdout.flush()
 
         prunedoutedges = self.prune_edges(outedges)
         prunedinedges = self.prune_edges(inedges)
 
-        print "# TREE"
+        print("# TREE")
         for r in sorted(combclusteracc):
             if len(prunedinedges[r]) == 0:
                 self.print_tree(combinedcluster, prunedoutedges, r)
-        print "# ENDTREE"
+        print("# ENDTREE")
 
-        print "# EDGES"
+        print("# EDGES")
         for n in sorted(clusteracc):
-            print "%s:"%(n,),
-            print " ".join(map(lambda s: s+"*" if combinedcluster[s].has_key('delta') else s,sorted(prunedoutedges[n])))
-        print "# ENDEDGES"
+            print("%s:"%(n,),end=" ")
+            print(" ".join(map(lambda s: s+"*" if "delta" in combinedcluster[s] else s,sorted(prunedoutedges[n]))))
+        print("# ENDEDGES")
         sys.stdout.flush()
 
-        print "# DONE - Elapsed time %.2f sec." % (time.time() - start,)
+        print("# DONE - Elapsed time %.2f sec." % (time.time() - start,))
         sys.stdout.flush()
 
     def any_anomer(self, gly):
@@ -1210,7 +1209,7 @@ class SubsumptionGraph(GNOmeAPI):
 
     def print_tree(self, cluster, edges, root, indent=0):
         
-        print "%s%s%s" % (" " * indent, root, "*" if cluster[root].has_key('delta') else ""), cluster[root].get('level',"-"), cluster[root].get('missing','-')
+        print("%s%s%s" % (" " * indent, root, "*" if "delta" in cluster[root] else ""), cluster[root].get('level',"-"), cluster[root].get('missing','-'))
         for ch in sorted(edges[root]):
             self.print_tree(cluster, edges, ch, indent + 2)
 
@@ -1532,7 +1531,7 @@ class SubsumptionGraph(GNOmeAPI):
             for c in self.children(n,GNOmeAPI.EdgeType.Other):
                 r.connect(r.getNode(n), r.getNode(c), "other")
 
-        f = open(output_file_path, "w")
+        f = open(output_file_path, "wb")
         s = r.write(f, r.make_graph())
         f.close()
 
@@ -1609,7 +1608,7 @@ class OWLWriter():
     newMass = False
 
     def overwritemasslookuptable(self):
-        print "new mass ID was assigned"
+        print("new mass ID was assigned")
         mass_lut_file_handle = open(self.mass_LUT_file_path, "w")
         mass_lut_file_handle.write("id\tmass\n")
         for mass in sorted(self.massiddict.keys(),key=float):
@@ -1630,7 +1629,7 @@ class OWLWriter():
     newGTCAcc = False
 
     def overwriteaccessionlist(self):
-        print "new GlyTouCan accession was added"
+        print("new GlyTouCan accession was added")
         file_handle = open(self.historical_accession_file_path, "w")
         for acc in sorted(list(self.gtc_accession)):
             file_handle.write(acc + '\n')
@@ -2119,6 +2118,7 @@ class OWLWriter():
     def write(self, handle, graph):
         from rdflib.plugins.serializers.rdfxml import PrettyXMLSerializer
         writer = PrettyXMLSerializer(SubjectOrderedGraph(graph), max_depth=1)
+        writer.store.base = None
         writer.serialize(handle)
 
 
@@ -2369,8 +2369,6 @@ class GNOme_Theme_Base:
         raise NotImplemented()
 
     def get_accessions(self, *restriction_set_names):
-        # url = self.restriction_url%restriction_set_name
-        # accs = urllib2.urlopen(url).read().strip().split()
         accs = set()
         for n in restriction_set_names:
             url = self.restriction_url % n
@@ -2481,7 +2479,7 @@ class IncompleteScore:
             res += 2
 
         if config != None:
-            res += float(config.count(None)) / len(config) * 2
+            res += (float(config.count(None)) / len(config)) * 2
         else:
             res += 2
 
@@ -2562,7 +2560,7 @@ class IncompleteScore:
         det_parent_links = [list(m.parent_links()) for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
         und_parent_links = [list(m.parent_links()) for m in unconnected_mono_root]
 
-        allsubst = filter(lambda n: not n.is_monosaccharide(), g.all_nodes(subst=True, undet_subst=False))
+        allsubst = list(filter(lambda n: not n.is_monosaccharide(), g.all_nodes(subst=True, undet_subst=False)))
 
         mono_score_result = 0.0
         mono_score_total  = 10.0 * total_mono
@@ -2669,12 +2667,17 @@ def main():
     elif cmd == "compute":
 
         verbose = 0
-        while len(sys.argv) > 1 and sys.argv[1] == "-v":
-            verbose += 1
-            sys.argv.pop(1)
+        usecache=False
+        while len(sys.argv) > 1 and sys.argv[1] in ("-v","-c"):
+            if sys.argv[1] == "-v":
+                verbose += 1
+                sys.argv.pop(1)
+            elif sys.argv[1] == "-c":
+                usecache=True
+                sys.argv.pop(1)
 
         g = SubsumptionGraph()
-        g.compute(*sys.argv[1:], verbose=verbose)
+        g.compute(*sys.argv[1:], verbose=verbose, usecache=usecache)
 
     elif cmd == "writeowl":
 
@@ -2684,7 +2687,7 @@ def main():
             "replace": None
         }
         if len(sys.argv) < 5:
-            print "Please provide dumpfile, output file path(with file name), mass LUT path and version (optional)"
+            print("Please provide dumpfile, output file path(with file name), mass LUT path and version (optional)")
             sys.exit(1)
         if len(sys.argv) > 5:
             for k, v in zip(sys.argv[5::2], sys.argv[6::2]):
@@ -2753,7 +2756,7 @@ def main():
 
         if "allExactSymOutput" in kv_para:
             allexactsym = {}
-            for symset in exactSym + specificSym.values():
+            for symset in exactSym + list(specificSym.values()):
                 for acc, sym0 in symset.items():
                     if acc not in allexactsym:
                         allexactsym[acc] = []
@@ -2769,7 +2772,7 @@ def main():
     elif cmd in ("writeresowl","writeresowl_with_ancestor_structures"):
 
         if len(sys.argv) < 4:
-            print "Please provide GNOme.owl, restriction set name, output file path"
+            print("Please provide GNOme.owl, restriction set name, output file path")
             sys.exit(1)
 
         ifn = sys.argv[1]
@@ -2784,7 +2787,7 @@ def main():
         elif cmd == "writeresowl_with_ancestor_structures":
             GNOme_res.restrict(accs,allstructanc=True,alltopoanc=True)
 
-        f = open(ofn, "w")
+        f = open(ofn, "wb")
         GNOme_res.write(f)
         f.close()
 
@@ -2792,7 +2795,7 @@ def main():
         # python GNOme.py viewerdata ./GNOme.owl ./gnome_subsumption_raw.txt ./GNOme.browser.js
 
         if len(sys.argv) < 3:
-            print "Please provide GNOme.owl and output file path"
+            print("Please provide GNOme.owl and output file path")
             sys.exit(1)
 
         ifn = sys.argv[1]
@@ -2804,7 +2807,7 @@ def main():
     elif cmd == "UpdateAcc":
 
         if len(sys.argv) < 4:
-            print "Please provide restriction set name and file path"
+            print("Please provide restriction set name and file path")
             sys.exit(1)
 
         restriction_set_name = sys.argv[1]
@@ -2825,7 +2828,7 @@ def main():
             restriction_set.pop(0)
             restriction_set = sorted(restriction_set)
         else:
-            print "Restriction set: %s is not supported"
+            print("Restriction set: %s is not supported")
             sys.exit(1)
 
         open(fp, "w").write("\n".join(restriction_set))
@@ -2836,7 +2839,7 @@ def main():
     elif cmd == "UpdateTheme":
 
         if len(sys.argv) < 3:
-            print "Please provide restriction set name and file path"
+            print("Please provide restriction set name and file path")
             sys.exit(1)
 
         restriction_url = sys.argv[1]
@@ -2858,10 +2861,10 @@ def main():
         if hasattr(gnome,cmd):
             result = getattr(gnome,cmd)(*sys.argv[1:])
             if isinstance(result,basestring):
-                print result
+                print(result)
             else:
                 for r in result:
-                    print r
+                    print(r)
         else:
             print >> sys.stderr, "Bad command: %s" % (cmd,)
             sys.exit(1)

@@ -17,8 +17,9 @@ class GlyGenWS(WebServiceResource):
         list_id = result['list_id']
         headers = None
         for l in self.query_download_list(list_id=list_id).splitlines():
+            l = l.decode('utf8')
             if not headers:
-                headers = map(lambda s: s.strip('"'),l.split(","))
+                headers = list(map(lambda s: s.strip('"'),l.split(",")))
                 continue
             sl = l.strip('"').split('","')
             yield dict(zip(headers,sl))

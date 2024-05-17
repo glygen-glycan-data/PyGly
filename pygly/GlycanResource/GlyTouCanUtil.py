@@ -89,8 +89,8 @@ class GlyTouCanUtil(object):
             pass
         return None
 
-    def umw(self, acc, fetch=None):
-        g = self.getGlycan(acc,fetch)                                                                             
+    def umw(self, accession=None, format=None):
+        g = self.getGlycan(accession,format)                                                                             
         if not g:
             return None
         try:

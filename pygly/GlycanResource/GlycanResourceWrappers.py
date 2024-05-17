@@ -56,3 +56,31 @@ def prefetcher(kwarg='accession',**kw):
                         yield row
         return wrapper
     return prefetch
+
+def cacher(kwarg='accession',**kw):
+    usecache = kw.get('usecache',False)
+    def docache(fn):
+        def wrapper(self,*args,**kw):
+            kw1 = dict((k,v) for k,v in list(kw.items()) if k != kwarg)
+            key = fn.__name__+":"+":".join("%s"%a for a in args)+":"+":".join("%s=%s"%(k,v) for k,v in sorted(kw1.items()))
+            if usecache:
+                if key not in self._cache:
+                    if key not in self._cacheondisk:
+                        self._cache[key] = {}
+                        self._cachedirty[key] = True
+                    else:
+                        self._cache[key] = self._cacheondisk[key]
+                        self._cachedirty[key] = False
+
+                if kw[kwarg] in self._cache[key]:
+                    return self._cache[key][kw[kwarg]]
+            
+            value = fn(self,**kw)
+
+            if usecache:
+                self._cache[key][kw[kwarg]] = value
+                self._cachedirty[key] = True
+
+            return value
+        return wrapper
+    return docache

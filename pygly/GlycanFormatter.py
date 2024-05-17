@@ -2160,9 +2160,9 @@ class WURCS20Format(GlycanFormatter):
             
         if len(unconnected) == 1:
             g = Glycan(unconnected.pop())
-            if len(floating_substs) > 0:
-                raise UnexpectedFloatingSubstError(s)
-            g.set_undetermined(undets)
+            # if len(floating_substs) > 0:
+            #     raise UnexpectedFloatingSubstError(s)
+            g.set_undetermined(set(list(undets)+floating_substs))
         else:
             if len(undets) != 0:
                 raise UnexpectedConnectivityError(s)

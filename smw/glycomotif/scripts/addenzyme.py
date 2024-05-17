@@ -10,16 +10,19 @@ gts = GlycoTreeSandbox()
 
 form_name_dict = dict(map(lambda s: tuple(s.split()),filter(lambda s: s.strip(),"""
 Fucp Fuc
+Fucx Fuc
 Galf Gal
 Galp Gal
 GalpNAc GalNAc
 GalxNAc GalNAc
 GlcAp GlcA
 Glcp Glc
+Glcx Glc
 GlcpNAc GlcNAc
 GlcxNAc GlcNAc
 KDN KDN
 Manp Man
+Manx Man
 ManpNAc ManNAc
 NeupNAc NeuAc
 NeupNGc NeuGc

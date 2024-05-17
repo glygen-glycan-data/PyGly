@@ -672,6 +672,13 @@ class GlycanPartialOrder(Comparitor):
             # TODO Cannot handle cases like this...
             return False
 
+        lenns1uds = len(list(filter(lambda n: not n.is_monosaccharide(),a.all_nodes(subst=False,undet_subst=True))))
+        lenns2uds = len(list(filter(lambda n: not n.is_monosaccharide(),b.all_nodes(subst=False,undet_subst=True))))
+        if lenns2uds > lenns1uds:
+            a = a.clone()
+        elif lenns2uds < lenns1uds:
+            return False
+
         self.adist = _mindistsfromroot(a.root())
         self.bdist = _mindistsfromroot(b.root())
 
@@ -679,6 +686,12 @@ class GlycanPartialOrder(Comparitor):
 
         nodeset1 = list(a.all_nodes(subst=False))
         nodeset2 = list(b.all_nodes(subst=False))
+
+        nodeset1all = list(a.all_nodes(subst=False,undet_subst=True))
+        nodeset2all = list(b.all_nodes(subst=False,undet_subst=True))
+
+        nodeset1uds = list(filter(lambda n: not n.is_monosaccharide(),nodeset1all))
+        nodeset2uds = list(filter(lambda n: not n.is_monosaccharide(),nodeset2all))
 
         if not self.rootmonoleq(a.root(),b.root()):
             return False
@@ -723,8 +736,78 @@ class GlycanPartialOrder(Comparitor):
 
         lineno()
 
+        allsubst = set()
+        subst1link = defaultdict(int)
+        subst1float= defaultdict(int)
+        for n in nodeset1all:
+            if n.is_monosaccharide():
+                for s in n.substituents():
+                    subst1link[s.name()] += 1
+                    allsubst.add(s.name())
+            else:
+                subst1float[n.name()] += 1
+                allsubst.add(n.name())
+
+        subst2link = defaultdict(int)
+        subst2float= defaultdict(int)
+        for n in nodeset2all:
+            if n.is_monosaccharide():
+                for s in n.substituents():
+                    subst2link[s.name()] += 1
+                    allsubst.add(s.name())
+            else:
+                subst2float[n.name()] += 1
+                allsubst.add(n.name())
+
+        # print(allsubst)
+        # print(subst1link)
+        # print(subst1float)
+        # print(subst2link)
+        # print(subst2float)
+
+        subst2move = []
+        bad = False
+        for s in allsubst:
+            if (subst1link[s]+subst1float[s]) != (subst2link[s]+subst2float[s]):
+                return False
+            elif subst2float[s] > subst1float[s] and \
+                     subst2link[s] == 0:
+                subst2move.append(s)
+            elif subst2float[s] > 0 and \
+                     subst2link[s] == 0 and \
+                     subst1link[s] == 0 and \
+                     subst2float[s] == subst1float[s]:
+                # Do nothing, but not a problem
+                pass
+            elif subst2float[s] == 0 and \
+                     subst1float[s] == 0 and \
+                     subst1link[s] == subst2link[s]:
+                # Do nothing, but not a problem
+                pass
+            else:
+                bad = True
+                break
+
+        if bad:
+            raise RuntimeError("Cannot resolve partial order, floating substituents too complicated")
+
+        # print subst2move
+            
+        # strip specific floating substituents from nodes in nodeset1
+        newnodeset1 = []
+        for m1 in nodeset1:
+            for sl in list(m1.substituent_links()):
+                if sl.child().name() in subst2move:
+                    m1.remove_substituent_link(sl)
+                    sl.child().del_parent_link(sl)
+            newnodeset1.append(m1)
+
+            # print newnodeset1
+
+        lineno()
+
         iters = 0
-        for ii,jj in itergenmatchings(nodeset1, nodeset2, self.monosaccharide_leq):
+        for ii,jj in itergenmatchings(newnodeset1, nodeset2, self.monosaccharide_leq):
 
             iters += 1
             matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
@@ -1205,13 +1288,13 @@ class CompositionPartialOrder(Comparitor):
 
         lineno()
 
-        # print len(nodeset1),len(nodeset1uds),len(nodeset2),len(nodeset2uds)
+        # print(len(nodeset1),len(nodeset1uds),len(nodeset2),len(nodeset2uds))
 
         # for m in nodeset1all:
-        #     print m
+        #     print(m)
 
         # for m in nodeset2all:
-        #     print m
+        #     print(m)
 
         # sys.stdout.flush()
 
@@ -1231,6 +1314,7 @@ class CompositionPartialOrder(Comparitor):
         #    linked for a.
         
         if fs2 == fs1:
+
             for ii,jj in itergenmatchings(nodeset1all,nodeset2all,self.nodeleq):
                 if idmap is not None:
                     idmap.extend(zip(ii,jj))
@@ -1261,21 +1345,19 @@ class CompositionPartialOrder(Comparitor):
                     subst2float[n.name()] += 1
                     allsubst.add(n.name())
 
-            # print allsubst
-            # print subst1link
-            # print subst1float
-            # print subst2link
-            # print subst2float
+            # print(allsubst)
+            # print(subst1link)
+            # print(subst1float)
+            # print(subst2link)
+            # print(subst2float)
 
             subst2move = []
             bad = False
             for s in allsubst:
                 if (subst1link[s]+subst1float[s]) != (subst2link[s]+subst2float[s]):
                     return False
-                elif subst2float[s] > 0 and \
-                         subst2link[s] == 0 and \
-                         subst1float[s] == 0 and \
-                         subst2float[s] == subst1link[s]:
+                elif subst2float[s] > subst1float[s] and \
+                     subst2link[s] == 0:
                     subst2move.append(s)
                 elif subst2float[s] > 0 and \
                          subst2link[s] == 0 and \
@@ -2015,18 +2097,17 @@ def subsumed(gd1,gd2):
 
     subshow(acc1,acc2,"g1 <= g2",subsumption.leq(g1,g2))
 
-       
-if __name__ == "__main__":
 
+def main():       
     from collections import defaultdict
+    from . manipulation import Topology, Composition
+    global verbose
 
-    from manipulation import Topology, Composition
-  
     # from GlyTouCan import GlyTouCan
-    from GlycanResource import GlyTouCan
+    from . GlycanResource import GlyTouCan
     gtc = GlyTouCan(usecache=False,prefetch=False)
 
-    from GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
+    from . GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
     glycoct_format = GlycoCTFormat()
     wurcs_format = WURCS20Format()
 
@@ -2040,10 +2121,13 @@ if __name__ == "__main__":
     acc2 = sys.argv[2]
     g1 = gtc.getGlycan(acc1)
     g2 = gtc.getGlycan(acc2)
+    # print(g1)
+    # print(g2)
     # tg2 = topology(g2)
 
     verbose = True
     subshow(acc1,acc2,"<=",subsumption.leq(g1,g2))
     # subshow(acc1,acc2,"==",geq.eq(g1,tg2))
-
     
+if __name__ == "__main__":
+    main()
