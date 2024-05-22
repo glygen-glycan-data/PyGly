@@ -4,6 +4,7 @@ restriction_set_names_standard=(
   "BCSDB"
   "GlyGen"
   "GlyCosmos"
+  "PubChemCID"
   "GlyGen_NGlycans"
   "GlyGen_OGlycans"
   "NGlycans"
@@ -64,13 +65,15 @@ if [[ ! ("$(pwd)" =~ "/PyGly/scripts") ]]; then
     exit 1
 fi
 
-if [ -d ./GNOme ]; then
+if [ -d ./GNOme -a "$TAG" != "-" ]; then
     echo "Please remove the GNOme directory"
     exit 1
 fi
 
-gh repo clone glygen-glycan-data/GNOme
-./gnome_prereq.sh
+if [ ! -d ./GNOme ]; then
+    gh repo clone glygen-glycan-data/GNOme
+    ./gnome_prereq.sh
+fi
 if [ "$GNOMERAW" != "" ]; then
   cp "$GNOMERAW" ./GNOme/data/gnome_subsumption_raw.txt
 fi

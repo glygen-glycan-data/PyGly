@@ -1870,6 +1870,7 @@ class WURCS20Format(GlycanFormatter):
 
         undets = set()
         floating_substs = []
+        minundetrootind = 1e+20
 
         # Note, repeat linkage is always at the end of link_list
         # Need some info from repeat bridge first
@@ -1962,6 +1963,7 @@ class WURCS20Format(GlycanFormatter):
 
                 ind1 = self.char2int[mi.group(1)]
                 pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
+                minundetrootind = min(minundetrootind,ind1)
 
                 indpos2 = defaultdict(set)
                 for s in mi.group(3).split('|'):
@@ -1973,9 +1975,12 @@ class WURCS20Format(GlycanFormatter):
                     if None in indpos2[ind2]:
                         indpos2[ind2] = None
 
-                # print ind1,indpos2
-                if not (max(indpos2) < ind1):
-                    raise MonoOrderLinkError(li)
+                # print(ind1,indpos2)
+                # if not (max(indpos2) < ind1):
+                #     raise MonoOrderLinkError(li)
+                for ind2 in list(indpos2):
+                    if ind2 >= minundetrootind:
+                        del indpos2[ind2]
 
                 if len(indpos2) < 2:
                     raise BadParentPositionLinkError(li)

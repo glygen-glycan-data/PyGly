@@ -8,6 +8,7 @@ from collections import defaultdict
 import datetime
 
 import rdflib
+from rdflib.namespace import XSD
 import json
 
 def printmem():
@@ -172,6 +173,7 @@ class GNOmeAPI(object):
         keep = set(restriction)
         keep.add(self.root())
         for acc in restriction:
+            keep.add(self.get_archetype(acc))
             keep.add(self.get_topology(acc))
             keep.add(self.get_composition(acc))
             keep.add(self.get_basecomposition(acc))
@@ -183,6 +185,13 @@ class GNOmeAPI(object):
                         keep.add(anc)
         if None in keep:
             keep.remove(None)
+
+        for acc in keep:
+            if self.get_archetype(acc) not in keep:
+                self.delete_predicate(acc,"00000036")
+
+        for acc in restriction:
+             self.gnome.add((self.uri("gno:" + acc), self.uri("gno:00000025"), rdflib.Literal("true",datatype=rdflib.XSD.boolean)))
 
         # find all ancestors of each kept node
         parents = defaultdict(set)
@@ -379,11 +388,20 @@ class GNOme(GNOmeAPI):
         for s, p, o in self.triples(uri, "gno:00000036", None):
             return self.label(o)
 
+    def get_restrictionmember(self, accession):
+        uri = "gno:%s" % (accession,)
+        for s, p, o in self.triples(uri, "gno:00000025", None):
+            return o.eq(True)
+        return False
+
     def isarchetype(self, accession):
         return self.get_archetype(accession) == accession
 
     def delete_node(self, accession):
         self.gnome.remove((self.uri("gno:" + accession), None, None))
+
+    def delete_predicate(self, accession, predicate):
+        self.gnome.remove((self.uri("gno:" + accession), self.uri("gno:" + predicate), None))
 
     def set_parents(self, accession, parents, edgetype=GNOmeAPI.EdgeType.Strict):
         assert edgetype in (GNOmeAPI.EdgeType.Strict,GNOmeAPI.EdgeType.Other)
@@ -507,6 +525,9 @@ class GNOme(GNOmeAPI):
 
             if n in syms:
                 res[n]['syms'] = sorted(syms[n])
+
+            if self.get_restrictionmember(n):
+                res[n]['inrestriction'] = True
 
         json.dump(res, open(output_file_path, 'w'), indent=2, separators=(',',': '), sort_keys=True)
         return
@@ -1650,6 +1671,7 @@ class OWLWriter():
     glytoucan_id_annotation_property = 22
     glytoucan_link_annotation_property = 23
     is_subsumed_by_node_annotation_property = 24
+    is_restriction_member_annotation_property = 25
 
     structure_browser_link = 41
     composition_browser_link = 42
@@ -1891,6 +1913,13 @@ class OWLWriter():
         outputGraph.add((is_subsumed_by_node, rdfs.label, Literal("is_subsumed_by")))
         outputGraph.add((is_subsumed_by_node, definition,
                          Literal("A metadata relation between a glycan and a glycan that subsumes it. Note that this relation is a superset of the subClassOf relation as molecular weight is not necessarily conserved as it is for subClassOf.")))
+
+        is_restriction_member = self.gnouri(self.is_restriction_member_annotation_property)
+
+        outputGraph.add((is_restriction_member, rdf.type, owl.AnnotationProperty))
+        outputGraph.add((is_restriction_member, rdfs.label, Literal("is_restriction_member")))
+        outputGraph.add((is_restriction_member, definition,
+                         Literal("Whether the glycan is a member of the restriction. If not present, the glycan is not considered to be in the restriction.")))
 
         # Add sumbsumption level class and its instances
         rdfNodeSubsumption = self.gnouri(self.subsumption_level_class)
@@ -2369,11 +2398,15 @@ class GNOme_Theme_Base:
         raise NotImplemented()
 
     def get_accessions(self, *restriction_set_names):
-        accs = set()
+        accs = dict()
         for n in restriction_set_names:
             url = self.restriction_url % n
-            accs.update(list(sorted(open(url).read().strip().split())))
-        return sorted(accs)
+            accs.update(dict(sorted(map(lambda l: (l[0],l[-1]),map(lambda l: l.split(),open(url).readlines())))))
+        n1 = len(accs)
+        n2 = sum(1 for acc in accs if accs[acc] == acc)
+        if n1 == n2:
+            return list(sorted(accs.keys()))
+        return dict(sorted(accs.items()))
 
     def getoutputpath(self):
         raise NotImplemented()
@@ -2397,6 +2430,29 @@ class GNOme_Theme_GlyGen(GNOme_Theme_Base):
                     "url_prefix": "https://www.glygen.org/glycan/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyGen")
+                }
+            ]
+
+        }
+
+class GNOme_Theme_PubChemCID(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "snfg",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".svg",
+            "external_resources": [
+                {
+                    "name": "PubChem",
+                    "url_prefix": "https://pubchem.ncbi.nlm.nih.gov/compound/",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("PubChemCID")
+                },{
+                    "name": "GlyTouCan",
+                    "url_prefix": "https://glytoucan.org/Structures/Glycans/",
+                    "url_suffix": "",
+                    "glycan_set": None
                 }
             ]
 
@@ -2455,8 +2511,6 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
             ]
 
         }
-
-
 
 
 class IncompleteScore:
@@ -2556,7 +2610,7 @@ class IncompleteScore:
         monos = list(g.all_nodes())
         total_mono = len(monos)
         unconnected_mono_root = list(g.unconnected_roots())
-        unconnected_mono_root = filter(lambda m: m.is_monosaccharide(), unconnected_mono_root)
+        unconnected_mono_root = list(filter(lambda m: m.is_monosaccharide(), unconnected_mono_root))
         det_parent_links = [list(m.parent_links()) for m in filter(lambda m: m not in unconnected_mono_root and m != g.root(), monos)]
         und_parent_links = [list(m.parent_links()) for m in unconnected_mono_root]
 
@@ -2653,7 +2707,7 @@ def main():
 
     if cmd == "restrict":
 
-        restriction = set(open(sys.argv[1]).read().split())
+        restriction = set(map(lambda l: l.split(None,1)[0],open(sys.argv[1]).read().splitlines()))
 
         g = GNOme()
         g.restrict(restriction)
@@ -2779,7 +2833,7 @@ def main():
         ofn = sys.argv[3]
         restriction_accs_file = sys.argv[2]
 
-        accs = open(restriction_accs_file).read().split()
+        accs = set(map(lambda l: l.split(None,1)[0],open(restriction_accs_file).read().splitlines()))
 
         GNOme_res = GNOme(resource=ifn)
         if cmd == "writeresowl":
@@ -2853,6 +2907,9 @@ def main():
 
         tggs = GNOme_Theme_GlyGen_Sandbox(restriction_url)
         tggs.write(theme_path + "Sandbox.json")
+
+        tpc = GNOme_Theme_PubChemCID(restriction_url)
+        tpc.write(theme_path + "PubChemCID.json")
 
     else:
 
