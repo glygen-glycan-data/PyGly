@@ -1,17 +1,21 @@
-#!/bin/env python2
+#!/bin/env python3
 import sys, os.path
 import findpygly
 from pygly.GlycanFormatter import *
 from pygly.GlycanBuilderSVGParser import *
 from pygly.CompositionFormatter import *
+from pygly.GlycanResource import GlyTouCanNoPrefetch as GlyTouCan
 
-if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2"):
+if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2","gtc"):
     print("Parser should be one of: glycoct, wurcs, svg, comp, iupac, iupac2.")
     exit(1)
+gtc = None
 if sys.argv[1] == "glycoct":
     clsname = "GlycoCTFormat"
-elif sys.argv[1] == "wurcs":
+elif sys.argv[1] in ("wurcs","gtc"):
     clsname = "WURCS20Format"
+    if sys.argv[1] == 'gtc':
+        gtc = GlyTouCan()
 elif sys.argv[1] == "svg":
     clsname = "GlycanBuilderSVG"
 elif sys.argv[1] == "comp":
@@ -30,6 +34,8 @@ bad = 0
 for f in files:
     if os.path.exists(f):
         seq = open(f).read()
+    elif re.search(r'^G[0-9]{5}[A-Z]{2}$',f):
+        seq = gtc.getseq(f,'wurcs')
     else:
         seq = f.strip()
     try:
@@ -45,6 +51,7 @@ for f in files:
             print(g.underivitized_molecular_weight(repeat_times=1))
         print(g.glycoct())
     except GlycanParseError as e:
+        # traceback.print_exc()
         print("!!!", os.path.split(f)[1], str(e))
         bad += 1
     except Exception as e:
