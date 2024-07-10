@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3
 
 import sys, time, traceback
 from collections import defaultdict
@@ -12,12 +12,12 @@ from pygly.GlycanResource import GlyCosmos
 
 def accessions(args):
     if len(args) == 0:
-	for it in sys.stdin:
-	    yield it.strip()
+        for it in sys.stdin:
+            yield it.strip()
     else:
-	for fn in args:
-	    for it in open(fn):
-		yield it.strip()
+        for fn in args:
+            for it in open(fn):
+                yield it.strip()
 
 gtc = GlyTouCan(verbose=False,usecache=False)
 gco = GlyCosmos(verbose=False,usecache=False)
@@ -29,7 +29,7 @@ allgco = set(gco.allaccessions())
 #     allmotifs[acc] = dict(label=label,redend=redend)
 
 archived = set(map(lambda d: d['accession'],gco.archived()))
-print "%d accessions archived."%(len(archived),)
+print("%d accessions archived."%(len(archived),),file=sys.stderr)
 
 
 current = set()
@@ -41,13 +41,13 @@ for gtcacc in accessions(sys.argv[1:]):
     newgly = False
 
     if gtcacc in archived:
-	if g:
-	    w.delete(gtcacc)
-	    print >>sys.stderr, "%s deleted in %.2f sec"%(g.get('accession'),time.time()-start,)
-	continue
+        if g:
+            w.delete(gtcacc)
+            print("%s deleted in %.2f sec"%(g.get('accession'),time.time()-start,),file=sys.stderr)
+        continue
 
     if not g:
-	newgly = True
+        newgly = True
         g = Glycan(accession=gtcacc)
 
     g.delete('wurcs')
@@ -75,7 +75,7 @@ for gtcacc in accessions(sys.argv[1:]):
                          property='IUPAC',
                          source='GlyCosmos',type='Sequence')
     else:
-	g.delete_annotations(property='IUPAC',source='GlyCosmos',type='Sequence')
+        g.delete_annotations(property='IUPAC',source='GlyCosmos',type='Sequence')
 
     g.delete_annotations(source='GlyTouCan',type='MolWt')
     g.set_annotation(value=gtc.getmass(gtcacc),
@@ -84,8 +84,8 @@ for gtcacc in accessions(sys.argv[1:]):
 
     g.delete_annotations(source='GlyTouCan',type='MonosaccharideCount')
     g.set_annotation(value=gtc.getmonocount(gtcacc),
-		             property='MonosaccharideCount',
-		             source='GlyTouCan',type='MonosaccharideCount')
+                             property='MonosaccharideCount',
+                             source='GlyTouCan',type='MonosaccharideCount')
 
     xref_dic = {# 'glycosciences_de':'GLYCOSCIENCES.de',
                 # 'pubchem':'PubChem',
@@ -98,20 +98,20 @@ for gtcacc in accessions(sys.argv[1:]):
                 # 'glycome-db':'GlycomeDB',
                 # 'cfg':'CFG',
                 # 'pdb':'PDB',
-		'bcsdb':'BCSDB',
-		'matrixdb':'MatrixDB',
-		'glycoepitope':'GlycoEpitope',
+                'bcsdb':'BCSDB',
+                'matrixdb':'MatrixDB',
+                'glycoepitope':'GlycoEpitope',
                 # 'carbbank':'Carbbank(CCSB)',
-	       }    
+               }    
     for prop in xref_dic.values():
-	g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
+        g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
     dic = defaultdict(list)
     for ref, c in gtc.getcrossrefs(gtcacc):
         # ref, c = xref.split(":")
-	dic[ref].append(c)
+        dic[ref].append(c)
     for key in dic:       
-	if key not in xref_dic:
-	    continue
+        if key not in xref_dic:
+            continue
         g.set_annotation(value=dic[key],
                          property=xref_dic[key],
                          source='GlyTouCan',type='CrossReference')
@@ -136,8 +136,10 @@ for gtcacc in accessions(sys.argv[1:]):
     #                  source='GlyTouCan', type='Taxonomy')
 
     g.delete_annotations(source='GlyCosmos',type='Taxonomy')
-    g.set_annotation(value=list(set(gco.gettaxa(gtcacc))),
-                     property='Taxonomy', sourceid=gtcacc, 
+    taxmap = {'11103': '3052230'}
+    taxids = set(gco.gettaxa(gtcacc))
+    taxids = set(map(lambda t: taxmap.get(t,t),taxids))
+    g.set_annotation(value=list(taxids), property='Taxonomy', sourceid=gtcacc, 
                      source='GlyCosmos', type='Taxonomy')
 
     # g.delete_annotations(source='GlyTouCan',type='Publication')
@@ -182,12 +184,12 @@ for gtcacc in accessions(sys.argv[1:]):
     #                      source='GlyTouCan', type='Subsumption')
     
     if w.put(g):
-	if newgly:
-	    print >>sys.stderr, "%s created in %.2f sec"%(g.get('accession'),time.time()-start,)
-	else:
-	    print >>sys.stderr, "%s updated in %.2f sec"%(g.get('accession'),time.time()-start,)
+        if newgly:
+            print("%s created in %.2f sec"%(g.get('accession'),time.time()-start,),file=sys.stderr)
+        else:
+            print("%s updated in %.2f sec"%(g.get('accession'),time.time()-start,),file=sys.stderr)
     else:
-	print >>sys.stderr, "%s checked in %.2f sec"%(g.get('accession'),time.time()-start,)
+        print("%s checked in %.2f sec"%(g.get('accession'),time.time()-start,),file=sys.stderr)
 
     current.add(gtcacc)
 

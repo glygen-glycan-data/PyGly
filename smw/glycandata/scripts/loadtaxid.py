@@ -7,6 +7,8 @@ import csv
 from getwiki import GlycanData, Glycan
 w = GlycanData()
 
+taxmap = {11103: 3052230}
+
 gtc2taxid = defaultdict(lambda: defaultdict(set))
 for f in sys.argv[1:]:
   for l in open(f):
@@ -19,7 +21,7 @@ for f in sys.argv[1:]:
         sourceid = sl[3]
     else:
 	sourceid = None
-    gtc2taxid[gtc][(source,sourceid)].add(taxid)
+    gtc2taxid[gtc][(source,sourceid)].add(taxmap.get(taxid,taxid))
 
 for m in w.iterglycan():
     start = time.time()
