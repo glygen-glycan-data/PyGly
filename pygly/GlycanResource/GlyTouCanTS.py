@@ -19,10 +19,11 @@ class GlyTouCanTS(TripleStoreResource):
     
     sequence_formats = set(["wurcs", "glycoct", "iupac_extended", "iupac_condensed"])
 
-    crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg', 'kegg_glycan',
-                              'unicarbkb', 'glyconnect', 'glycome-db', 'glyconnect-comp',
-                              'unicarb-db', 'carbbank', 'pdb', 'cfg',
-                              'bcsdb','matrixdb','glycoepitope'])
+    crossref_resources = set(['glycosciences_de', 'pubchem', 'kegg', 'kegg_glycan','glycostore',
+                              'unicarbkb', 'glyconnect', 'glycome-db', 'glyconnect-comp','glytoucan',
+                              'unicarb-db', 'carbbank', 'pdb', 'cfg','glycochemexplorer_jcggdb_aist',
+                              'bcsdb','matrixdb','glycoepitope','resource-entry','glygen',
+                              'swiss_institute_of_bioinformatics', 'jcggdb_aist','jmsdb_jcggdb_aist'])
 
     def __init__(self,**kw):
         if 'usecache' not in kw:
@@ -113,6 +114,8 @@ class GlyTouCanTS(TripleStoreResource):
                 continue
 
     def goodcrossref(self,resource,entry):
+        if resource in ('resource-entry','glytoucan'):
+            return False
         if resource in ('glyconnect','glyconnect-comp','unicarb-db'):
             try:
                 dummy = int(entry)
@@ -134,7 +137,8 @@ class GlyTouCanTS(TripleStoreResource):
     def allcrossrefs(self,resource=None):
         assert resource == None or resource in self.crossref_resources
         for row in self.query_crossrefs(resource=resource):
-            if row['resource'] in self.crossref_resources and self.goodcrossref(row['resource'],row['entry']):
+            assert row['resource'] in self.crossref_resources, str(row)
+            if self.goodcrossref(row['resource'],row['entry']):
                 yield row['accession'],row['resource'],row['entry']
 
     # Named for consistency with GlyTouCan class...
