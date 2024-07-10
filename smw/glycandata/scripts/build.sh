@@ -27,7 +27,7 @@ fi
 ./glygends_taxid.py > ../data/glygends_taxid.txt
 ## ./glygen_taxid.py --unicarbkb "../export/unicarbkb.tsv" --glyconnect ../data/glyconnect2glytoucan.txt > ../data/glygen_taxid.txt
 ./loadtaxid.py $CACHE ../data/glygends_taxid.txt ../data/unicarbkb_taxid.txt
-./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem_2020-04-08.csv
+./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem.csv
 ./loadgtc2chebi.py $CACHE ../data/GlyTouCan-ChEBI_2019-08-23.tsv
 ./loadgtc2matrixdb.py $CACHE ../data/Custom_MatrixDB_biomolecules.tsv
 ./loadgtc2psimod.py $CACHE ../data/psimod2glytoucan.txt
