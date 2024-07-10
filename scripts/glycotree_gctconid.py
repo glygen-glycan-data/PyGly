@@ -25,6 +25,10 @@ outdir = sys.argv[2]
 if not os.path.exists(outdir):
     os.makedirs(outdir)
 
+includeonly = None
+if len(sys.argv) > 3:
+    includeonly=set(sys.argv[3:])
+
 allfn = set(glob.glob(outdir+"/G*.txt"))
 
 idmapfilename = outdir + "/residmap.txt"
@@ -42,6 +46,7 @@ Gal
 GalNAc
 Fuc
 Xyl
+Kdn
 NeuAc
 NeuGc
 P
@@ -78,11 +83,13 @@ def iternlinkedaccs():
     for acc,strict,resids,linkids in gm.getstruct('GGM','001001'):
         if acc in seen:
             continue
+        if includeonly and acc not in includeonly:
+            continue
         gly = gtc.getGlycan(acc)
         if not gly or gly.repeated():
             continue
         comp = gly.iupac_composition(aggregate_basecomposition=False)
-        # print(comp)
+        print(comp)
         if not validcomp(comp,gly.root()):
             continue
         yield acc
@@ -100,6 +107,8 @@ def iterolinkedaccs():
     for olc in olinkedcores:
         for acc,strict,resids,linkids in gm.getstruct('GGM',olc):
             if acc in seen:
+                continue
+            if includeonly and acc not in includeonly:
                 continue
             gly = gtc.getGlycan(acc)
             if not gly or gly.repeated():
