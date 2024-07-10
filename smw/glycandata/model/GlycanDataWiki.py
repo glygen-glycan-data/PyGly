@@ -1,3 +1,4 @@
+from __future__ import print_function
 __all__ = [ "GlycanDataWiki", "GlycanDataWikiNew", "GlycanDataDiskCache", "GlycanData", "Glycan", "Annotation" ]
 
 import sys, re
@@ -17,17 +18,17 @@ class Glycan(SMW.SMWClass):
         return kwargs.get('accession')
     
     def toPython(self,data):
-	data = super(Glycan,self).toPython(data)
+        data = super(Glycan,self).toPython(data)
 
-	# if '_subobjs' in data:
-	#     del data['_subobjs']
+        # if '_subobjs' in data:
+        #     del data['_subobjs']
 
-	return data
+        return data
 
     def toTemplate(self,data):
-	data = super(Glycan,self).toTemplate(data)
+        data = super(Glycan,self).toTemplate(data)
 
-	return data
+        return data
 
     def set_annotation(self,**kwargs):
         if 'annotation' in kwargs:
@@ -41,15 +42,15 @@ class Glycan(SMW.SMWClass):
         self._annotations[ann.key()] = ann
 
     def add_annotation(self,**kwargs):
-	assert kwargs.get('value')
-	value = kwargs.get('value')
-	del kwargs['value']
-	if self.has_annotations(**kwargs):
-	    values = self.get_annotation_values(**kwargs)
-	    values.append(value)
-	else:
-	    values = [value]
-	self.set_annotation(value=values,**kwargs)
+        assert kwargs.get('value')
+        value = kwargs.get('value')
+        del kwargs['value']
+        if self.has_annotations(**kwargs):
+            values = self.get_annotation_values(**kwargs)
+            values.append(value)
+        else:
+            values = [value]
+        self.set_annotation(value=values,**kwargs)
 
     def delete_annotations(self,**kwargs):
         if not hasattr(self,'_annotations'):
@@ -58,27 +59,27 @@ class Glycan(SMW.SMWClass):
             del self._annotations[an.key()]
 
     def count_annotations(self,**kwargs):
-	return len(list(self.annotations(**kwargs)))
+        return len(list(self.annotations(**kwargs)))
 
     def get_annotation_values(self,property=None,**kwargs):
-	return map(str,self.get_annotation(property=property,**kwargs).get('value'))
+        return [ str(x) for x in self.get_annotation(property=property,**kwargs).get('value')]
 
     def get_annotation_value(self,property=None,**kwargs):
-	return str(self.get_annotation(property=property,**kwargs).get('value'))
+        return str(self.get_annotation(property=property,**kwargs).get('value'))
 
     def get_annotation(self,property=None,**kwargs):
-	if property != None:
-	    kwargs['property'] = property
-	anns = list(self.annotations(**kwargs))
-	if len(anns) == 0:
-	    raise LookupError("No matching annotations")
-	elif len(anns) > 1:
-	    raise LookupError("Too many annotations")
-	return anns[0]
+        if property != None:
+            kwargs['property'] = property
+        anns = list(self.annotations(**kwargs))
+        if len(anns) == 0:
+            raise LookupError("No matching annotations")
+        elif len(anns) > 1:
+            raise LookupError("Too many annotations")
+        return anns[0]
 
     def has_annotations(self,**kwargs):
-	for an in self.annotations(**kwargs):
-	    return True
+        for an in self.annotations(**kwargs):
+            return True
         return False
 
     def annotations(self,type=None,property=None,source=None,sourceid=None):
@@ -121,8 +122,8 @@ class Annotation(SMW.SMWClass):
         assert kwargs.get('property')
         assert kwargs.get('source') 
         pagename = ".".join(tuple(filter(None,map(kwargs.get,('glycan','type','property','source','sourceid')))))
-	assert ':' not in pagename
-	return pagename
+        assert ':' not in pagename
+        return pagename
 
     def key(self):
         assert self.get('type')
@@ -148,10 +149,10 @@ class Annotation(SMW.SMWClass):
     def toPython(self,data):
         data = super(Annotation,self).toPython(data)
 
-	if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
+        if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
            data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide'] or \
            data.get('property').endswith(' Evidence'):
-            if isinstance(data.get('value'),basestring):
+            if isinstance(data.get('value'),str):
                 data['value'] = sorted(map(lambda s: s.strip(),data.get('value').split(';')),key=self.intstrvalue)
         
         return data
@@ -160,18 +161,18 @@ class Annotation(SMW.SMWClass):
 
         data = super(Annotation,self).toTemplate(data)
         
-	if data.get('value'):
-	  if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
+        if data.get('value'):
+          if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
              data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide'] or \
              data.get('property').endswith(' Evidence'):
-	    if isinstance(data['value'],list) or isinstance(data['value'],set):
-		if len(set(data['value'])) > 1:
+            if isinstance(data['value'],list) or isinstance(data['value'],set):
+                if len(set(data['value'])) > 1:
                     data['value'] = ";".join(map(str,sorted(set(data['value']),key=self.intstrvalue)))
-	            data['multivaluesep'] = ";"
-	        else:
-	            data['value'] = str(iter(data['value']).next())
-	    else:
-		data['value'] = str(data['value'])
+                    data['multivaluesep'] = ";"
+                else:
+                    data['value'] = str([ x for x in data['value']][0])
+            else:
+                data['value'] = str(data['value'])
 
         return data
 
@@ -179,22 +180,22 @@ class GlycanDataWikiNew(SMW.SMWSite):
     _name = 'glycandata'
 
     def get(self,accession):
-	g = super(GlycanDataWikiNew,self).get(accession)
-	if g:
-	    for so in g.get('_subobjs'):
+        g = super(GlycanDataWikiNew,self).get(accession)
+        if g:
+            for so in g.get('_subobjs'):
                 g.set_annotation(annotation=so)
-	return g
+        return g
 
     def put(self,g):
         accession = g.get('accession')
         # annotationpages = []
         # for anpage in self.site.allpages(prefix='%s.'%(accession)):
         #     annotationpages.append(anpage)
-	g.set('_subobjs',[])
+        g.set('_subobjs',[])
         for an in g.annotations():
             an.set('glycan',accession)
             g.append('_subobjs',an)
-	g.sort('_subobjs',Annotation.key)
+        g.sort('_subobjs',Annotation.key)
         # for anpage in annotationpages:
         #     if anpage.exists:
         #         anpage.delete()
@@ -223,28 +224,28 @@ class GlycanDataWiki(SMW.SMWSite):
     def put(self,g):
         accession = g.get('accession')
         keys2page = dict()
-	for anpage in self.site.allpages(prefix='%s.'%(accession)):
+        for anpage in self.site.allpages(prefix='%s.'%(accession)):
             an = super(GlycanDataWiki,self).get(anpage.name)
-	    keys2page[an.key()] = anpage
+            keys2page[an.key()] = anpage
         changed = 0
         for an in g.annotations():
             an.set('glycan',accession)
             if super(GlycanDataWiki,self).put(an):
                 changed += 1
-	    if an.key() in keys2page:
-	        del keys2page[an.key()]
-	for anpage in keys2page.values():
-	    if anpage.exists:
-	        anpage.delete()
+            if an.key() in keys2page:
+                del keys2page[an.key()]
+        for anpage in keys2page.values():
+            if anpage.exists:
+                anpage.delete()
                 changed += 1
         if super(GlycanDataWiki,self).put(g):
             changed += 1
         return (changed>0)
 
     def delete(self,acc):
-	super(GlycanDataWiki,self).delete(acc)
+        super(GlycanDataWiki,self).delete(acc)
         for anpagename in self.site.allpages(prefix='%s.'%(acc),generator=False):
-	     super(GlycanDataWiki,self).delete(anpagename)
+             super(GlycanDataWiki,self).delete(anpagename)
 
     def iterglycan(self):
         for pagename in self.itercat('Glycan'):
@@ -252,20 +253,20 @@ class GlycanDataWiki(SMW.SMWSite):
             yield m
 
     def iterglycanid(self,**kwargs):
-	if kwargs.get('property') == None and \
-	   kwargs.get('type') == None and \
-	   kwargs.get('source') == None:
-	    regex = kwargs.get('regex',r'^(G\d{5}[A-Z]{2})$')
-	else:
-	    values = [kwargs.get('type',r'[^.]+'),
+        if kwargs.get('property') == None and \
+           kwargs.get('type') == None and \
+           kwargs.get('source') == None:
+            regex = kwargs.get('regex',r'^(G\d{5}[A-Z]{2})$')
+        else:
+            values = [kwargs.get('type',r'[^.]+'),
                       kwargs.get('property',r'[^.]+'),
-	              kwargs.get('source',r'[^.]+')]
-	    regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + '(\.[^.]+)?$'
-	regex = re.compile(regex)
-	for pagename in self.site.allpages(generator=False):
-	    m = regex.search(pagename)
-	    if m:
-		yield m.group(1)
+                      kwargs.get('source',r'[^.]+')]
+            regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + '(\.[^.]+)?$'
+        regex = re.compile(regex)
+        for pagename in self.site.allpages(generator=False):
+            m = regex.search(pagename)
+            if m:
+                yield m.group(1)
 
     def iterannotation(self):
         for pagename in self.itercat('Annotation'):
@@ -281,7 +282,7 @@ class GlycanDataDiskCache(object):
         assert os.path.isdir(os.path.split(self.path)[0])
         if not os.path.isdir(self.path):
             os.makedirs(self.path)
-	print >>sys.stderr, "Connected to disk cache: %s"%(self.path,)
+        print("Connected to disk cache: %s"%(self.path,),file=sys.stderr)
 
     def acc2path(self,acc):
         assert re.search(r'^G\d{5}[A-Z]{2}$',acc), acc
@@ -321,7 +322,7 @@ class GlycanDataDiskCache(object):
 
         accession = g.get('accession')
         path = self.acc2path(accession)
-	if not os.path.exists(path):
+        if not os.path.exists(path):
             os.makedirs(path)
 
         glypath = self.acc2glypath(accession)
@@ -357,33 +358,33 @@ class GlycanDataDiskCache(object):
     def iterglycanid(self,fr=None,to=None):
 
         for root, dirs, files in os.walk(self.path):
-	    dirs.sort()
-	    any = False
+            dirs.sort()
+            any = False
             for d in dirs:
                 if re.search(r'^G\d{5}[A-Z]{2}$',d):
-		    any = False
-		    if ((fr==None) or (fr <= d)) and ((to==None) or (to >= d)):
+                    any = False
+                    if ((fr==None) or (fr <= d)) and ((to==None) or (to >= d)):
                         yield d
-	    if any:
-		dirs = []
+            if any:
+                dirs = []
             
     def tocache(self,wiki):
 
         for g in wiki.iterglycan():
             if self.put(g):
-                print g.get('accession')
+                print(g.get('accession'))
 
     def towiki(self,wiki,fr=None,to=None):
 
         for g in self.iterglycan(fr,to):
             if wiki.put(g):
-		# wiki.refresh(g)
-                print g.get('accession')
+                # wiki.refresh(g)
+                print(g.get('accession'))
 
 def GlycanData():
     if len(sys.argv) > 1 and os.path.isdir(sys.argv[1]):
-	dir = sys.argv[1]
-	sys.argv.pop(1)
-	return GlycanDataDiskCache(dir)
+        dir = sys.argv[1]
+        sys.argv.pop(1)
+        return GlycanDataDiskCache(dir)
     else:
-	return GlycanDataWikiNew()
+        return GlycanDataWikiNew()
