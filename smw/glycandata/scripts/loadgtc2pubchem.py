@@ -10,13 +10,18 @@ w = GlycanData()
 def pubchemxref(infile):
     d = defaultdict(set)
     f = open(infile,'r')
+    # three wacky bytes...
+    f.read(3)
     
     for r in csv.DictReader(f):
-	cid = "CID"+r['CID']
-	sid = "SID"+r['SID']
-	gtcacc = r['REGID']
-	d[gtcacc].add(cid)
-	d[gtcacc].add(sid)
+	cid = r['cid'].strip()
+	sid = r['sid'].strip()
+	gtcacc = r['sidextid'].strip()
+        if gtcacc:
+            if cid:
+	        d[gtcacc].add("CID"+cid)
+            if sid:
+	        d[gtcacc].add("SID"+sid)
     return d
 
 pubchem = pubchemxref(sys.argv[1])
