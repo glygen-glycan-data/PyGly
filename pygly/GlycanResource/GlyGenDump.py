@@ -39,7 +39,8 @@ class GlyGenSourceFile(WebServiceResource):
         "yeast": ('Saccharomyces cerevisiae', '4932'),
         "slimemold": ('Dictyostelium discoideum', '44689'),
         "pig": ('Sus scrofa', '9823'),
-        "chicken": ('Gallus gallus', '9031')
+        "chicken": ('Gallus gallus', '9031'),
+        "arabidopsis": ('Arabidopsis thaliana', '3702'),
     }
 
     @uniqueify
@@ -191,7 +192,7 @@ class GlyConnectSourceFile(GlyGenSourceFile):
     source = 'glyconnect'
     glygen_source = "GlyConnect"
     glygen_sourceid = None
-    sections = 'human mouse rat fruitfly sarscov2 yeast dicty pig chicken'
+    sections = 'human mouse rat fruitfly sarscov2 yeast dicty pig chicken arabidopsis'
 
     def json2rows(self,json):
         return json['results']
@@ -432,8 +433,9 @@ class MCWOGlcNAcSourceFile(GlyGenSourceFile):
        GLY_000632
        GLY_000633
        GLY_000788
+       GLY_001049
     """
-    sections = "human mouse rat fruitfly yeast"
+    sections = "human mouse rat fruitfly yeast arabidopsis"
     gtcfixed = "G49108TO"
 
     def rows(self,section):
