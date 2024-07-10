@@ -1,8 +1,7 @@
 #!/bin/sh
-SMW="$1"
-GLYCOTREE="$2"
+GLYCOTREE="$1"
 EXPORT="../export"
-./glycoTree.sh "$SMW" "$GLYCOTREE"
-rm -f $EXPORT/glycotree*.zip
-zip -j $EXPORT/glycotree_nlinked_gct.zip $GLYCOTREE/data/glygengct_nlinked/G*.txt $GLYCOTREE/data/glygengct_nlinked/residmap.txt
-zip -j $EXPORT/glycotree_olinked_gct.zip $GLYCOTREE/data/glygengct_olinked/G*.txt $GLYCOTREE/data/glygengct_olinked/residmap.txt
+set -x
+cp $GLYCOTREE/accessions.lst $EXPORT/glycotree_accessions.tsv
+cp $GLYCOTREE/glycotree_annotated_glycans.tsv.gz $EXPORT
+gzip -c $GLYCOTREE/portal/api/paths/allPaths.json > $EXPORT/glycotree_allpaths.json.gz
