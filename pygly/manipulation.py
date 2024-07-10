@@ -203,18 +203,26 @@ class WURCSManipulation(object):
     def __call__(self,seq):
         return self.modify(seq)
 
+    @staticmethod
+    def intorstr(s):
+        try:
+            return int(s)
+        except ValueError:
+            pass
+        return s
+
     def deconstruct(self,seq):
         head,cnts,rest = seq.split('/',2)
         monos,rest = rest.split(']/',1)
         inds,links = rest.split('/',1)
                                                                                                            
-        cnts = list(map(int,cnts.split(',')))
+        cnts = list(map(self.intorstr,cnts.split(',')))
         inds = list(map(int,inds.split('-')))
         monos = monos.lstrip('[').rstrip(']').split('][')
         monos = [ self.monodeconstruct(m) for m in monos ]
         links = filter(None,links.split('_'))
         links = [ self.linkdeconstruct(l) for l in links ]
-        return dict(head=head,monos=monos,indices=inds,links=links)
+        return dict(head=head,counts=cnts,monos=monos,indices=inds,links=links)
 
     def toseq(self,parts):
         head = parts['head']
@@ -231,21 +239,23 @@ class WURCSManipulation(object):
 
     def monodeconstruct(self,monoseq):
         sm = monoseq.split('_')
-        try:
+        m1 = re.search(r'-\d[abx]$',sm[0])
+        if m1:
             base,anomer = sm[0].split('-')
-        except ValueError:
+            childpos,anomer = tuple(anomer)
+            childpos = int(childpos)
+            m2 = re.search(r'^\d-[0-9?]$',sm[1])
+            if m2:
+                ring = sm[1]
+                substs=sm[2:]
+            else:
+                ring = None
+                substs=sm[1:]
+        else:
             base = sm[0]
             anomer = None
             childpos = None
             ring = None
-        if anomer:
-            m = re.search(r'^\d[abx]$',anomer)
-            assert(m)
-            childpos,anomer = tuple(anomer)
-            childpos = int(childpos)
-            ring = sm[1]
-            substs=sm[2:]
-        else:
             substs=sm[1:]
         return dict(skeleton=base,anomer=anomer,childpos=childpos,ring=ring,substituents=substs)
 
