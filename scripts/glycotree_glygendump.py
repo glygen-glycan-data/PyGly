@@ -12,7 +12,7 @@ from pygly.GlycanResource import *
 
 accs = sys.argv[1:]
 
-sandbox = GlycoTreeSandbox(local=True,delaytime=3)
+sandbox = GlycoTreeSandboxDev(local=True,delaytime=3)
 
 def glycansiter(sandbox,accs):
     if len(accs) == 0:
@@ -23,7 +23,7 @@ def glycansiter(sandbox,accs):
             yield sandbox.glycan(acc)
 
 headers = """
-    glytoucan_ac residue_name residue_id uniprot gene_name gene_id parent_residue_id enzyme_type species
+    glytoucan_ac residue_name residue_id uniprot gene_name gene_id parent_residue_id enzyme_type species caveat
 """.split()
 
 print("\t".join(headers))
@@ -38,5 +38,14 @@ for sbjdoc in glycansiter(sandbox,accs):
             data = dict(glytoucan_ac=acc,residue_name=res['residue_name'],residue_id=res['residue_id'],
                         uniprot=enz['uniprot'],gene_name=enz['gene_name'],gene_id=enz['gene_id'],
                         parent_residue_id=res['parent_id'],enzyme_type=enz['type'],species=enz['species'])
+            caveat = []
+            if 'rule_violations' in enz:
+                for rule in sbjdoc['rule_violations']:
+                    if rule['instance'] in enz['rule_violations']:
+                        caveat.append(rule['assertion'].replace("&alpha;","a").replace("&beta;","b"))
+                data['caveat'] = "; ".join(caveat)
+            else:
+                data['caveat'] = ""
+
             print("\t".join(map(lambda h: data[h],headers)))
 
