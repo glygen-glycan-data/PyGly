@@ -1,7 +1,9 @@
 #!/bin/sh
 set -x
 
-PYTHON=python2
+PYTHON=python3
+PYTHON2=python2
+PYTHON3=python3
 PYGLY=../../../pygly
 DATA=../data
 
@@ -23,9 +25,9 @@ cat $DATA/glygen_manual_accessions.txt >> $DATA/glygen_req_accessions.txt
 
 # All GlyTouCan motifs...
 # echo "#GlycoMotif allmotifs GGM" >> $DATA/glygen_req_accessions.txt
-$PYTHON $PYGLY/GlycanResource/main.py GlycoMotif allmotifs GGM | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
+$PYTHON $PYGLY/GlycanResource/main.py GlycoMotifNoCache allmotifs GGM | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
 
-for taxid in 9606 10090 10116 10114 111108 11116 11103 63746 694009 2697049 7227 4932 9823 44689 9031; do
+for taxid in 9606 10090 10116 10114 111108 11116 11103 3052230 63746 694009 2697049 7227 4932 9823 44689 9031 3702; do
   # echo "#GlyTouCanNoCache bytaxa $taxid" >> $DATA/glygen_req_accessions.txt
   $PYTHON $PYGLY/GlycanResource/main.py GlyTouCanNoCache bytaxa $taxid >> $DATA/glygen_req_accessions.txt
   $PYTHON $PYGLY/GlycanResource/main.py GlyCosmosNoCache bytaxa $taxid >> $DATA/glygen_req_accessions.txt
@@ -40,7 +42,7 @@ cat $DATA/glygen_req_accessions.txt | \
 
 $PYTHON get_extra_accessions.py $DATA/gnome_subsumption_raw.txt $DATA/glygen_accessions.txt $DATA/glygen_new_accessions.txt | sort > $DATA/extra_accessions.txt
 
-( python2 ./getbasecomplist.py \* > $DATA/basecomplist.txt ) > $DATA/basecomplist.log 
+( $PYTHON ./getbasecomplist.py \* > $DATA/basecomplist.txt ) > $DATA/basecomplist.log 
 ( cd $DATA; ./splitbasecomp.sh )
 ./uckbdata.sh
 $PYTHON $PYGLY/GlycanResource/main.py GlyCosmosNoCache replaced | bash -c '(read -r; echo "$REPLY"; sort)' > $DATA/glytoucan_replaced.txt
