@@ -20,8 +20,8 @@ for acc in w.iterglycanid():
 		value = ann.get('value',None)
 		if value:
 	            row = dict(GlyTouCanAccession=acc,Relationship=prop,RelatedAccession=value)
-                    print "\t".join(map(lambda h: row.get(h,""),headers))
+                    print "\t".join(list(map(lambda h: row.get(h,""),headers)))
 	    else:
 	        for value in sorted(ann.get('value',[])):
 	            row = dict(GlyTouCanAccession=acc,Relationship=prop,RelatedAccession=value)
-                    print "\t".join(map(lambda h: row.get(h,""),headers))
+                    print "\t".join(list(map(lambda h: row.get(h,""),headers)))

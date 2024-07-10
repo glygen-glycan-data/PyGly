@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3
 
 import sys
 from operator import itemgetter
@@ -16,14 +16,14 @@ debug = False
 def iterglycan():
     global debug
     if len(sys.argv) > 1:
-	for acc in sys.argv[1:]:
-	    m = w.get(acc)
-	    if m:
-		debug = True
-		yield m
+        for acc in sys.argv[1:]:
+            m = w.get(acc)
+            if m:
+                debug = True
+                yield m
     else:
-	for m in w.iterglycan():
-	    yield m
+        for m in w.iterglycan():
+            yield m
 
 from clseng import ClassifierEngine
 classifier = ClassifierEngine(glycandata=w)
@@ -31,26 +31,26 @@ classifier = ClassifierEngine(glycandata=w)
 acc2type = defaultdict(set)
 for m in iterglycan():
     acc = m.get('accession')
-    print >>sys.stderr, "1:",acc
+    print("1:",acc,file=sys.stderr)
 
     for asn in classifier.assign(acc):
         acc2type[acc].add((asn[0],asn[1],"Direct",asn[2]))
-	# print >>sys.stderr, " ",acc,(" ".join(asn[:2])).strip()
+        # print >>sys.stderr, " ",acc,(" ".join(asn[:2])).strip()
 
 for acc in sorted(acc2type):
     m = w.get(acc)
-    print >>sys.stderr, "2:",acc
+    print("2:",acc,file=sys.stderr)
 
     for ann in acc2type[acc]:
         if ann[2] != "Direct":
             continue
         for anc in gnome.ancestors(acc):
-	    if anc.startswith('G'):
+            if anc.startswith('G'):
                 acc2type[anc].add((ann[0],ann[1],"Subsumption",acc))
 
 for m in iterglycan():
     acc = m.get('accession')
-    print >>sys.stderr, "3:",acc
+    print("3:",acc,file=sys.stderr)
 
     m.delete_annotations(type='Classification')
 
@@ -69,10 +69,10 @@ for m in iterglycan():
     subtypes0 = defaultdict(set)
     subtypes1 = defaultdict(set)
     for asn in acc2type[acc]:
-	if asn[2] == "Direct":
-	    subtypes0[asn[:2]].add(asn[3])
-	else:
-	    subtypes1[asn[:2]].add(asn[3])
+        if asn[2] == "Direct":
+            subtypes0[asn[:2]].add(asn[3])
+        else:
+            subtypes1[asn[:2]].add(asn[3])
 
     subtypecnt = 0
     stbytcnt = defaultdict(int)
@@ -80,38 +80,38 @@ for m in iterglycan():
     seenst = set()
     seent = set()
     for st in sorted(subtypes0,key=lambda st: min(subtypes0[st])):
-	for sid in sorted(subtypes0[st]):
-	    if st[0] not in seent:
-	        m.add_annotation(value=st[0], property='GlycanType', 
-			         source='GlycoMotif', type='Classification', 
-			         sourceid=sid)
-		typecnt += 1
-		seent.add(st[0])
-	    if st[1]:
-	        m.add_annotation(value=st[1], property='GlycanSubtype', 
-				 source='GlycoMotif', type='Classification', 
-				 sourceid=sid)
+        for sid in sorted(subtypes0[st]):
+            if st[0] not in seent:
+                m.add_annotation(value=st[0], property='GlycanType', 
+                                 source='GlycoMotif', type='Classification', 
+                                 sourceid=sid)
+                typecnt += 1
+                seent.add(st[0])
+            if st[1]:
+                m.add_annotation(value=st[1], property='GlycanSubtype', 
+                                 source='GlycoMotif', type='Classification', 
+                                 sourceid=sid)
                 subtypecnt += 1
-	        stbytcnt[st[0]] += 1
-	    seenst.add(st)
-	    break
+                stbytcnt[st[0]] += 1
+            seenst.add(st)
+            break
     for st in sorted(subtypes1,key=lambda st: min(subtypes1[st])):
-	if st in seenst:
-	    continue
-	for sid in sorted(subtypes1[st]):
-	    if st[0] not in seent:
-	        m.add_annotation(value=st[0], property='GlycanType', 
-			         source='Subsumption', type='Classification', 
-			         sourceid=sid)
-		typecnt += 1
-		seent.add(st[0])
-	    if st[1]:
-	        m.add_annotation(value=st[1], property='GlycanSubtype', 
-				 source='Subsumption', type='Classification', 
-				 sourceid=sid)
+        if st in seenst:
+            continue
+        for sid in sorted(subtypes1[st]):
+            if st[0] not in seent:
+                m.add_annotation(value=st[0], property='GlycanType', 
+                                 source='Subsumption', type='Classification', 
+                                 sourceid=sid)
+                typecnt += 1
+                seent.add(st[0])
+            if st[1]:
+                m.add_annotation(value=st[1], property='GlycanSubtype', 
+                                 source='Subsumption', type='Classification', 
+                                 sourceid=sid)
                 subtypecnt += 1
-	        stbytcnt[st[0]] += 1
-	    break
+                stbytcnt[st[0]] += 1
+            break
 
     m.set_annotation(value=typecnt, property='GlycanTypeCount', source='GlycanData', type='Classification')
     m.set_annotation(value=subtypecnt, property='GlycanSubtypeCount', source='GlycanData', type='Classification')
@@ -121,8 +121,8 @@ for m in iterglycan():
     m.set_annotation(value=stbytcnt['Glycosphingolipid'], property='GlycanGlycosphingolipidSubtypeCount', source='GlycanData', type='Classification')
 
     if not debug:
-	if w.put(m):
-	    print >>sys.stderr, "!!",acc
+        if w.put(m):
+            print("!!",acc,file=sys.stderr)
     else:
-	    print m
+        print(m)
 

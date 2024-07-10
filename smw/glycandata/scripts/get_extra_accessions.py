@@ -41,5 +41,5 @@ while True:
 newaccs = (newaccs-accs)
 
 for acc in sorted(newaccs):
-    print acc
+    print(acc)
 

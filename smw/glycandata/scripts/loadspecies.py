@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3
 
 import sys
 from operator import itemgetter
@@ -16,25 +16,25 @@ sys.argv.pop(1)
 
 def iterglycan():
     if len(sys.argv) > 1:
-	seen = set()
-	for acc in sys.argv[1:]:
-	    if acc in seen:
-		continue
-	    m = w.get(acc)
-	    if m:
-		seen.add(acc)
-		yield m
-	    for desc in gnome.descendants(acc):
-		if desc in seen:
-		    continue
-		m = w.get(desc)
-		if m:
-		    seen.add(desc)
-		    yield m
-		
+        seen = set()
+        for acc in sys.argv[1:]:
+            if acc in seen:
+                continue
+            m = w.get(acc)
+            if m:
+                seen.add(acc)
+                yield m
+            for desc in gnome.descendants(acc):
+                if desc in seen:
+                    continue
+                m = w.get(desc)
+                if m:
+                    seen.add(desc)
+                    yield m
+                
     else:
-	for m in w.iterglycan():
-	    yield m
+        for m in w.iterglycan():
+            yield m
 
 ecstr = """
 dir	        %s:%s TaxID %s
@@ -48,7 +48,7 @@ ecd = dict()
 for l in ecstr.splitlines():
     sl = l.split(None,1)
     if len(sl) < 2:
-	continue
+        continue
     ecd[sl[0]] = sl[1].strip()
 
 def ec(*args):
@@ -246,47 +246,47 @@ species = defaultdict(dict)
 
 for m in iterglycan():
     acc = m.get('accession')
-    print >>sys.stderr, "Pass 1:", acc
+    print("Pass 1:", acc, file=sys.stderr)
 
     taxidanns = defaultdict(set)
     for an in m.annotations(property="Taxonomy",type="Taxonomy"):
-	source = an.get('source')
-	sid = an.get('sourceid')
-	for taxid in map(int,an.get('value')):
-	    taxidanns[taxid].add((source,sid))
+        source = an.get('source')
+        sid = an.get('sourceid')
+        for taxid in map(int,an.get('value')):
+            taxidanns[taxid].add((source,sid))
 
     hasmono = defaultdict(lambda: False)
     if m.has_annotations(property="HasMonosaccharide"):
         for mono in m.get_annotation_values(property="HasMonosaccharide"):
-	    hasmono[mono] = True
+            hasmono[mono] = True
 
     try:
         glycantype = m.get_annotation_value(property="GlycanType",source='EdwardsLab', type='Classification')
     except LookupError:
-	glycantype = None
+        glycantype = None
     try:
         glycansubtype = m.get_annotation_value(property="GlycanSubtype",source='EdwardsLab', type='Classification')
     except LookupError:
-	glycansubtype = None
+        glycansubtype = None
 
     for sp in species2taxid:
         evidence = set()
         for taxid in species2taxid[sp]:
-	    for source,sid in taxidanns[taxid]:
-		if sid != None:
-		    evidence.add(ec('dir',source,sid,taxid))
-		else:
-		    evidence.add(ec('dirns',source,taxid))
+            for source,sid in taxidanns[taxid]:
+                if sid != None:
+                    evidence.add(ec('dir',source,sid,taxid))
+                else:
+                    evidence.add(ec('dirns',source,taxid))
         direct = False
-	if sp == 'human':
+        if sp == 'human':
             if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
-	        evidence.add(ec('noXylAlt'))
-		direct = True
-	elif sp in ('mouse','rat','pig','hamster','chicken'):
-    	    if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
-	        evidence.add(ec('noXylAlt'))
+                evidence.add(ec('noXylAlt'))
                 direct = True
-	else:
+        elif sp in ('mouse','rat','pig','hamster','chicken'):
+            if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
+                evidence.add(ec('noXylAlt'))
+                direct = True
+        else:
             if len(evidence) > 0:
                 direct = True
         if direct:
@@ -295,32 +295,32 @@ for m in iterglycan():
            species[acc][sp] = ('False',sorted(evidence))
 
 for acc in sorted(species):
-    print >>sys.stderr, "Pass 2:", acc
+    print("Pass 2:", acc, file=sys.stderr)
     for sp in species[acc]:
         if species[acc][sp][0] != 'Direct':
-	    continue
+            continue
         for anc in gnome.ancestors(acc):
             if anc not in species:
                 continue
             category,evidence = species[anc][sp]
             if category == 'Direct':
-		continue
+                continue
             evidence = sorted(set(list(evidence) + [ec('sub',acc)]))
             species[anc][sp] = ('Subsumption',evidence)
 
 for acc in sorted(species):
-    print >>sys.stderr, "Pass 3:", acc
+    print("Pass 3:", acc, file=sys.stderr)
     for sp in species[acc]:
         if species[acc][sp][0] != 'Direct':
-	    continue
+            continue
         comp = gnome.get_composition(acc)
-	if comp and comp in species:
+        if comp and comp in species:
             for desc in gnome.has_composition(comp):
-	        if desc not in species:
-		    continue
+                if desc not in species:
+                    continue
                 category,evidence = species[desc][sp]
                 if category in ('Direct','Subsumption'):
-		    continue
+                    continue
                 evidence = sorted(set(list(evidence) + [ec('compcl',acc,comp)]))
                 species[desc][sp] = ('Composition',evidence)
 
@@ -345,5 +345,5 @@ for acc in sorted(species):
                              source="EdwardsLab")
 
     if w.put(m):
-        print acc
+        print(acc)
 
