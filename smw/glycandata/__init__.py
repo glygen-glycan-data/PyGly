@@ -1,1 +1,1 @@
-from model.GlycanDataWiki import *
+from .model.GlycanDataWiki import *
