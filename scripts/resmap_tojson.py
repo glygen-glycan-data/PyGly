@@ -84,6 +84,7 @@ for path in sorted(os.listdir(wurcs_dir)):
             traceback.print_exc(file=sys.stderr)
         continue
 
+    svg_seq = svg_seq.decode('utf8')
     svglinkids = set()
     for m in re.findall(r' ID="(l-1:\d+,\d+)" ',svg_seq):
         svglinkids.add(m)
