@@ -905,6 +905,35 @@ class Substituent(Node):
     phosphate_oxygen_lost = 43
     acetyl_oxygen_lost = 44
     phosphate_bridged = 45
+    _O_4_hydroxybutyryl_ = 46
+    _O_S_3_hydroxybutyryl_ = 47
+    _O_pyruvyl_ = 48
+    _O_glycyl_ = 49
+    _O_glyceryl_ = 50
+    _O_R_3_hydroxybutyryl_ = 51
+    _tauryl_ = 52
+    _O_D_alanyl_ = 53
+    _O_3_4_dihydroxybutyryl_ = 54
+    _O_N_acetyl_D_alanyl_ = 55
+    _N_acetimidoyl_ = 56
+    _N_acetimidoyl_N_methyl_ = 57
+    _N_N_N_dimethyl_acetimidoyl_ = 58
+    _O_N_acetyl_glutaminyl_ = 59
+    _O_N_methyl_5_glutamyl_ = 60
+    _O_2_3_di_O_methyl_glycaryl_ = 61
+
+    _C_sulfate_ = 62
+    _N_ethyl_ = 63
+    _O_aminoethyl_ = 64
+    _O_hydroxyethyl_ = 65
+    _O_methoxyethyl_ = 66
+    _O_methoxy_ = 67
+    _O_propyl_ = 68
+    _pyrophosphate_ = 69
+    _triphosphate_ = 70
+    _S_ethyl_ = 71
+    _S_methyl_ = 72
+    
 
     def __init__(self,sub):
 
