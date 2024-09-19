@@ -89,7 +89,7 @@ def iternlinkedaccs():
         if not gly or gly.repeated():
             continue
         comp = gly.iupac_composition(aggregate_basecomposition=False)
-        print(comp)
+        # print(comp)
         if not validcomp(comp,gly.root()):
             continue
         yield acc
