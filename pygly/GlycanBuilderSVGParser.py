@@ -95,7 +95,7 @@ class GlycanBuilderSVG(GlycanFormatter):
         rootmonoindex = 1
         root = doc.getroot()
         ns = root.tag.split('}')[0]+'}'
-        for g in root.getiterator(ns+'g'):
+        for g in root.iter(ns+'g'):
             if g.attrib.get('data.type') in ('Residue','Monosaccharide'):
                  # handle monosaccharide
                  res = g.attrib['data.residueName']
@@ -212,7 +212,7 @@ class GlycanBuilderSVG(GlycanFormatter):
                     # parent_eid += ';'+g.attrib['ID']
                     # parent.set_external_descriptor_id(parent_eid)
 
-        for g in root.getiterator(ns+'g'):
+        for g in root.iter(ns+'g'):
             if g.attrib.get('data.type') == 'Linkage':
                 if not g.attrib.get('data.parentResidueIndex') or not g.attrib.get('data.childResidueIndex'):
                     continue
