@@ -1269,7 +1269,7 @@ class SubsumptionGraph(GNOmeAPI):
                 lineInfo = "node"  # node type none
                 if l.startswith("# NODES"):
                     lineInfo = "node"
-                    mass = float(re.compile("\d{2,6}\.\d{1,2}").findall(l)[0])
+                    mass = float(re.compile(r"\d{2,6}\.\d{1,2}").findall(l)[0])
                     mass = "%.2f" % mass
                     content = {"nodes": {}, "edges": {}, "missing": {}}
                     raw_data[mass] = content
@@ -1332,7 +1332,7 @@ class SubsumptionGraph(GNOmeAPI):
                             content["edges"][fromx].append((to,"subsumed"))
 
                 elif lineInfo == "tree":
-                    gtcacc, g_type, asterik, missingrank = list(re.compile("(G\d{5}\w{2}\*?) (BaseComposition|Composition|Topology|Saccharide|-)(\*)? (\d{1,5}|-)").findall(l))[0]
+                    gtcacc, g_type, asterik, missingrank = list(re.compile(r"(G\d{5}\w{2}\*?) (BaseComposition|Composition|Topology|Saccharide|-)(\*)? (\d{1,5}|-)").findall(l))[0]
                     if not gtcacc.endswith("*"):
                         content["missing"][gtcacc] = missingrank
 
