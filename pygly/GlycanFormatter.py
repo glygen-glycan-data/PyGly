@@ -1927,7 +1927,11 @@ class WURCS20Format(GlycanFormatter):
                 ind1 = self.char2int[mi.group(1)]
                 pos1 = (int(mi.group(2)) if mi.group(2) != "?" else None)
                 ind2 = self.char2int[mi.group(4)]
-                pos2 = sorted(set(map(lambda s: int(s[1]),mi.group(3).split('|'))))
+                pos2 = set(map(lambda s: int(s[-1]) if s[-1] != '?' else None,mi.group(3).split('|')))
+                if None in pos2:
+                    pos2 = None
+                else:
+                    pos2 = sorted(pos2)
 
                 if not (ind2 < ind1):
                     raise MonoOrderLinkError(li)
