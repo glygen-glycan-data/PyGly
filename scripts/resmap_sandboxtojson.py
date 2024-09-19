@@ -48,6 +48,9 @@ for sbjdoc in glycansiter(sandbox,accs):
     enzymes = dict()
     enzymes['__synonyms__'] = dict()
 
+    enzymesnc = dict()
+    enzymesnc['__synonyms__'] = dict()
+
     for r in sbjdoc['residues']:
         can_res_index = r.get('canonical_residue_index')
         if not can_res_index:
@@ -56,6 +59,7 @@ for sbjdoc in glycansiter(sandbox,accs):
             up = enz['uniprot']
             gn = enz['gene_name']
             sp = enz['species']
+            rv = enz.get('rule_violations',[])
             if sp == 'Homo sapiens':
                 org = 'Human'
             if sp == 'Mus musculus':
@@ -67,13 +71,29 @@ for sbjdoc in glycansiter(sandbox,accs):
                 enzymes[up][1].append("%s-%s"%(canon_parent_id[can_res_index],can_res_index))
             enzymes['__synonyms__'][gn] = up
             enzymes['__synonyms__']["%s.%s"%(org,gn)] = up
+            if len(rv) == 0:
+                if up not in enzymesnc:
+                    enzymesnc[up] = ([],[])
+                enzymesnc[up][0].append(can_res_index)
+                if canon_parent_id.get(can_res_index):
+                    enzymesnc[up][1].append("%s-%s"%(canon_parent_id[can_res_index],can_res_index))
+                enzymesnc['__synonyms__'][gn] = up
+                enzymesnc['__synonyms__']["%s.%s"%(org,gn)] = up
+
     for up in enzymes:
         if up == '__synonyms__':
             continue
         enzymes[up] = sorted(set(enzymes[up][0]),key=float) + \
                       sorted(set(enzymes[up][1]),key=lambda t: tuple(map(float,t.split('-'))))
 
+    for up in enzymesnc:
+        if up == '__synonyms__':
+            continue
+        enzymesnc[up] = sorted(set(enzymesnc[up][0]),key=float) + \
+                        sorted(set(enzymesnc[up][1]),key=lambda t: tuple(map(float,t.split('-'))))
+
     structure_dict['annotations']['Enzyme'] = enzymes
+    structure_dict['annotations']['EnzymeNoCaveat'] = enzymesnc
     print("%s.json -> %s.json"%(acc,acc))
     with open(json_filename, "w") as json_file:
         json.dump(structure_dict, json_file, indent=4, sort_keys=True)
