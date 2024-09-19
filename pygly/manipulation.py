@@ -239,15 +239,19 @@ class WURCSManipulation(object):
 
     def monodeconstruct(self,monoseq):
         sm = monoseq.split('_')
-        m1 = re.search(r'-\d[abx]$',sm[0])
+        m1 = re.search(r'-\d[abxud]$',sm[0])
         if m1:
             base,anomer = sm[0].split('-')
             childpos,anomer = tuple(anomer)
             childpos = int(childpos)
-            m2 = re.search(r'^\d-[0-9?]$',sm[1])
-            if m2:
-                ring = sm[1]
-                substs=sm[2:]
+            if len(sm) > 1:
+                m2 = re.search(r'^\d-[0-9?]$',sm[1])
+                if m2:
+                    ring = sm[1]
+                    substs=sm[2:]
+                else:
+                    ring = None
+                    substs=sm[1:]
             else:
                 ring = None
                 substs=sm[1:]
@@ -257,6 +261,14 @@ class WURCSManipulation(object):
             childpos = None
             ring = None
             substs=sm[1:]
+        substs1 = []
+        for s in substs:
+            try:
+                pos,sub = s.split('*',1)
+            except ValueError:
+                pos = s; sub = None
+            substs1.append(dict(pos=self.intorstr(pos),subst=sub))
+        substs = substs1 
         return dict(skeleton=base,anomer=anomer,childpos=childpos,ring=ring,substituents=substs)
 
     def monoseq(self,m):
@@ -266,24 +278,54 @@ class WURCSManipulation(object):
         if m.get('ring'):
             mseq += "_" + m['ring']
         if len(m['substituents']) > 0:
-            mseq += "_" + "_".join(m['substituents'])
+            mseq += "_" + "_".join(map(self.substseq,(m['substituents'])))
         return mseq
 
-    linkre = re.compile(r'^([a-zA-Z])(\d|\?)-([a-zA-Z])(\d|\?)$')
+    def substseq(self,s):
+        if s.get('subst'):
+            return "%s*%s"%(s.get('pos'),s.get('subst'))
+        return "%s"%(s.get('pos'),)
+
+    linkre0 = re.compile(r'^(([a-zA-Z])(\d|\?))-(([a-zA-Z])(\d|\?))(~(n|(\d+)-(\d+)))?$')
+    linkre1 = re.compile(r'^(([a-zA-Z])(\d|\?)(\|(([a-zA-Z])(\d|\?)))+)\}-\{(([a-zA-Z])(\d|\?)(\|(([a-zA-Z])(\d|\?)))+)$')
+    linkre2 = re.compile(r'^(([a-zA-Z])(\d|\?)(\|(([a-zA-Z])(\d|\?)))+)\}\*(.*)$')
+    linkre3 = re.compile(r'^(([a-zA-Z])(\d|\?))-(([a-zA-Z])(\d|\?))\*(.*?)(~(n|(\d+)-(\d+)))?$')
     def linkdeconstruct(self,linkseq):
-        m = self.linkre.search(linkseq)
-        if not m:
-            return dict(seq=linkseq)
+        m = self.linkre0.search(linkseq)
+        if m:
+            parents = [ self.linkmonoparse(m.group(1)) ]
+            children = [ self.linkmonoparse(m.group(4)) ]
+            return dict(parents=parents,children=children,repeatlink=m.group(8))
+
+        m = self.linkre1.search(linkseq)
+        if m:
+            parents = list(map(self.linkmonoparse,m.group(1).split('|')))
+            children = list(map(self.linkmonoparse,m.group(8).split('|')))
+            return dict(parents=parents,children=children)
+            
+        m = self.linkre2.search(linkseq)
+        if m:
+            parents = list(map(self.linkmonoparse,m.group(1).split('|')))
+            subst=m.group(8)
+            return dict(parents=parents,subst=subst)
+            
+        m = self.linkre3.search(linkseq)
+        if m:
+            parents = [ self.linkmonoparse(m.group(1)) ]
+            children = [ self.linkmonoparse(m.group(4)) ]
+            subst=m.group(7)
+            repeatlink=m.group(9)
+            return dict(parents=parents,children=children,subst=subst,repeatlink=repeatlink)
+            
+        return dict(seq=linkseq)
+
+    def linkmonoparse(self,linkmono):
         try:
-            parentpos = int(m.group(2))
+            pos = int(linkmono[1])    
         except ValueError:
-            parentpos = m.group(2)
-        try:
-            childpos = int(m.group(4))
-        except ValueError:
-            childpos = m.group(4)
-        return dict(parentindex=self.alpha2ind[m.group(1)],parentpos=parentpos,
-                    childindex=self.alpha2ind[m.group(3)],childpos=childpos)
+            pos = linkmono[1]
+        index = self.alpha2ind[linkmono[0]]
+        return dict(pos=pos,index=index)
 
     def linkseq(self,l):
         if 'seq' in l:
