@@ -17,7 +17,7 @@ gtc = GlyTouCan(verbose=False,usecache=False)
 for acc in gtc.allaccessions():
 
     if acc in archived:
-	continue
+        continue
 
     filename = sys.argv[1] + "/" + acc + ".txt"
 
@@ -33,7 +33,7 @@ for acc in gtc.allaccessions():
         continue                                                                                                             
 
     if filename not in allfn:
-        print >>sys.stderr, "Write:",acc
+        print("Write:",acc,file=sys.stderr)
         wh = open(filename,'w')
         wh.write(seq) 
         wh.close()
@@ -41,5 +41,5 @@ for acc in gtc.allaccessions():
         allfn.remove(filename)
 
 for fn in allfn:
-    print >>sys.stderr, "Remove:",fn
+    print("Remove:",fn,file=sys.stderr)
     os.unlink(fn)
