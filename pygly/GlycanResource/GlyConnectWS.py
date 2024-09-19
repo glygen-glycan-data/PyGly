@@ -1,7 +1,7 @@
 
 from .WebServiceResource import WebServiceResource
 
-import os, os.path, re, time
+import os, os.path, re, time, urllib
 import hashlib 
 
 class GlyConnectWS(WebServiceResource):
@@ -33,7 +33,7 @@ class GlyConnectWS(WebServiceResource):
                 if 'pmid' in ref:
                     pmids.add(ref['pmid'])
             row['pmids'] = ";".join(map(str,sorted(pmids)))
-            row['hash'] = hashlib.sha1(";".join(["%s:%s"%t for t in sorted(row.items())])).hexdigest().lower()
+            row['hash'] = hashlib.sha1(";".join(["%s:%s"%t for t in sorted(row.items())]).encode()).hexdigest().lower()
             if row['hash'] in seen:
                 continue
             seen.add(row['hash'])
@@ -41,13 +41,26 @@ class GlyConnectWS(WebServiceResource):
             yield row
 
     def taxonomy(self):
-        for id in range(300):
-            data = self.query_taxonomy_single(id=id)
+        delay = 1
+        for id in range(1,300):
+            try:
+                data = self.query_taxonomy_single(id=id)
+            except urllib.error.HTTPError:
+                time.sleep(delay)
+                continue
             for l in data.splitlines():
+                l = l.decode()
                 m = re.search(r'<h1>(.*)</h1>',l)
                 if m and 'Oops' not in m.group(1):
                      yield dict(id=id,name=m.group(1))
-            time.sleep(1)
+            time.sleep(delay)
+
+    def alltaxa(self):
+        for row in self.allrows():
+            if row.get('accession') and row.get('gtcacc') and row.get('taxid'):
+                yield "S"+str(row.get('accession')),row.get('gtcacc'),row.get('taxid')
+            elif row.get('compaccession') and row.get('compgtcacc') and row.get('taxid'):
+                yield "C"+str(row.get('compaccession')),row.get('compgtcacc'),row.get('taxid')
 
     def gtcbyspecies(self,species):
         seen = set()
