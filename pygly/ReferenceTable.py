@@ -3,9 +3,9 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 from pkg_resources import resource_stream
 try:
-    from configparser import ConfigParser, SafeConfigParser
+    from configparser import ConfigParser
 except ImportError:
-    from ConfigParser import ConfigParser, SafeConfigParser
+    from ConfigParser import ConfigParser
 
 try:
     from past.builtins import basestring
@@ -27,7 +27,7 @@ class ReferenceTable(dict):
         elif isinstance(iniFile, basestring) and os.path.exists(iniFile):
             iniFile = open(iniFile)
             self.iniFile = iniFile
-        cfg = SafeConfigParser()
+        cfg = ConfigParser()
         cfg.optionxform = str
         if hasattr(cfg,'read_file'):
             cfg.read_file(iniFile,self.iniFile)
