@@ -7,6 +7,7 @@ from .GlycanResourceWrappers import partitioner
 class GlyGenTS(TripleStoreResource):
     endpt = "http://sparql.glygen.org:8880/sparql/query"
     defns = "http://glygen.org/glycan/"
+    method = 'GET'
 
     def __init__(self,**kw):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygen.ini")

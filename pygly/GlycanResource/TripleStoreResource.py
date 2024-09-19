@@ -39,6 +39,7 @@ class TripleStoreResource(GlycanResource):
         self.attr(kw,'verbose',default=False)
         self.attr(kw,'local',default=False)
         self.attr(kw,'localendpt',default=None)
+        self.attr(kw,'method',default='POST')
 
         self.attr(kw,'cachefile',default=False)
         self.attr(kw,'usecache',default=False)
@@ -60,7 +61,7 @@ class TripleStoreResource(GlycanResource):
 
         from rdflib.plugins.stores.sparqlstore import SPARQLStore
         store = SPARQLStore(self._endpt)
-        store.method = 'POST'
+        store.method = self._method
         self._ts = rdflib.ConjunctiveGraph(store=store)
 
         self._cache = None
@@ -73,6 +74,7 @@ class TripleStoreResource(GlycanResource):
 
         if self._verbose:
             print("TripleStoreResource:endpt = %s"%(self._endpt), file=sys.stderr)
+            print("TripleStoreResource:method = %s"%(self._method), file=sys.stderr)
             print("TripleStoreResource:prefetch = %s"%(self._prefetch), file=sys.stderr)
             print("TripleStoreResource:usecache = %s"%(self._usecache), file=sys.stderr)
             print("TripleStoreResource:cachemode = %s"%(self._cachemode), file=sys.stderr)
