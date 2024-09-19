@@ -242,7 +242,7 @@ def itermatchings(items1,items2,matchtest):
     n2 = len(list2)
 
     if n1 != n2:
-        raise StopIteration
+        return
 
     for inds in itertools.permutations(range(n2)):
         badmatch = False
@@ -268,7 +268,7 @@ def iterplacements(items1,items2):
     n1 = len(list1)
     n2 = len(list2)
     if n2 < n1:
-        raise StopIteration
+        return
     if n2 == 0:
         yield [],[]
         return
@@ -295,7 +295,7 @@ def iterpairs(items1,items2):
     n2 = len(list2)
 
     if n1 != n2:
-        raise StopIteration
+        return
     for inds in itertools.permutations(range(n2)):
         yield list(zip(list1,map(list2.__getitem__,inds)))
 
@@ -310,7 +310,7 @@ def iterecmatchings(items1,items2,matchtest):
     # print n1,n2
 
     if n1 != n2:
-        raise StopIteration
+        return
 
     ec1 = defaultdict(list)
     ec2 = defaultdict(list)
@@ -351,7 +351,7 @@ def iterecmatchings(items1,items2,matchtest):
             #   print "no match"
             #   sys.stdout.flush()
         if not found:
-            raise StopIteration
+            return
 
     # print ec1
     # print ec2
@@ -360,7 +360,7 @@ def iterecmatchings(items1,items2,matchtest):
     args = []
     for i in ec1:
         if len(ec1[i]) != len(ec2[i]):
-            raise StopIteration
+            return
         args.append(iterpairs(ec1[i],ec2[i]))
         anypairs.extend(zip(ec1[i],ec2[i]))
 
@@ -384,7 +384,7 @@ def itergenmatchings(items1,items2,matchtest):
     n2 = len(list2)
 
     if n1 != n2:
-        raise StopIteration
+        return
 
     edges = defaultdict(set)
     inedges = defaultdict(set)
@@ -408,7 +408,7 @@ def itergenmatchings(items1,items2,matchtest):
     outdegreezero = 0
     for i in range(n1):
         if outdegree[i] == 0:
-            raise StopIteration
+            return
         if outdegree[i] == 1:
             j = next(iter(edges[i]))
             startpairs.append((i,j))
@@ -416,7 +416,7 @@ def itergenmatchings(items1,items2,matchtest):
     indegreezero = 0
     for j in range(n2):
         if indegree[j] == 0:
-            raise StopIteration
+            return
         if indegree[j] == 1:
             i = next(iter(inedges[j]))
             startpairs.append((i,j))
@@ -426,9 +426,9 @@ def itergenmatchings(items1,items2,matchtest):
     # print startpairs
 
     if len(startpairs) != len(set(map(itemgetter(0),startpairs))):
-        raise StopIteration
+        return
     if len(startpairs) != len(set(map(itemgetter(1),startpairs))):
-        raise StopIteration
+        return
 
     startn1set = set(range(n1)) - set(map(itemgetter(0),startpairs))
     startn2set = set(range(n2)) - set(map(itemgetter(1),startpairs))
