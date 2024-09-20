@@ -85,6 +85,8 @@ class GlyTouCanUtil(object):
             return None
         try:
             return g.glycoct()
+        except (LookupError,ValueError):
+            pass
         except RuntimeError:
             pass
         return None
