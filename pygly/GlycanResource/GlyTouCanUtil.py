@@ -169,6 +169,8 @@ class GlyTouCanUtil(object):
 	Hex     uxxxxh                5
 	HexNAc  uxxxxh_2*NCC/3=O      4
 	dHex    uxxxxm                3
+        HexA    uxxxxA                7
+        HexN    uxxxxh_2*N            8
 	Pent    uxxxh                 10
 	P       *OPO/3O/3=O           -1
 	Phospho *OPO/3O/3=O           -1
