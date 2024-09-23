@@ -12,7 +12,7 @@ except ImportError:
     from urllib2 import urlopen, Request, HTTPError, build_opener, HTTPSHandler, HTTPHandler
 import json, base64
 
-from .GlycanResource import GlycanResource
+from . GlycanResource import GlycanResource
 
 class GlyTouCanCredentialsNotFound(RuntimeError):
     pass
@@ -28,7 +28,7 @@ class GlyTouCanRegistration(GlycanResource):
     def __init__(self,user=None,apikey=None,verbose=False,**kw):
         super(GlyTouCanRegistration,self).__init__(**kw)
         self.setup(user,apikey)
-        self.verbose=verbose
+        # self.verbose=verbose
     
     def getcredentials(self):
 
@@ -63,14 +63,14 @@ class GlyTouCanRegistration(GlycanResource):
         self.opener = build_opener(HTTPSHandler(),HTTPHandler())
         if self.verbose:
             print(('%s:%s'%(user, apikey)).encode('utf8'),file=sys.stderr)
-        self.basicauthhdr =  "Basic %s"%(base64.b64encode(('%s:%s'%(user, apikey)).encode('utf8')),) 
+        self.basicauthhdr =  b"Basic %s"%(base64.b64encode(('%s:%s'%(user, apikey)).encode('utf8')),) 
         if self.verbose:
             print(self.basicauthhdr,file=sys.stderr)
 
     def register(self, sequence):
         params = json.dumps(dict(sequence=sequence))
         # POST request
-        req = Request(self.apiendpt+'glycan/register', params)
+        req = Request(self.apiendpt+'glycan/register', params.encode())
         req.add_header('Content-Type', 'application/json')
         req.add_header('Accept', 'application/json')
         req.add_header("Authorization", self.basicauthhdr)
@@ -89,3 +89,7 @@ class GlyTouCanRegistration(GlycanResource):
                 traceback.print_exc()
         return None
 
+if __name__ == '__main__':
+    import sys
+    gtcr = GlyTouCanRegistration(verbose=True)
+    gtcr.register(sequence=sys.argv[1])
