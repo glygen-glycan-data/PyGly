@@ -225,7 +225,7 @@ class GlyTouCanTS(TripleStoreResource):
     def gethashedseq(self,hash=None,seq=None):
         # we can lookup with hash or seq
         if seq != None:
-            thehash = hashlib.sha256(seq.strip()).hexdigest().lower()
+            thehash = hashlib.sha256(seq.strip().encode()).hexdigest().lower()
         if hash != None:
             thehash=hash
         for row in self.query_hashedseq(hash=thehash):
