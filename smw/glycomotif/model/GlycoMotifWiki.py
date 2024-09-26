@@ -108,23 +108,9 @@ class Motif(SMW.SMWClass):
         if isinstance(data.get('keyword'),basestring):
             data['keyword'] = set(map(lambda s: s.strip(),data.get('keyword').split(';')))
 
-        if isinstance(data.get('sandbox'),basestring):
-            data['sandbox'] = set(map(lambda s: s.strip(),data.get('sandbox').split(';')))
-
-        if isinstance(data.get('sandbox_nlinked'),basestring):
-            data['sandbox_nlinked'] = set(map(lambda s: s.strip(),data.get('sandbox_nlinked').split(';')))
-
-        if isinstance(data.get('sandbox_olinked'),basestring):
-            data['sandbox_olinked'] = set(map(lambda s: s.strip(),data.get('sandbox_olinked').split(';')))
-
-        if isinstance(data.get('enzyme'),basestring):
-            data['enzyme'] = set(map(lambda s: s.strip(),data.get('enzyme').split(';')))
-
-        if isinstance(data.get('humanenzyme'),basestring):
-            data['humanenzyme'] = set(map(lambda s: s.strip(),data.get('humanenzyme').split(';')))
-
-        if isinstance(data.get('mouseenzyme'),basestring):
-            data['mouseenzyme'] = set(map(lambda s: s.strip(),data.get('mouseenzyme').split(';')))
+        for k in data:
+            if ('enzyme' in k or 'sandbox' in k) and isinstance(data.get(k),basestring):
+                data[k] = set(map(lambda s: s.strip(),data.get(k).split(';')))
 
         if isinstance(data.get('motifcanonres'),basestring):
             data['motifcanonres'] = set(map(lambda s: s.strip(),data.get('motifcanonres').split(';')))
@@ -151,26 +137,9 @@ class Motif(SMW.SMWClass):
         if 'keyword' in data:
             data['keyword'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['keyword'])))))
 
-        if 'enzyme' in data:
-            data['enzyme'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['enzyme'])))))
-
-        if 'humanenzyme' in data:
-            data['humanenzyme'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['humanenzyme'])))))
-
-        if 'mouseenzyme' in data:
-            data['mouseenzyme'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['mouseenzyme'])))))
-
-        if 'motifcanonres' in data:
-            data['motifcanonres'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['motifcanonres'])))))
-
-        if 'sandbox' in data:
-            data['sandbox'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['sandbox'])))))
-
-        if 'sandbox_nlinked' in data:
-            data['sandbox_nlinked'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['sandbox_nlinked'])))))
-
-        if 'sandbox_olinked' in data:
-            data['sandbox_olinked'] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data['sandbox_olinked'])))))
+        for k in data:
+            if 'enzyme' in k or 'sandbox' in k:
+                data[k] = ";".join(filter(None,sorted(set(map(lambda s: s.strip(),data[k])))))
 
         if 'dbxref' in data:
             data['dbxref'] = ";".join(map(lambda t: "%s:%s"%t,sorted(data['dbxref'])))
