@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Enhanced in dendritic cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000147162
+|description=Attach GlcNAc to Ser/Thr.
+|disease=Mental retardation, X-linked 106
+|disease_source=HPO
+|disease_source_key=8473
+|genename=OGT
+|ortholog=Ogt
+|phenotype=Amblyopia;Bicuspid aortic valve;Clinodactyly;Clinodactyly of the 5th finger;Cryptorchidism;Decreased testicular size;Frontal upsweep of hair;Global developmental delay;High hypermetropia;Hypertelorism;Hypospadias;Intellectual disability;Low-set ears;Microcephaly;Nystagmus;Open mouth;Synophrys;Thick vermilion border;Thin upper lip vermilion;X-linked recessive inheritance
+|phenotype_source=HPO
+|phenotype_source_key=8473
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000147162
+|uniprot=O15294
+}}

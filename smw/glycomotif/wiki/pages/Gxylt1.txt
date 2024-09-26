@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach alpha 3 Xyl to Glc.
+|genename=Gxylt1
+|mgiacc=MGI:2684933
+|ortholog=GXYLT1
+|phenotype=abnormal forebrain development;abnormal neural tube morphology;abnormal visceral yolk sac morphology;abnormal vitelline vasculature morphology;edema;embryonic lethality prior to tooth bud stage;hemorrhage;pale yolk sac;preweaning lethality, complete penetrance;preweaning lethality, incomplete penetrance;prolonged PR interval
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2684933
+|species=Mouse
+|uniprot=Q3UHH8
+}}

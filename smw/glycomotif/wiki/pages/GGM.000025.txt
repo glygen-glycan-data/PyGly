@@ -21,9 +21,9 @@ LIN
 5:5d(5+1)6n
 6:4o(6+1)7n
 |glytoucan=G00672PE
-|humanenzyme=B4GALT1:3;B4GALT2:3;B4GALT3:3;B4GALT4:3;B4GALT5:3;GCNT1:1;GCNT2:1;GCNT3:1;ST3GAL1:4;ST3GAL2:4;ST3GAL3:4;ST3GAL4:4;ST3GAL5:4;ST3GAL6:4
+|human_OC_enzymes=B4GALT1:3;B4GALT2:3;B4GALT3:3;B4GALT4:3;B4GALT5:3;GCNT1:1;GCNT2:1;GCNT3:1;ST3GAL1:4;ST3GAL2:4;ST3GAL3:4;ST3GAL4:4;ST3GAL5:4;ST3GAL6:4
 |keyword=Lewis x
-|mouseenzyme=B4galt1:3;B4galt2:3;B4galt3:3;B4galt4:3;B4galt5:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;St3gal1:4;St3gal2:4;St3gal3:4;St3gal4:4;St3gal5:4;St3gal6:4
+|mouse_OC_enzymes=B4galt1:3;B4galt2:3;B4galt3:3;B4galt4:3;B4galt5:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;St3gal1:4;St3gal2:4;St3gal3:4;St3gal4:4;St3gal5:4;St3gal6:4
 |name=6'-Sulfo Sialyl Lewis x
 6'-sulfo SLex
 6'-Sulfo-sialyl Lewis x
@@ -32,6 +32,6 @@ LIN
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Tateno et al. (2005) Mouse Siglec-F and human Siglec-8 are functionally convergent paralogs that ...
 |sameas=GD.R000030,GDB.002263,GDH.000009,GDV.000088,GE.EP0014,GM.G00672PE,UCM.000009
-|sandbox_olinked=G38979WI;G65895VF
+|sandbox_OC=G38979WI;G65895VF
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5_6*OSO/3{{=}}O/3{{=}}O{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3-4/a3-b1_a4-c1_c3-d2
 }}

@@ -31,14 +31,14 @@ LIN
 10:9o(6+1)11d
 11:11o(6+1)12n
 |glytoucan=G10907PF
-|humanenzyme=ALG11:5;ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;ALG3:8,7;DPAGT1:1
-|mouseenzyme=Alg11:5;Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Alg3:8,7;Dpagt1:1;Glt28d2:2
+|human_NA_enzymes=ALG11:5;ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;ALG3:8,7;DPAGT1:1
+|mouse_NA_enzymes=Alg11:5;Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Alg3:8,7;Dpagt1:1;Glt28d2:2
 |name=Diphosphorylated Man6
 Diphosphorylated Man_6
 |prefname=Diphosphorylated Man6
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Dahms et al. (2008) Strategies for carbohydrate recognition by the mannose 6-phosphate ...
 |sameas=GM.G10907PF
-|sandbox_nlinked=G23744RN
+|sandbox_NA=G10907PF;G23744RN
 |wurcs=WURCS{{=}}2.0/4,8,7/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a1122h-1a_1-5_6*OPO/3O/3{{=}}O{{!)}}/1-1-2-3-4-3-3-4/a4-b1_b4-c1_c3-d1_c6-f1_d2-e1_f3-g1_f6-h1
 }}

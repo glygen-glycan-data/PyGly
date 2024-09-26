@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach 3 linked sulfate to GlcA.
+|genename=Chst10
+|mgiacc=MGI:2138283
+|ortholog=CHST10
+|phenotype=abnormal behavior;decreased anxiety-related response;decreased thigmotaxis;decreased total retina thickness;increased red blood cell distribution width;increased spleen weight
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2138283
+|species=Mouse
+|uniprot=Q6PGK7
+}}

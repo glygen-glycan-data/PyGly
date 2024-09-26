@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach Fuc to Ser/Thr.
+|genename=Pofut2
+|mgiacc=MGI:1916863
+|ortholog=POFUT2
+|species=Mouse
+|uniprot=Q8VHI3
+}}

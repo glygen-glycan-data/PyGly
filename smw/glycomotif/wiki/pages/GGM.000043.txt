@@ -17,15 +17,17 @@ LIN
 3:3o(2+1)4d
 4:3o(3+1)5d
 |glytoucan=G31734OS
-|humanenzyme=A3GALT2:4;ABO:4;B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT6:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;GGTA1:4;MGAT1:1;MGAT2:1
+|human_NA_enzymes=A3GALT2:4;ABO:4;B3GALT2:2;B3GALT5:2;FUT1:3;FUT2:3;GGTA1:4;MGAT1:1;MGAT2:1
+|human_OC_enzymes=A3GALT2:4;ABO:4;B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT6:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;GGTA1:4
 |keyword=Blood group B;Blood group type 1
-|mouseenzyme=A3galt2:4;Abo:4;B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt6:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Ggta1:4;Mgat1:1;Mgat2:1;Sec1:3
+|mouse_NA_enzymes=A3galt2:4;Abo:4;B3galt2:2;B3galt5:2;Fut1:3;Fut2:3;Ggta1:4;Mgat1:1;Mgat2:1;Sec1:3
+|mouse_OC_enzymes=A3galt2:4;Abo:4;B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt6:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Ggta1:4;Sec1:3
 |name=Blood group B (type 1)
 |prefname=Blood group B (type 1)
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Clausen et al. (1985) Blood group A determinants with mono- and difucosyl type 1 ...
 |sameas=GD.R000488,GDB.002132,GDC.000043,GDH.000161,GDV.000020,GM.G31734OS
-|sandbox_nlinked=G32889SE;G92147YE
-|sandbox_olinked=G03877AD;G04548YV;G10480CH;G28337WM;G28599FB;G38933BS;G43946PN;G49542DJ;G49668VU;G75549SI
+|sandbox_NA=G32889SE;G92147YE
+|sandbox_OC=G03877AD;G04548YV;G10480CH;G20308RQ;G28337WM;G28599FB;G38933BS;G43946PN;G49542DJ;G49668VU
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4/a3-b1_b2-c1_b3-d1
 }}

@@ -7,10 +7,13 @@
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 |glytoucan=G71142DF
+|human_OC3_enzymes=POGLUT1:1;POGLUT2:1;POGLUT3:1
 |keyword=O-glycan classification
+|mouse_OC3_enzymes=Poglut1:1;Poglut2:1;Poglut3:1
 |name=O-Glucosylation
 |prefname=O-Glucosylation
 |redend=true
 |sameas=GD.R000532,GDC.000060,GDSB.000005,GDV.000082,GGM.000060,GM.G71142DF
+|sandbox_OC3=G01629YL;G41179DF;G71142DF
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2122h-1b_1-5{{!)}}/1/
 }}

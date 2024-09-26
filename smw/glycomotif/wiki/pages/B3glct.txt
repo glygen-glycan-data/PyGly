@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 3 Glc to Fuc.
+|genename=B3glct
+|mgiacc=MGI:2685903
+|ortholog=B3GLCT
+|species=Mouse
+|uniprot=Q8BHT6
+}}

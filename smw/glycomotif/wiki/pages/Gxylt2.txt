@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach alpha 3 Xyl to Glc.
+|genename=Gxylt2
+|mgiacc=MGI:2682940
+|ortholog=GXYLT2
+|phenotype=decreased total body fat amount;increased lean body mass
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2682940
+|species=Mouse
+|uniprot=Q810K9
+}}

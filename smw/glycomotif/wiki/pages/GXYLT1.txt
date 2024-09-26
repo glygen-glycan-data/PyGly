@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Low cell type specificity
+|celltype_source=HPA
+|celltype_source_key=ENSG00000151233
+|description=Attach alpha 3 Xyl to Glc.
+|genename=GXYLT1
+|ortholog=Gxylt1
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000151233
+|uniprot=Q4G148
+}}

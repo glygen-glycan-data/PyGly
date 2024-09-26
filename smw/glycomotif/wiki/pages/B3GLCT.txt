@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Enhanced in Astrocytes;Enhanced in Cardiomyocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons
+|celltype_source=HPA
+|celltype_source_key=ENSG00000187676
+|description=Attach beta 3 Glc to Fuc.
+|disease=Peters plus syndrome;Peters-plus syndrome
+|disease_source=HPO
+|disease_source_key=145173
+|genename=B3GLCT
+|ortholog=B3glct
+|phenotype=Abnormal cardiac septum morphology;Abnormal pelvic girdle bone morphology;Abnormal pulmonary vein morphology;Abnormality of the pulmonary artery;Abnormality of vision;Agenesis of corpus callosum;Agenesis of maxillary lateral incisor;Anal atresia;Anterior chamber synechiae;Anterior hypopituitarism;Anteriorly placed anus;Anteverted nares;Aplasia/Hypoplasia of the corpus callosum;Atrial septal defect;Autosomal recessive inheritance;Bicuspid pulmonary valve;Bilateral cleft lip;Biliary tract abnormality;Bilobate gallbladder;Birth length less than 3rd percentile;Brachycephaly;Brachydactyly;Broad foot;Broad neck;Broad palm;Cataract;Cerebral atrophy;Cerebral cortical atrophy;Cleft palate;Cleft upper lip;Clinodactyly of the 5th finger;Clitoral hypoplasia;Conductive hearing impairment;Congenital hypothyroidism;Conical incisor;Corneal opacity;Craniosynostosis;Cryptorchidism;Decreased body weight;Decreased fetal movement;Depressed nasal bridge;Diastasis recti;Disproportionate short-limb short stature;Exaggerated cupid's bow;Facial hypertrichosis;Feeding difficulties in infancy;Frontal bossing;Glaucoma;Global developmental delay;Hearing impairment;Hemivertebrae;Hydrocephalus;Hydronephrosis;Hypertelorism;Hypoplasia of the maxilla;Hypoplasia of the uterus;Hypoplasia of the vagina;Hypoplastic labia majora;Hypoplastic left heart;Hypospadias;Inguinal hernia;Intellectual disability;Intellectual disability, progressive;Intestinal fistula;Intrauterine growth retardation;Iris coloboma;Joint hypermobility;Limited elbow movement;Long face;Long philtrum;Low-set ears;Low-set, posteriorly rotated ears;Macrocephaly;Microcephaly;Microcornea;Micrognathia;Micromelia;Microtia, second degree;Multicystic kidney dysplasia;Myopia;Narrow palpebral fissure;Nystagmus;Optic atrophy;Patent ductus arteriosus;Pectus excavatum;Pes cavus;Peters anomaly;Polyhydramnios;Posteriorly rotated ears;Postnatal growth retardation;Preauricular pit;Preauricular skin tag;Prominent forehead;Protruding ear;Proximal placement of thumb;Ptosis;Pulmonic stenosis;Renal duplication;Renal hypoplasia;Renal hypoplasia/aplasia;Retinal coloboma;Rhizomelia;Round face;Sacral dimple;Scoliosis;Seizure;Short columella;Short foot;Short lingual frenulum;Short metacarpal;Short metatarsal;Short neck;Short nose;Short palm;Short palpebral fissure;Short stature;Short toe;Single transverse palmar crease;Spina bifida occulta;Square pelvis bone;Stenosis of the external auditory canal;Syndactyly;Thin upper lip vermilion;Thin vermilion border;Toe syndactyly;Umbilical hernia;Upslanted palpebral fissure;Ureteral duplication;Ventricular septal defect;Ventriculomegaly;Visual impairment;Webbed neck;Wide anterior fontanel;Wide intermamillary distance;Wide mouth;Widely spaced teeth
+|phenotype_source=HPO
+|phenotype_source_key=145173
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000187676
+|uniprot=Q6Y288
+}}

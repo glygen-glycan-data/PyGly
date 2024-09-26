@@ -7,10 +7,13 @@
 |glycoct=RES
 1b:x-lgal-HEX-x:x{{!}}6:d
 |glytoucan=G49112ZN
+|human_OC1_enzymes=POFUT1:1;POFUT2:1
 |keyword=O-glycan classification
+|mouse_OC1_enzymes=Pofut1:1;Pofut2:1
 |name=O-Glycan O-Fucose Core
 |prefname=O-Glycan O-Fucose Core
 |redend=true
 |sameas=GM.G49112ZN
+|sandbox_OC1=G01002UX;G01854VF;G08324ZK;G10016UC;G15562AE;G17988BN;G19968XU;G21971UP;G26040WE;G26238GL
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}u1221m{{!)}}/1/
 }}

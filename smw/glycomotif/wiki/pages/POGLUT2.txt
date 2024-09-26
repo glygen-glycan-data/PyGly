@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Enhanced in Extravillous trophoblasts;Enhanced in Lymphatic endothelial cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000134901
+|description=Attach Glc to Ser/Thr.
+|genename=POGLUT2
+|ortholog=Poglut2
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000134901
+|uniprot=Q6UW63
+}}

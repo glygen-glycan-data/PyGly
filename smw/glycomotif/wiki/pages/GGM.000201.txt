@@ -16,14 +16,14 @@ LIN
 3:3o(2+1)4d
 4:3o(3+1)5d
 |glytoucan=G88313DY
-|humanenzyme=ABO:4;C1GALT1:2;C1GALT1C1:2;FUT1:3;FUT2:3;GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
+|human_OC_enzymes=ABO:4;C1GALT1:2;C1GALT1C1:2;FUT1:3;FUT2:3;GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
 |keyword=Blood group B;Blood group type 3
-|mouseenzyme=Abo:4;C1galt1:2;C1galt1c1:2;Fut1:3;Fut2:3;Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Sec1:3
+|mouse_OC_enzymes=Abo:4;C1galt1:2;C1galt1c1:2;Fut1:3;Fut2:3;Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1;Sec1:3
 |name=B antigen (type 3)
 |prefname=B antigen (type 3)
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Breimer et al. (1988) Structures of the eight- to nine-sugar glycolipids of human blood ...;Stanley et al. (2017) Structures Common to Different Glycans
 |sameas=GM.G88313DY
-|sandbox_olinked=G88313DY
+|sandbox_OC=G88313DY
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1a_1-5{{!)}}/1-2-3-4/a3-b1_b2-c1_b3-d1
 }}

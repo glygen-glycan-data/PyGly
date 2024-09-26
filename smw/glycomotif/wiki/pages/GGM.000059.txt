@@ -18,10 +18,13 @@ LIN
 4:4o(3+1)5d
 5:5o(3+1)6n
 |glytoucan=G06898ZN
+|human_OC4_enzymes=B3GAT1:4;B3GAT2:4;B4GALT1:3;B4GALT2:3;B4GALT3:3;B4GALT4:3;B4GALT5:3;CHST10:4.1;POMGNT1:2;POMT1:1;POMT2:1
+|mouse_OC4_enzymes=B3gat1:4;B3gat2:4;B4galt1:3;B4galt2:3;B4galt3:3;B4galt4:3;B4galt5:3;Chst10:4.1;Pomgnt1:2;Pomt1:1;Pomt2:1
 |name=HNK-1 on O-mannose
 |prefname=HNK-1 on O-mannose
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Yuen et al. (1997) Brain contains HNK-1 immunoreactive O-glycans of the sulfoglucuronyl lactosamine series ...
 |sameas=GD.R000154,GDV.000079,GM.G06898ZN
+|sandbox_OC4=G06898ZN
 |wurcs=WURCS{{=}}2.0/4,4,3/{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a2122A-1b_1-5_3*OSO/3{{=}}O/3{{=}}O{{!)}}/1-2-3-4/a2-b1_b4-c1_c3-d1
 }}

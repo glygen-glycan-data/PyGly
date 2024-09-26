@@ -32,13 +32,13 @@ LIN
 11:11o(-1+1)12d
 12:12d(2+1)13n
 |glytoucan=G59096WE
-|humanenzyme=ALG13:2;ALG14:2;ALG1:3;ALG2:4,7;DPAGT1:1;MGAT1:8,5,6;MGAT2:8,5,6;MGAT4A:8,5,6;MGAT4B:8,5,6;MGAT4C:8,5,6;MGAT5:8,5,6;MGAT5B:8,5,6
+|human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:4,7;DPAGT1:1;MGAT1:8,5,6;MGAT2:8,5,6;MGAT4A:8,5,6;MGAT4B:8,5,6;MGAT4C:8,5,6;MGAT5:8,5,6;MGAT5B:8,5,6
 |keyword=N-glycan classification
-|mouseenzyme=Alg13:2;Alg14:2;Alg1:3;Alg2:4,7;Dpagt1:1;Glt28d2:2;Mgat1:8,5,6;Mgat2:8,5,6;Mgat4a:8,5,6;Mgat4b:8,5,6;Mgat4c:8,5,6;Mgat5:8,5,6;Mgat5b:8,5,6
+|mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:4,7;Dpagt1:1;Glt28d2:2;Mgat1:8,5,6;Mgat2:8,5,6;Mgat4a:8,5,6;Mgat4b:8,5,6;Mgat4c:8,5,6;Mgat5:8,5,6;Mgat5b:8,5,6
 |name=N-Glycan triantennary
 |prefname=N-Glycan triantennary
 |redend=true
 |sameas=GM.G59096WE
-|sandbox_nlinked=G00049HA;G00176HZ;G00201AB;G00212RH;G00231WL;G00255RE;G00279YF;G00314AH;G00361YF;G00368HM
+|sandbox_NA=G00049HA;G00176HZ;G00201AB;G00212RH;G00231WL;G00255RE;G00279YF;G00314AH;G00361YF;G00368HM
 |wurcs=WURCS{{=}}2.0/4,8,7/{{!(}}u2122h_2*NCC/3{{=}}O{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-4-2-2-4-2/a4-b1_b4-c1_c?-d1_c?-g1_d?-e1_d?-f1_g?-h1
 }}

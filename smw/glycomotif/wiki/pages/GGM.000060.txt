@@ -8,11 +8,14 @@
 |glycoct=RES
 1b:b-dglc-HEX-1:5
 |glytoucan=G71142DF
+|human_OC3_enzymes=POGLUT1:1;POGLUT2:1;POGLUT3:1
 |keyword=Glycolipid
+|mouse_OC3_enzymes=Poglut1:1;Poglut2:1;Poglut3:1
 |name=Glucosylceramide
 |prefname=Glucosylceramide
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Kuroki et al. (1992) Binding specificity of lung surfactant protein SP-D for ...
 |sameas=GD.R000532,GDC.000060,GDSB.000005,GDV.000082,GGM.001031,GM.G71142DF
+|sandbox_OC3=G71142DF
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2122h-1b_1-5{{!)}}/1/
 }}

@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Enhanced in Skeletal myocytes
+|celltype_source=HPA
+|celltype_source_key=ENSG00000163378
+|description=Attach GlcNAc to Ser/Thr.
+|disease=Adams-Oliver syndrome;Adams-Oliver syndrome 4
+|disease_source=HPO
+|disease_source_key=285203
+|genename=EOGT
+|ortholog=Eogt
+|phenotype=Abnormal metacarpal morphology;Abnormal pulmonary valve morphology;Abnormality of the lower limb;Abnormality of the upper limb;Absent fingernail;Absent hand;Absent middle phalanx of the 3rd toe;Absent toe;Alopecia;Aplasia cutis congenita;Aplasia of the distal phalanges of the toes;Aplasia of the middle phalanx of the 4th toe;Aplasia/Hypoplasia of the skin;Aplastic/hypoplastic toenail;Arteriovenous malformation;Ascites;Atrial septal defect;Autosomal recessive inheritance;Brachydactyly;Calvarial skull defect;Cataract;Cirrhosis;Congenital hepatic fibrosis;Congenital onset;Cutis marmorata;EEG abnormality;Encephalocele;Esophageal varix;Failure to thrive;Finger syndactyly;Gastrointestinal hemorrhage;Hemiparesis;Hydrocephalus;Hypertonia;Hypoplastic fingernail;Hypoplastic toenails;Intellectual disability;Leukopenia;Microphthalmia;Patent ductus arteriosus;Periventricular leukomalacia;Porencephalic cyst;Portal hypertension;Premature birth;Pulmonary arterial hypertension;Pulmonary artery atresia;Seizure;Short distal phalanx of finger;Short toe;Sparse hair;Split hand;Strabismus;Talipes;Tetralogy of Fallot;Thrombocytopenia;Toenail dysplasia;Umbilical hernia;Ventricular septal defect
+|phenotype_source=HPO
+|phenotype_source_key=285203
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000163378
+|uniprot=Q5NDL2
+}}

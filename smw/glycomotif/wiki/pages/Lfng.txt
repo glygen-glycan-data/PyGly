@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 3 GlcNAc to Fuc.
+|genename=Lfng
+|mgiacc=MGI:1095413
+|ortholog=LFNG
+|species=Mouse
+|uniprot=O09010
+}}

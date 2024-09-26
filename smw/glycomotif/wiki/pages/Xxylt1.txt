@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach alpha 3 Xyl to Xyl.
+|genename=Xxylt1
+|mgiacc=MGI:2146443
+|ortholog=XXYLT1
+|phenotype=abnormal retina morphology;abnormal vibrissa morphology;decreased lean body mass;increased total body fat amount
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2146443
+|species=Mouse
+|uniprot=Q3U4G3
+}}

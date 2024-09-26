@@ -11,13 +11,13 @@
 LIN
 1:1d(2+1)2n
 |glytoucan=G57321FI
-|humanenzyme=GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
-|mouseenzyme=Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1
+|human_OC_enzymes=GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
+|mouse_OC_enzymes=Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1
 |name=Tn antigen
 |prefname=Tn antigen
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Springer et al. (1985) Tn epitopes, immunoreactive with ordinary anti-Tn antibodies, on normal, desialylated ...;DAUSSET et al. (1959) Acquired hemolytic anemia with polyagglutinability of red blood cells due ...
 |sameas=GD.R000164,GDC.000008,GDV.000062,GE.EP0021,GM.G57321FI,UCM.000152
-|sandbox_olinked=G57321FI
+|sandbox_OC=G57321FI
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1/
 }}

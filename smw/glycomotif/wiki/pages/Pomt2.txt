@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach Man to Ser/Thr.
+|genename=Pomt2
+|mgiacc=MGI:2444430
+|ortholog=POMT2
+|species=Mouse
+|uniprot=Q8BGQ4
+}}

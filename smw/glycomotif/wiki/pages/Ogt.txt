@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach GlcNAc to Ser/Thr.
+|genename=Ogt
+|mgiacc=MGI:1339639
+|ortholog=OGT
+|species=Mouse
+|uniprot=Q8CGY8
+}}

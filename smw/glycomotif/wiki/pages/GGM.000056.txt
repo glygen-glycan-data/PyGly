@@ -29,10 +29,13 @@ LIN
 9:9o(3+2)10d
 10:10d(5+1)11n
 |glytoucan=G06953DR
+|human_OC4_enzymes=B4GALT1:3,6;B4GALT2:3,6;B4GALT3:3,6;B4GALT4:3,6;B4GALT5:3,6;MGAT5B:5;POMGNT1:2;POMT1:1;POMT2:1;ST3GAL1:4,7
+|mouse_OC4_enzymes=B4galt1:3,6;B4galt2:3,6;B4galt3:3,6;B4galt4:3,6;B4galt5:3,6;Mgat5b:5;Pomgnt1:2;Pomt1:1;Pomt2:1;St3gal1:4,7
 |name=2,6-Branched O-mannose
 |prefname=2,6-Branched O-mannose
 |redend=true
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Chai et al. (1999) High prevalence of 2-mono- and 2,6-di-substituted manol-terminating sequences among O-glycans ...
 |sameas=GD.R000178,GDC.000056,GDV.000109,GM.G06953DR
+|sandbox_OC4=G06953DR
 |wurcs=WURCS{{=}}2.0/4,7,6/{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}Aad21122h-2a_2-6_5*NCC/3{{=}}O{{!)}}/1-2-3-4-2-3-4/a2-b1_a6-e1_b4-c1_c3-d2_e4-f1_f3-g2
 }}

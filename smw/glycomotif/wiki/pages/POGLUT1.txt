@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Enhanced in Langerhans cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000163389
+|description=Attach Glc to Ser/Thr.
+|disease=Dowling-Degos disease;Dowling-Degos disease 4;Muscular dystrophy, limb-girdle, type 2Z
+|disease_source=HPO
+|disease_source_key=56983
+|genename=POGLUT1
+|ortholog=Poglut1
+|phenotype=Abnormal fingernail morphology;Abnormality of the hand;Abnormality of the neck;Acne inversa;Adult onset;Airway obstruction;Anal margin squamous cell carcinoma;Arthritis;Autosomal dominant inheritance;Autosomal recessive inheritance;Digital pitting scar;Elevated circulating creatine kinase concentration;Epidermal acanthosis;Epidermoid cyst;Erythematous papule;Fatty replacement of skeletal muscle;Generalized abnormality of skin;Heat intolerance;Hypergranulosis;Hyperkeratosis;Hyperkeratotic papule;Hypermelanotic macule;Hyperpigmented papule;Hypopigmented macule;Inguinal freckling;Keratoacanthoma;Limb-girdle muscular dystrophy;Mixed hypo- and hyperpigmentation of the skin;Palmar pits;Papule;Penile freckling;Progressive reticulate hyperpigmentation;Proximal muscle weakness in lower limbs;Pruritus;Reduced forced vital capacity;Respiratory insufficiency;Restrictive ventilatory defect;Scapular winging;Scrotal hyperpigmentation;Skin vesicle;Slowly progressive;Young adult onset
+|phenotype_source=HPO
+|phenotype_source_key=56983
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000163389
+|uniprot=Q8NBL1
+}}

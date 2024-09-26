@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach beta 3 GlcA to Gal.
+|genename=B3gat2
+|mgiacc=MGI:2389490
+|ortholog=B3GAT2
+|species=Mouse
+|uniprot=P59270
+}}

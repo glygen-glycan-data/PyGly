@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach Glc to Ser/Thr.
+|genename=Poglut2
+|mgiacc=MGI:1919300
+|ortholog=POGLUT2
+|species=Mouse
+|uniprot=Q9JHP7
+}}

@@ -8,5 +8,6 @@
  |template=RowForPhenotypes
  |introtemplate=IntroForPhenotypes
  |outrotemplate=OutroForPhenotypes
- |maxtags=100
+ |maxtags=20
+ |limit=100000
 }}

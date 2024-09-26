@@ -17,9 +17,11 @@ LIN
 3:3o(2+1)4d
 4:1o(4+1)5d
 |glytoucan=G39211DH
-|humanenzyme=B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT2:1;B3GNT3:1;B3GNT4:1;B3GNT5:1;B3GNT6:1;B3GNT8:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;MGAT1:1;MGAT2:1
+|human_NA_enzymes=B3GALT2:2;B3GALT5:2;FUT1:3;FUT2:3;MGAT1:1;MGAT2:1
+|human_OC_enzymes=B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT2:1;B3GNT3:1;B3GNT4:1;B3GNT5:1;B3GNT6:1;B3GNT8:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1
 |keyword=Lewis b
-|mouseenzyme=B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt2:1;B3gnt3:1;B3gnt4:1;B3gnt5:1;B3gnt6:1;B3gnt8:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Mgat1:1;Mgat2:1;Sec1:3
+|mouse_NA_enzymes=B3galt2:2;B3galt5:2;Fut1:3;Fut2:3;Mgat1:1;Mgat2:1;Sec1:3
+|mouse_OC_enzymes=B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt2:1;B3gnt3:1;B3gnt4:1;B3gnt5:1;B3gnt6:1;B3gnt8:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Sec1:3
 |name=Lewis b
 Leb
 Le^b
@@ -27,7 +29,7 @@ Le^b
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Brockhaus et al. (1981) Monoclonal antibodies directed against the human Leb blood group ...
 |sameas=GD.R000197,GDC.000021,GDSB.000146,GDV.000004,GM.G39211DH
-|sandbox_nlinked=G66689PB;G92627GM
-|sandbox_olinked=G03140AX;G04536JV;G06579LC;G07164WO;G07578MJ;G08382XT;G12111NA;G13863XN;G19238ZQ;G19555CW
+|sandbox_NA=G66689PB;G92627GM
+|sandbox_OC=G03140AX;G04536JV;G06579LC;G07164WO;G07578MJ;G08382XT;G12111NA;G13863XN;G19238ZQ;G19555CW
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}{{!(}}a1221m-1a_1-5{{!)}}/1-2-3-3/a3-b1_a4-d1_b2-c1
 }}

@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach Glc to Ser/Thr.
+|genename=Poglut1
+|mgiacc=MGI:2444232
+|ortholog=POGLUT1
+|phenotype=abnormal retina outer nuclear layer morphology;embryonic lethality prior to organogenesis;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2444232
+|species=Mouse
+|uniprot=Q8BYB9
+}}

@@ -55,10 +55,10 @@ Edit the page to see the template text.
 | style="" | [[glycomotif:glytoucan::{{{glytoucan|}}}]]
 |-
 ! style="" | Human Enzyme(s)
-| style="" | {{#arraymap:{{{humanenzyme|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}
+| style="" | {{#if:{{{human_NA_enzymes|}}}|<b>N-linked:</b> {{#arraymap:{{{human_NA_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{human_OC_enzymes|}}}|<b>O-GalNAc core:</b> {{#arraymap:{{{human_OC_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{human_OC2_enzymes|}}}|<b>O-GlcNAc core:</b> {{#arraymap:{{{human_OC2_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{human_OC3_enzymes|}}}|<b>O-Glc core:</b> {{#arraymap:{{{human_OC3_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{human_OC4_enzymes|}}}|<b>O-Man core:</b> {{#arraymap:{{{human_OC4_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{human_OC1_enzymes|}}}|<b>O-Fuc core:</b> {{#arraymap:{{{human_OC1_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}
 |-
 ! style="" | Mouse Enzyme(s)
-| style="" | {{#arraymap:{{{mouseenzyme|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}
+| style="" | {{#if:{{{mouse_NA_enzymes|}}}|<b>N-linked:</b> {{#arraymap:{{{mouse_NA_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{mouse_OC_enzymes|}}}|<b>O-GalNAc core:</b> {{#arraymap:{{{mouse_OC_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{mouse_OC2_enzymes|}}}|<b>O-GlcNAc core:</b> {{#arraymap:{{{mouse_OC2_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{mouse_OC3_enzymes|}}}|<b>O-Glc core:</b> {{#arraymap:{{{mouse_OC3_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{mouse_OC4_enzymes|}}}|<b>O-Man core:</b> {{#arraymap:{{{mouse_OC4_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}{{#if:{{{mouse_OC1_enzymes|}}}|<b>O-Fuc core:</b> {{#arraymap:{{{mouse_OC1_enzymes|}}}|;|__xxx__|{{enzymedisplay|__xxx__}}}}<br>|}}
 |-
 ! style="" | Cross Reference(s)
 | style="" | {{#arraymap:{{{dbxref|}}}|;|x|{{crossrefdisplay|x}}|, }}
@@ -92,7 +92,7 @@ Edit the page to see the template text.
 |
 }}
 == Alignments ==
-<div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}" data-sandbox="{{{sandbox_nlinked|}}};{{{sandbox_olinked|}}}"></div>
+<div id="motif_align_para" data-prefix="{{PREFIX}}" data-page_id="{{{collection|}}}.{{{accession|}}}" data-alignment="{{{alignment|}}}" data-sandbox="{{{sandbox_NA|}}};{{{sandbox_OC|}}};{{{sandbox_OC1|}}};{{{sandbox_OC2|}}};{{{sandbox_OC3|}}};{{{sandbox_OC4|}}}"></div>
 <div id="glycomotif_alignment_result"></div>
 
 '''Download:'''

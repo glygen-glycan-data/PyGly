@@ -14,10 +14,13 @@ LIN
 2:2d(2+1)3n
 3:2o(4+1)4d
 |glytoucan=G23707SD
+|human_OC4_enzymes=B4GALT1:3;B4GALT2:3;B4GALT3:3;B4GALT4:3;B4GALT5:3;POMGNT1:2;POMT1:1;POMT2:1
 |keyword=O-glycan classification
+|mouse_OC4_enzymes=B4galt1:3;B4galt2:3;B4galt3:3;B4galt4:3;B4galt5:3;Pomgnt1:2;Pomt1:1;Pomt2:1
 |name=O-Mannose
 |prefname=O-Mannose
 |redend=true
 |sameas=GM.G23707SD
+|sandbox_OC4=G02657CQ;G06171MB;G06898ZN;G06953DR;G13362QL;G13469SG;G13544YC;G13668YX;G15557BG;G16404NW
 |wurcs=WURCS{{=}}2.0/3,3,2/{{!(}}u1122h{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3/a2-b1_b4-c1
 }}

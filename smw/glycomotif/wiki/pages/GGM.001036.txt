@@ -7,10 +7,13 @@
 |glycoct=RES
 1b:x-dman-HEX-x:x
 |glytoucan=G76001GO
+|human_OC4_enzymes=POMT1:1;POMT2:1
 |keyword=O-glycan classification
+|mouse_OC4_enzymes=Pomt1:1;Pomt2:1
 |name=O-Glycan O-Mannose Core
 |prefname=O-Glycan O-Mannose Core
 |redend=true
 |sameas=GM.G76001GO
+|sandbox_OC4=G00298HY;G01823EY;G02609KH;G02657CQ;G03554CN;G06171MB;G06595MR;G06898ZN;G06953DR;G07595NQ
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}u1122h{{!)}}/1/
 }}

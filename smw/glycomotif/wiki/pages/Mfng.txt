@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach beta 3 GlcNAc to Fuc.
+|genename=Mfng
+|mgiacc=MGI:1095404
+|ortholog=MFNG
+|phenotype=abnormal eye morphology;abnormal heart morphology;abnormal ovary morphology;abnormal skin morphology;abnormal spine curvature;abnormal thymus morphology;abnormal uterus morphology;decreased NK T cell number;decreased exploration in new environment;decreased locomotor activity;decreased startle reflex;enlarged heart;enlarged thymus;hydrometra;kyphosis;preweaning lethality, incomplete penetrance;small testis
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1095404
+|species=Mouse
+|uniprot=O09008
+}}

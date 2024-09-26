@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Enhanced in Astrocytes;Enhanced in Horizontal cells;Enhanced in Muller glia cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000115526
+|description=Attach 3 linked sulfate to GlcA.
+|genename=CHST10
+|ortholog=Chst10
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000115526
+|uniprot=O43529
+}}

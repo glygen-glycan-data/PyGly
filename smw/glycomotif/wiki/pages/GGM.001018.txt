@@ -14,13 +14,13 @@ LIN
 2:1o(6+1)3d
 3:3d(2+1)4n
 |glytoucan=G00044MO
-|humanenzyme=GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
+|human_OC_enzymes=GALNT10:1;GALNT11:1;GALNT12:1;GALNT13:1;GALNT14:1;GALNT15:1;GALNT16:1;GALNT17:1;GALNT18:1;GALNT1:1;GALNT2:1;GALNT3:1;GALNT4:1;GALNT5:1;GALNT6:1;GALNT7:1;GALNT9:1;GALNTL5:1;GALNTL6:1
 |keyword=Mucin-type O-glycan core;O-glycan classification
-|mouseenzyme=Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1
+|mouse_OC_enzymes=Galnt10:1;Galnt11:1;Galnt12:1;Galnt13:1;Galnt14:1;Galnt15:1;Galnt16:1;Galnt17:1;Galnt18:1;Galnt1:1;Galnt2:1;Galnt3:1;Galnt4:1;Galnt5:1;Galnt6:1;Galnt7:1;Galnt9:1;Galntl5:1;Galntl6:1
 |name=O-Glycan core 7 fuzzy
 |prefname=O-Glycan core 7 fuzzy
 |redend=true
 |sameas=GM.G00044MO,GTC.G00044MO
-|sandbox_olinked=G00043MO;G00044MO;G23652VU;G39535TC
+|sandbox_OC=G00043MO;G00044MO;G23652VU;G39535TC
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}u2112h_2*NCC/3{{=}}O{{!)}}{{!(}}a2112h-1a_1-5_2*NCC/3{{=}}O{{!)}}/1-2/a6-b1
 }}

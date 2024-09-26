@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Low cell type specificity
+|celltype_source=HPA
+|celltype_source_key=ENSG00000169733
+|description=Attach beta 3 GlcNAc to Fuc.
+|genename=RFNG
+|ortholog=Rfng
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000169733
+|uniprot=Q9Y644
+}}

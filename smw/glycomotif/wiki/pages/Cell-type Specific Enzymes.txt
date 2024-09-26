@@ -9,4 +9,5 @@
  |introtemplate=IntroForTissue
  |outrotemplate=OutroForTissue
  |maxtags=20
+ |limit=10000
 }}

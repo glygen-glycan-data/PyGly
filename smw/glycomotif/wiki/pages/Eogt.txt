@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach GlcNAc to Ser/Thr.
+|genename=Eogt
+|mgiacc=MGI:2141669
+|ortholog=EOGT
+|phenotype=preweaning lethality, incomplete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2141669
+|species=Mouse
+|uniprot=Q8BYW9
+}}

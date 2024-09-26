@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Low cell type specificity
+|celltype_source=HPA
+|celltype_source_key=ENSG00000101346
+|description=Attach Fuc to Ser/Thr.
+|disease=Dowling-Degos disease;Dowling-Degos disease 2
+|disease_source=HPO
+|disease_source_key=23509
+|genename=POFUT1
+|ortholog=Pofut1
+|phenotype=Abnormal fingernail morphology;Abnormality of the hand;Abnormality of the neck;Acne inversa;Anal margin squamous cell carcinoma;Arthritis;Autosomal dominant inheritance;Digital pitting scar;Epidermoid cyst;Erythematous papule;Follicular hyperkeratosis;Generalized abnormality of skin;Heat intolerance;Hyperkeratosis;Hyperkeratotic papule;Hypermelanotic macule;Hyperpigmented papule;Hypomelanotic macule;Hypopigmented macule;Inguinal freckling;Keratoacanthoma;Mixed hypo- and hyperpigmentation of the skin;Palmar pits;Penile freckling;Progressive reticulate hyperpigmentation;Pruritus;Reticular hyperpigmentation;Scrotal hyperpigmentation;Skin vesicle
+|phenotype_source=HPO
+|phenotype_source_key=23509
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000101346
+|uniprot=Q9H488
+}}

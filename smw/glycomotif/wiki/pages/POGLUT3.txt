@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Enhanced in Fibroblasts
+|celltype_source=HPA
+|celltype_source_key=ENSG00000178202
+|description=Attach Glc to Ser/Thr.
+|genename=POGLUT3
+|ortholog=Poglut3
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000178202
+|uniprot=Q7Z4H8
+}}
