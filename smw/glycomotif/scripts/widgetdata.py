@@ -10,6 +10,7 @@ import findpygly
 import pygly.alignment as alignment
 
 from collections import defaultdict
+from functools import reduce
 from pygly.GlycanFormatter import WURCS20Format, GlycoCTFormat
 
 # Has to come first to pick out the --smwenv PROD command-line argument.
@@ -107,7 +108,7 @@ for m in w.itermotif():
 
     glycan_length[acc] = l
 
-print "%s motifs are supported" % len(glycans)
+print("%s motifs are supported" % len(glycans))
 
 supported_acc = list(glycans.keys())
 topology_pool = []
@@ -218,7 +219,7 @@ for i, cluster in enumerate(topology_pool):
 
     TopoRoot = "Topology"
     data = {"root": TopoRoot}
-    data["nodes"] = relation.keys() + [TopoRoot]
+    data["nodes"] = list(relation.keys()) + [TopoRoot]
     data["edges"] = {TopoRoot: rootDirectChildren}
     for p, c in relation.items():
         if len(c) > 0:
@@ -226,7 +227,7 @@ for i, cluster in enumerate(topology_pool):
 
     comp = viewerdatageneraterTopo(data)
 
-    relationship_within_topology_cluster[relation.keys()[0]] = comp
+    relationship_within_topology_cluster[list(relation.keys())[0]] = comp
 
 
 
@@ -434,7 +435,7 @@ for m in w.itermotif():
 
     equivalents = sorted(map(lambda x: str(AllMotifpageid + "." + x), equivalents))
 
-    print "Set topology cluster attribute for ", m.get("id")
+    print("Set topology cluster attribute for ", m.get("id"))
     m.set("topology", equivalents)
     w.update(m)
 

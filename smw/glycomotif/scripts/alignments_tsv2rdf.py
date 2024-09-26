@@ -40,7 +40,7 @@ ColumnMap = {
     "Nonreducing-End": ('Non_Red_Inclusive','Non_Red_Strict')
 }
 
-for line in csv.DictReader(gzip.open(motif_tsv), dialect="excel-tab"):
+for line in csv.DictReader(gzip.open(motif_tsv,'rt'), dialect="excel-tab"):
     motifacc = line['Motif']
     acc = line['Structure']
     for alignment_type in ColumnMap:
@@ -67,4 +67,4 @@ for line in csv.DictReader(gzip.open(motif_tsv), dialect="excel-tab"):
             rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal(str(strict).lower(), datatype=rdflib.XSD.boolean)))
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
-writer.serialize(sys.stdout)
+writer.serialize(sys.stdout.buffer)

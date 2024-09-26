@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3
 
 from collections import defaultdict
 
@@ -12,10 +12,10 @@ for m in w.itermotif():
     if gtc:
         gtc2motif[gtc].append(m)
 
-for gtc,motiflist in sorted(gtc2motif.iteritems()):
-    print gtc
+for gtc,motiflist in sorted(gtc2motif.items()):
+    print(gtc)
     for m in motiflist:
-	sameas = sorted(map(lambda m1: m1.get('id'),motiflist))
-	sameas.remove(m.get('id'))
-	m.set('sameas',sameas)
-	w.update(m)
+        sameas = sorted(map(lambda m1: m1.get('id'),motiflist))
+        sameas.remove(m.get('id'))
+        m.set('sameas',sameas)
+        w.update(m)

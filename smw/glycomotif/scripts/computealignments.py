@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3
 
 import os
 import sys
@@ -36,9 +36,9 @@ def check_idmaps(motifids,glycanids,idmaps): ###ID MAPS
         if set(map(itemgetter(0),idmapids)) != motifids:
             bad += 1
         if not set(map(itemgetter(1),idmapids)) <= glycanids:
-            print >>sys.stderr, set(map(itemgetter(1),idmapids))
-            print >>sys.stderr, glycanids
-            print >>sys.stderr, set(map(itemgetter(1),idmapids)) <= glycanids
+            print(set(map(itemgetter(1),idmapids)),file-sys.stderr)
+            print(glycanids,file-sys.stderr)
+            print(set(map(itemgetter(1),idmapids)) <= glycanids,file-sys.stderr)
             bad += 2
         if len(set(map(itemgetter(1),idmapids))) != len(motifids):
             bad += 4
@@ -49,7 +49,7 @@ def check_idmaps(motifids,glycanids,idmaps): ###ID MAPS
         if len(set(map(itemgetter(0),idmapids))) != len(set(idmapids)):
             bad += 32
         if bad > 0:
-            print >>sys.stderr, "Bad idmap:",bad,idmapids
+            print("Bad idmap:",bad,idmapids,file=sys.stderr)
             break
     return bad == 0
 
@@ -77,7 +77,7 @@ def get_match_index (motifacc,structacc,idmaps,glycan=None):
                     else:
                         linkids.add(('',l.child().external_descriptor_id()))
             if len(monoids) != (len(linkids) + 1):
-                print >>sys.stderr, "Warning: Bad linkids length motifacc: %s structacc: %s"%(motifacc,structacc)
+                print("Warning: Bad linkids length motifacc: %s structacc: %s"%(motifacc,structacc),file=sys.stderr)
             allstructlinkids.update(linkids)
     x = "Y:"+",".join(str(i) for i in sorted(allstructids))
     if glycan:
@@ -138,7 +138,7 @@ else:
  
 
 archived = set()
-gco = GlyCosmos()
+gco = GlyCosmosNoCache()
 for acc in gco.archived():
     acc = acc["accession"]
     archived.add(acc)
@@ -146,8 +146,8 @@ for acc in gco.archived():
 def secondtostr(i):
     i = int(i)
 
-    h = i / 3600
-    m = (i - h * 3600) / 60
+    h = i // 3600
+    m = (i % 3600) // 60
 
     h = str(h)
     if len(h) == 1:
@@ -160,8 +160,9 @@ def secondtostr(i):
     return "%sh:%sm" % (h, m)
 
 # f1 = open("tmp.txt", "w")
+gtcallseq = sorted(gtc.allseq(format="wurcs"))
 result = []
-i, l, lastper = 0.0, len(list(gtc.allseq(format="wurcs"))) / 100.0, 0
+i, l, lastper = 0.0, len(gtcallseq)) / 100.0, 0
 
 start_ts = time.time()
 motif_accs = motif_gobjs.keys()
@@ -174,7 +175,7 @@ else:
     result_file = sys.stdout
 result_file.write("Motif\tStructure\tCore_Inclusive\tSubstructure_Inclusive\tWhole_Inclusive\tNon_Red_Inclusive\tCore_Strict\tSubstructure_Strict\tWhole_Strict\tNon_Red_Strict\n")
 
-for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
+for glycan_acc, f, s in gtcallseq:
     #print(glycan_acc)
 
     i += 1
@@ -196,7 +197,7 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
     if per > lastper:
         lastper += 0.1
         lapsed = time.time() - start_ts
-        print >> sys.stderr, "%0.2f Percent finished after %s, estimate %s remaining" % (per, secondtostr(lapsed), secondtostr(lapsed/per*(100-per)))
+        print("%0.2f Percent finished after %s, estimate %s remaining" % (per, secondtostr(lapsed), secondtostr(lapsed/per*(100-per))),file=sys.stderr)
 
 
     for macc,motif in sorted(motif_gobjs.items()):
@@ -281,7 +282,7 @@ for glycan_acc, f, s in sorted(gtc.allseq(format="wurcs")):
         #     print("invalid:", line)
         #     #sys.exit()
 
-        print >>result_file, "\t".join(line)
+        print("\t".join(line),file=result_file)
 
 
 if res_file_path:

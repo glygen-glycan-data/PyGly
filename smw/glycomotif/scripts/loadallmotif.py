@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3
 
 from collections import defaultdict
 import sys
@@ -18,33 +18,33 @@ for m in w.itermotif():
 print('Done')
 
 current = set()
-for gtc,motiflist in sorted(gtc2motif.iteritems()):
-    print gtc
+for gtc,motiflist in sorted(gtc2motif.items()):
+    print(gtc)
     names = []
     redend = set()
     aglycon = set()
     alignment = set()
     for m in sorted(motiflist,key=lambda m: (m.get('collection'),m.get('accession'))):
-	if m.has('name'):
-	    for n in m.get('name'):
-		if n not in names:
-	            names.append(n)
-	if m.has('redend'):
-	    redend.update(m.get('redend',[]))
-	if m.has('aglycon'):
-	    aglycon.update(m.get('aglycon',[]))
-	if m.has('alignment'):
-	    alignment.update(m.get('alignment',[]))
+        if m.has('name'):
+            for n in m.get('name'):
+                if n not in names:
+                    names.append(n)
+        if m.has('redend'):
+            redend.update(m.get('redend',[]))
+        if m.has('aglycon'):
+            aglycon.update(m.get('aglycon',[]))
+        if m.has('alignment'):
+            alignment.update(m.get('alignment',[]))
     if len(redend) == 0:
-	redend = None
+        redend = None
     if len(aglycon) == 0:
-	aglycon = None
+        aglycon = None
     if len(alignment) == 0:
-	alignment = None
+        alignment = None
     motif = AllMotif(accession=gtc,name=names,redend=redend,aglycon=aglycon,alignment=alignment)
     current.add(gtc)
     if w.update(motif):
-	print >>sys.stderr, gtc
+        print(gtc,file=sys.stderr)
 
 for m in w.itermotif(collection=AllMotif):
     if m.get('accession') not in current:

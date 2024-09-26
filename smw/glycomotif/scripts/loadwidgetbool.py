@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3
 from getwiki import GlycoMotifWiki
 w = GlycoMotifWiki()
 
@@ -9,10 +9,10 @@ brokenImage = open(fpath).read().split()
 
 for m in w.itermotif():
     if m.get("collection") == "GM" and m.get("glytoucan") not in brokenImage:
-        print "%s set to display" % m.get("id")
+        print("%s set to display" % m.get("id"))
         m.set("displayhgv", True)
         w.update(m)
     else:
-        print "%s set to NOT display" % m.get("id")
+        print("%s set to NOT display" % m.get("id"))
         m.set("displayhgv", False)
         w.update(m)
