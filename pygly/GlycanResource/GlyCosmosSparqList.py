@@ -14,10 +14,16 @@ class GlyCosmosSparqList(WebServiceResource):
 
     def archived(self):
         for it in self.query_archived():
+            if not it.get('ArchiveNumber'):
+                continue
             yield dict(accession=it['ArchiveNumber'])
 
     def replaced(self):
         for it in self.query_replaced():
+            if not it.get('AccessionNumber'):
+                continue
+            if not it.get('ArchiveNumber'):
+                continue
             yield dict(accession=it['AccessionNumber'],replace=it['ArchiveNumber'])
 
     def validated(self):
