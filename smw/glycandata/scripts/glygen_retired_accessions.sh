@@ -1,14 +1,5 @@
 #!/bin/sh
 
-PYTHON=python2
-PYGLY=../../../pygly
-DATA=../data
-EXPORT=../export
-
 set -x
 
-# $PYTHON $PYGLY/GlycanResource/main.py GlyGen allglycans > $DATA/glygen_accessions_alltime.txt
-# $PYTHON $PYGLY/GlycanResource/main.py GlyCosmos archived > $DATA/glytoucan_archived.txt
-# $PYTHON $PYGLY/GlycanResource/main.py GlyCosmos replaced > $DATA/glytoucan_replaced.txt
-
-$PYTHON ./glygen_retired_accessions.py > $EXPORT/glygen_retired_accessions.tsv
+./glygen_retired_accessions.py > $EXPORT/glygen_retired_accessions.tsv
