@@ -21,8 +21,8 @@ split -b 40m -d ../export/glycoctxml.zip ../export/glycoctxml.zip.
 ./motif.py "$@" allaligns > ../export/allmotifaligns.tsv
 ./byonic_database.py "$@" > ../export/byonic_glygen_human_nlinked.txt
 ./species.py "$@" > ../export/species_expanded.tsv
-# ./glycoTree_exports.sh "$@" ../glycoTree
-./glycoTree_exports.sh ../../../../glycoTreeDev
-python3 ./dumpiupacsyms.py > ../export/iupac_syms.tsv
-python3 allgtcxrefs.py > ../export/allgtcxrefs.tsv
+./glycoTree_exports.sh ../../../../glycoTree
+./dumpiupacsyms.py > ../export/iupac_syms.tsv
+./allgtcxrefs.py > ../export/allgtcxrefs.tsv
+./alltaxidcnts.py ../export/taxa.tsv > ../export/alltaxacnt.tsv
 ./glygen_retired_accessions.sh
