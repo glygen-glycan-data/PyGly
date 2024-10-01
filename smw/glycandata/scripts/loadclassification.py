@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python3.12
 
 import sys
 from operator import itemgetter
@@ -26,7 +26,7 @@ def iterglycan():
             yield m
 
 from clseng import ClassifierEngine
-classifier = ClassifierEngine(glycandata=w)
+classifier = ClassifierEngine(glycandata=w,verbose=debug)
 
 acc2type = defaultdict(set)
 for m in iterglycan():
@@ -35,7 +35,6 @@ for m in iterglycan():
 
     for asn in classifier.assign(acc):
         acc2type[acc].add((asn[0],asn[1],"Direct",asn[2]))
-        # print >>sys.stderr, " ",acc,(" ".join(asn[:2])).strip()
 
 for acc in sorted(acc2type):
     m = w.get(acc)

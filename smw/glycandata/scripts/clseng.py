@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys,inspect,csv
 from operator import itemgetter
@@ -18,7 +18,7 @@ class ClassifierEngine(object):
         self.log = logging.getLogger('ClassifierEngine')
         if verbose:
             self.log.setLevel(logging.DEBUG)
-        formatter = logging.Formatter('%(name)s.%(funcname)s:%(lineno)s: %(message)s')
+        formatter = logging.Formatter('%(name)s.%(funcName)s:%(lineno)s: %(message)s')
         handler = logging.StreamHandler()
         handler.setFormatter(formatter)
         self.log.addHandler(handler)        
@@ -34,6 +34,16 @@ class ClassifierEngine(object):
         self._hasmono = None
         self._structure = None
         self._tests = dict()
+
+    def __str__(self):
+        retstr = []
+        retstr.append("glycan: "+str(self._glycan))
+        retstr.append("motifs: "+str(self._motifs))
+        retstr.append("monocnt: "+str(self._monocnt))
+        retstr.append("hasmono: "+str(self._hasmono))
+        retstr.append("structure: "+str(self._structure))
+        retstr.append("tests: "+str(self._tests))
+        return "\n".join(retstr)
 
     def getmotifs(self):
         self._motifs = set()
@@ -134,7 +144,10 @@ class ClassifierEngine(object):
             raise RuntimeError("No source for structure for accession: %s"%(self._glycan,))
         if self._structure == None:
             raise RuntimeError("No source for structure for accession: %s"%(self._glycan,))
-        # self.log.debug("Structure: %s"%(self._structure,))
+        try:
+            self.log.debug("Structure: %s"%(self._structure,))
+        except KeyError:
+            self.log.debug("Structure: %r"%(self._structure,))
 
     def assign(self,glycan):
         self.init(glycan)
@@ -556,7 +569,7 @@ class ClassifierEngine(object):
                     return True
             return False
 
-    def acceptcore(self,acceptedfn):
+    def acceptcore(self,*acceptedfns):
         if self._structure == None:
             self.getStructure()
         if not self._structure:
@@ -564,17 +577,21 @@ class ClassifierEngine(object):
         r = self._structure.root()
         okseen = False
         for c in r.children():
-            if acceptedfn(c) and not okseen:
-                okseen = True
+            for fn in acceptedfns:
+                if fn(c) and not okseen:
+                    okseen = True
+                    break
+            if okseen:
                 continue
             if self.MonoMethods.fuc(c) or self.MonoMethods.sia(c):
                 continue
             return False
         return True
 
-    acceptcore1 = Decorators.maketest('acceptcore1',acceptcore,MonoMethods.gal)
-    acceptcore36 = Decorators.maketest('acceptcore36',acceptcore,MonoMethods.glcnac)
-    acceptcore57 = Decorators.maketest('acceptcore57',acceptcore,MonoMethods.galnac)
+    acceptcore1 = Decorators.maketest('acceptcore1',acceptcore,MonoMethods.gal,MonoMethods.sulfgal)
+    acceptcore36 = Decorators.maketest('acceptcore36',acceptcore,MonoMethods.glcnac,MonoMethods.sulfglcnac)
+    acceptcore57 = Decorators.maketest('acceptcore57',acceptcore,MonoMethods.galnac,MonoMethods.sulfgalnac)
+    acceptcore8 = Decorators.maketest('acceptcore8',acceptcore,MonoMethods.gal,MonoMethods.sulfgal)
 
     def testncore(self):
         if self._structure == None:
@@ -912,6 +929,15 @@ class OGlycanCore7(MotifClassifier):
             return False
         return True
 
+class OGlycanCore8(MotifClassifier):
+    _class = ("O-linked","O-linked core 8")
+    _motifs = ["GGM.001032","GGM.001033"]
+
+    def refine(self,data):
+        if not data.acceptcore8():
+            return False
+        return True
+
 class GlycosphingolipidIsoglobo(MotifClassifier):
     _class = ("Glycosphingolipid","Glycosphingolipid isoglobo series")
     _motifs = ["GGM.001101"]
@@ -1061,7 +1087,10 @@ if __name__ == "__main__":
             for row in csv.DictReader(open(sys.argv[2]),dialect='excel-tab'):
                 badbymotif[row['motif']].add(row['gtcacc'])
     else:
-        classifier = ClassifierEngine(verbose=True)
+        classifier = ClassifierEngine(verbose=True,
+                                      glycandata=w,
+                                      glytoucan=gtc,
+                                      glycomotif=gm)
         accs = sys.argv[1:]
     for acc in accs:
         any = False
