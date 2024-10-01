@@ -504,13 +504,20 @@ def itergenmaximalmatchings(items1,items2,matchtest):
                 tc2 = map(lambda i: list2[i],tochoose2)
                 yield list(l1),list(l2),list(tc1),list(tc2)
         else:
-            i1 = sorted(tochoose1,outdegree.get)[0]
+            i1 = sorted(tochoose1,key=outdegree.get)[0]
             newtochoose1 = set(filter(lambda i: i != i1,tochoose1))
             for i2 in (edges[i1]&tochoose2):
                 newtochoose2 = set(filter(lambda i: i != i2,tochoose2))
                 partialsolutions.append((pairs+[(i1,i2)],newtochoose1,newtochoose2))
             partialsolutions.append((pairs+[(i1,None)],newtochoose1,set(tochoose2)))
             partialsolutions.sort(key=lambda t: (-len(t[0]),sum(1 for _ in filter(lambda tt: tt[1] == None,t[0]))))
+
+def itersubmatchings(items1,items2,matchtest):
+    if len(items1) > len(items2):
+        return
+    for ii,jj,remi,remj in itergenmaximalmatchings(items1,items2,matchtest):
+        if len(remi) == 0:
+            yield ii,jj,remj
 
 def testperm(l):
     print("Permutations of",','.join(map(str,l)))

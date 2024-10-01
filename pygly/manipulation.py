@@ -269,7 +269,7 @@ class WURCSManipulation(object):
                 pos = s; sub = None
             substs1.append(dict(pos=self.intorstr(pos),subst=sub))
         substs = substs1 
-        return dict(skeleton=base,anomer=anomer,childpos=childpos,ring=ring,substituents=substs)
+        return dict(skeleton=base,anomer=anomer,childpos=childpos,ring=ring,substituents=substs,wurcs=monoseq)
 
     def monoseq(self,m):
         mseq = m['skeleton']
@@ -279,6 +279,8 @@ class WURCSManipulation(object):
             mseq += "_" + m['ring']
         if len(m['substituents']) > 0:
             mseq += "_" + "_".join(map(self.substseq,(m['substituents'])))
+        if 'wurcs' in m:
+            assert mseq == m['wurcs']
         return mseq
 
     def substseq(self,s):
