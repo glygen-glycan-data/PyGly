@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, time
 from collections import defaultdict
@@ -26,18 +26,18 @@ for g in w.iterglycan():
     g.delete_annotations(type='Enzyme')
     enzymes = set()
     for species in taxids:
-	genes = set()
+        genes = set()
         for enz in gtc2enz[(gtc,species)]:
-	    genes.add(enz['gene_name'])
+            genes.add(enz['gene_name'])
             enzymes.add(":".join([enz['uniprot'],enz['gene_name'],enz['gene_id'],taxids[enz['species']]]))
         g.set_annotation(value=list(genes),property='%s Enzyme'%(species.title()),type='Enzyme',source='GlycoTree')
     g.set_annotation(value=list(enzymes),property='EnzymeDetails',type='Enzyme',source='GlycoTree')
     if gtc in glycotreeacc:
-	g.set_annotation(value=gtc,property="GlycoTree",type="CrossReference",source="GlycoTree")
+        g.set_annotation(value=gtc,property="GlycoTree",type="CrossReference",source="GlycoTree")
     else:
-	g.delete_annotations(property="GlycoTree",type="CrossReference",source="GlycoTree")
+        g.delete_annotations(property="GlycoTree",type="CrossReference",source="GlycoTree")
 
     if w.put(g):
-        print >>sys.stderr, "%s updated in %.2f sec"%(gtc,time.time()-start,)
+        print("%s updated in %.2f sec"%(gtc,time.time()-start,),file=sys.stderr)
     else:
-        print >>sys.stderr, "%s checked in %.2f sec"%(gtc,time.time()-start,)
+        print("%s checked in %.2f sec"%(gtc,time.time()-start,),file=sys.stderr),file=sys.stderr)

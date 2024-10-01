@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import findpygly
 # from pygly.GlyTouCan import GlyTouCan
@@ -28,7 +28,7 @@ symbol2wurcs={}
 wurcsorder={}
 for l in symbol2wurcs_definition.splitlines():
     if not l.strip():
-	continue
+        continue
     sl = l.split()
     symbol2wurcs[sl[0]] = sl[1]
     wurcsorder[sl[1]] = int(sl[2])
@@ -37,42 +37,42 @@ for lineno,l in enumerate(sys.stdin):
     l = l.strip()
     l0 = l
     if l.startswith('comp_'):
-	l = l[5:]
+        l = l[5:]
     if '(' in l:
         sl = re.split(r'\s*\((\s*\d+\s*)\s*\)',l)
     else:
-	sl = re.split(r'\s*(\d+)\s*',l)
-    sl = map(str.strip,sl)
+        sl = re.split(r'\s*(\d+)\s*',l)
+    sl = list(map(str.strip,sl))
     comp = {}
     subst = {}
     badsym = False
     for i in range(0,len(sl)-1,2):
-	if int(sl[i+1]) == 0:
-	    continue
-	if sl[i] not in symbol2wurcs:
-	    badsym = True
-	    break
-	skel = symbol2wurcs[sl[i]]
-	cnt = int(sl[i+1])
-	if wurcsorder.get(skel) < 0:
-	    subst[skel] = cnt
-	else:
-	    comp[skel] = cnt
+        if int(sl[i+1]) == 0:
+            continue
+        if sl[i] not in symbol2wurcs:
+            badsym = True
+            break
+        skel = symbol2wurcs[sl[i]]
+        cnt = int(sl[i+1])
+        if wurcsorder.get(skel) < 0:
+            subst[skel] = cnt
+        else:
+            comp[skel] = cnt
     if badsym:
-	print lineno+1,l0,"Bad symbol:",sl[i]
-	continue
+        print(lineno+1,l0,"Bad symbol:",sl[i])
+        continue
     skels = sorted(comp,key=wurcsorder.get)
     total = sum(comp.values())
     if total == 0:
-	continue
+        continue
     if total == 1 and len(subst) > 0:
-	newskel = skels[0]
-	for subst,cnt in subst.items():
-	    for i in range(cnt):
-	        newskel += "_?" + subst;
-	comp = {newskel:1}
-	skels = [ newskel ]
-	subst = {}
+        newskel = skels[0]
+        for subst,cnt in subst.items():
+            for i in range(cnt):
+                newskel += "_?" + subst;
+        comp = {newskel:1}
+        skels = [ newskel ]
+        subst = {}
     uniq = len(skels)
     wurcsseq = "WURCS=2.0/%s,%s,%s/" % (uniq, total, "0+")
     wurcsseq += "".join(map(lambda sk: "[%s]" % (sk,), skels)) + "/"
@@ -82,19 +82,19 @@ for lineno,l in enumerate(sys.stdin):
     wurcsseq += "-".join(inds)
     wurcsseq += "/"
     wurcsseq = gtc.fixcompwurcs(wurcsseq,subst)
-    thehash = hashlib.sha256(wurcsseq).hexdigest().lower()
+    thehash = hashlib.sha256(wurcsseq.encode()).hexdigest().lower()
     hash,acc,error = gtc.gethashedseq(seq=wurcsseq)
     if not hash:
-	hash = gtc.register(wurcsseq)
-	if hash:
-           print lineno+1,l0,hash
-	else:
-           print lineno+1,l0,None,wurcsseq,thehash
-	time.sleep(60)
+        hash = gtc.register(wurcsseq)
+        if hash:
+           print(lineno+1,l0,hash)
+        else:
+           print(lineno+1,l0,None,wurcsseq,thehash)
+        time.sleep(60)
     elif not acc:
-	if error:
-            print lineno+1,l0,repr(error)
-	else:
-            print lineno+1,l0,hash
+        if error:
+            print(lineno+1,l0,repr(error))
+        else:
+            print(lineno+1,l0,hash)
     else:
-	print lineno+1,l0,acc
+        print(lineno+1,l0,acc)

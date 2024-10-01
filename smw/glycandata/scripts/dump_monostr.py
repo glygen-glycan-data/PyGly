@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 
@@ -19,6 +19,6 @@ for g in w.iterglycan():
     for m in glycan.all_nodes():
         try:
             sym = iupacSym.toStr(m)
-	    print g.get('accession'),glycoctformat.mtoStr(m),sym
+	    print(g.get('accession'),glycoctformat.mtoStr(m),sym)
         except KeyError:
-            print g.get('accession'),glycoctformat.mtoStr(m),"-"
+            print(g.get('accession'),glycoctformat.mtoStr(m),"-")

@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 from collections import defaultdict 
@@ -38,4 +38,4 @@ for m in w.iterglycan():
     # 	thenames = set()
     m.set_annotation(value=list(names[acc]),property=property,source=source,type="Name")
     if w.put(m):
-        print acc
+        print(acc)

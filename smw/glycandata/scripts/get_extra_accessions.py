@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 import sys
 
 from collections import defaultdict

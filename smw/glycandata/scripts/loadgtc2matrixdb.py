@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 from collections import defaultdict
@@ -19,10 +19,10 @@ def mdbxref(infile):
                 break
         if not gtcacc:
             continue
-	mdbid = r['MatrixDB identifier'].strip()
+        mdbid = r['MatrixDB identifier'].strip()
         if not mdbid.startswith('GAG_'):
             continue
-	d[gtcacc].add(mdbid)
+        d[gtcacc].add(mdbid)
     return d
 
 matrixdb = mdbxref(sys.argv[1])
@@ -36,4 +36,4 @@ for acc in matrixdb.keys():
     else:
         m.delete_annotations(source="MatrixDB",property="MatrixDB",type="CrossReference")
     if w.put(m):
-        print acc
+        print(acc)

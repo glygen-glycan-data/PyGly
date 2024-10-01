@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, time, traceback
 from collections import defaultdict
@@ -16,12 +16,12 @@ collections = ('GGM',)
 allmotifs = dict()
 for coll in collections:
     for acc,gtcacc,alignment,redend,aglycon,names,pmids,keywords,dbxrefs in gm.allmotifs(coll):
-	if aglycon == None:
-	    aglycon = ""
-	if coll == "GGM" and int(acc.split('.',1)[1]) > 1000:
-	    classification = True
-	else:
-	    classification = False
+        if aglycon == None:
+            aglycon = ""
+        if coll == "GGM" and int(acc.split('.',1)[1]) > 1000:
+            classification = True
+        else:
+            classification = False
         allmotifs[acc] = dict(names=names,alignment=alignment,aglycon=aglycon,redend=redend,gtcacc=gtcacc,pmids=pmids,keywords=keywords,classification=classification,dbxrefs=dbxrefs)
 
 for g in w.iterglycan():
@@ -36,16 +36,16 @@ for g in w.iterglycan():
     strictclassmotifs = set()
     names = set()
     for coll in collections:
-	for m,aligntype,strict,ids,linkids in gm.getmotif(coll,acc):
-	    if not allmotifs[m]['classification']:
-		if strict:
-		    strictglygenmotifs.add(m)
-		    if allmotifs[m]['alignment'] == "Whole-Glycan":
-			names.add((m,allmotifs[m]['names'][0]))
-	        allglygenmotifs.add(m)
-	    else:
-		if strict:
-		    strictclassmotifs.add(m)
+        for m,aligntype,strict,ids,linkids in gm.getmotif(coll,acc):
+            if not allmotifs[m]['classification']:
+                if strict:
+                    strictglygenmotifs.add(m)
+                    if allmotifs[m]['alignment'] == "Whole-Glycan":
+                        names.add((m,allmotifs[m]['names'][0]))
+                allglygenmotifs.add(m)
+            else:
+                if strict:
+                    strictclassmotifs.add(m)
                 classmotifs.add(m)
     g.set_annotation(value=sorted(strictglygenmotifs),
                      property='StrictMotif',
@@ -83,7 +83,7 @@ for g in w.iterglycan():
     #                  type='Motif')
                                     
     if w.put(g):
-        print >>sys.stderr, "%s updated in %.2f sec"%(g.get('accession'),time.time()-start,)
+        print("%s updated in %.2f sec"%(g.get('accession'),time.time()-start,),file=sys.stderr)
     else:
-	print >>sys.stderr, "%s checked in %.2f sec"%(g.get('accession'),time.time()-start,)
+        print("%s checked in %.2f sec"%(g.get('accession'),time.time()-start,),file=sys.stderr)
 

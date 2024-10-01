@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 from getwiki import GlycanDataWiki
 import sys
@@ -31,11 +31,11 @@ for m2 in w2.iterglycan():
     id = m2.get('id')
     assert(id)
     if id not in currentglycan:
-	w2.delete(id)
-	print >>sys.stderr, "Delete %s from %s"%(id,w2.title())
+        w2.delete(id)
+        print >>sys.stderr, "Delete %s from %s"%(id,w2.title())
 
 for an in w2.iterannotation():
     id = an.get('id')
     if an.get('hasglycan') not in currentglycan:
-	w2.delete(id)
-	print >>sys.stderr, "Delete %s from %s"%(id,w2.title())
+        w2.delete(id)
+        print >>sys.stderr, "Delete %s from %s"%(id,w2.title())

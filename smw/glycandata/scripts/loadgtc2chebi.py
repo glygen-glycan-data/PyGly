@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 from collections import defaultdict
@@ -12,9 +12,9 @@ def chebixref(infile):
     f = open(infile,'r')
     
     for r in csv.DictReader(f,dialect='excel-tab'):
-	gtcacc = r['gtc'].rsplit('/',1)[-1]
-	chebi = r['ch'].rsplit('=',1)[-1]
-	d[gtcacc].add(chebi)
+        gtcacc = r['gtc'].rsplit('/',1)[-1]
+        chebi = r['ch'].rsplit('=',1)[-1]
+        d[gtcacc].add(chebi)
     return d
 
 chebi = chebixref(sys.argv[1])
@@ -26,4 +26,4 @@ for m in w.iterglycan():
     else:
         m.delete_annotations(source="GlyTouCan",property="ChEBI",type="CrossReference")
     if w.put(m):
-        print acc
+        print(acc)

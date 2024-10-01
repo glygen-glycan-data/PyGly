@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, os, os.path
 import findpygly
@@ -79,7 +79,7 @@ for gtcacc in accessions(sys.argv[4:]):
 	        imgstr = None
     if not imgstr:
 	continue
-    print "writing:",imgfn
+    print("writing:",imgfn)
     wh = open(imgfn,'w')
     wh.write(imgstr)
     wh.close()

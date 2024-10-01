@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, urllib, json
 from collections import defaultdict
@@ -14,11 +14,11 @@ opt,args = parser.parse_args()
 def readmapping(filename):
     map = dict()
     for r in csv.reader(open(filename),dialect='excel-tab'):
-	if r[0] == "GlyTouCanAccession":
-	    continue
-	gtc = r[0]
-	acc = r[1]
-	map[r[0]] = r[1]
+        if r[0] == "GlyTouCanAccession":
+            continue
+        gtc = r[0]
+        acc = r[1]
+        map[r[0]] = r[1]
     return map
 
 gtcmapping = defaultdict(dict)
@@ -69,7 +69,7 @@ for url in glygen_glycosylation_data_urls.splitlines():
         if (acc,taxid,source,sourceid) in seen:
 	    continue
         if sourceid:
-	    print "\t".join(map(str,[acc,taxid,source,sourceid]))
+	    print("\t".join(map(str,[acc,taxid,source,sourceid])))
         else:
-	    print "\t".join(map(str,[acc,taxid,source]))
+	    print("\t".join(map(str,[acc,taxid,source])))
     seen.add((acc,taxid,source,sourceid))

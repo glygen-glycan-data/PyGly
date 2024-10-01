@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python3.12
 
 import sys, time, traceback
 from collections import defaultdict
@@ -36,7 +36,6 @@ current = set()
 for gtcacc in accessions(sys.argv[1:]):
     start = time.time()
 
-    # print >>sys.stderr, gtcacc
     g = w.get(gtcacc)
     newgly = False
 

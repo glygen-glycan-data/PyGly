@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 import sys, re
 from collections import defaultdict
 
@@ -30,45 +30,45 @@ keys = ['HexNAc','Hex','dHex','NeuAc','NeuGc','Pent','S','P','KDN','HexA']
 for l in sys.stdin:
     l = l.strip()
     if opt.pos != None:
-	sl = l.split(indelim)
-	if len(sl) <= opt.pos:
-	    if opt.all:
-	        print outdelim.join(sl)
-	    continue
-	elif opt.require and not opt.require.search(sl[opt.pos]):
-	    if opt.all:
-	        print outdelim.join(sl)
-	    continue
-	compstr = sl[opt.pos]
+        sl = l.split(indelim)
+        if len(sl) <= opt.pos:
+            if opt.all:
+                print(outdelim.join(sl))
+            continue
+        elif opt.require and not opt.require.search(sl[opt.pos]):
+            if opt.all:
+                print(outdelim.join(sl))
+            continue
+        compstr = sl[opt.pos]
     else:
-	if opt.require and not opt.require.search(l):
-	    if opt.all:
-		print l
-	    continue
-	compstr = l
+        if opt.require and not opt.require.search(l):
+            if opt.all:
+                print(l)
+            continue
+        compstr = l
     prefix = ""
     if compstr.startswith('comp_'):
-	prefix = 'comp_'
-	compstr = compstr[5:]
+        prefix = 'comp_'
+        compstr = compstr[5:]
     sl = re.split(r'(\d+)',compstr)
     comp = defaultdict(int)
     for i in range(0,len(sl)-1,2):
-	comp[sl[i]] = int(sl[i+1])
+        comp[sl[i]] = int(sl[i+1])
     for key in comp:
         if comp[key] > 0 and key not in keys:
-	    print >>sys.stderr, "Can't normalize",l
-	    sys.exit(1)
+            print("Can't normalize "+l,file=sys.stderr)
+            sys.exit(1)
     outstr = ""
     for k in ['HexNAc','Hex','dHex','NeuAc','NeuGc','Pent','S','P','KDN','HexA']:
-	if comp[k] > 0 or opt.format == 'UCKBCOMP':
-	    outstr += (k + str(comp[k]))
+        if comp[k] > 0 or opt.format == 'UCKBCOMP':
+            outstr += (k + str(comp[k]))
     if not opt.all and outstr == compstr:
-	continue
+        continue
     if prefix:
-	outstr = prefix + outstr;
+        outstr = prefix + outstr;
     if opt.pos != None:
-	sl = l.split(indelim)
-	sl[opt.pos] = outstr
-	print outdelim.join(sl)
+        sl = l.split(indelim)
+        sl[opt.pos] = outstr
+        print(outdelim.join(sl))
     else:
-        print outstr
+        print(outstr)

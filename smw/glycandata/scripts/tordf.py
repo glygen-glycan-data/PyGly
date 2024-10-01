@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 
@@ -51,22 +51,22 @@ valuetmpl = """                <glycandata:value rdf:datatype="http://www.w3.org
 sys.stdout.write(head)
 for m in w.iterglycan():
     acc = m.get('accession')
-    print >>sys.stderr, acc
+    print(acc,file=sys.stderr)
     sys.stdout.write(glycantmpl%dict(database=database,accession=acc))
     for an in m.annotations():
         anval = an.get('value')
         values = []
-	if isinstance(anval,list):
+        if isinstance(anval,list):
             for v in anval:
                 values.append(valuetmpl%dict(value=v.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')))
-	else:
+        else:
             values.append(valuetmpl%dict(value=anval.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')))
-	sourceid = an.get('sourceid',"")
-	if sourceid:
-	    sourceidline = sourceidlinetmpl%dict(sourceid=sourceid)
-	else:
-	    sourceidline = ""
-	sys.stdout.write(annotationtmpl%dict(database=database,accession=acc,
+        sourceid = an.get('sourceid',"")
+        if sourceid:
+            sourceidline = sourceidlinetmpl%dict(sourceid=sourceid)
+        else:
+            sourceidline = ""
+        sys.stdout.write(annotationtmpl%dict(database=database,accession=acc,
                                   type=an.get('type'), property=an.get('property'),
                                   property_safe=an.get('property').replace(' ','_'),
                                   source=an.get('source'), sourceid=sourceid,

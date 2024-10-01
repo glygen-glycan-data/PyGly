@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, time, re
 from collections import defaultdict
@@ -20,7 +20,7 @@ for f in sys.argv[1:]:
     if len(sl) > 3:
         sourceid = sl[3]
     else:
-	sourceid = None
+        sourceid = None
     gtc2taxid[gtc][(source,sourceid)].add(taxmap.get(taxid,taxid))
 
 for m in w.iterglycan():
@@ -29,16 +29,16 @@ for m in w.iterglycan():
 
     sources = set()
     for ann in list(m.annotations(property="Taxonomy", type="Taxonomy")):
-	if ann.get('source') not in ('GlyTouCan', 'GlyCosmos'):
+        if ann.get('source') not in ('GlyTouCan', 'GlyCosmos'):
             sources.add(ann.get('source'))
     for source in sources:
         m.delete_annotations(source=source, property="Taxonomy", type="Taxonomy")
-	
+        
     for source,sourceid in gtc2taxid[acc]:
-	m.set_annotation(value=list(gtc2taxid[acc][(source,sourceid)]), property="Taxonomy", 
-				    source=source, sourceid=sourceid, type="Taxonomy")
+        m.set_annotation(value=list(gtc2taxid[acc][(source,sourceid)]), property="Taxonomy", 
+                                    source=source, sourceid=sourceid, type="Taxonomy")
 
     if w.put(m):
-        print >>sys.stderr, "%s updated in %.2f sec"%(m.get('accession'),time.time()-start,)
+        print("%s updated in %.2f sec"%(m.get('accession'),time.time()-start,),file=sys.stderr)
     else:
-        print >>sys.stderr, "%s checked in %.2f sec"%(m.get('accession'),time.time()-start,)                 
+        print("%s checked in %.2f sec"%(m.get('accession'),time.time()-start,),file=sys.stderr)

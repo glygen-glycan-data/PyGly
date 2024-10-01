@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, csv
 from collections import defaultdict 
@@ -27,4 +27,4 @@ for m in w.iterglycan():
     for xr in xrefs[acc]:
         m.add_annotation(value=xr,property=prop,source="GlyTouCan",type="CrossReference")
     if w.put(m):
-        print acc
+        print(acc)

@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 
@@ -20,4 +20,4 @@ for g in w.iterglycan():
         try:
             eltcomp = m.composition(ctable)
         except KeyError:
-            print g.get('accession'),glycoctformat.mtoStr(m)
+            print(g.get('accession'),glycoctformat.mtoStr(m))

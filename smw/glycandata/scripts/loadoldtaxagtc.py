@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, csv
 from collections import defaultdict 
@@ -10,10 +10,10 @@ def read_gtc_taxid(fn):
     taxa = defaultdict(list)
     reader = csv.DictReader(open(fn),dialect='excel-tab')
     for r in reader:
-	if r['Source'] != "GlyTouCan":
+        if r['Source'] != "GlyTouCan":
             continue
         acc = r['GlyTouCanAccession']
-	tid = r['TaxID']
+        tid = r['TaxID']
         taxa[acc].append(tid)
     return taxa
 
@@ -24,4 +24,4 @@ for m in w.iterglycan():
     for ta in taxa[acc]:
         m.add_annotation(value=ta,property="Taxonomy",source="GlyTouCan",type="Taxonomy",sourceid=acc)
     if w.put(m):
-        print acc
+        print(acc)

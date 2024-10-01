@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, time
 from collections import defaultdict
@@ -17,14 +17,14 @@ for m in w.iterglycan():
     gog = set()
     try:
         for gdb in m.get_annotation(property="GlycomeDB").get('value',[]):
-	    gog.update(gdb2gog[gdb])
+            gog.update(gdb2gog[gdb])
     except LookupError:
-	pass
+        pass
     if len(gog) > 0:
         m.set_annotation(value=list(gog), property="GlycO",source="GlycomeDB",type="CrossReference")
     else:
         m.delete_annotations(source="GlycomeDB",property="GlycO",type="CrossReference")
     if w.put(m):
-        print >>sys.stderr, "%s updated in %.2f sec"%(m.get('accession'),time.time()-start,)
+        print("%s updated in %.2f sec"%(m.get('accession'),time.time()-start,),file=sys.stderr)
     else:
-        print >>sys.stderr, "%s checked in %.2f sec"%(m.get('accession'),time.time()-start,)
+        print("%s checked in %.2f sec"%(m.get('accession'),time.time()-start,),file=sys.stderr)

@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, time, traceback, hashlib, os, os.path, glob
 from collections import defaultdict
@@ -22,27 +22,27 @@ for g in w.iterglycan():
     filename = sys.argv[1] + "/" + acc + ".txt"
 
     if filename in allfn:
-        allfn.remove(filename)	
-	continue
+        allfn.remove(filename)
+        continue
 
     seq = None
     if seqtype == 'wurcs' and g.has_annotations(property='WURCS',type='Sequence',source='GlyTouCan'):
-	seq = g.get_annotation_value(property='WURCS',type='Sequence',source='GlyTouCan')
+        seq = g.get_annotation_value(property='WURCS',type='Sequence',source='GlyTouCan')
 
     if seqtype == 'glycoct' and g.has_annotations(property='GlycoCT',type='Sequence',source='GlyTouCan'):
-	seq = g.get_annotation_value(property='GlycoCT',type='Sequence',source='GlyTouCan')
+        seq = g.get_annotation_value(property='GlycoCT',type='Sequence',source='GlyTouCan')
 
     if seqtype == 'genglycoct' and g.has_annotations(property='GlycoCT',type='Sequence',source='EdwardsLab'):
-	seq = g.get_annotation_value(property='GlycoCT',type='Sequence',source='EdwardsLab')
+        seq = g.get_annotation_value(property='GlycoCT',type='Sequence',source='EdwardsLab')
 
     if not seq:
-	continue
+        continue
 
-    print >>sys.stderr, "Write:",acc
+    print("Write:",acc,file=sys.stderr)
     wh = open(filename,'w')
     wh.write(seq)
     wh.close()
 
 for fn in allfn:
-    print >>sys.stderr, "Remove:",acc
+    print("Remove:",acc,file=sys.stderr)
     os.unlink(fn)

@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 from collections import defaultdict
@@ -11,17 +11,17 @@ def pubchemxref(infile):
     d = defaultdict(set)
     f = open(infile,'r')
     # three wacky bytes...
-    f.read(3)
+    # f.read(3)
     
     for r in csv.DictReader(f):
-	cid = r['cid'].strip()
-	sid = r['sid'].strip()
-	gtcacc = r['sidextid'].strip()
+        cid = r['cid'].strip()
+        sid = r['sid'].strip()
+        gtcacc = r['sidextid'].strip()
         if gtcacc:
             if cid:
-	        d[gtcacc].add("CID"+cid)
+                d[gtcacc].add("CID"+cid)
             if sid:
-	        d[gtcacc].add("SID"+sid)
+                d[gtcacc].add("SID"+sid)
     return d
 
 pubchem = pubchemxref(sys.argv[1])
@@ -33,4 +33,4 @@ for m in w.iterglycan():
     else:
         m.delete_annotations(source="GlyTouCan",property="PubChem",type="CrossReference")
     if w.put(m):
-        print acc
+        print(acc)

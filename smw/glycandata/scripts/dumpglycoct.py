@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, time, traceback, hashlib, os, os.path, glob, csv
 from collections import defaultdict
@@ -44,26 +44,26 @@ for g in w.iterglycan():
 
     gct = None
     if g.has_annotations(property='GlycoCT',type='Sequence'):
-	gct = g.get_annotation_value(property='GlycoCT',type='Sequence')
+        gct = g.get_annotation_value(property='GlycoCT',type='Sequence')
 
     wcs = None
     if g.has_annotations(property='WURCS',type='Sequence'):
-	wcs = g.get_annotation_value(property='WURCS',type='Sequence')
+        wcs = g.get_annotation_value(property='WURCS',type='Sequence')
 
     inclass = False
     if glycanclass == "N-linked":
         if g.has_annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
-	    for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
+            for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
                 if value == "GGM.001001":
-		    inclass = True
-		    break
+                    inclass = True
+                    break
 
     elif glycanclass == "O-linked":
         if g.has_annotations(property='ClassMotif',type='Motif',source='GlycoMotif'):
-	    for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
+            for value in g.get_annotation_values(property='ClassMotif',type='Motif',source='GlycoMotif'):
                 if value in ("GGM.001006","GGM.001010","GGM.001014","GGM.001016","GGM.001018","GGM.001033"):
-		    inclass = True
-		    break
+                    inclass = True
+                    break
                 if value in ("GGM.001034",):
                     try:
                         monocnt = int(g.get_annotation_value(property="MonosaccharideCount",type="MonosaccharideCount",source="EdwardsLab"))
@@ -80,10 +80,10 @@ for g in w.iterglycan():
                         inclass = True
                         break
     else:
-	raise RuntimeError("Bad glycan-class...")
+        raise RuntimeError("Bad glycan-class...")
 
     if gct == None or wcs == None or not inclass:
-	continue
+        continue
 
     try:
         gctgly = gp.toGlycan(gct)
@@ -92,7 +92,7 @@ for g in w.iterglycan():
         continue
     except:
         traceback.print_exc()
-        print acc
+        print(acc)
         sys.exit(1)
 
     idmap = []
@@ -100,36 +100,33 @@ for g in w.iterglycan():
         for gctmono,wcsmono in idmap:
             for gctid,wcsid in glyeq.monoidmap(gctmono,wcsmono):
                 idmaps[acc][str(gctid)] = str(wcsid)
-        # print(acc,idmaps[acc])
     elif glyimgeq.eq(gctgly,wcsgly,idmap=idmap):
         for gctmono,wcsmono in idmap:
             for gctid,wcsid in glyimgeq.monoidmap(gctmono,wcsmono):
                 idmaps[acc][str(gctid)] = str(wcsid)
-        # print(acc,idmaps[acc])
 
     check_idmap(gctgly,wcsgly,idmaps[acc])
 
     filename = sys.argv[1] + "/" + acc + ".txt"
-    print >>sys.stderr, acc
+    print(acc,file=sys.stderr)
 
     if filename in allfn:
-        allfn.remove(filename)	
-	continue
+        allfn.remove(filename)
+        continue
 
-    # print >>sys.stderr, acc
     wh = open(filename,'w')
     wh.write(gct)
     wh.close()
 
 for fn in allfn:
     acc = os.path.split(fn)[1][:-4]
-    print >>sys.stderr, "Removing:",acc
+    print("Removing:",acc,file=sys.stderr)
     os.unlink(fn)
     del idmaps[acc]
 
 wh = open(idmapfilename,'w')
-print >>wh, "\t".join(map(str,["Accession","GlycoCTResidueIndex","CanonicalResidueIndex"]))
+print("\t".join(map(str,["Accession","GlycoCTResidueIndex","CanonicalResidueIndex"])),file=wh)
 for acc in sorted(idmaps):
     for gctid in sorted(idmaps[acc]):
-        print >>wh, "\t".join(map(str,[acc,gctid,idmaps[acc][gctid]]))
+        print("\t".join(map(str,[acc,gctid,idmaps[acc][gctid]])),file=wh)
 wh.close()

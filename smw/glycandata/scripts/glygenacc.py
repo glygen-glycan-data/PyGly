@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, os, urllib, json, csv
 from collections import defaultdict
@@ -39,7 +39,7 @@ def method4():
     accs3 = set()
     for org in ('human','mouse','rat'):
         for r in csv.DictReader(urllib.urlopen('https://data.glygen.org/ln2wwwdata/reviewed/%s_glycan_properties.csv'%(org,))):
-	    if r['glycan_mass'] and r['glycan_permass']:
+            if r['glycan_mass'] and r['glycan_permass']:
                 accs3.add(r['glytoucan_ac'])
     return accs3
 
@@ -62,12 +62,12 @@ def method5():
 # for acc in allaccs:
     # bm = 0
     # for i,s in enumerate(reversed(sets)):
-	# if acc in s:
-	    # bm += 10**i
+        # if acc in s:
+            # bm += 10**i
     # freq[bm] += 1
 # 
 # for bm,f in sorted(freq.items()):
 #     print "%0*d\t%d"%(len(sets),bm,freq[bm])
 
 for acc in method1():
-    print acc
+    print(acc)

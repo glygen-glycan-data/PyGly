@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import re, sys
 from getwiki import GlycanData
@@ -10,7 +10,7 @@ base_composition composition topology monosaccharides
 
 w = GlycanData()
 
-print "\t".join(headers)
+print("\t".join(headers))
 for acc in w.iterglycanid():
     g = w.get(acc)
     row = dict(glytoucan_acc=acc)
@@ -28,6 +28,7 @@ for acc in w.iterglycanid():
             row[key] = g.get_annotation_value(property=prop,
                                               type="MolWt",
                                               source='EdwardsLab')
+            row[key]=  "%.12g"%(float(row[key]),)
         except LookupError:
             pass
 
@@ -39,4 +40,4 @@ for acc in w.iterglycanid():
         except LookupError:
             pass
         
-    print "\t".join(map(lambda h: row.get(h,""),headers))
+    print("\t".join(map(lambda h: row.get(h,""),headers)))

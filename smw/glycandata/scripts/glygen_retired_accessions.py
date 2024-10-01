@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import re, sys
 
@@ -16,7 +16,7 @@ archived = set()
 for item in glycosmos.archived():
     item['accession'] = str(item['accession'])
     if item['accession'] not in allglygen:
-	continue
+        continue
     archived.add(item['accession'])
 
 replace = dict()
@@ -24,13 +24,13 @@ for item in glycosmos.replaced():
     item['replace'] = str(item['replace'])
     item['accession'] = str(item['accession'])
     if item['replace'] not in allglygen:
-	continue
+        continue
     if item['accession'] not in allglygen:
-	continue
+        continue
     assert item['replace'] not in replace
     assert item['replace'] in archived
     replace[item['replace']] = item['accession']
 
-print "\t".join(["accession","replacewith"])
+print("\t".join(["accession","replacewith"]))
 for acc in sorted(archived):
-    print "\t".join(filter(None,[acc,replace.get(acc,"-")]))
+    print("\t".join(filter(None,[acc,replace.get(acc,"-")])))

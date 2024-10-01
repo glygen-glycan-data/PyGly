@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 from collections import defaultdict
@@ -27,7 +27,7 @@ for m in w.iterglycan():
     for gcacc in gtc2acc[acc]:
         if gcacc.startswith("S") and gcacc[1:] not in xrefs:
             m.add_annotation(value=gcacc[1:], property="GlyConnectStructure", source="GlyConnect", type="CrossReference")
-	elif gcacc.startswith("C"):
+        elif gcacc.startswith("C"):
             m.add_annotation(value=gcacc[1:], property="GlyConnectComposition", source="GlyConnect", type="CrossReference")
     if w.put(m):
-        print acc
+        print(acc)

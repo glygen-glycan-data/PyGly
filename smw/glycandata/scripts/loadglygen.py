@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 
@@ -23,6 +23,6 @@ for acc in w.iterglycanid():
     else:
         m.delete_annotations(property="GlyGen",source="EdwardsLab",type="CrossReference")
     if w.put(m):
-        print acc,"updated"
+        print(acc,"updated")
     else:
-        print acc,"checked"
+        print(acc,"checked")

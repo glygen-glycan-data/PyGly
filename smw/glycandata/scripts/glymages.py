@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys, os, os.path, time
 import findpygly
@@ -48,7 +48,7 @@ for g in w.iterglycan():
     imgstr = urllib.urlopen("https://glymage.glyomics.org/image/%s/extended/%s.%s"%(notation,gtcacc,format)).read()
     if not goodimg(format,imgstr):
 	continue
-    print "writing:",imgfn
+    print("writing:",imgfn)
     wh = open(imgfn,'w')
     wh.write(imgstr)
     wh.close()

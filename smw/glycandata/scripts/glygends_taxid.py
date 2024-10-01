@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import os, ssl, time
 
@@ -12,7 +12,7 @@ from pygly.GlycanResource import GlyGenSourceFile, GlyGenDataset, GlyGenSourceFi
 
 ggds = GlyGenDataset(verbose=True)
 for acc,taxid,dsid in ggds.alltaxa():
-    print "\t".join(map(str,[acc,taxid,"GlyGen",dsid]))
+    print("\t".join(map(str,[acc,taxid,"GlyGen",dsid])))
 
 ggsf = GlyGenSourceFile(verbose=False)
 acc2gtc = defaultdict(lambda: defaultdict(set))
@@ -47,6 +47,6 @@ for origid,gtcacc,taxid,source,sourceid in ggsf.allsourcetaxa():
         # if srcout == "GlyGen":
         #     sourceid = sourceid2out[(source,section)]
         if sourceid != None:
-            print "\t".join(map(str,[acc,taxid,source,sourceid]))
+            print("\t".join(map(str,[acc,taxid,source,sourceid])))
         else:
-            print "\t".join(map(str,[acc,taxid,source]))
+            print("\t".join(map(str,[acc,taxid,source])))

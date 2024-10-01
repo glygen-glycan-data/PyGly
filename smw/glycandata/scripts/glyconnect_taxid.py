@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys
 from collections import defaultdict
@@ -37,4 +37,4 @@ for sptaxid,spname in species.items():
 	if (gtcacc,taxid,sourceid) in seen:
 	    continue
 	seen.add((gtcacc,taxid,sourceid))
-	print "\t".join(map(str,[gtcacc,taxid,"GlyConnect",sourceid]))
+	print("\t".join(map(str,[gtcacc,taxid,"GlyConnect",sourceid])))
