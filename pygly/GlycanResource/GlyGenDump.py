@@ -41,6 +41,7 @@ class GlyGenSourceFile(WebServiceResource):
         "pig": ('Sus scrofa', '9823'),
         "chicken": ('Gallus gallus', '9031'),
         "arabidopsis": ('Arabidopsis thaliana', '3702'),
+        "bovine": ('Bos taurus', '9913'),
     }
 
     @uniqueify
@@ -192,7 +193,7 @@ class GlyConnectSourceFile(GlyGenSourceFile):
     source = 'glyconnect'
     glygen_source = "GlyConnect"
     glygen_sourceid = None
-    sections = 'human mouse rat fruitfly sarscov2 yeast dicty pig chicken arabidopsis'
+    sections = 'human mouse rat fruitfly sarscov2 yeast dicty pig chicken arabidopsis bovine'
 
     def json2rows(self,json):
         return json['results']
@@ -433,9 +434,11 @@ class MCWOGlcNAcSourceFile(GlyGenSourceFile):
        GLY_000632
        GLY_000633
        GLY_000788
+       GLY_000959
        GLY_001049
+       GLY_001171
     """
-    sections = "human mouse rat fruitfly yeast arabidopsis"
+    sections = "human mouse rat fruitfly yeast chicken arabidopsis bovine"
     gtcfixed = "G49108TO"
 
     def rows(self,section):
@@ -479,15 +482,19 @@ class OGlcNAcAtlasSourceFile(GlyGenSourceFile):
     gtcfixed = "G49108TO"
     idfixed = "G49108TO"
     taxid2dsid = { 
-                  "9606": "GLY_000708",
-                  "10090": "GLY_000709",
-                  "10116": "GLY_000710",
-                  "7227": "GLY_000711",
-                  "4932": "GLY_000800",
-                  "9823": "GLY_000955"
+                  "9606": "GLY_000708",  #Human
+                  "10090": "GLY_000709", #Mouse
+                  "10116": "GLY_000710", #Rat
+                  "7227": "GLY_000711",  #FruitFly
+                  "4932": "GLY_000800",  #Yeast
+                  "9823": "GLY_000955",  #Pig
+                  "9031": "GLY_000962",  #Chicken
+                  "3702": "GLY_001050",  #Arabidopsis
+                  "9913": "GLY_001172",  #Bovine
                  }
     speciesmap = {
                   "Drosophila": "fruitfly",
+                  "Arabidopsis": "arabidopsis",
                  }
 
     def rows(self,section):
@@ -567,7 +574,7 @@ class BiomarkerDBSourceFile(GlyGenSourceFile):
     source = "biomarkerdb"
     glygen_source = "BiomarkerKB"
     glygen_sourceid = "GLY_000737"
-    sections = "allbiomarkers"
+    sections = "oncomx"
     idfield = "GlyTouCan"
     gtcfield = "GlyTouCan"
     taxidfixed = "9606"
@@ -579,7 +586,7 @@ class BiomarkerDBSourceFile(GlyGenSourceFile):
                 row['pmid'] = pmid.split(':',1)[1]
             xref = row.get("assessed_biomarker_entity_id","")
             if xref.startswith("GTC:"):
-                row['GlyTouCan'] = xref.split(':',1)[1]
+                row['GlyTouCan'] = xref.split(':',1)[1].split()[0]
                 yield row
 
 class EMBLSourceFile(GlyGenSourceFile):
@@ -614,7 +621,7 @@ class MatrixDBSourceFile(GlyGenSourceFile):
     source = "matrixdb"
     glygen_source = "MatrixDB"
     sections = "matrixdb_CORE"
-    gagurl = "http://matrixdb.univ-lyon1.fr/download//Custom_MatrixDB_biomolecules.tsv"
+    gagurl = "https://matrixdb.univ-lyon1.fr/download/Custom_MatrixDB_biomolecules.tsv"
     idfield = "id"
     gtcfield = "gtcacc"
 
