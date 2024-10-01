@@ -311,7 +311,7 @@ class GlycanDataDiskCache(object):
             data = open(filename).read()
         if text == data:
             return False
-        wh = open(filename,'w')
+        wh = open(filename,'wt')
         wh.write(text)
         wh.close()
         return True
