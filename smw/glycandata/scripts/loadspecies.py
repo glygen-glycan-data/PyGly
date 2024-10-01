@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python3.12
 
 import sys
 from operator import itemgetter
@@ -242,6 +242,12 @@ species2taxid['hamster'] = set(map(int,"""
 """.split()))
 species2common['hamster'] = 'Hamster'
 
+# Bovine
+species2taxid['bovine'] = set(map(int,"""
+9913
+""".split()))
+species2common['bovine'] = 'Bovine'
+
 species = defaultdict(dict)
 
 for m in iterglycan():
@@ -282,7 +288,7 @@ for m in iterglycan():
             if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
                 evidence.add(ec('noXylAlt'))
                 direct = True
-        elif sp in ('mouse','rat','pig','hamster','chicken'):
+        elif sp in ('mouse','rat','pig','hamster','chicken','bovine'):
             if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
                 evidence.add(ec('noXylAlt'))
                 direct = True
