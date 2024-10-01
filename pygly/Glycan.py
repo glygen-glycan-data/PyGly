@@ -714,7 +714,7 @@ class Glycan:
         if repeat_times != None and max(repeat_times) > 1:
             nodeiterable = list(nodeiterable)
             for t,nds in zip(repeat_times,self.repeat_nodes()):
-                nodeiterable += nds*(t-1)
+                nodeiterable += list(nds)*(t-1)
 
         for mid,sym,isaggr in self.iupac_items(nodeiterable,
                                                floating_substituents=floating_substituents,

@@ -1297,7 +1297,7 @@ class Linkage(object):
                             
     @staticmethod
     def posstr(val,delim="|"):
-        return (delim.join(map(str,Linkage.valtuple(val))) if val else -1)
+        return (delim.join(map(str,Linkage.valtuple(val))) if val else '-1')
                             
     def astuple(self):
         return (constantString(Linkage,self._link_type[0]),

@@ -522,7 +522,7 @@ class GlycoCTFormat(GlycanFormatter):
                     linkid += 1
                     linkages.append(self.monofmt.linkToXML(l))
         self.xmlindent(xmlroot)
-        return ElementTree.tostring(xmlroot,encoding='UTF-8')
+        return ElementTree.tostring(xmlroot,encoding='unicode')
 
     def toGlycan(self,s):
         res = {}
@@ -1581,7 +1581,7 @@ class IUPACGlycamWriter:
             nodesdict[i] = node
 
             children = [x.child() for x in node.links()]
-            children = map(lambda x: nodes.index(x), children)
+            children = list(map(lambda x: nodes.index(x), children))
             if len(children) == 0:
                 children = None
             relationship[i] = children
