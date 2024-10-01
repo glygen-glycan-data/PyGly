@@ -1,6 +1,13 @@
 
+from __future__ import print_function
+
+from past.builtins import basestring
+
 import os, os.path, sys, re, inspect, copy, traceback
-import ConfigParser
+try:
+    from ConfigParser import SafeConfigParser
+except ImportError:
+    from configparser import ConfigParser as SafeConfigParser
 import mwclient 
 
 from rdflib import Dataset, ConjunctiveGraph, Namespace, Literal, BNode, URIRef
@@ -9,97 +16,97 @@ import requests
 
 class SMWUndefinedSiteParameter(RuntimeError):
     def __init__(self,prefix,key):
-	super(SMWUndefinedSiteParameter,self).__init__("SMW site %s parameter %s not defined"%(prefix,key))
+        super(SMWUndefinedSiteParameter,self).__init__("SMW site %s parameter %s not defined"%(prefix,key))
 
 class SMWSite(object):
 
     def __init__(self,**kwargs):
-	defaults = dict(protocol='http',port=None)
-	kwargs = self.getparams(kwargs,defaults)
-	theprotocol = kwargs['protocol']
-	thesmwhost = kwargs['host']
-	if kwargs.get('port') != None:
+        defaults = dict(protocol='http',port=None)
+        kwargs = self.getparams(kwargs,defaults)
+        theprotocol = kwargs['protocol']
+        thesmwhost = kwargs['host']
+        if kwargs.get('port') != None:
             thesmwhost += (":" + kwargs['port'])
-	thepath = '/'
+        thepath = '/'
         try:
-	    self.site = mwclient.Site(scheme=theprotocol,host=thesmwhost,path=thepath,reqs=dict(timeout=300))
-	except TypeError:
-	    #mwclient, pre 0.10.0
+            self.site = mwclient.Site(scheme=theprotocol,host=thesmwhost,path=thepath,connection_options=dict(timeout=600))
+        except TypeError:
+            #mwclient, pre 0.10.0
             self.site = mwclient.Site(host=(theprotocol,thesmwhost),path=thepath)
-	kwargs['smwurl'] = "%s://%s%s"%(theprotocol,thesmwhost,thepath)
+        kwargs['smwurl'] = "%s://%s%s"%(theprotocol,thesmwhost,thepath)
         self.site.login(kwargs['username'],kwargs['password'])
-	self.params = kwargs
+        self.params = kwargs
 
-	self.template2class = {}
-	for clsname,cls in inspect.getmembers(sys.modules[self.__class__.__module__], inspect.isclass):
+        self.template2class = {}
+        for clsname,cls in inspect.getmembers(sys.modules[self.__class__.__module__], inspect.isclass):
             if 'template' in cls.__dict__:
-		self.template2class[cls.template] = cls
+                self.template2class[cls.template] = cls
         if not kwargs.get('quiet',False):
-	    print >>sys.stderr, "Connected to %s"%(self.title())
+            print("Connected to %s"%(self.title()),file=sys.stderr)
 
     def title(self):
-	env = ""
+        env = ""
         if self.env:
-	    env = " (%s)"%(self.env.upper(),)
-	return self.name+env
+            env = " (%s)"%(self.env.upper(),)
+        return self.name+env
 
     def __str__(self):
-	l = ["SMW site %(prefix)s"%self.params]
-	for k,v in sorted(self.params.items()):
-	    if k == 'password':
-	        l.append("  % 8s = %s"%(k,"X"*len(v)))
-	    else:
-	        l.append("  % 8s = %s"%(k,v))
-	return "\n".join(l)
+        l = ["SMW site %(prefix)s"%self.params]
+        for k,v in sorted(self.params.items()):
+            if k == 'password':
+                l.append("  % 8s = %s"%(k,"X"*len(v)))
+            else:
+                l.append("  % 8s = %s"%(k,v))
+        return "\n".join(l)
 
     def getenvironment(self,**kwargs):
-	import sys
-	if kwargs.get("smwenv") == "PROD":
-	    return ""
-	if kwargs.get("smwenv") == "DEV":
-	    return "dev"
-	if kwargs.get("smwenv") == "TEST":
-	    return "test"
+        import sys
+        if kwargs.get("smwenv") == "PROD":
+            return ""
+        if kwargs.get("smwenv") == "DEV":
+            return "dev"
+        if kwargs.get("smwenv") == "TEST":
+            return "test"
         if (len(sys.argv) > 2 and sys.argv[1] == "--smwenv" and sys.argv[2] == "PROD"):
-	    sys.argv.pop(1) 
-	    sys.argv.pop(1) 
-	    return ""
+            sys.argv.pop(1) 
+            sys.argv.pop(1) 
+            return ""
         if (len(sys.argv) > 2 and sys.argv[1] == "--smwenv" and sys.argv[2] == "DEV"):
             sys.argv.pop(1)
             sys.argv.pop(1)
-	    return "dev"
+            return "dev"
         if (len(sys.argv) > 2 and sys.argv[1] == "--smwenv" and sys.argv[2] == "TEST"):
             sys.argv.pop(1)
             sys.argv.pop(1)
-	    return "test"
-	if os.environ.get("SMWENV") == "PROD":
-	    return ""
-	if os.environ.get("SMWENV") == "DEV":
-	    return "dev"
-	if os.environ.get("SMWENV") == "TEST":
-	    return "test"
-	return "dev"
+            return "test"
+        if os.environ.get("SMWENV") == "PROD":
+            return ""
+        if os.environ.get("SMWENV") == "DEV":
+            return "dev"
+        if os.environ.get("SMWENV") == "TEST":
+            return "test"
+        return "dev"
 
     def getparams(self,kwargs,defaults={}):
-	self.env = self.getenvironment(**kwargs)
-	self.name = kwargs.get("name",self._name)
-	self.prefix = self.name + self.env
-	params = self.getiniparams()
-	params.update(kwargs)
-	params['name'] = self.name
-	params['prefix'] = self.prefix
-	params['env'] = self.env
-	for key in ('protocol','host','port','username','password'):
-	    if key not in params:
-		if key not in defaults:
-	            raise SMWUndefinedSiteParameter(self.prefix,key)
-		else:
-		    params[key] = defaults[key]
-	return params
+        self.env = self.getenvironment(**kwargs)
+        self.name = kwargs.get("name",self._name)
+        self.prefix = self.name + self.env
+        params = self.getiniparams()
+        params.update(kwargs)
+        params['name'] = self.name
+        params['prefix'] = self.prefix
+        params['env'] = self.env
+        for key in ('protocol','host','port','username','password'):
+            if key not in params:
+                if key not in defaults:
+                    raise SMWUndefinedSiteParameter(self.prefix,key)
+                else:
+                    params[key] = defaults[key]
+        return params
 
     def getiniparams(self):
 
-	origsmwfile = ".%s.ini"%(self.name)
+        origsmwfile = ".%s.ini"%(self.name)
         smwfiles = []
 
         # script directory
@@ -112,11 +119,11 @@ class SMWSite(object):
         smwfile = os.path.join(dir,origsmwfile)
         smwfiles.append(smwfile)
 
-	# local directory
+        # local directory
 
         smwfiles.append(origsmwfile)
 
-        iniFile = ConfigParser.SafeConfigParser()
+        iniFile = SafeConfigParser()
         if len(iniFile.read(smwfiles)) == 0:
             return dict()
 
@@ -126,22 +133,22 @@ class SMWSite(object):
         return dict(iniFile.items(self.prefix))
 
     def itercat(self,category):
-	for p in self.iterpages(include_categories=[category]):
-	    yield p.name
+        for p in self.iterpages(include_categories=[category]):
+            yield p.name
 
     def iterall(self):
-	for p in self.itermediawiki():
-	    yield p
-	for p in self.itertemplates():
-	    yield p
-	for p in self.itercategories():
-	    yield p
-	for p in self.iterforms():
-	    yield p
-	for p in self.iterpages():
-	    yield p
-	for p in self.itertalk():
-	    yield p
+        for p in self.itermediawiki():
+            yield p
+        for p in self.itertemplates():
+            yield p
+        for p in self.itercategories():
+            yield p
+        for p in self.iterforms():
+            yield p
+        for p in self.iterpages():
+            yield p
+        for p in self.itertalk():
+            yield p
 
     def iternamespace(self,namespace):
         for t in self.site.allpages(namespace=namespace):
@@ -150,7 +157,7 @@ class SMWSite(object):
 
     def itermediawiki(self):
         for p in self.iternamespace(8):
-	    if p.name in ('MediaWiki:Smw import foaf','MediaWiki:Smw import owl','MediaWiki:Smw import skos'):
+            if p.name in ('MediaWiki:Smw import foaf','MediaWiki:Smw import owl','MediaWiki:Smw import skos'):
                 continue
             yield p
 
@@ -162,9 +169,9 @@ class SMWSite(object):
 
     def iterproperties(self):
         for p in self.iternamespace(102):
-	    if p.name.startswith('Property:Foaf:') or p.name.startswith('Property:Owl:'):
-		continue
-	    yield p
+            if p.name.startswith('Property:Foaf:') or p.name.startswith('Property:Owl:'):
+                continue
+            yield p
 
     def iterforms(self):
         return self.iternamespace(106)
@@ -190,8 +197,8 @@ class SMWSite(object):
                 if p.exists:
                     if regex and not regex.search(p.name):
                         continue
-		    if exclude_regex and exclude_regex.search(p.name):
-		        continue
+                    if exclude_regex and exclude_regex.search(p.name):
+                        continue
                     cats = set(map(lambda c: str(c.name.split(':',1)[1]),p.categories()))
                     if exclude_categories != None and len(cats&exclude_categories) > 0:
                         continue
@@ -206,15 +213,15 @@ class SMWSite(object):
             pass
         for p in iter:
             name = p.name
-	    if not dir.endswith('/pages'):
+            if not dir.endswith('/pages'):
                 name = name.split(":",1)[1]
             try:
-                print p.name
+                print(p.name)
             except:
                 continue
             try:
                 h = open(dir+'/'+name+'.txt','w')
-                h.write((p.text().rstrip('\n')+'\n').encode('utf8').replace(r'\n',r'\\n').replace(r'\"',r'\\"').decode('string_escape'))
+                h.write((p.text().rstrip('\n')+'\n').encode().replace(r'\n',r'\\n').replace(r'\"',r'\\"').decode('string_escape'))
             except:
                 raise
             finally:
@@ -242,45 +249,45 @@ class SMWSite(object):
                           ('Template','templates'), 
                           ('Form','forms'),
                           ('','pages'),
-			  ('Talk','talk')):
-	  if not os.path.exists(os.path.join(dir,subdir)):
-	      continue
-	  if ns:
+                          ('Talk','talk')):
+          if not os.path.exists(os.path.join(dir,subdir)):
+              continue
+          if ns:
               ns += ":"
-	  for f in os.listdir(os.path.join(dir,subdir)):
+          for f in os.listdir(os.path.join(dir,subdir)):
               if not f.endswith('.txt'):
                   continue
               pagetext = open(os.path.join(dir,subdir,f)).read().rstrip().decode('utf8')
               pagename = ns+f[:-4]
               page = self.site.pages[pagename]
-	      
+              
               if page.text() != pagetext:
                   print >>sys.stderr, pagename
                   page.save(pagetext)
         
     def deletemany(self,category=None,regex=None,allpages=None,verbose=False):
-	if category:
-	  for pagename in self.itercat(category):
-	    if verbose:
-	      print >>sys.stderr, pagename
-	    self.delete(pagename)
+        if category:
+          for pagename in self.itercat(category):
+            if verbose:
+              print >>sys.stderr, pagename
+            self.delete(pagename)
           for p in self.iterpages(include_categories=[category]):
             if verbose:
               print >>sys.stderr, p.name
             p.delete()
-	elif regex:
-	  regex = re.compile(regex)
-	  for page in self.site.pages:
-	    if regex.search(page.name):
-	      if verbose:
-	        print >>sys.stderr, page.name
-	      page.delete()
-	elif allpages:
-	  for page in self.site.pages:
-	    if page.name != 'Main_Page':
-	      if verbose:
-	        print >>sys.stderr, page.name
-	      page.delete()
+        elif regex:
+          regex = re.compile(regex)
+          for page in self.site.pages:
+            if regex.search(page.name):
+              if verbose:
+                print >>sys.stderr, page.name
+              page.delete()
+        elif allpages:
+          for page in self.site.pages:
+            if page.name != 'Main_Page':
+              if verbose:
+                print >>sys.stderr, page.name
+              page.delete()
 
     # def update(self,**kw):
     #   self.data.update(kw)
@@ -291,35 +298,35 @@ class SMWSite(object):
         page.delete()
 
     def _get(self,name):
-	return self.site.pages[name]
+        return self.site.pages[name]
 
     @staticmethod
     def parse_template_text(name,thepage):
-	obj = None
+        obj = None
         chunks = []
         level = 0
-	lastpos = 0
+        lastpos = 0
         for m in re.finditer(r'({{)|(}})', thepage):
             if m.group() == '{{':
                 if level == 0:
                     startpos = m.end()
-		# print "  "*level,thepage[lastpos:m.end()]
-		lastpos = m.end()
+                # print "  "*level,thepage[lastpos:m.end()]
+                lastpos = m.end()
                 level += 1
             if m.group() == '}}':
-		# print "  "*level,thepage[lastpos:m.start()]
-		lastpos = m.start()
+                # print "  "*level,thepage[lastpos:m.start()]
+                lastpos = m.start()
                 level -= 1
                 if level == 0:
                     endpos = m.start()
-		    # print "!",thepage[startpos:endpos]
+                    # print "!",thepage[startpos:endpos]
                     chunks.append(thepage[startpos:endpos])
         assert level == 0, name
 
         subobjs = []
         for index, chunk in enumerate(chunks[1:]+chunks[:1]):
             data = dict()
-            splrest = map(lambda s: s.strip(),re.split(r'\|(\w+)=',chunk))
+            splrest = list(map(lambda s: s.strip(),re.split(r'\|(\w+)=',chunk)))
             cls = splrest[0]
             for i in range(1,len(splrest),2):
                 key = splrest[i]
@@ -339,9 +346,9 @@ class SMWSite(object):
         
                      
     def get(self,name):
-	name = name.strip()
-	if not name:
-	    return None
+        name = name.strip()
+        if not name:
+            return None
         page = self._get(name)
         if not page.exists:
             return None
@@ -366,13 +373,13 @@ class SMWSite(object):
             thedata = dict(obj.data,**newobj.data)
             if thedata == obj.data:
                 return False
-	    obj.data = thedata
+            obj.data = thedata
             return self.put(obj)
         return self.put(newobj)
 
     def put(self,obj):
         pagename = obj.pagename(**obj.data)
-	obj.set('pagename',pagename)
+        obj.set('pagename',pagename)
         page = self.site.pages[pagename]
         changed = False
         if not page.exists or page.text() != obj.astemplate():
@@ -381,21 +388,21 @@ class SMWSite(object):
         return changed
 
     def refresh(self,page):
-	if isinstance(page,SMWClass):
-	    pagename = page.pagename(**page.data)
-	    page = self.site.pages[pagename]
-	elif isinstance(page,basestring):
-	    page = self.site.pages[page]
-	if page.exists:
-	    page.purge()
+        if isinstance(page,SMWClass):
+            pagename = page.pagename(**page.data)
+            page = self.site.pages[pagename]
+        elif isinstance(page,basestring):
+            page = self.site.pages[page]
+        if page.exists:
+            page.purge()
             dummy = self.site.get('parse',page=page.name,prop="text")
 
 class SMWClass(object):
 
     directsubmit = []
     def __init__(self,**kwargs):
-	if kwargs.get('template'):
-	    self.template = kwargs.get('template')
+        if kwargs.get('template'):
+            self.template = kwargs.get('template')
         self.data = self.toPython(kwargs)
 
     @staticmethod
@@ -405,16 +412,16 @@ class SMWClass(object):
 
     @staticmethod
     def asboolean(value):
-	if isinstance(value,basestring):
-	    if value.lower() in ("true","1","yes","t","y"):
-		return True
-	    elif value.lower() in ("false","0","no","f","n"):
-		return False
-	    else:
-		raise ValueError("Can't infer boolean value from %r"%(value,))
-	if not isinstance(value,bool):
-	    raise TypeError("Can't infer boolean value from %r"%(value,))
-	return value
+        if isinstance(value,basestring):
+            if value.lower() in ("true","1","yes","t","y"):
+                return True
+            elif value.lower() in ("false","0","no","f","n"):
+                return False
+            else:
+                raise ValueError("Can't infer boolean value from %r"%(value,))
+        if not isinstance(value,bool):
+            raise TypeError("Can't infer boolean value from %r"%(value,))
+        return value
 
     @staticmethod
     def smwescape(value):
@@ -422,7 +429,7 @@ class SMWClass(object):
             return value.strip()
         # value = value.replace('{','{{(}}')
         # value = value.replace('}','{{)}}')
-	value = re.sub(r'[{}]', lambda mo: '{{(}}' if mo.group() == '{' else '{{)}}', value)
+        value = re.sub(r'[{}]', lambda mo: '{{(}}' if mo.group() == '{' else '{{)}}', value)
         value = value.replace('|','{{!}}')
         value = value.replace('=','{{=}}')
         value = value.replace('[','{{!(}}')
@@ -452,26 +459,26 @@ class SMWClass(object):
                 continue
             if isinstance(data[k],basestring):
                 data[k] = self.smwunescape(data[k])
-		if not data[k]:
-		    del data[k]
-		    continue
-	return data
+                if not data[k]:
+                    del data[k]
+                    continue
+        return data
 
     def toTemplate(self,data):
-	for k in list(data.keys()):
-	    if k in ('template','id','pagename'):
-		del data[k]
-		continue
-	    if data.get(k) in (None,"",[]):
-		del data[k]
-		continue
+        for k in list(data.keys()):
+            if k in ('template','id','pagename'):
+                del data[k]
+                continue
+            if data.get(k) in (None,"",[]):
+                del data[k]
+                continue
             if isinstance(data[k],basestring):
                 data[k] = self.smwescape(data[k])
-	return data
+        return data
 
     def astemplate(self):
         l = [ "{{%s"%(self.template,) ] 
-	data = self.toTemplate(copy.copy(self.data))
+        data = self.toTemplate(copy.copy(self.data))
         for k in sorted(data.keys()):
             if k != "_subobjs":
                 v = data.get(k)
@@ -523,8 +530,8 @@ class SMWClass(object):
         self.data[key].add(value)
 
     def sort(self,key,keyfn):
-	if key in self.data:
-	    self.data[key].sort(key=keyfn)
+        if key in self.data:
+            self.data[key].sort(key=keyfn)
 
     def update(self,**kwargs):
         self.data.update(self.toPython(kwargs))
