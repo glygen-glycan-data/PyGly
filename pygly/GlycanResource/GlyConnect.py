@@ -2,5 +2,6 @@
 from .GlyConnectWS import GlyConnectWS
 
 class GlyConnect(GlyConnectWS):
-    pass
+    def __init__(self,**kw):
+        super(GlyConnect,self).__init__(**kw);
 
