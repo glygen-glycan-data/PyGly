@@ -41,6 +41,8 @@ class ChEBIDownload(WebServiceResource):
             for xf in r.get('xref',[]):
                 if xf.startswith('GlyTouCan:'):
                     gtcacc.add(xf.split(':',1)[1])
+                elif xf.startswith('GlyGen:'):
+                    gtcacc.add(xf.split(':',1)[1])
             if len(gtcacc) == 0:
                 continue
             for acc in gtcacc:
