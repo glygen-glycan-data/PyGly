@@ -1114,7 +1114,10 @@ class IUPACLinearFormat(GlycanFormatter):
                 branchpoint.append(parent)
                 s=s[:-1]
             elif s[-1] == '(':
-                parent = branchpoint.pop()
+                try:
+                    parent = branchpoint.pop()
+                except IndexError:
+                    IUPACLinearBadFormat(code=orig,pos=len(s))
                 s=s[:-1]
             else:
                 raise RuntimeError("Bad IUPAC linear format!")
