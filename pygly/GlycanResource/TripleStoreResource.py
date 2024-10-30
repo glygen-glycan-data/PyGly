@@ -12,6 +12,8 @@ import rdflib
 
 import shelve
 
+from urllib.error import HTTPError
+
 try:
     from pygly.lockfile import FileLock
 except ImportError:
@@ -128,7 +130,12 @@ class TripleStoreResource(GlycanResource):
             try:
                 attempt += 1
                 response = self._ts.query(sparql)
+                if isinstance(response,tuple) and response[0] != 200:
+                    response = None
+                    delay *= 2
+                    self.wait(delay)
             except:
+                response = None
                 traceback.print_exc()
                 delay *= 2
                 self.wait(delay)
@@ -183,7 +190,7 @@ class TripleStoreResource(GlycanResource):
         escape = [_f for _f in [s.strip() for s in keyvaluepairs.get('escape',"").split(',')] if _f]
 
         def _query(self,*args,**kw):
-            # print >>sys.stderr, "query_%s: %s, %s"%(name,args,kw)
+            # print("query_%s: %s, %s"%(name,args,kw),file=sys.stderr)
             kwargs = {}
             for i,param in enumerate(params):
                 if param in keyvaluepairs:
