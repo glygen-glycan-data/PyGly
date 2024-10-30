@@ -101,13 +101,19 @@ class GlyGenSourceFile(WebServiceResource):
             ggpmids = [None]*len(sections)
         else:
             ggpmids = self.glygen_pubmedid.split()
+        if not hasattr(self,'glygen_doi'):
+            ggdois = [None]*len(sections)
+        else:
+            ggdois = self.glygen_doi.split()
         assert(len(sections) == len(ggpmids))
-        for sec,ggsid,ggpmid in zip(sections,ggsids,ggpmids):
+        for sec,ggsid,ggpmid,ggdoi in zip(sections,ggsids,ggpmids,ggdois):
             for row in self.rows(sec,**kw):
                 if ggsid:
                     row['_glygen_sourceid'] = ggsid
                 if ggpmid:
                     row['_glygen_pubmedid'] = ggpmid
+                if ggdoi:
+                    row['_glygen_doi'] = ggdoi
                 yield row
 
     idfield = 'glytoucan_ac'
@@ -146,6 +152,8 @@ class GlyGenSourceFile(WebServiceResource):
                     yield acc,gtc,taxid,"PubMed",pmid
                 if row.get('_glygen_pubmedid'):
                     yield acc,gtc,taxid,"PubMed",row['_glygen_pubmedid']
+                if row.get('_glygen_doi'):
+                    yield acc,gtc,taxid,"DOI",row['_glygen_doi']
 
     @uniqueify
     def allpubs(self):
@@ -592,6 +600,7 @@ class BiomarkerDBSourceFile(GlyGenSourceFile):
 class EMBLSourceFile(GlyGenSourceFile):
     source = "embl"
     glygen_source = "EMBL"
+    glygen_doi = "10.1101/2023.09.13.557529"
     sections = "glygen_upload"
     taxid2dsid = { 
                   "9606": "GLY_000888",
