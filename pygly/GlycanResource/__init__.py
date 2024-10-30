@@ -9,8 +9,10 @@ from .GlycoMotif import GlycoMotif, GlycoMotifNoPrefetch, GlycoMotifNoCache
 from .GlycoMotif import GlycoMotifDev, GlycoMotifDevNoPrefetch, GlycoMotifDevNoCache
 from .GlycanImage import GlycanImage
 from .GlyConnect import GlyConnect
+from .GlyConnectTS import GlyConnectTS, GlyConnectTSNoPrefetch, GlyConnectTSNoCache
 from .GlyCosmosSparqList import GlyCosmosSparqList
 from .Sandbox import GlycoTreeSandbox, GlycoTreeSandboxDev
 from .ChEBIDownload import ChEBIDownload
+from .PubChemDownload import PubChemDownload
 from .Glycam import Glycam
 
