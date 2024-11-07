@@ -23,7 +23,7 @@ def glycansiter(sandbox,accs):
             yield sandbox.glycan(acc)
 
 headers = """
-    glytoucan_ac residue_name residue_id uniprot gene_name gene_id parent_residue_id enzyme_type species caveat
+    glytoucan_ac residue_name residue_id canonical_residue_index uniprot gene_name gene_id parent_residue_id enzyme_type species caveat
 """.split()
 
 print("\t".join(headers))
@@ -44,10 +44,12 @@ for sbjdoc in glycansiter(sandbox,accs):
         if rule['enzyme']:
             enz = enzymes[rule['focus'],rule['enzyme']]
             data = dict(glytoucan_ac=acc,residue_name=res['residue_name'],residue_id=res['residue_id'],
+                        canonical_residue_index=res['canonical_residue_index'],
                         uniprot=enz['uniprot'],gene_name=enz['gene_name'],gene_id=enz['gene_id'],
                         parent_residue_id=res['parent_id'],enzyme_type=enz['type'],species=enz['species'])
         else:
             data = dict(glytoucan_ac=acc,residue_name=res['residue_name'],residue_id=res['residue_id'],
+                        canonical_residue_index=res['canonical_residue_index'],
                         parent_residue_id=res['parent_id'])
         data['caveat'] = rule['assertion'].replace("&alpha;","a").replace("&beta;","b")
         print("\t".join(map(lambda h: data.get(h,""),headers)))
