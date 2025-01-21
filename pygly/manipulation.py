@@ -266,7 +266,7 @@ class WURCSManipulation(object):
             try:
                 pos,sub = s.split('*',1)
             except ValueError:
-                pos = s; sub = None
+                pos = s; sub = ""
             substs1.append(dict(pos=self.intorstr(pos),subst=sub))
         substs = substs1 
         return dict(skeleton=base,anomer=anomer,childpos=childpos,ring=ring,substituents=substs,wurcs=monoseq)
