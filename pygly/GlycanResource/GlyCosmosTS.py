@@ -89,9 +89,13 @@ class GlyCosmosTS(TripleStoreResource):
         for row in self.query_taxonomy(accession=accession):
             yield row['taxon']
 
-    def bytaxa(self,taxon):
-        for row in self.query_taxonomy(taxon=taxon):
-            yield row['accession']
+    def bytaxa(self,taxon,*extrataxon):
+        if len(extrataxon) > 0:
+            taxonre = '(' + "|".join(map(str,[ taxon ] + list(extrataxon))) + ')'
+        else:
+            taxonre = str(taxon)
+        for row in self.query_taxonomy(taxon=taxonre):
+            yield row['accession'],row['taxon']
 
     def alltaxa(self):
         for row in self.query_taxonomy():
