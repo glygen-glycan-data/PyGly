@@ -254,11 +254,18 @@ class GNOme(GNOmeAPI):
         self.ns['rdfs'] = rdflib.Namespace('http://www.w3.org/2000/01/rdf-schema#')
         self.ns[None] = rdflib.Namespace("")
         versionurl = None
-        for s,p,o in self.triples("owl:Ontology","owl:versionIRI",None):
+        self.version = None
+        self.versiondate = None
+        # for s,p,o in self.triples(None,None,None):
+        #     print(s,p,o)
+        for s,p,o in self.triples(None,"owl:versionIRI",None):
             versionurl = str(o)
             break
         if versionurl:
-            self.version = versionurl.split('/')[-2][1:]
+            self.versiondate = versionurl.split('/')[-2]
+        for s,p,o in self.triples(None,"owl:versionInfo",None):
+            self.version = str(o).lower()
+            break
 
     def triples(self, subj=None, pred=None, obj=None):
         for (s, p, o) in self.gnome.triples(((self.uri(subj) if subj else None),
@@ -481,7 +488,8 @@ class GNOme(GNOmeAPI):
         return res
 
     def toViewerData(self, output_file_path):
-        res = {}
+        assert(self.version)
+        res = {'__VERSION__': self.version}
         cbbutton = self.all_cbbutton()
         # byonic = self.all_Byonic()
         syms = self.all_synonym()
@@ -2458,6 +2466,29 @@ class GNOme_Theme_PubChemCID(GNOme_Theme_Base):
 
         }
 
+class GNOme_Theme_GlyConnect(GNOme_Theme_Base):
+
+    def getdata(self):
+        return {
+            "icon_style": "snfg",
+            "image_url_prefix": "https://glymage.glyomics.org/image/snfg/extended/",
+            "image_url_suffix": ".svg",
+            "external_resources": [
+                {
+                    "name": "GlyConnect",
+                    "url_prefix": "https://glyconnect.expasy.org/all/structures/",
+                    "url_suffix": "",
+                    "glycan_set": self.get_accessions("GlyConnect")
+                },{
+                    "name": "GlyTouCan",
+                    "url_prefix": "https://glytoucan.org/Structures/Glycans/",
+                    "url_suffix": "",
+                    "glycan_set": None
+                }
+            ]
+
+        }
+
 class GNOme_Theme_GlyGen_Sandbox(GNOme_Theme_Base):
 
     def getdata(self):
@@ -2910,6 +2941,9 @@ def main():
 
         tpc = GNOme_Theme_PubChemCID(restriction_url)
         tpc.write(theme_path + "PubChemCID.json")
+
+        tpc = GNOme_Theme_GlyConnect(restriction_url)
+        tpc.write(theme_path + "GlyConnect.json")
 
     else:
 
