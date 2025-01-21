@@ -47,6 +47,7 @@ class TripleStoreResource(GlycanResource):
         self.attr(kw,'usecache',default=False)
         self.attr(kw,'cachemode',default='r')
         self.attr(kw,'prefetch',default=False)
+
         if not self._prefetch:
             self._usecache = False
 
@@ -55,6 +56,13 @@ class TripleStoreResource(GlycanResource):
 
         if self._local:
             self._endpt = self._localendpt
+
+        if self._verbose:
+            print("TripleStoreResource:endpt = %s"%(self._endpt), file=sys.stderr)
+            print("TripleStoreResource:method = %s"%(self._method), file=sys.stderr)
+            print("TripleStoreResource:prefetch = %s"%(self._prefetch), file=sys.stderr)
+            print("TripleStoreResource:usecache = %s"%(self._usecache), file=sys.stderr)
+            print("TripleStoreResource:cachemode = %s"%(self._cachemode), file=sys.stderr)
 
         # from rdflib.query import ResultParser
         # from rdflib.plugin import register
@@ -73,13 +81,6 @@ class TripleStoreResource(GlycanResource):
 
         if self._usecache:
             self.opencache()
-
-        if self._verbose:
-            print("TripleStoreResource:endpt = %s"%(self._endpt), file=sys.stderr)
-            print("TripleStoreResource:method = %s"%(self._method), file=sys.stderr)
-            print("TripleStoreResource:prefetch = %s"%(self._prefetch), file=sys.stderr)
-            print("TripleStoreResource:usecache = %s"%(self._usecache), file=sys.stderr)
-            print("TripleStoreResource:cachemode = %s"%(self._cachemode), file=sys.stderr)
 
     def __del__(self):
         if hasattr(self,'_usecache') and self._usecache:
