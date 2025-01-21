@@ -5,6 +5,7 @@ restriction_set_names_standard=(
   "GlyGen"
   "GlyCosmos"
   "PubChemCID"
+  "GlyConnect"
   "GlyGen_NGlycans"
   "GlyGen_OGlycans"
   "NGlycans"

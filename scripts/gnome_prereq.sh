@@ -26,6 +26,14 @@ function sandboxres () {
   $GLYRES GlycoTreeSandbox list $1 | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
 }
 
+function pubchemcid () {
+  $GLYRES PubChemDownload allgtc | sed -n 's/^CID//p' | awk '{print $2,$1}' | sort -u > ./GNOme/restrictions/GNOme_PubChemCID.accessions.txt
+}
+
+function glyconnect () {
+  $GLYRES GlyConnectTSNoCache allgtc | awk '{print $2,$1}' | sort -u > ./GNOme/restrictions/GNOme_GlyConnect.accessions.txt
+}
+
 function glycomotifres () {
   $GLYRES GlycoMotifNoCache getstruct GGM $1 | awk '{print $1}' | sort -u > ./GNOme/restrictions/GNOme_${2}.accessions.txt 
 }
@@ -46,10 +54,16 @@ sandboxres mapped_O GlycoTree_OGlycans
 
 glycomotifres 001001 NGlycans
 
+pubchemcid 
+
+glyconnect
+
+./snfgmonotest.py ./GNOme/SNFG/snfgmono.tsv > ./GNOme/data/glytoucan_snfg.txt
+
 # GlyTouCan retired etc.
 getdata GlyCosmosNoCache archived glytoucan_archived.txt
 getdata GlyCosmosNoCache replaced glytoucan_replaced.txt
 
 # Synonyms
-python3 ../smw/glycandata/scripts/getbasecomplist.py \* > ./GNOme/data/basecomplist.txt
+../smw/glycandata/scripts/getbasecomplist.py \* > ./GNOme/data/basecomplist.txt
 ( cd ./GNOme/data; ../../../smw/glycandata/data/splitbasecomp.sh )
