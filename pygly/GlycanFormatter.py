@@ -905,9 +905,9 @@ class LinearCodeFormat(GlycanFormatter):
                 s=s[:-1]
             else:
                 raise RuntimeError("Bad linear code format!")
-        return Glycan(root)
-
-
+        g = Glycan(root)
+        g.set_ids()
+        return g
 
 class IUPACLinearBadFormat(IUPACLinearParseError):
     def __init__(self,code,pos):
@@ -1121,7 +1121,9 @@ class IUPACLinearFormat(GlycanFormatter):
                 s=s[:-1]
             else:
                 raise RuntimeError("Bad IUPAC linear format!")
-        return Glycan(root)
+        g = Glycan(root)
+        g.set_ids()
+        return g
 
 
 class IUPACBranchingError(IUPACParseError):
