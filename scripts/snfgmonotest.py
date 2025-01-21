@@ -13,130 +13,16 @@ from operator import itemgetter
 wm = WURCSManipulation()
 wmp = WURCS20MonoFormat()
 subsumption = GlycanSubsumption()
-motifincl = MotifInclusive()
 
-snfgfile = sys.argv[1]
-sys.argv.pop(1)
-
-snfgsubstwurcs = list(filter(None,"""
-*OCC/3=O
-*OCC^RC/4N/3=O
-*OCC^RNCC/6=O/4C/3=O
-*N=^XCC/3N
-*N=^XCC/3N/2C
-*N=^XCNC/4C/3C
-*OC=O
-*OCCO/3=O
-*OCC^XNCC/6=O/4CCCN/11=O/3=O
-*OCCCC^XCN/7=O/6NC/3=O
-*OCCN/3=O
-*OCC^XCO/4O/3=O
-*OCC^XCOC/4OC/3=O
-*OCCCCO/3=O
-*OCCC^XCO/5O/3=O
-*OCCC^RC/5O/3=O
-*OCCC^SC/5O/3=O
-*OCC^XC/4O/3=O
-*OC
-*N
-*NCC/3=O
-*NCCO/3=O
-*NSO/3=O/3=O
-*OPO/3O/3=O
-*OCCC/4=O/3=O
-*OC^XO*/3CO/6=O/3C
-*OSO/3=O/3=O
-*NCCCSO/6=O/6=O
-""".splitlines()))
-
-snfgmonowurcs = list(filter(None,"""
-#axxxxh-1x_1-5
-a2122h-1x_1-5
-a1122h-1x_1-5
-a2112h-1x_1-5
-a2212h-1x_1-5
-a2111h-1x_1-5
-a2222h-1x_1-5
-a1112h-1x_1-5
-a2121h-1x_1-5
-#axxxxh-1x_1-5_2*NCC/3=O
-a2122h-1x_1-5_2*NCC/3=O
-a1122h-1x_1-5_2*NCC/3=O
-a2112h-1x_1-5_2*NCC/3=O
-a2112h-1x_1-5_2*NCC/3=O
-a2212h-1x_1-5_2*NCC/3=O
-a2111h-1x_1-5_2*NCC/3=O
-a2222h-1x_1-5_2*NCC/3=O
-a1112h-1x_1-5_2*NCC/3=O
-a2121h-1x_1-5_2*NCC/3=O
-#axxxxh-1x_1-5_2*N
-a2122h-1x_1-5_2*N
-a1122h-1x_1-5_2*N
-a2112h-1x_1-5_2*N
-a2212h-1x_1-5_2*N
-a2212h-1x_1-5_2*N
-a2111h-1x_1-5_2*N
-a2222h-1x_1-5_2*N
-a1112h-1x_1-5_2*N
-a2121h-1x_1-5_2*N
-#axxxxA-1x_1-5
-a2122A-1x_1-5
-a1122A-1x_1-5
-a2112A-1x_1-5
-a2212A-1x_1-5
-a2111A-1x_1-5
-a2222A-1x_1-5
-a1112A-1x_1-5
-a2121A-1x_1-5
-#axxxxm-1x_1-5
-a2122m-1x_1-5
-a2211m-1x_1-5
-a2212m-1x_1-5
-a2111m-1x_1-5
-a1112m-1x_1-5
-a1221m-1x_1-5
-#axxxxm-1x_1-5_2*NCC/3=O
-a2122m-1x_1-5_2*NCC/3=O
-a2211m-1x_1-5_2*NCC/3=O
-a2111m-1x_1-5_2*NCC/3=O
-a1112m-1x_1-5_2*NCC/3=O
-a1221m-1x_1-5_2*NCC/3=O
-#adxxxm-1x_1-5
-ad122m-1x_1-5
-a1d22m-1x_1-5
-a2d12m-1x_1-5
-a2d22m-1x_1-5
-ad222m-1x_1-5
-a1d21m-1x_1-5
-#axxxh-1x_1-5
-a211h-1x_1-5
-a112h-1x_1-5
-a212h-1x_1-5
-a222h-1x_1-5
-#Aadxxxxxh-2x_2-6
-Aad21122h-2x_2-6
-Aad21122h-2x_2-6_5*NCC/3=O
-Aad21122h-2x_2-6_5*NCCO/3=O
-Aad21122h-2x_2-6_5*N
-#Aadxxxxxm-2x_2-6_5*N_7*N
-Aad22111m-2x_2-6_5*N_7*N
-Aad21122m-2x_2-6_5*N_7*N
-Aad21111m-2x_2-6_5*N_7*N
-Aad11122m-2x_2-6_5*N_7*N
-a2122m-1x_1-5_2*N_4*N
-a11221h-1x_1-5
-Aad1122h-2x_2-6
-Aad112A-2x_2-6
-a11222h-1x_1-5
-a2122h-1x_1-5_2*NCC/3=O_3*OC^RCO/4=O/3C
-a2122h-1x_1-5_2*NCCO/3=O_3*OC^RCO/4=O/3C
-a2122h-1x_1-5_2*N_3*OC^RCO/4=O/3C
-a26h-1x_1-4_3*CO
-ha122h-2x_2-6
-ha112h-2x_2-6
-ha121h-2x_2-6
-ha222h-2x_2-6
-""".splitlines()))
+snfgfiles = []
+for p in sys.argv[1:]:
+    f = os.path.split(p)[1]
+    if f.startswith('snfg') and f.endswith('.tsv'):
+        snfgfiles.append(p)
+    else:
+        break
+for i in range(len(snfgfiles)):
+    sys.argv.pop(1)
 
 def lines(filename):
     for i,l in enumerate(open(filename)):
@@ -161,33 +47,30 @@ archived = set(map(lambda d: d['accession'],gco.archived()))
 
 snfgmonos = []
 
-for r in csv.DictReader(open(snfgfile),dialect='excel-tab'):
+for f in snfgfiles:
+  if not os.path.split(f)[1].startswith('snfgmono'):
+    continue
+  for r in csv.DictReader(open(f),dialect='excel-tab'):
     if r['Color'] == 'White':
         continue
     md = wm.deconstruct(r['WURCS'])['monos'][0]
+    if md['wurcs'] in [ t[0]['wurcs'] for t in snfgmonos ]:
+        assert False, "Repeated monosaccharide WURCS: "+md['wurcs']+"."
     mono = wmp.get(md['wurcs'])
     snfgmonos.append((md,mono))
-
-for mono in snfgmonowurcs:
-    mono = mono.strip()
-    if mono.startswith('#'):
-        continue
-    if mono in [ t[0]['wurcs'] for t in snfgmonos]:
-        continue
-    assert False, "Unexpected monosaccharide WURCS: "+mono+"."
-    m = wmp.get(mono)
-    md = wm.monodeconstruct(mono)
-    snfgmonos.append((md,m))
 
 snfgmonos.sort(key=lambda t: -len(t[0].get('substituents',[])))
 
 snfgsubsts = set()
 
-for subst in snfgsubstwurcs:
-    subst = subst.strip()
-    if subst.startswith('#'):
-        continue
+for f in snfgfiles:
+  if not os.path.split(f)[1].startswith('snfgsubst'):
+    continue
+  for r in csv.DictReader(open(f),dialect='excel-tab'):
+    subst = r['WURCS']
     s = wmp.getsubst(subst[1:])
+    if subst[1:] in snfgsubsts:
+        assert False, "Repeated substituent WURCS: "+subst+"."
     snfgsubsts.add(subst[1:])
 
 extrasubsts = set()
@@ -206,7 +89,7 @@ def testmono(snfgmono,mono):
         if mod == Mod.aldi and pos == (1,):
             aldi = True
             break
-    if aldi:
+    if aldi or mono.noring():
         mono1 = mono.clone()
         mono1.remove_mod(Mod.aldi,(1,))
         mono1.set_ring_start(None)
@@ -217,9 +100,11 @@ def testmono(snfgmono,mono):
 
 def checkmono(md):
     subst = md['substituents']
+    nsubst = len(subst)
+    ndsubst= len(set(sub['subst'] for sub in subst))
     for sub in subst:
         if not checksubst(sub['subst'],extra=True)[0]:
-            return False,"No matching SNFG substituent:",sub['subst']
+            return False,nsubst,ndsubst,0,0,"No matching substituent:",sub['subst']
     for snfgmd,snfgmono in snfgmonos:
         snfgsubst = snfgmd['substituents']
         for snfgsubst1,subst1,rest_subst1 in itersubmatchings(snfgsubst,subst,lambda a,b: a['subst'] == b['subst']):
@@ -230,7 +115,7 @@ def checkmono(md):
             try: 
                 mono = wmp.get(wms)
             except GlycanParseError:
-                return False,"No matching SNFG monosaccharde:",None
+                return False,nsubst,ndsubst,0,0,"No matching monosaccharide."
             result = testmono(snfgmono,mono)
             result1 = True
             for sub in rest_subst1:
@@ -238,21 +123,21 @@ def checkmono(md):
                     result1 = False
                     break
             if result and result1:
-                return True,"Matched SNFG monosaccharide:",snfgmd['wurcs']
+                return True,nsubst,ndsubst,len(rest_subst1),len(set(sub['subst'] for sub in rest_subst1)),"Matched monosaccharide:",snfgmd['wurcs']
     for sub in subst:
         if not checksubst(sub['subst'])[0]:
-            return False,"No matching SNFG substituent:",sub['subst']
-    return False,"No matching SNFG monosaccharide:",None
+            return False,nsubst,ndsubst,0,0,"No matching substituent:",sub['subst']
+    return False,nsubst,ndsubst,0,0,"No matching monosaccharide."
 
 def checksubst(wurcsseq,extra=False):
     for snfgwurcsseq in snfgsubsts:
         if wurcsseq == snfgwurcsseq:
-            return True,"Matched SNFG substituent",wurcsseq
+            return True,"Matched substituent",wurcsseq
     if extra:
         for extrawurcsseq in extrasubsts:
             if wurcsseq == extrawurcsseq:
                 return True,"Matched extra substituent",wurcsseq
-    return False,"No matching SNFG substituent",None
+    return False,"No matching substituent",wurcsseq
 
 resultcache = dict()
 
@@ -272,15 +157,17 @@ for acc in iterable:
 
     comp = wm.deconstruct(seq)
     # print(comp)
+    nmono = len(comp['monos'])
+    nsubst = len([ ld.get('subst') for ld in comp['links'] if ld.get('subst') ])
     for wmd in comp['monos']:
         wms = wmd['wurcs']
         if wms in resultcache:
-            print(acc,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:])
+            print(acc,nmono,nsubst,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:])
             continue
 
         result = checkmono(wmd)
         resultcache[wms] = result
-        print(acc,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:])
+        print(acc,nmono,nsubst,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:])
 
     for ld in comp['links']:
         wss = ld.get('subst')
@@ -288,9 +175,9 @@ for acc in iterable:
             continue
 
         if wss in resultcache:
-            print(acc,"Substituent",resultcache[wss][0],wss,*resultcache[wss][1:])
+            print(acc,nmono,nsubst,"Substituent",resultcache[wss][0],wss,*resultcache[wss][1:])
             continue
 
         result = checksubst(wss)
         resultcache[wss] = result
-        print(acc,"Substituent",resultcache[wss][0],wss,*resultcache[wss][1:])
+        print(acc,nmono,nsubst,"Substituent",resultcache[wss][0],wss,*resultcache[wss][1:])
