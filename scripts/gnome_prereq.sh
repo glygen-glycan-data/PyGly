@@ -58,7 +58,7 @@ pubchemcid
 
 glyconnect
 
-./snfgmonotest.py ./GNOme/SNFG/snfgmono.tsv > ./GNOme/data/glytoucan_snfg.txt
+./snfgmonotest.py ./GNOme/SNFG/snfgmono.tsv ./GNOme/SNFG/snfgsubst.tsv > ./GNOme/data/glytoucan_snfg.txt
 
 # GlyTouCan retired etc.
 getdata GlyCosmosNoCache archived glytoucan_archived.txt
