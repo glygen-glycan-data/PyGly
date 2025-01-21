@@ -42,6 +42,8 @@ class GlyGenSourceFile(WebServiceResource):
         "chicken": ('Gallus gallus', '9031'),
         "arabidopsis": ('Arabidopsis thaliana', '3702'),
         "bovine": ('Bos taurus', '9913'),
+        "zebrafish": ('Danio rerio', '7955'),
+        "hamster": ('Cricetulus griseus', '10029'),
     }
 
     @uniqueify
@@ -631,6 +633,7 @@ class MatrixDBSourceFile(GlyGenSourceFile):
     glygen_source = "MatrixDB"
     sections = "matrixdb_CORE"
     gagurl = "https://matrixdb.univ-lyon1.fr/download/Custom_MatrixDB_biomolecules.tsv"
+    gagurl = "https://matrixdb.univ-lyon1.fr/downloads/biomolecules.csv"
     idfield = "id"
     gtcfield = "gtcacc"
 
@@ -656,7 +659,7 @@ class MatrixDBSourceFile(GlyGenSourceFile):
                 self._gag_lookup[row['MatrixDB identifier'].strip()] = gtcid
         gagseen = set()
         for row in self.tsvrows(self.source,filename=section,extn='tab'):
-            for key in ("#ID(s) interactor A","ID(s) interactor B","Alt. ID(s) interactor A","Alt. ID(s) interactor B"):
+            for key in ("ID(s) interactor A","ID(s) interactor B","Alt. ID(s) interactor A","Alt. ID(s) interactor B"):
                 if row[key].startswith('matrixdb:GAG_'):
                     gagid = row[key].split(':',1)[1]
                     if gagid not in gagseen and gagid in self._gag_lookup:
