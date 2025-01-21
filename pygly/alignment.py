@@ -1,4 +1,5 @@
 
+from . Glycan import Glycan
 from . Monosaccharide import Linkage, Substituent, Monosaccharide, Mod, Anomer, Stem
 from . combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings, choose
 
@@ -900,6 +901,7 @@ class SubstructureSearch(GlycanPartialOrder):
         if self.connected_nodes_pre_computed:
             self.nodes_cache = kw.get("connected_nodes_cache", ConnectedNodesCache())
         self._repeat_max_depth = 10
+        self._glyeq = GlycanEqual()
         super(SubstructureSearch, self).__init__(**kw)
 
     def repeat_max_depth(self):
@@ -1183,11 +1185,53 @@ class SubstructureSearch(GlycanPartialOrder):
             # pre compute the connected node set
             self.nodes_cache.put(tg)
 
+        undetroots = [ sorted(ec,key=lambda m: m.id()) for ec in tg._undetermined ]
+        undetidmap = dict()
+        for tgm in tg.all_nodes():
+            undetidmap[tgm] = tgm.id()
+        for ec in undetroots:
+            for udr in ec[1:]:
+                if udr.is_monosaccharide():
+                    idmap = []
+                    if self._glyeq.eq(Glycan(ec[0]),Glycan(udr),idmap=idmap):
+                        for m0,m1 in idmap:
+                            undetidmap[m1] = m0.id()
+                else:
+                    undetidmap[udr] = ec[0].id()
 
         #i = 0
         for tg_root in potential_TG_root:
 
+            skip = 0
+            check = 0
+            generate = 0
+            tgsetsigs = dict()
             for tg_nodes in self.allConnectedNodesByRoot(tg_root, len(list(m.all_nodes()))):
+                tgsetsig = tuple(sorted(map(undetidmap.get,tg_nodes)))
+                if tgsetsigs.get(tgsetsig) is not None:
+                    if tgsetsigs.get(tgsetsig) != False:
+                        for idmapi in tgsetsigs[tgsetsig]:
+                            tgn0=[ t[1] for t in idmapi ]
+                            # print("a",sorted([ t.id() for t in tgn0 ]))
+                            # print("b",sorted([ t.id() for t in tg_nodes ]))
+                            for ii,jj in itergenmatchings(tgn0,tg_nodes,
+                                              lambda a,b: undetidmap[a] == undetidmap[b]):
+                                if ii == jj:
+                                    continue
+                                tgnmap = dict(zip(ii,jj))
+                                idmap1 = [ (t[0],tgnmap[t[1]]) for t in idmapi ]
+                                idmapkey = tuple(sorted(set(map(lambda t: (t[0].id(),t[1].id()),idmap1))))
+                                if idmapkey not in seenidmaps:
+                                    idmaps.append(idmap1)
+                                    seenidmaps.add(idmapkey)
+                        generate += 1
+                    else:
+                        skip += 1
+                    continue
+
+                check += 1
+                tgsetsigs[tgsetsig] = False
+                # print(check,skip,generate)
 
                 for monoset_m, monoset_tg in itergenmatchings(list(m.all_nodes()), tg_nodes, self.monoleq):
 
@@ -1199,6 +1243,10 @@ class SubstructureSearch(GlycanPartialOrder):
                         if idmapkey not in seenidmaps:
                             idmaps.append(idmap)
                             seenidmaps.add(idmapkey)
+                            if tgsetsigs[tgsetsig] == False:
+                                tgsetsigs[tgsetsig] = [ idmap ]
+                            else:
+                                tgsetsigs[tgsetsig].append(idmap)
 
         if idmaps is not None:
             return len(idmaps)>0
@@ -2108,8 +2156,11 @@ def main():
     gtc = GlyTouCan(usecache=False,prefetch=False)
 
     from . GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
+    from . GlycanFormatter import IUPACLinearFormat, IUPACParserExtended1
+    from . CompositionFormatter import CompositionFormat
     glycoct_format = GlycoCTFormat()
     wurcs_format = WURCS20Format()
+    iupac_format = IUPACLinearFormat()
 
     geq = GlycanEqual()
     gtopoeq = GlycanTopoEqual()
@@ -2118,9 +2169,31 @@ def main():
     topology = Topology()
 
     acc1 = sys.argv[1]
+    g1 = None
+    if os.path.exists(acc1):
+        seq = open(acc1).read()
+        for fmt in (glycoct_format,wurcs_format,iupac_format):
+            try:
+                g1 = fmt.toGlycan(seq)
+            except GlycanParseError:
+                pass
+    else:
+        g1 = gtc.getGlycan(acc1)
+    assert g1 != None
+
     acc2 = sys.argv[2]
-    g1 = gtc.getGlycan(acc1)
-    g2 = gtc.getGlycan(acc2)
+    g2 = None
+    if os.path.exists(acc2):
+        seq = open(acc2).read()
+        for fmt in (glycoct_format,wurcs_format,iupac_format):
+            try:
+                g2 = fmt.toGlycan(seq)
+            except GlycanParseError:
+                pass
+    else:
+        g2 = gtc.getGlycan(acc2)
+    assert g2 != None
+
     # print(g1)
     # print(g2)
     # tg2 = topology(g2)
