@@ -590,7 +590,7 @@ class GlycoCTFormat(GlycanFormatter):
                 state = "UND"
                 if m:
                     undind = int(m.group(1))    
-                    und[undind]['frac'] = map(float,l.split(':')[1:])
+                    und[undind]['frac'] = list(map(float,l.split(':')[1:]))
                     continue
 
             if re.search(r'^[A-Z][A-Z][A-Z]$',l):
@@ -600,7 +600,7 @@ class GlycoCTFormat(GlycanFormatter):
 
                 x = re.findall(r'^(\d+)r:r(\d+)$', l)
                 if len(x) == 1:
-                    glycoctid, glycoctrepeatid = map(int, x[0])
+                    glycoctid, glycoctrepeatid = list(map(int, x[0]))
                     rep[glycoctid] = {"id": glycoctrepeatid}
                     continue
 
@@ -672,11 +672,11 @@ class GlycoCTFormat(GlycanFormatter):
                 m = re.search(r"^UND(\d+):",l)
                 if m:
                     undind = int(m.group(1))    
-                    und[undind]['frac'] = map(float,l.split(':')[1:])
+                    und[undind]['frac'] = list(map(float,l.split(':')[1:]))
                     continue
                 m = re.search(r"^ParentIDs:(\d+(\|\d+)*)$",l)
                 if m:
-                    und[undind]['parentids'] = map(int,m.group(1).split('|'))
+                    und[undind]['parentids'] = list(map(int,m.group(1).split('|')))
                     continue
                 m = re.search(r"^SubtreeLinkageID(\d+):(.*)$",l)
                 if m:
@@ -1198,12 +1198,12 @@ class IUPACParserAbstract():
                 cp, pp = monoinfo["link"]
                 if pp:
                     try:
-                        pp = map(lambda x: int(x), pp.split("/"))
+                        pp = list(map(lambda x: int(x), pp.split("/")))
                     except ValueError:
                         raise IUPACLinearBadPosition(code=seq, pos=len(seq), badpos=pp)
                 if cp:
                     try:
-                        cp = map(lambda x: int(x), cp.split("/"))
+                        cp = list(map(lambda x: int(x), cp.split("/")))
                     except ValueError:
                         raise IUPACLinearBadPosition(code=seq, pos=len(seq), badpos=cp)
 
@@ -1304,8 +1304,8 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
 
             link = s["link"].lstrip("(").rstrip(")")
             link = link[1:].split("-")
-            link = map(lambda x: None if x == "" else x, link)
-            link = map(lambda x: None if x == "?" else x, link)
+            link = list(map(lambda x: None if x == "" else x, link))
+            link = list(map(lambda x: None if x == "?" else x, link))
 
             res0["anomer"] = anomer
             res0["skel"] = s["mono"]
@@ -1344,8 +1344,8 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
 
             link = s["link"].lstrip("(").rstrip("-").rstrip(")")
             link = link.split("->")
-            link = map(lambda x: None if x == "" else x, link)
-            link = map(lambda x: None if x == "?" else x, link)
+            link = list(map(lambda x: None if x == "" else x, link))
+            link = list(map(lambda x: None if x == "?" else x, link))
 
             res0["anomer"] = anomer
             res0["skel"] = s["mono"]
@@ -1390,8 +1390,8 @@ class IUPACParserExtended1(IUPACParserAbstract):
 
                 link = s["link"].lstrip("(").rstrip(")")
                 link = link[1:].split("-")
-                link = map(lambda x: None if x == "" else x, link)
-                link = map(lambda x: None if x == "?" else x, link)
+                link = list(map(lambda x: None if x == "" else x, link))
+                link = list(map(lambda x: None if x == "?" else x, link))
             else:
                 anomer = None
                 link = (None, None)
@@ -1697,14 +1697,14 @@ class IUPACGlycamWriter:
                 ppo = "?"
             else:
                 pp = list(pp)
-                pp = map(str, pp)
+                pp = list(map(str, pp))
                 ppo = "/".join(pp)
 
             if cp == None:
                 cpo = "?"
             else:
                 cp = list(cp)
-                cp = map(str, cp)
+                cp = list(map(str, cp))
                 cpo = "/".join(cp)
             link = cpo + "-" + ppo
         return config + skel + ringtype + modi + subsstr + anomer + link

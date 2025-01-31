@@ -225,7 +225,7 @@ def product(*args,**kw):
         accumulator = kw['accumulator']
     if len(args) == 0:
         return []
-    l0 = map(accumulator.new,args[0])
+    l0 = list(map(accumulator.new,args[0])
     for l in args[1:]:
         l1 = []
         for i0 in l0:

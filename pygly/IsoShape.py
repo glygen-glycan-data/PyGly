@@ -26,13 +26,13 @@ class IsoShape:
         probvec = {}
         massvec = {}
         for i,e in enumerate(elements):
-            probvec[e] = map(itemgetter(1),isotopes[e])
+            probvec[e] = list(map(itemgetter(1),isotopes[e]))
             for ii,p in enumerate(probvec[e]):
                 if ii == 0:
                     continue
                 if p == 0.0:
                     o.get_value(i).set_max(0,ii-1)
-            massvec[e] = map(itemgetter(0),isotopes[e])
+            massvec[e] = list(map(itemgetter(0),isotopes[e]))
 
         o.init()
         self.mono = None

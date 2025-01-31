@@ -211,7 +211,7 @@ class WURCS20MonoFormat:
                         m.add_substituent(sub_object, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
                                           child_type=eval(ct))
                     elif '|' in pp:
-                        pp = map(int, pp.split('|'))
+                        pp = list(map(int, pp.split('|')))
                         m.add_substituent(sub_object, parent_pos=pp, parent_type=eval(pt), child_pos=cp,
                                           child_type=eval(ct))
                     elif '-' in pp and sub_name == "anhydro":

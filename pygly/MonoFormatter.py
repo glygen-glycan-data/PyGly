@@ -210,7 +210,7 @@ class GlycoCTMonoFormat:
         parenttype = self.toSym[('Linkage', m.group(4))]
         parentpos2 = None
         try:
-            parentpos = map(int, m.group(5).split('|'))
+            parentpos = list(map(int, m.group(5).split('|')))
             if -1 in parentpos:
                 parentpos = None
         except ValueError:

@@ -2110,8 +2110,8 @@ def subshow(acc1,acc2,test,result):
 
 def compare(gd1,gd2):
 
-    acc1,g1,tacc1,cacc1,bcacc1,l1 = map(gd1.get,("acc","glycan","topo","comp","bcomp","level"))
-    acc2,g2,tacc2,cacc2,bcacc2,l2 = map(gd2.get,("acc","glycan","topo","comp","bcomp","level"))
+    acc1,g1,tacc1,cacc1,bcacc1,l1 = list(map(gd1.get,("acc","glycan","topo","comp","bcomp","level")))
+    acc2,g2,tacc2,cacc2,bcacc2,l2 = list(map(gd2.get,("acc","glycan","topo","comp","bcomp","level")))
 
     # Equality testing...
 
@@ -2140,8 +2140,8 @@ def compare(gd1,gd2):
     
 def subsumed(gd1,gd2):
 
-    acc1,g1,tacc1,cacc1,bcacc1,l1 = map(gd1.get,("acc","glycan","topo","comp","bcomp","level"))
-    acc2,g2,tacc2,cacc2,bcacc2,l2 = map(gd2.get,("acc","glycan","topo","comp","bcomp","level"))
+    acc1,g1,tacc1,cacc1,bcacc1,l1 = list(map(gd1.get,("acc","glycan","topo","comp","bcomp","level")))
+    acc2,g2,tacc2,cacc2,bcacc2,l2 = list(map(gd2.get,("acc","glycan","topo","comp","bcomp","level")))
 
     subshow(acc1,acc2,"g1 <= g2",subsumption.leq(g1,g2))
 
