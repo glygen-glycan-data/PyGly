@@ -392,6 +392,8 @@ class WURCSArchetype(WURCSManipulation):
         redendmono['anomer'] = None
         redendmono['childpos'] = None
         redendmono['ring'] = None
+        if 'wurcs' in redendmono:
+            del redendmono['wurcs']
         return self.monoseq(redendmono)
 
     def modify(self,seq):
