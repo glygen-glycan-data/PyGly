@@ -127,7 +127,7 @@ class WURCS20MonoFormat:
             if m.stem() and m.config():
                 assert len(m.stem()) == len(m.config()), "Inconsistent config/stem for %s" % (skel,)
             elif not m.stem():
-                assert not m.config(), "Problem with config/stem for %s"(skel, )
+                assert not m.config(), "Problem with config/stem for %s"%(skel, )
 
             superclass = self.skel_config_get("superclass")
             if superclass:
