@@ -1126,6 +1126,10 @@ class IUPACLinearFormat(GlycanFormatter):
         return g
 
 
+class IUPACMissingLinkError(IUPACParseError):
+    def __init__(self):
+        self.message = "Input IUPAC string is missing a link between monosaccharides, which is not allowed"
+
 class IUPACBranchingError(IUPACParseError):
     def __init__(self):
         self.message = "Input IUPAC string contains multiple adjacent branch point, which is not allowed"
@@ -1392,9 +1396,11 @@ class IUPACParserExtended1(IUPACParserAbstract):
                 link = link[1:].split("-")
                 link = list(map(lambda x: None if x == "" else x, link))
                 link = list(map(lambda x: None if x == "?" else x, link))
-            else:
+            elif len(res) == 0:
                 anomer = None
                 link = (None, None)
+            else:
+                raise IUPACMissingLinkError()
 
             mod = []
             skel = s["skel"]

@@ -166,12 +166,25 @@ class GlyTouCanUtil(object):
 	NeuAc   AUd21122h_5*NCC/3=O   1
 	NeuGc   AUd21122h_5*NCCO/3=O  2
 	Fuc     u1221m                6
-	Hex     uxxxxh                5
-	HexNAc  uxxxxh_2*NCC/3=O      4
+	Hex     uxxxxh                5.0
+        Man	u1122h                5.1
+        Glc	u2122h                5.3
+        Gal	u2112h                5.2
+	HexNAc  uxxxxh_2*NCC/3=O      4.0
+	ManNAc  u1122h_2*NCC/3=O      4.1
+	GlcNAc  u2122h_2*NCC/3=O      4.3
+	GalNAc  u2112h_2*NCC/3=O      4.2
 	dHex    uxxxxm                3
         HexA    uxxxxA                7
+        ManA    u1122A                7.1
+        GlcA    u2122A                7.3
+        GalA    u2112A                7.2
         HexN    uxxxxh_2*N            8
+        ManN    u1122h_2*N            8.1
+        GlcN    u2122h_2*N            8.3
+        GalN    u2112h_2*N            8.2
 	Pent    uxxxh                 10
+	Xyl     u212h                 10.1
 	P       *OPO/3O/3=O           -1
 	Phospho *OPO/3O/3=O           -1
 	S       *OSO/3=O/3=O          -1
@@ -189,7 +202,7 @@ class GlyTouCanUtil(object):
                     continue
                 sl = l.split()
                 self.symbol2wurcs[sl[0]] = sl[1]
-                self.wurcsorder[sl[1]] = int(sl[2])
+                self.wurcsorder[sl[1]] = float(sl[2])
         comp = {}
         subst = {}
         for k,v in incomp.items():
