@@ -1,3 +1,4 @@
+#!/bin/env python3.12
 
 from __future__ import print_function
 

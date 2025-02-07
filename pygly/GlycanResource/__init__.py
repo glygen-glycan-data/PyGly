@@ -15,4 +15,5 @@ from .Sandbox import GlycoTreeSandbox, GlycoTreeSandboxDev
 from .ChEBIDownload import ChEBIDownload
 from .PubChemDownload import PubChemDownload
 from .Glycam import Glycam
+from .GlycomeDBExport import GlycomeDBExport
 
