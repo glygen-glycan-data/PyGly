@@ -1,9 +1,11 @@
 PREFIX glycandata: <http://glyomics.org/glycandata#>
 
-SELECT (?accession  as ?GlyTouCanAccession)
+SELECT DISTINCT
+       (?accession  as ?GlyTouCanAccession)
        (?value as ?PDB)
 WHERE {
   ?glycan glycandata:accession ?accession .
+  ?ann1 glycandata:type "CrossReference" .
   ?ann1 glycandata:property "PDB" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan
