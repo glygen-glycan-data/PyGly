@@ -15,9 +15,10 @@ class GlyGenWS(WebServiceResource):
         query=json.dumps(kw)
         result = self.query_glycan_search(query=query)
         list_id = result['list_id']
+        result = self.query_get_list(search_id=list_id)
+        listcache_id=result['cache_info']['listcache_id']
         headers = None
-        for l in self.query_download_list(list_id=list_id).splitlines():
-            l = l.decode('utf8')
+        for l in self.query_download_list(list_id=listcache_id):
             if not headers:
                 headers = list(map(lambda s: s.strip('"'),l.split(",")))
                 continue
@@ -30,7 +31,6 @@ class GlyGenWS(WebServiceResource):
             query=json.dumps(dict(offset=offset,**kw))
             offset += 1
             result = self.query_glycan_directsearch(query=query)
-            print(dict(len=len(result['results']),**result['queryinfo']))
             for d in result['results']:
                 yield d
             if len(result['results']) == 0:

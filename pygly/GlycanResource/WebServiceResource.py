@@ -8,7 +8,7 @@ import os, ssl
 if (not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None)):
     ssl._create_default_https_context = ssl._create_unverified_context
 
-import sys, json, csv
+import sys, json, csv, gzip
 
 try:
     from urllib.parse import urlparse, urlencode
@@ -74,7 +74,7 @@ class WebServiceResource(GlycanResource):
             print(json.dumps(payload),file=sys.stderr)
           req = Request(url,data=json.dumps(payload).encode(),headers={'Content-Type': 'application/json'})
           h = self.opener.open(req)
-        return h.read()
+        return h
 
     def parseSection(self,name,keyvaluepairs):
         method = keyvaluepairs.get("method","GET")
@@ -97,18 +97,18 @@ class WebServiceResource(GlycanResource):
                 assert param in kwargs or param == "payload", " ".join(map(repr,[param, kwargs])) 
             response = self.queryws(url,method,kwargs)
             if thetype == "JSON":
-                response = json.loads(response)
+                response = json.loads(response.read())
             elif thetype == "CSV":
-                response = csv.DictReader(StringIO(response.decode(encoding='ascii',errors='ignore')))
+                response = csv.DictReader(TextIOWrapper(response,encoding='ascii',errors='ignore'))
             elif thetype == "TSV":
-                response = csv.DictReader(StringIO(response.decode(encoding='ascii',errors='ignore')),dialect='excel-tab')
+                response = csv.DictReader(TextIOWrapper(response,encoding='ascii',errors='ignore'),dialect='excel-tab')
             elif thetype == "TEXTGZ":
-                response = TextIOWrapper(BytesIO(gzipdecompress(response)),encoding='utf8')
+                response = TextIOWrapper(gzip.GzipFile(fileobj=response))
             elif thetype == "TEXT":
                 try:
                     response = TextIOWrapper(response,encoding='utf8')
                 except AttributeError:
-                    pass
+                    response = response.read()
             return response
 
         self.set_method("query_"+str(name), _query)

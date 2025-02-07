@@ -48,7 +48,7 @@ class GlyConnectWS(WebServiceResource):
             except urllib.error.HTTPError:
                 time.sleep(delay)
                 continue
-            for l in data.splitlines():
+            for l in data:
                 l = l.decode()
                 m = re.search(r'<h1>(.*)</h1>',l)
                 if m and 'Oops' not in m.group(1):
