@@ -141,6 +141,8 @@ def checksubst(wurcsseq,extra=False):
 
 resultcache = dict()
 
+print("\t".join(["Accession","#Mono","#FlSubst","Type","Matched?","WURCS","#Subst","#Distinct","#ExtraSubst","#DistinctExtraSubst","Explanation","MatchedWURCS"]))
+
 for acc in iterable:
     seq = None
     if re.search(r"^G\d{5}[A-Z]{2}$",acc):
@@ -150,7 +152,7 @@ for acc in iterable:
     else:
         acc,seq = acc.split(':',1)
     if not seq:
-        print(acc,False,"No WURCS sequence")
+        # print(acc,False,"No WURCS sequence")
         continue
 
     # print(acc,seq)
@@ -162,12 +164,12 @@ for acc in iterable:
     for wmd in comp['monos']:
         wms = wmd['wurcs']
         if wms in resultcache:
-            print(acc,nmono,nsubst,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:])
+            print("\t".join(map(str,[acc,nmono,nsubst,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:]])))
             continue
 
         result = checkmono(wmd)
         resultcache[wms] = result
-        print(acc,nmono,nsubst,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:])
+        print("\t".join(map(str,[acc,nmono,nsubst,"Monosaccharide",resultcache[wms][0],wms,*resultcache[wms][1:]])))
 
     for ld in comp['links']:
         wss = ld.get('subst')
@@ -175,9 +177,9 @@ for acc in iterable:
             continue
 
         if wss in resultcache:
-            print(acc,nmono,nsubst,"Substituent",resultcache[wss][0],wss,*resultcache[wss][1:])
+            print("\t".join(map(str,[acc,nmono,nsubst,"Substituent",resultcache[wss][0],wss,"","","","",*resultcache[wss][1:]])))
             continue
 
         result = checksubst(wss)
         resultcache[wss] = result
-        print(acc,nmono,nsubst,"Substituent",resultcache[wss][0],wss,*resultcache[wss][1:])
+        print("\t".join(map(str,[acc,nmono,nsubst,"Substituent",resultcache[wss][0],wss,"","","","",*resultcache[wss][1:]])))
