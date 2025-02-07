@@ -206,6 +206,18 @@ class SMWSite(object):
                         continue
                     yield p
 
+    def iterask(self,query):
+        for r in self.site.ask(query):
+            row = dict(id=r['fulltext'])
+            for key in r['printouts']:
+                row[key] = r['printouts'][key]
+            yield row
+
+    def iterproperty(self,prop):
+        for r in self.site.ask('[[%s::+]] |?%s'%(prop,prop)):
+            for val in r['printouts'][prop]:
+                yield r['fulltext'],val
+
     def dumpiterable(self,dir,iter):
         try:
             os.makedirs(dir)
@@ -344,7 +356,6 @@ class SMWSite(object):
             
         return obj
         
-                     
     def get(self,name):
         name = name.strip()
         if not name:
