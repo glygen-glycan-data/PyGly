@@ -30,12 +30,16 @@ class GlycoMotifTS(TripleStoreResource):
                 self.modify_method(k,partitioner(kwarg="motifacc",fmt=".*%%0%dd"))
             elif k == 'query_hasstruct':
                 self.modify_method(k,partitioner())
+            elif k == 'query_class':
+                self.modify_method(k,partitioner())
             if self._prefetch:
                 if k == 'query_motifs':
                     self.modify_method(k,prefetcher(usecache=self._usecache))
                 elif k == 'query_struct':
                     self.modify_method(k,prefetcher("motifacc",usecache=self._usecache))
                 elif k == 'query_hasstruct':
+                    self.modify_method(k,prefetcher(usecache=self._usecache))
+                elif k == 'query_class':
                     self.modify_method(k,prefetcher(usecache=self._usecache))
 
     def collections(self):
@@ -49,6 +53,14 @@ class GlycoMotifTS(TripleStoreResource):
 
     def getmotif(self,collection,accession):
         return [ ("%s.%s"%(collection,row['MotifAccession']),row['MotifAlignment'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_motifs(collection=collection,accession=accession) ]
+
+    def getclass(self,accession):
+        for row in self.query_class(accession=accession):
+            yield row
+
+    def allclass(self):
+        for row in self.query_class():
+            yield row
 
     def getstruct(self,collection,motifacc):
         return sorted(set((row['accession'],row['StrictAlignment']=='true',row['StructureResidueIds'],row['StructureLinkIds']) for row in self.query_struct(collection=collection,motifacc=motifacc)))
