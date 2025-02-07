@@ -11,7 +11,11 @@ from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCanNoPrefetch
 from pygly.GlycanResource import GlycoMotif, GlycoMotifDev, GlycoMotifNoCache, GlycoMotifDevNoCache
 
 gtc = GlyTouCanNoCache(verbose=False)
-gm = GlycoMotifNoCache(local=True,verbose=False)
+if sys.argv[1] == "--glycomotifdev":
+    sys.argv.pop(1)
+    gm = GlycoMotifDevNoCache(local=True,verbose=False)
+else:
+    gm = GlycoMotifNoCache(local=True,verbose=False)
 
 wp = WURCS20Format()
 gp = GlycoCTFormat()
