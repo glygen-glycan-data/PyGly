@@ -125,6 +125,11 @@ class Annotation(SMW.SMWClass):
         assert ':' not in pagename
         return pagename
 
+    @staticmethod
+    def escape(value):
+        # esacpe to be an effective filename
+        return re.sub(r'[\W_]+', "_", value, re.UNICODE)
+
     def key(self):
         assert self.get('type')
         assert self.get('property')
@@ -261,7 +266,7 @@ class GlycanDataWiki(SMW.SMWSite):
             values = [kwargs.get('type',r'[^.]+'),
                       kwargs.get('property',r'[^.]+'),
                       kwargs.get('source',r'[^.]+')]
-            regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + '(\.[^.]+)?$'
+            regex = r'^(G\d{5}[A-Z]{2})\.' + r'\.'.join(values) + r'(\.[^.]+)?$'
         regex = re.compile(regex)
         for pagename in self.site.allpages(generator=False):
             m = regex.search(pagename)
@@ -332,7 +337,7 @@ class GlycanDataDiskCache(object):
         ankeys = set()
         for an in g.annotations():
             an.set('glycan',accession)
-            ankey = ".".join(an.key())
+            ankey = ".".join(map(an.escape,an.key()))
             ankeys.add(ankey)
             anpath = "/".join([path,accession+"."+ankey+".txt"])
             if self.write(anpath,an.astemplate()):
