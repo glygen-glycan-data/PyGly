@@ -266,6 +266,7 @@ G04935HE	10836	GlyConnectStructure
 G04959WS	1855	GlyConnectStructure
 G04976EC	680	GlyConnectStructure
 G04986WI	10729	GlyConnectStructure
+G05106AU	3350	GlyConnectStructure
 G05136IK	11602	GlyConnectStructure
 G05140WY	2483	GlyConnectStructure
 G05173WG	10693	GlyConnectStructure
@@ -469,6 +470,7 @@ G09087VQ	97	GlyConnectStructure
 G09095HL	749	GlyConnectStructure
 G09118YK	1816	GlyConnectStructure
 G09122YK	9423	GlyConnectStructure
+G09130SS	1846	GlyConnectStructure
 G09150LP	3438	GlyConnectStructure
 G09173XA	9699	GlyConnectStructure
 G09176OA	2517	GlyConnectStructure
@@ -776,6 +778,7 @@ G14796IU	405	GlyConnectComposition
 G14820OB	11803	GlyConnectStructure
 G14832RI	9677	GlyConnectStructure
 G14833BY	495	GlyConnectStructure
+G14876KX	11224	GlyConnectStructure
 G14889BN	852	GlyConnectComposition
 G14889WU	1224	GlyConnectStructure
 G14950CY	909	GlyConnectStructure
@@ -1642,6 +1645,7 @@ G31460VR	9925	GlyConnectStructure
 G31474PL	9492	GlyConnectStructure
 G31493EX	727	GlyConnectComposition
 G31495XA	10566	GlyConnectStructure
+G31500QC	2025	GlyConnectStructure
 G31532GK	1314	GlyConnectStructure
 G31544HA	486	GlyConnectComposition
 G31555KY	11177	GlyConnectStructure
@@ -1897,6 +1901,7 @@ G36701GV	3525	GlyConnectStructure
 G36727NJ	11748	GlyConnectStructure
 G36736UL	697	GlyConnectComposition
 G36756NY	11192	GlyConnectStructure
+G36762IG	1585	GlyConnectStructure
 G36772MC	1570	GlyConnectStructure
 G36836GD	1963	GlyConnectStructure
 G36855WW	624	GlyConnectStructure
@@ -2403,6 +2408,7 @@ G46894DI	9720	GlyConnectStructure
 G46902YN	252	GlyConnectComposition
 G46919IS	10830	GlyConnectStructure
 G46935AJ	2285	GlyConnectStructure
+G46955DC	2846	GlyConnectStructure
 G46974YF	2079	GlyConnectStructure
 G47007PV	2887	GlyConnectStructure
 G47010DH	154	GlyConnectStructure
@@ -2462,6 +2468,7 @@ G48059CD	3051	GlyConnectStructure
 G48099DP	11851	GlyConnectStructure
 G48109OV	2002	GlyConnectStructure
 G48193DD	10850	GlyConnectStructure
+G48194SW	10942	GlyConnectStructure
 G48257AE	8996	GlyConnectStructure
 G48275DN	396	GlyConnectStructure
 G48288NV	2108	GlyConnectStructure
@@ -2749,6 +2756,7 @@ G53402KW	2440	GlyConnectStructure
 G53402KW	915	GlyConnectStructure
 G53428UB	11473	GlyConnectStructure
 G53435KM	535	GlyConnectStructure
+G53447VR	913	GlyConnectStructure
 G53450AF	384	GlyConnectStructure
 G53480VH	10979	GlyConnectStructure
 G53487ZB	3367	GlyConnectStructure
@@ -2757,6 +2765,7 @@ G53498KG	3591	GlyConnectStructure
 G53521RZ	1526	GlyConnectStructure
 G53522BA	2815	GlyConnectStructure
 G53565EY	11507	GlyConnectStructure
+G53568QG	2578	GlyConnectStructure
 G53572QC	1706	GlyConnectStructure
 G53572WH	741	GlyConnectComposition
 G53617YM	10446	GlyConnectStructure
@@ -3011,6 +3020,7 @@ G58777MN	11165	GlyConnectStructure
 G58777MN	11202	GlyConnectStructure
 G58804QW	1086	GlyConnectComposition
 G58810QT	9364	GlyConnectStructure
+G58814JC	1503	GlyConnectStructure
 G58880LB	9956	GlyConnectStructure
 G58886OG	10914	GlyConnectStructure
 G58949BL	150	GlyConnectStructure
@@ -3034,6 +3044,7 @@ G59361OW	2115	GlyConnectStructure
 G59366XZ	10574	GlyConnectStructure
 G59411JK	413	GlyConnectStructure
 G59419LJ	2948	GlyConnectStructure
+G59430MJ	1074	GlyConnectStructure
 G59437BE	417	GlyConnectComposition
 G59456VR	10740	GlyConnectStructure
 G59457GE	11193	GlyConnectStructure
@@ -3446,6 +3457,7 @@ G67062YO	378	GlyConnectStructure
 G67093QB	79	GlyConnectComposition
 G67140YI	10445	GlyConnectStructure
 G67173FM	2921	GlyConnectStructure
+G67177VB	2548	GlyConnectStructure
 G67185CY	2028	GlyConnectStructure
 G67200RM	685	GlyConnectStructure
 G67220DU	2609	GlyConnectStructure
@@ -4428,6 +4440,7 @@ G86273TY	374	GlyConnectComposition
 G86298IX	1831	GlyConnectStructure
 G86307FI	2670	GlyConnectStructure
 G86307FI	6555	GlyConnectStructure
+G86320XR	676	GlyConnectStructure
 G86357DX	1468	GlyConnectStructure
 G86375CM	3079	GlyConnectStructure
 G86387VT	1882	GlyConnectStructure
