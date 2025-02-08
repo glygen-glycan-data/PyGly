@@ -9,8 +9,8 @@ from pygly.GlycanResource import GlyCosmos
 from pygly.GlycanResource import GlyConnect
 from pygly.Taxonomy import NCBITaxonomy
 
-gtc = GlyTouCan(verbose=False,usecache=True)
-gco = GlyCosmos(verbose=False,usecache=True)
+gtc = GlyTouCan(verbose=False,usecache=False)
+gco = GlyCosmos(verbose=False,usecache=False)
 gcn = GlyConnect(verbose=False)
 tax = NCBITaxonomy()
 

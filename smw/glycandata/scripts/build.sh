@@ -18,7 +18,6 @@ fi
 # ./loadoldxrefgtc.py $CACHE 'Carbbank(CCSB)' ../export/carbbank.tsv
 # ./loadoldxrefgtc.py $CACHE CFG ../export/cfg.tsv
 # ./loadoldxrefgtc.py $CACHE GlycomeDB ../export/gdb.tsv
-# ./loadgdb2gog.py $CACHE ../data/gdb2gog.txt
 # ./loadoldxrefgtc.py $CACHE "GLYCOSCIENCES.de" ../export/glycosciencesde.tsv
 ./loadgtc2glyconnectcomp.py $CACHE 
 ./loadunicarb.py $CACHE ../data/uc2gtc.txt ../data/uc2pubmed.txt ../data/uckbcomp2glytoucan.txt
@@ -27,11 +26,13 @@ fi
 ./glygends_taxid.py > ../data/glygends_taxid.txt
 ## ./glygen_taxid.py --unicarbkb "../export/unicarbkb.tsv" --glyconnect ../data/glyconnect2glytoucan.txt > ../data/glygen_taxid.txt
 ./loadtaxid.py $CACHE ../data/glygends_taxid.txt ../data/unicarbkb_taxid.txt
-./loadgtc2pubchem.py $CACHE ../data/GlyTouCan-PubChem.csv
-./loadgtc2chebi.py $CACHE ../data/GlyTouCan-ChEBI_2019-08-23.tsv
-./loadgtc2matrixdb.py $CACHE ../data/Custom_MatrixDB_biomolecules.tsv
+./loadgtc2pubchem.py $CACHE 
+# ./loadgtc2chebi.py $CACHE ../data/GlyTouCan-ChEBI_2019-08-23.tsv
+./loadgtc2matrixdb.py $CACHE 
 ./loadgtc2psimod.py $CACHE ../data/psimod2glytoucan.txt
 ./loadglygen.py $CACHE ../data/glygen_accessions.txt
+./loadgtc2glycomedbexport.py $CACHE
+./loadgdb2gog.py $CACHE ../data/gdb2gog.txt
 ./loadedlab.py $CACHE 
 ./loadgwb.py $CACHE
 ./loadmotif.py $CACHE 

@@ -15,11 +15,11 @@ for l in open(sys.argv[1]):
 for m in w.iterglycan():
     start = time.time()
     gog = set()
-    try:
-        for gdb in m.get_annotation(property="GlycomeDB").get('value',[]):
+    gdbset = set()
+    for ann in m.annotations(property="GlycomeDB"):
+        for gdb in ann.get('value',[]):
+            gdbset.add(gdb) 
             gog.update(gdb2gog[gdb])
-    except LookupError:
-        pass
     if len(gog) > 0:
         m.set_annotation(value=list(gog), property="GlycO",source="GlycomeDB",type="CrossReference")
     else:

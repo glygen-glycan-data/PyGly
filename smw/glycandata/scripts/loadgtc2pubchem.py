@@ -1,36 +1,39 @@
 #!/bin/env python3.12
 
-import sys
+import sys, time
 from collections import defaultdict
-import csv
 
-from getwiki import GlycanData, Glycan
+from getwiki import GlycanData
 w = GlycanData()
 
-def pubchemxref(infile):
-    d = defaultdict(set)
-    f = open(infile,'r')
-    # three wacky bytes...
-    # f.read(3)
-    
-    for r in csv.DictReader(f):
-        cid = r['cid'].strip()
-        sid = r['sid'].strip()
-        gtcacc = r['sidextid'].strip()
-        if gtcacc:
-            if cid:
-                d[gtcacc].add("CID"+cid)
-            if sid:
-                d[gtcacc].add("SID"+sid)
-    return d
+import findpygly
+from pygly.GlycanResource import PubChemDownload
 
-pubchem = pubchemxref(sys.argv[1])
+pubchem = defaultdict(set)
+chebi = defaultdict(set)
+
+pcd = PubChemDownload(verbose=False)
+
+for pcid,gtc in pcd.allgtc():
+    pubchem[gtc].add(pcid)
+
+for chebiid,gtc in pcd.allchebigtc():
+    chebi[gtc].add(chebiid)
 
 for m in w.iterglycan():
+    start=time.time()
     acc = m.get('accession')
-    if len(pubchem[acc]) > 0:
-        m.set_annotation(value=list(pubchem[acc]), property="PubChem",source="GlyTouCan",type="CrossReference")
+    m.delete_annotations(property="PubChem",type="CrossReference")
+    m.delete_annotations(source="PubChem",property="ChEBI",type="CrossReference")
+    if len(list(pubchem[acc])) > 0:
+        m.set_annotation(value=list(pubchem[acc]), property="PubChem",source="PubChem",type="CrossReference")
     else:
-        m.delete_annotations(source="GlyTouCan",property="PubChem",type="CrossReference")
+        m.delete_annotations(property="PubChem",source="PubChem",type="CrossReference")
+    if len(chebi[acc]) > 0:
+        m.set_annotation(value=list(chebi[acc]), property="ChEBI",source="PubChem",type="CrossReference")
+    else:
+        m.delete_annotations(property="ChEBI",source="PubChem",type="CrossReference")
     if w.put(m):
-        print(acc)
+        print("%s updated in %.2f sec"%(acc,time.time()-start,),file=sys.stderr)
+    else:
+        print("%s checked in %.2f sec"%(acc,time.time()-start,),file=sys.stderr)

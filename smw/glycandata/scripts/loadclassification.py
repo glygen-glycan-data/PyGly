@@ -7,34 +7,43 @@ from collections import defaultdict
 from getwiki import GlycanData, Glycan
 w = GlycanData()
 
+from pygly.GlycanResource import GlycoMotif, GlycoMotifDev
+
 from pygly.GNOme import SubsumptionGraph
 gnome = SubsumptionGraph()
 gnome.loaddata(sys.argv[1])
 sys.argv.pop(1)
 
 debug = False
+if len(sys.argv) > 1:
+    debug = True
+
 def iterglycan():
-    global debug
     if len(sys.argv) > 1:
         for acc in sys.argv[1:]:
             m = w.get(acc)
             if m:
-                debug = True
                 yield m
     else:
         for m in w.iterglycan():
             yield m
 
-from clseng import ClassifierEngine
-classifier = ClassifierEngine(glycandata=w,verbose=debug)
+if debug:
+    gm = GlycoMotif(local=True,prefetch=False,verbose=True,usecache=True)
+else:
+    gm = GlycoMotif(local=True,prefetch=True,verbose=False,usecache=False)
 
 acc2type = defaultdict(set)
 for m in iterglycan():
     acc = m.get('accession')
     print("1:",acc,file=sys.stderr)
 
-    for asn in classifier.assign(acc):
-        acc2type[acc].add((asn[0],asn[1],"Direct",asn[2]))
+    byclsid = defaultdict(dict)
+    for clsrow in gm.getclass(acc):
+        byclsid[clsrow['classid']][clsrow['classlevel']] = clsrow['classname']
+
+    for clsid in byclsid:
+        acc2type[acc].add((byclsid[clsid]['Type'],byclsid[clsid].get('Subtype'),"Direct",clsid))
 
 for acc in sorted(acc2type):
     m = w.get(acc)

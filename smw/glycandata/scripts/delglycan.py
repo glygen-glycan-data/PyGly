@@ -9,4 +9,4 @@ for l in sys.stdin:
     try:
         w.delete(l.strip())
     except OSError:
-	pass
+        pass

@@ -248,6 +248,12 @@ species2taxid['bovine'] = set(map(int,"""
 """.split()))
 species2common['bovine'] = 'Bovine'
 
+# Zebrafish
+species2taxid['zebrafish'] = set(map(int,"""
+7955
+""".split()))
+species2common['zebrafish'] = 'ZebraFish'
+
 species = defaultdict(dict)
 
 for m in iterglycan():
@@ -267,11 +273,11 @@ for m in iterglycan():
             hasmono[mono] = True
 
     try:
-        glycantype = m.get_annotation_value(property="GlycanType",source='EdwardsLab', type='Classification')
+        glycantype = set(m.get_annotation_values(property="GlycanType",type='Classification'))
     except LookupError:
         glycantype = None
     try:
-        glycansubtype = m.get_annotation_value(property="GlycanSubtype",source='EdwardsLab', type='Classification')
+        glycansubtype = set(m.get_annotation_values(property="GlycanSubtype",type='Classification'))
     except LookupError:
         glycansubtype = None
 
@@ -285,11 +291,13 @@ for m in iterglycan():
                     evidence.add(ec('dirns',source,taxid))
         direct = False
         if sp == 'human':
-            if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
+            # print(glycantype,hasmono)
+            # print(glycantype != set(["N-linked"]) or not hasmono['Xyl'])
+            if len(evidence) > 0 and (glycantype != set(["N-linked"]) or not hasmono['Xyl']) and not hasmono['Alt']:
                 evidence.add(ec('noXylAlt'))
                 direct = True
         elif sp in ('mouse','rat','pig','hamster','chicken','bovine'):
-            if len(evidence) > 0 and (glycantype != "N-linked" or not hasmono['Xyl']) and not hasmono['Alt']:
+            if len(evidence) > 0 and (glycantype != set(["N-linked"]) or not hasmono['Xyl']) and not hasmono['Alt']:
                 evidence.add(ec('noXylAlt'))
                 direct = True
         else:

@@ -22,12 +22,11 @@ cat $DATA/glygen_manual_accessions.txt >> $DATA/glygen_req_accessions.txt
 
 # All GlyTouCan motifs...
 # echo "#GlycoMotif allmotifs GGM" >> $DATA/glygen_req_accessions.txt
-$GLYRES GlycoMotifNoCache allmotifs GGM | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
+$GLYRES GlycoMotifDevNoCache allmotifs GGM | awk '$1 ~ /^GGM.000/ {print $2}' >> $DATA/glygen_req_accessions.txt
 
-for taxid in 9606 10090 10116 10114 111108 11116 11103 3052230 63746 694009 2697049 7227 4932 9823 44689 9031 3702 9913; do
-  $GLYRES GlyTouCanNoCache bytaxa $taxid >> $DATA/glygen_req_accessions.txt
-  $GLYRES GlyCosmosNoCache bytaxa $taxid >> $DATA/glygen_req_accessions.txt
-done
+TAXIDS="9606 10090 10116 10114 111108 11116 11103 3052230 63746 694009 2697049 7227 4932 9823 44689 9031 3702 9913 7955 10029"
+$GLYRES GlyTouCanNoCache bytaxa $TAXIDS | awk '{print $1}' >>  $DATA/glygen_req_accessions.txt
+$GLYRES GlyCosmosNoCache bytaxa $TAXIDS | awk '{print $1}' >>  $DATA/glygen_req_accessions.txt
 
 $GLYRES GlyGenSourceFile allsourcegtc | awk '{print $2}' >> $DATA/glygen_req_accessions.txt
 

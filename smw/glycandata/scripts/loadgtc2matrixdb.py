@@ -2,30 +2,19 @@
 
 import sys
 from collections import defaultdict
-import csv
 
 from getwiki import GlycanData, Glycan
 w = GlycanData()
 
-def mdbxref(infile):
-    d = defaultdict(set)
-    f = open(infile,'r')
-    
-    for r in csv.DictReader(f,dialect='excel-tab'):
-        gtcacc = None
-        for exid in r['External identifiers'].split(','):
-            if exid.startswith('GlyTouCan:'):
-                gtcacc = exid.split(':',1)[1]
-                break
-        if not gtcacc:
-            continue
-        mdbid = r['MatrixDB identifier'].strip()
-        if not mdbid.startswith('GAG_'):
-            continue
-        d[gtcacc].add(mdbid)
-    return d
+import findpygly
+from pygly.GlycanResource import MatrixDBSourceFile
 
-matrixdb = mdbxref(sys.argv[1])
+mdb = MatrixDBSourceFile()
+
+matrixdb = defaultdict(set)
+
+for mdbid,gtc,dummy,dummy1 in mdb.allgtc():
+    matrixdb[gtc].add(mdbid)
 
 for acc in matrixdb.keys():
     m = w.get(acc)
