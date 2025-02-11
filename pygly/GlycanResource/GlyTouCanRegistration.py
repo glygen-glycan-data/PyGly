@@ -23,10 +23,11 @@ class GlyTouCanRegistration(GlycanResource):
     user = None
     apikey = None
     opener = None
-    verbose = False
+    # verbose = False
 
     def __init__(self,user=None,apikey=None,verbose=False,**kw):
         super(GlyTouCanRegistration,self).__init__(**kw)
+        self.attr({'verbose': verbose},'verbose',False)
         self.setup(user,apikey)
         # self.verbose=verbose
     
@@ -61,10 +62,10 @@ class GlyTouCanRegistration(GlycanResource):
         if user == None:
             user, apikey = self.getcredentials()
         self.opener = build_opener(HTTPSHandler(),HTTPHandler())
-        if self.verbose:
+        if self._verbose:
             print(('%s:%s'%(user, apikey)).encode('utf8'),file=sys.stderr)
         self.basicauthhdr =  b"Basic %s"%(base64.b64encode(('%s:%s'%(user, apikey)).encode('utf8')),) 
-        if self.verbose:
+        if self._verbose:
             print(self.basicauthhdr,file=sys.stderr)
 
     def register(self, sequence):

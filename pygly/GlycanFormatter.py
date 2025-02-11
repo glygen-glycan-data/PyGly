@@ -945,8 +945,8 @@ class IUPACLinearFormat(GlycanFormatter):
     def linkkey(self,l):
         pos = l.parent_pos()
         if not pos:
-            pos = -100
-        return -(iter(pos).next())
+            pos = (-100,)
+        return -next(iter(pos))
     def linearstr(self,pl,m):
         aglycon = None
         if not pl:
@@ -975,12 +975,12 @@ class IUPACLinearFormat(GlycanFormatter):
                 conn = ""
         else:
             pos=pl.parent_pos()
-            if not pos:
+            if not pos or str(pos) == "-1":
                 pos = '?'
             else:
                 pos = pl.posstr(pos)
             cpos = pl.child_pos()
-            if not pos:
+            if not cpos or str(cpos) == "-1":
                 cpos = '?'
             else:
                 cpos = pl.posstr(cpos)
@@ -1006,7 +1006,7 @@ class IUPACLinearFormat(GlycanFormatter):
     def toGlycan(self, s):
         s = s.strip()
         orig = s
-        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Hex|Glc|Gal|Man|Fuc|Xyl)[a-zA-Z5926,]*)$',s)
+        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu)[a-zA-Z5926,]*)$',s)
         if not m:
             raise IUPACLinearBadFormat(code=orig,pos=len(s))
         sym = m.group('sym')
@@ -1051,7 +1051,7 @@ class IUPACLinearFormat(GlycanFormatter):
         while s != "":
             # either a number or a bracket.
             if s[-1] not in '()':
-                m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>.)$',s)
+                m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>(.\|)*.)$',s)
                 if not m:
                     raise IUPACLinearBadFormat(code=orig,pos=len(s))
                 sym = m.group('sym')
@@ -1071,6 +1071,15 @@ class IUPACLinearFormat(GlycanFormatter):
                 if cpos not in '?123456789':
                     raise IUPACLinearBadPosition(code=orig,pos=len(s),badpos=cpos)
                 if ppos not in '?123456789':
+                    try:
+                        ppos = set(map(int,ppos.split('|')))
+                    except ValueError:
+                        raise IUPACLinearBadPosition(code=orig,pos=len(s),badpos=ppos)
+                elif ppos == "?":
+                    ppos = None
+                elif ppos in '123456789':
+                    ppos = int(ppos)
+                else:
                     raise IUPACLinearBadPosition(code=orig,pos=len(s),badpos=ppos)
                 if anomer == 'a':
                     anomer = Anomer.alpha
@@ -1082,10 +1091,6 @@ class IUPACLinearFormat(GlycanFormatter):
                     cpos = None
                 elif cpos:
                     cpos = int(cpos)
-                if ppos == '?':
-                    ppos = None
-                else:
-                    ppos = int(ppos)
                 m = self.mf.new(sym)
                 m.set_anomer(anomer)
                 parent.add_child(m,child_pos=cpos,parent_pos=ppos,

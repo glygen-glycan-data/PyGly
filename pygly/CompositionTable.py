@@ -34,6 +34,9 @@ class Composition(defaultdict):
         return ' '.join("%s %d"%(e,self[e]) for e in keys)
     def compactstr(self):
         return ''.join("%s%s"%(e,c if c > 1 else "") for e,c in sorted(self.items()) if c != 0)
+    def set(self,*keys,value=0):
+        for k in keys:
+            self[k] = value
     def add(self,c):
         for k in c:
             self[k] += c[k]
