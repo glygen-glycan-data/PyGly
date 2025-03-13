@@ -53,12 +53,21 @@ for path in sorted(os.listdir(wurcs_dir)):
     acc = os.path.splitext(os.path.basename(path))[0]
     if len(accs) != 0 and acc not in accs:
         continue
+    filenamebase = acc
+
+    if ":" in acc:
+        taskhash,acc = acc.split(':',1)
+    elif re.search(r'^G\d{5}[A-Z]{2}$',acc):
+        acc = acc
+    else:
+        acc = None
+
 
     # if os.path.exists(os.path.join(out_dir,acc+".json")):
     #     continue
 
     # We must have an SVG file...
-    svg_filename = os.path.join(svg_dir,acc+".svg")
+    svg_filename = os.path.join(svg_dir,filenamebase+".svg")
     if not os.path.exists(svg_filename):
         continue
     
@@ -159,15 +168,17 @@ for path in sorted(os.listdir(wurcs_dir)):
     for canid in svg_idmap_dict:
         svg_idmap_dict[canid] = sorted(set(svg_idmap_dict[canid]))
 
-    if not os.path.exists(os.path.join(out_dir,acc+".json")):
+    if not os.path.exists(os.path.join(out_dir,filenamebase+".json")):
         structure_dict = {}
     else:
         try:
-            structure_dict = json.loads(open(os.path.join(out_dir,acc+".json")).read())
+            structure_dict = json.loads(open(os.path.join(out_dir,filenamebase+".json")).read())
         except ValueError:
-            raise RuntimeError("Bad JSON format: "+os.path.join(out_dir,acc+".json"))
+            raise RuntimeError("Bad JSON format: "+os.path.join(out_dir,filenamebase+".json"))
 
-    structure_dict['canonical_sequence_accession'] = acc
+    if acc:
+        structure_dict['canonical_sequence_accession'] = acc
+    structure_dict['canonical_sequence'] = canon_seq
     structure_dict['canonical_sequence_md5'] = canon_seqhash
     
     structure_dict['residues'] = canonres_data
@@ -179,7 +190,7 @@ for path in sorted(os.listdir(wurcs_dir)):
         structure_dict['annotations'] = {}
     structure_dict['annotations']['IUPAC'] = iupac_annotations
     
-    print("%s.txt,%s.svg -> %s.json"%(acc,acc,acc))
-    jsonfilename = os.path.join(out_dir,acc + ".json")
+    print("%s.txt,%s.svg -> %s.json"%(filenamebase,filenamebase,filenamebase))
+    jsonfilename = os.path.join(out_dir,filenamebase + ".json")
     with open(jsonfilename, "w") as json_file:
         json.dump(structure_dict, json_file, indent=4, sort_keys=True)
