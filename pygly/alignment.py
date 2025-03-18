@@ -1276,6 +1276,33 @@ class SubstructureSearch(GlycanPartialOrder):
 
         return self.leq(m, tg, rootOnly=True)
 
+    def idmaps_toids(self,idmaps):
+        newidmaps = []
+        for idmap in idmaps:
+            idmapids = [ ti for t in idmap for ti in self.monoidmap(*t) ]
+            newidmaps.append(idmapids)
+        return newidmaps
+
+    def matched_ids(self,idmaps,glycan):
+        allstructids = set()
+        allstructlinkids = set()
+        for idmap in idmaps: 
+            structids = set(t[1] for t in idmap)
+            allstructids.update(structids)
+            monoids = set(t1 for t1 in structids if '.' not in t1)
+            linkids = set()
+            if glycan:
+                for l in glycan.all_links(uninstantiated=True): 
+                    if l.parent().external_descriptor_id() in monoids and \
+                       l.child().external_descriptor_id() in monoids:
+                        if l.instantiated():
+                            linkids.add((l.parent().external_descriptor_id(),l.child().external_descriptor_id())) 
+                        else:
+                            linkids.add(('',l.child().external_descriptor_id())) 
+                # if len(monoids) != (len(linkids) + 1): 
+                #     print("Warning: Bad linkids length motifacc: %s structacc: %s"%(motifacc,structacc),file=sys.stderr) 
+                allstructlinkids.update(linkids) 
+        return sorted(str(i) for i in allstructids), sorted("%s-%s"%p for p in allstructlinkids)
 
 class SubstructureSearchNonReducingEnd(SubstructureSearch):
 
