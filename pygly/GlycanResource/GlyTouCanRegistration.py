@@ -60,7 +60,12 @@ class GlyTouCanRegistration(GlycanResource):
             user = self.user
             apikey = self.apikey
         if user == None:
-            user, apikey = self.getcredentials()
+            try:
+                user, apikey = self.getcredentials()
+            except GlyTouCanCredentialsNotFound:
+                pass
+        if user is None or apikey is None:
+            return
         self.opener = build_opener(HTTPSHandler(),HTTPHandler())
         if self._verbose:
             print(('%s:%s'%(user, apikey)).encode('utf8'),file=sys.stderr)
@@ -78,15 +83,15 @@ class GlyTouCanRegistration(GlycanResource):
         try:
             self.wait()
             response = json.loads(self.opener.open(req).read())
-            if self.verbose:
+            if self._verbose:
                 print(response, file=sys.stderr)
             if response['status'].split()[0] == '202':
                 return str(response['message'])
         except HTTPError as e:
-            if self.verbose:
+            if self._verbose:
                 print(str(e), file=sys.stderr)
         except (ValueError, IOError) as e:
-            if self.verbose:
+            if self._verbose:
                 traceback.print_exc()
         return None
 
