@@ -29,8 +29,8 @@ help() {
 bulkimg.sh [ options ] <glycan1.seq> <glycan2.seq> ...
 
 Options:
-  -n    Notation. One of snfg, cfg Default: $NOTATION.
-  -d    Display. One of normalinfo, compact. Default: $DISP.
+  -n    Notation. One of snfg, cfg, snfglink, cfglink. Default: $NOTATION.
+  -d    Display. One of normalinfo, normal, compact. Default: $DISP.
   -s    Scale. Default: $SCALE.
   -O    Orientation. Default: $ORIENT.
   -r    Reducing-end. Default: $REDEND.
