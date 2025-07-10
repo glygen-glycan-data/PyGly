@@ -3,7 +3,7 @@ from __future__ import print_function
 
 import re
 import os
-from pkg_resources import resource_stream
+
 try:
     import configparser as ConfigParser
 except ImportError:
@@ -17,6 +17,15 @@ except ImportError:
 from . Monosaccharide import *
 
 from . GlycanFormatterExceptions import WURCS20ParseError
+
+def resource_string(clsname,filename):                                                                                                
+    try:
+        import importlib.resources                                                                                                    
+        return importlib.resources.files(clsname).joinpath(filename).read_bytes()                                                     
+    except ImportError:                                                                                                               
+        pass
+    from pkg_resources import resource_stream
+    return resource_stream(clsname, filename).read()                                                                              
 
 class InvalidMonoError(WURCS20ParseError):
     def __init__(self, monostr):
@@ -44,7 +53,7 @@ class UnsupportedSubstituentError(UnsupportedMonoError):
         self.message = "WURCS2.0 parser: Unsupported substituent: %s" % (sub,)
 
 def readconfig(inifilename):
-    iniFile = [ s.decode('utf8') for s in resource_stream(__name__, inifilename).read().splitlines() ]
+    iniFile = [ s.decode('utf8') for s in resource_string(__name__, inifilename).splitlines() ]
     cfg = ConfigParser.ConfigParser()
     if hasattr(cfg,'read_file'):
         cfg.read_file(iniFile,inifilename)

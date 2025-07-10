@@ -1,7 +1,4 @@
 
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-from pkg_resources import resource_stream
 try:
     from configparser import ConfigParser
 except ImportError:
@@ -19,10 +16,19 @@ try:
 except ImportError:
     pass
 
+def resource_string(clsname,filename):
+    try:
+        import importlib.resources
+        return importlib.resources.files(clsname).joinpath(filename).read_bytes()
+    except ImportError:
+        pass
+    from pkg_resources import resource_stream
+    return resource_stream(clsname, filename).read()
+
 class ReferenceTable(dict):
     def __init__(self,iniFile=None):
         if not iniFile:
-            iniFile = [ s.decode('utf8') for s in resource_stream(__name__, self.__class__.__name__.lower()+'.ini').read().splitlines() ]
+            iniFile = [ s.decode('utf8') for s in resource_string(__name__, self.__class__.__name__.lower()+'.ini').splitlines() ]
             self.iniFile = self.__class__.__name__.lower()+'.ini'
         elif isinstance(iniFile, basestring) and os.path.exists(iniFile):
             iniFile = open(iniFile)
