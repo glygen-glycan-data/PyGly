@@ -149,7 +149,7 @@ class TripleStoreResource(GlycanResource):
     def triples(self,acc):
         self.wait()
 
-        if not acc.startswith('http'):
+        if not acc.startswith('http') and not acc.startswith("nodeID"):
             assert self._ns != None
             uri = self._ns[acc]
         else:
