@@ -11,6 +11,34 @@ class GlyGenWS(WebServiceResource):
         kw['iniFile'] = os.path.join(os.path.dirname(os.path.realpath(__file__)),"glygenws.ini")
         super(GlyGenWS,self).__init__(**kw)
 
+    def dataset(self, filename, version=None):
+        for row in self.query_csvdataset(filename=filename, version=version):
+            yield row
+
+    def protein_homolog_clusters(self, version=None):
+        for row in self.dataset("protein_homolog_clusters",version=version):
+            yield row
+
+    def protein_genenames(self, species, version=None):
+        for row in self.dataset(species+"_protein_genenames_uniprotkb",version=version):
+            yield row
+
+    def glycosyltransferases(self, species, version=None):
+        for row in self.dataset(species+"_protein_glycosyltransferase",version=version):
+            yield row
+
+    def protein_geneid(self, species, version=None):
+        for row in self.dataset(species+"_protein_xref_geneid",version=version):
+            yield row
+
+    def protein_refseqnp(self, species, version=None):
+        for row in self.dataset(species+"_protein_xref_refseq",version=version):
+            yield row
+
+    def protein_masterlist(self, species, version=None):
+        for row in self.dataset(species+"_protein_masterlist",version=version):
+            yield row
+
     def glycan_search(self, **kw):
         query=json.dumps(kw)
         result = self.query_glycan_search(query=query)
