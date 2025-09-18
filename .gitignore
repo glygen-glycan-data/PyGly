@@ -1,2 +1,4 @@
 *.pyc
 *~
+scripts/glycans*
+scripts/gtcseq
