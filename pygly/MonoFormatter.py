@@ -316,31 +316,43 @@ class MonoSymLookup(dict):
         for key,kv in st.items():
             if self.__class__.__name__ in kv:
                 self[key] = kv[self.__class__.__name__]
+        # print(self)
     def key(self,m):
         if isinstance(m,Monosaccharide):
             supcls = tuple(sorted(('SuperClass',s) for s in [m.superclass()]) if m.superclass() != None else ())
             stem = tuple(sorted(('Stem',s) for s in m.stem()) if m.stem() != None else ())
-            mods = tuple(sorted(('Mod',m[1]) for m in m.mods()) if m.mods() != None else ())
-            subst = tuple(sorted(('Substituent',s.name()) for s in m.substituents()))
+            mods = []
+            if m.mods() != None:
+                for mi in m.mods():
+                    mods.append((mi[0],('Mod',mi[1])))
+            mods = tuple(sorted(mods))
+            mods1 = tuple(sorted(('Mod',m[1]) for m in m.mods()) if m.mods() != None else ())
+            subst = []
+            for sl in m.substituent_links():
+                if sl.parent_pos() and len(sl.parent_pos()) == 1:
+                    subst.append((list(sl.parent_pos())[0],('Substituent',sl.child().name())))
+                else:
+                    subst.append((0,('Substituent',sl.child().name())))
+            subst = tuple(sorted(subst))
+            subst1 = tuple(sorted(('Substituent',s.name()) for s in m.substituents()))
         elif isinstance(m,Substituent):
             supcls = ()
             stem = ()
             mods = ()
+            mods1 = ()
             subst = (('Substituent',m.name()),)
-        return supcls,stem,mods,subst
+            subst1 = (('Substituent',m.name()),)
+        return (supcls,stem,mods,subst),(supcls,stem,mods,subst1),(supcls,stem,mods1,subst),(supcls,stem,mods1,subst1)
     def toStr(self,m):
         if m != None:
-            k = self.key(m)
+            keys = self.key(m)
         else:
             raise RuntimeError("Monosaccharide is None.")
-        try:
-            return self[k]
-        except KeyError:
-            # if self.__class__.__name__ == 'IUPACSym':
-            #     print >>sys.stderr, "%s table can't find: %s"%(self.__class__.__name__,k)
-            #     print >>sys.stderr, '\n'.join(map(str,sorted(self.keys())))
-            # sys.exit(1)
-            raise
+        # print(m)
+        for k in keys:
+            if k in self:
+                return self[k]
+        raise KeyError(keys[-1])
 
 class IUPACSym(MonoSymLookup):
     pass

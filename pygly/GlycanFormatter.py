@@ -1006,7 +1006,7 @@ class IUPACLinearFormat(GlycanFormatter):
     def toGlycan(self, s):
         s = s.strip()
         orig = s
-        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu)[a-zA-Z5926,]*)$',s)
+        m = re.search(r'(?P<subst>(\d[SP])?\(\d[SP]\)+)?(?P<sym>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu)[a-zA-Z5926,+]*)(1(-)?)?$',s)
         if not m:
             raise IUPACLinearBadFormat(code=orig,pos=len(s))
         sym = m.group('sym')
@@ -1051,7 +1051,7 @@ class IUPACLinearFormat(GlycanFormatter):
         while s != "":
             # either a number or a bracket.
             if s[-1] not in '()':
-                m = re.search(r'(?P<subst>(\d[SP])?(\(\d[SP]\))+)?(?P<sym>[A-Z][a-zA-Z592,]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>(.\|)*.)$',s)
+                m = re.search(r'(?P<subst>(\d[SP])?(\(\d?[SP]\))+)?(?P<sym>[A-Zd][a-zA-Z592,+]+)(?P<anomer>.)(?P<cpos>.)-(?P<ppos>(.\|)*.)$',s)
                 if not m:
                     raise IUPACLinearBadFormat(code=orig,pos=len(s))
                 sym = m.group('sym')
@@ -1099,16 +1099,16 @@ class IUPACLinearFormat(GlycanFormatter):
                 if subst:
                     subst1 += subst
                 if subst1:
-                    for si in re.findall(r'\d[SP]',subst1):
-                        if si[1] == 'S':
+                    for si in re.findall(r'\d?[SP]',subst1):
+                        if si[-1] == 'S':
                             m.add_substituent(Substituent.sulfate,
-                                              parent_pos=int(si[0]),
+                                              parent_pos=int(si[0]) if len(si) == 2 else None,
                                               child_pos=1,
                                               parent_type=Linkage.oxygenPreserved,
                                               child_type=Linkage.nitrogenAdded)
-                        elif si[1] == 'P':
+                        elif si[-1] == 'P':
                             m.add_substituent(Substituent.phosphate,
-                                              parent_pos=int(si[0]),
+                                              parent_pos=int(si[0]) if len(si) == 2 else None,
                                               child_pos=1,
                                               parent_type=Linkage.oxygenPreserved,
                                               child_type=Linkage.nitrogenAdded)
@@ -1147,6 +1147,10 @@ class IUPACUnsupportedSym(IUPACParseError):
     def __init__(self, sym):
         self.message = "Unsupported sym: %s" % sym
 
+class IUPACNoMonossaccharides(IUPACParseError):
+    def __init__(self):
+        self.message = "No monosaccharides in sequence"
+
 class IUPACSkippedMonosaccharide(IUPACParseError):
     def __init__(self):
         self.message = "Parsing error, some monosaccharide from IUPAC string are not parsed in"
@@ -1177,7 +1181,7 @@ class IUPACParserAbstract():
 
     def toGlycan(self, seq):
         # Preparation "Global Variable of this method"
-        root = 0
+        root = None
         branchPoint = []
         parentMono = 0
 
@@ -1242,20 +1246,25 @@ class IUPACParserAbstract():
                     if remove_stack > 1:
                         raise IUPACBranchingError
                     parentMono = branchPoint.pop(-1)
+        
+        if root is None:
+            raise IUPACNoMonossaccharides()
+
         glycanObj = Glycan(root)
         glycanObj.set_undetermined(undetroots)
         if len(list(glycanObj.all_nodes())) != self.monoNumCheck(seq):
+            # print(glycanObj.iupac_composition())
+            # print(seq)
+            # print(self.monoNumCheck(seq))
             raise IUPACSkippedMonosaccharide
         return glycanObj
 
     def monoNumCheck(self, seq):
-        possibleTriletter = "Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO|Neu|Hex"
-        possibleTriletter = possibleTriletter.lower()
-        ptl = possibleTriletter.split("|")
-        s = seq.lower()
+        possibleTriletter = re.compile("(Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO|Neu|Hex)".lower())
         c = 0
-        for tri in ptl:
-            c += s.count(tri)
+        for si in re.split(r'[^a-z]',seq.lower()):
+            if possibleTriletter.search(si):
+                c += 1
         return c
 
     def patternCompilation(self):
@@ -1279,8 +1288,11 @@ class IUPACParserAbstract():
                 pass
         if not m:
             raise LinearCodeBadSym("", 0, fullname)
-        if m.anomer() != Anomer.uncyclized and info["anomer"]:
-            m.set_anomer(eval(info["anomer"]))
+        if m.anomer() != Anomer.uncyclized:
+            if info["anomer"]:
+                m.set_anomer(eval(info["anomer"]))
+            else:
+                m.set_anomer(Anomer.missing)
         for mod in info.get("mod",[]):
             m.add_mod(mod[0],eval(mod[1]))
         return m
@@ -1325,36 +1337,44 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
             res0["branchpointend"] = len(s["bpe"])
         return searchres
 
-
 class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
     description = "Usually used by GlyTouCan.org"
     example = "alpha-D-Galp-(1->3)-D-Gal(?->"
 
     alias = "GTCE:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<anomer>(alpha-|beta-)?)(?P<mono>([dlDL]-)?(Glc|Gal|Man|Fuc|Xyl)([a-zA-Z5926,]+)?)(-)?(?P<link>(\([1-9?](/[1-9])*->([1-9?](/[1-9])*\))?)(-)?)(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<bpe>(\[)*)(?P<anomer>((a|b|\u03b1|\u03b2|alpha|beta|\?)-)?)(?P<mono>(deoxy-)?([dlDL]-)?(Hex|Neu|Glc|Gal|Man|Fuc|Xyl|Qui|Ido|Kdn|Ara|Fru|xylHex)([a-zA-Z345926,?]+)?)(-)?(?P<link>(\([1-9?](/[1-9])*(->|\u2192)([1-9?](/[1-9])*\))?)?(-)?)(?P<bps>(\])*)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
+        # print(seq)
+        # print("\n".join(map(str,searchres)))
+        # print()
         searchres = list(reversed(searchres))
 
         res = []
         for s in searchres:
             res0 = copy.deepcopy(self.regexResTemplate)
 
-            anomersl = s["anomer"]
-            if anomersl == "alpha-":
+            # print(s)
+
+            anomersl = s["anomer"].strip("-")
+            if anomersl in ("alpha","a","\u03b1"):
                 anomer = "Anomer.alpha"
-            elif anomersl == "beta-":
+            elif anomersl in ("beta","b","\u03b2"):
                 anomer = "Anomer.beta"
-            elif anomersl == "":
+            elif anomersl in ("?",""):
                 anomer = None
             else:
                 raise IUPACUnsupportedAnomer(s["mono"], anomersl)
 
-            link = s["link"].lstrip("(").rstrip("-").rstrip(")")
-            link = link.split("->")
-            link = list(map(lambda x: None if x == "" else x, link))
-            link = list(map(lambda x: None if x == "?" else x, link))
+            if s["link"]:
+                link = s["link"].lstrip("(").rstrip("-").rstrip(")")
+                link = re.split(r'(->|\u2192)',link)
+                del link[1]
+                link = list(map(lambda x: None if x == "" else x, link))
+                link = list(map(lambda x: None if x == "?" else x, link))
+            else:
+                link = (None,None)
 
             res0["anomer"] = anomer
             res0["skel"] = s["mono"]
@@ -1363,8 +1383,8 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
             res0["sublink"] = None
             res0["branchpointstart"] = len(s["bps"])
             res0["branchpointend"] = len(s["bpe"])
-        return searchres
-
+            res.append(res0)
+        return res
 
 class IUPACParserExtended1(IUPACParserAbstract):
     # Matthew's IUPAC, also the one in hayes column, adapted to parse glycowork iupac strings
