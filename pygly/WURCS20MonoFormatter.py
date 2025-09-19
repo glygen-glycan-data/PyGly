@@ -18,14 +18,14 @@ from . Monosaccharide import *
 
 from . GlycanFormatterExceptions import WURCS20ParseError
 
-def resource_string(clsname,filename):                                                                                                
+def resource_string(clsname,filename):
     try:
-        import importlib.resources                                                                                                    
-        return importlib.resources.files(clsname).joinpath(filename).read_bytes()                                                     
-    except ImportError:                                                                                                               
+        import importlib.resources
+        return importlib.resources.files(clsname.rsplit('.',1)[0]).joinpath(filename).read_bytes()
+    except ImportError:
         pass
     from pkg_resources import resource_stream
-    return resource_stream(clsname, filename).read()                                                                              
+    return resource_stream(clsname, filename).read()
 
 class InvalidMonoError(WURCS20ParseError):
     def __init__(self, monostr):
