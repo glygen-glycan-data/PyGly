@@ -17,6 +17,7 @@ w = GlycanData()
 
 print("\t".join(headers))
 for acc in w.iterglycanid():
+    # print(acc,file=sys.stderr)
     g = w.get(acc)
     validspecies = set()
     speciesannotations = list(g.annotations(type="Species",source="EdwardsLab"))
@@ -40,7 +41,7 @@ for acc in w.iterglycanid():
                     source = value.split(None,1)[0]
                     taxid = value.rsplit(None,1)[1]
                     if ':' in source:
-                        source,sourceid = source.split(':')
+                        source,sourceid = source.split(':',1)
                     else:
                         sourceid = ""
                     print("\t".join([acc,species_name,"Direct",source,sourceid,taxid]))
