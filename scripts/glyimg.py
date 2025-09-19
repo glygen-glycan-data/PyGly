@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 import sys, os
 import findpygly
 from pygly.GlycanImage import GlycanImage
@@ -13,7 +13,8 @@ if len(sys.argv) <= 1:
     orientation  (RL|LR|TB|BT)                                       [RL]
     notation     (cfg|cfgbw|cfglink|uoxf|text|uoxfcol|snfg|snfglink) [snfg]
     display      (normal|normalinfo|compact)                         [normalinfo]
-    format	 (png|svg)                                           [png]
+    format	     (png|svg)                                           [png]
+    program      (GlycanBuilder2|Glycowork)			                 [GlycanBuilder2]
     """.strip()
     sys.exit(1)
 
@@ -25,7 +26,7 @@ imageWriter.force(True)
 lastopt = 0
 for i in range(1,len(sys.argv),2):
     if sys.argv[i].startswith('G'):
-	break
+	    break
     key = sys.argv[i]
     value = sys.argv[i+1]
     imageWriter.set(key,value)

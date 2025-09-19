@@ -5,11 +5,13 @@ from pygly.GlycanFormatter import *
 from pygly.GlycanBuilderSVGParser import *
 from pygly.CompositionFormatter import *
 from pygly.GlycanResource import GlyTouCanNoPrefetch as GlyTouCan
+from pygly.GlycanMultiParser import GlycanMultiParser
 
-if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2","gtc"):
-    print("Parser should be one of: glycoct, wurcs, svg, comp, iupac, iupac2.")
+if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2","iupac3","gtc","auto"):
+    print("Parser should be one of: glycoct, wurcs, svg, comp, iupac, iupac2, iupac3, auto, gtc.")
     exit(1)
 gtc = None
+clsname = None
 if sys.argv[1] == "glycoct":
     clsname = "GlycoCTFormat"
 elif sys.argv[1] in ("wurcs","gtc"):
@@ -24,6 +26,12 @@ elif sys.argv[1] == "iupac":
     clsname = "IUPACLinearFormat"
 elif sys.argv[1] == "iupac2":
     clsname = "IUPACParserExtended1"
+elif sys.argv[1] == "iupac3":
+    clsname = "IUPACParserGlyTouCanExtended"
+elif sys.argv[1] == "auto":
+    clsname = "GlycanMultiParser"
+
+iupacseq = IUPACLinearFormat()
 
 clsinst = eval("%s()"%(clsname,))
 if len(sys.argv) > 2:
@@ -50,6 +58,12 @@ for f in files:
         else:
             print(g.underivitized_molecular_weight(repeat_times=1))
         print(g.glycoct())
+        print(iupacseq.toStr(g))
+        # print(clsinst.toStr(g))
+        if clsname != "GlycanMultiParser":
+            print("Parser:",clsname)
+        else:
+            print("Parser:",clsinst.parser_name())
     except GlycanParseError as e:
         # traceback.print_exc()
         print("!!!", os.path.split(f)[1], str(e))
