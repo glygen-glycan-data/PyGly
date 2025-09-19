@@ -1,5 +1,4 @@
-
-from . JavaProgram import GlycoCT2Image, GlycanBuilderImage
+from . import JavaProgram
 from . GlycanFormatter import GlycoCTFormat
 
 try:
@@ -8,6 +7,10 @@ except NameError:
   basestring = str
 
 class GlycanImage(object):
+
+    GlycanBuilder2="GlycanBuilderImage"
+    Glycowork="GlycoworkImage"
+
     def __init__(self):
         self._scale = 1.0
         self._orientation = "RL"
@@ -19,7 +22,21 @@ class GlycanImage(object):
         self._force = False
         self._verbose = False
         self.fmt = GlycoCTFormat()
+        self._drawer = self.GlycanBuilder2
         
+    def program(self,value=None):
+        if value == None:
+            if self._drawer == self.GlycanBuilder2:
+                return "GlycanBuilder2"
+            elif self._drawer == self.Glycowork:
+                return "Glycowork"
+            else:
+                raise RuntimeError
+        if value in ("GlycanBuilder2","Glycowork"):
+            value = getattr(self,value)
+        assert value in (self.GlycanBuilder2,self.Glycowork)
+        self._drawer = value
+
     def scale(self,value=None):
         if value == None:
             return self._scale
@@ -79,15 +96,15 @@ class GlycanImage(object):
         glystr = glycan
         if not isinstance(glystr,basestring):
             glystr = self.fmt.toStr(glycan)
-        imageWriter = GlycanBuilderImage(glystr,
-                                         filename,
-                                         format=self._format,
-                                         force=str(self._force).lower(),
-                                         scale=self._scale,
-                                         redend=str(self._redend).lower(),
-                                         orient=self._orientation,
-                                         display=self._display,
-                                         notation=self._notation,
-                                         opaque=str(self._opaque).lower(),
-                                         verbose=self._verbose)
+        imageWriter = getattr(JavaProgram,self._drawer)(glystr,
+                                   filename,
+                                   format=self._format,
+                                   force=str(self._force).lower(),
+                                   scale=self._scale,
+                                   redend=str(self._redend).lower(),
+                                   orient=self._orientation,
+                                   display=self._display,
+                                   notation=self._notation,
+                                   opaque=str(self._opaque).lower(),
+                                   verbose=self._verbose)
         return imageWriter()

@@ -33,6 +33,73 @@ class PopenTimeout(threading.Thread):
             return -9
         return self.retval
 
+class BinProgram(object):
+
+    def __init__(self,verbose=False,wait=True,stdout=False,timeout=None):
+        self.verbose = verbose
+        self.wait = wait
+        self.stdout = stdout
+        self.timeout = timeout
+    
+    def __call__(self):
+        cmd = '%s %s'%(self.findbin(),self.args())
+        if self.verbose:
+            print("Executing: "+cmd, file=sys.stderr)
+        starttime = time.time()
+        if self.stdout:
+            proc = PopenTimeout(cmd,
+                                stdin=PIPE,stdout=PIPE,stderr=STDOUT,
+                                shell=(sys.platform!="win32"),
+                                timeout=self.timeout)
+        else:
+            proc = PopenTimeout(cmd,
+                                stdin=PIPE,
+                                shell=(sys.platform!="win32"),
+                                timeout=self.timeout)
+        proc.p.stdin.write(self.stdin().encode())
+        proc.p.stdin.close()
+        if self.wait == False:
+            return
+        if type(self.wait) in (int,float):
+            time.sleep(self.wait)
+            return
+        retval = proc.wait()
+        if retval == -9:
+            if self.verbose:
+                print("Process killed after %s seconds"%(self.timeout,),file=sys.stderr)
+        else:
+            if self.verbose:
+                print("Process completed after %s seconds"%(round(time.time()-starttime,1),),file=sys.stderr)
+        if self.stdout:
+            return proc.p.stdout.read()
+        return (retval==0)
+
+    def stdin(self):
+        return ""
+    
+    def findbin(self):
+        bindir = __file__
+
+        while not os.path.isdir(bindir):
+            bindir,dummy = os.path.split(bindir)
+
+        curdir = bindir
+        prog = self.main
+        if os.path.exists(prog) and os.access(prog, os.X_OK):
+            return prog
+        prog1 = os.path.join(curdir,prog)
+        if os.path.exists(prog1) and os.access(prog1, os.X_OK):
+            return prog1
+        curdir = os.path.join(curdir,'..')
+        prog1 = os.path.join(curdir,prog)
+        if os.path.exists(prog1) and os.access(prog1, os.X_OK):
+            return prog1
+        curdir = os.path.join(curdir,'lib')
+        prog1 = os.path.join(curdir,prog)
+        if os.path.exists(prog1) and os.access(prog1,os.X_OK):
+            return prog1
+
+
 class JavaProgram(object):
 
     def __init__(self,verbose=False,wait=True,stdout=False,javaw=(sys.platform=="win32"),timeout=None):
@@ -162,6 +229,7 @@ class GlycanBuilderImage(JavaProgram):
               GlycanBuilder2
            """
     main = "GlycanImageCmdline"
+    valid_options = "format scale redend orient notation display opaque force".split()
 
     def __init__(self,glycoctstr,outfile,verbose=False,timeout=15,**kw):
         super(GlycanBuilderImage,self).__init__(verbose=verbose,wait=True,stdout=(not verbose),timeout=timeout)
@@ -172,8 +240,32 @@ class GlycanBuilderImage(JavaProgram):
     def args(self):
         theargs = []
         for k,v in self.kwargs.items():
-            theargs.append(k)
-            theargs.append(v)
+            if k in self.valid_options:
+                theargs.append(k)   
+                theargs.append(v)
+        theargs.append("out")
+        theargs.append(self.outfile)
+        theargs.append("-")
+        return " ".join(map(str,theargs))
+
+    def stdin(self):
+        return self.glycoctstr
+
+class GlycoworkImage(BinProgram):
+    main = "/data/projects/GlyGen/glycowork/tools/.venv/bin/python"
+    valid_options = "orient display format force".split()
+    def __init__(self,glycoctstr,outfile,verbose=False,timeout=30,**kw):
+        super(GlycoworkImage,self).__init__(verbose=verbose,wait=True,stdout=(not verbose),timeout=timeout)
+        self.kwargs = kw
+        self.glycoctstr = glycoctstr
+        self.outfile = outfile
+
+    def args(self):
+        theargs = ["/data/projects/GlyGen/glycowork/tools/draw_glycan.py"]
+        for k,v in self.kwargs.items():
+            if k in self.valid_options:
+                theargs.append(k)
+                theargs.append(v)
         theargs.append("out")
         theargs.append(self.outfile)
         theargs.append("-")
