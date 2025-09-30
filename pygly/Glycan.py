@@ -621,7 +621,10 @@ class Glycan:
                     sym1 = "X"
 
             if floating_substituents:
-                syms = [sym.split('+')[0]]
+                if ')' in sym:
+                    syms = [ sym.split(')')[-1] ]
+                else:
+                    syms = [sym.split('+')[0]]
                 eids = [[m.external_descriptor_id()]]
                 for s in m.substituents():
                     if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
@@ -636,7 +639,10 @@ class Glycan:
                     syms.append("aldi")
                     eids.append(["%s.0"%(m.external_descriptor_id(),)])
                     
-                syms1 = [sym1.split('+')[0]]
+                if ')' in sym1:
+                    syms1 = [ sym1.split(')')[-1] ]
+                else:
+                    syms1 = [sym1.split('+')[0]]
                 if m1:
                     for s in m1.substituents():
                         if s.name() in list(manipulation.Composition.floating_substs) + [Substituent.nsulfate]:
