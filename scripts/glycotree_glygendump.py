@@ -10,13 +10,13 @@ import findpygly
 from pygly.Glycan import *
 from pygly.GlycanResource import *
 
-accs = sys.argv[1:]
-
 if len(sys.argv) > 1 and sys.argv[1] == "--dev":
     sandbox = GlycoTreeSandboxDev(local=True,delaytime=3)
     sys.argv.pop(1)
 else:
     sandbox = GlycoTreeSandbox(local=True,delaytime=3)
+
+accs = sys.argv[1:]
 
 def glycansiter(sandbox,accs):
     if len(accs) == 0:
