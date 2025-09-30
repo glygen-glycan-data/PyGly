@@ -1,0 +1,7 @@
+{{Class
+|definition=N-linked truncated glycan subtype determined by core alignment to the N-Glycan core basic motif ([[GGM.001001]]) without its initial GlcNAc and one mannose arm, but with a GlcNAc on the remaining mannose arm. Carbon bonds enumerate valid positions.
+|hasmotif=GGM.001046
+|level=Subtype
+|name=N-linked truncated
+|type=N-linked
+}}

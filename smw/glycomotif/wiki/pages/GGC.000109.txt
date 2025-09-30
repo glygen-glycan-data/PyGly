@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001036
+|level=Subtype
+|name=O-mannose
+|type=O-linked
+}}

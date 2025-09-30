@@ -1,0 +1,15 @@
+{{Motif
+|prefname=O-Galactose
+|name=O-Galactose
+|keyword=Glycan classification; O-glycan classification
+|aglycon=Ser/Thr
+|redend=true
+|alignment=Whole-Glycan
+|accession=001044
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dgal-HEX-1:5
+|glytoucan=G09546QO
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a2112h-1a_1-5{{!)}}/1/
+}}

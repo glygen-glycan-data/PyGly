@@ -8,7 +8,7 @@
 1b:x-lgal-HEX-x:x{{!}}6:d
 |glytoucan=G49112ZN
 |human_OC1_enzymes=POFUT1:1;POFUT2:1
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |mouse_OC1_enzymes=Pofut1:1;Pofut2:1
 |name=O-Glycan O-Fucose Core
 |prefname=O-Glycan O-Fucose Core

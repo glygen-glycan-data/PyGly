@@ -25,7 +25,7 @@ LIN
 8:7o(6+1)9d
 |glytoucan=G00028MO
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:5,4;ALG3:7,6;DPAGT1:1
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:5,4;Alg3:7,6;Dpagt1:1;Glt28d2:2
 |name=N-Glycan high mannose
 |prefname=N-Glycan high mannose

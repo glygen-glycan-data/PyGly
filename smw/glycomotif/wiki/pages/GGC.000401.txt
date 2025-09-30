@@ -1,0 +1,6 @@
+{{Class
+|definition=Glycosaminoglycans (GAGs) are characterized by long chains of alternating residues. Here, we align the reducing-end of each GAG core, numbered consistently with MatrixDB, and then check the structure for additional required properties. All structures annotated as GAGs must satisfy a) no GalA or Man residues; b) only Glc, GlcA, Gal, GlcNAc, GalNAc, IdoA, NeuAc, Fuc, with/without sulfation, and species capping residues permitted; c) at most one special capping residue (L-thrHexpA-(E/X)en), and only permitted at the non-reducing end; d) any repeating subunit must have even size. For GAGs other than the specific subtypes Keratan Sulfate and the Xyl Core GAG, structures must also satisfy e) no branching; f) no Fuc or sialic acids; g) no Gal without sulfation; h) cannot have both GlcNAc and GalNAc residues.
+|hasmotif=GGM.001201; GGM.001202; GGM.001203; GGM.001204; GGM.001205; GGM.001206; GGM.001207; GGM.001208; GGM.001211; GGM.001212; GGM.001213; GGM.001214
+|level=Type
+|name=GAG
+}}

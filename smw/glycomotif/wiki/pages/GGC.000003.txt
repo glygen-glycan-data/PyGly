@@ -1,0 +1,7 @@
+{{Class
+|definition=Hybrid N-linked glycan subtype determined by core alignment with two antennae with GlcNAc and Man residues. Only valid carbon bond positions are enumerated: 2 or 4 on the alpha-3 Man arm for GlcNAc; and 3 or 6 on the alpha-6 Man arm for Man.
+|hasmotif=GGM.001003
+|level=Subtype
+|name=N-linked hybrid
+|type=N-linked
+}}

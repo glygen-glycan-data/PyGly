@@ -21,7 +21,7 @@ LIN
 6:5o(6+1)7d
 |glytoucan=G00026MO
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:5,4;DPAGT1:1
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:5,4;Dpagt1:1;Glt28d2:2
 |name=N-Glycan core basic
 |prefname=N-Glycan core basic

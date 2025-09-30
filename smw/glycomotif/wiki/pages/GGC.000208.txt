@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001108
+|level=Subtype
+|name=Glycosphingolipid ganglio series
+|type=Glycosphingolipid
+}}

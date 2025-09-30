@@ -1,0 +1,34 @@
+<noinclude>
+This is the "Class" form.
+To create a page with this form, enter the page name below;
+if a page with that name already exists, you will be sent to a form to edit that page.
+
+
+{{#forminput:form=Class}}
+
+</noinclude><includeonly>
+<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
+{{{for template|Class}}}
+{| class="formtable"
+! Name: 
+| {{{field|name}}}
+|-
+! Level: 
+| {{{field|level|input type=dropdown|values=Type,Subtype}}}
+|-
+! Implicit type: 
+| {{{field|type}}}
+|-
+! Definition: 
+| {{{field|definition|input type=textarea}}}
+|-
+! Motifs:
+| {{{field|hasmotif|property=glycomotif:hasmotif|input type=tokens|existing values only|list|delimiter=;|values from category=Motif}}}
+|-
+! Exclusion Motifs:
+| {{{field|nothasmotif|property=glycomotif:nothasmotif|input type=tokens|existing values only|list|delimiter=;|values from category=Motif}}}
+|}
+{{{end template}}}
+
+{{{standard input|save}}} {{{standard input|cancel}}}
+</includeonly>

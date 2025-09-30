@@ -1,0 +1,7 @@
+{{Class
+|hasmotif=GGM.001038
+|level=Subtype
+|name=N-linked triantennary
+|nothasmotif=GGM.001039
+|type=N-linked
+}}

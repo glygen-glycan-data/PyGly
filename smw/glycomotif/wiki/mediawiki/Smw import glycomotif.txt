@@ -15,6 +15,12 @@ http://glyomics.org/glycomotif#|[http://glyomics.org/glycomotif Glyomics Glycomo
  Keyword|Category
  haskeyword|Type:Page
  incollection|Type:Page
+ Class|Category
+ level|Type:Text
+ type|Type:Text
+ hasmotif|Type:Page 
+ nothasmotif|Type:Page
+ definition|Type:Text
  Enzyme|Category
  genename|Type:Text
  species|Type:Text

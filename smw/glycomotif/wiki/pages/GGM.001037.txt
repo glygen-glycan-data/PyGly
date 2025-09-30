@@ -29,7 +29,7 @@ LIN
 10:10d(2+1)11n
 |glytoucan=G98414DB
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;DPAGT1:1;MGAT1:5,7;MGAT2:5,7;MGAT4A:5,7;MGAT4B:5,7;MGAT4C:5,7;MGAT5:5,7;MGAT5B:5,7
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Dpagt1:1;Glt28d2:2;Mgat1:5,7;Mgat2:5,7;Mgat4a:5,7;Mgat4b:5,7;Mgat4c:5,7;Mgat5:5,7;Mgat5b:5,7
 |name=N-Glycan biantennary
 |prefname=N-Glycan biantennary

@@ -8,7 +8,7 @@
 1b:x-dman-HEX-x:x
 |glytoucan=G76001GO
 |human_OC4_enzymes=POMT1:1;POMT2:1
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |mouse_OC4_enzymes=Pomt1:1;Pomt2:1
 |name=O-Glycan O-Mannose Core
 |prefname=O-Glycan O-Mannose Core

@@ -12,7 +12,7 @@ LIN
 1:1d(2+1)2n
 2:1o(4+1)3d
 |glytoucan=G66213AR
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |name=O-GlcNAc Core EGF Type
 |prefname=O-GlcNAc Core EGF Type
 |redend=true

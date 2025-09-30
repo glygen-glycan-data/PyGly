@@ -1,0 +1,4 @@
+{{Keyword
+|keyword=Glycan classification
+|definition=Motifs used for glycan type and subtype classification.
+}}

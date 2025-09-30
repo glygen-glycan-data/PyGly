@@ -18,7 +18,7 @@ LIN
 4:3o(4+1)5d
 5:5o(3{{!}}6+1)6d
 |glytoucan=G59883YF
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |name=N-glycan core, truncated
 |prefname=N-glycan core, truncated
 |redend=true

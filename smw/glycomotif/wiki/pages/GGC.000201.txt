@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001101
+|level=Subtype
+|name=Glycosphingolipid isoglobo series
+|type=Glycosphingolipid
+}}

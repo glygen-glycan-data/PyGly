@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001109
+|level=Subtype
+|name=Glycosphingolipid globo series
+|type=Glycosphingolipid
+}}

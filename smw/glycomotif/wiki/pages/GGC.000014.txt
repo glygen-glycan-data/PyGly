@@ -1,0 +1,7 @@
+{{Class
+|hasmotif=GGM.001037
+|level=Subtype
+|name=N-linked biantennary
+|nothasmotif=GGM.001038
+|type=N-linked
+}}

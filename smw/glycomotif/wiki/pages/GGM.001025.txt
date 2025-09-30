@@ -27,7 +27,7 @@ LIN
 9:5o(3{{!}}6+1)10d
 |glytoucan=G05006NI
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:4,7;DPAGT1:1;FUT10:6;FUT11:6;FUT3:6;FUT4:6;FUT5:6;FUT6:6;FUT9:6;MGAT1:5;MGAT2:5;MGAT4A:5;MGAT4B:5;MGAT4C:5;MGAT5:5;MGAT5B:5
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:4,7;Dpagt1:1;Fut10:6;Fut11:6;Fut4:6;Fut9:6;Glt28d2:2;Mgat1:5;Mgat2:5;Mgat4a:5;Mgat4b:5;Mgat4c:5;Mgat5:5;Mgat5b:5
 |name=N-Glycan core, arm-fucosylated
 |prefname=N-Glycan core, arm-fucosylated

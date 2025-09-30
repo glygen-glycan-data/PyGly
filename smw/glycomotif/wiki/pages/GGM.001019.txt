@@ -15,7 +15,7 @@ LIN
 3:2o(4+1)4d
 |glytoucan=G23707SD
 |human_OC4_enzymes=B4GALT1:3;B4GALT2:3;B4GALT3:3;B4GALT4:3;B4GALT5:3;POMGNT1:2;POMT1:1;POMT2:1
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |mouse_OC4_enzymes=B4galt1:3;B4galt2:3;B4galt3:3;B4galt4:3;B4galt5:3;Pomgnt1:2;Pomt1:1;Pomt2:1
 |name=O-Mannose
 |prefname=O-Mannose

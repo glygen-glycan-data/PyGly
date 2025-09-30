@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001023
+|level=Subtype
+|name=N-linked bisected
+|type=N-linked
+}}

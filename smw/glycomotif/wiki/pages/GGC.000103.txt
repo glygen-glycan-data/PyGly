@@ -1,0 +1,7 @@
+{{Class
+|definition=HMO type structures are determined by core alignment with the HMO reducing end motif. Structures that are also consistent with glycosphingolipid cores, other than the lacto and neo-lacto series core motifs, are excluded. No subtypes are defined for HMO structures.
+|hasmotif=GGM.001029
+|level=Type
+|name=Human Milk Oligosaccharide
+|nothasmotif=GGM.001101; GGM.001102; GGM.001108; GGM.001109
+}}

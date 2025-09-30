@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001026
+|level=Subtype
+|name=N-linked alditol-reduced
+|type=N-linked
+}}

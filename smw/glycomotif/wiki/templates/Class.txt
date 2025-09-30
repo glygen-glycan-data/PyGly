@@ -1,0 +1,104 @@
+<noinclude>
+This is the "Class" template.
+It should be called in the following format:
+<pre>
+{{Class
+|name=
+|definition=
+|level=
+|hasmotif=
+|nothasmotif=
+|type=
+}}
+</pre>
+Edit the page to see the template text.
+</noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{level|}}}: {{{name|}}}}}
+{{{definition|}}}
+
+{{#ifeq:|{{{level|}}}|Subtype|{{#if:{{{type|}}}|'''Implicit type:''' {{{type|}}}.|}}|}}
+{{#if: {{{hasmotif|}}}|
+== Match Motifs (at least one) ==
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[-glycomotif:hasmotif::{{PAGENAME}}]]
+|?glycomotif:accession
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:alignment
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|limit=1000
+}}}}
+{{#if: {{{nothasmotif|}}}|
+== Exclude Motifs (not any) ==
+{{#ask:
+[[Category:Motif]]
+[[glycomotif:incollection::GGM]]
+[[-glycomotif:nothasmotif::{{PAGENAME}}]]
+|?glycomotif:accession
+|?glycomotif:name
+|?glycomotif:aglycon
+|?glycomotif:alignment
+|?glycomotif:reducingend
+|?glycomotif:collectioncount
+|?glycomotif:instancecount
+|?glycomotif:glytoucan
+|format=template
+|template=MotifTableRows
+|introtemplate=MotifTableIntro
+|outrotemplate=MotifTableOutro
+|link=none
+|limit=1000
+}}}}{{#if:{{{type|}}}||
+{{#ask:
+[[Category:Class]]
+[[glycomotif:level::Subtype]]
+[[glycomotif:type::{{{name|}}}]]
+|? |+width=300px
+|?glycomotif:definition=Definition
+|sort=glycomotif:id
+|headers=plain
+|mainlabel=-
+|format=broadtable
+|intro=<h2>Subtypes</h2>
+}}}}
+== Structures ==
+<div id="classification_para" data-prefix="{{PREFIX}}" data-page_id="{{PAGENAME}}" data-level="{{{level|}}}" data-name="{{#ifeq:|{{{level|}}}|Type|{{{name|}}}|{{{type|}}}}}"></div>
+<div id="glycomotif_classification_result"></div> 
+
+'''Download:'''
+{{SPARQLURL|
+PREFIX glycomotif: <http://glyomics.org/glycomotif#>
+
+SELECT ?classid ?classlevel ?classname ?structure_gtc_acc
+WHERE {
+    ?assignment glycomotif:classification ?classname .
+    ?assignment glycomotif:classification_level ?classlevel . 
+    ?assignment glycomotif:class_id ?classid .
+    ?assignment glycomotif:structure_accession ?structure_gtc_acc . 
+    {{#if:{{{type|}}}|?assignment glycomotif:class_id "{{PAGENAME}}"|
+    ?assignment glycomotif:classification_level "{{{level|}}}" .
+    ?assignment glycomotif:classification "{{{name|}}}"
+    }}
+}
+|{{{name|}}} Structures }}.
+
+{{#arraymap:{{{hasmotif|}}}|;|XXXXXX|{{#set:|glycomotif:hasmotif=XXXXXX}}}}
+{{#arraymap:{{{nothasmotif|}}}|;|XXXXXX|{{#set:|glycomotif:nothasmotif=XXXXXX}}}}
+{{#set:
+|glycomotif:id={{PAGENAME}}
+|glycomotif:name={{{name|}}}
+|glycomotif:level={{{level|}}}
+|glycomotif:definition={{{definition|}}}
+|glycomotif:type={{{type|}}}
+}}
+[[Category:Class]]
+</includeonly>

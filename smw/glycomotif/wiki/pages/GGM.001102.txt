@@ -14,7 +14,7 @@ LIN
 2:2o(4+1)3d
 3:3o(3+1)4d
 |glytoucan=G00013MO
-|keyword=Glycosphingolipid classification
+|keyword=Glycan classification;Glycosphingolipid classification
 |name=Glycosphingolipid Muco series
 |prefname=Glycosphingolipid Muco series
 |redend=true

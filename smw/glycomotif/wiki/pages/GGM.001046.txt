@@ -1,0 +1,26 @@
+{{Motif
+|accession=001046
+|aglycon=Asn
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:b-dglc-HEX-1:5
+2s:n-acetyl
+3b:b-dman-HEX-1:5
+4b:a-dman-HEX-1:5
+5b:b-dglc-HEX-1:5
+6s:n-acetyl
+LIN
+1:1d(2+1)2n
+2:1o(4+1)3d
+3:3o(3{{!}}6+1)4d
+4:4o(2{{!}}4{{!}}6+1)5d
+5:5d(2+1)6n
+|glytoucan=G84883DT
+|keyword=Glycan classification;N-glycan classification
+|name=N-glycan core, truncated
+|prefname=N-glycan core, truncated
+|redend=true
+|wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1122h-1b_1-5{{!)}}{{!(}}a1122h-1a_1-5{{!)}}/1-2-3-1/a4-b1_c1-b3{{!}}b6_d1-c2{{!}}c4{{!}}c6
+}}

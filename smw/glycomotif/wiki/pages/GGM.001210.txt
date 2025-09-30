@@ -16,7 +16,7 @@ LIN
 3:3d(2+1)4n
 4:3o(-1+1)5n
 |glytoucan=G09365IF
-|keyword=GAG classification
+|keyword=GAG classification;Glycan classification
 |name=GAG Core 5b
 |prefname=GAG Core 5b
 |redend=true

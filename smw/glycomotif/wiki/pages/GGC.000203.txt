@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001103
+|level=Subtype
+|name=Glycosphingolipid arthro series
+|type=Glycosphingolipid
+}}

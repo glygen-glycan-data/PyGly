@@ -13,7 +13,7 @@ LIN
 2:2d(2+1)3n
 |glytoucan=G85661BQ
 |human_OC1_enzymes=LFNG:2;MFNG:2;POFUT1:1;POFUT2:1;RFNG:2
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |mouse_OC1_enzymes=Lfng:2;Mfng:2;Pofut1:1;Pofut2:1;Rfng:2
 |name=O-Fucose
 O-Fucose Core 2

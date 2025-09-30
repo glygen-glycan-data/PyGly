@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001011; GGM.001012
+|level=Subtype
+|name=O-linked core 4
+|type=O-linked
+}}

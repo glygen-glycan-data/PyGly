@@ -1,0 +1,7 @@
+{{Class
+|definition=Paucimannose N-linked glycan subtype determined by core alignment to the N-Glycan core basic motif ([[GGM.001001]]). Addition of one Fucose, alditol-reduced reducing-end, and/or phosphate and sulfate substituents also permitted.
+|hasmotif=GGM.001001
+|level=Subtype
+|name=N-linked paucimannose
+|type=N-linked
+}}

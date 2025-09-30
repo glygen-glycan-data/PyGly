@@ -1,0 +1,5 @@
+{{Class
+|name=O-linked
+|level=Type
+|definition=There are many different subtypes for O-linked glycans, this type links them all, but is never assigned explicitly.
+}}

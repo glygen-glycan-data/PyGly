@@ -1,0 +1,8 @@
+{{Class
+|definition=N-linked monoantennary glycan subtype determined by core alignment to the N-Glycan core basic motif ([[GGM.001001]]) without one of its mannose residues. Motifs are checked to exclude alignments to the N-Glycan superclass core motif ([[GGM.001027]]).
+|hasmotif=GGM.001041
+|level=Subtype
+|name=N-linked monoantennary
+|nothasmotif=GGM.001027
+|type=N-linked
+}}

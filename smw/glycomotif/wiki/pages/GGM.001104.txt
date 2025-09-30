@@ -16,7 +16,7 @@ LIN
 3:3o(2+1)4d
 4:4d(2+1)5n
 |glytoucan=G00015MO
-|keyword=Glycosphingolipid classification
+|keyword=Glycan classification;Glycosphingolipid classification
 |name=Glycosphingolipid Mollu series
 |prefname=Glycosphingolipid Mollu series
 |redend=true

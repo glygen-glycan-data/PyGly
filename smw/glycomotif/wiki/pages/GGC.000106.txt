@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001031
+|level=Subtype
+|name=O-glucose core
+|type=O-linked
+}}

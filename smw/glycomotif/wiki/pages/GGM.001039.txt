@@ -37,7 +37,7 @@ LIN
 14:14d(2+1)15n
 |glytoucan=G33451SJ
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:4,7;DPAGT1:1;MGAT1:9,8,5,6;MGAT2:9,8,5,6;MGAT4A:9,8,5,6;MGAT4B:9,8,5,6;MGAT4C:9,8,5,6;MGAT5:9,8,5,6;MGAT5B:9,8,5,6
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:4,7;Dpagt1:1;Glt28d2:2;Mgat1:9,8,5,6;Mgat2:9,8,5,6;Mgat4a:9,8,5,6;Mgat4b:9,8,5,6;Mgat4c:9,8,5,6;Mgat5:9,8,5,6;Mgat5b:9,8,5,6
 |name=N-Glycan tetraantennary
 |prefname=N-Glycan tetraantennary

@@ -23,7 +23,7 @@ LIN
 7:1o(-1+1)8d
 |glytoucan=G68504BA
 |human_NA_enzymes=ALG13:3;ALG14:3;ALG1:4;ALG2:5,6;DPAGT1:1;FUT8:2
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:3;Alg14:3;Alg1:4;Alg2:5,6;Dpagt1:1;Fut8:2;Glt28d2:3
 |name=N-Glycan core, core-fucosylated
 |prefname=N-Glycan core, core-fucosylated

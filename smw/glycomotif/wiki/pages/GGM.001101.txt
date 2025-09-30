@@ -16,7 +16,7 @@ LIN
 3:3o(3+1)4d
 4:4d(2+1)5n
 |glytoucan=G00012MO
-|keyword=Glycosphingolipid classification
+|keyword=Glycan classification;Glycosphingolipid classification
 |name=Glycosphingolipid Isoglobo series
 |prefname=Glycosphingolipid Isoglobo series
 |redend=true

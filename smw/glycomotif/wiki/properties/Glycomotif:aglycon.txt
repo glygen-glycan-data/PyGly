@@ -2,6 +2,7 @@
 {{DISPLAYTITLE:glycomotif:aglycon}}
 [[Allows value::Cer]]
 [[Allows value::Ser/Thr]]
+[[Allows value::Trp]]
 [[Allows value::Asn]]
 [[Allows value::R]]
 [[Allows value::Other]]

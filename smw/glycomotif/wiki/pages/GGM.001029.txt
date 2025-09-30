@@ -10,6 +10,7 @@
 LIN
 1:1o(4+1)2d
 |glytoucan=G15541SE
+|keyword=Glycan classification
 |name=Milk Sugar Core
 Human milk oligosaccharide
 |prefname=Human milk oligosaccharide

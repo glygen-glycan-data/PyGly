@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001107
+|level=Subtype
+|name=Glycosphingolipid neo-lacto series
+|type=Glycosphingolipid
+}}

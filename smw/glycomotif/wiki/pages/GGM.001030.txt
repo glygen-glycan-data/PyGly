@@ -16,6 +16,7 @@ LIN
 3:3o(6+1)4d
 4:4o(2+1)5d
 |glytoucan=G46392BZ
+|keyword=Glycan classification
 |name=GPI anchor
 |prefname=GPI anchor
 |redend=true

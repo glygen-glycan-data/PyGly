@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001028
+|level=Subtype
+|name=O-GlcNAc
+|type=O-linked
+}}

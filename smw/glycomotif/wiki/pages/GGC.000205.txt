@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001105
+|level=Subtype
+|name=Glycosphingolipid gala series
+|type=Glycosphingolipid
+}}

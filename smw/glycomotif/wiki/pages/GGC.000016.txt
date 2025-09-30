@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001039
+|level=Subtype
+|name=N-linked tetraantennary
+|type=N-linked
+}}

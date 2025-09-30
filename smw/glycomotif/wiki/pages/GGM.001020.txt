@@ -11,7 +11,7 @@ LIN
 1:1o(3+1)2d
 |glytoucan=G08324ZK
 |human_OC1_enzymes=B3GLCT:2;POFUT1:1;POFUT2:1
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |mouse_OC1_enzymes=B3glct:2;Pofut1:1;Pofut2:1
 |name=O-Fucose
 O-Fucose Core 1

@@ -16,7 +16,7 @@ LIN
 3:3o(3+1)4d
 4:4d(2+1)5n
 |glytoucan=G99312NX
-|keyword=Glycosphingolipid classification
+|keyword=Glycan classification;Glycosphingolipid classification
 |name=Glycosphingolipid Globo series
 |prefname=Glycosphingolipid Globo series
 |redend=true

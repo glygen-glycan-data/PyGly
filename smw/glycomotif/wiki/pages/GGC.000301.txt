@@ -1,0 +1,6 @@
+{{Class
+|definition=GPI anchor type structures determined by core alignment with the GPI anchor reducing end motif. No subtypes are defined for GPI anchor structures.
+|hasmotif=GGM.001030
+|level=Type
+|name=GPI anchor
+}}

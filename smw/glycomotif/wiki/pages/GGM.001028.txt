@@ -11,7 +11,7 @@ LIN
 1:1d(2+1)2n
 |glytoucan=G49108TO
 |human_OC2_enzymes=EOGT:1;OGT:1
-|keyword=O-glycan classification
+|keyword=Glycan classification;O-glycan classification
 |mouse_OC2_enzymes=Eogt:1;Ogt:1
 |name=O-GlcNAc
 |prefname=O-GlcNAc

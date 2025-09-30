@@ -25,6 +25,7 @@ LIN
 8:5o(6+1)9d
 |glytoucan=G68395LV
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;DPAGT1:1;MGAT3:5
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Dpagt1:1;Glt28d2:2;Mgat3:5
 |name=N-glycan core, bisected
 |prefname=N-glycan core, bisected

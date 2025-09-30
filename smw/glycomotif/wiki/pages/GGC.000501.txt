@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001045
+|level=Subtype
+|name=C-linked Man
+|type=C-linked
+}}

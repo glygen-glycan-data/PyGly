@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001104
+|level=Subtype
+|name=Glycosphingolipid mollu series
+|type=Glycosphingolipid
+}}

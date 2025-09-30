@@ -1,0 +1,7 @@
+{{Class
+|definition=N-linked glycan type determined by core alignment of HexNAc(2)Hex(3) reducing-end motif. Structures with a core alignment to the N-Glycan core basic motif ([[GGM.001001]]) are excluded, these are matched by [[GGC.000001]]. Additional checks ensure carbon bonds, anomeric configurations, and specific monosaccharides are consistent with the N-glycan core motif.
+|hasmotif=GGM.001027
+|level=Type
+|name=N-linked
+|nothasmotif=GGM.001001
+}}

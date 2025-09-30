@@ -37,7 +37,7 @@ Edit the page to see the template text.
 |}}
 |-
 ! style="" | Name(s)
-| style="" | {{#arraymap:{{{name|}}}|\n|x|x|<br/>}}
+| style="" | {{#arraymap:{{{name|}}}|\\n|x|x|<br/>}}
 |-
 ! style="" | Keyword(s)
 | style="" | {{#arraymap:{{{keyword|}}}|;|x|[[glycomotif:haskeyword::x]]|<br/>}}
@@ -148,6 +148,6 @@ WHERE {
 }
 |All Motif Alignments}}.
 
-{{#arraymap:{{{name|}}}|\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|glycomotif:alignment=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{#set:|glycomotif:keywordcount={{KeywordCount|{{PAGENAME}}}}}}{{#arraymap:{{{dbxref|}}}|;|xxxxx|{{#set:|glycomotif:dbxref=xxxxx}}}}{{DONOTEDIT}}
+{{#arraymap:{{{name|}}}|\\n|x|{{#set:|glycomotif:name=x}}}}{{#arraymap:{{{alignment|}}}|,|x|{{#set:|glycomotif:alignment=x}}}}{{#set:|glycomotif:wurcs={{{wurcs|}}}}}{{#set:|glycomotif:glycoct={{{glycoct|}}}}}{{#set:|glycomotif:incollection={{{collection|}}}}}{{#set:|glycomotif:collectioncount={{CollectionCount1|{{{glytoucan|}}}}}}}{{#set:|glycomotif:instancecount={{CollectionCount2|{{{glytoucan|}}}}}}}{{#set:|glycomotif:topologycount={{TopologyCount|{{PAGENAME}}}}}}{{#set:|glycomotif:id={{{collection|}}}.{{{accession|}}}}}{{#set:|glycomotif:topologyrepr={{#ifeq:{{TopologyRepr|{{PAGENAME}}}}|{{PAGENAME}}|true|false}}}}{{#set:|glycomotif:keywordcount={{KeywordCount|{{PAGENAME}}}}}}{{#arraymap:{{{dbxref|}}}|;|xxxxx|{{#set:|glycomotif:dbxref=xxxxx}}}}{{DONOTEDIT}}
 [[Category:Motif]]
 </includeonly>

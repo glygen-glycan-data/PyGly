@@ -1,0 +1,7 @@
+{{Class
+|definition=Keratan sulfate GAGs which match their reducing-end motif must satisfy the basic criteria for the GAG type, but with stricter constraints on permitted monosaccharides: GlcNAc, Gal, or NeuAc with/without sulfation. The structures must also not be branched, and at most one NeuAc must be at the non-reducing-end of the structure.
+|hasmotif=GGM.001209; GGM.001210
+|level=Subtype
+|name=Keratan sulfate
+|type=GAG
+}}

@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001102
+|level=Subtype
+|name=Glycosphingolipid muco series
+|type=Glycosphingolipid
+}}

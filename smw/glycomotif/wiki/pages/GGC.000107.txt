@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001019
+|level=Subtype
+|name=O-mannose core
+|type=O-linked
+}}

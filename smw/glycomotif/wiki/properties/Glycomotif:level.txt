@@ -1,0 +1,5 @@
+[[Imported from::glycomotif:level]] 
+{{DISPLAYTITLE:glycomotif:level}}
+[[Allows value::Type]]
+[[Allows value::Subtype]]
+[[Category:Imported vocabulary]]

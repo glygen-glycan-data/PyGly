@@ -1,0 +1,7 @@
+{{Class
+|definition=N-linked truncated glycan subtype determined by core alignment to the N-Glycan core basic motif ([[GGM.001001]]) without its initial GlcNAc. See also [[GGC.000009]].
+|hasmotif=GGM.001022
+|level=Subtype
+|name=N-linked truncated
+|type=N-linked
+}}

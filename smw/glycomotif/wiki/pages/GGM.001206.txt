@@ -12,7 +12,7 @@ LIN
 1:1o(-1+1)2d
 2:2d(2+1)3n
 |glytoucan=G17755DI
-|keyword=GAG classification
+|keyword=GAG classification;Glycan classification
 |name=GAG Core 3b
 |prefname=GAG Core 3b
 |redend=true

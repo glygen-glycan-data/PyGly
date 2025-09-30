@@ -12,7 +12,7 @@ LIN
 1:1d(2+1)2n
 2:1o(-1+1)3d
 |glytoucan=G47726BP
-|keyword=GAG classification
+|keyword=GAG classification;Glycan classification
 |name=GAG Core 2a
 |prefname=GAG Core 2a
 |redend=true

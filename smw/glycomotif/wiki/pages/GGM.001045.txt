@@ -1,0 +1,15 @@
+{{Motif
+|prefname=C-Linked Mannose
+|name=C-Linked Mannose
+|keyword=Glycan classification
+|aglycon=Trp
+|redend=true
+|alignment=Whole-Glycan
+|accession=001045
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dman-HEX-1:5
+|glytoucan=G61491DK
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a1122h-1a_1-5{{!)}}/1/
+}}

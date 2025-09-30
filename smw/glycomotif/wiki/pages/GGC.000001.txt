@@ -1,0 +1,6 @@
+{{Class
+|definition=N-linked glycan type determined by core alignment of five residue N-Glycan reducing-end motif.
+|hasmotif=GGM.001001
+|level=Type
+|name=N-linked
+}}

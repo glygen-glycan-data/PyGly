@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001025
+|level=Subtype
+|name=N-linked arm-fucosylated
+|type=N-linked
+}}

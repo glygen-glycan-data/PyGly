@@ -1,0 +1,26 @@
+__NOEDITSECTION__
+== Types ==
+{{#ask:
+[[Category:Class]]
+[[glycomotif:level::Type]]
+[[glycomotif:id::!GGC.000002]]
+|? |+width=300px
+|?glycomotif:definition=Definition
+|sort=glycomotif:name,glycomotif:id
+|headers=plain
+|mainlabel=-
+|format=broadtable
+}}
+
+== Subtypes ==
+{{#ask:
+[[Category:Class]]
+[[glycomotif:level::Subtype]]
+|? |+width=300px
+|?glycomotif:type=Type
+|?glycomotif:definition=Definition
+|sort=glycomotif:type,glycomotif:id
+|headers=plain
+|mainlabel=-
+|format=broadtable
+}}

@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001040
+|level=Subtype
+|name=EGF type O-GlcNAc core
+|type=O-linked
+}}

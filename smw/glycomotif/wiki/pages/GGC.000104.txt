@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001044
+|level=Subtype
+|name=O-galactose
+|type=O-linked
+}}

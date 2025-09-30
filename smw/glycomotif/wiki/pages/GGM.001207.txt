@@ -12,7 +12,7 @@ LIN
 1:1d(2+1)2n
 2:1o(-1+1)3d
 |glytoucan=G20313XP
-|keyword=GAG classification
+|keyword=GAG classification;Glycan classification
 |name=GAG Core 4a
 |prefname=GAG Core 4a
 |redend=true

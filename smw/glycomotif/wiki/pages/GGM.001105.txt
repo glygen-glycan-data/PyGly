@@ -10,7 +10,7 @@
 LIN
 1:1o(4+1)2d
 |glytoucan=G00016MO
-|keyword=Glycosphingolipid classification
+|keyword=Glycan classification;Glycosphingolipid classification
 |name=Glycosphingolipid Gala series
 |prefname=Glycosphingolipid Gala series
 |redend=true

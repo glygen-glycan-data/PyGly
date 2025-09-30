@@ -1,0 +1,7 @@
+{{Class
+|definition=Xylose core GAGs that match their reducing-end motif must satisfy the basic criteria for the GAG type and may not be branched.
+|hasmotif=GGM.001215
+|level=Subtype
+|name=Xylose Core GAG
+|type=GAG
+}}

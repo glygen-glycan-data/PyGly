@@ -12,7 +12,7 @@ LIN
 1:1o(-1+1)2d
 2:2d(2+1)3n
 |glytoucan=G01966AZ
-|keyword=GAG classification
+|keyword=GAG classification;Glycan classification
 |name=GAG Core 6b
 |redend=true
 |sameas=GM.G01966AZ

@@ -1,0 +1,5 @@
+{{Class
+|name=C-linked
+|level=Type
+|definition=This glycan type is assigned implicitly by its subtypes.
+}}

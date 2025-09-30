@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001020; GGM.001021
+|level=Subtype
+|name=O-fucose core
+|type=O-linked
+}}

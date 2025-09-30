@@ -1,0 +1,7 @@
+{{Class
+|definition=Complex N-linked glycan subtype determined by core alignment with two antennae GlcNAc residues. Only valid carbon bond positions are enumerated: 2 or 4 on the alpha-3 Man arm; and 2, 4 or 6 on the alpha-6 Man arm.
+|hasmotif=GGM.001004
+|level=Subtype
+|name=N-linked complex
+|type=N-linked
+}}

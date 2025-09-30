@@ -27,7 +27,7 @@ LIN
 9:9o(3{{!}}6+1)10d
 |glytoucan=G19610CW
 |human_NA_enzymes=ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;ALG3:7;DPAGT1:1;MGAT1:5;MGAT4A:5;MGAT4B:5;MGAT4C:5
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |mouse_NA_enzymes=Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Alg3:7;Dpagt1:1;Glt28d2:2;Mgat1:5;Mgat4a:5;Mgat4b:5;Mgat4c:5
 |name=N-Glycan hybrid
 |prefname=N-Glycan hybrid

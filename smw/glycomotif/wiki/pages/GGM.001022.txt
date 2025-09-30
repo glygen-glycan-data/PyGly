@@ -16,7 +16,7 @@ LIN
 3:3o(3+1)4d
 4:3o(6+1)5d
 |glytoucan=G63560NE
-|keyword=N-glycan classification
+|keyword=Glycan classification;N-glycan classification
 |name=N-glycan core, truncated
 |prefname=N-glycan core, truncated
 |redend=true

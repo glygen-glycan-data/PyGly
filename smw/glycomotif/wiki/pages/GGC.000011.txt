@@ -1,0 +1,6 @@
+{{Class
+|hasmotif=GGM.001024
+|level=Subtype
+|name=N-linked core-fucosylated
+|type=N-linked
+}}

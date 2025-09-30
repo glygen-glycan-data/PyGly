@@ -12,7 +12,7 @@ LIN
 1:1o(-1+1)2d
 2:2d(2+1)3n
 |glytoucan=G99404VQ
-|keyword=GAG classification
+|keyword=GAG classification;Glycan classification
 |name=GAG Core 2b
 |prefname=GAG Core 2b
 |redend=true

@@ -22,7 +22,7 @@ This is the "Motif" form.
 {{#formlink:form=Keyword||autocomplete on category=Keyword|link text=Add new keyword.}}
 |-
 ! Aglycon: 
-| {{{field|aglycon|input type=dropdown|values=Asn,Cer,Other,R,Ser/Thr}}}<br/>Motif aglycon. Use R for motifs that are not intended to align only to the reducing end of glycan structures. 
+| {{{field|aglycon|input type=dropdown|values=Asn,Ser/Thr,Trp,Cer,R,Other}}}<br/>Motif aglycon. Use R for motifs that are not intended to align only to the reducing end of glycan structures. 
 |-
 ! Reducing-End Only?: 
 | {{{field|redend|input type=dropdown}}}<br/>Motif should align to the reducing end of glycan structures only. 
