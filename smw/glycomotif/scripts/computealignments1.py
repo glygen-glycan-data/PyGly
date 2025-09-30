@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python3.12
 
 import os
 import sys
@@ -116,7 +116,7 @@ class Worker(Process):
 
         self.nodes_cache.clear()
 
-        # self.log("Analyze",glycan_acc)
+        start = time.time()
     
         lines = []
         for macc,motif in sorted(self.motif_gobjs.items()):
@@ -190,6 +190,10 @@ class Worker(Process):
         
             line = [macc, glycan_acc] + res1
             lines.append(line)
+
+        # elapsed = time.time() - start
+        # if elapsed >= 10:
+        #     self.log("Analyze",glycan_acc,"elapsed: %.2f sec."%(elapsed,))
 
         return lines
 
