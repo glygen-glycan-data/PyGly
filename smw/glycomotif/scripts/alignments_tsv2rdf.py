@@ -1,9 +1,10 @@
-#!/bin/env python2
+#!/bin/env python3.12
 import os
 import sys
 import csv
 import copy
 import gzip
+import re
 import hashlib
 import rdflib
 import rdflib.plugins.serializers.rdfxml
@@ -18,6 +19,7 @@ def get_indices(col):
 
 
 motif_tsv = sys.argv[1]
+class_tsv = sys.argv[2]
 
 rdfgraph = rdflib.Graph()
 
@@ -40,7 +42,30 @@ ColumnMap = {
     "Nonreducing-End": ('Non_Red_Inclusive','Non_Red_Strict')
 }
 
-for line in csv.DictReader(gzip.open(motif_tsv,'rt'), dialect="excel-tab"):
+if motif_tsv.endswith('.gz'):
+    motif_tsv_handle = gzip.open(motif_tsv,'rt')
+else:
+    motif_tsv_handle = open(motif_tsv,'rt')
+
+headers = """
+Motif
+Structure
+Core_Inclusive
+Substructure_Inclusive
+Whole_Inclusive
+Non_Red_Inclusive
+Core_Strict
+Substructure_Strict
+Whole_Strict
+Non_Red_Strict
+""".split()
+
+for lineno,line in enumerate(csv.reader(motif_tsv_handle, dialect="excel-tab")):
+    if len(line) != 10:
+        continue
+    if not line[0].startswith('G'):
+        continue
+    line = dict(zip(headers,line))
     motifacc = line['Motif']
     acc = line['Structure']
     for alignment_type in ColumnMap:
@@ -65,6 +90,26 @@ for line in csv.DictReader(gzip.open(motif_tsv,'rt'), dialect="excel-tab"):
             rdfgraph.add((matched_rdf_node, glycomotifns["structure_residue_ids"], rdflib.Literal(indices)))
             rdfgraph.add((matched_rdf_node, glycomotifns["structure_link_ids"], rdflib.Literal(linkindices)))
             rdfgraph.add((matched_rdf_node, glycomotifns["strict"], rdflib.Literal(str(strict).lower(), datatype=rdflib.XSD.boolean)))
+
+if class_tsv.endswith('.gz'):
+    class_tsv_handle = gzip.open(class_tsv,'rt')
+else:
+    class_tsv_handle = open(class_tsv,'rt')
+
+for lineno,line in enumerate(csv.reader(class_tsv_handle, dialect="excel-tab")):
+    if len(line) != 4:
+        continue
+    acc = line[0]
+    level = line[1]
+    cls = line[2]
+    clsids = [ i.strip() for i in line[3].split(',') ]
+    for clsid in clsids:
+        class_id = "-".join(map(lambda s: re.sub(r'[^A-Z0-9a-z]','_',s),[clsid,level,acc]))
+        matched_rdf_node = glycomotifns[class_id]
+        rdfgraph.add((matched_rdf_node, glycomotifns["classification"], rdflib.Literal(cls)))
+        rdfgraph.add((matched_rdf_node, glycomotifns["classification_level"], rdflib.Literal(level)))
+        rdfgraph.add((matched_rdf_node, glycomotifns["class_id"], rdflib.Literal(clsid)))
+        rdfgraph.add((matched_rdf_node, glycomotifns["structure_accession"], rdflib.Literal(acc)))
 
 writer = rdflib.plugins.serializers.rdfxml.PrettyXMLSerializer(rdfgraph, max_depth=2)
 writer.serialize(sys.stdout.buffer)
