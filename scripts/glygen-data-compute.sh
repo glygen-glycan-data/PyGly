@@ -19,7 +19,7 @@ fi
 
 DATESTAMP=`date "+%Y%m%d"`
 FORCE=0
-NPROC=1
+NPROC=""
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         -d) DATESTAMP="$2"
@@ -35,10 +35,14 @@ while [[ "$#" -gt 0 ]]; do
     esac
 done
 
+if [ "$NPROC" != "" ]; then
+  NPROC="-j $NPROC"
+fi
+
 if [ $FORCE -eq 1 ]; then
     echo make -f $DIR/$BASE.mk DATESTAMP="$DATESTAMP" clean
-    make -f $DIR/$BASE.mk DATESTAMP="$DATESTAMP" clean
+    make -f $DIR/$BASE.mk -j 1 DATESTAMP="$DATESTAMP" clean
 fi
 
 echo make -f $DIR/$BASE.mk DATESTAMP="$DATESTAMP" $@
-make -f $DIR/$BASE.mk -j $NPROC DATESTAMP="$DATESTAMP" $@
+make -f $DIR/$BASE.mk $NPROC DATESTAMP="$DATESTAMP" $@

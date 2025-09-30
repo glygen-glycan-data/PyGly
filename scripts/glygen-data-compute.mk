@@ -8,16 +8,11 @@ SHELL = /bin/bash -o pipefail
 .DELETE_ON_ERROR:
 
 .PHONY: all startall stage1 stage2 stage3 stage4 stage5 glycomotif_nocache \
-        stage1start stage2start stage3start stage4start stage5start
-
-GLYCOMOTIF=$(ROOT)/PyGly/smw/glycomotif
-GLYCOMOTIFSCR=$(GLYCOMOTIF)/scripts
-GLYCOMOTIFDATA=$(GLYCOMOTIF)/data
-
-GLYCOMOTIFDEV_ALIGMENTS=$(GLYCOMOTIFDATA)/computealignments-dev.$(DATESTAMP).tsv
-GLYCOMOTIFDEV_ALIGMENTS_LOG=$(GLYCOMOTIFDATA)/computealignments-dev.$(DATESTAMP).log
-GLYCOMOTIFDEV_CLASSIFICATIONS=$(GLYCOMOTIFDATA)/computeclass-dev.$(DATESTAMP).tsv
-GLYCOMOTIFDEV_RDF=$(GLYCOMOTIFDATA)/glycomotifdev_motifalign.$(DATESTAMP).rdf.gz
+        stage1start stage2start stage3start stage4start stage5start \
+		glycomotifdev_clean glycomotifprod_clean glycomotif_clean \
+		gnome_clean stage1_clean stage2_clean stage3_clean \
+		stage4_clean stage5_clean clean glycotreedev_clean glycotreeproc_clean \
+		glycomotif_clean glycotree_clean glymage_clean glycandata_clean
 
 all: startall stage1 stage2 stage3 stage4 stage5
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
@@ -28,17 +23,26 @@ startall:
 stage1start:
 	@echo "[`$(TIMESTAMP_CMD)`]: Start stage1"
 
-stage2start:
+stage2start: stage1
 	@echo "[`$(TIMESTAMP_CMD)`]: Start stage2"
 
-stage3start:
+stage3start: stage2
 	@echo "[`$(TIMESTAMP_CMD)`]: Start stage3"
 
-stage4start:
+stage4start: stage3 
 	@echo "[`$(TIMESTAMP_CMD)`]: Start stage4"
 
-stage5start:
+stage5start: stage4
 	@echo "[`$(TIMESTAMP_CMD)`]: Start stage5"
+
+GLYCOMOTIF=$(ROOT)/PyGly/smw/glycomotif
+GLYCOMOTIFSCR=$(GLYCOMOTIF)/scripts
+GLYCOMOTIFDATA=$(GLYCOMOTIF)/data
+
+GLYCOMOTIFDEV_ALIGMENTS=$(GLYCOMOTIFDATA)/computealignments-dev.$(DATESTAMP).tsv
+GLYCOMOTIFDEV_ALIGMENTS_LOG=$(GLYCOMOTIFDATA)/computealignments-dev.$(DATESTAMP).log
+GLYCOMOTIFDEV_CLASSIFICATIONS=$(GLYCOMOTIFDATA)/computeclass-dev.$(DATESTAMP).tsv
+GLYCOMOTIFDEV_RDF=$(GLYCOMOTIFDATA)/glycomotifdev_motifalign.$(DATESTAMP).rdf.gz
 
 glycomotif_nocache:
 	- cd $(GLYCOMOTIFSCR); \
@@ -59,7 +63,7 @@ $(GLYCOMOTIFDEV_CLASSIFICATIONS): $(GLYCOMOTIFDEV_ALIGMENTS)
 $(GLYCOMOTIFDEV_RDF): $(GLYCOMOTIFDEV_ALIGMENTS) $(GLYCOMOTIFDEV_CLASSIFICATIONS)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOMOTIFSCR) && \
-	./alignments_tsv2rdf.py $^ | gzip -9 -c > $@
+	   ./alignments_tsv2rdf.py $^ | gzip -9 -c > $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 GLYCOMOTIFPROD_ALIGMENTS=$(GLYCOMOTIFDATA)/computealignments-prod.$(DATESTAMP).tsv
@@ -83,8 +87,18 @@ $(GLYCOMOTIFPROD_CLASSIFICATIONS): $(GLYCOMOTIFPROD_ALIGMENTS)
 $(GLYCOMOTIFPROD_RDF): $(GLYCOMOTIFPROD_ALIGMENTS) $(GLYCOMOTIFPROD_CLASSIFICATIONS)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOMOTIFSCR); \
-	./alignments_tsv2rdf.py $^ | gzip -9 -c > $@
+	    ./alignments_tsv2rdf.py $^ | gzip -9 -c > $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
+
+glycomotifdev_clean:
+	rm -f $(GLYCOMOTIFDEV_ALIGMENTS) $(GLYCOMOTIFDEV_ALIGMENTS_LOG) $(GLYCOMOTIFDEV_CLASSIFICATIONS) $(GLYCOMOTIFDEV_RDF)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+glycomotifprod_clean:
+	rm -f $(GLYCOMOTIFPROD_ALIGMENTS) $(GLYCOMOTIFPROD_ALIGMENTS_LOG) $(GLYCOMOTIFPROD_CLASSIFICATIONS) $(GLYCOMOTIFPROD_RDF)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+glycomotif_clean: glycomotifdev_clean glycomotifprod_clean
 
 GNOMESCR=$(ROOT)/PyGly/scripts
 GNOMERAW=$(GNOMESCR)/subsumption.$(DATESTAMP).txt
@@ -95,7 +109,14 @@ $(GNOMERAW):
 	./gnome_compute.py > $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
+gnome_clean:
+	rm -f $(GNOMERAW)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
 stage1: stage1start glycomotif_nocache $(GLYCOMOTIFDEV_RDF) $(GLYCOMOTIFPROD_RDF) $(GNOMERAW)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+stage1_clean: glycomotif_clean gnome_clean
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 
 #
@@ -135,6 +156,10 @@ $(GLYCOMOTIFSMW_LOADED): $(GLYCOMOTIFPROD_RDF)
 stage2: stage1 stage2start $(GLYCOMOTIFDEVSMW_LOADED) $(GLYCOMOTIFSMW_LOADED)
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 
+stage2_clean:
+	rm -f $(GLYCOMOTIFDEVSMW_LOADED) $(GLYCOMOTIFSMW_LOADED)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
 #
 # STAGE3: REBUILD GLYCOTREE 
 #
@@ -146,10 +171,10 @@ GLYCOTREEDEV_DATA=$(GLYCOTREEDEV)/data
 GLYCOTREE=$(ROOT)/glycoTree
 GLYCOTREE_DATA=$(GLYCOTREE)/data
 
-GLYCOTREEDEV_DATADL=$(GLYCOTREEDEV_DATA)/glycotree_data.$(DATESTAMP).done
-GLYCOTREEDEV_BUILD=$(GLYCOTREEDEV)/glycotree_build.$(DATESTAMP).done
-GLYCOTREEDEV_POPULATE=$(GLYCOTREEDEV)/glycotree_populate.$(DATESTAMP).done
-GLYCOTREEDEV_EXPORTS=$(GLYCOTREEDEV)/glycotree_exports.$(DATESTAMP).done
+GLYCOTREEDEV_DATADL=$(GLYCOTREEDEV_DATA)/glycotreedev_data.$(DATESTAMP).done
+GLYCOTREEDEV_BUILD=$(GLYCOTREEDEV)/glycotreedev_build.$(DATESTAMP).done
+GLYCOTREEDEV_POPULATE=$(GLYCOTREEDEV)/glycotreedev_populate.$(DATESTAMP).done
+GLYCOTREEDEV_EXPORTS=$(GLYCOTREEDEV)/glycotreedev_exports.$(DATESTAMP).done
 
 GLYCOTREE_DATADL=$(GLYCOTREE_DATA)/glycotree_data.$(DATESTAMP).done
 GLYCOTREE_BUILD=$(GLYCOTREE)/glycotree_build.$(DATESTAMP).done
@@ -160,60 +185,84 @@ GLYCOTREE_EXPORTS=$(GLYCOTREE)/glycotree_exports.$(DATESTAMP).done
 $(GLYCOTREEDEV_DATADL): $(GLYCOMOTIFDEVSMW_LOADED)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREEDEV_DATA) && \
-	./dl.sh >& dl.log && \
+	    ./dl.sh >& dl.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREEDEV_BUILD): $(GLYCOTREEDEV_DATADL)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREEDEV) && \
-	./build_all.sh clear >& ./build_all.log && \
+	    ./build_all.sh clear >& ./build_all.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREEDEV_POPULATE): $(GLYCOTREEDEV_BUILD)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREEDEV) && \
-	ssh trypsin "cd $(GLYCOTREEDEV); ./scripts/populate.sh" && \
+	    ssh trypsin "cd $(GLYCOTREEDEV); ./scripts/populate.sh"
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREEDEV_EXPORTS): $(GLYCOTREEDEV_POPULATE)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREEDEV) && \
-	ssh trypsin "cd $(GLYCOTREEDEV); ./scripts/exports.sh" && \
+	    ssh trypsin "cd $(GLYCOTREEDEV); ./scripts/exports.sh"
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREE_DATADL): $(GLYCOMOTIFSMW_LOADED)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREE_DATA) && \
-	./dl.sh >& dl.log && \
+	    ./dl.sh >& dl.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREE_BUILD): $(GLYCOTREE_DATADL)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREE) && \
-	./build_all.sh clear >& ./build_all.log && \
+	    ./build_all.sh clear >& ./build_all.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREE_POPULATE): $(GLYCOTREE_BUILD)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREE) && \
-	ssh trypsin "cd $(GLYCOTREE); ./scripts/populate.sh" && \
+	    ssh trypsin "cd $(GLYCOTREE); ./scripts/populate.sh"
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOTREE_EXPORTS): $(GLYCOTREE_POPULATE)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREE) && \
-	ssh trypsin "cd $(GLYCOTREE); ./scripts/exports.sh" && \
+	    ssh trypsin "cd $(GLYCOTREE); ./scripts/exports.sh"
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 stage3: stage2 stage3start $(GLYCOTREEDEV_EXPORTS) $(GLYCOTREE_EXPORTS)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+GLYCOTREEDEV_DATADL=$(GLYCOTREEDEV_DATA)/glycotreedev_data.$(DATESTAMP).done
+GLYCOTREEDEV_BUILD=$(GLYCOTREEDEV)/glycotreedev_build.$(DATESTAMP).done
+GLYCOTREEDEV_POPULATE=$(GLYCOTREEDEV)/glycotreedev_populate.$(DATESTAMP).done
+GLYCOTREEDEV_EXPORTS=$(GLYCOTREEDEV)/glycotreedev_exports.$(DATESTAMP).done
+
+GLYCOTREE_DATADL=$(GLYCOTREE_DATA)/glycotree_data.$(DATESTAMP).done
+GLYCOTREE_BUILD=$(GLYCOTREE)/glycotree_build.$(DATESTAMP).done
+GLYCOTREE_POPULATE=$(GLYCOTREE)/glycotree_populate.$(DATESTAMP).done
+GLYCOTREE_EXPORTS=$(GLYCOTREE)/glycotree_exports.$(DATESTAMP).done
+
+glycotreedev_clean:
+	rm -f $(GLYCOTREEDEV_DATADL) $(GLYCOTREEDEV_BUILD) $(GLYCOTREEDEV_POPULATE) $(GLYCOTREEDEV_EXPORTS)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+	
+glycotreeprod_clean:
+	rm -f $(GLYCOTREE_DATADL) $(GLYCOTREE_BUILD) $(GLYCOTREE_POPULATE) $(GLYCOTREE_EXPORTS)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+glycotree_clean: glycotreedev_clean glycotreeprod_clean
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+stage3_clean: glycotree_clean
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 
 APIFRAMEWORK=$(ROOT)/APIFramework
@@ -223,11 +272,18 @@ GLYMAGE_IMAGES=$(GLYMAGE_SRC)/glymage_images.$(DATESTAMP).done
 $(GLYMAGE_IMAGES): $(GLYCOTREE_POPULATE) $(GLYCOTREEDEV_POPULATE) $(GLYCOMOTIFSMW_LOADED) $(GLYCOMOTIFDEVSMW_LOADED)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
 	cd $(GLYMAGE_SRC) && \
-	./makeimages.sh >& makeimages.log && \
+	    ./makeimages.sh >& makeimages.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete"
 
 stage4: stage3 stage4start $(GLYMAGE_IMAGES)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+glymage_clean:
+	rm -f $(GLYMAGE_IMAGES)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+stage4_clean: glymage_clean
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 
 GLYCANDATA=$(ROOT)/PyGly/smw/glycandata
@@ -238,35 +294,47 @@ GLYCANDATA_ACCS=$(GLYCANDATA_SCR)/glycandata_accs.$(DATESTAMP).done
 GLYCANDATA_BUILD=$(GLYCANDATA_SCR)/glycandata_build.$(DATESTAMP).done
 GLYCANDATA_EXPORT=$(GLYCANDATA_SCR)/glycandata_export.$(DATESTAMP).done
 
-$(GLYCANDATA_IMAGES): $(GLYMAGE_IMAGES)
+$(GLYCANDATA_IMAGES): $(GLYMAGE_IMAGES) $(GLYCANDATA_ACCS)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
 	cd $(GLYCANDATA_SCR) && \
-	./makeimages1.sh >& makeimages1.log && \
+	    ./makeimages1.sh >& makeimages1.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete"
 
 $(GLYCANDATA_ACCS): $(GNOMERAW)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
 	cp $< $(GLYCANDATA_DATA)/gnome_subsumption_raw.txt
-	cd $(GLYCANDATA_SCR) && \
-	./collaccs.sh --nolog -d $(DATESTAMP) -f >& collaccs.log && \
+	+ cd $(GLYCANDATA_SCR) && \
+	    ./collaccs.sh --nolog -d $(DATESTAMP) >& collaccs.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete"
 
-$(GLYCANDATA_BUILD): $(GLYCANDATA_ACCS)
+$(GLYCANDATA_BUILD): $(GLYCANDATA_ACCS) $(GNOMERAW)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
-	cd $(GLYCANDATA_SCR) && \
-	./build.sh --nolog -d $(DATESTAMP) -f >& build.log && \
+	+ cd $(GLYCANDATA_SCR) && \
+	    ./build.sh --nolog -d $(DATESTAMP) >& build.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete"
 
 $(GLYCANDATA_EXPORT): $(GLYCANDATA_BUILD) $(GLYCANDATA_IMAGES)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
 	cd $(GLYCANDATA_SCR) && \
-	./exports.sh cache >& exports.log && \
-	cp -f images.tsv images-*tbz* ../export && \
+	    cp -f images.tsv images-*tbz* ../export && \
+	    ./exports.sh cache >& exports.log
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete"
 
 stage5: stage4 stage5start $(GLYCANDATA_EXPORT)
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+glycandata_clean:
+	rm -f $(GLYCANDATA_IMAGES) $(GLYCANDATA_ACCS) $(GLYCANDATA_BUILD) $(GLYCANDATA_EXPORT)
+	cd $(GLYCANDATA_SCR) && ./collaccs.sh --nolog -d $(DATESTAMP) -n 1 clean
+	cd $(GLYCANDATA_SCR) && ./build.sh --nolog -d $(DATESTAMP) -n 1 clean
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+stage5_clean: glycandata_clean
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
+
+clean: stage1_clean stage2_clean stage3_clean stage4_clean stage5_clean
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
