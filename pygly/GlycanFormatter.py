@@ -1189,9 +1189,12 @@ class IUPACParserAbstract():
         undetroots = []
         incore = True
 
+        # print(self.__class__.__name__)
+        # print(seq)
         # Process
         regexRes = self.regexSearch(seq)
         for i, monoinfo in enumerate(regexRes):
+            # print(monoinfo)
             mono = self.monoAssemble(monoinfo)
             mono.set_id(i+1)
             if monoinfo.get('undetroot',False):
@@ -1303,17 +1306,25 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
     example = "Man(a1-3/6)[Man(a1/3/5-?)Gal(b1-3)]GalNAc(?1-"
 
     alias = "GTCC:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<mono>(Glc|Gal|Man|Fuc|Xyl)([a-zA-Z5926,]+)?)(?P<link>(\([ab?]?[1-9?](/[1-9])*-([1-9?](/[1-9])*\))?))(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<bpe>(\[)*)(?P<mono>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|dHex)([a-zA-Z5926,?]+)?)(?P<link>(\([ab?]?[1-9?](/[1-9])*-([1-9?](/[1-9])*\))?))?(?P<bps>(\])*)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
         searchres = list(reversed(searchres))
 
+        # print(seq)
+        # print("\n".join(map(str,searchres)))
+        # print()
+
         res = []
         for s in searchres:
             res0 = copy.deepcopy(self.regexResTemplate)
+            # print(s["link"])
 
-            anomersl = s["link"][1]
+            if not s["link"]:
+                anomersl = "?"
+            else:
+                anomersl = s["link"][1] 
             if anomersl == "a":
                 anomer = "Anomer.alpha"
             elif anomersl == "b":
@@ -1323,8 +1334,13 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
             else:
                 raise IUPACUnsupportedAnomer(s["link"], anomersl)
 
-            link = s["link"].lstrip("(").rstrip(")")
-            link = link[1:].split("-")
+            if s["link"]:
+                link = s["link"].lstrip("(").rstrip(")")
+                link = link[1:].split("-")
+            else:
+                link = (None,None)
+            if len(link) == 1:
+                link = (link[0],None)
             link = list(map(lambda x: None if x == "" else x, link))
             link = list(map(lambda x: None if x == "?" else x, link))
 
@@ -1335,7 +1351,8 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
             res0["sublink"] = None
             res0["branchpointstart"] = len(s["bps"])
             res0["branchpointend"] = len(s["bpe"])
-        return searchres
+            res.append(res0)
+        return res
 
 class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
     description = "Usually used by GlyTouCan.org"
