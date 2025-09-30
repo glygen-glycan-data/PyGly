@@ -2,14 +2,14 @@
 from __future__ import print_function
 from past.builtins import basestring
 
-__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword", "Enzyme",
+__all__ = [ "GlycoMotifWiki", "Collection", "Motif", "Publication", "Keyword", "Enzyme", "Class",
             "GlyTouCanMotif", "AllMotif", "CCRCMotif", "GlycoEpitopeMotif",
             "GlydinMotif",
             "GlydinCummingsMotif", "GlydinHayesMotif", "GlydinCermavMotif",
             "GlydinSugarbindMotif", "GlydinBioligoMotif",
             "UniCarbMotif", "GlyGenMotif", "GlyGenGlycanDict"]
 
-import sys
+import sys, re
 
 from smw import SMW
 
@@ -63,7 +63,7 @@ class Motif(SMW.SMWClass):
 
         # name is newline separated
         if isinstance(data.get('name'),basestring):
-            data['name'] = filter(None,map(lambda s: s.strip(),data.get('name').split('\n')))
+            data['name'] = list(filter(None,map(lambda s: s.strip(),data.get('name').split('\n'))))
 
         # aglycon is comma separated, with specific possible values, sorted, so behaves as set
         if isinstance(data.get('aglycon'),basestring):
@@ -292,6 +292,43 @@ class Keyword(SMW.SMWClass):
         assert kwargs.get('keyword')
         return kwargs.get('keyword')
 
+class Class(SMW.SMWClass):
+    template = 'Class'
+    
+    @staticmethod
+    def pagename(**kwargs):
+        assert kwargs.get('id')
+        return kwargs.get('id')
+
+    def toPython(self,data):
+        data = super(Class,self).toPython(data)
+
+        definition = data.get('definition',None)
+        if definition is not None and re.search(r'[[][[]GG[CM].\d{6}[]][]]',definition):
+            data['definition'] = re.sub(r'[[][[](GG[CM].\d{6})[]][]]',r'\1',definition)
+
+        for key in ('hasmotif','nothasmotif'):
+            if isinstance(data.get(key),basestring):
+                data[key] = list(filter(None,map(lambda s: s.strip(),data.get(key).split(';'))))
+
+        return data
+
+    def toTemplate(self,data):
+        data = super(Class,self).toTemplate(data)
+
+        definition = data.get('definition',None)
+        if definition is not None:
+            definition = self.smwunescape(definition)
+            if re.search(r'\bGG[CM].\d{6}\b',definition):
+                data['definition'] = re.sub(r'\b(GG[CM].\d{6})\b',r'[[\1]]',definition)
+
+        for key in ('hasmotif','nothasmotif'):
+            if key in data:
+                data[key] = '; '.join(sorted(map(str.strip,map(str,data.get(key,'')))))
+
+        return data
+
+
 class Enzyme(SMW.SMWClass):
     template = 'Enzyme'
 
@@ -333,17 +370,51 @@ class GlycoMotifWiki(SMW.SMWSite):
             return super(GlycoMotifWiki,self).get(pagename)
         return super(GlycoMotifWiki,self).get(Motif.pagename(collection=collection,accession=accession))
 
-    def itermotif(self,collection=None):
+    def itermotif(self,collection=None,regex=None):
         if collection != None and not isinstance(collection,basestring):
             collection = collection.id
         if collection:
-            regex = r'^%s\.'%(collection,)
+            regex_ = r'^%s\.'%(collection,)
+        elif regex:
+            regex_ = regex
         else:
-            regex = r'^[A-Z]{2,4}\.'
-        for page in self.iterpages(regex=regex,include_categories=['Motif']):
+            regex_ = r'^[A-Z]{2,4}\.'
+        for page in self.iterpages(regex=regex_,include_categories=['Motif']):
             m = self.get(page.name)
             if not collection or m.get('collection') == collection:
                 yield m
+
+    def itermotifgtcwurcs(self,collection=None,regex=None):
+        if collection is not None:
+            regex = re.compile(r'^%s\.'%(collection,))
+        elif regex is not None:
+            regex = re.compile(regex)
+        for r in self.iterask('[[glycomotif:glytoucan::+]] |?glycomotif:glytoucan |?glycomotif:wurcs'):
+            if regex is not None and not regex.search(r['id']):
+                continue
+            yield r['id'],r['glycomotif:glytoucan'][0],r['glycomotif:wurcs'][0]
+
+    def itermotifgtcalign(self,collection=None,regex=None):
+        if collection is not None:
+            regex = re.compile(r'^%s\.'%(collection,))
+        elif regex is not None:
+            regex = re.compile(regex)
+        for r in self.iterask('[[glycomotif:glytoucan::+]] |?glycomotif:glytoucan |?glycomotif:alignment'):
+            if regex is not None and not regex.search(r['id']):
+                continue
+            for al in r['glycomotif:alignment']:
+                yield r['id'],r['glycomotif:glytoucan'][0],al
+
+    def itermotifgtc(self,collection=None,regex=None):
+        if collection is not None:
+            regex = re.compile(r'^%s\.'%(collection,))
+        if regex is not None:
+            regex = re.compile(regex)
+        for r in self.iterproperty('glycomotif:glytoucan'):
+            c,a = r[0].split('.')
+            if regex is not None and not regex.search(r[0]):
+                continue
+            yield r
 
     def itercollection(self):
         for pagename in self.itercat('Collection'):
@@ -354,6 +425,11 @@ class GlycoMotifWiki(SMW.SMWSite):
             e = self.get(pagename)
             if not species or e.get('species') == species:
                 yield e
+
+    def iterclass(self):
+        for pagename in self.itercat('Class'):
+            yield self.get(pagename)
+
 
 if __name__ == "__main__":
     import sys, os
