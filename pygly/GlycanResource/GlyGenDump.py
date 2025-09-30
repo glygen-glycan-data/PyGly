@@ -245,6 +245,7 @@ class GlyGenSourceFile(WebServiceResource):
         OGluC
         Literature
         Diabetes
+        TwinsUK
         BiomarkerDB
         EMBL
         GlyProtDB
@@ -597,18 +598,32 @@ class TableMakerSourceFile(GlyGenSourceFile):
         GLY_001408
         GLY_001408
         GLY_001408
+        GLY_001408
+        GLY_001408
+        GLY_001408
+        GLY_001408
+        GLY_001408
+        GLY_001408
+        GLY_001408
     """
     sections = """
         TD1468274
-	    TD1127346
-	    TD1040297
-	    TD2415036
-	    TD2986138
-	    TD4951079
-	    TD7181079
-	    TD7732158
-	    TD8189974
-	    TD8741863
+	TD1127346
+	TD1040297
+	TD2415036
+	TD2986138
+	TD4951079
+	TD7181079
+	TD7732158
+	TD8189974
+	TD8741863
+        TD4253352
+        TD5664582
+        TD2727671
+        TD6640575
+        TD4964642
+        TD7680256
+        TD1131507
     """
     taxidfield = 'Species'
     pmidfield = 'Evidence'
@@ -713,6 +728,21 @@ class DiabetesSourceFile(GlyGenSourceFile):
 
     def rows(self,section):
         return self.csvrows("export_files",filename="diabetes_glycomic_mapping")
+
+class TwinsUKSourceFile(GlyGenSourceFile):
+    glygen_source = "TwinsUK"
+    source = "twinsuk"
+    sections = "twinsuk_plasma_nglycan_mapping"
+    idfield = "GlyToucan ID"
+    gtcfield = "GlyToucan ID"
+    taxidfixed = "9606"
+    glygen_sourceid = "GLY_001461"
+    pmidfield = "PMID"
+    tissuefield = "Tissue ID"
+
+    def rows(self,section):
+        for row in self.tsvrows(section=self.source,filename=section):
+            yield row
 
 class BiomarkerDBSourceFile(GlyGenSourceFile):
     source = "biomarkerdb"
