@@ -535,8 +535,10 @@ class GlycoCTFormat(GlycanFormatter):
 
         state = ""
         seen = set()
+        if '\\n' in s:
+            s = s.replace('\\n','\n')
 
-        for lineno,l in enumerate(s.splitlines()):
+        for lineno,l in enumerate(s.split()):
             l = l.strip()
             if not l:
                 continue
