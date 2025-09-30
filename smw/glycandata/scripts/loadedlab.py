@@ -5,10 +5,18 @@ from collections import defaultdict
 
 import findpygly
 from pygly.GlycanResource import GlyTouCanNoCache, GlyTouCan, GlyTouCanNoPrefetch, Glycam
-from pygly.Monosaccharide import Linkage, Config, Stem, SuperClass
+from pygly.Monosaccharide import Linkage, Config, Stem, SuperClass, Anomer
+from pygly.GlycanFormatter import IUPACLinearFormat, IUPACParserGlyTouCanExtended, GlycanParseError, IUPACParserGlyTouCanCondensed
+from pygly.alignment import GlycanEqual
+from pygly.manipulation import Archetype
 
 gtc = GlyTouCanNoCache();
 glycamres = Glycam();
+iupaclf = IUPACLinearFormat();
+iupacgtce = IUPACParserGlyTouCanExtended()
+iupacgtcc = IUPACParserGlyTouCanCondensed()
+glyeq = GlycanEqual()
+arch = Archetype()
 
 acc2hash = defaultdict(set)
 
@@ -36,6 +44,7 @@ for g in accessions():
     start = time.time()
 
     glycan = g.getGlycan()
+    # print(g.get('accession'))
 
     if not g.has_annotations(property='GlycoCT',type='Sequence',source='GlyTouCan'):
         if glycan and not g.has_annotations(property='GlycoCT',type='Sequence',source='EdwardsLab'):
@@ -103,15 +112,27 @@ for g in accessions():
         g.delete_annotations(property="GLYCAM-IUPAC-Valid",type='Sequence',source='EdwardsLab')
         traceback.print_exc()
 
+    # composition IUPAC sequences
+    g.delete_annotations(property='IUPAC',type='Sequence',source='EdwardsLab')
     if glycan and not glycan.has_root():
         g.delete_annotations(property="IUPAC",type="Sequence")
 
-    if g.has_annotations(property='IUPAC',type='Sequence',source='GlyCosmos'):
-        seq = g.get_annotation_value(property='IUPAC',type='Sequence',source='GlyCosmos')
-        if ',' not in seq:
+    if g.has_annotations(property='IUPAC-Extended',type='Sequence',source='GlyCosmos'):
+        seq = g.get_annotation_value(property='IUPAC-Extended',type='Sequence',source='GlyCosmos')
+        if glycan and not glycan.repeated() and not glycan.undetermined() and glycan.has_root():
+            # print(g.get('accession'),seq)
+            seq0 = seq
+            g0 = None
+            try:
+                g0 = iupacgtce.toGlycan(seq0)
+            except:
+                pass #raise
+
+            # remove unicode characters
+            seq = seq.replace(u'\u2192','->').replace(u'\u2194','<->').replace(u'\u03b1','alpha').replace(u'\u03b2','beta')
             # These rules supplied by Sriram Neelamegham <neel@buffalo.edu>
             seq=seq.replace('(','-(')           # sometimes '-' is missing before '('
-            seq=seq.replace('--','-')           # sometimes '-' is missing before '('
+            seq=seq.replace('--','-')           # sometimes double '-'
             seq=seq.replace(')-D',')-?-D')      # sometimes bond type is missing
             seq=seq.replace(')?',')-?')         # sometimes bond type is missing
             seq=seq.replace(')-L',')-?-L')      # sometimes bond type is missing
@@ -120,8 +141,65 @@ for g in accessions():
             seq=seq.replace(']?',']-?')         # sometimes bond type is missing
             seq=seq.replace(')alpha',')-alpha') # sometimes '-' missing before bond
             seq=seq.replace(')beta',')-beta')   # sometimes '-' missing before bond 
-            g.set_annotation(value=seq,property='IUPAC',type='Sequence',source='EdwardsLab')
+            
+            # print(g.get('accession'),seq)
+            g1 = None 
+            try:
+                g1 = iupacgtce.toGlycan(seq)
+            except:
+                pass #raise
+            # if g1:
+            #     print(g1.root())
+            if not g1 or not glyeq.eq(g1,glycan) or not g0 or not glyeq.eq(g0,glycan):
+                g.delete_annotations(property='IUPAC-Extended',type='Sequence',source='EdwardsLab')
+            else:
+                g.set_annotation(value=seq,property='IUPAC-Extended',type='Sequence',source='EdwardsLab')
+        else:
+            g.delete_annotations(property='IUPAC-Extended',type='Sequence',source='EdwardsLab')
+    else:
+        g.delete_annotations(property='IUPAC-Extended',type='Sequence',source='EdwardsLab')
 
+    if g.has_annotations(property='IUPAC-Condensed',type='Sequence',source='GlyCosmos'):
+        seq = g.get_annotation_value(property='IUPAC-Condensed',type='Sequence',source='GlyCosmos')
+        if glycan and not glycan.repeated() and not glycan.undetermined() and glycan.has_root():
+            g1 = None 
+            try:
+                g1 = iupacgtcc.toGlycan(seq)
+            except:
+                pass #raise
+            # if g1:
+            #     print(g1.root())
+            if not g1 or not glyeq.eq(g1,glycan):
+                g.delete_annotations(property='IUPAC-Condensed',type='Sequence',source='EdwardsLab')
+            else:
+                g.set_annotation(value=seq,property='IUPAC-Condensed',type='Sequence',source='EdwardsLab')
+        else:
+            g.delete_annotations(property='IUPAC-Condensed',type='Sequence',source='EdwardsLab')
+    else:
+        g.delete_annotations(property='IUPAC-Condensed',type='Sequence',source='EdwardsLab')
+
+    if glycan and not glycan.repeated() and not glycan.undetermined() and glycan.has_root():
+       try:
+           iupac1 = iupaclf.toStr(glycan)
+           g1 = iupaclf.toGlycan(iupac1)
+           if not glyeq.eq(g1,glycan):
+               # print(glycan.glycoct())
+               # print(g1.glycoct())
+               # print(iupac1)
+               iupac1 = None
+       except KeyError:
+           # print("here4")
+           iupac1 = None
+       except GlycanParseError:
+           # print("here5")
+           iupac1 = None
+       if iupac1:
+           g.set_annotation(value=iupac1,property='IUPAC-Compact',type='Sequence',source='EdwardsLab')
+       else:
+           g.delete_annotations(property='IUPAC-Compact',type='Sequence',source='EdwardsLab')
+    else:
+       g.delete_annotations(property='IUPAC-Compact',type='Sequence',source='EdwardsLab')
+    
     g.delete_annotations(source='EdwardsLab',type='MolWt')
     try:
         if glycan:

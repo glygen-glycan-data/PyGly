@@ -24,6 +24,7 @@ GLYTOUCAN_REPLACED=$(DATA)/glytoucan_replaced.txt
 GLYTOUCAN_ARCHIVED=$(DATA)/glytoucan_archived.txt
 
 UNICARBDATA=$(DATA)/uc2gtc.txt $(DATA)/uc2pubmed.txt $(DATA)/uckbcomp2glytoucan.txt
+UNICARBDATA1=$(DATA)/uc2gtc.txt $(DATA)/uc2taxa.txt $(DATA)/uckbcomp2glytoucan.txt
 
 .PHONY: all startall clean
 
@@ -53,7 +54,7 @@ $(LOADUNICARB_DONE): $(LOADGTC_DONE)
 UNICARBTAXID_DONE=.unicarbkb_taxid.$(DATESTAMP).done
 $(UNICARBTAXID_DONE): $(LOADUNICARB_DONE)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $@"
-	./unicarbkb_taxid.py $(UNICARBDATA) > $(DATA)/unicarbkb_taxid.txt
+	./unicarbkb_taxid.py $(UNICARBDATA1) > $(DATA)/unicarbkb_taxid.txt
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
 

@@ -4,7 +4,7 @@ SELECT (?accession  as ?GlyTouCanAccession)
        (?value as ?Sequence)
 WHERE {
   ?glycan glycandata:accession ?accession .
-  ?ann1 glycandata:property "IUPAC-Extended" .
+  ?ann1 glycandata:property "IUPAC-Condensed" .
   ?ann1 glycandata:source "EdwardsLab" .
   ?ann1 glycandata:value ?value .
   ?ann1 glycandata:hasglycan ?glycan

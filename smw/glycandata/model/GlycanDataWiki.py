@@ -3,11 +3,13 @@ __all__ = [ "GlycanDataWiki", "GlycanDataWikiNew", "GlycanDataDiskCache", "Glyca
 
 import sys, re
 from operator import itemgetter
+import datetime, difflib
 
 from smw import SMW
 
 import findpygly
 from pygly.GlycanFormatter import GlycoCTFormat, WURCS20Format, GlycanParseError
+from pygly.lockfile import FileLock
 
 class Glycan(SMW.SMWClass):
     template = 'Glycan'
@@ -154,7 +156,7 @@ class Annotation(SMW.SMWClass):
     def toPython(self,data):
         data = super(Annotation,self).toPython(data)
 
-        if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
+        if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name','Tissue'] or \
            data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide'] or \
            data.get('property').endswith(' Evidence'):
             if isinstance(data.get('value'),str):
@@ -167,7 +169,7 @@ class Annotation(SMW.SMWClass):
         data = super(Annotation,self).toTemplate(data)
         
         if data.get('value'):
-          if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name'] or \
+          if data.get('type') in ['CrossReference','Motif','Taxonomy','Publication','Enzyme','Name','Tissue'] or \
              data.get('property') in ['Compositions','Topologies','Saccharides','SubsumedBy','Subsumes','Ancestor','Descendant','FullyDetermined','Leaf','SequenceHash','ReducingEnd','GlycanType','GlycanSubtype','HasMonosaccharide'] or \
              data.get('property').endswith(' Evidence'):
             if isinstance(data['value'],list) or isinstance(data['value'],set):
@@ -321,35 +323,77 @@ class GlycanDataDiskCache(object):
         wh.close()
         return True
 
+    def getmodtime(self,accession):
+        path = self.acc2path(accession)
+        if not os.path.exists(path):
+            return ""
+        modts = os.path.getmtime(path)
+        glypath = self.acc2glypath(accession)
+        gpmodts = os.path.getmtime(glypath)
+        if gpmodts > modts:
+            modts = gpmodts
+        for fn in glob.glob(self.acc2annpath(accession)):
+            fnmodts = os.path.getmtime(glypath)
+            if fnmodts > modts:
+                modts = fnmodts
+        moddatetime = datetime.datetime.fromtimestamp(modts)
+        return moddatetime.strftime("%Y%m%d_%H%M%S_%f")
+
+    def getlines(self,accession):
+        lines = []
+        glypath = self.acc2glypath(accession)
+        if os.path.exists(glypath):
+            with open(glypath) as f:
+                lines.extend(f.read().splitlines())
+            for fn in sorted(glob.glob(self.acc2annpath(accession))):
+                with open(fn) as f:
+                    lines.extend(f.read().splitlines(keepends=True))
+        return [ (l.rstrip()+"\n") for l in lines ]
+
     def put(self,g):
 
         changes = 0
 
         accession = g.get('accession')
+
+        oldlines = self.getlines(accession)
+        oldmodtime = self.getmodtime(accession)
+
         path = self.acc2path(accession)
         if not os.path.exists(path):
             os.makedirs(path)
 
         glypath = self.acc2glypath(accession)
-        if self.write(glypath,g.astemplate()):
-            changes += 1
-
-        ankeys = set()
-        for an in g.annotations():
-            an.set('glycan',accession)
-            ankey = ".".join(map(an.escape,an.key()))
-            ankeys.add(ankey)
-            anpath = "/".join([path,accession+"."+ankey+".txt"])
-            if self.write(anpath,an.astemplate()):
+        with FileLock(glypath):
+            if self.write(glypath,g.astemplate()):
                 changes += 1
 
-        for anfile in glob.glob(self.acc2annpath(accession)):
-            ankey = os.path.split(anfile)[1].rsplit('.',1)[0].split('.',1)[1]
-            if ankey not in ankeys:
-                os.unlink(anfile)
-                changes += 1
+            ankeys = set()
+            for an in g.annotations():
+                an.set('glycan',accession)
+                ankey = ".".join(map(an.escape,an.key()))
+                ankeys.add(ankey)
+                anpath = "/".join([path,accession+"."+ankey+".txt"])
+                if self.write(anpath,an.astemplate()):
+                    changes += 1
 
-        return (changes>0)
+            for anfile in glob.glob(self.acc2annpath(accession)):
+                ankey = os.path.split(anfile)[1].rsplit('.',1)[0].split('.',1)[1]
+                if ankey not in ankeys:
+                    os.unlink(anfile)
+                    changes += 1
+
+            if changes > 0:
+                newlines = self.getlines(accession)
+                now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+                diff = difflib.unified_diff(oldlines, newlines, fromfile=accession, tofile=accession, fromfiledate=oldmodtime, tofiledate=now, n=6)
+                diffpath = glypath.replace('.txt','.'+now+'.diff')
+                with open(diffpath,'w') as fh:
+                    fh.writelines(diff)
+
+        if changes > 0:
+            return True
+        return False
         
     def delete(self,accession):
         

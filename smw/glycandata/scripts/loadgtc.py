@@ -7,8 +7,8 @@ from getwiki import GlycanData, Glycan
 w = GlycanData()
 
 import findpygly
-from pygly.GlycanResource import GlyTouCan
-from pygly.GlycanResource import GlyCosmos
+from pygly.GlycanResource import GlyTouCan, GlyCosmos
+from pygly.GlycanResource import GlyProtDBSourceFile, GlycomeAtlasSourceFile
 
 def accessions(args):
     if len(args) == 0:
@@ -19,8 +19,8 @@ def accessions(args):
             for it in open(fn):
                 yield it.strip()
 
-gtc = GlyTouCan(verbose=False,usecache=False)
-gco = GlyCosmos(verbose=False,usecache=False)
+gtc = GlyTouCan(verbose=False,prefetch=True,usecache=False)
+gco = GlyCosmos(verbose=False,prefetch=True,usecache=False)
 
 allgco = set(gco.allaccessions())
 
@@ -31,6 +31,16 @@ allgco = set(gco.allaccessions())
 archived = set(map(lambda d: d['accession'],gco.archived()))
 print("%d accessions archived."%(len(archived),),file=sys.stderr)
 
+# get GlyCosmos taxa entries from GlyGen Source Files
+
+gpdb = GlyProtDBSourceFile()
+glyat = GlycomeAtlasSourceFile()
+glygentaxa = defaultdict(set)
+for clsinst in (gpdb,glyat):
+  for sourceacc,gtcacc,taxid,source,sourceid in clsinst.alltaxa():
+    if source != "GlyCosmos":
+        continue
+    glygentaxa[gtcacc].add(taxid)
 
 current = set()
 for gtcacc in accessions(sys.argv[1:]):
@@ -60,21 +70,30 @@ for gtcacc in accessions(sys.argv[1:]):
     g.set_annotation(value=gtc.getseq(gtcacc,'glycoct'),
                      property='GlycoCT',
                      source='GlyTouCan',type='Sequence')
+
     g.delete_annotations(property='IUPAC',source='GlyTouCan',type='Sequence')
+    g.delete_annotations(property='IUPAC',source='GlyCosmos',type='Sequence')
+
     iupacseq = gco.getseq(gtcacc,'iupac_extended')
     if iupacseq != None and "," not in iupacseq and "'" not in iupacseq:
         try:
-            iupacseq = iupacseq.toPython()
-            iupacseq = iupacseq.replace(u'\u2192','->').replace(u'\u2194','<->').replace(u'\u03b1','alpha').replace(u'\u03b2','beta')
+            # iupacseq = iupacseq.toPython()
+            # iupacseq1 = iupacseq.replace(u'\u2192','->').replace(u'\u2194','<->').replace(u'\u03b1','alpha').replace(u'\u03b2','beta')
+            # iupacseq2 = iupacseq.replace(u'\u2192','->').replace(u'\u2194','<->').replace(u'\u03b1','a').replace(u'\u03b2','b')
+            pass
         except AttributeError:
             # print(gtcacc,repr(iupacseq))
             # raise 
             pass
-        g.set_annotation(value=iupacseq,
-                         property='IUPAC',
-                         source='GlyCosmos',type='Sequence')
+        g.set_annotation(value=iupacseq, property='IUPAC-Extended', source='GlyCosmos',type='Sequence')
     else:
-        g.delete_annotations(property='IUPAC',source='GlyCosmos',type='Sequence')
+        g.delete_annotations(property='IUPAC-Extended',source='GlyCosmos',type='Sequence')
+
+    iupacseq = gco.getseq(gtcacc,'iupac_condensed')
+    if iupacseq != None and "," not in iupacseq and "'" not in iupacseq:
+        g.set_annotation(value=iupacseq, property='IUPAC-Condensed', source='GlyCosmos',type='Sequence')
+    else:
+        g.delete_annotations(property='IUPAC-Condensed',source='GlyCosmos',type='Sequence')
 
     g.delete_annotations(source='GlyTouCan',type='MolWt')
     g.set_annotation(value=gtc.getmass(gtcacc),
@@ -137,8 +156,9 @@ for gtcacc in accessions(sys.argv[1:]):
     g.delete_annotations(source='GlyCosmos',type='Taxonomy')
     taxmap = {'11103': '3052230'}
     taxids = set(gco.gettaxa(gtcacc))
+    taxids.update(glygentaxa[gtcacc])
     taxids = set(map(lambda t: taxmap.get(t,t),taxids))
-    g.set_annotation(value=list(taxids), property='Taxonomy', sourceid=gtcacc, 
+    g.set_annotation(value=list(sorted(taxids)), property='Taxonomy', sourceid=gtcacc, 
                      source='GlyCosmos', type='Taxonomy')
 
     # g.delete_annotations(source='GlyTouCan',type='Publication')

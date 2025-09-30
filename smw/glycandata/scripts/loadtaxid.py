@@ -15,7 +15,7 @@ for f in sys.argv[1:]:
     sl = l.split()
     # print(sl)
     gtc = sl[0]
-    taxid = int(sl[1])
+    taxid = str(int(sl[1]))
     source = sl[2]
     if len(sl) > 3:
         sourceid = sl[3]
@@ -31,12 +31,19 @@ for m in w.iterglycan():
     for ann in list(m.annotations(property="Taxonomy", type="Taxonomy")):
         if ann.get('source') not in ('GlyTouCan', 'GlyCosmos'):
             sources.add(ann.get('source'))
+
     for source in sources:
         m.delete_annotations(source=source, property="Taxonomy", type="Taxonomy")
         
     for source,sourceid in gtc2taxid[acc]:
-        m.set_annotation(value=list(gtc2taxid[acc][(source,sourceid)]), property="Taxonomy", 
-                                    source=source, sourceid=sourceid, type="Taxonomy")
+        if source in ('GlyTouCan', 'GlyCosmos'):
+            pass
+            # for value in gtc2taxid[acc][(source,sourceid)]:
+            #     m.add_annotation(value=value,property="Taxonomy",
+            #                      source=source, sourceid=sourceid, type="Taxonomy")
+        else:
+            m.set_annotation(value=list(gtc2taxid[acc][(source,sourceid)]), property="Taxonomy", 
+                             source=source, sourceid=sourceid, type="Taxonomy")
 
     if w.put(m):
         print("%s updated in %.2f sec"%(m.get('accession'),time.time()-start,),file=sys.stderr)

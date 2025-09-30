@@ -29,9 +29,9 @@ def iterglycan():
             yield m
 
 if debug:
-    gm = GlycoMotif(local=True,prefetch=False,verbose=True,usecache=True)
+    gm = GlycoMotifDev(local=True,prefetch=False,verbose=True,usecache=True)
 else:
-    gm = GlycoMotif(local=True,prefetch=True,verbose=False,usecache=False)
+    gm = GlycoMotifDev(local=True,prefetch=True,verbose=False,usecache=False)
 
 acc2type = defaultdict(set)
 for m in iterglycan():

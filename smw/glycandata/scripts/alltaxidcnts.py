@@ -34,6 +34,8 @@ alltaxid = set()
 for gtcacc,taxid,src in gentaxa():
     if gtcacc in archived:
         continue
+    if not tax.istaxid(taxid):
+        continue
     try:
         alltaxid.add(int(taxid))
     except ValueError:

@@ -8,9 +8,9 @@ from getwiki import GlycanData
 w = GlycanData()
 
 import findpygly
-from pygly.GlycanResource import GlycoMotif
+from pygly.GlycanResource import GlycoMotif, GlycoMotifDev
 
-gm = GlycoMotif(prefetch=True,verbose=False,usecache=False)
+gm = GlycoMotifDev(prefetch=True,verbose=False,usecache=False)
 
 if sys.argv[1] == "allmotifs":
     allmotifs = True

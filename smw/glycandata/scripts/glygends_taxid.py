@@ -33,6 +33,9 @@ for origid,gtcacc,taxid,source,sourceid in ggsf.allsourcetaxa():
             source = "GlyConnectComposition"
         accs = acc2gtc['GlyConnect'][origid]
         sourceid = origid[1:]
+    elif source == "GlyCosmos":
+        accs = [ origid ]
+        sourceid = origid
     elif sourceid in acc2gtc[source]:
         accs = acc2gtc[source][origid]
     elif gtcacc not in ("-",None):
