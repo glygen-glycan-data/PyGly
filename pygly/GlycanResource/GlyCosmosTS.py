@@ -85,9 +85,33 @@ class GlyCosmosTS(TripleStoreResource):
             except ValueError:
                 pass
 
+    taxa_sources = {
+       'DOI': True,
+       'PubMed': True,
+
+       'GlycomeAtlas': True,
+
+       'GlyTouCan(glycome-db)': True,
+       'GlyTouCan(bcsdb)': True,
+
+       'GPTwiki': True,
+
+       'GlycoEpitope': True,
+
+       'GlyConnectStructure': False,
+       'GlyConnectComposition': False,
+
+       'GlyGen(UniCarbKB)': False,
+       'GlyGen(OGlcNAcAtlas)': False,
+       'GlyGen(OGlcNAcDB)': False,
+       'GlyGen(Harvard)': False,
+       'GlyGen': False,
+    }
+
     def gettaxa(self,accession):
         for row in self.query_taxonomy(accession=accession):
-            yield row['taxon']
+            if self.taxa_sources[row['source']]:
+                yield row['taxon']
 
     def bytaxa(self,taxon,*extrataxon):
         if len(extrataxon) > 0:
@@ -95,9 +119,11 @@ class GlyCosmosTS(TripleStoreResource):
         else:
             taxonre = str(taxon)
         for row in self.query_taxonomy(taxon=taxonre):
-            yield row['accession'],row['taxon']
+            if self.taxa_sources[row['source']]:
+                yield row['accession'],row['taxon']
 
     def alltaxa(self):
         for row in self.query_taxonomy():
-            yield row['accession'],row['taxon']
+            if self.taxa_sources[row['source']]:
+                yield row['accession'],row['taxon']
 
