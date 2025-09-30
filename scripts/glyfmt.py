@@ -51,15 +51,16 @@ for f in files:
         print("+++", os.path.split(f)[1])
         # print(GlycoCTFormat().toXML(g))
         # print(GlycoCTFormat().toStr(g))
-        for m in g.all_nodes(undet_subst=True):
-            print(m)
-        if not g.repeated():
-            print(g.underivitized_molecular_weight())
-        else:
-            print(g.underivitized_molecular_weight(repeat_times=1))
+        # for m in g.all_nodes(undet_subst=True):
+        #     print(m)
+        # if not g.repeated():
+        #     print(g.underivitized_molecular_weight())
+        # else:
+        #     print(g.underivitized_molecular_weight(repeat_times=1))
         print(g.glycoct())
-        print(iupacseq.toStr(g))
+        # print(iupacseq.toStr(g))
         # print(clsinst.toStr(g))
+        print(g.iupac_composition())
         if clsname != "GlycanMultiParser":
             print("Parser:",clsname)
         else:
