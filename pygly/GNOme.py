@@ -431,9 +431,9 @@ class GNOme(GNOmeAPI):
         writer.write(handle, self.gnome)
 
     def dump(self):
-        for acc in sorted(g.nodes()):
+        for acc in sorted(self.nodes()):
             print(acc)
-            for k, v in sorted(g.attributes(acc).items()):
+            for k, v in sorted(self.attributes(acc).items()):
                 print("  %s: %s" % (k, v))
 
     def get_cb_button_str(self, acc):
