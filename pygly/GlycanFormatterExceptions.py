@@ -1,5 +1,9 @@
 
 class GlycanParseError(Exception):
+    def __init__(self,*args,**kwargs):
+        self.message = "Glycan parse error"
+        super().__init__(*args,**kwargs)
+
     def __str__(self):
         return self.message
 

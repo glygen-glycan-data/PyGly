@@ -23,7 +23,7 @@ class CompositionFormat(GlycanFormatter):
         else:
             sl = re.split(r'\s*(\d+)\s*',s)
         sl = list(map(str.strip,sl))
-        if len(sl)%2 != 1 and sl[-1].strip() != "":
+        if len(sl)%2 != 1 or sl[-1].strip() != "":
             raise BadComposition(s)
         comp = dict()
         for i in range(0,len(sl)-1,2):
