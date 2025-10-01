@@ -19,7 +19,7 @@ class CompositionFormat(GlycanFormatter):
         if s.startswith('comp_'):
             s = s[5:]
         if '(' in s:
-            sl = re.split(r'\s*\((\s*\d+\s*)\s*\)',s)
+            sl = re.split(r'\s*\((\s*\d+\s*)\)\s*',s)
         else:
             sl = re.split(r'\s*(\d+)\s*',s)
         sl = list(map(str.strip,sl))
