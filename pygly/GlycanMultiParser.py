@@ -74,9 +74,13 @@ class GlycanMultiParser(object):
 
     def normalizedSequence(self,seq):
         if seq.startswith("RES"):
-            return seq
+            if '\\n' in seq:
+                seq = seq.replace('\\n','\n')
+            return "\n".join(seq.split())
         elif seq.startswith("WURCS"):
             return seq
+        elif re.search(r'^G\d{5}\w{2}$',seq):
+            return self.gtc.getseq(seq,'wurcs')
         try:
             return self.cp.toSequence(seq)
         except GlycanParseError:
