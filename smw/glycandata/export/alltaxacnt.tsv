@@ -130,12 +130,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 585	Proteus vulgaris		species	as annotated	1	68	0	0	68
 588	Providencia stuartii		species	as annotated	0	10	0	0	10
 590	Salmonella		genus	as annotated	45	223	0	22	223
-592	Salmonella enterica subsp. enterica serovar Enteritidis			as annotated	0	9	0	0	9
 599	Salmonella sp.		species	as annotated	0	31	0	2	31
 600	Salmonella enterica subsp. enterica serovar Thompson			as annotated	0	4	0	1	4
-601	Salmonella enterica subsp. enterica serovar Typhi			as annotated	0	8	0	0	8
-602	Salmonella enterica subsp. enterica serovar Typhimurium			as annotated	0	46	0	0	46
-603	Salmonella enterica subsp. arizonae		subspecies	as annotated	0	19	0	2	19
 615	Serratia marcescens		species	as annotated	2	75	0	2	75
 620	Shigella		genus	as annotated	7	9	0	4	9
 621	Shigella boydii		species	as annotated	0	50	0	1	50
@@ -238,7 +234,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1402	Bacillus licheniformis		species	as annotated	2	5	0	0	5
 1404	Priestia megaterium		species	as annotated	1	3	0	0	3
 1406	Paenibacillus polymyxa		species	as annotated	0	6	0	1	6
-1408	Bacillus pumilus		species	as annotated	0	17	0	0	17
+1408	Bacillus pumilus		species	as annotated	0	15	0	0	15
 1409	Bacillus sp. (in: firmicutes)		species	as annotated	2	6	0	0	6
 1422	Geobacillus stearothermophilus		species	as annotated	0	18	0	1	18
 1423	Bacillus subtilis		species	as annotated	2	22	0	2	22
@@ -442,7 +438,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 3828	Crotalaria		genus	as annotated	0	11	0	1	11
 3829	Crotalaria juncea		species	as annotated	0	5	0	2	5
 3830	Crotalaria pallida		species	as annotated	0	1	0	0	1
-3840	Vigna cylindrica	sow-pea	species	as annotated	0	3	0	0	3
 3841	Erythrina		genus	as annotated	0	1	0	1	1
 3842	Erythrina caffra	lucky beantree	species	as annotated	0	2	0	0	2
 3843	Erythrina corallodendron	coral tree	species	as annotated	0	7	1	1	8
@@ -477,11 +472,11 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 3932	Eucalyptus		genus	as annotated	0	1	0	0	1
 3972	Viscum album		species	as annotated	0	3	0	3	3
 3981	Hevea brasiliensis	siringa	species	as annotated	0	1	0	0	1
-3988	Ricinus communis		species	as annotated	0	39	15	36	53
+3988	Ricinus communis		species	as annotated	0	39	15	37	53
 3999	Simmondsia chinensis	jojoba	species	as annotated	0	2	0	1	2
 4006	Linum usitatissimum		species	as annotated	0	7	0	0	7
 4022	Acer		genus	as annotated	0	3	0	0	3
-4026	Acer pseudoplatanus		species	as annotated	0	87	7	33	94
+4026	Acer pseudoplatanus		species	as annotated	0	87	7	34	94
 4030	Pelargonium		genus	as annotated	0	2	0	1	2
 4039	Daucus carota	Queen Anne's lace	species	as annotated	0	13	33	8	46
 4050	Araliaceae	ginseng family	family	as annotated	0	5	0	0	5
@@ -501,7 +496,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4107	Solanum		genus	as annotated	0	9	0	2	9
 4108	Solanum chacoense		species	as annotated	0	5	0	0	5
 4109	Solanum commersonii		species	as annotated	0	2	0	0	2
-4111	Solanum melongena	brinjal	species	as annotated	0	4	0	0	4
 4112	Solanum nigrum		species	as annotated	0	3	0	1	3
 4113	Solanum tuberosum	potatoes	species	as annotated	0	14	10	5	24
 4120	Ipomoea batatas	batate	species	as annotated	0	2	0	0	2
@@ -523,7 +517,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4363	Drosera	sundews	genus	as annotated	0	7	0	1	7
 4364	Drosera binata		species	as annotated	0	1	0	0	1
 4366	Drosera capensis		species	as annotated	0	4	0	0	4
-4402	Platanus	sycamores	genus	as annotated	0	73	0	19	73
+4402	Platanus	sycamores	genus	as annotated	0	73	0	20	73
 4410	Nymphaeaceae	water-lily family	family	as annotated	0	1	0	1	1
 4424	Brasenia schreberi		species	as annotated	0	1	0	0	1
 4441	Camellia		genus	as annotated	0	2	0	0	2
@@ -572,15 +566,13 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4896	Schizosaccharomyces pombe		species	as annotated	1	15	14	9	28
 4897	Schizosaccharomyces japonicus		species	as annotated	0	1	0	1	1
 4903	Cyberlindnera jadinii		species	as annotated	0	9	0	7	9
-4907	Wickerhamomyces canadensis		species	as annotated	0	2	0	2	2
 4911	Kluyveromyces marxianus		species	as annotated	0	1	0	0	1
 4922	Komagataella pastoris		species	as annotated	1	89	0	88	89
 4929	Meyerozyma guilliermondii		species	as annotated	0	4	0	4	4
 4930	Saccharomyces		genus	as annotated	0	2	0	2	2
-4932	Saccharomyces cerevisiae	baker's yeast	species	as annotated	1	276	71	276	276
+4932	Saccharomyces cerevisiae	baker's yeast	species	as annotated	1	205	71	276	276
 4934	Lachancea kluyveri		species	as annotated	0	5	0	5	5
 5037	Histoplasma capsulatum		species	as annotated	0	4	0	1	4
-5043	Acremonium		genus	as annotated	0	9	0	6	9
 5052	Aspergillus		genus	as annotated	0	10	0	5	10
 5061	Aspergillus niger		species	as annotated	0	29	21	17	47
 5062	Aspergillus oryzae		species	as annotated	0	16	1	15	17
@@ -597,7 +589,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 5325	Trametes versicolor	turkey-tail fungus	species	as annotated	0	1	0	1	1
 5334	Schizophyllum commune		species	as annotated	0	4	0	3	4
 5341	Agaricus bisporus	white button mushroom	species	as annotated	0	1	6	1	7
-5415	Cryptococcus		genus	as annotated	0	5	0	0	5
 5418	Papiliotrema laurentii		species	as annotated	1	5	0	1	5
 5445	Hamamotoa singularis		species	as annotated	0	2	0	1	2
 5475	Candida		genus	as annotated	0	1	0	0	1
@@ -640,7 +631,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 5759	Entamoeba histolytica		species	as annotated	1	2	1	2	3
 5811	Toxoplasma gondii		species	as annotated	0	1	0	0	1
 5833	Plasmodium falciparum		species	as annotated	0	7	0	6	7
-5908	Tetrahymena pyriformis		species	as annotated	0	14	0	9	14
+5908	Tetrahymena pyriformis		species	as annotated	0	14	0	10	14
 6040	Porifera		phylum	as annotated	0	12	0	3	12
 6057	Haliclona		genus	as annotated	0	1	0	1	1
 6101	Anthozoa		class	as annotated	0	6	0	0	6
@@ -657,16 +648,14 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6265	Toxocara canis		species	as annotated	1	5	2	1	7
 6266	Toxocara cati	feline roundworm	species	as annotated	0	1	2	0	3
 6287	Dirofilaria immitis	canine heartworm nematode	species	as annotated	0	4	8	0	12
-6289	Haemonchus contortus	red stomach worm	species	as annotated	0	1	0	0	1
+6289	Haemonchus contortus	red stomach worm	species	as annotated	0	1	0	1	1
 6334	Trichinella spiralis		species	as annotated	0	8	29	5	36
 6351	Nereis		genus	as annotated	0	1	0	0	1
 6393	Eisenia		genus	as annotated	0	2	0	1	2
 6395	Eisenia bicyclis		species	as annotated	0	2	0	0	2
 6398	Lumbricus terrestris		species	as annotated	0	0	2	0	2
 6401	Pheretima		genus	as annotated	0	1	0	1	1
-6402	Metaphire sieboldi		species	as annotated	0	2	0	1	2
 6416	Hirudiniformes		suborder	as annotated	0	1	0	0	1
-6419	Hirudinaria manillensis		species	as annotated	0	1	0	1	1
 6426	Riftia pachyptila	giant tube worm	species	as annotated	0	0	9	0	9
 6447	Mollusca	molluscs	phylum	as annotated	0	5	0	4	5
 6448	Gastropoda		class	as annotated	0	22	0	2	22
@@ -681,8 +670,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6544	Bivalvia		class	as annotated	0	25	0	12	25
 6563	Ostreidae		family	as annotated	0	1	0	1	1
 6573	Mizuhopecten yessoensis	ezo giant scallop	species	as annotated	0	1	0	1	1
-6617	Heterololigo bleekeri		species	as annotated	0	1	0	0	1
-6634	Todarodes pacificus		species	as annotated	0	3	0	1	3
 6637	Todarodes pacificus		species	as annotated	0	3	4	1	7
 6692	Pleocyemata		suborder	as annotated	0	3	0	1	3
 6694	Caridea		infraorder	as annotated	0	1	0	0	1
@@ -692,7 +679,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6846	Limulidae		family	as annotated	0	8	0	8	8
 6850	Limulus polyphemus		species	as annotated	0	11	4	11	12
 6855	Scorpiones		order	as annotated	0	1	0	1	1
-6858	Androctonus australis		species	as annotated	0	9	1	7	10
+6858	Androctonus australis		species	as annotated	0	9	1	8	10
 6908	Agelenopsis aperta		species	as annotated	0	4	0	4	4
 6973	Blattella germanica		species	as annotated	0	6	0	6	6
 7004	Locusta migratoria		species	as annotated	0	4	1	4	5
@@ -706,13 +693,13 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7159	Aedes aegypti		species	as annotated	0	0	2	0	2
 7160	Aedes albopictus	forest day mosquito	species	as annotated	0	2	0	2	2
 7215	Drosophila	fruit fly	genus	as annotated	0	1	0	1	1
-7227	Drosophila melanogaster		species	as annotated	5	91	66	91	92
+7227	Drosophila melanogaster		species	as annotated	5	20	66	138	139
 7371	Calliphoridae	bottle flies	family	as annotated	0	19	0	1	19
 7373	Calliphora vicina		species	as annotated	1	20	0	1	20
 7380	Phormia regina		species	as annotated	0	1	0	1	1
-7458	Apidae		family	as annotated	0	34	0	25	34
+7458	Apidae		family	as annotated	0	34	0	26	34
 7459	Apis		genus	as annotated	0	1	0	1	1
-7460	Apis mellifera	Western honey bee	species	as annotated	0	50	27	40	76
+7460	Apis mellifera	Western honey bee	species	as annotated	0	50	27	41	76
 7553	Diplopoda	millipede	class	as annotated	0	2	0	0	2
 7588	Asteroidea	starfish	class	as annotated	0	71	0	9	71
 7594	Patiria pectinifera		species	as annotated	0	13	0	0	13
@@ -722,7 +709,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7604	Asterias rubens	common starfish	species	as annotated	0	10	4	5	14
 7608	Marthasterias		genus	as annotated	0	1	0	0	1
 7625	Echinoidea	sea urchin	class	as annotated	0	27	0	4	27
-7629	Heliocidaris crassispina		species	as annotated	0	5	0	2	5
 7644	Clypeaster japonicus		species	as annotated	0	2	0	0	2
 7650	Hemicentrotus pulcherrimus		species	as annotated	0	7	0	2	7
 7654	Lytechinus variegatus		species	as annotated	0	1	0	0	1
@@ -731,7 +717,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7667	Strongylocentrotus intermedius		species	as annotated	0	7	0	1	7
 7674	Echinacea		superorder	as annotated	0	1	0	0	1
 7678	Pseudocentrotus depressus		species	as annotated	0	1	0	0	1
-7692	Apostichopus japonicus		species	as annotated	0	7	0	0	7
 7705	Holothuroidea	holothurians	class	as annotated	0	31	0	2	31
 7712	Tunicata		subphylum	as annotated	0	14	0	2	14
 7719	Ciona intestinalis	yellow sea squirt	species	as annotated	0	1	0	0	1
@@ -739,12 +724,11 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7742	Vertebrata		clade	as annotated	0	5	0	5	5
 7778	Elasmobranchii		subclass	as annotated	0	49	0	17	49
 7782	Leucoraja erinaceus		species	as annotated	0	3	0	3	3
-7785	Diplobatis ommata	electric ray	species	as annotated	0	2	0	0	2
 7787	Tetronarce californica		species	as annotated	0	41	35	38	75
 7788	Torpedo marmorata	spotted torpedo	species	as annotated	0	3	0	3	3
 7796	Squalus		genus	as annotated	0	1	0	1	1
 7937	Anguilla japonica		species	as annotated	0	0	1	0	1
-7955	Danio rerio	zebra fish	species	as annotated	0	175	0	176	176
+7955	Danio rerio	zebra fish	species	as annotated	0	175	0	227	227
 7957	Carassius auratus		species	as annotated	0	13	0	13	13
 7962	Cyprinus carpio	mirror carp	species	as annotated	0	7	0	7	7
 8005	Electrophorus electricus	electric knifefish	species	as annotated	1	1	0	1	1
@@ -765,7 +749,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8078	Fundulus heteroclitus	killifish	species	as annotated	0	14	0	8	14
 8082	Xiphophorus		genus	as annotated	0	1	0	0	1
 8088	Oryziinae	ricefishes	subfamily	as annotated	0	1	0	0	1
-8090	Oryzias latipes	medaka	species	as annotated	0	2	0	0	2
+8090	Oryzias latipes	medaka	species	as annotated	0	2	0	2	2
 8113	Cichlidae		family	as annotated	0	8	0	8	8
 8127	Oreochromis mossambicus	Mozambique cichlid	species	as annotated	0	8	0	8	8
 8189	Mugilidae		family	as annotated	0	1	0	1	1
@@ -786,7 +770,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8387	Bufo japonicus	Japanese common toad	species	as annotated	0	4	4	4	8
 8399	Rana		genus	as annotated	0	16	0	13	16
 8400	Aquarana catesbeiana	bullfrogs	species	as annotated	0	1	4	1	5
-8401	Pelophylax lessonae	edible frog	species	as annotated	0	1	0	1	1
 8404	Lithobates pipiens		species	as annotated	0	17	8	17	24
 8406	Pelophylax ridibundus	laughing frog	species	as annotated	0	25	25	2	50
 8407	Rana temporaria	European common frog	species	as annotated	0	38	37	11	75
@@ -794,8 +777,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8570	Serpentes		infraorder	as annotated	0	3	0	2	3
 8638	Naja		genus	as annotated	0	6	0	5	6
 8649	Naja kaouthia		species	as annotated	0	6	23	5	29
-8710	Crotalinae		subfamily	as annotated	0	14	0	3	14
-8717	Calloselasma rhodostoma		species	as annotated	0	47	27	43	74
+8710	Crotalinae		subfamily	as annotated	0	14	0	7	14
+8717	Calloselasma rhodostoma		species	as annotated	0	47	27	44	74
 8782	Aves		class	as annotated	0	2	0	2	2
 8797	Rhea americana	common rhea	species	as annotated	0	0	1	0	1
 8801	Struthio camelus	ostrich	species	as annotated	0	1	0	1	1
@@ -836,7 +819,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 9598	Pan troglodytes		species	as annotated	1	1	8	1	9
 9600	Pongo pygmaeus	Orangutan	species	as annotated	0	0	8	0	8
 9601	Pongo abelii	Orangutan	species	as annotated	1	1	0	1	1
-9606	Homo sapiens		species	as annotated	60	5831	2017	6499	6499
+9606	Homo sapiens		species	as annotated	60	3643	2017	7335	7335
 9615	Canis lupus familiaris	dogs	subspecies	as annotated	4	57	43	52	97
 9643	Ursus americanus		species	as annotated	0	0	9	0	9
 9644	Ursus arctos	grizzly bear	species	as annotated	0	0	13	0	13
@@ -856,15 +839,15 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 9770	Balaenoptera physalus	finback whale	species	as annotated	0	1	0	0	1
 9778	Trichechus manatus		species	as annotated	0	0	3	0	3
 9789	Equus		genus	as annotated	0	6	0	4	6
-9796	Equus caballus	equine	species	as annotated	2	112	51	96	160
+9796	Equus caballus	equine	species	as annotated	2	112	51	97	160
 9805	Diceros bicornis		species	as annotated	0	0	6	0	6
 9821	Suidae	boars	family	as annotated	0	24	0	4	24
-9823	Sus scrofa	wild boar	species	as annotated	0	765	259	1131	1131
+9823	Sus scrofa	wild boar	species	as annotated	0	764	259	1131	1131
 9825	Sus scrofa domesticus		subspecies	as annotated	4	4	0	4	4
 9863	Cervus nippon		species	as annotated	0	5	0	5	5
 9894	Giraffa camelopardalis		species	as annotated	0	0	6	0	6
 9913	Bos taurus	ox	species	as annotated	8	1011	446	1538	1538
-9925	Capra hircus	goats	species	as annotated	0	35	14	28	49
+9925	Capra hircus	goats	species	as annotated	0	35	14	29	49
 9940	Ovis aries	wild sheep	species	as annotated	1	147	114	140	261
 9986	Oryctolagus cuniculus	rabbits	species	as annotated	4	166	44	155	207
 10026	Cricetinae		subfamily	as annotated	0	79	0	71	79
@@ -874,10 +857,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 10044	Phodopus sungorus	striped hairy-footed hamster	species	as annotated	0	7	0	7	7
 10046	Meriones		genus	as annotated	0	9	0	8	9
 10047	Meriones unguiculatus	Mongolian jird	species	as annotated	0	7	0	7	7
-10090	Mus musculus	mouse	species	as annotated	18	1270	417	2008	2008
+10090	Mus musculus	mouse	species	as annotated	18	743	417	1979	1979
 10095	Mus sp.	mice	species	as annotated	0	1	0	1	1
 10114	Rattus	rats	genus	as annotated	0	587	0	587	587
-10116	Rattus norvegicus	rats	species	as annotated	14	773	343	773	773
+10116	Rattus norvegicus	rats	species	as annotated	14	137	343	773	773
 10141	Cavia porcellus	guinea pig	species	as annotated	2	94	6	94	98
 10150	Chinchillidae	chinchillas and viscachas	family	as annotated	0	4	0	4	4
 10151	Chinchilla		genus	as annotated	0	3	0	3	3
@@ -890,22 +873,15 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 10469	unidentified baculovirus		species	as annotated	0	1	0	1	1
 10515	Human adenovirus 2			as annotated	0	4	1	4	5
 10535	unidentified adenovirus		species	as annotated	0	4	0	4	4
-10633	Betapolyomavirus macacae		species	as annotated	0	0	1	0	1
 10912	Rotavirus		genus	as annotated	0	1	0	1	1
 11033	Semliki Forest virus		species	as annotated	0	7	4	7	11
 11034	Sindbis virus		species	as annotated	0	2	0	2	2
-11103	Hepacivirus hominis		species	as annotated	0	2	0	0	2
 11142	Murine hepatitis virus strain A59			as annotated	0	1	2	1	3
-11176	avian paramyxovirus 1			as annotated	0	15	0	15	15
-11191	Respirovirus muris		species	as annotated	0	19	0	19	19
-11197	Sendai virus (Z)			as annotated	0	0	14	0	14
-11269	Orthomarburgvirus marburgense		species	as annotated	0	6	0	6	6
 11276	Vesicular stomatitis virus		species	as annotated	0	38	0	35	38
 11292	Lyssavirus rabies		species	as annotated	0	1	0	1	1
 11309	unidentified influenza virus		species	as annotated	0	91	0	85	91
 11313	Fowl plague virus		species	as annotated	0	11	0	11	11
 11320	Influenza A virus			as annotated	0	11	0	11	11
-11383	Influenza A virus (A/chicken/Rostock/8/1934(H7N1))			as annotated	0	0	16	0	16
 11676	Human immunodeficiency virus 1		species	as annotated	0	20	40	19	60
 11684	Human immunodeficiency virus type 1 (BH8 ISOLATE)			as annotated	0	0	1	0	1
 11709	Human immunodeficiency virus 2		species	as annotated	0	2	0	2	2
@@ -955,7 +931,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 27406	Cherax quadricarinatus	Australian red claw crayfish	species	as annotated	0	0	6	0	6
 27804	Cyanea capillata	lion's mane	species	as annotated	0	3	0	2	3
 27835	Nippostrongylus brasiliensis		species	as annotated	1	1	0	1	1
-27928	Clathria prolifera		species	as annotated	0	4	0	0	4
 28004	Blastocrithidia		genus	as annotated	0	8	0	8	8
 28005	Strigomonas culicis		species	as annotated	0	11	0	11	11
 28020	Furcellaria lumbricalis		species	as annotated	0	1	0	0	1
@@ -982,10 +957,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 28448	Komagataeibacter xylinus		species	as annotated	0	11	0	0	11
 28449	Neisseria subflava		species	as annotated	0	3	0	0	3
 28450	Burkholderia pseudomallei		species	as annotated	10	15	0	0	15
-28451	Klebsiella aerogenes		species	as annotated	0	1	0	0	1
 28503	Sambucus ebulus		species	as annotated	0	1	0	0	1
 28504	Putranjiva roxburghii		species	as annotated	0	3	0	0	3
-28577	Penicillium		genus	as annotated	0	1	0	0	1
 28901	Salmonella enterica		species	as annotated	11	93	0	4	93
 28909	Cynodon dactylon		species	as annotated	0	8	5	7	13
 29073	Ursus maritimus	white bear	species	as annotated	0	0	13	0	13
@@ -1018,12 +991,11 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 30338	Bufotes viridis	Palearctic green toad	species	as annotated	0	14	15	8	29
 30475	Rajidae		family	as annotated	0	1	0	1	1
 30511	Squalidae		family	as annotated	0	2	0	2	2
-30732	Oryzias melastigma	marine medaka	species	as annotated	0	5	0	2	5
+30732	Oryzias melastigma	marine medaka	species	as annotated	0	5	0	4	5
 30942	Pleuronectoidei		suborder	as annotated	0	2	0	0	2
 31159	Daboia russelii russelii		subspecies	as annotated	0	2	0	2	2
 31406	Gelidium sesquipedale		species	as annotated	0	1	0	0	1
 31461	Polyides rotunda		species	as annotated	0	1	0	0	1
-31902	Hemitrygon akajei		species	as annotated	0	0	1	0	1
 31959	Amycolatopsis lurida		species	as annotated	1	1	0	0	1
 31964	Clavibacter sepedonicus		species	as annotated	0	1	0	0	1
 32008	Burkholderia		genus	as annotated	0	21	0	0	21
@@ -1057,12 +1029,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 34103	Sphaerotilus natans		species	as annotated	1	4	0	0	4
 34176	Lolium temulentum		species	as annotated	0	3	0	0	3
 34357	Lipomyces kononenkoae		species	as annotated	0	1	0	0	1
-34467	Polyporus tsugae		species	as annotated	0	1	0	0	1
 34474	Fomitopsis		genus	as annotated	0	3	0	0	3
 34676	Protophormia terraenovae	blue-bottle fly	species	as annotated	0	2	3	2	4
 35076	Patiria		genus	as annotated	0	1	0	0	1
 35122	Macrocystis pyrifera		species	as annotated	2	3	0	0	3
-35183	Sarcopeltis skottsbergii		species	as annotated	0	3	0	0	3
 35554	Geobacter sulfurreducens		species	as annotated	0	2	0	0	2
 35743	Halorubrum sodomense		species	as annotated	0	1	0	0	1
 35745	Haloferax denitrificans		species	as annotated	0	3	0	0	3
@@ -1111,12 +1081,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 40215	Acinetobacter junii		species	as annotated	0	1	0	0	1
 40216	Acinetobacter radioresistens		species	as annotated	0	4	0	0	4
 40324	Stenotrophomonas maltophilia		species	as annotated	0	19	0	0	19
-40384	Aspergillus luchuensis		species	as annotated	0	0	5	0	5
 40559	Botrytis cinerea		species	as annotated	0	2	0	0	2
 40674	Mammalia		class	as annotated	0	20	0	20	20
 40685	Salix		genus	as annotated	0	3	0	0	3
 40691	Trematomus lepidorhinus		species	as annotated	0	7	0	7	7
-41255	Didymella pinodes		species	as annotated	0	1	0	0	1
 41261	Glis glis		species	as annotated	0	1	0	1	1
 41276	Brevundimonas vesicularis		species	as annotated	0	2	0	0	2
 41398	Nyctanthes arbor-tristis	tree of sadness	species	as annotated	0	2	0	1	2
@@ -1154,7 +1122,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 44588	Panax quinquefolius		species	as annotated	0	3	0	1	3
 44682	Panax stipuleanatus		species	as annotated	0	1	0	0	1
 44685	Panax japonicus	tochiba-ninjin	species	as annotated	0	9	0	2	9
-44689	Dictyostelium discoideum		species	as annotated	0	13	5	13	13
+44689	Dictyostelium discoideum		species	as annotated	0	8	5	13	13
 44930	Natronobacterium gregoryi		species	as annotated	0	2	0	0	2
 44947	Pontederia crassipes		species	as annotated	0	6	0	2	6
 45209	Aralia spinifolia		species	as annotated	0	3	0	0	3
@@ -1172,7 +1140,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 46347	Glycyrrhiza	licorice	genus	as annotated	0	13	0	0	13
 46366	Bupleurum		genus	as annotated	0	3	0	0	3
 46367	Bupleurum falcatum		species	as annotated	0	6	0	1	6
-46399	Kalopanax septemlobus		species	as annotated	0	4	0	0	4
 46489	Collocalia		genus	as annotated	0	7	0	7	7
 46490	Collocalia esculenta		species	as annotated	0	0	10	0	10
 46529	Oreaster reticulatus		species	as annotated	0	8	0	0	8
@@ -1187,7 +1154,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 47877	Pseudomonas amygdali		species	as annotated	0	1	0	0	1
 47990	Kutzneria viridogrisea		species	as annotated	0	4	0	0	4
 48103	Bupleurum fruticosum		species	as annotated	0	1	0	0	1
-48550	Gadus chalcogrammus	Norwegian pollock	species	as annotated	0	12	0	10	12
 48664	Xanthomonas fragariae		species	as annotated	0	4	0	0	4
 49185	Kineosporia aurantiaca		species	as annotated	0	1	0	0	1
 49266	Fucus vesiculosus		species	as annotated	0	4	0	0	4
@@ -1271,7 +1237,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 58712	Salmonella enterica subsp. enterica serovar Anatum			as annotated	2	5	0	0	5
 58860	Tamarindus indica	tamarind	species	as annotated	0	15	0	2	15
 58942	Babiana stricta		species	as annotated	0	1	0	0	1
-59006	Liriope muscari		species	as annotated	0	6	0	0	6
 59045	Anemarrhena asphodeloides		species	as annotated	0	1	0	1	1
 59067	Ruscus aculeatus		species	as annotated	0	7	0	1	7
 59116	Smilax aspera	rough bindweed	species	as annotated	0	1	0	0	1
@@ -1322,7 +1287,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 66860	Streptomyces thermoviolaceus subsp. thermoviolaceus		subspecies	as annotated	0	2	0	0	2
 66861	Vibrio cholerae non-O1		serogroup	as annotated	4	4	0	0	4
 66865	Streptomyces afghaniensis		species	as annotated	1	1	0	0	1
-66873	Streptomyces coeruleorubidus		species	as annotated	1	1	0	0	1
 66899	Streptomyces hachijoensis		species	as annotated	0	1	0	0	1
 67263	Streptomyces griseus subsp. griseus		subspecies	as annotated	0	2	0	0	2
 67299	Streptomyces flavogriseus		species	as annotated	0	1	0	0	1
@@ -1340,7 +1304,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 68186	Streptomyces chryseus		species	as annotated	0	1	0	0	1
 68280	Streptomyces violaceusniger		species	as annotated	0	1	0	0	1
 68527	Aegle marmelos	Indian baelfruit	species	as annotated	0	5	0	2	5
-68832	Penicillium kewense		species	as annotated	0	2	0	0	2
 69375	Adenium obesum	desert rose	species	as annotated	0	4	0	0	4
 69771	Penicillium decumbens		species	as annotated	0	2	0	2	2
 70175	Androctonus australis hector		subspecies	as annotated	0	0	9	0	9
@@ -1349,7 +1312,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 70803	Salmonella enterica subsp. enterica serovar Minnesota			as annotated	0	36	0	0	36
 71647	Pinus pinaster	maritime pine	species	as annotated	0	1	0	0	1
 71779	Sirobasidium		genus	as annotated	0	1	0	1	1
-71930	Macrocybe gigantea		species	as annotated	0	1	0	0	1
 72401	Senna didymobotrya	candelabra-tree	species	as annotated	0	3	0	0	3
 72702	Pomacea		genus	as annotated	0	3	0	2	3
 73174	Aphanoascus fulvescens		species	as annotated	0	2	0	0	2
@@ -1384,7 +1346,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 80859	Streptomyces ribosidificus		species	as annotated	2	2	0	0	2
 81742	Camassia cusickii		species	as annotated	0	6	0	1	6
 81964	Selaginella kraussiana		species	as annotated	0	1	0	1	1
-82078	Microsporum canis		species	as annotated	0	1	0	0	1
 82095	Aralia elata		species	as annotated	0	18	0	5	18
 82096	Eleutherococcus senticosus		species	as annotated	0	3	0	0	3
 82207	Polygonatum odoratum	yu zhu	species	as annotated	0	2	0	0	2
@@ -1406,11 +1367,9 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 83333	Escherichia coli K-12		strain	as annotated	24	31	0	3	31
 83334	Escherichia coli O157:H7		serotype	as annotated	0	11	0	0	11
 83541	Mastigocladus laminosus		species	as annotated	7	7	0	0	7
-83553	Chlamydia		genus	as annotated	0	2	0	0	2
 83554	Chlamydia psittaci		species	as annotated	13	18	0	0	18
 83558	Chlamydia pneumoniae		species	as annotated	7	9	0	0	9
 83802	Lilium candidum		species	as annotated	0	2	0	0	2
-83837	Astragalus penduliflorus		species	as annotated	0	9	0	1	9
 83891	Trypanosoma conorhini		species	as annotated	7	8	0	8	8
 84635	Bacillus sp. GL1		species	as annotated	5	5	0	0	5
 85223	Laurus nobilis	bay laurel	species	as annotated	0	1	0	0	1
@@ -1429,7 +1388,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 87150	Fucus virsoides		species	as annotated	0	1	0	0	1
 87257	Evernia prunastri		species	as annotated	0	5	0	1	5
 87367	Poria		genus	as annotated	0	1	0	1	1
-87628	Helonias orientalis		species	as annotated	0	3	0	0	3
 87882	Burkholderia cepacia complex		species group	as annotated	0	3	0	0	3
 87883	Burkholderia multivorans		species	as annotated	6	8	0	0	8
 88149	Saccharina japonica		species	as annotated	0	1	0	0	1
@@ -1457,7 +1415,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 96820	Armadillo		genus	as annotated	0	2	0	2	2
 97307	Prunus padus	bird cherry	species	as annotated	0	4	0	0	4
 98230	Tylopilus felleus	bitter bolete	species	as annotated	0	1	0	1	1
-98334	Bothrops moojeni		species	as annotated	0	26	15	15	41
+98334	Bothrops moojeni		species	as annotated	0	26	15	19	41
 98360	Salmonella enterica subsp. enterica serovar Dublin			as annotated	0	1	0	0	1
 98400	Botia		genus	as annotated	0	2	0	0	2
 99035	Calendula arvensis	field marigold	species	as annotated	0	1	0	1	1
@@ -1494,11 +1452,9 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 108619	Salmonella enterica subsp. enterica serovar Newport			as annotated	0	3	0	0	3
 108919	Aphanoascus reticulisporus		species	as annotated	0	1	0	0	1
 109329	Nocardiopsis trehalosi		species	as annotated	0	1	0	0	1
-109625	Fusarium vanettenii		species	as annotated	0	0	4	0	4
 111408	Oreina gloriosa		species	as annotated	0	1	0	0	1
 111538	Chrysolina grossa		species	as annotated	0	1	0	0	1
 112509	Hordeum vulgare subsp. vulgare	two-rowed barley	subspecies	as annotated	0	27	0	6	27
-112598	Ipheion uniflorum	spring starflower	species	as annotated	0	1	0	0	1
 113636	Populus tremula	European aspen	species	as annotated	0	2	0	0	2
 115549	Pseudomonas fluorescens bv. G			as annotated	1	1	0	0	1
 115624	Herniaria glabra		species	as annotated	0	3	0	0	3
@@ -1540,7 +1496,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 136217	Curcuma longa		species	as annotated	0	3	0	0	3
 136996	Bradyrhizobium lupini		species	as annotated	0	2	0	0	2
 137528	Sticta		genus	as annotated	0	1	0	0	1
-137779	Pseudoalteromonas maricaloris		species	as annotated	1	1	0	0	1
 137939	Aralia echinocaulis		species	as annotated	0	1	0	0	1
 138043	Senegalia senegal	gum-arabic	species	as annotated	0	2	0	0	2
 139747	Ipomoea dichroa		species	as annotated	0	2	0	0	2
@@ -1560,7 +1515,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 149539	Salmonella enterica subsp. enterica serovar Enteritidis			as annotated	0	12	0	0	12
 150024	Halomonas magadiensis		species	as annotated	0	3	0	0	3
 150539	Polyscias scutellaria		species	as annotated	0	3	0	0	3
-151740	Pseudaspius hakonensis		species	as annotated	0	13	0	7	13
 152297	Pseudoalteromonas issachenkonii		species	as annotated	0	8	0	0	8
 152480	Burkholderia ambifaria		species	as annotated	3	3	0	0	3
 152500	Burkholderia dolosa		species	as annotated	1	1	0	0	1
@@ -1607,7 +1561,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 173509	Shewanella fidelis		species	as annotated	0	2	0	0	2
 173777	Streptomyces cinnamoneus subsp. azacoluta		subspecies	as annotated	0	1	0	0	1
 174164	Anemone flaccida	wu gong san qi	species	as annotated	0	1	0	0	1
-174540	Acanthocladus brasiliensis		species	as annotated	0	4	0	0	4
 174549	Senega officinalis	Seneca snakeroot	species	as annotated	0	12	0	0	12
 174663	Polemonium caeruleum		species	as annotated	0	1	0	0	1
 175043	Primula auriculata		species	as annotated	0	2	0	0	2
@@ -1623,7 +1576,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 179861	Triplostegia grandiflora		species	as annotated	0	9	0	0	9
 179878	Sphingomonas elodea		species	as annotated	0	2	0	0	2
 179879	Burkholderia anthina		species	as annotated	1	1	0	0	1
-180560	Bassecoia hookeri		species	as annotated	0	3	0	0	3
 180763	Vaccinium myrtillus	whortleberry	species	as annotated	0	0	4	0	4
 181680	Porodisculus pendulus		species	as annotated	0	1	0	1	1
 182082	Chlamydia pneumoniae TW-183		strain	as annotated	3	4	0	0	4
@@ -1659,13 +1611,11 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 193339	Stachys lavandulifolia		species	as annotated	0	1	0	0	1
 195099	Campylobacter jejuni RM1221		strain	as annotated	2	3	0	0	3
 195115	Lagotis stolonifera		species	as annotated	0	2	0	0	2
-197120	Bombax ceiba	red silk-cotton tree	species	as annotated	0	3	0	1	3
 197482	Malaciobacter halophilus		species	as annotated	1	1	0	0	1
 198691	Alstroemeria revoluta		species	as annotated	0	1	0	1	1
 199225	Pinellia ternata		species	as annotated	0	3	0	0	3
 200951	Melilotus indicus	sourclover	species	as annotated	0	3	0	2	3
 203639	Yucca aloifolia	dagger plant	species	as annotated	0	5	0	0	5
-203694	Hydropuntia eucheumatoides		species	as annotated	0	1	0	0	1
 204129	Mesosphaerum suaveolens		species	as annotated	0	1	0	0	1
 204231	Ficus pumila var. awkeotsang	jelly fig	varietas	as annotated	0	1	0	0	1
 204382	Gratiola officinalis	hedgehyssop	species	as annotated	0	1	0	0	1
@@ -1745,7 +1695,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 272559	Bacteroides fragilis NCTC 9343		strain	as annotated	0	10	0	0	10
 272560	Burkholderia pseudomallei K96243		strain	as annotated	1	1	0	0	1
 272563	Clostridioides difficile 630		strain	as annotated	1	1	0	0	1
-272860	Asparagus setaceus	asparagus fern	species	as annotated	0	2	0	0	2
 272863	Asparagus setaceus	asparagus fern	species	as annotated	0	2	0	0	2
 272864	Asparagus stipularis		species	as annotated	0	1	0	1	1
 272943	Cereibacter sphaeroides 2.4.1		strain	as annotated	2	2	0	0	2
@@ -1771,11 +1720,9 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 308483	Eriococcus		genus	as annotated	0	1	0	0	1
 313381	Lathyrus palustris subsp. pilosus		subspecies	as annotated	0	2	0	0	2
 316435	Escherichia coli Nissle 1917		strain	as annotated	1	1	0	0	1
-316582	Xanthomonas axonopodis pv. begoniae			as annotated	0	2	0	0	2
 317013	Xanthomonas phaseoli pv. phaseoli			as annotated	0	1	0	0	1
 317856	Madhuca longifolia	moatree	species	as annotated	0	3	0	0	3
 318066	Tridax procumbens		species	as annotated	0	2	0	0	2
-319528	Sinohyriopsis schlegelii		species	as annotated	0	20	0	11	20
 320373	Burkholderia pseudomallei 668		strain	as annotated	0	1	0	0	1
 320855	Pseudomonas sp. OX1		species	as annotated	2	2	0	0	2
 323674	Dioscorea prazeri		species	as annotated	0	2	0	1	2
@@ -1791,7 +1738,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 336070	Burkholderia gladioli pv. agaricicola			as annotated	1	2	0	0	2
 344080	Litsea monopetala		species	as annotated	0	1	0	0	1
 345374	Tivela mactroides		species	as annotated	0	2	0	0	2
-346963	Senna didymobotrya	candelabra-tree	species	as annotated	0	3	0	0	3
 348475	Chamaedorea linearis		species	as annotated	0	1	0	1	1
 350703	Pseudomonas aeruginosa 2192		strain	as annotated	10	10	0	0	10
 351746	Pseudomonas putida F1		strain	as annotated	0	1	0	0	1
@@ -1814,7 +1760,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 376725	Escherichia coli O103:H2		serotype	as annotated	0	1	0	0	1
 378754	Ursus thibetanus japonicus		subspecies	as annotated	0	0	12	0	12
 379956	Geranium sylvaticum		species	as annotated	0	1	0	0	1
-380096	Anomalocardia flexuosa		species	as annotated	0	1	0	0	1
 381124	Zea mays subsp. mays	Indian corn	subspecies	as annotated	0	12	0	3	12
 381516	Influenza A virus (A/USSR/90/1977(H1N1))			as annotated	0	0	2	0	2
 381652	Bolbostemma paniculatum		species	as annotated	0	3	0	0	3
@@ -1831,7 +1776,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 394303	Dioscorea deltoidea		species	as annotated	0	1	0	0	1
 397678	Dicranopteris pedata		species	as annotated	0	3	0	1	3
 398527	Paraburkholderia phytofirmans PsJN		strain	as annotated	2	2	0	0	2
-399530	Ecklonia cava subsp. kurome		subspecies	as annotated	0	1	0	0	1
 399795	Comamonas testosteroni KF-1		strain	as annotated	3	3	0	2	3
 401614	Francisella tularensis subsp. novicida U112		strain	as annotated	11	12	0	1	12
 403832	Caragana sinica		species	as annotated	0	2	0	0	2
@@ -1850,7 +1794,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 435321	Shigella flexneri 3b		serotype	as annotated	1	1	0	0	1
 436295	Salmonella enterica subsp. enterica serovar Poona			as annotated	0	2	0	0	2
 439229	Rhizobium sp. B		species	as annotated	1	1	0	0	1
-439823	Brassica rapa subsp. chinensis	bok-choy	subspecies	as annotated	0	7	0	7	7
 442491	Agave sisalana	sisal	species	as annotated	0	5	0	0	5
 446126	Phoenix rupicola		species	as annotated	0	4	0	0	4
 446348	Malva verticillata		species	as annotated	0	1	0	0	1
@@ -1861,14 +1804,11 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 469726	Sabal causiarum		species	as annotated	0	1	0	0	1
 473403	Xanthomonas axonopodis pv. begoniae			as annotated	0	2	0	0	2
 478951	Quercus marilandica	blackjack oak	species	as annotated	0	1	0	0	1
-480973	Rhodococcus ruber		species	as annotated	0	1	0	0	1
 485705	Chlorophytum arundinaceum		species	as annotated	0	1	0	1	1
-486441	Primula veris subsp. macrocalyx		subspecies	as annotated	0	1	0	0	1
 486680	Lonicera nigra		species	as annotated	0	1	0	0	1
 487159	Clematis armandi		species	as annotated	0	1	0	0	1
 487793	Primula macrophylla		species	as annotated	0	2	0	0	2
 489316	Entada phaseoloides		species	as annotated	0	3	0	0	3
-489714	Nannizzia gypsea		species	as annotated	0	2	0	0	2
 491976	Arum orientale		species	as annotated	0	3	0	2	3
 492004	Leptadenia reticulata		species	as annotated	0	1	0	0	1
 498388	Escherichia coli C		strain	as annotated	7	8	0	0	8
@@ -1890,7 +1830,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 626529	Escherichia coli O157:H12		serotype	as annotated	0	1	0	0	1
 652611	Pseudomonas aeruginosa PA14		strain	as annotated	1	1	0	0	1
 693739	Vibrio cholerae O22		serogroup	as annotated	2	2	0	0	2
-694009	Severe acute respiratory syndrome-related coronavirus		species	as annotated	0	21	0	21	21
+694009	Severe acute respiratory syndrome-related coronavirus		species	as annotated	0	0	0	21	21
 696748	Actinobacillus suis H91-0380		strain	as annotated	3	3	0	0	3
 743973	Taylorella equigenitalis ATCC 35865		strain	as annotated	4	4	0	0	4
 745156	Escherichia coli 1303		strain	as annotated	1	1	0	0	1
@@ -1959,7 +1899,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1263720	Betacoronavirus England 1			as annotated	0	0	0	63	63
 1268285	Paraburkholderia kururiensis M130		strain	as annotated	4	4	0	0	4
 1288825	Shigella flexneri 2b		serotype	as annotated	0	2	0	0	2
-1311788	Proteus terrae subsp. terrae		subspecies	as annotated	1	1	0	0	1
 1311818	Proteus genomosp. 4		species	as annotated	0	1	0	0	1
 1315976	Plesiomonas shigelloides 302-73		strain	as annotated	0	5	0	0	5
 1336745	Agrobacterium radiobacter DSM 30147		strain	as annotated	0	2	0	0	2
@@ -2037,7 +1976,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 2512223	Kribbella steppae		species	as annotated	0	2	0	0	2
 2560319	avian paramyxovirus 1			as annotated	0	15	0	15	15
 2603287	Escherichia coli O168		serogroup	as annotated	0	2	0	0	2
-2697049	Severe acute respiratory syndrome coronavirus 2			as annotated	0	396	205	396	396
+2697049	Severe acute respiratory syndrome coronavirus 2			as annotated	0	0	205	396	396
 2706150	Sinohyriopsis schlegelii		species	as annotated	0	20	0	11	20
 2748578	Ecklonia cava subsp. kurome		subspecies	as annotated	0	1	0	0	1
 2765380	Sarcopeltis skottsbergii		species	as annotated	0	3	0	0	3
@@ -2046,7 +1985,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 2809254	Escherichia coli O167		serotype	as annotated	0	3	0	0	3
 2809256	Escherichia coli O152		serotype	as annotated	0	2	0	0	2
 2924859	Shigella flexneri 7a		serotype	as annotated	0	1	0	0	1
-3004147	Pseudaspius hakonensis		species	as annotated	0	13	0	7	13
+3004147	Pseudaspius hakonensis		species	as annotated	0	13	0	9	13
 3052230	Hepacivirus hominis		species	as annotated	0	2	0	2	2
 3052505	Orthomarburgvirus marburgense		species	as annotated	0	6	0	6	6
 3052731	Respirovirus muris		species	as annotated	0	19	0	19	19
@@ -2227,7 +2166,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1402	Bacillus licheniformis		species	species	2	5	0	0	5
 1404	Priestia megaterium		species	species	1	3	0	0	3
 1406	Paenibacillus polymyxa		species	species	0	6	0	1	6
-1408	Bacillus pumilus		species	species	0	17	0	0	17
+1408	Bacillus pumilus		species	species	0	15	0	0	15
 1409	Bacillus sp. (in: firmicutes)		species	species	2	6	0	0	6
 1422	Geobacillus stearothermophilus		species	species	0	18	0	1	18
 1423	Bacillus subtilis		species	species	2	22	0	2	22
@@ -2395,10 +2334,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 3922	Wisteria floribunda	Japanese wistaria	species	species	0	4	0	2	4
 3972	Viscum album		species	species	0	3	0	3	3
 3981	Hevea brasiliensis	siringa	species	species	0	1	0	0	1
-3988	Ricinus communis		species	species	0	39	15	36	53
+3988	Ricinus communis		species	species	0	39	15	37	53
 3999	Simmondsia chinensis	jojoba	species	species	0	2	0	1	2
 4006	Linum usitatissimum		species	species	0	7	0	0	7
-4026	Acer pseudoplatanus		species	species	0	87	7	33	94
+4026	Acer pseudoplatanus		species	species	0	87	7	34	94
 4039	Daucus carota	Queen Anne's lace	species	species	0	13	33	8	46
 4045	Apium graveolens		species	species	0	1	22	1	23
 4052	Hedera helix	English ivy	species	species	0	5	0	0	5
@@ -2412,7 +2351,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4100	Nicotiana benthamiana		species	species	0	2	0	0	2
 4108	Solanum chacoense		species	species	0	5	0	0	5
 4109	Solanum commersonii		species	species	0	2	0	0	2
-4111	Solanum melongena	brinjal	species	species	0	4	0	0	4
 4112	Solanum nigrum		species	species	0	3	0	1	3
 4113	Solanum tuberosum	potatoes	species	species	0	14	10	5	24
 4120	Ipomoea batatas	batate	species	species	0	2	0	0	2
@@ -2466,7 +2404,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4911	Kluyveromyces marxianus		species	species	0	1	0	0	1
 4922	Komagataella pastoris		species	species	1	89	0	88	89
 4929	Meyerozyma guilliermondii		species	species	0	4	0	4	4
-4932	Saccharomyces cerevisiae	baker's yeast	species	species	1	276	71	276	276
+4932	Saccharomyces cerevisiae	baker's yeast	species	species	1	205	71	276	276
 4934	Lachancea kluyveri		species	species	0	5	0	5	5
 5037	Histoplasma capsulatum		species	species	0	4	0	1	4
 5061	Aspergillus niger		species	species	0	29	21	17	47
@@ -2516,7 +2454,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 5759	Entamoeba histolytica		species	species	1	2	1	2	3
 5811	Toxoplasma gondii		species	species	0	1	0	0	1
 5833	Plasmodium falciparum		species	species	0	7	0	6	7
-5908	Tetrahymena pyriformis		species	species	0	14	0	9	14
+5908	Tetrahymena pyriformis		species	species	0	14	0	10	14
 6183	Schistosoma mansoni		species	species	0	19	16	12	35
 6192	Fasciola hepatica		species	species	2	2	0	2	2
 6207	Taenia crassiceps		species	species	0	2	0	1	2
@@ -2527,7 +2465,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6265	Toxocara canis		species	species	1	5	2	1	7
 6266	Toxocara cati	feline roundworm	species	species	0	1	2	0	3
 6287	Dirofilaria immitis	canine heartworm nematode	species	species	0	4	8	0	12
-6289	Haemonchus contortus	red stomach worm	species	species	0	1	0	0	1
+6289	Haemonchus contortus	red stomach worm	species	species	0	1	0	1	1
 6334	Trichinella spiralis		species	species	0	8	29	5	36
 6395	Eisenia bicyclis		species	species	0	2	0	0	2
 6398	Lumbricus terrestris		species	species	0	0	2	0	2
@@ -2544,7 +2482,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6717	Astacus leptodactylus	narrow-fingered crayfish	species	species	0	0	6	0	6
 6735	Panulirus interruptus		species	species	0	6	3	4	9
 6850	Limulus polyphemus		species	species	0	11	4	11	12
-6858	Androctonus australis		species	species	0	9	10	7	19
+6858	Androctonus australis		species	species	0	9	10	8	19
 6908	Agelenopsis aperta		species	species	0	4	0	4	4
 6973	Blattella germanica		species	species	0	6	0	6	6
 7004	Locusta migratoria		species	species	0	4	1	4	5
@@ -2555,10 +2493,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7153	Chironomus tentans		species	species	0	1	0	1	1
 7159	Aedes aegypti		species	species	0	0	2	0	2
 7160	Aedes albopictus	forest day mosquito	species	species	0	2	0	2	2
-7227	Drosophila melanogaster		species	species	5	91	66	91	92
+7227	Drosophila melanogaster		species	species	5	20	66	138	139
 7373	Calliphora vicina		species	species	1	20	0	1	20
 7380	Phormia regina		species	species	0	1	0	1	1
-7460	Apis mellifera	Western honey bee	species	species	0	50	27	40	76
+7460	Apis mellifera	Western honey bee	species	species	0	50	27	41	76
 7594	Patiria pectinifera		species	species	0	13	0	0	13
 7602	Asterias amurensis	North Pacific seastar	species	species	0	11	0	5	11
 7603	Asterias forbesi		species	species	0	11	0	0	11
@@ -2575,7 +2513,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7787	Tetronarce californica		species	species	0	41	35	38	75
 7788	Torpedo marmorata	spotted torpedo	species	species	0	3	0	3	3
 7937	Anguilla japonica		species	species	0	0	1	0	1
-7955	Danio rerio	zebra fish	species	species	0	175	0	176	176
+7955	Danio rerio	zebra fish	species	species	0	175	0	227	227
 7957	Carassius auratus		species	species	0	13	0	13	13
 7962	Cyprinus carpio	mirror carp	species	species	0	7	0	7	7
 8005	Electrophorus electricus	electric knifefish	species	species	1	1	0	1	1
@@ -2589,7 +2527,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8040	Salvelinus namaycush		species	species	1	4	0	1	4
 8049	Gadus morhua		species	species	0	5	0	5	5
 8078	Fundulus heteroclitus	killifish	species	species	0	14	0	8	14
-8090	Oryzias latipes	medaka	species	species	0	2	0	0	2
+8090	Oryzias latipes	medaka	species	species	0	2	0	2	2
 8127	Oreochromis mossambicus	Mozambique cichlid	species	species	0	8	0	8	8
 8213	Pagothenia borchgrevinki		species	species	0	0	1	0	1
 8255	Paralichthys olivaceus	olive flounder	species	species	0	3	1	0	4
@@ -2610,7 +2548,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8472	Lepidochelys kempii	Kemp's ridley sea turtle	species	species	0	1	0	1	1
 8649	Naja kaouthia		species	species	0	6	23	5	29
 8707	Daboia russelii		species	species	0	2	0	2	2
-8717	Calloselasma rhodostoma		species	species	0	47	27	43	74
+8717	Calloselasma rhodostoma		species	species	0	47	27	44	74
 8797	Rhea americana	common rhea	species	species	0	0	1	0	1
 8801	Struthio camelus	ostrich	species	species	0	1	0	1	1
 8839	Anas platyrhynchos	mallard ducks	species	species	0	22	0	22	22
@@ -2638,7 +2576,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 9598	Pan troglodytes		species	species	1	1	8	1	9
 9600	Pongo pygmaeus	Orangutan	species	species	0	0	8	0	8
 9601	Pongo abelii	Orangutan	species	species	1	1	0	1	1
-9606	Homo sapiens		species	species	60	5831	2017	6499	6499
+9606	Homo sapiens		species	species	60	3643	2017	7335	7335
 9612	Canis lupus	grey wolf	species	species	4	59	43	54	99
 9642	Ursus thibetanus		species	species	0	0	12	0	12
 9643	Ursus americanus		species	species	0	0	9	0	9
@@ -2655,13 +2593,13 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 9769	Balaenoptera edeni		species	species	0	4	0	4	4
 9770	Balaenoptera physalus	finback whale	species	species	0	1	0	0	1
 9778	Trichechus manatus		species	species	0	0	3	0	3
-9796	Equus caballus	equine	species	species	2	112	51	96	160
+9796	Equus caballus	equine	species	species	2	112	51	97	160
 9805	Diceros bicornis		species	species	0	0	6	0	6
-9823	Sus scrofa	wild boar	species	species	4	767	259	1132	1132
+9823	Sus scrofa	wild boar	species	species	4	766	259	1132	1132
 9863	Cervus nippon		species	species	0	5	0	5	5
 9894	Giraffa camelopardalis		species	species	0	0	6	0	6
 9913	Bos taurus	ox	species	species	8	1011	446	1538	1538
-9925	Capra hircus	goats	species	species	0	35	14	28	49
+9925	Capra hircus	goats	species	species	0	35	14	29	49
 9940	Ovis aries	wild sheep	species	species	1	147	114	140	261
 9986	Oryctolagus cuniculus	rabbits	species	species	4	166	44	155	207
 10029	Cricetulus griseus	Chinese hamsters	species	species	2	403	14	416	416
@@ -2669,9 +2607,9 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 10036	Mesocricetus auratus	Syrian hamster	species	species	1	71	32	69	103
 10044	Phodopus sungorus	striped hairy-footed hamster	species	species	0	7	0	7	7
 10047	Meriones unguiculatus	Mongolian jird	species	species	0	7	0	7	7
-10090	Mus musculus	mouse	species	species	18	1270	417	2008	2008
+10090	Mus musculus	mouse	species	species	18	743	417	1979	1979
 10095	Mus sp.	mice	species	species	0	1	0	1	1
-10116	Rattus norvegicus	rats	species	species	14	773	343	773	773
+10116	Rattus norvegicus	rats	species	species	14	137	343	773	773
 10141	Cavia porcellus	guinea pig	species	species	2	94	6	94	98
 10407	Hepatitis B virus		species	species	0	4	0	4	4
 10469	unidentified baculovirus		species	species	0	1	0	1	1
@@ -2769,7 +2707,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 29923	Amylomyces rouxii		species	species	0	6	0	6	6
 30212	Vespula germanica		species	species	0	1	0	1	1
 30338	Bufotes viridis	Palearctic green toad	species	species	0	14	15	8	29
-30732	Oryzias melastigma	marine medaka	species	species	0	5	0	2	5
+30732	Oryzias melastigma	marine medaka	species	species	0	5	0	4	5
 31406	Gelidium sesquipedale		species	species	0	1	0	0	1
 31461	Polyides rotunda		species	species	0	1	0	0	1
 31959	Amycolatopsis lurida		species	species	1	1	0	0	1
@@ -2876,7 +2814,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 44588	Panax quinquefolius		species	species	0	3	0	1	3
 44682	Panax stipuleanatus		species	species	0	1	0	0	1
 44685	Panax japonicus	tochiba-ninjin	species	species	0	9	0	2	9
-44689	Dictyostelium discoideum		species	species	0	13	5	13	13
+44689	Dictyostelium discoideum		species	species	0	8	5	13	13
 44930	Natronobacterium gregoryi		species	species	0	2	0	0	2
 44947	Pontederia crassipes		species	species	0	6	0	2	6
 45209	Aralia spinifolia		species	species	0	3	0	0	3
@@ -3112,7 +3050,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 96345	Flavobacterium psychrophilum		species	species	1	1	0	0	1
 97307	Prunus padus	bird cherry	species	species	0	4	0	0	4
 98230	Tylopilus felleus	bitter bolete	species	species	0	1	0	1	1
-98334	Bothrops moojeni		species	species	0	26	15	15	41
+98334	Bothrops moojeni		species	species	0	26	15	19	41
 99035	Calendula arvensis	field marigold	species	species	0	1	0	1	1
 99072	Leucanthemum vulgare		species	species	0	3	0	1	3
 99292	Hovenia dulcis	kemponashi	species	species	0	10	0	1	10
@@ -3256,7 +3194,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 183845	Eucalyptus perriniana		species	species	0	1	0	1	1
 183944	Patrinia villosa		species	species	0	1	0	0	1
 184072	Proteus myxofaciens		species	species	1	1	0	0	1
-184924	Pseudoalteromonas maricaloris		species	species	1	1	0	0	1
 184985	Androsace septentrionalis	rock jasmine	species	species	0	2	0	0	2
 185027	Cynanchum africanum		species	species	0	6	0	0	6
 185739	Pollachius pollachius		species	species	0	14	0	12	14
@@ -3409,9 +3346,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 523103	Trichophyton mentagrophytes		species	species	0	1	0	0	1
 559336	Linum grandiflorum		species	species	0	2	0	0	2
 587753	Pseudomonas chlororaphis		species	species	0	4	0	0	4
-626364	Bassecoia hookeri		species	species	0	3	0	0	3
 694005	Murine coronavirus		species	species	0	1	2	1	3
-694009	Severe acute respiratory syndrome-related coronavirus		species	species	0	396	206	396	397
+694009	Severe acute respiratory syndrome-related coronavirus		species	species	0	0	206	396	397
 749589	Didymella pinodes		species	species	0	1	0	0	1
 946381	Cyanospira capsulata (nom. illeg.)		species	species	5	5	0	0	5
 980617	Sinorhizobium sp. NGR 234		species	species	8	8	0	0	8
@@ -3419,7 +3355,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1042646	Gadus chalcogrammus	Norwegian pollock	species	species	0	12	0	10	12
 1043166	Heliocidaris crassispina		species	species	0	5	0	2	5
 1064539	Azospirillum baldaniorum		species	species	2	2	0	0	2
-1069201	Aspergillus luchuensis		species	species	0	0	5	0	5
 1132638	Penicillium kewense		species	species	0	2	0	0	2
 1156965	Wickerhamomyces canadensis		species	species	0	2	0	2	2
 1190602	Clathria prolifera		species	species	0	4	0	0	4
@@ -3431,19 +3366,17 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1355477	Bradyrhizobium diazoefficiens		species	species	2	2	0	0	2
 1423826	Heterololigo bleekeri		species	species	0	1	0	0	1
 1491104	Macrocybe gigantea		species	species	0	1	0	0	1
-1574161	Proteus terrae		species	species	1	1	0	0	1
+1574161	Proteus terrae		species	species	0	1	0	0	1
 1670937	Streptomyces sp. AJ		species	species	0	1	0	0	1
 1839611	Klebsiella sp. K28		species	species	0	1	0	0	1
 1870830	Diplobatis ommata	electric ray	species	species	0	2	0	0	2
 1871183	Kribbella sp.		species	species	0	5	0	0	5
 1874088	Klebsiella sp. K8		species	species	0	3	0	0	3
-1891767	Betapolyomavirus macacae		species	species	0	0	1	0	1
 1896336	Citrobacter sp.		species	species	0	25	0	0	25
 1908541	Microbulbifer sp.		species	species	0	2	0	0	2
 1938888	Arthrobacter sp. VKM Ac-2550		species	species	0	1	0	0	1
 1985254	Xanthomonas phaseoli		species	species	0	1	0	0	1
 2065372	Streptomyces subflavus		species	species	0	1	0	0	1
-2075311	Polyporus tsugae		species	species	0	1	0	0	1
 2163620	Helonias orientalis		species	species	0	3	0	0	3
 2512212	Kribbella voronezhensis		species	species	0	1	0	0	1
 2512214	Kribbella sp. VKM Ac-2500		species	species	0	1	0	0	1
@@ -3452,14 +3385,11 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 2512217	Kribbella antiqua		species	species	0	1	0	0	1
 2512219	Kribbella sp. VKM Ac-2568		species	species	0	1	0	0	1
 2512223	Kribbella steppae		species	species	0	2	0	0	2
-2698660	Acanthocladus brasiliensis		species	species	0	4	0	0	4
-2704970	Hemitrygon akajei		species	species	0	0	1	0	1
 2706150	Sinohyriopsis schlegelii		species	species	0	20	0	11	20
-2747968	Fusarium vanettenii		species	species	0	0	4	0	4
 2765380	Sarcopeltis skottsbergii		species	species	0	3	0	0	3
 2769349	Klebsiella sp. K4		species	species	0	4	0	0	4
-2955291	Alphainfluenzavirus influenzae		species	species	0	12	18	12	30
-3004147	Pseudaspius hakonensis		species	species	0	13	0	7	13
+2955291	Alphainfluenzavirus influenzae		species	species	0	12	2	12	14
+3004147	Pseudaspius hakonensis		species	species	0	13	0	9	13
 3047383	Alphabaculovirus aucalifornicae		species	species	0	0	3	0	3
 3050293	Simplexvirus humanalpha2		species	species	0	0	3	0	3
 3050295	Cytomegalovirus humanbeta5		species	species	0	1	1	1	2
@@ -3467,9 +3397,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 3051375	Orthoavulavirus javaense		species	species	0	15	0	15	15
 3052230	Hepacivirus hominis		species	species	0	16	0	16	16
 3052505	Orthomarburgvirus marburgense		species	species	0	6	12	6	18
-3052731	Respirovirus muris		species	species	0	19	14	19	33
+3052731	Respirovirus muris		species	species	0	19	0	19	19
 3091605	Vigna cylindrica	sow-pea	species	species	0	3	0	0	3
-3139943	Anomalocardia flexuosa		species	species	0	1	0	0	1
 3240600	Potyvirus plumpoxi		species	species	0	0	1	0	1
 6	Azorhizobium		genus	genus	0	1	0	0	1
 20	Phenylobacterium		genus	genus	0	2	0	0	2
@@ -3512,7 +3441,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 561	Escherichia		genus	genus	135	743	0	98	743
 568	Hafnia		genus	genus	9	96	0	0	96
 570	Klebsiella		genus	genus	33	308	0	16	308
-583	Proteus		genus	genus	11	304	0	1	304
+583	Proteus		genus	genus	10	304	0	1	304
 586	Providencia		genus	genus	0	39	0	0	39
 590	Salmonella		genus	genus	64	416	0	26	416
 613	Serratia		genus	genus	5	77	0	3	77
@@ -3556,7 +3485,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1350	Enterococcus		genus	genus	0	3	0	0	3
 1357	Lactococcus		genus	genus	1	15	0	0	15
 1375	Aerococcus		genus	genus	0	2	0	0	2
-1386	Bacillus	Bacillus rRNA group 1	genus	genus	28	92	0	4	92
+1386	Bacillus	Bacillus rRNA group 1	genus	genus	28	90	0	4	90
 1485	Clostridium		genus	genus	1	11	0	1	11
 1573	Clavibacter		genus	genus	0	3	0	0	3
 1578	Lactobacillus		genus	genus	1	88	0	20	88
@@ -3690,10 +3619,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 3932	Eucalyptus		genus	genus	0	2	0	1	2
 3971	Viscum		genus	genus	0	3	0	3	3
 3980	Hevea		genus	genus	0	1	0	0	1
-3987	Ricinus		genus	genus	0	39	15	36	53
+3987	Ricinus		genus	genus	0	39	15	37	53
 3998	Simmondsia		genus	genus	0	2	0	1	2
 4005	Linum		genus	genus	0	9	0	0	9
-4022	Acer		genus	genus	0	90	7	33	97
+4022	Acer		genus	genus	0	90	7	34	97
 4028	Geranium		genus	genus	0	1	0	0	1
 4030	Pelargonium		genus	genus	0	2	0	1	2
 4038	Daucus		genus	genus	0	13	33	8	46
@@ -3703,7 +3632,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4065	Calotropis		genus	genus	0	4	0	0	4
 4071	Capsicum		genus	genus	0	6	0	0	6
 4085	Nicotiana		genus	genus	0	82	22	24	104
-4107	Solanum		genus	genus	0	82	27	31	109
+4107	Solanum		genus	genus	0	80	27	31	107
 4119	Ipomoea		genus	genus	0	7	0	0	7
 4139	Scutellaria		genus	genus	0	2	0	0	2
 4145	Olea	olives	genus	genus	0	9	10	9	19
@@ -3722,7 +3651,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4336	Anagallis		genus	genus	0	5	0	0	5
 4346	Rhododendron		genus	genus	0	1	0	1	1
 4363	Drosera	sundews	genus	genus	0	8	0	1	8
-4402	Platanus	sycamores	genus	genus	0	73	0	19	73
+4402	Platanus	sycamores	genus	genus	0	73	0	20	73
 4423	Brasenia		genus	genus	0	1	0	0	1
 4441	Camellia		genus	genus	0	13	0	3	13
 4457	Arum		genus	genus	0	5	0	3	5
@@ -3757,10 +3686,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 4895	Schizosaccharomyces		genus	genus	1	15	14	9	28
 4910	Kluyveromyces		genus	genus	0	1	0	0	1
 4919	Pichia		genus	genus	0	1	0	0	1
-4930	Saccharomyces		genus	genus	1	276	71	276	276
+4930	Saccharomyces		genus	genus	1	205	71	276	276
 4970	Bullera		genus	genus	0	1	0	0	1
 5036	Histoplasma		genus	genus	0	4	0	1	4
-5052	Aspergillus		genus	genus	0	68	27	49	89
+5052	Aspergillus		genus	genus	0	68	24	49	86
 5073	Penicillium		genus	genus	0	13	0	5	13
 5094	Talaromyces		genus	genus	0	2	0	0	2
 5110	Claviceps		genus	genus	0	2	0	0	2
@@ -3772,13 +3701,12 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 5333	Schizophyllum		genus	genus	0	4	0	3	4
 5340	Agaricus		genus	genus	0	4	6	1	10
 5475	Candida		genus	genus	1	45	0	32	45
-5506	Fusarium		genus	genus	0	28	14	4	42
+5506	Fusarium		genus	genus	0	28	11	4	39
 5533	Rhodotorula		genus	genus	0	1	0	1	1
 5543	Trichoderma		genus	genus	0	5	0	5	5
 5550	Trichophyton		genus	genus	0	1	0	0	1
 5579	Aureobasidium		genus	genus	0	6	0	1	6
 5629	Laetiporus		genus	genus	0	2	0	2	2
-5637	Polyporus		genus	genus	0	1	0	0	1
 5655	Crithidia		genus	genus	1	17	0	9	17
 5658	Leishmania		genus	genus	133	165	11	56	175
 5683	Leptomonas		genus	genus	0	7	20	7	27
@@ -3788,10 +3716,10 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 5721	Trichomonas		genus	genus	0	1	0	1	1
 5740	Giardia		genus	genus	0	0	1	0	1
 5758	Entamoeba		genus	genus	1	2	1	2	3
-5782	Dictyostelium		genus	genus	0	13	5	13	13
+5782	Dictyostelium		genus	genus	0	8	5	13	13
 5810	Toxoplasma		genus	genus	0	1	0	0	1
 5820	Plasmodium		genus	genus	0	7	0	6	7
-5890	Tetrahymena		genus	genus	0	14	0	9	14
+5890	Tetrahymena		genus	genus	0	14	0	10	14
 6057	Haliclona		genus	genus	0	1	0	1	1
 6127	Acropora		genus	genus	0	5	0	0	5
 6181	Schistosoma		genus	genus	0	20	16	13	36
@@ -3802,7 +3730,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6251	Ascaris		genus	genus	0	5	0	1	5
 6264	Toxocara		genus	genus	1	5	2	1	7
 6286	Dirofilaria		genus	genus	0	4	8	0	12
-6288	Haemonchus		genus	genus	0	1	0	0	1
+6288	Haemonchus		genus	genus	0	1	0	1	1
 6333	Trichinella		genus	genus	0	8	29	5	36
 6351	Nereis		genus	genus	0	1	1	0	2
 6393	Eisenia		genus	genus	0	2	0	1	2
@@ -3821,7 +3749,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 6722	Cherax		genus	genus	0	0	6	0	6
 6734	Panulirus		genus	genus	0	6	3	4	9
 6849	Limulus		genus	genus	0	11	4	11	12
-6857	Androctonus		genus	genus	0	9	10	7	19
+6857	Androctonus		genus	genus	0	9	10	8	19
 6907	Agelenopsis		genus	genus	0	4	0	4	4
 6972	Blattella		genus	genus	0	6	0	6	6
 7003	Locusta		genus	genus	0	4	1	4	5
@@ -3832,12 +3760,12 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7118	Antheraea		genus	genus	0	0	10	0	10
 7150	Chironomus		genus	genus	0	1	0	1	1
 7158	Aedes		genus	genus	0	2	2	2	4
-7215	Drosophila	fruit fly	genus	genus	5	92	66	92	93
+7215	Drosophila	fruit fly	genus	genus	5	21	66	139	140
 7372	Calliphora		genus	genus	1	20	0	1	20
 7374	Lucilia		genus	genus	0	22	0	1	22
 7377	Phormia		genus	genus	0	1	0	1	1
 7451	Vespula		genus	genus	0	1	0	1	1
-7459	Apis		genus	genus	0	51	27	41	77
+7459	Apis		genus	genus	0	51	27	42	77
 7601	Asterias		genus	genus	0	30	4	9	34
 7608	Marthasterias		genus	genus	0	1	0	0	1
 7615	Evasterias		genus	genus	0	2	0	1	2
@@ -3854,7 +3782,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 7786	Torpedo		genus	genus	0	3	0	3	3
 7796	Squalus		genus	genus	0	1	0	1	1
 7935	Anguilla		genus	genus	0	0	1	0	1
-7954	Danio		genus	genus	0	175	0	176	176
+7954	Danio		genus	genus	0	175	0	227	227
 7956	Carassius		genus	genus	0	13	0	13	13
 7961	Cyprinus		genus	genus	0	7	0	7	7
 7983	Misgurnus		genus	genus	0	3	2	0	3
@@ -3866,7 +3794,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8059	Pollachius		genus	genus	0	14	0	12	14
 8077	Fundulus		genus	genus	0	14	0	8	14
 8082	Xiphophorus		genus	genus	0	1	0	0	1
-8089	Oryzias		genus	genus	0	7	0	2	7
+8089	Oryzias		genus	genus	0	7	0	6	7
 8139	Oreochromis		genus	genus	0	8	0	8	8
 8211	Pagothenia		genus	genus	0	0	1	0	1
 8254	Paralichthys		genus	genus	0	3	1	0	4
@@ -3879,9 +3807,9 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 8399	Rana		genus	genus	0	98	57	48	155
 8471	Lepidochelys		genus	genus	0	1	0	1	1
 8638	Naja		genus	genus	0	8	23	7	31
-8721	Bothrops		genus	genus	0	26	15	15	41
+8721	Bothrops		genus	genus	0	26	15	19	41
 8764	Trimeresurus		genus	genus	0	0	5	0	5
-8774	Calloselasma		genus	genus	0	47	27	43	74
+8774	Calloselasma		genus	genus	0	47	27	44	74
 8796	Rhea		genus	genus	0	0	1	0	1
 8800	Struthio		genus	genus	0	1	0	1	1
 8835	Anas		genus	genus	0	34	0	34	34
@@ -3900,7 +3828,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 9592	Gorilla		genus	genus	0	0	5	0	5
 9596	Pan		genus	genus	1	1	10	1	11
 9599	Pongo		genus	genus	1	1	8	1	9
-9605	Homo	humans	genus	genus	60	5831	2017	6499	6499
+9605	Homo	humans	genus	genus	60	3643	2017	7335	7335
 9611	Canis		genus	genus	4	59	43	54	99
 9639	Ursus		genus	genus	0	0	28	0	28
 9650	Nasua		genus	genus	0	0	10	0	10
@@ -3915,14 +3843,14 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 9753	Physeter		genus	genus	0	3	0	3	3
 9766	Balaenoptera		genus	genus	0	5	0	4	5
 9776	Trichechus		genus	genus	0	0	3	0	3
-9789	Equus		genus	genus	2	113	51	96	161
+9789	Equus		genus	genus	2	113	51	97	161
 9804	Diceros		genus	genus	0	0	6	0	6
-9822	Sus		genus	genus	4	767	259	1132	1132
+9822	Sus		genus	genus	4	766	259	1132	1132
 9859	Cervus		genus	genus	0	5	0	5	5
 9893	Giraffa		genus	genus	0	0	6	0	6
 9903	Bos		genus	genus	8	1011	446	1538	1538
 9918	Bubalus		genus	genus	0	0	1	0	1
-9922	Capra		genus	genus	0	35	14	28	49
+9922	Capra		genus	genus	0	35	14	29	49
 9935	Ovis		genus	genus	1	147	114	140	261
 9984	Oryctolagus		genus	genus	4	166	44	155	207
 10028	Cricetulus		genus	genus	2	403	14	416	416
@@ -3931,8 +3859,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 10043	Phodopus		genus	genus	0	7	0	7	7
 10046	Meriones		genus	genus	0	10	0	9	10
 10067	Acomys		genus	genus	0	9	0	9	9
-10088	Mus	mouse	genus	genus	18	1270	417	2008	2008
-10114	Rattus	rats	genus	genus	14	1306	343	1306	1306
+10088	Mus	mouse	genus	genus	18	743	417	1979	1979
+10114	Rattus	rats	genus	genus	14	682	343	1306	1306
 10140	Cavia	guinea-pigs	genus	genus	2	94	6	94	98
 10151	Chinchilla		genus	genus	0	3	0	3	3
 10294	Simplexvirus		genus	genus	0	2	3	2	5
@@ -4125,7 +4053,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 52836	Mandevilla		genus	genus	0	8	0	0	8
 53158	Lamium		genus	genus	0	1	0	0	1
 53171	Stachys		genus	genus	0	3	0	0	3
-53246	Pseudoalteromonas		genus	genus	9	52	0	1	52
+53246	Pseudoalteromonas		genus	genus	8	51	0	1	51
 53335	Pantoea		genus	genus	0	3	0	0	3
 53467	Mesocestoides		genus	genus	2	2	0	2	2
 53747	Echinacea		genus	genus	0	4	0	0	4
@@ -4279,7 +4207,6 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 172658	Parophrys		genus	genus	0	3	0	1	3
 178469	Arenibacter		genus	genus	0	5	0	0	5
 178513	Amphimedon		genus	genus	0	1	0	1	1
-180809	Acanthocladus		genus	genus	0	4	0	0	4
 181679	Porodisculus		genus	genus	0	1	0	1	1
 182083	Gynostemma		genus	genus	0	2	0	0	2
 182371	Clinopodium		genus	genus	0	2	0	0	2
@@ -4288,7 +4215,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 183218	Abelmoschus		genus	genus	0	5	0	1	5
 186466	Mizuhopecten		genus	genus	0	1	0	1	1
 186537	Marburgvirus		genus	genus	0	10	0	10	10
-186938	Respirovirus		genus	genus	0	19	14	19	33
+186938	Respirovirus		genus	genus	0	19	0	19	19
 189450	Papiliotrema		genus	genus	1	5	0	1	5
 189497	Echidna		genus	genus	0	2	0	2	2
 190236	Bellium		genus	genus	0	2	0	0	2
@@ -4297,7 +4224,7 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 192327	Symphytum		genus	genus	0	4	0	1	4
 192752	Lithobates		genus	genus	0	99	70	61	168
 196118	Methanocaldococcus		genus	genus	0	1	0	1	1
-197911	Alphainfluenzavirus		genus	genus	0	12	18	12	30
+197911	Alphainfluenzavirus		genus	genus	0	12	2	12	14
 199219	Pinellia		genus	genus	0	3	0	0	3
 202994	Rhodiola		genus	genus	0	1	0	0	1
 203834	Speirantha		genus	genus	0	1	0	1	1
@@ -4309,9 +4236,8 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 233754	Synsepalum		genus	genus	0	14	5	6	19
 238243	Chamaenerion		genus	genus	0	1	0	0	1
 257778	Putranjiva		genus	genus	0	7	0	0	7
-263869	Pseudaspius		genus	genus	0	13	0	7	13
+263869	Pseudaspius		genus	genus	0	13	0	9	13
 268580	Nothogenia		genus	genus	0	4	0	0	4
-282283	Anomalocardia		genus	genus	0	1	0	0	1
 298367	Metaphire		genus	genus	0	2	0	1	2
 300275	Lachancea		genus	genus	0	5	0	5	5
 306910	Cleistopholis		genus	genus	0	6	0	0	6
@@ -4332,13 +4258,12 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 460521	Nakazawaea		genus	genus	0	5	0	4	5
 468156	Senegalia		genus	genus	0	2	0	0	2
 558016	Alphabaculovirus		genus	genus	0	0	3	0	3
-596788	Bassecoia		genus	genus	0	3	0	0	3
 599737	Wickerhamomyces		genus	genus	0	2	0	2	2
 604195	Cyberlindnera		genus	genus	0	9	0	7	9
 651667	Rhinella	Rio Viejo toads	genus	genus	0	10	10	9	20
 651673	Bufotes		genus	genus	0	14	15	8	29
 670516	Mycobacteroides		genus	genus	3	8	0	0	8
-694002	Betacoronavirus		genus	genus	0	397	212	397	404
+694002	Betacoronavirus		genus	genus	0	1	212	397	404
 694344	Betonica		genus	genus	0	1	0	1	1
 766728	Meyerozyma		genus	genus	0	4	0	4	4
 909656	Phocaeicola		genus	genus	0	1	0	0	1
@@ -4361,14 +4286,12 @@ NCBI TaxID	Scientific Name	Common Name	Rank	Aggr	GlyTouCan	GlyCosmos	GlyConnect	
 1868718	Phyllolobium		genus	genus	0	2	0	0	2
 1870829	Diplobatis		genus	genus	0	2	0	0	2
 1870884	Clostridioides		genus	genus	2	2	0	1	2
-1891714	Betapolyomavirus		genus	genus	0	0	1	0	1
 1903434	Atlantibacter		genus	genus	4	5	0	0	5
 1912216	Cutibacterium		genus	genus	1	1	0	0	1
 1915381	Nannizzia		genus	genus	0	2	0	0	2
 1960649	Notamacropus	Bennett's wallaby	genus	genus	0	1	4	0	5
 2045129	Mesosphaerum		genus	genus	0	1	0	0	1
 2055258	Hypanus		genus	genus	0	1	1	1	2
-2093253	Hemitrygon		genus	genus	0	0	1	0	1
 2182372	Osphranter		genus	genus	0	0	6	0	6
 2211641	Yoonia		genus	genus	1	1	0	0	1
 2321114	Malaciobacter		genus	genus	1	1	0	0	1
