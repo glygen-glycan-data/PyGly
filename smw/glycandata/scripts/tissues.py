@@ -18,7 +18,11 @@ tospecies = {
         "TissueInMouse": "Mouse",
         "TissueInZebraFish": "ZebraFish",
         "TissueInZebrafish": "ZebraFish",
-        "TissueInFruitFly": "FruitFly"
+        "TissueInFruitFly": "FruitFly",
+        "TissueInBovine": "Bovine",
+        "TissueInPig": "Pig",
+        "TissueInChicken": "Chicken",
+        "TissueInRat": "Rat",
 }
 
 w = GlycanData()

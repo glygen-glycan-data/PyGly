@@ -55,6 +55,10 @@ taxid2prop = {
     '7227': 'TissueInFruitFly',
     '10090': 'TissueInMouse',
     '7955': 'TissueInZebraFish',
+    '9913': 'TissueInBovine',
+    '9823': 'TissueInPig',
+    '9031': 'TissueInChicken',
+    '10116': 'TissueInRat',
 }
 
 for m in iterglycan():
