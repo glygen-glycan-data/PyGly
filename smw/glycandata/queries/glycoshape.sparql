@@ -1,0 +1,13 @@
+PREFIX glycandata: <http://glyomics.org/glycandata#>
+
+SELECT DISTINCT 
+       (?accession  as ?GlyTouCanAccession)
+       (?value as ?GlycoShapeAccession)
+WHERE {
+  ?glycan glycandata:accession ?accession .
+  ?ann1 glycandata:type "CrossReference" .
+  ?ann1 glycandata:property "GlycoShape" .
+  ?ann1 glycandata:value ?value .
+  ?ann1 glycandata:hasglycan ?glycan
+}
+ORDER BY ?accession ?value
