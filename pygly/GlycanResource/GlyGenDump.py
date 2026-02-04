@@ -340,6 +340,7 @@ class UniCarbKBSourceFile(GlyGenSourceFile):
        B2RYF6	10116
     """.splitlines())))
     uckb2gtcacc = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/data/uckbcomp2glytoucan.txt"
+    doifield = "doi"
 
     def rows(self,filename,loadtaxid=False):
         if self._taxidlookup == None:
@@ -587,52 +588,68 @@ class PlateletOLinkedSourceFile(GlyGenSourceFile):
 class TableMakerSourceFile(GlyGenSourceFile):
     source = "tablemaker"
     glygen_source = "TableMaker"
-    glygen_sourceid = """
-        GLY_001253
-        GLY_001252
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-        GLY_001408
-    """
+    taxid2taxid = {
+        "9605": "9606"
+    }
+    taxid2dsid = { 
+        "9606": "GLY_001408",  #Human
+        "10090": "GLY_001485", #Mouse
+        "10116": "GLY_001486", #Rat
+        "7227": "GLY_001253",  #FruitFly
+        "4932": "GLY_001494",  #Yeast
+        "9823": "GLY_001490",  #Pig
+        "9031": "GLY_001489",  #Chicken
+        "3702": "GLY_001487",  #Arabidopsis
+        "9913": "GLY_001497",  #Bovine
+        "7955": "GLY_001252",  #Zebrafish
+        "10029": "GLY_001484", #Hamster
+        "44689": "GLY_001488", #Dicty
+        }
     sections = """
-        TD1468274
-	TD1127346
-	TD1040297
-	TD2415036
-	TD2986138
-	TD4951079
-	TD7181079
-	TD7732158
-	TD8189974
-	TD8741863
-        TD4253352
-        TD5664582
-        TD2727671
-        TD6640575
-        TD4964642
-        TD7680256
-        TD1131507
+        TG1468274
+	    TG1127346
+	    TG1040297
+	    TG2415036
+	    TG2986138
+	    TG4951079
+	    TG7181079
+	    TG7732158
+	    TG8189974
+	    TG8741863
+        TG4253352
+        TG5664582
+        TG2727671
+        TP6640575
+        TG4964642
+        TG7680256
+        TG1131507
+        TP5868669
+        TG10381046
+        TG5577100
     """
     taxidfield = 'Species'
-    pmidfield = 'Evidence'
+    # pmidfield = 'Evidence' sometimes contains a doi!
+    doifield = "doi"
     tissuefield = 'Tissue'
     idfield = 'GlyTouCan ID'
     gtcfield = 'GlyTouCan ID'    
 
     def rows(self,section):
-        return self.csvrows(section=section,filename=section)
+        for row in self.csvrows(section=section,filename=section):
+            # print(row)
+            if row.get('Evidence',"").strip():
+                if re.search(r'^\d+$',row['Evidence'].strip()):
+                    row['pmid'] = row['Evidence'].strip()
+                elif row['Evidence'].strip().startswith('10.'):
+                    row['doi'] = row['Evidence'].strip()
+                else:
+                    raise RuntimeError(str(row))
+            if row.get(self.taxidfield,"").strip():
+                taxid = row[self.taxidfield]
+                taxid = self.taxid2taxid.get(taxid,taxid)
+                if taxid in self.taxid2dsid:
+                    row['_glygen_sourceid'] = self.taxid2dsid[taxid]
+                    yield row
 
 class OGlcNAcAtlasSourceFile(GlyGenSourceFile):
     source = 'atlas_oglcnac'
@@ -934,6 +951,19 @@ class PDBGlycanSourceFile(GlyGenSourceFile):
             # print(row)
             yield row
 
+class GlycoShapeSourceFile(GlyGenSourceFile):
+    source = "glycoshape"
+    glygen_source = "GlycoShape"
+    sections = "glycan_list"
+    glygen_sourceid = "GLY_001491"
+   
+    def json2rows(self,json):
+        for acc in json:
+            yield dict(glytoucan_ac=acc)
+
+    def rows(self,section):
+        return self.jsonrows(self.source,filename=section)
+        
 class GlyGenDataset(WebServiceResource):
     apiurl = "https://data.glygen.org/ln2releases/data/current/reviewed"
     def __init__(self,**kw):
