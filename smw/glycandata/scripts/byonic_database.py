@@ -50,6 +50,17 @@ for acc in w.iterglycanid():
     if not nlinked:
         continue
 
+    try:
+        for subcls in g.get_annotation_values(property='GlycanSubtype',type='Classification'):
+            if subcls == "N-linked truncated":
+                nlinked = False
+                break
+    except LookupError:
+        pass
+
+    if not nlinked:
+        continue
+
     # has molecular weight
     try:
         mw = float(g.get_annotation_value(property='UnderivitizedMW',type="MolWt",source="EdwardsLab"))
