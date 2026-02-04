@@ -4454,6 +4454,7 @@ G18544KO	N-glycan_a-D-Galp_50	N50	16	P38649	Abo	80908	N6	GT	Mus musculus	transfe
 G18544KO	N-glycan_a-D-Galp_51	N51	19	P16442	ABO	28	N10	GT	Homo sapiens	transfer of residue N51 (a-D-Galp) by P16442 in Homo sapiens requires residue N200 (a-L-Fucp)
 G18544KO	N-glycan_a-D-Galp_51	N51	19	P38649	Abo	80908	N10	GT	Mus musculus	transfer of residue N51 (a-D-Galp) by P38649 in Mus musculus requires residue N200 (a-L-Fucp)
 G18548RP	N-glycan_a-D-Manp_202	N202	9				N1			residue N202 (a-D-Manp) is limited to N-mannans in Fungi
+G18583QC	N-glycan_a-L-Fucp_267	N267	7				N2			residue N267 (a-L-Fucp) has an abiotic structural context
 G18591BK	N-glycan_a-D-Fucp_201	N201	9				NA			residue N201 (a-D-Fucp) has an abiotic absolute configuration
 G18594ZT	N-glycan_b-D-GlcpNAc_206	N206	8				N1			residue N206 (b-D-GlcpNAc) has an abiotic glycosyl linkage
 G18603OH	O-glycan_b-D-GlcpNAc_157	O157	3	Q02742	GCNT1	2650	OC	GT	Homo sapiens	transfer of residue O157 (b-D-GlcpNAc) by Q02742 in Homo sapiens requires residue O152 (b-D-Galp)
@@ -5039,6 +5040,12 @@ G21197WZ	N-glycan_b-L-Fucp_299	N299	13				NA			residue N299 (b-L-Fucp) has an ab
 G21197WZ	N-glycan_b-D-Galp_211	N211	12				N30			residue N211 (b-D-Galp) is limited to N-glycans in Schistosoma
 G21205MT	O-glycan_b-D-GlcpNAc_157	O157	6	Q02742	GCNT1	2650	OC	GT	Homo sapiens	transfer of residue O157 (b-D-GlcpNAc) by Q02742 in Homo sapiens requires residue O152 (b-D-Galp)
 G21205MT	O-glycan_b-D-GlcpNAc_157	O157	6	Q09324	Gcnt1	14537	OC	GT	Mus musculus	transfer of residue O157 (b-D-GlcpNAc) by Q09324 in Mus musculus requires residue O152 (b-D-Galp)
+G21214LO	N-glycan_b-D-GlcpNAc_7	N7	5	Q812F8	Mgat4b	103534	N1	GT	Mus musculus	transfer of residue N7 (b-D-GlcpNAc) by Q812F8 in Mus musculus requires residue N2 (b-D-GlcpNAc)
+G21214LO	N-glycan_b-D-GlcpNAc_7	N7	5	Q812G0	Mgat4a	269181	N1	GT	Mus musculus	transfer of residue N7 (b-D-GlcpNAc) by Q812G0 in Mus musculus requires residue N2 (b-D-GlcpNAc)
+G21214LO	N-glycan_b-D-GlcpNAc_7	N7	5	Q9D306	Mgat4c	67569	N1	GT	Mus musculus	transfer of residue N7 (b-D-GlcpNAc) by Q9D306 in Mus musculus requires residue N2 (b-D-GlcpNAc)
+G21214LO	N-glycan_b-D-GlcpNAc_7	N7	5	Q9UBM8	MGAT4C	25834	N1	GT	Homo sapiens	transfer of residue N7 (b-D-GlcpNAc) by Q9UBM8 in Homo sapiens requires residue N2 (b-D-GlcpNAc)
+G21214LO	N-glycan_b-D-GlcpNAc_7	N7	5	Q9UM21	MGAT4A	11320	N1	GT	Homo sapiens	transfer of residue N7 (b-D-GlcpNAc) by Q9UM21 in Homo sapiens requires residue N2 (b-D-GlcpNAc)
+G21214LO	N-glycan_b-D-GlcpNAc_7	N7	5	Q9UQ53	MGAT4B	11282	N1	GT	Homo sapiens	transfer of residue N7 (b-D-GlcpNAc) by Q9UQ53 in Homo sapiens requires residue N2 (b-D-GlcpNAc)
 G21236IX	N-glycan_a-D-Galp_52	N52	7	P16442	ABO	28	N3	GT	Homo sapiens	transfer of residue N52 (a-D-Galp) by P16442 in Homo sapiens requires residue N53 (a-L-Fucp)
 G21236IX	N-glycan_a-D-Galp_52	N52	7	P38649	Abo	80908	N3	GT	Mus musculus	transfer of residue N52 (a-D-Galp) by P38649 in Mus musculus requires residue N53 (a-L-Fucp)
 G21246WW	O-glycan_b-D-GlcpNAc_157	O157	4	Q02742	GCNT1	2650	OC	GT	Homo sapiens	transfer of residue O157 (b-D-GlcpNAc) by Q02742 in Homo sapiens requires residue O152 (b-D-Galp)
@@ -5489,6 +5496,7 @@ G23463KX	O-glycan_a-L-Fucp_548	O548	5	Q11127	Fut4	14345	O157	GT	Mus musculus	tra
 G23463KX	O-glycan_a-L-Fucp_548	O548	5	Q11131	Fut7	14347	O157	GT	Mus musculus	transfer of residue O548 (a-L-Fucp) by Q11131 in Mus musculus requires residue O581 (b-D-GalpNAc)
 G23463KX	O-glycan_a-L-Fucp_548	O548	5	O88819	Fut9	14348	O157	GT	Mus musculus	transfer of residue O548 (a-L-Fucp) by O88819 in Mus musculus requires residue O581 (b-D-GalpNAc)
 G23472ZS	N-glycan_a-D-Fucp_201	N201	12				NA			residue N201 (a-D-Fucp) has an abiotic absolute configuration
+G23504NK	N-glycan_b-D-Galp_314	N314	8				N62			residue N314 (b-D-Galp) has an abiotic structural context
 G23512SE	N-glycan_a-D-Galp_50	N50	12	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N50 (a-D-Galp) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
 G23512SE	N-glycan_a-D-Galp_50	N50	12	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G23520SQ	N-glycan_a-D-Manp_202	N202	6				N1			residue N202 (a-D-Manp) is limited to N-mannans in Fungi
@@ -7282,6 +7290,8 @@ G31206PQ	N-glycan_a-D-Galp_50	N50	17	P16442	ABO	28	N6	GT	Homo sapiens	transfer o
 G31206PQ	N-glycan_a-D-Galp_50	N50	17	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G31206PQ	N-glycan_a-D-Galp_51	N51	20	P16442	ABO	28	N10	GT	Homo sapiens	transfer of residue N51 (a-D-Galp) by P16442 in Homo sapiens requires residue N200 (a-L-Fucp)
 G31206PQ	N-glycan_a-D-Galp_51	N51	20	P38649	Abo	80908	N10	GT	Mus musculus	transfer of residue N51 (a-D-Galp) by P38649 in Mus musculus requires residue N200 (a-L-Fucp)
+G31207MF	N-glycan_a-D-Galp_50	N50	13	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N50 (a-D-Galp) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
+G31207MF	N-glycan_a-D-Galp_50	N50	13	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G31213GU	N-glycan_a-D-Fucp_201	N201	9				NA			residue N201 (a-D-Fucp) has an abiotic absolute configuration
 G31214OT	N-glycan_a-D-Galp_39	N39	11	P16442	ABO	28	N8	GT	Homo sapiens	transfer of residue N39 (a-D-Galp) by P16442 in Homo sapiens requires residue N71 (a-L-Fucp)
 G31214OT	N-glycan_a-D-Galp_39	N39	11	P38649	Abo	80908	N8	GT	Mus musculus	transfer of residue N39 (a-D-Galp) by P38649 in Mus musculus requires residue N71 (a-L-Fucp)
@@ -8134,6 +8144,7 @@ G35199BM	O-glycan_a-L-Fucp_548	O548	5	Q8BHC9	Fut11	73068	O157	GT	Mus musculus	tr
 G35199BM	O-glycan_a-L-Fucp_548	O548	5	Q11127	Fut4	14345	O157	GT	Mus musculus	transfer of residue O548 (a-L-Fucp) by Q11127 in Mus musculus requires residue O581 (b-D-GalpNAc)
 G35199BM	O-glycan_a-L-Fucp_548	O548	5	Q11131	Fut7	14347	O157	GT	Mus musculus	transfer of residue O548 (a-L-Fucp) by Q11131 in Mus musculus requires residue O581 (b-D-GalpNAc)
 G35199BM	O-glycan_a-L-Fucp_548	O548	5	O88819	Fut9	14348	O157	GT	Mus musculus	transfer of residue O548 (a-L-Fucp) by O88819 in Mus musculus requires residue O581 (b-D-GalpNAc)
+G35203GL	N-glycan_a-D-Manp_296	N296	8				N20			residue N296 (a-D-Manp) is limited to N-mannans in Fungi
 G35210SH	N-glycan_a-D-Fucp_201	N201	9				NA			residue N201 (a-D-Fucp) has an abiotic absolute configuration
 G35237LF	O-glycan_b-D-GlcpNAc_157	O157	4	Q02742	GCNT1	2650	OC	GT	Homo sapiens	transfer of residue O157 (b-D-GlcpNAc) by Q02742 in Homo sapiens requires residue O152 (b-D-Galp)
 G35237LF	O-glycan_b-D-GlcpNAc_157	O157	4	Q09324	Gcnt1	14537	OC	GT	Mus musculus	transfer of residue O157 (b-D-GlcpNAc) by Q09324 in Mus musculus requires residue O152 (b-D-Galp)
@@ -8820,6 +8831,8 @@ G38109HB	N-glycan_a-D-Galp_52	N52	7	P16442	ABO	28	N3	GT	Homo sapiens	transfer of
 G38109HB	N-glycan_a-D-Galp_52	N52	7	P38649	Abo	80908	N3	GT	Mus musculus	transfer of residue N52 (a-D-Galp) by P38649 in Mus musculus requires residue N53 (a-L-Fucp)
 G38110UD	N-glycan_a-D-Galp_51	N51	20	P16442	ABO	28	N10	GT	Homo sapiens	transfer of residue N51 (a-D-Galp) by P16442 in Homo sapiens requires residue N200 (a-L-Fucp)
 G38110UD	N-glycan_a-D-Galp_51	N51	20	P38649	Abo	80908	N10	GT	Mus musculus	transfer of residue N51 (a-D-Galp) by P38649 in Mus musculus requires residue N200 (a-L-Fucp)
+G38121TQ	N-glycan_a-D-Galp_50	N50	13	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N50 (a-D-Galp) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
+G38121TQ	N-glycan_a-D-Galp_50	N50	13	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G38146QE	N-glycan_a-D-Galp_39	N39	11	P16442	ABO	28	N8	GT	Homo sapiens	transfer of residue N39 (a-D-Galp) by P16442 in Homo sapiens requires residue N71 (a-L-Fucp)
 G38146QE	N-glycan_a-D-Galp_39	N39	11	P38649	Abo	80908	N8	GT	Mus musculus	transfer of residue N39 (a-D-Galp) by P38649 in Mus musculus requires residue N71 (a-L-Fucp)
 G38159EA	N-glycan_a-D-GalpNAc_104	N104	12	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N104 (a-D-GalpNAc) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
@@ -10499,6 +10512,8 @@ G44669OM	N-glycan_a-D-Fucp_201	N201	7				NA			residue N201 (a-D-Fucp) has an abi
 G44669OM	N-glycan_a-D-Fucp_256	N256	2				NA			residue N256 (a-D-Fucp) has an abiotic absolute configuration
 G44688UB	N-glycan_b-D-GlcpNAc_206	N206	8				N1			residue N206 (b-D-GlcpNAc) has an abiotic glycosyl linkage
 G44700CI	N-glycan_a-L-Fucp_267	N267	9				N2			residue N267 (a-L-Fucp) has an abiotic structural context
+G44717TO	N-glycan_a-D-Galp_50	N50	12	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N50 (a-D-Galp) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
+G44717TO	N-glycan_a-D-Galp_50	N50	12	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G44722KG	N-glycan_b-D-Galp_239	N239	13				N6			residue N239 (b-D-Galp) has an abiotic glycosyl linkage
 G44722KG	N-glycan_b-D-Galp_240	N240	8				N3			residue N240 (b-D-Galp) has an abiotic glycosyl linkage
 G44732NN	O-glycan_a-D-NeupNAc_535	O535	5	Q9WUV2	St6galnac3	20447	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9WUV2 in Mus musculus blocked by residue O152 (b-D-Galp)
@@ -13466,6 +13481,7 @@ G58492AX	N-glycan_a-D-Galp_39	N39	12	P16442	ABO	28	N8	GT	Homo sapiens	transfer o
 G58492AX	N-glycan_a-D-Galp_39	N39	12	P38649	Abo	80908	N8	GT	Mus musculus	transfer of residue N39 (a-D-Galp) by P38649 in Mus musculus requires residue N71 (a-L-Fucp)
 G58492AX	N-glycan_a-D-Galp_50	N50	16	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N50 (a-D-Galp) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
 G58492AX	N-glycan_a-D-Galp_50	N50	16	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
+G58498PN	N-glycan_b-D-Galp_211	N211	9				N30			residue N211 (b-D-Galp) is limited to N-glycans in Schistosoma
 G58539KV	O-glycan_a-D-GalpNAc_162	O162	3	P16442	ABO	28	O152	GT	Homo sapiens	transfer of residue O162 (a-D-GalpNAc) by P16442 in Homo sapiens requires residue O154 (a-L-Fucp)
 G58539KV	O-glycan_a-D-GalpNAc_162	O162	3	P38649	Abo	80908	O152	GT	Mus musculus	transfer of residue O162 (a-D-GalpNAc) by P38649 in Mus musculus requires residue O154 (a-L-Fucp)
 G58571GH	O-glycan_a-D-NeupNAc_535	O535	7	Q9WUV2	St6galnac3	20447	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9WUV2 in Mus musculus blocked by residue O152 (b-D-Galp)
@@ -15027,6 +15043,8 @@ G65456EK	N-glycan_a-D-Galp_50	N50	11	P16442	ABO	28	N6	GT	Homo sapiens	transfer o
 G65456EK	N-glycan_a-D-Galp_50	N50	11	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G65460ES	O-glycan_b-D-GlcpNAc_157	O157	2	Q02742	GCNT1	2650	OC	GT	Homo sapiens	transfer of residue O157 (b-D-GlcpNAc) by Q02742 in Homo sapiens requires residue O152 (b-D-Galp)
 G65460ES	O-glycan_b-D-GlcpNAc_157	O157	2	Q09324	Gcnt1	14537	OC	GT	Mus musculus	transfer of residue O157 (b-D-GlcpNAc) by Q09324 in Mus musculus requires residue O152 (b-D-Galp)
+G65463BF	N-glycan_a-D-Galp_50	N50	10	P16442	ABO	28	N6	GT	Homo sapiens	transfer of residue N50 (a-D-Galp) by P16442 in Homo sapiens requires residue N54 (a-L-Fucp)
+G65463BF	N-glycan_a-D-Galp_50	N50	10	P38649	Abo	80908	N6	GT	Mus musculus	transfer of residue N50 (a-D-Galp) by P38649 in Mus musculus requires residue N54 (a-L-Fucp)
 G65497RA	N-glycan_a-D-Galf_215	N215	8				N19			residue N215 (a-D-Galf) has an abiotic glycosyl linkage
 G65499ZI	O-glycan_a-D-NeupNAc_535	O535	6	Q9WUV2	St6galnac3	20447	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9WUV2 in Mus musculus blocked by residue O156 (b-D-GlcpNAc)
 G65499ZI	O-glycan_a-D-NeupNAc_535	O535	6	Q9R2B6	St6galnac4	20448	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9R2B6 in Mus musculus blocked by residue O156 (b-D-GlcpNAc)
@@ -17979,6 +17997,8 @@ G78603AB	N-glycan_a-D-Galp_51	N51	17	P16442	ABO	28	N10	GT	Homo sapiens	transfer 
 G78603AB	N-glycan_a-D-Galp_51	N51	17	P38649	Abo	80908	N10	GT	Mus musculus	transfer of residue N51 (a-D-Galp) by P38649 in Mus musculus requires residue N200 (a-L-Fucp)
 G78648QN	N-glycan_b-D-GlcpNAc_206	N206	8				N1			residue N206 (b-D-GlcpNAc) has an abiotic glycosyl linkage
 G78727VW	N-glycan_b-D-Manp_338	N338	5				N1			residue N338 (b-D-Manp) has an abiotic structural context
+G78732ZF	N-glycan_a-D-Manp_204	N204	6				N4			residue N204 (a-D-Manp) is limited to N-mannans in Fungi
+G78732ZF	N-glycan_a-D-Manp_296	N296	9				N20			residue N296 (a-D-Manp) is limited to N-mannans in Fungi
 G78759XX	O-glycan_a-D-NeupNAc_535	O535	5	Q9WUV2	St6galnac3	20447	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9WUV2 in Mus musculus blocked by residue O156 (b-D-GlcpNAc)
 G78759XX	O-glycan_a-D-NeupNAc_535	O535	5	Q9R2B6	St6galnac4	20448	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9R2B6 in Mus musculus blocked by residue O156 (b-D-GlcpNAc)
 G78759XX	O-glycan_a-D-NeupNAc_535	O535	5	Q9QYJ1	St6galnac5	26938	OC	GT	Mus musculus	transfer of residue O535 (a-D-NeupNAc) by Q9QYJ1 in Mus musculus blocked by residue O156 (b-D-GlcpNAc)
