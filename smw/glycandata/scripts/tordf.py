@@ -2,6 +2,7 @@
 
 import sys
 
+from urllib.parse import quote
 from getwiki import GlycanData
 w = GlycanData()
 
@@ -48,6 +49,9 @@ sourceidlinetmpl = """                <glycandata:sourceid rdf:datatype="http://
 
 valuetmpl = """                <glycandata:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">%(value)s</glycandata:value>"""
 
+def escape(s):
+    return s.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
+
 sys.stdout.write(head)
 for m in w.iterglycan():
     acc = m.get('accession')
@@ -58,17 +62,17 @@ for m in w.iterglycan():
         values = []
         if isinstance(anval,list):
             for v in anval:
-                values.append(valuetmpl%dict(value=v.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')))
+                values.append(valuetmpl%dict(value=escape(v)))
         else:
-            values.append(valuetmpl%dict(value=anval.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')))
+            values.append(valuetmpl%dict(value=escape(anval)))
         sourceid = an.get('sourceid',"")
         if sourceid:
-            sourceidline = sourceidlinetmpl%dict(sourceid=sourceid)
+            sourceidline = sourceidlinetmpl%dict(sourceid=escape(sourceid))
         else:
             sourceidline = ""
         sys.stdout.write(annotationtmpl%dict(database=database,accession=acc,
                                   type=an.get('type'), property=an.get('property'),
                                   property_safe=an.get('property').replace(' ','_'),
-                                  source=an.get('source'), sourceid=sourceid,
+                                  source=an.get('source'), sourceid=escape(quote(sourceid,safe="")),
                                   sourceidline=sourceidline, values = '\n'.join(values)))
 sys.stdout.write(tail)
