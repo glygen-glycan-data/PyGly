@@ -47,6 +47,7 @@ class Glycan:
     lcSym = LinCodeSym()
     glycoctformat = None
     glycamformat = None
+    compositionformat = None
 
     def __init__(self,root=None):
         self.set_root(root)
@@ -742,6 +743,14 @@ class Glycan:
                                           aggregate_basecomposition=aggregate_basecomposition,
                                           redend_only=True, repeat_times=1)
         return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
+
+    def composition_string(self, composition=None, **kwargs):
+        from . CompositionFormatter import CompositionFormat
+        if not self.compositionformat:
+            self.compositionformat = CompositionFormat()
+        if not composition:
+            composition = self.iupac_composition(**kwargs)
+        return self.compositionformat.toStr(composition)
 
     def glycoct(self):
         from . GlycanFormatter import GlycoCTFormat

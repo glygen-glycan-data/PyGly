@@ -1191,12 +1191,12 @@ class IUPACParserAbstract():
         undetroots = []
         incore = True
 
-        # print(self.__class__.__name__)
+        print(self.__class__.__name__)
         # print(seq)
         # Process
         regexRes = self.regexSearch(seq)
         for i, monoinfo in enumerate(regexRes):
-            # print(monoinfo)
+            print(monoinfo)
             mono = self.monoAssemble(monoinfo)
             mono.set_id(i+1)
             if monoinfo.get('undetroot',False):
@@ -1249,6 +1249,8 @@ class IUPACParserAbstract():
                 # Well... It can make sense if there are multiple ending bracket. Just pop n element from branchPoint
                 if remove_stack != 0:
                     if remove_stack > 1:
+                        raise IUPACBranchingError
+                    if len(branchPoint) == 0:
                         raise IUPACBranchingError
                     parentMono = branchPoint.pop(-1)
         
@@ -1308,7 +1310,7 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
     example = "Man(a1-3/6)[Man(a1/3/5-?)Gal(b1-3)]GalNAc(?1-"
 
     alias = "GTCC:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<mono>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|dHex)([a-zA-Z5926,?]+)?)(?P<link>(\([ab?]?[1-9?](/[1-9])*-([1-9?](/[1-9])*\))?))?(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<bpe>(\[)*)(?P<mono>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|dHex)([a-zA-Z5926,?]+)?)(?P<link>(\((?P<anomer>(a|b|\u03b1|\u03b2|alpha|beta|\?)?)(?P<linkpos>([1-9?](/[1-9])*-([1-9?](/[1-9])*)))?\)))?(?P<bps>(\])*)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -1321,24 +1323,32 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
         res = []
         for s in searchres:
             res0 = copy.deepcopy(self.regexResTemplate)
-            # print(s["link"])
+            print(s)
 
-            if not s["link"]:
+            if not s["link"] or not s["anomer"]:
                 anomersl = "?"
             else:
-                anomersl = s["link"][1] 
+                anomersl = s["anomer"]
             if anomersl == "a":
                 anomer = "Anomer.alpha"
+            elif anomersl == "alpha":
+                anomer = "Anomer.alpha"
+            elif anomersl == "\u03b1":
+                anomer = "Anomer.alpha"    
             elif anomersl == "b":
+                anomer = "Anomer.beta"
+            elif anomersl == "beta":
+                anomer = "Anomer.beta"
+            elif anomersl == "\u03b2":
                 anomer = "Anomer.beta"
             elif anomersl == "?":
                 anomer = None
             else:
-                raise IUPACUnsupportedAnomer(s["link"], anomersl)
+                raise IUPACUnsupportedAnomer(s["anomer"], anomersl)
 
-            if s["link"]:
-                link = s["link"].lstrip("(").rstrip(")")
-                link = link[1:].split("-")
+            if s["link"] and s["linkpos"]:
+                link = s["linkpos"]
+                link = link.split("-")
             else:
                 link = (None,None)
             if len(link) == 1:

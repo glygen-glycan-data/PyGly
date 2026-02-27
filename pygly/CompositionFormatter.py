@@ -4,6 +4,7 @@ from __future__ import print_function
 from . GlycanResource import GlyTouCanNoCache
 from . GlycanFormatter import GlycanFormatter, WURCS20Format
 from . GlycanFormatterExceptions import *
+from . Glycan import Glycan
 
 import re, sys
 
@@ -15,6 +16,24 @@ class CompositionFormat(GlycanFormatter):
     def __init__(self):
         self.wp = WURCS20Format()
         self.gtc = GlyTouCanNoCache()
+
+    def toStr(self,composition=None,glycan=None,**kwargs):
+        if not composition:
+            composition = glycan.iupac_composition(**kwargs)
+        keys = set([k for k in composition.keys() if composition[k] > 0])
+        keys = keys-set(["Count","Xxx","X"])
+        complist = []
+        seen = set()
+        for sym in Glycan.iupac_composition_syms + \
+                   Glycan.iupac_aldi_composition_syms + \
+                   Glycan.subst_composition_syms:
+            if composition[sym] > 0:
+                complist.append("%s(%d)"%(sym,composition[sym]))
+                seen.add(sym)
+        # print(seen,keys,complist)
+        assert seen == keys
+        return "".join(complist)
+        
     def toSequence(self,s):
         if s.startswith('comp_'):
             s = s[5:]
