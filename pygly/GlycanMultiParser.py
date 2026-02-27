@@ -14,6 +14,7 @@ class GlycanMultiParser(object):
     ip2 = IUPACParserExtended1()
     ip3 = IUPACParserGlyTouCanExtended()
     ip4 = IUPACParserCFG()
+    ip5 = IUPACParserGlyTouCanCondensed()
     svgp = GlycanBuilderSVG()
     gtc = GlyTouCan()
 
@@ -67,6 +68,11 @@ class GlycanMultiParser(object):
         try:
             self.lastparser = self.ip3
             return self.ip3.toGlycan(seq)
+        except GlycanParseError:
+            pass
+        try:
+            self.lastparser = self.ip5
+            return self.ip5.toGlycan(seq)
         except GlycanParseError:
             pass
         self.lastparser = None
