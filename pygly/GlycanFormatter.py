@@ -1191,12 +1191,12 @@ class IUPACParserAbstract():
         undetroots = []
         incore = True
 
-        print(self.__class__.__name__)
+        # print(self.__class__.__name__)
         # print(seq)
         # Process
         regexRes = self.regexSearch(seq)
         for i, monoinfo in enumerate(regexRes):
-            print(monoinfo)
+            # print(monoinfo)
             mono = self.monoAssemble(monoinfo)
             mono.set_id(i+1)
             if monoinfo.get('undetroot',False):
@@ -1323,7 +1323,7 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
         res = []
         for s in searchres:
             res0 = copy.deepcopy(self.regexResTemplate)
-            print(s)
+            # print(s)
 
             if not s["link"] or not s["anomer"]:
                 anomersl = "?"
