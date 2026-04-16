@@ -7,8 +7,8 @@ from pygly.CompositionFormatter import *
 from pygly.GlycanResource import GlyTouCanNoPrefetch as GlyTouCan
 from pygly.GlycanMultiParser import GlycanMultiParser
 
-if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2","iupac3","gtc","auto"):
-    print("Parser should be one of: glycoct, wurcs, svg, comp, iupac, iupac2, iupac3, auto, gtc.")
+if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2","iupac3","iupac4","gtc","auto"):
+    print("Parser should be one of: glycoct, wurcs, svg, comp, iupac, iupac2, iupac3, iupac4, gtc, auto.")
     exit(1)
 gtc = None
 clsname = None
@@ -28,6 +28,8 @@ elif sys.argv[1] == "iupac2":
     clsname = "IUPACParserExtended1"
 elif sys.argv[1] == "iupac3":
     clsname = "IUPACParserGlyTouCanExtended"
+elif sys.argv[1] == "iupac4":
+    clsname = "IUPACParserGlyTouCanCondensed"
 elif sys.argv[1] == "auto":
     clsname = "GlycanMultiParser"
 
@@ -69,7 +71,9 @@ for f in files:
         # traceback.print_exc()
         print("!!!", os.path.split(f)[1], str(e))
         bad += 1
+        raise
     except Exception as e:
-        print("!!!", os.path.split(f)[1], str(e))
+        print("***", os.path.split(f)[1], str(e))
         bad += 1
+        raise
 print("Failed: %d/%d"%(bad,len(files)))
