@@ -5267,47 +5267,6 @@
     },
     "root": "fakeroot"
   },
-  "G08324ZK": {
-    "edges": {
-      "G15021LG": [
-        {
-          "from": "G15021LG",
-          "to": "G08324ZK",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G15021LG",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "PseudoRoot",
-    "nodes": {
-      "G08324ZK": {
-        "level": 0,
-        "name": "G08324ZK",
-        "type": "Whatever"
-      },
-      "G15021LG": {
-        "label": "G15021LG (Cluster)",
-        "level": 0,
-        "name": "G15021LG",
-        "type": "Whatever"
-      },
-      "PseudoRoot": {
-        "hidden": true,
-        "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
-      }
-    },
-    "root": "PseudoRoot"
-  },
   "G08326JL": {
     "edges": {
       "G08326JL": [
@@ -6843,47 +6802,6 @@
     },
     "root": "fakeroot"
   },
-  "G14250GH": {
-    "edges": {
-      "G49108TO": [
-        {
-          "from": "G49108TO",
-          "to": "G14250GH",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G49108TO",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "PseudoRoot",
-    "nodes": {
-      "G14250GH": {
-        "level": 0,
-        "name": "G14250GH",
-        "type": "Whatever"
-      },
-      "G49108TO": {
-        "label": "G49108TO (Cluster)",
-        "level": 0,
-        "name": "G49108TO",
-        "type": "Whatever"
-      },
-      "PseudoRoot": {
-        "hidden": true,
-        "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
-      }
-    },
-    "root": "PseudoRoot"
-  },
   "G14300ZJ": {
     "edges": {
       "G00048MO": [
@@ -7105,7 +7023,7 @@
       "G15021LG": [
         {
           "from": "G15021LG",
-          "to": "G08324ZK",
+          "to": "G36855WW",
           "type": "contains"
         }
       ],
@@ -7121,15 +7039,15 @@
     "mw": "Unknown",
     "name": "PseudoRoot",
     "nodes": {
-      "G08324ZK": {
-        "label": "G08324ZK (Cluster)",
-        "level": 0,
-        "name": "G08324ZK",
-        "type": "Whatever"
-      },
       "G15021LG": {
         "level": 0,
         "name": "G15021LG",
+        "type": "Whatever"
+      },
+      "G36855WW": {
+        "label": "G36855WW",
+        "level": 0,
+        "name": "G36855WW",
         "type": "Whatever"
       },
       "PseudoRoot": {
@@ -7147,13 +7065,6 @@
         {
           "from": "G09546QO",
           "to": "G15541SE",
-          "type": "contains"
-        }
-      ],
-      "G15541SE": [
-        {
-          "from": "G15541SE",
-          "to": "G36810SF",
           "type": "contains"
         }
       ],
@@ -7191,12 +7102,6 @@
       "G15541SE": {
         "level": 0,
         "name": "G15541SE",
-        "type": "Whatever"
-      },
-      "G36810SF": {
-        "label": "G36810SF",
-        "level": 0,
-        "name": "G36810SF",
         "type": "Whatever"
       },
       "G69386QK": {
@@ -8452,13 +8357,6 @@
           "type": "contains"
         }
       ],
-      "G20420WT": [
-        {
-          "from": "G20420WT",
-          "to": "G36810SF",
-          "type": "contains"
-        }
-      ],
       "G69386QK": [
         {
           "from": "G69386QK",
@@ -8493,12 +8391,6 @@
       "G20420WT": {
         "level": 0,
         "name": "G20420WT",
-        "type": "Whatever"
-      },
-      "G36810SF": {
-        "label": "G36810SF",
-        "level": 0,
-        "name": "G36810SF",
         "type": "Whatever"
       },
       "G69386QK": {
@@ -10116,6 +10008,47 @@
       }
     },
     "root": "fakeroot"
+  },
+  "G26238GL": {
+    "edges": {
+      "G49108TO": [
+        {
+          "from": "G49108TO",
+          "to": "G26238GL",
+          "type": "contains"
+        }
+      ],
+      "PseudoRoot": [
+        {
+          "from": "PseudoRoot",
+          "hidden": true,
+          "to": "G49108TO",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "PseudoRoot",
+    "nodes": {
+      "G26238GL": {
+        "level": 0,
+        "name": "G26238GL",
+        "type": "Whatever"
+      },
+      "G49108TO": {
+        "label": "G49108TO (Cluster)",
+        "level": 0,
+        "name": "G49108TO",
+        "type": "Whatever"
+      },
+      "PseudoRoot": {
+        "hidden": true,
+        "level": 0,
+        "name": "PseudoRoot",
+        "type": "Whatever"
+      }
+    },
+    "root": "PseudoRoot"
   },
   "G26295XE": {
     "edges": {
@@ -12233,44 +12166,31 @@
   },
   "G36810SF": {
     "edges": {
-      "G15541SE": [
+      "fakeroot": [
         {
-          "from": "G15541SE",
-          "to": "G36810SF",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
+          "from": "fakeroot",
           "hidden": true,
-          "to": "G15541SE",
+          "to": "G36810SF",
           "type": "contains"
         }
       ]
     },
     "mw": "Unknown",
-    "name": "PseudoRoot",
+    "name": "fakeroot",
     "nodes": {
-      "G15541SE": {
-        "label": "G15541SE (Cluster)",
-        "level": 0,
-        "name": "G15541SE",
-        "type": "Whatever"
-      },
       "G36810SF": {
         "level": 0,
         "name": "G36810SF",
-        "type": "Whatever"
+        "type": "whatever"
       },
-      "PseudoRoot": {
+      "fakeroot": {
         "hidden": true,
         "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
+        "name": "fakeroot",
+        "type": "whatever"
       }
     },
-    "root": "PseudoRoot"
+    "root": "fakeroot"
   },
   "G36845IZ": {
     "edges": {
@@ -12487,44 +12407,31 @@
   },
   "G39011KA": {
     "edges": {
-      "G00016MO": [
+      "fakeroot": [
         {
-          "from": "G00016MO",
-          "to": "G39011KA",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
+          "from": "fakeroot",
           "hidden": true,
-          "to": "G00016MO",
+          "to": "G39011KA",
           "type": "contains"
         }
       ]
     },
     "mw": "Unknown",
-    "name": "PseudoRoot",
+    "name": "fakeroot",
     "nodes": {
-      "G00016MO": {
-        "label": "G00016MO (Cluster)",
-        "level": 0,
-        "name": "G00016MO",
-        "type": "Whatever"
-      },
       "G39011KA": {
         "level": 0,
         "name": "G39011KA",
-        "type": "Whatever"
+        "type": "whatever"
       },
-      "PseudoRoot": {
+      "fakeroot": {
         "hidden": true,
         "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
+        "name": "fakeroot",
+        "type": "whatever"
       }
     },
-    "root": "PseudoRoot"
+    "root": "fakeroot"
   },
   "G39023AU": {
     "edges": {
@@ -12741,91 +12648,6 @@
       }
     },
     "root": "fakeroot"
-  },
-  "G39738WL": {
-    "edges": {
-      "G39738WL": [
-        {
-          "from": "G39738WL",
-          "to": "G99404VQ",
-          "type": "contains"
-        },
-        {
-          "from": "G39738WL",
-          "to": "G35577IC",
-          "type": "contains"
-        },
-        {
-          "from": "G39738WL",
-          "to": "G00057MO",
-          "type": "contains"
-        },
-        {
-          "from": "G39738WL",
-          "to": "G60859DF",
-          "type": "contains"
-        },
-        {
-          "from": "G39738WL",
-          "to": "G00039MO",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G39738WL",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "PseudoRoot",
-    "nodes": {
-      "G00039MO": {
-        "label": "G00039MO (Cluster)",
-        "level": 0,
-        "name": "G00039MO",
-        "type": "Whatever"
-      },
-      "G00057MO": {
-        "label": "G00057MO (Cluster)",
-        "level": 0,
-        "name": "G00057MO",
-        "type": "Whatever"
-      },
-      "G35577IC": {
-        "label": "G35577IC",
-        "level": 0,
-        "name": "G35577IC",
-        "type": "Whatever"
-      },
-      "G39738WL": {
-        "level": 0,
-        "name": "G39738WL",
-        "type": "Whatever"
-      },
-      "G60859DF": {
-        "label": "G60859DF (Cluster)",
-        "level": 0,
-        "name": "G60859DF",
-        "type": "Whatever"
-      },
-      "G99404VQ": {
-        "label": "G99404VQ",
-        "level": 0,
-        "name": "G99404VQ",
-        "type": "Whatever"
-      },
-      "PseudoRoot": {
-        "hidden": true,
-        "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
-      }
-    },
-    "root": "PseudoRoot"
   },
   "G40183QN": {
     "edges": {
@@ -15801,7 +15623,7 @@
         },
         {
           "from": "G49108TO",
-          "to": "G85661BQ",
+          "to": "G26238GL",
           "type": "contains"
         },
         {
@@ -15816,7 +15638,7 @@
         },
         {
           "from": "G49108TO",
-          "to": "G14250GH",
+          "to": "G85856KC",
           "type": "contains"
         },
         {
@@ -15855,16 +15677,16 @@
         "name": "G07982RO",
         "type": "Whatever"
       },
-      "G14250GH": {
-        "label": "G14250GH (Cluster)",
-        "level": 0,
-        "name": "G14250GH",
-        "type": "Whatever"
-      },
       "G17755DI": {
         "label": "G17755DI",
         "level": 0,
         "name": "G17755DI",
+        "type": "Whatever"
+      },
+      "G26238GL": {
+        "label": "G26238GL",
+        "level": 0,
+        "name": "G26238GL",
         "type": "Whatever"
       },
       "G49108TO": {
@@ -15878,10 +15700,10 @@
         "name": "G68167JE",
         "type": "Whatever"
       },
-      "G85661BQ": {
-        "label": "G85661BQ",
+      "G85856KC": {
+        "label": "G85856KC (Cluster)",
         "level": 0,
-        "name": "G85661BQ",
+        "name": "G85856KC",
         "type": "Whatever"
       },
       "PseudoRoot": {
@@ -16723,6 +16545,82 @@
       "G53277CD": {
         "level": 0,
         "name": "G53277CD",
+        "type": "Whatever"
+      },
+      "PseudoRoot": {
+        "hidden": true,
+        "level": 0,
+        "name": "PseudoRoot",
+        "type": "Whatever"
+      }
+    },
+    "root": "PseudoRoot"
+  },
+  "G53402KW": {
+    "edges": {
+      "G53402KW": [
+        {
+          "from": "G53402KW",
+          "to": "G63072CF",
+          "type": "contains"
+        },
+        {
+          "from": "G53402KW",
+          "to": "G76297JC",
+          "type": "contains"
+        },
+        {
+          "from": "G53402KW",
+          "to": "G25559RS",
+          "type": "contains"
+        }
+      ],
+      "G61491DK": [
+        {
+          "from": "G61491DK",
+          "to": "G53402KW",
+          "type": "contains"
+        }
+      ],
+      "PseudoRoot": [
+        {
+          "from": "PseudoRoot",
+          "hidden": true,
+          "to": "G61491DK",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "PseudoRoot",
+    "nodes": {
+      "G25559RS": {
+        "label": "G25559RS (Cluster)",
+        "level": 0,
+        "name": "G25559RS",
+        "type": "Whatever"
+      },
+      "G53402KW": {
+        "level": 0,
+        "name": "G53402KW",
+        "type": "Whatever"
+      },
+      "G61491DK": {
+        "label": "G61491DK (Cluster)",
+        "level": 0,
+        "name": "G61491DK",
+        "type": "Whatever"
+      },
+      "G63072CF": {
+        "label": "G63072CF",
+        "level": 0,
+        "name": "G63072CF",
+        "type": "Whatever"
+      },
+      "G76297JC": {
+        "label": "G76297JC",
+        "level": 0,
+        "name": "G76297JC",
         "type": "Whatever"
       },
       "PseudoRoot": {
@@ -17692,6 +17590,34 @@
       "G56749GV": {
         "level": 0,
         "name": "G56749GV",
+        "type": "whatever"
+      },
+      "fakeroot": {
+        "hidden": true,
+        "level": 0,
+        "name": "fakeroot",
+        "type": "whatever"
+      }
+    },
+    "root": "fakeroot"
+  },
+  "G56868BH": {
+    "edges": {
+      "fakeroot": [
+        {
+          "from": "fakeroot",
+          "hidden": true,
+          "to": "G56868BH",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "fakeroot",
+    "nodes": {
+      "G56868BH": {
+        "level": 0,
+        "name": "G56868BH",
         "type": "whatever"
       },
       "fakeroot": {
@@ -20081,7 +20007,7 @@
         },
         {
           "from": "G64581RP",
-          "to": "G85661BQ",
+          "to": "G26238GL",
           "type": "contains"
         },
         {
@@ -20096,7 +20022,7 @@
         },
         {
           "from": "G64581RP",
-          "to": "G14250GH",
+          "to": "G85856KC",
           "type": "contains"
         },
         {
@@ -20135,16 +20061,16 @@
         "name": "G07982RO",
         "type": "Whatever"
       },
-      "G14250GH": {
-        "label": "G14250GH (Cluster)",
-        "level": 0,
-        "name": "G14250GH",
-        "type": "Whatever"
-      },
       "G17755DI": {
         "label": "G17755DI",
         "level": 0,
         "name": "G17755DI",
+        "type": "Whatever"
+      },
+      "G26238GL": {
+        "label": "G26238GL",
+        "level": 0,
+        "name": "G26238GL",
         "type": "Whatever"
       },
       "G64581RP": {
@@ -20158,10 +20084,10 @@
         "name": "G68167JE",
         "type": "Whatever"
       },
-      "G85661BQ": {
-        "label": "G85661BQ",
+      "G85856KC": {
+        "label": "G85856KC (Cluster)",
         "level": 0,
-        "name": "G85661BQ",
+        "name": "G85856KC",
         "type": "Whatever"
       },
       "PseudoRoot": {
@@ -20408,47 +20334,6 @@
     },
     "root": "PseudoRoot"
   },
-  "G65609XC": {
-    "edges": {
-      "G49108TO": [
-        {
-          "from": "G49108TO",
-          "to": "G65609XC",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G49108TO",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "PseudoRoot",
-    "nodes": {
-      "G49108TO": {
-        "label": "G49108TO (Cluster)",
-        "level": 0,
-        "name": "G49108TO",
-        "type": "Whatever"
-      },
-      "G65609XC": {
-        "level": 0,
-        "name": "G65609XC",
-        "type": "Whatever"
-      },
-      "PseudoRoot": {
-        "hidden": true,
-        "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
-      }
-    },
-    "root": "PseudoRoot"
-  },
   "G65889KE": {
     "edges": {
       "G65889KE": [
@@ -20675,112 +20560,6 @@
       "G66163TI": {
         "level": 0,
         "name": "G66163TI",
-        "type": "Whatever"
-      },
-      "PseudoRoot": {
-        "hidden": true,
-        "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
-      }
-    },
-    "root": "PseudoRoot"
-  },
-  "G66213AR": {
-    "edges": {
-      "G09546QO": [
-        {
-          "from": "G09546QO",
-          "to": "G66213AR",
-          "type": "contains"
-        }
-      ],
-      "G66213AR": [
-        {
-          "from": "G66213AR",
-          "to": "G21312EA",
-          "type": "contains"
-        },
-        {
-          "from": "G66213AR",
-          "to": "G23707SD",
-          "type": "contains"
-        },
-        {
-          "from": "G66213AR",
-          "to": "G32723SL",
-          "type": "contains"
-        },
-        {
-          "from": "G66213AR",
-          "to": "G06580KR",
-          "type": "contains"
-        }
-      ],
-      "G69386QK": [
-        {
-          "from": "G69386QK",
-          "to": "G66213AR",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G69386QK",
-          "type": "contains"
-        },
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G09546QO",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "PseudoRoot",
-    "nodes": {
-      "G06580KR": {
-        "label": "G06580KR (Cluster)",
-        "level": 0,
-        "name": "G06580KR",
-        "type": "Whatever"
-      },
-      "G09546QO": {
-        "label": "G09546QO (Cluster)",
-        "level": 0,
-        "name": "G09546QO",
-        "type": "Whatever"
-      },
-      "G21312EA": {
-        "label": "G21312EA",
-        "level": 0,
-        "name": "G21312EA",
-        "type": "Whatever"
-      },
-      "G23707SD": {
-        "label": "G23707SD",
-        "level": 0,
-        "name": "G23707SD",
-        "type": "Whatever"
-      },
-      "G32723SL": {
-        "label": "G32723SL (Cluster)",
-        "level": 0,
-        "name": "G32723SL",
-        "type": "Whatever"
-      },
-      "G66213AR": {
-        "level": 0,
-        "name": "G66213AR",
-        "type": "Whatever"
-      },
-      "G69386QK": {
-        "label": "G69386QK (Cluster)",
-        "level": 0,
-        "name": "G69386QK",
         "type": "Whatever"
       },
       "PseudoRoot": {
@@ -21796,7 +21575,7 @@
       "G71142DF": [
         {
           "from": "G71142DF",
-          "to": "G08324ZK",
+          "to": "G36855WW",
           "type": "contains"
         }
       ],
@@ -21812,10 +21591,10 @@
     "mw": "Unknown",
     "name": "PseudoRoot",
     "nodes": {
-      "G08324ZK": {
-        "label": "G08324ZK (Cluster)",
+      "G36855WW": {
+        "label": "G36855WW",
         "level": 0,
-        "name": "G08324ZK",
+        "name": "G36855WW",
         "type": "Whatever"
       },
       "G71142DF": {
@@ -22610,13 +22389,6 @@
           "type": "contains"
         }
       ],
-      "G74621DY": [
-        {
-          "from": "G74621DY",
-          "to": "G36810SF",
-          "type": "contains"
-        }
-      ],
       "PseudoRoot": [
         {
           "from": "PseudoRoot",
@@ -22639,12 +22411,6 @@
         "label": "G09546QO (Cluster)",
         "level": 0,
         "name": "G09546QO",
-        "type": "Whatever"
-      },
-      "G36810SF": {
-        "label": "G36810SF",
-        "level": 0,
-        "name": "G36810SF",
         "type": "Whatever"
       },
       "G69386QK": {
@@ -25426,34 +25192,6 @@
     },
     "root": "PseudoRoot"
   },
-  "G83781TR": {
-    "edges": {
-      "fakeroot": [
-        {
-          "from": "fakeroot",
-          "hidden": true,
-          "to": "G83781TR",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "fakeroot",
-    "nodes": {
-      "G83781TR": {
-        "level": 0,
-        "name": "G83781TR",
-        "type": "whatever"
-      },
-      "fakeroot": {
-        "hidden": true,
-        "level": 0,
-        "name": "fakeroot",
-        "type": "whatever"
-      }
-    },
-    "root": "fakeroot"
-  },
   "G84034JH": {
     "edges": {
       "fakeroot": [
@@ -25526,13 +25264,6 @@
           "type": "contains"
         }
       ],
-      "G84224TW": [
-        {
-          "from": "G84224TW",
-          "to": "G36810SF",
-          "type": "contains"
-        }
-      ],
       "PseudoRoot": [
         {
           "from": "PseudoRoot",
@@ -25555,12 +25286,6 @@
         "label": "G09546QO (Cluster)",
         "level": 0,
         "name": "G09546QO",
-        "type": "Whatever"
-      },
-      "G36810SF": {
-        "label": "G36810SF",
-        "level": 0,
-        "name": "G36810SF",
         "type": "Whatever"
       },
       "G69386QK": {
@@ -25913,47 +25638,6 @@
     },
     "root": "fakeroot"
   },
-  "G85661BQ": {
-    "edges": {
-      "G49108TO": [
-        {
-          "from": "G49108TO",
-          "to": "G85661BQ",
-          "type": "contains"
-        }
-      ],
-      "PseudoRoot": [
-        {
-          "from": "PseudoRoot",
-          "hidden": true,
-          "to": "G49108TO",
-          "type": "contains"
-        }
-      ]
-    },
-    "mw": "Unknown",
-    "name": "PseudoRoot",
-    "nodes": {
-      "G49108TO": {
-        "label": "G49108TO (Cluster)",
-        "level": 0,
-        "name": "G49108TO",
-        "type": "Whatever"
-      },
-      "G85661BQ": {
-        "level": 0,
-        "name": "G85661BQ",
-        "type": "Whatever"
-      },
-      "PseudoRoot": {
-        "hidden": true,
-        "level": 0,
-        "name": "PseudoRoot",
-        "type": "Whatever"
-      }
-    },
-    "root": "PseudoRoot"
-  },
   "G85735NR": {
     "edges": {
       "fakeroot": [
@@ -26009,6 +25693,47 @@
       }
     },
     "root": "fakeroot"
+  },
+  "G85856KC": {
+    "edges": {
+      "G49108TO": [
+        {
+          "from": "G49108TO",
+          "to": "G85856KC",
+          "type": "contains"
+        }
+      ],
+      "PseudoRoot": [
+        {
+          "from": "PseudoRoot",
+          "hidden": true,
+          "to": "G49108TO",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "PseudoRoot",
+    "nodes": {
+      "G49108TO": {
+        "label": "G49108TO (Cluster)",
+        "level": 0,
+        "name": "G49108TO",
+        "type": "Whatever"
+      },
+      "G85856KC": {
+        "level": 0,
+        "name": "G85856KC",
+        "type": "Whatever"
+      },
+      "PseudoRoot": {
+        "hidden": true,
+        "level": 0,
+        "name": "PseudoRoot",
+        "type": "Whatever"
+      }
+    },
+    "root": "PseudoRoot"
   },
   "G85947WY": {
     "edges": {
@@ -28509,6 +28234,47 @@
       "G97013VN": {
         "level": 0,
         "name": "G97013VN",
+        "type": "Whatever"
+      },
+      "PseudoRoot": {
+        "hidden": true,
+        "level": 0,
+        "name": "PseudoRoot",
+        "type": "Whatever"
+      }
+    },
+    "root": "PseudoRoot"
+  },
+  "G97041TX": {
+    "edges": {
+      "G49108TO": [
+        {
+          "from": "G49108TO",
+          "to": "G97041TX",
+          "type": "contains"
+        }
+      ],
+      "PseudoRoot": [
+        {
+          "from": "PseudoRoot",
+          "hidden": true,
+          "to": "G49108TO",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "PseudoRoot",
+    "nodes": {
+      "G49108TO": {
+        "label": "G49108TO (Cluster)",
+        "level": 0,
+        "name": "G49108TO",
+        "type": "Whatever"
+      },
+      "G97041TX": {
+        "level": 0,
+        "name": "G97041TX",
         "type": "Whatever"
       },
       "PseudoRoot": {
