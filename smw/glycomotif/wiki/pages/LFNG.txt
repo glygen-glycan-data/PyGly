@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Enteroendocrine cells;Enhanced in NK-cells;Enhanced in granulocytes;Enhanced in monocytes
+|celltype=Enhanced in Astrocytes;Enhanced in Basal prostatic cells;Enhanced in Bergmann glia;Enhanced in Breast myoepithelial cells;Enhanced in Goblet cells;Enhanced in Mast cells;Enhanced in Müller glia;Enhanced in NK-cells;Enhanced in Neuroendocrine cells;Enhanced in Pancreatic acinar cells;Enhanced in cDC;Enhanced in monocytes
 |celltype_source=HPA
 |celltype_source_key=ENSG00000106003
 |description=Attach beta 3 GlcNAc to Fuc.
@@ -8,7 +8,7 @@
 |disease_source_key=3955
 |genename=LFNG
 |ortholog=Lfng
-|phenotype=Abnormal cardiovascular system morphology;Abnormal form of the vertebral bodies;Abnormal intervertebral disk morphology;Abnormal morphology of female internal genitalia;Abnormal rib morphology;Abnormality of immune system physiology;Abnormality of the ureter;Anomalous pulmonary venous return;Anteverted nares;Autosomal recessive inheritance;Broad forehead;Camptodactyly of finger;Cleft palate;Congenital diaphragmatic hernia;Congenital onset;Contracture of the proximal interphalangeal joint of the 2nd finger;Cryptorchidism;Depressed nasal bridge;Finger syndactyly;Hypoplasia of the odontoid process;Hypospadias;Inguinal hernia;Intellectual disability;Intrauterine growth retardation;Kyphosis;Long philtrum;Low-set, posteriorly rotated ears;Macrocephaly;Meningocele;Microcephaly;Prominent occiput;Respiratory insufficiency;Rib fusion;Rib segmentation abnormalities;Scoliosis;Short neck;Short stature;Short thorax;Slender finger;Spina bifida occulta;Supernumerary vertebral ossification centers;Umbilical hernia;Urogenital fistula;Vertebral segmentation defect
+|phenotype=Abnormal cardiovascular system morphology;Abnormal form of the vertebral bodies;Abnormal intervertebral disk morphology;Abnormal morphology of female internal genitalia;Abnormal rib morphology;Abnormality of immune system physiology;Abnormality of the ureter;Anomalous pulmonary venous return;Anteverted nares;Autosomal recessive inheritance;Broad forehead;Camptodactyly of finger;Cleft palate;Congenital diaphragmatic hernia;Congenital onset;Contracture of the proximal interphalangeal joint of the 2nd finger;Cryptorchidism;Depressed nasal bridge;Finger syndactyly;Hypoplasia of the odontoid process;Hypospadias;Inguinal hernia;Intellectual disability;Intrauterine growth retardation;Kyphosis;Long philtrum;Macrocephaly;Meningocele;Microcephaly;Posteriorly rotated ears;Prominent occiput;Respiratory insufficiency;Rib fusion;Rib segmentation abnormalities;Scoliosis;Short neck;Short stature;Short thorax;Slender finger;Spina bifida occulta;Supernumerary vertebral ossification centers;Umbilical hernia;Urogenital fistula;Vertebral segmentation defect
 |phenotype_source=HPO
 |phenotype_source_key=3955
 |species=Human

@@ -1,8 +1,10 @@
 {{Enzyme
 |description=Attach beta 4 GalNAc to GlcNAc.
 |genename=B4galnt4
-|mgiacc=MGI:2652891
 |ortholog=B4GALNT4
+|phenotype=decreased locomotor activity
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2652891
 |species=Mouse
 |uniprot=Q766D5
 }}

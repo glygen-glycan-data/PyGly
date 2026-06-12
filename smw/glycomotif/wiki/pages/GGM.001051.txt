@@ -1,0 +1,19 @@
+{{Motif
+|accession=001051
+|aglycon=Ser/Thr
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dman-HEX-1:5
+|glytoucan=G61491DK
+|human_OC4_enzymes=POMT1:1;POMT2:1
+|keyword=Glycan classification;O-glycan classification
+|mouse_OC4_enzymes=Pomt1:1;Pomt2:1
+|name=O-Mannose Core M0
+|prefname=O-Mannose Core M0
+|redend=true
+|sameas=GGM.001045,GM.G61491DK
+|sandbox_OC4=G06898ZN;G06953DR;G10969XP;G13469SG;G14424MD;G14651SS;G15557BG;G16404NW;G19646OV;G23200LD
+|wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a1122h-1a_1-5{{!)}}/1/
+}}

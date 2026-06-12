@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Adipocytes;Enhanced in Langerhans cells;Enhanced in Squamous epithelial cells;Enhanced in Syncytiotrophoblasts
+|celltype=Enhanced in Colonocytes;Enhanced in Esophageal apical cells;Enhanced in Esophageal suprabasal cells;Enhanced in Microglia;Enhanced in Neutrophils;Enhanced in Ocular epithelial cells;Enhanced in Syncytiotrophoblasts;Enhanced in Urothelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000176597
 |description=Attach beta 3 GlcNAc to Gal.

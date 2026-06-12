@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Low cell type specificity
+|celltype=Enhanced in Enterocytes;Enhanced in Gastric progenitor cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000101346
 |description=Attach Fuc to Ser/Thr.

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Cholangiocytes;Enriched in Gastric mucus-secreting cells
+|celltype=Enriched in Gastric chief cells;Enriched in Mucous neck cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000118017
 |description=Attach alpha 4 GlcNAc to Gal.

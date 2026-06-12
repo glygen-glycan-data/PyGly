@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Basal respiratory cells;Enhanced in Ciliated cells;Enhanced in Club cells;Enhanced in Ionocytes;Enhanced in Muller glia cells;Enhanced in Oligodendrocyte precursor cells;Enhanced in Salivary duct cells
+|celltype=Enhanced in Prostatic hillock cells;Enhanced in Respiratory basal cells;Enhanced in Respiratory ciliated cells;Enhanced in Respiratory deuterosomal cells;Enhanced in Respiratory secretory cells;Enhanced in Salivary basal cells;Enhanced in Submucosal glandular cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000154080
 |description=Attach 4 linked sulfate to GalNAc.

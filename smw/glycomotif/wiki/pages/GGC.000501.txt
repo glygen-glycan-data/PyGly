@@ -1,6 +1,7 @@
 {{Class
-|hasmotif=GGM.001045
-|level=Subtype
 |name=C-linked Man
+|level=Subtype
 |type=C-linked
+|description=Single mannose residues, which typically attach at the sequence motifs WXXW or WXXC.
+|hasmotif=GGM.001045
 }}

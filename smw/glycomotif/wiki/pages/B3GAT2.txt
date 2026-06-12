@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Horizontal cells;Enhanced in Oocytes
+|celltype=Enhanced in Astrocytes;Enhanced in Ependymal cells;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Oocytes;Enhanced in Retinal horizontal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000112309
 |description=Attach beta 3 GlcA to Gal.

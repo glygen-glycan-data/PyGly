@@ -28,6 +28,7 @@ GlycoMotif, and the on-demand motif alignment web-service, now support motifs an
 '''NEW!''' Functional annotations for glycosylation enzymes: phenotype and disease from the [https://hpo.jax.org/app/ Human Phenotype Ontology]; knock-out phenotypes from the [https://www.mousephenotype.org/ International Mouse Phenotype Consortium]; and tissue and cell-type specificity from [https://www.proteinatlas.org/ The Human Protein Atlas]. See: [[Congenital Disorders of Glycosylation Enzymes|CDG Enzymes]], [[Common Phenotypes]], [[Tissue Specific Enzymes]], and [[Cell-type Specific Enzymes]].
 
 See also:
+* [[GlyGen Structure Classification|GlyGen glycan classification rules]]
 * [[GlyGen Classification Motifs|GlyGen glycan classification motifs]]
 * [[GlyGen Motif Keywords|GlyGen motif keywords]]
 * [[GlyGen Motif Enzymes|GlyGen motif enzymes]]

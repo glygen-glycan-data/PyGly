@@ -1,12 +1,12 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Cardiomyocytes;Enhanced in Early spermatids;Enhanced in Excitatory neurons;Enhanced in Fibroblasts;Enhanced in Inhibitory neurons;Enhanced in Smooth muscle cells
+|celltype=Enhanced in Adrenal medulla cells;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Cardiomyocytes;Enhanced in Early spermatids;Enhanced in Ependymal cells;Enhanced in Fibro-adipogenic progenitors;Enhanced in Fibroblasts;Enhanced in Late spermatids;Enhanced in Other brain neurons;Enhanced in Pericytes;Enhanced in Vascular smooth muscle cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000100626
 |description=Attach GalNAc to Ser/Thr.
 |genename=GALNT16
 |ortholog=Galnt16
 |species=Human
-|tissue=Enhanced in heart muscle
+|tissue=Enhanced in brain;Enhanced in heart muscle
 |tissue_source=HPA
 |tissue_source_key=ENSG00000100626
 |uniprot=Q8N428

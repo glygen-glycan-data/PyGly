@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Extravillous trophoblasts;Enhanced in Gastric mucus-secreting cells;Enhanced in Oligodendrocytes;Enhanced in Serous glandular cells;Enhanced in granulocytes
+|celltype=Enhanced in Breast hormone-responsive cells;Enhanced in Enterocytes;Enhanced in Epididymal principal cells;Enhanced in Extravillous trophoblasts;Enhanced in Foveolar cells;Enhanced in Lacrimal acinar cells;Enhanced in Mast cells;Enhanced in Respiratory deuterosomal cells;Enhanced in Respiratory secretory cells;Enhanced in Salivary acinar cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000139629
 |description=Attach GalNAc to Ser/Thr.

@@ -1,0 +1,8 @@
+{{Class
+|name=O-fucose core 2
+|level=Subtype
+|type=O-linked
+|description=O-fucose core O-glycans with GlcNAc-beta-3-Fuc reducing end.
+|definition=O-fucose core 2 O-glycans must match the core 2 (EGF type) reducing-end motif.
+|hasmotif=GGM.001021
+}}

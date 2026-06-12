@@ -1,0 +1,9 @@
+{{Class
+|name=O-mannose core M3
+|level=Subtype
+|type=O-linked
+|description=O-mannose O-glycans with GlcNAc-beta-4-Man core motif.
+|definition=O-mannose O-glycans with GlcNAc-beta-4-Man core motif.
+|hasmotif=GGM.001049
+|nothasclass=GGC.000121
+}}

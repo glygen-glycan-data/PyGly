@@ -1,0 +1,25 @@
+{{Motif
+|accession=001047
+|aglycon=Ser/Thr
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dman-HEX-1:5
+2b:b-dglc-HEX-1:5
+3s:n-acetyl
+LIN
+1:1o(2+1)2d
+2:2d(2+1)3n
+|glytoucan=G85856KC
+|human_OC4_enzymes=POMGNT1:2;POMT1:1;POMT2:1
+|keyword=Glycan classification;O-glycan classification
+|mouse_OC4_enzymes=Pomgnt1:2;Pomt1:1;Pomt2:1
+|name=O-Mannose Core M1
+|prefname=O-Mannose Core M1
+|redend=true
+|reference=Endo (2019) Mammalian O-mannosyl glycans: Biochemistry and ...;Sheikh et al. (2017) Recent advancements in understanding mammalian ...
+|sameas=GM.G85856KC
+|sandbox_OC4=G06898ZN;G06953DR;G10969XP;G13469SG;G15557BG;G16404NW;G19646OV;G23200LD;G26325MG;G26332CR
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1122h-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5_2*NCC/3{{=}}O{{!)}}/1-2/a2-b1
+}}

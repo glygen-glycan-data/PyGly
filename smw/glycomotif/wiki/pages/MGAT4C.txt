@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Astrocytes;Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype=Enhanced in Adrenal medulla cells;Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Corticotrophs;Enhanced in Lactotrophs;Enhanced in Leydig cells;Enhanced in Other brain neurons
 |celltype_source=HPA
 |celltype_source_key=ENSG00000182050
 |description=Attach beta 4 GlcNAc to Man.

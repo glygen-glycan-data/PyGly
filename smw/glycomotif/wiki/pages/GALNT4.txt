@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Gastric mucus-secreting cells;Enhanced in Glandular and luminal cells;Enhanced in Mesothelial cells
+|celltype=Not detected
 |celltype_source=HPA
 |celltype_source_key=ENSG00000257594
 |description=Attach GalNAc to Ser/Thr.

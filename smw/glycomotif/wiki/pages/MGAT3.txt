@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Bipolar cells;Enhanced in Excitatory neurons;Enhanced in Horizontal cells;Enhanced in Inhibitory neurons;Enhanced in Late spermatids;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes;Enhanced in Proximal enterocytes
+|celltype=Enhanced in Alveolar cells;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Early spermatids;Enhanced in Enterocytes;Enhanced in Erythrocyte progenitors;Enhanced in Late spermatids;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Oligodendrocytes;Enhanced in Other brain neurons;Enhanced in Retinal amacrine cells;Enhanced in Retinal bipolar cells;Enhanced in Retinal horizontal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000128268
 |description=Attach beta 4 GlcNAc to Man.

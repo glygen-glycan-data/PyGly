@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Enhanced in Adrenal cortex cells;Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Ependymal cells;Enhanced in Mast cells;Enhanced in Myosatellite cells;Enhanced in Müller glia;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Prostatic glandular cells;Enhanced in Retinal ganglion cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000111728
+|description=Attach alpha 8 NeuAc to NeuAc.
+|genename=ST8SIA1
+|ortholog=St8sia1
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000111728
+|uniprot=Q92185
+}}

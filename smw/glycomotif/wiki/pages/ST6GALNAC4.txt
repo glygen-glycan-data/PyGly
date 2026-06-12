@@ -1,12 +1,12 @@
 {{Enzyme
-|celltype=Enhanced in Alveolar cells;Enhanced in Erythroid cells;Enhanced in Plasma cells;Enhanced in dendritic cells
+|celltype=Enhanced in Alveolar cells;Enhanced in Decidual stromal cells;Enhanced in Erythrocyte progenitors;Enhanced in Megakaryocytes;Enhanced in Plasma cells;Enhanced in pDCs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000136840
-|description=Attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
+|description=Attach alpha 6 KDN to GalNAc; attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
 |genename=ST6GALNAC4
 |ortholog=St6galnac4
 |species=Human
-|tissue=Low tissue specificity
+|tissue=Enhanced in pancreas
 |tissue_source=HPA
 |tissue_source_key=ENSG00000136840
 |uniprot=Q9H4F1

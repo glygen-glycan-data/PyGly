@@ -4,18 +4,26 @@ It should be called in the following format:
 <pre>
 {{Class
 |name=
+|description=
 |definition=
 |level=
 |hasmotif=
 |nothasmotif=
+|nothasclass=
 |type=
 }}
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{level|}}}: {{{name|}}}}}
-{{{definition|}}}
+{{{description|}}}
 
-{{#ifeq:|{{{level|}}}|Subtype|{{#if:{{{type|}}}|'''Implicit type:''' {{{type|}}}.|}}|}}
+{{#ifeq:|{{{level|}}}|Subtype|{{#if:{{{type|}}}|'''Type:''' {{TypeLinkByName|{{{type|}}}}}|}}}}
+
+{{#if: {{{definition|}}}|
+== Definition ==
+{{{definition|}}}
+|}}
+
 {{#if: {{{hasmotif|}}}|
 == Match Motifs (at least one) ==
 {{#ask:
@@ -36,6 +44,18 @@ Edit the page to see the template text.
 |outrotemplate=MotifTableOutro
 |link=none
 |limit=1000
+}}}}
+{{#if: {{{nothasclass|}}}|
+== Unless (not any) ==
+{{#ask:
+[[Category:Class]]
+[[-glycomotif:nothasclass::{{PAGENAME}}]]
+|? |+width=300px
+|?glycomotif:description=Description
+|sort=glycomotif:name
+|headers=plain
+|mainlabel=-
+|format=broadtable
 }}}}
 {{#if: {{{nothasmotif|}}}|
 == Exclude Motifs (not any) ==
@@ -63,8 +83,8 @@ Edit the page to see the template text.
 [[glycomotif:level::Subtype]]
 [[glycomotif:type::{{{name|}}}]]
 |? |+width=300px
-|?glycomotif:definition=Definition
-|sort=glycomotif:id
+|?glycomotif:description=Description
+|sort=glycomotif:name
 |headers=plain
 |mainlabel=-
 |format=broadtable
@@ -93,10 +113,12 @@ WHERE {
 
 {{#arraymap:{{{hasmotif|}}}|;|XXXXXX|{{#set:|glycomotif:hasmotif=XXXXXX}}}}
 {{#arraymap:{{{nothasmotif|}}}|;|XXXXXX|{{#set:|glycomotif:nothasmotif=XXXXXX}}}}
+{{#arraymap:{{{nothasclass|}}}|;|XXXXXX|{{#set:|glycomotif:nothasclass=XXXXXX}}}}
 {{#set:
 |glycomotif:id={{PAGENAME}}
 |glycomotif:name={{{name|}}}
 |glycomotif:level={{{level|}}}
+|glycomotif:description={{{description|}}}
 |glycomotif:definition={{{definition|}}}
 |glycomotif:type={{{type|}}}
 }}

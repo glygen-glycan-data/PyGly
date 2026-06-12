@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Oocytes
+|celltype=Enriched in Choroid plexus epithelial cells;Enriched in Distal convoluted tubule cells;Enriched in Loop of henle epithelial cells;Enriched in Microglia;Enriched in Oocytes;Enriched in Proximal tubule cells;Enriched in Renal collecting duct intercalated cells;Enriched in Renal connecting tubule cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000111846
 |description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.

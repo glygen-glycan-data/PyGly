@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Distal enterocytes;Enhanced in Proximal enterocytes
+|celltype=Enhanced in Brain excitatory neurons;Enhanced in Distal convoluted tubule cells;Enhanced in Loop of henle epithelial cells;Enhanced in Megakaryocytes;Enhanced in Papillary tip epithelial cells;Enhanced in Parietal cells;Enhanced in Platelets;Enhanced in Podocytes;Enhanced in Proximal tubule cells;Enhanced in Renal collecting duct principal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000161013
 |description=Attach beta 4 GlcNAc to Man.

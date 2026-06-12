@@ -3,6 +3,9 @@
 |genename=Galnt3
 |mgiacc=MGI:894695
 |ortholog=GALNT3
+|phenotype=abnormal liver morphology;abnormal spleen morphology;enlarged liver;female infertility;male infertility
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:894695
 |species=Mouse
 |uniprot=P70419
 }}

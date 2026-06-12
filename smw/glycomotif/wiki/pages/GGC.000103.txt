@@ -1,7 +1,10 @@
 {{Class
-|definition=HMO type structures are determined by core alignment with the HMO reducing end motif. Structures that are also consistent with glycosphingolipid cores, other than the lacto and neo-lacto series core motifs, are excluded. No subtypes are defined for HMO structures.
-|hasmotif=GGM.001029
-|level=Type
 |name=Human Milk Oligosaccharide
-|nothasmotif=GGM.001101; GGM.001102; GGM.001108; GGM.001109
+|level=Type
+|description=Human Milk Oligosaccharides (HMOs) are a family of highly complex, unconjugated glycans found in human breast milk.
+|definition=The HMO type is assigned by matching its reducing-end with the HMO core motif. 
+
+Glycans that are also consistent with the Gal-Glc glycosphingolipid cores, other than the lacto and neo-lacto series core motifs, are excluded since glycans of these types cannot be distinguished from HMO glycans without aglycon information. No subtypes are defined for HMO structures.
+|hasmotif=GGM.001029
+|nothasclass=GGC.000208; GGC.000209; GGC.000201; GGC.000202
 }}

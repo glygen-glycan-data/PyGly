@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Oocytes;Enhanced in Proximal enterocytes;Enhanced in Proximal tubular cells
+|celltype=Enhanced in Brain inhibitory neurons;Enhanced in Distal convoluted tubule cells;Enhanced in Esophageal apical cells;Enhanced in Lactotrophs;Enhanced in Loop of henle epithelial cells;Enhanced in Neutrophil progenitors;Enhanced in Neutrophils;Enhanced in Ocular epithelial cells;Enhanced in Proximal tubule cells;Enhanced in Renal connecting tubule cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000158089
 |description=Attach GalNAc to Ser/Thr.

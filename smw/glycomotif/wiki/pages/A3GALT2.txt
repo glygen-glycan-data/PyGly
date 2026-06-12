@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Not detected
+|celltype=Enhanced in Differentiating spermatogonia;Enhanced in Early primary spermatocytes;Enhanced in Early spermatids;Enhanced in Hepatic stellate cells;Enhanced in Kupffer cells;Enhanced in Neutrophils
 |celltype_source=HPA
 |celltype_source_key=ENSG00000184389
 |description=Attach alpha 3 Gal to Gal; attach alpha 3 Gal to GlcNAc.

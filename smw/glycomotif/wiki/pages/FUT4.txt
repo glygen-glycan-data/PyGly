@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Gastric mucus-secreting cells;Enhanced in Intestinal goblet cells;Enhanced in monocytes
+|celltype=Not detected
 |celltype_source=HPA
 |celltype_source_key=ENSG00000196371
 |description=Attach alpha 3 Fuc to GlcNAc.

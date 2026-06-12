@@ -1,0 +1,19 @@
+{{Motif
+|accession=001050
+|aglycon=Ser/Thr
+|alignment=Core
+|collection=GGM
+|displayhgv=false
+|glycoct=RES
+1b:a-dman-HEX-1:5
+2b:a-dman-HEX-1:5
+LIN
+1:1o(2+1)2d
+|glytoucan=G53402KW
+|keyword=Glycan classification;O-glycan classification
+|name=O-Mannan
+|prefname=O-Mannan
+|redend=true
+|sameas=GM.G53402KW
+|wurcs=WURCS{{=}}2.0/1,2,1/{{!(}}a1122h-1a_1-5{{!)}}/1-1/a2-b1
+}}

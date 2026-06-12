@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001025
-|level=Subtype
 |name=N-linked arm-fucosylated
+|level=Subtype
 |type=N-linked
+|description=N-linked glycan with antennae Fuc.
+|definition=N-linked bisected subtype determined by core alignment with antennae Fuc.
+|hasmotif=GGM.001025
 }}

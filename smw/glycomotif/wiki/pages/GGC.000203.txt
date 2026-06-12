@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001103
-|level=Subtype
 |name=Glycosphingolipid arthro series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Arthro series glycosphingolipids.
+|definition=The glycosphingolipid arthro series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001103
 }}

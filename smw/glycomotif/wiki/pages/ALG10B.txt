@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Low cell type specificity
+|celltype_source=HPA
+|celltype_source_key=ENSG00000175548
+|description=Attach alpha 2 Glc to Glc.
+|disease=Long QT syndrome 2
+|disease_source=HPO
+|disease_source_key=144245
+|genename=ALG10B
+|ortholog=Alg10
+|phenotype=Adult onset;Autosomal dominant inheritance;Cardiac arrest;Childhood onset;Early young adult onset;Notched T wave;Prolonged QT interval;Prolonged QTc interval;Sudden cardiac death;Syncope;Torsade de pointes;Ventricular fibrillation
+|phenotype_source=HPO
+|phenotype_source_key=144245
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000175548
+|uniprot=Q5I7T1
+}}

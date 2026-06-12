@@ -6,13 +6,13 @@
 |displayhgv=false
 |glycoct=RES
 1b:x-dglc-HEX-x:x
-2s:sulfate
-3s:n-acetyl
+2s:n-acetyl
+3s:sulfate
 4b:x-dgal-HEX-1:5
 5s:sulfate
 LIN
-1:1o(-1+1)2n
-2:1d(2+1)3n
+1:1d(2+1)2n
+2:1o(-1+1)3n
 3:1o(-1+1)4d
 4:4o(-1+1)5n
 |glytoucan=G83003HU

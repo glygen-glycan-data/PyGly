@@ -1,16 +1,10 @@
 {{Enzyme
-|celltype=Enhanced in Early spermatids;Enhanced in Excitatory neurons;Enhanced in Granulosa cells;Enhanced in Horizontal cells;Enhanced in Late spermatids;Enhanced in Oligodendrocyte precursor cells;Enhanced in Pancreatic endocrine cells
+|celltype=Enhanced in Corticotrophs;Enhanced in Gonadotrophs;Enhanced in Granulosa cells;Enhanced in Lactotrophs;Enhanced in Late spermatids;Enhanced in Platelets;Enhanced in Retinal ganglion cells;Enhanced in Somatotrophs;Enhanced in Thyrotrophs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000124302
 |description=Attach 4 linked sulfate to GalNAc.
-|disease=Peeling skin syndrome 3
-|disease_source=HPO
-|disease_source_key=64377
 |genename=CHST8
 |ortholog=Chst8
-|phenotype=Abnormal hair morphology;Autosomal recessive inheritance;Erythema;Juvenile onset;Pruritus;White scaling skin
-|phenotype_source=HPO
-|phenotype_source_key=64377
 |species=Human
 |tissue=Enriched in brain;Enriched in pituitary gland
 |tissue_source=HPA

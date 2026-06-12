@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001031
-|level=Subtype
 |name=O-glucose core
+|level=Subtype
 |type=O-linked
+|description=O-glucose glycan with a reducing end Glc possibly linked to Xyl.
+|definition=O-glucose core subtype glycans must match the reducing-end motif, and if the reducing-end Glc has any attached monosaccharides, they must be Xyl. No additional substituents (sulfate, phosphate) on the reducing-end Glc are permitted.
+|hasmotif=GGM.001031
 }}

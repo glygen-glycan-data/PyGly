@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Microglial cells;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes
+|celltype=Enhanced in B-cells;Enhanced in Endometrial glandular cells;Enhanced in Podocytes
 |celltype_source=HPA
 |celltype_source_key=ENSG00000152127
 |description=Attach beta 6 GlcNAc to Man.

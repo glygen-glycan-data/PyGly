@@ -1,0 +1,1 @@
+<includeonly>[[{{#ask:[[Category:Class]][[glycomotif:level::Type]][[glycomotif:name::{{{1}}}]]|?glycomotif:id|mainlabel=-|headers=hide|limit=1|searchlabel=}}|{{{1}}}]]</includeonly>

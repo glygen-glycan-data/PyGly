@@ -1,7 +1,9 @@
 {{Class
-|hasmotif=GGM.001037
-|level=Subtype
 |name=N-linked biantennary
-|nothasmotif=GGM.001038
+|level=Subtype
 |type=N-linked
+|description=Complex N-linked glycan with two antennae.
+|definition=N-linked biantannary subtype determined by core alignment with two antennae, and excluding alignments with three antennae.
+|hasmotif=GGM.001037
+|nothasclass=GGC.000015
 }}

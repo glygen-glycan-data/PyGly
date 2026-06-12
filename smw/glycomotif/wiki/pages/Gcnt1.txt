@@ -3,6 +3,9 @@
 |genename=Gcnt1
 |mgiacc=MGI:95676
 |ortholog=GCNT1
+|phenotype=abnormal behavior;abnormal lymph node morphology;abnormal skin morphology;abnormal spleen morphology;decreased lymphocyte cell number;decreased startle reflex;enlarged lymph nodes;increased eosinophil cell number;increased mean platelet volume;increased monocyte cell number;increased neutrophil cell number
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:95676
 |species=Mouse
 |uniprot=Q09324
 }}

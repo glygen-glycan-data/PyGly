@@ -19,11 +19,17 @@ if a page with that name already exists, you will be sent to a form to edit that
 ! Implicit type: 
 | {{{field|type}}}
 |-
+! Description: 
+| {{{field|description|input type=textarea|rows=2}}}
+|-
 ! Definition: 
-| {{{field|definition|input type=textarea}}}
+| {{{field|definition|input type=textarea|rows=5|autogrow}}}
 |-
 ! Motifs:
 | {{{field|hasmotif|property=glycomotif:hasmotif|input type=tokens|existing values only|list|delimiter=;|values from category=Motif}}}
+|-
+! Exclusion Classes:
+| {{{field|nothasclass|property=glycomotif:nothasclass|input type=tokens|existing values only|list|delimiter=;|values from category=Class}}}
 |-
 ! Exclusion Motifs:
 | {{{field|nothasmotif|property=glycomotif:nothasmotif|input type=tokens|existing values only|list|delimiter=;|values from category=Motif}}}

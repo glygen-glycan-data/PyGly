@@ -1,7 +1,9 @@
 {{Class
-|hasmotif=GGM.001038
-|level=Subtype
 |name=N-linked triantennary
-|nothasmotif=GGM.001039
+|level=Subtype
 |type=N-linked
+|description=Complex N-linked glycan with three antennae.
+|definition=N-linked triantennary subtype determined by core alignment with three antennae, and excluding alignments with four antennae.
+|hasmotif=GGM.001038
+|nothasclass=GGC.000016
 }}

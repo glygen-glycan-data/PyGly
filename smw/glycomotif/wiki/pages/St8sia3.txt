@@ -1,0 +1,8 @@
+{{Enzyme
+|description=Attach alpha 8 NeuAc to NeuAc.
+|genename=St8sia3
+|mgiacc=MGI:106019
+|ortholog=ST8SIA3
+|species=Mouse
+|uniprot=Q64689
+}}

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes
+|celltype=Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Corticotrophs;Enhanced in Ependymal cells;Enhanced in Gastric chief cells;Enhanced in Mucous neck cells;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Oligodendrocytes;Enhanced in Parietal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000172461
 |description=Attach alpha 3 Fuc to GlcNAc.

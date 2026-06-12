@@ -1,6 +1,9 @@
 {{Class
-|hasmotif=GGM.001035
+|name=O-fucose core, other
 |level=Subtype
-|name=O-fucose core
 |type=O-linked
+|description=O-fucose core O-glycans have Fuc at the reducing end.
+|definition=O-fucose core subtype is assigned for Fuc at the reducing end.
+|hasmotif=GGM.001035
+|nothasclass=GGC.000110; GGC.000123
 }}

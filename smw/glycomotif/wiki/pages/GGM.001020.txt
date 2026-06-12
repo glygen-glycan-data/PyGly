@@ -5,20 +5,20 @@
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
-1b:x-lgal-HEX-1:5{{!}}6:d
+1b:a-lgal-HEX-1:5{{!}}6:d
 2b:b-dglc-HEX-1:5
 LIN
 1:1o(3+1)2d
-|glytoucan=G08324ZK
-|human_OC1_enzymes=B3GLCT:2;POFUT1:1;POFUT2:1
+|glytoucan=G36855WW
+|human_OC1_enzymes=B3GLCT:2;POFUT2:1
 |keyword=Glycan classification;O-glycan classification
-|mouse_OC1_enzymes=B3glct:2;Pofut1:1;Pofut2:1
+|mouse_OC1_enzymes=B3glct:2;Pofut2:1
 |name=O-Fucose
 O-Fucose Core 1
 O-Fucose Core Thrombospondin Type 1
 |prefname=O-Fucose
 |redend=true
-|sameas=GM.G08324ZK
-|sandbox_OC1=G08324ZK;G36855WW;G45792OQ
-|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1221m-1x_1-5{{!)}}{{!(}}a2122h-1b_1-5{{!)}}/1-2/a3-b1
+|sameas=GE.EP0006,GM.G36855WW,UCM.000127
+|sandbox_OC1=G36855WW
+|wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5{{!)}}/1-2/a3-b1
 }}

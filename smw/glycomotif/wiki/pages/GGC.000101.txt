@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001028
-|level=Subtype
 |name=O-GlcNAc
+|level=Subtype
 |type=O-linked
+|description=O-GlyNAcylation is a single Glc monosaccharide that competes with phosphate post-translational modification of Ser and Thr.
+|definition=Distinct from [[GGC.000100|EGF type O-GlcNAc core]] O-glycans, O-GlcNAc O-glycosylation must be a single monosaccharide.
+|hasmotif=GGM.001028
 }}

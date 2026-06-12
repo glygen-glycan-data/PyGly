@@ -1,15 +1,19 @@
 {{Motif
-|prefname=C-Linked Mannose
-|name=C-Linked Mannose
-|keyword=Glycan classification
-|aglycon=Trp
-|redend=true
-|alignment=Whole-Glycan
 |accession=001045
+|aglycon=Trp
+|alignment=Whole-Glycan
 |collection=GGM
 |displayhgv=false
 |glycoct=RES
 1b:a-dman-HEX-1:5
 |glytoucan=G61491DK
+|human_OC4_enzymes=POMT1:1;POMT2:1
+|keyword=Glycan classification
+|mouse_OC4_enzymes=Pomt1:1;Pomt2:1
+|name=C-Linked Mannose
+|prefname=C-Linked Mannose
+|redend=true
+|sameas=GGM.001051,GM.G61491DK
+|sandbox_OC4=G61491DK
 |wurcs=WURCS{{=}}2.0/1,1,0/{{!(}}a1122h-1a_1-5{{!)}}/1/
 }}

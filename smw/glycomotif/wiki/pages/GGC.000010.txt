@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001023
-|level=Subtype
 |name=N-linked bisected
+|level=Subtype
 |type=N-linked
+|description=N-linked glycan with bisecting GlcNAc.
+|definition=N-linked bisected subtype determined by core alignment with bisecting GlcNAc.
+|hasmotif=GGM.001023
 }}

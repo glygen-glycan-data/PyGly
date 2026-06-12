@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Oligodendrocytes
+|celltype=Enhanced in Foveolar cells;Enhanced in Mucous neck cells;Enhanced in Oligodendrocytes;Enhanced in Plasma cells;Enhanced in Salivary acinar cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000033170
 |description=Attach alpha 6 Fuc to GlcNAc.
@@ -8,7 +8,7 @@
 |disease_source_key=2530
 |genename=FUT8
 |ortholog=Fut8
-|phenotype=Atrial septal defect;Autosomal recessive inheritance;Broad forehead;Buphthalmos;Congenital onset;Failure to thrive;Feeding difficulties;Glaucoma;High forehead;High palate;Hip dislocation;Hirsutism;Hypoglycemia;Hypothyroidism;Hypotonia;Intellectual disability;Intrauterine growth retardation;Joint contracture;Kyphoscoliosis;Limb undergrowth;Microcephaly;Narrow forehead;Nephrocalcinosis;Neutropenia;Osteopenia;Patent ductus arteriosus;Polyhydramnios;Recurrent lower respiratory tract infections;Retrognathia;Seizure;Severe global developmental delay;Short nose;Short stature;Wide nasal bridge
+|phenotype=Atrial septal defect;Autosomal recessive inheritance;Broad forehead;Buphthalmos;Congenital onset;Decreased total neutrophil count;Failure to thrive;Feeding difficulties;Glaucoma;High forehead;High palate;Hip dislocation;Hirsutism;Hypoglycemia;Hypothyroidism;Hypotonia;Intellectual disability;Intrauterine growth retardation;Joint contracture;Kyphoscoliosis;Limb undergrowth;Microcephaly;Narrow forehead;Nephrocalcinosis;Osteopenia;Patent ductus arteriosus;Polyhydramnios;Recurrent lower respiratory tract infections;Retrognathia;Seizure;Severe global developmental delay;Short nose;Short stature;Wide nasal bridge
 |phenotype_source=HPO
 |phenotype_source_key=2530
 |species=Human

@@ -16,5 +16,6 @@ LIN
 |name=Xyl-Core GAG
 |prefname=Xyl-Core GAG
 |redend=true
+|sameas=GM.G87877ES
 |wurcs=WURCS{{=}}2.0/2,3,2/{{!(}}a212h-1b_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-2/a4-b1_b3-c1
 }}

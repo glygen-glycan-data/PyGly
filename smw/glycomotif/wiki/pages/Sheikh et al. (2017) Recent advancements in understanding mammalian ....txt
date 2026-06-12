@@ -1,0 +1,10 @@
+{{Publication
+|authors=Sheikh MO, Halmo SM, Wells L
+|title=Recent advancements in understanding mammalian O-mannosylation
+|journal=Glycobiology
+|year=2017
+|volume=27(9)
+|pages=806-819
+|pmid=28810660
+|doi=10.1093/glycob/cwx062
+}}

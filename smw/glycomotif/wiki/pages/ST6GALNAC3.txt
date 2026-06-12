@@ -1,8 +1,8 @@
 {{Enzyme
-|celltype=Enriched in Microglial cells;Enriched in Oligodendrocytes
+|celltype=Enhanced in Choroid plexus epithelial cells;Enhanced in Lymphatic endothelial cells;Enhanced in Microglia;Enhanced in Neutrophil progenitors;Enhanced in Neutrophils;Enhanced in Podocytes;Enhanced in Somatotrophs;Enhanced in Thyrotrophs;Enhanced in Tuft cells;Enhanced in Vascular endothelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000184005
-|description=Attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
+|description=Attach alpha 6 KDN to GalNAc; attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
 |genename=ST6GALNAC3
 |ortholog=St6galnac3
 |species=Human

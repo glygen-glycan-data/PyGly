@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Extravillous trophoblasts;Enhanced in Syncytiotrophoblasts;Enhanced in monocytes
+|celltype=Enhanced in Esophageal apical cells;Enhanced in Extravillous trophoblasts;Enhanced in Kupffer cells;Enhanced in Macrophages;Enhanced in Syncytiotrophoblasts;Enhanced in cDC;Enhanced in monocytes
 |celltype_source=HPA
 |celltype_source_key=ENSG00000131446
 |description=Attach beta 2 GlcNAc to Man.

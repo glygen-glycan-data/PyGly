@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001020; GGM.001021
+|name=O-fucose core 1
 |level=Subtype
-|name=O-fucose core
 |type=O-linked
+|description=O-fucose core O-glycans with Glc-beta-3-Fuc reducing end.
+|definition=O-fucose core 1 O-glycans must match the core 1  (Thrombospondin) reducing-end motif.
+|hasmotif=GGM.001020
 }}

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Distal enterocytes;Enhanced in Intestinal goblet cells
+|celltype=Enhanced in Colonocytes;Enhanced in Epididymal principal cells;Enhanced in Foveolar cells;Enhanced in Gastric chief cells;Enhanced in Goblet cells;Enhanced in Mucous neck cells;Enhanced in Parietal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000119514
 |description=Attach GalNAc to Ser/Thr.

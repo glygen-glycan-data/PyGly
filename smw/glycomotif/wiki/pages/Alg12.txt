@@ -1,8 +1,10 @@
 {{Enzyme
-|description=Attach alpha 2 Man to Man.
+|description=Attach alpha 6 Man to Man.
 |genename=Alg12
-|mgiacc=MGI:2385025
 |ortholog=ALG12
+|phenotype=tremors
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2385025
 |species=Mouse
 |uniprot=Q8VDB2
 }}

@@ -31,8 +31,8 @@ LIN
 10:9o(6+1)11d
 11:11o(6+1)12n
 |glytoucan=G10907PF
-|human_NA_enzymes=ALG11:5;ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;ALG3:8,7;DPAGT1:1
-|mouse_NA_enzymes=Alg11:5;Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Alg3:8,7;Dpagt1:1;Glt28d2:2
+|human_NA_enzymes=ALG11:5;ALG12:8;ALG13:2;ALG14:2;ALG1:3;ALG2:4,6;ALG3:7;DPAGT1:1
+|mouse_NA_enzymes=Alg11:5;Alg12:8;Alg13:2;Alg14:2;Alg1:3;Alg2:4,6;Alg3:7;Dpagt1:1;Glt28d2:2
 |name=Diphosphorylated Man6
 Diphosphorylated Man_6
 |prefname=Diphosphorylated Man6

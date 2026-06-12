@@ -1,7 +1,6 @@
 {{Enzyme
 |description=Attach alpha 3 Gal to Gal; attach alpha 3 GalNAc to Gal.
 |genename=Abo
-|mgiacc=MGI:2135738
 |ortholog=ABO
 |phenotype=abnormal skin morphology;abnormal testis morphology;small testis
 |phenotype_source=IMPC

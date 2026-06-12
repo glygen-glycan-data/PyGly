@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Collecting duct cells;Enhanced in Distal enterocytes;Enhanced in Ductal cells;Enhanced in Glandular and luminal cells;Enhanced in Oocytes;Enhanced in Proximal enterocytes
+|celltype=Enhanced in Colonocytes;Enhanced in Conjunctival goblet cells;Enhanced in Endometrial glandular cells;Enhanced in Endometrial luminal cells;Enhanced in Enteric transient amplifying cells;Enhanced in Enterocytes;Enhanced in Esophageal apical cells;Enhanced in Foveolar cells;Enhanced in Gastric progenitor cells;Enhanced in Oocytes;Enhanced in Papillary tip epithelial cells;Enhanced in Renal collecting duct principal cells;Enhanced in Salivary acinar cells;Enhanced in Salivary duct cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000140297
 |description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.

@@ -12,6 +12,6 @@ LIN
 |glytoucan=G36855WW
 |name=O-Fucose Glycan /Thrombospondin Type 1 Repeat
 |redend=true
-|sameas=GM.G36855WW,UCM.000127
+|sameas=GGM.001020,GM.G36855WW,UCM.000127
 |wurcs=WURCS{{=}}2.0/2,2,1/{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2122h-1b_1-5{{!)}}/1-2/a3-b1
 }}

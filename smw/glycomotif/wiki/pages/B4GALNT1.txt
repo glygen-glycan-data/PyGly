@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Bipolar cells;Enhanced in Excitatory neurons;Enhanced in Horizontal cells;Enhanced in Inhibitory neurons;Enhanced in Schwann cells
+|celltype=Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Epicardial cells;Enhanced in Innate lymphoid cells;Enhanced in Other brain neurons;Enhanced in Pericytes;Enhanced in Retinal amacrine cells;Enhanced in Retinal ganglion cells;Enhanced in Schwann cells;Enhanced in Vascular smooth muscle cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000135454
 |description=Attach beta 4 GalNAc to Gal.
@@ -8,7 +8,7 @@
 |disease_source_key=2583
 |genename=B4GALNT1
 |ortholog=B4galnt1
-|phenotype=Abnormal cerebellum morphology;Abnormality of the urinary system;Ataxia;Autosomal recessive inheritance;Babinski sign;Cataract;Cerebral cortical atrophy;Childhood onset;Decreased serum testosterone concentration;Difficulty walking;Distal lower limb amyotrophy;Dysarthria;Dyskinesia;Dysmetria;Dystonia;Early young adult onset;Emotional lability;Frequent falls;Gait disturbance;Hyperintensity of cerebral white matter on MRI;Hyperreflexia;Hyporeflexia;Impaired vibration sensation at ankles;Impaired vibratory sensation;Infantile onset;Intellectual disability;Intellectual disability, mild;Lower limb muscle weakness;Lower limb spasticity;Muscle weakness;Nystagmus;Pes cavus;Posterior capsular cataract;Premature ovarian insufficiency;Progressive;Pseudobulbar paralysis;Scoliosis;Sensorimotor neuropathy;Skeletal muscle atrophy;Spastic gait;Spastic paraplegia;Tip-toe gait;Upper limb muscle weakness;Upper limb spasticity;Urinary urgency
+|phenotype=Abnormal cerebellum morphology;Abnormality of the urinary system;Ataxia;Autosomal recessive inheritance;Babinski sign;Cataract;Cerebral cortical atrophy;Childhood onset;Decreased serum testosterone concentration;Distal lower limb amyotrophy;Dysarthria;Dyskinesia;Dysmetria;Dystonia;Early young adult onset;Emotional lability;Frequent falls;Gait disturbance;Hyperintensity of cerebral white matter on MRI;Hyperreflexia;Hyporeflexia;Impaired vibration sensation at ankles;Impaired vibratory sensation;Infantile onset;Intellectual disability;Lower limb muscle weakness;Lower limb spasticity;Mild intellectual disability;Muscle weakness;Nystagmus;Pes cavus;Posterior capsular cataract;Premature ovarian insufficiency;Progressive;Pseudobulbar paralysis;Scoliosis;Sensorimotor neuropathy;Skeletal muscle atrophy;Spastic gait;Spastic paraplegia;Tip-toe gait;Upper limb muscle weakness;Upper limb spasticity;Urinary urgency
 |phenotype_source=HPO
 |phenotype_source_key=2583
 |species=Human

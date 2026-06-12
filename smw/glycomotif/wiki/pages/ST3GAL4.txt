@@ -1,8 +1,8 @@
 {{Enzyme
-|celltype=Enriched in Syncytiotrophoblasts
+|celltype=Enriched in Esophageal apical cells;Enriched in Syncytiotrophoblasts
 |celltype_source=HPA
 |celltype_source_key=ENSG00000110080
-|description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.
+|description=Attach alpha 3 KDN to Gal; attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.
 |genename=ST3GAL4
 |ortholog=St3gal4
 |species=Human

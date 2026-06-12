@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Microglial cells;Enhanced in NK-cells;Enhanced in Proximal enterocytes;Enhanced in T-cells
+|celltype=Enhanced in Microglia;Enhanced in Neutrophil progenitors;Enhanced in T-cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000071073
 |description=Attach beta 4 GlcNAc to Man.

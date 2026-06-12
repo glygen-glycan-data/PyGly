@@ -1,6 +1,7 @@
 {{Class
-|definition=GPI anchor type structures determined by core alignment with the GPI anchor reducing end motif. No subtypes are defined for GPI anchor structures.
-|hasmotif=GGM.001030
-|level=Type
 |name=GPI anchor
+|level=Type
+|description=GPI anchor glycans, bound to the C-terminus of proteins, tether these glycoproteins to the outside of the cell-menbrane.
+|definition=GPI anchor type glycans are assigned by matching the reducing-end with the GPI anchor core motif. No subtypes are defined for GPI anchor structures.
+|hasmotif=GGM.001030
 }}

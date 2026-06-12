@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001108
-|level=Subtype
 |name=Glycosphingolipid ganglio series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Ganglio series glycosphingolipids.
+|definition=The glycosphingolipid ganglio series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001108
 }}

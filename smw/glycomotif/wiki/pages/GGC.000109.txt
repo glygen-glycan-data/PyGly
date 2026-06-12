@@ -1,6 +1,9 @@
 {{Class
-|hasmotif=GGM.001036
+|name=O-mannose core, other
 |level=Subtype
-|name=O-mannose
 |type=O-linked
+|description=O-mannose core O-glycans have Man at the reducing end.
+|definition=O-mannose core O-glycans have Man at the reducing end.
+|hasmotif=GGM.001036
+|nothasclass=GGC.000124; GGC.000125; GGC.000107; GGC.000121; GGC.000122
 }}

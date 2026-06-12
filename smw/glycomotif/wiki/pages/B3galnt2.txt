@@ -1,0 +1,10 @@
+{{Enzyme
+|description=Attach beta 3 GalNAc to GlcNAc.
+|genename=B3galnt2
+|ortholog=B3GALNT2
+|phenotype=abnormal embryo size;abnormal locomotor behavior;decreased bone mineral content;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2145517
+|species=Mouse
+|uniprot=Q8BG28
+}}

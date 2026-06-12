@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in granulocytes;Enhanced in monocytes
+|celltype=Enhanced in Mast cells;Enhanced in Neutrophil progenitors;Enhanced in Neutrophils;Enhanced in Ocular epithelial cells;Enhanced in Urothelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000158470
 |description=Attach beta 4 Gal to GlcNAc.

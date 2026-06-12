@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001102
-|level=Subtype
 |name=Glycosphingolipid muco series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Muco series glycosphingolipids.
+|definition=The glycosphingolipid muco series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001102
 }}

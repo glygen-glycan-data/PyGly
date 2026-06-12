@@ -1,0 +1,6 @@
+{{Class
+|name=Glycosphingolipid
+|level=Type
+|description=Glycosphingolipid glycans attach to lipids via ceramide to form glycolipids.
+|definition=The glycosphingolipid type is assigned by a matching subtype.
+}}

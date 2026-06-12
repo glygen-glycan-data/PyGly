@@ -1,9 +1,8 @@
 {{Enzyme
-|description=Attach alpha 3 Man to Man; attach alpha 6 Man to Man.
+|description=Attach alpha 3 Man to Man.
 |genename=Alg3
-|mgiacc=MGI:1098592
 |ortholog=ALG3
-|phenotype=preweaning lethality, complete penetrance
+|phenotype=prenatal lethality;preweaning lethality, complete penetrance
 |phenotype_source=IMPC
 |phenotype_source_key=MGI:1098592
 |species=Mouse

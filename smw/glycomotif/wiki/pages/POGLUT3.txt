@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Fibroblasts
+|celltype=Enhanced in Distal convoluted tubule cells;Enhanced in Respiratory deuterosomal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000178202
 |description=Attach Glc to Ser/Thr.

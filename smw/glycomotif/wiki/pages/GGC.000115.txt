@@ -1,6 +1,7 @@
 {{Class
-|hasmotif=GGM.001011; GGM.001012
-|level=Subtype
 |name=O-linked core 4
+|level=Subtype
 |type=O-linked
+|description=Mucin-type O-GalNAc reducing-end O-glycan with GlcNAc-beta-6-(GlcNAc-beta-3-)GalNAc core motif.
+|hasmotif=GGM.001011
 }}

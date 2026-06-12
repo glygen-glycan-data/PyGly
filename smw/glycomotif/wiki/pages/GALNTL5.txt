@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Early spermatids;Enriched in Late spermatids
+|celltype=Enhanced in Early spermatids;Enhanced in Late primary spermatocytes;Enhanced in Late spermatids
 |celltype_source=HPA
 |celltype_source_key=ENSG00000106648
 |description=Attach GalNAc to Ser/Thr.

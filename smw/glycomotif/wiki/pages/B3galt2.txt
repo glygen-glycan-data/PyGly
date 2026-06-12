@@ -1,7 +1,6 @@
 {{Enzyme
 |description=Attach beta 3 Gal to GlcNAc.
 |genename=B3galt2
-|mgiacc=MGI:1349461
 |ortholog=B3GALT2
 |phenotype=abnormal kidney morphology;decreased lymphocyte cell number;hyperactivity;increased bone mineral content;increased bone mineral density;preweaning lethality, incomplete penetrance;small kidney
 |phenotype_source=IMPC

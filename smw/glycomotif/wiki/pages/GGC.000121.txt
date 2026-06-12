@@ -1,0 +1,8 @@
+{{Class
+|name=O-mannose core M2
+|level=Subtype
+|type=O-linked
+|description=O-mannose O-glycans with GlcNAc-beta-6-(GlcNAc-beta-2-)Man core motif.
+|definition=O-mannose O-glycans with GlcNAc-beta-6-(GlcNAc-beta-2-)Man core motif.
+|hasmotif=GGM.001048
+}}

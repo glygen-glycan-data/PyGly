@@ -1,8 +1,8 @@
 {{Enzyme
-|celltype=Enhanced in Hepatocytes;Enhanced in Kupffer cells;Enhanced in Microglial cells;Enhanced in Plasma cells
+|celltype=Enhanced in B-cells;Enhanced in Hepatocytes;Enhanced in Microglia;Enhanced in Plasma cells;Enhanced in Renal collecting duct principal cells;Enhanced in Salivary duct cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000073849
-|description=Attach alpha 6 NeuAc to Gal; attach alpha 6 NeuGc to Gal.
+|description=Attach alpha 6 KDN to Gal; attach alpha 6 NeuAc to Gal; attach alpha 6 NeuGc to Gal.
 |genename=ST6GAL1
 |ortholog=St6gal1
 |species=Human

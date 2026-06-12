@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Low cell type specificity
+|celltype=Enhanced in Endometrial luminal cells;Enhanced in Esophageal apical cells;Enhanced in Respiratory ionocytes;Enhanced in Salivary ionocytes
 |celltype_source=HPA
 |celltype_source_key=ENSG00000170340
 |description=Attach beta 3 GlcNAc to Gal.

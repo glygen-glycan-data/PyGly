@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Collecting duct cells;Enhanced in Distal enterocytes;Enhanced in Enteroendocrine cells;Enhanced in Glandular and luminal cells;Enhanced in Intestinal goblet cells;Enhanced in Proximal enterocytes
+|celltype=Enhanced in Colonocytes;Enhanced in Enteric transient amplifying cells;Enhanced in Enterocytes;Enhanced in Gastric chief cells;Enhanced in Goblet cells;Enhanced in Mucous neck cells;Enhanced in Renal collecting duct intercalated cells;Enhanced in Renal collecting duct principal cells;Enhanced in Salivary ionocytes
 |celltype_source=HPA
 |celltype_source_key=ENSG00000167080
 |description=Attach beta 4 GalNAc to Gal.

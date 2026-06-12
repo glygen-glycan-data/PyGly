@@ -1,9 +1,9 @@
 {{Enzyme
-|celltype=Enhanced in dendritic cells
+|celltype=Low cell type specificity
 |celltype_source=HPA
 |celltype_source_key=ENSG00000147162
 |description=Attach GlcNAc to Ser/Thr.
-|disease=Mental retardation, X-linked 106
+|disease=Intellectual developmental disorder, X-linked 106
 |disease_source=HPO
 |disease_source_key=8473
 |genename=OGT

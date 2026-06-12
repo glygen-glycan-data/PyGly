@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Horizontal cells;Enhanced in Muller glia cells
+|celltype=Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Pituicytes/FSCs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000115526
 |description=Attach 3 linked sulfate to GlcA.

@@ -1,0 +1,11 @@
+{{Enzyme
+|description=Attach alpha 8 NeuAc to NeuAc.
+|genename=St8sia6
+|mgiacc=MGI:2386797
+|ortholog=ST8SIA6
+|phenotype=abnormal spleen morphology;abnormal vitreous body morphology;cataract;enlarged spleen
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:2386797
+|species=Mouse
+|uniprot=Q8K4T1
+}}

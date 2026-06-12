@@ -17,11 +17,11 @@ LIN
 3:3o(2+1)4d
 4:3o(3+1)5d
 |glytoucan=G31734OS
-|human_NA_enzymes=A3GALT2:4;ABO:4;B3GALT2:2;B3GALT5:2;FUT1:3;FUT2:3;GGTA1:4;MGAT1:1;MGAT2:1
-|human_OC_enzymes=A3GALT2:4;ABO:4;B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT6:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1;GGTA1:4
+|human_NA_enzymes=ABO:4;B3GALT2:2;B3GALT5:2;FUT1:3;FUT2:3;MGAT1:1;MGAT2:1
+|human_OC_enzymes=ABO:4;B3GALT1:2;B3GALT2:2;B3GALT4:2;B3GALT5:2;B3GNT6:1;FUT1:3;FUT2:3;GCNT1:1;GCNT2:1;GCNT3:1
 |keyword=Blood group B;Blood group type 1
-|mouse_NA_enzymes=A3galt2:4;Abo:4;B3galt2:2;B3galt5:2;Fut1:3;Fut2:3;Ggta1:4;Mgat1:1;Mgat2:1;Sec1:3
-|mouse_OC_enzymes=A3galt2:4;Abo:4;B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt6:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Ggta1:4;Sec1:3
+|mouse_NA_enzymes=Abo:4;B3galt2:2;B3galt5:2;Fut1:3;Fut2:3;Mgat1:1;Mgat2:1;Sec1:3
+|mouse_OC_enzymes=Abo:4;B3galt1:2;B3galt2:2;B3galt4:2;B3galt5:2;B3gnt6:1;Fut1:3;Fut2:3;Gcnt1:1;Gcnt2:1;Gcnt3:1;Sec1:3
 |name=Blood group B (type 1)
 |prefname=Blood group B (type 1)
 |redend=false

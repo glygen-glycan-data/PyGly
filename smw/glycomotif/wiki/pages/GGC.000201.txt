@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001101
-|level=Subtype
 |name=Glycosphingolipid isoglobo series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Isoglobo series glycosphingolipids.
+|definition=The glycosphingolipid isoglobo series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001101
 }}

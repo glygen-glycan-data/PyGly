@@ -1,5 +1,6 @@
 {{Class
 |name=O-linked
 |level=Type
-|definition=There are many different subtypes for O-linked glycans, this type links them all, but is never assigned explicitly.
+|description=O-linked glycans have a variety of core motifs and attach to Ser and Thr residues.
+|definition=The  O-linked glycan type is assigned by a matching subtype.
 }}

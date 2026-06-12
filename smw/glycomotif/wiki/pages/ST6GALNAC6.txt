@@ -1,8 +1,8 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in NK-cells
+|celltype=Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Choroid plexus epithelial cells;Enhanced in Ependymal cells;Enhanced in Microglia;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Oligodendrocytes;Enhanced in Other brain neurons
 |celltype_source=HPA
 |celltype_source_key=ENSG00000160408
-|description=Attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
+|description=Attach alpha 6 KDN to GalNAc; attach alpha 6 NeuAc to GalNAc; attach alpha 6 NeuGc to GalNAc.
 |genename=ST6GALNAC6
 |ortholog=St6galnac6
 |species=Human

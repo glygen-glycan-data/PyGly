@@ -1,5 +1,6 @@
 {{Class
 |name=C-linked
 |level=Type
-|definition=This glycan type is assigned implicitly by its subtypes.
+|description=C-linked glycans form carbon-carbon (C-C) bond between their reducing-end and Trp amino-acids.
+|definition=The C-linked glycan type is assigned by a matching subtype.
 }}

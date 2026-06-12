@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001104
-|level=Subtype
 |name=Glycosphingolipid mollu series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Mollu series glycosphingolipids.
+|definition=The glycosphingolipid mollu series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001104
 }}

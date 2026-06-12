@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Extravillous trophoblasts;Enhanced in Lymphatic endothelial cells
+|celltype=Enhanced in Decidual stromal cells;Enhanced in Extravillous trophoblasts;Enhanced in Hepatic stellate cells;Enhanced in Peritubular myoid cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000134901
 |description=Attach Glc to Ser/Thr.

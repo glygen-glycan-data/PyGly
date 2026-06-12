@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001109
-|level=Subtype
 |name=Glycosphingolipid globo series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Globo series glycosphingolipids.
+|definition=The glycosphingolipid globo series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001109
 }}

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Cone photoreceptor cells;Enhanced in Excitatory neurons;Enhanced in Horizontal cells;Enhanced in Inhibitory neurons;Enhanced in Late spermatids;Enhanced in Oocytes
+|celltype=Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Early spermatids;Enhanced in Gonadotrophs;Enhanced in Late spermatids;Enhanced in Oocytes;Enhanced in Other brain neurons;Enhanced in Retinal amacrine cells;Enhanced in Retinal ganglion cells;Enhanced in Thyrotrophs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000167889
 |description=Attach beta 6 GlcNAc to Man.

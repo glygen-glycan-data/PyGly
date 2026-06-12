@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Inhibitory neurons
+|celltype=Low cell type specificity
 |celltype_source=HPA
 |celltype_source_key=ENSG00000173950
 |description=Attach alpha 3 Xyl to Xyl.

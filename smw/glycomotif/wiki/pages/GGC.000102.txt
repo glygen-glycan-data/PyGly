@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001040
+|name=O-GlcNAc core, EGF type
 |level=Subtype
-|name=EGF type O-GlcNAc core
 |type=O-linked
+|description=Extracellular O-glycans linked to Epidermal Growth Factor (EGF)-like repeats.
+|definition=Distinct from [[GGC.000101|O-GlcNAc O-glycosylation]], the EGF-type O-GlcNAc core glycans must match the EGF type O-GlcNAc core, and the reducing-end GlcNAc not have any other monosaccharides attached. No additional substituents (sulfate, phosphate) on the reducing-end GlcNAc are permitted. 
+|hasmotif=GGM.001040
 }}

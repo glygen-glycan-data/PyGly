@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype=Enhanced in Brain excitatory neurons;Enhanced in Cardiomyocytes;Enhanced in Choroid plexus epithelial cells;Enhanced in Gonadotrophs;Enhanced in Lactotrophs;Enhanced in Prostatic glandular cells;Enhanced in Renal collecting duct intercalated cells;Enhanced in Retinal ganglion cells;Enhanced in Somatotrophs;Enhanced in Thymic myoid cells;Enhanced in Thyrotrophs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000185274
 |description=Attach GalNAc to Ser/Thr.

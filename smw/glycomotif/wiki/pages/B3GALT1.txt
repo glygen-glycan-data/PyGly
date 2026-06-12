@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Astrocytes;Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype=Enriched in Pituicytes/FSCs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000172318
 |description=Attach beta 3 Gal to GlcNAc.

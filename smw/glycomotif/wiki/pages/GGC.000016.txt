@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001039
-|level=Subtype
 |name=N-linked tetraantennary
+|level=Subtype
 |type=N-linked
+|description=Complex N-linked glycans with four antennae.
+|definition=N-linked tetraantennary subtype determined by core alignment with four antennae.
+|hasmotif=GGM.001039
 }}

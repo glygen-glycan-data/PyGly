@@ -1,0 +1,13 @@
+{{Enzyme
+|celltype=Enhanced in Adrenal cortex cells;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Cardiomyocytes;Enhanced in Gonadotrophs;Enhanced in Myonuclei;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Other brain neurons;Enhanced in Renal collecting duct intercalated cells;Enhanced in Retinal amacrine cells
+|celltype_source=HPA
+|celltype_source_key=ENSG00000101638
+|description=Attach alpha 8 NeuAc to NeuAc.
+|genename=ST8SIA5
+|ortholog=St8sia5
+|species=Human
+|tissue=Enriched in adrenal gland;Enriched in brain;Enriched in parathyroid gland
+|tissue_source=HPA
+|tissue_source_key=ENSG00000101638
+|uniprot=O15466
+}}

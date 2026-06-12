@@ -1,10 +1,9 @@
 {{Enzyme
-|celltype=Enhanced in Cone photoreceptor cells;Enhanced in Spermatocytes
+|celltype=Enhanced in Early primary spermatocytes
 |celltype_source=HPA
 |celltype_source_key=ENSG00000139133
 |description=Attach alpha 2 Glc to Glc.
 |genename=ALG10
-|ortholog=Alg10b
 |species=Human
 |tissue=Low tissue specificity
 |tissue_source=HPA

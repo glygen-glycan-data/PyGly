@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Enhanced in Adrenal medulla cells;Enhanced in Late spermatids
+|celltype_source=HPA
+|celltype_source_key=ENSG00000144647
+|description=Attach beta 4 GlcNAc to Man.
+|disease=Muscular dystrophy-dystroglycanopathy (congenital with brain and eye anomalies), type A, 8;Muscular dystrophy-dystroglycanopathy (limb-girdle), type C, 8;Walker-Warburg syndrome
+|disease_source=HPO
+|disease_source_key=84892
+|genename=POMGNT2
+|ortholog=Pomgnt2
+|phenotype=Abnormal cerebellar vermis morphology;Abnormal circulating aldolase concentration;Abnormal circulating creatine kinase concentration;Abnormal circulating lactate dehydrogenase concentration;Abnormal cortical gyration;Abnormal optic nerve morphology;Abnormality of neuronal migration;Absent septum pellucidum;Agenesis of corpus callosum;Anophthalmia;Aplasia/Hypoplasia involving the skeletal musculature;Areflexia;Autosomal recessive inheritance;Bifid uvula;Calf muscle hypertrophy;Cataract;Cerebellar hypoplasia;Chorioretinal dysplasia;Cleft palate;Congenital onset;Corneal opacity;Cryptorchidism;Dandy-Walker malformation;Delayed speech and language development;Distal amyotrophy;Elevated circulating creatine kinase concentration;Glaucoma;Global developmental delay;Gowers sign;Hydrocephalus;Hypoplasia of penis;Hyporeflexia;Hypotonia;Infantile onset;Intellectual disability;Iris coloboma;Juvenile onset;Lissencephaly;Low-set ears;Macrocephaly;Metatarsus valgus;Microcephaly;Microcornea;Microphthalmia;Motor delay;Muscle weakness;Muscular dystrophy;Optic atrophy;Pachygyria;Polymicrogyria;Posteriorly rotated ears;Protruding ear;Proximal muscle weakness;Retinal detachment;Retinal dysplasia;Retinal dystrophy;Seizure;Skeletal muscle atrophy;Specific learning disability;Submucous cleft hard palate;Type II lissencephaly;Ventriculomegaly
+|phenotype_source=HPO
+|phenotype_source_key=84892
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000144647
+|uniprot=Q8NAT1
+}}

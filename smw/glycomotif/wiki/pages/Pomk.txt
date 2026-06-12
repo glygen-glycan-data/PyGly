@@ -1,0 +1,10 @@
+{{Enzyme
+|description=Attach n 6 phosphate to Man.
+|genename=Pomk
+|ortholog=POMK
+|phenotype=abnormal kidney morphology;decreased startle reflex;increased bone mineral density;increased spleen weight;preweaning lethality, complete penetrance
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1921903
+|species=Mouse
+|uniprot=Q3TUA9
+}}

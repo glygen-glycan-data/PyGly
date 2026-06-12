@@ -1,7 +1,8 @@
 {{Class
-|definition=Xylose core GAGs that match their reducing-end motif must satisfy the basic criteria for the GAG type and may not be branched.
-|hasmotif=GGM.001215
+|name=Xylose core GAG
 |level=Subtype
-|name=Xylose Core GAG
 |type=GAG
+|description=Xylose core GAGs are attached to proteins to form proteoglycans at the sequence motif SGXG.
+|definition=Xylose core GAGs that match their reducing-end motif must satisfy the basic criteria for the GAG type, with the addition of permitting Xyl (at the core) and a single branch with a Sia (NeuAc, NeuGC, KDN) residue (at the core).
+|hasmotif=GGM.001215
 }}

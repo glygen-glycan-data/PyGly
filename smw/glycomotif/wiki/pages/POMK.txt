@@ -1,0 +1,19 @@
+{{Enzyme
+|celltype=Low cell type specificity
+|celltype_source=HPA
+|celltype_source_key=ENSG00000185900
+|description=Attach n 6 phosphate to Man.
+|disease=Congenital muscular dystrophy with cerebellar involvement;Muscular dystrophy-dystroglycanopathy (congenital with brain and eye anomalies), type A, 12;Muscular dystrophy-dystroglycanopathy (limb-girdle), type C, 12;Walker-Warburg syndrome
+|disease_source=HPO
+|disease_source_key=84197
+|genename=POMK
+|ortholog=Pomk
+|phenotype=Abnormal brain morphology;Abnormal brainstem morphology;Abnormal cerebellar vermis morphology;Abnormal cerebellum morphology;Abnormal circulating aldolase concentration;Abnormal circulating creatine kinase concentration;Abnormal circulating lactate dehydrogenase concentration;Abnormal cortical gyration;Abnormal optic nerve morphology;Abnormal pyramidal sign;Abnormality iris morphology;Abnormality of neuronal migration;Abnormally large globe;Absent septum pellucidum;Agenesis of corpus callosum;Agyria;Anophthalmia;Aplasia/Hypoplasia involving the skeletal musculature;Areflexia;Autosomal recessive inheritance;Bifid uvula;Blindness;Borderline intellectual disability;Calf muscle pseudohypertrophy;Cardiomyopathy;Cataract;Cerebellar cyst;Cerebellar hypoplasia;Chorioretinal dysplasia;Cleft palate;Clonus;Coloboma;Congenital onset;Corneal opacity;Cryptorchidism;Dandy-Walker malformation;Decreased thalamic volume;Delayed ability to walk;Difficulty climbing stairs;Diffuse white matter abnormalities;Dilated fourth ventricle;Elevated circulating creatine kinase concentration;Enlarged cisterna magna;Feeding difficulties;Flexion contracture;Fusion of the cerebellar hemispheres;Glaucoma;Global developmental delay;Gowers sign;Gray matter heterotopia;Hydrocephalus;Hyperreflexia;Hypoglycosylation of alpha-dystroglycan;Hypoplasia of penis;Hypoplasia of the brainstem;Hypoplasia of the pons;Hyporeflexia;Hypotonia;Infantile onset;Intellectual disability;Iris coloboma;Limb-girdle muscle weakness;Lissencephaly;Low-set ears;Lumbar hyperlordosis;Macrocephaly;Macroglossia;Megalocornea;Metatarsus valgus;Microcephaly;Microcornea;Microphthalmia;Mild intellectual disability;Motor delay;Muscle weakness;Muscular dystrophy;Myopia;Neonatal hypotonia;Occipital encephalocele;Olivopontocerebellar hypoplasia;Optic atrophy;Optic nerve hypoplasia;Pachygyria;Polymicrogyria;Poor head control;Poor speech;Posteriorly rotated ears;Progressive microcephaly;Protruding ear;Proximal muscle weakness;Reduced muscle fiber alpha dystroglycan;Reduced visual acuity;Respiratory insufficiency due to muscle weakness;Retinal degeneration;Retinal detachment;Retinal dysplasia;Retinal dystrophy;Scoliosis;Seizure;Sensorineural hearing impairment;Severe global developmental delay;Skeletal muscle atrophy;Skeletal muscle hypertrophy;Specific learning disability;Strabismus;Submucous cleft hard palate;Third trimester onset;Tonic seizure;Type II lissencephaly;Ventriculomegaly;Visual impairment
+|phenotype_source=HPO
+|phenotype_source_key=84197
+|species=Human
+|tissue=Low tissue specificity
+|tissue_source=HPA
+|tissue_source_key=ENSG00000185900
+|uniprot=Q9H5K3
+}}

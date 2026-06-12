@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Langerhans cells;Enhanced in dendritic cells;Enhanced in monocytes
+|celltype=Enhanced in Breast lactating cells;Enhanced in Neutrophils
 |celltype_source=HPA
 |celltype_source_key=ENSG00000086062
 |description=Attach beta 4 Gal to GlcNAc.
@@ -7,9 +7,8 @@
 |disease_source=HPO
 |disease_source_key=2683
 |genename=B4GALT1
-|iscdg=true
 |ortholog=B4galt1
-|phenotype=Abnormal bleeding;Abnormal circulating enzyme concentration or activity;Abnormal facial shape;Abnormal isoelectric focusing of serum transferrin;Abnormality of the coagulation cascade;Autosomal recessive inheritance;Cerebellar hypoplasia;Congenital onset;Dandy-Walker malformation;Decreased LDL cholesterol concentration;Decreased muscle mass;Diarrhea;Edema;Elevated circulating aspartate aminotransferase concentration;Elevated circulating creatine kinase concentration;Elevated hepatic transaminase;Global developmental delay;Hepatomegaly;High myopia;Hydrocephalus;Hypertelorism;Hypofibrinogenemia;Hypothyroidism;Hypotonia;Infantile axial hypotonia;Infantile muscular hypotonia;Inflammatory abnormality of the skin;Inverted nipples;Long philtrum;Low-set ears;Macrocephaly;Myopathy;Myopia;Premature birth;Prolonged partial thromboplastin time;Reduced antithrombin III activity;Reduced protein C activity;Reduced protein S activity;Redundant neck skin;Small for gestational age;Splenomegaly;Thin upper lip vermilion;Type II transferrin isoform profile;Wide nasal bridge
+|phenotype=Abnormal bleeding;Abnormal circulating enzyme concentration or activity;Abnormal facial shape;Abnormal isoelectric focusing of serum transferrin;Abnormality of the coagulation cascade;Autosomal recessive inheritance;Axial hypotonia;Cerebellar hypoplasia;Congenital onset;Dandy-Walker malformation;Decreased LDL cholesterol concentration;Decreased muscle mass;Diarrhea;Edema;Elevated circulating aspartate aminotransferase concentration;Elevated circulating creatine kinase concentration;Elevated circulating hepatic transaminase concentration;Floppy infant;Global developmental delay;Hepatomegaly;High myopia;Hydrocephalus;Hypertelorism;Hypofibrinogenemia;Hypothyroidism;Hypotonia;Inflammatory abnormality of the skin;Inverted nipples;Long philtrum;Low-set ears;Macrocephaly;Myopathy;Myopia;Premature birth;Prolonged partial thromboplastin time;Reduced antithrombin III activity;Reduced protein C activity;Reduced protein S activity;Redundant neck skin;Small for gestational age;Splenomegaly;Thin upper lip vermilion;Type II transferrin isoform profile;Wide nasal bridge
 |phenotype_source=HPO
 |phenotype_source_key=2683
 |species=Human

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Hepatocytes;Enhanced in monocytes
+|celltype=Enhanced in Innate lymphoid cells;Enhanced in Myonuclei;Enhanced in Neutrophils
 |celltype_source=HPA
 |celltype_source_key=ENSG00000008513
 |description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.

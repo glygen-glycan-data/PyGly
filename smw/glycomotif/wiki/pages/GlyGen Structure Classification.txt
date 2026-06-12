@@ -5,7 +5,7 @@ __NOEDITSECTION__
 [[glycomotif:level::Type]]
 [[glycomotif:id::!GGC.000002]]
 |? |+width=300px
-|?glycomotif:definition=Definition
+|?glycomotif:description=Description
 |sort=glycomotif:name,glycomotif:id
 |headers=plain
 |mainlabel=-
@@ -18,8 +18,8 @@ __NOEDITSECTION__
 [[glycomotif:level::Subtype]]
 |? |+width=300px
 |?glycomotif:type=Type
-|?glycomotif:definition=Definition
-|sort=glycomotif:type,glycomotif:id
+|?glycomotif:description=Description
+|sort=glycomotif:type,glycomotif:name
 |headers=plain
 |mainlabel=-
 |format=broadtable

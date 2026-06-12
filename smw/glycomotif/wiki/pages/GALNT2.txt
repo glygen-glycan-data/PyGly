@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Extravillous trophoblasts
+|celltype=Enhanced in Microglia;Enhanced in Pancreatic acinar cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000143641
 |description=Attach GalNAc to Ser/Thr.
@@ -8,7 +8,7 @@
 |disease_source_key=2590
 |genename=GALNT2
 |ortholog=Galnt2
-|phenotype=Abnormal cerebral white matter morphology;Abnormal protein O-linked glycosylation;Alternating exotropia;Astigmatism;Autistic behavior;Autosomal recessive inheritance;Brachycephaly;Conductive hearing impairment;Constipation;Decreased HDL cholesterol concentration;Decreased serum creatinine;Delayed ability to sit;Delayed ability to walk;Delayed gross motor development;Delayed speech and language development;Downslanted palpebral fissures;Feeding difficulties;Generalized hypotonia;Global developmental delay;High forehead;Hypertelorism;Hypotriglyceridemia;Insomnia;Intellectual disability, severe;Iron deficiency anemia;Long face;Low levels of vitamin D;Low-set ears;Microcephaly;Multifocal seizures;Nystagmus;Pineal cyst;Posteriorly rotated ears;Prominent nasal bridge;Reduced eye contact;Sandal gap;Seizure;Short foot;Short philtrum;Short stature;Small hand;Tented upper lip vermilion;Thick vermilion border;Urinary incontinence
+|phenotype=Abnormal cerebral white matter morphology;Abnormal protein O-linked glycosylation;Alternating exotropia;Astigmatism;Autistic behavior;Autosomal recessive inheritance;Brachycephaly;Conductive hearing impairment;Constipation;Decreased HDL cholesterol concentration;Decreased circulating vitamin D concentration;Decreased serum creatinine;Delayed ability to sit;Delayed ability to walk;Delayed gross motor development;Delayed speech and language development;Downslanted palpebral fissures;Feeding difficulties;Generalized hypotonia;Global developmental delay;High forehead;Hypertelorism;Hypotriglyceridemia;Insomnia;Iron deficiency anemia;Long face;Low-set ears;Microcephaly;Multifocal seizures;Nystagmus;Pineal cyst;Posteriorly rotated ears;Prominent nasal bridge;Reduced eye contact;Sandal gap;Seizure;Severe intellectual disability;Short foot;Short philtrum;Short stature;Small hand;Tented upper lip vermilion;Thick vermilion border;Urinary incontinence
 |phenotype_source=HPO
 |phenotype_source_key=2590
 |species=Human

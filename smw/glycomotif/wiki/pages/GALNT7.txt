@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Inhibitory neurons;Enhanced in Intestinal goblet cells;Enhanced in Prostatic glandular cells
+|celltype=Enhanced in Neutrophils;Enhanced in Prostatic glandular cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000109586
 |description=Attach GalNAc to Ser/Thr.

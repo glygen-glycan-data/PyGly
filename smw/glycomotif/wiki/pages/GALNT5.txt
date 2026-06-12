@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Alveolar cells;Enhanced in Distal enterocytes;Enhanced in Intestinal goblet cells;Enhanced in Salivary duct cells
+|celltype=Enhanced in Alveolar cells;Enhanced in Choroid plexus epithelial cells;Enhanced in Colonocytes;Enhanced in Conjunctival goblet cells;Enhanced in Endometrial secretory cells;Enhanced in Esophageal apical cells;Enhanced in Foveolar cells;Enhanced in Goblet cells;Enhanced in Lacrimal acinar cells;Enhanced in Ocular epithelial cells;Enhanced in Respiratory basal cells;Enhanced in Respiratory deuterosomal cells;Enhanced in Salivary basal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000136542
 |description=Attach GalNAc to Ser/Thr.

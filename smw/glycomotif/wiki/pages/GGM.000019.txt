@@ -29,7 +29,7 @@ Le^y
 |redend=false
 |reference=Cummings (2009) The repertoire of glycan determinants in the human glycome;Lloyd et al. (1983) Mouse monoclonal antibody F-3 recognizes the difucosyl type-2 blood group ...
 |sameas=CCRC.000045,CCRC.000048,GD.R000322,GDC.000019,GDSB.000147,GDV.000014,GM.G49963IQ
-|sandbox_NA=G00116DX;G00380ZN;G00932EO;G01128XX;G02871WJ;G03404VQ;G03859WM;G04609GK;G05081RC;G07041CT
+|sandbox_NA=G00116DX;G00380ZN;G00932EO;G01128XX;G02871WJ;G03404VQ;G03859WM;G04609GK;G04988GC;G05081RC
 |sandbox_OC=G00901NZ;G01744JD;G01747FB;G02799CL;G03792OA;G03796EF;G04002YJ;G05378UG;G05456PR;G05570RS
 |wurcs=WURCS{{=}}2.0/3,4,3/{{!(}}a2122h-1x_1-5_2*NCC/3{{=}}O{{!)}}{{!(}}a1221m-1a_1-5{{!)}}{{!(}}a2112h-1b_1-5{{!)}}/1-2-3-2/a3-b1_a4-c1_c2-d1
 }}

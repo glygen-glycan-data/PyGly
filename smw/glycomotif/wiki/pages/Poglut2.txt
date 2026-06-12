@@ -3,6 +3,9 @@
 |genename=Poglut2
 |mgiacc=MGI:1919300
 |ortholog=POGLUT2
+|phenotype=decreased prepulse inhibition
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1919300
 |species=Mouse
 |uniprot=Q9JHP7
 }}

@@ -1,6 +1,7 @@
 {{Class
-|definition=N-linked glycan type determined by core alignment of five residue N-Glycan reducing-end motif.
-|hasmotif=GGM.001001
-|level=Type
 |name=N-linked
+|level=Type
+|description=N-linked glycans have a common GlcNAc(2)Man(3) core and attach to Asn residues in the sequence motifs NXS or NXT.
+|definition=N-linked glycan type determined by core alignment of the five residue N-Glycan reducing-end motif. Note that the N-linked glycan type can also be assigned by the [[GGC.000002|N-linked superclass motif]]. Note that N-linked glycan type structures below may be matched by either of the N-linked glycan type rules.
+|hasmotif=GGM.001001
 }}

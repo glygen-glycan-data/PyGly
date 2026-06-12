@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Microglial cells
+|celltype=Enhanced in Alveolar cells;Enhanced in Brain excitatory neurons;Enhanced in Choroid plexus epithelial cells;Enhanced in Loop of henle epithelial cells;Enhanced in Lymphatic endothelial cells;Enhanced in Proximal tubule cells;Enhanced in Sertoli cells;Enhanced in Vascular endothelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000110328
 |description=Attach GalNAc to Ser/Thr.

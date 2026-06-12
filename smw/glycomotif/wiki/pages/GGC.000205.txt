@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001105
-|level=Subtype
 |name=Glycosphingolipid gala series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Gala series glycosphingolipids.
+|definition=The glycosphingolipid gala series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001105
 }}

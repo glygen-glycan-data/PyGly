@@ -1,7 +1,8 @@
 {{Class
+|name=N-linked high mannose
+|level=Subtype
+|type=N-linked
+|description=High-mannose N-linked glycans have at least two Man-based antennae attached to the N-glycan core.
 |definition=High-mannose N-linked glycan subtype determined by core alignment to the N-Glycan core basic motif ([[GGM.001001]]), plus checks to ensure all residues, except for two reducing end GlcNAc, are Man. The additional motif ([[GGM.001002]]) is included for historical reasons, but does not result in any additional structures.
 |hasmotif=GGM.001001; GGM.001002
-|level=Subtype
-|name=N-linked high mannose
-|type=N-linked
 }}

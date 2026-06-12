@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001107
-|level=Subtype
 |name=Glycosphingolipid neo-lacto series
+|level=Subtype
 |type=Glycosphingolipid
+|description=Neo-lacto series glycosphingolipids.
+|definition=The glycosphingolipid neo-lacto series subtype is assigned by matching its reducing-end with the subtype core motif.
+|hasmotif=GGM.001107
 }}

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Early spermatids;Enhanced in Late spermatids
+|celltype=Enriched in Early spermatids;Enriched in Esophageal apical cells;Enriched in Late spermatids
 |celltype_source=HPA
 |celltype_source_key=ENSG00000196968
 |description=Attach alpha 3 Fuc to GlcNAc.

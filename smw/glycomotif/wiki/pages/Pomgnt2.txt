@@ -1,0 +1,7 @@
+{{Enzyme
+|description=Attach beta 4 GlcNAc to Man.
+|genename=Pomgnt2
+|ortholog=POMGNT2
+|species=Mouse
+|uniprot=Q8BW41
+}}

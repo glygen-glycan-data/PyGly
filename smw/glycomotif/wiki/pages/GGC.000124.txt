@@ -1,0 +1,8 @@
+{{Class
+|name=O-mannan
+|level=Subtype
+|type=O-linked
+|description=O-mannose O-glycans with a Man-alpha-2-Man core.
+|definition=O-mannose O-glycans with a Man-alpha-2-Man core.
+|hasmotif=GGM.001050
+}}

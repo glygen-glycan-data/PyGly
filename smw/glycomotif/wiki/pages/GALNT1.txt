@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Mucus glandular cells
+|celltype=Enhanced in Esophageal apical cells;Enhanced in Retinal pigment epithelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000141429
 |description=Attach GalNAc to Ser/Thr.

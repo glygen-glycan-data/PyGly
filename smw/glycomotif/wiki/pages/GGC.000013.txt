@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001026
-|level=Subtype
 |name=N-linked alditol-reduced
+|level=Subtype
 |type=N-linked
+|description=N-linked glycan with alditol-reduced reducing-end GlcNAc.
+|definition=Alditol-reduced N-linked glycan subtype determined by core alignment to N-Glycan core, alditol reduced motif. Note that the [[GGC.000001|N-linked glycan type]] permits alditol-reduced reducing-end glycans, this subtype identifies only those that have alditol-reduced reducing-ends.
+|hasmotif=GGM.001026
 }}

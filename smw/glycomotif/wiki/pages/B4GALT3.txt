@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Extravillous trophoblasts;Enhanced in Plasma cells;Enhanced in Syncytiotrophoblasts
+|celltype=Enhanced in Esophageal apical cells;Enhanced in Extravillous trophoblasts;Enhanced in Migrating cytotrophoblasts;Enhanced in Plasma cells;Enhanced in Syncytiotrophoblasts
 |celltype_source=HPA
 |celltype_source_key=ENSG00000158850
 |description=Attach beta 4 Gal to GlcNAc.

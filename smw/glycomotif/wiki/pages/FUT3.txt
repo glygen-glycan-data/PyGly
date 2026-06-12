@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Distal enterocytes;Enhanced in Ductal cells;Enhanced in Enteroendocrine cells;Enhanced in Intestinal goblet cells;Enhanced in Ionocytes;Enhanced in Paneth cells;Enhanced in Proximal enterocytes;Enhanced in Undifferentiated cells
+|celltype=Enriched in Esophageal apical cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000171124
 |description=Attach alpha 3 Fuc to GlcNAc.

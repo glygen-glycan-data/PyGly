@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001042; GGM.001043
-|level=Subtype
 |name=O-linked core 9
+|level=Subtype
 |type=O-linked
+|description=Mucin-type O-GalNAc reducing-end O-glycan with Gal-beta-6-(Gal-beta-3-)GalNAc core motif.
+|definition=Only Gal, Fuc, NeuAc, NeuGc may be attached to the reducing-end GalNAc.
+|hasmotif=GGM.001042
 }}

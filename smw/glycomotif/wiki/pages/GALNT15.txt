@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Adipocytes;Enhanced in Astrocytes;Enhanced in Early spermatids;Enhanced in Endothelial cells;Enhanced in Fibroblasts;Enhanced in Muller glia cells;Enhanced in Oligodendrocytes
+|celltype=Enhanced in Astrocytes;Enhanced in Fibro-adipogenic progenitors;Enhanced in Fibroblasts;Enhanced in Late primary spermatocytes;Enhanced in Lymphatic endothelial cells;Enhanced in Medullary thymic epithelial cells;Enhanced in Myosatellite cells;Enhanced in Müller glia;Enhanced in Oligodendrocytes;Enhanced in Salivary myoepithelial cells;Enhanced in Vascular endothelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000131386
 |description=Attach GalNAc to Ser/Thr.

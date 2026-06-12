@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Alveolar cells;Enhanced in Oligodendrocytes
+|celltype=Enhanced in Adrenal cortex cells;Enhanced in Alveolar cells;Enhanced in Oligodendrocytes;Enhanced in Pituicytes/FSCs;Enhanced in Retinal pigment epithelial cells;Enhanced in Urothelial cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000115525
 |description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.
@@ -12,7 +12,7 @@
 |phenotype_source=HPO
 |phenotype_source_key=8869
 |species=Human
-|tissue=Low tissue specificity
+|tissue=Enhanced in adrenal gland
 |tissue_source=HPA
 |tissue_source_key=ENSG00000115525
 |uniprot=Q9UNP4

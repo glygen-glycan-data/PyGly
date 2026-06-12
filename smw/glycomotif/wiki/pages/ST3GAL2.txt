@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Langerhans cells;Enhanced in dendritic cells
+|celltype=Enhanced in Neutrophils;Enhanced in pDCs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000157350
 |description=Attach alpha 3 NeuAc to Gal; attach alpha 3 NeuAc to GalNAc; attach alpha 3 NeuGc to Gal; attach alpha 3 NeuGc to GalNAc.

@@ -1,9 +1,9 @@
 {{Enzyme
-|description=Attach alpha 6 NeuAc to Gal; attach alpha 6 NeuGc to Gal.
+|description=Attach alpha 6 KDN to Gal; attach alpha 6 NeuAc to Gal; attach alpha 6 NeuGc to Gal.
 |genename=St6gal2
 |mgiacc=MGI:2445190
 |ortholog=ST6GAL2
-|phenotype=enhanced cued conditioning behavior;long tibia
+|phenotype=long tibia
 |phenotype_source=IMPC
 |phenotype_source_key=MGI:2445190
 |species=Mouse

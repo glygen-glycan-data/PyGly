@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Excitatory neurons;Enhanced in Inhibitory neurons;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes
+|celltype=Enhanced in Adrenal medulla cells;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Cone photoreceptor cells;Enhanced in Corticotrophs;Enhanced in Endometrial stromal cells;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Oligodendrocytes;Enhanced in Other brain neurons;Enhanced in Retinal horizontal cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000144278
 |description=Attach GalNAc to Ser/Thr.

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Cytotrophoblasts
+|celltype=Low cell type specificity
 |celltype_source=HPA
 |celltype_source_key=ENSG00000088035
 |description=Attach alpha 3 Glc to Man.
@@ -7,7 +7,6 @@
 |disease_source=HPO
 |disease_source_key=29929
 |genename=ALG6
-|iscdg=true
 |ortholog=Alg6
 |phenotype=Abnormal circulating enzyme concentration or activity;Abnormal facial shape;Abnormality of the coagulation cascade;Abnormality of the liver;Abnormality of the nervous system;Abnormality of the skeletal system;Areflexia;Ataxia;Autosomal recessive inheritance;Axial hypotonia;Brachydactyly;Cerebellar hypoplasia;Decreased LDL cholesterol concentration;Deep venous thrombosis;Elevated serum transaminases during infections;Failure to thrive;Feeding difficulties;Global developmental delay;Hypertelorism;Hypoalbuminemia;Hypotonia;Increased circulating androgen concentration;Jaundice;Juvenile onset;Low-set ears;Macroglossia;Neurodevelopmental delay;Protein-losing enteropathy;Puberty and gonadal disorders;Reduced antithrombin III activity;Reduced antithrombin antigen;Reduced factor XI activity;Reduced protein C activity;Reduced protein S activity;Retinal degeneration;Rod-cone dystrophy;Scoliosis;Seizure;Shortening of all distal phalanges of the fingers;Skeletal dysplasia;Strabismus;Type I transferrin isoform profile
 |phenotype_source=HPO

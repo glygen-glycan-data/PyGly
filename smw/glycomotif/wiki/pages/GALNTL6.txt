@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enriched in Excitatory neurons;Enriched in Inhibitory neurons
+|celltype=Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Melanocytes;Enhanced in Other brain neurons;Enhanced in Retinal ganglion cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000174473
 |description=Attach GalNAc to Ser/Thr.

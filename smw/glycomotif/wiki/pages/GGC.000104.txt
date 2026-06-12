@@ -1,6 +1,8 @@
 {{Class
-|hasmotif=GGM.001044
-|level=Subtype
 |name=O-galactose
+|level=Subtype
 |type=O-linked
+|description=O-Galactocylation is a single Gal monosaccharide.
+|definition=The O-galactose O-glycan subtype matches glycans with a single alpha-linked Gal.
+|hasmotif=GGM.001044
 }}

@@ -39,11 +39,11 @@ Edit the page to see the template text.
 {{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|;&#32;}}.
 }}{{#ifeq:{{{disease_source|}}}|HPO| 
 
-<h2 class="plainlinks">[https://hpo.jax.org/app/browse/gene/{{{disease_source_key|}}} HPO Diseases]</h2>
+<h2 class="plainlinks">[https://hpo.jax.org/browse/gene/NCBIGene:{{{disease_source_key|}}} HPO Diseases]</h2>
 {{#arraymap:{{{disease|}}}|;|x|[[glycomotif:disease::x]]|;&#32;}}.
 }}{{#ifeq:{{{phenotype_source|}}}|HPO| 
 
-<h2 class="plainlinks">[https://hpo.jax.org/app/browse/gene/{{{phenotype_source_key|}}} HPO Phenotypes]</h2>
+<h2 class="plainlinks">[https://hpo.jax.org/browse/gene/NCBIGene:{{{phenotype_source_key|}}} HPO Phenotypes]</h2>
 {{#arraymap:{{{phenotype|}}}|;|x|[[glycomotif:phenotype::x]]|;&#32;}}.
 }}{{#ifeq:{{{tissue_source|}}}|HPA| 
 

@@ -447,7 +447,10 @@ function initMotifAlign() {
 
   // for the MOTIFALIGN module
   function alignment(motif, first){
-    var endpt = "https://glycomotif.glyomics.org/" + prefix + "/sparql/query";
+    var endpt = "https://glycomotif.glyomics.org/glycomotif/sparql/query";
+    if (prefix = "glycomotifdev") {
+        endpt = "https://edwardslab.bmcb.georgetown.edu/glycomotifdev/sparql/query";
+    }
           
     var query = alignmentQueryConstructor(motif, first);
     var qurl = sparqlQuery(endpt, query);
@@ -733,7 +736,10 @@ function initClassification() {
 
   // for the MOTIFCLASS module
   function alignment(classid,classname,classlevel,first){
-    var endpt = "https://glycomotif.glyomics.org/" + prefix + "/sparql/query";
+    var endpt = "https://glycomotif.glyomics.org/glycomotif/sparql/query";
+    if (prefix = "glycomotifdev") {
+        endpt = "https://edwardslab.bmcb.georgetown.edu/glycomotifdev/sparql/query";
+    }
           
     var query = alignmentQueryConstructor(classid,classname,classlevel, first);
     var qurl = sparqlQuery(endpt, query);

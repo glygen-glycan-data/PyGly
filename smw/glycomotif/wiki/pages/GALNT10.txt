@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Alveolar cells;Enhanced in Granulosa cells;Enhanced in Oligodendrocyte precursor cells
+|celltype=Enhanced in Choroid plexus epithelial cells;Enhanced in Erythrocyte progenitors;Enhanced in Megakaryocyte-Erythroid progenitors;Enhanced in Pituicytes/FSCs;Enhanced in Pituitary stem cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000164574
 |description=Attach GalNAc to Ser/Thr.

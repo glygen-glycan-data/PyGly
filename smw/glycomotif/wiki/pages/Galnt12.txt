@@ -3,7 +3,7 @@
 |genename=Galnt12
 |mgiacc=MGI:2444664
 |ortholog=GALNT12
-|phenotype=hyperactivity;increased heart weight
+|phenotype=hyperactivity;increased heart weight;limb grasping
 |phenotype_source=IMPC
 |phenotype_source_key=MGI:2444664
 |species=Mouse

@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Distal enterocytes;Enhanced in Enteroendocrine cells;Enhanced in Intestinal goblet cells;Enhanced in Paneth cells;Enhanced in Proximal enterocytes
+|celltype=Enhanced in Adrenal medulla cells;Enhanced in Brain inhibitory neurons;Enhanced in Choroid plexus epithelial cells;Enhanced in Ependymal cells;Enhanced in Other brain neurons;Enhanced in Papillary tip epithelial cells;Enhanced in Pituitary stem cells;Enhanced in Renal collecting duct principal cells;Enhanced in Somatotrophs;Enhanced in Thyrotrophs
 |celltype_source=HPA
 |celltype_source_key=ENSG00000183778
 |description=Attach beta 3 Gal to GlcNAc.

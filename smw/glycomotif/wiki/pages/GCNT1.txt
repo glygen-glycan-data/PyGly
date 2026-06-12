@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Enteroendocrine cells;Enhanced in Gastric mucus-secreting cells;Enhanced in Mesothelial cells;Enhanced in Proximal enterocytes
+|celltype=Enhanced in Colonocytes;Enhanced in Corticotrophs;Enhanced in Foveolar cells;Enhanced in Mesothelial cells;Enhanced in Mucous neck cells;Enhanced in Neutrophil progenitors;Enhanced in Tuft cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000187210
 |description=Attach beta 6 GlcNAc to Gal; attach beta 6 GlcNAc to GalNAc.

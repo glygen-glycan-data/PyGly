@@ -3,6 +3,9 @@
 |genename=Pofut2
 |mgiacc=MGI:1916863
 |ortholog=POFUT2
+|phenotype=abnormal heart morphology;abnormal retina vasculature morphology;abnormal skin morphology;abnormal spleen morphology;abnormal testis morphology;enlarged heart;increased circulating bilirubin level;increased red blood cell distribution width;small testis
+|phenotype_source=IMPC
+|phenotype_source_key=MGI:1916863
 |species=Mouse
 |uniprot=Q8VHI3
 }}

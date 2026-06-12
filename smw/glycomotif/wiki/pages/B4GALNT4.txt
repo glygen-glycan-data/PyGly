@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Astrocytes;Enhanced in Excitatory neurons;Enhanced in Horizontal cells;Enhanced in Inhibitory neurons;Enhanced in Muller glia cells;Enhanced in Oligodendrocyte precursor cells;Enhanced in Oligodendrocytes
+|celltype=Enhanced in Astrocytes;Enhanced in Bergmann glia;Enhanced in Brain excitatory neurons;Enhanced in Brain inhibitory neurons;Enhanced in Müller glia;Enhanced in Oligodendrocyte progenitor cells;Enhanced in Oligodendrocytes;Enhanced in Other brain neurons;Enhanced in Tuft cells
 |celltype_source=HPA
 |celltype_source_key=ENSG00000182272
 |description=Attach beta 4 GalNAc to GlcNAc.

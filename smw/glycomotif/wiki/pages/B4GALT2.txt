@@ -1,5 +1,5 @@
 {{Enzyme
-|celltype=Enhanced in Alveolar cells
+|celltype=Low cell type specificity
 |celltype_source=HPA
 |celltype_source_key=ENSG00000117411
 |description=Attach beta 4 Gal to GlcNAc.

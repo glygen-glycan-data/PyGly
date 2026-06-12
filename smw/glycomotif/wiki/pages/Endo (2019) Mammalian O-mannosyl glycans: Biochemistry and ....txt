@@ -1,0 +1,10 @@
+{{Publication
+|authors=Endo T
+|doi=10.2183/pjab.95.004
+|journal=Proc Jpn Acad Ser B Phys Biol Sci
+|pages=39-51
+|pmid=30643095
+|title=Mammalian O-mannosyl glycans: Biochemistry and glycopathology
+|volume=95(1)
+|year=2019
+}}

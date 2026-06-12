@@ -1,7 +1,6 @@
 {{Enzyme
 |description=Attach beta 4 GalNAc to GlcNAc.
 |genename=B4galnt3
-|mgiacc=MGI:3041155
 |ortholog=B4GALNT3
 |species=Mouse
 |uniprot=Q6L8S8
