@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import os
 import sys
@@ -410,8 +410,8 @@ for acc in supported_acc:
 
 
 json.dump(relationship_within_topology_cluster, open(topology_file_path, "w"), sort_keys=True, indent=2)
-json.dump(relationship_non_red_end_topology_navigator, open(red_file_path, "w"), sort_keys=True, indent=2)
-json.dump(relationship_red_end_topology_navigator, open(non_file_path, "w"), sort_keys=True, indent=2)
+json.dump(relationship_non_red_end_topology_navigator, open(non_file_path, "w"), sort_keys=True, indent=2)
+json.dump(relationship_red_end_topology_navigator, open(red_file_path, "w"), sort_keys=True, indent=2)
 
 
 

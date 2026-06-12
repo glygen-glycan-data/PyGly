@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki, Enzyme
 import sys, re, glob, json, csv, gzip
@@ -6,10 +6,12 @@ from collections import defaultdict
 
 w = GlycoMotifWiki()
 
+# ./loadimpc.py ../data/phenotypeHitsPerGene.csv.gz
+
 phenotypes = defaultdict(list)
 mgiacc = dict()
 # "Gene Symbol","MGI Gene Id","# Phenotype Hits","Phenotype Hits"
-for row in csv.DictReader(gzip.open(sys.argv[1])):
+for row in csv.DictReader(gzip.open(sys.argv[1],'rt')):
     phenotypes[row['Gene Symbol']].extend(filter(None,[p.strip() for p in row["Phenotype Hits"].split("::")]))
     mgiacc[row['Gene Symbol']] = row["MGI Gene Id"]
 
@@ -26,4 +28,4 @@ for e in w.iterenzyme():
        e.delete("phenotype_source")
        e.delete("phenotype_source_key")
     if w.put(e):
-        print gn
+        print(gn)

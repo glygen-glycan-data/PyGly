@@ -1,12 +1,13 @@
-#!/bin/env python27
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki, Enzyme
 import sys, re, glob, json
 import findpygly
 from pygly.GlycanResource import GlycoTreeSandbox, GlycoTreeSandboxDev
+from collections import defaultdict
 
-gts = GlycoTreeSandbox()
-# gts = GlycoTreeSandboxDev()
+# gts = GlycoTreeSandbox()
+gts = GlycoTreeSandboxDev()
 
 form_name_dict = dict(map(lambda s: tuple(s.split()),filter(lambda s: s.strip(),"""
 Fucp Fuc
@@ -30,12 +31,17 @@ phosphate phosphate
 sulfate sulfate
 Xylf Xyl
 Xylp Xyl
+KDNp KDN
 """.splitlines())))
 
 allenz = dict()
 tree = dict()
-
+orthcl = defaultdict(set)
 for r in gts.enzymes():
+    if r.get('species') not in (None,"Homo sapiens","Mus musculus"):
+        if r.get('species') not in ("Rattus norvegicus","Bos taurus","Sus scrofa"):
+            print(r)
+        continue
     glycotree = r['residue_id'][0]
     residue_id = r["residue_id"]
     name = form_name_dict[r["form_name"]]
@@ -52,11 +58,23 @@ for r in gts.enzymes():
                             parent_id=parent_id, glycotree=glycotree)
     if r.get('gene_name'):
         if r['gene_name'] not in allenz:
+            species = ('Human' if r['species'] == 'Homo sapiens' else 'Mouse')
             allenz[r['gene_name']] = dict(genename=r['gene_name'],glycotree=glycotree,
-                                          species=('Human' if r['species'] == 'Homo sapiens' else 'Mouse'),
-                                          uniprot=r['uniprot'],residues=set([residue_id]))
+                                          species=species,uniprot=r['uniprot'],residues=set([residue_id]))
+            orthcl[r['orthology_group']].add((species,r['gene_name']))
         else:
             allenz[r['gene_name']]['residues'].add(residue_id)
+
+for og in orthcl:
+    seensp = set()
+    for sp,gn in orthcl[og]:
+        if sp in seensp:
+            continue
+        seensp.add(sp)
+        for sp1,gn1 in orthcl[og]:
+            if sp != sp1 and gn != gn1:
+                allenz[gn]['ortholog'] = gn1
+                break
 
 for rid in tree:
     pid = tree[rid]['parent_id']
@@ -70,6 +88,8 @@ for gn in allenz:
     del allenz[gn]['residues']
 
 w = GlycoMotifWiki()
+
+goodenz = set()
 
 for ed in allenz.values():
     if 'action' in ed:
@@ -100,8 +120,17 @@ for ed in allenz.values():
         enz = Enzyme(**ed)
     else:
         enz.update(**ed)
+    goodenz.add(ed['genename'])
     enz.delete('action')
     enz.delete('tree')
     enz.delete('residues')
+    enz.delete('orthology_group')
     if w.put(enz):
         print("Enzyme %s updated."%(ed['genename'],))
+
+for e in w.iterenzyme():
+    gn = e.get('genename')
+    if gn not in goodenz:
+        print("Enzyme %s removed."%(gn,))
+        w.delete(gn)
+

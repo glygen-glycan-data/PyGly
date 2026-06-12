@@ -40,7 +40,7 @@ class Collection(SMW.SMWClass):
 
 class Motif(SMW.SMWClass):
     template = 'Motif'
-    aglyconvalues = ['Cer','Ser/Thr','Asn','R','Other']
+    aglyconvalues = ['Cer','Ser/Thr','Trp','Asn','R','Other']
     alignmentvalues = [
         "Substructure",
         "Core",
@@ -307,7 +307,7 @@ class Class(SMW.SMWClass):
         if definition is not None and re.search(r'[[][[]GG[CM].\d{6}[]][]]',definition):
             data['definition'] = re.sub(r'[[][[](GG[CM].\d{6})[]][]]',r'\1',definition)
 
-        for key in ('hasmotif','nothasmotif'):
+        for key in ('hasmotif','nothasmotif','nothasclass'):
             if isinstance(data.get(key),basestring):
                 data[key] = list(filter(None,map(lambda s: s.strip(),data.get(key).split(';'))))
 
@@ -322,7 +322,7 @@ class Class(SMW.SMWClass):
             if re.search(r'\bGG[CM].\d{6}\b',definition):
                 data['definition'] = re.sub(r'\b(GG[CM].\d{6})\b',r'[[\1]]',definition)
 
-        for key in ('hasmotif','nothasmotif'):
+        for key in ('hasmotif','nothasmotif','nothasclass'):
             if key in data:
                 data[key] = '; '.join(sorted(map(str.strip,map(str,data.get(key,'')))))
 
@@ -369,6 +369,11 @@ class GlycoMotifWiki(SMW.SMWSite):
         if pagename:
             return super(GlycoMotifWiki,self).get(pagename)
         return super(GlycoMotifWiki,self).get(Motif.pagename(collection=collection,accession=accession))
+
+    def iteritems(self,regex=None):
+        for page in self.iterpages(regex=regex):
+            m = self.get(page.name)
+            yield m
 
     def itermotif(self,collection=None,regex=None):
         if collection != None and not isinstance(collection,basestring):

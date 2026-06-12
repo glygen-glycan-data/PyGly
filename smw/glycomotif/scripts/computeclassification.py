@@ -68,6 +68,34 @@ for l in sys.stdin:
 from clseng import ClassifierEngine
 classifier = ClassifierEngine(alignments=struct2motif,glytoucan=gtc,verbose=debug)
 
+allclids = [ cl._id for cl in classifier.classifiers() ]
+for c in w.iteritems(regex=r'^GGC\.'):
+    cid = c.get('id')
+    if c.get('hasmotif') is None:
+        continue
+    print("Checking classifier "+cid,file=sys.stderr)
+    cl = classifier.get_classifier(cid)
+    assert cl is not None, f"Classifier {cid} is missing in clseng.py"
+    assert cl._id == cid
+    allclids.remove(cid)
+    if len(cl._class) == 1:
+        assert c.get('level') == "Type"
+        assert c.get('name') == cl._class[0]
+    elif len(cl._class) == 2:
+        assert c.get('level') == "Subtype"
+        assert c.get('name') == cl._class[1]
+        assert c.get('type') == cl._class[0]
+    else:
+        raise RuntimeError("Bad _class len...")
+    assert sorted(c.get('hasmotif',[])) == sorted(cl._motifs)
+    excclids = sorted(cid for cid in cl._exceptions if cid.startswith('GGC.'))
+    excmids = sorted(mid for mid in cl._exceptions if mid.startswith('GGM.'))
+    assert (len(excclids) + len(excmids)) == len(cl._exceptions), f"{len(excclids)} + {len(excmids)} != {len(cl._exceptions)}"
+    assert sorted(c.get('nothasclass',[])) == excclids, f"{sorted(c.get('nothasclass',[]))} != {excclids}"
+    assert sorted(c.get('nothasmotif',[])) == excmids, f"{sorted(c.get('nothasmotif',[]))} != {excmids}"
+
+assert len(allclids) == 0, "Extra classifiers in the clseng.py"
+
 acc2type = defaultdict(set)
 for acc in sorted(allacc):
 

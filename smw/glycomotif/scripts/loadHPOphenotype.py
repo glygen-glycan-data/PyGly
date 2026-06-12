@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki, Enzyme
 import sys, re, glob, json, csv, gzip

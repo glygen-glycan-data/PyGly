@@ -12,10 +12,10 @@ import logging
 class ClassifierEngine(object):
 
     def __init__(self,glytoucan=None,alignments=None,verbose=False):
-        self._classifiers = []
+        self._classifiers = {}
         for n,c in  inspect.getmembers(sys.modules[__name__], inspect.isclass):
-            if hasattr(c,'_class'):
-                self._classifiers.append(c())
+            if issubclass(c,Classifier) and hasattr(c,'_class') and hasattr(c,'_id'):
+                self._classifiers[c._id] = c()
         self.log = logging.getLogger('ClassifierEngine')
         if verbose:
             self.log.setLevel(logging.DEBUG)
@@ -110,12 +110,24 @@ class ClassifierEngine(object):
             self.log.debug("Structure: %r"%(self._structure,))
 
     def classifiers(self):
-        return self._classifiers
+        return self._classifiers.values()
+    
+    def is_classifier(self,cid):
+        return cid in self._classifiers
 
+    def get_classifier(self,cid):
+        return self._classifiers.get(cid)
+
+    def classifier_match(self,cid):
+        c = self._classifiers[cid]
+        if c and c.match(self):
+            return True
+        return False
+    
     def assign(self,acc):
         self.init(acc)
         cls = set()
-        for c in self._classifiers:
+        for c in self._classifiers.values():
             if c.match(self):
                 cls.add(c.classification())
         cls = sorted(cls)
@@ -258,10 +270,9 @@ class ClassifierEngine(object):
         def floating_subst_count(m):
             cnt = 0
             for s in m.substituents():
-                if s in Composition.floating_substs:
+                if s.name() in Composition.floating_substs:
                     cnt += 1
             return cnt
-
 
         @staticmethod
         def hex(m):
@@ -649,6 +660,19 @@ class ClassifierEngine(object):
             return False
         return True
 
+    def acceptoman(self,root_nch):
+        if self._structure == None:
+            self.getStructure()
+        if not self._structure:
+            return False
+        if not self.acceptbarecore(self.MonoMethods.glcnac):
+            return False
+        r = self._structure.root()
+        nc = 0
+        for c in r.children():
+            nc += 1
+        return (nc == root_nch)
+
     def count_mono(self,*fnargs):
         if self._structure == None:
             self.getStructure()
@@ -727,6 +751,18 @@ class ClassifierEngine(object):
                 if lcnt > 1:
                     return False
         return True
+    
+    @Decorators.needs_structure
+    def nononsiabranch(self):
+        for m in self._structure.all_nodes():
+            if m.link_count(default=False,repeat=-Linkage.REPEAT_EXIT) > 1:
+                lcnt = m.link_count(default=False,repeat=-Linkage.REPEAT_EXIT)
+                for l in m.links(default=False,repeat=Linkage.NON_REPEAT):
+                    if ClassifierEngine.MonoMethods.sia(l.child()):
+                        lcnt -= 1
+                if lcnt > 1:
+                    return False
+        return True
 
     def repeat_unit_sizes_are_even(self):
         if self._structure == None:
@@ -762,8 +798,12 @@ class MotifClassifier(Classifier):
                 self._goodmotif = m
                 break
         if good:
-            for m in self._exceptions:
-                if data.has_motif(m):
+            for exid in self._exceptions:
+                if data.is_classifier(exid):
+                    if data.classifier_match(exid):
+                        good = False
+                        break
+                elif data.has_motif(exid):
                     good = False
                     break
         if good:
@@ -883,7 +923,7 @@ class NGlycanBiantennary(MotifClassifier):
     _id = "GGC.000014"
     _class = ("N-linked","N-linked biantennary")
     _motifs = ["GGM.001037"]
-    _exceptions = ["GGM.001038"]
+    _exceptions = ["GGC.000015"]
 
     def refine(self,data):
         if not data.has_motif("GGM.001004"):
@@ -894,7 +934,7 @@ class NGlycanTriantennary(MotifClassifier):
     _id = "GGC.000015"
     _class = ("N-linked","N-linked triantennary")
     _motifs = ["GGM.001038"]
-    _exceptions = ["GGM.001039"]
+    _exceptions = ["GGC.000016"]
 
     def refine(self,data):
         if not data.has_motif("GGM.001004"):
@@ -918,13 +958,11 @@ class OGlycanOGlcNAc(MotifClassifier):
 
 class OGlycanEGFOGlcNAcCore(MotifClassifier):
     _id = "GGC.000102"
-    _class = ("O-linked","EGF type O-GlcNAc core")
+    _class = ("O-linked","O-GlcNAc core, EGF type")
     _motifs = ["GGM.001040"]
 
     def refine(self,data):
         if not data.acceptegfoglcnac():
-            return False
-        if data.redendalpha():
             return False
         return True
 
@@ -932,7 +970,7 @@ class OGlycanHMOligos(MotifClassifier):
     _id = "GGC.000103"
     _class = ("Human Milk Oligosaccharide",)
     _motifs = ["GGM.001029"]
-    _exceptions = ["GGM.001101","GGM.001102","GGM.001108","GGM.001109"]
+    _exceptions = ["GGC.000201","GGC.000202","GGC.000208","GGC.000209"]
 
 class OGlycanOGal(MotifClassifier):
     _id = "GGC.000104"
@@ -943,10 +981,10 @@ class OGlycanOGalNAc(MotifClassifier):
     _id = "GGC.000105"
     _class = ("O-linked","O-GalNAc core, other")
     _motifs = ["GGM.001034"]
-    _exceptions = ["GGM.001005","GGM.001006","GGM.001007","GGM.001008","GGM.001009","GGM.001010",
-                   "GGM.001011","GGM.001012","GGM.001013","GGM.001014","GGM.001015","GGM.001016",
-                   "GGM.001017","GGM.001018","GGM.001032","GGM.001033","GGM.001042","GGM.001043",
-                   "GGM.001203","GGM.001207"]
+    _exceptions = ["GGC.000112","GGC.000113","GGC.000114",
+                   "GGC.000115","GGC.000116","GGC.000117",
+                   "GGC.000118","GGC.000119","GGC.000120",
+                   "GGC.000401"]
 
 class OGlycanOGlucose(MotifClassifier):
     _id = "GGC.000106"
@@ -960,47 +998,83 @@ class OGlycanOGlucose(MotifClassifier):
 
 class OGlycanOMannose1(MotifClassifier):
     _id = "GGC.000107"
-    _class = ("O-linked","O-mannose core")
-    _motifs = ["GGM.001019"]
-
-class OGlycanOMannose3(MotifClassifier):
-    _id = "GGC.000109"
-    _class = ("O-linked","O-mannose")
-    _motifs = ["GGM.001036"]
+    _class = ("O-linked","O-mannose core M1")
+    _motifs = ["GGM.001047"]
+    _exceptions = ["GGC.000121"]
 
     def refine(self,data):
-        if data.has_repeat_units():
+        if not data.acceptoman(root_nch=1):
             return False
-        if data.mono_count("Man") != data.mono_count():
+        return True
+
+class OGlycanOMannose2(MotifClassifier):
+    _id = "GGC.000121"
+    _class = ("O-linked","O-mannose core M2")
+    _motifs = ["GGM.001048"]
+
+    def refine(self,data):
+        if not data.acceptoman(root_nch=2):
+            return False
+        return True
+
+class OGlycanOMannose3(MotifClassifier):
+    _id = "GGC.000122"
+    _class = ("O-linked","O-mannose core M3")
+    _motifs = ["GGM.001049"]
+    _exceptions = ["GGC.000121"]
+
+    def refine(self,data):
+        if not data.acceptoman(root_nch=1):
+            return False
+        return True
+
+class OGlycanOMannose4(MotifClassifier):
+    _id = "GGC.000124"
+    _class = ("O-linked","O-mannan")
+    _motifs = ["GGM.001050"]
+
+class OGlycanOMannose5(MotifClassifier):
+    _id = "GGC.000109"
+    _class = ("O-linked","O-mannose core, other")
+    _motifs = ["GGM.001036"]
+    _exceptions = ["GGC.000107","GGC.000121","GGC.000122","GGC.000124","GGC.000125"]
+
+class OGlycanOMannose6(MotifClassifier):
+    _id = "GGC.000125"
+    _class = ("O-linked","O-mannose core M0")
+    _motifs = ["GGM.001051"]
+    # don't need to exclude because we only accept
+    # single monosaccharides...
+
+    def refine(self,data):
+        if not data.acceptoman(root_nch=0):
+            return False
+        if not data.mono_count() == 1:
             return False
         return True
 
 class OGlycanOFucose1(MotifClassifier):
     _id = "GGC.000110"
-    _class = ("O-linked","O-fucose core")
-    _motifs = ["GGM.001020","GGM.001021"]
-
-    def refine(self,data):
-        if data.redendbeta():
-            return False
-        return True
+    _class = ("O-linked","O-fucose core 1")
+    _motifs = ["GGM.001020"]
 
 class OGlycanOFucose2(MotifClassifier):
-    _id = "GGC.000111"
-    _class = ("O-linked","O-fucose core")
-    _motifs = ["GGM.001035"]
+    _id = "GGC.000123"
+    _class = ("O-linked","O-fucose core 2")
+    _motifs = ["GGM.001021"]
 
-    def refine(self,data):
-        if data.redendbeta():
-            return False
-        return True
+class OGlycanOFucose3(MotifClassifier):
+    _id = "GGC.000111"
+    _class = ("O-linked","O-fucose core, other")
+    _motifs = ["GGM.001035"]
+    _exceptions = ["GGC.000110","GGC.000123",]
 
 class OGlycanCore1(MotifClassifier):
     _id = "GGC.000112"
     _class = ("O-linked","O-linked core 1")
-    _motifs = ["GGM.001005","GGM.001006"]
-    # unless core 2 or core 9 motifs
-    _exceptions = ["GGM.001007","GGM.001008","GGM.001042","GGM.001043",]
+    _motifs = ["GGM.001005"]
+    # unless core 2 or core 9 class
+    _exceptions = ["GGC.000113","GGC.000120"]
 
     def refine(self,data):
         if not data.acceptcore1():
@@ -1010,14 +1084,14 @@ class OGlycanCore1(MotifClassifier):
 class OGlycanCore2(MotifClassifier):
     _id = "GGC.000113"
     _class = ("O-linked","O-linked core 2")
-    _motifs = ["GGM.001007","GGM.001008"]
+    _motifs = ["GGM.001007"]
 
 class OGlycanCore3(MotifClassifier):
     _id = "GGC.000114"
     _class = ("O-linked","O-linked core 3")
-    _motifs = ["GGM.001009","GGM.001010"]
+    _motifs = ["GGM.001009"]
     # unless core 2 core 4 motifs
-    _exceptions = ["GGM.001007","GGM.001008","GGM.001011","GGM.001012"]
+    _exceptions = ["GGC.000113","GGC.000115"]
 
     def refine(self,data):
         if not data.acceptcore36():
@@ -1027,12 +1101,12 @@ class OGlycanCore3(MotifClassifier):
 class OGlycanCore4(MotifClassifier):
     _id = "GGC.000115"
     _class = ("O-linked","O-linked core 4")
-    _motifs = ["GGM.001011","GGM.001012"]
+    _motifs = ["GGM.001011"]
 
 class OGlycanCore5(MotifClassifier):
     _id = "GGC.000116"
     _class = ("O-linked","O-linked core 5")
-    _motifs = ["GGM.001013","GGM.001014"]
+    _motifs = ["GGM.001013"]
 
     def refine(self,data):
         if not data.acceptcore57():
@@ -1042,9 +1116,9 @@ class OGlycanCore5(MotifClassifier):
 class OGlycanCore6(MotifClassifier):
     _id = "GGC.000117"
     _class = ("O-linked","O-linked core 6")
-    _motifs = ["GGM.001015","GGM.001016"]
+    _motifs = ["GGM.001015"]
     # unless core 2,4 motifs
-    _exceptions = ["GGM.001007","GGM.001008","GGM.001011","GGM.001012"]
+    _exceptions = ["GGC.000113","GGC.000115"]
 
     def refine(self,data):
         if not data.acceptcore36():
@@ -1054,7 +1128,7 @@ class OGlycanCore6(MotifClassifier):
 class OGlycanCore7(MotifClassifier):
     _id = "GGC.000118"
     _class = ("O-linked","O-linked core 7")
-    _motifs = ["GGM.001017","GGM.001018"]
+    _motifs = ["GGM.001017"]
 
     def refine(self,data):
         if not data.acceptcore57():
@@ -1064,8 +1138,9 @@ class OGlycanCore7(MotifClassifier):
 class OGlycanCore8(MotifClassifier):
     _id = "GGC.000119"
     _class = ("O-linked","O-linked core 8")
-    _motifs = ["GGM.001032","GGM.001033"]
-    _exceptions = ["GGM.001042","GGM.001043","GGM.001007","GGM.001008"]
+    _motifs = ["GGM.001032"]
+    # except core 9, core 2
+    _exceptions = ["GGC.000120","GGC.000113"]
 
     def refine(self,data):
         if not data.acceptcore8():
@@ -1075,7 +1150,7 @@ class OGlycanCore8(MotifClassifier):
 class OGlycanCore9(MotifClassifier):
     _id = "GGC.000120"
     _class = ("O-linked","O-linked core 9")
-    _motifs = ["GGM.001042","GGM.001043"]
+    _motifs = ["GGM.001042"]
 
     def refine(self,data):
         if not data.acceptcore9():
@@ -1153,17 +1228,20 @@ class GAGBase(MotifClassifier):
                "GGM.001213",
                "GGM.001214"]
 
-    def baserefine(self,data):
+    def baserefine(self,data,allowxylcore=False):
         # These tests are true for all GAGs...?
         if data.has_mono('GalA') or data.has_mono("Man"):
             data.log.info("Has GalA or Man")
             return False
+        extramono = 0
+        if allowxylcore:
+            extramono = 1 + 1*data.has_mono("Sia")
         if not data.has_repeat_units():
-            if data.mono_count() != data.countvalidgag():
+            if data.mono_count() != (data.countvalidgag()+extramono):
                 data.log.info("Unexpected GAG monosaccharide (no repeat)")
                 return False
         else:
-            if int(data.mono_count()[:-1]) != data.countvalidgag():
+            if int(data.mono_count()[:-1]) != (data.countvalidgag()+extramono):
                 data.log.info("Unexpected GAG monosaccharide (w/ repeat)")
                 return False
         if data.countthrenxa() == 1 and not data.threnxa_is_leaf():
@@ -1197,14 +1275,16 @@ class GAGBase(MotifClassifier):
 
 class XylGAGCore(GAGBase):
     _id = "GGC.000402"
-    _class = ("GAG","Xylose Core GAG")
+    _class = ("GAG","Xylose core GAG")
     _motifs = ["GGM.001215"]
 
     def refine(self,data):
         # no other checks?
-        if not self.baserefine(data):
+        if not self.baserefine(data,allowxylcore=True):
             return False
-        if not data.nobranch():
+        # Single Sia permitted, above, it should be on the core, 
+        # but we check something looser - allow it anywhere. Revise if needed.
+        if not data.nononsiabranch():
             data.log.info("Branched glycan")
             return False
         return True

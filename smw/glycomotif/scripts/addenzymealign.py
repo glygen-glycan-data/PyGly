@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki
 import sys, re, csv, gzip, copy
@@ -13,7 +13,7 @@ alignmap = dict(core="Core",
 
 def alignmentiter(filename):
     k = None
-    for r in csv.DictReader(gzip.open(filename),dialect='excel-tab'):
+    for r in csv.DictReader(gzip.open(filename,mode='rt'),dialect='excel-tab'):
         mgtc = r['Motif']
         struct = r['Structure']
         altype = r['AlignmentType']
@@ -24,7 +24,7 @@ def alignmentiter(filename):
                 for r1 in rows:
                     r1['GlycoTreeCore'] = core
                     yield r1
-	    k = (mgtc,struct,altype,alind)
+            k = (mgtc,struct,altype,alind)
             rows = []
         rows.append(dict(r.items()))
     if len(rows) > 0:
@@ -81,6 +81,12 @@ for r in alignmentiter(sys.argv[1]):
         enzdata[mgtc,align]['sandbox',core] = set()
     enzdata[mgtc,align]['sandbox',core].add(r['Structure'])
 
+def canonical_index_key(ind):
+    retval = [ int(i) for i in ind.split('.') ]
+    if len(retval) == 1:
+        return (retval[0],0)
+    return tuple(retval)
+
 for m in w.itermotif(collection="GGM"):
     mgtc = m.get('glytoucan')
     align = m.get('alignment')[0]
@@ -91,7 +97,7 @@ for m in w.itermotif(collection="GGM"):
         enz = enzdata[mgtc,align][species,core]
         key = "%s_%s_enzymes"%(species,core)
         if len(enz) > 0:
-            m.set(key,[ "%s:%s"%(t[0],",".join(t[1])) for t in enz.items() ])
+            m.set(key,[ "%s:%s"%(t[0],",".join(sorted(t[1],key=canonical_index_key))) for t in enz.items() ])
         else:
             m.delete(key)
     for core in allcores:
@@ -106,4 +112,4 @@ for m in w.itermotif(collection="GGM"):
     m.delete("sandbox")
     m.delete("enzyme")
     if w.put(m):
-        print >>sys.stderr, m.get('id')
+        print(m.get('id'),file=sys.stderr)

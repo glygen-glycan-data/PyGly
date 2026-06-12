@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki
 from collections import defaultdict
@@ -10,12 +10,12 @@ e_id = dict()
 
 seen_celltypes = set()
 
-celltype_map = dict(filter(lambda t: len(t) == 2,map(lambda l: map(str.strip,l.split(':',1)),"""
+celltype_map = dict(filter(lambda t: len(t) == 2,map(lambda l: list(map(str.strip,l.split(':',1))),"""
 Alveolar cells type 1: Alveolar cells
 Alveolar cells type 2: Alveolar cells
 """.splitlines())))
 
-spec_map = dict(filter(lambda t: len(t) == 2,map(lambda l: map(str.strip,l.split(':',1)),"""
+spec_map = dict(filter(lambda t: len(t) == 2,map(lambda l: list(map(str.strip,l.split(':',1))),"""
 Cell type enriched: Enriched
 Cell type enhanced: Enhanced
 Group enriched: Enriched
@@ -28,7 +28,7 @@ for row in csv.DictReader((open(sys.argv[1])), delimiter = "\t"): #fieldnames=he
    spec = row["RNA single cell type specificity"].strip()
    spec = spec_map.get(spec,spec)
    if spec in ("Enriched","Enhanced"):
-       for tntpm in row['RNA single cell type specific nTPM'].split(';'):
+       for tntpm in row['RNA single cell type specific nCPM'].split(';'):
            thecelltype = tntpm.split(':',1)[0].strip()
            thecelltype = celltype_map.get(thecelltype,thecelltype)
            if thecelltype not in seen_celltypes:
@@ -45,7 +45,7 @@ for e in w.iterenzyme():
        e.set("celltype_source_key",e_id[gn])
        e.set("celltype_source","HPA") 
        e.set("celltype", sorted(celltype[gn]))
-    else:	
+    else:
        e.delete("celltype_source_key")
        e.delete("celltype_source")
        e.delete("celltype")

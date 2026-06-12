@@ -1,4 +1,4 @@
-#!/bin/env python2
+#!/bin/env python3.12
 
 import sys,traceback,time
 
@@ -17,7 +17,7 @@ for l in h:
     except:
         refid = sl[0]
     if refid == "-":
-	refid = None
+        refid = None
     pmid = sl[1]
     refs.append((refid,pmid))
 
@@ -25,7 +25,7 @@ currentpmids = set()
 for pub in w.iterpages(include_categories=['Publication']):
     pmid = w.get(pub.name).get('pmid')
     if pmid != None: 
-	currentpmids.add(pmid)
+        currentpmids.add(pmid)
 
 from Bio import Entrez
 Entrez.email = "nje5@georgetown.edu"
@@ -33,7 +33,7 @@ Entrez.email = "nje5@georgetown.edu"
 for ref,pmid in refs:
 
     if pmid in currentpmids:
-	continue
+        continue
 
     handle = Entrez.efetch(db="pubmed", id=pmid, retmode='xml')
     record = Entrez.read(handle)                                                                                         
@@ -50,13 +50,13 @@ for ref,pmid in refs:
         vol = theart["Journal"]["JournalIssue"]["Volume"]                                                                
         issue = theart["Journal"]["JournalIssue"].get("Issue")                                                           
         pubdate = theart["Journal"]["JournalIssue"]["PubDate"]
-	if "Year" in pubdate:
-	    year = pubdate["Year"]
-	elif "MedlineDate" in pubdate:
+        if "Year" in pubdate:
+            year = pubdate["Year"]
+        elif "MedlineDate" in pubdate:
             year = pubdate["MedlineDate"].split(None,1)[0]
-	else:
-	    print theart["Journal"]["JournalIssue"]
-	    raise RuntimeError("Can't figure out the year")
+        else:
+            print(theart["Journal"]["JournalIssue"])
+            raise RuntimeError("Can't figure out the year")
         journal = theart["Journal"]["ISOAbbreviation"].rstrip('.')
         authors = []                                                                                                     
         for au in theart['AuthorList']:                                                                                  
@@ -66,23 +66,24 @@ for ref,pmid in refs:
         authors = ", ".join(authors)                                                                                     
         title = theart['ArticleTitle'].rstrip('.')
         page = theart['Pagination']['MedlinePgn']                                                                        
-	if issue:
-	    volume = "%s(%s)"%(vol,issue)
-	else:
-	    volume = vol
+        if issue:
+            volume = "%s(%s)"%(vol,issue)
+        else:
+            volume = vol
+        break
 
     if isinstance(ref,int):
-	citedby = ('Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome',ref)
-    elif isinstance(ref,basestring) and ref.startswith('EP'):
-	citedby = ('GE',ref)
+        citedby = ('Cummings_(2009)_The_repertoire_of_glycan_determinants_in_the_human_glycome',ref)
+    elif isinstance(ref,str) and ref.startswith('EP'):
+        citedby = ('GE',ref)
     else:
-	citedby = None
+        citedby = None
 
     pub = Publication(authors=authors,title=title,journal=journal,year=year,volume=volume,pages=page,
-                      pmid=pmid,doi=doi,citedby=citedby)
-    print Publication.pagename(**pub.data)
-    print pub.astemplate()
+                    pmid=pmid,doi=doi,citedby=citedby)
+    print(Publication.pagename(**pub.data))
+    print(pub.astemplate())
     if w.put(pub):
-        print >>sys.stderr, pmid
+        print(pmid,file=sys.stderr)
 
     time.sleep(5)

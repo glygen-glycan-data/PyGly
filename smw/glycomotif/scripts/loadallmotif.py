@@ -48,5 +48,5 @@ for gtc,motiflist in sorted(gtc2motif.items()):
 
 for m in w.itermotif(collection=AllMotif):
     if m.get('accession') not in current:
-        print >>sys.stderr, "Deleting:",m.get('pagename')
+        print("Deleting:",m.get('pagename'),file=sys.stderr)
         w.delete(m.get('pagename'))
