@@ -9,3 +9,6 @@
   - https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/genes_to_phenotype.txt
 * Human Protein Atlas:
   - https://www.proteinatlas.org/download/proteinatlas.tsv.zip
+* Human-Mouse Gene orthologs, per MGI
+  - ./listenzymes.py > ../data/enzyme.gene.txt
+  - wget -O - -q https://www.informatics.jax.org/downloads/reports/HOM_ProteinCoding.rpt | acut.py 5 2 1 | fgrep -w -f enzyme.gene.txt > human_mouse_orthologs.txt
