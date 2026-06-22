@@ -4,17 +4,18 @@ SMWENV="DEV"
 export SMWENV
 
 set -euxo pipefail 
-# ./loadallmotif.py
-# ./addsameas.py
-# ./widgetdata.py ../data/topologydev.json ../data/nonredonlydev.json ../data/redonlydev.json
-# ( cd ../data; git add *dev.json; git commit -m "new widgetdata"; git push )
-# ./loadwidgetbool.py
-# ./addenzyme.py
-# ./loadimpc.py ../data/phenotypeHitsPerGene.csv.gz
-# ./loadHPOphenotype.py ../data/genes_to_phenotype.txt
-# ./loadHPOdisease.py ../data/phenotype.hpoa ../data/genes_to_disease.txt
-# ./loadHPAtissue.py ../data/proteinatlas.tsv
-# ./loadHPAct.py ../data/proteinatlas.tsv
+./addseq.py
+./loadallmotif.py
+./addsameas.py
+./widgetdata.py ../data/topologydev.json ../data/nonredonlydev.json ../data/redonlydev.json
+( cd ../data; git add *dev.json; git commit -m "new widgetdata"; git push )
+./loadwidgetbool.py
+./addenzyme.py
+./loadimpc.py ../data/phenotypeHitsPerGene.csv.gz
+./loadHPOphenotype.py ../data/genes_to_phenotype.txt
+./loadHPOdisease.py ../data/phenotype.hpoa ../data/genes_to_disease.txt
+./loadHPAtissue.py ../data/proteinatlas.tsv
+./loadHPAct.py ../data/proteinatlas.tsv
 ./enzymealignments.py | gzip -c > ../data/enzymealignments-dev.tsv.gz
 ./addenzymealign.py ../data/enzymealignments-dev.tsv.gz
 ./computealignments2.py -v --workers yion:8,bion:8,proton:8,maldi:8 -o "../data/computealignments-dev.tsv" > ../data/computealignments-dev.log 2>&1

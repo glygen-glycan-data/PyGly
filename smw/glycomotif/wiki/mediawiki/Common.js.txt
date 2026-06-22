@@ -967,7 +967,7 @@ function initOnDemandAlign() {
         update_result(result);
       }
       else {
-        setTimeout(retrieve, 200, jobid);
+        setTimeout(retrieve, 5000, jobid);
       }
     })
   }

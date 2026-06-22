@@ -1,0 +1,8 @@
+
+Additional ganglioside whole glycan structures added, based on manuscript {{DisplayPublication|Adak et al. (2025) Comprehensive Modular Synthesis of Ganglioside Glycans and Evaluation of their ...}}, Figure 1. Additional names added to some ganglioside structures and unicode alpha names used in places. 
+
+- [[User:Edwardsnj|Nathan Edwards]] - 22 June 2026
+
+Glygen [[GlyGen_Structure_Classification|glycan classification rules]] (with GGC. prefix) and their structure alignments have been pushed to the public site. O-mannose subtypes, in particular, updated according to {{DisplayPublication|Sheikh et al. (2017) Recent advancements in understanding mammalian ...}}. Feedback welcome: <code>nje5@georgetown.edu</code>.
+
+- [[User:Edwardsnj|Nathan Edwards]] - 12 June 2026

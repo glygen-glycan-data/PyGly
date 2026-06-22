@@ -29,7 +29,6 @@ GlycoMotif, and the on-demand motif alignment web-service, now support motifs an
 
 See also:
 * [[GlyGen Structure Classification|GlyGen glycan classification rules]]
-* [[GlyGen Classification Motifs|GlyGen glycan classification motifs]]
 * [[GlyGen Motif Keywords|GlyGen motif keywords]]
 * [[GlyGen Motif Enzymes|GlyGen motif enzymes]]
 * [[GlyGen Motif Publications|GlyGen motif publications]]

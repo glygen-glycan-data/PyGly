@@ -35,7 +35,7 @@ This is the "Motif" form.
 {{#formlink:form=Enzyme||autocomplete on category=Enzyme|link text=Add new enzyme.}}
 |-
 ! Reference(s):
-| {{{field|reference|input type=token|existing values only|list|delimiter=;|values from category=Publication}}}<br/>References for the structure, name, aglycon, etc. for this motif.<br/>
+| {{{field|reference|property=glycomotif:reference|input type=tokens|existing values only|list|delimiter=;|values from category=Publication}}}<br/>References for the structure, name, aglycon, etc. for this motif.<br/>
 {{#formlink:form=Publication|autocomplete on category=Publication|link text=Add new publication.}}
 |-
 ! GlyTouCan:

@@ -1,0 +1,10 @@
+{{Publication
+|authors=Adak AK, Tseng HK, Chang SY, Chiang YC, Lyu KH, Lee YS, Lu W, Kuo WH, Angata T, Lin CC
+|doi=10.1002/advs.202412815
+|journal=Adv Sci (Weinh)
+|pages=e2412815
+|pmid=39555730
+|title=Comprehensive Modular Synthesis of Ganglioside Glycans and Evaluation of their Binding Affinities to Siglec-7 and Siglec-9
+|volume=12(2)
+|year=2025
+}}

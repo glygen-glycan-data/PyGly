@@ -1,6 +1,10 @@
 __NOTOC____NOEDITSECTION__
 [http://glycomotif.glyomics.org GlycoMotif] is a sub-project of the [http://glygen.org GlyGen: Computational and Informatics Resources for Glycoscience] project.
 
+== Release Notes ==
+
+[[Release Notes|Release notes]] are now available when the public site is updated. 
+
 == Comments, Questions? ==
 
 Please contact Nathan Edwards at <code>nje5@georgetown.edu</code>.
