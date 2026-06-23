@@ -12,7 +12,8 @@ SHELL = /bin/bash -o pipefail
 		glycomotifdev_clean glycomotifprod_clean glycomotif_clean \
 		gnome_clean stage1_clean stage2_clean stage3_clean \
 		stage4_clean stage5_clean clean glycotreedev_clean glycotreeproc_clean \
-		glycomotif_clean glycotree_clean glymage_clean glycandata_clean
+		glycomotif_clean glycotree_clean glymage_clean glycandata_clean \
+                glycomotifdev_rdf glycomotifdev_loadts
 
 all: startall stage1 stage2 stage3 stage4 stage5
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
@@ -65,6 +66,8 @@ $(GLYCOMOTIFDEV_RDF): $(GLYCOMOTIFDEV_ALIGMENTS) $(GLYCOMOTIFDEV_CLASSIFICATIONS
 	cd $(GLYCOMOTIFSCR) && \
 	   ./alignments_tsv2rdf.py $^ | gzip -9 -c > $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
+
+glycomotifdev_rdf: $(GLYCOMOTIFDEV_RDF)
 
 GLYCOMOTIFPROD_ALIGMENTS=$(GLYCOMOTIFDATA)/computealignments-prod.$(DATESTAMP).tsv
 GLYCOMOTIFPROD_ALIGMENTS_LOG=$(GLYCOMOTIFDATA)/computealignments-prod.$(DATESTAMP).log
@@ -130,6 +133,8 @@ GLYCOMOTIFSMW_LOADED=$(GLYCOMOTIFSMW)/loadts.$(DATESTAMP).done
 
 GLYCOMOTIFDEVSMW=$(SMWROOT)/glycomotifdev
 GLYCOMOTIFDEVSMW_LOADED=$(GLYCOMOTIFDEVSMW)/loadts.$(DATESTAMP).done
+
+glycomotifdev_loadts:$(GLYCOMOTIFDEVSMW_LOADED)
 
 $(GLYCOMOTIFDEVSMW_LOADED): $(GLYCOMOTIFDEV_RDF)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start load of GlycoMotif (DEV) TripleStore" 

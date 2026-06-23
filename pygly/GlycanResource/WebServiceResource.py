@@ -50,6 +50,7 @@ class WebServiceResource(GlycanResource):
 
         self.cj = CookieJar()
         self.opener = build_opener(HTTPCookieProcessor(self.cj))
+        self.opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0')]
         # self.opener = build_opener(HTTPCookieProcessor(self.cj),HTTPSHandler(debuglevel=1))
         super(WebServiceResource,self).__init__(*args,**kw)
 

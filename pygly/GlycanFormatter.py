@@ -1155,12 +1155,16 @@ class IUPACNoMonossaccharides(IUPACParseError):
 
 class IUPACSkippedMonosaccharide(IUPACParseError):
     def __init__(self):
-        self.message = "Parsing error, some monosaccharide from IUPAC string are not parsed in"
+        self.message = "Parsing error, some monosaccharide from IUPAC string counld not be parsed"
 
+class IUPACUnexpectedCharacters(IUPACParseError):
+    def __init__(self):
+        self.message = "Parsing error, unexpected or extra characters in IUPAC string"
 
 class IUPACParserAbstract():
     # Link tuple (parent_pos, child_pos)
     regexResTemplate = {
+        "matched": "",
         "anomer": None,
         "skel": None,
         "link": tuple(),
@@ -1195,6 +1199,11 @@ class IUPACParserAbstract():
         # print(seq)
         # Process
         regexRes = self.regexSearch(seq)
+        seq1 = "".join(reversed([r["matched"] for r in regexRes]))
+        if seq1 != seq:
+            # print(seq1)
+            raise IUPACUnexpectedCharacters()
+
         for i, monoinfo in enumerate(regexRes):
             # print(monoinfo)
             mono = self.monoAssemble(monoinfo)
@@ -1310,7 +1319,7 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
     example = "Man(a1-3/6)[Man(a1/3/5-?)Gal(b1-3)]GalNAc(?1-"
 
     alias = "GTCC:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<mono>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|dHex)([a-zA-Z5926,?]+)?)(?P<link>(\((?P<anomer>(a|b|\u03b1|\u03b2|alpha|beta|\?)?)(?P<linkpos>([1-9?](/[1-9])*-([1-9?](/[1-9])*)))?\)))?(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<matched>(?P<bpe>(\[)*)(?P<mono>(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|Kdo|KDN|dHex)([a-zA-Z45926,?]+)?)(?P<link>(\((?P<anomer>(a|b|\u03b1|\u03b2|alpha|beta|\?)?)(?P<linkpos>([1-9?](/[1-9])*-([1-9?](/[1-9])*)?))\)?))?(?P<bps>(\])*))"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -1356,6 +1365,7 @@ class IUPACParserGlyTouCanCondensed(IUPACParserAbstract):
             link = list(map(lambda x: None if x == "" else x, link))
             link = list(map(lambda x: None if x == "?" else x, link))
 
+            res0["matched"] = s["matched"]
             res0["anomer"] = anomer
             res0["skel"] = s["mono"]
             res0["link"] = tuple(link)
@@ -1371,7 +1381,7 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
     example = "alpha-D-Galp-(1->3)-D-Gal(?->"
 
     alias = "GTCE:"
-    precompiledpattern = r"(?P<bpe>(\[)*)(?P<anomer>((a|b|\u03b1|\u03b2|alpha|beta|\?)-)?)(?P<mono>(deoxy-)?([dlDL]-)?(Hex|Neu|Glc|Gal|Man|Fuc|Xyl|Qui|Ido|Kdn|Ara|Fru|xylHex)([a-zA-Z345926,?]+)?)(-)?(?P<link>(\([1-9?](/[1-9])*(->|\u2192)([1-9?](/[1-9])*\))?)?(-)?)(?P<bps>(\])*)"
+    precompiledpattern = r"(?P<matched>(?P<bpe>(\[)*)(?P<anomer>((a|b|\u03b1|\u03b2|alpha|beta|\?)-)?)(?P<mono>(deoxy-)?([dlDL]-)?(Hex|Neu|Glc|Gal|Man|Fuc|Xyl|Qui|Ido|Kdn|Kdo|Ara|Fru|xylHex)([a-zA-Z345926,?]+)?)(?P<subst>(-\d(P|S|A|Me))*)(-)?(?P<link>(\([1-9?](/[1-9])*(->?|\u2192)([1-9?](/[1-9])*\))?)?(-)?)(?P<bps>(\])*)-?)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -1398,15 +1408,28 @@ class IUPACParserGlyTouCanExtended(IUPACParserAbstract):
 
             if s["link"]:
                 link = s["link"].lstrip("(").rstrip("-").rstrip(")")
-                link = re.split(r'(->|\u2192)',link)
+                link = re.split(r'(->?|\u2192)',link)
                 del link[1]
                 link = list(map(lambda x: None if x == "" else x, link))
                 link = list(map(lambda x: None if x == "?" else x, link))
             else:
                 link = (None,None)
+            
+            substituent = None
+            if s["subst"]:
+                substituent = []
+                for sub in s["subst"].split("-")[1:]:
+                    pos = int(sub[0])
+                    substr = sub[1:]
+                    substituent.append((pos,substr))
+                substituent.sort()
+                s["subst"] = "".join("-%d%s"%t for t in substituent)
+            else:
+                s["subst"] = ""
 
+            res0["matched"] = s["matched"]
             res0["anomer"] = anomer
-            res0["skel"] = s["mono"]
+            res0["skel"] = s["mono"]+s["subst"]
             res0["link"] = tuple(link)
             res0["substituent"] = None
             res0["sublink"] = None
@@ -1420,12 +1443,9 @@ class IUPACParserExtended1(IUPACParserAbstract):
     description = "UniCarb IUPAC string"
     example = "D-Neu5Ac(a2-3)[HSO3(-3)]D-Gal(b1-3)D-GalNAc(b1-4)[D-Neu5Ac(a2-8)D-Neu5Ac(a2-3)]D-Gal(b1-4)D-Glc(b1-1)Cer"
     alias = "IUPACExtended1:"
-    precompiledpattern = r"(?P<bpe>(\[|{)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Kdn|Rib|Tal)([a-zA-Z1-9,-]+)?)(?P<link>(\([ab?]([1-9?](/[1-9])*)-(([1-9?])(/[1-9])*\))?))?(?P<bps>(\]|})*)"
+    precompiledpattern = r"(?P<matched>(?P<bpe>(\[|{)*)(?P<sub>(\[[a-zA-Z0-9]+(\(-\d\))\]|[a-zA-Z0-9]+(\(-\d\))))?(?P<skel>([dlDL]-)?(Hex|Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Kdn|Rib|Tal)([a-zA-Z1-9,-]+)?)(?P<link>(\([ab?]([1-9?](/[1-9])*)-(([1-9?])(/[1-9])*\))?))?(?P<bps>(\]|})*)(1Cer)?)"
 
     def regexSearch(self, seq):
-        if seq.endswith('1Cer'):
-            seq = seq[:-4]
-            
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
         searchres = list(reversed(searchres))
         if len(searchres) == 0:
@@ -1470,6 +1490,7 @@ class IUPACParserExtended1(IUPACParserAbstract):
                 anomer='Anomer.uncyclized'
                 mod = [(1,'Mod.aldi')]
 
+            res0["matched"] = s["matched"]
             res0["anomer"] = anomer
             res0["skel"] = skel
             res0["mod"] = mod
@@ -1492,7 +1513,7 @@ class IUPACParserCFG(IUPACParserAbstract):
     description = ""
     example = "Fuca1-2Galb1-4(Fuca1-3)GlcNAcb1-3Galb1-4(Fuca1-3)GlcNAcb1-3Galb1-4(Fuca1-3)GlcNAcb-Sp0"
     alias = ""
-    precompiledpattern = r"((?P<bpe>\()?)(?P<skel>((\([1-6SP]*\)|[1-6SP]*)*)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Rha|Mur)(([a-zA-Z5926,])*)?)(?P<link>\d?-?\d?)?(?P<bps>\))?"
+    precompiledpattern = r"(?P<matched>((?P<bpe>\()?)(?P<skel>((\([1-6SP]*\)|[1-6SP]*)*)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Rha|Mur)(([a-zA-Z5926,])*)?)(?P<link>\d?-?\d?)?(?P<bps>\))?)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -1548,6 +1569,7 @@ class IUPACParserCFG(IUPACParserAbstract):
             if not s["bpe"]:
                 s["bpe"] = ""
 
+            res0["matched"] = s["matched"]
             res0["anomer"] = anomer
             res0["skel"] = trueskel
             res0["link"] = tuple(link)
@@ -1585,7 +1607,7 @@ class IUPACParserGlycamExtended(IUPACParserAbstract):
     description = "The extended IUPAC format for Glycam.org"
     example = "DGalpa1-3DLyxpb1-5[DGalpNAcb1-3]DFrupb2-5DFrupb2-OME"
     alias = "Glycam:"
-    precompiledpattern = r"(?P<bpe>(\[))?(?P<skel>((D|L)(Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO)(f|p)(NAc|A|5Ac|5Gc)?(\[(((\d(S|P|A|Me))(,)?)+)\])?(a|b)))(?P<link>(\d-(\d)?))(?P<bps>(\]))?"
+    precompiledpattern = r"(?P<matched>(?P<bpe>(\[))?(?P<skel>((D|L)(Man|Gal|Glc|Ido|All|Alt|Gul|Tal|Xyl|Lyx|Rib|Ara|Fru|Psi|Sor|Tag|Fuc|Rha|Qui|KDN|KDO)(f|p)(NAc|A|5Ac|5Gc)?(\[(((\d(S|P|A|Me))(,)?)+)\])?(a|b)))(?P<link>(\d-(\d)?))(?P<bps>(\]))?)"
     
     # Not supported mono: Psi, Sor, Tag and Qui
     def regexSearch(self, seq):
@@ -1622,6 +1644,7 @@ class IUPACParserGlycamExtended(IUPACParserAbstract):
             if not s["bpe"]:
                 s["bpe"] = ""
 
+            res0["matched"] = s["matched"]
             res0["anomer"] = anomer
             res0["skel"] = skelwithoutanomer
             res0["link"] = tuple(link)

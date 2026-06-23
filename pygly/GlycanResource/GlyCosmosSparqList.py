@@ -24,6 +24,10 @@ class GlyCosmosSparqList(WebServiceResource):
                 continue
             if not it.get('ArchiveNumber'):
                 continue
+            if it.get('AccessionNumber',"").startswith('http://glytoucan.org/Structures/Glycans/'):
+                it['AccessionNumber'] = it['AccessionNumber'][40:]
+            if not it.get('AccessionNumber',"").strip():
+                continue
             yield dict(accession=it['AccessionNumber'],replace=it['ArchiveNumber'])
 
     def validated(self):

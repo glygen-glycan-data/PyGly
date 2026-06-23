@@ -1675,7 +1675,10 @@ class MonosaccharideMotifComparisonGlyTouCanOriginal(MonosaccharideComparitor):
 class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
 
     def leq(self, m, g):
-        if m._anomer and g._anomer and m._anomer != g._anomer:
+        # extra logic needed for uncyclized reducing end, which should behave
+        # as if anomer is missing...
+        if m._anomer and g._anomer not in (Anomer.uncyclized, Anomer.missing) \
+            and m._anomer != g._anomer:
             return False
         if m._config and m._config != g._config:
             return False
@@ -1683,6 +1686,7 @@ class MonosaccharideMotifComparisonSubstTolerance(MonosaccharideComparitor):
             return False
         if m._superclass != g._superclass:
             return False
+        # don't need special logic since 0 evaluates to False!
         if m._ring_start and g._ring_start and m._ring_start != g._ring_start:
             return False
         if m._ring_end and g._ring_end and m._ring_end != g._ring_end:

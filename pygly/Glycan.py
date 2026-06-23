@@ -744,12 +744,27 @@ class Glycan:
                                           redend_only=True, repeat_times=1)
         return [ key for key in comp if comp[key] > 0 and key not in self.subst_composition_syms and key != "Count"]
 
-    def composition_string(self, composition=None, **kwargs):
+    def composition_string(self, **kwargs):
         from . CompositionFormatter import CompositionFormat
         if not self.compositionformat:
             self.compositionformat = CompositionFormat()
-        if not composition:
-            composition = self.iupac_composition(**kwargs)
+        kwargs['aggregate_basecomposition'] = False
+        composition = self.iupac_composition(**kwargs)
+        cnt = composition["Count"]
+        assert sum(v for k,v in composition.items() if len(k)>=3 and k != "aldi") == 2*cnt, str(composition)
+        return self.compositionformat.toStr(composition)
+    
+    def basecomposition_string(self, **kwargs):
+        from . CompositionFormatter import CompositionFormat
+        if not self.compositionformat:
+            self.compositionformat = CompositionFormat()
+        kwargs['aggregate_basecomposition'] = True
+        composition = self.iupac_composition(**kwargs)
+        cnt = composition["Count"]
+        for k in list(composition):
+            if k in self.subsumption_relationships:
+                del composition[k]
+        assert sum(v for k,v in composition.items() if len(k)>=3 and k != "aldi") == 2*cnt, str(composition)
         return self.compositionformat.toStr(composition)
 
     def glycoct(self):

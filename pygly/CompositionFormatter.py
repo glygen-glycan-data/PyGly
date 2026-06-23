@@ -21,12 +21,13 @@ class CompositionFormat(GlycanFormatter):
         if not composition:
             composition = glycan.iupac_composition(**kwargs)
         keys = set([k for k in composition.keys() if composition[k] > 0])
-        keys = keys-set(["Count","Xxx","X"])
+        keys = keys-set(["Count"])
         complist = []
         seen = set()
         for sym in Glycan.iupac_composition_syms + \
                    Glycan.iupac_aldi_composition_syms + \
-                   Glycan.subst_composition_syms:
+                   Glycan.subst_composition_syms + \
+                   [ "Xxx", "X" ]:
             if composition[sym] > 0:
                 complist.append("%s(%d)"%(sym,composition[sym]))
                 seen.add(sym)

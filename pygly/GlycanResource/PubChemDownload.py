@@ -31,6 +31,7 @@ class PubChemDownload(WebServiceResource):
             yield "SID"+r['sid'],r['accession']
             if r['cid']:
                 yield "CID"+r['cid'],r['accession']
+            yield "GlyTouCan:"+r['accession'],r['accession']
 
     def chebi_tocid(self):
         result = self.query_chebi_annotation()

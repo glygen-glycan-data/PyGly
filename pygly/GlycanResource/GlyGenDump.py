@@ -44,6 +44,9 @@ class GlyGenSourceFile(WebServiceResource):
         "bovine": ('Bos taurus', '9913'),
         "zebrafish": ('Danio rerio', '7955'),
         "hamster": ('Cricetulus griseus', '10029'),
+        "ebov": ('Ebola virus - Mayinga, Zaire, 1976','128952'),
+        "bdbv": ('Bundibugyo virus','565995'),
+        "dicty": ('Dictyostelium discoideum', '44689'),
     }
 
     @uniqueify
@@ -604,6 +607,8 @@ class TableMakerSourceFile(GlyGenSourceFile):
         "7955": "GLY_001252",  #Zebrafish
         "10029": "GLY_001484", #Hamster
         "44689": "GLY_001488", #Dicty
+        "565995": "GLY_001538", #BDBV
+        "128952": "GLY_001539", #EBOV
         }
     sections = """
         TG1468274
@@ -626,6 +631,9 @@ class TableMakerSourceFile(GlyGenSourceFile):
         TP5868669
         TG10381046
         TG5577100
+        TG7130027
+        TP6077383
+        TP3222006
     """
     taxidfield = 'Species'
     # pmidfield = 'Evidence' sometimes contains a doi!
@@ -647,7 +655,7 @@ class TableMakerSourceFile(GlyGenSourceFile):
             if row.get(self.taxidfield,"").strip():
                 taxid = row[self.taxidfield]
                 taxid = self.taxid2taxid.get(taxid,taxid)
-                if taxid in self.taxid2dsid:
+                if self.taxid2dsid.get(taxid):
                     row['_glygen_sourceid'] = self.taxid2dsid[taxid]
                     yield row
 
@@ -932,31 +940,56 @@ class PDCCCRCCSourceFile(GlyGenSourceFile):
             yield row
 
 class PDBGlycanSourceFile(GlyGenSourceFile):
-    source = "pdb"
+    source = "rcsb_pdb"
     glygen_source = "PDB"
-    sections = "glycosites_rcsb_pdb"
-    taxidfixed = "9606"
-    glygen_sourceid = "GLY_001412"
+    sections = """arabidopsis bovine chicken dicty
+                  fruitfly hamster hcv1a human mouse
+                  pig rat sarscov1 sarscov2 yeast zebrafish"""
+    glygen_sourceid = """
+        GLY:001504
+        GLY:001505
+        GLY_001493
+        GLY_001499
+        GLY_001495
+        GLY_001506
+        GLY_001501
+        GLY_001412
+        GLY_001498
+        GLY_001500
+        GLY_001492
+        GLY_001502
+        GLY_001503
+        GLY_001496
+        GLY_001542
+        """
     idfield = "src_xref_id"
     doifield = "doi"
     gtcfield = "saccharide"
     
     def rows(self,section):
-        for row in self.csvrows(self.source,filename=section):
+        if not hasattr(self,'_taxa_lookup'):
+            self._taxa_lookup = dict()
+            for k,v in self.glygen_species.items():
+                self._taxa_lookup[k] = v[1]
+        for row in self.csvrows(self.source,filename=section+"_glycosites_rcsb_pdb"):
+            row['taxid'] = self._taxa_lookup[section]
             if row.get('xref_id'):
                 if re.search(r'^\d+$',row['xref_id'].strip()):
                     row['pmid'] = row['xref_id'].strip()
                 elif row['xref_id'].startswith('10.'):
                     row['doi'] = row['xref_id'].strip()
+            if not row.get(self.gtcfield):
+                continue
             # print(row)
             yield row
 
 class GlycoShapeSourceFile(GlyGenSourceFile):
-    source = "glycoshape"
+    source = "pdb_glycoshape"
     glygen_source = "GlycoShape"
     sections = "glycan_list"
     glygen_sourceid = "GLY_001491"
-   
+    pmidfixed = "39402214"
+
     def json2rows(self,json):
         for acc in json:
             yield dict(glytoucan_ac=acc)

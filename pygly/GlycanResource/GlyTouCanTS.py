@@ -37,7 +37,7 @@ class GlyTouCanTS(TripleStoreResource):
             if k == "query_hashedseq":
                 self.modify_method(k,partitioner(kwarg="hash",fmt="%%0%dx.*",values='hexidecimal'))
             else:
-                self.modify_method(k,partitioner())
+                self.modify_method(k,partitioner(digits=1))
             if self._prefetch:
                 if k == "query_hashedseq":
                     self.modify_method(k,prefetcher("hash",usecache=self._usecache))

@@ -1891,6 +1891,8 @@ class OWLWriter():
         outputGraph.add((definition, rdfs.isDefinedBy, iao["iao.owl"]))
         outputGraph.add((definition, rdfs.label, Literal("definition")))
 
+        is_metadata_property = oboInOwl['is_metadata_tag']
+
         # Add AnnotationProperty for subsumption level
         has_subsumption_level_node = self.gnouri(self.subsumption_level_annotation_property)
 
@@ -1899,6 +1901,7 @@ class OWLWriter():
             (has_subsumption_level_node, rdfs.label, Literal("has_subsumption_category")))
         outputGraph.add((has_subsumption_level_node, definition,
                          Literal("A metadata relation between a glycan and its subsumption category.")))
+        outputGraph.add((has_subsumption_level_node, is_metadata_property, Literal(True)))
 
         # Add AnnotationProperty for linking Glytoucan
         has_glytoucan_id_node = self.gnouri(self.glytoucan_id_annotation_property)
@@ -1907,6 +1910,7 @@ class OWLWriter():
         outputGraph.add((has_glytoucan_id_node, rdfs.label, Literal("has_glytoucan_id")))
         outputGraph.add((has_glytoucan_id_node, definition,
                          Literal("The accession of the GlyTouCan entry describing the indicated glycan.")))
+        outputGraph.add((has_glytoucan_id_node, is_metadata_property, Literal(True)))
 
         has_glytoucan_link_node = self.gnouri(self.glytoucan_link_annotation_property)
 
@@ -1914,6 +1918,7 @@ class OWLWriter():
         outputGraph.add((has_glytoucan_link_node, rdfs.label, Literal("has_glytoucan_link")))
         outputGraph.add((has_glytoucan_link_node, definition,
                          Literal("The URL of the GlyTouCan entry describing the indicated glycan.")))
+        outputGraph.add((has_glytoucan_link_node, is_metadata_property, Literal(True)))
 
         is_subsumed_by_node = self.gnouri(self.is_subsumed_by_node_annotation_property)
 
@@ -1921,6 +1926,7 @@ class OWLWriter():
         outputGraph.add((is_subsumed_by_node, rdfs.label, Literal("is_subsumed_by")))
         outputGraph.add((is_subsumed_by_node, definition,
                          Literal("A metadata relation between a glycan and a glycan that subsumes it. Note that this relation is a superset of the subClassOf relation as molecular weight is not necessarily conserved as it is for subClassOf.")))
+        outputGraph.add((is_subsumed_by_node, is_metadata_property, Literal(True)))
 
         is_restriction_member = self.gnouri(self.is_restriction_member_annotation_property)
 
@@ -1928,6 +1934,7 @@ class OWLWriter():
         outputGraph.add((is_restriction_member, rdfs.label, Literal("is_restriction_member")))
         outputGraph.add((is_restriction_member, definition,
                          Literal("Whether the glycan is a member of the restriction. If not present, the glycan is not considered to be in the restriction.")))
+        outputGraph.add((is_restriction_member, is_metadata_property, Literal(True)))
 
         # Add sumbsumption level class and its instances
         rdfNodeSubsumption = self.gnouri(self.subsumption_level_class)
@@ -1961,6 +1968,7 @@ class OWLWriter():
             outputGraph.add((has_xxx_node, rdf.type, owl.AnnotationProperty))
             outputGraph.add((has_xxx_node, rdfs.label, Literal(self.has_subsumption_level[sl]["label"])))
             outputGraph.add((has_xxx_node, definition, Literal(self.has_subsumption_level[sl]["definition"])))
+            outputGraph.add((has_xxx_node, is_metadata_property, Literal(True)))
 
             has_xxx_nodes[sl] = has_xxx_node
 
@@ -1975,6 +1983,7 @@ class OWLWriter():
         outputGraph.add((cbbutton_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((cbbutton_node, rdfs.label, Literal("_widget_button_state")))
         outputGraph.add((cbbutton_node, definition, Literal("Internal raw data for both GNOme browser.")))
+        outputGraph.add((cbbutton_node, is_metadata_property, Literal(True)))
 
         # Add AnnotationProperty quick access to the GNOme browser
         has_structure_browser_node = self.gnouri(self.structure_browser_link)
@@ -1983,6 +1992,7 @@ class OWLWriter():
         outputGraph.add((has_structure_browser_node, rdfs.label, Literal("has_structure_browser_link")))
         outputGraph.add((has_structure_browser_node, definition,
                          Literal("The URL of GNOme structure browser entry for the indicated glycan.")))
+        outputGraph.add((has_structure_browser_node, is_metadata_property, Literal(True)))
 
         has_composition_browser_node = self.gnouri(self.composition_browser_link)
 
@@ -1990,6 +2000,7 @@ class OWLWriter():
         outputGraph.add((has_composition_browser_node, rdfs.label, Literal("has_composition_browser_link")))
         outputGraph.add((has_composition_browser_node, definition,
                          Literal("The URL of GNOme composition browser entry for the indicated glycan.")))
+        outputGraph.add((has_composition_browser_node, is_metadata_property, Literal(True)))
 
 
 
@@ -2007,6 +2018,7 @@ class OWLWriter():
         outputGraph.add((has_structure_characterization_score_node, definition, Literal(
             "A score for the extent of characterization provided by the glycan's description. Glycan descriptions that completely characterize a glycan have score 0. Scores increase monotonically with subsumption. Scores should only be compared between glycan descriptions with the same monosaccharide (base-)composition. Score may change in future releases.")))
         outputGraph.add((has_structure_characterization_score_node, rdfs.label, Literal("has_structure_characterization_score")))
+        outputGraph.add((has_structure_characterization_score_node, is_metadata_property, Literal(True)))
 
 
         # Add AnnotationProperty for consider
@@ -2022,6 +2034,7 @@ class OWLWriter():
         outputGraph.add((has_Byonic_name_node, rdf.type, owl.AnnotationProperty))
         outputGraph.add((has_Byonic_name_node, definition, Literal("Glycan composition string used by the Byonic search engine.")))
         outputGraph.add((has_Byonic_name_node, rdfs.label, Literal("has_Byonic_name")))
+        outputGraph.add((has_Byonic_name_node, is_metadata_property, Literal(True)))
 
         sym_types = {
             "exact": hasExactSynonym_node,
@@ -2452,10 +2465,15 @@ class GNOme_Theme_PubChemCID(GNOme_Theme_Base):
             "image_url_suffix": ".svg",
             "external_resources": [
                 {
-                    "name": "PubChem",
+                    "name": "PubChem (Compound)",
                     "url_prefix": "https://pubchem.ncbi.nlm.nih.gov/compound/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("PubChemCID")
+                },{
+                    "name": "PubChem (RefChem)",
+                    "url_prefix": "https://pubchem.ncbi.nlm.nih.gov/compound/GlyTouCan%3A",
+                    "url_suffix": "",
+                    "glycan_set": None,
                 },{
                     "name": "GlyTouCan",
                     "url_prefix": "https://glytoucan.org/Structures/Glycans/",
@@ -2533,6 +2551,11 @@ class GNOme_Theme_Default(GNOme_Theme_Base):
                     "url_prefix": "https://glycosmos.org/glycans/show/",
                     "url_suffix": "",
                     "glycan_set": self.get_accessions("GlyCosmos")
+                },{
+                    "name": "PubChem",
+                    "url_prefix": "https://pubchem.ncbi.nlm.nih.gov/compound/GlyTouCan%3A",
+                    "url_suffix": "",
+                    "glycan_set": None,
                 },{
                     "name": "GlyTouCan",
                     "url_prefix": "https://glytoucan.org/Structures/Glycans/",

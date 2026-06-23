@@ -208,9 +208,13 @@ class TripleStoreResource(GlycanResource):
             sparqlstr = sparql%kwargs
             response = self.queryts(sparqlstr)
             vars = list(map(str,response.vars))
+            counter = 0
             for row in response.bindings:
                 row = tuple(map(row.get,response.vars))
+                counter += 1
                 yield dict(list(zip(vars,list(map(self.tostr,row)))))
+            if self._verbose:
+                print(f"SPARQL Query returned {counter} rows\n", file=sys.stderr)
 
         self.set_method("query_"+name, _query)
         return [("query_"+name,params)]
