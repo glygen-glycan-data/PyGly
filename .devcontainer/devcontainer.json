@@ -1,0 +1,19 @@
+{
+  "name": "Claude Code Remote Env",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "mounts": [
+    // This securely saves your Claude login state to a permanent Docker volume
+    "source=claude-code-config,target=/home/nedwards/.claude,type=volume"
+  ],
+  "forwardPorts": [ 54321 ], 
+  "postStartCommand": "echo 'Ready to run Claude!'"
+}
