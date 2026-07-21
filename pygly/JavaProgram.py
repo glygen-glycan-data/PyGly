@@ -6,6 +6,9 @@ import os,sys,re,os.path,time
 from subprocess import Popen, PIPE, STDOUT
 import threading
 
+class TimeoutError(RuntimeError):
+    pass
+
 class PopenTimeout(threading.Thread):
     def __init__(self, *args, **kwargs):
         threading.Thread.__init__(self)
@@ -140,6 +143,7 @@ class JavaProgram(object):
         if retval == -9:
             if self.verbose:
                 print("Process killed after %s seconds"%(self.timeout,),file=sys.stderr)
+            raise TimeoutError()
         else:
             if self.verbose:
                 print("Process completed after %s seconds"%(round(time.time()-starttime,1),),file=sys.stderr)
@@ -232,7 +236,7 @@ class GlycanBuilderImage(JavaProgram):
     valid_options = "format scale redend orient notation display opaque force".split()
 
     def __init__(self,glycoctstr,outfile,verbose=False,timeout=15,**kw):
-        super(GlycanBuilderImage,self).__init__(verbose=verbose,wait=True,stdout=(not verbose),timeout=timeout)
+        super(GlycanBuilderImage,self).__init__(verbose=verbose,wait=True,stdout=True,timeout=timeout)
         self.kwargs = kw
         self.glycoctstr = glycoctstr
         self.outfile = outfile

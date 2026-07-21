@@ -6,6 +6,18 @@ try:
 except NameError:
   basestring = str
 
+class GlycanImageError(RuntimeError):
+    def __init__(self):
+        self.message = f"Glycan image generation error."
+
+class GlycanImageTimeout(GlycanImageError):
+    def __init__(self):
+        self.message = f"Glycan image generation timeout."
+
+class GlycanImageBadSequence(GlycanImageError):
+    def __init__(self,seq):
+        self.message = f"Glycan image sequence parse error: {seq}."
+
 class GlycanImage(object):
 
     GlycanBuilder2="GlycanBuilderImage"
@@ -20,7 +32,7 @@ class GlycanImage(object):
         self._format = "png"
         self._opaque = True
         self._force = False
-        self._verbose = False
+        self._verbose = True
         self.fmt = GlycoCTFormat()
         self._drawer = self.GlycanBuilder2
         
@@ -107,4 +119,12 @@ class GlycanImage(object):
                                    notation=self._notation,
                                    opaque=str(self._opaque).lower(),
                                    verbose=self._verbose)
-        return imageWriter()
+        try:
+            output = imageWriter().decode()
+        except JavaProgram.TimeoutError as e:
+            raise GlycanImageTimeout from e
+        if 'GlycanException' in output: # GlycanBuilder2
+            raise GlycanImageBadSequence(glystr)
+        if self._verbose:
+            print(f"Unexpected output from {self._drawer}: {output}",file=sys.stderr)
+        return
