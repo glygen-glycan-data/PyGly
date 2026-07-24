@@ -48,8 +48,15 @@ for g in accessions():
 
     if not g.has_annotations(property='GlycoCT',type='Sequence',source='GlyTouCan'):
         if glycan and not g.has_annotations(property='GlycoCT',type='Sequence',source='EdwardsLab'):
-            value = glycan.glycoct()
-            g.set_annotation(property='GlycoCT',type='Sequence',value=value,source='EdwardsLab')
+            try:
+                value = glycan.glycoct()
+            except RuntimeError:
+                value = None
+            if value:
+                g.set_annotation(property='GlycoCT',type='Sequence',value=value,source='EdwardsLab')
+            else:
+                g.delete_annotations(source='EdwardsLab',type='Sequence',property='GlycoCT')
+       
     else:
         g.delete_annotations(source='EdwardsLab',type='Sequence',property='GlycoCT')
 
