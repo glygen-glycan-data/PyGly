@@ -64,6 +64,7 @@ GGM.000005	PMID	19756298
 GGM.000005	Keyword	LacNAc
 GGM.000005	Keyword	N-acetyllactosamine
 GGM.000005	Keyword	N-acetyllactosamine type 1
+GGM.000005	CrossRef	GlycanDictionary:GSD000181
 GGM.000006	Collection	GGM
 GGM.000006	Accession	000006
 GGM.000006	PreferredName	Type 1 LN2
@@ -124,6 +125,7 @@ GGM.000010	PMID	19756298
 GGM.000010	PMID	28876849
 GGM.000010	Keyword	Blood group H
 GGM.000010	Keyword	Blood group type 3
+GGM.000010	CrossRef	GlycanDictionary:GSD000105
 GGM.000011	Collection	GGM
 GGM.000011	Accession	000011
 GGM.000011	PreferredName	A antigen (type 3)
@@ -136,6 +138,7 @@ GGM.000011	PMID	19756298
 GGM.000011	PMID	28876849
 GGM.000011	Keyword	Blood group A
 GGM.000011	Keyword	Blood group type 3
+GGM.000011	CrossRef	GlycanDictionary:GSD000187
 GGM.000012	Collection	GGM
 GGM.000012	Accession	000012
 GGM.000012	PreferredName	Sialyl Tn antigen
@@ -329,6 +332,7 @@ GGM.000027	PMID	9556613
 GGM.000027	PMID	19756298
 GGM.000027	PMID	25234143
 GGM.000027	Keyword	Lewis x
+GGM.000027	CrossRef	GlycanDictionary:GSD000188
 GGM.000028	Collection	GGM
 GGM.000028	Accession	000028
 GGM.000028	PreferredName	6,6'-bisSulfo-Lewis x
@@ -504,7 +508,6 @@ GGM.000041	PMID	3944091
 GGM.000041	PMID	19756298
 GGM.000041	Keyword	Blood group A
 GGM.000041	Keyword	Blood group type 3
-GGM.000041	CrossRef	GlycanDictionary:GSD000015
 GGM.000041	CrossRef	GlycanDictionary:GSD000032
 GGM.000042	Collection	GGM
 GGM.000042	Accession	000042
@@ -570,6 +573,7 @@ GGM.000046	PMID	19756298
 GGM.000046	Keyword	Blood group B
 GGM.000046	Keyword	Blood group type 1
 GGM.000046	Keyword	Lewis b
+GGM.000046	CrossRef	GlycanDictionary:GSD000189
 GGM.000047	Collection	GGM
 GGM.000047	Accession	000047
 GGM.000047	PreferredName	Blood group A (type 1) - Lewis b
@@ -585,6 +589,7 @@ GGM.000047	PMID	19756298
 GGM.000047	Keyword	Blood group A
 GGM.000047	Keyword	Blood group type 1
 GGM.000047	Keyword	Lewis b
+GGM.000047	CrossRef	GlycanDictionary:GSD000190
 GGM.000049	Collection	GGM
 GGM.000049	Accession	000049
 GGM.000049	PreferredName	4'-sulfated LDN
@@ -596,6 +601,7 @@ GGM.000049	PMID	11279168
 GGM.000049	PMID	19756298
 GGM.000049	Keyword	LacdiNAc
 GGM.000049	Keyword	N,N'-diacetyllactosediamine
+GGM.000049	CrossRef	GlycanDictionary:GSD000191
 GGM.000050	Collection	GGM
 GGM.000050	Accession	000050
 GGM.000050	PreferredName	Sialylated LDN
@@ -607,6 +613,7 @@ GGM.000050	PMID	16286643
 GGM.000050	PMID	19756298
 GGM.000050	Keyword	LacdiNAc
 GGM.000050	Keyword	N,N'-diacetyllactosediamine
+GGM.000050	CrossRef	GlycanDictionary:GSD000192
 GGM.000051	Collection	GGM
 GGM.000051	Accession	000051
 GGM.000051	PreferredName	Sda/CT antigen
@@ -685,6 +692,7 @@ GGM.000058	ReducingEnd	false
 GGM.000058	PMID	6790607
 GGM.000058	PMID	14568618
 GGM.000058	PMID	19756298
+GGM.000058	CrossRef	GlycanDictionary:GSD000109
 GGM.000059	Collection	GGM
 GGM.000059	Accession	000059
 GGM.000059	PreferredName	HNK-1 on O-mannose
@@ -771,6 +779,7 @@ GGM.000066	MotifGlyTouCan	G96596OC
 GGM.000066	ReducingEnd	true
 GGM.000066	PMID	3944094
 GGM.000066	PMID	19756298
+GGM.000066	Keyword	Ganglioside
 GGM.000066	Keyword	Glycolipid
 GGM.000067	Collection	GGM
 GGM.000067	Accession	000067
@@ -1060,6 +1069,7 @@ GGM.000089	MotifGlyTouCan	G30207PZ
 GGM.000089	ReducingEnd	true
 GGM.000089	PMID	7142381
 GGM.000089	PMID	19756298
+GGM.000089	Keyword	Ganglioside
 GGM.000089	Keyword	Glycolipid
 GGM.000089	Keyword	Monosialylated ganglioside
 GGM.000089	CrossRef	GlycanDictionary:GSD000094
@@ -1072,7 +1082,10 @@ GGM.000090	MotifGlyTouCan	G91237TK
 GGM.000090	ReducingEnd	true
 GGM.000090	PMID	2414279
 GGM.000090	PMID	19756298
+GGM.000090	PMID	39555730
+GGM.000090	Keyword	Ganglioside
 GGM.000090	Keyword	Glycolipid
+GGM.000090	Keyword	Monosialylated ganglioside
 GGM.000090	CrossRef	GlycanDictionary:GSD000093
 GGM.000091	Collection	GGM
 GGM.000091	Accession	000091
@@ -1085,7 +1098,9 @@ GGM.000091	PMID	6778957
 GGM.000091	PMID	7061953
 GGM.000091	PMID	7130176
 GGM.000091	PMID	19756298
+GGM.000091	PMID	39555730
 GGM.000091	Keyword	Disialylated ganglioside
+GGM.000091	Keyword	Ganglioside
 GGM.000091	Keyword	Glycolipid
 GGM.000091	CrossRef	GlycanDictionary:GSD000086
 GGM.000092	Collection	GGM
@@ -1097,6 +1112,8 @@ GGM.000092	MotifGlyTouCan	G93899SO
 GGM.000092	ReducingEnd	true
 GGM.000092	PMID	3949793
 GGM.000092	PMID	19756298
+GGM.000092	PMID	39555730
+GGM.000092	Keyword	Ganglioside
 GGM.000092	Keyword	Glycolipid
 GGM.000092	Keyword	Trisialylated ganglioside
 GGM.000092	CrossRef	GlycanDictionary:GSD000104
@@ -1105,13 +1122,13 @@ GGM.000093	Accession	000093
 GGM.000093	PreferredName	9-O-Acetyl GD3
 GGM.000093	Aglycon	Cer
 GGM.000093	Alignment	Whole-Glycan
-GGM.000093	MotifGlyTouCan	G98544DH
+GGM.000093	MotifGlyTouCan	G74121RX
 GGM.000093	ReducingEnd	true
 GGM.000093	PMID	18253060
 GGM.000093	PMID	19756298
 GGM.000093	Keyword	Disialylated ganglioside
+GGM.000093	Keyword	Ganglioside
 GGM.000093	Keyword	Glycolipid
-GGM.000093	CrossRef	GlycanDictionary:GSD000012
 GGM.000094	Collection	GGM
 GGM.000094	Accession	000094
 GGM.000094	PreferredName	GD2
@@ -1122,7 +1139,9 @@ GGM.000094	ReducingEnd	true
 GGM.000094	PMID	6296843
 GGM.000094	PMID	6542067
 GGM.000094	PMID	19756298
+GGM.000094	PMID	39555730
 GGM.000094	Keyword	Disialylated ganglioside
+GGM.000094	Keyword	Ganglioside
 GGM.000094	Keyword	Glycolipid
 GGM.000094	CrossRef	GlycanDictionary:GSD000085
 GGM.000095	Collection	GGM
@@ -1134,6 +1153,8 @@ GGM.000095	MotifGlyTouCan	G79389NT
 GGM.000095	ReducingEnd	true
 GGM.000095	PMID	6214725
 GGM.000095	PMID	19756298
+GGM.000095	PMID	39555730
+GGM.000095	Keyword	Ganglioside
 GGM.000095	Keyword	Glycolipid
 GGM.000095	Keyword	Monosialylated ganglioside
 GGM.000095	CrossRef	GlycanDictionary:GSD000092
@@ -1146,7 +1167,9 @@ GGM.000096	MotifGlyTouCan	G56478LD
 GGM.000096	ReducingEnd	true
 GGM.000096	PMID	6863318
 GGM.000096	PMID	19756298
+GGM.000096	Keyword	Ganglioside
 GGM.000096	Keyword	Glycolipid
+GGM.000096	Keyword	Monosialylated ganglioside
 GGM.000097	Collection	GGM
 GGM.000097	Accession	000097
 GGM.000097	PreferredName	Sialopentaosylceramide
@@ -1160,19 +1183,23 @@ GGM.000097	Keyword	Glycolipid
 GGM.000097	CrossRef	GlycanDictionary:GSD000148
 GGM.000098	Collection	GGM
 GGM.000098	Accession	000098
-GGM.000098	PreferredName	GM1
+GGM.000098	PreferredName	GM1a
+GGM.000098	AlternativeName	GM1
 GGM.000098	Aglycon	Cer
 GGM.000098	Alignment	Whole-Glycan
 GGM.000098	MotifGlyTouCan	G48558GR
 GGM.000098	ReducingEnd	true
 GGM.000098	PMID	6778957
 GGM.000098	PMID	19756298
+GGM.000098	PMID	39555730
+GGM.000098	Keyword	Ganglioside
 GGM.000098	Keyword	Glycolipid
 GGM.000098	Keyword	Monosialylated ganglioside
 GGM.000098	CrossRef	GlycanDictionary:GSD000091
 GGM.000099	Collection	GGM
 GGM.000099	Accession	000099
 GGM.000099	PreferredName	Asialo-GM1
+GGM.000099	AlternativeName	GA1
 GGM.000099	AlternativeName	Gangliotetraosylceramide
 GGM.000099	Aglycon	Cer
 GGM.000099	Alignment	Whole-Glycan
@@ -1180,79 +1207,99 @@ GGM.000099	MotifGlyTouCan	G21856LC
 GGM.000099	ReducingEnd	true
 GGM.000099	PMID	6175621
 GGM.000099	PMID	19756298
+GGM.000099	PMID	39555730
+GGM.000099	Keyword	Ganglioside
 GGM.000099	Keyword	Glycolipid
 GGM.000099	CrossRef	GlycanDictionary:GSD000019
 GGM.000100	Collection	GGM
 GGM.000100	Accession	000100
-GGM.000100	PreferredName	cisGM1
-GGM.000100	AlternativeName	GM1b
+GGM.000100	PreferredName	GM1b
+GGM.000100	AlternativeName	cisGM1
 GGM.000100	Aglycon	Cer
 GGM.000100	Alignment	Whole-Glycan
 GGM.000100	MotifGlyTouCan	G03277YI
 GGM.000100	ReducingEnd	true
 GGM.000100	PMID	4060848
 GGM.000100	PMID	19756298
+GGM.000100	PMID	39555730
+GGM.000100	Keyword	Ganglioside
 GGM.000100	Keyword	Glycolipid
 GGM.000100	Keyword	Monosialylated ganglioside
 GGM.000100	CrossRef	GlycanDictionary:GSD000044
 GGM.000101	Collection	GGM
 GGM.000101	Accession	000101
 GGM.000101	PreferredName	2-Fucosyl-GM1
+GGM.000101	AlternativeName	Fucosyl-GM1
 GGM.000101	Aglycon	Cer
 GGM.000101	Alignment	Whole-Glycan
 GGM.000101	MotifGlyTouCan	G91532KA
 GGM.000101	ReducingEnd	true
 GGM.000101	PMID	3654655
 GGM.000101	PMID	19756298
+GGM.000101	PMID	39555730
+GGM.000101	Keyword	Ganglioside
 GGM.000101	Keyword	Glycolipid
 GGM.000101	Keyword	Monosialylated ganglioside
 GGM.000101	CrossRef	GlycanDictionary:GSD000004
 GGM.000102	Collection	GGM
 GGM.000102	Accession	000102
 GGM.000102	PreferredName	B-GM1
+GGM.000102	AlternativeName	B-GM1a
+GGM.000102	AlternativeName	Blood group B GM1a
 GGM.000102	Aglycon	Cer
 GGM.000102	Alignment	Whole-Glycan
 GGM.000102	MotifGlyTouCan	G11485ID
 GGM.000102	ReducingEnd	true
 GGM.000102	PMID	3654655
 GGM.000102	PMID	19756298
+GGM.000102	Keyword	Blood group B
+GGM.000102	Keyword	Ganglioside
 GGM.000102	Keyword	Glycolipid
 GGM.000102	Keyword	Monosialylated ganglioside
 GGM.000102	CrossRef	GlycanDictionary:GSD000021
 GGM.000103	Collection	GGM
 GGM.000103	Accession	000103
 GGM.000103	PreferredName	2-Fucosyl-GD1b
+GGM.000103	AlternativeName	Fucosyl-GD1b
 GGM.000103	Aglycon	Cer
 GGM.000103	Alignment	Whole-Glycan
 GGM.000103	MotifGlyTouCan	G93694YU
 GGM.000103	ReducingEnd	true
 GGM.000103	PMID	3654655
 GGM.000103	PMID	19756298
+GGM.000103	PMID	39555730
 GGM.000103	Keyword	Disialylated ganglioside
+GGM.000103	Keyword	Ganglioside
 GGM.000103	Keyword	Glycolipid
 GGM.000103	CrossRef	GlycanDictionary:GSD000003
 GGM.000104	Collection	GGM
 GGM.000104	Accession	000104
 GGM.000104	PreferredName	B-GD1b
+GGM.000104	AlternativeName	Blood group B GD1b
 GGM.000104	Aglycon	Cer
 GGM.000104	Alignment	Whole-Glycan
 GGM.000104	MotifGlyTouCan	G72557NR
 GGM.000104	ReducingEnd	true
 GGM.000104	PMID	3654655
 GGM.000104	PMID	19756298
+GGM.000104	Keyword	Blood group B
 GGM.000104	Keyword	Disialylated ganglioside
+GGM.000104	Keyword	Ganglioside
 GGM.000104	Keyword	Glycolipid
 GGM.000104	CrossRef	GlycanDictionary:GSD000020
 GGM.000105	Collection	GGM
 GGM.000105	Accession	000105
-GGM.000105	PreferredName	GD1
-GGM.000105	AlternativeName	GD1c
+GGM.000105	PreferredName	GD1c
+GGM.000105	AlternativeName	GD1
 GGM.000105	Aglycon	Cer
 GGM.000105	Alignment	Whole-Glycan
 GGM.000105	MotifGlyTouCan	G81983KG
 GGM.000105	ReducingEnd	true
 GGM.000105	PMID	7533156
 GGM.000105	PMID	19756298
+GGM.000105	PMID	39555730
+GGM.000105	Keyword	Disialylated ganglioside
+GGM.000105	Keyword	Ganglioside
 GGM.000105	Keyword	Glycolipid
 GGM.000105	CrossRef	GlycanDictionary:GSD000082
 GGM.000106	Collection	GGM
@@ -1266,6 +1313,7 @@ GGM.000106	ReducingEnd	true
 GGM.000106	PMID	7528216
 GGM.000106	PMID	19756298
 GGM.000106	Keyword	Glycolipid
+GGM.000106	CrossRef	GlycanDictionary:GSD000083
 GGM.000107	Collection	GGM
 GGM.000107	Accession	000107
 GGM.000107	PreferredName	GD1a
@@ -1298,6 +1346,8 @@ GGM.000109	MotifGlyTouCan	G36476BA
 GGM.000109	ReducingEnd	true
 GGM.000109	PMID	2468656
 GGM.000109	PMID	19756298
+GGM.000109	PMID	39555730
+GGM.000109	Keyword	Ganglioside
 GGM.000109	Keyword	Glycolipid
 GGM.000109	Keyword	Trisialylated ganglioside
 GGM.000109	CrossRef	GlycanDictionary:GSD000103
@@ -1310,12 +1360,15 @@ GGM.000110	MotifGlyTouCan	G68110IF
 GGM.000110	ReducingEnd	true
 GGM.000110	PMID	1584231
 GGM.000110	PMID	19756298
+GGM.000110	PMID	39555730
+GGM.000110	Keyword	Ganglioside
 GGM.000110	Keyword	Glycolipid
 GGM.000110	Keyword	Trisialylated ganglioside
 GGM.000110	CrossRef	GlycanDictionary:GSD000099
 GGM.000111	Collection	GGM
 GGM.000111	Accession	000111
-GGM.000111	PreferredName	GT1aa
+GGM.000111	PreferredName	GT1aα
+GGM.000111	AlternativeName	GT1aa
 GGM.000111	AlternativeName	GT1aalpha
 GGM.000111	Aglycon	Cer
 GGM.000111	Alignment	Whole-Glycan
@@ -1323,6 +1376,8 @@ GGM.000111	MotifGlyTouCan	G02149VR
 GGM.000111	ReducingEnd	true
 GGM.000111	PMID	8221098
 GGM.000111	PMID	19756298
+GGM.000111	PMID	39555730
+GGM.000111	Keyword	Ganglioside
 GGM.000111	Keyword	Glycolipid
 GGM.000111	Keyword	Trisialylated ganglioside
 GGM.000111	CrossRef	GlycanDictionary:GSD000100
@@ -1335,6 +1390,8 @@ GGM.000112	MotifGlyTouCan	G40183QN
 GGM.000112	ReducingEnd	true
 GGM.000112	PMID	2581939
 GGM.000112	PMID	19756298
+GGM.000112	PMID	39555730
+GGM.000112	Keyword	Ganglioside
 GGM.000112	Keyword	Glycolipid
 GGM.000112	Keyword	Trisialylated ganglioside
 GGM.000112	CrossRef	GlycanDictionary:GSD000101
@@ -1347,12 +1404,15 @@ GGM.000113	MotifGlyTouCan	G78818SP
 GGM.000113	ReducingEnd	true
 GGM.000113	PMID	2468656
 GGM.000113	PMID	19756298
+GGM.000113	PMID	39555730
+GGM.000113	Keyword	Ganglioside
 GGM.000113	Keyword	Glycolipid
 GGM.000113	Keyword	Trisialylated ganglioside
 GGM.000113	CrossRef	GlycanDictionary:GSD000102
 GGM.000114	Collection	GGM
 GGM.000114	Accession	000114
-GGM.000114	PreferredName	GQ1aa
+GGM.000114	PreferredName	GQ1aα
+GGM.000114	AlternativeName	GQ1aa
 GGM.000114	AlternativeName	GQ1aalpha
 GGM.000114	Aglycon	Cer
 GGM.000114	Alignment	Whole-Glycan
@@ -1360,6 +1420,8 @@ GGM.000114	MotifGlyTouCan	G90598GO
 GGM.000114	ReducingEnd	true
 GGM.000114	PMID	10931205
 GGM.000114	PMID	19756298
+GGM.000114	PMID	39555730
+GGM.000114	Keyword	Ganglioside
 GGM.000114	Keyword	Glycolipid
 GGM.000114	Keyword	Tetrasialylated ganglioside
 GGM.000115	Collection	GGM
@@ -1372,12 +1434,15 @@ GGM.000115	ReducingEnd	true
 GGM.000115	PMID	2299350
 GGM.000115	PMID	11266684
 GGM.000115	PMID	19756298
+GGM.000115	PMID	39555730
+GGM.000115	Keyword	Ganglioside
 GGM.000115	Keyword	Glycolipid
 GGM.000115	Keyword	Tetrasialylated ganglioside
 GGM.000115	CrossRef	GlycanDictionary:GSD000096
 GGM.000116	Collection	GGM
 GGM.000116	Accession	000116
-GGM.000116	PreferredName	GQ1ba
+GGM.000116	PreferredName	GQ1bα
+GGM.000116	AlternativeName	GQ1ba
 GGM.000116	AlternativeName	GQ1balpha
 GGM.000116	Aglycon	Cer
 GGM.000116	Alignment	Whole-Glycan
@@ -1386,6 +1451,8 @@ GGM.000116	ReducingEnd	true
 GGM.000116	PMID	8221098
 GGM.000116	PMID	10931205
 GGM.000116	PMID	19756298
+GGM.000116	PMID	39555730
+GGM.000116	Keyword	Ganglioside
 GGM.000116	Keyword	Glycolipid
 GGM.000116	Keyword	Tetrasialylated ganglioside
 GGM.000116	CrossRef	GlycanDictionary:GSD000097
@@ -1398,6 +1465,8 @@ GGM.000117	MotifGlyTouCan	G99524KA
 GGM.000117	ReducingEnd	true
 GGM.000117	PMID	6640289
 GGM.000117	PMID	19756298
+GGM.000117	PMID	39555730
+GGM.000117	Keyword	Ganglioside
 GGM.000117	Keyword	Glycolipid
 GGM.000117	Keyword	Tetrasialylated ganglioside
 GGM.000117	CrossRef	GlycanDictionary:GSD000098
@@ -1410,12 +1479,15 @@ GGM.000118	MotifGlyTouCan	G93805MV
 GGM.000118	ReducingEnd	true
 GGM.000118	PMID	2468656
 GGM.000118	PMID	19756298
+GGM.000118	PMID	39555730
+GGM.000118	Keyword	Ganglioside
 GGM.000118	Keyword	Glycolipid
 GGM.000118	Keyword	Pentasialylated ganglioside
 GGM.000118	CrossRef	GlycanDictionary:GSD000095
 GGM.000119	Collection	GGM
 GGM.000119	Accession	000119
-GGM.000119	PreferredName	GP1ca
+GGM.000119	PreferredName	GP1cα
+GGM.000119	AlternativeName	GP1ca
 GGM.000119	AlternativeName	GP1calpha
 GGM.000119	Aglycon	Cer
 GGM.000119	Alignment	Whole-Glycan
@@ -1423,11 +1495,14 @@ GGM.000119	MotifGlyTouCan	G04433GV
 GGM.000119	ReducingEnd	true
 GGM.000119	PMID	10931205
 GGM.000119	PMID	19756298
+GGM.000119	PMID	39555730
+GGM.000119	Keyword	Ganglioside
 GGM.000119	Keyword	Glycolipid
 GGM.000119	Keyword	Pentasialylated ganglioside
 GGM.000120	Collection	GGM
 GGM.000120	Accession	000120
-GGM.000120	PreferredName	GH1ca
+GGM.000120	PreferredName	GH1cα
+GGM.000120	AlternativeName	GH1ca
 GGM.000120	AlternativeName	GH1calpha
 GGM.000120	Aglycon	Cer
 GGM.000120	Alignment	Whole-Glycan
@@ -1435,6 +1510,8 @@ GGM.000120	MotifGlyTouCan	G14091MR
 GGM.000120	ReducingEnd	true
 GGM.000120	PMID	10931205
 GGM.000120	PMID	19756298
+GGM.000120	PMID	39555730
+GGM.000120	Keyword	Ganglioside
 GGM.000120	Keyword	Glycolipid
 GGM.000120	Keyword	Hexasialylated ganglioside
 GGM.000121	Collection	GGM
@@ -1475,6 +1552,75 @@ GGM.000201	PMID	19756298
 GGM.000201	PMID	28876849
 GGM.000201	Keyword	Blood group B
 GGM.000201	Keyword	Blood group type 3
+GGM.000202	Collection	GGM
+GGM.000202	Accession	000202
+GGM.000202	PreferredName	GM1α
+GGM.000202	AlternativeName	GM1alpha
+GGM.000202	Aglycon	Cer
+GGM.000202	Alignment	Whole-Glycan
+GGM.000202	MotifGlyTouCan	G54721WC
+GGM.000202	ReducingEnd	true
+GGM.000202	PMID	39555730
+GGM.000202	Keyword	Ganglioside
+GGM.000202	Keyword	Glycolipid
+GGM.000202	Keyword	Monosialylated ganglioside
+GGM.000203	Collection	GGM
+GGM.000203	Accession	000203
+GGM.000203	PreferredName	GD1b
+GGM.000203	Aglycon	Cer
+GGM.000203	Alignment	Whole-Glycan
+GGM.000203	MotifGlyTouCan	G37184KW
+GGM.000203	ReducingEnd	true
+GGM.000203	PMID	39555730
+GGM.000203	Keyword	Disialylated ganglioside
+GGM.000203	Keyword	Ganglioside
+GGM.000203	Keyword	Glycolipid
+GGM.000204	Collection	GGM
+GGM.000204	Accession	000204
+GGM.000204	PreferredName	GD1a
+GGM.000204	Aglycon	Cer
+GGM.000204	Alignment	Whole-Glycan
+GGM.000204	MotifGlyTouCan	G46677TE
+GGM.000204	ReducingEnd	true
+GGM.000204	PMID	39555730
+GGM.000204	Keyword	Disialylated ganglioside
+GGM.000204	Keyword	Ganglioside
+GGM.000204	Keyword	Glycolipid
+GGM.000205	Collection	GGM
+GGM.000205	Accession	000205
+GGM.000205	PreferredName	GD1aα
+GGM.000205	AlternativeName	GD1aa
+GGM.000205	AlternativeName	GD1aalpha
+GGM.000205	Aglycon	Cer
+GGM.000205	Alignment	Whole-Glycan
+GGM.000205	MotifGlyTouCan	G45714BQ
+GGM.000205	ReducingEnd	true
+GGM.000205	PMID	39555730
+GGM.000205	Keyword	Disialylated ganglioside
+GGM.000205	Keyword	Ganglioside
+GGM.000205	Keyword	Glycolipid
+GGM.000206	Collection	GGM
+GGM.000206	Accession	000206
+GGM.000206	PreferredName	GalNAc-GM1b
+GGM.000206	Aglycon	Cer
+GGM.000206	Alignment	Whole-Glycan
+GGM.000206	MotifGlyTouCan	G64183CB
+GGM.000206	ReducingEnd	true
+GGM.000206	PMID	39555730
+GGM.000206	Keyword	Ganglioside
+GGM.000206	Keyword	Glycolipid
+GGM.000206	Keyword	Monosialylated ganglioside
+GGM.000207	Collection	GGM
+GGM.000207	Accession	000207
+GGM.000207	PreferredName	GalNAc-GD1a
+GGM.000207	Aglycon	Cer
+GGM.000207	Alignment	Whole-Glycan
+GGM.000207	MotifGlyTouCan	G92175CL
+GGM.000207	ReducingEnd	true
+GGM.000207	PMID	39555730
+GGM.000207	Keyword	Disialylated ganglioside
+GGM.000207	Keyword	Ganglioside
+GGM.000207	Keyword	Glycolipid
 GGM.000252	Collection	GGM
 GGM.000252	Accession	000252
 GGM.000252	PreferredName	Polysialic acid
@@ -1485,3 +1631,4 @@ GGM.000252	ReducingEnd	true
 GGM.000252	PMID	6135869
 GGM.000252	PMID	6847662
 GGM.000252	PMID	19756298
+GGM.000252	CrossRef	GlycanDictionary:GSD000182
