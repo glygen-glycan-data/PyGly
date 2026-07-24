@@ -254,6 +254,18 @@ species2taxid['zebrafish'] = set(map(int,"""
 """.split()))
 species2common['zebrafish'] = 'ZebraFish'
 
+# Orthoebolavirus zairense
+species2taxid['ebola1'] = set(map(int,"""
+3052462 129000 186538 1570291 1891187 128951 128952 128947
+""".split()))
+species2common['ebola1'] = 'EBOV'
+
+# Orthoebolavirus bundibugyoense
+species2taxid['ebola2'] = set(map(int,"""
+3052458 565995
+""".split()))
+species2common['ebola2'] = 'BDBV'
+
 species = defaultdict(dict)
 
 for m in iterglycan():
