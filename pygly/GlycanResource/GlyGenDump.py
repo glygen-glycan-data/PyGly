@@ -341,6 +341,9 @@ class UniCarbKBSourceFile(GlyGenSourceFile):
        K9N5Q8	1263720
        Protein	-
        B2RYF6	10116
+       D3ZEV8	10116
+       D4A9Q5	10116
+       D3Z981	10116
     """.splitlines())))
     uckb2gtcacc = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/data/uckbcomp2glytoucan.txt"
     doifield = "doi"
@@ -351,7 +354,9 @@ class UniCarbKBSourceFile(GlyGenSourceFile):
             for key,(sp,taxid) in self.glygen_species.items():
                 self._taxidlookup[sp] = taxid
                 self._taxidlookup[key] = taxid
-        if loadtaxid and len(set(self._taxidlookup.values())) == len(self.glygen_species):
+            self._minimal_taxidlookup = True
+        if loadtaxid and self._minimal_taxidlookup:
+            self._minimal_taxidlookup = False
             self._taxidlookup.update(dict(self.glygen_protein_taxa()))
             for k,v in self.badupacc.items():
                 if v == "-":
@@ -612,15 +617,15 @@ class TableMakerSourceFile(GlyGenSourceFile):
         }
     sections = """
         TG1468274
-	    TG1127346
-	    TG1040297
-	    TG2415036
-	    TG2986138
-	    TG4951079
-	    TG7181079
-	    TG7732158
-	    TG8189974
-	    TG8741863
+	TG1127346
+	TG1040297
+	TG2415036
+	TG2986138
+	TG4951079
+	TG7181079
+	TG7732158
+	TG8189974
+	TG8741863
         TG4253352
         TG5664582
         TG2727671
@@ -946,8 +951,8 @@ class PDBGlycanSourceFile(GlyGenSourceFile):
                   fruitfly hamster hcv1a human mouse
                   pig rat sarscov1 sarscov2 yeast zebrafish"""
     glygen_sourceid = """
-        GLY:001504
-        GLY:001505
+        GLY_001504
+        GLY_001505
         GLY_001493
         GLY_001499
         GLY_001495

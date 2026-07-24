@@ -70,7 +70,7 @@ class TripleStoreResource(GlycanResource):
         # register( 'application/sparql-results+xml', ResultParser, 'rdflib.plugins.sparql.results.xmlresults', 'XMLResultParser')
 
         from rdflib.plugins.stores.sparqlstore import SPARQLStore
-        store = SPARQLStore(self._endpt)
+        store = SPARQLStore(self._endpt,method=self._method,headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0'})
         store.method = self._method
         self._ts = rdflib.ConjunctiveGraph(store=store)
 

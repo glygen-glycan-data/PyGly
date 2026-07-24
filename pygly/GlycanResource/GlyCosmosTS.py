@@ -8,6 +8,7 @@ from collections import defaultdict
 
 class GlyCosmosTS(TripleStoreResource):
 
+    # endpt = "https://ts.glytoucan.org/sparql"
     endpt = "https://ts.glycosmos.org/sparql"
     # endpt = "http://ts.beta.glycosmos.org/sparql"
     defns = "http://rdf.glycoinfo.org/glycan/"
