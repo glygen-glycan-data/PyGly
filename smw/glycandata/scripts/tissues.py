@@ -15,14 +15,14 @@ Source ID
 
 tospecies = {
 	"TissueInHuman": "Human",
-        "TissueInMouse": "Mouse",
-        "TissueInZebraFish": "ZebraFish",
-        "TissueInZebrafish": "ZebraFish",
-        "TissueInFruitFly": "FruitFly",
-        "TissueInBovine": "Bovine",
-        "TissueInPig": "Pig",
-        "TissueInChicken": "Chicken",
-        "TissueInRat": "Rat",
+    "TissueInMouse": "Mouse",
+    "TissueInZebraFish": "ZebraFish",
+    "TissueInZebrafish": "ZebraFish",
+    "TissueInFruitFly": "FruitFly",
+    "TissueInBovine": "Bovine",
+    "TissueInPig": "Pig",
+    "TissueInChicken": "Chicken",
+    "TissueInRat": "Rat",
 }
 
 w = GlycanData()
