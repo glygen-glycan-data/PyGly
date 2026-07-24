@@ -37,6 +37,24 @@ $(LOADGTC_DONE):
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
 
+LOADOLDXREF_DONE=.loadoldxref.$(DATESTAMP).done
+$(LOADOLDXREF_DONE): $(LOADGTC_DONE)
+	@echo "[`$(TIMESTAMP_CMD)`]: Start $@"
+	./loadoldxrefgtc.py $(CACHE) 'KEGG' $(DATA)/kegg-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'BCSDB' $(DATA)/bcsdb-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'GlycoEpitope' $(DATA)/glycoepitope-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'GlyConnectStructure' $(DATA)/glyconnect-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'GlyConnectComposition' $(DATA)/glyconnect-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'UniCarb-DB' $(DATA)/unicarbdb-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'Carbbank(CCSB)' $(DATA)/carbbank-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'CFG' $(DATA)/cfg-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'GlycomeDB' $(DATA)/gdb-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'GlycO' $(DATA)/gdb-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'GLYCOSCIENCES.de' $(DATA)/glycosciencesde-export-v1.22.1.tsv
+	./loadoldxrefgtc.py $(CACHE) 'PDB' $(DATA)/pdb-export-v1.22.1.tsv
+	touch $@
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
+
 LOADGTC2GLYCONNECTCOMP_DONE=.loadgtc2glyconnectcomp.$(DATESTAMP).done
 $(LOADGTC2GLYCONNECTCOMP_DONE): $(LOADGTC_DONE)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $@"
@@ -180,7 +198,8 @@ $(LOADNAMES_DONE): $(LOADGTC_DONE)
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
 
-ALLDONE=$(LOADGTC_DONE) $(LOADTAXID_DONE) $(LOADGTC2GLYCONNECTCOMP_DONE) \
+ALLDONE=$(LOADGTC_DONE) $(LOADOLDXREF_DONE) \
+	$(LOADTAXID_DONE) $(LOADGTC2GLYCONNECTCOMP_DONE) \
 	$(LOADGTC2MATRIXDB_DONE) $(LOADGTC2PUBCHEM_DONE) \
 	$(LOADGTC2GLYCOSHAPE_DONE) $(LOADUNICARB_DONE) $(LOADGTC2PSIMOD_DONE) \
 	$(LOADGLYGEN_DONE) $(LOADGTC2GLYCOMEDBEXP_DONE) \

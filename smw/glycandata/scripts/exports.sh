@@ -5,7 +5,7 @@
 # to implement)
 
 # ./exports.sh cache 
-set -x 
+set -euxo pipefail 
 rm -rf glycandata*.tdb
 ./tordf.py "$@" glycandata | gzip -9 -c > ../export/glycandata.rdf.gz
 rm -f ../export/glycandata.rdf.gz.[0-9][0-9]
@@ -29,3 +29,4 @@ split -b 40m -d ../export/glycoctxml.zip ../export/glycoctxml.zip.
 ./alltaxidcnts.py ../export/taxa.tsv > ../export/alltaxacnt.tsv
 ./glygen_retired_accessions.sh
 ( cd ../export; gitvenn.py GlyGen-GlycanData-Export-Current > ./gitvenn.txt )
+( cd ../export; gitspec.sh GlyGen-GlycanData-Export-Current > ./gitspec.txt )

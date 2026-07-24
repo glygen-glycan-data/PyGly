@@ -108,21 +108,22 @@ for gtcacc in accessions(sys.argv[1:]):
     xref_dic = {# 'glycosciences_de':'GLYCOSCIENCES.de',
                 # 'pubchem':'PubChem',
                 # 'kegg':'KEGG',
-                'kegg_glycan':'KEGG',
+                # 'kegg_glycan':'KEGG',
                 # 'unicarbkb':'UniCarbKB',
-                'unicarb-db':'UniCarb-DB',
-                'glyconnect':'GlyConnectStructure',
-                'glyconnect-comp':'GlyConnectComposition',
+                # 'unicarb-db':'UniCarb-DB',
+                # 'glyconnect':'GlyConnectStructure',
+                # 'glyconnect-comp':'GlyConnectComposition',
                 # 'glycome-db':'GlycomeDB',
                 # 'cfg':'CFG',
                 # 'pdb':'PDB',
-                'bcsdb':'BCSDB',
-                'matrixdb':'MatrixDB',
-                'glycoepitope':'GlycoEpitope',
+                # 'bcsdb':'BCSDB',
+                # 'matrixdb':'MatrixDB',
+                # 'glycoepitope':'GlycoEpitope',
                 # 'carbbank':'Carbbank(CCSB)',
                }    
     for prop in xref_dic.values():
         g.delete_annotations(source='GlyTouCan',property=prop,type='CrossReference')
+    g.delete_annotations(source='GlyTouCan',type='CrossReference')
     dic = defaultdict(list)
     for ref, c in gtc.getcrossrefs(gtcacc):
         # ref, c = xref.split(":")
