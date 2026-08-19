@@ -66,4 +66,6 @@ shift $(($OPTIND - 1))
 if [ $VERBOSE -eq 1 ]; then
   echo $JAVA -cp "$JAR" $MAIN notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 1>&2
 fi
-exec $JAVA -cp "$JAR" $MAIN notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 2>/dev/null | egrep -w -v '(org.glycoinfo|DEBUG|GlycanImageCmdline.main|org.eurocarbdb.application.glycanbuilder|Warning:)'
+exec $JAVA -cp "$JAR" $MAIN notation "$NOTATION" display "$DISP" scale "$SCALE" orient "$ORIENT" redend "$REDEND" opaque "$OPAQUE" format "$FORMAT" force "$FORCE" outdir "$OUTDIR" $@ 2>/dev/null | \
+  egrep -w -v '(Leaf edge is not connected to any sequence)'
+  # egrep -w -v '(org.glycoinfo|DEBUG|GlycanImageCmdline.main|org.eurocarbdb.application.glycanbuilder|Warning:)'

@@ -103,9 +103,19 @@ for path in sorted(os.listdir(wurcs_dir)):
 
     canonres_data = {}
     iupac_annotations = defaultdict(list)
+    bad = False
     for m in canon_gly.all_nodes(undet_subst=True):
-        data = json.loads(jcr.toStr(m))
+	try:
+            data = json.loads(jcr.toStr(m))
+        except KeyError:
+	    if verbose:
+                print("Error accession:",acc,file=sys.stderr)
+                traceback.print_exc(file=sys.stderr)
+            bad = True
+	    break
         canonres_data[m.external_descriptor_id()] = data
+    if bad:
+        continue
 
     for mid,iupacsym,isaggr in canon_gly.iupac_items(canon_gly.all_nodes(undet_subst=True)):
         iupac_annotations[iupacsym].append(mid[0])

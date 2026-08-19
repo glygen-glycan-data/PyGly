@@ -905,6 +905,8 @@ class Substituent(Node):
     phosphate_oxygen_lost = 43
     acetyl_oxygen_lost = 44
     phosphate_bridged = 45
+
+    # Not declared in the GlycoCT document(s)
     _O_4_hydroxybutyryl_ = 46
     _O_S_3_hydroxybutyryl_ = 47
     _O_pyruvyl_ = 48
