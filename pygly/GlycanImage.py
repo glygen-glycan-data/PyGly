@@ -1,5 +1,6 @@
 from . import JavaProgram
 from . GlycanFormatter import GlycoCTFormat
+import sys
 
 try:
   basestring
@@ -123,8 +124,9 @@ class GlycanImage(object):
             output = imageWriter().decode()
         except JavaProgram.TimeoutError as e:
             raise GlycanImageTimeout from e
-        if 'GlycanException' in output: # GlycanBuilder2
-            raise GlycanImageBadSequence(glystr)
-        if self._verbose:
-            print(f"Unexpected output from {self._drawer}: {output}",file=sys.stderr)
+        if output.strip():
+            if imageWriter.bad_sequence_output(output):
+               raise GlycanImageBadSequence(glystr)
+            elif not imageWriter.expected_output(output) and self._verbose:
+               print(f"Unexpected output from {self._drawer}: {output}",file=sys.stderr)
         return

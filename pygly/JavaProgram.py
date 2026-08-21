@@ -255,6 +255,12 @@ class GlycanBuilderImage(JavaProgram):
     def stdin(self):
         return self.glycoctstr
 
+    def bad_sequence_output(self,output):
+        return 'readGlycan' in output
+
+    def expected_output(self,output):
+        return ' -> ' in output
+
 class GlycoworkImage(BinProgram):
     main = "/data/projects/GlyGen/glycowork/tools/.venv/bin/python"
     valid_options = "orient display format force".split()

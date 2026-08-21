@@ -1019,9 +1019,13 @@ class IUPACLinearFormat(GlycanFormatter):
         if sym in self.mf:
             anomer = None
             root = self.mf.new(sym)
-        elif sym[-1] in 'ab' and sym[:-1] in self.mf:
+        elif sym[-1] in 'ab\u03b1\u03b2' and sym[:-1] in self.mf:
             anomer = sym[-1]
             root = self.mf.new(sym[:-1])
+            if anomer == '\u03b1':
+                anomer = "a"
+            elif anomer == '\u03b2':
+                anomer = "b"
         else:
             raise IUPACLinearBadSym(code=orig,pos=len(s),sym=sym)
         if anomer:
@@ -1198,9 +1202,11 @@ class IUPACParserAbstract():
         # print(self.__class__.__name__)
         # print(seq)
         # Process
+
         regexRes = self.regexSearch(seq)
         seq1 = "".join(reversed([r["matched"] for r in regexRes]))
-        if seq1 != seq:
+        if seq1 != seq.strip():
+            # print(seq)
             # print(seq1)
             raise IUPACUnexpectedCharacters()
 
@@ -1513,7 +1519,7 @@ class IUPACParserCFG(IUPACParserAbstract):
     description = ""
     example = "Fuca1-2Galb1-4(Fuca1-3)GlcNAcb1-3Galb1-4(Fuca1-3)GlcNAcb1-3Galb1-4(Fuca1-3)GlcNAcb-Sp0"
     alias = ""
-    precompiledpattern = r"(?P<matched>((?P<bpe>\()?)(?P<skel>((\([1-6SP]*\)|[1-6SP]*)*)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Rha|Mur)(([a-zA-Z5926,])*)?)(?P<link>\d?-?\d?)?(?P<bps>\))?)"
+    precompiledpattern = r"(?P<matched>((?P<bpe>\()?)(?P<skel>((\([1-6SP]*\)|[1-6SP]*)*)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Rha|Mur)(([a-zA-Z5926,\u03b1\u03b2]*[a-zA-Z\u03b1\u03b2?]))?)(?P<link>([\d?]-[\d?]|[\d?]-))?(?P<bps>\))?)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -1526,13 +1532,30 @@ class IUPACParserCFG(IUPACParserAbstract):
             res0 = copy.deepcopy(self.regexResTemplate)
 
             skelori = self.skelreformat(s["skel"])
-            skelwithoutanomer = s["skel"][:-1]
-            anomer = s["skel"][-1]
+            if s["skel"].endswith("alpha"):
+                skelwithoutanomer = s["skel"][:-5]
+                anomer = "a"
+            elif s["skel"].endswith("beta"):
+                skelwithoutanomer = s["skel"][:-4]
+                anomer = "b"
+            elif s["skel"].endswith("a") or s["skel"].endswith("\u03b1"):
+                skelwithoutanomer = s["skel"][:-1]
+                anomer = "a"
+            elif s["skel"].endswith("b") or s["skel"].endswith("\u03b2"):
+                skelwithoutanomer = s["skel"][:-1]
+                anomer = "b"
+            elif s["skel"].endswith("?"):
+                skelwithoutanomer = s["skel"][:-1]
+                anomer = "?"
+            else:
+                skelwithoutanomer = s["skel"]
+                anomer = "x"
+            
             oriskelflag = False
             skelwithoutanomerflag = False
-            anomerverification = anomer in "ab"
+            anomerverification = (anomer in "ab?")
             try:
-                self.mf.new(oriskelflag)
+                self.mf.new(skelori)
                 oriskelflag = True
             except:
                 pass
@@ -1545,7 +1568,7 @@ class IUPACParserCFG(IUPACParserAbstract):
 
             if skelwithoutanomerflag and anomerverification:
                 trueskel = skelwithoutanomer
-                anomer = {"a": "Anomer.alpha", "b": "Anomer.beta"}[anomer]
+                anomer = {"a": "Anomer.alpha", "b": "Anomer.beta", "?": "Anomer.missing"}[anomer]
             elif oriskelflag:
                 trueskel = skelori
                 anomer = None
@@ -1555,9 +1578,9 @@ class IUPACParserCFG(IUPACParserAbstract):
             rawlink = s["link"]
             if rawlink:
                 p1, p2 = rawlink.split("-")
-                if not p1:
+                if not p1 or p1 == "?":
                     p1 = None
-                if not p2:
+                if not p2 or p2 == "?":
                     p2 = None
                 link = tuple([p1, p2])
             else:

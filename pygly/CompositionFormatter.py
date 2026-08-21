@@ -70,3 +70,25 @@ class CompositionFormat(GlycanFormatter):
             raise BadComposition(s)
         return gly
 
+class FiveLetterComposition(CompositionFormat):
+    regex = re.compile(r'^N(\d+)H(\d+)F(\d+)S(\d+)G(\d+)$')
+    
+    def toSequence(self,s):
+        if not self.regex.search(s.strip()):
+            raise BadComposition(s)
+        m = self.regex.search(s.strip())
+        s1 = f"HexNAc{m.group(1)}Hex{m.group(2)}Fuc{m.group(3)}NeuAc{m.group(4)}NeuGc{m.group(5)}"
+        return super().toSequence(s1)
+    
+    def toStr(self,*args,**kwargs):
+        compstr = super().toStr(*args,**kwargs)
+        splcomp = re.split(r'\((\d+)\)',compstr)
+        comp = dict()
+        for i in range(0,len(splcomp)-1,2):
+            cnt = int(sl[i+1])
+            if cnt == 0:
+                continue
+            comp[sl[i]] = str(cnt)
+        if set(comp.keys()) <= set(['HexNAc','Hex','Fuc','NeuAc','NeuGc']):
+            return f"N{comp['HexNAc']}H{comp['Hex']}F{comp['Fuc']}S{comp['NeuAc']}G{comp['NeuGc']}"
+        raise BadComposition(compstr)

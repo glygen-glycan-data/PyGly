@@ -7,8 +7,8 @@ from pygly.CompositionFormatter import *
 from pygly.GlycanResource import GlyTouCanNoPrefetch as GlyTouCan
 from pygly.GlycanMultiParser import GlycanMultiParser
 
-if sys.argv[1] not in ("glycoct","wurcs","svg","comp","iupac","iupac2","iupac3","iupac4","gtc","auto"):
-    print("Parser should be one of: glycoct, wurcs, svg, comp, iupac, iupac2, iupac3, iupac4, gtc, auto.")
+if sys.argv[1] not in ("glycoct","wurcs","svg","comp1","comp2","iupac1","iupac2","iupac3","iupac4","iupac5","gtc","auto"):
+    print("Parser should be one of: glycoct, wurcs, svg, comp1, comp2, iupac1, iupac2, iupac3, iupac4, iupac5, gtc, auto.")
     exit(1)
 gtc = None
 clsname = None
@@ -20,9 +20,11 @@ elif sys.argv[1] in ("wurcs","gtc"):
         gtc = GlyTouCan()
 elif sys.argv[1] == "svg":
     clsname = "GlycanBuilderSVG"
-elif sys.argv[1] == "comp":
+elif sys.argv[1] == "comp1":
     clsname = "CompositionFormat"
-elif sys.argv[1] == "iupac":
+elif sys.argv[1] == "comp2":
+    clsname = "FiveLetterComposition"
+elif sys.argv[1] == "iupac1":
     clsname = "IUPACLinearFormat"
 elif sys.argv[1] == "iupac2":
     clsname = "IUPACParserExtended1"
@@ -30,6 +32,8 @@ elif sys.argv[1] == "iupac3":
     clsname = "IUPACParserGlyTouCanExtended"
 elif sys.argv[1] == "iupac4":
     clsname = "IUPACParserGlyTouCanCondensed"
+elif sys.argv[1] == "iupac5":
+    clsname = "IUPACParserCFG"
 elif sys.argv[1] == "auto":
     clsname = "GlycanMultiParser"
 

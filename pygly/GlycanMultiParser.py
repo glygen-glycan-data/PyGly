@@ -10,6 +10,7 @@ class GlycanMultiParser(object):
     wp = WURCS20Format()
     gp = GlycoCTFormat()
     cp = CompositionFormat()
+    cp1 = FiveLetterComposition()
     ip1 = IUPACLinearFormat()
     ip2 = IUPACParserExtended1()
     ip3 = IUPACParserGlyTouCanExtended()
@@ -48,6 +49,11 @@ class GlycanMultiParser(object):
         try:
             self.lastparser = self.cp
             return self.cp.toGlycan(seq)
+        except GlycanParseError:
+            pass
+        try:
+            self.lastparser = self.cp1
+            return self.cp1.toGlycan(seq)
         except GlycanParseError:
             pass
         try:
