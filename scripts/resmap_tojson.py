@@ -105,14 +105,14 @@ for path in sorted(os.listdir(wurcs_dir)):
     iupac_annotations = defaultdict(list)
     bad = False
     for m in canon_gly.all_nodes(undet_subst=True):
-	try:
+        try:
             data = json.loads(jcr.toStr(m))
         except KeyError:
-	    if verbose:
+            if verbose:
                 print("Error accession:",acc,file=sys.stderr)
                 traceback.print_exc(file=sys.stderr)
             bad = True
-	    break
+            break
         canonres_data[m.external_descriptor_id()] = data
     if bad:
         continue
