@@ -1519,7 +1519,7 @@ class IUPACParserCFG(IUPACParserAbstract):
     description = ""
     example = "Fuca1-2Galb1-4(Fuca1-3)GlcNAcb1-3Galb1-4(Fuca1-3)GlcNAcb1-3Galb1-4(Fuca1-3)GlcNAcb-Sp0"
     alias = ""
-    precompiledpattern = r"(?P<matched>((?P<bpe>\()?)(?P<skel>((\([1-6SP]*\)|[1-6SP]*)*)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Rha|Mur)(([a-zA-Z5926,\u03b1\u03b2]*[a-zA-Z\u03b1\u03b2?]))?)(?P<link>([\d?]-[\d?]|[\d?]-))?(?P<bps>\))?)"
+    precompiledpattern = r"(?P<matched>((?P<bpe>\()?)(?P<skel>((\([1-6SP]*\)|[1-6SP]*)*)?(Glc|Gal|Man|Fuc|Xyl|Neu|Ido|KDN|Rha|Mur)(([a-zA-Z5926,\u03b1\u03b2]*[a-zA-Z\u03b1\u03b2?]))?)(?P<link>([\d?x]-[\d?x]|[\d?x]-))?(?P<bps>\))?)"
 
     def regexSearch(self, seq):
         searchres = [m.groupdict() for m in self.pattern.finditer(seq)]
@@ -1544,7 +1544,7 @@ class IUPACParserCFG(IUPACParserAbstract):
             elif s["skel"].endswith("b") or s["skel"].endswith("\u03b2"):
                 skelwithoutanomer = s["skel"][:-1]
                 anomer = "b"
-            elif s["skel"].endswith("?"):
+            elif s["skel"].endswith("?") or s["skel"].endswith("x"):
                 skelwithoutanomer = s["skel"][:-1]
                 anomer = "?"
             else:
@@ -1578,9 +1578,9 @@ class IUPACParserCFG(IUPACParserAbstract):
             rawlink = s["link"]
             if rawlink:
                 p1, p2 = rawlink.split("-")
-                if not p1 or p1 == "?":
+                if not p1 or p1 in "x?":
                     p1 = None
-                if not p2 or p2 == "?":
+                if not p2 or p2 in "x?":
                     p2 = None
                 link = tuple([p1, p2])
             else:
