@@ -117,8 +117,15 @@ for path in sorted(os.listdir(wurcs_dir)):
     if bad:
         continue
 
+    bad = False
     for mid,iupacsym,isaggr in canon_gly.iupac_items(canon_gly.all_nodes(undet_subst=True)):
-        iupac_annotations[iupacsym].append(mid[0])
+        if len(mid) > 0:
+            iupac_annotations[iupacsym].append(mid[0])
+        else:
+            bad = True
+            break
+    if bad:
+        continue
     for iupacsym in iupac_annotations:
         iupac_annotations[iupacsym] = sorted(iupac_annotations[iupacsym],key=float)
     # iupac_synonyms = {}
