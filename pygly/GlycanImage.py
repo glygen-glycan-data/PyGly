@@ -8,26 +8,30 @@ except NameError:
   basestring = str
 
 class GlycanImageError(RuntimeError):
-    def __init__(self):
-        self.message = f"Glycan image generation error."
+    def __init__(self,message="Glycan image generation error."):
+        super().__init__(message)
 
 class GlycanImageTimeout(GlycanImageError):
     def __init__(self):
-        self.message = f"Glycan image generation timeout."
+        super().__init__("Glycan image generation timeout.")
 
 class GlycanImageBadWURCS(GlycanImageError):
-    def __init__(self,msg=""):
-        if msg:
-            self.message = f"Glycan image WURCS parse error: {msg}."
+    def __init__(self,error=""):
+        self.error = error
+        if error:
+            message = f"Glycan image WURCS parse error: {error}."
         else:
-            self.message = f"Glycan image WURCS parse error."
+            message = "Glycan image WURCS parse error."
+        super().__init__(message)
 
 class GlycanImageBadGlycoCT(GlycanImageError):
-    def __init__(self,msg=""):
-        if msg:
-            self.message = f"Glycan image GlycoCT parse error."
+    def __init__(self,error=""):
+        self.error = error
+        if error:
+            message = f"Glycan image GlycoCT parse error: {error}."
         else:
-            self.message = f"Glycan image GlycoCT parse error: {msg}"
+            message = "Glycan image GlycoCT parse error."
+        super().__init__(message)
 
 class GlycanImage(object):
 
