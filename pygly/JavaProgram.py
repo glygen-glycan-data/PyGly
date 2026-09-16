@@ -256,7 +256,11 @@ class GlycanBuilderImage(JavaProgram):
         return self.glycoctstr
 
     def bad_sequence_output(self,output):
-        return 'readGlycan' in output
+        if 'readGlycan(WURCS): ' in output:
+            return "WURCS",output.split('readGlycan(WURCS): ',1)[1].strip()
+        if 'readGlycan(GlycoCT): ' in output:
+            return "GlycoCT",""
+        return None,None
 
     def expected_output(self,output):
         return ' -> ' in output

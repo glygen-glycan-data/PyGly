@@ -15,9 +15,19 @@ class GlycanImageTimeout(GlycanImageError):
     def __init__(self):
         self.message = f"Glycan image generation timeout."
 
-class GlycanImageBadSequence(GlycanImageError):
-    def __init__(self,seq):
-        self.message = f"Glycan image sequence parse error: {seq}."
+class GlycanImageBadWURCS(GlycanImageError):
+    def __init__(self,msg=""):
+        if msg:
+            self.message = f"Glycan image WURCS parse error: {msg}."
+        else:
+            self.message = f"Glycan image WURCS parse error."
+
+class GlycanImageBadGlycoCT(GlycanImageError):
+    def __init__(self,msg=""):
+        if msg:
+            self.message = f"Glycan image GlycoCT parse error."
+        else:
+            self.message = f"Glycan image GlycoCT parse error: {msg}"
 
 class GlycanImage(object):
 
@@ -125,8 +135,14 @@ class GlycanImage(object):
         except JavaProgram.TimeoutError as e:
             raise GlycanImageTimeout from e
         if output.strip():
-            if imageWriter.bad_sequence_output(output):
-               raise GlycanImageBadSequence(glystr)
+            badseq = imageWriter.bad_sequence_output(output)
+            if badseq[0] is not None:
+                if badseq[0] == "WURCS":
+                    raise GlycanImageBadWURCS(badseq[1])
+                elif badseq[0] == "GlycoCT":
+                    raise GlycanImageBadGlycoCT(badseq[1])
+                else:
+                    raise GlycanImageError()
             elif not imageWriter.expected_output(output) and self._verbose:
                print(f"Unexpected output from {self._drawer}: {output}",file=sys.stderr)
         return
