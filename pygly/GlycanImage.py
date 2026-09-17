@@ -146,7 +146,7 @@ class GlycanImage(object):
                 elif badseq[0] == "GlycoCT":
                     raise GlycanImageBadGlycoCT(badseq[1])
                 else:
-                    raise GlycanImageError()
+                    raise GlycanImageError
             elif not imageWriter.expected_output(output) and self._verbose:
                print(f"Unexpected output from {self._drawer}: {output}",file=sys.stderr)
         return
