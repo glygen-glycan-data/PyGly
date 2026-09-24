@@ -259,7 +259,7 @@ class GlycanBuilderImage(JavaProgram):
         if 'readGlycan(WURCS): ' in output:
             return "WURCS",output.split('readGlycan(WURCS): ',1)[1].strip()
         if 'readGlycan(GlycoCT): ' in output:
-            return "GlycoCT",""
+            return "GlycoCT",output.split('readGlycan(GlycoCT): ',1)[1].strip()
         return None,None
 
     def expected_output(self,output):

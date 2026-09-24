@@ -45,7 +45,7 @@ for sbjdoc in glycansiter(sandbox,accs):
             enzymes[res['residue_id'],enz['uniprot']] = enz
     for rule in sbjdoc['rule_violations']:
         res = residues[rule['focus']]
-        if rule['enzyme']:
+        if rule.get('enzyme'):
             enz = enzymes[rule['focus'],rule['enzyme']]
             data = dict(glytoucan_ac=acc,residue_name=res['residue_name'],residue_id=res['residue_id'],
                         canonical_residue_index=res['canonical_residue_index'],
@@ -53,7 +53,7 @@ for sbjdoc in glycansiter(sandbox,accs):
                         parent_residue_id=res['parent_id'],enzyme_type=enz['type'],species=enz['species'],
                         curated=str(enz['curated']).lower())
         else:
-            data = dict(glytoucan_ac=acc,residue_name=res['residue_name'],residue_id=res['residue_id'],
+            data = dict(glytoucan_ac=acc,residue_name=res.get('residue_name',''),residue_id=res['residue_id'],
                         canonical_residue_index=res['canonical_residue_index'],
                         parent_residue_id=res['parent_id'])
         data['caveat'] = rule['assertion'].replace("&alpha;","a").replace("&beta;","b")
