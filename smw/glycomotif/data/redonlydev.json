@@ -15830,6 +15830,47 @@
     },
     "root": "PseudoRoot"
   },
+  "G49708ZB": {
+    "edges": {
+      "G00068MO": [
+        {
+          "from": "G00068MO",
+          "to": "G49708ZB",
+          "type": "contains"
+        }
+      ],
+      "PseudoRoot": [
+        {
+          "from": "PseudoRoot",
+          "hidden": true,
+          "to": "G00068MO",
+          "type": "contains"
+        }
+      ]
+    },
+    "mw": "Unknown",
+    "name": "PseudoRoot",
+    "nodes": {
+      "G00068MO": {
+        "label": "G00068MO (Cluster)",
+        "level": 0,
+        "name": "G00068MO",
+        "type": "Whatever"
+      },
+      "G49708ZB": {
+        "level": 0,
+        "name": "G49708ZB",
+        "type": "Whatever"
+      },
+      "PseudoRoot": {
+        "hidden": true,
+        "level": 0,
+        "name": "PseudoRoot",
+        "type": "Whatever"
+      }
+    },
+    "root": "PseudoRoot"
+  },
   "G49791FJ": {
     "edges": {
       "fakeroot": [
