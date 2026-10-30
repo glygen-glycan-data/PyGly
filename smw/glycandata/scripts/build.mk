@@ -83,12 +83,27 @@ $(GLYGENDSTAXID_DONE):
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
 
+GLYGENDSXREF_DONE=.glygends_xrefs.$(DATESTAMP).done
+$(GLYGENDSXREF_DONE): 
+	@echo "[`$(TIMESTAMP_CMD)`]: Start $@"
+	./glygends_xrefs.py > $(DATA)/glygends_xrefs.txt
+	touch $@
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
+
 LOADTAXID_DONE=.loadtaxid.$(DATESTAMP).done
 $(LOADTAXID_DONE): $(UNICARBTAXID_DONE) $(GLYGENDSTAXID_DONE) $(LOADGTC_DONE) $(LOADGTC2GLYCONNECTCOMP_DONE)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $@"
 	./loadtaxid.py $(CACHE) $(DATA)/glygends_taxid.txt $(DATA)/unicarbkb_taxid.txt
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
+
+LOADGLYGENDSXREF_DONE=.loadglygenxrefs.$(DATESTAMP).done
+$(LOADGLYGENDSXREF_DONE): $(GLYGENDSXREF_DONE) $(LOADGTC_DONE)
+	@echo "[`$(TIMESTAMP_CMD)`]: Start $@"
+	./loadggdsxref.py $(CACHE) $(DATA)/glygends_xrefs.txt
+	touch $@
+	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
+
 
 LOADGTC2PUBCHEM_DONE=.loadgtc2pubchem.$(DATESTAMP).done
 $(LOADGTC2PUBCHEM_DONE): $(LOADGTC_DONE)
@@ -206,7 +221,8 @@ ALLDONE=$(LOADGTC_DONE) $(LOADOLDXREF_DONE) \
 	$(LOADGDB2GOG_DONE) $(LOADEDLAB_DONE) $(LOADGWB_DONE) \
 	$(LOADSPECIES_DONE) $(LOADSUBSUBMP_DONE) $(LOADTISS_DONE) \
 	$(LOADCLASS_DONE) $(LOADNAMES_DONE) $(LOADMOTIF_DONE) \
-	$(UNICARBTAXID_DONE) $(GLYGENDSTAXID_DONE)
+	$(UNICARBTAXID_DONE) $(GLYGENDSTAXID_DONE) $(GLYGENDSXREF_DONE) \
+	$(LOADGLYGENDSXREF_DONE)
 
 all: startall $(ALLDONE)
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
