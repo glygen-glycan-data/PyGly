@@ -40,6 +40,7 @@ xrefs = read_crossref(sys.argv[2],prop)
 for m in w.iterglycan():
     acc = m.get('accession')
     m.delete_annotations(property=prop,type="CrossReference",source="GlyTouCan")
+    m.delete_annotations(property=prop,source="EdwardsLab",type="CrossReference")
     for xr in xrefs[acc]:
         m.add_annotation(value=xr,property=prop,source="EdwardsLab",type="CrossReference")
     if w.put(m):
