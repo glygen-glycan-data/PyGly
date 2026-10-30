@@ -863,6 +863,9 @@ G00814BW	GGM.000018	Lewis x	Substructure
 G00814BW	GGM.000022	Sialyl Lewis x	Nonreducing-End
 G00814BW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G00814BW	GGM.000036	Blood group H (type 2)	Substructure
+G00816ML	GGM.000001	Type 2 LN	Substructure
+G00816ML	GGM.000005	Type 1 LN	Substructure
+G00816ML	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G00817BI	GGM.000001	Type 2 LN	Substructure
 G00821JS	GGM.000001	Type 2 LN	Substructure
 G00821JS	GGM.000005	Type 1 LN	Substructure
@@ -2203,6 +2206,8 @@ G02080VH	GGM.000005	Type 1 LN	Substructure
 G02080VH	GGM.000006	Type 1 LN2	Substructure
 G02080VH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G02081QK	GGM.000001	Type 2 LN	Substructure
+G02084JO	GGM.000001	Type 2 LN	Substructure
+G02084JO	GGM.000005	Type 1 LN	Substructure
 G02086EJ	GGM.000001	Type 2 LN	Substructure
 G02086EJ	GGM.000005	Type 1 LN	Substructure
 G02086EJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -5698,6 +5703,8 @@ G05422YM	GGM.000036	Blood group H (type 2)	Substructure
 G05422YM	GGM.000042	Blood group H (type 1)	Substructure
 G05423BC	GGM.000001	Type 2 LN	Substructure
 G05423BC	GGM.000018	Lewis x	Substructure
+G05423NI	GGM.000001	Type 2 LN	Substructure
+G05423NI	GGM.000005	Type 1 LN	Substructure
 G05425EY	GGM.000001	Type 2 LN	Substructure
 G05425EY	GGM.000002	Type 2 LN2	Substructure
 G05425EY	GGM.000003	I antigen	Substructure
@@ -5709,6 +5716,8 @@ G05425EY	GGM.000036	Blood group H (type 2)	Substructure
 G05425EY	GGM.000038	Blood group A (type 2)	Substructure
 G05425EY	GGM.000042	Blood group H (type 1)	Substructure
 G05425EY	GGM.000044	Blood group A (type 1)	Substructure
+G05426WK	GGM.000001	Type 2 LN	Substructure
+G05426WK	GGM.000005	Type 1 LN	Substructure
 G05428SU	GGM.000016	LacdiNAc	Substructure
 G05428SU	GGM.000049	4'-sulfated LDN	Substructure
 G05429AH	GGM.000001	Type 2 LN	Substructure
@@ -6125,6 +6134,8 @@ G05953WP	GGM.000001	Type 2 LN	Substructure
 G05955CJ	GGM.000001	Type 2 LN	Substructure
 G05955CJ	GGM.000005	Type 1 LN	Substructure
 G05956ZF	GGM.000016	LacdiNAc	Substructure
+G05959RN	GGM.000001	Type 2 LN	Substructure
+G05959RN	GGM.000018	Lewis x	Substructure
 G05961BM	GGM.000005	Type 1 LN	Substructure
 G05970FR	GGM.000001	Type 2 LN	Substructure
 G05970FR	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -9434,6 +9445,7 @@ G09285AW	GGM.000001	Type 2 LN	Substructure
 G09285AW	GGM.000018	Lewis x	Substructure
 G09287HW	GGM.000001	Type 2 LN	Substructure
 G09287HW	GGM.000005	Type 1 LN	Substructure
+G09292GC	GGM.000005	Type 1 LN	Substructure
 G09295JI	GGM.000001	Type 2 LN	Substructure
 G09295JI	GGM.000005	Type 1 LN	Substructure
 G09295JI	GGM.000018	Lewis x	Substructure
@@ -9869,6 +9881,7 @@ G09793BH	GGM.000005	Type 1 LN	Substructure
 G09793BH	GGM.000006	Type 1 LN2	Substructure
 G09793BH	GGM.000018	Lewis x	Substructure
 G09793BH	GGM.000020	Lewis a	Substructure
+G09796KF	GGM.000001	Type 2 LN	Substructure
 G09799UN	GGM.000005	Type 1 LN	Substructure
 G09803KR	GGM.000001	Type 2 LN	Substructure
 G09804HS	GGM.000001	Type 2 LN	Substructure
@@ -10072,6 +10085,9 @@ G09964DJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G09976WS	GGM.000005	Type 1 LN	Substructure
 G09983HE	GGM.000015	a-Gal antigen	Substructure
 G09984BR	GGM.000001	Type 2 LN	Substructure
+G09987KD	GGM.000005	Type 1 LN	Substructure
+G09987KD	GGM.000042	Blood group H (type 1)	Substructure
+G09987KD	GGM.000044	Blood group A (type 1)	Substructure
 G09994QU	GGM.000001	Type 2 LN	Substructure
 G09994QU	GGM.000005	Type 1 LN	Substructure
 G09994QU	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -10148,6 +10164,8 @@ G10082ZS	GGM.000021	Lewis b	Substructure
 G10082ZS	GGM.000036	Blood group H (type 2)	Substructure
 G10082ZS	GGM.000042	Blood group H (type 1)	Substructure
 G10082ZS	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
+G10083AB	GGM.000001	Type 2 LN	Substructure
+G10083AB	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G10083AQ	GGM.000001	Type 2 LN	Substructure
 G10083AQ	GGM.000002	Type 2 LN2	Substructure
 G10083AQ	GGM.000005	Type 1 LN	Substructure
@@ -10194,6 +10212,7 @@ G10144JB	GGM.000005	Type 1 LN	Substructure
 G10148CV	GGM.000001	Type 2 LN	Substructure
 G10152AF	GGM.000001	Type 2 LN	Substructure
 G10152AF	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G10155GM	GGM.000001	Type 2 LN	Substructure
 G10158SF	GGM.000091	GD3	Whole-Glycan
 G10160CQ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G10160JI	GGM.000001	Type 2 LN	Substructure
@@ -10573,6 +10592,7 @@ G10483PN	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G10487BH	GGM.000001	Type 2 LN	Substructure
 G10487BH	GGM.000018	Lewis x	Substructure
 G10487BH	GGM.000029	3'-Sulfo-Lewis x	Substructure
+G10490HI	GGM.000001	Type 2 LN	Substructure
 G10491ZZ	GGM.000001	Type 2 LN	Substructure
 G10491ZZ	GGM.000005	Type 1 LN	Substructure
 G10491ZZ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -10864,6 +10884,8 @@ G10745YI	GGM.000005	Type 1 LN	Substructure
 G10745YI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G10746HE	GGM.000013	Sialyl T antigen	Whole-Glycan
 G10746HE	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G10750UF	GGM.000001	Type 2 LN	Substructure
+G10750UF	GGM.000018	Lewis x	Substructure
 G10752VN	GGM.000016	LacdiNAc	Substructure
 G10752VN	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G10752VN	GGM.000050	Sialylated LDN	Nonreducing-End
@@ -11598,6 +11620,8 @@ G11482PS	GGM.000015	a-Gal antigen	Substructure
 G11485ID	GGM.000015	a-Gal antigen	Substructure
 G11485ID	GGM.000102	B-GM1	Whole-Glycan
 G11486CA	GGM.000016	LacdiNAc	Substructure
+G11494CT	GGM.000001	Type 2 LN	Substructure
+G11494CT	GGM.000005	Type 1 LN	Substructure
 G11496BG	GGM.000001	Type 2 LN	Substructure
 G11496BG	GGM.000016	LacdiNAc	Substructure
 G11496BG	GGM.000017	Fucosylated LDN	Substructure
@@ -11615,6 +11639,10 @@ G11510PY	GGM.000001	Type 2 LN	Substructure
 G11510PY	GGM.000018	Lewis x	Substructure
 G11517BH	GGM.000001	Type 2 LN	Substructure
 G11517BH	GGM.000018	Lewis x	Substructure
+G11518EK	GGM.000001	Type 2 LN	Substructure
+G11518EK	GGM.000002	Type 2 LN2	Substructure
+G11518EK	GGM.000004	i antigen	Substructure
+G11518EK	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G11519KU	GGM.000001	Type 2 LN	Substructure
 G11519KU	GGM.000005	Type 1 LN	Substructure
 G11524CG	GGM.000001	Type 2 LN	Substructure
@@ -11666,6 +11694,8 @@ G11556LZ	GGM.000001	Type 2 LN	Substructure
 G11556LZ	GGM.000005	Type 1 LN	Substructure
 G11556LZ	GGM.000018	Lewis x	Substructure
 G11556LZ	GGM.000020	Lewis a	Substructure
+G11559WF	GGM.000001	Type 2 LN	Substructure
+G11559WF	GGM.000005	Type 1 LN	Substructure
 G11561RV	GGM.000001	Type 2 LN	Substructure
 G11561RV	GGM.000018	Lewis x	Substructure
 G11561RV	GGM.000019	Lewis y	Substructure
@@ -12076,6 +12106,8 @@ G12003BH	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G12003BH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G12012YB	GGM.000001	Type 2 LN	Substructure
 G12014ZL	GGM.000016	LacdiNAc	Substructure
+G12015IF	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G12015IF	GGM.000095	GM2	Whole-Glycan
 G12018LP	GGM.000001	Type 2 LN	Substructure
 G12018LP	GGM.000002	Type 2 LN2	Substructure
 G12018LP	GGM.000003	I antigen	Substructure
@@ -13270,6 +13302,16 @@ G13258AZ	GGM.000001	Type 2 LN	Substructure
 G13258LA	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G13258LA	GGM.000106	GD1a	Whole-Glycan
 G13258LA	GGM.000205	GD1aα	Whole-Glycan
+G13260EV	GGM.000001	Type 2 LN	Substructure
+G13260EV	GGM.000002	Type 2 LN2	Substructure
+G13260EV	GGM.000005	Type 1 LN	Substructure
+G13260EV	GGM.000006	Type 1 LN2	Substructure
+G13260EV	GGM.000018	Lewis x	Substructure
+G13260EV	GGM.000020	Lewis a	Substructure
+G13260EV	GGM.000033	VIM-2	Nonreducing-End
+G13260EV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G13260EV	GGM.000036	Blood group H (type 2)	Substructure
+G13260EV	GGM.000042	Blood group H (type 1)	Substructure
 G13260JU	GGM.000001	Type 2 LN	Substructure
 G13260JU	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G13260JU	GGM.000051	Sda/CT antigen	Substructure
@@ -13457,9 +13499,6 @@ G13419IE	GGM.000005	Type 1 LN	Substructure
 G13419TV	GGM.000001	Type 2 LN	Substructure
 G13419TV	GGM.000005	Type 1 LN	Substructure
 G13419TV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
-G13431QI	GGM.000001	Type 2 LN	Substructure
-G13431QI	GGM.000018	Lewis x	Substructure
-G13431QI	GGM.000036	Blood group H (type 2)	Substructure
 G13433DK	GGM.000005	Type 1 LN	Substructure
 G13433HA	GGM.000001	Type 2 LN	Substructure
 G13433HA	GGM.000005	Type 1 LN	Substructure
@@ -14350,6 +14389,7 @@ G14346JI	GGM.000018	Lewis x	Substructure
 G14346JI	GGM.000031	Lex-Lex	Substructure
 G14346MT	GGM.000001	Type 2 LN	Substructure
 G14346MT	GGM.000018	Lewis x	Substructure
+G14346TU	GGM.000001	Type 2 LN	Substructure
 G14353EG	GGM.000001	Type 2 LN	Substructure
 G14353EG	GGM.000005	Type 1 LN	Substructure
 G14353EG	GGM.000018	Lewis x	Substructure
@@ -15371,6 +15411,7 @@ G15454NP	GGM.000020	Lewis a	Substructure
 G15454NP	GGM.000036	Blood group H (type 2)	Substructure
 G15454NP	GGM.000042	Blood group H (type 1)	Substructure
 G15455NO	GGM.000016	LacdiNAc	Substructure
+G15457CU	GGM.000005	Type 1 LN	Substructure
 G15465JL	GGM.000005	Type 1 LN	Substructure
 G15465JL	GGM.000015	a-Gal antigen	Substructure
 G15465JL	GGM.000042	Blood group H (type 1)	Substructure
@@ -15486,6 +15527,8 @@ G15605KR	GGM.000001	Type 2 LN	Substructure
 G15605KR	GGM.000036	Blood group H (type 2)	Substructure
 G15605OU	GGM.000005	Type 1 LN	Substructure
 G15605OU	GGM.000042	Blood group H (type 1)	Substructure
+G15612IG	GGM.000001	Type 2 LN	Substructure
+G15612IG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G15615MS	GGM.000001	Type 2 LN	Substructure
 G15615MS	GGM.000015	a-Gal antigen	Substructure
 G15615MS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -16515,6 +16558,8 @@ G16598VU	GGM.000001	Type 2 LN	Substructure
 G16598VU	GGM.000002	Type 2 LN2	Substructure
 G16600BL	GGM.000001	Type 2 LN	Substructure
 G16600BL	GGM.000018	Lewis x	Substructure
+G16601LH	GGM.000001	Type 2 LN	Substructure
+G16601LH	GGM.000005	Type 1 LN	Substructure
 G16603FF	GGM.000001	Type 2 LN	Substructure
 G16603FF	GGM.000005	Type 1 LN	Substructure
 G16603FF	GGM.000015	a-Gal antigen	Substructure
@@ -16873,6 +16918,9 @@ G16909IW	GGM.000001	Type 2 LN	Substructure
 G16909IW	GGM.000005	Type 1 LN	Substructure
 G16909IW	GGM.000036	Blood group H (type 2)	Substructure
 G16909IW	GGM.000042	Blood group H (type 1)	Substructure
+G16915YV	GGM.000001	Type 2 LN	Substructure
+G16915YV	GGM.000005	Type 1 LN	Substructure
+G16915YV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G16915ZG	GGM.000001	Type 2 LN	Substructure
 G16915ZG	GGM.000005	Type 1 LN	Substructure
 G16921OK	GGM.000001	Type 2 LN	Substructure
@@ -17495,6 +17543,8 @@ G17515BW	GGM.000036	Blood group H (type 2)	Substructure
 G17515BW	GGM.000042	Blood group H (type 1)	Substructure
 G17527HL	GGM.000001	Type 2 LN	Substructure
 G17527HL	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G17530QE	GGM.000005	Type 1 LN	Substructure
+G17530QE	GGM.000042	Blood group H (type 1)	Substructure
 G17539BJ	GGM.000001	Type 2 LN	Substructure
 G17539BJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G17539DZ	GGM.000001	Type 2 LN	Substructure
@@ -18454,6 +18504,17 @@ G18551JS	GGM.000001	Type 2 LN	Substructure
 G18551JS	GGM.000005	Type 1 LN	Substructure
 G18551JS	GGM.000016	LacdiNAc	Substructure
 G18551JS	GGM.000049	4'-sulfated LDN	Substructure
+G18551VC	GGM.000001	Type 2 LN	Substructure
+G18551VC	GGM.000002	Type 2 LN2	Substructure
+G18551VC	GGM.000005	Type 1 LN	Substructure
+G18551VC	GGM.000006	Type 1 LN2	Substructure
+G18551VC	GGM.000018	Lewis x	Substructure
+G18551VC	GGM.000019	Lewis y	Substructure
+G18551VC	GGM.000020	Lewis a	Substructure
+G18551VC	GGM.000021	Lewis b	Substructure
+G18551VC	GGM.000036	Blood group H (type 2)	Substructure
+G18551VC	GGM.000042	Blood group H (type 1)	Substructure
+G18551VC	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G18558MD	GGM.000001	Type 2 LN	Substructure
 G18558MD	GGM.000018	Lewis x	Substructure
 G18558MD	GGM.000019	Lewis y	Substructure
@@ -19606,6 +19667,9 @@ G19677BZ	GGM.000001	Type 2 LN	Substructure
 G19677BZ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G19679RY	GGM.000001	Type 2 LN	Substructure
 G19679RY	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G19683SO	GGM.000005	Type 1 LN	Substructure
+G19683SO	GGM.000042	Blood group H (type 1)	Substructure
+G19683SO	GGM.000044	Blood group A (type 1)	Substructure
 G19687OL	GGM.000001	Type 2 LN	Substructure
 G19687OL	GGM.000002	Type 2 LN2	Substructure
 G19687OL	GGM.000004	i antigen	Substructure
@@ -20685,6 +20749,18 @@ G20860NB	GGM.000042	Blood group H (type 1)	Substructure
 G20860NB	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G20866OT	GGM.000001	Type 2 LN	Substructure
 G20866OT	GGM.000005	Type 1 LN	Substructure
+G20866RI	GGM.000001	Type 2 LN	Substructure
+G20866RI	GGM.000002	Type 2 LN2	Substructure
+G20866RI	GGM.000005	Type 1 LN	Substructure
+G20866RI	GGM.000006	Type 1 LN2	Substructure
+G20866RI	GGM.000018	Lewis x	Substructure
+G20866RI	GGM.000020	Lewis a	Substructure
+G20866RI	GGM.000029	3'-Sulfo-Lewis x	Substructure
+G20866RI	GGM.000030	3'-Sulfo-Lewis a	Substructure
+G20866RI	GGM.000033	VIM-2	Nonreducing-End
+G20866RI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G20866RI	GGM.000036	Blood group H (type 2)	Substructure
+G20866RI	GGM.000042	Blood group H (type 1)	Substructure
 G20867OR	GGM.000001	Type 2 LN	Substructure
 G20867OR	GGM.000005	Type 1 LN	Substructure
 G20867OR	GGM.000036	Blood group H (type 2)	Substructure
@@ -20741,6 +20817,9 @@ G20915SS	GGM.000006	Type 1 LN2	Substructure
 G20919FV	GGM.000001	Type 2 LN	Substructure
 G20919FV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G20920RO	GGM.000005	Type 1 LN	Substructure
+G20921VS	GGM.000001	Type 2 LN	Substructure
+G20921VS	GGM.000005	Type 1 LN	Substructure
+G20921VS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G20922AM	GGM.000001	Type 2 LN	Substructure
 G20922AM	GGM.000002	Type 2 LN2	Substructure
 G20922AM	GGM.000003	I antigen	Substructure
@@ -21460,6 +21539,13 @@ G21651KX	GGM.000018	Lewis x	Substructure
 G21651KX	GGM.000020	Lewis a	Substructure
 G21651KX	GGM.000021	Lewis b	Substructure
 G21651KX	GGM.000042	Blood group H (type 1)	Substructure
+G21653EK	GGM.000001	Type 2 LN	Substructure
+G21653EK	GGM.000002	Type 2 LN2	Substructure
+G21653EK	GGM.000005	Type 1 LN	Substructure
+G21659RR	GGM.000001	Type 2 LN	Substructure
+G21659RR	GGM.000002	Type 2 LN2	Substructure
+G21659RR	GGM.000004	i antigen	Substructure
+G21659RR	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G21661FK	GGM.000016	LacdiNAc	Substructure
 G21662XH	GGM.000001	Type 2 LN	Substructure
 G21663DV	GGM.000001	Type 2 LN	Substructure
@@ -22816,6 +22902,18 @@ G22953CD	GGM.000002	Type 2 LN2	Substructure
 G22953CD	GGM.000004	i antigen	Substructure
 G22953CD	GGM.000018	Lewis x	Substructure
 G22953CD	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G22958KH	GGM.000001	Type 2 LN	Substructure
+G22958KH	GGM.000002	Type 2 LN2	Substructure
+G22958KH	GGM.000003	I antigen	Substructure
+G22958KH	GGM.000005	Type 1 LN	Substructure
+G22958KH	GGM.000006	Type 1 LN2	Substructure
+G22958KH	GGM.000018	Lewis x	Substructure
+G22958KH	GGM.000020	Lewis a	Substructure
+G22958KH	GGM.000022	Sialyl Lewis x	Nonreducing-End
+G22958KH	GGM.000024	Sialyl Lewis a	Nonreducing-End
+G22958KH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G22958KH	GGM.000036	Blood group H (type 2)	Substructure
+G22958KH	GGM.000042	Blood group H (type 1)	Substructure
 G22970UG	GGM.000001	Type 2 LN	Substructure
 G22970UG	GGM.000036	Blood group H (type 2)	Substructure
 G22972ZW	GGM.000001	Type 2 LN	Substructure
@@ -23933,6 +24031,11 @@ G24096XU	GGM.000002	Type 2 LN2	Substructure
 G24096XU	GGM.000005	Type 1 LN	Substructure
 G24096XU	GGM.000006	Type 1 LN2	Substructure
 G24096XU	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G24097XC	GGM.000001	Type 2 LN	Substructure
+G24097XC	GGM.000002	Type 2 LN2	Substructure
+G24097XC	GGM.000005	Type 1 LN	Substructure
+G24097XC	GGM.000006	Type 1 LN2	Substructure
+G24097XC	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G24103KC	GGM.000001	Type 2 LN	Substructure
 G24103KC	GGM.000018	Lewis x	Substructure
 G24106LF	GGM.000001	Type 2 LN	Substructure
@@ -24494,6 +24597,8 @@ G24596WC	GGM.000016	LacdiNAc	Substructure
 G24599RJ	GGM.000001	Type 2 LN	Substructure
 G24599RJ	GGM.000005	Type 1 LN	Substructure
 G24599RJ	GGM.000016	LacdiNAc	Substructure
+G24600UT	GGM.000001	Type 2 LN	Substructure
+G24600UT	GGM.000002	Type 2 LN2	Substructure
 G24604HV	GGM.000001	Type 2 LN	Substructure
 G24608UD	GGM.000001	Type 2 LN	Substructure
 G24608UD	GGM.000005	Type 1 LN	Substructure
@@ -25243,6 +25348,9 @@ G25341OG	GGM.000001	Type 2 LN	Substructure
 G25341OG	GGM.000005	Type 1 LN	Substructure
 G25341OG	GGM.000018	Lewis x	Substructure
 G25341OG	GGM.000020	Lewis a	Substructure
+G25350NM	GGM.000005	Type 1 LN	Substructure
+G25350NM	GGM.000042	Blood group H (type 1)	Substructure
+G25350NM	GGM.000044	Blood group A (type 1)	Substructure
 G25350TT	GGM.000001	Type 2 LN	Substructure
 G25350TT	GGM.000016	LacdiNAc	Substructure
 G25353NN	GGM.000001	Type 2 LN	Substructure
@@ -25887,6 +25995,8 @@ G26054ZB	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G26054ZB	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G26054ZB	GGM.000036	Blood group H (type 2)	Substructure
 G26054ZB	GGM.000042	Blood group H (type 1)	Substructure
+G26061XA	GGM.000076	Gb5	Whole-Glycan
+G26061XA	GGM.000079	SSEA-3	Whole-Glycan
 G26062ZJ	GGM.000001	Type 2 LN	Substructure
 G26062ZJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G26063ZO	GGM.000016	LacdiNAc	Substructure
@@ -26162,6 +26272,15 @@ G26308VO	GGM.000006	Type 1 LN2	Substructure
 G26308VO	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G26315ZA	GGM.000016	LacdiNAc	Substructure
 G26315ZA	GGM.000049	4'-sulfated LDN	Substructure
+G26316QN	GGM.000001	Type 2 LN	Substructure
+G26316QN	GGM.000002	Type 2 LN2	Substructure
+G26316QN	GGM.000003	I antigen	Substructure
+G26316QN	GGM.000005	Type 1 LN	Substructure
+G26316QN	GGM.000006	Type 1 LN2	Substructure
+G26316QN	GGM.000018	Lewis x	Substructure
+G26316QN	GGM.000020	Lewis a	Substructure
+G26316QN	GGM.000036	Blood group H (type 2)	Substructure
+G26316QN	GGM.000042	Blood group H (type 1)	Substructure
 G26317RD	GGM.000001	Type 2 LN	Substructure
 G26317RD	GGM.000005	Type 1 LN	Substructure
 G26317RD	GGM.000016	LacdiNAc	Substructure
@@ -26297,6 +26416,8 @@ G26472EX	GGM.000018	Lewis x	Substructure
 G26474AZ	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G26478SG	GGM.000001	Type 2 LN	Substructure
 G26478SG	GGM.000018	Lewis x	Substructure
+G26484ZI	GGM.000001	Type 2 LN	Substructure
+G26484ZI	GGM.000005	Type 1 LN	Substructure
 G26485ZL	GGM.000001	Type 2 LN	Substructure
 G26487VT	GGM.000001	Type 2 LN	Substructure
 G26487VT	GGM.000005	Type 1 LN	Substructure
@@ -26619,6 +26740,8 @@ G26816AP	GGM.000001	Type 2 LN	Substructure
 G26816AP	GGM.000005	Type 1 LN	Substructure
 G26816AP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G26816AP	GGM.000051	Sda/CT antigen	Substructure
+G26819FJ	GGM.000001	Type 2 LN	Substructure
+G26819FJ	GGM.000018	Lewis x	Substructure
 G26822XQ	GGM.000016	LacdiNAc	Substructure
 G26822XQ	GGM.000017	Fucosylated LDN	Substructure
 G26827ST	GGM.000001	Type 2 LN	Substructure
@@ -27596,6 +27719,9 @@ G27814XA	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G27814XA	GGM.000036	Blood group H (type 2)	Substructure
 G27814XA	GGM.000038	Blood group A (type 2)	Substructure
 G27816PZ	GGM.000115	GQ1b	Whole-Glycan
+G27817JR	GGM.000001	Type 2 LN	Substructure
+G27817JR	GGM.000005	Type 1 LN	Substructure
+G27817JR	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G27817LK	GGM.000001	Type 2 LN	Substructure
 G27817LK	GGM.000005	Type 1 LN	Substructure
 G27817LK	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -27807,6 +27933,10 @@ G28074CB	GGM.000005	Type 1 LN	Substructure
 G28074CB	GGM.000015	a-Gal antigen	Substructure
 G28077AI	GGM.000001	Type 2 LN	Substructure
 G28077AI	GGM.000036	Blood group H (type 2)	Substructure
+G28078RL	GGM.000001	Type 2 LN	Substructure
+G28078RL	GGM.000036	Blood group H (type 2)	Substructure
+G28078RL	GGM.000038	Blood group A (type 2)	Substructure
+G28078RL	GGM.000041	Blood group A2 (A-associated H type 3)	Substructure
 G28080WH	GGM.000001	Type 2 LN	Substructure
 G28083XW	GGM.000001	Type 2 LN	Substructure
 G28083XW	GGM.000005	Type 1 LN	Substructure
@@ -28113,6 +28243,10 @@ G28360UC	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G28360UC	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G28362DW	GGM.000001	Type 2 LN	Substructure
 G28362DW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G28363QM	GGM.000001	Type 2 LN	Substructure
+G28363QM	GGM.000005	Type 1 LN	Substructure
+G28363QM	GGM.000036	Blood group H (type 2)	Substructure
+G28363QM	GGM.000042	Blood group H (type 1)	Substructure
 G28365PG	GGM.000001	Type 2 LN	Substructure
 G28367EQ	GGM.000001	Type 2 LN	Substructure
 G28367EQ	GGM.000005	Type 1 LN	Substructure
@@ -28232,6 +28366,8 @@ G28505XN	GGM.000019	Lewis y	Substructure
 G28505XN	GGM.000036	Blood group H (type 2)	Substructure
 G28505XN	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G28511JX	GGM.000001	Type 2 LN	Substructure
+G28513CC	GGM.000001	Type 2 LN	Substructure
+G28513CC	GGM.000005	Type 1 LN	Substructure
 G28514LQ	GGM.000001	Type 2 LN	Substructure
 G28514LQ	GGM.000005	Type 1 LN	Substructure
 G28514LQ	GGM.000036	Blood group H (type 2)	Substructure
@@ -28257,6 +28393,8 @@ G28525CY	GGM.000046	Blood group B (type 1) - Lewis b	Substructure
 G28536BG	GGM.000001	Type 2 LN	Substructure
 G28536BG	GGM.000005	Type 1 LN	Substructure
 G28536BG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G28539LH	GGM.000001	Type 2 LN	Substructure
+G28539LH	GGM.000005	Type 1 LN	Substructure
 G28546UC	GGM.000001	Type 2 LN	Substructure
 G28546UC	GGM.000002	Type 2 LN2	Substructure
 G28546UC	GGM.000005	Type 1 LN	Substructure
@@ -28382,6 +28520,8 @@ G28677QR	GGM.000001	Type 2 LN	Substructure
 G28678RG	GGM.000001	Type 2 LN	Substructure
 G28678RG	GGM.000018	Lewis x	Substructure
 G28678TH	GGM.000001	Type 2 LN	Substructure
+G28685AZ	GGM.000001	Type 2 LN	Substructure
+G28685AZ	GGM.000005	Type 1 LN	Substructure
 G28688RT	GGM.000001	Type 2 LN	Substructure
 G28688ZP	GGM.000001	Type 2 LN	Substructure
 G28688ZP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -28482,6 +28622,8 @@ G28765DO	GGM.000019	Lewis y	Substructure
 G28765DO	GGM.000036	Blood group H (type 2)	Substructure
 G28765DO	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G28765UP	GGM.000001	Type 2 LN	Substructure
+G28767TB	GGM.000001	Type 2 LN	Substructure
+G28767TB	GGM.000005	Type 1 LN	Substructure
 G28778GZ	GGM.000001	Type 2 LN	Substructure
 G28778GZ	GGM.000005	Type 1 LN	Substructure
 G28778GZ	GGM.000015	a-Gal antigen	Substructure
@@ -28720,9 +28862,6 @@ G29014XV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G29017AP	GGM.000001	Type 2 LN	Substructure
 G29017AP	GGM.000015	a-Gal antigen	Substructure
 G29017AP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
-G29018CB	GGM.000001	Type 2 LN	Substructure
-G29018CB	GGM.000018	Lewis x	Substructure
-G29018CB	GGM.000036	Blood group H (type 2)	Substructure
 G29021SQ	GGM.000001	Type 2 LN	Substructure
 G29024OJ	GGM.000001	Type 2 LN	Substructure
 G29025AG	GGM.000001	Type 2 LN	Substructure
@@ -28950,6 +29089,13 @@ G29279FJ	GGM.000015	a-Gal antigen	Substructure
 G29280VI	GGM.000001	Type 2 LN	Substructure
 G29280VI	GGM.000005	Type 1 LN	Substructure
 G29280VI	GGM.000015	a-Gal antigen	Substructure
+G29283ZA	GGM.000001	Type 2 LN	Substructure
+G29283ZA	GGM.000002	Type 2 LN2	Substructure
+G29283ZA	GGM.000003	I antigen	Substructure
+G29283ZA	GGM.000004	i antigen	Substructure
+G29283ZA	GGM.000015	a-Gal antigen	Substructure
+G29283ZA	GGM.000036	Blood group H (type 2)	Substructure
+G29283ZA	GGM.000037	Blood group B (type 2)	Substructure
 G29285CG	GGM.000001	Type 2 LN	Substructure
 G29285CG	GGM.000005	Type 1 LN	Substructure
 G29285CG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -29071,6 +29217,12 @@ G29440SE	GGM.000001	Type 2 LN	Substructure
 G29440SE	GGM.000018	Lewis x	Substructure
 G29443MC	GGM.000001	Type 2 LN	Substructure
 G29443MC	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G29444BO	GGM.000001	Type 2 LN	Substructure
+G29444BO	GGM.000002	Type 2 LN2	Substructure
+G29444BO	GGM.000003	I antigen	Substructure
+G29444BO	GGM.000005	Type 1 LN	Substructure
+G29444BO	GGM.000006	Type 1 LN2	Substructure
+G29444JS	GGM.000001	Type 2 LN	Substructure
 G29445ZK	GGM.000001	Type 2 LN	Substructure
 G29445ZK	GGM.000002	Type 2 LN2	Substructure
 G29448ED	GGM.000001	Type 2 LN	Substructure
@@ -29729,6 +29881,8 @@ G30182VC	GGM.000001	Type 2 LN	Substructure
 G30182VC	GGM.000005	Type 1 LN	Substructure
 G30182VC	GGM.000018	Lewis x	Substructure
 G30182VC	GGM.000020	Lewis a	Substructure
+G30183AX	GGM.000001	Type 2 LN	Substructure
+G30183AX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G30185HJ	GGM.000001	Type 2 LN	Substructure
 G30185HJ	GGM.000002	Type 2 LN2	Substructure
 G30185HJ	GGM.000005	Type 1 LN	Substructure
@@ -30101,6 +30255,9 @@ G30567BL	GGM.000001	Type 2 LN	Substructure
 G30567BL	GGM.000005	Type 1 LN	Substructure
 G30567BL	GGM.000036	Blood group H (type 2)	Substructure
 G30567BL	GGM.000042	Blood group H (type 1)	Substructure
+G30568BD	GGM.000001	Type 2 LN	Substructure
+G30568BD	GGM.000005	Type 1 LN	Substructure
+G30568BD	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G30569KZ	GGM.000001	Type 2 LN	Substructure
 G30571QM	GGM.000001	Type 2 LN	Substructure
 G30571QM	GGM.000005	Type 1 LN	Substructure
@@ -30780,6 +30937,7 @@ G31218SQ	GGM.000005	Type 1 LN	Substructure
 G31218SQ	GGM.000020	Lewis a	Substructure
 G31219GT	GGM.000001	Type 2 LN	Substructure
 G31219GT	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G31221HW	GGM.000014	Di-sialyl T antigen	Whole-Glycan
 G31223MN	GGM.000001	Type 2 LN	Substructure
 G31230IA	GGM.000001	Type 2 LN	Substructure
 G31230IA	GGM.000002	Type 2 LN2	Substructure
@@ -30792,6 +30950,8 @@ G31231LV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G31234AE	GGM.000001	Type 2 LN	Substructure
 G31234AE	GGM.000005	Type 1 LN	Substructure
 G31234AE	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G31234GM	GGM.000001	Type 2 LN	Substructure
+G31234GM	GGM.000005	Type 1 LN	Substructure
 G31237MZ	GGM.000001	Type 2 LN	Substructure
 G31237MZ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G31246GN	GGM.000001	Type 2 LN	Substructure
@@ -31605,6 +31765,7 @@ G32048NN	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G32051JX	GGM.000001	Type 2 LN	Substructure
 G32051JX	GGM.000005	Type 1 LN	Substructure
 G32051JX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G32053VX	GGM.000005	Type 1 LN	Substructure
 G32053XC	GGM.000001	Type 2 LN	Substructure
 G32053XC	GGM.000002	Type 2 LN2	Substructure
 G32053XC	GGM.000003	I antigen	Substructure
@@ -31994,6 +32155,9 @@ G32473VY	GGM.000015	a-Gal antigen	Substructure
 G32476MI	GGM.000001	Type 2 LN	Substructure
 G32476MI	GGM.000005	Type 1 LN	Substructure
 G32476MI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G32478XL	GGM.000001	Type 2 LN	Substructure
+G32478XL	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G32478XL	GGM.000036	Blood group H (type 2)	Substructure
 G32483HZ	GGM.000001	Type 2 LN	Substructure
 G32484LQ	GGM.000001	Type 2 LN	Substructure
 G32484LQ	GGM.000005	Type 1 LN	Substructure
@@ -32578,7 +32742,6 @@ G33052SB	GGM.000001	Type 2 LN	Substructure
 G33052SB	GGM.000005	Type 1 LN	Substructure
 G33054UG	GGM.000001	Type 2 LN	Substructure
 G33054UG	GGM.000005	Type 1 LN	Substructure
-G33057LH	GGM.000001	Type 2 LN	Substructure
 G33057MU	GGM.000001	Type 2 LN	Substructure
 G33057MU	GGM.000002	Type 2 LN2	Substructure
 G33057MU	GGM.000004	i antigen	Substructure
@@ -33207,6 +33370,7 @@ G33755SK	GGM.000001	Type 2 LN	Substructure
 G33758WJ	GGM.000020	Lewis a	Substructure
 G33758XE	GGM.000001	Type 2 LN	Substructure
 G33758XE	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G33761CA	GGM.000005	Type 1 LN	Substructure
 G33765AL	GGM.000001	Type 2 LN	Substructure
 G33765XW	GGM.000064	Lactosylceramide	Whole-Glycan
 G33769VO	GGM.000001	Type 2 LN	Substructure
@@ -33625,6 +33789,9 @@ G34158WL	GGM.000003	I antigen	Substructure
 G34158WL	GGM.000005	Type 1 LN	Substructure
 G34158WL	GGM.000006	Type 1 LN2	Substructure
 G34158WL	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G34162FD	GGM.000001	Type 2 LN	Substructure
+G34162FD	GGM.000005	Type 1 LN	Substructure
+G34162FD	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G34162ZB	GGM.000001	Type 2 LN	Substructure
 G34162ZB	GGM.000005	Type 1 LN	Substructure
 G34162ZB	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -34295,6 +34462,8 @@ G34859KW	GGM.000001	Type 2 LN	Substructure
 G34861PV	GGM.000001	Type 2 LN	Substructure
 G34861PV	GGM.000016	LacdiNAc	Substructure
 G34861PV	GGM.000049	4'-sulfated LDN	Substructure
+G34863RD	GGM.000016	LacdiNAc	Substructure
+G34863RD	GGM.000017	Fucosylated LDN	Substructure
 G34863TS	GGM.000001	Type 2 LN	Substructure
 G34863TS	GGM.000005	Type 1 LN	Substructure
 G34863TS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -34717,6 +34886,11 @@ G35270RH	GGM.000015	a-Gal antigen	Substructure
 G35275HF	GGM.000001	Type 2 LN	Substructure
 G35275HF	GGM.000005	Type 1 LN	Substructure
 G35275HF	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G35279OA	GGM.000001	Type 2 LN	Substructure
+G35279OA	GGM.000002	Type 2 LN2	Substructure
+G35279OA	GGM.000018	Lewis x	Substructure
+G35279OA	GGM.000033	VIM-2	Nonreducing-End
+G35279OA	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G35283JZ	GGM.000001	Type 2 LN	Substructure
 G35283JZ	GGM.000005	Type 1 LN	Substructure
 G35284MT	GGM.000001	Type 2 LN	Substructure
@@ -34934,6 +35108,7 @@ G35503GE	GGM.000005	Type 1 LN	Substructure
 G35503GE	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G35508EH	GGM.000001	Type 2 LN	Substructure
 G35508EH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G35519JN	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G35520MF	GGM.000001	Type 2 LN	Substructure
 G35520MF	GGM.000005	Type 1 LN	Substructure
 G35520MF	GGM.000016	LacdiNAc	Substructure
@@ -35359,6 +35534,9 @@ G35904ZB	GGM.000001	Type 2 LN	Substructure
 G35904ZB	GGM.000005	Type 1 LN	Substructure
 G35904ZB	GGM.000020	Lewis a	Substructure
 G35904ZB	GGM.000024	Sialyl Lewis a	Nonreducing-End
+G35905EF	GGM.000001	Type 2 LN	Substructure
+G35905EF	GGM.000005	Type 1 LN	Substructure
+G35905EF	GGM.000015	a-Gal antigen	Substructure
 G35910HY	GGM.000001	Type 2 LN	Substructure
 G35910HY	GGM.000036	Blood group H (type 2)	Substructure
 G35910XN	GGM.000001	Type 2 LN	Substructure
@@ -35777,6 +35955,8 @@ G36287XJ	GGM.000001	Type 2 LN	Substructure
 G36287XJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G36287XJ	GGM.000036	Blood group H (type 2)	Substructure
 G36287XJ	GGM.000038	Blood group A (type 2)	Substructure
+G36288BI	GGM.000001	Type 2 LN	Substructure
+G36288BI	GGM.000005	Type 1 LN	Substructure
 G36288QF	GGM.000001	Type 2 LN	Substructure
 G36288QF	GGM.000005	Type 1 LN	Substructure
 G36291QS	GGM.000001	Type 2 LN	Substructure
@@ -36015,6 +36195,12 @@ G36509PF	GGM.000020	Lewis a	Substructure
 G36509PF	GGM.000022	Sialyl Lewis x	Nonreducing-End
 G36509PF	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G36509PF	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G36517CV	GGM.000001	Type 2 LN	Substructure
+G36517CV	GGM.000002	Type 2 LN2	Substructure
+G36517CV	GGM.000003	I antigen	Substructure
+G36517CV	GGM.000005	Type 1 LN	Substructure
+G36517CV	GGM.000006	Type 1 LN2	Substructure
+G36517CV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G36519NW	GGM.000001	Type 2 LN	Substructure
 G36519NW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G36521AS	GGM.000001	Type 2 LN	Substructure
@@ -36374,6 +36560,7 @@ G36935OT	GGM.000018	Lewis x	Substructure
 G36935OT	GGM.000022	Sialyl Lewis x	Nonreducing-End
 G36935OT	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G36935SP	GGM.000001	Type 2 LN	Substructure
+G36936FD	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G36937VX	GGM.000001	Type 2 LN	Substructure
 G36937VX	GGM.000018	Lewis x	Substructure
 G36937VX	GGM.000019	Lewis y	Substructure
@@ -37142,6 +37329,7 @@ G37682CJ	GGM.000001	Type 2 LN	Substructure
 G37682CJ	GGM.000018	Lewis x	Substructure
 G37682CJ	GGM.000022	Sialyl Lewis x	Nonreducing-End
 G37682CJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G37684ZF	GGM.000005	Type 1 LN	Substructure
 G37687NO	GGM.000016	LacdiNAc	Substructure
 G37688RR	GGM.000001	Type 2 LN	Substructure
 G37688RR	GGM.000005	Type 1 LN	Substructure
@@ -37243,6 +37431,10 @@ G37825LG	GGM.000036	Blood group H (type 2)	Substructure
 G37827FY	GGM.000001	Type 2 LN	Substructure
 G37827FY	GGM.000036	Blood group H (type 2)	Substructure
 G37830TX	GGM.000088	Blood group A (type 4)	Whole-Glycan
+G37839QR	GGM.000001	Type 2 LN	Substructure
+G37839QR	GGM.000005	Type 1 LN	Substructure
+G37839QR	GGM.000026	2,6-sialyl-Sulfo-LN	Nonreducing-End
+G37839QR	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G37841WI	GGM.000001	Type 2 LN	Substructure
 G37841WI	GGM.000036	Blood group H (type 2)	Substructure
 G37843CX	GGM.000001	Type 2 LN	Substructure
@@ -38267,6 +38459,9 @@ G38883NU	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G38883QO	GGM.000001	Type 2 LN	Substructure
 G38883ZX	GGM.000001	Type 2 LN	Substructure
 G38883ZX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G38884ZP	GGM.000001	Type 2 LN	Substructure
+G38884ZP	GGM.000005	Type 1 LN	Substructure
+G38884ZP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G38887NC	GGM.000001	Type 2 LN	Substructure
 G38887NC	GGM.000018	Lewis x	Substructure
 G38887NC	GGM.000022	Sialyl Lewis x	Nonreducing-End
@@ -38763,6 +38958,7 @@ G39377DE	GGM.000005	Type 1 LN	Substructure
 G39377JQ	GGM.000005	Type 1 LN	Substructure
 G39379ZG	GGM.000001	Type 2 LN	Substructure
 G39379ZG	GGM.000016	LacdiNAc	Substructure
+G39385SV	GGM.000001	Type 2 LN	Substructure
 G39386LW	GGM.000001	Type 2 LN	Substructure
 G39386LW	GGM.000002	Type 2 LN2	Substructure
 G39386LW	GGM.000018	Lewis x	Substructure
@@ -39789,6 +39985,8 @@ G40381AZ	GGM.000020	Lewis a	Substructure
 G40384AJ	GGM.000001	Type 2 LN	Substructure
 G40388ZD	GGM.000001	Type 2 LN	Substructure
 G40388ZD	GGM.000015	a-Gal antigen	Substructure
+G40390EZ	GGM.000001	Type 2 LN	Substructure
+G40390EZ	GGM.000005	Type 1 LN	Substructure
 G40393FZ	GGM.000001	Type 2 LN	Substructure
 G40393FZ	GGM.000005	Type 1 LN	Substructure
 G40393FZ	GGM.000036	Blood group H (type 2)	Substructure
@@ -40012,6 +40210,7 @@ G40580KO	GGM.000042	Blood group H (type 1)	Substructure
 G40580KO	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G40583AQ	GGM.000016	LacdiNAc	Substructure
 G40583AQ	GGM.000017	Fucosylated LDN	Substructure
+G40584ER	GGM.000001	Type 2 LN	Substructure
 G40589GT	GGM.000001	Type 2 LN	Substructure
 G40589GT	GGM.000005	Type 1 LN	Substructure
 G40589UV	GGM.000009	T antigen	Whole-Glycan
@@ -40164,6 +40363,8 @@ G40723AK	GGM.000036	Blood group H (type 2)	Substructure
 G40723AK	GGM.000038	Blood group A (type 2)	Substructure
 G40723AK	GGM.000042	Blood group H (type 1)	Substructure
 G40723AK	GGM.000044	Blood group A (type 1)	Substructure
+G40727RF	GGM.000001	Type 2 LN	Substructure
+G40727RF	GGM.000005	Type 1 LN	Substructure
 G40728DA	GGM.000001	Type 2 LN	Substructure
 G40728DA	GGM.000015	a-Gal antigen	Substructure
 G40728DA	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -40493,6 +40694,10 @@ G41063ME	GGM.000002	Type 2 LN2	Substructure
 G41063ME	GGM.000015	a-Gal antigen	Substructure
 G41063ME	GGM.000036	Blood group H (type 2)	Substructure
 G41063ME	GGM.000037	Blood group B (type 2)	Substructure
+G41065TY	GGM.000001	Type 2 LN	Substructure
+G41065TY	GGM.000002	Type 2 LN2	Substructure
+G41065TY	GGM.000005	Type 1 LN	Substructure
+G41065TY	GGM.000006	Type 1 LN2	Substructure
 G41066SK	GGM.000015	a-Gal antigen	Substructure
 G41068JX	GGM.000001	Type 2 LN	Substructure
 G41068JX	GGM.000005	Type 1 LN	Substructure
@@ -40649,6 +40854,8 @@ G41192XR	GGM.000020	Lewis a	Substructure
 G41196CX	GGM.000001	Type 2 LN	Substructure
 G41196CX	GGM.000002	Type 2 LN2	Substructure
 G41196CX	GGM.000005	Type 1 LN	Substructure
+G41199QV	GGM.000001	Type 2 LN	Substructure
+G41199QV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G41205RC	GGM.000001	Type 2 LN	Substructure
 G41205RC	GGM.000002	Type 2 LN2	Substructure
 G41205RC	GGM.000003	I antigen	Substructure
@@ -41259,6 +41466,8 @@ G41868HL	GGM.000005	Type 1 LN	Substructure
 G41868HL	GGM.000018	Lewis x	Substructure
 G41868HL	GGM.000042	Blood group H (type 1)	Substructure
 G41870DO	GGM.000001	Type 2 LN	Substructure
+G41875BL	GGM.000001	Type 2 LN	Substructure
+G41875BL	GGM.000005	Type 1 LN	Substructure
 G41876BL	GGM.000098	GM1a	Whole-Glycan
 G41876QI	GGM.000015	a-Gal antigen	Substructure
 G41878UL	GGM.000001	Type 2 LN	Substructure
@@ -42746,6 +42955,9 @@ G43378HA	GGM.000043	Blood group B (type 1)	Substructure
 G43378HA	GGM.000046	Blood group B (type 1) - Lewis b	Substructure
 G43386RH	GGM.000001	Type 2 LN	Substructure
 G43386RH	GGM.000005	Type 1 LN	Substructure
+G43389DY	GGM.000001	Type 2 LN	Substructure
+G43389DY	GGM.000005	Type 1 LN	Substructure
+G43389DY	GGM.000077	Paragloboside	Whole-Glycan
 G43390OP	GGM.000001	Type 2 LN	Substructure
 G43390OP	GGM.000005	Type 1 LN	Substructure
 G43391VM	GGM.000001	Type 2 LN	Substructure
@@ -43615,6 +43827,12 @@ G44258NP	GGM.000001	Type 2 LN	Substructure
 G44258NP	GGM.000005	Type 1 LN	Substructure
 G44258NP	GGM.000018	Lewis x	Substructure
 G44258NP	GGM.000020	Lewis a	Substructure
+G44258OU	GGM.000001	Type 2 LN	Substructure
+G44258OU	GGM.000002	Type 2 LN2	Substructure
+G44258OU	GGM.000003	I antigen	Substructure
+G44258OU	GGM.000005	Type 1 LN	Substructure
+G44258OU	GGM.000006	Type 1 LN2	Substructure
+G44258OU	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G44259HA	GGM.000001	Type 2 LN	Substructure
 G44259HA	GGM.000005	Type 1 LN	Substructure
 G44259HA	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -43625,6 +43843,8 @@ G44268RP	GGM.000001	Type 2 LN	Substructure
 G44268RP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G44274UK	GGM.000001	Type 2 LN	Substructure
 G44274UK	GGM.000002	Type 2 LN2	Substructure
+G44281LK	GGM.000001	Type 2 LN	Substructure
+G44281LK	GGM.000016	LacdiNAc	Substructure
 G44284YL	GGM.000001	Type 2 LN	Substructure
 G44284YL	GGM.000005	Type 1 LN	Substructure
 G44284YL	GGM.000015	a-Gal antigen	Substructure
@@ -44873,6 +45093,12 @@ G45565NV	GGM.000002	Type 2 LN2	Substructure
 G45565NV	GGM.000003	I antigen	Substructure
 G45565NV	GGM.000036	Blood group H (type 2)	Substructure
 G45565NV	GGM.000038	Blood group A (type 2)	Substructure
+G45567BB	GGM.000001	Type 2 LN	Substructure
+G45567BB	GGM.000002	Type 2 LN2	Substructure
+G45567BB	GGM.000003	I antigen	Substructure
+G45567BB	GGM.000005	Type 1 LN	Substructure
+G45567BB	GGM.000006	Type 1 LN2	Substructure
+G45567BB	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G45568AH	GGM.000001	Type 2 LN	Substructure
 G45570JA	GGM.000001	Type 2 LN	Substructure
 G45570JA	GGM.000005	Type 1 LN	Substructure
@@ -45987,6 +46213,10 @@ G46712IX	GGM.000020	Lewis a	Substructure
 G46712PI	GGM.000005	Type 1 LN	Substructure
 G46716NW	GGM.000001	Type 2 LN	Substructure
 G46716NW	GGM.000005	Type 1 LN	Substructure
+G46717XK	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G46717XK	GGM.000098	GM1a	Whole-Glycan
+G46717XK	GGM.000100	GM1b	Whole-Glycan
+G46717XK	GGM.000202	GM1α	Whole-Glycan
 G46723DZ	GGM.000005	Type 1 LN	Substructure
 G46733KE	GGM.000001	Type 2 LN	Substructure
 G46733KE	GGM.000005	Type 1 LN	Substructure
@@ -46052,6 +46282,10 @@ G46780ME	GGM.000021	Lewis b	Substructure
 G46780ME	GGM.000036	Blood group H (type 2)	Substructure
 G46780ME	GGM.000042	Blood group H (type 1)	Substructure
 G46780ME	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
+G46782IW	GGM.000001	Type 2 LN	Substructure
+G46782IW	GGM.000002	Type 2 LN2	Substructure
+G46782IW	GGM.000003	I antigen	Substructure
+G46782IW	GGM.000005	Type 1 LN	Substructure
 G46785SS	GGM.000001	Type 2 LN	Substructure
 G46785SS	GGM.000018	Lewis x	Substructure
 G46785SS	GGM.000022	Sialyl Lewis x	Nonreducing-End
@@ -46552,6 +46786,8 @@ G47296XJ	GGM.000001	Type 2 LN	Substructure
 G47296XJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G47299BP	GGM.000001	Type 2 LN	Substructure
 G47300FW	GGM.000015	a-Gal antigen	Substructure
+G47300IA	GGM.000001	Type 2 LN	Substructure
+G47300IA	GGM.000005	Type 1 LN	Substructure
 G47302FP	GGM.000001	Type 2 LN	Substructure
 G47302FP	GGM.000002	Type 2 LN2	Substructure
 G47302FP	GGM.000018	Lewis x	Substructure
@@ -46569,6 +46805,8 @@ G47319FS	GGM.000001	Type 2 LN	Substructure
 G47319FS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G47320HQ	GGM.000001	Type 2 LN	Substructure
 G47320HQ	GGM.000005	Type 1 LN	Substructure
+G47321UE	GGM.000001	Type 2 LN	Substructure
+G47321UE	GGM.000018	Lewis x	Substructure
 G47325XO	GGM.000001	Type 2 LN	Substructure
 G47325YJ	GGM.000001	Type 2 LN	Substructure
 G47325YJ	GGM.000015	a-Gal antigen	Substructure
@@ -46685,6 +46923,9 @@ G47419EW	GGM.000036	Blood group H (type 2)	Substructure
 G47419EW	GGM.000038	Blood group A (type 2)	Substructure
 G47421EN	GGM.000001	Type 2 LN	Substructure
 G47421EN	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G47422TI	GGM.000001	Type 2 LN	Substructure
+G47422TI	GGM.000005	Type 1 LN	Substructure
+G47422TI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G47427YD	GGM.000001	Type 2 LN	Substructure
 G47427YD	GGM.000002	Type 2 LN2	Substructure
 G47427YD	GGM.000015	a-Gal antigen	Substructure
@@ -47048,9 +47289,6 @@ G47835DG	GGM.000001	Type 2 LN	Substructure
 G47837MS	GGM.000001	Type 2 LN	Substructure
 G47837MS	GGM.000005	Type 1 LN	Substructure
 G47837NQ	GGM.000001	Type 2 LN	Substructure
-G47839DU	GGM.000001	Type 2 LN	Substructure
-G47839DU	GGM.000018	Lewis x	Substructure
-G47839DU	GGM.000036	Blood group H (type 2)	Substructure
 G47843KQ	GGM.000001	Type 2 LN	Substructure
 G47843KQ	GGM.000005	Type 1 LN	Substructure
 G47845XM	GGM.000001	Type 2 LN	Substructure
@@ -48082,6 +48320,7 @@ G48929GA	GGM.000001	Type 2 LN	Substructure
 G48929GA	GGM.000005	Type 1 LN	Substructure
 G48930HG	GGM.000001	Type 2 LN	Substructure
 G48930HG	GGM.000005	Type 1 LN	Substructure
+G48941QR	GGM.000001	Type 2 LN	Substructure
 G48941WE	GGM.000001	Type 2 LN	Substructure
 G48941WE	GGM.000002	Type 2 LN2	Substructure
 G48941WE	GGM.000003	I antigen	Substructure
@@ -49027,6 +49266,9 @@ G49877ZY	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G49877ZY	GGM.000036	Blood group H (type 2)	Substructure
 G49877ZY	GGM.000042	Blood group H (type 1)	Substructure
 G49880WN	GGM.000001	Type 2 LN	Substructure
+G49881VR	GGM.000001	Type 2 LN	Substructure
+G49881VR	GGM.000002	Type 2 LN2	Substructure
+G49881VR	GGM.000003	I antigen	Substructure
 G49900EU	GGM.000001	Type 2 LN	Substructure
 G49900EU	GGM.000005	Type 1 LN	Substructure
 G49900NB	GGM.000001	Type 2 LN	Substructure
@@ -49068,6 +49310,10 @@ G49944DR	GGM.000001	Type 2 LN	Substructure
 G49946MC	GGM.000001	Type 2 LN	Substructure
 G49946MC	GGM.000005	Type 1 LN	Substructure
 G49946MC	GGM.000058	HNK-1 antigen	Nonreducing-End
+G49947US	GGM.000001	Type 2 LN	Substructure
+G49947US	GGM.000002	Type 2 LN2	Substructure
+G49947US	GGM.000005	Type 1 LN	Substructure
+G49947US	GGM.000006	Type 1 LN2	Substructure
 G49961JQ	GGM.000001	Type 2 LN	Substructure
 G49961JQ	GGM.000018	Lewis x	Substructure
 G49961XO	GGM.000001	Type 2 LN	Substructure
@@ -49992,6 +50238,7 @@ G50837EH	GGM.000015	a-Gal antigen	Substructure
 G50839HB	GGM.000001	Type 2 LN	Substructure
 G50840BB	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G50842FY	GGM.000005	Type 1 LN	Substructure
+G50843FG	GGM.000001	Type 2 LN	Substructure
 G50844LU	GGM.000001	Type 2 LN	Substructure
 G50844LU	GGM.000005	Type 1 LN	Substructure
 G50845UM	GGM.000001	Type 2 LN	Substructure
@@ -50401,6 +50648,11 @@ G51247NH	GGM.000036	Blood group H (type 2)	Substructure
 G51247NH	GGM.000037	Blood group B (type 2)	Substructure
 G51247NH	GGM.000042	Blood group H (type 1)	Substructure
 G51247NH	GGM.000043	Blood group B (type 1)	Substructure
+G51248LZ	GGM.000001	Type 2 LN	Substructure
+G51248LZ	GGM.000002	Type 2 LN2	Substructure
+G51248LZ	GGM.000003	I antigen	Substructure
+G51248LZ	GGM.000005	Type 1 LN	Substructure
+G51248LZ	GGM.000006	Type 1 LN2	Substructure
 G51249NK	GGM.000001	Type 2 LN	Substructure
 G51249NK	GGM.000005	Type 1 LN	Substructure
 G51249NK	GGM.000018	Lewis x	Substructure
@@ -50782,6 +51034,7 @@ G51699JN	GGM.000018	Lewis x	Substructure
 G51699JN	GGM.000020	Lewis a	Substructure
 G51699SI	GGM.000085	para-Forssman glycolipid	Whole-Glycan
 G51699UE	GGM.000001	Type 2 LN	Substructure
+G51699WD	GGM.000096	N-Glycolyl-GM2	Whole-Glycan
 G51705EB	GGM.000001	Type 2 LN	Substructure
 G51705EB	GGM.000016	LacdiNAc	Substructure
 G51705EB	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
@@ -51892,6 +52145,7 @@ G52951VH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G52956BX	GGM.000001	Type 2 LN	Substructure
 G52956BX	GGM.000036	Blood group H (type 2)	Substructure
 G52960IE	GGM.000001	Type 2 LN	Substructure
+G52960LJ	GGM.000001	Type 2 LN	Substructure
 G52961JQ	GGM.000001	Type 2 LN	Substructure
 G52961JQ	GGM.000018	Lewis x	Substructure
 G52962ZI	GGM.000001	Type 2 LN	Substructure
@@ -51978,6 +52232,9 @@ G53037AC	GGM.000020	Lewis a	Substructure
 G53037AC	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G53038IF	GGM.000001	Type 2 LN	Substructure
 G53038IF	GGM.000005	Type 1 LN	Substructure
+G53042AA	GGM.000001	Type 2 LN	Substructure
+G53042AA	GGM.000018	Lewis x	Substructure
+G53042AA	GGM.000036	Blood group H (type 2)	Substructure
 G53046TR	GGM.000001	Type 2 LN	Substructure
 G53046TR	GGM.000002	Type 2 LN2	Substructure
 G53046TR	GGM.000004	i antigen	Substructure
@@ -52565,6 +52822,8 @@ G53653MK	GGM.000001	Type 2 LN	Substructure
 G53653MK	GGM.000005	Type 1 LN	Substructure
 G53653MK	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G53657SK	GGM.000001	Type 2 LN	Substructure
+G53661LK	GGM.000001	Type 2 LN	Substructure
+G53661LK	GGM.000005	Type 1 LN	Substructure
 G53662KB	GGM.000001	Type 2 LN	Substructure
 G53664NP	GGM.000001	Type 2 LN	Substructure
 G53664NP	GGM.000005	Type 1 LN	Substructure
@@ -53542,6 +53801,9 @@ G54580AN	GGM.000001	Type 2 LN	Substructure
 G54580AN	GGM.000005	Type 1 LN	Substructure
 G54580AN	GGM.000036	Blood group H (type 2)	Substructure
 G54580AN	GGM.000042	Blood group H (type 1)	Substructure
+G54582EG	GGM.000001	Type 2 LN	Substructure
+G54582EG	GGM.000005	Type 1 LN	Substructure
+G54582EG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G54584ER	GGM.000001	Type 2 LN	Substructure
 G54584SU	GGM.000001	Type 2 LN	Substructure
 G54584SU	GGM.000002	Type 2 LN2	Substructure
@@ -54210,6 +54472,8 @@ G55328FI	GGM.000005	Type 1 LN	Substructure
 G55328FI	GGM.000026	2,6-sialyl-Sulfo-LN	Nonreducing-End
 G55328FI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G55331YF	GGM.000001	Type 2 LN	Substructure
+G55333QT	GGM.000001	Type 2 LN	Substructure
+G55333QT	GGM.000005	Type 1 LN	Substructure
 G55340IG	GGM.000001	Type 2 LN	Substructure
 G55340IG	GGM.000005	Type 1 LN	Substructure
 G55340IG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -54313,6 +54577,15 @@ G55423CV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G55424JJ	GGM.000001	Type 2 LN	Substructure
 G55424JJ	GGM.000002	Type 2 LN2	Substructure
 G55424JJ	GGM.000004	i antigen	Substructure
+G55427HM	GGM.000001	Type 2 LN	Substructure
+G55427HM	GGM.000002	Type 2 LN2	Substructure
+G55427HM	GGM.000005	Type 1 LN	Substructure
+G55427HM	GGM.000006	Type 1 LN2	Substructure
+G55427HM	GGM.000018	Lewis x	Substructure
+G55427HM	GGM.000020	Lewis a	Substructure
+G55427HM	GGM.000036	Blood group H (type 2)	Substructure
+G55427HM	GGM.000042	Blood group H (type 1)	Substructure
+G55427HM	GGM.000122	Mono-fucosyl LN3	Whole-Glycan
 G55444TZ	GGM.000001	Type 2 LN	Substructure
 G55444TZ	GGM.000005	Type 1 LN	Substructure
 G55444TZ	GGM.000018	Lewis x	Substructure
@@ -54487,6 +54760,9 @@ G55619KE	GGM.000002	Type 2 LN2	Substructure
 G55619KE	GGM.000005	Type 1 LN	Substructure
 G55619KE	GGM.000006	Type 1 LN2	Substructure
 G55623EW	GGM.000001	Type 2 LN	Substructure
+G55626OI	GGM.000001	Type 2 LN	Substructure
+G55626OI	GGM.000005	Type 1 LN	Substructure
+G55626OI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G55630OZ	GGM.000001	Type 2 LN	Substructure
 G55630OZ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G55633AI	GGM.000001	Type 2 LN	Substructure
@@ -55648,6 +55924,7 @@ G56970BU	GGM.000018	Lewis x	Substructure
 G56970JS	GGM.000001	Type 2 LN	Substructure
 G56970JS	GGM.000005	Type 1 LN	Substructure
 G56970JS	GGM.000042	Blood group H (type 1)	Substructure
+G56971SN	GGM.000001	Type 2 LN	Substructure
 G56973FQ	GGM.000015	a-Gal antigen	Substructure
 G56973OG	GGM.000001	Type 2 LN	Substructure
 G56973OG	GGM.000005	Type 1 LN	Substructure
@@ -55734,6 +56011,8 @@ G57051HS	GGM.000036	Blood group H (type 2)	Substructure
 G57051OG	GGM.000001	Type 2 LN	Substructure
 G57051UJ	GGM.000016	LacdiNAc	Substructure
 G57052CH	GGM.000001	Type 2 LN	Substructure
+G57054QI	GGM.000001	Type 2 LN	Substructure
+G57054QI	GGM.000005	Type 1 LN	Substructure
 G57061PX	GGM.000001	Type 2 LN	Substructure
 G57061PX	GGM.000002	Type 2 LN2	Substructure
 G57061PX	GGM.000005	Type 1 LN	Substructure
@@ -55881,6 +56160,14 @@ G57204IX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G57208CK	GGM.000001	Type 2 LN	Substructure
 G57210SQ	GGM.000001	Type 2 LN	Substructure
 G57210SQ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G57211BW	GGM.000001	Type 2 LN	Substructure
+G57211BW	GGM.000002	Type 2 LN2	Substructure
+G57211BW	GGM.000003	I antigen	Substructure
+G57211BW	GGM.000005	Type 1 LN	Substructure
+G57211BW	GGM.000006	Type 1 LN2	Substructure
+G57211BW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G57211BW	GGM.000036	Blood group H (type 2)	Substructure
+G57211BW	GGM.000042	Blood group H (type 1)	Substructure
 G57213HI	GGM.000001	Type 2 LN	Substructure
 G57213HI	GGM.000002	Type 2 LN2	Substructure
 G57213HI	GGM.000004	i antigen	Substructure
@@ -56994,6 +57281,8 @@ G58473ZD	GGM.000001	Type 2 LN	Substructure
 G58473ZD	GGM.000018	Lewis x	Substructure
 G58477IT	GGM.000016	LacdiNAc	Substructure
 G58478JZ	GGM.000001	Type 2 LN	Substructure
+G58481XG	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G58481XG	GGM.000095	GM2	Whole-Glycan
 G58481XO	GGM.000001	Type 2 LN	Substructure
 G58481XO	GGM.000005	Type 1 LN	Substructure
 G58481XO	GGM.000016	LacdiNAc	Substructure
@@ -58946,6 +59235,14 @@ G60563FD	GGM.000001	Type 2 LN	Substructure
 G60563FD	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G60564DP	GGM.000001	Type 2 LN	Substructure
 G60564DP	GGM.000036	Blood group H (type 2)	Substructure
+G60565BT	GGM.000001	Type 2 LN	Substructure
+G60565BT	GGM.000002	Type 2 LN2	Substructure
+G60565BT	GGM.000005	Type 1 LN	Substructure
+G60565BT	GGM.000006	Type 1 LN2	Substructure
+G60565BT	GGM.000018	Lewis x	Substructure
+G60565BT	GGM.000020	Lewis a	Substructure
+G60565BT	GGM.000036	Blood group H (type 2)	Substructure
+G60565BT	GGM.000042	Blood group H (type 1)	Substructure
 G60567MY	GGM.000001	Type 2 LN	Substructure
 G60567MY	GGM.000005	Type 1 LN	Substructure
 G60568XW	GGM.000001	Type 2 LN	Substructure
@@ -60463,6 +60760,8 @@ G62021HG	GGM.000001	Type 2 LN	Substructure
 G62021HG	GGM.000018	Lewis x	Substructure
 G62021HG	GGM.000022	Sialyl Lewis x	Nonreducing-End
 G62021HG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G62024YN	GGM.000001	Type 2 LN	Substructure
+G62024YN	GGM.000005	Type 1 LN	Substructure
 G62028IE	GGM.000001	Type 2 LN	Substructure
 G62028IE	GGM.000005	Type 1 LN	Substructure
 G62028IE	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -60787,6 +61086,9 @@ G62400CJ	GGM.000001	Type 2 LN	Substructure
 G62400CJ	GGM.000018	Lewis x	Substructure
 G62400CJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G62401LZ	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G62406KV	GGM.000001	Type 2 LN	Substructure
+G62406KV	GGM.000005	Type 1 LN	Substructure
+G62406KV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G62407IF	GGM.000001	Type 2 LN	Substructure
 G62407IF	GGM.000036	Blood group H (type 2)	Substructure
 G62408IZ	GGM.000001	Type 2 LN	Substructure
@@ -61599,6 +61901,8 @@ G63310QT	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G63310QT	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G63311BD	GGM.000001	Type 2 LN	Substructure
 G63311BD	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G63314SV	GGM.000001	Type 2 LN	Substructure
+G63314SV	GGM.000005	Type 1 LN	Substructure
 G63317CA	GGM.000001	Type 2 LN	Substructure
 G63317CA	GGM.000005	Type 1 LN	Substructure
 G63317CA	GGM.000018	Lewis x	Substructure
@@ -62446,6 +62750,7 @@ G64206XB	GGM.000005	Type 1 LN	Substructure
 G64208CW	GGM.000001	Type 2 LN	Substructure
 G64216NG	GGM.000001	Type 2 LN	Substructure
 G64216NG	GGM.000005	Type 1 LN	Substructure
+G64217KG	GGM.000001	Type 2 LN	Substructure
 G64223CQ	GGM.000001	Type 2 LN	Substructure
 G64225SR	GGM.000001	Type 2 LN	Substructure
 G64225SR	GGM.000005	Type 1 LN	Substructure
@@ -62577,6 +62882,8 @@ G64379QQ	GGM.000016	LacdiNAc	Substructure
 G64379QQ	GGM.000017	Fucosylated LDN	Substructure
 G64384IL	GGM.000001	Type 2 LN	Substructure
 G64384IL	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G64387BL	GGM.000001	Type 2 LN	Substructure
+G64387BL	GGM.000005	Type 1 LN	Substructure
 G64388ER	GGM.000005	Type 1 LN	Substructure
 G64388ER	GGM.000020	Lewis a	Substructure
 G64388ER	GGM.000021	Lewis b	Substructure
@@ -62754,7 +63061,6 @@ G64538MP	GGM.000003	I antigen	Substructure
 G64538MP	GGM.000015	a-Gal antigen	Substructure
 G64538MP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G64538ZR	GGM.000005	Type 1 LN	Substructure
-G64539ES	GGM.000001	Type 2 LN	Substructure
 G64544UC	GGM.000001	Type 2 LN	Substructure
 G64545GA	GGM.000001	Type 2 LN	Substructure
 G64545GA	GGM.000018	Lewis x	Substructure
@@ -62910,6 +63216,9 @@ G64725VJ	GGM.000001	Type 2 LN	Substructure
 G64729EV	GGM.000001	Type 2 LN	Substructure
 G64729EV	GGM.000005	Type 1 LN	Substructure
 G64729EV	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G64734ZL	GGM.000001	Type 2 LN	Substructure
+G64734ZL	GGM.000005	Type 1 LN	Substructure
+G64734ZL	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G64739XF	GGM.000001	Type 2 LN	Substructure
 G64739XF	GGM.000005	Type 1 LN	Substructure
 G64739XF	GGM.000015	a-Gal antigen	Substructure
@@ -62999,6 +63308,12 @@ G64842QB	GGM.000036	Blood group H (type 2)	Substructure
 G64842QB	GGM.000042	Blood group H (type 1)	Substructure
 G64844ET	GGM.000001	Type 2 LN	Substructure
 G64844ET	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G64844QG	GGM.000001	Type 2 LN	Substructure
+G64844QG	GGM.000002	Type 2 LN2	Substructure
+G64844QG	GGM.000003	I antigen	Substructure
+G64844QG	GGM.000005	Type 1 LN	Substructure
+G64844QG	GGM.000006	Type 1 LN2	Substructure
+G64844QG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G64844QX	GGM.000001	Type 2 LN	Substructure
 G64844QX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G64849QZ	GGM.000005	Type 1 LN	Substructure
@@ -64898,6 +65213,7 @@ G66783JN	GGM.000036	Blood group H (type 2)	Substructure
 G66783JN	GGM.000042	Blood group H (type 1)	Substructure
 G66788KX	GGM.000001	Type 2 LN	Substructure
 G66788KX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G66788LV	GGM.000001	Type 2 LN	Substructure
 G66788MF	GGM.000001	Type 2 LN	Substructure
 G66797YK	GGM.000001	Type 2 LN	Substructure
 G66797YK	GGM.000002	Type 2 LN2	Substructure
@@ -65748,6 +66064,8 @@ G67662HW	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G67662HW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G67662PT	GGM.000001	Type 2 LN	Substructure
 G67662PT	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G67669HP	GGM.000001	Type 2 LN	Substructure
+G67669HP	GGM.000018	Lewis x	Substructure
 G67676ND	GGM.000005	Type 1 LN	Substructure
 G67679JJ	GGM.000001	Type 2 LN	Substructure
 G67679JJ	GGM.000005	Type 1 LN	Substructure
@@ -67020,10 +67338,24 @@ G68956JQ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G68957QP	GGM.000001	Type 2 LN	Substructure
 G68959TR	GGM.000001	Type 2 LN	Substructure
 G68959TR	GGM.000005	Type 1 LN	Substructure
+G68965PO	GGM.000001	Type 2 LN	Substructure
+G68965PO	GGM.000018	Lewis x	Substructure
 G68969GZ	GGM.000001	Type 2 LN	Substructure
 G68969GZ	GGM.000005	Type 1 LN	Substructure
 G68969GZ	GGM.000018	Lewis x	Substructure
 G68969GZ	GGM.000020	Lewis a	Substructure
+G68971IT	GGM.000001	Type 2 LN	Substructure
+G68971IT	GGM.000002	Type 2 LN2	Substructure
+G68971IT	GGM.000003	I antigen	Substructure
+G68971IT	GGM.000005	Type 1 LN	Substructure
+G68971IT	GGM.000006	Type 1 LN2	Substructure
+G68971IT	GGM.000018	Lewis x	Substructure
+G68971IT	GGM.000019	Lewis y	Substructure
+G68971IT	GGM.000020	Lewis a	Substructure
+G68971IT	GGM.000021	Lewis b	Substructure
+G68971IT	GGM.000036	Blood group H (type 2)	Substructure
+G68971IT	GGM.000042	Blood group H (type 1)	Substructure
+G68971IT	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G68976EG	GGM.000001	Type 2 LN	Substructure
 G68976EG	GGM.000005	Type 1 LN	Substructure
 G68976EG	GGM.000018	Lewis x	Substructure
@@ -67250,6 +67582,7 @@ G69187MR	GGM.000036	Blood group H (type 2)	Substructure
 G69187MR	GGM.000038	Blood group A (type 2)	Substructure
 G69187WD	GGM.000001	Type 2 LN	Substructure
 G69187WD	GGM.000036	Blood group H (type 2)	Substructure
+G69188BR	GGM.000001	Type 2 LN	Substructure
 G69189FV	GGM.000001	Type 2 LN	Substructure
 G69189FV	GGM.000002	Type 2 LN2	Substructure
 G69189FV	GGM.000005	Type 1 LN	Substructure
@@ -67511,6 +67844,7 @@ G69459FM	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G69459FM	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G69461KL	GGM.000001	Type 2 LN	Substructure
 G69464WX	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G69465OE	GGM.000001	Type 2 LN	Substructure
 G69465YZ	GGM.000001	Type 2 LN	Substructure
 G69465YZ	GGM.000002	Type 2 LN2	Substructure
 G69465YZ	GGM.000003	I antigen	Substructure
@@ -68136,6 +68470,7 @@ G70052FI	GGM.000001	Type 2 LN	Substructure
 G70052FI	GGM.000005	Type 1 LN	Substructure
 G70052FI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G70052MF	GGM.000001	Type 2 LN	Substructure
+G70054BW	GGM.000001	Type 2 LN	Substructure
 G70058HN	GGM.000001	Type 2 LN	Substructure
 G70058HN	GGM.000005	Type 1 LN	Substructure
 G70058HN	GGM.000006	Type 1 LN2	Substructure
@@ -68218,11 +68553,13 @@ G70120RA	GGM.000001	Type 2 LN	Substructure
 G70120RA	GGM.000005	Type 1 LN	Substructure
 G70120RA	GGM.000015	a-Gal antigen	Substructure
 G70120RA	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G70124XQ	GGM.000005	Type 1 LN	Substructure
 G70125XL	GGM.000001	Type 2 LN	Substructure
 G70146PH	GGM.000001	Type 2 LN	Substructure
 G70146PH	GGM.000002	Type 2 LN2	Substructure
 G70146PH	GGM.000004	i antigen	Substructure
 G70146PH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G70155QV	GGM.000001	Type 2 LN	Substructure
 G70158LK	GGM.000001	Type 2 LN	Substructure
 G70158LK	GGM.000005	Type 1 LN	Substructure
 G70161WP	GGM.000001	Type 2 LN	Substructure
@@ -69037,6 +69374,8 @@ G71037KV	GGM.000007	Type 1 LN3	Substructure
 G71041DQ	GGM.000001	Type 2 LN	Substructure
 G71041DQ	GGM.000005	Type 1 LN	Substructure
 G71042XC	GGM.000001	Type 2 LN	Substructure
+G71044JS	GGM.000001	Type 2 LN	Substructure
+G71044JS	GGM.000018	Lewis x	Substructure
 G71046QF	GGM.000001	Type 2 LN	Substructure
 G71046QF	GGM.000005	Type 1 LN	Substructure
 G71046QF	GGM.000018	Lewis x	Substructure
@@ -69811,6 +70150,10 @@ G71725KE	GGM.000021	Lewis b	Substructure
 G71725KE	GGM.000036	Blood group H (type 2)	Substructure
 G71725KE	GGM.000042	Blood group H (type 1)	Substructure
 G71725KE	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
+G71728KM	GGM.000001	Type 2 LN	Substructure
+G71728KM	GGM.000002	Type 2 LN2	Substructure
+G71728KM	GGM.000004	i antigen	Substructure
+G71728KM	GGM.000018	Lewis x	Substructure
 G71730FG	GGM.000001	Type 2 LN	Substructure
 G71730FG	GGM.000018	Lewis x	Substructure
 G71743PO	GGM.000001	Type 2 LN	Substructure
@@ -69869,6 +70212,9 @@ G71794NT	GGM.000018	Lewis x	Substructure
 G71794NT	GGM.000020	Lewis a	Substructure
 G71794NT	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G71797UT	GGM.000001	Type 2 LN	Substructure
+G71803RP	GGM.000001	Type 2 LN	Substructure
+G71803RP	GGM.000005	Type 1 LN	Substructure
+G71803RP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G71804ZL	GGM.000001	Type 2 LN	Substructure
 G71804ZL	GGM.000005	Type 1 LN	Substructure
 G71804ZL	GGM.000018	Lewis x	Substructure
@@ -69932,6 +70278,9 @@ G71835SV	GGM.000018	Lewis x	Substructure
 G71835SV	GGM.000020	Lewis a	Substructure
 G71835SV	GGM.000036	Blood group H (type 2)	Substructure
 G71835SV	GGM.000042	Blood group H (type 1)	Substructure
+G71837GB	GGM.000001	Type 2 LN	Substructure
+G71837GB	GGM.000005	Type 1 LN	Substructure
+G71837GB	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G71847NN	GGM.000001	Type 2 LN	Substructure
 G71847NN	GGM.000005	Type 1 LN	Substructure
 G71847XW	GGM.000001	Type 2 LN	Substructure
@@ -70166,6 +70515,9 @@ G72107SE	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G72108NZ	GGM.000001	Type 2 LN	Substructure
 G72108NZ	GGM.000005	Type 1 LN	Substructure
 G72108NZ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G72112HJ	GGM.000001	Type 2 LN	Substructure
+G72112HJ	GGM.000005	Type 1 LN	Substructure
+G72112HJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G72112RK	GGM.000001	Type 2 LN	Substructure
 G72112RK	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G72117WC	GGM.000001	Type 2 LN	Substructure
@@ -70777,6 +71129,9 @@ G72872SQ	GGM.000001	Type 2 LN	Substructure
 G72872SQ	GGM.000002	Type 2 LN2	Substructure
 G72872SQ	GGM.000005	Type 1 LN	Substructure
 G72872SQ	GGM.000006	Type 1 LN2	Substructure
+G72874FT	GGM.000005	Type 1 LN	Substructure
+G72874FT	GGM.000042	Blood group H (type 1)	Substructure
+G72874FT	GGM.000044	Blood group A (type 1)	Substructure
 G72877CE	GGM.000001	Type 2 LN	Substructure
 G72877CE	GGM.000005	Type 1 LN	Substructure
 G72877CE	GGM.000018	Lewis x	Substructure
@@ -71263,6 +71618,15 @@ G73429NT	GGM.000015	a-Gal antigen	Substructure
 G73432VT	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G73432XL	GGM.000001	Type 2 LN	Substructure
 G73432XL	GGM.000005	Type 1 LN	Substructure
+G73433GN	GGM.000001	Type 2 LN	Substructure
+G73433GN	GGM.000002	Type 2 LN2	Substructure
+G73433GN	GGM.000003	I antigen	Substructure
+G73433GN	GGM.000005	Type 1 LN	Substructure
+G73433GN	GGM.000006	Type 1 LN2	Substructure
+G73433GN	GGM.000018	Lewis x	Substructure
+G73433GN	GGM.000020	Lewis a	Substructure
+G73433GN	GGM.000036	Blood group H (type 2)	Substructure
+G73433GN	GGM.000042	Blood group H (type 1)	Substructure
 G73436ZY	GGM.000001	Type 2 LN	Substructure
 G73436ZY	GGM.000005	Type 1 LN	Substructure
 G73436ZY	GGM.000018	Lewis x	Substructure
@@ -71457,6 +71821,12 @@ G73644IQ	GGM.000018	Lewis x	Substructure
 G73644IQ	GGM.000020	Lewis a	Substructure
 G73644IQ	GGM.000021	Lewis b	Substructure
 G73644IQ	GGM.000042	Blood group H (type 1)	Substructure
+G73645XO	GGM.000001	Type 2 LN	Substructure
+G73645XO	GGM.000002	Type 2 LN2	Substructure
+G73645XO	GGM.000005	Type 1 LN	Substructure
+G73645XO	GGM.000006	Type 1 LN2	Substructure
+G73645XO	GGM.000036	Blood group H (type 2)	Substructure
+G73645XO	GGM.000042	Blood group H (type 1)	Substructure
 G73649RE	GGM.000001	Type 2 LN	Substructure
 G73649RE	GGM.000005	Type 1 LN	Substructure
 G73649RE	GGM.000015	a-Gal antigen	Substructure
@@ -72837,6 +73207,11 @@ G75061XJ	GGM.000001	Type 2 LN	Substructure
 G75061XJ	GGM.000005	Type 1 LN	Substructure
 G75061XJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G75064IS	GGM.000001	Type 2 LN	Substructure
+G75067BS	GGM.000001	Type 2 LN	Substructure
+G75067BS	GGM.000002	Type 2 LN2	Substructure
+G75067BS	GGM.000005	Type 1 LN	Substructure
+G75067BS	GGM.000006	Type 1 LN2	Substructure
+G75067BS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G75068EM	GGM.000001	Type 2 LN	Substructure
 G75068EM	GGM.000018	Lewis x	Substructure
 G75068EM	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -73953,6 +74328,9 @@ G76136FD	GGM.000017	Fucosylated LDN	Substructure
 G76138JZ	GGM.000001	Type 2 LN	Substructure
 G76138JZ	GGM.000002	Type 2 LN2	Substructure
 G76138JZ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G76139RS	GGM.000001	Type 2 LN	Substructure
+G76139RS	GGM.000005	Type 1 LN	Substructure
+G76139RS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G76140CC	GGM.000001	Type 2 LN	Substructure
 G76140CC	GGM.000005	Type 1 LN	Substructure
 G76140CC	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -74350,6 +74728,8 @@ G76636VL	GGM.000007	Type 1 LN3	Substructure
 G76645IK	GGM.000001	Type 2 LN	Substructure
 G76646HT	GGM.000001	Type 2 LN	Substructure
 G76646HT	GGM.000002	Type 2 LN2	Substructure
+G76650RL	GGM.000001	Type 2 LN	Substructure
+G76650RL	GGM.000002	Type 2 LN2	Substructure
 G76657BK	GGM.000015	a-Gal antigen	Substructure
 G76666RX	GGM.000001	Type 2 LN	Substructure
 G76666RX	GGM.000005	Type 1 LN	Substructure
@@ -74915,7 +75295,6 @@ G77284KW	GGM.000001	Type 2 LN	Substructure
 G77284KW	GGM.000002	Type 2 LN2	Substructure
 G77284KW	GGM.000003	I antigen	Substructure
 G77284KW	GGM.000005	Type 1 LN	Substructure
-G77284OG	GGM.000001	Type 2 LN	Substructure
 G77285LE	GGM.000001	Type 2 LN	Substructure
 G77285LE	GGM.000002	Type 2 LN2	Substructure
 G77285LE	GGM.000004	i antigen	Substructure
@@ -75066,6 +75445,8 @@ G77459ND	GGM.000002	Type 2 LN2	Substructure
 G77459ND	GGM.000005	Type 1 LN	Substructure
 G77459ND	GGM.000006	Type 1 LN2	Substructure
 G77459ND	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G77461FO	GGM.000001	Type 2 LN	Substructure
+G77461FO	GGM.000005	Type 1 LN	Substructure
 G77466MH	GGM.000001	Type 2 LN	Substructure
 G77467SI	GGM.000001	Type 2 LN	Substructure
 G77475MM	GGM.000001	Type 2 LN	Substructure
@@ -75775,6 +76156,14 @@ G78131EV	GGM.000001	Type 2 LN	Substructure
 G78131EV	GGM.000018	Lewis x	Substructure
 G78134HQ	GGM.000001	Type 2 LN	Substructure
 G78134HQ	GGM.000005	Type 1 LN	Substructure
+G78138NS	GGM.000001	Type 2 LN	Substructure
+G78138NS	GGM.000002	Type 2 LN2	Substructure
+G78138NS	GGM.000005	Type 1 LN	Substructure
+G78138NS	GGM.000006	Type 1 LN2	Substructure
+G78138NS	GGM.000018	Lewis x	Substructure
+G78138NS	GGM.000020	Lewis a	Substructure
+G78138NS	GGM.000036	Blood group H (type 2)	Substructure
+G78138NS	GGM.000042	Blood group H (type 1)	Substructure
 G78146WJ	GGM.000001	Type 2 LN	Substructure
 G78146WJ	GGM.000005	Type 1 LN	Substructure
 G78146WJ	GGM.000018	Lewis x	Substructure
@@ -75789,6 +76178,9 @@ G78156NN	GGM.000018	Lewis x	Substructure
 G78156NN	GGM.000020	Lewis a	Substructure
 G78156NN	GGM.000036	Blood group H (type 2)	Substructure
 G78156NN	GGM.000042	Blood group H (type 1)	Substructure
+G78157ID	GGM.000001	Type 2 LN	Substructure
+G78157ID	GGM.000005	Type 1 LN	Substructure
+G78157ID	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G78161IO	GGM.000001	Type 2 LN	Substructure
 G78161IO	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G78166NF	GGM.000001	Type 2 LN	Substructure
@@ -76671,6 +77063,13 @@ G79088TX	GGM.000001	Type 2 LN	Substructure
 G79088TX	GGM.000018	Lewis x	Substructure
 G79089EU	GGM.000001	Type 2 LN	Substructure
 G79089IH	GGM.000005	Type 1 LN	Substructure
+G79093FO	GGM.000001	Type 2 LN	Substructure
+G79093FO	GGM.000002	Type 2 LN2	Substructure
+G79093FO	GGM.000018	Lewis x	Substructure
+G79093FO	GGM.000019	Lewis y	Substructure
+G79093FO	GGM.000031	Lex-Lex	Substructure
+G79093FO	GGM.000036	Blood group H (type 2)	Substructure
+G79093FO	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G79093TF	GGM.000001	Type 2 LN	Substructure
 G79093TF	GGM.000002	Type 2 LN2	Substructure
 G79093TF	GGM.000005	Type 1 LN	Substructure
@@ -77488,6 +77887,9 @@ G79918KX	GGM.000018	Lewis x	Substructure
 G79918KX	GGM.000020	Lewis a	Substructure
 G79924QN	GGM.000001	Type 2 LN	Substructure
 G79928VL	GGM.000001	Type 2 LN	Substructure
+G79933PE	GGM.000001	Type 2 LN	Substructure
+G79933PE	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G79933PE	GGM.000051	Sda/CT antigen	Substructure
 G79937NY	GGM.000001	Type 2 LN	Substructure
 G79937NY	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G79939YZ	GGM.000001	Type 2 LN	Substructure
@@ -77756,6 +78158,10 @@ G80213NQ	GGM.000005	Type 1 LN	Substructure
 G80214IA	GGM.000001	Type 2 LN	Substructure
 G80214IA	GGM.000005	Type 1 LN	Substructure
 G80214IA	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G80217TL	GGM.000001	Type 2 LN	Substructure
+G80217TL	GGM.000005	Type 1 LN	Substructure
+G80217TL	GGM.000015	a-Gal antigen	Substructure
+G80217TL	GGM.000018	Lewis x	Substructure
 G80218BM	GGM.000001	Type 2 LN	Substructure
 G80218BM	GGM.000002	Type 2 LN2	Substructure
 G80218BM	GGM.000004	i antigen	Substructure
@@ -79270,6 +79676,10 @@ G81740BZ	GGM.000001	Type 2 LN	Substructure
 G81740BZ	GGM.000005	Type 1 LN	Substructure
 G81740BZ	GGM.000018	Lewis x	Substructure
 G81740BZ	GGM.000042	Blood group H (type 1)	Substructure
+G81751WO	GGM.000001	Type 2 LN	Substructure
+G81751WO	GGM.000002	Type 2 LN2	Substructure
+G81751WO	GGM.000005	Type 1 LN	Substructure
+G81751WO	GGM.000006	Type 1 LN2	Substructure
 G81753IL	GGM.000001	Type 2 LN	Substructure
 G81753QM	GGM.000001	Type 2 LN	Substructure
 G81753QM	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -81081,6 +81491,8 @@ G83665HS	GGM.000001	Type 2 LN	Substructure
 G83665HS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G83666FZ	GGM.000001	Type 2 LN	Substructure
 G83666FZ	GGM.000036	Blood group H (type 2)	Substructure
+G83672JX	GGM.000001	Type 2 LN	Substructure
+G83672JX	GGM.000018	Lewis x	Substructure
 G83682YJ	GGM.000001	Type 2 LN	Substructure
 G83682YJ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G83687QJ	GGM.000001	Type 2 LN	Substructure
@@ -82342,6 +82754,9 @@ G85085MS	GGM.000001	Type 2 LN	Substructure
 G85085RX	GGM.000016	LacdiNAc	Substructure
 G85087EW	GGM.000001	Type 2 LN	Substructure
 G85087EW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G85093JB	GGM.000001	Type 2 LN	Substructure
+G85093JB	GGM.000005	Type 1 LN	Substructure
+G85093JB	GGM.000015	a-Gal antigen	Substructure
 G85093QP	GGM.000001	Type 2 LN	Substructure
 G85093QP	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G85095TB	GGM.000001	Type 2 LN	Substructure
@@ -83068,7 +83483,6 @@ G85785GS	GGM.000001	Type 2 LN	Substructure
 G85785GS	GGM.000018	Lewis x	Substructure
 G85788RZ	GGM.000016	LacdiNAc	Substructure
 G85788RZ	GGM.000049	4'-sulfated LDN	Substructure
-G85804VV	GGM.000001	Type 2 LN	Substructure
 G85807QC	GGM.000001	Type 2 LN	Substructure
 G85807QC	GGM.000015	a-Gal antigen	Substructure
 G85809SI	GGM.000001	Type 2 LN	Substructure
@@ -85764,6 +86178,16 @@ G88646XC	GGM.000005	Type 1 LN	Substructure
 G88646XC	GGM.000018	Lewis x	Substructure
 G88648CM	GGM.000090	GM3	Whole-Glycan
 G88651GV	GGM.000001	Type 2 LN	Substructure
+G88652OF	GGM.000001	Type 2 LN	Substructure
+G88652OF	GGM.000002	Type 2 LN2	Substructure
+G88652OF	GGM.000004	i antigen	Substructure
+G88652OF	GGM.000005	Type 1 LN	Substructure
+G88652OF	GGM.000006	Type 1 LN2	Substructure
+G88652OF	GGM.000007	Type 1 LN3	Substructure
+G88652OF	GGM.000018	Lewis x	Substructure
+G88652OF	GGM.000020	Lewis a	Substructure
+G88652OF	GGM.000036	Blood group H (type 2)	Substructure
+G88652OF	GGM.000042	Blood group H (type 1)	Substructure
 G88656FC	GGM.000001	Type 2 LN	Substructure
 G88656FC	GGM.000005	Type 1 LN	Substructure
 G88656FC	GGM.000018	Lewis x	Substructure
@@ -86141,6 +86565,8 @@ G89033SQ	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G89034YM	GGM.000091	GD3	Whole-Glycan
 G89036WC	GGM.000001	Type 2 LN	Substructure
 G89036WC	GGM.000018	Lewis x	Substructure
+G89037KF	GGM.000001	Type 2 LN	Substructure
+G89037KF	GGM.000005	Type 1 LN	Substructure
 G89048JS	GGM.000001	Type 2 LN	Substructure
 G89056YX	GGM.000001	Type 2 LN	Substructure
 G89056YX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -86597,6 +87023,10 @@ G89467PI	GGM.000002	Type 2 LN2	Substructure
 G89467PI	GGM.000005	Type 1 LN	Substructure
 G89467PI	GGM.000018	Lewis x	Substructure
 G89467PI	GGM.000020	Lewis a	Substructure
+G89467SJ	GGM.000001	Type 2 LN	Substructure
+G89467SJ	GGM.000005	Type 1 LN	Substructure
+G89467SJ	GGM.000018	Lewis x	Substructure
+G89467SJ	GGM.000020	Lewis a	Substructure
 G89479MU	GGM.000001	Type 2 LN	Substructure
 G89479MU	GGM.000005	Type 1 LN	Substructure
 G89479MU	GGM.000018	Lewis x	Substructure
@@ -86872,6 +87302,8 @@ G89704UL	GGM.000020	Lewis a	Substructure
 G89704UL	GGM.000022	Sialyl Lewis x	Nonreducing-End
 G89704UL	GGM.000024	Sialyl Lewis a	Nonreducing-End
 G89704UL	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G89710MB	GGM.000001	Type 2 LN	Substructure
+G89710MB	GGM.000005	Type 1 LN	Substructure
 G89714ZK	GGM.000001	Type 2 LN	Substructure
 G89714ZK	GGM.000018	Lewis x	Substructure
 G89714ZK	GGM.000019	Lewis y	Substructure
@@ -87863,6 +88295,9 @@ G90610FD	GGM.000001	Type 2 LN	Substructure
 G90610FD	GGM.000005	Type 1 LN	Substructure
 G90618SW	GGM.000001	Type 2 LN	Substructure
 G90618SW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G90619CL	GGM.000016	LacdiNAc	Substructure
+G90619CL	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
+G90619CL	GGM.000050	Sialylated LDN	Nonreducing-End
 G90621CY	GGM.000001	Type 2 LN	Substructure
 G90621CY	GGM.000005	Type 1 LN	Substructure
 G90621CY	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -87963,6 +88398,9 @@ G90689AW	GGM.000018	Lewis x	Substructure
 G90689AW	GGM.000019	Lewis y	Substructure
 G90689AW	GGM.000036	Blood group H (type 2)	Substructure
 G90689AW	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
+G90690DY	GGM.000001	Type 2 LN	Substructure
+G90690DY	GGM.000005	Type 1 LN	Substructure
+G90690DY	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G90698PW	GGM.000001	Type 2 LN	Substructure
 G90699YD	GGM.000001	Type 2 LN	Substructure
 G90699YD	GGM.000005	Type 1 LN	Substructure
@@ -88204,6 +88642,9 @@ G90884CI	GGM.000001	Type 2 LN	Substructure
 G90884CI	GGM.000036	Blood group H (type 2)	Substructure
 G90884GX	GGM.000001	Type 2 LN	Substructure
 G90884GX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G90887LH	GGM.000001	Type 2 LN	Substructure
+G90887LH	GGM.000005	Type 1 LN	Substructure
+G90887LH	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G90889KG	GGM.000001	Type 2 LN	Substructure
 G90889KG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G90891CR	GGM.000001	Type 2 LN	Substructure
@@ -88261,6 +88702,8 @@ G90951IM	GGM.000016	LacdiNAc	Substructure
 G90952OV	GGM.000015	a-Gal antigen	Substructure
 G90957HV	GGM.000001	Type 2 LN	Substructure
 G90957HV	GGM.000016	LacdiNAc	Substructure
+G90963ZS	GGM.000001	Type 2 LN	Substructure
+G90963ZS	GGM.000036	Blood group H (type 2)	Substructure
 G90965BZ	GGM.000001	Type 2 LN	Substructure
 G90965BZ	GGM.000036	Blood group H (type 2)	Substructure
 G90965EC	GGM.000001	Type 2 LN	Substructure
@@ -88351,6 +88794,8 @@ G91022SD	GGM.000036	Blood group H (type 2)	Substructure
 G91023GB	GGM.000001	Type 2 LN	Substructure
 G91031XA	GGM.000001	Type 2 LN	Substructure
 G91031XA	GGM.000005	Type 1 LN	Substructure
+G91036MX	GGM.000001	Type 2 LN	Substructure
+G91036MX	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G91038CM	GGM.000001	Type 2 LN	Substructure
 G91038CM	GGM.000005	Type 1 LN	Substructure
 G91039UZ	GGM.000001	Type 2 LN	Substructure
@@ -88741,6 +89186,8 @@ G91501UO	GGM.000002	Type 2 LN2	Substructure
 G91501UO	GGM.000036	Blood group H (type 2)	Substructure
 G91503PY	GGM.000001	Type 2 LN	Substructure
 G91503PY	GGM.000005	Type 1 LN	Substructure
+G91503ZX	GGM.000005	Type 1 LN	Substructure
+G91503ZX	GGM.000042	Blood group H (type 1)	Substructure
 G91508MU	GGM.000001	Type 2 LN	Substructure
 G91508RU	GGM.000001	Type 2 LN	Substructure
 G91509JK	GGM.000001	Type 2 LN	Substructure
@@ -89143,6 +89590,7 @@ G91865AW	GGM.000051	Sda/CT antigen	Substructure
 G91871AG	GGM.000001	Type 2 LN	Substructure
 G91871AG	GGM.000002	Type 2 LN2	Substructure
 G91871AG	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
+G91871ZR	GGM.000005	Type 1 LN	Substructure
 G91873GT	GGM.000001	Type 2 LN	Substructure
 G91873GT	GGM.000018	Lewis x	Substructure
 G91874YO	GGM.000001	Type 2 LN	Substructure
@@ -89202,6 +89650,8 @@ G91906GT	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
 G91907BM	GGM.000001	Type 2 LN	Substructure
 G91907BM	GGM.000016	LacdiNAc	Substructure
 G91907BM	GGM.000018	Lewis x	Substructure
+G91917XQ	GGM.000001	Type 2 LN	Substructure
+G91917XQ	GGM.000005	Type 1 LN	Substructure
 G91945RF	GGM.000016	LacdiNAc	Substructure
 G91945RF	GGM.000035	6-Sialyl-GalNAc	Nonreducing-End
 G91945RF	GGM.000050	Sialylated LDN	Nonreducing-End
@@ -89226,6 +89676,8 @@ G91975UP	GGM.000001	Type 2 LN	Substructure
 G91975UP	GGM.000005	Type 1 LN	Substructure
 G91977ZB	GGM.000001	Type 2 LN	Substructure
 G91977ZB	GGM.000018	Lewis x	Substructure
+G91982VF	GGM.000001	Type 2 LN	Substructure
+G91982VF	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G91983HB	GGM.000001	Type 2 LN	Substructure
 G91983HB	GGM.000005	Type 1 LN	Substructure
 G91986AA	GGM.000001	Type 2 LN	Substructure
@@ -89548,6 +90000,8 @@ G92354TO	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G92358PV	GGM.000005	Type 1 LN	Substructure
 G92358PV	GGM.000020	Lewis a	Substructure
 G92358PV	GGM.000024	Sialyl Lewis a	Nonreducing-End
+G92358QN	GGM.000001	Type 2 LN	Substructure
+G92358QN	GGM.000005	Type 1 LN	Substructure
 G92359VA	GGM.000001	Type 2 LN	Substructure
 G92359VA	GGM.000018	Lewis x	Substructure
 G92359VR	GGM.000001	Type 2 LN	Substructure
@@ -89635,6 +90089,7 @@ G92445MB	GGM.000019	Lewis y	Substructure
 G92445MB	GGM.000031	Lex-Lex	Substructure
 G92445MB	GGM.000036	Blood group H (type 2)	Substructure
 G92445MB	GGM.000045	Blood group H (type 2) - Lewis y	Substructure
+G92449EN	GGM.000001	Type 2 LN	Substructure
 G92457JM	GGM.000001	Type 2 LN	Substructure
 G92457JM	GGM.000005	Type 1 LN	Substructure
 G92457JM	GGM.000020	Lewis a	Substructure
@@ -90231,6 +90686,7 @@ G93186ED	GGM.000002	Type 2 LN2	Substructure
 G93186ED	GGM.000004	i antigen	Substructure
 G93186ED	GGM.000018	Lewis x	Substructure
 G93186ED	GGM.000031	Lex-Lex	Substructure
+G93188IF	GGM.000016	LacdiNAc	Substructure
 G93191IF	GGM.000001	Type 2 LN	Substructure
 G93191IF	GGM.000005	Type 1 LN	Substructure
 G93191IF	GGM.000036	Blood group H (type 2)	Substructure
@@ -91882,6 +92338,9 @@ G94906EX	GGM.000036	Blood group H (type 2)	Substructure
 G94906EX	GGM.000042	Blood group H (type 1)	Substructure
 G94912GI	GGM.000005	Type 1 LN	Substructure
 G94912GI	GGM.000042	Blood group H (type 1)	Substructure
+G94919BC	GGM.000001	Type 2 LN	Substructure
+G94919BC	GGM.000005	Type 1 LN	Substructure
+G94919BC	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G94919LP	GGM.000001	Type 2 LN	Substructure
 G94919LP	GGM.000005	Type 1 LN	Substructure
 G94919LP	GGM.000018	Lewis x	Substructure
@@ -92267,6 +92726,7 @@ G95312UR	GGM.000002	Type 2 LN2	Substructure
 G95312UR	GGM.000005	Type 1 LN	Substructure
 G95312UR	GGM.000020	Lewis a	Substructure
 G95314RB	GGM.000001	Type 2 LN	Substructure
+G95316QP	GGM.000001	Type 2 LN	Substructure
 G95324TW	GGM.000001	Type 2 LN	Substructure
 G95324TW	GGM.000005	Type 1 LN	Substructure
 G95324TW	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
@@ -92942,6 +93402,8 @@ G96067FK	GGM.000005	Type 1 LN	Substructure
 G96067FK	GGM.000020	Lewis a	Substructure
 G96067FK	GGM.000021	Lewis b	Substructure
 G96067FK	GGM.000042	Blood group H (type 1)	Substructure
+G96071NR	GGM.000001	Type 2 LN	Substructure
+G96071NR	GGM.000018	Lewis x	Substructure
 G96076VR	GGM.000001	Type 2 LN	Substructure
 G96079CK	GGM.000001	Type 2 LN	Substructure
 G96079CK	GGM.000018	Lewis x	Substructure
@@ -93362,6 +93824,10 @@ G96532LI	GGM.000005	Type 1 LN	Substructure
 G96532LI	GGM.000006	Type 1 LN2	Substructure
 G96532LI	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G96532ZJ	GGM.000001	Type 2 LN	Substructure
+G96534FS	GGM.000001	Type 2 LN	Substructure
+G96534FS	GGM.000005	Type 1 LN	Substructure
+G96534FS	GGM.000015	a-Gal antigen	Substructure
+G96534FS	GGM.000034	3-Sialyl-LN (type 2)	Nonreducing-End
 G96538JO	GGM.000001	Type 2 LN	Substructure
 G96538JO	GGM.000036	Blood group H (type 2)	Substructure
 G96538JO	GGM.000038	Blood group A (type 2)	Substructure
