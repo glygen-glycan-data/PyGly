@@ -70,7 +70,7 @@ $(GLYGEN_ACCESSIONS): $(GLYGEN_EXCLUDE_ACCESSIONS) $(GLYGEN_FORCE_ACCESSIONS) $(
 $(GLYGEN_REQ_ACCESSIONS): $(GLYGEN_MANUAL_ACCESSIONS) $(GLYGEN_FORCE_ACCESSIONS)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
 	cp -f $< $@
-	$(GLYRES) GlycoMotifDevNoCache allmotifs GGM | awk '$$1 ~ /^GGM.000/ {print $$2}' >> $@
+	$(GLYRES) GlycoMotifNoCache allmotifs GGM | awk '$$1 ~ /^GGM.000/ {print $$2}' >> $@
 	$(GLYRES) GlyTouCanNoCache bytaxa $(TAXIDS) | awk '{print $$1}' >> $@
 	$(GLYRES) GlyCosmosNoCache bytaxa $(TAXIDS) | awk '{print $$1}' >> $@
 	$(GLYRES) GlyGenSourceFile allsourcegtc | awk '{print $$2}' >> $@
