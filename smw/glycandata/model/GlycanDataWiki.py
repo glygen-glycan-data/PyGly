@@ -63,6 +63,9 @@ class Glycan(SMW.SMWClass):
     def count_annotations(self,**kwargs):
         return len(list(self.annotations(**kwargs)))
 
+    def get_all_annotations_values(self,property=None,**kwargs):
+        return list(set([ str(x) for an in self.annotations(property=property,**kwargs) for x in an.get('value')]))
+
     def get_annotation_values(self,property=None,**kwargs):
         return [ str(x) for x in self.get_annotation(property=property,**kwargs).get('value')]
 

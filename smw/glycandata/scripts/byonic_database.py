@@ -39,26 +39,24 @@ for acc in w.iterglycanid():
 
     # Is N-linked by subsumption or glycomotif
     nlinked = False
-    try:
-        for cls in g.get_annotation_values(property='GlycanType',type='Classification'):
-            if cls == 'N-linked':
-                nlinked = True
-                break
-    except LookupError:
-        pass
+    for cls in g.get_all_annotations_values(property='GlycanType',type='Classification'):
+        if cls == 'N-linked':
+            nlinked = True
+            break
 
     if not nlinked:
         continue
 
-    try:
-        for subcls in g.get_annotation_values(property='GlycanSubtype',type='Classification'):
-            if subcls == "N-linked truncated":
-                nlinked = False
-                break
-    except LookupError:
-        pass
+    # N-linked truncated cannot be the only reason it is annotated as N-linked
+    nlinked_sc = 0
+    nlinked_scnottrunc = 0
+    for subcls in g.get_all_annotations_values(property='GlycanSubtype',type='Classification'):
+        if subcls.startswith('N-linked'):
+            nlinked_sc += 1
+            if subcls != "N-linked truncated" and subcls != "N-linked monoantennary":
+              nlinked_scnottrunc += 1
 
-    if not nlinked:
+    if nlinked_sc > 0 and nlinked_scnottrunc == 0:
         continue
 
     # has molecular weight
