@@ -344,6 +344,11 @@ class UniCarbKBSourceFile(GlyGenSourceFile):
        D3ZEV8	10116
        D4A9Q5	10116
        D3Z981	10116
+       Q4V8E1   10116
+       Q6MZF5   9606
+       Q32KJ5   10116
+       Q7TQ74   10116
+       B4DT06   9606
     """.splitlines())))
     uckb2gtcacc = "https://raw.githubusercontent.com/glygen-glycan-data/GNOme/master/data/uckbcomp2glytoucan.txt"
     doifield = "doi"
@@ -617,15 +622,15 @@ class TableMakerSourceFile(GlyGenSourceFile):
         }
     sections = """
         TG1468274
-	TG1127346
-	TG1040297
-	TG2415036
-	TG2986138
-	TG4951079
-	TG7181079
-	TG7732158
-	TG8189974
-	TG8741863
+	    TG1127346
+	    TG1040297
+	    TG2415036
+	    TG2986138
+	    TG4951079
+	    TG7181079
+	    TG7732158
+	    TG8189974
+	    TG8741863
         TG4253352
         TG5664582
         TG2727671
@@ -661,7 +666,7 @@ class TableMakerSourceFile(GlyGenSourceFile):
                 taxid = row[self.taxidfield]
                 taxid = self.taxid2taxid.get(taxid,taxid)
                 if self.taxid2dsid.get(taxid):
-                    row['_glygen_sourceid'] = self.taxid2dsid[taxid]
+                    row['_glygen_sourceid'] = section #self.taxid2dsid[taxid]
                     yield row
 
 class OGlcNAcAtlasSourceFile(GlyGenSourceFile):
@@ -784,7 +789,7 @@ class BiomarkerDBSourceFile(GlyGenSourceFile):
     taxidfixed = "9606"
 
     def rows(self,section):
-        for row in self.tsvrows(section=self.source,filename=section):
+        for row in self.tsvrows(section=self.source,filename="biomarkers_"+section):
             # print(row)
             pmid = row.get("evidence_source","")
             if pmid.lower().startswith("pubmed:"):
@@ -874,8 +879,8 @@ class MatrixDBSourceFile(GlyGenSourceFile):
     source = "matrixdb"
     glygen_source = "MatrixDB"
     sections = "matrixdb_CORE"
-    gagurl = "https://matrixdb.univ-lyon1.fr/download/Custom_MatrixDB_biomolecules.tsv"
-    gagurl = "https://matrixdb.univ-lyon1.fr/downloads/biomolecules.csv"
+    # gagurl = "https://matrixdb.univ-lyon1.fr/download/Custom_MatrixDB_biomolecules.tsv"
+    gagurl = "https://matrixdb.expasy.org/downloads/biomolecules.csv"
     idfield = "id"
     gtcfield = "gtcacc"
 
@@ -949,24 +954,25 @@ class PDBGlycanSourceFile(GlyGenSourceFile):
     glygen_source = "PDB"
     sections = """arabidopsis bovine chicken dicty
                   fruitfly hamster hcv1a human mouse
-                  pig rat sarscov1 sarscov2 yeast zebrafish"""
-    glygen_sourceid = """
-        GLY_001504
-        GLY_001505
-        GLY_001493
-        GLY_001499
-        GLY_001495
-        GLY_001506
-        GLY_001501
-        GLY_001412
-        GLY_001498
-        GLY_001500
-        GLY_001492
-        GLY_001502
-        GLY_001503
-        GLY_001496
-        GLY_001542
-        """
+                  pig rat sarscov1 sarscov2 yeast zebrafish
+                  ebov bdbv"""
+    # glygen_sourceid = """
+    #     GLY_001504
+    #     GLY_001505
+    #     GLY_001493
+    #     GLY_001499
+    #     GLY_001495
+    #     GLY_001506
+    #     GLY_001501
+    #     GLY_001412
+    #     GLY_001498
+    #     GLY_001500
+    #     GLY_001492
+    #     GLY_001502
+    #     GLY_001503
+    #     GLY_001496
+    #     GLY_001542
+    #     """
     idfield = "src_xref_id"
     doifield = "doi"
     gtcfield = "saccharide"
@@ -985,6 +991,7 @@ class PDBGlycanSourceFile(GlyGenSourceFile):
                     row['doi'] = row['xref_id'].strip()
             if not row.get(self.gtcfield):
                 continue
+            row['_glygen_sourceid'] = row['src_xref_id']
             # print(row)
             yield row
 

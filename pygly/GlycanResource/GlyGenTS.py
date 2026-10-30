@@ -5,7 +5,8 @@ from .TripleStoreResource import TripleStoreResource
 from .GlycanResourceWrappers import partitioner
 
 class GlyGenTS(TripleStoreResource):
-    endpt = "http://sparql.glygen.org:8880/sparql/query"
+    endpt = "https://sparql.glygen.org/sparql/query"
+    # endpt = "http://sparql.glygen.org:8880/sparql/query"
     defns = "http://glygen.org/glycan/"
     method = 'GET'
 
