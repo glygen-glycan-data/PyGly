@@ -1,4 +1,4 @@
-#!/bin/env python27
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki, Enzyme
 import sys, re, glob, json
@@ -28,4 +28,4 @@ for e in w.iterenzyme():
     if gn in mgi:
         e.set("mgiacc",mgi[gn])
     if w.put(e):
-        print gn
+        print(gn)
