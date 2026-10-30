@@ -13,7 +13,7 @@ SHELL = /bin/bash -o pipefail
 		gnome_clean stage1_clean stage2_clean stage3_clean \
 		stage4_clean stage5_clean clean glycotreedev_clean glycotreeproc_clean \
 		glycomotif_clean glycotree_clean glymage_clean glycandata_clean \
-                glycomotifdev_rdf glycomotifdev_loadts
+        glycomotifdev_rdf glycomotifdev_loadts
 
 all: startall stage1 stage2 stage3 stage4 stage5
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete"
@@ -80,11 +80,10 @@ $(GLYCOMOTIFPROD_ALIGMENTS): $(GLYCOMOTIFDEV_ALIGMENTS)
         ./computealignments2.py --smwenv PROD -v --workers $(WORKERS) -o "$@" > $(GLYCOMOTIFPROD_ALIGMENTS_LOG) 2>&1
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
-#FIXME WHEN CLASSIFICATIONS ARE POPULATED IN PROD
 $(GLYCOMOTIFPROD_CLASSIFICATIONS): $(GLYCOMOTIFPROD_ALIGMENTS)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOMOTIFSCR); \
-        ./computeclassification.py --smwenv DEV < $< > $@
+        ./computeclassification.py --smwenv PROD < $< > $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
 $(GLYCOMOTIFPROD_RDF): $(GLYCOMOTIFPROD_ALIGMENTS) $(GLYCOMOTIFPROD_CLASSIFICATIONS)
@@ -126,7 +125,7 @@ stage1_clean: glycomotif_clean gnome_clean
 # STAGE2: LOAD THE GLYCOMOTIF TRIPLESTORES
 #
 
-SMWROOT=/data/projects/smw/docker
+SMWROOT=/data/projects/smw1
 
 GLYCOMOTIFSMW=$(SMWROOT)/glycomotif
 GLYCOMOTIFSMW_LOADED=$(GLYCOMOTIFSMW)/loadts.$(DATESTAMP).done
@@ -180,11 +179,13 @@ GLYCOTREEDEV_DATADL=$(GLYCOTREEDEV_DATA)/glycotreedev_data.$(DATESTAMP).done
 GLYCOTREEDEV_BUILD=$(GLYCOTREEDEV)/glycotreedev_build.$(DATESTAMP).done
 GLYCOTREEDEV_POPULATE=$(GLYCOTREEDEV)/glycotreedev_populate.$(DATESTAMP).done
 GLYCOTREEDEV_EXPORTS=$(GLYCOTREEDEV)/glycotreedev_exports.$(DATESTAMP).done
+GLYCOTREEDEV_FINAL=$(GLYCOTREEDEV)/glycotreedev_final.$(DATESTAMP).done
 
 GLYCOTREE_DATADL=$(GLYCOTREE_DATA)/glycotree_data.$(DATESTAMP).done
 GLYCOTREE_BUILD=$(GLYCOTREE)/glycotree_build.$(DATESTAMP).done
 GLYCOTREE_POPULATE=$(GLYCOTREE)/glycotree_populate.$(DATESTAMP).done
 GLYCOTREE_EXPORTS=$(GLYCOTREE)/glycotree_exports.$(DATESTAMP).done
+GLYCOTREE_FINAL=$(GLYCOTREE)/glycotree_final.$(DATESTAMP).done
 
 # FIXME, SHOULD PULL FROM GLYCOMOTIFSMW (PROD)
 $(GLYCOTREEDEV_DATADL): $(GLYCOMOTIFDEVSMW_LOADED)
@@ -212,6 +213,15 @@ $(GLYCOTREEDEV_EXPORTS): $(GLYCOTREEDEV_POPULATE)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)" 
 	cd $(GLYCOTREEDEV) && \
 	    ssh trypsin "cd $(GLYCOTREEDEV); ./scripts/exports.sh"
+	touch $@
+	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
+
+$(GLYCOTREEDEV_FINAL): $(GLYCOTREEDEV_EXPORTS)
+	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
+	cd $(GLYCOTREEDEV) && \
+	    ./build_all.sh clear >& ./build_all.log 
+	cd $(GLYCOTREEDEV) && \
+	    ssh trypsin "cd $(GLYCOTREEDEV); ./scripts/populate.sh"
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
@@ -243,25 +253,24 @@ $(GLYCOTREE_EXPORTS): $(GLYCOTREE_POPULATE)
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
 
-stage3: stage2 stage3start $(GLYCOTREEDEV_EXPORTS) $(GLYCOTREE_EXPORTS)
+$(GLYCOTREE_FINAL): $(GLYCOTREE_EXPORTS)
+	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
+	cd $(GLYCOTREE) && \
+	    ./build_all.sh clear >& ./build_all.log 
+	cd $(GLYCOTREE) && \
+	    ssh trypsin "cd $(GLYCOTREE); ./scripts/populate.sh"
+	touch $@
+	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete" 
+
+stage3: stage2 stage3start $(GLYCOTREEDEV_FINAL) $(GLYCOTREE_FINAL)
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 
-GLYCOTREEDEV_DATADL=$(GLYCOTREEDEV_DATA)/glycotreedev_data.$(DATESTAMP).done
-GLYCOTREEDEV_BUILD=$(GLYCOTREEDEV)/glycotreedev_build.$(DATESTAMP).done
-GLYCOTREEDEV_POPULATE=$(GLYCOTREEDEV)/glycotreedev_populate.$(DATESTAMP).done
-GLYCOTREEDEV_EXPORTS=$(GLYCOTREEDEV)/glycotreedev_exports.$(DATESTAMP).done
-
-GLYCOTREE_DATADL=$(GLYCOTREE_DATA)/glycotree_data.$(DATESTAMP).done
-GLYCOTREE_BUILD=$(GLYCOTREE)/glycotree_build.$(DATESTAMP).done
-GLYCOTREE_POPULATE=$(GLYCOTREE)/glycotree_populate.$(DATESTAMP).done
-GLYCOTREE_EXPORTS=$(GLYCOTREE)/glycotree_exports.$(DATESTAMP).done
-
 glycotreedev_clean:
-	rm -f $(GLYCOTREEDEV_DATADL) $(GLYCOTREEDEV_BUILD) $(GLYCOTREEDEV_POPULATE) $(GLYCOTREEDEV_EXPORTS)
+	rm -f $(GLYCOTREEDEV_DATADL) $(GLYCOTREEDEV_BUILD) $(GLYCOTREEDEV_POPULATE) $(GLYCOTREEDEV_EXPORTS) $(GLYCOTREEDEV_FINAL)
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 	
 glycotreeprod_clean:
-	rm -f $(GLYCOTREE_DATADL) $(GLYCOTREE_BUILD) $(GLYCOTREE_POPULATE) $(GLYCOTREE_EXPORTS)
+	rm -f $(GLYCOTREE_DATADL) $(GLYCOTREE_BUILD) $(GLYCOTREE_POPULATE) $(GLYCOTREE_EXPORTS) $(GLYCOTREE_FINAL)
 	@echo "[`$(TIMESTAMP_CMD)`]: $@ complete" 
 
 glycotree_clean: glycotreedev_clean glycotreeprod_clean
@@ -306,7 +315,7 @@ $(GLYCANDATA_IMAGES): $(GLYMAGE_IMAGES) $(GLYCANDATA_ACCS)
 	touch $@
 	@echo "[`$(TIMESTAMP_CMD)`]: $(@F) complete"
 
-$(GLYCANDATA_ACCS): $(GNOMERAW)
+$(GLYCANDATA_ACCS): $(GNOMERAW) $(GLYCOMOTIFSMW_LOADED) $(GLYCOMOTIFDEVSMW_LOADED)
 	@echo "[`$(TIMESTAMP_CMD)`]: Start $(@F)"
 	cp $< $(GLYCANDATA_DATA)/gnome_subsumption_raw.txt
 	+ cd $(GLYCANDATA_SCR) && \
