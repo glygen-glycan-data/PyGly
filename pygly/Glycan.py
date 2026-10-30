@@ -62,8 +62,18 @@ class Glycan:
         self._root = r
 
     def set_ids(self):
-        for i,m in enumerate(self.all_nodes(subst=True)):
-            m.set_id(i+1)
+        allids = set()
+        allnodes = list(self.all_nodes(subst=True))
+        for m in allnodes:
+            if m.id() is not None:
+                allids.add(m.id())
+        j = 1
+        for m in allnodes:
+            if m.id() is None:
+                while j in allids:
+                    j += 1
+                m.set_id(j)
+                j += 1
 
     def unset_ids(self):
         for m in self.all_nodes(subst=True):
