@@ -394,8 +394,11 @@ def itergenmatchings(items1,items2,matchtest):
                 edges[i].add(j)
                 inedges[j].add(i)
 
-    # for i in edges:
-    #     print "%s:"%i," ".join(map(str,sorted(edges[i])))
+    # for i in range(n1):
+    #     print("%s:"%i," ".join(map(str,sorted(edges[i]))))
+
+    # for j in range(n2):
+    #     print("%s:"%j," ".join(map(str,sorted(inedges[j]))))
 
     outdegree = defaultdict(int)
     indegree = defaultdict(int)
@@ -403,6 +406,18 @@ def itergenmatchings(items1,items2,matchtest):
         outdegree[i] = len(edges[i])
     for j in range(n2):
         indegree[j] = len(inedges[j])
+
+    # print(outdegree)
+
+    # print(indegree)
+
+    # for i in range(n1):
+    #     if outdegree[i] == 0:
+    #         print(i,list1[i])
+
+    # for j in range(n2):
+    #     if indegree[j] == 0:
+    #         print(j,list2[j])
 
     startpairs = []
     outdegreezero = 0
@@ -423,7 +438,7 @@ def itergenmatchings(items1,items2,matchtest):
 
     startpairs = list(set(startpairs))
 
-    # print startpairs
+    # print(startpairs)
 
     if len(startpairs) != len(set(map(itemgetter(0),startpairs))):
         return
@@ -518,6 +533,27 @@ def itersubmatchings(items1,items2,matchtest):
     for ii,jj,remi,remj in itergenmaximalmatchings(items1,items2,matchtest):
         if len(remi) == 0:
             yield ii,jj,remj
+
+def equivclasses(items1,matchtest):
+    list1 = list(items1)
+    n1 = len(list1)
+
+    ec1 = defaultdict(list)  
+    placed = set()
+    for i in range(n1):
+        if i in placed:
+            continue
+        placed.add(i)
+        ec1[i].append(i)
+        for j in range(i+1,n1):
+            if j in placed:
+                continue
+            if not matchtest(list1[i],list1[j]):
+                continue
+            ec1[i].append(j)
+            placed.add(j)
+    return [ (list1[ec1[i][0]],len(ec1[i])) for i in ec1 ]
+
 
 def testperm(l):
     print("Permutations of",','.join(map(str,l)))
