@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3.12
 
 from getwiki import GlycoMotifWiki
 import sys
