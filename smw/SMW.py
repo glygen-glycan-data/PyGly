@@ -87,6 +87,15 @@ class SMWSite(object):
             return "test"
         return "dev"
 
+    def envname(self):
+        if self.env == "":
+            return "PROD"
+        elif self.env == "dev":
+            return "DEV"
+        elif self.env == "test":
+            return "TEST"
+        raise RuntimeError("Bad env value")
+
     def getparams(self,kwargs,defaults={}):
         self.env = self.getenvironment(**kwargs)
         self.name = kwargs.get("name",self._name)
@@ -233,7 +242,8 @@ class SMWSite(object):
                 continue
             try:
                 h = open(dir+'/'+name+'.txt','w')
-                h.write((p.text().rstrip('\n')+'\n').replace(r'\n',r'\\n').replace(r'\"',r'\\"'))
+                h.write((p.text().rstrip('\n')+'\n'))
+                # h.write((p.text().rstrip('\n')+'\n').replace(r'\n',r'\\n').replace(r'\"',r'\\"'))
             except:
                 raise
             finally:
@@ -269,14 +279,39 @@ class SMWSite(object):
           for f in os.listdir(os.path.join(dir,subdir)):
               if not f.endswith('.txt'):
                   continue
-              pagetext = open(os.path.join(dir,subdir,f)).read().rstrip().decode('utf8')
+              pagetext = open(os.path.join(dir,subdir,f)).read().rstrip()
               pagename = ns+f[:-4]
               page = self.site.pages[pagename]
               
               if page.text() != pagetext:
-                  print >>sys.stderr, pagename
+                  print(pagename,file=sys.stderr)
                   page.save(pagetext)
-        
+
+    def itersitepages(self,dir):
+        for ns,subdir in (('MediaWiki','mediawiki'),
+                          ('Property','properties'),
+                          ('Category','categories'),
+                          ('Template','templates'), 
+                          ('Form','forms'),
+                          ('','pages'),
+                          ('Talk','talk')):
+          if not os.path.exists(os.path.join(dir,subdir)):
+              continue
+          if ns:
+              ns += ":"
+          for f in os.listdir(os.path.join(dir,subdir)):
+              if not f.endswith('.txt'):
+                  continue
+              yield ns,os.path.join(dir,subdir,f)
+
+    def loadpages(self,pagefiles):
+        for ns,f in pagefiles:
+            pagetext = open(f).read().rstrip()
+            pagename = ns+(os.path.split(f)[1][:-4])
+            page = self.site.pages[pagename]
+            if page.text() != pagetext:
+                page.save(pagetext)
+
     def deletemany(self,category=None,regex=None,allpages=None,verbose=False):
         if category:
           for pagename in self.itercat(category):
