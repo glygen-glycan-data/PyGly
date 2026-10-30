@@ -11,10 +11,10 @@ from pygly.Glycan import *
 from pygly.GlycanResource import *
 
 if len(sys.argv) > 1 and sys.argv[1] == "--dev":
-    sandbox = GlycoTreeSandboxDev(local=True,delaytime=3)
+    sandbox = GlycoTreeSandboxDev(local=True,delaytime=3,verbose=False)
     sys.argv.pop(1)
 else:
-    sandbox = GlycoTreeSandbox(local=True,delaytime=3)
+    sandbox = GlycoTreeSandbox(local=True,delaytime=3,verbose=False)
 
 accs = sys.argv[1:]
 
