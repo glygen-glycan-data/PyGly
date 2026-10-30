@@ -1,6 +1,6 @@
 #!/bin/env python3.12
 
-import sys, time, traceback
+import sys, time, traceback, glob
 from collections import defaultdict
 
 from getwiki import GlycanData, Glycan
@@ -41,6 +41,12 @@ for clsinst in (gpdb,glyat):
     if source != "GlyCosmos":
         continue
     glygentaxa[gtcacc].add(taxid)
+
+gcotaxa = defaultdict(set)
+for fn in glob.glob('../data/glycosmos-taxa-*.tsv'):
+    for l in open(fn):
+        sl = l.split('\t')
+        gcotaxa[sl[0]].add(sl[1])
 
 current = set()
 for gtcacc in accessions(sys.argv[1:]):
@@ -158,6 +164,7 @@ for gtcacc in accessions(sys.argv[1:]):
     taxmap = {'11103': '3052230'}
     taxids = set(gco.gettaxa(gtcacc))
     taxids.update(glygentaxa[gtcacc])
+    taxids.update(gcotaxa[gtcacc])
     taxids = set(map(lambda t: taxmap.get(t,t),taxids))
     g.set_annotation(value=list(sorted(taxids)), property='Taxonomy', sourceid=gtcacc, 
                      source='GlyCosmos', type='Taxonomy')
