@@ -2009,12 +2009,18 @@ class WURCS20Format(GlycanFormatter):
                 if not (ind1 < ind2):
                     raise MonoOrderLinkError(li)
 
-                if pos2 in (1,2,None):
+                rs1 = (mono[ind1].ring_start(),None)
+                if rs1[0] not in (1,2,None):
+                    rs1 = (1,2,None)
+                rs2 = (mono[ind2].ring_start(),None)
+                if rs2[0] not in (1,2,None):
+                    rs2 = (1,2,None)
+                if pos2 in rs2:
                     parentmono = mono[ind1]
                     parentpos  = pos1
                     childmono  = mono[ind2]
                     childpos   = pos2
-                elif pos1 in (1,None) and pos2 not in (1,2,None):
+                elif pos1 in rs1 and pos2 not in rs2:
                     # "Reversed" link?
                     parentmono = mono[ind2]
                     parentpos  = pos2
