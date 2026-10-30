@@ -11,11 +11,12 @@ import logging
 
 class ClassifierEngine(object):
 
-    def __init__(self,glytoucan=None,alignments=None,verbose=False):
+    def __init__(self,glytoucan=None,alignments=None,verbose=False,smwenv="PROD"):
         self._classifiers = {}
-        for n,c in  inspect.getmembers(sys.modules[__name__], inspect.isclass):
+        for n,c in  sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass)):
             if issubclass(c,Classifier) and hasattr(c,'_class') and hasattr(c,'_id'):
-                self._classifiers[c._id] = c()
+                if not hasattr(c,'_smwenv') or getattr(c,'_smwenv') == smwenv:
+                    self._classifiers[c._id] = c()
         self.log = logging.getLogger('ClassifierEngine')
         if verbose:
             self.log.setLevel(logging.DEBUG)
@@ -732,6 +733,7 @@ class ClassifierEngine(object):
 
     threnxa_is_leaf = Decorators.maketest('threnxa_is_leaf',is_leaf,MonoMethods.threnxa)
     neuac_is_leaf = Decorators.maketest('neuac_is_leaf',is_leaf,MonoMethods.neuac)
+    fuc_is_leaf = Decorators.maketest('fuc_is_leaf',is_leaf,MonoMethods.fuc)
 
     @Decorators.needs_structure
     def nobranch(self):
@@ -764,15 +766,31 @@ class ClassifierEngine(object):
                     return False
         return True
 
+    @Decorators.needs_structure
     def repeat_unit_sizes_are_even(self):
-        if self._structure == None:
-            self.getStructure()
-        if not self._structure:
-            return False
         for nds in self._structure.repeat_nodes():
             if len(list(nds)) % 2 != 0:
                 return False
         return True
+    
+    @Decorators.needs_structure
+    def repeat_unit_monos(self,*fnargs):
+        cnts = defaultdict(int)
+        for nds in self._structure.repeat_nodes():
+            for nd in nds:
+                for i in range(len(fnargs)):
+                    if fnargs[i](nd):
+                        cnts[i] += 1
+                        break
+            break
+        return [ cnts[i] for i in range(len(fnargs)) ]
+    
+    @Decorators.needs_structure
+    def repeat_units(self):
+        cnt = 0
+        for nds in self._structure.repeat_nodes():
+            cnt += 1
+        return cnt
 
 class Classifier(object):
     _description = ""
@@ -951,6 +969,11 @@ class NGlycanTetraantennary(MotifClassifier):
             return False
         return True
 
+class OGlycan(MotifClassifier):
+    _id = "GGC.000100"
+    _class = ("O-linked",)
+    _motifs = []
+
 class OGlycanOGlcNAc(MotifClassifier):
     _id = "GGC.000101"
     _class = ("O-linked","O-GlcNAc")
@@ -966,11 +989,74 @@ class OGlycanEGFOGlcNAcCore(MotifClassifier):
             return False
         return True
 
-class OGlycanHMOligos(MotifClassifier):
+class OGlycanHMOligos0(MotifClassifier):
+    _smwenv = "PROD"
     _id = "GGC.000103"
     _class = ("Human Milk Oligosaccharide",)
     _motifs = ["GGM.001029"]
     _exceptions = ["GGC.000201","GGC.000202","GGC.000208","GGC.000209"]
+
+class OGlycanHMOligos(MotifClassifier):
+    _smwenv = "DEV"
+    _id = "GGC.000103"
+    _class = ("Human Milk Oligosaccharide",)
+    _valid_monos = "Gal Glc GlcNAc Fuc NeuAc GalNAc".split()
+    _motifs = []
+
+    def refine(self,data):
+        if not data.all_mono(*self._valid_monos):
+            return False
+        if data.mono_count("Glc") != 1:
+            return False
+        if not data.has_repeat_units():
+            if data.mono_count("Gal") != data.mono_count("GlcNAc")+1:
+                return False
+        elif data.repeat_units() == 1:
+            rum = data.repeat_unit_monos(ClassifierEngine.MonoMethods.glcnac,
+                                         ClassifierEngine.MonoMethods.gal)
+            if rum[0] != rum[1]:
+                return False
+        else:
+            return False
+        if not data.fuc_is_leaf():
+            return False
+        if not data.neuac_is_leaf():
+            return False
+        if data.redendalpha() or data.redendbeta():
+            return False
+        return True
+
+class OGlycanHMOligos1(OGlycanHMOligos):
+    _smwenv = "DEV"
+    _id = "GGC.000126"
+    _class = ("Human Milk Oligosaccharide","HMO Lacto-N-Tetraose core")
+    _motifs = ["GGM.001052"]
+    _exceptions = ["GGC.000128","GGC.000129"]
+
+class OGlycanHMOligos2(OGlycanHMOligos):
+    _smwenv = "DEV"
+    _id = "GGC.000127"
+    _class = ("Human Milk Oligosaccharide","HMO Lacto-N-Neotetraose core")
+    _motifs = ["GGM.001053"]
+    _exceptions = ["GGC.000128","GGC.000129"]
+
+class OGlycanHMOligos3(OGlycanHMOligos):
+    _smwenv = "DEV"
+    _id = "GGC.000128"
+    _class = ("Human Milk Oligosaccharide","HMO Lacto-N-Hexaose core")
+    _motifs = ["GGM.001054"]
+
+class OGlycanHMOligos4(OGlycanHMOligos):
+    _smwenv = "DEV"
+    _id = "GGC.000129"
+    _class = ("Human Milk Oligosaccharide","HMO Lacto-N-Neohexaose core")
+    _motifs = ["GGM.001055"]
+
+class OGlycanHMOligos5(OGlycanHMOligos):
+    _smwenv = "DEV"
+    _id = "GGC.000130"
+    _class = ("Human Milk Oligosaccharide","HMO 2'-Fucosyllactose")
+    _motifs = ["GGM.001056"]
 
 class OGlycanOGal(MotifClassifier):
     _id = "GGC.000104"
@@ -1157,6 +1243,11 @@ class OGlycanCore9(MotifClassifier):
             return False
         return True
 
+class Glycosphingolipid(MotifClassifier):
+    _id = "GGC.000200"
+    _class = ("Glycosphingolipid",)
+    _motifs = []
+
 class GlycosphingolipidIsoglobo(MotifClassifier):
     _id = "GGC.000201"
     _class = ("Glycosphingolipid","Glycosphingolipid isoglobo series")
@@ -1311,6 +1402,11 @@ class KeratanSulfate(GAGBase):
             data.log.info("Branched glycan")
             return False
         return True
+
+class CLinked(MotifClassifier):
+    _id = "GGC.000500"
+    _class = ("C-linked",)
+    _motifs = []
 
 if __name__ == "__main__":
 
