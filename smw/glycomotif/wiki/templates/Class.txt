@@ -10,20 +10,23 @@ It should be called in the following format:
 |hasmotif=
 |nothasmotif=
 |nothasclass=
+|reference=
 |type=
 }}
 </pre>
 Edit the page to see the template text.
 </noinclude><includeonly> __NOTOC__ __NOEDITSECTION__ {{DISPLAYTITLE:{{{level|}}}: {{{name|}}}}}
-{{{description|}}}
+{{#ifeq:|{{{level|}}}|Subtype|{{#if:{{{type|}}}|{{{description|}}}
 
-{{#ifeq:|{{{level|}}}|Subtype|{{#if:{{{type|}}}|'''Type:''' {{TypeLinkByName|{{{type|}}}}}|}}}}
+'''Type:''' {{TypeLinkByName|{{{type|}}}}}|{{{description|}}}
 
+Return to [[GlyGen Structure Classification]].}}}}
 {{#if: {{{definition|}}}|
 == Definition ==
-{{{definition|}}}
-|}}
-
+{{{definition|}}}}}
+{{#if: {{{reference|}}}|
+== References ==
+{{#arraymap:{{{reference|}}}|;|x|{{DisplayPublication|x}}|<P/>}}}}
 {{#if: {{{hasmotif|}}}|
 == Match Motifs (at least one) ==
 {{#ask:
@@ -91,7 +94,7 @@ Edit the page to see the template text.
 |intro=<h2>Subtypes</h2>
 }}}}
 == Structures ==
-<div id="classification_para" data-prefix="{{PREFIX}}" data-page_id="{{PAGENAME}}" data-level="{{{level|}}}" data-name="{{#ifeq:|{{{level|}}}|Type|{{{name|}}}|{{{type|}}}}}"></div>
+<div id="classification_para" data-prefix="{{PREFIX}}" data-pageid="{{PAGENAME}}" data-level="{{{level|}}}" data-name="{{#ifeq:|{{{level|}}}|Type|{{{name|}}}|{{{type|}}}}}"></div>
 <div id="glycomotif_classification_result"></div> 
 
 '''Download:'''
@@ -114,6 +117,7 @@ WHERE {
 {{#arraymap:{{{hasmotif|}}}|;|XXXXXX|{{#set:|glycomotif:hasmotif=XXXXXX}}}}
 {{#arraymap:{{{nothasmotif|}}}|;|XXXXXX|{{#set:|glycomotif:nothasmotif=XXXXXX}}}}
 {{#arraymap:{{{nothasclass|}}}|;|XXXXXX|{{#set:|glycomotif:nothasclass=XXXXXX}}}}
+{{#arraymap:{{{reference|}}}|;|XXXXXX|{{#set:|glycomotif:reference=XXXXXX}}}}
 {{#set:
 |glycomotif:id={{PAGENAME}}
 |glycomotif:name={{{name|}}}

@@ -1,1 +1,1 @@
-<includeonly><img src="{{ImageURL|{{{1}}}}}"></includeonly>
+{{#tag:html|<includeonly><img src="{{ImageURL|{{{1}}}}}"></includeonly>}}

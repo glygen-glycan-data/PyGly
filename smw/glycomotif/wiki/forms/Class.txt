@@ -25,6 +25,10 @@ if a page with that name already exists, you will be sent to a form to edit that
 ! Definition: 
 | {{{field|definition|input type=textarea|rows=5|autogrow}}}
 |-
+! Reference(s):
+| {{{field|reference|property=glycomotif:reference|input type=tokens|existing values only|list|delimiter=;|values from category=Publication}}}<br/>References for the structure, name, aglycon, etc. for this motif.<br/>
+{{#formlink:form=Publication|autocomplete on category=Publication|link text=Add new publication.}}
+|-
 ! Motifs:
 | {{{field|hasmotif|property=glycomotif:hasmotif|input type=tokens|existing values only|list|delimiter=;|values from category=Motif}}}
 |-

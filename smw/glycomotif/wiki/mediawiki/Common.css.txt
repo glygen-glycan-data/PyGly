@@ -2,3 +2,5 @@
 
 .noautonum
 .tocnumber { display: none; }
+#p-logo { visibility: hidden; height: 80px;  }
+.mw-logo-icon { visibility: hidden; width: 20px; }

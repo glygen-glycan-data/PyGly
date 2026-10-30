@@ -1,0 +1,1 @@
+https://{{#ifeq:{{PREFIX}}|glycomotif|glycomotif.glyomics.org/glycomotif|edwardslab.bmcb.georgetown.edu/glycomotifdev}}/sparql/query
