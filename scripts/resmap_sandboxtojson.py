@@ -62,23 +62,35 @@ for sbjdoc in glycansiter(sandbox,accs):
             rv = enz.get('rule_violations',[])
             if sp == 'Homo sapiens':
                 org = 'Human'
-            if sp == 'Mus musculus':
+            elif sp == 'Mus musculus':
                 org = 'Mouse'
+            elif sp == 'Rattus norvegicus':
+                org = 'Rat'
+            elif sp == 'Sus scrofa':
+                org = 'Pig'
+            elif sp == 'Bos taurus':
+                org = 'Bovine'
+            elif sp == 'Dictyostelium discoideum':
+                org = 'SlimeMold'
+            else:
+                org = None
             if up not in enzymes:
                 enzymes[up] = ([],[])
             enzymes[up][0].append(can_res_index)
             if canon_parent_id.get(can_res_index):
                 enzymes[up][1].append("%s-%s"%(canon_parent_id[can_res_index],can_res_index))
-            enzymes['__synonyms__'][gn] = up
-            enzymes['__synonyms__']["%s.%s"%(org,gn)] = up
+            # enzymes['__synonyms__'][gn] = up
+            if org is not None:
+                enzymes['__synonyms__']["%s.%s"%(org,gn)] = up
             if len(rv) == 0:
                 if up not in enzymesnc:
                     enzymesnc[up] = ([],[])
                 enzymesnc[up][0].append(can_res_index)
                 if canon_parent_id.get(can_res_index):
                     enzymesnc[up][1].append("%s-%s"%(canon_parent_id[can_res_index],can_res_index))
-                enzymesnc['__synonyms__'][gn] = up
-                enzymesnc['__synonyms__']["%s.%s"%(org,gn)] = up
+                # enzymesnc['__synonyms__'][gn] = up
+                if org is not None:
+                    enzymesnc['__synonyms__']["%s.%s"%(org,gn)] = up
 
     for up in enzymes:
         if up == '__synonyms__':
