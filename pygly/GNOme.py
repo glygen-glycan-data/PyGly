@@ -6,6 +6,7 @@ import os, os.path, urllib, time
 import psutil
 from collections import defaultdict
 import datetime
+import traceback
 
 import rdflib
 from rdflib.namespace import XSD
@@ -817,7 +818,8 @@ class SubsumptionGraph(GNOmeAPI):
 
         outedges = defaultdict(set)
         inedges = defaultdict(set)
-
+        start1 = time.time()
+        comparisons = 0
         self.warning("Computation of subsumption relationships started",5)
         for acc1 in sorted(combclusteracc):
             gly1 = combinedcluster[acc1]['glycan']
@@ -825,13 +827,23 @@ class SubsumptionGraph(GNOmeAPI):
                 gly2 = combinedcluster[acc2]['glycan']
                 if acc1 != acc2 and not (acc1 in cluster and acc2 in extracluster):
                     self.warning("%s <?= %s"%(acc1,acc2),5)
-                    if self.subsumption.leq(gly1, gly2):
+                    try:
+                        start2 = time.time()
+                        leq = self.subsumption.leq(gly1, gly2)
+                        stop2 = time.time()
+                        comparisons += 1
+                    except Exception as e:
+                        print("Subsumption Exception: %s <?= %s"%(acc1,acc2))
+                        raise
+                    self.warning("%s %s %s (%.2f)"%(acc1,"<=" if leq else "</=",acc2,stop2-start2),5) 
+                    if leq:
                         iseq = self.geq.eq(gly1, gly2)
                         if not iseq or acc2 < acc1 or (acc1 in extracluster and acc2 in cluster):
                             outedges[acc2].add(acc1)
                             inedges[acc1].add(acc2)
                         if iseq and (acc1 in cluster and acc2 in cluster) and self.geqwwc.eq(gly1, gly2) and acc1 < acc2:
                             self.warning("Potential WURCS canonicalization issue: %s == %s"%(acc1,acc2),1)
+        stop1 = time.time()
         self.warning("Computation of subsumption relationships done",5)
 
         # Check GlyTouCan topology, composition, basecomposition, and
@@ -1183,7 +1195,8 @@ class SubsumptionGraph(GNOmeAPI):
         print("# ENDEDGES")
         sys.stdout.flush()
 
-        print("# DONE - Elapsed time %.2f sec." % (time.time() - start,))
+        # print("# DONE - Elapsed time %.2f sec." % (time.time() - start,))
+        print("# DONE - Elapsed time %.2f sec., %.2f comparisons/sec." % (time.time() - start,comparisons/(stop1-start1)))
         sys.stdout.flush()
 
     def any_anomer(self, gly):
