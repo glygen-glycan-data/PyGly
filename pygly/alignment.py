@@ -1,7 +1,9 @@
 
 from . Glycan import Glycan
 from . Monosaccharide import Linkage, Substituent, Monosaccharide, Mod, Anomer, Stem
-from . combinatorics import itermatchings, iterecmatchings, itergenmatchings, iterplacements, itergenmaximalmatchings, choose
+from . combinatorics import itermatchings, iterecmatchings, \
+    itergenmatchings, choose, itersubmatchings, \
+    equivclasses
 
 import inspect
 import sys, os.path
@@ -740,11 +742,13 @@ class GlycanPartialOrder(Comparitor):
         allsubst = set()
         subst1link = defaultdict(int)
         subst1float= defaultdict(int)
+        subst1links = defaultdict(list)
         for n in nodeset1all:
             if n.is_monosaccharide():
                 for s in n.substituents():
                     subst1link[s.name()] += 1
                     allsubst.add(s.name())
+                    subst1links[s.name()].append((n.id(),s.id(),s.name()))
             else:
                 subst1float[n.name()] += 1
                 allsubst.add(n.name())
@@ -771,20 +775,12 @@ class GlycanPartialOrder(Comparitor):
         for s in allsubst:
             if (subst1link[s]+subst1float[s]) != (subst2link[s]+subst2float[s]):
                 return False
-            elif subst2float[s] > subst1float[s] and \
-                     subst2link[s] == 0:
-                subst2move.append(s)
-            elif subst2float[s] > 0 and \
-                     subst2link[s] == 0 and \
-                     subst1link[s] == 0 and \
-                     subst2float[s] == subst1float[s]:
-                # Do nothing, but not a problem
+            elif subst1float[s] > subst2float[s]:
+                return False
+            elif subst1float[s] == subst2float[s]:
                 pass
-            elif subst2float[s] == 0 and \
-                     subst1float[s] == 0 and \
-                     subst1link[s] == subst2link[s]:
-                # Do nothing, but not a problem
-                pass
+            elif subst1float[s] < subst2float[s]:
+                subst2move.append((s,subst2float[s]-subst1float[s]))
             else:
                 bad = True
                 break
@@ -792,53 +788,79 @@ class GlycanPartialOrder(Comparitor):
         if bad:
             raise RuntimeError("Cannot resolve partial order, floating substituents too complicated")
 
-        # print subst2move
-            
-        # strip specific floating substituents from nodes in nodeset1
-        newnodeset1 = []
-        for m1 in nodeset1:
-            for sl in list(m1.substituent_links()):
-                if sl.child().name() in subst2move:
-                    m1.remove_substituent_link(sl)
-                    sl.child().del_parent_link(sl)
-            newnodeset1.append(m1)
+        movingsubst = []
+        node1substlinks = []
+        for sn,ns in subst2move:
+            movingsubst.extend([sn]*ns)
+            node1substlinks.extend(subst1links[sn])
 
-            # print newnodeset1
+        seen = set()
+        for iii,jjj,remj in itersubmatchings(movingsubst,node1substlinks,lambda a,b: a == b[2]):
+            mapping = tuple(sorted(jjj))
+            if mapping in seen:
+                continue
+            seen.add(mapping)
+            mapping1 = defaultdict(set)
+            for mid,sid,sn in mapping:
+                mapping1[mid].add(sid)
+            mapping = mapping1
+            if len(mapping.keys()) == 0:
+                newnodeset1 = nodeset1
+            else:
+                a1 = a.clone()
+                newnodeset1 = list(a1.all_nodes(subst=False))
+                newnodeset1.remove(a1.root())
+                for m in newnodeset1:
+                    if m.id() in mapping:
+                        for sl in list(m.substituent_links()):
+                            if sl.child().id() in mapping[m.id()]:
+                                m.remove_substituent_link(sl)
+                                sl.child().del_parent_link(sl)
 
-        lineno()
+            lineno()
 
-        iters = 0
-        for ii,jj in itergenmatchings(newnodeset1, nodeset2, self.monosaccharide_leq):
+            # for m in newnodeset1:
+            #    print(m)
 
-            iters += 1
-            matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
-            matching[a.root().id()] = b.root().id()
+            # lineno()
 
-            # all linkset1 links must be matched, and the only
-            # unmatched linkset2 links must be undetermined links
+            # for m in nodeset2:
+            #     print(m)
 
-            matchedlinkset2links = set()
-            good = True
-            for (f,t),l1 in linkset1.items():
-                l2 = linkset2.get((matching[f],matching[t]))
-                if not l2 or not self.linkleq(l1,l2):
-                    good = False
-                    break
-                else:
-                    matchedlinkset2links.add((matching[f],matching[t]))
+            iters = 0
+            for ii,jj in itergenmatchings(newnodeset1, nodeset2, self.monosaccharide_leq):
 
-            if good:
-                for (f,t),l2 in linkset2.items():
-                    if (f,t) not in matchedlinkset2links and linkset2[(f,t)].instantiated():
+                # lineno()
+
+                iters += 1
+                matching = dict(zip(map(lambda m: m.id(),ii),map(lambda m: m.id(),jj)))
+                matching[a.root().id()] = b.root().id()
+
+                # all linkset1 links must be matched, and the only
+                # unmatched linkset2 links must be undetermined links
+
+                matchedlinkset2links = set()
+                good = True
+                for (f,t),l1 in linkset1.items():
+                    l2 = linkset2.get((matching[f],matching[t]))
+                    if not l2 or not self.linkleq(l1,l2):
                         good = False
                         break
-                
-            if good:
-                # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
-                if idmap is not None:
-                    idmap.append((a.root(),b.root()))
-                    idmap.extend(zip(ii,jj))
-                return True
+                    else:
+                        matchedlinkset2links.add((matching[f],matching[t]))
+
+                if good:
+                    for (f,t),l2 in linkset2.items():
+                        if (f,t) not in matchedlinkset2links and linkset2[(f,t)].instantiated():
+                            good = False
+                            break
+                    
+                if good:
+                    # print >>sys.stderr, "%d iterations to find an isomorphism"%(iters,)
+                    if idmap is not None:
+                        idmap.append((a.root(),b.root()))
+                        idmap.extend(zip(ii,jj))
+                    return True
                 
         lineno()
 
@@ -1332,6 +1354,9 @@ class CompositionPartialOrder(Comparitor):
     def __init__(self,monocmp=None,substcmp=None,**kw):
         self._monocmp = monocmp
         self._substcmp = substcmp
+        self._linkeq = LinkageEqual()
+        self._substeq = SubstituentEqual()
+        self._monoeq = MonosaccharideEqual(substcmp=self._substeq,sublinkcmp=self._linkeq)
         super(CompositionPartialOrder,self).__init__(**kw)
 
     def nodeleq(self,a,b):
@@ -1339,6 +1364,13 @@ class CompositionPartialOrder(Comparitor):
             return self._monocmp.leq(a,b)
         elif not a.is_monosaccharide() and not b.is_monosaccharide():
             return self._substcmp.leq(a,b)
+        return False
+
+    def nodeeq(self,a,b):
+        if a.is_monosaccharide() and b.is_monosaccharide():
+            return self._monoeq.eq(a,b)
+        elif not a.is_monosaccharide() and not b.is_monosaccharide():
+            return self._substeq.eq(a,b)
         return False
 
     def leq(self,a,b,idmap=None):
@@ -1390,21 +1422,36 @@ class CompositionPartialOrder(Comparitor):
         
         if fs2 == fs1:
 
+            ec1 = equivclasses(nodeset1all,self.nodeeq)
+            # print(ec1)
+            ec2 = equivclasses(nodeset2all,self.nodeeq)
+            # print(ec2)
+
+            for j in range(len(ec2)):
+                cnt = 0
+                for i in range(len(ec1)):
+                    if self.nodeleq(ec1[i][0],ec2[j][0]):
+                        cnt += ec1[i][1]
+                if cnt < ec2[j][1]:
+                    return False
+
             for ii,jj in itergenmatchings(nodeset1all,nodeset2all,self.nodeleq):
                 if idmap is not None:
                     idmap.extend(zip(ii,jj))
                 return True
 
         else:
-
+            a.set_ids() # need ids for substituents
             allsubst = set()
             subst1link = defaultdict(int)
             subst1float= defaultdict(int)
+            subst1links = defaultdict(list)
             for n in nodeset1all:
                 if n.is_monosaccharide():
                     for s in n.substituents():
                         subst1link[s.name()] += 1
                         allsubst.add(s.name())
+                        subst1links[s.name()].append((n.id(),s.id(),s.name()))
                 else:
                     subst1float[n.name()] += 1
                     allsubst.add(n.name())
@@ -1431,20 +1478,12 @@ class CompositionPartialOrder(Comparitor):
             for s in allsubst:
                 if (subst1link[s]+subst1float[s]) != (subst2link[s]+subst2float[s]):
                     return False
-                elif subst2float[s] > subst1float[s] and \
-                     subst2link[s] == 0:
-                    subst2move.append(s)
-                elif subst2float[s] > 0 and \
-                         subst2link[s] == 0 and \
-                         subst1link[s] == 0 and \
-                         subst2float[s] == subst1float[s]:
-                    # Do nothing, but not a problem
+                elif subst1float[s] > subst2float[s]:
+                    return False
+                elif subst1float[s] == subst2float[s]:
                     pass
-                elif subst2float[s] == 0 and \
-                         subst1float[s] == 0 and \
-                         subst1link[s] == subst2link[s]:
-                    # Do nothing, but not a problem
-                    pass
+                elif subst1float[s] < subst2float[s]:
+                    subst2move.append((s,subst2float[s]-subst1float[s]))
                 else:
                     bad = True
                     break
@@ -1452,27 +1491,53 @@ class CompositionPartialOrder(Comparitor):
             if bad:
                 raise RuntimeError("Cannot resolve composition-partial order, floating substituents too complicated")
 
-            # print subst2move
-            
-            # strip specific floating substituents from nodes in nodeset1
-            newnodeset1 = []
-            for m in nodeset1:
-                m1 = m.clone()
-                for sl in list(m1.substituent_links()):
-                    if sl.child().name() in subst2move:
-                        m1.remove_substituent_link(sl)
-                        sl.child().del_parent_link(sl)
-                newnodeset1.append(m1)
+            movingsubst = []
+            node1substlinks = []
+            for sn,ns in subst2move:
+                movingsubst.extend([sn]*ns)
+                node1substlinks.extend(subst1links[sn])
 
-            # print newnodeset1
-            # print nodeset2
+            seen = set()
+            for iii,jjj,remj in itersubmatchings(movingsubst,node1substlinks,lambda a,b: a == b[2]):
+                mapping = tuple(sorted(jjj))
+                if mapping in seen:
+                    continue
+                seen.add(mapping)
+                mapping1 = defaultdict(set)
+                for mid,sid,sn in mapping:
+                    mapping1[mid].add(sid)
+                mapping = mapping1
+                newnodeset1 = []
+                for m in nodeset1:
+                    if m.id() in mapping1:
+                        m1 = m.clone()
+                        for sl in list(m1.substituent_links()):
+                            if sl.child().id() in mapping[m1.id()]:
+                                m1.remove_substituent_link(sl)
+                                sl.child().del_parent_link(sl)
+                        newnodeset1.append(m1)
+                    else:
+                        newnodeset1.append(m)
 
-            # Now the monosaccharides should match....
-            for ii,jj in itergenmatchings(newnodeset1,nodeset2,self.nodeleq):
-                if idmap is not None:
-                    idmap.extend(zip(ii,jj))
-                return True
+                ec1 = equivclasses(newnodeset1,self.nodeeq)
+                # print(ec1)
+                ec2 = equivclasses(nodeset2,self.nodeeq)
+                # print(ec2)
 
+                for j in range(len(ec2)):
+                    cnt = 0
+                    for i in range(len(ec1)):
+                        if self.nodeleq(ec1[i][0],ec2[j][0]):
+                            cnt += ec1[i][1]
+                    if cnt < ec2[j][1]:
+                        return False
+
+                # Now the monosaccharides should match....
+                for ii,jj in itergenmatchings(newnodeset1,nodeset2,self.nodeleq):
+                    if idmap is not None:
+                        idmap.extend(zip(ii,jj))
+                    return True
+                   
         lineno()
 
         return False
@@ -2210,6 +2275,7 @@ def main():
                 pass
     else:
         g1 = gtc.getGlycan(acc1)
+        g1seq = gtc.getseq(acc1)
     assert g1 != None
 
     acc2 = sys.argv[2]
@@ -2223,10 +2289,13 @@ def main():
                 pass
     else:
         g2 = gtc.getGlycan(acc2)
+        g2seq = gtc.getseq(acc2)
     assert g2 != None
 
-    # print(g1)
-    # print(g2)
+    print(g1seq)
+    print(g1.glycoct())
+    print(g2seq)
+    print(g2.glycoct())
     # tg2 = topology(g2)
 
     verbose = True
